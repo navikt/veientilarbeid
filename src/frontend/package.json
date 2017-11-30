@@ -37,7 +37,7 @@
     "build:less": "node ./node_modules/less/bin/lessc/ src/index.less ./public/index.css",
     "start": "npm-run-all -p start:*",
     "build:tekster": "node ./src/utils/build-tekster.js",
-    "build": "npm run delete-static npm run build:less && npm run build:ts && npm run build:tekster"
+    "build": "npm run delete-static npm run build:less && npm run build:ts && npm run build:tekster && npm run copyfiles"
   },
   "devDependencies": {
     "@types/jest": "21.1.8",

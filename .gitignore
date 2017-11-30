@@ -28,3 +28,5 @@ yarn-error.log*
 
 public/index.css
 public/index.css.map
+/src/main/webapp/
+/src/frontend/src/tekster/alle-tekster.ts
