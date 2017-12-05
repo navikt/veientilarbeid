@@ -4,27 +4,59 @@
 @import '../node_modules/nav-frontend-core/less/core';
 @import '../node_modules/nav-frontend-grid-style/src/index';
 @import '../node_modules/nav-frontend-typografi-style/src/index';
+@import '../node_modules/nav-frontend-chevron-style/src/index';
+@import '../node_modules/nav-frontend-paneler-style/src/index';
+@import '../node_modules/nav-frontend-lenkepanel-style/src/index';
+
+@import './komponenter/oppgaver/oppgave';
+@import './komponenter/lenkeboks/lenkeboks';
+@import './komponenter/tjenester/tjenester';
 
 
-.oppgaver__wrapper {
+.body__wrapper {
     width: 70%;
     margin-left: auto;
     margin-right: auto;
 }
 
-.tjenester__wrapper {
-    text-align: center;
+.gray-background__wrapper {
+    background-color: @navLysGra;
 }
 
 .overskrift-veientilarbeid__wrapper {
+    padding-top: 3rem;
     text-align: center;
+    height: 10rem;
+    border-bottom: 2px solid @navBla;
+    background: @navLysBla url("./svg/dataskjerm.svg") no-repeat;
+    background-position: 20% 100%;
 }
-.overskrift-komigang__wrapper {
-    width: 70%;
-    text-align: center;
-    margin: auto;
+
+.kom-i-gang__wrapper {
+    padding-top:1rem;
+
+    .overskrift-kom-i-gang {
+        text-align: center;
+    }
+}
+
+.overskrift-komigang__panel {
     .beskrivelse-komigang {
         width: 50%;
-        margin: auto;
+        margin-left: auto;
+        margin-right:auto;
+    }
+}
+
+.overskrift-kom-i-gang, .overskrift-oppgaver, .overskrift-tjenester {
+    &::after {
+        border-bottom: 3px solid;
+        display: block;
+        content: '';
+        margin-top: 1rem;
+        width: 2rem;
+        margin-left: auto;
+        margin-right: auto;
+        color: @navGronn;
     }
 }

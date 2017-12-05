@@ -1,19 +1,20 @@
 import * as React from 'react';
 import { FormattedMessage, injectIntl, InjectedIntlProps } from 'react-intl';
+import Lenkeboks from '../lenkeboks/lenkeboks';
+import { Undertittel } from 'nav-frontend-typografi';
 
 interface Props {
     tittelId: string;
     beskrivelseId: string;
     lenkeId: string;
-    className: string;
 }
 
-function Oppgave({tittelId, beskrivelseId, lenkeId, className, intl}: Props & InjectedIntlProps) {
+function Oppgave({tittelId, beskrivelseId, lenkeId, intl}: Props & InjectedIntlProps) {
     return (
-        <a className={className} href={intl.messages[lenkeId]}>
-            <h3 className="typo-undertittel"><FormattedMessage id={tittelId}/></h3>
-            <div><FormattedMessage id={beskrivelseId}/></div>
-        </a>
+        <Lenkeboks href={intl.messages[lenkeId]}>
+            <Undertittel className="lenkeboks-overskrift blokk-m"><FormattedMessage id={tittelId}/></Undertittel>
+            <div className="lenkeboks-beskrivelse"><FormattedMessage id={beskrivelseId}/></div>
+        </Lenkeboks>
     );
 }
 

@@ -5,6 +5,7 @@ import IntlProvider from './Intl-provider';
 import Overskrift from './komponenter/overskrift/overskrift';
 import Oppgaver from './komponenter/oppgaver/oppgaver';
 import Tjenester from './komponenter/tjenester/tjenester';
+import Komigang from './komponenter/overskrift/kom-i-gang';
 
 const store = getStore();
 
@@ -15,11 +16,16 @@ class App extends React.Component {
                 <IntlProvider>
                     <div>
                         <Overskrift/>
-                        <Oppgaver />
-                        <Tjenester/>
+                        <div className="gray-background__wrapper">
+                            <div className="body__wrapper">
+                                <Komigang/>
+                                <Oppgaver />
+                                <Tjenester/>
+                            </div>
+                        </div>
                     </div>
                 </IntlProvider>
-            </Provider>
+            </Provider >
         );
     }
 }

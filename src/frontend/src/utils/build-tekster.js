@@ -10,7 +10,7 @@ function readFile(dir, file) {
 }
 
 function createJson(katalog) {
-    return 'export default {\'nb\':{' + read(katalog) + '},\'en\':{}};';
+    return '/*tslint:disable*/export default {\'nb\':{' + read(katalog) + '},\'en\':{}};';
 }
 
 const read = (dir) =>

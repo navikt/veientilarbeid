@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="110px" height="86px" viewBox="0 0 110 86" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>devices/ dataskjerm</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="devices/-dataskjerm">
+            <g id="Group">
+                <path d="M109.8105,61.6783 L109.8105,70.8873 C109.8105,72.8253 108.2405,74.3963 106.3015,74.3963 L4.0835,74.3963 C2.1455,74.3963 0.5745,72.8253 0.5745,70.8873 L0.5745,61.6783 L109.8105,61.6783 Z" id="Fill-16" fill="#ABB2BA"></path>
+                <path d="M0.5747,61.6783 L0.5747,4.3963 C0.5747,2.4583 2.1457,0.8873 4.0837,0.8873 L106.3017,0.8873 C108.2407,0.8873 109.8107,2.4583 109.8107,4.3963 L109.8107,61.6783 L0.5747,61.6783 Z" id="Fill-17" fill="#506572"></path>
+                <path d="M4.0942,58.1939 L4.0942,6.0699 C4.0942,5.0799 4.8972,4.2769 5.8872,4.2769 L104.4982,4.2769 C105.4882,4.2769 106.2912,5.0799 106.2912,6.0699 L106.2912,58.1939 L4.0942,58.1939 Z" id="Fill-18" fill="#627282"></path>
+                <polygon id="Fill-19" fill="#ABB2BA" points="42.388 83.921 67.998 83.921 67.998 74.397 42.388 74.397"></polygon>
+                <polygon id="Fill-20" fill="#ABB2BA" points="32.512 85.663 77.874 85.663 77.874 82.578 32.512 82.578"></polygon>
+                <path d="M56.0205,68.8653 C56.0205,69.3223 55.6495,69.6933 55.1925,69.6933 C54.7355,69.6933 54.3655,69.3223 54.3655,68.8653 C54.3655,68.4083 54.7355,68.0373 55.1925,68.0373 C55.6495,68.0373 56.0205,68.4083 56.0205,68.8653" id="Fill-21" fill="#959BA5"></path>
+            </g>
+        </g>
+    </g>
+</svg>
