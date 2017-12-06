@@ -46,6 +46,10 @@
             <artifactId>innholdshenter</artifactId>
             <version>4.8</version>
         </dependency>
+        <dependency>
+            <groupId>no.nav.modig</groupId>
+            <artifactId>modig-testcertificates</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
