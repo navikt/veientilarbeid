@@ -31,3 +31,4 @@ public/index.css.map
 /src/main/webapp/
 /src/frontend/src/tekster/alle-tekster.ts
 /src/frontend/node_modules/
+!/.idea/runConfigurations/
