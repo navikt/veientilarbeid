@@ -24,7 +24,7 @@
     "redux-thunk": "2.2.0"
   },
   "scripts": {
-    "copyfiles": "copyfiles -u 1 'build/**/*.*' '../main/webapp'",
+    "copyfiles": "copyfiles -u 1 \"build/**/*.*\" \"../main/webapp\"",
     "delete-static": "node scripts/deletestatic.js",
     "start:ts": "react-scripts-ts start",
     "build:ts": "react-scripts-ts build",

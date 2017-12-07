@@ -1,5 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Main" type="Application" factoryName="Application" singleton="true" nameIsGenerated="true">
+    <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
     <option name="MAIN_CLASS_NAME" value="Main" />
     <option name="VM_PARAMETERS" value="" />
     <option name="PROGRAM_PARAMETERS" value="" />
@@ -11,7 +12,7 @@
     <option name="PASS_PARENT_ENVS" value="true" />
     <module name="veientilarbeid" />
     <envs>
-      <env name="APPRES_CMS_URL" value="htttp://localhost:8080" />
+      <env name="APPRES_CMS_URL" value="http://localhost:8080" />
     </envs>
     <method />
   </configuration>
