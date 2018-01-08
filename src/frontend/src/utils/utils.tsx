@@ -1,5 +1,5 @@
 import { InjectedIntl } from 'react-intl';
 
-export function getIntlText(intl: InjectedIntl, id: string) {
-    return intl.messages[id] ? intl.messages[id] : id;
+export function getIntlText(id: string, intl?: InjectedIntl) {
+    return (!!intl && intl.messages[id]) ? intl.messages[id] : id;
 }

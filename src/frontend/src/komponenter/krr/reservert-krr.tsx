@@ -1,11 +1,15 @@
 import * as React from 'react';
-import { injectIntl, InjectedIntlProps } from 'react-intl';
+import { injectIntl, InjectedIntl } from 'react-intl';
 
 import { AlertStripeInfoSolid } from 'nav-frontend-alertstriper';
 import { getIntlText } from '../../utils/utils';
 
-function ReservertKrr({intl}: InjectedIntlProps) {
-    const infotekst = getIntlText(intl, 'reservert-krr.infotekst');
+interface ReservertKrrProps {
+    intl?: InjectedIntl;
+}
+
+function ReservertKrr({intl}: ReservertKrrProps) {
+    const infotekst = getIntlText('reservert-krr.infotekst', intl);
 
     return(
         <AlertStripeInfoSolid className="reserver-krr__alertstripe" >
