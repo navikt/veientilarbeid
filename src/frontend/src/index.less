@@ -7,11 +7,18 @@
 @import '../node_modules/nav-frontend-chevron-style/src/index';
 @import '../node_modules/nav-frontend-paneler-style/src/index';
 @import '../node_modules/nav-frontend-lenkepanel-style/src/index';
+@import '../node_modules/nav-frontend-alertstriper-style/src/index';
+@import '../node_modules/nav-frontend-lenker-style/src/lenker-style';
 
 @import './komponenter/oppgaver/oppgave';
 @import './komponenter/lenkeboks/lenkeboks';
 @import './komponenter/tjenester/tjenester';
+@import './komponenter/krr/reservert-krr';
 
+
+body {
+    background-color: @navLysGra;
+}
 
 .body__wrapper {
     width: 70%;
@@ -19,9 +26,6 @@
     margin-right: auto;
 }
 
-.gray-background__wrapper {
-    background-color: @navLysGra;
-}
 
 .overskrift-veientilarbeid__wrapper {
     padding-top: 3rem;
@@ -59,4 +63,20 @@
         margin-right: auto;
         color: @navGronn;
     }
+}
+
+.appContainer {
+    height: 100%;
+}
+
+.pagewrapper {
+    min-height: 100%;
+    height: auto;
+    margin-bottom: -200px;
+    padding-bottom: 200px;
+}
+
+.hodefot-footer {
+    width: 100%;
+    bottom: 0;
 }

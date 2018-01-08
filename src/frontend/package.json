@@ -4,13 +4,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "babel-polyfill": "6.26.0",
     "classnames": "2.2.5",
+    "nav-frontend-alertstriper": "0.2.21",
+    "nav-frontend-alertstriper-style": "0.2.26",
     "nav-frontend-chevron-style": "0.3.4",
     "nav-frontend-core": "4.0.5",
     "nav-frontend-grid": "0.1.10",
     "nav-frontend-grid-style": "0.2.4",
+    "nav-frontend-ikoner-assets": "0.2.21",
     "nav-frontend-lenkepanel": "0.3.16",
     "nav-frontend-lenkepanel-style": "0.3.6",
+    "nav-frontend-lenker-style": "^0.2.5",
     "nav-frontend-paneler": "0.2.17",
     "nav-frontend-paneler-style": "0.3.7",
     "nav-frontend-typografi": "1.0.12",
@@ -19,6 +24,8 @@
     "react-dom": "16.2.0",
     "react-intl": "2.4.0",
     "react-redux": "5.0.6",
+    "react-router": "4.2.0",
+    "react-router-dom": "4.2.2",
     "react-scripts-ts": "2.8.0",
     "redux": "3.7.2",
     "redux-thunk": "2.2.0"
@@ -39,7 +46,7 @@
     "build:less": "node ./node_modules/less/bin/lessc/ src/index.less ./public/index.css",
     "start": "npm-run-all -p start:*",
     "build:tekster": "node ./src/utils/build-tekster.js",
-    "build": "npm run delete-static npm run build:less && npm run build:ts && npm run build:tekster && npm run copyfiles"
+    "build": "npm run delete-static && npm run build:less && npm run build:tekster && npm run build:ts && npm run copyfiles"
   },
   "devDependencies": {
     "@types/jest": "21.1.8",
