@@ -22,9 +22,11 @@ class App extends React.Component {
                 <IntlProvider>
                     <div>
                         <Overskrift/>
-                        <SjekkKrrStatus >
-                            <Home/>
-                        </SjekkKrrStatus>
+                        <div className="body__wrapper">
+                            <SjekkKrrStatus >
+                                <Home/>
+                            </SjekkKrrStatus>
+                        </div>
                     </div>
                 </IntlProvider>
             </Provider >
