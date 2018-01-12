@@ -8,9 +8,7 @@ export enum RegistreringStatusActions {
 }
 
 interface RegistreringStatus {
-    underOppfolging?: boolean;
-    oppfyllerKrav?: boolean;
-    reservertKRR?: boolean;
+    reservertIKrr?: boolean;
 }
 
 export interface RegStatusState {
@@ -42,7 +40,7 @@ export default function (state: RegStatusState = initialState,
 }
 
 export function hentRegistreringStatus() {
-    return doThenDispatch(() => Api.hentRegistreringStatus(), {
+    return doThenDispatch(() => Api.hentKrrStatus(), {
         PENDING: RegistreringStatusActions.HENT_REGISTRERINGSTATUS_PENDING,
         OK : RegistreringStatusActions.HENT_REGISTRERINGSTATUS_OK,
         FEILET: RegistreringStatusActions.HENT_REGISTRERINGSTATUS_FEILET,

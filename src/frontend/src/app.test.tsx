@@ -15,7 +15,7 @@ afterEach(() => fetch.restore());
 
 describe('<App />', () => {
     it('skal rendre <ReservertKrr /> om bruker er reservert i KRR', () => {
-        stubFetchWithResponse({reservertKRR: true});
+        stubFetchWithResponse({reservertIKrr: true});
 
         const wrapper = mountWithStore(<App />);
 
@@ -27,7 +27,19 @@ describe('<App />', () => {
     });
 
     it('skal rendre kom-i-gang om bruker ikke er reservert i krr', () => {
-        stubFetchWithResponse({reservertKRR: false});
+        stubFetchWithResponse({reservertIKrr: false});
+
+        const wrapper = mountWithStore(<App />);
+
+        return promiseWithSetTimeout()
+            .then(() => {
+                expect(wrapper.html()).to.have.string('kom-i-gang__wrapper');
+                expect(wrapper.html()).not.to.have.string('reserver-krr__alertstripe');
+            });
+
+    });
+    it('skal rendre kom-i-gang om reservert i krr feiler med 500', () => {
+        stubFetchWithErrorResponse(500);
 
         const wrapper = mountWithStore(<App />);
 
@@ -39,8 +51,8 @@ describe('<App />', () => {
 
     });
 
-    it('skal rendre <ReservertKrr /> om kall til Krr feiler', () => {
-        stubFetchWithErrorResponse();
+    it('skal rendre <ReservertKrr /> om kall til Krr feiler med 404', () => {
+        stubFetchWithErrorResponse(404);
 
         const wrapper = mountWithStore(<App />);
 

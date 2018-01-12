@@ -20,11 +20,34 @@ class FetchError extends Error {
     }
 }
 
-export function sjekkStatuskode(response: Response) {
-    if (response.status >= 200 && response.status < 300 && response.ok) {
-        return Promise.resolve(response);
+type RecoverWith = (status: number) => ({} | null) | {};
+
+function getRecoverWithFunction(recoverWith?: RecoverWith): (status?: number) => {} | null {
+    switch (typeof recoverWith) {
+        case 'object': {
+            return () => (recoverWith as {});
+        }
+        case 'function': {
+            return (recoverWith as RecoverWith);
+        }
+        default: {
+            return () => null;
+        }
     }
-    return Promise.reject(new FetchError(response.statusText, response));
+}
+
+export function sjekkStatuskode(recoverWith?: RecoverWith) {
+
+    return (response: Response) => {
+        if (response.status >= 200 && response.status < 300 && response.ok) {
+            return Promise.resolve(response);
+        }
+        const recoverWithFunction = getRecoverWithFunction(recoverWith);
+
+        return !!recoverWithFunction(response.status) ?
+            Promise.resolve({json: () => recoverWithFunction(response.status)}) :
+            Promise.reject(new FetchError(response.statusText, response));
+    };
 }
 
 export function toJson(response: Response) {
@@ -34,9 +57,9 @@ export function toJson(response: Response) {
     return response;
 }
 
-export function sendResultatTilDispatch(dispatch: Dispatch<AppState>, action: ActionType)  {
+export function sendResultatTilDispatch(dispatch: Dispatch<AppState>, action: ActionType) {
     return <S>(data: S): S => {
-        dispatch({ type: action, data });
+        dispatch({type: action, data});
         return data;
     };
 }
@@ -46,18 +69,28 @@ export function handterFeil(dispatch: Dispatch<AppState>, action: ActionType) {
         if (error.response) {
             error.response.text().then((data: string) => {
                 console.error(error, error.stack, data); // tslint:disable-line no-console
-                dispatch({ type: action, data: { response: error.response, data } });
+                dispatch({type: action, data: {response: error.response, data}});
             });
         } else {
             console.error(error, error.stack); // tslint:disable-line no-console
-            dispatch({ type: action, data: error.toString() });
+            dispatch({type: action, data: error.toString()});
         }
     };
 }
 
-export function fetchToJson<DATA>(url: string, config: RequestInit = {}): Promise<DATA> {
+interface FetchToJson {
+    url: string;
+    config?: { credentials: RequestCredentials};
+    recoverWith?: RecoverWith;
+}
+
+export function fetchToJson<DATA>({
+                                      url,
+                                      config = {credentials: 'include'},
+                                      recoverWith}: FetchToJson): Promise<DATA> {
+
     return fetch(url, config)
-        .then(sjekkStatuskode)
+        .then(sjekkStatuskode(recoverWith))
         .then(toJson);
 }
 
@@ -68,11 +101,11 @@ interface RestActions {
 }
 
 export function doThenDispatch<DATA>(
-    fn: () => Promise<DATA> , { OK, FEILET, PENDING }: RestActions
-): ThunkAction<Promise<DATA|void>, AppState, void> {
+    fn: () => Promise<DATA>,
+    {OK, FEILET, PENDING}: RestActions): ThunkAction<Promise<DATA | void>, AppState, void> {
     return (dispatch: Dispatch<AppState>) => {
         if (PENDING) {
-            dispatch({ type: PENDING });
+            dispatch({type: PENDING});
         }
         return fn()
             .then(sendResultatTilDispatch(dispatch, OK))

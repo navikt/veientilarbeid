@@ -23,9 +23,9 @@ export function stubFetchWithResponse(response: {}): Promise {
         Promise.resolve({status: 200, ok: true, json: () => (response)}));
 }
 
-export function stubFetchWithErrorResponse() {
+export function stubFetchWithErrorResponse(status?: number) {
     return sinon.stub(global, 'fetch').callsFake(() =>
-        Promise.resolve({status: 500, text: () => Promise.resolve('Skal kaste feil')}));
+        Promise.resolve({status: status || 500, text: () => Promise.resolve('Skal kaste feil')}));
 }
 
 export function promiseWithSetTimeout() {

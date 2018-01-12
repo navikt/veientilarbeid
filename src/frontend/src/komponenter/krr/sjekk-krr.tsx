@@ -2,8 +2,9 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../../reducer';
 import Innholdslaster from '../../innholdslaster/innholdslaster';
-import { RegStatusState } from '../../ducks/hent-registrering-status';
-import ReserverKrr from './reservert-krr';
+import { RegStatusState } from '../../ducks/krr';
+import GenerellFeilmelding from '../feilmelding/generell-feilmelding';
+import ReservertKrr from '../krr/reservert-krr';
 
 interface SjekkKrrStatusProps {
     children: React.ReactNode;
@@ -15,10 +16,10 @@ function SjekkKrrStatus({children, registreringStatus }: SjekkKrrStatusProps) {
         <Innholdslaster
             avhengigheter={[registreringStatus]}
             className="innholdslaster"
-            feilmeldingKomponent={(<ReserverKrr/>)}
+            feilmeldingKomponent={(<GenerellFeilmelding/>)}
             storrelse="XXL"
         >
-            {() => registreringStatus.data.reservertKRR ? <ReserverKrr/> : children}
+            {() => registreringStatus.data.reservertIKrr ? <ReservertKrr/> : children}
         </Innholdslaster>
 
     );

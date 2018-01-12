@@ -1,3 +1,3 @@
-import { RegistreringStatusActions } from './hent-registrering-status';
+import { RegistreringStatusActions } from './krr';
 
 export default RegistreringStatusActions;

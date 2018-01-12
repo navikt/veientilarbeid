@@ -5,7 +5,7 @@ import IntlProvider from './Intl-provider';
 import './decorator/decorator-mock';
 import Home from './komponenter/home';
 import Overskrift from './komponenter/overskrift/overskrift';
-import { hentRegistreringStatus } from './ducks/hent-registrering-status';
+import { hentRegistreringStatus } from './ducks/krr';
 import SjekkKrrStatus from './komponenter/krr/sjekk-krr';
 
 const store = getStore();
