@@ -5,7 +5,7 @@ import IntlProvider from './Intl-provider';
 import './decorator/decorator-mock';
 import Home from './komponenter/home';
 import Overskrift from './komponenter/overskrift/overskrift';
-import { hentRegistreringStatus } from './ducks/krr';
+import { hentKrrStatustatus } from './ducks/krr';
 import SjekkKrrStatus from './komponenter/krr/sjekk-krr';
 
 const store = getStore();
@@ -13,21 +13,17 @@ const dispatch = store.dispatch;
 
 class App extends React.Component {
     componentDidMount() {
-        dispatch(hentRegistreringStatus());
+        dispatch(hentKrrStatustatus());
     }
 
     render() {
         return (
             <Provider store={store}>
                 <IntlProvider>
-                    <div>
+                    <SjekkKrrStatus >
                         <Overskrift/>
-                        <div className="body__wrapper">
-                            <SjekkKrrStatus >
-                                <Home/>
-                            </SjekkKrrStatus>
-                        </div>
-                    </div>
+                        <Home/>
+                    </SjekkKrrStatus>
                 </IntlProvider>
             </Provider >
         );

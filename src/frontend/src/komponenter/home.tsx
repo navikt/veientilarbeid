@@ -5,7 +5,7 @@ import Oppgaver from './oppgaver/oppgaver';
 
 function Home() {
     return (
-        <div>
+        <div className="body__wrapper">
             <Komigang/>
             <Oppgaver />
             <Tjenester/>

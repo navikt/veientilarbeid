@@ -1,37 +1,37 @@
 import * as Api from './api';
 import { doThenDispatch, STATUS } from './utils';
 
-export enum RegistreringStatusActions {
-    HENT_REGISTRERINGSTATUS_PENDING,
-    HENT_REGISTRERINGSTATUS_OK,
-    HENT_REGISTRERINGSTATUS_FEILET,
+export enum KrrStatustatusActions {
+    HENT_KRR_STATUS_PENDING,
+    HENT_KRR_STATUS_OK,
+    HENT_KRR_STATUS_FEILET,
 }
 
-interface RegistreringStatus {
+interface KrrStatustatus {
     reservertIKrr?: boolean;
 }
 
-export interface RegStatusState {
-    data: RegistreringStatus;
+export interface KrrStatusState {
+    data: KrrStatustatus;
     status: string;
 }
 
-const initialState: RegStatusState = {
+const initialState: KrrStatusState = {
     data : {},
     status: STATUS.NOT_STARTED
 };
 
-export default function (state: RegStatusState = initialState,
-                         action: {type: RegistreringStatusActions, data: {}}): RegStatusState {
+export default function (state: KrrStatusState = initialState,
+                         action: {type: KrrStatustatusActions, data: {}}): KrrStatusState {
     switch (action.type) {
-        case RegistreringStatusActions.HENT_REGISTRERINGSTATUS_PENDING:
+        case KrrStatustatusActions.HENT_KRR_STATUS_PENDING:
             if (state.status === STATUS.OK) {
                 return { ...state, status: STATUS.RELOADING };
             }
             return { ...state, status: STATUS.PENDING };
-        case RegistreringStatusActions.HENT_REGISTRERINGSTATUS_FEILET:
+        case KrrStatustatusActions.HENT_KRR_STATUS_FEILET:
             return { ...state, status: STATUS.ERROR };
-        case RegistreringStatusActions.HENT_REGISTRERINGSTATUS_OK: {
+        case KrrStatustatusActions.HENT_KRR_STATUS_OK: {
             return { ...state, status: STATUS.OK, data: action.data };
         }
         default:
@@ -39,10 +39,10 @@ export default function (state: RegStatusState = initialState,
     }
 }
 
-export function hentRegistreringStatus() {
+export function hentKrrStatustatus() {
     return doThenDispatch(() => Api.hentKrrStatus(), {
-        PENDING: RegistreringStatusActions.HENT_REGISTRERINGSTATUS_PENDING,
-        OK : RegistreringStatusActions.HENT_REGISTRERINGSTATUS_OK,
-        FEILET: RegistreringStatusActions.HENT_REGISTRERINGSTATUS_FEILET,
+        PENDING: KrrStatustatusActions.HENT_KRR_STATUS_PENDING,
+        OK : KrrStatustatusActions.HENT_KRR_STATUS_OK,
+        FEILET: KrrStatustatusActions.HENT_KRR_STATUS_FEILET,
     });
 }

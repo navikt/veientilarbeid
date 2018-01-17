@@ -1,3 +1,3 @@
-import { RegistreringStatusActions } from './krr';
+import { KrrStatustatusActions } from './krr';
 
-export default RegistreringStatusActions;
+export default KrrStatustatusActions;

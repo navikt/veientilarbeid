@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import registreringStatus, { RegStatusState } from './ducks/krr';
+import registreringStatus, { KrrStatusState } from './ducks/krr';
 
 export interface AppState {
-    registreringStatus: RegStatusState;
+    registreringStatus: KrrStatusState;
 }
 
 export default combineReducers<AppState>({
