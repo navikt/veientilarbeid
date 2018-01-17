@@ -1,14 +1,21 @@
-FROM docker.adeo.no:5000/pus/node as npm-builder
+# gjør det mulig å bytte base-image slik at vi får bygd både innenfor og utenfor NAV
+ARG BASE_IMAGE_PREFIX=""
+FROM ${BASE_IMAGE_PREFIX}node as node-builder
+
 ADD /src/frontend /source
 ENV CI=true
 WORKDIR /source
 RUN npm install && npm run build
 
-FROM docker.adeo.no:5000/pus/maven as mvn-builder
+
+FROM ${BASE_IMAGE_PREFIX}maven as maven-builder
 ADD / /source
+COPY --from=node-builder /source/build /source/src/main/webapp
 WORKDIR /source
-COPY --from=npm-builder /source/build /source/src/main/webapp
-RUN mvn package -DskipTests
+RUN mvn install
+
+
+
 
 FROM docker.adeo.no:5000/bekkci/nais-java-app
-COPY --from=mvn-builder /source/target/veientilarbeid /app
+COPY --from=maven-builder /source/target/veientilarbeid /app
