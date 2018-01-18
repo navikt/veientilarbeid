@@ -5,7 +5,7 @@
   "proxy": "http://localhost:8080",
   "private": true,
   "dependencies": {
-    "@types/query-string": "^5.0.1",
+    "@types/query-string": "5.0.1",
     "babel-polyfill": "6.26.0",
     "classnames": "2.2.5",
     "nav-frontend-alertstriper": "0.2.21",
@@ -17,14 +17,14 @@
     "nav-frontend-ikoner-assets": "0.2.21",
     "nav-frontend-lenkepanel": "0.3.16",
     "nav-frontend-lenkepanel-style": "0.3.6",
-    "nav-frontend-lenker-style": "^0.2.5",
+    "nav-frontend-lenker-style": "0.2.5",
     "nav-frontend-paneler": "0.2.17",
     "nav-frontend-paneler-style": "0.3.7",
-    "nav-frontend-spinner": "^0.1.24",
-    "nav-frontend-spinner-style": "^0.2.4",
+    "nav-frontend-spinner": "0.1.24",
+    "nav-frontend-spinner-style": "0.2.4",
     "nav-frontend-typografi": "1.0.12",
     "nav-frontend-typografi-style": "1.0.7",
-    "query-string": "^5.0.1",
+    "query-string": "5.0.1",
     "react": "16.2.0",
     "react-dom": "16.2.0",
     "react-intl": "2.4.0",
@@ -52,7 +52,7 @@
     "build": "npm run delete-static && npm run build:less && npm run build:tekster && npm run build:ts && npm run copyfiles"
   },
   "devDependencies": {
-    "@types/fetch-mock": "^5.12.2",
+    "@types/fetch-mock": "5.12.2",
     "@types/jest": "21.1.8",
     "@types/node": "8.0.53",
     "@types/react": "16.0.28",
@@ -60,15 +60,15 @@
     "@types/react-intl": "2.3.2",
     "@types/react-redux": "5.0.14",
     "autoless": "0.1.7",
-    "chai": "^4.1.2",
+    "chai": "4.1.2",
     "chai-as-promised": "7.1.1",
     "copyfiles": "1.2.0",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
-    "enzyme-react-intl": "^1.4.8",
-    "fetch-mock": "^6.0.0-beta.7",
+    "enzyme": "3.3.0",
+    "enzyme-adapter-react-16": "1.1.1",
+    "enzyme-react-intl": "1.4.8",
+    "fetch-mock": "6.0.0-beta.7",
     "less": "2.7.3",
     "npm-run-all": "4.0.2",
-    "sinon": "^4.1.4"
+    "sinon": "4.1.4"
   }
 }

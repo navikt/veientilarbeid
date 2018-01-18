@@ -1,0 +1,20 @@
+# ref https://raw.githubusercontent.com/nais/naisd/master/nais_example.yaml
+image: docker.adeo.no:5000/fo/veientilarbeid
+replicas:
+  min: 2
+  max: 4
+  cpuThresholdPercentage: 50
+port: 8080
+healthcheck:
+  liveness:
+    path: veientilarbeid/index.html
+    initialDelay: 20
+  readiness:
+    path: veientilarbeid/index.html
+    initialDelay: 20
+fasitResources:
+  used:
+  - alias: veientilarbeid.properties
+    resourceType: applicationProperties
+  - alias: appres.cms
+    resourceType: baseUrl
