@@ -39,7 +39,7 @@
     "start:ts": "react-scripts-ts start",
     "build:ts": "react-scripts-ts build",
     "deploy": "npm run build && gh-pages -d build",
-    "test": "react-scripts-ts test --env=jsdom",
+    "test": "npm run build:tekster && react-scripts-ts test --env=jsdom",
     "lint": "tslint ./src/**/*.ts*",
     "lint:fix": "tslint ./src/**/*.ts* --fix",
     "test:coverage": "npm test -- --coverage",
