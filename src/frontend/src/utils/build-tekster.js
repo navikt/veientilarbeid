@@ -19,7 +19,7 @@ const read = (dir) =>
             fs.statSync(path.join(dir, file)).isDirectory() ?
                 files.concat(read(path.join(dir, file))) :
                 files.concat(
-                    "'" + file.split('_')[0] + "'" + ':' + "'" + readFile(dir, file).trim() + "'"
+                    "'" + file.split('_')[0] + "'" + ':' + "'" + readFile(dir, file).trim().replace(/\n|\r|\r\n/, ' ') + "'"
                 ), []);
 
 try{

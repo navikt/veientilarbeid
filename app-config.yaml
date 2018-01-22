@@ -14,7 +14,5 @@ healthcheck:
     initialDelay: 20
 fasitResources:
   used:
-  - alias: veientilarbeid.properties
-    resourceType: applicationProperties
   - alias: appres.cms
     resourceType: baseUrl

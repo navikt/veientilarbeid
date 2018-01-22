@@ -2,28 +2,28 @@ import * as React from 'react';
 import { Provider } from 'react-redux';
 import getStore from './store';
 import IntlProvider from './Intl-provider';
+import './decorator/decorator-mock';
+import Home from './komponenter/home';
 import Overskrift from './komponenter/overskrift/overskrift';
-import Oppgaver from './komponenter/oppgaver/oppgaver';
-import Tjenester from './komponenter/tjenester/tjenester';
-import Komigang from './komponenter/overskrift/kom-i-gang';
+import { hentKrrStatustatus } from './ducks/krr';
+import SjekkKrrStatus from './komponenter/krr/sjekk-krr';
 
 const store = getStore();
+const dispatch = store.dispatch;
 
 class App extends React.Component {
+    componentDidMount() {
+        dispatch(hentKrrStatustatus());
+    }
+
     render() {
         return (
             <Provider store={store}>
                 <IntlProvider>
-                    <div>
+                    <SjekkKrrStatus >
                         <Overskrift/>
-                        <div className="gray-background__wrapper">
-                            <div className="body__wrapper">
-                                <Komigang/>
-                                <Oppgaver />
-                                <Tjenester/>
-                            </div>
-                        </div>
-                    </div>
+                        <Home/>
+                    </SjekkKrrStatus>
                 </IntlProvider>
             </Provider >
         );
