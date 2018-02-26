@@ -3,9 +3,16 @@ import {Component} from 'react';
 import Modal from 'nav-frontend-modal';
 import NavFrontendChevron from 'nav-frontend-chevron';
 import Lukknapp from 'nav-frontend-lukknapp';
+import Sideknapper from "./sideknapper";
 
-export default class Overlay extends Component {
+interface Props {
+    children: {};
+    gjeldendeSide: number;
+}
+
+export default class Overlay extends Component<Props> {
     render() {
+        const antallSider = React.Children.count(this.props.children);
         return (
             <Modal
                 isOpen={true}
@@ -16,8 +23,8 @@ export default class Overlay extends Component {
                 <Lukknapp> Lukk </Lukknapp>
                 <NavFrontendChevron stor={true}/>
                 {this.props.children}
+                <Sideknapper antallKnapper={antallSider} gjeldendeKnapp={this.props.gjeldendeSide}/>
             </Modal>
         );
     }
 }
-// Chevron

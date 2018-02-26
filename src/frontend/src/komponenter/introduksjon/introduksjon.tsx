@@ -7,11 +7,15 @@ import Overlay from "./overlay";
 export default class Introduksjon extends Component {
     render() {
         return (
-
-            <Overlay>
+            <Overlay gjeldendeSide={0}>
+                <OverlaySide>
+                    <Innholdstittel>Registreringen er fullført!</Innholdstittel>
+                    <Normaltekst>Velkommen til din Jobbsøkerprofil! Her finner du CV, Aktivitetsplan og nyttig informasjon til deg som arbeidssøker.</Normaltekst>
+                </OverlaySide>
                 <OverlaySide/>
-                <Innholdstittel>Registreringen er fullført!</Innholdstittel>
-                <Normaltekst>Velkommen til din Jobbsøkerprofil! Her finner du CV, Aktivitetsplan og nyttig informasjon til deg som arbeidssøker.</Normaltekst>
+                <OverlaySide/>
+                <OverlaySide/>
+                <OverlaySide/>
             </Overlay>
         );
     }

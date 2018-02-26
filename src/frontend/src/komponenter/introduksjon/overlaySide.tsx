@@ -10,4 +10,3 @@ export default class OverlaySide extends Component {
         );
     }
 }
-// Chevron
