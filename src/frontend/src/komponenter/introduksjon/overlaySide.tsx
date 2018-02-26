@@ -4,7 +4,7 @@ import {Component} from 'react';
 export default class OverlaySide extends Component {
     render() {
         return (
-            <div>
+            <div className='overlay__side'>
                 {this.props.children}
             </div>
         );

@@ -90,27 +90,97 @@ body {
 }
 
 // Overlay
-.sideknapper {
+.overlay__button {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.overlay__sideknapper {
+    display: flex;
+    padding-top: 1rem;
+}
+
+.overlay__lukkknapperad {
+    text-align: right;
+}
+
+.overlay__side {
     text-align: center;
 }
 
-.icon-paginering {
+.overlay__sideskifte {
+    width: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .overlay__button;
+}
+
+.overlay__innhold-wrapper {
+    display: flex;
+    max-width: 30rem;
+}
+
+.overlay__innhold-med-sideknapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+@illustrasjon-storrelse-liten: 4rem;
+@illustrasjon-storrelse-middels: 10rem;
+@illustrasjon-storrelse-stor: 17rem;
+
+.overlay__illustrasjon-jobbsoker {
+    background-image: url('svg/Illustrasjon_Jobbsoker.svg');
+    display: inline-block;
+    content: '';
+    background-size: @illustrasjon-storrelse-liten @illustrasjon-storrelse-liten;
+    width: @illustrasjon-storrelse-liten;
+    height: @illustrasjon-storrelse-liten;
+    background-repeat: no-repeat;
+}
+
+@icon-storrelse: 0.8rem;
+
+.overlay__icon-paginering {
     background-position-x: center;
     background-position-y: center;
     display: inline-block;
-    content: "";
-    background-size: 1rem 1rem;
-    width: 1rem;
-    height: 1rem;
+    content: '';
+    background-size: @icon-storrelse;
+    width: @icon-storrelse;
+    height: @icon-storrelse;
     background-repeat: no-repeat;
     margin: 0.5rem;
 }
 
-.icon-circle-line {
+.overlay__icon-circle-line {
     background-image: url('svg/Icon_circle_line.svg');
-    .icon-paginering;
+    .overlay__icon-paginering;
 }
-.icon-circle-filled {
+.overlay__icon-circle-filled {
     background-image: url('svg/Icon_circle_filled.svg');
-    .icon-paginering;
+    .overlay__icon-paginering;
 }
+
+@media (min-height: 420px) {
+    .overlay__illustrasjon-jobbsoker {
+        background-size: @illustrasjon-storrelse-middels @illustrasjon-storrelse-middels;
+        width: @illustrasjon-storrelse-middels;
+        height: @illustrasjon-storrelse-middels;
+    }
+}
+
+@media (min-width: @screen-sm-min) {
+    .overlay__illustrasjon-jobbsoker {
+        background-size: @illustrasjon-storrelse-stor @illustrasjon-storrelse-stor;
+        width: @illustrasjon-storrelse-stor;
+        height: @illustrasjon-storrelse-stor;
+        margin: 1rem;
+    }
+}
+

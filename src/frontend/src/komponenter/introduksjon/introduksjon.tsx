@@ -9,12 +9,10 @@ export default class Introduksjon extends Component {
         return (
             <Overlay gjeldendeSide={0}>
                 <OverlaySide>
-                    <Innholdstittel>Registreringen er fullført!</Innholdstittel>
+                    <div className='overlay__illustrasjon-jobbsoker'/>
+                    <Innholdstittel className="blokk-s">Registreringen er fullført!</Innholdstittel>
                     <Normaltekst>Velkommen til din Jobbsøkerprofil! Her finner du CV, Aktivitetsplan og nyttig informasjon til deg som arbeidssøker.</Normaltekst>
                 </OverlaySide>
-                <OverlaySide/>
-                <OverlaySide/>
-                <OverlaySide/>
                 <OverlaySide/>
             </Overlay>
         );

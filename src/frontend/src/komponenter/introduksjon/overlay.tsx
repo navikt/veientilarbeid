@@ -1,9 +1,8 @@
 import * as React from 'react';
 import {Component} from 'react';
 import Modal from 'nav-frontend-modal';
-import NavFrontendChevron from 'nav-frontend-chevron';
-import Lukknapp from 'nav-frontend-lukknapp';
 import Sideknapper from "./sideknapper";
+import Sideskifte from "./sideskifte";
 
 interface Props {
     children: {};
@@ -13,17 +12,23 @@ interface Props {
 export default class Overlay extends Component<Props> {
     render() {
         const antallSider = React.Children.count(this.props.children);
+        const children = React.Children.toArray(this.props.children);
+
         return (
             <Modal
                 isOpen={true}
-                closeButton={false}
+                closeButton={true}
                 contentLabel='Heisann'
-                onRequestClose={() => null}
+                onRequestClose={() =>  console.log("lukk")}
             >
-                <Lukknapp> Lukk </Lukknapp>
-                <NavFrontendChevron stor={true}/>
-                {this.props.children}
-                <Sideknapper antallKnapper={antallSider} gjeldendeKnapp={this.props.gjeldendeSide}/>
+                <div className='overlay__innhold-wrapper'>
+                    <Sideskifte onClick={() => null} skalVises={true} synkende={true}/>
+                    <div className='overlay__innhold-med-sideknapper'>
+                        {children[this.props.gjeldendeSide]}
+                        <Sideknapper antallKnapper={antallSider} gjeldendeKnapp={this.props.gjeldendeSide}/>
+                    </div>
+                    <Sideskifte onClick={() => null} skalVises={true}/>
+                </div>
             </Modal>
         );
     }

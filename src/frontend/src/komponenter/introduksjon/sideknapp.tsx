@@ -6,8 +6,10 @@ interface Props {
 }
 
 export default function Sideknapp({onClick, erGjeldende}: Props) {
-    const className = erGjeldende ? 'icon-circle-filled' : 'icon-circle-line';
+    const className = erGjeldende ? 'overlay__icon-circle-filled' : 'overlay__icon-circle-line';
     return (
-        <span className={className}/>
+        <button className='overlay__button'>
+            <span className={className}/>
+        </button>
     );
 }
