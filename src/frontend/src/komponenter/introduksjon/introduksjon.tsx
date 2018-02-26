@@ -1,10 +1,23 @@
 import * as React from 'react';
 import {Component} from 'react';
+import { connect, Dispatch } from 'react-redux';
 import {Innholdstittel, Normaltekst} from "nav-frontend-typografi";
 import OverlaySide from "./overlaySide";
 import Overlay from "./overlay";
+import {AppState} from "../../reducer";
+import {IntroduksjonActionTypes} from "../../ducks/introduksjon";
 
-export default class Introduksjon extends Component {
+interface StateProps {
+    visOverlay: boolean;
+    side: number;
+}
+
+interface DispatchProps {
+    settSide: (side: number) => any,
+    settVisOverlay: (visOverlay: boolean) => any,
+}
+
+class Introduksjon extends Component<StateProps & DispatchProps> {
     render() {
         return (
             <Overlay gjeldendeSide={0}>
@@ -18,3 +31,14 @@ export default class Introduksjon extends Component {
         );
     }
 }
+
+const mapStateToProps = (state: AppState) => ({
+    ...state.introduksjonOverlay
+});
+
+const mapDispatchToProps = (dispatch: Dispatch<AppState>): DispatchProps => ({
+    settSide: (side: number) => dispatch({type: IntroduksjonActionTypes.INTRODUKSJON_SKIFT_SIDE, data: {side: side}}),
+    settVisOverlay: (visOverlay: boolean) => dispatch({type: IntroduksjonActionTypes.INTRODUKSJON_VIS_OVERLAY, data: {visOverlay: visOverlay}}),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Introduksjon);
