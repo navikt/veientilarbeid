@@ -21,7 +21,7 @@ export default class Overlay extends Component<Props> {
             <NavFrontendModal
                 isOpen={true}
                 closeButton={true}
-                contentLabel="Heisann"
+                contentLabel="Fullført registrering"
                 onRequestClose={() =>  this.props.lukkOverlay()}
             >
                 <div className="overlay__innhold-wrapper">
