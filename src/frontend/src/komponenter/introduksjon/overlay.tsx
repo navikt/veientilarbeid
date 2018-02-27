@@ -8,6 +8,7 @@ interface Props {
     children: {};
     gjeldendeSide: number;
     lukkOverlay: () => {};
+    settSide: (side: number) => {};
 }
 
 export default class Overlay extends Component<Props> {
@@ -23,12 +24,17 @@ export default class Overlay extends Component<Props> {
                 onRequestClose={() =>  this.props.lukkOverlay()}
             >
                 <div className='overlay__innhold-wrapper'>
-                    <Sideskifte onClick={() => null} skalVises={true} synkende={true}/>
+                    <Sideskifte onClick={() => this.props.settSide(this.props.gjeldendeSide - 1)}
+                                skalVises={this.props.gjeldendeSide > 0}
+                                synkende={true}
+                    />
                     <div className='overlay__innhold-med-sideknapper'>
                         {children[this.props.gjeldendeSide]}
                         <Sideknapper antallKnapper={antallSider} gjeldendeKnapp={this.props.gjeldendeSide}/>
                     </div>
-                    <Sideskifte onClick={() => null} skalVises={true}/>
+                    <Sideskifte onClick={() => this.props.settSide(this.props.gjeldendeSide + 1)}
+                                skalVises={this.props.gjeldendeSide < antallSider - 1}
+                    />
                 </div>
             </Modal>
         );

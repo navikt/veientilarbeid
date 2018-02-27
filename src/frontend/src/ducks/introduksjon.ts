@@ -1,5 +1,5 @@
 export enum IntroduksjonActionTypes {
-    INTRODUKSJON_SKIFT_SIDE = ('INTRODUKSJON_SKIFT_SIDE'),
+    INTRODUKSJON_SETT_SIDE = ('INTRODUKSJON_SETT_SIDE'),
     INTRODUKSJON_VIS_OVERLAY = ('INTRODUKSJON_VIS_OVERLAY'),
 }
 
@@ -23,7 +23,7 @@ export default function (
     action: {type: IntroduksjonActionTypes, data: Data}
 ): IntroduksjonState {
     switch (action.type) {
-        case IntroduksjonActionTypes.INTRODUKSJON_SKIFT_SIDE:
+        case IntroduksjonActionTypes.INTRODUKSJON_SETT_SIDE:
             return {...state, side: action.data.side === undefined ? initialState.side : action.data.side};
         case IntroduksjonActionTypes.INTRODUKSJON_VIS_OVERLAY:
             return {...state, visOverlay: action.data.visOverlay === undefined ? initialState.visOverlay : action.data.visOverlay};

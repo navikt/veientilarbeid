@@ -10,10 +10,10 @@ interface Props {
 export default function Sideskifte({onClick, skalVises, synkende=false}: Props) {
     const type = synkende ? 'venstre' : 'høyre';
     const sideskifteKnapp = skalVises ? (
-        <button className='overlay__button'>
+        <button className='overlay__button' onClick={() => onClick()}>
             <NavFrontendChevron type={type} stor={true}/>
         </button>
-    ) : (null);
+    ) : <div></div>;
 
     return (
         <div className='overlay__sideskifte'>
