@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Component} from 'react';
 import Modal from 'nav-frontend-modal';
-import Sideknapper from "./sideknapper";
+import Sideknapper from "./sidevisning";
 import Sideskifte from "./sideskifte";
 
 interface Props {

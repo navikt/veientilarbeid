@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Sideknapp from "./sideknapp";
 
 interface Props {
     antallKnapper: number;
@@ -8,9 +7,13 @@ interface Props {
 
 export default function Sideknapper({antallKnapper, gjeldendeKnapp}: Props) {
     let knapper = [];
+    let erGjeldende: boolean;
     for (let i = 0; i < antallKnapper; i++) {
+        erGjeldende = i === gjeldendeKnapp;
         knapper.push(
-            <Sideknapp onClick={() => null} erGjeldende={i === gjeldendeKnapp} key={i}/>
+            <button className='overlay__button' key={i}>
+                <span className={erGjeldende ? 'overlay__icon-circle-filled' : 'overlay__icon-circle-line'}/>
+            </button>
         );
     }
 

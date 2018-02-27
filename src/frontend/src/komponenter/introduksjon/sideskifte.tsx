@@ -13,7 +13,7 @@ export default function Sideskifte({onClick, skalVises, synkende=false}: Props) 
         <button className='overlay__button' onClick={() => onClick()}>
             <NavFrontendChevron type={type} stor={true}/>
         </button>
-    ) : <div></div>;
+    ) : (null);
 
     return (
         <div className='overlay__sideskifte'>
