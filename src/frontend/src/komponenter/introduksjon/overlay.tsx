@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Component } from 'react';
-import Modal from 'nav-frontend-modal';
+import * as ReactModal from 'react-modal';
+import NavFrontendModal from 'nav-frontend-modal';
 import Sideknapper from './sidevisning';
 import Sideskifte from './sideskifte';
 
@@ -17,7 +18,7 @@ export default class Overlay extends Component<Props> {
         const children = React.Children.toArray(this.props.children);
 
         return (
-            <Modal
+            <NavFrontendModal
                 isOpen={true}
                 closeButton={true}
                 contentLabel="Heisann"
@@ -38,7 +39,11 @@ export default class Overlay extends Component<Props> {
                         skalVises={this.props.gjeldendeSide < antallSider - 1}
                     />
                 </div>
-            </Modal>
+            </NavFrontendModal>
         );
+    }
+
+    componentWillMount() {
+        ReactModal.setAppElement('body');
     }
 }

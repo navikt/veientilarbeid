@@ -6,6 +6,7 @@
   "private": true,
   "dependencies": {
     "@types/query-string": "5.0.1",
+    "@types/react-modal": "^3.1.2",
     "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.5",
     "intl": "1.2.5",

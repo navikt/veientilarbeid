@@ -14,5 +14,5 @@ declare module 'nav-frontend-modal' {
         contentClass?: string;
     }
 
-    export default class Modal extends React.Component<ElementProps, {}> {}
+    export default class NavFrontendModal extends React.Component<ElementProps, {}> {}
 }
