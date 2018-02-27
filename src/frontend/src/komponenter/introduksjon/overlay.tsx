@@ -44,6 +44,6 @@ export default class Overlay extends Component<Props> {
     }
 
     componentWillMount() {
-        ReactModal.setAppElement('body');
+        ReactModal.setAppElement('.appContainer');
     }
 }
