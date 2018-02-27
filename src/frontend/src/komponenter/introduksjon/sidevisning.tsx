@@ -10,11 +10,11 @@ export default function Sideknapper({antallKnapper, gjeldendeKnapp}: Props) {
     let erGjeldende: boolean;
     for (let i = 0; i < antallKnapper; i++) {
         erGjeldende = i === gjeldendeKnapp;
-        knapper.push(
-            <button className="overlay__button" key={i}>
+        knapper.push((
+            <span className="overlay__button" key={i}>
                 <span className={erGjeldende ? 'overlay__icon-circle-filled' : 'overlay__icon-circle-line'}/>
-            </button>
-        );
+            </span>
+        ));
     }
 
     return (

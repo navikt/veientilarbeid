@@ -6,6 +6,7 @@ import OverlaySide from './overlaySide';
 import Overlay from './overlay';
 import { AppState } from '../../reducer';
 import { IntroduksjonActionTypes } from '../../ducks/introduksjon';
+import { FormattedMessage } from 'react-intl';
 
 interface StateProps {
     visOverlay: boolean;
@@ -27,8 +28,12 @@ class Introduksjon extends Component<StateProps & DispatchProps> {
             >
                 <OverlaySide>
                     <div className="overlay__illustrasjon-jobbsoker"/>
-                    <Innholdstittel className="blokk-s">Registreringen er fullført!</Innholdstittel>
-                    <Normaltekst>Velkommen til din Jobbsøkerprofil! Her finner du CV, Aktivitetsplan og nyttig informasjon til deg som arbeidssøker.</Normaltekst>
+                    <Innholdstittel className="blokk-s">
+                        <FormattedMessage id="introduksjon-overskrift" />
+                    </Innholdstittel>
+                    <Normaltekst>
+                        <FormattedMessage id="introduksjon-brodtekst" />
+                    </Normaltekst>
                 </OverlaySide>
                 <OverlaySide>
                     <div className="overlay__illustrasjon-jobbsoker"/>
