@@ -24,9 +24,15 @@ export default function (
 ): IntroduksjonState {
     switch (action.type) {
         case IntroduksjonActionTypes.INTRODUKSJON_SETT_SIDE:
-            return {...state, side: action.data.side === undefined ? initialState.side : action.data.side};
+            return {
+                ...state,
+                side: action.data.side === undefined ? initialState.side : action.data.side
+            };
         case IntroduksjonActionTypes.INTRODUKSJON_VIS_OVERLAY:
-            return {...state, visOverlay: action.data.visOverlay === undefined ? initialState.visOverlay : action.data.visOverlay};
+            return {
+                ...state,
+                visOverlay: action.data.visOverlay === undefined ? initialState.visOverlay : action.data.visOverlay
+            };
         default:
             return initialState;
     }

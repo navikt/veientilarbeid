@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {Component} from 'react';
+import { Component } from 'react';
 import Modal from 'nav-frontend-modal';
-import Sideknapper from "./sidevisning";
-import Sideskifte from "./sideskifte";
+import Sideknapper from './sidevisning';
+import Sideskifte from './sideskifte';
 
 interface Props {
     children: {};
@@ -20,20 +20,22 @@ export default class Overlay extends Component<Props> {
             <Modal
                 isOpen={true}
                 closeButton={true}
-                contentLabel='Heisann'
+                contentLabel="Heisann"
                 onRequestClose={() =>  this.props.lukkOverlay()}
             >
-                <div className='overlay__innhold-wrapper'>
-                    <Sideskifte onClick={() => this.props.settSide(this.props.gjeldendeSide - 1)}
-                                skalVises={this.props.gjeldendeSide > 0}
-                                synkende={true}
+                <div className="overlay__innhold-wrapper">
+                    <Sideskifte
+                        onClick={() => this.props.settSide(this.props.gjeldendeSide - 1)}
+                        skalVises={this.props.gjeldendeSide > 0}
+                        synkende={true}
                     />
-                    <div className='overlay__innhold-med-sideknapper'>
+                    <div className="overlay__innhold-med-sideknapper">
                         {children[this.props.gjeldendeSide]}
                         <Sideknapper antallKnapper={antallSider} gjeldendeKnapp={this.props.gjeldendeSide}/>
                     </div>
-                    <Sideskifte onClick={() => this.props.settSide(this.props.gjeldendeSide + 1)}
-                                skalVises={this.props.gjeldendeSide < antallSider - 1}
+                    <Sideskifte
+                        onClick={() => this.props.settSide(this.props.gjeldendeSide + 1)}
+                        skalVises={this.props.gjeldendeSide < antallSider - 1}
                     />
                 </div>
             </Modal>
