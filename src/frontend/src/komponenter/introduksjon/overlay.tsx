@@ -7,6 +7,7 @@ import Sideskifte from "./sideskifte";
 interface Props {
     children: {};
     gjeldendeSide: number;
+    lukkOverlay: () => {};
 }
 
 export default class Overlay extends Component<Props> {
@@ -19,7 +20,7 @@ export default class Overlay extends Component<Props> {
                 isOpen={true}
                 closeButton={true}
                 contentLabel='Heisann'
-                onRequestClose={() =>  console.log("lukk")}
+                onRequestClose={() =>  this.props.lukkOverlay()}
             >
                 <div className='overlay__innhold-wrapper'>
                     <Sideskifte onClick={() => null} skalVises={true} synkende={true}/>

@@ -18,15 +18,15 @@ const initialState: IntroduksjonState = {
     visOverlay: true
 };
 
-export default function introduksjonReducer(
+export default function (
     state: IntroduksjonState = initialState,
     action: {type: IntroduksjonActionTypes, data: Data}
 ): IntroduksjonState {
     switch (action.type) {
         case IntroduksjonActionTypes.INTRODUKSJON_SKIFT_SIDE:
-            return {...state, side: action.data.side || initialState.side};
+            return {...state, side: action.data.side === undefined ? initialState.side : action.data.side};
         case IntroduksjonActionTypes.INTRODUKSJON_VIS_OVERLAY:
-            return {...state, visOverlay: action.data.visOverlay || initialState.visOverlay};
+            return {...state, visOverlay: action.data.visOverlay === undefined ? initialState.visOverlay : action.data.visOverlay};
         default:
             return initialState;
     }

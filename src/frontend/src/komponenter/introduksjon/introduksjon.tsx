@@ -19,8 +19,8 @@ interface DispatchProps {
 
 class Introduksjon extends Component<StateProps & DispatchProps> {
     render() {
-        return (
-            <Overlay gjeldendeSide={0}>
+        return this.props.visOverlay ? (
+            <Overlay gjeldendeSide={0} lukkOverlay={() => this.props.settVisOverlay(false)}>
                 <OverlaySide>
                     <div className='overlay__illustrasjon-jobbsoker'/>
                     <Innholdstittel className="blokk-s">Registreringen er fullført!</Innholdstittel>
@@ -28,12 +28,13 @@ class Introduksjon extends Component<StateProps & DispatchProps> {
                 </OverlaySide>
                 <OverlaySide/>
             </Overlay>
-        );
+        ) : (null);
     }
 }
 
 const mapStateToProps = (state: AppState) => ({
-    ...state.introduksjonOverlay
+        visOverlay: state.introduksjonOverlay.visOverlay,
+        side: state.introduksjonOverlay.side,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AppState>): DispatchProps => ({
