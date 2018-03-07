@@ -16,4 +16,5 @@ declare module 'nav-frontend-typografi' {
     export class Undertekst extends React.Component<ElementProps, {}> {}
     export class UndertekstBold extends React.Component<ElementProps, {}> {}
     export class Element extends React.Component<ElementProps, {}> {}
+    export class Ingress extends React.Component<ElementProps, {}> {}
 }
