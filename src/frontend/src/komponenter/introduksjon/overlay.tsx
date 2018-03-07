@@ -36,7 +36,6 @@ export default class Overlay extends Component<Props, State> {
     render() {
         const antallSider = React.Children.count(this.props.children);
         const children = React.Children.toArray(this.props.children);
-        console.log('gjeldendeSide:', this.state.gjeldendeSide);
 
         return (
             <Modal
@@ -63,6 +62,4 @@ export default class Overlay extends Component<Props, State> {
             </Modal>
         );
     }
-
-
 }

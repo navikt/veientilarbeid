@@ -4,7 +4,8 @@ import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 import OverlaySide from './overlaySide';
 import Overlay from './overlay';
 import { FormattedMessage } from 'react-intl';
-import { parse, stringify } from 'query-string';
+import { parse } from 'query-string';
+import { getCurrentUrlWithoutQueryParam } from "../../utils/utils";
 
 interface State {
     visOverlay: boolean;
@@ -19,11 +20,7 @@ export default class Introduksjon extends Component<{}, State> {
     }
 
     closeOverlay() {
-        let query = parse(location.search);
-        delete query.visOverlay;
-        const t = location.href.split('?')[0];
-        const urlUtenVisOverlayQueryParam = Object.keys(query).length === 0 ? t : t + '?' + stringify(query);
-        history.pushState(history.state, '', urlUtenVisOverlayQueryParam);
+        history.pushState(history.state, '', getCurrentUrlWithoutQueryParam('visOverlay'));
         this.setState({
             visOverlay: false
         });
@@ -33,7 +30,7 @@ export default class Introduksjon extends Component<{}, State> {
         return (this.state.visOverlay) ? (
             <Overlay
                 close={() => this.closeOverlay()}
-                appElementSelector='.appContainer'
+                appElementSelector=".appContainer"
             >
                 <OverlaySide>
                     <div className="overlay__illustrasjon-jobbsoker"/>
