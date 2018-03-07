@@ -5,7 +5,7 @@ import OverlaySide from './overlaySide';
 import Overlay from './overlay';
 import { FormattedMessage } from 'react-intl';
 import { parse } from 'query-string';
-import { getCurrentUrlWithoutQueryParam } from "../../utils/utils";
+import { getCurrentUrlWithoutQueryParam } from '../../utils/utils';
 
 interface State {
     visOverlay: boolean;
