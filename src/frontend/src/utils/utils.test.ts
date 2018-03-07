@@ -1,10 +1,9 @@
 import * as chai from 'chai';
 import * as chaiAsPromised from 'chai-as-promised';
-import {getCurrentUrlWithoutQueryParam} from './utils';
+import { getCurrentUrlWithoutQueryParam } from './utils';
 
 chai.use(chaiAsPromised);
 const expect = chai.expect;
-
 
 describe('Test utils', () => {
     it('skal kunne fjerne queryparam fra url', () => {
