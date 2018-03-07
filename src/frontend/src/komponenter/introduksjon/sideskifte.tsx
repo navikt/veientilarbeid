@@ -2,7 +2,7 @@ import * as React from 'react';
 import NavFrontendChevron from 'nav-frontend-chevron';
 
 interface Props {
-    onClick: () => {};
+    onClick: () => void;
     skalVises: boolean;
     synkende?: boolean;
 }

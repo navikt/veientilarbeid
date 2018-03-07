@@ -6,43 +6,63 @@ import Sideskifte from './sideskifte';
 
 interface Props {
     children: {};
-    gjeldendeSide: number;
-    lukkOverlay: () => {};
-    settSide: (side: number) => {};
+    close: () => void;
+    appElementSelector: string;
 }
 
-export default class Overlay extends Component<Props> {
+interface State {
+    gjeldendeSide: number;
+}
+
+export default class Overlay extends Component<Props, State> {
+
+    constructor(props: Props) {
+        super(props);
+        this.state = {
+            gjeldendeSide: 0
+        };
+    }
+
+    settSide(side: number) {
+        this.setState({
+            gjeldendeSide: side
+        });
+    }
+
+    componentWillMount() {
+        Modal.setAppElement(this.props.appElementSelector);
+    }
+
     render() {
         const antallSider = React.Children.count(this.props.children);
         const children = React.Children.toArray(this.props.children);
+        console.log('gjeldendeSide:', this.state.gjeldendeSide);
 
         return (
             <Modal
                 isOpen={true}
                 closeButton={true}
                 contentLabel="Fullført registrering"
-                onRequestClose={() =>  this.props.lukkOverlay()}
+                onRequestClose={() =>  this.props.close()}
             >
                 <div className="overlay__innhold-wrapper">
                     <Sideskifte
-                        onClick={() => this.props.settSide(this.props.gjeldendeSide - 1)}
-                        skalVises={this.props.gjeldendeSide > 0}
+                        onClick={() => this.settSide(this.state.gjeldendeSide - 1)}
+                        skalVises={this.state.gjeldendeSide > 0}
                         synkende={true}
                     />
                     <div className="overlay__innhold-med-sideknapper">
-                        {children[this.props.gjeldendeSide]}
-                        <Sideknapper antallKnapper={antallSider} gjeldendeKnapp={this.props.gjeldendeSide}/>
+                        {children[this.state.gjeldendeSide]}
+                        <Sideknapper antallKnapper={antallSider} gjeldendeKnapp={this.state.gjeldendeSide}/>
                     </div>
                     <Sideskifte
-                        onClick={() => this.props.settSide(this.props.gjeldendeSide + 1)}
-                        skalVises={this.props.gjeldendeSide < antallSider - 1}
+                        onClick={() => this.settSide(this.state.gjeldendeSide + 1)}
+                        skalVises={this.state.gjeldendeSide < antallSider - 1}
                     />
                 </div>
             </Modal>
         );
     }
 
-    componentWillMount() {
-        Modal.setAppElement('.appContainer');
-    }
+
 }

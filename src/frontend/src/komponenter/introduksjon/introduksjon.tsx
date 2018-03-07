@@ -1,30 +1,39 @@
 import * as React from 'react';
 import { Component } from 'react';
-import { connect, Dispatch } from 'react-redux';
 import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 import OverlaySide from './overlaySide';
 import Overlay from './overlay';
-import { AppState } from '../../reducer';
-import { IntroduksjonActionTypes } from '../../ducks/introduksjon';
 import { FormattedMessage } from 'react-intl';
+import { parse, stringify } from 'query-string';
 
-interface StateProps {
+interface State {
     visOverlay: boolean;
-    side: number;
 }
 
-interface DispatchProps {
-    settSide: (side: number) => {};
-    settVisOverlay: (visOverlay: boolean) => {};
-}
+export default class Introduksjon extends Component<{}, State> {
+    constructor(props: {}) {
+        super(props);
+        this.state = {
+            visOverlay: parse(location.search).visOverlay === 'true'
+        };
+    }
 
-class Introduksjon extends Component<StateProps & DispatchProps> {
+    closeOverlay() {
+        let query = parse(location.search);
+        delete query.visOverlay;
+        const t = location.href.split('?')[0];
+        const urlUtenVisOverlayQueryParam = Object.keys(query).length === 0 ? t : t + '?' + stringify(query);
+        history.pushState(history.state, '', urlUtenVisOverlayQueryParam);
+        this.setState({
+            visOverlay: false
+        });
+    }
+
     render() {
-        return this.props.visOverlay ? (
+        return (this.state.visOverlay) ? (
             <Overlay
-                gjeldendeSide={this.props.side}
-                lukkOverlay={() => this.props.settVisOverlay(false)}
-                settSide={this.props.settSide}
+                close={() => this.closeOverlay()}
+                appElementSelector='.appContainer'
             >
                 <OverlaySide>
                     <div className="overlay__illustrasjon-jobbsoker"/>
@@ -43,21 +52,3 @@ class Introduksjon extends Component<StateProps & DispatchProps> {
         ) : (null);
     }
 }
-
-const mapStateToProps = (state: AppState) => ({
-        visOverlay: state.introduksjonOverlay.visOverlay,
-        side: state.introduksjonOverlay.side,
-});
-
-const mapDispatchToProps = (dispatch: Dispatch<AppState>): DispatchProps => ({
-    settSide: (side: number) => dispatch({
-        type: IntroduksjonActionTypes.INTRODUKSJON_SETT_SIDE,
-        data: {side: side}
-    }),
-    settVisOverlay: (visOverlay: boolean) => dispatch({
-        type: IntroduksjonActionTypes.INTRODUKSJON_VIS_OVERLAY,
-        data: {visOverlay: visOverlay}
-    }),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Introduksjon);
