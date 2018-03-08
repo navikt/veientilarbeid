@@ -1,16 +1,3 @@
-import { Dispatch } from 'react-redux';
-import { AppState } from '../reducer';
-import { ThunkAction } from 'redux-thunk';
-import ActionType from './actions';
-
-export const STATUS = {
-    NOT_STARTED: 'NOT_STARTED',
-    PENDING: 'PENDING',
-    OK: 'OK',
-    RELOADING: 'RELOADING',
-    ERROR: 'ERROR'
-};
-
 class FetchError extends Error {
     public response: Response;
 
@@ -57,27 +44,6 @@ export function toJson(response: Response) {
     return response;
 }
 
-export function sendResultatTilDispatch(dispatch: Dispatch<AppState>, action: ActionType) {
-    return <S>(data: S): S => {
-        dispatch({type: action, data});
-        return data;
-    };
-}
-
-export function handterFeil(dispatch: Dispatch<AppState>, action: ActionType) {
-    return (error: FetchError): void => {
-        if (error.response) {
-            error.response.text().then((data: string) => {
-                console.error(error, error.stack, data); // tslint:disable-line no-console
-                dispatch({type: action, data: {response: error.response, data}});
-            });
-        } else {
-            console.error(error, error.stack); // tslint:disable-line no-console
-            dispatch({type: action, data: error.toString()});
-        }
-    };
-}
-
 interface FetchToJson {
     url: string;
     config?: { credentials: RequestCredentials};
@@ -94,21 +60,3 @@ export function fetchToJson<DATA>({
         .then(toJson);
 }
 
-interface RestActions {
-    OK: ActionType;
-    PENDING: ActionType;
-    FEILET: ActionType;
-}
-
-export function doThenDispatch<DATA>(
-    fn: () => Promise<DATA>,
-    {OK, FEILET, PENDING}: RestActions): ThunkAction<Promise<DATA | void>, AppState, void> {
-    return (dispatch: Dispatch<AppState>) => {
-        if (PENDING) {
-            dispatch({type: PENDING});
-        }
-        return fn()
-            .then(sendResultatTilDispatch(dispatch, OK))
-            .catch(handterFeil(dispatch, FEILET));
-    };
-}
