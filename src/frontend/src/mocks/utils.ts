@@ -56,7 +56,6 @@ export function respondWith(handler: any) {
     };
 }
 
-
 (fetchMock as any)._mock(); // Må kalles slik at window.fetch blir byttet ut
 export const mock = ['get', 'post', 'put', 'delete', 'head', 'patch', 'mock']
     .map((method) => ({
