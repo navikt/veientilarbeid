@@ -44,7 +44,7 @@
     "react-redux": "5.0.6",
     "react-scripts-ts": "2.8.0",
     "redux": "3.7.2",
-    "redux-thunk": "2.2.0"
+    "redux-thunk": "^2.2.0"
   },
   "scripts": {
     "copyfiles": "copyfiles -u 1 \"build/**/*.*\" \"../main/webapp\"",
