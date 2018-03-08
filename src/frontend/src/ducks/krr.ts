@@ -2,9 +2,9 @@ import * as Api from './api';
 import { doThenDispatch, STATUS } from './utils';
 
 export enum KrrStatustatusActions {
-    HENT_KRR_STATUS_PENDING,
-    HENT_KRR_STATUS_OK,
-    HENT_KRR_STATUS_FEILET,
+    HENT_KRR_STATUS_PENDING = ('HENT_KRR_STATUS_PENDING'),
+    HENT_KRR_STATUS_OK = ('HENT_KRR_STATUS_OK'),
+    HENT_KRR_STATUS_FEILET = ('HENT_KRR_STATUS_FEILET'),
 }
 
 interface KrrStatustatus {
