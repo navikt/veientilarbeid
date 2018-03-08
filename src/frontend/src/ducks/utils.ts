@@ -59,4 +59,3 @@ export function fetchToJson<DATA>({
         .then(sjekkStatuskode(recoverWith))
         .then(toJson);
 }
-
