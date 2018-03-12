@@ -1,10 +1,6 @@
-import { combineReducers } from 'redux';
-import registreringStatus, { KrrStatusState } from './ducks/krr';
-
 export interface AppState {
-    registreringStatus: KrrStatusState;
 }
 
-export default combineReducers<AppState>({
-    registreringStatus
-});
+// Her kommer det nok flere reducers.
+const combineReducers = (state: AppState) => state;
+export default combineReducers;
