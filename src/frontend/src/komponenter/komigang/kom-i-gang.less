@@ -1,0 +1,53 @@
+.komigang {
+  background-color: @navLysGra;
+  padding: 2rem 1rem;
+}
+
+.komigang__tekst {
+  .nav-frontend-lenker {
+    > .lenke {
+      font-weight: bold;
+      border-bottom-color: @navBla;
+    }
+    > .nav-frontend-chevron {
+      color: @navBla;
+      top: -1px;
+      right: -3px
+    }
+  }
+}
+
+.komigang__illustrasjon {
+  padding: 2rem 0;
+  > img {
+    width: 100%;
+  }
+}
+
+@media (min-width: 376px) {
+  .komigang {
+    padding: 3rem;
+  }
+
+  .komigang__illustrasjon {
+    padding: 4rem 2rem;
+  }
+}
+
+@media (min-width: 769px) {
+  .komigang {
+    display: flex;
+    justify-content: center;
+    padding: 0 7rem;
+  }
+
+  .komigang__tekst {
+    padding: 8rem 2rem;
+    max-width: 31rem;
+  }
+
+  .komigang__illustrasjon {
+    padding: 5rem;
+  }
+}
+

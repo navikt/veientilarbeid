@@ -14,16 +14,11 @@
 @import '../node_modules/nav-frontend-chevron-style/src/index';
 @import '../node_modules/nav-frontend-lukknapp-style/src/lukknapp-style';
 
+@import './komponenter/komigang/kom-i-gang';
 @import './komponenter/lenkeboks/lenkeboks';
 
 body {
-    background-color: @navLysGra;
-}
-
-.body__wrapper {
-    width: 70%;
-    margin-left: auto;
-    margin-right: auto;
+    background-color: @white;
 }
 
 .overskrift-veientilarbeid__wrapper {
@@ -33,33 +28,6 @@ body {
     border-bottom: 2px solid @navBla;
     background: @navLysBla url("./svg/dataskjerm.svg") no-repeat;
     background-position: 20% 100%;
-}
-
-.kom-i-gang__wrapper {
-    .overskrift-kom-i-gang {
-        text-align: center;
-    }
-}
-
-.overskrift-komigang__panel {
-    .beskrivelse-komigang {
-        width: 50%;
-        margin-left: auto;
-        margin-right:auto;
-    }
-}
-
-.overskrift-kom-i-gang, .overskrift-oppgaver, .overskrift-tjenester {
-    &::after {
-        border-bottom: 3px solid;
-        display: block;
-        content: '';
-        margin-top: 1rem;
-        width: 2rem;
-        margin-left: auto;
-        margin-right: auto;
-        color: @navGronn;
-    }
 }
 
 .appContainer {

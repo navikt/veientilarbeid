@@ -3,7 +3,7 @@ import Komigang from './komigang/kom-i-gang';
 
 function Home() {
     return (
-        <div className="body__wrapper">
+        <div>
             <Komigang/>
         </div>
     );
