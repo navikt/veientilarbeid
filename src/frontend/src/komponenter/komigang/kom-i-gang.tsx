@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {Element, Innholdstittel} from 'nav-frontend-typografi';
-import {FormattedMessage} from 'react-intl';
-import {parse} from 'query-string';
+import { Element, Innholdstittel } from 'nav-frontend-typografi';
+import { FormattedMessage } from 'react-intl';
+import { parse } from 'query-string';
 
 const aktivitetsplanSvg = require('./aktivitetsplan.svg');
 const AKTIVITETSPLAN_PATH = '/aktivitetsplan';
