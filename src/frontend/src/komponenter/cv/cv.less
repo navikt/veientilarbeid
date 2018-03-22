@@ -1,0 +1,45 @@
+.cv {
+  padding: 2rem;
+
+  .cv__tekst {
+    .nav-frontend-lenker {
+      > .lenke {
+        font-weight: bold;
+        border-bottom-color: @navBla;
+      }
+      > .nav-frontend-chevron {
+        color: @navBla;
+        top: -1px;
+        right: -3px
+      }
+    }
+  }
+
+  .cv__illustrasjon {
+    padding: 0 0 2rem 0;
+    > img {
+      max-width: 100%;
+    }
+  }
+}
+
+@media (min-width: @screen-sm-min) {
+  .cv {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 4rem 0;
+
+    .cv__tekst {
+      padding: 0 2rem;
+      max-width: 31rem;
+    }
+
+    .cv__illustrasjon {
+      padding: 0 0 0 5rem;
+      > img {
+        max-width: 80%;
+      }
+    }
+  }
+}
