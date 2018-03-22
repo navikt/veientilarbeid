@@ -17,6 +17,7 @@ export default class InformasjonsmodulDagpenger extends React.Component {
                     onClick={() => {}}
                 >
                     panel inni panel
+                    <div className="test-test">a</div>
                 </Ekspanderbartpanel>
             </StortEkspanderbartpanel>
         );

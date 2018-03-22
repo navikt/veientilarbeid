@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Element } from 'nav-frontend-typografi';
+import {Element, Systemtittel} from 'nav-frontend-typografi';
 import StortEkspanderbartpanelBasePure from './stort-ekspanderbartpanel-base-pure';
 
 export interface StortEkspanderbartpanelPureProps {
@@ -17,7 +17,16 @@ class StortEkspanderbartpanelPure extends React.PureComponent<StortEkspanderbart
     render() {
         const { tittel, tittelProps, ...renderProps } = this.props;
         //const heading = <Typografi type={'element'} tag="span" className="ekspanderbartPanel__heading">{tittel}</Typografi>;
-        const heading = <Element tag="span" className="stortEkspanderbartPanel__heading">{tittel}</Element>;
+        const heading = (
+            <React.Fragment>
+                <Systemtittel tag="span">
+                    Informasjon om dagpenger
+                </Systemtittel>
+                <Element tag="span" className="stortEkspanderbartPanel__heading">
+                    Les mer om dagpenger og når du må søke
+                </Element>
+            </React.Fragment>
+        );
 
         return (
             <StortEkspanderbartpanelBasePure {...renderProps} heading={heading} ariaTittel={tittel} />
