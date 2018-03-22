@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { Innholdstittel } from 'nav-frontend-typografi';
-import { Element } from 'nav-frontend-typografi';
-import { FormattedMessage } from 'react-intl';
-import { parse } from 'query-string';
+import {Element, Innholdstittel} from 'nav-frontend-typografi';
+import {FormattedMessage} from 'react-intl';
+import {parse} from 'query-string';
 
 const aktivitetsplanSvg = require('./aktivitetsplan.svg');
 const AKTIVITETSPLAN_PATH = '/aktivitetsplan';
@@ -26,7 +25,7 @@ class Komigang extends React.PureComponent<{}, State> {
                     <Innholdstittel className="blokk-s">
                         <FormattedMessage id="overskrift-komigang"/>
                     </Innholdstittel>
-                    <Element className="blokk-s">
+                    <Element className="blokk-m">
                         <FormattedMessage id={beskrivelseTekstId}/>
                     </Element>
                     <div className="nav-frontend-lenker">
