@@ -42,7 +42,16 @@ class StortEkspanderbartpanelBasePure extends React.Component<StortEkspanderbart
     }
 
     render() {
-        const { className, children, apen, heading, ariaTittel, onClick, collapseProps, ...renderProps }: StortEkspanderbartpanelBasePureProps = this.props;
+        const {
+            className,
+            children,
+            apen,
+            heading,
+            ariaTittel,
+            onClick,
+            collapseProps,
+            ...renderProps
+        }: StortEkspanderbartpanelBasePureProps = this.props;
 
         return (
             <div className={cls(this.props, className)} { ...renderProps }>

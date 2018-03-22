@@ -1,20 +1,19 @@
-@nodeModulesPath: '../../../../../node_modules/';
-
-@import '@{nodeModulesPath}nav-frontend-core/less/_variabler';
-@import '@{nodeModulesPath}nav-frontend-chevron-style/src/mixins';
-@import '@{nodeModulesPath}nav-frontend-paneler-style/src/mixins';
-
+@import '../../../../../node_modules/nav-frontend-core/less/_variabler';
+@import '../../../../../node_modules/nav-frontend-chevron-style/src/mixins';
+@import '../../../../../node_modules/nav-frontend-paneler-style/src/mixins';
 
 .stortEkspanderbartPanel {
   &__hode {
-    background: none;
     border: 0px;
     width: 100%;
 
     .panel-mixin();
     .panel-focushover-mixin();
 
-    color: @navMorkGra;
+    background-color: #337c9b;
+    height: 145px;
+
+    color: white;
     margin-bottom: 0px;
     text-decoration: none;
 
