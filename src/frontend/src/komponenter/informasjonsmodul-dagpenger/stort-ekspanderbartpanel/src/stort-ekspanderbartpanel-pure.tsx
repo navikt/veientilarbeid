@@ -17,7 +17,7 @@ class StortEkspanderbartpanelPure extends React.PureComponent<StortEkspanderbart
     render() {
         const { tittel, tittelProps, ...renderProps } = this.props;
         //const heading = <Typografi type={'element'} tag="span" className="ekspanderbartPanel__heading">{tittel}</Typografi>;
-        const heading = <Element tag="span" className="ekspanderbartPanel__heading">{tittel}</Element>;
+        const heading = <Element tag="span" className="stortEkspanderbartPanel__heading">{tittel}</Element>;
 
         return (
             <StortEkspanderbartpanelBasePure {...renderProps} heading={heading} ariaTittel={tittel} />

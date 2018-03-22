@@ -1,0 +1,69 @@
+@nodeModulesPath: '../../../../../node_modules/';
+
+@import '@{nodeModulesPath}nav-frontend-core/less/_variabler';
+@import '@{nodeModulesPath}nav-frontend-chevron-style/src/mixins';
+@import '@{nodeModulesPath}nav-frontend-paneler-style/src/mixins';
+
+
+.stortEkspanderbartPanel {
+  &__hode {
+    background: none;
+    border: 0px;
+    width: 100%;
+
+    .panel-mixin();
+    .panel-focushover-mixin();
+
+    color: @navMorkGra;
+    margin-bottom: 0px;
+    text-decoration: none;
+
+    &:hover,
+    &--hover {
+      & .stortEkspanderbartPanel__heading {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__flex-wrapper { // Safari ~9 bug, button/fieldset kan ikke ha flex
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__innhold {
+    .panel-mixin();
+    padding-top: 0.5rem;
+  }
+
+  &--lukket {
+    .stortEkspanderbartPanel__indikator {
+      .chevron-mixin();
+      .chevron-orientasjon-mixin(ned);
+    }
+  }
+
+  &--apen {
+
+    .stortEkspanderbartPanel__hode {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    .stortEkspanderbartPanel__innhold {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+
+    .stortEkspanderbartPanel__hode:hover:not(:focus),
+    .stortEkspanderbartPanel__hode--hover:not(.stortEkspanderbartPanel__hode--focus) {
+      box-shadow: none;
+    }
+
+    >.stortEkspanderbartPanel__hode .stortEkspanderbartPanel__indikator {
+      .chevron-mixin();
+      .chevron-orientasjon-mixin(opp);
+    }
+  }
+}

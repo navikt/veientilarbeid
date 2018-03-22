@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Collapse, CollapseProps } from 'react-collapse';
-import 'nav-frontend-ekspanderbartpanel-style';
 
 export interface StortEkspanderbartpanelBasePureProps {
     heading: React.ReactNode;
@@ -13,14 +12,9 @@ export interface StortEkspanderbartpanelBasePureProps {
 }
 
 const cls = (props: StortEkspanderbartpanelBasePureProps, className?: string) => {
-    return 'nada'
+    return className + ' ' + (props.apen ? 'stortEkspanderbartPanel--apen' : 'stortEkspanderbartPanel--lukket');
 };
-/*
-classnames('ekspanderbartPanel', className, {
-    'ekspanderbartPanel--lukket': !props.apen,
-    'ekspanderbartPanel--apen': props.apen
-});
-*/
+
 class StortEkspanderbartpanelBasePure extends React.Component<StortEkspanderbartpanelBasePureProps, {}> {
     private isCloseAnimation: boolean = false;
 
@@ -53,18 +47,18 @@ class StortEkspanderbartpanelBasePure extends React.Component<StortEkspanderbart
         return (
             <div className={cls(this.props, className)} { ...renderProps }>
                 <button
-                    className="ekspanderbartPanel__hode"
+                    className="stortEkspanderbartPanel__hode"
                     onKeyDown={this.tabHandler}
                     onClick={onClick}
                     aria-expanded={apen}
                 >
-                    <div className="ekspanderbartPanel__flex-wrapper">
+                    <div className="stortEkspanderbartPanel__flex-wrapper">
                         {heading}
-                        <span className="ekspanderbartPanel__indikator" />
+                        <span className="stortEkspanderbartPanel__indikator" />
                     </div>
                 </button>
                 <Collapse isOpened={apen} onRest={this.onRestProxy} {...collapseProps} >
-                    <article aria-label={ariaTittel} className="ekspanderbartPanel__innhold">{children}</article>
+                    <article aria-label={ariaTittel} className="stortEkspanderbartPanel__innhold">{children}</article>
                 </Collapse>
             </div>
         );
