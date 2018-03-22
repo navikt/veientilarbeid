@@ -2,12 +2,12 @@ import * as React from 'react';
 import Tjenester from './tjenester/tjenester';
 import Komigang from './overskrift/kom-i-gang';
 import Oppgaver from './oppgaver/oppgaver';
-import Introduksjon from './introduksjon/introduksjon';
+import InformasjonsmodulDagpenger from './informasjonsmodul-dagpenger/informasjonsmodul-dagpenger';
 
 function Home() {
     return (
         <div className="body__wrapper">
-            <Introduksjon/>
+            <InformasjonsmodulDagpenger/>
             <Komigang/>
             <Oppgaver />
             <Tjenester/>
