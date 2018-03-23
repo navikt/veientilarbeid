@@ -17,7 +17,7 @@ class StortEkspanderbartpanelPure extends React.PureComponent<StortEkspanderbart
         const { tittel, undertekst, figur, ...renderProps } = this.props;
         //const heading = <Typografi type={'element'} tag="span" className="ekspanderbartPanel__heading">{tittel}</Typografi>;
         const figurComponent = figur ? (
-            <div className="figur__wrapper">
+            <div className="stortEkspanderbartPanel__figur-wrapper">
                 <img src={require(`./${figur}.svg`)} className="figur"/>
             </div>
         ) : (null);

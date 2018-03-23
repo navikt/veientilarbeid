@@ -4,14 +4,14 @@
 
 .stortEkspanderbartPanel {
   &__hode {
-    border: 0px;
+    border: 0;
     width: 100%;
 
     .panel-mixin();
     .panel-focushover-mixin();
 
-    background-color: #337c9b;
-    height: 9rem;
+    background-color: #337c9b; //nav dyp blå minus 20
+    min-height: 9rem;
     padding-left: 0;
 
     color: white;
@@ -20,9 +20,9 @@
 
     &:hover,
     &--hover {
-      background-color: #66CBEC;
       & .stortEkspanderbartPanel__heading {
         text-decoration: underline;
+        color: white;
       }
     }
   }
@@ -58,6 +58,7 @@
     .stortEkspanderbartPanel__indikator {
       .chevron-mixin();
       .chevron-orientasjon-mixin(ned);
+      color: white;
     }
   }
 
@@ -81,6 +82,11 @@
     >.stortEkspanderbartPanel__hode .stortEkspanderbartPanel__indikator {
       .chevron-mixin();
       .chevron-orientasjon-mixin(opp);
+      color: white;
     }
   }
+}
+
+.stortEkspanderbartPanel__figur-wrapper img {
+  display: none;
 }

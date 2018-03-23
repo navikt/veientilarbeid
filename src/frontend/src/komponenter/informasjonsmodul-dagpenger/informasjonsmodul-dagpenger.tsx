@@ -8,6 +8,13 @@ interface DummyProp {
 }
 type Props = DummyProp & InjectedIntlProps
 
+/*
+TODO
+Skal kunne configge farge
+Teksten skal få understrek og forbli hvit ved :hover
+Flytt chevron til venstre slik at den passer med underpanelene
+ */
+
 class InformasjonsmodulDagpenger extends React.Component<Props> {
     render() {
         const intl = this.props.intl;
