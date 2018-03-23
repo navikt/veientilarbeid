@@ -63,7 +63,6 @@ class StortEkspanderbartpanelBasePure extends React.Component<StortEkspanderbart
                 >
                     <div className="stortEkspanderbartPanel__flex-wrapper">
                         {heading}
-                        <span className="stortEkspanderbartPanel__indikator" />
                     </div>
                 </button>
                 <Collapse isOpened={apen} onRest={this.onRestProxy} {...collapseProps} >
