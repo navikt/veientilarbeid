@@ -8,8 +8,9 @@ export default class InformasjonsmodulDagpenger extends React.Component {
             <React.Fragment>
                 <div className="test-test" />
                 <StortEkspanderbartpanel
-                    tittel="Slik ser et panel ut"
-                    tittelProps="element"
+                    tittel="Informasjon om dagpenger"
+                    undertekst="Les mer om dagpenger og når du må søke"
+                    figur="utklippstavle"
                     onClick={() => {}}
                 >
                     panel

@@ -7,6 +7,8 @@ import EkspanderbartpanelPure from './stort-ekspanderbartpanel-pure';
  * Denne komponenten holder selv styr på om innholdet skal vises eller ikke.
  */
 
+export type Figur = 'utklippstavle' | 'brev';
+
 export interface StortEkspanderbartpanelProps {
     /**
      * Skal komponenten være 'default' åpen
@@ -17,7 +19,8 @@ export interface StortEkspanderbartpanelProps {
      */
     onClick: (event: React.SyntheticEvent<HTMLButtonElement>) => void;
     tittel: string;
-    tittelProps: string;
+    undertekst: string;
+    figur?: Figur;
 }
 
 export interface StortEkspanderbartpanelState {
@@ -47,14 +50,15 @@ class StortEkspanderbartpanel extends React.Component<StortEkspanderbartpanelPro
     }
 
     render() {
-        const {tittel, tittelProps, ...renderProps } = this.props;
+        const {tittel, undertekst, figur, ...renderProps } = this.props;
         return (
             <EkspanderbartpanelPure
                 {...renderProps}
                 apen={this.state.apen}
                 onClick={this.handleClick}
                 tittel={tittel}
-                tittelProps={tittelProps}
+                undertekst={undertekst}
+                figur={figur}
             />
         );
     }
