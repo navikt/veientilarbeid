@@ -49,7 +49,13 @@ class StortEkspanderbartpanel extends React.Component<StortEkspanderbartpanelPro
     render() {
         const {tittel, tittelProps, ...renderProps } = this.props;
         return (
-            <EkspanderbartpanelPure {...renderProps} apen={this.state.apen} onClick={this.handleClick} tittel={tittel} tittelProps={tittelProps} />
+            <EkspanderbartpanelPure
+                {...renderProps}
+                apen={this.state.apen}
+                onClick={this.handleClick}
+                tittel={tittel}
+                tittelProps={tittelProps}
+            />
         );
     }
 }

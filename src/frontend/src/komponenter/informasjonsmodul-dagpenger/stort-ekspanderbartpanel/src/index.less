@@ -11,7 +11,8 @@
     .panel-focushover-mixin();
 
     background-color: #337c9b;
-    height: 145px;
+    height: 9rem;
+    padding-left: 0;
 
     color: white;
     margin-bottom: 0px;
@@ -27,13 +28,29 @@
 
   &__flex-wrapper { // Safari ~9 bug, button/fieldset kan ikke ha flex
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    //align-items: center;
+    //justify-content: space-between;
   }
 
   &__innhold {
     .panel-mixin();
     padding-top: 0.5rem;
+  }
+
+  &__heading-wrapper {
+    padding: 1rem 0.5rem 0 1.5rem;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: left;
+  }
+
+  &__underheading-wrapper {
+    padding-top: 0.6rem;
+    border-top: 1px solid white;
+    display: flex;
+    justify-content: space-between;
   }
 
   &--lukket {

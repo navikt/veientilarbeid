@@ -1,6 +1,8 @@
 import * as React from 'react';
-import {Element, Systemtittel} from 'nav-frontend-typografi';
+import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import StortEkspanderbartpanelBasePure from './stort-ekspanderbartpanel-base-pure';
+const utklippstavleSvg = require('./utklippstavle.svg');
+
 
 export interface StortEkspanderbartpanelPureProps {
     onClick: (event: React.SyntheticEvent<HTMLButtonElement>) => void;
@@ -19,12 +21,22 @@ class StortEkspanderbartpanelPure extends React.PureComponent<StortEkspanderbart
         //const heading = <Typografi type={'element'} tag="span" className="ekspanderbartPanel__heading">{tittel}</Typografi>;
         const heading = (
             <React.Fragment>
-                <Systemtittel tag="span">
-                    Informasjon om dagpenger
-                </Systemtittel>
-                <Element tag="span" className="stortEkspanderbartPanel__heading">
-                    Les mer om dagpenger og når du må søke
-                </Element>
+                <div className="figur__wrapper">
+                    <img src={utklippstavleSvg} className="figur"/>
+                </div>
+                <div className="stortEkspanderbartPanel__heading-wrapper">
+                    <Systemtittel tag="span" className="stortEkspanderbartPanel__heading">
+                        Informasjon om dagpenger
+                    </Systemtittel>
+                    <div className="stortEkspanderbartPanel__underheading-wrapper">
+                        <Normaltekst tag="div" className="stortEkspanderbartPanel__heading">
+                            Les mer om dagpenger og når du må søke
+                        </Normaltekst>
+                        <div>
+                            <span className="stortEkspanderbartPanel__indikator" />
+                        </div>
+                    </div>
+                </div>
             </React.Fragment>
         );
 
