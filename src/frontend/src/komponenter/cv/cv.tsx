@@ -1,9 +1,9 @@
 import * as React from 'react';
-import {Element, Innholdstittel} from 'nav-frontend-typografi';
-import {FormattedMessage} from 'react-intl';
+import { Element, Systemtittel } from 'nav-frontend-typografi';
+import { FormattedMessage } from 'react-intl';
 
 const cvSvg = require('./cv.svg');
-const CV_PATH = '/cv';
+export const CV_PATH = '/sbl/nav_security_check?goto=/sbl/arbeid/endreCv';
 
 function CV () {
         return (
@@ -12,9 +12,9 @@ function CV () {
                     <img src={cvSvg} alt="cv-illustrasjon"/>
                 </div>
                 <div className="cv__tekst">
-                    <Innholdstittel className="blokk-s">
+                    <Systemtittel className="blokk-s">
                         <FormattedMessage id="overskrift-cv"/>
-                    </Innholdstittel>
+                    </Systemtittel>
                     <Element className="blokk-m">
                         <FormattedMessage id="beskrivelse-cv"/>
                     </Element>
