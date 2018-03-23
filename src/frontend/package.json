@@ -6,6 +6,7 @@
   "private": true,
   "dependencies": {
     "@types/query-string": "5.0.1",
+    "@types/react-router-dom": "^4.2.5",
     "babel-polyfill": "6.26.0",
     "classnames": "2.2.5",
     "intl": "1.2.5",
@@ -42,6 +43,7 @@
     "react-intl": "2.4.0",
     "react-modal": "3.3.1",
     "react-redux": "5.0.6",
+    "react-router-dom": "^4.2.2",
     "react-scripts-ts": "2.8.0",
     "redux": "3.7.2",
     "redux-thunk": "2.2.0"
