@@ -1,23 +1,32 @@
 import * as React from 'react';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import StortEkspanderbartpanel from './stort-ekspanderbartpanel/src';
+import {injectIntl, InjectedIntlProps} from 'react-intl';
 
-export default class InformasjonsmodulDagpenger extends React.Component {
+interface DummyProp {
+    dummy?: string; //TypeScript klager hvis props kun er InjectedIntlProps
+}
+type Props = DummyProp & InjectedIntlProps
+
+class InformasjonsmodulDagpenger extends React.Component<Props> {
     render() {
+        const intl = this.props.intl;
         return (
             <React.Fragment>
-                <div className="test-test" />
+                <div className="test-test"/>
                 <StortEkspanderbartpanel
-                    tittel="Informasjon om dagpenger"
-                    undertekst="Les mer om dagpenger og når du må søke"
+                    tittel={intl.messages['informasjonsmodul-dagpenger-tittel']}
+                    undertekst={intl.messages['informasjonsmodul-dagpenger-undertekst']}
                     figur="utklippstavle"
-                    onClick={() => {}}
+                    onClick={() => {
+                    }}
                 >
                     panel
                     <Ekspanderbartpanel
                         tittel="Slik ser et panel ut"
                         tittelProps="element"
-                        onClick={() => {}}
+                        onClick={() => {
+                        }}
                     >
                         panel inni panel
                     </Ekspanderbartpanel>
@@ -26,3 +35,5 @@ export default class InformasjonsmodulDagpenger extends React.Component {
         );
     }
 }
+
+export default injectIntl(InformasjonsmodulDagpenger);
