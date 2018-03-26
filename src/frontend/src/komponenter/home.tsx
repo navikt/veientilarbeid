@@ -1,20 +1,18 @@
 import * as React from 'react';
 import Tjenester from './tjenester/tjenester';
-import Komigang from './overskrift/kom-i-gang';
-import Oppgaver from './oppgaver/oppgaver';
 import InformasjonsmodulDagpenger from './informasjonsmodul-dagpenger/informasjonsmodul-dagpenger';
 
-class Home extends React.Component<{}> {
-    render() {
-        return (
-            <div className="body__wrapper">
-                <InformasjonsmodulDagpenger/>
-                <Komigang/>
-                <Oppgaver/>
-                <Tjenester/>
-            </div>
-        );
-    }
+import Komigang from './komigang/kom-i-gang';
+
+function Home() {
+    return (
+        <div>
+            <Komigang/>
+            <InformasjonsmodulDagpenger/>
+            <Komigang/>
+            <Tjenester/>
+        </div>
+    );
 }
 
 export default Home;
