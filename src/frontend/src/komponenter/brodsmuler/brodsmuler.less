@@ -1,0 +1,23 @@
+.brodsmuler {
+  display: flex;
+  align-items: center;
+
+  > .brodsmuler__list {
+    list-style: none;
+    margin: inherit;
+    padding: 0.5rem;
+
+    > .brodsmuler__item {
+      float: left;
+
+      &:not(:last-child)::after {
+        content: "/";
+        margin: 0 0.5rem;
+      }
+    }
+  }
+  > .brodsmuler__illustrasjon {
+    max-width: 30px;
+    max-height: 30px;
+  }
+}
