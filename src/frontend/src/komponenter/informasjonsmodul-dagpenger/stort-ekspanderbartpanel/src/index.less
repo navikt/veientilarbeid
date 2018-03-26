@@ -48,7 +48,7 @@
   }
 
   &__underheading-wrapper {
-    padding-top: 0.6rem;
+    padding: 0.6rem 0.5rem 0 0;
     border-top: 1px solid white;
     display: flex;
     justify-content: space-between;
@@ -89,4 +89,10 @@
 
 .stortEkspanderbartPanel__figur-wrapper img {
   display: none;
+}
+
+@media (min-width: @screen-sm-min) {
+  .stortEkspanderbartPanel__figur-wrapper img {
+    display: unset;
+  }
 }

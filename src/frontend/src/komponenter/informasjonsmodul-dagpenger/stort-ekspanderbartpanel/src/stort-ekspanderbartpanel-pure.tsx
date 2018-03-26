@@ -26,7 +26,7 @@ class StortEkspanderbartpanelPure extends React.PureComponent<StortEkspanderbart
             <React.Fragment>
                 {figurComponent}
                 <div className="stortEkspanderbartPanel__heading-wrapper">
-                    <Systemtittel tag="span" className="stortEkspanderbartPanel__heading">
+                    <Systemtittel tag="span" className="stortEkspanderbartPanel__heading blokk-s">
                         {tittel}
                     </Systemtittel>
                     <div className="stortEkspanderbartPanel__underheading-wrapper">
