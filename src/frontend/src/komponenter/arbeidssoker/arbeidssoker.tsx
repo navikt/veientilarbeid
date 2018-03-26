@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Element, Systemtittel } from 'nav-frontend-typografi';
+import { HoyreChevron } from 'nav-frontend-chevron';
 import { FormattedMessage } from 'react-intl';
 
 const arbeidssokerSvg = require('./arbeidssoker.svg');
@@ -20,7 +21,7 @@ function Arbeidssoker() {
                         <a href={VEIVISERARBEIDSSOKER_PATH} className="lenke">
                             <FormattedMessage id="lenke-arbeidssoker"/>
                         </a>
-                        <i className="nav-frontend-chevron chevronboks chevron--hoyre"/>
+                        <HoyreChevron />
                     </div>
                 </div>
                 <div className="arbeidssoker__illustrasjon">

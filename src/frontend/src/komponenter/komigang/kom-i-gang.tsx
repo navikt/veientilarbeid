@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Element, Innholdstittel } from 'nav-frontend-typografi';
+import { HoyreChevron } from 'nav-frontend-chevron';
 import { FormattedMessage } from 'react-intl';
 import { parse } from 'query-string';
 
@@ -34,7 +35,7 @@ class Komigang extends React.PureComponent<{}, State> {
                             <a href={AKTIVITETSPLAN_PATH} className="lenke">
                                 <FormattedMessage id="lenke-komigang"/>
                             </a>
-                            <i className="nav-frontend-chevron chevronboks chevron--hoyre"/>
+                            <HoyreChevron />
                         </div>
                     </div>
                     <div className="komigang__illustrasjon">

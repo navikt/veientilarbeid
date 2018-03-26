@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Element, Systemtittel } from 'nav-frontend-typografi';
 import { FormattedMessage } from 'react-intl';
+import { HoyreChevron } from 'nav-frontend-chevron';
 
 const cvSvg = require('./cv.svg');
 export const CV_PATH = '/sbl/nav_security_check?goto=/sbl/arbeid/endreCv';
@@ -22,7 +23,7 @@ function CV () {
                         <a href={CV_PATH} className="lenke">
                             <FormattedMessage id="lenke-cv"/>
                         </a>
-                        <i className="nav-frontend-chevron chevronboks chevron--hoyre"/>
+                        <HoyreChevron />
                     </div>
                 </div>
             </div>
