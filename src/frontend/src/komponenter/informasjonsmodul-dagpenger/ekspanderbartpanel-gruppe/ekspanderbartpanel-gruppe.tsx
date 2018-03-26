@@ -32,8 +32,8 @@ export default class EkspanderbartpanelGruppe extends React.Component<Props, Sta
         const childrenWithModifiedOnClickAndApenProps = React.Children.map(this.props.children, (child, index) => {
             const childAsElement = child as React.ReactElement<any>;
             return React.cloneElement(childAsElement, {
-                onClick: () => {
-                    childAsElement.props.onClick();
+                onClick: (event: React.SyntheticEvent<HTMLButtonElement>) => {
+                    childAsElement.props.onClick(event);
                     if (this.state.indexOfOpenEkspanderbartpanel !== index) {
                         this.setState({indexOfOpenEkspanderbartpanel: index});
                     } else {
@@ -41,13 +41,13 @@ export default class EkspanderbartpanelGruppe extends React.Component<Props, Sta
                     }
                 },
                 apen: index === this.state.indexOfOpenEkspanderbartpanel
-            })
+            });
         });
 
         return (
-            <React.Fragment>
+            <div className="ekspanderbartPanelGruppe__wrapper">
                 {childrenWithModifiedOnClickAndApenProps}
-            </React.Fragment>
+            </div>
         );
     }
 }
