@@ -24,7 +24,7 @@ function Arbeidssoker() {
                     </div>
                 </div>
                 <div className="arbeidssoker__illustrasjon">
-                    <img src={arbeidssokerSvg} alt="arbeidssoker-illustrasjon"/>
+                    <img src={arbeidssokerSvg} className="illustrasjon" alt="arbeidssoker-illustrasjon"/>
                 </div>
             </div>
         </div>

@@ -38,7 +38,7 @@ class Komigang extends React.PureComponent<{}, State> {
                         </div>
                     </div>
                     <div className="komigang__illustrasjon">
-                        <img src={aktivitetsplanSvg} alt="aktivitetsplan-illustrasjon"/>
+                        <img src={aktivitetsplanSvg} alt="aktivitetsplan-illustrasjon" className="illustrasjon"/>
                     </div>
                 </div>
             </div>

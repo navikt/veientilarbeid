@@ -9,7 +9,7 @@ function CV () {
         return (
             <div className="cv">
                 <div className="cv__illustrasjon">
-                    <img src={cvSvg} alt="cv-illustrasjon"/>
+                    <img src={cvSvg} alt="cv-illustrasjon" className="illustrasjon"/>
                 </div>
                 <div className="cv__tekst">
                     <Systemtittel className="blokk-s">
