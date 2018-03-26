@@ -13,7 +13,8 @@ export interface StortEkspanderbartpanelBaseState {
     apen: boolean;
 }
 
-class StortEkspanderbartpanelBase extends React.Component<StortEkspanderbartpanelBaseProps, StortEkspanderbartpanelBaseState> {
+class StortEkspanderbartpanelBase extends
+    React.Component<StortEkspanderbartpanelBaseProps, StortEkspanderbartpanelBaseState> {
     static defaultProps: Partial<StortEkspanderbartpanelBaseProps> = {
         apen: false,
     };

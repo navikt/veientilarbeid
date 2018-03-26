@@ -30,7 +30,7 @@ class StortEkspanderbartpanelBasePure extends React.Component<StortEkspanderbart
         if (collapseProps && collapseProps.onRest) {
             collapseProps.onRest();
         }
-    };
+    }
 
     tabHandler(event: React.KeyboardEvent<EventTarget>) {
         const { keyCode } = event;
@@ -54,7 +54,7 @@ class StortEkspanderbartpanelBasePure extends React.Component<StortEkspanderbart
         }: StortEkspanderbartpanelBasePureProps = this.props;
 
         return (
-            <div className={cls(this.props, className)} { ...renderProps }>
+            <div className={cls(this.props, className)}{...renderProps}>
                 <button
                     className="stortEkspanderbartPanel__hode"
                     onKeyDown={this.tabHandler}
