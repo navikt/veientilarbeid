@@ -1,13 +1,7 @@
-.komigang-container {
-  background-color: @navLysGra;
+.cv {
   padding: 2rem;
-}
 
-.komigang {
-  max-width: @screen-md-min;
-  margin: 0 auto;
-
-  .komigang__tekst {
+  .cv__tekst {
     .nav-frontend-lenker {
       > .lenke {
         font-weight: bold;
@@ -21,8 +15,8 @@
     }
   }
 
-  .komigang__illustrasjon {
-    padding: 4rem 0;
+  .cv__illustrasjon {
+    padding: 0 0 2rem 0;
     > .illustrasjon {
       max-width: 100%;
     }
@@ -30,26 +24,22 @@
 }
 
 @media (min-width: @screen-sm-min) {
-  .arbeidssoker-container {
-    padding: 4rem;
-  }
-
-  .komigang {
+  .cv {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: flex-start;
+    padding: 4rem 0;
 
-    .komigang__tekst {
-      padding: 3% 2rem;
+    .cv__tekst {
+      padding: 0 2rem;
       max-width: 31rem;
     }
 
-    .komigang__illustrasjon {
-      padding: 0;
+    .cv__illustrasjon {
+      padding: 0 0 0 5rem;
       > .illustrasjon {
         max-width: 80%;
       }
     }
   }
 }
-
