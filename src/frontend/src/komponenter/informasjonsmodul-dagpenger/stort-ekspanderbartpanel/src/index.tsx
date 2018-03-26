@@ -44,7 +44,7 @@ class StortEkspanderbartpanel extends React.Component<StortEkspanderbartpanelPro
     handleClick(event: React.SyntheticEvent<HTMLButtonElement>): void {
         event.preventDefault();
         this.setState({ apen: !this.state.apen });
-        if(this.props.onClick) {
+        if (this.props.onClick) {
             this.props.onClick(event);
         }
     }

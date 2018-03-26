@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import StortEkspanderbartpanelBasePure from './stort-ekspanderbartpanel-base-pure';
-import {Figur} from "./index";
-
+import { Figur } from './index';
 
 export interface StortEkspanderbartpanelPureProps {
     onClick: (event: React.SyntheticEvent<HTMLButtonElement>) => void;
@@ -15,7 +14,6 @@ export interface StortEkspanderbartpanelPureProps {
 class StortEkspanderbartpanelPure extends React.PureComponent<StortEkspanderbartpanelPureProps> {
     render() {
         const { tittel, undertekst, figur, ...renderProps } = this.props;
-        //const heading = <Typografi type={'element'} tag="span" className="ekspanderbartPanel__heading">{tittel}</Typografi>;
         const figurComponent = figur ? (
             <div className="stortEkspanderbartPanel__figur-wrapper">
                 <img src={require(`./${figur}.svg`)} className="figur"/>
