@@ -55,7 +55,7 @@ class InformasjonsmodulDagpenger extends React.Component<Props> {
                     </EkspanderbartpanelGruppe>
                     <KnappBase
                         type="standard"
-                        onClick={() => }
+                        onClick={() => {}}
                     >
                         {intl.messages['informasjonsmodul-dagpenger-knapp']}
                     </KnappBase>
