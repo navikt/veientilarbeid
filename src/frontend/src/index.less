@@ -16,10 +16,9 @@
 @import '../node_modules/nav-frontend-ekspanderbartpanel-style/src/index';
 @import '../node_modules/nav-frontend-knapper-style/src/index';
 
-@import './komponenter/oppgaver/oppgave';
+@import './komponenter/komigang/kom-i-gang';
 @import './komponenter/lenkeboks/lenkeboks';
 @import './komponenter/tjenester/tjenester';
-@import './komponenter/introduksjon/overlay';
 @import './komponenter/informasjonsmodul-dagpenger/stort-ekspanderbartpanel/src/index';
 @import './komponenter/informasjonsmodul-dagpenger/ekspanderbartpanel-gruppe/ekspanderbartpanel-gruppe';
 
@@ -28,15 +27,8 @@
 @import '../node_modules/nav-frontend-paneler-style/src/mixins';
 
 
-
 body {
-    background-color: @navLysGra;
-}
-
-.body__wrapper {
-    width: 70%;
-    margin-left: auto;
-    margin-right: auto;
+    background-color: @white;
 }
 
 .overskrift-veientilarbeid__wrapper {
@@ -46,35 +38,6 @@ body {
     border-bottom: 2px solid @navBla;
     background: @navLysBla url("./svg/dataskjerm.svg") no-repeat;
     background-position: 20% 100%;
-}
-
-.kom-i-gang__wrapper {
-    padding-top:1rem;
-
-    .overskrift-kom-i-gang {
-        text-align: center;
-    }
-}
-
-.overskrift-komigang__panel {
-    .beskrivelse-komigang {
-        width: 50%;
-        margin-left: auto;
-        margin-right:auto;
-    }
-}
-
-.overskrift-kom-i-gang, .overskrift-oppgaver, .overskrift-tjenester {
-    &::after {
-        border-bottom: 3px solid;
-        display: block;
-        content: '';
-        margin-top: 1rem;
-        width: 2rem;
-        margin-left: auto;
-        margin-right: auto;
-        color: @navGronn;
-    }
 }
 
 .appContainer {
@@ -87,7 +50,7 @@ body {
     margin-bottom: -200px;
     padding-bottom: 200px;
 }
-C:\Users\***REMOVED***\IdeaProjects\veientilarbeid\node_modules\nav-frontend-chevron-style\src\mixins.less
+
 .hodefot-footer {
     width: 100%;
     bottom: 0;
