@@ -4,6 +4,7 @@ import {injectIntl, InjectedIntlProps} from 'react-intl';
 import EkspanderbartpanelGruppe from "./ekspanderbartpanel-gruppe/ekspanderbartpanel-gruppe";
 import { EkspanderbartpanelPure } from 'nav-frontend-ekspanderbartpanel';
 import {Ingress} from "nav-frontend-typografi";
+import KnappBase from 'nav-frontend-knapper';
 
 
 interface DummyProp {
@@ -52,6 +53,12 @@ class InformasjonsmodulDagpenger extends React.Component<Props> {
                             {intl.messages['informasjonsmodul-dagpenger-del-3-tekst']}
                         </EkspanderbartpanelPure>
                     </EkspanderbartpanelGruppe>
+                    <KnappBase
+                        type="standard"
+                        onClick={() => }
+                    >
+                        {intl.messages['informasjonsmodul-dagpenger-knapp']}
+                    </KnappBase>
                 </StortEkspanderbartpanel>
             </React.Fragment>
         );
