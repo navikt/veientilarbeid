@@ -4,7 +4,6 @@ import InformasjonsmodulDagpenger from './informasjonsmodul-dagpenger/informasjo
 import Komigang from './komigang/kom-i-gang';
 import CV from './cv/cv';
 import Arbeidssoker from './arbeidssoker/arbeidssoker';
-import Informasjon from './informasjon/informasjon';
 
 function Home() {
     return (
@@ -12,7 +11,6 @@ function Home() {
             <Komigang/>
             <CV/>
             <InformasjonsmodulDagpenger/>
-            <Informasjon/>
             <Arbeidssoker/>
         </div>
     );
