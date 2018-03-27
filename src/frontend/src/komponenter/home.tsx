@@ -1,5 +1,5 @@
 import * as React from 'react';
-import InformasjonsmodulDagpenger from './informasjonsmodul-dagpenger/informasjonsmodul-dagpenger';
+import InformasjonsmodulDagpenger from './informasjonsmoduler/dagpenger/dagpenger';
 
 import Komigang from './komigang/kom-i-gang';
 import CV from './cv/cv';

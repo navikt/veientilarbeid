@@ -1,7 +1,10 @@
 import * as React from 'react';
+import { EkspanderbartpanelPureProps } from '../../../../@types/ekspanderbartpanel-pure';
+import { StortEkspanderbartpanelPureProps } from '../stort-ekspanderbartpanel/src/stort-ekspanderbartpanel-pure';
 
 interface Props {
     indexOfOpenEkspanderbartpanel?: number;
+    children: React.ReactElement<EkspanderbartpanelPureProps | StortEkspanderbartpanelPureProps>[];
 }
 
 interface State {
@@ -30,7 +33,8 @@ export default class EkspanderbartpanelGruppe extends React.Component<Props, Sta
 
     render() {
         const childrenWithModifiedOnClickAndApenProps = React.Children.map(this.props.children, (child, index) => {
-            const childAsElement = child as React.ReactElement<any>;
+            // tslint:disable-next-line
+            const childAsElement = child as React.ReactElement<EkspanderbartpanelPureProps | StortEkspanderbartpanelPureProps>;
             return React.cloneElement(childAsElement, {
                 onClick: (event: React.SyntheticEvent<HTMLButtonElement>) => {
                     childAsElement.props.onClick(event);
