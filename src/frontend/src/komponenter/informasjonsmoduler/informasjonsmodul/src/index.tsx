@@ -1,15 +1,15 @@
 import * as React from 'react';
 import 'nav-frontend-ekspanderbartpanel-style';
-import EkspanderbartpanelPure from './stort-ekspanderbartpanel-pure';
+import InformasjonsmodulPure from './informasjonsmodul-pure';
 
 /**
- * Self-contained 'StortEkspanderbartpanel'.
+ * Self-contained 'Informasjonsmodul'.
  * Denne komponenten holder selv styr på om innholdet skal vises eller ikke.
  */
 
 export type Figur = 'utklippstavle' | 'brev';
 
-export interface StortEkspanderbartpanelProps {
+export interface InformasjonsmodulProps {
     /**
      * Skal komponenten være 'default' åpen
      */
@@ -23,15 +23,15 @@ export interface StortEkspanderbartpanelProps {
     figur?: Figur;
 }
 
-export interface StortEkspanderbartpanelState {
+export interface InformasjonsmodulState {
     apen: boolean;
 }
 
-class StortEkspanderbartpanel extends React.Component<StortEkspanderbartpanelProps, StortEkspanderbartpanelState> {
-    static defaultProps: Partial<StortEkspanderbartpanelProps> = {
+class Informasjonsmodul extends React.Component<InformasjonsmodulProps, InformasjonsmodulState> {
+    static defaultProps: Partial<InformasjonsmodulProps> = {
         apen: false,
     };
-    constructor(props: StortEkspanderbartpanelProps) {
+    constructor(props: InformasjonsmodulProps) {
         super(props);
 
         this.state = {
@@ -52,7 +52,7 @@ class StortEkspanderbartpanel extends React.Component<StortEkspanderbartpanelPro
     render() {
         const {tittel, undertekst, figur, ...renderProps } = this.props;
         return (
-            <EkspanderbartpanelPure
+            <InformasjonsmodulPure
                 {...renderProps}
                 apen={this.state.apen}
                 onClick={this.handleClick}
@@ -64,7 +64,7 @@ class StortEkspanderbartpanel extends React.Component<StortEkspanderbartpanelPro
     }
 }
 
-export default StortEkspanderbartpanel;
-export { default as StortEkspanderbartpanelPure } from './stort-ekspanderbartpanel-pure';
-export { default as StortEkspanderbartpanelBase } from './stort-ekspanderbartpanel-base';
-export { default as StortEkspanderbartpanelBasePure } from './stort-ekspanderbartpanel-base-pure';
+export default Informasjonsmodul;
+export { default as StortEkspanderbartpanelPure } from './informasjonsmodul-pure';
+export { default as StortEkspanderbartpanelBase } from './informasjonsmodul-base';
+export { default as StortEkspanderbartpanelBasePure } from './informasjonsmodul-base-pure';

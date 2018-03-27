@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Collapse, CollapseProps } from 'react-collapse';
 
-export interface StortEkspanderbartpanelBasePureProps {
+export interface InformasjonsmodulBasePureProps {
     heading: React.ReactNode;
     className?: string;
     onClick: (event: React.SyntheticEvent<HTMLButtonElement>) => void;
@@ -11,14 +11,14 @@ export interface StortEkspanderbartpanelBasePureProps {
     collapseProps?: Partial<CollapseProps>;
 }
 
-const cls = (props: StortEkspanderbartpanelBasePureProps, className?: string) => {
-    return className + ' ' + (props.apen ? 'stortEkspanderbartPanel--apen' : 'stortEkspanderbartPanel--lukket');
+const cls = (props: InformasjonsmodulBasePureProps, className?: string) => {
+    return (className ? className + ' ' : '') + (props.apen ? 'informasjonsmodul--apen' : 'informasjonsmodul--lukket');
 };
 
-class StortEkspanderbartpanelBasePure extends React.Component<StortEkspanderbartpanelBasePureProps, {}> {
+class InformasjonsmodulBasePure extends React.Component<InformasjonsmodulBasePureProps, {}> {
     private isCloseAnimation: boolean = false;
 
-    componentWillReceiveProps(nextProps: StortEkspanderbartpanelBasePureProps) {
+    componentWillReceiveProps(nextProps: InformasjonsmodulBasePureProps) {
         if (this.props.apen && !nextProps.apen) {
             this.isCloseAnimation = true;
         }
@@ -52,26 +52,26 @@ class StortEkspanderbartpanelBasePure extends React.Component<StortEkspanderbart
             onClick,
             collapseProps,
             ...renderProps
-        }: StortEkspanderbartpanelBasePureProps = this.props;
+        }: InformasjonsmodulBasePureProps = this.props;
 
         return (
             <div className={cls(this.props, className)}{...renderProps}>
                 <button
-                    className="stortEkspanderbartPanel__hode"
+                    className="informasjonsmodul__hode"
                     onKeyDown={event => this.tabHandler(event)}
                     onClick={onClick}
                     aria-expanded={apen}
                 >
-                    <div className="stortEkspanderbartPanel__flex-wrapper">
+                    <div className="informasjonsmodul">
                         {heading}
                     </div>
                 </button>
                 <Collapse isOpened={apen} onRest={this.onRestProxy} {...collapseProps} >
-                    <article aria-label={ariaTittel} className="stortEkspanderbartPanel__innhold">{children}</article>
+                    <article aria-label={ariaTittel} className="informasjonsmodul__innhold">{children}</article>
                 </Collapse>
             </div>
         );
     }
 }
 
-export default StortEkspanderbartpanelBasePure;
+export default InformasjonsmodulBasePure;

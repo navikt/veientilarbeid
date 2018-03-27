@@ -1,5 +1,5 @@
 import * as React from 'react';
-import StortEkspanderbartpanel from '../stort-ekspanderbartpanel/src/index';
+import StortEkspanderbartpanel from '../informasjonsmodul/src/index';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
 import EkspanderbartpanelGruppe from '../ekspanderbartpanel-gruppe/ekspanderbartpanel-gruppe';
 import { EkspanderbartpanelPure } from 'nav-frontend-ekspanderbartpanel';
@@ -61,7 +61,7 @@ class Dagpenger extends React.Component<Props> {
                         </EkspanderbartpanelGruppe>
                         <div className="informasjonsmodul-lenke__wrapper">
                             <LenkeMedChevron path={SOKNAD_OM_DAGPENGER_PATH}>
-                                {intl.messages['informasjonsmodul-dagpenger-knapp']}
+                                {intl.messages['informasjonsmodul-dagpenger-lenke']}
                             </LenkeMedChevron>
                         </div>
                     </StortEkspanderbartpanel>
