@@ -1,6 +1,6 @@
 .informasjonsmodul-wrapper {
   max-width: @screen-md-min;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .informasjonsmoduler {
@@ -8,4 +8,24 @@
   justify-content: center;
   background-color: @navLysGra;
   min-height: 20rem;
+}
+
+.informasjonsmodul-lenke__wrapper {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-width: @screen-sm-min) {
+  .informasjonsmodul-wrapper {
+    padding: 2rem 5rem 2rem 5rem;
+  }
+
+  .informasjonsmodul-ingress__wrapper {
+    padding: 1rem 3rem 1rem 3rem;
+  }
+
+  .informasjonsmodul-lenke__wrapper {
+    display: block;
+  }
 }
