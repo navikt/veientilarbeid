@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { EkspanderbartpanelPureProps } from '../../../../@types/ekspanderbartpanel-pure';
-import { StortEkspanderbartpanelPureProps } from '../stort-ekspanderbartpanel/src/stort-ekspanderbartpanel-pure';
+import { InformasjonsmodulPureProps } from '../informasjonsmodul/src/informasjonsmodul-pure';
 
 interface Props {
     indexOfOpenEkspanderbartpanel?: number;
-    children: React.ReactElement<EkspanderbartpanelPureProps | StortEkspanderbartpanelPureProps>[];
+    children: React.ReactElement<EkspanderbartpanelPureProps | InformasjonsmodulPureProps>[];
 }
 
 interface State {
     indexOfOpenEkspanderbartpanel: number;
 }
 
-const NO_PANEL = -1;
+const ALL_PANELS_CLOSED = -1;
 
 export default class EkspanderbartpanelGruppe extends React.Component<Props, State> {
 
@@ -19,7 +19,7 @@ export default class EkspanderbartpanelGruppe extends React.Component<Props, Sta
         super(props);
         const indexFromProps = props.indexOfOpenEkspanderbartpanel;
         this.state = {
-            indexOfOpenEkspanderbartpanel: (indexFromProps !== undefined) ? indexFromProps : NO_PANEL
+            indexOfOpenEkspanderbartpanel: (indexFromProps !== undefined) ? indexFromProps : ALL_PANELS_CLOSED
         };
     }
 
@@ -34,14 +34,14 @@ export default class EkspanderbartpanelGruppe extends React.Component<Props, Sta
     render() {
         const childrenWithModifiedOnClickAndApenProps = React.Children.map(this.props.children, (child, index) => {
             // tslint:disable-next-line
-            const childAsElement = child as React.ReactElement<EkspanderbartpanelPureProps | StortEkspanderbartpanelPureProps>;
+            const childAsElement = child as React.ReactElement<EkspanderbartpanelPureProps | InformasjonsmodulPureProps>;
             return React.cloneElement(childAsElement, {
                 onClick: (event: React.SyntheticEvent<HTMLButtonElement>) => {
                     childAsElement.props.onClick(event);
                     if (this.state.indexOfOpenEkspanderbartpanel !== index) {
                         this.setState({indexOfOpenEkspanderbartpanel: index});
                     } else {
-                        this.setState({indexOfOpenEkspanderbartpanel: NO_PANEL});
+                        this.setState({indexOfOpenEkspanderbartpanel: ALL_PANELS_CLOSED});
                     }
                 },
                 apen: index === this.state.indexOfOpenEkspanderbartpanel

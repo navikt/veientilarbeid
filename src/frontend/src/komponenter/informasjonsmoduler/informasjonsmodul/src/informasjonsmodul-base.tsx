@@ -1,24 +1,24 @@
 import * as React from 'react';
 import 'nav-frontend-ekspanderbartpanel-style'; // eslint-disable-line import/extensions
-import StortEkspanderbartpanelBasePure from './stort-ekspanderbartpanel-base-pure';
+import InformasjonsmodulBasePure from './informasjonsmodul-base-pure';
 
-export interface StortEkspanderbartpanelBaseProps {
+export interface InformasjonsmodulBaseProps {
     apen?: boolean;
     onClick: (event: React.SyntheticEvent<HTMLButtonElement>) => void;
     heading: React.ReactNode;
     ariaTittel: string;
 }
 
-export interface StortEkspanderbartpanelBaseState {
+export interface InformasjonsmodulBaseState {
     apen: boolean;
 }
 
-class StortEkspanderbartpanelBase extends
-    React.Component<StortEkspanderbartpanelBaseProps, StortEkspanderbartpanelBaseState> {
-    static defaultProps: Partial<StortEkspanderbartpanelBaseProps> = {
+class InformasjonsmodulBase extends
+    React.Component<InformasjonsmodulBaseProps, InformasjonsmodulBaseState> {
+    static defaultProps: Partial<InformasjonsmodulBaseProps> = {
         apen: false,
     };
-    constructor(props: StortEkspanderbartpanelBaseProps) {
+    constructor(props: InformasjonsmodulBaseProps) {
         super(props);
 
         this.state = {
@@ -37,7 +37,7 @@ class StortEkspanderbartpanelBase extends
     render() {
         const { ...renderProps } = this.props;
         return (
-            <StortEkspanderbartpanelBasePure
+            <InformasjonsmodulBasePure
                 {...renderProps}
                 apen={this.state.apen}
                 onClick={this.handleClick}
@@ -46,4 +46,4 @@ class StortEkspanderbartpanelBase extends
     }
 }
 
-export default StortEkspanderbartpanelBase;
+export default InformasjonsmodulBase;
