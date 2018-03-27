@@ -23,6 +23,7 @@ class StortEkspanderbartpanelBasePure extends React.Component<StortEkspanderbart
             this.isCloseAnimation = true;
         }
     }
+
     onRestProxy = () => {
         this.isCloseAnimation = false;
 
@@ -30,7 +31,7 @@ class StortEkspanderbartpanelBasePure extends React.Component<StortEkspanderbart
         if (collapseProps && collapseProps.onRest) {
             collapseProps.onRest();
         }
-    }
+    };
 
     tabHandler(event: React.KeyboardEvent<EventTarget>) {
         const { keyCode } = event;
@@ -57,7 +58,7 @@ class StortEkspanderbartpanelBasePure extends React.Component<StortEkspanderbart
             <div className={cls(this.props, className)}{...renderProps}>
                 <button
                     className="stortEkspanderbartPanel__hode"
-                    onKeyDown={this.tabHandler}
+                    onKeyDown={event => this.tabHandler(event)}
                     onClick={onClick}
                     aria-expanded={apen}
                 >
