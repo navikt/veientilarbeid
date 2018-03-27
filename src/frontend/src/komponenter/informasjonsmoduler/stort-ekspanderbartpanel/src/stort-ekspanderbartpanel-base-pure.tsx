@@ -31,7 +31,7 @@ class StortEkspanderbartpanelBasePure extends React.Component<StortEkspanderbart
         if (collapseProps && collapseProps.onRest) {
             collapseProps.onRest();
         }
-    };
+    }
 
     tabHandler(event: React.KeyboardEvent<EventTarget>) {
         const { keyCode } = event;
