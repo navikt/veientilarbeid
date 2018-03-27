@@ -1,6 +1,10 @@
+import { combineReducers } from 'redux';
+import oppfolging, { State as OppfolgingState } from './ducks/oppfolging';
+
 export interface AppState {
+    oppfolging: OppfolgingState;
 }
 
-// Her kommer det nok flere reducers.
-const combineReducers = (state: AppState) => state;
-export default combineReducers;
+export default combineReducers<AppState>({
+    oppfolging
+});

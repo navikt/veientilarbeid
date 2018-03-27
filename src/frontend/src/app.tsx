@@ -5,6 +5,8 @@ import IntlProvider from './Intl-provider';
 import './decorator/decorator-mock';
 import Home from './komponenter/home';
 import Overskrift from './komponenter/overskrift/overskrift';
+import OppfolgingProvider from './komponenter/oppfolging/oppfolging-provider';
+import SjekkOppfolging from './komponenter/oppfolging/sjekk-oppfolging';
 
 const store = getStore();
 
@@ -13,10 +15,14 @@ class App extends React.Component {
         return (
             <Provider store={store}>
                 <IntlProvider>
-                    <div>
-                        <Overskrift/>
-                        <Home/>
-                    </div>
+                    <OppfolgingProvider>
+                        <SjekkOppfolging>
+                            <div>
+                                <Overskrift/>
+                                <Home/>
+                            </div>
+                        </SjekkOppfolging>
+                    </OppfolgingProvider>
                 </IntlProvider>
             </Provider >
         );

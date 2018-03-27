@@ -1,19 +1,49 @@
-declare module 'nav-frontend-alertstriper' {
+declare module "nav-frontend-alertstriper" {
     import * as React from 'react';
 
-    export type AlertstripeType = 'suksess' | 'info' | 'advarsel' | 'nav-ansatt';
-
-    export interface ElementProps {
-        children: React.ReactNode;
-        size?: number | string;
+    interface AlertStripeProps {
+        children: React.ReactChildren | React.ReactChild;
         className?: string;
     }
 
-    export class AlertStripeAdvarselSolid  extends React.Component<ElementProps, {}> {}
-    export class AlertStripeAdvarsel  extends React.Component<ElementProps, {}> {}
-    export class AlertStripeSuksessSolid  extends React.Component<ElementProps, {}> {}
-    export class AlertStripeSuksess  extends React.Component<ElementProps, {}> {}
-    export class AlertStripeInfoSolid  extends React.Component<ElementProps, {}> {}
-    export class AlertStripeInfo  extends React.Component<ElementProps, {}> {}
-    export class AlertStripeNavAnsatt  extends React.Component<ElementProps, {}> {}
+    export type AlertstripeTypes = 'advarsel' | 'suksess' | 'info';
+
+    interface AlertStripeMedTypeOgSolidProps extends AlertStripeProps {
+        type: AlertstripeTypes;
+        solid?: boolean;
+    }
+
+    export class AlertStripe extends React.Component<AlertStripeMedTypeOgSolidProps, {}>{
+
+    }
+
+    export class AlertStripeAdvarsel extends React.Component<AlertStripeProps, {}>{
+
+    }
+
+    export class AlertStripeAdvarselSolid extends React.Component<AlertStripeProps, {}>{
+
+    }
+
+    export class AlertStripeSuksessSolid extends React.Component<AlertStripeProps, {}>{
+
+    }
+
+    export class AlertStripeSuksess extends React.Component<AlertStripeProps, {}>{
+
+    }
+
+    export class AlertStripeInfoSolid extends React.Component<AlertStripeProps, {}>{
+
+    }
+
+    export class AlertStripeInfo extends React.Component<AlertStripeProps, {}>{
+
+    }
+
+    export class AlertStripeNavAnsatt extends React.Component<AlertStripeProps, {}>{
+
+    }
+
+    export default AlertStripe;
 }
