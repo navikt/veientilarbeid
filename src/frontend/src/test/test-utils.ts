@@ -3,6 +3,7 @@ import * as sinon from 'sinon';
 import { mount } from 'enzyme';
 import { shallowWithIntl } from 'enzyme-react-intl';
 import getStore from '../store';
+import { AppState } from '../reducer';
 
 export const store = getStore();
 
@@ -12,9 +13,9 @@ export function shallowwithStoreAndIntl(children: React.ReactNode) {
     })).dive().dive();
 }
 
-export function mountWithStore(children: React.ReactNode) {
+export function mountWithStore(children: React.ReactNode, withStore?: Store<AppState>) {
     return mount(React.cloneElement(children, {
-        store
+        store: withStore || store
     }));
 }
 
@@ -32,8 +33,9 @@ export function promiseWithSetTimeout() {
     return new Promise(resolve => setTimeout(resolve, 0));
 }
 
-export function makeHrefWritable() {
+export function resetAndMakeHrefWritable() {
     return Object.defineProperty(document.location, 'href', {
         writable: true,
+        value: ''
     });
 }
