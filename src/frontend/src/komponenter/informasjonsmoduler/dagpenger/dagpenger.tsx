@@ -32,7 +32,7 @@ class Dagpenger extends React.Component<Props> {
                         figur="utklippstavle"
                         // tslint:disable-next-line
                         onClick={() => {}}
-                        apen={true}
+                        apen={false}
                     >
                         <div className="informasjonsmodul-ingress__wrapper">
                             <Ingress>
