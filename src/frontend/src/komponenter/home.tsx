@@ -1,15 +1,16 @@
 import * as React from 'react';
+import InformasjonsmodulDagpenger from './informasjonsmoduler/dagpenger/dagpenger';
+
 import Komigang from './komigang/kom-i-gang';
 import CV from './cv/cv';
 import Arbeidssoker from './arbeidssoker/arbeidssoker';
-import Informasjon from './informasjon/informasjon';
 
 function Home() {
     return (
         <div>
             <Komigang/>
             <CV/>
-            <Informasjon/>
+            <InformasjonsmodulDagpenger/>
             <Arbeidssoker/>
         </div>
     );
