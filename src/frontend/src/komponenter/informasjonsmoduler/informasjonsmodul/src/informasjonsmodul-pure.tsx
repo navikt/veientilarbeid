@@ -21,7 +21,7 @@ class InformasjonsmodulPure extends React.PureComponent<InformasjonsmodulPurePro
         ) : (null);
 
         const heading = (
-            <React.Fragment>
+            <>
                 {figurComponent}
                 <div className="informasjonsmodul__heading-wrapper">
                     <Systemtittel tag="span" className="informasjonsmodul__heading blokk-s">
@@ -36,7 +36,7 @@ class InformasjonsmodulPure extends React.PureComponent<InformasjonsmodulPurePro
                         </div>
                     </div>
                 </div>
-            </React.Fragment>
+            </>
         );
 
         return (
