@@ -14,7 +14,6 @@ const alleLastetEllerReloading = (avhengigheter: {}[]) => (
 
 interface InnholdslasterProps {
     avhengigheter: {status: string}[];
-    children: React.ReactNode;
     feilmeldingKomponent?: React.ReactNode | React.ReactChild;
     storrelse?: storrelseType;
 }
@@ -58,10 +57,10 @@ class Innholdslaster extends React.Component<InnholdslasterProps, Innholdslaster
     renderChildren() {
         const { avhengigheter, children } = this.props;
 
-        if (typeof children === 'function') {
-            return <React.Fragment>{children(avhengigheter)}</React.Fragment>;
+        if (children instanceof Function) {
+            return <>{children(avhengigheter)}</>;
         }
-        return <React.Fragment>{children}</React.Fragment>;
+        return <>{children}</>;
     }
 
     render() {
