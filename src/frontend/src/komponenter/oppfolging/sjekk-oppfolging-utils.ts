@@ -12,9 +12,11 @@ export function harTattIBrukAktivitetsplan(oppfolging: OppfolgingData) {
 }
 
 export function sendBrukerTilAktivitetsplan() {
+    // TODO erstatte med history.pushState() slik at vi kan oppgradere jsdom
     document.location.href = AKTIVITETSPLAN_URL;
 }
 
 export function sendBrukerTilDittNav() {
+    // TODO erstatte med history.pushState() slik at vi kan oppgradere jsdom
     document.location.href = DITTNAV_URL;
 }
