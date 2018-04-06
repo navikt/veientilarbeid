@@ -27,7 +27,7 @@ describe('<SjekkOppfolging />', () => {
 
     it('skal sende bruker til dittnav dersom bruker ikke er under oppfølging og ikke har åpnet aktivitetsplan', () => {
         const store = create();
-        const HAR_IKKE_AAPNET_AKTIVITETSPLAN_IKKE_UNDER_OPPFOLGING = { underOppfolging: false, vilkarMaBesvares: true};
+        const HAR_IKKE_AAPNET_AKTIVITETSPLAN_IKKE_UNDER_OPPFOLGING = {underOppfolging: false, vilkarMaBesvares: true};
 
         store.dispatch({
             type: OppfolgingActionTypes.HENT_OPPFOLGING_OK,
@@ -44,7 +44,7 @@ describe('<SjekkOppfolging />', () => {
 
     it('skal sende bruker til aktivitetsplan dersom bruker ikke er under oppfølging og har åpne aktivitetsplan', () => {
         const store = create();
-        const HAR_AAPNET_AKTIVITETSPLAN_IKKE_UNDER_OPPFOLGING = { underOppfolging: false, vilkarMaBesvares: false};
+        const HAR_AAPNET_AKTIVITETSPLAN_IKKE_UNDER_OPPFOLGING = {underOppfolging: false, vilkarMaBesvares: false};
 
         store.dispatch({
             type: OppfolgingActionTypes.HENT_OPPFOLGING_OK,
