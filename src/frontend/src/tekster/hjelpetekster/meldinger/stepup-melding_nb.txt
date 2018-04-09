@@ -1,1 +1,1 @@
-Tjenesten du ønsker å benytte krever at du logger inn med BankID, BankID på mobil, Buypass eller Commfides. Hvis du ikke kan bruke en av disse, kan du <span> <a href="/sbl/arbeid/registrering" class="lenke">fortsette registreringen her.</a></span>
+Tjenesten du ønsker å benytte krever at du logger inn med BankID, BankID på mobil, Buypass eller Commfides.
