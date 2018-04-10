@@ -12,9 +12,9 @@ export function harTattIBrukAktivitetsplan(oppfolging: OppfolgingData) {
 }
 
 export function sendBrukerTilAktivitetsplan() {
-    document.location.href = AKTIVITETSPLAN_URL;
+    history.pushState({}, 'aktivitetsplan', AKTIVITETSPLAN_URL);
 }
 
 export function sendBrukerTilDittNav() {
-    document.location.href = DITTNAV_URL;
+    history.pushState({}, 'dittnavn', DITTNAV_URL);
 }
