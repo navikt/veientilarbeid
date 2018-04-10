@@ -17,10 +17,10 @@ class App extends React.Component {
                 <IntlProvider>
                     <OppfolgingProvider>
                         <SjekkOppfolging>
-                            <div>
+                            <>
                                 <Overskrift/>
                                 <Home/>
-                            </div>
+                            </>
                         </SjekkOppfolging>
                     </OppfolgingProvider>
                 </IntlProvider>
