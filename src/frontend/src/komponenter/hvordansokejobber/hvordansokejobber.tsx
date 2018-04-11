@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { Element, Systemtittel } from 'nav-frontend-typografi';
-import { FormattedMessage } from 'react-intl';
+import {Element, Systemtittel} from 'nav-frontend-typografi';
+import {FormattedMessage} from 'react-intl';
 import Lenkepanel from 'nav-frontend-lenkepanel';
+
 const hvordansokejobber = require('./hvordansokejobber.svg');
 const blibedrejobbsoker = require('./blibedrejobbsoker.svg');
 
-function Lenkepaneler() {
+function HvordanSokeJobber() {
     return (
         <div className="hvordansokejobber-container">
             <div className="hvordansokejobber">
@@ -36,4 +37,4 @@ function Lenkepaneler() {
     );
 }
 
-export default Lenkepaneler;
+export default HvordanSokeJobber;
