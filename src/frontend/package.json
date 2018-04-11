@@ -35,7 +35,7 @@
     "nav-frontend-typografi": "^2.0.3",
     "nav-frontend-typografi-style": "^1.0.8",
     "prop-types": "^15.6.1",
-    "query-string": "6.0.0",
+    "query-string": "5.0.1",
     "react": "^16.2.0",
     "react-collapse": "^4.0.3",
     "react-dom": "16.3.1",
@@ -46,8 +46,7 @@
     "react-router-dom": "^4.2.2",
     "react-scripts-ts": "2.14.0",
     "redux": "3.7.2",
-    "redux-thunk": "2.2.0",
-    "typescript": "^2.8.1"
+    "redux-thunk": "2.2.0"
   },
   "scripts": {
     "copyfiles": "copyfiles -u 1 \"build/**/*.*\" \"../main/webapp\"",
@@ -78,6 +77,7 @@
     "@types/query-string": "5.1.0",
     "@types/react-collapse": "^4.0.1",
     "@types/react-router-dom": "^4.2.5",
+    "typescript": "^2.8.1",
     "autoless": "0.1.7",
     "chai": "4.1.2",
     "chai-as-promised": "7.1.1",
