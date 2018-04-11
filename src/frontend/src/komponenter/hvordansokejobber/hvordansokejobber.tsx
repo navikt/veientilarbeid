@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Element, Systemtittel} from 'nav-frontend-typografi';
-import {FormattedMessage} from 'react-intl';
+import { Element, Systemtittel } from 'nav-frontend-typografi';
+import { FormattedMessage } from 'react-intl';
 import Lenkepanel from 'nav-frontend-lenkepanel';
 
 const hvordansokejobber = require('./hvordansokejobber.svg');
