@@ -6,6 +6,7 @@
 .komigang {
   max-width: @screen-md-min;
   margin: 0 auto;
+  text-align: center;
 
   .komigang__tekst {
     .nav-frontend-lenker {
@@ -22,8 +23,8 @@
   }
 
   .komigang__illustrasjon {
-    padding: 2rem 0;
     > .illustrasjon {
+      max-height: 264px;
       max-width: 100%;
     }
   }
@@ -37,17 +38,22 @@
   .komigang {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    flex-direction: row-reverse;
+    text-align: left;
 
     .komigang__tekst {
       padding: 6% 0;
       max-width: 27rem;
+      margin-right: 2rem;
     }
 
     .komigang__illustrasjon {
       padding: 0;
+      display: flex;
+
       > .illustrasjon {
-        max-width: 80%;
+        max-height: 313px;
+        align-self: right;
       }
     }
   }

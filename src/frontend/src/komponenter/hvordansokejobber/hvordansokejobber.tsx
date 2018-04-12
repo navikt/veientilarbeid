@@ -13,7 +13,7 @@ function HvordanSokeJobber() {
                 <Lenkepanel href="/veiviserarbeidssoker/?situasjon=mistet-jobben">
                     <img src={blibedrejobbsoker} alt="blibedrejobbsoker" className="hvordansokejobber__illustrasjon"/>
                     <div className="hvordansokejobber__tekster">
-                        <Systemtittel>
+                        <Systemtittel className="blokk-xs">
                             <FormattedMessage id="overskrift-blibedrejobbsoker"/>
                         </Systemtittel>
                         <Element>
@@ -24,7 +24,7 @@ function HvordanSokeJobber() {
                 <Lenkepanel href="/jobbsokerkompetanse/">
                     <img src={hvordansokejobber} alt="hvordansokejobber" className="hvordansokejobber__illustrasjon"/>
                     <div className="hvordansokejobber__tekster">
-                        <Systemtittel>
+                        <Systemtittel className="blokk-xs">
                             <FormattedMessage id="overskrift-hvordansokejobber"/>
                         </Systemtittel>
                         <Element>

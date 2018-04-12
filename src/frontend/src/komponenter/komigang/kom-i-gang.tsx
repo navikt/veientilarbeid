@@ -24,6 +24,9 @@ class Komigang extends React.PureComponent<{}, State> {
         return (
             <div className="komigang-container">
                 <div className="komigang">
+                    <div className="komigang__illustrasjon">
+                        <img src={aktivitetsplanSvg} alt="aktivitetsplan-illustrasjon" className="illustrasjon"/>
+                    </div>
                     <div className="komigang__tekst">
                         <Innholdstittel className="blokk-s">
                             <FormattedMessage id="overskrift-komigang"/>
@@ -37,9 +40,6 @@ class Komigang extends React.PureComponent<{}, State> {
                             </a>
                             <HoyreChevron />
                         </div>
-                    </div>
-                    <div className="komigang__illustrasjon">
-                        <img src={aktivitetsplanSvg} alt="aktivitetsplan-illustrasjon" className="illustrasjon"/>
                     </div>
                 </div>
             </div>
