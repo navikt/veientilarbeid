@@ -62,6 +62,7 @@
     "eject": "react-scripts-ts eject",
     "start:less": "autoless --source-map --intervall 100 ./src ./public",
     "build:less": "node ./node_modules/less/bin/lessc/ src/index.less ./public/index.css",
+    "start:tekster": "npm run build:tekster",
     "start": "npm-run-all -p start:*",
     "build:tekster": "node ./src/utils/build-tekster.js",
     "build": "npm run delete-static && npm run build:less && npm run build:tekster && npm run build:ts && npm run copyfiles"
