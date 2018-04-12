@@ -17,14 +17,14 @@ class App extends React.Component {
                 <IntlProvider>
                     <OppfolgingProvider>
                         <SjekkOppfolging>
-                            <>
+                            <main id="maincontent" role="main" tabIndex={-1}>
                                 <Overskrift/>
                                 <Home/>
-                            </>
+                            </main>
                         </SjekkOppfolging>
                     </OppfolgingProvider>
                 </IntlProvider>
-            </Provider >
+            </Provider>
         );
     }
 }
