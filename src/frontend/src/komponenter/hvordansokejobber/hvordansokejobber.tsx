@@ -7,6 +7,8 @@ const hvordansokejobber = require('./hvordansokejobber.svg');
 const blibedrejobbsoker = require('./blibedrejobbsoker.svg');
 
 function HvordanSokeJobber() {
+    // TODO I overskrift-blibedrejobbsoker brukes det nobreakspace implisitt. Burde bruke &nbsp; i alle
+    // TODO mellomrom etter tankestreken.
     return (
         <div className="hvordansokejobber-container">
             <div className="hvordansokejobber">
