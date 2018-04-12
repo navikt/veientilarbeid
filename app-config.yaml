@@ -7,11 +7,16 @@ replicas:
 port: 8080
 healthcheck:
   liveness:
-    path: veientilarbeid/index.html
-    initialDelay: 20
+    path: veientilarbeid/internal/isAlive
+  readiness:
+    path: veientilarbeid/internal/selftest
   readiness:
     path: veientilarbeid/index.html
     initialDelay: 20
+prometheus:
+  # NB: pus-decorator sine metrikker
+  enabled: true
+  path: arbeidssokerregistrering/internal/metrics
 fasitResources:
   used:
   - alias: appres.cms
