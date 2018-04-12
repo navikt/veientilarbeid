@@ -1,0 +1,40 @@
+.hvordansokejobber-container {
+  background-color: @navLysGra;
+  padding: 4rem 0;
+}
+
+.hvordansokejobber {
+  max-width: @screen-md-min;
+  margin: 0 auto;
+  text-align: center;
+
+  /*TODO lag en css klasse for a > span */
+  a > span {
+    .hvordansokejobber__illustrasjon {
+      margin: 0 1rem;
+    }
+    .hvordansokejobber__tekster {
+      margin: 1rem;
+    }
+  }
+
+}
+
+@media (min-width: @screen-sm-min) {
+  .hvordansokejobber {
+    text-align: left;
+
+    /*TODO lag en css klasse for a > span */
+    a {
+      padding: 2rem;
+      > span {
+        display: flex;
+        .hvordansokejobber__tekster {
+          margin: 1rem 1rem 1rem 2rem;
+          max-width: 26rem;
+        }
+      }
+    }
+  }
+}
+

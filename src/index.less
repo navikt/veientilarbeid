@@ -1,0 +1,54 @@
+@nodeModulesPath: './../../';
+@coreModulePath: './../../';
+
+@import '../node_modules/nav-frontend-core/less/core';
+@import '../node_modules/nav-frontend-grid-style/src/index';
+@import '../node_modules/nav-frontend-typografi-style/src/index';
+@import '../node_modules/nav-frontend-chevron-style/src/index';
+@import '../node_modules/nav-frontend-paneler-style/src/index';
+@import '../node_modules/nav-frontend-lenkepanel-style/src/index';
+@import '../node_modules/nav-frontend-alertstriper-style/src/index';
+@import '../node_modules/nav-frontend-lenker-style/src/lenker-style';
+@import '../node_modules/nav-frontend-spinner-style/src/spinner-style';
+@import '../node_modules/nav-frontend-modal-style/src/index';
+@import '../node_modules/nav-frontend-chevron-style/src/index';
+@import '../node_modules/nav-frontend-lukknapp-style/src/lukknapp-style';
+@import '../node_modules/nav-frontend-ekspanderbartpanel-style/src/index';
+@import '../node_modules/nav-frontend-core/less/_variabler';
+@import '../node_modules/nav-frontend-chevron-style/src/mixins';
+@import '../node_modules/nav-frontend-paneler-style/src/mixins';
+
+@import './komponenter/brodsmuler/brodsmuler';
+@import './komponenter/komigang/kom-i-gang';
+@import './komponenter/hvordansokejobber/hvordansokejobber';
+@import './komponenter/informasjonsmoduler/dagpenger/dagpenger';
+@import './komponenter/informasjonsmoduler/informasjonsmodul/src/index';
+@import './komponenter/informasjonsmoduler/ekspanderbartpanel-gruppe/ekspanderbartpanel-gruppe';
+
+@import './komponenter/cv/cv';
+@import './komponenter/overskrift/overskrift';
+@import './komponenter/arbeidssoker/arbeidssoker';
+@import './komponenter/lenke-med-chevron/lenke-med-chevron';
+@import './komponenter/innholdslaster/innholdslaster';
+@import './komponenter/feilmeldinger/feilmelding';
+
+body {
+    background-color: @white;
+}
+
+
+.appContainer {
+    height: 100%;
+}
+
+.pagewrapper {
+    min-height: 100%;
+    height: auto;
+    margin-bottom: -200px;
+    padding-bottom: 200px;
+}
+
+.hodefot-footer {
+    width: 100%;
+    bottom: 0;
+}
