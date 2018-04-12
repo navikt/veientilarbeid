@@ -9,13 +9,21 @@
   text-align: center;
 
   /*TODO lag en css klasse for a > span */
-  a > span {
-    .hvordansokejobber__illustrasjon {
-      margin: 0 1rem;
+  a {
+    padding: 1rem;
+    > span {
+      .hvordansokejobber__illustrasjon {
+        margin: 1rem;
+      }
+      .hvordansokejobber__tekster {
+        margin: 1rem auto;
+        max-width: 27rem;
+      }
     }
-    .hvordansokejobber__tekster {
-      margin: 1rem;
-    }
+  }
+
+  a > .typo-undertittel.lenkepanel__heading {
+    width: 100%;
   }
 
 }
@@ -29,12 +37,15 @@
       padding: 2rem;
       > span {
         display: flex;
+
+        .hvordansokejobber__illustrasjon {
+          margin: 0 1rem;
+        }
+
         .hvordansokejobber__tekster {
           margin: 1rem 1rem 1rem 2rem;
-          max-width: 26rem;
         }
       }
     }
   }
 }
-
