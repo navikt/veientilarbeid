@@ -1,7 +1,7 @@
 import { Data as OppfolgingData } from '../../ducks/oppfolging';
 
-export const AKTIVITETSPLAN_URL = '/aktivitetsplan';
-export const DITTNAV_URL = '/dittnav';
+export const AKTIVITETSPLAN_URL = '/aktivitetsplan/';
+export const DITTNAV_URL = '/dittnav/';
 
 export function erUnderOppfolging(oppfolging: OppfolgingData) {
     return oppfolging.underOppfolging;
