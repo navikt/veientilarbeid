@@ -1,20 +1,19 @@
 import * as React from 'react';
-import {connect} from 'react-redux';
-import {AppState} from '../../reducer';
-import {Data as OppfolgingData, selectOppfolging} from '../../ducks/oppfolging';
+import { connect } from 'react-redux';
+import { AppState } from '../../reducer';
+import { Data as OppfolgingData, selectOppfolging } from '../../ducks/oppfolging';
 import {
     erUnderOppfolging, harTattIBrukAktivitetsplan, sendBrukerTilAktivitetsplan,
     sendBrukerTilDittNav
 } from './sjekk-oppfolging-utils';
 
-interface SjekkOppfolgingConfigProps {
+interface SjekkOppfolgingConfig {
     sendBrukerTilAktivitetsplan: () => void;
     sendBrukerTilDittNav: () => void;
 }
 
 interface OwnProps {
-    //children: React.ReactNode;
-    config?: SjekkOppfolgingConfigProps
+    config?: SjekkOppfolgingConfig;
 }
 
 interface StateProps {
