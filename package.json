@@ -32,6 +32,7 @@
     "nav-frontend-paneler-style": "0.3.7",
     "nav-frontend-spinner": "1.0.8",
     "nav-frontend-spinner-style": "0.2.4",
+    "nav-frontend-tabell-style": "^0.2.5",
     "nav-frontend-typografi": "^2.0.3",
     "nav-frontend-typografi-style": "^1.0.8",
     "prop-types": "^15.6.1",
