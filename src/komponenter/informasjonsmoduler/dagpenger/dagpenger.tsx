@@ -5,6 +5,8 @@ import EkspanderbartpanelGruppe from '../ekspanderbartpanel-gruppe/ekspanderbart
 import { EkspanderbartpanelPure } from 'nav-frontend-ekspanderbartpanel';
 import { Ingress } from 'nav-frontend-typografi';
 import LenkeMedChevron from '../../lenke-med-chevron/lenke-med-chevron';
+import NarBorDuSokeOmDagpenger from './nar-bor-du-soke-om-dagpenger';
+import HvorMye from './hvor-mye-dagpenger/hvor-mye-dagpenger';
 
 const SOKNAD_OM_DAGPENGER_PATH = '/veiledearbeidssoker/mistet-jobben/dagpenger-soknadsprosess';
 
@@ -44,19 +46,20 @@ class Dagpenger extends React.Component<Props> {
                                 tittel={intl.messages['informasjonsmodul-dagpenger-del-1-tittel']}
                                 {...fellesEkspanderbartpanelProps}
                             >
-                                {intl.messages['informasjonsmodul-dagpenger-del-1-tekst']}
-                            </EkspanderbartpanelPure>
-                            <EkspanderbartpanelPure
-                                tittel={intl.messages['informasjonsmodul-dagpenger-del-2-tittel']}
-                                {...fellesEkspanderbartpanelProps}
-                            >
-                                {intl.messages['informasjonsmodul-dagpenger-del-2-tekst']}
+                                {intl.messages['dagpenger.undertittel.rett-til-dagpenger.ingress']}
+                                <NarBorDuSokeOmDagpenger/>
                             </EkspanderbartpanelPure>
                             <EkspanderbartpanelPure
                                 tittel={intl.messages['informasjonsmodul-dagpenger-del-2-tittel']}
                                 {...fellesEkspanderbartpanelProps}
                             >
                                 {intl.messages['informasjonsmodul-dagpenger-del-3-tekst']}
+                            </EkspanderbartpanelPure>
+                            <EkspanderbartpanelPure
+                                tittel={intl.messages['informasjonsmodul-dagpenger-del-3-tittel']}
+                                {...fellesEkspanderbartpanelProps}
+                            >
+                                <HvorMye />
                             </EkspanderbartpanelPure>
                         </EkspanderbartpanelGruppe>
                         <div className="informasjonsmodul-lenke__wrapper">

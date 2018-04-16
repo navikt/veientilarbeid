@@ -1,15 +1,28 @@
 import * as React from 'react';
 import { addLocaleData, IntlProvider as Provider } from 'react-intl';
 import * as nb from 'react-intl/locale-data/nb';
-import tekster from './tekster/alle-tekster';
+import lokaleTekster from './tekster/alle-tekster';
+import { AppState } from './reducer';
+import { connect } from 'react-redux';
 
 addLocaleData(nb);
 
-class IntlProvider extends React.Component {
+interface StateProps {
+    teksterFraState: any; // tslint:disable-line no-any
+}
+
+type Props = StateProps;
+
+class IntlProvider extends React.Component<Props> {
 
     render() {
-        const {children, ...props} = this.props;
+        const {children, teksterFraState, ...props} = this.props;
         const locale = 'nb';
+
+        const tekster = {
+            nb: {...teksterFraState.nb, ...lokaleTekster.nb},
+            en: {...teksterFraState.en, ...lokaleTekster.en}
+        };
 
         return (
             <Provider {...props} locale={locale} messages={tekster.nb || []}>
@@ -19,4 +32,8 @@ class IntlProvider extends React.Component {
     }
 }
 
-export default IntlProvider;
+const mapStateToProps = (state: AppState): StateProps => ({
+    teksterFraState: state.tekster.data
+});
+
+export default connect(mapStateToProps)(IntlProvider);
