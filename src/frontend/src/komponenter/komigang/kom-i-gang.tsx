@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { Element, Innholdstittel } from 'nav-frontend-typografi';
-import { HoyreChevron } from 'nav-frontend-chevron';
-import { FormattedMessage } from 'react-intl';
-import { parse } from 'query-string';
+import {Element, Innholdstittel} from 'nav-frontend-typografi';
+import {HoyreChevron} from 'nav-frontend-chevron';
+import {FormattedMessage} from 'react-intl';
+import {parse} from 'query-string';
 
-const aktivitetsplanSvg = require('./aktivitetsplan.svg');
+const aktivitetsplanPng = require('./aktivitetsplan.png');
 const AKTIVITETSPLAN_PATH = '/aktivitetsplan';
 
 interface State {
@@ -25,7 +25,7 @@ class Komigang extends React.PureComponent<{}, State> {
             <div className="komigang-container">
                 <div className="komigang">
                     <div className="komigang__illustrasjon">
-                        <img src={aktivitetsplanSvg} alt="aktivitetsplan-illustrasjon" className="illustrasjon"/>
+                        <img src={aktivitetsplanPng} alt="aktivitetsplan-illustrasjon" className="illustrasjon"/>
                     </div>
                     <div className="komigang__tekst">
                         <Innholdstittel className="blokk-s">
