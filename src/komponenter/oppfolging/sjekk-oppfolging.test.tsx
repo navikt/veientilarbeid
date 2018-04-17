@@ -7,7 +7,12 @@ import SjekkOppfolging from './sjekk-oppfolging';
 import { create } from '../../store';
 import { mountWithStore, resetAndMakeHrefWritable } from '../../test/test-utils';
 import { ActionTypes as OppfolgingActionTypes } from '../../ducks/oppfolging';
-import {AKTIVITETSPLAN_URL, DITTNAV_URL, sendBrukerTilAktivitetsplan} from './sjekk-oppfolging-utils';
+import {
+    AKTIVITETSPLAN_URL,
+    DITTNAV_URL,
+    sendBrukerTilAktivitetsplan,
+    sendBrukerTilDittNav
+} from './sjekk-oppfolging-utils';
 
 enzyme.configure({adapter: new Adapter()});
 
@@ -34,22 +39,27 @@ describe('<SjekkOppfolging />', () => {
         expect(wrapper.html()).to.equal('<span>dummy</span>');
     });
 
-    /* TODO Disse testene må skrives om!
     it('skal sende bruker til dittnav dersom bruker ikke er under oppfølging og ikke har åpnet aktivitetsplan', () => {
         const store = create();
         const HAR_IKKE_AAPNET_AKTIVITETSPLAN_IKKE_UNDER_OPPFOLGING = {underOppfolging: false, vilkarMaBesvares: true};
 
-        // const spyPushState = sandbox.spy(history, 'pushState');
-        const spyPushState = sandbox.spy(sendBrukerTilAktivitetsplan);
-        console.log(spyPushState);
+        const sendBrukerTilDittNavSpy = sandbox.spy(sendBrukerTilDittNav);
+        const sjekkOppfolgingConfig = {
+            sendBrukerTilAktivitetsplan: sendBrukerTilAktivitetsplan,
+            sendBrukerTilDittNav: sendBrukerTilDittNavSpy
+        };
 
         store.dispatch({
             type: OppfolgingActionTypes.HENT_OPPFOLGING_OK,
             data: HAR_IKKE_AAPNET_AKTIVITETSPLAN_IKKE_UNDER_OPPFOLGING
         });
 
-        const wrapper = mountWithStore(<SjekkOppfolging><span>dummy</span></SjekkOppfolging>, store);
+        const wrapper = mountWithStore(
+            <SjekkOppfolging config={sjekkOppfolgingConfig}><span>dummy</span></SjekkOppfolging>,
+            store
+        );
 
+        expect(sendBrukerTilDittNavSpy.called).to.be.equal(true);
         expect(wrapper.html()).to.equal(null);
     });
 
@@ -57,17 +67,23 @@ describe('<SjekkOppfolging />', () => {
         const store = create();
         const HAR_AAPNET_AKTIVITETSPLAN_IKKE_UNDER_OPPFOLGING = {underOppfolging: false, vilkarMaBesvares: false};
 
-        const spyPushState = sandbox.spy(history, 'pushState');
+        const sendBrukerTilAktivitetsplanSpy = sandbox.spy(sendBrukerTilAktivitetsplan);
+        const sjekkOppfolgingConfig = {
+            sendBrukerTilAktivitetsplan: sendBrukerTilAktivitetsplanSpy,
+            sendBrukerTilDittNav: sendBrukerTilAktivitetsplan
+        };
 
         store.dispatch({
             type: OppfolgingActionTypes.HENT_OPPFOLGING_OK,
             data: HAR_AAPNET_AKTIVITETSPLAN_IKKE_UNDER_OPPFOLGING
         });
 
-        const wrapper = mountWithStore(<SjekkOppfolging><span>dummy</span></SjekkOppfolging>, store);
+        const wrapper = mountWithStore(
+            <SjekkOppfolging config={sjekkOppfolgingConfig}><span>dummy</span></SjekkOppfolging>,
+            store
+        );
 
+        expect(sendBrukerTilAktivitetsplanSpy.called).to.be.equal(true);
         expect(wrapper.html()).to.equal(null);
-        expect(spyPushState.args[0][2]).to.equal(AKTIVITETSPLAN_URL);
     });
-    */
 });
