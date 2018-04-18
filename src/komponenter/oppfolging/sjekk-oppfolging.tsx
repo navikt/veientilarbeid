@@ -42,7 +42,6 @@ class SjekkOppfolging extends React.PureComponent<Props> {
         }
 
         config!.sendBrukerTilAktivitetsplan();
-        // config!.sendBrukerTilDittNav();
         return null;
     }
 }
