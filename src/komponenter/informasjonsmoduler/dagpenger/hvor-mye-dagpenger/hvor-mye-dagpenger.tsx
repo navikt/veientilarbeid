@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { injectIntl, InjectedIntlProps } from 'react-intl';
+import { injectIntl, InjectedIntlProps, FormattedMessage } from 'react-intl';
 import TableBody from './table-body';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Undertekst } from 'nav-frontend-typografi';
 
 interface DummyProp {
     dummy?: string; // TypeScript klager hvis props kun er InjectedIntlProps
@@ -20,20 +20,25 @@ class HvorMyeDagpenger extends React.Component<Props> {
 
         return (
             <>
-                <Normaltekst>
-                    <div
-                        dangerouslySetInnerHTML={{
-                            __html: intl.messages['dagpenger.belop.innhold']
-                        }}
-                    />
-                </Normaltekst>
-                <table className="hvor-mye-dagpenger__tabell tabell-enkel blokk-l">
+                <FormattedMessage id="dagpenger.belop.innhold">
+                    {(text: string) => {
+                        return (
+                            <div
+                                className="typo-normal"
+                                dangerouslySetInnerHTML={{
+                                    __html: text
+                                }}
+                            />
+                        );
+                    }}
+                </FormattedMessage>
+                <table className="hvor-mye-dagpenger__tabell blokk-l">
                     <caption>{intl.messages['dagpenger.belop.tabell.caption']}</caption>
                     <thead>
                     <tr>
-                        <th>{intl.messages['dagpenger.belop.tabell.1.header']}</th>
-                        <th>{intl.messages['dagpenger.belop.tabell.2.header']}</th>
-                        <th>{intl.messages['dagpenger.belop.tabell.3.header']}</th>
+                        <th><Undertekst>{intl.messages['dagpenger.belop.tabell.1.header']}</Undertekst></th>
+                        <th><Undertekst>{intl.messages['dagpenger.belop.tabell.2.header']}</Undertekst></th>
+                        <th><Undertekst>{intl.messages['dagpenger.belop.tabell.3.header']}</Undertekst></th>
                     </tr>
                     </thead>
                     <TableBody
@@ -42,13 +47,18 @@ class HvorMyeDagpenger extends React.Component<Props> {
                         getTabellverdi={(rad, kolonne) => this.getTabellverdi(rad, kolonne)}
                     />
                 </table>
-                <Normaltekst>
-                    <div
-                        dangerouslySetInnerHTML={{
-                            __html: intl.messages['dagpenger.belop.ekstra']
-                        }}
-                    />
-                </Normaltekst>
+                <FormattedMessage id="dagpenger.belop.ekstra">
+                    {(text: string) => {
+                        return (
+                            <div
+                                className="typo-normal"
+                                dangerouslySetInnerHTML={{
+                                    __html: text
+                                }}
+                            />
+                        );
+                    }}
+                </FormattedMessage>
             </>
         );
     }

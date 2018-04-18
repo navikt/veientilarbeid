@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { EtikettLiten } from 'nav-frontend-typografi';
 
 interface Props {
     antallRader: number;
@@ -12,7 +13,13 @@ export default class TableBody extends React.Component<Props> {
 
         const rader = this.lagListeMedHeltall(1, antallKolonner).map((rad) => {
             const verdierIRad = this.lagListeMedHeltall(1, antallRader).map((kolonne) => {
-                return (<td key={kolonne}>{getTabellverdi(rad, kolonne)}</td>);
+                return (
+                    <td key={kolonne}>
+                        <EtikettLiten>
+                            {getTabellverdi(rad, kolonne)}
+                        </EtikettLiten>
+                    </td>
+                );
             });
             return (<tr key={rad}>{verdierIRad}</tr>);
         });
