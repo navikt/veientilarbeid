@@ -1,45 +1,57 @@
-.tabell-enkel {
-  border-spacing: 0px 10px;
-  border-collapse: collapse;
-  max-width: 100%;
-  width: 100%;
-  background-color: transparent;
-  margin-bottom: 1rem;
+.hvor-mye-dagpenger {
+  &__tabell {
+    border-spacing: 0px 10px;
+    border-collapse: collapse;
+    max-width: 100%;
+    width: 100%;
+    background-color: transparent;
+    margin-bottom: 1rem;
+    text-align: center;
+    word-wrap: break-spaces;
 
-  caption {
-    display: none;
-  }
+    caption {
+      display: none;
+    }
 
-  tr {
-    border-top: 1px solid @navGra40;
+    tr {
+      border-top: 1px solid @navGra40;
 
-    &:last-child {
-      border-bottom: 1px solid @navGra40;
+      &:last-child {
+        border-bottom: 1px solid @navGra40;
+      }
+    }
+
+    thead tr:last-child {
+      border-bottom: 2px solid @navGra40;
+    }
+
+    td:not(:first-child),
+    th:not(:first-child) {
+      border-left: 1px solid @navGra40;
+    }
+
+    tbody tr:first-child th,
+    tbody tr:first-child td {
+      border-top-width: 2px;
+    }
+
+    td,
+    th {
+      width: 13rem;
+      padding: 0.2rem 0.1rem 0.2rem 0.1rem;
     }
   }
 
-  thead tr:last-child {
-    border-bottom: 2px solid @navGra40;
-  }
-
-  td:not(:first-child),
-  th:not(:first-child){
-    border-left: 1px solid @navGra40;
-  }
-
-  tbody tr:first-child th,
-  tbody tr:first-child td {
-    border-top-width: 2px;
+  &__paragraf {
+    max-width: 100%;
   }
 }
 
-.hvor-mye-dagpenger__tabell {
-    text-align: center;
-    word-wrap: break-spaces;
-}
-
-.hvor-mye-dagpenger__tabell td,
-.hvor-mye-dagpenger__tabell th {
-  padding: 0.5rem;
-  width: 13rem;
+@media (min-width: @screen-sm-min) {
+  .hvor-mye-dagpenger__tabell {
+    td,
+    th {
+      padding: 0.5rem;
+    }
+  }
 }
