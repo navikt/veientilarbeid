@@ -6,7 +6,7 @@ import { EkspanderbartpanelPure } from 'nav-frontend-ekspanderbartpanel';
 import { Ingress } from 'nav-frontend-typografi';
 import LenkeMedChevron from '../../lenke-med-chevron/lenke-med-chevron';
 import HvorMyeDagpenger from './hvor-mye-dagpenger/hvor-mye-dagpenger';
-import RettTilDagpenger from './rett-til-dagpenger';
+import RettTilDagpenger from './rett-til-dagpenger/rett-til-dagpenger';
 import UnderpanelInnhold from './underpanel-innhold/underpanel-innhold';
 
 const SOKNAD_OM_DAGPENGER_PATH = '/veiledearbeidssoker/mistet-jobben/dagpenger-soknadsprosess';

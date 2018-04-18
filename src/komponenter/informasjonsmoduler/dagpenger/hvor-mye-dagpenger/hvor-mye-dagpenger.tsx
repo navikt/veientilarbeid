@@ -17,15 +17,7 @@ class HvorMyeDagpenger extends React.Component<Props> {
 
     render() {
         const intl = this.props.intl;
-        /*
-        const augmentedValues = {
-            ...values,
-            arstall,
-            arstallMinusEn: arstall - 1,
-            arstallMinusTo: arstall - 2,
-            arstallMinusTre: arstall - 3
-        };
-        */
+
         return (
             <>
                 <Normaltekst>
