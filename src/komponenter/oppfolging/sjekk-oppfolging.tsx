@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { AppState } from '../../reducer';
 import { Data as OppfolgingData, selectOppfolging } from '../../ducks/oppfolging';
 import {
-    erUnderOppfolging, harTattIBrukAktivitetsplan, sendBrukerTilAktivitetsplan,
+    erUnderOppfolging, sendBrukerTilAktivitetsplan,
     sendBrukerTilDittNav
 } from './sjekk-oppfolging-utils';
 
