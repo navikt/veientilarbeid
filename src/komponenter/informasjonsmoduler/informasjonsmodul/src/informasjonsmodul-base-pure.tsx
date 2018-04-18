@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Collapse, CollapseProps } from 'react-collapse';
+import { UnmountClosed as Collapse, CollapseProps } from 'react-collapse';
 
 export interface InformasjonsmodulBasePureProps {
     heading: React.ReactNode;

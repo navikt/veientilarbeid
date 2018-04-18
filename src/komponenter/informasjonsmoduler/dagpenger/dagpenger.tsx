@@ -5,6 +5,9 @@ import EkspanderbartpanelGruppe from '../ekspanderbartpanel-gruppe/ekspanderbart
 import { EkspanderbartpanelPure } from 'nav-frontend-ekspanderbartpanel';
 import { Ingress } from 'nav-frontend-typografi';
 import LenkeMedChevron from '../../lenke-med-chevron/lenke-med-chevron';
+import HvorMyeDagpenger from './hvor-mye-dagpenger/hvor-mye-dagpenger';
+import RettTilDagpenger from './rett-til-dagpenger/rett-til-dagpenger';
+import UnderpanelInnhold from './underpanel-innhold/underpanel-innhold';
 
 const SOKNAD_OM_DAGPENGER_PATH = '/veiledearbeidssoker/mistet-jobben/dagpenger-soknadsprosess';
 
@@ -25,7 +28,7 @@ class Dagpenger extends React.Component<Props> {
         };
         return (
             <div className="informasjonsmoduler">
-                <div className="informasjonsmodul-wrapper">
+                <div className="informasjonsmodul__wrapper">
                     <StortEkspanderbartpanel
                         tittel={intl.messages['informasjonsmodul-dagpenger-tittel']}
                         undertekst={intl.messages['informasjonsmodul-dagpenger-undertekst']}
@@ -44,22 +47,22 @@ class Dagpenger extends React.Component<Props> {
                                 tittel={intl.messages['informasjonsmodul-dagpenger-del-1-tittel']}
                                 {...fellesEkspanderbartpanelProps}
                             >
-                                {intl.messages['informasjonsmodul-dagpenger-del-1-tekst']}
+                                <UnderpanelInnhold>
+                                    <RettTilDagpenger/>
+                                </UnderpanelInnhold>
                             </EkspanderbartpanelPure>
                             <EkspanderbartpanelPure
-                                tittel={intl.messages['informasjonsmodul-dagpenger-del-2-tittel']}
+                                tittel={intl.messages['informasjonsmodul-dagpenger-del-3-tittel']}
                                 {...fellesEkspanderbartpanelProps}
                             >
-                                {intl.messages['informasjonsmodul-dagpenger-del-2-tekst']}
-                            </EkspanderbartpanelPure>
-                            <EkspanderbartpanelPure
-                                tittel={intl.messages['informasjonsmodul-dagpenger-del-2-tittel']}
-                                {...fellesEkspanderbartpanelProps}
-                            >
-                                {intl.messages['informasjonsmodul-dagpenger-del-3-tekst']}
+                                <div className="informasjonsmodul__underpanel-innhold-wrapper">
+                                    <UnderpanelInnhold>
+                                        <HvorMyeDagpenger />
+                                    </UnderpanelInnhold>
+                                </div>
                             </EkspanderbartpanelPure>
                         </EkspanderbartpanelGruppe>
-                        <div className="informasjonsmodul-lenke__wrapper">
+                        <div className="informasjonsmodul__lenke-wrapper">
                             <LenkeMedChevron path={SOKNAD_OM_DAGPENGER_PATH}>
                                 {intl.messages['informasjonsmodul-dagpenger-lenke']}
                             </LenkeMedChevron>

@@ -1,4 +1,9 @@
-.informasjonsmodul-wrapper {
+@import 'hvor-mye-dagpenger/hvor-mye-dagpenger';
+@import 'underpanel-innhold/underpanel-innhold';
+@import 'rett-til-dagpenger/rett-til-dagpenger';
+
+.informasjonsmodul__wrapper {
+  width: 100%;
   max-width: @screen-md-min;
   padding: 1rem;
 }
@@ -9,14 +14,19 @@
   background-color: @navLysGra;
 }
 
-.informasjonsmodul-lenke__wrapper {
+.informasjonsmodul__lenke-wrapper {
   padding: 1rem;
   display: flex;
   justify-content: center;
 }
 
+.informasjonsmodul__underpanel-innhold-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
 @media (min-width: @screen-sm-min) {
-  .informasjonsmodul-wrapper {
+  .informasjonsmodul__wrapper {
     padding: 2rem 5rem 2rem 5rem;
   }
 
@@ -24,7 +34,7 @@
     padding: 1rem 3rem 1rem 3rem;
   }
 
-  .informasjonsmodul-lenke__wrapper {
+  .informasjonsmodul__lenke-wrapper {
     display: block;
   }
 }
