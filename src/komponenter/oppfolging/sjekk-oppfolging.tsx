@@ -36,10 +36,6 @@ class SjekkOppfolging extends React.PureComponent<Props> {
         if (erUnderOppfolging(oppfolging)) {
             return children;
         }
-        if (harTattIBrukAktivitetsplan(oppfolging)) {
-            config!.sendBrukerTilAktivitetsplan();
-            return null;
-        }
 
         config!.sendBrukerTilAktivitetsplan();
         return null;
