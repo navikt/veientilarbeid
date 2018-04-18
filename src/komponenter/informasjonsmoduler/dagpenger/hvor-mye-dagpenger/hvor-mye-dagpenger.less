@@ -1,10 +1,45 @@
-@import '../../../../../node_modules/nav-frontend-tabell-style/src/index';
+.tabell-enkel {
+  border-spacing: 0px 10px;
+  border-collapse: collapse;
+  max-width: 100%;
+  width: 100%;
+  background-color: transparent;
+  margin-bottom: 1rem;
 
-.hvor-mye-dagpenger__wrapper {
-  display: flex;
-  justify-content: center;
+  caption {
+    display: none;
+  }
+
+  tr {
+    border-top: 1px solid @navGra40;
+
+    &:last-child {
+      border-bottom: 1px solid @navGra40;
+    }
+  }
+
+  thead tr:last-child {
+    border-bottom: 2px solid @navGra40;
+  }
+
+  td:not(:first-child),
+  th:not(:first-child){
+    border-left: 1px solid @navGra40;
+  }
+
+  tbody tr:first-child th,
+  tbody tr:first-child td {
+    border-top-width: 2px;
+  }
 }
 
-.hvor-mye-dagpenger {
-  max-width: 35rem;
+.hvor-mye-dagpenger__tabell {
+    text-align: center;
+    word-wrap: break-spaces;
+}
+
+.hvor-mye-dagpenger__tabell td,
+.hvor-mye-dagpenger__tabell th {
+  padding: 0.5rem;
+  width: 13rem;
 }
