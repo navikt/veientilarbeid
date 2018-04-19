@@ -37,6 +37,7 @@ class HentTekster extends React.Component<Props> {
             return children;
         }
 
+        // TODO Dette gjør at spinneren kjører to ganger. Fiks ved å legge til avhengighet i den andre innholdslasteren.
         return (
             <Innholdslaster
                 feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse"/>}

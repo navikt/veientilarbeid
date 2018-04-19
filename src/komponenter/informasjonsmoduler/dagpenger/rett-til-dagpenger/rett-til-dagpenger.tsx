@@ -24,7 +24,7 @@ class RettTilDagpenger extends React.Component<Props> {
                 <Element className="blokk-s">
                     {intl.messages['dagpenger.undertittel.rett-til-dagpenger.ingress']}
                 </Element>
-                <div className="dagpenger-innhold">
+                <div className="dagpenger-innhold typo-normal">
                     <FormattedMessage id="dagpenger.innhold" values={augmentedValues}>
                         {(text: string) => {
                             return (

@@ -14,7 +14,7 @@ export default class TableBody extends React.Component<Props> {
         const rader = this.lagListeMedHeltall(1, antallKolonner).map((rad) => {
             const verdierIRad = this.lagListeMedHeltall(1, antallRader).map((kolonne) => {
                 return (
-                    <td key={kolonne}>
+                    <td key={`${rad},${kolonne}`}>
                         <EtikettLiten>
                             {getTabellverdi(rad, kolonne)}
                         </EtikettLiten>
