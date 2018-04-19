@@ -1,14 +1,19 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../../reducer';
-import {Data as OppfolgingData, selectOppfolging } from '../../ducks/oppfolging';
+import { Data as OppfolgingData, selectOppfolging } from '../../ducks/oppfolging';
 import {
-    erUnderOppfolging, harTattIBrukAktivitetsplan, sendBrukerTilAktivitetsplan,
+    erUnderOppfolging, sendBrukerTilAktivitetsplan,
     sendBrukerTilDittNav
 } from './sjekk-oppfolging-utils';
 
+interface SjekkOppfolgingConfig {
+    sendBrukerTilAktivitetsplan: () => void;
+    sendBrukerTilDittNav: () => void;
+}
+
 interface OwnProps {
-    children: React.ReactNode;
+    config?: SjekkOppfolgingConfig;
 }
 
 interface StateProps {
@@ -17,17 +22,24 @@ interface StateProps {
 
 type Props = OwnProps & StateProps;
 
-function SjekkOppfolging({oppfolging, children}: Props) {
-    if (erUnderOppfolging(oppfolging)) {
-        return children;
-    }
-    if (harTattIBrukAktivitetsplan(oppfolging)) {
-        sendBrukerTilAktivitetsplan();
+class SjekkOppfolging extends React.PureComponent<Props> {
+    static defaultProps: Partial<Props> = {
+        config: {
+            sendBrukerTilAktivitetsplan: sendBrukerTilAktivitetsplan,
+            sendBrukerTilDittNav: sendBrukerTilDittNav,
+        }
+    };
+
+    render() {
+        const {oppfolging, children, config} = this.props;
+
+        if (erUnderOppfolging(oppfolging)) {
+            return children;
+        }
+
+        config!.sendBrukerTilAktivitetsplan();
         return null;
     }
-
-    sendBrukerTilDittNav();
-    return null;
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
