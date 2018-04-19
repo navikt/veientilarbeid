@@ -1,5 +1,5 @@
 import * as React from 'react';
-import StortEkspanderbartpanel from '../informasjonsmodul/src/index';
+import Informasjonsmodul from '../informasjonsmodul/src/index';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
 import EkspanderbartpanelGruppe from '../ekspanderbartpanel-gruppe/ekspanderbartpanel-gruppe';
 import { EkspanderbartpanelPure } from 'nav-frontend-ekspanderbartpanel';
@@ -20,8 +20,6 @@ type Props = DummyProp & InjectedIntlProps;
 class Dagpenger extends React.Component<Props> {
     render() {
         const intl = this.props.intl;
-        // tslint:disable-next-line
-        console.log(document.location);
 
         // Feature-toggle informasjonsmodul 1/3 (sjekk hent-tekster.tsx)
         if (document.location.search !== '?visInformasjonsmodul=true') {
@@ -37,7 +35,7 @@ class Dagpenger extends React.Component<Props> {
         return (
             <div className="informasjonsmoduler">
                 <div className="informasjonsmodul__wrapper">
-                    <StortEkspanderbartpanel
+                    <Informasjonsmodul
                         tittel={intl.messages['informasjonsmodul-dagpenger-tittel']}
                         undertekst={intl.messages['informasjonsmodul-dagpenger-undertekst']}
                         figur="utklippstavle"
@@ -75,7 +73,7 @@ class Dagpenger extends React.Component<Props> {
                                 {intl.messages['informasjonsmodul-dagpenger-lenke']}
                             </LenkeMedChevron>
                         </div>
-                    </StortEkspanderbartpanel>
+                    </Informasjonsmodul>
                 </div>
             </div>
         );
