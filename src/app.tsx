@@ -7,7 +7,7 @@ import Home from './komponenter/home';
 import Overskrift from './komponenter/overskrift/overskrift';
 import OppfolgingProvider from './komponenter/oppfolging/oppfolging-provider';
 import SjekkOppfolging from './komponenter/oppfolging/sjekk-oppfolging';
-import TeksterProvider from './komponenter/tekstfetching/tekster-provider';
+import HentTekster from './komponenter/tekstfetching/hent-tekster';
 
 const store = getStore();
 
@@ -15,7 +15,7 @@ class App extends React.Component {
     render() {
         return (
             <Provider store={store}>
-                <TeksterProvider>
+                <HentTekster>
                     <IntlProvider>
                         <OppfolgingProvider>
                             <SjekkOppfolging>
@@ -26,7 +26,7 @@ class App extends React.Component {
                             </SjekkOppfolging>
                         </OppfolgingProvider>
                     </IntlProvider>
-                </TeksterProvider>
+                </HentTekster>
             </Provider>
         );
     }

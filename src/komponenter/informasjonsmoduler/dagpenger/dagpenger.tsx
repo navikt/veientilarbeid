@@ -20,6 +20,14 @@ type Props = DummyProp & InjectedIntlProps;
 class Dagpenger extends React.Component<Props> {
     render() {
         const intl = this.props.intl;
+        // tslint:disable-next-line
+        console.log(document.location);
+
+        // Feature-toggle informasjonsmodul 1/3 (sjekk hent-tekster.tsx)
+        if (document.location.search !== '?visInformasjonsmodul=true') {
+            return (null);
+        }
+
         const fellesEkspanderbartpanelProps = {
             tittelProps: 'element',
             // tslint:disable-next-line
