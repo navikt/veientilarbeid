@@ -19,13 +19,23 @@ interface DispatchProps {
 
 type Props = StateProps & DispatchProps & OwnProps;
 
-class TeksterProvider extends React.Component<Props> {
+class HentTekster extends React.Component<Props> {
     componentWillMount() {
+        // Feature-toggle informasjonsmodul 2/3 (sjekk dagpenger.tsx)
+        if (document.location.search !== '?visInformasjonsmodul=true') {
+            return;
+        }
+
         this.props.hentTekster();
     }
 
     render() {
         const { tekster, children } = this.props;
+
+        // Feature-toggle informasjonsmodul 3/3 (sjekk dagpenger.tsx)
+        if (document.location.search !== '?visInformasjonsmodul=true') {
+            return children;
+        }
 
         return (
             <Innholdslaster
@@ -48,4 +58,4 @@ const mapDispatchToProps = (dispatch: Dispatch<AppState>): DispatchProps => ({
     hentTekster: () => dispatch(hentTekster())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(TeksterProvider);
+export default connect(mapStateToProps, mapDispatchToProps)(HentTekster);

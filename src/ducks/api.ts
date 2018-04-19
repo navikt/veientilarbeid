@@ -1,6 +1,6 @@
 import { fetchToJson } from './api-utils';
 export const VEILARBOPPFOLGINGPROXY_URL = '/veilarboppfolgingproxy/api';
-export const TEKSTER_URL = '/veiledearbeidssoker/api/tekster';
+export const VEILEDERARBEIDSSOKER_URL = '/veiledearbeidssoker/api';
 
 const CREDENTIALS_SAME_ORIGIN = {
     credentials: ('same-origin' as RequestCredentials)
@@ -15,6 +15,7 @@ export function hentOppfolging() {
 
 export function hentTekster() {
     return fetchToJson({
-        url: TEKSTER_URL
+        url: `${VEILEDERARBEIDSSOKER_URL}/tekster`,
+        config: CREDENTIALS_SAME_ORIGIN
     });
 }
