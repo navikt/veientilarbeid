@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { AppState } from '../../reducer';
 import { Data as OppfolgingData, selectOppfolging } from '../../ducks/oppfolging';
 import {
-    erUnderOppfolging, harTattIBrukAktivitetsplan, sendBrukerTilAktivitetsplan,
+    erUnderOppfolging, sendBrukerTilAktivitetsplan,
     sendBrukerTilDittNav
 } from './sjekk-oppfolging-utils';
 
@@ -36,12 +36,8 @@ class SjekkOppfolging extends React.PureComponent<Props> {
         if (erUnderOppfolging(oppfolging)) {
             return children;
         }
-        if (harTattIBrukAktivitetsplan(oppfolging)) {
-            config!.sendBrukerTilAktivitetsplan();
-            return null;
-        }
 
-        config!.sendBrukerTilDittNav();
+        config!.sendBrukerTilAktivitetsplan();
         return null;
     }
 }
