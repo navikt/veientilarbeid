@@ -1,0 +1,23 @@
+.sporreundersokelse {
+  text-align: center;
+  max-width: @screen-md-min;
+  margin: 0 auto 1rem;
+  background: white;
+  padding: 2rem;
+
+  &__tekster {
+    margin: 0 auto;
+    max-width: 27rem;
+  }
+}
+
+@media (min-width: @screen-sm-min) {
+  .sporreundersokelse {
+    text-align: left;
+    padding: 2rem 3.2rem;
+
+    &__tekster {
+      max-width: 100%;
+    }
+  }
+}
