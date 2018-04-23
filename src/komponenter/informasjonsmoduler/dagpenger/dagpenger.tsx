@@ -8,6 +8,10 @@ import LenkeMedChevron from '../../lenke-med-chevron/lenke-med-chevron';
 import HvorMyeDagpenger from './hvor-mye-dagpenger/hvor-mye-dagpenger';
 import RettTilDagpenger from './rett-til-dagpenger/rett-til-dagpenger';
 import UnderpanelInnhold from './underpanel-innhold/underpanel-innhold';
+import {
+    hentRettTilDagpengerIndex, skalEkspandereInfoModul, skalViseDagPenger,
+    skalViseInformasjonsmodul
+} from '../../../utils/utils';
 
 const SOKNAD_OM_DAGPENGER_PATH = '/veiledearbeidssoker/mistet-jobben/dagpenger-soknadsprosess';
 
@@ -18,22 +22,30 @@ interface DummyProp {
 type Props = DummyProp & InjectedIntlProps;
 
 class Dagpenger extends React.Component<Props> {
+
+    componentDidMount() {
+        if (skalViseDagPenger(location.search)) {
+            window.location.hash = '#informasjonsmoduler';
+        }
+    }
+
     render() {
         const intl = this.props.intl;
 
         // Feature-toggle informasjonsmodul 1/3 (sjekk hent-tekster.tsx)
-        if (document.location.search !== '?visInformasjonsmodul=true') {
+        if (!skalViseInformasjonsmodul(location.search)) {
             return (null);
         }
 
         const fellesEkspanderbartpanelProps = {
             tittelProps: 'element',
             // tslint:disable-next-line
-            onClick: () => {},
+            onClick: () => {
+            },
             apen: false
         };
         return (
-            <div className="informasjonsmoduler">
+            <div className="informasjonsmoduler" id="informasjonsmoduler">
                 <div className="informasjonsmodul__wrapper">
                     <Informasjonsmodul
                         tittel={intl.messages['informasjonsmodul-dagpenger-tittel']}
@@ -41,14 +53,16 @@ class Dagpenger extends React.Component<Props> {
                         figur="utklippstavle"
                         // tslint:disable-next-line
                         onClick={() => {}}
-                        apen={false}
+                        apen={skalEkspandereInfoModul(location.search)}
                     >
                         <div className="informasjonsmodul-ingress__wrapper">
                             <Ingress>
                                 Dagpenger er en delvis erstatning for tapt arbeidsinntekt når du mister jobben.
                             </Ingress>
                         </div>
-                        <EkspanderbartpanelGruppe>
+                        <EkspanderbartpanelGruppe
+                            indexOfOpenEkspanderbartpanel={hentRettTilDagpengerIndex(location.search)}
+                        >
                             <EkspanderbartpanelPure
                                 tittel={intl.messages['informasjonsmodul-dagpenger-del-1-tittel']}
                                 {...fellesEkspanderbartpanelProps}

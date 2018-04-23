@@ -15,3 +15,19 @@ export function getCurrentUrlWithoutQueryParam(queryParam: string, baseUrl?: str
         Object.keys(query).length === 0 ? '' : '?' + stringify(query)
     );
 }
+
+export function skalViseInformasjonsmodul(search: string) {
+    return parse(search).visInformasjonsmodul === 'true';
+}
+
+export function skalViseDagPenger(search: string) {
+    return parse(search).visdagpenger === 'true';
+}
+
+export function skalEkspandereInfoModul(search: string) {
+    return skalViseDagPenger(search);
+}
+
+export function hentRettTilDagpengerIndex(search: string) {
+    return skalViseDagPenger(search) ? 0 : -1;
+}
