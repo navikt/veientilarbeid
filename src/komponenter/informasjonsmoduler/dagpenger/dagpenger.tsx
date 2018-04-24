@@ -9,8 +9,8 @@ import HvorMyeDagpenger from './hvor-mye-dagpenger/hvor-mye-dagpenger';
 import RettTilDagpenger from './rett-til-dagpenger/rett-til-dagpenger';
 import UnderpanelInnhold from './underpanel-innhold/underpanel-innhold';
 import {
-    hentRettTilDagpengerIndex, skalEkspandereInfoModul, skalViseDagPenger,
-    skalViseInformasjonsmodul
+    ekspanderInformasjonsmodul, visRettTilDagPenger,
+    visInformasjonsmodul
 } from '../../../utils/utils';
 
 const SOKNAD_OM_DAGPENGER_PATH = '/veiledearbeidssoker/mistet-jobben/dagpenger-soknadsprosess';
@@ -24,7 +24,7 @@ type Props = DummyProp & InjectedIntlProps;
 class Dagpenger extends React.Component<Props> {
 
     componentDidMount() {
-        if (skalViseDagPenger(location.search)) {
+        if (visRettTilDagPenger(location.search)) {
             window.location.hash = '#informasjonsmoduler';
         }
     }
@@ -33,7 +33,7 @@ class Dagpenger extends React.Component<Props> {
         const intl = this.props.intl;
 
         // Feature-toggle informasjonsmodul 1/3 (sjekk hent-tekster.tsx)
-        if (!skalViseInformasjonsmodul(location.search)) {
+        if (!visInformasjonsmodul(location.search)) {
             return (null);
         }
 
@@ -45,15 +45,16 @@ class Dagpenger extends React.Component<Props> {
             apen: false
         };
         return (
-            <div className="informasjonsmoduler" id="informasjonsmoduler">
+            <div className="informasjonsmoduler">
                 <div className="informasjonsmodul__wrapper">
                     <Informasjonsmodul
+                        id="informasjonsmoduler"
                         tittel={intl.messages['informasjonsmodul-dagpenger-tittel']}
                         undertekst={intl.messages['informasjonsmodul-dagpenger-undertekst']}
                         figur="utklippstavle"
                         // tslint:disable-next-line
                         onClick={() => {}}
-                        apen={skalEkspandereInfoModul(location.search)}
+                        apen={ekspanderInformasjonsmodul(location.search)}
                     >
                         <div className="informasjonsmodul-ingress__wrapper">
                             <Ingress>
@@ -61,7 +62,7 @@ class Dagpenger extends React.Component<Props> {
                             </Ingress>
                         </div>
                         <EkspanderbartpanelGruppe
-                            indexOfOpenEkspanderbartpanel={hentRettTilDagpengerIndex(location.search)}
+                            indexOfOpenEkspanderbartpanel={visRettTilDagPenger(location.search) ? 0 : -1}
                         >
                             <EkspanderbartpanelPure
                                 tittel={intl.messages['informasjonsmodul-dagpenger-del-1-tittel']}
