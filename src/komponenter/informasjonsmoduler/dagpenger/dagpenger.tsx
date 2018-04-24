@@ -25,7 +25,11 @@ class Dagpenger extends React.Component<Props> {
 
     componentDidMount() {
         if (visRettTilDagPenger(location.search)) {
-            window.location.hash = '#informasjonsmoduler';
+            // Scroll til informasjonsmodul
+            setTimeout(() => {
+                window.location.hash = '#informasjonsmodul';
+            },         150);
+
         }
     }
 
@@ -48,7 +52,7 @@ class Dagpenger extends React.Component<Props> {
             <div className="informasjonsmoduler">
                 <div className="informasjonsmodul__wrapper">
                     <Informasjonsmodul
-                        id="informasjonsmoduler"
+                        id="informasjonsmodul"
                         tittel={intl.messages['informasjonsmodul-dagpenger-tittel']}
                         undertekst={intl.messages['informasjonsmodul-dagpenger-undertekst']}
                         figur="utklippstavle"
