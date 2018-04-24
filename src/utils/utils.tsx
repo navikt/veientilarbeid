@@ -16,18 +16,14 @@ export function getCurrentUrlWithoutQueryParam(queryParam: string, baseUrl?: str
     );
 }
 
-export function skalViseInformasjonsmodul(search: string) {
+export function visInformasjonsmodul(search: string) {
     return parse(search).visInformasjonsmodul === 'true';
 }
 
-export function skalViseDagPenger(search: string) {
+export function visRettTilDagPenger(search: string) {
     return parse(search).visdagpenger === 'true';
 }
 
-export function skalEkspandereInfoModul(search: string) {
-    return skalViseDagPenger(search);
-}
-
-export function hentRettTilDagpengerIndex(search: string) {
-    return skalViseDagPenger(search) ? 0 : -1;
+export function ekspanderInformasjonsmodul(search: string) {
+    return visRettTilDagPenger(search);
 }

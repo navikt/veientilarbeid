@@ -21,6 +21,7 @@ export interface InformasjonsmodulProps {
     tittel: string;
     undertekst: string;
     figur?: Figur;
+    id?: string;
 }
 
 export interface InformasjonsmodulState {
