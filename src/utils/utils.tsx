@@ -15,3 +15,15 @@ export function getCurrentUrlWithoutQueryParam(queryParam: string, baseUrl?: str
         Object.keys(query).length === 0 ? '' : '?' + stringify(query)
     );
 }
+
+export function visInformasjonsmodul(search: string) {
+    return parse(search).visInformasjonsmodul === 'true';
+}
+
+export function visRettTilDagPenger(search: string) {
+    return parse(search).visdagpenger === 'true';
+}
+
+export function ekspanderInformasjonsmodul(search: string) {
+    return visRettTilDagPenger(search);
+}
