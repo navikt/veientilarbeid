@@ -25,11 +25,7 @@ class Dagpenger extends React.Component<Props> {
 
     componentDidMount() {
         if (visRettTilDagPenger(location.search)) {
-            // Scroll til informasjonsmodul
-            setTimeout(() => {
-                window.location.hash = '#informasjonsmodul';
-            },         150);
-
+            this.scrollTilInformasjonsmodul();
         }
     }
 
@@ -82,7 +78,7 @@ class Dagpenger extends React.Component<Props> {
                             >
                                 <div className="informasjonsmodul__underpanel-innhold-wrapper">
                                     <UnderpanelInnhold>
-                                        <HvorMyeDagpenger />
+                                        <HvorMyeDagpenger/>
                                     </UnderpanelInnhold>
                                 </div>
                             </EkspanderbartpanelPure>
@@ -96,6 +92,21 @@ class Dagpenger extends React.Component<Props> {
                 </div>
             </div>
         );
+    }
+
+    scrollTilInformasjonsmodul() {
+        setTimeout(() => {
+            const isSupported = 'scrollBehavior' in document.documentElement.style;
+            const target = document.getElementById('informasjonsmodul');
+            if (target) {
+                if (isSupported) {
+                    window.scrollTo({'behavior': 'smooth', 'top': target.offsetTop});
+                } else {
+                    window.scrollTo(0, target.offsetTop);
+                }
+            }
+
+        },         400);
     }
 }
 
