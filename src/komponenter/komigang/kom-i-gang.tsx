@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import { parse } from 'query-string';
 
 const aktivitetsplanSvg = require('./aktivitetsplan.svg');
-const AKTIVITETSPLAN_PATH = '/aktivitetsplan';
+const AKTIVITETSPLAN_PATH = '/aktivitetsplan/';
 
 interface State {
     nyRegistrering: boolean;
