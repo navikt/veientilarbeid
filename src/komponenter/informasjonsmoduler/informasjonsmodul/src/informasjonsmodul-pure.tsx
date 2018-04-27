@@ -24,11 +24,11 @@ class InformasjonsmodulPure extends React.PureComponent<InformasjonsmodulPurePro
             <>
                 {figurComponent}
                 <div className="informasjonsmodul__heading-wrapper">
-                    <Systemtittel tag="span" className="informasjonsmodul__heading blokk-s">
+                    <Systemtittel tag="h2" className="informasjonsmodul__heading blokk-s">
                         {tittel}
                     </Systemtittel>
                     <div className="informasjonsmodul__underheading-wrapper">
-                        <Normaltekst tag="div" className="informasjonsmodul__heading">
+                        <Normaltekst className="informasjonsmodul__heading">
                             {undertekst}
                         </Normaltekst>
                         <div>
