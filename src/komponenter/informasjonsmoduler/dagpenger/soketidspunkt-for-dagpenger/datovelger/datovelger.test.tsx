@@ -10,6 +10,6 @@ enzyme.configure({adapter: new Adapter()});
 
 describe('<SjekkRegistreringstatus />', () => {
     it('skal sende bruker til sbl om den ikke oppfyller krav og ikke er under oppfølging', () => {
-        mountWithStoreAndIntl(<SoketidspunktForDagpenger />);
+        mountWithStoreAndIntl(<SoketidspunktForDagpenger velgDato={d=>{}}/>);
     });
 });
