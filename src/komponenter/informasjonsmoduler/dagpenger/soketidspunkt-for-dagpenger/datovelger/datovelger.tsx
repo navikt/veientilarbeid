@@ -1,15 +1,15 @@
 import * as React from 'react';
 import DayPicker from 'react-day-picker';
 import momentLocaleUtils, { LocaleUtils } from 'react-day-picker/moment';
-import * as moment from 'moment';
-import 'moment/locale/nb';
+import Navigasjonsbar from './navigasjonsbar';
+//tslint:disable
 
-class Datovelger extends React.Component<{}> {
-    constructor(props: {}) {
-        super(props);
-        moment.locale('nb');
-    }
+interface Props {
+    valgtDato: Date;
+    velgDato: (dato: Date) => void;
+}
 
+class Datovelger extends React.Component<Props> {
     render() {
         const localeUtils: LocaleUtils = {
             ...momentLocaleUtils,
@@ -18,11 +18,23 @@ class Datovelger extends React.Component<{}> {
             },
         };
 
+        const navigasjonsbar = (
+            <Navigasjonsbar
+                onNextClick={() => {}}
+                onPreviousClick={() => {}}
+                showPreviousButton={true}
+                showNextButton={true}
+            />
+        );
+
         return (
             <DayPicker
                 locale="nb"
                 localeUtils={localeUtils}
                 firstDayOfWeek={1}
+                navbarElement={navigasjonsbar}
+                selectedDays={this.props.valgtDato}
+                onDayClick={(dato) => this.props.velgDato(dato)}
             />
         );
     }
