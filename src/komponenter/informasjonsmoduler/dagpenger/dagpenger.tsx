@@ -7,7 +7,7 @@ import { Ingress } from 'nav-frontend-typografi';
 import LenkeMedChevron from '../../lenke-med-chevron/lenke-med-chevron';
 import HvorMyeDagpenger from './hvor-mye-dagpenger/hvor-mye-dagpenger';
 import RettTilDagpenger from './rett-til-dagpenger/rett-til-dagpenger';
-import SoketidspunktForDagpenger from './soketidspunkt-for-dagpenger/soketidspunkt';
+import SoketidspunktForDagpenger from './soketidspunkt-for-dagpenger/soketidspunkt-for-dagpenger';
 import UnderpanelInnhold from './underpanel-innhold/underpanel-innhold';
 import {
     ekspanderInformasjonsmodul, visRettTilDagPenger,

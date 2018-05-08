@@ -1,43 +1,69 @@
 import * as React from 'react';
-import DayPicker from 'react-day-picker';
-import momentLocaleUtils, { LocaleUtils } from 'react-day-picker/moment';
-import Navigasjonsbar from './navigasjonsbar';
-//tslint:disable
+import { injectIntl, InjectedIntlProps } from 'react-intl';
+import Kalender from './kalender';
+import MaskedInput from 'react-maskedinput';
+import * as moment from 'moment';
+import 'moment/locale/nb';
 
-interface Props {
-    valgtDato: Date;
-    velgDato: (dato: Date) => void;
+// tslint:disable
+
+interface DummyProp {
+    dummy?: string; // TypeScript klager hvis props kun er InjectedIntlProps
 }
 
-class Datovelger extends React.Component<Props> {
-    render() {
-        const localeUtils: LocaleUtils = {
-            ...momentLocaleUtils,
-            formatWeekdayShort: (weekday, locale) => {
-                return momentLocaleUtils.formatWeekdayLong(weekday, locale).substring(0, 3);
-            },
+interface State {
+    dato: Date;
+    visDatovelger: boolean;
+}
+
+type Props = DummyProp & InjectedIntlProps;
+
+class Datovelger extends React.Component<Props, State> {
+    constructor(props: Props) {
+        super(props);
+        moment.locale('nb');
+        this.state = {
+            dato: new Date(),
+            visDatovelger: true,
         };
+    }
 
-        const navigasjonsbar = (
-            <Navigasjonsbar
-                onNextClick={() => {}}
-                onPreviousClick={() => {}}
-                showPreviousButton={true}
-                showNextButton={true}
-            />
-        );
+    velgDato(dato: Date) {
+        this.setState({
+            dato: dato,
+            visDatovelger: false,
+        });
+        console.log(dato);
+    }
 
+    toggleDatovelger() {
+        this.setState({
+            ...this.state,
+            visDatovelger: !this.state.visDatovelger,
+        });
+    }
+
+    render() {
         return (
-            <DayPicker
-                locale="nb"
-                localeUtils={localeUtils}
-                firstDayOfWeek={1}
-                navbarElement={navigasjonsbar}
-                selectedDays={this.props.valgtDato}
-                onDayClick={(dato) => this.props.velgDato(dato)}
-            />
+            <div>
+                <MaskedInput
+                    type="tel"
+                    mask="11.11.1111"
+                    autoComplete="off"
+                    placeholder="dd.mm.åååå"
+                    disabled={false}
+                    className={`skjemaelement__input input--m datovelger__input`}
+                />
+                <button onClick={() => this.toggleDatovelger()}> Vis kalender </button>
+                {this.state.visDatovelger &&
+                <Kalender
+                    valgtDato={this.state.dato}
+                    velgDato={(dato) => this.velgDato(dato)}
+                />
+                }
+            </div>
         );
     }
 }
 
-export default Datovelger;
+export default injectIntl(Datovelger);
