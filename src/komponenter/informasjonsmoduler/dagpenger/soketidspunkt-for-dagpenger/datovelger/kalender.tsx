@@ -7,9 +7,22 @@ import Navigasjonsbar from './navigasjonsbar';
 interface Props {
     valgtDato: Date;
     velgDato: (dato: Date) => void;
+    lukk: () => void;
 }
 
 class Kalender extends React.Component<Props> {
+    private lukk: () => void;
+
+    componentDidMount() {
+        this.lukk = () => this.props.lukk();
+
+        document.addEventListener('click', this.lukk);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('click', this.lukk);
+    }
+
     render() {
         const localeUtils: LocaleUtils = {
             ...momentLocaleUtils,
