@@ -10,9 +10,30 @@ interface DummyProp {
 
 type Props = DummyProp & InjectedIntlProps;
 
-class SoketidspunktForDagpenger extends React.Component<Props> {
+interface State {
+    dato: Date;
+}
+
+class SoketidspunktForDagpenger extends React.Component<Props, State> {
+    constructor(props: Props) {
+        super(props);
+        this.state = {
+            dato: new Date()
+        };
+    }
+
+    velgDato(dato: Date) {
+        this.setState({
+            dato: dato,
+        });
+    }
+
     render() {
-        return (<Datovelger />);
+        return (
+            <Datovelger
+                velgDato={dato => this.velgDato(dato)}
+            />
+        );
     }
 }
 

@@ -1,22 +1,20 @@
 import * as React from 'react';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
 import Kalender from './kalender';
-import MaskedInput from 'react-maskedinput';
 import * as moment from 'moment';
 import 'moment/locale/nb';
+import DatoInputfelt from './dato-inputfelt';
 
-// tslint:disable
-
-interface DummyProp {
-    dummy?: string; // TypeScript klager hvis props kun er InjectedIntlProps
+interface OwnProps {
+    velgDato: (dato: Date) => void;
 }
 
 interface State {
     dato: Date;
-    visDatovelger: boolean;
+    visKalender: boolean;
 }
 
-type Props = DummyProp & InjectedIntlProps;
+type Props = OwnProps & InjectedIntlProps;
 
 class Datovelger extends React.Component<Props, State> {
     constructor(props: Props) {
@@ -24,43 +22,43 @@ class Datovelger extends React.Component<Props, State> {
         moment.locale('nb');
         this.state = {
             dato: new Date(),
-            visDatovelger: true,
+            visKalender: true,
         };
     }
 
     velgDato(dato: Date) {
         this.setState({
             dato: dato,
-            visDatovelger: false,
+            visKalender: false,
         });
-        console.log(dato);
     }
 
     toggleDatovelger() {
         this.setState({
             ...this.state,
-            visDatovelger: !this.state.visDatovelger,
+            visKalender: !this.state.visKalender,
         });
     }
 
     render() {
+        const datoProps = {
+            valgtDato: this.state.dato,
+            velgDato: (dato: Date) => this.velgDato(dato)
+        };
         return (
-            <div>
-                <MaskedInput
-                    type="tel"
-                    mask="11.11.1111"
-                    autoComplete="off"
-                    placeholder="dd.mm.åååå"
-                    disabled={false}
-                    className={`skjemaelement__input input--m datovelger__input`}
-                />
-                <button onClick={() => this.toggleDatovelger()}> Vis kalender </button>
-                {this.state.visDatovelger &&
-                <Kalender
-                    valgtDato={this.state.dato}
-                    velgDato={(dato) => this.velgDato(dato)}
-                />
-                }
+            <div className="datovelger">
+                <div className="datovelger__inner">
+                    <DatoInputfelt {...datoProps} />
+                    <button
+                        className="js-toggle datovelger__toggleDayPicker"
+                        onClick={() => this.toggleDatovelger()}
+                    >
+                        Vis kalender
+                    </button>
+                    {this.state.visKalender &&
+                        <Kalender {...datoProps} />
+                    }
+                </div>
             </div>
         );
     }

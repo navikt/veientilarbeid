@@ -28,14 +28,16 @@ class Kalender extends React.Component<Props> {
         );
 
         return (
-            <DayPicker
-                locale="nb"
-                localeUtils={localeUtils}
-                firstDayOfWeek={1}
-                navbarElement={navigasjonsbar}
-                selectedDays={this.props.valgtDato}
-                onDayClick={(dato) => this.props.velgDato(dato)}
-            />
+            <div className="datovelger__DayPicker">
+                <DayPicker
+                    locale="nb"
+                    localeUtils={localeUtils}
+                    firstDayOfWeek={1}
+                    navbarElement={navigasjonsbar}
+                    selectedDays={this.props.valgtDato}
+                    onDayClick={(dato) => this.props.velgDato(dato)}
+                />
+            </div>
         );
     }
 }
