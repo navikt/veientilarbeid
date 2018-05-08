@@ -40,6 +40,13 @@ class Datovelger extends React.Component<Props, State> {
         });
     }
 
+    lukkDatovelger() {
+        this.setState({
+            ...this.state,
+            visKalender: false,
+        });
+    }
+
     render() {
         const datoProps = {
             valgtDato: this.state.dato,
@@ -56,7 +63,10 @@ class Datovelger extends React.Component<Props, State> {
                         Vis kalender
                     </button>
                     {this.state.visKalender &&
-                        <Kalender {...datoProps} />
+                        <Kalender
+                            {...datoProps}
+                            lukk={() => this.lukkDatovelger()}
+                        />
                     }
                 </div>
             </div>
