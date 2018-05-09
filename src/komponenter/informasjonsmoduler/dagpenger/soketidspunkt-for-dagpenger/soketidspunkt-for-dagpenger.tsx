@@ -1,9 +1,12 @@
+// tslint:disable
+
 import * as React from 'react';
 import { injectIntl, InjectedIntlProps, FormattedMessage } from 'react-intl';
 import Datovelger from './datovelger/datovelger';
 import { Moment } from 'moment';
-import { momentAsISO } from './datovelger/datovelger-utils';
+import { momentIDag } from './moment-utils';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
+import SoketidspunktResultat from './soketidspunkt-resultat';
 
 interface DummyProp {
     dummy?: string; // TypeScript klager hvis props kun er InjectedIntlProps
@@ -19,7 +22,7 @@ class SoketidspunktForDagpenger extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
         this.state = {
-            dato: momentAsISO(new Date())
+            dato: momentIDag()
         };
     }
 
@@ -29,13 +32,24 @@ class SoketidspunktForDagpenger extends React.Component<Props, State> {
         });
     }
 
+    onSubmit(event: any) {
+        event.preventDefault();
+        console.log('submittin\'');
+    }
+
     render() {
         return (
             <div>
-                <Datovelger
-                    velgDato={dato => this.velgDato(dato)}
-                    dato={this.state.dato}
-                />
+                <form onSubmit={event => this.onSubmit(event)}>
+                    <Datovelger
+                        velgDato={dato => this.velgDato(dato)}
+                        dato={this.state.dato}
+                    />
+                    <button type="submit">
+                        Regn ut
+                    </button>
+                    <SoketidspunktResultat dato={this.state.dato}/>
+                </form>
                 <Element tag="h3" className="blokk-s">
                     <FormattedMessage id="dagpenger.soketidspunkt.definisjonsliste-overskrift"/>
                 </Element>
