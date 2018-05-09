@@ -4,7 +4,7 @@ import {
     erGyldigFormattertDato,
     inputDatostringTilISODate,
     ISODateTilInputDatostring
-} from './datovelger-utils';
+} from '../moment-utils';
 import { Moment } from 'moment';
 
 interface Props {

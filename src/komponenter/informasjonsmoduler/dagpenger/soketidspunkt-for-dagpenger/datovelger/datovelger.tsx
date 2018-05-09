@@ -5,7 +5,7 @@ import * as moment from 'moment';
 import { Moment } from 'moment';
 import 'moment/locale/nb';
 import DatoInputfelt from './dato-inputfelt';
-import { momentAsISO } from './datovelger-utils';
+import { momentAsISO } from '../moment-utils';
 import { Normaltekst } from 'nav-frontend-typografi';
 interface OwnProps {
     velgDato: (dato: Moment) => void;

@@ -22,3 +22,7 @@ export const erGyldigFormattertDato = (formattertDato: string): boolean => {
         moment(formattertDato, DATOFORMAT_NORGE, true).isValid()
     );
 };
+
+export const momentIDag = (): Moment => {
+    return moment(new Date()).startOf('day');
+};
