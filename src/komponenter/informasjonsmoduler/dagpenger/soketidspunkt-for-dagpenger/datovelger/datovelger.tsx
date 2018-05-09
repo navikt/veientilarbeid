@@ -6,13 +6,13 @@ import { Moment } from 'moment';
 import 'moment/locale/nb';
 import DatoInputfelt from './dato-inputfelt';
 import { momentAsISO } from './datovelger-utils';
-
+// tslint:disable
 interface OwnProps {
     velgDato: (dato: Moment) => void;
+    valgtDato: Moment;
 }
 
 interface State {
-    dato: Moment;
     visKalender: boolean;
     inputErRiktigFormatert: boolean;
 }
@@ -24,29 +24,24 @@ class Datovelger extends React.Component<Props, State> {
         super(props);
         moment.locale('nb');
         this.state = {
-            dato: momentAsISO(new Date()),
             visKalender: false,
             inputErRiktigFormatert: true,
         };
     }
 
     velgDato(dato: Moment) {
+        this.lukkKalender();
         this.props.velgDato(dato);
-        this.setState({
-            ...this.state,
-            dato: dato,
-        });
-        this.lukkDatovelger();
     }
 
-    toggleDatovelger() {
+    toggleKalender() {
         this.setState({
             ...this.state,
             visKalender: !this.state.visKalender,
         });
     }
 
-    lukkDatovelger() {
+    lukkKalender() {
         this.setState({
             ...this.state,
             visKalender: false,
@@ -62,24 +57,24 @@ class Datovelger extends React.Component<Props, State> {
 
     render() {
         return (
-            <div className="datovelger__wrapper">
+            <div className="datovelger__outer">
                 <div className="datovelger">
                     <div className="datovelger__inner">
                         <DatoInputfelt
-                            valgtDato={this.state.dato}
+                            valgtDato={this.props.valgtDato}
                             velgDato={(dato: Moment) => this.velgDato(dato)}
                             inputErRiktigFormatert={(riktigFormatert) => this.settRiktigFormatert(riktigFormatert)}
                             className={this.state.inputErRiktigFormatert ? '' : 'datovelger__input--harFeil'}
                         />
                         <button
                             className="js-toggle datovelger__toggleDayPicker"
-                            onClick={() => this.toggleDatovelger()}
+                            onClick={() => this.toggleKalender()}
                         />
                         {this.state.visKalender &&
                             <Kalender
-                                valgtDato={this.state.dato.toDate()}
+                                valgtDato={this.props.valgtDato.toDate()}
                                 velgDato={(dato: Date) => this.velgDato(momentAsISO(dato))}
-                                lukk={() => this.lukkDatovelger()}
+                                lukk={() => this.lukkKalender()}
                             />
                         }
                     </div>
@@ -90,7 +85,7 @@ class Datovelger extends React.Component<Props, State> {
                     aria-live="assertive"
                     className="datovelger__feilmelding"
                 >
-                    Ugyldig format, bruk dd.mm.yyyy
+                    Ugyldig format, bruk dd.mm.yyyy {/* TODO Hent tekst fra intl */}
                 </div>
                 }
             </div>

@@ -25,7 +25,6 @@ class SoketidspunktForDagpenger extends React.Component<Props, State> {
     }
 
     velgDato(dato: Moment) {
-        console.log('velger', dato);
         this.setState({
             dato: dato,
         });
@@ -36,6 +35,7 @@ class SoketidspunktForDagpenger extends React.Component<Props, State> {
             <div>
                 <Datovelger
                     velgDato={dato => this.velgDato(dato)}
+                    valgtDato={this.state.dato}
                 />
                 Her ser du hvilken dato du bør oppgi hvis du er i en av disse situasjonene:
                 Har du sagt opp jobben selv
