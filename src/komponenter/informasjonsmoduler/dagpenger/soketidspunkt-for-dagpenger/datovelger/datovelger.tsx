@@ -30,7 +30,11 @@ class Datovelger extends React.Component<Props, State> {
     }
 
     velgDato(dato: Moment) {
-        this.lukkKalender();
+        this.setState({
+            ...this.state,
+            visKalender: false,
+            inputErRiktigFormatert: true,
+        });
         this.props.velgDato(dato);
     }
 
@@ -71,6 +75,7 @@ class Datovelger extends React.Component<Props, State> {
                         <button
                             className="js-toggle datovelger__toggleDayPicker"
                             onClick={() => this.toggleKalender()}
+                            aria-pressed={this.state.visKalender}
                         />
                         {visKalender &&
                             <Kalender
