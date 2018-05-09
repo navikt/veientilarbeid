@@ -1,15 +1,15 @@
 import * as React from 'react';
-import { injectIntl, InjectedIntlProps } from 'react-intl';
+import { injectIntl, InjectedIntlProps, FormattedMessage } from 'react-intl';
 import Kalender from './kalender';
 import * as moment from 'moment';
 import { Moment } from 'moment';
 import 'moment/locale/nb';
 import DatoInputfelt from './dato-inputfelt';
 import { momentAsISO } from './datovelger-utils';
-// tslint:disable
+import { Normaltekst } from 'nav-frontend-typografi';
 interface OwnProps {
     velgDato: (dato: Moment) => void;
-    valgtDato: Moment;
+    dato: Moment;
 }
 
 interface State {
@@ -56,37 +56,41 @@ class Datovelger extends React.Component<Props, State> {
     }
 
     render() {
+        const {inputErRiktigFormatert, visKalender} = this.state;
+
         return (
             <div className="datovelger__outer">
                 <div className="datovelger">
                     <div className="datovelger__inner">
                         <DatoInputfelt
-                            valgtDato={this.props.valgtDato}
+                            valgtDato={this.props.dato}
                             velgDato={(dato: Moment) => this.velgDato(dato)}
                             inputErRiktigFormatert={(riktigFormatert) => this.settRiktigFormatert(riktigFormatert)}
-                            className={this.state.inputErRiktigFormatert ? '' : 'datovelger__input--harFeil'}
+                            className={inputErRiktigFormatert ? '' : 'datovelger__input--harFeil'}
                         />
                         <button
                             className="js-toggle datovelger__toggleDayPicker"
                             onClick={() => this.toggleKalender()}
                         />
-                        {this.state.visKalender &&
+                        {visKalender &&
                             <Kalender
-                                valgtDato={this.props.valgtDato.toDate()}
+                                valgtDato={this.props.dato.toDate()}
                                 velgDato={(dato: Date) => this.velgDato(momentAsISO(dato))}
                                 lukk={() => this.lukkKalender()}
                             />
                         }
                     </div>
                 </div>
-                {!this.state.inputErRiktigFormatert &&
-                <div
-                    role="alert"
-                    aria-live="assertive"
-                    className="datovelger__feilmelding"
-                >
-                    Ugyldig format, bruk dd.mm.yyyy {/* TODO Hent tekst fra intl */}
-                </div>
+                {!inputErRiktigFormatert &&
+                    <div
+                        role="alert"
+                        aria-live="assertive"
+                        className="datovelger__feilmelding"
+                    >
+                        <Normaltekst>
+                            <FormattedMessage id="dagpenger.soketidspunkt.dato.feilmelding.ugyldig-input"/>
+                        </Normaltekst>
+                    </div>
                 }
             </div>
         );

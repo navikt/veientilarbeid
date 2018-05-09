@@ -42,8 +42,6 @@ class Kalender extends React.Component<Props> {
 
         const navigasjonsbar = (
             <Navigasjonsbar
-                onNextClick={() => {}} // tslint:disable-line
-                onPreviousClick={() => {}} // tslint:disable-line
                 showPreviousButton={true}
                 showNextButton={true}
             />
