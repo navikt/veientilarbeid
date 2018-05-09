@@ -1,9 +1,8 @@
 import * as React from 'react';
-//tslint:disable
 
 interface Props {
-    onNextClick: () => any;
-    onPreviousClick: () => any;
+    onNextClick?: () => void;
+    onPreviousClick?: () => void;
     showPreviousButton: boolean;
     showNextButton: boolean;
 }
@@ -20,7 +19,9 @@ function Navigasjonsbar(props: Props) {
                 type="button"
                 onClick={event => {
                     event.preventDefault();
-                    props.onPreviousClick();
+                    if (props.onPreviousClick) {
+                        props.onPreviousClick();
+                    }
                 }}
             />
             <button
@@ -31,7 +32,9 @@ function Navigasjonsbar(props: Props) {
                 type="button"
                 onClick={event => {
                     event.preventDefault();
-                    props.onNextClick();
+                    if (props.onNextClick) {
+                        props.onNextClick();
+                    }
                 }}
             />
         </div>
