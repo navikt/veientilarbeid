@@ -2,7 +2,6 @@ import * as React from 'react';
 import DayPicker from 'react-day-picker';
 import momentLocaleUtils, { LocaleUtils } from 'react-day-picker/moment';
 import Navigasjonsbar from './navigasjonsbar';
-//tslint:disable
 
 interface Props {
     valgtDato: Date;
@@ -11,16 +10,26 @@ interface Props {
 }
 
 class Kalender extends React.Component<Props> {
-    private lukk: () => void;
+    private wrapperRef: HTMLDivElement | null;
+    // TODO: Må fikse focus.
 
     componentDidMount() {
-        this.lukk = () => this.props.lukk();
-
-        document.addEventListener('click', this.lukk);
+        this.handleOutsideClick = this.handleOutsideClick.bind(this);
+        document.addEventListener('click', this.handleOutsideClick);
     }
 
     componentWillUnmount() {
-        document.removeEventListener('click', this.lukk);
+        document.removeEventListener('click', this.handleOutsideClick);
+    }
+
+    setWrapperRef(node: HTMLDivElement | null) {
+        this.wrapperRef = node;
+    }
+
+    handleOutsideClick(event: any) { // tslint:disable-line no-any
+        if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+            this.props.lukk();
+        }
     }
 
     render() {
@@ -33,15 +42,15 @@ class Kalender extends React.Component<Props> {
 
         const navigasjonsbar = (
             <Navigasjonsbar
-                onNextClick={() => {}}
-                onPreviousClick={() => {}}
+                onNextClick={() => {}} // tslint:disable-line
+                onPreviousClick={() => {}} // tslint:disable-line
                 showPreviousButton={true}
                 showNextButton={true}
             />
         );
 
         return (
-            <div className="datovelger__DayPicker">
+            <div className="datovelger__DayPicker" ref={(node) => this.setWrapperRef(node)}>
                 <DayPicker
                     locale="nb"
                     localeUtils={localeUtils}

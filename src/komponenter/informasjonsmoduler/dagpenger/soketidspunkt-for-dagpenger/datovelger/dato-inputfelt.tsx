@@ -1,23 +1,27 @@
 //tslint:disable
 import * as React from 'react';
 import MaskedInput from 'react-maskedinput';
-import {erGyldigFormattertDato, ISODateToDatePicker} from './datovelger-utils';
+import {
+    erGyldigFormattertDato,
+    inputDatostringTilISODate,
+    ISODateTilInputDatostring
+} from './datovelger-utils';
+import { Moment } from 'moment';
 
 interface Props {
-    valgtDato: Date;
-    velgDato: (dato: Date) => void;
+    valgtDato: Moment;
+    velgDato: (dato: Moment) => void;
+    inputErRiktigFormatert: (riktigFormatert: boolean) => void;
+    className: string;
 }
 
 class DatoInputfelt extends React.Component<Props> {
-    /*
-    const datostring = props.dato;
-    const value: string = erGyldigISODato(props.dato) ? ISODateToDatePicker(props.dato) : props.dato;
-    */
-
-    endreDato(datostring: string) {
+    endreDatoHvisGyldigFormattert(datostring: string) {
         if (erGyldigFormattertDato(datostring)) {
-            console.log(datostring + ' er gyldig');
-            this.props.velgDato(new Date(datostring));
+            this.props.velgDato(inputDatostringTilISODate(datostring));
+            this.props.inputErRiktigFormatert(true);
+        } else {
+            this.props.inputErRiktigFormatert(false);
         }
     }
 
@@ -30,9 +34,9 @@ class DatoInputfelt extends React.Component<Props> {
                     autoComplete="off"
                     placeholder="dd.mm.åååå"
                     disabled={false}
-                    className={`skjemaelement__input input--m datovelger__input`}
-                    value={ISODateToDatePicker(this.props.valgtDato)}
-                    onChange={event => this.endreDato(event.target.value)}
+                    className={`datovelger__input ${this.props.className}`}
+                    value={ISODateTilInputDatostring(this.props.valgtDato)}
+                    onChange={event => this.endreDatoHvisGyldigFormattert(event.target.value)}
                 />
             </div>
         );

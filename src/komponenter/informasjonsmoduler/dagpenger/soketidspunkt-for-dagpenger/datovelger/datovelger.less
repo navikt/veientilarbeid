@@ -186,9 +186,30 @@
     border: 1px solid #b7b1a9;
     box-sizing: border-box;
 
+    &:focus {
+      outline: 0;
+      box-shadow: 0 0 0 3px @navOransjeLighten40
+    }
+
+    &:hover {
+      border-color: #0067c5;
+    }
+
     &::-ms-clear {
       display: none;
     }
+
+    &--harFeil {
+      border-color: #ba3a26;
+      background-color: #f3e3e3;
+    }
+  }
+
+  &__feilmelding {
+    font-style: italic;
+    color: #ba3a26;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
   }
 
   &__inner {

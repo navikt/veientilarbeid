@@ -1,20 +1,24 @@
 import * as moment from 'moment';
+import { Moment } from 'moment';
 
-const DATOFORMAT = 'DD.MM.YYYY';
+const DATOFORMAT_NORGE: string = 'DD.MM.YYYY';
 
-export const ISODateToDatePicker = (dato: string | Date): string => {
-    const parsetDato = moment(dato);
-    return dato && parsetDato.isValid() ? parsetDato.format(DATOFORMAT) : '';
+export const momentAsISO = (dato: Date): Moment => {
+    return moment(dato, DATOFORMAT_NORGE, true).startOf('day');
 };
 
-export const erGyldigISODato = (isoDato: string): boolean => {
-    return !!(isoDato && moment(isoDato, moment.ISO_8601).isValid());
+export const ISODateTilInputDatostring = (dato: Moment): string => {
+    return dato && dato.isValid() ? dato.format(DATOFORMAT_NORGE) : '';
+};
+
+export const inputDatostringTilISODate = (dato: string): Moment => {
+    return moment(dato, DATOFORMAT_NORGE, true);
 };
 
 export const erGyldigFormattertDato = (formattertDato: string): boolean => {
     return !!(
         formattertDato &&
         formattertDato.length === 10 &&
-        moment(formattertDato, 'DD.MM.YYYY', true).isValid()
+        moment(formattertDato, DATOFORMAT_NORGE, true).isValid()
     );
 };
