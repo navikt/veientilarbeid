@@ -11,7 +11,6 @@ interface Props {
 
 class Kalender extends React.Component<Props> {
     private dayPickerRef: HTMLDivElement | null;
-    // TODO: Må fikse focus.
 
     componentDidMount() {
         this.handleOutsideClick = this.handleOutsideClick.bind(this);
@@ -29,10 +28,6 @@ class Kalender extends React.Component<Props> {
     handleOutsideClick(event: any) { // tslint:disable-line no-any
         if (this.dayPickerRef && !this.dayPickerRef.contains(event.target)) {
             this.props.lukk();
-        } else {
-            this.dayPickerRef!.focus();
-            event.preventDefault();
-            console.log('focus'); // tslint:disable-line
         }
     }
 
@@ -52,7 +47,10 @@ class Kalender extends React.Component<Props> {
         );
 
         return (
-            <div className="datovelger__DayPicker" ref={(node) => this.setDayPickerRef(node)}>
+            <div
+                className="datovelger__DayPicker"
+                ref={(node) => this.setDayPickerRef(node)}
+            >
                 <DayPicker
                     locale="nb"
                     localeUtils={localeUtils}
@@ -60,6 +58,7 @@ class Kalender extends React.Component<Props> {
                     navbarElement={navigasjonsbar}
                     selectedDays={this.props.valgtDato}
                     onDayClick={(dato) => this.props.velgDato(dato)}
+                    containerProps={{tabIndex: 0}}
                 />
             </div>
         );
