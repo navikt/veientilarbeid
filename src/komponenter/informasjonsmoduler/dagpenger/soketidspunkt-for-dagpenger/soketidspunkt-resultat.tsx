@@ -6,6 +6,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 
 interface OwnProps {
     dato: Moment;
+    className?: string;
 }
 
 type Props = OwnProps & InjectedIntlProps;
@@ -24,7 +25,8 @@ class SoketidspunktResultat extends React.Component<Props> {
 
         if (minDato.isBefore(momentIDag(), 'day')) {
             return (
-                <span
+                <div
+                    className={this.props.className ? this.props.className : ''}
                     dangerouslySetInnerHTML={{
                         __html: this.props.intl.messages['dagpenger.soketidspunkt.dato.resultat.idag']
                     }}
