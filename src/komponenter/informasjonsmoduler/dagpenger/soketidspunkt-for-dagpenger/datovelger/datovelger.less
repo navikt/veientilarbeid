@@ -27,6 +27,11 @@
   margin: 0 1em;
 }
 
+.DayPicker-wrapper:focus {
+  // .
+  outline: none;
+}
+
 .DayPicker-NavBar {
   position: absolute;
   left: 0;
@@ -171,6 +176,11 @@
 .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
   background-color: @navDypBla;
   color: @white;
+}
+
+.datovelger_DayPicker:focus {
+  outline: 0;
+  box-shadow: 0 0 0 3px @navOransjeLighten40;
 }
 
 .datovelger {
