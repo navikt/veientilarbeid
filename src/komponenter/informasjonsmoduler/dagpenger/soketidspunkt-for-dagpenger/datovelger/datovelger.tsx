@@ -76,6 +76,7 @@ class Datovelger extends React.Component<Props, State> {
                             className="js-toggle datovelger__toggleDayPicker"
                             onClick={() => this.toggleKalender()}
                             aria-pressed={this.state.visKalender}
+                            type="button"
                         />
                         {visKalender &&
                             <Kalender

@@ -32,7 +32,6 @@ class DatoInputfelt extends React.Component<Props> {
                     mask="11.11.1111"
                     autoComplete="off"
                     placeholder="dd.mm.åååå"
-                    disabled={false}
                     className={`datovelger__input ${this.props.className}`}
                     value={ISODateTilInputDatostring(this.props.valgtDato)}
                     onChange={event => this.endreDatoHvisGyldigFormattert(event.target.value)}
