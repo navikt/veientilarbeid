@@ -4,6 +4,8 @@ import { InjectedIntlProps, injectIntl, FormattedMessage } from 'react-intl';
 import { momentIDag } from './moment-utils';
 import { Normaltekst } from 'nav-frontend-typografi';
 
+const test = require('./person-komprimert.svg');
+
 interface OwnProps {
     dato: Moment;
     className?: string;
@@ -53,6 +55,7 @@ class SoketidspunktResultat extends React.Component<Props> {
         return (
             <Normaltekst>
                 {this.byggResultattekst()}
+                {test}
             </Normaltekst>
         );
     }
