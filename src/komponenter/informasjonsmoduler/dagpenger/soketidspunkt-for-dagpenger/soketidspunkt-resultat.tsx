@@ -3,8 +3,7 @@ import { Moment } from 'moment';
 import { InjectedIntlProps, injectIntl, FormattedMessage } from 'react-intl';
 import { momentIDag } from './moment-utils';
 import { Normaltekst } from 'nav-frontend-typografi';
-
-const test = require('./person-komprimert.svg');
+import Snakkeboble from 'nav-frontend-snakkeboble';
 
 interface OwnProps {
     dato: Moment;
@@ -27,7 +26,7 @@ class SoketidspunktResultat extends React.Component<Props> {
 
         if (minDato.isBefore(momentIDag(), 'day')) {
             return (
-                <div
+                <span
                     className={this.props.className ? this.props.className : ''}
                     dangerouslySetInnerHTML={{
                         __html: this.props.intl.messages['dagpenger.soketidspunkt.dato.resultat.idag']
@@ -53,10 +52,13 @@ class SoketidspunktResultat extends React.Component<Props> {
 
     render() {
         return (
-            <Normaltekst>
-                {this.byggResultattekst()}
-                {test}
-            </Normaltekst>
+            <div className="soketidspunkt-resultat">
+                <Snakkeboble topp=" " ikonClass="soketidspunkt-resultat__ikon">
+                    <Normaltekst>
+                        {this.byggResultattekst()}
+                    </Normaltekst>
+                </Snakkeboble>
+            </div>
         );
     }
 }
