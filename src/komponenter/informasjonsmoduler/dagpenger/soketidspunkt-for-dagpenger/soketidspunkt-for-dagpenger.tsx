@@ -1,5 +1,3 @@
-// tslint:disable
-
 import * as React from 'react';
 import { injectIntl, InjectedIntlProps, FormattedMessage } from 'react-intl';
 import Datovelger from './datovelger/datovelger';
@@ -37,11 +35,11 @@ class SoketidspunktForDagpenger extends React.Component<Props, State> {
         });
     }
 
-    onSubmit(event: any) {
+    onSubmit(event: React.FormEvent<EventTarget>) {
         event.preventDefault();
         this.setState({
             ...this.state,
-            visResultatet: !this.state.visResultatet, // TODO skal være TRUE, ikke toggling
+            visResultatet: true,
         });
     }
 
@@ -54,12 +52,15 @@ class SoketidspunktForDagpenger extends React.Component<Props, State> {
                     </Normaltekst>
                     <div className="soketidspunkt-for-dagpenger__form-input">
                         <Datovelger
+                            className="soketidspunkt-for-dagpenger__form-input-felt"
                             velgDato={dato => this.velgDato(dato)}
                             dato={this.state.dato}
                         />
-                        <Hovedknapp htmlType="submit">
-                            {this.props.intl.messages['dagpenger.soketidspunkt.dato.knapp']}
-                        </Hovedknapp>
+                        <div className="soketidspunkt-for-dagpenger__form-input-knapp">
+                            <Hovedknapp htmlType="submit">
+                                {this.props.intl.messages['dagpenger.soketidspunkt.dato.knapp']}
+                            </Hovedknapp>
+                        </div>
                     </div>
                     { this.state.visResultatet &&
                         <SoketidspunktResultat

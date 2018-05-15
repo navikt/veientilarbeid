@@ -84,7 +84,7 @@ class Dagpenger extends React.Component<Props> {
                                 </div>
                             </EkspanderbartpanelPure>
                             <EkspanderbartpanelPure
-                                tittel="når søke"
+                                tittel={intl.messages['informasjonsmodul-dagpenger-del-2-tittel']}
                                 {...fellesEkspanderbartpanelProps}
                             >
                                 <div className="informasjonsmodul__underpanel-innhold-wrapper">
