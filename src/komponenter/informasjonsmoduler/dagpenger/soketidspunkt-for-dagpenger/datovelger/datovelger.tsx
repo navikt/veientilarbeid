@@ -7,9 +7,11 @@ import 'moment/locale/nb';
 import DatoInputfelt from './dato-inputfelt';
 import { momentAsISO } from '../moment-utils';
 import { Normaltekst } from 'nav-frontend-typografi';
+
 interface OwnProps {
     velgDato: (dato: Moment) => void;
     dato: Moment;
+    className?: string;
 }
 
 interface State {
@@ -61,9 +63,9 @@ class Datovelger extends React.Component<Props, State> {
 
     render() {
         const {inputErRiktigFormatert, visKalender} = this.state;
-
+        const classNameFraProps = this.props.className ? this.props.className : '';
         return (
-            <div className="datovelger__outer">
+            <div className={`datovelger__outer ${classNameFraProps}`}>
                 <div className="datovelger">
                     <div className="datovelger__inner">
                         <DatoInputfelt
