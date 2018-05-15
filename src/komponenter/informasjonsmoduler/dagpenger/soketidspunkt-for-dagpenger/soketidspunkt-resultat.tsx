@@ -41,6 +41,7 @@ class SoketidspunktResultat extends React.Component<Props> {
     render() {
         return (
             <div className="soketidspunkt-resultat">
+                {/* TODO Fjern topp=" " når PR i nav-frontend-snakkeboble er merget */}
                 <Snakkeboble topp=" " ikonClass="soketidspunkt-resultat__ikon">
                     <Normaltekst>
                         {this.byggResultattekst()}
