@@ -1,3 +1,4 @@
+// react-day-picker har ikke en typedef for sin addon MomentLocaleUtils. La til denne for å kunne importere fra addon.
 declare module 'react-day-picker/moment' {
     export interface LocaleUtils {
         formatDay(day: Date, locale: string): string;
