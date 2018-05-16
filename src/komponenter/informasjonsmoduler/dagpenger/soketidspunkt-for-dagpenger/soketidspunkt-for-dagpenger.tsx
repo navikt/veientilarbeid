@@ -16,7 +16,7 @@ type Props = DummyProp & InjectedIntlProps;
 interface State {
     dato: Moment;
     visResultatet: boolean;
-    inputErGyldig: boolean;
+    inputErRiktigFormatert: boolean;
 }
 
 class SoketidspunktForDagpenger extends React.Component<Props, State> {
@@ -24,7 +24,7 @@ class SoketidspunktForDagpenger extends React.Component<Props, State> {
         super(props);
         this.state = {
             dato: momentIDag(),
-            inputErGyldig: true,
+            inputErRiktigFormatert: true,
             visResultatet: false,
         };
     }
@@ -33,6 +33,7 @@ class SoketidspunktForDagpenger extends React.Component<Props, State> {
         this.setState({
             ...this.state,
             visResultatet: false,
+            inputErRiktigFormatert: true,
             dato: dato,
         });
     }
@@ -41,14 +42,14 @@ class SoketidspunktForDagpenger extends React.Component<Props, State> {
         event.preventDefault();
         this.setState({
             ...this.state,
-            visResultatet: this.state.inputErGyldig,
+            visResultatet: this.state.inputErRiktigFormatert,
         });
     }
 
-    inputErGyldig(erGyldig: boolean) {
+    settRiktigFormatert(riktigFormatert: boolean) {
         this.setState({
             ...this.state,
-            inputErGyldig: erGyldig
+            inputErRiktigFormatert: riktigFormatert,
         });
     }
 
@@ -64,7 +65,8 @@ class SoketidspunktForDagpenger extends React.Component<Props, State> {
                             className="soketidspunkt-for-dagpenger__form-input-felt"
                             velgDato={dato => this.velgDato(dato)}
                             dato={this.state.dato}
-                            inputErGyldig={erGyldig => this.inputErGyldig(erGyldig)}
+                            settRiktigFormatert={riktigFormatert => this.settRiktigFormatert(riktigFormatert)}
+                            inputRiktigFormatert={this.state.inputErRiktigFormatert}
                         />
                         <div className="soketidspunkt-for-dagpenger__form-input-knapp">
                             <Hovedknapp htmlType="submit">

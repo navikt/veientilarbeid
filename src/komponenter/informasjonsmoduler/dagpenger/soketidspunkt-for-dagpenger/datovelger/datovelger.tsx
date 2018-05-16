@@ -12,12 +12,12 @@ interface OwnProps {
     velgDato: (dato: Moment) => void;
     dato: Moment;
     className?: string;
-    inputErGyldig: (erGyldig: boolean) => void;
+    settRiktigFormatert: (riktigFormatert: boolean) => void;
+    inputRiktigFormatert: boolean;
 }
 
 interface State {
     visKalender: boolean;
-    inputErRiktigFormatert: boolean;
 }
 
 type Props = OwnProps & InjectedIntlProps;
@@ -30,7 +30,6 @@ class Datovelger extends React.Component<Props, State> {
         moment.locale('nb');
         this.state = {
             visKalender: false,
-            inputErRiktigFormatert: true,
         };
     }
 
@@ -38,9 +37,7 @@ class Datovelger extends React.Component<Props, State> {
         this.setState({
             ...this.state,
             visKalender: false,
-            inputErRiktigFormatert: true,
         });
-        this.props.inputErGyldig(true);
         this.props.velgDato(dato);
     }
 
@@ -58,16 +55,8 @@ class Datovelger extends React.Component<Props, State> {
         });
     }
 
-    settRiktigFormatert(riktigFormatert: boolean) {
-        this.setState({
-            ...this.state,
-            inputErRiktigFormatert: riktigFormatert,
-        });
-        this.props.inputErGyldig(riktigFormatert);
-    }
-
     render() {
-        const {inputErRiktigFormatert, visKalender} = this.state;
+        const {visKalender} = this.state;
         const classNameFraProps = this.props.className ? this.props.className : '';
         return (
             <div className={`datovelger__outer ${classNameFraProps}`}>
@@ -77,8 +66,8 @@ class Datovelger extends React.Component<Props, State> {
                             <DatoInputfelt
                                 valgtDato={this.props.dato}
                                 velgDato={(dato: Moment) => this.velgDato(dato)}
-                                inputErRiktigFormatert={(riktigFormatert) => this.settRiktigFormatert(riktigFormatert)}
-                                className={inputErRiktigFormatert ? '' : 'datovelger__input--harFeil'}
+                                inputErRiktigFormatert={this.props.settRiktigFormatert}
+                                className={this.props.inputRiktigFormatert ? '' : 'datovelger__input--harFeil'}
                             />
                             <button
                                 ref={node => this.kalenderKnapp = node}
@@ -102,7 +91,7 @@ class Datovelger extends React.Component<Props, State> {
                         }
                     </div>
                 </div>
-                {!inputErRiktigFormatert &&
+                {!this.props.inputRiktigFormatert &&
                     <div
                         role="alert"
                         aria-live="assertive"
