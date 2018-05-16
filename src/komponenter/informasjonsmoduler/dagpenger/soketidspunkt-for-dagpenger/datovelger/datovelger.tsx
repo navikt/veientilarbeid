@@ -12,6 +12,7 @@ interface OwnProps {
     velgDato: (dato: Moment) => void;
     dato: Moment;
     className?: string;
+    inputErGyldig: (erGyldig: boolean) => void;
 }
 
 interface State {
@@ -39,6 +40,7 @@ class Datovelger extends React.Component<Props, State> {
             visKalender: false,
             inputErRiktigFormatert: true,
         });
+        this.props.inputErGyldig(true);
         this.props.velgDato(dato);
     }
 
@@ -61,6 +63,7 @@ class Datovelger extends React.Component<Props, State> {
             ...this.state,
             inputErRiktigFormatert: riktigFormatert,
         });
+        this.props.inputErGyldig(riktigFormatert);
     }
 
     render() {
@@ -70,19 +73,21 @@ class Datovelger extends React.Component<Props, State> {
             <div className={`datovelger__outer ${classNameFraProps}`}>
                 <div className="datovelger">
                     <div className="datovelger__inner">
-                        <DatoInputfelt
-                            valgtDato={this.props.dato}
-                            velgDato={(dato: Moment) => this.velgDato(dato)}
-                            inputErRiktigFormatert={(riktigFormatert) => this.settRiktigFormatert(riktigFormatert)}
-                            className={inputErRiktigFormatert ? '' : 'datovelger__input--harFeil'}
-                        />
-                        <button
-                            ref={node => this.kalenderKnapp = node}
-                            className="js-toggle datovelger__toggleDayPicker"
-                            onClick={() => this.toggleKalender()}
-                            aria-pressed={this.state.visKalender}
-                            type="button"
-                        />
+                        <div className="datovelger__inputContainer">
+                            <DatoInputfelt
+                                valgtDato={this.props.dato}
+                                velgDato={(dato: Moment) => this.velgDato(dato)}
+                                inputErRiktigFormatert={(riktigFormatert) => this.settRiktigFormatert(riktigFormatert)}
+                                className={inputErRiktigFormatert ? '' : 'datovelger__input--harFeil'}
+                            />
+                            <button
+                                ref={node => this.kalenderKnapp = node}
+                                className="js-toggle datovelger__toggleDayPicker"
+                                onClick={() => this.toggleKalender()}
+                                aria-pressed={this.state.visKalender}
+                                type="button"
+                            />
+                        </div>
                         {visKalender &&
                             <Kalender
                                 valgtDato={this.props.dato.toDate()}

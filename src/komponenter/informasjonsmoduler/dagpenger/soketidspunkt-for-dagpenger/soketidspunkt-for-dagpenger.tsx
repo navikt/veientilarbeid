@@ -16,6 +16,7 @@ type Props = DummyProp & InjectedIntlProps;
 interface State {
     dato: Moment;
     visResultatet: boolean;
+    inputErGyldig: boolean;
 }
 
 class SoketidspunktForDagpenger extends React.Component<Props, State> {
@@ -23,6 +24,7 @@ class SoketidspunktForDagpenger extends React.Component<Props, State> {
         super(props);
         this.state = {
             dato: momentIDag(),
+            inputErGyldig: true,
             visResultatet: false,
         };
     }
@@ -39,7 +41,14 @@ class SoketidspunktForDagpenger extends React.Component<Props, State> {
         event.preventDefault();
         this.setState({
             ...this.state,
-            visResultatet: true,
+            visResultatet: this.state.inputErGyldig,
+        });
+    }
+
+    inputErGyldig(erGyldig: boolean) {
+        this.setState({
+            ...this.state,
+            inputErGyldig: erGyldig
         });
     }
 
@@ -55,6 +64,7 @@ class SoketidspunktForDagpenger extends React.Component<Props, State> {
                             className="soketidspunkt-for-dagpenger__form-input-felt"
                             velgDato={dato => this.velgDato(dato)}
                             dato={this.state.dato}
+                            inputErGyldig={erGyldig => this.inputErGyldig(erGyldig)}
                         />
                         <div className="soketidspunkt-for-dagpenger__form-input-knapp">
                             <Hovedknapp htmlType="submit">

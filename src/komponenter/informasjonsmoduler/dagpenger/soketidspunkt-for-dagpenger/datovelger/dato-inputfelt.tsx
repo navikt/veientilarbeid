@@ -26,17 +26,15 @@ class DatoInputfelt extends React.Component<Props> {
 
     render() {
         return (
-            <div className="datovelger__inputContainer">
-                <MaskedInput
-                    type="tel"
-                    mask="11.11.1111"
-                    autoComplete="off"
-                    placeholder="dd.mm.åååå"
-                    className={`datovelger__input ${this.props.className}`}
-                    value={ISODateTilInputDatostring(this.props.valgtDato)}
-                    onChange={event => this.endreDatoHvisGyldigFormattert(event.target.value)}
-                />
-            </div>
+            <MaskedInput
+                type="tel"
+                mask="11.11.1111"
+                autoComplete="off"
+                placeholder="dd.mm.åååå"
+                className={`datovelger__input ${this.props.className}`}
+                value={ISODateTilInputDatostring(this.props.valgtDato)}
+                onChange={event => this.endreDatoHvisGyldigFormattert(event.target.value)}
+            />
         );
     }
 }
