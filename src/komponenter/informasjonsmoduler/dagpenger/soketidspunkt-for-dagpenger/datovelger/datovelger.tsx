@@ -22,6 +22,8 @@ interface State {
 type Props = OwnProps & InjectedIntlProps;
 
 class Datovelger extends React.Component<Props, State> {
+    private kalenderKnapp: HTMLButtonElement | null;
+
     constructor(props: Props) {
         super(props);
         moment.locale('nb');
@@ -75,6 +77,7 @@ class Datovelger extends React.Component<Props, State> {
                             className={inputErRiktigFormatert ? '' : 'datovelger__input--harFeil'}
                         />
                         <button
+                            ref={node => this.kalenderKnapp = node}
                             className="js-toggle datovelger__toggleDayPicker"
                             onClick={() => this.toggleKalender()}
                             aria-pressed={this.state.visKalender}
@@ -83,7 +86,12 @@ class Datovelger extends React.Component<Props, State> {
                         {visKalender &&
                             <Kalender
                                 valgtDato={this.props.dato.toDate()}
-                                velgDato={(dato: Date) => this.velgDato(momentAsISO(dato))}
+                                velgDato={(dato: Date) => {
+                                    this.velgDato(momentAsISO(dato));
+                                    if (this.kalenderKnapp) {
+                                        this.kalenderKnapp.focus();
+                                    }
+                                }}
                                 lukk={() => this.lukkKalender()}
                             />
                         }
