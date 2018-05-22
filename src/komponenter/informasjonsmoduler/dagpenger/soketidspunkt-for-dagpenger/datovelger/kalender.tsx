@@ -59,6 +59,7 @@ class Kalender extends React.Component<Props> {
                     navbarElement={navigasjonsbar}
                     captionElement={<DatovelgerCaption date={this.props.valgtDato}/>}
                     selectedDays={this.props.valgtDato}
+                    initialMonth={this.props.valgtDato}
                     onDayClick={(dato) => this.props.velgDato(dato)}
                     containerProps={{tabIndex: 0}}
                 />

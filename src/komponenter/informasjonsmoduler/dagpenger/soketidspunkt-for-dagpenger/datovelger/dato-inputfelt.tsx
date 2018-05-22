@@ -18,7 +18,6 @@ class DatoInputfelt extends React.Component<Props> {
     endreDatoHvisGyldigFormattert(datostring: string) {
         if (erGyldigFormattertDato(datostring)) {
             this.props.velgDato(inputDatostringTilISODate(datostring));
-            this.props.inputErRiktigFormatert(true);
         } else {
             this.props.inputErRiktigFormatert(false);
         }
