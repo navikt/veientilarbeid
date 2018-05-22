@@ -75,6 +75,7 @@ class Datovelger extends React.Component<Props, State> {
                                 onClick={() => this.toggleKalender()}
                                 aria-pressed={this.state.visKalender}
                                 type="button"
+                                aria-label="datovelger-knapp"
                             />
                         </div>
                         {visKalender &&
