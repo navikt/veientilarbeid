@@ -185,11 +185,11 @@
 
 .datovelger {
   position: relative;
-  width: 10rem;
+  width: 100%;
   margin: auto;
 
   &__input {
-    width: 10rem;
+    width: 100%;
 
     padding: 0.45rem;
     background-color: @white;
@@ -225,11 +225,13 @@
 
   &__inner {
     display: inline-block;
+    width: 100%;
   }
 
   &__inputContainer {
     display: flex;
     margin-bottom: 0;
+    width: 100%;
   }
 
   &__toggleDayPicker {
@@ -251,11 +253,18 @@
   }
 }
 
-@fjern-ikon-bredde: 768px;
-
-@media (min-width: @fjern-ikon-bredde) {
+@media (min-width: @screen-sm-min) {
   .datovelger {
-    margin: unset;
+    margin: auto;
+    width: 15rem;
+
+    &-input {
+      width: 15rem;
+    }
+
+    &__inner {
+      width: auto;
+    }
 
     &__DayPicker {
       display: block;
@@ -270,6 +279,7 @@
     &__inputContainer {
       position: relative;
       margin-bottom: 0;
+      width: auto;
     }
 
     &__toggleDayPicker {
