@@ -12,23 +12,6 @@ function HvordanSokeJobber() {
     return (
         <div className="hvordansokejobber-container">
             <div className="hvordansokejobber">
-                <Lenkepanel href="/veiviserarbeidssoker/?situasjon=mistet-jobben">
-                    <div>
-                        <img
-                            src={blibedrejobbsoker}
-                            alt="blibedrejobbsoker"
-                            className="hvordansokejobber__illustrasjon"
-                        />
-                    </div>
-                    <div className="hvordansokejobber__tekster">
-                        <Systemtittel className="blokk-xs">
-                            <FormattedMessage id="overskrift-blibedrejobbsoker"/>
-                        </Systemtittel>
-                        <Element>
-                            <FormattedMessage id="beskrivelse-blibedrejobbsoker"/>
-                        </Element>
-                    </div>
-                </Lenkepanel>
                 <Lenkepanel href="/jobbsokerkompetanse/">
                     <div>
                         <img
@@ -43,6 +26,23 @@ function HvordanSokeJobber() {
                         </Systemtittel>
                         <Element>
                             <FormattedMessage id="beskrivelse-hvordansokejobber"/>
+                        </Element>
+                    </div>
+                </Lenkepanel>
+                <Lenkepanel href="/veiviserarbeidssoker/?situasjon=mistet-jobben">
+                    <div>
+                        <img
+                            src={blibedrejobbsoker}
+                            alt="blibedrejobbsoker"
+                            className="hvordansokejobber__illustrasjon"
+                        />
+                    </div>
+                    <div className="hvordansokejobber__tekster">
+                        <Systemtittel className="blokk-xs">
+                            <FormattedMessage id="overskrift-blibedrejobbsoker"/>
+                        </Systemtittel>
+                        <Element>
+                            <FormattedMessage id="beskrivelse-blibedrejobbsoker"/>
                         </Element>
                     </div>
                 </Lenkepanel>
