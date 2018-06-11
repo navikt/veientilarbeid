@@ -1,6 +1,6 @@
 import { Data as OppfolgingData } from '../../ducks/oppfolging';
 
-export const AKTIVITETSPLAN_URL = '/aktivitetsplan/';
+export const AKTIVITETSPLAN_REDIRECT_URL = '/aktivitetsplan/?redirected=true';
 export const DITTNAV_URL = '/dittnav/';
 
 export function erUnderOppfolging(oppfolging: OppfolgingData) {
@@ -11,10 +11,10 @@ export function harTattIBrukAktivitetsplan(oppfolging: OppfolgingData) {
     return !oppfolging.vilkarMaBesvares;
 }
 
-export function sendBrukerTilAktivitetsplan() {
-    window.location.href = AKTIVITETSPLAN_URL;
+export function redirectTilAktivitetsplan() {
+    window.location.href = AKTIVITETSPLAN_REDIRECT_URL;
 }
 
-export function sendBrukerTilDittNav() {
+export function redirectTilDittNav() {
     window.location.href = DITTNAV_URL;
 }
