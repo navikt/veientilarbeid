@@ -1,4 +1,4 @@
 export default {
-    underOppfolging: true,
+    underOppfolging: false,
     vilkarMaBesvares: false
 };
