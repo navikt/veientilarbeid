@@ -14,8 +14,8 @@ interface StateProps {
 
 type Props = StateProps;
 
-function mapTeksterTilNokler(tekster: any, locale: string) { // tslint:disable-line no-any
-    return Object.keys(tekster[locale])
+function mapTeksterTilNokler(tekster: any) { // tslint:disable-line no-any
+    return Object.keys(tekster)
         .map(key => ({key, value: `[${key}]`}))
         .reduce(
             (previous, current) => {
@@ -42,7 +42,7 @@ class IntlProvider extends React.Component<Props> {
             en: {...teksterFraState.en, ...lokaleTekster.en}
         };
 
-        const tekster = skalViseTekstnokler() ? mapTeksterTilNokler(alleTekster, 'nb') : alleTekster.nb;
+        const tekster = skalViseTekstnokler() ? mapTeksterTilNokler(alleTekster.nb) : alleTekster.nb;
 
         return (
             <Provider {...props} locale={locale} messages={tekster || []}>
