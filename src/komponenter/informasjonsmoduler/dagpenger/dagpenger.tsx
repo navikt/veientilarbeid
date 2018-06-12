@@ -59,7 +59,7 @@ class Dagpenger extends React.Component<Props> {
                     >
                         <div className="informasjonsmodul-ingress__wrapper">
                             <Ingress>
-                                Dagpenger er en delvis erstatning for tapt arbeidsinntekt når du mister jobben.
+                                {intl.messages['informasjonsmodul-dagpenger-ingress']}
                             </Ingress>
                         </div>
                         <EkspanderbartpanelGruppe
