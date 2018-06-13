@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import { parse } from 'query-string';
 
 const aktivitetsplanSvg = require('./aktivitetsplan.svg');
-const AKTIVITETSPLAN_PATH = '/aktivitetsplan/';
+export const AKTIVITETSPLAN_URL = '/aktivitetsplan/';
 
 interface State {
     nyRegistrering: boolean;
@@ -35,7 +35,7 @@ class Komigang extends React.PureComponent<{}, State> {
                             <FormattedMessage id={beskrivelseTekstId}/>
                         </Element>
                         <div className="nav-frontend-lenker">
-                            <a href={AKTIVITETSPLAN_PATH} className="lenke">
+                            <a href={AKTIVITETSPLAN_URL} className="lenke">
                                 <FormattedMessage id="lenke-komigang"/>
                             </a>
                             <HoyreChevron />
