@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { AppState } from '../../reducer';
 import { Data as OppfolgingData, selectOppfolging } from '../../ducks/oppfolging';
 import {
-    erUnderOppfolging, sendBrukerTilAktivitetsplan,
-    sendBrukerTilDittNav
+    erUnderOppfolging, redirectTilAktivitetsplan,
+    redirectTilDittNav
 } from './sjekk-oppfolging-utils';
 
 interface SjekkOppfolgingConfig {
@@ -25,8 +25,8 @@ type Props = OwnProps & StateProps;
 class SjekkOppfolging extends React.PureComponent<Props> {
     static defaultProps: Partial<Props> = {
         config: {
-            sendBrukerTilAktivitetsplan: sendBrukerTilAktivitetsplan,
-            sendBrukerTilDittNav: sendBrukerTilDittNav,
+            sendBrukerTilAktivitetsplan: redirectTilAktivitetsplan,
+            sendBrukerTilDittNav: redirectTilDittNav,
         }
     };
 
