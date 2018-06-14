@@ -4,6 +4,7 @@ import * as nb from 'react-intl/locale-data/nb';
 import lokaleTekster from './tekster/alle-tekster';
 import { AppState } from './reducer';
 import { connect } from 'react-redux';
+import { parse } from 'query-string';
 
 addLocaleData(nb);
 
@@ -13,19 +14,38 @@ interface StateProps {
 
 type Props = StateProps;
 
+function mapTeksterTilNokler(tekster: any) { // tslint:disable-line no-any
+    return Object.keys(tekster)
+        .map(key => ({key, value: `[${key}]`}))
+        .reduce(
+            (previous, current) => {
+                previous[current.key] = current.value;
+                return previous;
+            },
+            {}
+        );
+}
+
+function skalViseTekstnokler(): boolean {
+    const search = parse(window.location.search);
+    return !!search.vistekster;
+}
+
 class IntlProvider extends React.Component<Props> {
 
     render() {
         const {children, teksterFraState, ...props} = this.props;
         const locale = 'nb';
 
-        const tekster = {
+        const alleTekster = {
             nb: {...teksterFraState.nb, ...lokaleTekster.nb},
             en: {...teksterFraState.en, ...lokaleTekster.en}
         };
 
+        const tekster = skalViseTekstnokler() ? mapTeksterTilNokler(alleTekster.nb) : alleTekster.nb;
+
         return (
-            <Provider {...props} locale={locale} messages={tekster.nb || []}>
+            <Provider {...props} locale={locale} messages={tekster || []}>
                 {children}
             </Provider>
         );
