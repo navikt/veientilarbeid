@@ -17,6 +17,9 @@ prometheus:
   # NB: pus-decorator sine metrikker
   enabled: true
   path: arbeidssokerregistrering/internal/metrics
+resources: # Optional. See: http://kubernetes.io/docs/user-guide/compute-resources/
+  limits:
+    cpu: 3
 fasitResources:
   used:
   - alias: appres.cms
