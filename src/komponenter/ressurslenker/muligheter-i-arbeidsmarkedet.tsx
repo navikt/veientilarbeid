@@ -3,24 +3,24 @@ import { Element, Systemtittel } from 'nav-frontend-typografi';
 import { FormattedMessage } from 'react-intl';
 import Lenkepanel from 'nav-frontend-lenkepanel';
 
-const blibedrejobbsoker = require('./bli-bedre-jobbsoker.svg');
+const hvordansokejobber = require('./hvordan-soke-jobber.svg');
 
-export default function BliBedreJobbsoker() {
+export default function HvordanSokeJobber() {
     return (
-        <Lenkepanel href="/veiviserarbeidssoker/?situasjon=mistet-jobben">
+        <Lenkepanel href="/jobbsokerkompetanse/">
             <div>
                 <img
-                    src={blibedrejobbsoker}
-                    alt="blibedrejobbsoker"
+                    src={hvordansokejobber}
+                    alt="hvordansokejobber"
                     className="hvordansokejobber__illustrasjon"
                 />
             </div>
             <div className="hvordansokejobber__tekster">
                 <Systemtittel className="blokk-xs">
-                    <FormattedMessage id="overskrift-blibedrejobbsoker"/>
+                    <FormattedMessage id="overskrift-hvordansokejobber"/>
                 </Systemtittel>
                 <Element>
-                    <FormattedMessage id="beskrivelse-blibedrejobbsoker"/>
+                    <FormattedMessage id="beskrivelse-hvordansokejobber"/>
                 </Element>
             </div>
         </Lenkepanel>
