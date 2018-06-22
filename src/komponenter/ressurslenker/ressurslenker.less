@@ -1,51 +1,49 @@
-.ressurslenker-container {
-  background-color: @navLysGra;
-  padding: 4rem 0;
+.ressurslenker {
+    max-width: @screen-md-min;
+    margin: 0 auto;
+    text-align: center;
+
+    &__container {
+        background-color: @navLysGra;
+        padding: 4rem 0;
+    }
 }
 
-.ressurslenker {
-  max-width: @screen-md-min;
-  margin: 0 auto;
-  text-align: center;
-
-  /*TODO lag en css klasse for a > span */
-  a {
+.ressurslenke {
     padding: 1rem;
-    > span {
-      .ressurslenker__illustrasjon {
+
+    &__illustrasjon {
         margin: 1rem;
-      }
-      .ressurslenker__tekster {
-        margin: 1rem auto;
-        max-width: 27rem;
-      }
     }
-  }
 
-  a > .typo-undertittel.lenkepanel__heading {
-    width: 100%;
-  }
+    &__tekst {
+        margin: 1rem auto;
+        max-width: 30rem;
+    }
 
+    > .lenkepanel__heading {
+        width: 100%;
+    }
 }
 
 @media (min-width: @screen-sm-min) {
-  .ressurslenker {
-    text-align: left;
-
-    /*TODO lag en css klasse for a > span */
-    a {
-      padding: 2rem;
-      > span {
-        display: flex;
-
-        .ressurslenker__illustrasjon {
-          margin: 0 1rem;
-        }
-
-        .ressurslenker__tekster {
-          margin: 1rem 1rem 1rem 2rem;
-        }
-      }
+    .ressurslenker {
+        text-align: left;
     }
-  }
+
+    .ressurslenke {
+        padding: 2rem;
+
+        &__illustrasjon {
+            margin: 0 1rem;
+        }
+
+        &__tekst {
+            margin: 1rem 1rem 1rem 2rem;
+        }
+
+        > .lenkepanel__heading {
+            display: flex;
+        }
+    }
 }

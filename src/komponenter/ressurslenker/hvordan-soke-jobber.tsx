@@ -7,15 +7,15 @@ const hvordansokejobber = require('./hvordan-soke-jobber.svg');
 
 export default function HvordanSokeJobber() {
     return (
-        <Lenkepanel href="/jobbsokerkompetanse/">
+        <Lenkepanel className="ressurslenke" href="/jobbsokerkompetanse/">
             <div>
                 <img
                     src={hvordansokejobber}
                     alt="hvordansokejobber"
-                    className="ressurslenker__illustrasjon"
+                    className="ressurslenke__illustrasjon"
                 />
             </div>
-            <div className="ressurslenker__tekster">
+            <div className="ressurslenke__tekst">
                 <Systemtittel className="blokk-xs">
                     <FormattedMessage id="overskrift-hvordansokejobber"/>
                 </Systemtittel>

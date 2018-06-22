@@ -7,15 +7,15 @@ const blibedrejobbsoker = require('./bli-bedre-jobbsoker.svg');
 
 export default function BliBedreJobbsoker() {
     return (
-        <Lenkepanel href="/veiviserarbeidssoker/?situasjon=mistet-jobben">
+        <Lenkepanel className="ressurslenke" href="/veiviserarbeidssoker/?situasjon=mistet-jobben">
             <div>
                 <img
                     src={blibedrejobbsoker}
                     alt="blibedrejobbsoker"
-                    className="ressurslenker__illustrasjon"
+                    className="ressurslenke__illustrasjon"
                 />
             </div>
-            <div className="ressurslenker__tekster">
+            <div className="ressurslenke__tekst">
                 <Systemtittel className="blokk-xs">
                     <FormattedMessage id="overskrift-blibedrejobbsoker"/>
                 </Systemtittel>
