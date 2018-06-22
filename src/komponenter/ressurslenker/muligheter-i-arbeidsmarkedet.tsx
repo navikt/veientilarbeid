@@ -7,15 +7,15 @@ const hvordansokejobber = require('./hvordan-soke-jobber.svg');
 
 export default function MuligheterIArbeidsmarkedet() {
     return (
-        <Lenkepanel href="/muligheter-i-arbeidsmarkedet/">
+        <Lenkepanel className="ressurslenke" href="/muligheter-i-arbeidsmarkedet/">
             <div>
                 <img
                     src={hvordansokejobber}
                     alt="Forstørrelsesglass"
-                    className="ressurslenker__illustrasjon"
+                    className="ressurslenke__illustrasjon"
                 />
             </div>
-            <div className="ressurslenker__tekster">
+            <div className="ressurslenke__tekst">
                 <Systemtittel className="blokk-xs">
                     <FormattedMessage id="mia-overskrift"/>
                 </Systemtittel>

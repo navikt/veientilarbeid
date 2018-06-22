@@ -5,6 +5,7 @@ declare module 'nav-frontend-lenkepanel' {
         tittelProps?: string;
         href: string;
         children?: {};
+        className?: string;
     }
 
     export default class Lenkepanel extends React.Component<ElementProps, {}> {}

@@ -7,7 +7,7 @@ export default function Ressurslenker() {
     // TODO I overskrift-blibedrejobbsoker brukes det nobreakspace implisitt. Burde bruke &nbsp; i alle
     // TODO mellomrom etter tankestreken.
     return (
-        <div className="ressurslenker-container">
+        <div className="ressurslenker__container">
             <div className="ressurslenker">
                 <MuligheterIArbeidsmarkedet />
                 <HvordanSokeJobber />
