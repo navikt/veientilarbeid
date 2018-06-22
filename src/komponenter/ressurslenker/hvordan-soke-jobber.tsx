@@ -12,10 +12,10 @@ export default function HvordanSokeJobber() {
                 <img
                     src={hvordansokejobber}
                     alt="hvordansokejobber"
-                    className="hvordansokejobber__illustrasjon"
+                    className="ressurslenker__illustrasjon"
                 />
             </div>
-            <div className="hvordansokejobber__tekster">
+            <div className="ressurslenker__tekster">
                 <Systemtittel className="blokk-xs">
                     <FormattedMessage id="overskrift-hvordansokejobber"/>
                 </Systemtittel>

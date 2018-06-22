@@ -5,22 +5,22 @@ import Lenkepanel from 'nav-frontend-lenkepanel';
 
 const hvordansokejobber = require('./hvordan-soke-jobber.svg');
 
-export default function HvordanSokeJobber() {
+export default function MuligheterIArbeidsmarkedet() {
     return (
-        <Lenkepanel href="/jobbsokerkompetanse/">
+        <Lenkepanel href="/muligheter-i-arbeidsmarkedet/">
             <div>
                 <img
                     src={hvordansokejobber}
-                    alt="hvordansokejobber"
-                    className="hvordansokejobber__illustrasjon"
+                    alt="Forstørrelsesglass"
+                    className="ressurslenker__illustrasjon"
                 />
             </div>
-            <div className="hvordansokejobber__tekster">
+            <div className="ressurslenker__tekster">
                 <Systemtittel className="blokk-xs">
-                    <FormattedMessage id="overskrift-hvordansokejobber"/>
+                    <FormattedMessage id="mia-overskrift"/>
                 </Systemtittel>
                 <Element>
-                    <FormattedMessage id="beskrivelse-hvordansokejobber"/>
+                    <FormattedMessage id="mia-beskrivelse"/>
                 </Element>
             </div>
         </Lenkepanel>
