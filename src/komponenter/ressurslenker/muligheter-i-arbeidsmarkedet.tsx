@@ -6,6 +6,9 @@ import Lenkepanel from 'nav-frontend-lenkepanel';
 const hvordansokejobber = require('./hvordan-soke-jobber.svg');
 
 export default function MuligheterIArbeidsmarkedet() {
+    if (!document.location.href.includes('visMia=true')) {
+        return null;
+    }
     return (
         <Lenkepanel className="ressurslenke" href="/muligheter-i-arbeidsmarkedet/">
             <div>
