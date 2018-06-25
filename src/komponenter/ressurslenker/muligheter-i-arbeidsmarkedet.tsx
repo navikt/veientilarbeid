@@ -10,7 +10,7 @@ export default function MuligheterIArbeidsmarkedet() {
         return null;
     }
     return (
-        <Lenkepanel className="ressurslenke" href="/muligheter-i-arbeidsmarkedet/">
+        <Lenkepanel className="ressurslenke" href="/mia/">
             <img
                 src={hvordansokejobber}
                 alt="Forstørrelsesglass"
