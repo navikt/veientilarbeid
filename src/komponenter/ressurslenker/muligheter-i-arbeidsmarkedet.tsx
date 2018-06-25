@@ -3,7 +3,7 @@ import { Element, Systemtittel } from 'nav-frontend-typografi';
 import { FormattedMessage } from 'react-intl';
 import Lenkepanel from 'nav-frontend-lenkepanel';
 
-const hvordansokejobber = require('./hvordan-soke-jobber.svg');
+const hvordansokejobber = require('./muligheter-i-arbeidsmarkedet.svg');
 
 export default function MuligheterIArbeidsmarkedet() {
     if (!document.location.href.includes('visMia=true')) {
@@ -11,7 +11,7 @@ export default function MuligheterIArbeidsmarkedet() {
     }
     return (
         <Lenkepanel className="ressurslenke" href="/muligheter-i-arbeidsmarkedet/">
-            <div>
+            <div className="ressurslenke__illustrasjon-wrapper">
                 <img
                     src={hvordansokejobber}
                     alt="Forstørrelsesglass"

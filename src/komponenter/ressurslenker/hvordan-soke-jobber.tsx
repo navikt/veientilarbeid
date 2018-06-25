@@ -8,7 +8,7 @@ const hvordansokejobber = require('./hvordan-soke-jobber.svg');
 export default function HvordanSokeJobber() {
     return (
         <Lenkepanel className="ressurslenke" href="/jobbsokerkompetanse/">
-            <div>
+            <div className="ressurslenke__illustrasjon-wrapper">
                 <img
                     src={hvordansokejobber}
                     alt="hvordansokejobber"
