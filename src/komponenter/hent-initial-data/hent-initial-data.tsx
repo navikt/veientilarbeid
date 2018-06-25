@@ -19,7 +19,7 @@ interface DispatchProps {
 
 type Props = StateProps & DispatchProps & OwnProps;
 
-class OppfolgingProvider extends React.Component<Props> {
+class HentInitialData extends React.Component<Props> {
     componentWillMount() {
         this.props.hentOppfolging();
     }
@@ -48,4 +48,4 @@ const mapDispatchToProps = (dispatch: Dispatch<AppState>): DispatchProps => ({
         hentOppfolging: () => dispatch(hentOppfolging())
     });
 
-export default connect(mapStateToProps, mapDispatchToProps)(OppfolgingProvider);
+export default connect(mapStateToProps, mapDispatchToProps)(HentInitialData);

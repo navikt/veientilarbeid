@@ -5,8 +5,8 @@ import IntlProvider from './Intl-provider';
 import './decorator/decorator-mock';
 import Home from './komponenter/home';
 import Overskrift from './komponenter/overskrift/overskrift';
-import OppfolgingProvider from './komponenter/oppfolging/oppfolging-provider';
-import SjekkOppfolging from './komponenter/oppfolging/sjekk-oppfolging';
+import HentInitialData from './komponenter/hent-initial-data/hent-initial-data';
+import SjekkOppfolging from './komponenter/hent-initial-data/sjekk-oppfolging';
 import HentTekster from './komponenter/tekstfetching/hent-tekster';
 
 const store = getStore();
@@ -17,14 +17,14 @@ class App extends React.Component {
             <Provider store={store}>
                 <HentTekster>
                     <IntlProvider>
-                        <OppfolgingProvider>
+                        <HentInitialData>
                             <SjekkOppfolging>
                                 <main id="maincontent" role="main" tabIndex={-1}>
                                     <Overskrift/>
                                     <Home/>
                                 </main>
                             </SjekkOppfolging>
-                        </OppfolgingProvider>
+                        </HentInitialData>
                     </IntlProvider>
                 </HentTekster>
             </Provider>
