@@ -11,13 +11,11 @@ export default function MuligheterIArbeidsmarkedet() {
     }
     return (
         <Lenkepanel className="ressurslenke" href="/muligheter-i-arbeidsmarkedet/">
-            <div className="ressurslenke__illustrasjon-wrapper">
-                <img
-                    src={hvordansokejobber}
-                    alt="Forstørrelsesglass"
-                    className="ressurslenke__illustrasjon"
-                />
-            </div>
+            <img
+                src={hvordansokejobber}
+                alt="Forstørrelsesglass"
+                className="ressurslenke__illustrasjon"
+            />
             <div className="ressurslenke__tekst">
                 <Systemtittel className="blokk-xs">
                     <FormattedMessage id="mia-overskrift"/>
