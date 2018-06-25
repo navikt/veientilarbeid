@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Komigang from './komigang/kom-i-gang';
-import HvordanSokeJobber from './hvordansokejobber/hvordansokejobber';
+import Ressurslenker from './ressurslenker/ressurslenker';
 import Dagpenger from './informasjonsmoduler/dagpenger/dagpenger';
 
 function Home() {
@@ -8,7 +8,7 @@ function Home() {
         <>
             <Komigang/>
             <Dagpenger/>
-            <HvordanSokeJobber/>
+            <Ressurslenker/>
         </>
     );
 }
