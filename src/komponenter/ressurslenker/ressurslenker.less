@@ -1,0 +1,51 @@
+.ressurslenker {
+    max-width: @screen-md-min;
+    margin: 0 auto;
+    text-align: center;
+
+    &__container {
+        background-color: @navLysGra;
+        padding: 4rem 0;
+    }
+}
+
+.ressurslenke {
+    padding: 1rem;
+
+    &__illustrasjon {
+        margin: 1rem;
+    }
+
+    &__tekst {
+        margin: 1rem auto;
+        max-width: 30rem;
+    }
+
+    > .lenkepanel__heading {
+        width: 100%;
+    }
+}
+
+@media (min-width: @screen-sm-min) {
+    .ressurslenker {
+        text-align: left;
+    }
+
+    .ressurslenke {
+        padding: 2rem;
+
+        &__illustrasjon {
+            display: block;
+            width: 116px;
+            height: 116px;
+        }
+
+        &__tekst {
+            margin: 1rem 1rem 1rem 2rem;
+        }
+
+        > .lenkepanel__heading {
+            display: flex;
+        }
+    }
+}
