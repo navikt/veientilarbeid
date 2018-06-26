@@ -18,7 +18,7 @@ if (MOCK_TEKSTER) {
 }
 
 if (MOCK_FEATURE_TOGGLES) {
-    (mock as any).get(`${FEATURE_URL}`, respondWith(delayed(1000, featureTogglesMock)));
+    (mock as any).get(`express:${FEATURE_URL}(.*)`, respondWith(delayed(1000, featureTogglesMock)));
 }
 
 (mock as any).mock('*', respondWith((url: string, config: {}) => mock.realFetch.call(window, url, config)));
