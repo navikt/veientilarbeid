@@ -36,7 +36,6 @@ class MuligheterIArbeidsmarkedet extends React.Component<StateProps> {
     }
 }
 
-
 const mapStateToProps = (state: AppState): StateProps => ({
     visMia: state.featureToggles.data['veientilarbeid.mia'],
 });
