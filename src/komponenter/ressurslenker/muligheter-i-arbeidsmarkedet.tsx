@@ -25,10 +25,10 @@ class MuligheterIArbeidsmarkedet extends React.Component<StateProps> {
                 />
                 <div className="ressurslenke__tekst">
                     <Systemtittel className="blokk-xs">
-                        <FormattedMessage id="mia-overskrift"/>
+                        <FormattedMessage id="overskrift-mia"/>
                     </Systemtittel>
                     <Element>
-                        <FormattedMessage id="mia-beskrivelse"/>
+                        <FormattedMessage id="beskrivelse-mia"/>
                     </Element>
                 </div>
             </Lenkepanel>
