@@ -5,10 +5,12 @@ import Lenkepanel from 'nav-frontend-lenkepanel';
 
 const hvordansokejobber = require('./meldekort.svg');
 
+export const MELDEKORT_URL = '/meldekort/';
+
 class Meldekort extends React.Component {
     render() {
         return (
-            <Lenkepanel className="ressurslenke" href="/meldekort/">
+            <Lenkepanel className="ressurslenke" href={MELDEKORT_URL}>
                 <img
                     src={hvordansokejobber}
                     alt="Forstørrelsesglass"
