@@ -28,7 +28,7 @@ class Komigang extends React.PureComponent<{}, State> {
                         <img src={aktivitetsplanSvg} alt="aktivitetsplan-illustrasjon" className="illustrasjon"/>
                     </div>
                     <div className="komigang__tekst">
-                        <Innholdstittel className="blokk-s">
+                        <Innholdstittel tag="h2" className="blokk-s">
                             <FormattedMessage id="overskrift-komigang"/>
                         </Innholdstittel>
                         <Element className="blokk-m">

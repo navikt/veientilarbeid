@@ -1,6 +1,5 @@
 import * as React from 'react';
 import BliBedreJobbsoker from './bli-bedre-jobbsoker';
-import HvordanSokeJobber from './hvordan-soke-jobber';
 import MuligheterIArbeidsmarkedet from './muligheter-i-arbeidsmarkedet';
 import Meldekort from './meldekort';
 
@@ -12,7 +11,6 @@ export default function Ressurslenker() {
             <div className="ressurslenker">
                 <Meldekort />
                 <MuligheterIArbeidsmarkedet />
-                <HvordanSokeJobber />
                 <BliBedreJobbsoker />
             </div>
         </div>
