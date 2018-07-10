@@ -1,5 +1,5 @@
 const featureTogglesMock = {
-    'veientilarbeid.mia': false,
+    'veientilarbeid.mia': true,
 };
 
 export default featureTogglesMock;
