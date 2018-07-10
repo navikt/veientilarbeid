@@ -13,7 +13,7 @@ class Meldekort extends React.Component {
             <Lenkepanel className="ressurslenke" href={MELDEKORT_URL}>
                 <img
                     src={hvordansokejobber}
-                    alt="Forstørrelsesglass"
+                    alt="Konvolutt med brev"
                     className="ressurslenke__illustrasjon"
                 />
                 <div className="ressurslenke__tekst">
