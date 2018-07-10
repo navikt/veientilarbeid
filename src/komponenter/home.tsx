@@ -7,8 +7,8 @@ function Home() {
     return (
         <>
             <Komigang/>
-            <Dagpenger/>
             <Ressurslenker/>
+            <Dagpenger/>
         </>
     );
 }
