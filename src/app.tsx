@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import getStore from './store';
 import IntlProvider from './Intl-provider';
 import './decorator/decorator-mock';
-import Home from './komponenter/home';
+import Innhold from './komponenter/innhold/innhold';
 import Overskrift from './komponenter/overskrift/overskrift';
 import HentInitialData from './komponenter/hent-initial-data/hent-initial-data';
 import SjekkOppfolging from './komponenter/hent-initial-data/sjekk-oppfolging';
@@ -21,7 +21,7 @@ class App extends React.Component {
                             <SjekkOppfolging>
                                 <main id="maincontent" role="main" tabIndex={-1}>
                                     <Overskrift/>
-                                    <Home/>
+                                    <Innhold/>
                                 </main>
                             </SjekkOppfolging>
                         </HentInitialData>
