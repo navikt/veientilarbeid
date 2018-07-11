@@ -5,7 +5,7 @@ import Lenkepanel from 'nav-frontend-lenkepanel';
 
 const hvordansokejobber = require('./meldekort.svg');
 
-export const MELDEKORT_URL = '/meldekort/';
+export const MELDEKORT_URL = 'https://www.nav.no/no/Person/Arbeid/Dagpenger+ved+arbeidsloshet+og+permittering/Meldekort+hvordan+gjor+du+det/Slik+sender+du+elektroniske+meldekort'; // tslint:disable-line
 
 class Meldekort extends React.Component {
     render() {
