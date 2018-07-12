@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Element, Innholdstittel } from 'nav-frontend-typografi';
+import { Ingress, Innholdstittel } from 'nav-frontend-typografi';
 import { FormattedMessage } from 'react-intl';
 import { parse } from 'query-string';
 import LenkeMedChevron from '../lenke-med-chevron/lenke-med-chevron';
@@ -11,7 +11,7 @@ interface State {
     nyRegistrering: boolean;
 }
 
-class Aktivitetsplanen extends React.PureComponent<{}, State> {
+class Aktivitetsplan extends React.PureComponent<{}, State> {
     constructor(props: {}) {
         super(props);
         this.state = {
@@ -32,9 +32,9 @@ class Aktivitetsplanen extends React.PureComponent<{}, State> {
                     <Innholdstittel tag="h2" className="blokk-m">
                         <FormattedMessage id="overskrift-komigang"/>
                     </Innholdstittel>
-                    <Element className="blokk-l">
+                    <Ingress className="blokk-l">
                         <FormattedMessage id={beskrivelseTekstId}/>
-                    </Element>
+                    </Ingress>
                     <LenkeMedChevron path={AKTIVITETSPLAN_URL} className="aktivitetsplan__lenke-container">
                         <FormattedMessage id="lenke-komigang"/>
                     </LenkeMedChevron>
@@ -44,4 +44,4 @@ class Aktivitetsplanen extends React.PureComponent<{}, State> {
     }
 }
 
-export default Aktivitetsplanen;
+export default Aktivitetsplan;
