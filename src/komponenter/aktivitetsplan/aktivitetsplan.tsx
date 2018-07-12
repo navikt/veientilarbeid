@@ -20,7 +20,7 @@ class Aktivitetsplan extends React.PureComponent<{}, State> {
     }
 
     render() {
-        const beskrivelseTekstId = this.state.nyRegistrering ? 'beskrivelse-komigang-ny' : 'beskrivelse-komigang';
+        const beskrivelseTekstId = 'aktivitetsplan-beskrivelse' + (this.state.nyRegistrering ? '-ny' : '');
         return (
             <div className="aktivitetsplan">
                 <img
@@ -29,14 +29,14 @@ class Aktivitetsplan extends React.PureComponent<{}, State> {
                     className="aktivitetsplan__illustrasjon"
                 />
                 <div className="aktivitetsplan__tekst">
-                    <Innholdstittel tag="h2" className="blokk-m">
-                        <FormattedMessage id="overskrift-komigang"/>
+                    <Innholdstittel tag="h2" className="aktivitetsplan__overskrift" >
+                        <FormattedMessage id="aktivitetsplan-overskrift"/>
                     </Innholdstittel>
-                    <Ingress className="blokk-l">
+                    <Ingress >
                         <FormattedMessage id={beskrivelseTekstId}/>
                     </Ingress>
                     <LenkeMedChevron path={AKTIVITETSPLAN_URL} className="aktivitetsplan__lenke-container">
-                        <FormattedMessage id="lenke-komigang"/>
+                        <FormattedMessage id="aktivitetsplan-lenke"/>
                     </LenkeMedChevron>
                 </div>
             </div>

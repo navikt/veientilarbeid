@@ -2,6 +2,7 @@
     background-color: #efefef; // TODO Er dette en NAV-farge?
     border-radius: 8px;
     padding: 2rem;
+    height: 21rem;
 
     &__illustrasjon {
         display: none;
@@ -15,10 +16,14 @@
 @media (min-width: @screen-sm-min) {
     .aktivitetsplan {
         display: flex;
-        padding: 2.5rem 4rem;
 
         &__tekst {
-            padding: 0 5rem 0 9rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-left: 6rem;
+            height: 232px;
+            margin: auto 0;
         }
 
         &__illustrasjon {
@@ -28,7 +33,6 @@
 
         &__lenke-container {
             text-align: left;
-            margin-top: 4rem;
         }
     }
 }

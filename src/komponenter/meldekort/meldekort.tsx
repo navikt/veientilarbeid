@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { FormattedMessage } from 'react-intl';
+import { FormattedHTMLMessage, FormattedMessage } from 'react-intl';
 import LenkeMedChevron from '../lenke-med-chevron/lenke-med-chevron';
 
 const meldekort = require('./meldekort.svg');
@@ -17,11 +17,11 @@ class Meldekort extends React.Component {
                     className="meldekort__bilde"
                 />
                 <div className="meldekort__innhold">
-                    <Normaltekst className="blokk-xs">
-                        <FormattedMessage id="beskrivelse-meldekort"/>
+                    <Normaltekst className="meldekort__beskrivelse">
+                        <FormattedMessage id="meldekort-beskrivelse"/>
                     </Normaltekst>
                     <LenkeMedChevron path={MELDEKORT_URL} className="meldekort__lenke">
-                        Gå til meldekort
+                        <FormattedHTMLMessage id="meldekort-lenke"/>
                     </LenkeMedChevron>
                 </div>
             </div>

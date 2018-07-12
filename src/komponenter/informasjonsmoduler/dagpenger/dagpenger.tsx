@@ -49,7 +49,6 @@ class Dagpenger extends React.Component<Props> {
             <div className="informasjonsmoduler">
                 <div className="informasjonsmodul__wrapper">
                     <Informasjonsmodul
-                        id="informasjonsmodul"
                         tittel={intl.messages['informasjonsmodul-dagpenger-tittel']}
                         undertekst={intl.messages['informasjonsmodul-dagpenger-undertekst']}
                         figur="utklippstavle"

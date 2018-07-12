@@ -1,10 +1,9 @@
 import * as React from 'react';
 import LenkepanelMedBilde from '../lenkepanel-med-bilde/lenkepanel-med-bilde';
 import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
+import { FormattedMessage } from 'react-intl';
 
 export default function Ressurslenker() {
-    // TODO I overskrift-blibedrejobbsoker brukes det nobreakspace implisitt. Burde bruke &nbsp; i alle
-    // TODO mellomrom etter tankestreken.
     return (
         <div className="ressurslenker">
             <LenkepanelMedBilde
@@ -14,10 +13,10 @@ export default function Ressurslenker() {
                 href="/test"
             >
                 <Innholdstittel className="blokk-s">
-                    Muligheter i arbeidsmarkedet
+                    <FormattedMessage id="mia-overskrift" />
                 </Innholdstittel>
                 <Normaltekst className="blokk-s">
-                    Utforsk ledige stillinger i kart og se hvor mange stillinger det er i din bransje.
+                    <FormattedMessage id="mia-tekst" />
                 </Normaltekst>
             </LenkepanelMedBilde>
             <LenkepanelMedBilde
@@ -27,11 +26,10 @@ export default function Ressurslenker() {
                 href="/test"
             >
                 <Innholdstittel className="blokk-s">
-                    Jobbsøkertips
+                    <FormattedMessage id="jobbsokertips-overskrift" />
                 </Innholdstittel>
                 <Normaltekst className="blokk-s">
-                    Å søke jobb er en jobb i seg selv. Her er informasjon og råd om hva du bør gjøre for å styrke deg
-                    selv som jobbsøker.
+                    <FormattedMessage id="jobbsokertips-tekst" />
                 </Normaltekst>
             </LenkepanelMedBilde>
         </div>
