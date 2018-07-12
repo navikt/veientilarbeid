@@ -1,51 +1,31 @@
 .ressurslenker {
-    max-width: @screen-md-min;
-    margin: 0 auto;
-    text-align: center;
+    width: 100%;
+    margin-top: 2rem;
 
-    &__container {
-        // background-color: @navLysGra;
-        padding: 1rem 0;
-    }
-}
-
-.ressurslenke {
-    padding: 1rem;
-
-    &__illustrasjon {
-        margin: 1rem;
+    &__jobbsokertips {
+        padding-bottom: 0;
     }
 
-    &__tekst {
-        margin: 1rem auto;
-        max-width: 30rem;
+    &__mia {
+        padding-bottom: 1rem;
     }
 
-    > .lenkepanel__heading {
-        width: 100%;
+    .ressurslenke + .ressurslenke {
+        margin-top: 2rem;
     }
 }
 
 @media (min-width: @screen-sm-min) {
     .ressurslenker {
-        text-align: left;
-    }
+        display: flex;
 
-    .ressurslenke {
-        padding: 2rem;
+        .ressurslenke {
+            max-width: ~'calc(50% - 0.5rem)';
+            margin: 0 1rem 0 0;
 
-        &__illustrasjon {
-            display: block;
-            width: 116px;
-            height: 116px;
-        }
-
-        &__tekst {
-            margin: 1rem 1rem 1rem 2rem;
-        }
-
-        > .lenkepanel__heading {
-            display: flex;
+            + .ressurslenke {
+                margin: 0;
+            }
         }
     }
 }
