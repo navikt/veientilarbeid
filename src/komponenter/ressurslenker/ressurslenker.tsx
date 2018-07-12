@@ -31,7 +31,7 @@ export default function Ressurslenker() {
                 </Innholdstittel>
                 <Normaltekst className="blokk-s">
                     Å søke jobb er en jobb i seg selv. Her er informasjon og råd om hva du bør gjøre for å styrke deg
-                    selv som jobbsøker.{/*tslint:disable-line*/}
+                    selv som jobbsøker.
                 </Normaltekst>
             </LenkepanelMedBilde>
         </div>
