@@ -9,13 +9,18 @@
 
     &__lenke {
         text-align: center;
-        padding: 2rem 0 1rem;// margin-top: 1rem;
+        padding: 2rem 0 1rem;
+    }
+
+    &__tekst {
+        width: 100%; // IE-fix
     }
 }
 
 @media (min-width: @screen-sm-min) {
     .aktivitetsplan {
         display: flex;
+        align-items: center;
         height: 21rem;
 
         &__tekst {
