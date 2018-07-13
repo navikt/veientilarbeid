@@ -35,7 +35,7 @@ class Aktivitetsplan extends React.PureComponent<{}, State> {
                     <Ingress >
                         <FormattedMessage id={beskrivelseTekstId}/>
                     </Ingress>
-                    <LenkeMedChevron path={AKTIVITETSPLAN_URL} className="aktivitetsplan__lenke-container">
+                    <LenkeMedChevron path={AKTIVITETSPLAN_URL} className="aktivitetsplan__lenke">
                         <FormattedMessage id="aktivitetsplan-lenke"/>
                     </LenkeMedChevron>
                 </div>

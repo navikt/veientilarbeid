@@ -3,6 +3,9 @@ import LenkepanelMedBilde from '../lenkepanel-med-bilde/lenkepanel-med-bilde';
 import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 import { FormattedMessage } from 'react-intl';
 
+const JOBBSOKERTIPS_URL = '/veiviserarbeidssoker/';
+const MIA_URL = '/mia/';
+
 export default function Ressurslenker() {
     return (
         <div className="ressurslenker">
@@ -10,7 +13,7 @@ export default function Ressurslenker() {
                 className="ressurslenker__mia ressurslenke"
                 src={require('./mia.svg')}
                 alt="Norgeskart med forstørrelsesglass"
-                href="/test"
+                href={MIA_URL}
             >
                 <Innholdstittel className="blokk-s">
                     <FormattedMessage id="mia-overskrift" />
@@ -23,7 +26,7 @@ export default function Ressurslenker() {
                 className="ressurslenker__jobbsokertips ressurslenke"
                 src={require('./jobbsokertips.svg')}
                 alt="Jobbsøkerutstyr"
-                href="/test"
+                href={JOBBSOKERTIPS_URL}
             >
                 <Innholdstittel className="blokk-s">
                     <FormattedMessage id="jobbsokertips-overskrift" />
