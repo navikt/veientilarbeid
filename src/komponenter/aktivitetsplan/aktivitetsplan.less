@@ -1,0 +1,45 @@
+.aktivitetsplan {
+    background-color: #efefef; // TODO Er dette en NAV-farge?
+    border-radius: 8px;
+    padding: 2rem;
+
+    &__illustrasjon {
+        display: none;
+    }
+
+    &__lenke {
+        text-align: center;
+        padding: 2rem 0 1rem;
+    }
+
+    &__tekst {
+        width: 100%; // IE-fix
+    }
+}
+
+@media (min-width: @screen-sm-min) {
+    .aktivitetsplan {
+        display: flex;
+        align-items: center;
+        height: 21rem;
+
+        &__tekst {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-left: 6rem;
+            height: 232px;
+            margin: auto 0;
+        }
+
+        &__illustrasjon {
+            display: block;
+            margin-left: 1rem;
+        }
+
+        &__lenke {
+            text-align: left;
+            padding: 0;
+        }
+    }
+}

@@ -4,7 +4,6 @@ import { hentTekster, selectTekster, State as TeksterState } from '../../ducks/t
 import { AppState } from '../../reducer';
 import Innholdslaster from '../innholdslaster/innholdslaster';
 import Feilmelding from '../feilmeldinger/feilmelding';
-import { visInformasjonsmodul } from '../../utils/utils';
 
 interface OwnProps {
     children: React.ReactNode;
@@ -22,21 +21,11 @@ type Props = StateProps & DispatchProps & OwnProps;
 
 class HentTekster extends React.Component<Props> {
     componentWillMount() {
-        // Feature-toggle informasjonsmodul 2/3 (sjekk dagpenger.tsx)
-        if (!visInformasjonsmodul(location.search)) {
-            return;
-        }
-
         this.props.hentTekster();
     }
 
     render() {
         const { tekster, children } = this.props;
-
-        // Feature-toggle informasjonsmodul 3/3 (sjekk dagpenger.tsx)
-        if (!visInformasjonsmodul(location.search)) {
-            return children;
-        }
 
         // TODO Dette gjør at spinneren kjører to ganger. Fiks ved å legge til avhengighet i den andre innholdslasteren.
         return (

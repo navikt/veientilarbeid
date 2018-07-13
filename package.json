@@ -5,6 +5,7 @@
   "proxy": "http://localhost:8080",
   "private": true,
   "dependencies": {
+    "@types/classnames": "^2.2.4",
     "@types/react-maskedinput": "^4.0.3",
     "babel-polyfill": "6.26.0",
     "classnames": "^2.2.5",
