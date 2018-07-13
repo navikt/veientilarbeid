@@ -17,7 +17,7 @@ class Meldekort extends React.Component {
                     className="meldekort__bilde"
                 />
                 <div className="meldekort__innhold">
-                    <Normaltekst className="meldekort__beskrivelse">
+                    <Normaltekst className="meldekort__tekst">
                         <FormattedMessage id="meldekort-beskrivelse"/>
                     </Normaltekst>
                     <LenkeMedChevron path={MELDEKORT_URL} className="meldekort__lenke">

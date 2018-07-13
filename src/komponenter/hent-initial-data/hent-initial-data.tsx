@@ -30,13 +30,13 @@ class HentInitialData extends React.Component<Props> {
     }
 
     render() {
-        const { oppfolging, featureToggles, children } = this.props;
+        const { oppfolging, children } = this.props;
 
         return (
             <Innholdslaster
                 feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse"/>}
                 storrelse="XXL"
-                avhengigheter={[oppfolging, featureToggles]}
+                avhengigheter={[oppfolging]}
             >
                 {children}
             </Innholdslaster>
