@@ -11,7 +11,6 @@ import SoketidspunktForDagpenger from './soketidspunkt-for-dagpenger/soketidspun
 import UnderpanelInnhold from './underpanel-innhold/underpanel-innhold';
 import {
     ekspanderInformasjonsmodul, visRettTilDagPenger,
-    visInformasjonsmodul
 } from '../../../utils/utils';
 
 const SOKNAD_OM_DAGPENGER_PATH = '/veiledearbeidssoker/mistet-jobben/dagpenger-soknadsprosess';
@@ -33,11 +32,6 @@ class Dagpenger extends React.Component<Props> {
     render() {
         const intl = this.props.intl;
 
-        // Feature-toggle informasjonsmodul 1/3 (sjekk hent-tekster.tsx)
-        if (!visInformasjonsmodul(location.search)) {
-            return (null);
-        }
-
         const fellesEkspanderbartpanelProps = {
             tittelProps: 'element',
             // tslint:disable-next-line
@@ -49,7 +43,6 @@ class Dagpenger extends React.Component<Props> {
             <div className="informasjonsmoduler">
                 <div className="informasjonsmodul__wrapper">
                     <Informasjonsmodul
-                        id="informasjonsmodul"
                         tittel={intl.messages['informasjonsmodul-dagpenger-tittel']}
                         undertekst={intl.messages['informasjonsmodul-dagpenger-undertekst']}
                         figur="utklippstavle"

@@ -1,18 +1,40 @@
 import * as React from 'react';
-import BliBedreJobbsoker from './bli-bedre-jobbsoker';
-import MuligheterIArbeidsmarkedet from './muligheter-i-arbeidsmarkedet';
-import Meldekort from './meldekort';
+import LenkepanelMedBilde from '../lenkepanel-med-bilde/lenkepanel-med-bilde';
+import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
+import { FormattedMessage } from 'react-intl';
+
+const JOBBSOKERTIPS_URL = '/veiviserarbeidssoker/';
+const MIA_URL = '/mia/';
 
 export default function Ressurslenker() {
-    // TODO I overskrift-blibedrejobbsoker brukes det nobreakspace implisitt. Burde bruke &nbsp; i alle
-    // TODO mellomrom etter tankestreken.
     return (
-        <div className="ressurslenker__container">
-            <div className="ressurslenker">
-                <Meldekort />
-                <MuligheterIArbeidsmarkedet />
-                <BliBedreJobbsoker />
-            </div>
+        <div className="ressurslenker">
+            <LenkepanelMedBilde
+                className="ressurslenker__mia ressurslenke"
+                src={require('./mia.svg')}
+                alt="Norgeskart med forstørrelsesglass"
+                href={MIA_URL}
+            >
+                <Innholdstittel className="blokk-s">
+                    <FormattedMessage id="mia-overskrift" />
+                </Innholdstittel>
+                <Normaltekst className="blokk-s">
+                    <FormattedMessage id="mia-tekst" />
+                </Normaltekst>
+            </LenkepanelMedBilde>
+            <LenkepanelMedBilde
+                className="ressurslenker__jobbsokertips ressurslenke"
+                src={require('./jobbsokertips.svg')}
+                alt="Jobbsøkerutstyr"
+                href={JOBBSOKERTIPS_URL}
+            >
+                <Innholdstittel className="blokk-s">
+                    <FormattedMessage id="jobbsokertips-overskrift" />
+                </Innholdstittel>
+                <Normaltekst className="blokk-s">
+                    <FormattedMessage id="jobbsokertips-tekst" />
+                </Normaltekst>
+            </LenkepanelMedBilde>
         </div>
     );
 }
