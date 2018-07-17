@@ -11,10 +11,6 @@ export function getCurrentUrlWithoutQueryParam(queryParam: string, baseUrl?: str
     );
 }
 
-export function visInformasjonsmodul(search: string) {
-    return parse(search).visInformasjonsmodul === 'true';
-}
-
 export function visRettTilDagPenger(search: string) {
     return parse(search).visdagpenger === 'true';
 }
