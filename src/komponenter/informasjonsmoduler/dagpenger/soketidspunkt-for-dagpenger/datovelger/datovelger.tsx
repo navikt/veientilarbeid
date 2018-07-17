@@ -8,6 +8,8 @@ import DatoInputfelt from './dato-inputfelt';
 import { momentAsISO } from '../moment-utils';
 import { Normaltekst } from 'nav-frontend-typografi';
 
+import './datovelger.less';
+
 interface OwnProps {
     velgDato: (dato: Moment) => void;
     dato: Moment;
