@@ -56,18 +56,22 @@
       .chevron-orientasjon-mixin(ned);
       color: white;
     }
+
+    .informasjonsmodul__hode {
+      border-radius: 8px;
+    }
   }
 
   &--apen {
 
     .informasjonsmodul__hode {
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
+      border-radius: 8px 8px 0 0;
     }
 
     .informasjonsmodul__innhold {
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
+      border-radius: 0 0 8px 8px;
+      border: 2px solid @navLysGra;
+      border-top: 0;
     }
 
     .informasjonsmodul__hode:hover:not(:focus),
