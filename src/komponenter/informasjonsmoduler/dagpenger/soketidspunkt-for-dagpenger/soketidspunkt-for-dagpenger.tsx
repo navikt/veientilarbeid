@@ -7,6 +7,8 @@ import { Element, Normaltekst } from 'nav-frontend-typografi';
 import SoketidspunktResultat from './soketidspunkt-resultat';
 import { Hovedknapp } from 'nav-frontend-knapper';
 
+import './soketidspunkt-for-dagpenger.less';
+
 interface DummyProp {
     dummy?: string; // TypeScript klager hvis props kun er InjectedIntlProps
 }

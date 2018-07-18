@@ -1,8 +1,6 @@
 @import '../../../../../../node_modules/nav-frontend-core/less/_variabler';
 @import '../../../../../../node_modules/nav-frontend-typografi-style/src/index';
 
-@datovelgerPath: 'komponenter/informasjonsmoduler/dagpenger/soketidspunkt-for-dagpenger/datovelger';
-
 /* Dette er i hovedsak tatt fra aktivitetsplan. */
 
 .DayPicker {
@@ -46,7 +44,7 @@
   cursor: pointer;
   border: 0;
   background: transparent data-uri(
-          '@{datovelgerPath}/pil-videre.svg'
+          './pil-videre.svg'
   ) no-repeat center;
   background-size: 1.25em 1.25em;
 
@@ -58,7 +56,7 @@
   &:focus,
   &:hover {
     background-image: data-uri(
-            '@{datovelgerPath}/pil-videre--hover.svg'
+            './pil-videre--hover.svg'
     );
   }
 
@@ -295,7 +293,7 @@
       padding: 0;
       position: absolute;
       background: transparent data-uri(
-              '@{datovelgerPath}/kalender.svg'
+              './kalender.svg'
       ) no-repeat center center;
       background-size: 16px 16px;
 
@@ -307,13 +305,13 @@
       &:hover:not(:disabled),
       &:focus {
         background-image: data-uri(
-                '@{datovelgerPath}/kalender--hover.svg'
+                './kalender--hover.svg'
         );
       }
 
       &:active {
         background-image: data-uri(
-                '@{datovelgerPath}/kalender--aktiv.svg'
+                './kalender--aktiv.svg'
         );
       }
     }
