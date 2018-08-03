@@ -9,7 +9,7 @@ const CREDENTIALS_SAME_ORIGIN = {
 
 export function hentOppfolging() {
     return fetchToJson({
-        url: `${VEILARBOPPFOLGINGPROXY_URL}/oppfolging`,
+        url: `${VEILARBOPPFOLGINGPROXY_URL}/oppfolging/`,
         config: CREDENTIALS_SAME_ORIGIN
     });
 }
