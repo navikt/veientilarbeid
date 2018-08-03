@@ -11,7 +11,7 @@ type Props = DummyProp & InjectedIntlProps;
 class RettTilDagpenger extends React.Component<Props> {
     render() {
         const intl = this.props.intl;
-        const arstall = parseInt(intl.messages['meta.arstall'], 10);
+        const arstall = new Date().getFullYear();
         const augmentedValues = {
             arstall,
             arstallMinusEn: arstall - 1,
