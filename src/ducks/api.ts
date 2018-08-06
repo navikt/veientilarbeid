@@ -15,6 +15,9 @@ export function hentOppfolging() {
 }
 
 export function hentFeatureToggles() {
+    if (alleFeatureToggles.length === 0) {
+        return Promise.resolve({});
+    }
     const parameters = alleFeatureToggles.map(element => 'feature=' + element).join('&');
     return fetchToJson({
         url: `${FEATURE_URL}/?${parameters}`,

@@ -9,7 +9,6 @@ export enum ActionTypes {
 }
 
 export interface Data {
-    'veientilarbeid.mia': boolean;
 }
 
 export interface State {
@@ -22,14 +21,10 @@ interface Action {
     data: Data;
 }
 
-export const alleFeatureToggles = [
-    'veientilarbeid.mia'
-];
+export const alleFeatureToggles = [];
 
 const initialState = {
-    data : {
-        'veientilarbeid.mia': false
-    },
+    data : {},
     status: STATUS.NOT_STARTED
 };
 
@@ -60,8 +55,4 @@ export function hentFeatureToggles() {
 
 export function selectFeatureToggles(state: AppState): State {
     return state.featureToggles;
-}
-
-export function selectMiaFeatureToggle(state: AppState): boolean {
-    return state.featureToggles.data['veientilarbeid.mia'];
 }
