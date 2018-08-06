@@ -8,7 +8,7 @@ const MOCK_OPPFOLGING = true;
 const MOCK_FEATURE_TOGGLES = true;
 
 if (MOCK_OPPFOLGING) {
-    (mock as any).get(`${VEILARBOPPFOLGINGPROXY_URL}/oppfolging`, respondWith(delayed(1000, oppfolgingResponse)));
+    (mock as any).get(`${VEILARBOPPFOLGINGPROXY_URL}/oppfolging/`, respondWith(delayed(1000, oppfolgingResponse)));
 }
 
 if (MOCK_FEATURE_TOGGLES) {

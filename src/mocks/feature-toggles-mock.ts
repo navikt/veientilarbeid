@@ -1,5 +1,3 @@
-const featureTogglesMock = {
-    'veientilarbeid.mia': true,
-};
+const featureTogglesMock = {};
 
 export default featureTogglesMock;
