@@ -13,7 +13,8 @@ import {
     ekspanderInformasjonsmodul, visRettTilDagPenger,
 } from '../../../utils/utils';
 
-const SOKNAD_OM_DAGPENGER_PATH = '/veiledearbeidssoker/mistet-jobben/dagpenger-soknadsprosess';
+const SOKNAD_OM_DAGPENGER_PATH =
+    'https://www.nav.no/no/Person/Skjemaer-for-privatpersoner/Skjemaer/Uten+arbeid/Dagpenger';
 
 interface DummyProp {
     dummy?: string; // TypeScript klager hvis props kun er InjectedIntlProps
