@@ -15,6 +15,7 @@ export interface State {
 
 export interface Data {
     underOppfolging?: boolean;
+    kanReaktiveres?: boolean;
     vilkarMaBesvares?: boolean; //    Bruker har åpnet aktivitetsplan og godtatt vilkår om denne er false
 }
 

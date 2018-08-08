@@ -1,4 +1,5 @@
 export default {
     underOppfolging: true,
-    vilkarMaBesvares: false
+    vilkarMaBesvares: false,
+    kanReaktiveres: true,
 };
