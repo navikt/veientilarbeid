@@ -16,7 +16,6 @@ export interface State {
 export interface Data {
     underOppfolging?: boolean;
     kanReaktiveres?: boolean;
-    vilkarMaBesvares?: boolean; //    Bruker har åpnet aktivitetsplan og godtatt vilkår om denne er false
 }
 
 interface Action {
@@ -47,7 +46,7 @@ export default function (state: State = initialState, action: Action): State {
 }
 
 export function hentOppfolging() {
-    return doThenDispatch(() => Api.hentOppfolging(), {
+    return doThenDispatch(() => Api.hentRegistreringStatus(), {
         PENDING: ActionTypes.HENT_OPPFOLGING_PENDING,
         OK: ActionTypes.HENT_OPPFOLGING_OK,
         FEILET: ActionTypes.HENT_OPPFOLGING_FEILET,
