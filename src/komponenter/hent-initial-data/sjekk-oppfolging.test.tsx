@@ -39,7 +39,7 @@ describe('<SjekkOppfolging />', () => {
 
     it('skal sende bruker til aktivitetsplan dersom bruker ikke er under oppfølging og har åpne aktivitetsplan', () => {
         const store = create();
-        const HAR_AAPNET_AKTIVITETSPLAN_IKKE_UNDER_OPPFOLGING = {underOppfolging: false, vilkarMaBesvares: false};
+        const HAR_AAPNET_AKTIVITETSPLAN_IKKE_UNDER_OPPFOLGING = {underOppfolging: false};
 
         const sendBrukerTilAktivitetsplanSpy = sandbox.spy(redirectTilAktivitetsplan);
         const sjekkOppfolgingConfig = {
