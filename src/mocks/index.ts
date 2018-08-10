@@ -1,14 +1,14 @@
 /*tslint:disable*/
 import {mock, respondWith, delayed } from './utils';
 import oppfolgingResponse from './oppfolging-mock';
-import {VEILARBOPPFOLGINGPROXY_URL, FEATURE_URL} from '../ducks/api';
+import {FEATURE_URL, VEILARBREGISTRERING_URL} from '../ducks/api';
 import featureTogglesMock from './feature-toggles-mock';
 
 const MOCK_OPPFOLGING = true;
 const MOCK_FEATURE_TOGGLES = true;
 
 if (MOCK_OPPFOLGING) {
-    (mock as any).get(`${VEILARBOPPFOLGINGPROXY_URL}/oppfolging/`, respondWith(delayed(1000, oppfolgingResponse)));
+    (mock as any).get(`${VEILARBREGISTRERING_URL}/startregistrering`, respondWith(delayed(1000, oppfolgingResponse)));
 }
 
 if (MOCK_FEATURE_TOGGLES) {

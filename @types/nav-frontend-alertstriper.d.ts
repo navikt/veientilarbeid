@@ -6,7 +6,7 @@ declare module "nav-frontend-alertstriper" {
         className?: string;
     }
 
-    export type AlertstripeTypes = 'advarsel' | 'suksess' | 'info';
+    export type AlertstripeTypes = 'advarsel' | 'suksess' | 'info' | 'stopp';
 
     interface AlertStripeMedTypeOgSolidProps extends AlertStripeProps {
         type: AlertstripeTypes;

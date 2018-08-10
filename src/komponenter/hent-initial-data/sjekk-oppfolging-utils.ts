@@ -7,10 +7,6 @@ export function erUnderOppfolging(oppfolging: OppfolgingData) {
     return oppfolging.underOppfolging;
 }
 
-export function harTattIBrukAktivitetsplan(oppfolging: OppfolgingData) {
-    return !oppfolging.vilkarMaBesvares;
-}
-
 export function redirectTilAktivitetsplan() {
     window.location.href = AKTIVITETSPLAN_REDIRECT_URL;
 }
