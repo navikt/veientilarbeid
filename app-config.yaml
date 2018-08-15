@@ -25,3 +25,5 @@ fasitResources:
   used:
   - alias: appres.cms
     resourceType: baseUrl
+  - alias: appdynamics
+    resourceType: applicationproperties
