@@ -1,4 +1,4 @@
 export default {
     underOppfolging: true,
-    kanReaktiveres: true,
+    kreverReaktivering: true,
 };
