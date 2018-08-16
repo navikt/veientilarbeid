@@ -9,15 +9,14 @@ port: 8080
 healthcheck:
   liveness:
     path: veientilarbeid/internal/isAlive
+    initialDelay: 20
   readiness:
     path: veientilarbeid/internal/selftest
-  readiness:
-    path: veientilarbeid/index.html
     initialDelay: 20
 prometheus:
   # NB: pus-decorator sine metrikker
   enabled: true
-  path: arbeidssokerregistrering/internal/metrics
+  path: veientilarbeid/internal/metrics
 resources: # Optional. See: http://kubernetes.io/docs/user-guide/compute-resources/
   limits:
     cpu: 3
