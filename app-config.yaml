@@ -33,3 +33,5 @@ fasitResources:
     resourceType: credential
   - alias: aad_b2c_discovery
     resourceType: baseurl
+
+webproxy: true
