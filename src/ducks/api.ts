@@ -23,7 +23,7 @@ const CREDENTIALS_SAME_ORIGIN = {
 
 export function hentRegistreringStatus() {
     return fetchToJson({
-        url: `${VEILARBREGISTRERING_URL}/startregistrering`,
+        url: `${VEILARBOPPFOLGINGPROXY_URL}/oppfolging`,
         config: {
             ...CREDENTIALS_SAME_ORIGIN,
             headers: getHeaders(),
