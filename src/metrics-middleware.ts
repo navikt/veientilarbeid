@@ -4,7 +4,7 @@ import {ActionTypes as FeatureTogglesTypes } from './ducks/feature-toggles';
 export const metricsMiddleWare = (store: any) => (next: any) => (action: any) => { // tslint:disable-line:no-any
     const { frontendlogger } = (window as any); // tslint:disable-line:no-any
 
-    export const feilTyper = [
+    const feilTyper = [
         {
             type: OppfolgingTypes.HENT_OPPFOLGING_FEILET,
             eventnavn: 'veientilarbeid.feil.hentoppfolging'
