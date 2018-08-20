@@ -7,11 +7,13 @@ export const metricsMiddleWare = (store: any) => (next: any) => (action: any) =>
     const feilTyper = [
         {
             type: OppfolgingTypes.HENT_OPPFOLGING_FEILET,
-            eventnavn: 'veientilarbeid.feil.hentoppfolging'
+            eventnavn: 'veientilarbeid.feil.hentoppfolging',
+            apikall: '/startregistrering'
         },
         {
             type: FeatureTogglesTypes.FEATURE_TOGGLES_FEILET,
-            eventnavn: 'veientilarbeid.feil.featuretoggle'
+            eventnavn: 'veientilarbeid.feil.featuretoggle',
+            apikall: '/feature'
         },
     ];
 
@@ -20,7 +22,7 @@ export const metricsMiddleWare = (store: any) => (next: any) => (action: any) =>
         if (action.type === feil.type) {
             if (frontendlogger) {
                 frontendlogger.event(feil.eventnavn,
-                                     {'useragent': navigator.userAgent}, {});
+                                     {'useragent': navigator.userAgent, apikall: feil.apikall}, {});
             }
         }
     });
