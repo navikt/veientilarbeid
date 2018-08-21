@@ -36,7 +36,7 @@ export default function (state: State = initialState, action: Action): State {
             }
             return {...state, status: STATUS.PENDING};
         case ActionTypes.HENT_OPPFOLGING_FEILET:
-            return {...state, status: STATUS.ERROR};
+            return {...state, status: STATUS.ERROR, data: action.data};
         case ActionTypes.HENT_OPPFOLGING_OK: {
             return {...state, status: STATUS.OK, data: action.data};
         }
