@@ -20,9 +20,12 @@ export const metricsMiddleWare = (store: any) => (next: any) => (action: any) =>
     /* Feil logging */
     feilTyper.map((feil) => {
         if (action.type === feil.type) {
+            const status = action.data.response.status;
+            const statusText = action.data.response.statusText;
+            const url = action.data.response.url;
             if (frontendlogger) {
                 frontendlogger.event(feil.eventnavn,
-                                     {'useragent': navigator.userAgent, apikall: feil.apikall, data: action.data}, {});
+                                     {'useragent': navigator.userAgent, url, status, statusText}, {});
             }
         }
     });
