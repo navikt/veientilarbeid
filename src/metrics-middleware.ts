@@ -22,7 +22,7 @@ export const metricsMiddleWare = (store: any) => (next: any) => (action: any) =>
         if (action.type === feil.type) {
             if (frontendlogger) {
                 frontendlogger.event(feil.eventnavn,
-                                     {'useragent': navigator.userAgent, apikall: feil.apikall}, {});
+                                     {'useragent': navigator.userAgent, apikall: feil.apikall, data: action.data}, {});
             }
         }
     });
