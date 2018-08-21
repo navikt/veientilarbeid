@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, compose, Store } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import reducer, { AppState } from './reducer';
+import { metricsMiddleWare } from './metrics-middleware';
 
 export function create(): Store<AppState> {
     /* tslint:disable-next-line */
@@ -9,7 +10,7 @@ export function create(): Store<AppState> {
     const composer = useExtension ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : compose;
 
     const composed = composer(
-        applyMiddleware(thunkMiddleware)
+        applyMiddleware(thunkMiddleware, metricsMiddleWare)
     );
 
     return composed(createStore)(reducer, {});
