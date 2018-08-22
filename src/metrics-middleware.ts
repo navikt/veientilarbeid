@@ -23,14 +23,19 @@ export const metricsMiddleWare = (store: any) => (next: any) => (action: any) =>
             if (frontendlogger) {
                 if (!action.data) {
                     frontendlogger.event(feil.eventnavn, {'statusText': 'Action data er undefined'}, {});
-                    return;
+                } else {
+                    const response = action.data.response || {};
+                    const status = response.status;
+                    const statusText = response.statusText;
+                    const url = response.url;
+                    frontendlogger.event(feil.eventnavn, {
+                        'useragent': navigator.userAgent,
+                        url,
+                        status,
+                        statusText,
+                        data: action.data
+                    },                   {});
                 }
-
-                const response = action.data.response || {};
-                const status = response.status;
-                const statusText = response.statusText;
-                const url = response.url;
-                frontendlogger.event(feil.eventnavn, {'useragent': navigator.userAgent, url, status, statusText, data: action.data }, {}); // tslint:disable-line:max-line-length
             }
         }
     });
