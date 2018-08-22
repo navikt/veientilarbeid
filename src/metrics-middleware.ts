@@ -20,12 +20,12 @@ export const metricsMiddleWare = (store: any) => (next: any) => (action: any) =>
     /* Feil logging */
     feilTyper.map((feil) => {
         if (action.type === feil.type) {
-            const status = action.data.response.status;
-            const statusText = action.data.response.statusText;
-            const url = action.data.response.url;
+            const response = action.data.response || {};
+            const status = response.status;
+            const statusText = response.statusText;
+            const url = response.url;
             if (frontendlogger) {
-                frontendlogger.event(feil.eventnavn,
-                                     {'useragent': navigator.userAgent, url, status, statusText}, {});
+                frontendlogger.event(feil.eventnavn, {'useragent': navigator.userAgent, url, status, statusText, data: action.data}, {}); // tslint:disable-line:max-line-length
             }
         }
     });
