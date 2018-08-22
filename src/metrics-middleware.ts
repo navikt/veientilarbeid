@@ -1,5 +1,5 @@
-import {ActionTypes as OppfolgingTypes } from './ducks/oppfolging';
-import {ActionTypes as FeatureTogglesTypes } from './ducks/feature-toggles';
+import { ActionTypes as OppfolgingTypes } from './ducks/oppfolging';
+import { ActionTypes as FeatureTogglesTypes } from './ducks/feature-toggles';
 
 export const metricsMiddleWare = (store: any) => (next: any) => (action: any) => { // tslint:disable-line:no-any
     const { frontendlogger } = (window as any); // tslint:disable-line:no-any
@@ -20,12 +20,17 @@ export const metricsMiddleWare = (store: any) => (next: any) => (action: any) =>
     /* Feil logging */
     feilTyper.map((feil) => {
         if (action.type === feil.type) {
-            const response = action.data.response || {};
-            const status = response.status;
-            const statusText = response.statusText;
-            const url = response.url;
             if (frontendlogger) {
-                frontendlogger.event(feil.eventnavn, {'useragent': navigator.userAgent, url, status, statusText, data: action.data}, {}); // tslint:disable-line:max-line-length
+                if (!action.data) {
+                    frontendlogger.event(feil.eventnavn, {'statusText': 'Action data er undefined'}, {});
+                    return;
+                }
+
+                const response = action.data.response || {};
+                const status = response.status;
+                const statusText = response.statusText;
+                const url = response.url;
+                frontendlogger.event(feil.eventnavn, {'useragent': navigator.userAgent, url, status, statusText, data: action.data }, {}); // tslint:disable-line:max-line-length
             }
         }
     });
