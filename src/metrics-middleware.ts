@@ -28,9 +28,11 @@ export const metricsMiddleWare = (store: any) => (next: any) => (action: any) =>
                     const status = response.status;
                     const statusText = response.statusText;
                     const url = response.url;
+                    const apikall = feil.apikall;
                     frontendlogger.event(feil.eventnavn, {
                         'useragent': navigator.userAgent,
                         url,
+                        apikall,
                         status,
                         statusText,
                         data: action.data
