@@ -8,12 +8,12 @@ export const metricsMiddleWare = (store: any) => (next: any) => (action: any) =>
         {
             type: OppfolgingTypes.HENT_OPPFOLGING_FEILET,
             eventnavn: 'veientilarbeid.feil.hentoppfolging',
-            apikall: '/startregistrering'
+            apikall: 'GET /startregistrering'
         },
         {
             type: FeatureTogglesTypes.FEATURE_TOGGLES_FEILET,
             eventnavn: 'veientilarbeid.feil.featuretoggle',
-            apikall: '/feature'
+            apikall: 'GET /feature'
         },
     ];
 
