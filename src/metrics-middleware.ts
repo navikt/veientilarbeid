@@ -8,12 +8,12 @@ export const metricsMiddleWare = (store: any) => (next: any) => (action: any) =>
         {
             type: OppfolgingTypes.HENT_OPPFOLGING_FEILET,
             eventnavn: 'veientilarbeid.feil.hentoppfolging',
-            apikall: '/startregistrering'
+            apikall: 'GET /startregistrering'
         },
         {
             type: FeatureTogglesTypes.FEATURE_TOGGLES_FEILET,
             eventnavn: 'veientilarbeid.feil.featuretoggle',
-            apikall: '/feature'
+            apikall: 'GET /feature'
         },
     ];
 
@@ -28,9 +28,11 @@ export const metricsMiddleWare = (store: any) => (next: any) => (action: any) =>
                     const status = response.status;
                     const statusText = response.statusText;
                     const url = response.url;
+                    const apikall = feil.apikall;
                     frontendlogger.event(feil.eventnavn, {
                         'useragent': navigator.userAgent,
                         url,
+                        apikall,
                         status,
                         statusText,
                         data: action.data
