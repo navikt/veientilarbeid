@@ -1,4 +1,14 @@
-### Kjøre lokalt i docker
+Veien til arbeid
+================
 
-1. `docker build -t <navn> .`
-2. `docker run -p 8080:8080 -t -e APPRES_CMS_URL=http://localhost:8080 <navn>`
+Veien til arbeid
+
+# Komme i gang
+ 
+* `npm start`
+
+## Utvikling med backend
+
+* Clone og start (StartJetty normal) `dev-proxy`  https://github.com/navikt/dev-proxy
+* Clone og start `veilarbregistrering` https://github.com/navikt/veilarbregistrering
+* Åpne appen i `localhost:8080`
