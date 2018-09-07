@@ -46,7 +46,7 @@ export default function (state: State = initialState, action: Action): State {
 }
 
 export function hentOppfolging() {
-    return doThenDispatch(() => Api.hentRegistreringStatus(), {
+    return doThenDispatch(() => Api.hentOppfolging(), {
         PENDING: ActionTypes.HENT_OPPFOLGING_PENDING,
         OK: ActionTypes.HENT_OPPFOLGING_OK,
         FEILET: ActionTypes.HENT_OPPFOLGING_FEILET,
