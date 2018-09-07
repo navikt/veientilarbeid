@@ -1,7 +1,6 @@
 import { fetchToJson } from './api-utils';
 import { alleFeatureToggles } from './feature-toggles';
 export const VEILARBOPPFOLGINGPROXY_URL = '/veilarboppfolgingproxy/api';
-export const VEILARBREGISTRERING_URL = '/veilarbregistrering/api';
 export const FEATURE_URL = '/feature';
 
 export const getCookie = (name: string) => {
@@ -21,9 +20,9 @@ const CREDENTIALS_SAME_ORIGIN = {
     credentials: ('same-origin' as RequestCredentials)
 };
 
-export function hentRegistreringStatus() {
+export function hentOppfolging() {
     return fetchToJson({
-        url: `${VEILARBREGISTRERING_URL}/startregistrering`,
+        url: `${VEILARBOPPFOLGINGPROXY_URL}/oppfolging`,
         config: {
             ...CREDENTIALS_SAME_ORIGIN,
             headers: getHeaders(),
