@@ -6,16 +6,16 @@ import { InjectedIntlProps, injectIntl } from 'react-intl';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 interface StateProps {
-    kreverReaktivering: boolean;
+    kanReaktiveres: boolean;
 }
 
 type Props = StateProps & InjectedIntlProps;
 
 class ReaktiveringMelding extends React.Component<Props> {
     render() {
-        const {kreverReaktivering, intl} = this.props;
+        const {kanReaktiveres, intl} = this.props;
 
-        if (!kreverReaktivering) {
+        if (!kanReaktiveres) {
             return null;
         }
         return (
@@ -32,7 +32,7 @@ class ReaktiveringMelding extends React.Component<Props> {
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
-    kreverReaktivering: !!state.oppfolging.data.kreverReaktivering,
+    kanReaktiveres: !!state.oppfolging.data.kanReaktiveres,
 });
 
 export default connect(mapStateToProps)(injectIntl(ReaktiveringMelding));
