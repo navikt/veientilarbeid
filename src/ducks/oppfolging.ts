@@ -15,7 +15,7 @@ export interface State {
 
 export interface Data {
     underOppfolging?: boolean;
-    kreverReaktivering?: boolean;
+    kanReaktiveres?: boolean;
 }
 
 interface Action {
