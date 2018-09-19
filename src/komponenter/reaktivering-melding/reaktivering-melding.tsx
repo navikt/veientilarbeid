@@ -19,7 +19,7 @@ class ReaktiveringMelding extends React.Component<Props> {
             return null;
         }
         return (
-            <AlertStripe type="stopp" className="reaktivering-melding">
+            <AlertStripe type="advarsel" className="reaktivering-melding">
                 <Normaltekst>
                     {intl.messages['reaktivering-melding-tekst']}&ensp;
                     <a href={intl.messages['reaktivering-melding-lenke-url']} className="lenke">
