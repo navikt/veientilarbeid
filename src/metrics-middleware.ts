@@ -1,5 +1,6 @@
 import { ActionTypes as OppfolgingTypes } from './ducks/oppfolging';
 import { ActionTypes as FeatureTogglesTypes } from './ducks/feature-toggles';
+import { ActionTypes as ServicegruppeTypes } from './ducks/servicegruppe';
 
 export const metricsMiddleWare = (store: any) => (next: any) => (action: any) => { // tslint:disable-line:no-any
     const { frontendlogger } = (window as any); // tslint:disable-line:no-any
@@ -14,6 +15,11 @@ export const metricsMiddleWare = (store: any) => (next: any) => (action: any) =>
             type: FeatureTogglesTypes.FEATURE_TOGGLES_FEILET,
             eventnavn: 'veientilarbeid.feil.featuretoggle',
             apikall: 'GET /feature'
+        },
+        {
+            type: ServicegruppeTypes.HENT_SERVICEGRUPPE_FEILET,
+            eventnavn: 'veientilarbeid.feil.servicegruppe',
+            apikall: 'GET /servicegruppe'
         },
     ];
 
