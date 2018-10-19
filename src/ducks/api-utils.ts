@@ -42,9 +42,9 @@ export function toJson(response: Response) {
     return response;
 }
 
-export function sendResultatTilDispatch(dispatch: Dispatch<AppState>, action: ActionType)  {
+export function sendResultatTilDispatch(dispatch: Dispatch<AppState>, action: ActionType) {
     return <S>(data: S): S => { // tslint:disable-line no-any
-        dispatch({ type: action, data });
+        dispatch({type: action, data});
         return data;
     };
 }
@@ -54,11 +54,11 @@ export function handterFeil(dispatch: Dispatch<AppState>, action: ActionType) {
         if (error.response) {
             error.response.text().then((data: string) => {
                 console.error(error, error.stack, data); // tslint:disable-line no-console
-                dispatch({ type: action, data: { response: error.response, data } });
+                dispatch({type: action, data: {response: error.response, data}});
             });
         } else {
             console.error(error, error.stack); // tslint:disable-line no-console
-            dispatch({ type: action, data: error.toString() });
+            dispatch({type: action, data: error.toString()});
         }
     };
 }
@@ -71,8 +71,9 @@ interface FetchToJson {
 
 export function fetchToJson<DATA>({
                                       url,
-                                      config = { },
-                                      recoverWith}: FetchToJson): Promise<DATA> {
+                                      config = {},
+                                      recoverWith
+                                  }: FetchToJson): Promise<DATA> {
 
     return fetch(url, config)
         .then(sjekkStatuskode(recoverWith))
@@ -86,11 +87,12 @@ interface RestActions {
 }
 
 export function doThenDispatch<DATA>(
-    fn: () => Promise<DATA> , { OK, FEILET, PENDING }: RestActions
-): ThunkAction<Promise<DATA|void>, AppState, void> {
+        fn: () => Promise<DATA>,
+        {OK, FEILET, PENDING}: RestActions
+    ): ThunkAction<Promise<DATA | void>, AppState, void> {
     return (dispatch: Dispatch<AppState>) => {
         if (PENDING) {
-            dispatch({ type: PENDING });
+            dispatch({type: PENDING});
         }
         return fn()
             .then(sendResultatTilDispatch(dispatch, OK))
