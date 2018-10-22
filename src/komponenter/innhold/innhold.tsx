@@ -8,9 +8,11 @@ import ReaktiveringMelding from '../reaktivering-melding/reaktivering-melding';
 import { selectServicegruppe, State as ServicegruppeState, SituasjonOption } from '../../ducks/servicegruppe';
 import { AppState } from '../../reducer';
 import { connect } from 'react-redux';
+import { selectHentServicegruppekodeFeatureToggle } from '../../ducks/feature-toggles';
 
 interface StateProps {
     servicegruppe: ServicegruppeState;
+    featureToggleServicegruppe: boolean;
 }
 
 type Props = StateProps;
@@ -30,7 +32,7 @@ class Innhold extends React.Component<Props> {
 
     render() {
         const innsatsgruppe = this.erInnsatsgruppe();
-
+        const {featureToggleServicegruppe} = this.props;
         return (
             <div className="innhold__wrapper">
                 <div className="innhold">
@@ -38,7 +40,7 @@ class Innhold extends React.Component<Props> {
                     <Aktivitetsplan />
                     <Meldekort />
                     <Ressurslenker />
-                    {innsatsgruppe && (
+                    {innsatsgruppe && featureToggleServicegruppe && (
                         <Tiltakinfo />
                     )}
                     <Dagpenger />
@@ -50,6 +52,7 @@ class Innhold extends React.Component<Props> {
 
 const mapStateToProps = (state: AppState): StateProps => ({
     servicegruppe: selectServicegruppe(state),
+    featureToggleServicegruppe: selectHentServicegruppekodeFeatureToggle(state),
 });
 
 export default connect(mapStateToProps)(Innhold);
