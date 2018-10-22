@@ -1,7 +1,12 @@
 import * as React from 'react';
 import { connect, Dispatch } from 'react-redux';
 import { hentOppfolging, selectOppfolging, State as OppfolgingState } from '../../ducks/oppfolging';
-import { hentFeatureToggles, selectFeatureToggles, State as FeatureTogglesState } from '../../ducks/feature-toggles';
+import {
+    hentFeatureToggles,
+    selectFeatureToggles ,
+    selectHentServicegruppekodeFeatureToggle,
+    State as FeatureTogglesState
+} from '../../ducks/feature-toggles';
 import { hentServicegruppe, selectServicegruppe, State as ServicegruppeState } from '../../ducks/servicegruppe';
 import { AppState } from '../../reducer';
 import Innholdslaster from '../innholdslaster/innholdslaster';
@@ -29,7 +34,9 @@ class HentInitialData extends React.Component<Props> {
     componentWillMount() {
         this.props.hentFeatureToggles().then(() => {
                 this.props.hentOppfolging();
-                this.props.hentServicegruppe();
+                if (selectHentServicegruppekodeFeatureToggle) {
+                    this.props.hentServicegruppe();
+                }
             }
         );
     }
