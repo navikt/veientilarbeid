@@ -4,7 +4,6 @@ import { hentOppfolging, selectOppfolging, State as OppfolgingState } from '../.
 import {
     hentFeatureToggles,
     selectFeatureToggles ,
-    selectHentServicegruppekodeFeatureToggle,
     State as FeatureTogglesState
 } from '../../ducks/feature-toggles';
 import { hentServicegruppe, selectServicegruppe, State as ServicegruppeState } from '../../ducks/servicegruppe';
@@ -32,23 +31,22 @@ type Props = StateProps & DispatchProps & OwnProps;
 
 class HentInitialData extends React.Component<Props> {
     componentWillMount() {
-        this.props.hentFeatureToggles().then(() => {
-                this.props.hentOppfolging();
-                if (selectHentServicegruppekodeFeatureToggle) {
-                    this.props.hentServicegruppe();
-                }
+        this.props.hentFeatureToggles().then((response) => {
+            this.props.hentOppfolging();
+            if (response['veientilarbeid.hentservicekode']) {
+                this.props.hentServicegruppe();
             }
-        );
+        });
     }
 
     render() {
-        const { oppfolging, servicegruppe, children } = this.props;
+        const { oppfolging, children } = this.props;
 
         return (
             <Innholdslaster
                 feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse"/>}
                 storrelse="XXL"
-                avhengigheter={[oppfolging, servicegruppe]}
+                avhengigheter={[oppfolging]}
             >
                 {children}
             </Innholdslaster>
