@@ -3,7 +3,7 @@ import { connect, Dispatch } from 'react-redux';
 import { hentOppfolging, selectOppfolging, State as OppfolgingState } from '../../ducks/oppfolging';
 import {
     hentFeatureToggles,
-    selectFeatureToggles ,
+    selectFeatureToggles, selectHentServicegruppekodeFeatureToggle,
     State as FeatureTogglesState
 } from '../../ducks/feature-toggles';
 import { hentServicegruppe, selectServicegruppe, State as ServicegruppeState } from '../../ducks/servicegruppe';
@@ -19,6 +19,7 @@ interface StateProps {
     oppfolging: OppfolgingState;
     featureToggles: FeatureTogglesState;
     servicegruppe: ServicegruppeState;
+    featureToggleServicegruppe: boolean;
 }
 
 interface DispatchProps {
@@ -33,20 +34,22 @@ class HentInitialData extends React.Component<Props> {
     componentWillMount() {
         this.props.hentFeatureToggles().then((response) => {
             this.props.hentOppfolging();
-            if (response['veientilarbeid.hentservicekode']) {
+            const featureToggleServicegruppe = response['veientilarbeid.hentservicekode'];
+            if (featureToggleServicegruppe) {
                 this.props.hentServicegruppe();
             }
         });
     }
 
     render() {
-        const { oppfolging, children } = this.props;
+        const { oppfolging, servicegruppe, featureToggleServicegruppe, children } = this.props;
 
+        const avhengigheter = featureToggleServicegruppe ? [oppfolging, servicegruppe] : [oppfolging];
         return (
             <Innholdslaster
                 feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse"/>}
                 storrelse="XXL"
-                avhengigheter={[oppfolging]}
+                avhengigheter={avhengigheter}
             >
                 {children}
             </Innholdslaster>
@@ -58,6 +61,7 @@ const mapStateToProps = (state: AppState): StateProps => ({
         oppfolging: selectOppfolging(state),
         featureToggles: selectFeatureToggles(state),
         servicegruppe: selectServicegruppe(state),
+        featureToggleServicegruppe: selectHentServicegruppekodeFeatureToggle(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AppState>): DispatchProps => ({
