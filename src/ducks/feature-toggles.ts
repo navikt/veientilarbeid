@@ -9,6 +9,7 @@ export enum ActionTypes {
 }
 
 export interface Data {
+    'veientilarbeid.hentservicekode': boolean;
 }
 
 export interface State {
@@ -21,10 +22,14 @@ interface Action {
     data: Data;
 }
 
-export const alleFeatureToggles = [];
+export const alleFeatureToggles = [
+    'veientilarbeid.hentservicekode',
+];
 
 const initialState = {
-    data : {},
+    data : {
+        'veientilarbeid.hentservicekode': false,
+    },
     status: STATUS.NOT_STARTED
 };
 
@@ -55,4 +60,8 @@ export function hentFeatureToggles() {
 
 export function selectFeatureToggles(state: AppState): State {
     return state.featureToggles;
+}
+
+export function selectHentServicegruppekodeFeatureToggle(state: AppState): boolean {
+    return state.featureToggles.data['veientilarbeid.hentservicekode'];
 }
