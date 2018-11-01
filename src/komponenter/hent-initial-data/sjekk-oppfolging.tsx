@@ -3,9 +3,12 @@ import { connect } from 'react-redux';
 import { AppState } from '../../reducer';
 import { Data as OppfolgingData, selectOppfolging } from '../../ducks/oppfolging';
 import {
+    erSykmeldt,
     erUnderOppfolging, redirectTilAktivitetsplan,
     redirectTilDittNav
 } from './sjekk-oppfolging-utils';
+import Overskrift from '../overskrift/overskrift';
+import SykemeldingOppfolgingInnhold from '../innhold/sykmelding-oppfolging-innhold';
 
 interface SjekkOppfolgingConfig {
     sendBrukerTilAktivitetsplan: () => void;
@@ -33,7 +36,15 @@ class SjekkOppfolging extends React.PureComponent<Props> {
     render() {
         const {oppfolging, children, config} = this.props;
 
-        if (erUnderOppfolging(oppfolging)) {
+        if (erSykmeldt(oppfolging)) {
+            return (
+                <main id="maincontent" role="main" tabIndex={-1}>
+                    <Overskrift sideTittelId="overskrift-oppfolging"/>
+                    <SykemeldingOppfolgingInnhold/>
+                </main>
+            );
+
+        } else if (erUnderOppfolging(oppfolging)) {
             return children;
         }
 

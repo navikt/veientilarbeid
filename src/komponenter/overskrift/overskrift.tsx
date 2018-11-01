@@ -3,13 +3,17 @@ import { FormattedMessage } from 'react-intl';
 import { Sidetittel } from 'nav-frontend-typografi';
 import Brodsmuler from '../brodsmuler/brodsmuler';
 
-function Overskrift() {
+interface OwnProps {
+    sideTittelId: string;
+}
+
+function Overskrift({sideTittelId}: OwnProps) {
     return (
         <div className="overskrift-veientilarbeid-container">
             <div className="overskrift-veientilarbeid">
-                <Brodsmuler/>
+                <Brodsmuler tittelId={sideTittelId}/>
                 <Sidetittel className="overskrift-veientilarbeid__tittel">
-                    <FormattedMessage id="overskrift-veientilarbeid"/>
+                    <FormattedMessage id={sideTittelId}/>
                 </Sidetittel>
             </div>
         </div>
