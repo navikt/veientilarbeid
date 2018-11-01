@@ -8,7 +8,9 @@ import {
     redirectTilDittNav
 } from './sjekk-oppfolging-utils';
 import Overskrift from '../overskrift/overskrift';
-import SykemeldingOppfolgingInnhold from '../innhold/sykmelding-oppfolging-innhold';
+import ReaktiveringMelding from '../reaktivering-melding/reaktivering-melding';
+import Aktivitetsplan from '../aktivitetsplan/aktivitetsplan';
+import Sykefravar from '../sykefravaer/sykefravar';
 
 interface SjekkOppfolgingConfig {
     sendBrukerTilAktivitetsplan: () => void;
@@ -40,7 +42,20 @@ class SjekkOppfolging extends React.PureComponent<Props> {
             return (
                 <main id="maincontent" role="main" tabIndex={-1}>
                     <Overskrift sideTittelId="overskrift-oppfolging"/>
-                    <SykemeldingOppfolgingInnhold/>
+                    <div className="sykmelding-oppfolging-side">
+                        <ReaktiveringMelding/>
+
+                        <div className="rad-even">
+                            <div className="limit">
+                                <Aktivitetsplan />
+                            </div>
+                        </div>
+                        <div className="rad">
+                            <div className="limit">
+                                <Sykefravar />
+                            </div>
+                        </div>
+                    </div>
                 </main>
             );
 
