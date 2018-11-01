@@ -1,0 +1,35 @@
+.sykmelding-oppfolging-innhold__wrapper {
+    .innhold {
+        max-width: 1000px;
+
+        &__wrapper {
+            padding: 40px 20px;
+        }
+
+        .aktivitetsplan {
+            background-color: white;
+            flex-direction: row-reverse;
+            padding: 0 4rem;
+            border: 1px solid #b7b1a9;
+            border-radius: 8px;
+            &__tekst {
+                padding-left: 0;
+            }
+        }
+
+    }
+
+}
+
+@media (min-width: @screen-sm-min) {
+    .sykmelding-oppfolging-innhold__wrapper {
+        &.innhold {
+            margin: 1rem auto;
+
+
+            .aktivitetsplan {
+                padding: 4rem;
+            }
+        }
+    }
+}

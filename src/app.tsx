@@ -18,7 +18,7 @@ class App extends React.Component {
                     <HentInitialData>
                         <SjekkOppfolging>
                             <main id="maincontent" role="main" tabIndex={-1}>
-                                <Overskrift/>
+                                <Overskrift sideTittelId="overskrift-veientilarbeid"/>
                                 <Innhold/>
                             </main>
                         </SjekkOppfolging>

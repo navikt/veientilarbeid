@@ -1,8 +1,13 @@
 import * as React from 'react';
+import { FormattedMessage } from 'react-intl';
 const personSvg = require('./person.svg');
 const DITTNAVN_PATH = '/dittnav/';
 
-function Brodsmuler() {
+interface OwnProps {
+    tittelId: string;
+}
+
+function Brodsmuler({tittelId}: OwnProps) {
     return (
         <div className="brodsmuler">
             <img src={personSvg} alt="person-illustrasjon" className="brodsmuler__illustrasjon"/>
@@ -13,7 +18,7 @@ function Brodsmuler() {
                     </a>
                 </li>
                 <li className="brodsmuler__item typo-normal">
-                    Veien til arbeid
+                    <FormattedMessage id={tittelId}/>
                 </li>
             </ol>
         </div>
