@@ -1,0 +1,52 @@
+.rad, .rad-even {
+    padding: 1rem 0;
+}
+
+.rad-even {
+    background-color: #e9e7e7;
+}
+
+.limit {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+
+.sykmelding-oppfolging-side {
+
+    .reaktivering-melding {
+        .limit();
+        margin: 1rem;
+    }
+
+    .aktivitetsplan {
+        background-color: white;
+        margin: 0 1rem;
+        border: 1px solid #b7b1a9;
+        border-radius: 8px;
+    }
+}
+
+@media (min-width: @screen-sm-min) {
+    .sykmelding-oppfolging-side {
+        .reaktivering-melding {
+            margin: 1rem auto;
+
+        }
+        .aktivitetsplan {
+            flex-direction: row-reverse;
+            padding: 2rem 4rem;
+            margin: 2rem 0;
+            align-items: flex-end;
+            height: inherit;
+            &__tekst {
+                height: 165px;
+                padding-left: 0;
+            }
+
+            &__illustrasjon {
+                content: url("./sykmelding-aktivitetsplan.svg");
+            }
+        }
+    }
+}
