@@ -33,9 +33,13 @@ export function mountWithStoreAndIntl(children: React.ReactElement<ElementWithSt
 }
 
 export function mountWithStore(children: React.ReactNode, withStore?: Store<AppState>) {
-    return mount(React.cloneElement(children, {
-        store: withStore || store
-    }));
+    return mount(
+        <Provider store={withStore || store}>
+            <IntlProvider>
+                {children}
+            </IntlProvider>
+        </Provider>
+    );
 }
 
 export function stubFetchWithResponse(response: {}): Promise {
