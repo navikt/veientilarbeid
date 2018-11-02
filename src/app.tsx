@@ -3,10 +3,8 @@ import { Provider } from 'react-redux';
 import getStore from './store';
 import IntlProvider from './Intl-provider';
 import './decorator/decorator-mock';
-import Innhold from './komponenter/innhold/innhold';
-import Overskrift from './komponenter/overskrift/overskrift';
 import HentInitialData from './komponenter/hent-initial-data/hent-initial-data';
-import SjekkOppfolging from './komponenter/hent-initial-data/sjekk-oppfolging';
+import SjekkOppfolgingVisInnhold from './komponenter/hent-initial-data/sjekk-oppfolging-vis-innhold';
 
 const store = getStore();
 
@@ -16,12 +14,7 @@ class App extends React.Component {
             <Provider store={store}>
                 <IntlProvider>
                     <HentInitialData>
-                        <SjekkOppfolging>
-                            <main id="maincontent" role="main" tabIndex={-1}>
-                                <Overskrift sideTittelId="overskrift-veientilarbeid"/>
-                                <Innhold/>
-                            </main>
-                        </SjekkOppfolging>
+                        <SjekkOppfolgingVisInnhold/>
                     </HentInitialData>
                 </IntlProvider>
             </Provider>

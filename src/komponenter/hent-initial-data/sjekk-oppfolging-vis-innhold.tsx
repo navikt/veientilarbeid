@@ -8,9 +8,8 @@ import {
     redirectTilDittNav
 } from './sjekk-oppfolging-utils';
 import Overskrift from '../overskrift/overskrift';
-import ReaktiveringMelding from '../reaktivering-melding/reaktivering-melding';
-import Aktivitetsplan from '../aktivitetsplan/aktivitetsplan';
-import Sykefravar from '../sykefravaer/sykefravar';
+import SykemeldingOppfolgingInnhold from '../innhold-sykmelding/innhold-sykmelding';
+import Innhold from '../innhold/innhold';
 
 interface SjekkOppfolgingConfig {
     sendBrukerTilAktivitetsplan: () => void;
@@ -35,32 +34,23 @@ class SjekkOppfolging extends React.PureComponent<Props> {
         }
     };
 
+    // tslint:disable-next-line:no-any
+    renderInnhold (tittelId: string, innhold: any) {
+        return (
+            <main id="maincontent" role="main" tabIndex={-1}>
+                <Overskrift sideTittelId={tittelId}/>
+                {innhold}
+            </main>
+        );
+    }
+
     render() {
-        const {oppfolging, children, config} = this.props;
+        const {oppfolging, config} = this.props;
 
         if (erSykmeldt(oppfolging)) {
-            return (
-                <main id="maincontent" role="main" tabIndex={-1}>
-                    <Overskrift sideTittelId="overskrift-oppfolging"/>
-                    <div className="sykmelding-oppfolging-side">
-                        <ReaktiveringMelding/>
-
-                        <div className="rad-even">
-                            <div className="limit">
-                                <Aktivitetsplan />
-                            </div>
-                        </div>
-                        <div className="rad">
-                            <div className="limit">
-                                <Sykefravar />
-                            </div>
-                        </div>
-                    </div>
-                </main>
-            );
-
+            return this.renderInnhold('overskrift-oppfolging', <SykemeldingOppfolgingInnhold/> );
         } else if (erUnderOppfolging(oppfolging)) {
-            return children;
+            return this.renderInnhold('overskrift-veientilarbeid', <Innhold/> );
         }
 
         config!.sendBrukerTilAktivitetsplan();
