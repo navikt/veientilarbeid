@@ -1,19 +1,4 @@
-.rad, .rad-even {
-    padding: 1rem 0;
-}
-
-.rad-even {
-    background-color: #e9e7e7;
-}
-
-.limit {
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-
-.sykmelding-oppfolging-side {
-
+.sykmelding-oppfolging-innhold {
     .reaktivering-melding {
         .limit();
         margin: 1rem;
@@ -28,25 +13,40 @@
 }
 
 @media (min-width: @screen-sm-min) {
-    .sykmelding-oppfolging-side {
+    .sykmelding-oppfolging-innhold {
         .reaktivering-melding {
             margin: 1rem auto;
 
         }
         .aktivitetsplan {
             flex-direction: row-reverse;
-            padding: 2rem 4rem;
+            padding: 2rem 4rem 0;
             margin: 2rem 0;
             align-items: flex-end;
             height: inherit;
+
             &__tekst {
                 height: 165px;
                 padding-left: 0;
+                margin-bottom: 2rem;
             }
 
             &__illustrasjon {
-                content: url("./sykmelding-aktivitetsplan.svg");
+                content: url("sykmelding-aktivitetsplan.svg");
             }
         }
     }
+}
+
+.rad, .rad-even {
+    padding: 1rem 0;
+}
+
+.rad-even {
+    background-color: #e9e7e7;
+}
+
+.limit {
+    max-width: 1000px;
+    margin: 0 auto;
 }

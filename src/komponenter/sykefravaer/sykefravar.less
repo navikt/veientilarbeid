@@ -1,6 +1,7 @@
 .sykefravar {
     border: 5px solid #ccdee6;
-    padding: 2rem;
+    padding: 2rem 2rem 0 2rem;
+    margin: 2rem 1rem 0 1rem;
 
     &__illustrasjon {
         display: none;
@@ -19,16 +20,15 @@
 @media (min-width: @screen-sm-min) {
     .sykefravar {
         display: flex;
-        align-items: center;
-        height: 21rem;
+        align-items: flex-start;
 
         &__tekst {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             padding-left: 6rem;
-            height: 232px;
-            margin: auto 0;
+            height: 4.5rem;
+            margin-top: 1rem;
         }
 
         &__illustrasjon {
