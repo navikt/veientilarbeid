@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Provider } from 'react-redux';
 import getStore from './store';
 import IntlProvider from './Intl-provider';
-import './decorator/decorator-mock';
 import HentInitialData from './komponenter/hent-initial-data/hent-initial-data';
 import SjekkOppfolgingVisInnhold from './komponenter/hent-initial-data/sjekk-oppfolging-vis-innhold';
 
