@@ -3,7 +3,8 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import { FormattedHTMLMessage, FormattedMessage } from 'react-intl';
 import LenkeMedChevron from '../lenke-med-chevron/lenke-med-chevron';
 
-const meldekort = require('./meldekort.svg');
+import meldekort from './meldekort.svg';
+import './meldekort.less';
 
 export const MELDEKORT_URL = 'https://www.nav.no/no/Person/Arbeid/Dagpenger+ved+arbeidsloshet+og+permittering/Meldekort+hvordan+gjor+du+det/Slik+sender+du+elektroniske+meldekort'; // tslint:disable-line
 

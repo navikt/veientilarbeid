@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { injectIntl, InjectedIntlProps, FormattedMessage } from 'react-intl';
-import TableBody from './table-body';
 import { Undertekst } from 'nav-frontend-typografi';
+import TableBody from './table-body';
+
+import './hvor-mye-dagpenger.less';
 
 interface DummyProp {
     dummy?: string; // TypeScript klager hvis props kun er InjectedIntlProps
