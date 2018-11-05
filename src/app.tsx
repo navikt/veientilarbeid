@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Provider } from 'react-redux';
 import getStore from './store';
 import IntlProvider from './Intl-provider';
-import './decorator/decorator-mock';
 import Innhold from './komponenter/innhold/innhold';
 import Overskrift from './komponenter/overskrift/overskrift';
 import HentInitialData from './komponenter/hent-initial-data/hent-initial-data';
