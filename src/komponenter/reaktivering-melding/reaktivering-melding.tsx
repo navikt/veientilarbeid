@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { AppState } from '../../reducer';
-import AlertStripe from 'nav-frontend-alertstriper';
 import { InjectedIntlProps, injectIntl } from 'react-intl';
+import AlertStripe from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
+import { AppState } from '../../reducer';
 
 interface StateProps {
     kanReaktiveres: boolean;
@@ -19,7 +19,7 @@ class ReaktiveringMelding extends React.Component<Props> {
             return null;
         }
         return (
-            <AlertStripe type="advarsel" className="reaktivering-melding">
+            <AlertStripe type="advarsel" className="reaktivering-melding blokk-s">
                 <Normaltekst>
                     {intl.messages['reaktivering-melding-tekst']}&ensp;
                     <a href={intl.messages['reaktivering-melding-lenke-url']} className="lenke">

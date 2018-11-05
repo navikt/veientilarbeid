@@ -2,6 +2,8 @@ import * as React from 'react';
 import 'nav-frontend-ekspanderbartpanel-style';
 import InformasjonsmodulPure from './informasjonsmodul-pure';
 
+import './index.less';
+
 /**
  * Self-contained 'Informasjonsmodul'.
  * Denne komponenten holder selv styr på om innholdet skal vises eller ikke.

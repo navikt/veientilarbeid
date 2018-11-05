@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
-import { Normaltekst } from 'nav-frontend-typografi';
 import { FormattedMessage } from 'react-intl';
+import { Normaltekst } from 'nav-frontend-typografi';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+
+import './feilmelding.less';
 
 interface FeilmeldingProps {
     tekstId: string;
