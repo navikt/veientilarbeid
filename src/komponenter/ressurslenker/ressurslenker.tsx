@@ -1,7 +1,9 @@
 import * as React from 'react';
-import LenkepanelMedBilde from '../lenkepanel-med-bilde/lenkepanel-med-bilde';
-import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 import { FormattedMessage } from 'react-intl';
+import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
+import LenkepanelMedBilde from '../lenkepanel-med-bilde/lenkepanel-med-bilde';
+
+import './ressurslenker.less';
 
 const JOBBSOKERTIPS_URL = '/veiviserarbeidssoker/';
 const MIA_URL = '/mia/';
