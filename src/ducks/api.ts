@@ -1,7 +1,7 @@
 import { fetchToJson } from './api-utils';
 import { alleFeatureToggles } from './feature-toggles';
 
-export const VEILARBOPPFOLGINGPROXY_URL = '/veilarboppfolgingproxy/api';
+export const VEILARBOPPFOLGINGPROXY_URL = '/veilarboppfolging/api';
 export const FEATURE_URL = '/feature';
 export const SERVICEGRUPPE_URL = '/veilarbtiltakinfo/api/servicegruppekode';
 
