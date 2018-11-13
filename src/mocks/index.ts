@@ -1,13 +1,15 @@
 /*tslint:disable*/
 import {mock, respondWith, delayed } from './utils';
 import oppfolgingResponse from './oppfolging-mock';
-import { FEATURE_URL, SERVICEGRUPPE_URL, VEILARBOPPFOLGINGPROXY_URL } from '../ducks/api';
+import { FEATURE_URL, SERVICEGRUPPE_URL, SYKEFORLOEP_METADATA_URL, VEILARBOPPFOLGINGPROXY_URL } from '../ducks/api';
 import featureTogglesMock from './feature-toggles-mock';
 import servicegruppeResponse from './servicegruppe-mock';
+import sykeforloepMetadataResponse from './sykeforloep-metadata-mock';
 
 const MOCK_OPPFOLGING = true;
 const MOCK_FEATURE_TOGGLES = true;
 const MOCK_SERVICEGRUPPE = true;
+const MOCK_SYKEFORLOEPMETADATAGRUPPE = true;
 
 if (MOCK_OPPFOLGING) {
     (mock as any).get(`${VEILARBOPPFOLGINGPROXY_URL}/oppfolging`, respondWith(delayed(1000, oppfolgingResponse)));
@@ -19,6 +21,10 @@ if (MOCK_FEATURE_TOGGLES) {
 
 if (MOCK_SERVICEGRUPPE) {
     (mock as any).get(`${SERVICEGRUPPE_URL}`, respondWith(delayed(1000, servicegruppeResponse)));
+}
+
+if (MOCK_SYKEFORLOEPMETADATAGRUPPE) {
+    (mock as any).get(`${SYKEFORLOEP_METADATA_URL}`, respondWith(delayed(1000, sykeforloepMetadataResponse)))
 }
 
 (mock as any).mock('*', respondWith((url: string, config: {}) => mock.realFetch.call(window, url, config)));

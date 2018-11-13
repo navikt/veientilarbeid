@@ -69,12 +69,13 @@ interface FetchToJson {
     recoverWith?: RecoverWith;
 }
 
-export function fetchToJson<DATA>({
-                                      url,
-                                      config = {},
-                                      recoverWith
-                                  }: FetchToJson): Promise<DATA> {
-
+export function fetchToJson<DATA>(
+    {
+        url,
+        config = {},
+        recoverWith
+    }: FetchToJson
+): Promise<DATA> {
     return fetch(url, config)
         .then(sjekkStatuskode(recoverWith))
         .then(toJson);
@@ -87,9 +88,9 @@ interface RestActions {
 }
 
 export function doThenDispatch<DATA>(
-        fn: () => Promise<DATA>,
-        {OK, FEILET, PENDING}: RestActions
-    ): ThunkAction<Promise<DATA | void>, AppState, void> {
+    fn: () => Promise<DATA>,
+    {OK, FEILET, PENDING}: RestActions
+): ThunkAction<Promise<DATA | void>, AppState, void> {
     return (dispatch: Dispatch<AppState>) => {
         if (PENDING) {
             dispatch({type: PENDING});

@@ -4,6 +4,7 @@ import { alleFeatureToggles } from './feature-toggles';
 export const VEILARBOPPFOLGINGPROXY_URL = '/veilarboppfolgingproxy/api';
 export const FEATURE_URL = '/feature';
 export const SERVICEGRUPPE_URL = '/veilarbtiltakinfo/api/servicegruppekode';
+export const SYKEFORLOEP_METADATA_URL = '/syforest/sykeforloep/metadata';
 
 export const getCookie = (name: string) => {
     const re = new RegExp(`${name}=([^;]+)`);
@@ -47,6 +48,16 @@ export function hentFeatureToggles() {
 export function hentServicegruppe() {
     return fetchToJson({
         url: `${SERVICEGRUPPE_URL}`,
+        config: {
+            ...CREDENTIALS_SAME_ORIGIN,
+            headers: getHeaders(),
+        }
+    });
+}
+
+export function hentSykeforloepMetadata() {
+    return fetchToJson({
+        url: `${SYKEFORLOEP_METADATA_URL}`,
         config: {
             ...CREDENTIALS_SAME_ORIGIN,
             headers: getHeaders(),
