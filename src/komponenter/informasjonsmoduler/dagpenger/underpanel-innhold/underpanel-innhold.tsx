@@ -1,4 +1,5 @@
 import * as React from 'react';
+import './underpanel-innhold.less';
 
 interface Props {
     children: React.ReactChildren | React.ReactChild;

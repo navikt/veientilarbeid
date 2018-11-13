@@ -3,7 +3,8 @@ import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
 import { FormattedMessage } from 'react-intl';
 import Lenkepanel from 'nav-frontend-lenkepanel';
 
-const tiltakinfo = require('./tiltakinfo.svg');
+import tiltakinfo from './tiltakinfo.svg';
+import './tiltakinfo.less';
 
 export const TILTAKINFO_URL = '/tiltakinfo';
 

@@ -1,9 +1,9 @@
 import * as React from 'react';
-import Informasjonsmodul from '../informasjonsmodul/src/index';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
-import EkspanderbartpanelGruppe from '../ekspanderbartpanel-gruppe/ekspanderbartpanel-gruppe';
-import { EkspanderbartpanelPure } from 'nav-frontend-ekspanderbartpanel';
 import { Ingress } from 'nav-frontend-typografi';
+import { EkspanderbartpanelPure } from 'nav-frontend-ekspanderbartpanel';
+import Informasjonsmodul from '../informasjonsmodul/src/index';
+import EkspanderbartpanelGruppe from '../ekspanderbartpanel-gruppe/ekspanderbartpanel-gruppe';
 import LenkeMedChevron from '../../lenke-med-chevron/lenke-med-chevron';
 import HvorMyeDagpenger from './hvor-mye-dagpenger/hvor-mye-dagpenger';
 import RettTilDagpenger from './rett-til-dagpenger/rett-til-dagpenger';
@@ -12,6 +12,8 @@ import UnderpanelInnhold from './underpanel-innhold/underpanel-innhold';
 import {
     ekspanderInformasjonsmodul, visRettTilDagPenger,
 } from '../../../utils/utils';
+
+import './dagpenger.less';
 
 const SOKNAD_OM_DAGPENGER_PATH =
     'https://www.nav.no/no/Person/Skjemaer-for-privatpersoner/Skjemaer/Uten+arbeid/Dagpenger';
