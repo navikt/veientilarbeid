@@ -2,6 +2,8 @@ import * as React from 'react';
 import { injectIntl, InjectedIntlProps, FormattedMessage } from 'react-intl';
 import { Element } from 'nav-frontend-typografi';
 
+import './rett-til-dagpenger.less';
+
 interface DummyProp {
     dummy?: string; // TypeScript klager hvis props kun er InjectedIntlProps
 }

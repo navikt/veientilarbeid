@@ -3,7 +3,9 @@ import { Element, Systemtittel } from 'nav-frontend-typografi';
 import { FormattedMessage } from 'react-intl';
 import { HoyreChevron } from 'nav-frontend-chevron';
 
-const cvSvg = require('./cv.svg');
+import cvSvg from './cv.svg';
+import './cv.less';
+
 export const CV_PATH = '/sbl/nav_security_check?goto=/sbl/arbeid/endreCv';
 
 function CV () {

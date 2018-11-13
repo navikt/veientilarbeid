@@ -14,6 +14,6 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 ReactDOM.render(
-  <App />,
-  document.getElementById('root') as HTMLElement
+    <App/>,
+    document.getElementById('root') as HTMLElement
 );
