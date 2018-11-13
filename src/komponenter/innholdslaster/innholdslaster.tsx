@@ -1,7 +1,9 @@
 import * as React from 'react';
+import { storrelseType } from 'nav-frontend-spinner';
 import Laster from './innholdslaster-laster';
 import { STATUS } from '../../ducks/api-utils';
-import { storrelseType } from 'nav-frontend-spinner';
+
+import './innholdslaster.less';
 
 const array = (value: {}) => (Array.isArray(value) ? value : [value]);
 const harStatus = (...status: string[]) =>

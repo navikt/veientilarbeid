@@ -1,41 +1,38 @@
-@import 'hvor-mye-dagpenger/hvor-mye-dagpenger';
-@import 'underpanel-innhold/underpanel-innhold';
-@import 'rett-til-dagpenger/rett-til-dagpenger';
-
+@import '../../../../node_modules/nav-frontend-core/less/_variabler';
 
 .informasjonsmodul__wrapper {
-  width: 100%;
-  max-width: @screen-md-min;
-  margin-top: 2rem;
+    width: 100%;
+    max-width: @screen-md-min;
+    margin-top: 2rem;
 }
 
 .informasjonsmoduler {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 
-  .ekspanderbartPanel {
-    border: 2px solid @navLysGra;
-    border-radius: 4px;
-  }
+    .ekspanderbartPanel {
+        border: 2px solid @navLysGra;
+        border-radius: 4px;
+    }
 }
 
 .informasjonsmodul__lenke-wrapper {
-  padding: 1rem;
-  display: flex;
-  justify-content: center;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
 }
 
 .informasjonsmodul__underpanel-innhold-wrapper {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 @media (min-width: @screen-sm-min) {
-  .informasjonsmodul-ingress__wrapper {
-    padding: 1rem 3rem 1rem 3rem;
-  }
+    .informasjonsmodul-ingress__wrapper {
+        padding: 1rem 3rem 1rem 3rem;
+    }
 
-  .informasjonsmodul__lenke-wrapper {
-    display: block;
-  }
+    .informasjonsmodul__lenke-wrapper {
+        display: block;
+    }
 }

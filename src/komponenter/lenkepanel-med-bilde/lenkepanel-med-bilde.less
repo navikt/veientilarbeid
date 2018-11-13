@@ -1,3 +1,5 @@
+@import '../../../node_modules/nav-frontend-core/less/_variabler';
+
 .lenkepanel-med-bilde {
     display: flex;
     flex-direction: column;
@@ -5,7 +7,7 @@
     align-items: center;
     background-color: @navDypBlaLighten80;
     border-radius: 8px;
-    color: #000000;
+    color: @navMorkGra;
     text-decoration: none;
     outline: none;
     padding: 2rem;
@@ -15,7 +17,7 @@
     }
 
     &:hover {
-        box-shadow: 0 2px 1px 0 #b7b1a9;
+        box-shadow: 0 2px 1px 0 @grayIcon;
         text-decoration: underline;
     }
 

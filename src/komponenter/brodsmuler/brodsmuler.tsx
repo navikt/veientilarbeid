@@ -1,6 +1,8 @@
 import * as React from 'react';
-const personSvg = require('./person.svg');
 const DITTNAVN_PATH = '/dittnav/';
+
+import personSvg from './person.svg';
+import './brodsmuler.less';
 
 function Brodsmuler() {
     return (
