@@ -1,6 +1,7 @@
 import { ActionTypes as OppfolgingTypes } from './ducks/oppfolging';
 import { ActionTypes as FeatureTogglesTypes } from './ducks/feature-toggles';
 import { ActionTypes as ServicegruppeTypes } from './ducks/servicegruppe';
+import { ActionTypes as SykeforloepMetadataTypes } from './ducks/sykeforloep-metadata';
 
 export const metricsMiddleWare = (store: any) => (next: any) => (action: any) => { // tslint:disable-line:no-any
     const { frontendlogger } = (window as any); // tslint:disable-line:no-any
@@ -21,6 +22,11 @@ export const metricsMiddleWare = (store: any) => (next: any) => (action: any) =>
             eventnavn: 'veientilarbeid.feil.servicegruppe',
             apikall: 'GET /servicegruppe'
         },
+        {
+            type: SykeforloepMetadataTypes.HENT_SYKEFORLOEP_METADATA_FEILET,
+            eventnavn: 'veientilarbeid.feil.sykeforloepmetadata',
+            apikall: 'GET /sykeforloepmetadata'
+        }
     ];
 
     /* Feil logging */

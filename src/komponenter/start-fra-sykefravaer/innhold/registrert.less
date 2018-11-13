@@ -1,0 +1,191 @@
+@import '../../../../node_modules/nav-frontend-core/less/_variabler';
+
+@keyframes avsjekk-plassering {
+    0% {
+        left: ~'calc((100% - 159px) / 2)';
+        top: ~'calc((55% - 159px) / 2)';
+        height: 159px;
+    }
+    67% {
+        left: ~'calc((100% - 159px) / 2)';
+        top: ~'calc((55% - 159px) / 2)';
+        height: 159px;
+    }
+    100% {
+        left: 408px;
+        top: 50px;
+        height: 70px;
+    }
+}
+
+@keyframes avsjekk-plassering-mobil {
+    0% {
+        left: ~'calc((100% - 159px) / 2)';
+        top: ~'calc((47% - 159px) / 2)';
+        height: 159px;
+    }
+    67% {
+        left: ~'calc((100% - 159px) / 2)';
+        top: ~'calc((47% - 159px) / 2)';
+        height: 159px;
+    }
+    100% {
+        left: 22px;
+        top: 30px;
+        height: 70px;
+    }
+}
+
+@keyframes tittel-plassering {
+    0% {
+        opacity: 0;
+        margin-top: 120px;
+    }
+    80% {
+        opacity: 0;
+        margin-top: 120px;
+    }
+    100% {
+        opacity: 1;
+        margin-top: 0;
+    }
+}
+
+@keyframes panel-plassering-mobil {
+    0% {
+        opacity: 0;
+        margin-top: 400px;
+    }
+    80% {
+        opacity: 0;
+        margin-top: 400px;
+    }
+    100% {
+        opacity: 1;
+        margin-top: 6rem;
+    }
+}
+
+@keyframes panel-plassering-desktop {
+    0% {
+        opacity: 0;
+        margin-top: 400px;
+    }
+    80% {
+        opacity: 0;
+        margin-top: 400px;
+    }
+    100% {
+        opacity: 1;
+        margin-top: 11rem;
+    }
+}
+
+.registrert {
+
+    &__avsjekk {
+        position: absolute;
+        left: ~'calc((100% - 159px) / 2)';
+        top: ~'calc((90% - 159px) / 2)';
+        animation: avsjekk-plassering-mobil 5s both;
+    }
+
+    &__tittel {
+        position: absolute;
+        left: 4rem;
+        top: -7px;
+        width: ~'calc(100vw - 7.4rem)';
+        opacity: 0;
+        animation: tittel-plassering 6s both;
+    }
+
+    &__aksjonspanel {
+        top: 0;
+        text-align: left;
+        position: relative;
+        opacity: 0;
+        border: 3px solid @navBlaLighten80;
+        border-radius: 8px;
+        padding: 2rem;
+        animation: panel-plassering-mobil 6.5s both;
+    }
+
+    &__handinfo-ikon {
+        display: none;
+    }
+
+    &__knapperad {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        .knapp {
+            margin: 0.5rem 0;
+        }
+    }
+}
+
+@media (min-width: @screen-sm-min) {
+    .registrert {
+        text-align: left;
+        width: 36rem;
+        margin: 0 auto;
+
+        &__avsjekk {
+            animation: avsjekk-plassering 5s both;
+        }
+
+        &__tittel {
+            width: ~'calc(36rem - 140px)';
+            top: 5px;
+        }
+
+        &__aksjonspanel {
+            padding: 4rem 5.5rem;
+            top: 0;
+            animation: panel-plassering-desktop 6.5s both;
+        }
+
+        &__handinfo-ikon {
+            display: block;
+            position: absolute;
+            top: -53px;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+
+        &__knapperad {
+            display: flex;
+            flex-direction: row;
+            .knapp:first-child {
+                margin-right: 1rem;
+            }
+        }
+
+        &__lenke {
+            max-width: ~'calc(50% - 0.5rem)';
+            flex-grow: 1;
+        }
+    }
+}
+
+.registrert.erIE {
+
+    .registrert__avsjekk {
+        left: 108px;
+        top: 40px;
+        height: 70px;
+        animation: none;
+    }
+
+    .registrert__tittel {
+        opacity: 1;
+        animation: none;
+    }
+
+    .registrert__aksjonspanel {
+        opacity: 1;
+        margin-top: 11rem;
+        animation: none;
+    }
+}
