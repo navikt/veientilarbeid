@@ -11,7 +11,7 @@ healthcheck:
     path: veientilarbeid/internal/isAlive
     initialDelay: 20
   readiness:
-    path: veientilarbeid/internal/selftest
+    path: veientilarbeid/internal/isReady
     initialDelay: 20
 prometheus:
   # NB: pus-decorator sine metrikker
