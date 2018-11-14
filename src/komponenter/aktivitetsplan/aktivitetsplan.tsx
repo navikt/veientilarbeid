@@ -1,10 +1,12 @@
 import * as React from 'react';
-import { Ingress, Innholdstittel } from 'nav-frontend-typografi';
 import { FormattedMessage } from 'react-intl';
+import { Ingress, Innholdstittel } from 'nav-frontend-typografi';
 import { parse } from 'query-string';
 import LenkeMedChevron from '../lenke-med-chevron/lenke-med-chevron';
 
-const aktivitetsplanSvg = require('./aktivitetsplan.svg');
+import aktivitetsplanSvg from './aktivitetsplan.svg';
+import './aktivitetsplan.less';
+
 export const AKTIVITETSPLAN_URL = '/aktivitetsplan/';
 
 interface State {

@@ -1,6 +1,8 @@
 import * as React from 'react';
 import * as classnames from 'classnames';
 
+import './lenkepanel-med-bilde.less';
+
 interface Props {
     src: string;
     alt: string;

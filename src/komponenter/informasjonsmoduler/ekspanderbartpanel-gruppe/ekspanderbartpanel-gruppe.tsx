@@ -2,6 +2,8 @@ import * as React from 'react';
 import { EkspanderbartpanelPureProps } from '../../../../@types/ekspanderbartpanel-pure';
 import { InformasjonsmodulPureProps } from '../informasjonsmodul/src/informasjonsmodul-pure';
 
+import './ekspanderbartpanel-gruppe.less';
+
 interface Props {
     indexOfOpenEkspanderbartpanel?: number;
     children: React.ReactElement<EkspanderbartpanelPureProps | InformasjonsmodulPureProps>[];
