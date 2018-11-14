@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Sidetittel } from 'nav-frontend-typografi';
-import Brodsmuler from '../brodsmuler/brodsmuler';
+import Brodsmuler from '../../brodsmuler/brodsmuler';
 
 import './overskrift.less';
 
