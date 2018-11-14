@@ -12,7 +12,7 @@ import {
     redirectTilAktivitetsplan,
 } from './sjekk-oppfolging-utils';
 import Innhold from '../../komponenter/innhold/innhold';
-import InnholdSykmelding from '../../komponenter/innhold-sykmelding/innhold-sykmelding';
+import InnholdSykmelding from '../start-fra-sykefravaer/innhold-sykmelding/innhold-sykmelding';
 
 enzyme.configure({adapter: new Adapter()});
 

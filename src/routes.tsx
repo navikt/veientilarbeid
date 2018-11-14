@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { AppState } from './reducer';
 import { selectSykeforloepMetadata, State as SykeforloepMetadataState } from './ducks/sykeforloep-metadata';
 import Startside from './komponenter/startside/startside';
-import SykemeldingOppfolgingInnhold from './komponenter/innhold-sykmelding/innhold-sykmelding';
+import SykemeldingOppfolgingInnhold from './komponenter/start-fra-sykefravaer/innhold-sykmelding/innhold-sykmelding';
 
 interface StateProps {
     sykeforloepMetadata: SykeforloepMetadataState;
