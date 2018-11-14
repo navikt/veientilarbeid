@@ -38,7 +38,7 @@ class HentInitialData extends React.Component<Props> {
     componentWillMount() {
         this.props.hentFeatureToggles().then((response) => {
             this.props.hentOppfolging();
-            this.props.hentSykeforloepMetadata();
+            // this.props.hentSykeforloepMetadata();
             const featureToggleServicegruppe = response['veientilarbeid.hentservicekode'];
             if (featureToggleServicegruppe) {
                 this.props.hentServicegruppe();
@@ -47,10 +47,10 @@ class HentInitialData extends React.Component<Props> {
     }
 
     render() {
-        const {oppfolging, servicegruppe, sykeforloepMetadata, featureToggleServicegruppe, children} = this.props;
+        const {oppfolging, servicegruppe, featureToggleServicegruppe, children} = this.props;
 
         const avhengigheter = featureToggleServicegruppe
-            ? [oppfolging, servicegruppe, sykeforloepMetadata]
+            ? [oppfolging, servicegruppe]
             : [oppfolging];
         return (
             <Innholdslaster
