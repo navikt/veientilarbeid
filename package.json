@@ -2,7 +2,6 @@
   "name": "veientilarbeid",
   "homepage": "/veientilarbeid",
   "version": "0.1.0",
-  "proxy": "http://localhost:8080",
   "private": true,
   "dependencies": {
     "@types/classnames": "^2.2.4",
@@ -53,6 +52,7 @@
     "react-modal": "3.3.2",
     "react-motion": "^0.5.2",
     "react-redux": "5.0.7",
+    "react-router": "^4.3.1",
     "react-router-dom": "^4.2.2",
     "redux": "3.7.2",
     "redux-thunk": "2.2.0"
