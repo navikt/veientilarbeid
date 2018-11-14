@@ -17,7 +17,7 @@ class Routes extends React.Component<StateProps> {
         // TODO: Bytt verdi når beregning av gjenstående sykedager er på plass
         const erSykemeldt = this.props.sykeforloepMetadata.data!.erArbeidsrettetOppfolgingSykmeldtInngangAktiv;
 
-        // TODO sjekk også på oppfolgingsflag
+        // TODO sjekk også på oppfolgingsflag + legg til routes.test
         if (erSykemeldt) {
             return (
                 <Switch>
