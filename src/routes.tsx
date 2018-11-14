@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { Route } from 'react-router';
-import Startside from './komponenter/startside/startside';
+import { Route, Switch, Redirect } from 'react-router';
 import StartFraSykefravaer from './komponenter/start-fra-sykefravaer/start-fra-sykefravaer';
 import SjekkOppfolging from './komponenter/hent-initial-data/sjekk-oppfolging';
 import { connect } from 'react-redux';
 import { AppState } from './reducer';
 import { selectSykeforloepMetadata, State as SykeforloepMetadataState } from './ducks/sykeforloep-metadata';
+import Startside from './komponenter/startside/startside';
+import SykemeldingOppfolgingInnhold from './komponenter/innhold-sykmelding/innhold-sykmelding';
 
 interface StateProps {
     sykeforloepMetadata: SykeforloepMetadataState;
@@ -16,12 +17,20 @@ class Routes extends React.Component<StateProps> {
         // TODO: Bytt verdi når beregning av gjenstående sykedager er på plass
         const erSykemeldt = this.props.sykeforloepMetadata.data!.erArbeidsrettetOppfolgingSykmeldtInngangAktiv;
 
+        // TODO sjekk også på oppfolgingsflag
         if (erSykemeldt) {
-            return <Route path="/" component={StartFraSykefravaer}/>;
+            return (
+                <Switch>
+                    <Route path="/" exact={true} component={StartFraSykefravaer}/>
+                    <Route path="/oppfolging" component={SykemeldingOppfolgingInnhold}/>
+                    <Redirect to="/"/>
+                </Switch>
+            );
         } else {
             return (
                 <SjekkOppfolging>
-                    <Route path="/" component={Startside}/>
+                    <Route path="/" exact={true} component={Startside}/>
+                    <Redirect to="/"/>
                 </SjekkOppfolging>
             );
         }

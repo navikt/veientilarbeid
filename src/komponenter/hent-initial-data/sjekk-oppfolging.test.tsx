@@ -4,7 +4,7 @@ import * as sinon from 'sinon';
 import { expect } from 'chai';
 import * as enzyme from 'enzyme';
 import * as Adapter from 'enzyme-adapter-react-16';
-import SjekkOppfolging from './sjekk-oppfolging-vis-innhold';
+import SjekkOppfolging from './sjekk-oppfolging';
 import { create } from '../../store';
 import { mountWithStore } from '../../test/test-utils';
 import { ActionTypes as OppfolgingActionTypes } from '../../ducks/oppfolging';

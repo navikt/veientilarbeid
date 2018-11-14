@@ -7,7 +7,7 @@ function Overskrift() {
     return (
         <div className="overskrift-veientilarbeid-container">
             <div className="overskrift-veientilarbeid">
-                <Brodsmuler/>
+                <Brodsmuler tittelId="overskrift-veientilarbeid"/>
                 <Sidetittel className="overskrift-veientilarbeid__tittel">
                     <FormattedMessage id="overskrift-frasykefravaer"/>
                 </Sidetittel>

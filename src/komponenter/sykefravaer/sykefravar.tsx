@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Innholdstittel } from 'nav-frontend-typografi';
 import { FormattedMessage } from 'react-intl';
 import LenkeMedChevron from '../lenke-med-chevron/lenke-med-chevron';
+import './sykefravar.less';
 
 const sykefravarSvg = require('./sykefravar.svg');
 export const SYKEFRAVAR_URL = '/sykefravar/';

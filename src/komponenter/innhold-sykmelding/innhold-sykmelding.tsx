@@ -1,14 +1,13 @@
 import * as React from 'react';
-import ReaktiveringMelding from '../reaktivering-melding/reaktivering-melding';
 import Aktivitetsplan from '../aktivitetsplan/aktivitetsplan';
 import Sykefravar from '../sykefravaer/sykefravar';
+import './innhold-sykmelding.less';
 
 class SykemeldingOppfolgingInnhold extends React.Component<{}> {
 
     render() {
         return (
             <div className="sykmelding-oppfolging-innhold">
-                <ReaktiveringMelding/>
                 <div className="rad-even">
                     <div className="limit">
                         <Aktivitetsplan />
