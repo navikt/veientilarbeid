@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
-const personSvg = require('./person.svg');
 const DITTNAVN_PATH = '/dittnav/';
+
+import personSvg from './person.svg';
+import './brodsmuler.less';
 
 interface OwnProps {
     tittelId: string;

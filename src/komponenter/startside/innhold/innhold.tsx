@@ -1,14 +1,16 @@
 import * as React from 'react';
-import Aktivitetsplan from '../aktivitetsplan/aktivitetsplan';
-import Ressurslenker from '../ressurslenker/ressurslenker';
-import Dagpenger from '../informasjonsmoduler/dagpenger/dagpenger';
-import Meldekort from '../meldekort/meldekort';
-import Tiltakinfo from '../tiltakinfo/tiltakinfo';
-import ReaktiveringMelding from '../reaktivering-melding/reaktivering-melding';
-import { selectServicegruppe, State as ServicegruppeState, SituasjonOption } from '../../ducks/servicegruppe';
-import { AppState } from '../../reducer';
 import { connect } from 'react-redux';
-import { selectHentServicegruppekodeFeatureToggle } from '../../ducks/feature-toggles';
+import Aktivitetsplan from '../../aktivitetsplan/aktivitetsplan';
+import Ressurslenker from '../../ressurslenker/ressurslenker';
+import Dagpenger from '../../informasjonsmoduler/dagpenger/dagpenger';
+import Meldekort from '../../meldekort/meldekort';
+import Tiltakinfo from '../../tiltakinfo/tiltakinfo';
+import ReaktiveringMelding from '../../reaktivering-melding/reaktivering-melding';
+import { selectServicegruppe, State as ServicegruppeState, SituasjonOption } from '../../../ducks/servicegruppe';
+import { AppState } from '../../../reducer';
+import { selectHentServicegruppekodeFeatureToggle } from '../../../ducks/feature-toggles';
+
+import './innhold.less';
 
 interface StateProps {
     servicegruppe: ServicegruppeState;
