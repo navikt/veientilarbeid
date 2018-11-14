@@ -5,17 +5,13 @@ import Brodsmuler from '../../brodsmuler/brodsmuler';
 
 import './overskrift.less';
 
-interface OwnProps {
-    sideTittelId: string;
-}
-
-function Overskrift({sideTittelId}: OwnProps) {
+function Overskrift() {
     return (
         <div className="overskrift-veientilarbeid-container">
             <div className="overskrift-veientilarbeid">
-                <Brodsmuler tittelId={sideTittelId}/>
+                <Brodsmuler tittelId="overskrift-veientilarbeid"/>
                 <Sidetittel className="overskrift-veientilarbeid__tittel">
-                    <FormattedMessage id={sideTittelId}/>
+                    <FormattedMessage id="overskrift-veientilarbeid"/>
                 </Sidetittel>
             </div>
         </div>
