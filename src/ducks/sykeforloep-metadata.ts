@@ -22,7 +22,14 @@ export interface Data {
 }
 
 const initialState: State = {
-    status: STATUS.NOT_STARTED
+    status: STATUS.NOT_STARTED,
+    data: {
+        erSykmeldt: false,
+        sykmeldtFraDato: null,
+        arbeidsSituasjonIAktiveSykmeldinger: false,
+        erTiltakSykmeldteInngangAktiv: false,
+        erArbeidsrettetOppfolgingSykmeldtInngangAktiv: false,
+    }
 };
 
 interface Action {

@@ -14,7 +14,7 @@ interface StateProps {
 class Routes extends React.Component<StateProps> {
     render() {
         // TODO: Bytt verdi når beregning av gjenstående sykedager er på plass
-        const erSykemeldt = false; // this.props.sykeforloepMetadata.data!.erSykmeldt;
+        const erSykemeldt = this.props.sykeforloepMetadata.data!.erArbeidsrettetOppfolgingSykmeldtInngangAktiv;
 
         if (erSykemeldt) {
             return <Route path="/" component={StartFraSykefravaer}/>;
