@@ -1,10 +1,15 @@
 import * as React from 'react';
-const DITTNAVN_PATH = '/dittnav/';
-
+import { FormattedMessage } from 'react-intl';
 import personSvg from './person.svg';
 import './brodsmuler.less';
 
-function Brodsmuler() {
+const DITTNAVN_PATH = '/dittnav/';
+
+interface BrodsmulerProps {
+    brodsmuleId: string;
+}
+
+const Brodsmuler: React.SFC<BrodsmulerProps> = (props: BrodsmulerProps) => {
     return (
         <div className="brodsmuler">
             <img src={personSvg} alt="person-illustrasjon" className="brodsmuler__illustrasjon"/>
@@ -15,11 +20,11 @@ function Brodsmuler() {
                     </a>
                 </li>
                 <li className="brodsmuler__item typo-normal">
-                    Veien til arbeid
+                    <FormattedMessage id={props.brodsmuleId}/>
                 </li>
             </ol>
         </div>
     );
-}
+};
 
 export default Brodsmuler;

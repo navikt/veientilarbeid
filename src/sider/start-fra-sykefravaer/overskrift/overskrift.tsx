@@ -1,17 +1,15 @@
 import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Sidetittel } from 'nav-frontend-typografi';
-import Brodsmuler from '../../brodsmuler/brodsmuler';
-
-import './overskrift.less';
+import Brodsmuler from '../../../komponenter/brodsmuler/brodsmuler';
 
 function Overskrift() {
     return (
         <div className="overskrift-veientilarbeid-container">
             <div className="overskrift-veientilarbeid">
-                <Brodsmuler/>
+                <Brodsmuler brodsmuleId="dasd"/>
                 <Sidetittel className="overskrift-veientilarbeid__tittel">
-                    <FormattedMessage id="overskrift-veientilarbeid"/>
+                    <FormattedMessage id="overskrift-frasykefravaer"/>
                 </Sidetittel>
             </div>
         </div>
