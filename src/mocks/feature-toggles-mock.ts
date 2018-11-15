@@ -1,6 +1,6 @@
 const featureTogglesMock = {
     'veientilarbeid.hentservicekode': true,
-    'veientilarbeid.hentSykeforloepMetadata': false,
+    'veientilarbeid.hentSykeforloepMetadata': true,
 };
 
 export default featureTogglesMock;

@@ -16,6 +16,7 @@ export interface State {
 export interface Data {
     underOppfolging?: boolean;
     kanReaktiveres?: boolean;
+    erSykmeldtMedArbeidsgiver?: boolean;
 }
 
 interface Action {

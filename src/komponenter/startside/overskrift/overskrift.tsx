@@ -1,19 +1,17 @@
 import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Sidetittel } from 'nav-frontend-typografi';
-import Brodsmuler from '../../../komponenter/brodsmuler/brodsmuler';
+import Brodsmuler from '../../brodsmuler/brodsmuler';
 
-interface OwnProps {
-    tittelId: string;
-}
+import './overskrift.less';
 
-function Overskrift({tittelId}: OwnProps) {
+function Overskrift() {
     return (
         <div className="overskrift-veientilarbeid-container">
             <div className="overskrift-veientilarbeid">
-                <Brodsmuler brodsmuleId="overskrift-oppfolging"/>
+                <Brodsmuler tittelId="overskrift-veientilarbeid"/>
                 <Sidetittel className="overskrift-veientilarbeid__tittel">
-                    <FormattedMessage id={tittelId}/>
+                    <FormattedMessage id="overskrift-veientilarbeid"/>
                 </Sidetittel>
             </div>
         </div>
