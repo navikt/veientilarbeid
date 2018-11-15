@@ -3,91 +3,53 @@
 @keyframes avsjekk-plassering {
     0% {
         left: ~'calc((100% - 159px) / 2)';
-        top: ~'calc((55% - 159px) / 2)';
+        top: 8rem;
         height: 159px;
     }
     67% {
         left: ~'calc((100% - 159px) / 2)';
-        top: ~'calc((55% - 159px) / 2)';
+        top: 8rem;
         height: 159px;
     }
     100% {
-        left: 408px;
-        top: 50px;
-        height: 70px;
-    }
-}
-
-@keyframes avsjekk-plassering-mobil {
-    0% {
-        left: ~'calc((100% - 159px) / 2)';
-        top: ~'calc((47% - 159px) / 2)';
-        height: 159px;
-    }
-    67% {
-        left: ~'calc((100% - 159px) / 2)';
-        top: ~'calc((47% - 159px) / 2)';
-        height: 159px;
-    }
-    100% {
-        left: 22px;
-        top: 30px;
+        left: 10px;
+        top: 0;
         height: 70px;
     }
 }
 
 @keyframes tittel-plassering {
     0% {
-        opacity: 0;
-        margin-top: 120px;
+        margin-top: 100vh;
     }
     80% {
-        opacity: 0;
-        margin-top: 120px;
+        margin-top: 100vh;
     }
     100% {
-        opacity: 1;
-        margin-top: 0;
+        margin-top: 8px;
     }
 }
 
-@keyframes panel-plassering-mobil {
+@keyframes panel-plassering {
     0% {
-        opacity: 0;
-        margin-top: 400px;
+        margin-top: 100vh;
     }
     80% {
-        opacity: 0;
-        margin-top: 400px;
+        margin-top: 100vh;
     }
     100% {
-        opacity: 1;
-        margin-top: 6rem;
-    }
-}
-
-@keyframes panel-plassering-desktop {
-    0% {
-        opacity: 0;
-        margin-top: 400px;
-    }
-    80% {
-        opacity: 0;
-        margin-top: 400px;
-    }
-    100% {
-        opacity: 1;
-        margin-top: 11rem;
+        margin-top: 8rem;
     }
 }
 
 .registrert {
+    &.innhold {
+        position: relative;
+    }
 
     &__avsjekk {
         position: absolute;
-        left: ~'calc((100% - 159px) / 2)';
-        top: ~'calc((90% - 159px) / 2)';
-        animation: avsjekk-plassering-mobil 5s both;
+        animation: avsjekk-plassering 5s both;
     }
 
     &__tittel {
@@ -95,19 +57,17 @@
         left: 4rem;
         top: -7px;
         width: ~'calc(100vw - 7.4rem)';
-        opacity: 0;
         animation: tittel-plassering 6s both;
     }
 
     &__aksjonspanel {
-        top: 0;
+        position: absolute;
+        top: -1rem;
+        padding: 2rem;
         text-align: left;
-        position: relative;
-        opacity: 0;
         border: 3px solid @navBlaLighten80;
         border-radius: 8px;
-        padding: 2rem;
-        animation: panel-plassering-mobil 6.5s both;
+        animation: panel-plassering 6.5s both;
     }
 
     &__handinfo-ikon {
@@ -118,6 +78,7 @@
         text-align: center;
         display: flex;
         flex-direction: column;
+
         .knapp {
             margin: 0.5rem 0;
         }
@@ -130,19 +91,14 @@
         width: 36rem;
         margin: 0 auto;
 
-        &__avsjekk {
-            animation: avsjekk-plassering 5s both;
-        }
-
         &__tittel {
             width: ~'calc(36rem - 140px)';
             top: 5px;
         }
 
         &__aksjonspanel {
+            top: 2rem;
             padding: 4rem 5.5rem;
-            top: 0;
-            animation: panel-plassering-desktop 6.5s both;
         }
 
         &__handinfo-ikon {
@@ -157,6 +113,7 @@
         &__knapperad {
             display: flex;
             flex-direction: row;
+
             .knapp:first-child {
                 margin-right: 1rem;
             }
@@ -170,7 +127,6 @@
 }
 
 .registrert.erIE {
-
     .registrert__avsjekk {
         left: 108px;
         top: 40px;
@@ -179,12 +135,10 @@
     }
 
     .registrert__tittel {
-        opacity: 1;
         animation: none;
     }
 
     .registrert__aksjonspanel {
-        opacity: 1;
         margin-top: 11rem;
         animation: none;
     }
