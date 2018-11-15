@@ -3,6 +3,23 @@
   "homepage": "/veientilarbeid",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "copyfiles": "copyfiles -u 1 \"build/**/*.*\" \"../main/webapp\"",
+    "delete-static": "node scripts/deletestatic.js",
+    "start:ts": "react-scripts-ts start",
+    "build:ts": "react-scripts-ts build",
+    "deploy": "npm run build && gh-pages -d build",
+    "test": "npm run build:tekster && react-scripts-ts test --env=jsdom",
+    "lint": "tslint ./src/**/*.ts*",
+    "lint:fix": "tslint ./src/**/*.ts* --fix",
+    "test:coverage": "npm test -- --coverage",
+    "prettier": "prettier --write --single-quote --tab-width 4 src/**/*.ts src/**/*.tsx src/**/*.less",
+    "eject": "react-scripts-ts eject",
+    "start:tekster": "npm run build:tekster",
+    "start": "npm-run-all -p start:*",
+    "build:tekster": "node ./src/utils/build-tekster.js",
+    "build": "npm run delete-static && npm run build:tekster && npm run build:ts && npm run copyfiles"
+  },
   "dependencies": {
     "@types/classnames": "^2.2.4",
     "@types/react-maskedinput": "^4.0.3",
@@ -57,36 +74,18 @@
     "redux": "3.7.2",
     "redux-thunk": "2.2.0"
   },
-  "scripts": {
-    "copyfiles": "copyfiles -u 1 \"build/**/*.*\" \"../main/webapp\"",
-    "delete-static": "node scripts/deletestatic.js",
-    "start:ts": "react-scripts-ts start",
-    "build:ts": "react-scripts-ts build",
-    "deploy": "npm run build && gh-pages -d build",
-    "test": "npm run build:tekster && react-scripts-ts test --env=jsdom",
-    "lint": "tslint ./src/**/*.ts*",
-    "lint:fix": "tslint ./src/**/*.ts* --fix",
-    "test:coverage": "npm test -- --coverage",
-    "prettier": "prettier --write --single-quote --tab-width 4 src/**/*.ts src/**/*.tsx src/**/*.less",
-    "eject": "react-scripts-ts eject",
-    "start:tekster": "npm run build:tekster",
-    "start": "npm-run-all -p start:*",
-    "build:tekster": "node ./src/utils/build-tekster.js",
-    "build": "npm run delete-static && npm run build:tekster && npm run build:ts && npm run copyfiles"
-  },
   "devDependencies": {
     "@navikt/create-react-app-typescript-less": "^1.0.0-beta.14",
     "@types/fetch-mock": "6.0.1",
     "@types/jest": "22.2.2",
     "@types/node": "9.6.2",
-    "@types/react": "16.3.5",
-    "@types/react-dom": "16.0.4",
-    "@types/react-intl": "2.3.5",
-    "@types/react-redux": "5.0.15",
     "@types/query-string": "5.1.0",
+    "@types/react": "16.3.5",
     "@types/react-collapse": "^4.0.1",
+    "@types/react-dom": "16.0.4",
+    "@types/react-intl": "^2.3.12",
+    "@types/react-redux": "5.0.15",
     "@types/react-router-dom": "^4.2.5",
-    "typescript": "^2.8.1",
     "chai": "4.1.2",
     "chai-as-promised": "7.1.1",
     "copyfiles": "2.0.0",
@@ -96,6 +95,7 @@
     "fetch-mock": "6.3.0",
     "less": "3.0.1",
     "npm-run-all": "4.1.2",
-    "sinon": "4.5.0"
+    "sinon": "4.5.0",
+    "typescript": "^2.8.1"
   }
 }

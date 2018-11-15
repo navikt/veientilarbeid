@@ -11,20 +11,22 @@ const MOCK_FEATURE_TOGGLES = true;
 const MOCK_SERVICEGRUPPE = true;
 const MOCK_SYKEFORLOEPMETADATAGRUPPE = true;
 
+const DELAY = 0;
+
 if (MOCK_OPPFOLGING) {
-    (mock as any).get(`${VEILARBOPPFOLGINGPROXY_URL}/oppfolging`, respondWith(delayed(1000, oppfolgingResponse)));
+    (mock as any).get(`${VEILARBOPPFOLGINGPROXY_URL}/oppfolging`, respondWith(delayed(DELAY, oppfolgingResponse)));
 }
 
 if (MOCK_FEATURE_TOGGLES) {
-    (mock as any).get(`express:${FEATURE_URL}(.*)`, respondWith(delayed(1000, featureTogglesMock)));
+    (mock as any).get(`express:${FEATURE_URL}(.*)`, respondWith(delayed(DELAY, featureTogglesMock)));
 }
 
 if (MOCK_SERVICEGRUPPE) {
-    (mock as any).get(`${SERVICEGRUPPE_URL}`, respondWith(delayed(1000, servicegruppeResponse)));
+    (mock as any).get(`${SERVICEGRUPPE_URL}`, respondWith(delayed(DELAY, servicegruppeResponse)));
 }
 
 if (MOCK_SYKEFORLOEPMETADATAGRUPPE) {
-    (mock as any).get(`${SYKEFORLOEP_METADATA_URL}`, respondWith(delayed(1000, sykeforloepMetadataResponse)))
+    (mock as any).get(`${SYKEFORLOEP_METADATA_URL}`, respondWith(delayed(DELAY, sykeforloepMetadataResponse)))
 }
 
 (mock as any).mock('*', respondWith((url: string, config: {}) => mock.realFetch.call(window, url, config)));
