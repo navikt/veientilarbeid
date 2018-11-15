@@ -6,13 +6,22 @@
 
     .info-panel {
 
+        &:nth-child(odd) {
+            margin-right: 1rem;
+        }
+
+        &:nth-child(even) {
+            margin-left: 1rem;
+        }
+
         &--bilde-container {
             background-color: @navDypBlaLighten80;
             height: 5rem;
         }
 
         &--tekst-container {
-            padding: 1rem;
+            padding: 2rem;
+            background-color: white;
         }
 
     }
