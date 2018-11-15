@@ -13,7 +13,7 @@ class SykemeldingOppfolgingInnhold extends React.Component<{}> {
             <div className="sykmelding-oppfolging-innhold">
                 <div className="rad-even">
                     <div className="limit">
-                        <Aktivitetsplan />
+                        <Aktivitetsplan beskrivelseId="aktivitetsplan-beskrivelse-sykmeldt" />
                     </div>
                 </div>
                 <div className="rad">
