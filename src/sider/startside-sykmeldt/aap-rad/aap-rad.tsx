@@ -29,11 +29,11 @@ const AapRad = (props?: InjectedIntlProps) => {
                 <FormattedMessage id="aap-rad-ingress"/>
             </Normaltekst>
 
-            <Ekspanderbartpanel tittel={tekster.rettPaAapPanelTittel} tittelProps="undertittel" border>
+            <Ekspanderbartpanel tittel={tekster.rettPaAapPanelTittel} tittelProps="undertittel" border={true}>
                 <RettPaAapInnhold/>
             </Ekspanderbartpanel>
 
-            <Ekspanderbartpanel tittel={tekster.soknadsTidspunktPanelTittel} tittelProps="undertittel" border>
+            <Ekspanderbartpanel tittel={tekster.soknadsTidspunktPanelTittel} tittelProps="undertittel" border={true}>
                 <SoketidspunktInnhold/>
             </Ekspanderbartpanel>
 
