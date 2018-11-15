@@ -16,7 +16,7 @@ interface StateProps {
     featureToggleServicegruppe: boolean;
 }
 
-class Startside extends React.Component<StateProps> {
+class StartsideOrdinaer extends React.Component<StateProps> {
 
     erInnsatsgruppe() {
         return (
@@ -30,15 +30,20 @@ class Startside extends React.Component<StateProps> {
         const { featureToggleServicegruppe } = this.props;
 
         return (
-            <Side bannerTittelId="banner-tittel-startside" bannerBrodsmuleId="brodsmuler-startside">
-                <ReaktiveringMelding />
-                <Aktivitetsplan />
-                <Meldekort />
-                <Ressurslenker />
-                {innsatsgruppe && featureToggleServicegruppe && (
-                    <Tiltakinfo />
-                )}
-                <Dagpenger />
+            <Side
+                bannerTittelId="startside-banner-tittel"
+                bannerBrodsmuleId="startside-banner-brodsmule"
+            >
+                <section className="innhold">
+                    <ReaktiveringMelding />
+                    <Aktivitetsplan />
+                    <Meldekort />
+                    <Ressurslenker />
+                    {innsatsgruppe && featureToggleServicegruppe && (
+                        <Tiltakinfo />
+                    )}
+                    <Dagpenger />
+                </section>
             </Side>
         );
     }
@@ -50,4 +55,4 @@ const mapStateToProps = (state: AppState): StateProps => ({
     featureToggleServicegruppe: selectHentServicegruppekodeFeatureToggle(state),
 });
 
-export default connect(mapStateToProps)(Startside);
+export default connect(mapStateToProps)(StartsideOrdinaer);

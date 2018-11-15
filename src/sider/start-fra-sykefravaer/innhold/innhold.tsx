@@ -34,7 +34,7 @@ const Innhold: React.SFC<Props> = (props: Props) => {
                         </Element>
                         <div className="registrert__knapperad">
                             <button
-                                onClick={() => props.history.push('oppfolging')}
+                                onClick={() => props.history.push('/')}
                                 className="registrert__lenke knapp knapp--standard"
                             >
                                 <FormattedMessage id="knapp-ikke-na"/>
