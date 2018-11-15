@@ -1,9 +1,7 @@
 import * as React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl, InjectedIntlProps } from 'react-intl';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import './info-paneler-rad.less';
-import injectIntl = ReactIntl.injectIntl;
-import InjectedIntlProps = ReactIntl.InjectedIntlProps;
 
 interface InfoPanelProps {
     bilde?: any; // tslint:disable-line
@@ -19,14 +17,14 @@ const InfoPanel = (props: InfoPanelProps) => {
     return (
         <div className="info-panel">
             <div className="info-panel--bilde-container"/>
-            <div className="info-pane--tekst-container">
-                <Systemtittel>
+            <div className="info-panel--tekst-container">
+                <Systemtittel className="blokk-s">
                     <FormattedMessage id={props.tittelId} />
                 </Systemtittel>
-                <Normaltekst>
+                <Normaltekst className="blokk-m">
                     <FormattedMessage id={props.tekstId} />
                 </Normaltekst>
-                <a href={props.intl.messages[props.lenkeUrlId]}>
+                <a href={props.intl.messages[props.lenkeUrlId]} className="lenke blokk-xl">
                     <FormattedMessage id={props.lenkeTekstId} />
                 </a>
             </div>
@@ -36,7 +34,7 @@ const InfoPanel = (props: InfoPanelProps) => {
 };
 
 const InfoPanelerRad: React.SFC<InjectedIntlProps> = (props?: InjectedIntlProps) => {
-    
+
     return (
         <div className="info-paneler-rad">
             <InfoPanel

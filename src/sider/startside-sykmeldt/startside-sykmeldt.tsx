@@ -14,19 +14,27 @@ const StartsideSykmeldt = () => {
         >
             <main className="startside-sykmeldt--rader">
                 <section className="startside-sykmeldt--rad">
-                    <AktivitetsplanRad/>
+                    <div className="startside-sykmeldt--rad-innhold">
+                        <AktivitetsplanRad/>
+                    </div>
                 </section>
 
                 <section className="startside-sykmeldt--rad">
-                    <InfoPanelerRad/>
+                    <div className="startside-sykmeldt--rad-innhold">
+                        <InfoPanelerRad/>
+                    </div>
                 </section>
 
                 <section className="startside-sykmeldt--rad">
-                    <AapRad/>
+                    <div className="startside-sykmeldt--rad-innhold">
+                        <AapRad/>
+                    </div>
                 </section>
 
                 <section className="startside-sykmeldt--rad">
-                    <OkonomiRad/>
+                    <div className="startside-sykmeldt--rad-innhold">
+                        <OkonomiRad/>
+                    </div>
                 </section>
             </main>
         </Side>
