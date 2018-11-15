@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Route } from 'react-router';
-import Startside from './komponenter/startside/startside';
-import StartFraSykefravaer from './komponenter/start-fra-sykefravaer/start-fra-sykefravaer';
+import Startside from './sider/startside/startside';
+import StartFraSykefravaer from './sider/start-fra-sykefravaer/start-fra-sykefravaer';
 import SjekkOppfolging from './komponenter/hent-initial-data/sjekk-oppfolging';
 import { connect } from 'react-redux';
 import { AppState } from './reducer';
