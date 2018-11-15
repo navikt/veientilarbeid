@@ -30,5 +30,5 @@ yarn-error.log*
 public/index.css
 public/index.css.map
 /src/main/webapp/
-/src/tekster/alle-tekster.ts
+/src/tekster/bundle.js
 !/.idea/runConfigurations/

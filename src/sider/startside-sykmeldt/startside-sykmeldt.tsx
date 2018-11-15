@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Side from '../../komponenter/side/side';
 import InfoPanelerRad from './info-paneler-rad/info-paneler-rad';
-import AapRad from './aap-rad/aap-rad';
+// import AapRad from './aap-rad/aap-rad';
 import OkonomiRad from './okonomi-rad';
 import AktivitetsplanRad from './aktivitetsplan-rad';
 import './startside-sykmeldt.less';
@@ -27,7 +27,7 @@ const StartsideSykmeldt = () => {
 
                 <section className="startside-sykmeldt--rad">
                     <div className="startside-sykmeldt--rad-innhold">
-                        <AapRad/>
+                        <p>ds</p>
                     </div>
                 </section>
 

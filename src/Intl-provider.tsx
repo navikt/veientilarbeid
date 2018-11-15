@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { addLocaleData, IntlProvider as Provider } from 'react-intl';
 import * as nb from 'react-intl/locale-data/nb';
-import lokaleTekster from './tekster/alle-tekster';
+import lokaleTekster from './tekster/bundle';
 import { parse } from 'query-string';
 
 addLocaleData(nb);
