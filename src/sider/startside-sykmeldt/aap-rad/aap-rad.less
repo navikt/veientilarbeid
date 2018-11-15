@@ -1,0 +1,69 @@
+@import "../../../../node_modules/nav-frontend-core/less/_variabler";
+
+.aap-rad {
+    .ekspanderbartPanel {
+        margin-bottom: 1rem;
+    }
+}
+
+.relatert-innhold-boks {
+    margin-top: 3rem;
+
+    .relatert-innhold {
+        background-color: @navLysBlaLighten80;
+    }
+
+    .relatert-innhold-lenkeliste ul {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+        li {
+            border-bottom: 1px solid @navLysBlaLighten40;
+            padding: 1rem 2rem;
+        }
+    }
+}
+
+@media (min-width: @screen-md-min) {
+
+    .to-kol {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        flex-wrap: wrap;
+
+        .kol {
+            width: 49%;
+        }
+    }
+
+    .relatert-innhold-boks {
+        .panel.relatert-innhold{
+            padding: 1rem 0 1rem 2rem;
+        }
+    }
+
+    .hovedinnhold {
+        width: 59%;
+    }
+
+    .relatert-innhold-boks {
+        width: ~'calc(39% - 1rem)';
+        margin: 1rem 0 0 1rem;
+    }
+
+    .panel-innhold.to-kol {
+        justify-content: normal;
+        margin: 2rem auto 1rem;
+        padding: 0 1.5rem;
+    }
+
+}
+
+@media (min-width: @screen-md-min) {
+    .aap-rad {
+        .panel-innhold {
+            padding: 1.5rem 10rem 1.5rem 2rem;
+        }
+    }
+}

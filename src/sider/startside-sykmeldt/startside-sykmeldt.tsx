@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Side from '../../komponenter/side/side';
-import InfoPanelerRad from './info-paneler-rad';
-import AapRad from './aap-rad';
+import InfoPanelerRad from './info-paneler-rad/info-paneler-rad';
+import AapRad from './aap-rad/aap-rad';
 import OkonomiRad from './okonomi-rad';
 import AktivitetsplanRad from './aktivitetsplan-rad';
 import './startside-sykmeldt.less';
