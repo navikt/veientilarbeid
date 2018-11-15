@@ -9,7 +9,7 @@ class SykemeldingOppfolgingInnhold extends React.Component<{}> {
     render() {
         return (
             <>
-            <Overskrift/>
+            <Overskrift tittelId="overskrift-oppfolging"/>
             <div className="sykmelding-oppfolging-innhold">
                 <div className="rad-even">
                     <div className="limit">

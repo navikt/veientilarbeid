@@ -5,7 +5,7 @@ import Innhold from './innhold/innhold';
 const StartFraSykefravaer = () => {
     return (
         <>
-            <Overskrift/>
+            <Overskrift tittelId="overskrift-frasykefravaer"/>
             <Innhold/>
         </>
     );
