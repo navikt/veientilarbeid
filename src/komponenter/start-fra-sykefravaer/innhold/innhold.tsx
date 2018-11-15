@@ -3,10 +3,13 @@ import { FormattedMessage } from 'react-intl';
 import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import AvsjekkBilde from './avsjekk-bilde';
 const handinfoSvg = require('./clipboard.svg');
+import { RouteComponentProps, withRouter } from 'react-router';
 import './innhold.less';
 import './registrert.less';
 
-const Innhold = () => {
+type Props = RouteComponentProps<any>; // tslint:disable-line
+
+const Innhold: React.SFC<Props> = (props: Props) => {
     return (
         <section className="innhold__wrapper">
             <div className="innhold registrert">
@@ -30,12 +33,12 @@ const Innhold = () => {
                             <FormattedMessage id="duernaregistrert-element"/>
                         </Element>
                         <div className="registrert__knapperad">
-                            <a
-                                href={'/'}
+                            <button
+                                onClick={() => props.history.push('oppfolging')}
                                 className="registrert__lenke knapp knapp--standard"
                             >
                                 <FormattedMessage id="knapp-ikke-na"/>
-                            </a>
+                            </button>
                             <a
                                 href={'/fra-sykefravaer'}
                                 className="registrert__lenke knapp knapp--hoved"
@@ -50,4 +53,4 @@ const Innhold = () => {
     );
 };
 
-export default Innhold;
+export default withRouter(Innhold);
