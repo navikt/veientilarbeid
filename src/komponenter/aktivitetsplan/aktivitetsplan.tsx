@@ -13,8 +13,12 @@ interface State {
     nyRegistrering: boolean;
 }
 
-class Aktivitetsplan extends React.PureComponent<{}, State> {
-    constructor(props: {}) {
+interface Props {
+    beskrivelseId?: string;
+}
+
+class Aktivitetsplan extends React.PureComponent<Props, State> {
+    constructor(props: Props) {
         super(props);
         this.state = {
             nyRegistrering: parse(location.search).nyRegistrering === 'true'
@@ -22,7 +26,15 @@ class Aktivitetsplan extends React.PureComponent<{}, State> {
     }
 
     render() {
-        const beskrivelseTekstId = 'aktivitetsplan-beskrivelse' + (this.state.nyRegistrering ? '-ny' : '');
+        const { beskrivelseId } = this.props;
+
+        let beskrivelseTekstId;
+        if (beskrivelseId) {
+            beskrivelseTekstId = beskrivelseId;
+        } else {
+            beskrivelseTekstId = 'aktivitetsplan-beskrivelse' + (this.state.nyRegistrering ? '-ny' : '');
+        }
+
         return (
             <div className="aktivitetsplan">
                 <img
