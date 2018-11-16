@@ -12,11 +12,24 @@
             margin-bottom: 2rem;
         }
 
+        // Hacky way to set the height of the last panel equal to the first
+        &:last-child {
+            .info-panel--tekst-container {
+                padding-bottom: 3rem;
+            }
+        }
+
+        &--bilde {
+            width: 80%;
+            margin: 0 1rem;
+        }
+
         &--bilde-container {
             background-color: @navDypBlaLighten80;
-            height: 5rem;
             border-top-left-radius: 5px;
             border-top-right-radius: 5px;
+            border-bottom: @navDypBlaLighten60 solid 3px;
+            padding: 3rem 1rem 0 1rem;
         }
 
         &--tekst-container {
@@ -34,20 +47,26 @@
     .info-paneler-rad {
         display: flex;
         flex-direction: row;
+        margin: 0;
 
         .info-panel {
             flex-grow: 1;
+            flex-basis: 0;
 
             &:first-child {
                 margin-bottom: 0;
             }
 
             &:nth-child(odd) {
-                margin-right: 1rem;
+                margin-right: 1.5rem;
             }
 
             &:nth-child(even) {
-                margin-left: 1rem;
+                margin-left: 1.5rem;
+            }
+
+            &--bilde {
+                width: 90%;
             }
 
         }

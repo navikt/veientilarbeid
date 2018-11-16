@@ -4,7 +4,7 @@ import * as React from 'react';
 import LenkeMedChevron from '../../../komponenter/lenke-med-chevron/lenke-med-chevron';
 
 interface InfoPanelProps {
-    bilde?: any; // tslint:disable-line
+    bilde: string; // tslint:disable-line
     tittelId: string;
     tekstId: string;
     lenkeTekstId: string;
@@ -15,11 +15,13 @@ type AllProps = InfoPanelProps & InjectedIntlProps;
 
 const InfoPanel = (props: AllProps) => {
 
-    const { tittelId, tekstId, lenkeTekstId, lenkeUrlId, intl } = props;
+    const { tittelId, tekstId, lenkeTekstId, lenkeUrlId, intl, bilde } = props;
 
     return (
         <div className="info-panel">
-            <div className="info-panel--bilde-container"/>
+            <div className="info-panel--bilde-container">
+                <img src={bilde} className="info-panel--bilde"/>
+            </div>
             <div className="info-panel--tekst-container">
                 <Systemtittel className="blokk-s">
                     <FormattedMessage id={tittelId} />
