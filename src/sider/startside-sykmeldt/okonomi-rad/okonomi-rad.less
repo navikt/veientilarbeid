@@ -1,0 +1,28 @@
+@import '../../../../node_modules/nav-frontend-core/less/_variabler';
+
+.okonomi-rad {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 0;
+
+    & > * {
+        flex: 0 1 48%;
+    }
+
+    .okonomi-panel:first-child {
+        margin-bottom: 6rem;
+    }
+
+}
+
+@media (min-width: @screen-sm-min) {
+    .okonomi-rad {
+        flex-direction: row;
+        justify-content: space-evenly;
+
+        .okonomi-panel:first-child {
+            margin-bottom: 0;
+        }
+
+    }
+}
