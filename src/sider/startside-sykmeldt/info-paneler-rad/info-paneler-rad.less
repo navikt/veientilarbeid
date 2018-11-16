@@ -2,16 +2,14 @@
 
 .info-paneler-rad {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    margin: 0 1rem;
 
     .info-panel {
+        flex-grow: 1;
 
-        &:nth-child(odd) {
-            margin-right: 1rem;
-        }
-
-        &:nth-child(even) {
-            margin-left: 1rem;
+        &:first-child {
+            margin-bottom: 2rem;
         }
 
         &--bilde-container {
@@ -30,4 +28,29 @@
 
     }
 
+}
+
+@media (min-width: @screen-sm-min) {
+    .info-paneler-rad {
+        display: flex;
+        flex-direction: row;
+
+        .info-panel {
+            flex-grow: 1;
+
+            &:first-child {
+                margin-bottom: 0;
+            }
+
+            &:nth-child(odd) {
+                margin-right: 1rem;
+            }
+
+            &:nth-child(even) {
+                margin-left: 1rem;
+            }
+
+        }
+
+    }
 }

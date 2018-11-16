@@ -1,10 +1,10 @@
 import * as React from 'react';
 import Side from '../../komponenter/side/side';
 import InfoPanelerRad from './info-paneler-rad/info-paneler-rad';
-// import AapRad from './aap-rad/aap-rad';
 import OkonomiRad from './okonomi-rad';
-import AktivitetsplanRad from './aktivitetsplan-rad';
+import AktivitetsplanRad from './aktivitetsplan-rad/aktivitetsplan-rad';
 import './startside-sykmeldt.less';
+import AapRad from './aap-rad/aap-rad';
 
 const StartsideSykmeldt = () => {
     return (
@@ -27,7 +27,7 @@ const StartsideSykmeldt = () => {
 
                 <section className="startside-sykmeldt--rad">
                     <div className="startside-sykmeldt--rad-innhold">
-                        <p>ds</p>
+                        <AapRad/>
                     </div>
                 </section>
 

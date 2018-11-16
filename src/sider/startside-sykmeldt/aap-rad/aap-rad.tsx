@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Normaltekst, Systemtittel, Undertittel } from 'nav-frontend-typografi';
 import { FormattedMessage, InjectedIntlProps, injectIntl } from 'react-intl';
+import './aap-rad.less';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import RettPaAapInnhold from './rett-pa-aap-innhold';
 import SoketidspunktInnhold from './soketidspunkt-innhold';
-import './aap-rad.less';
 
 const AapRad = (props?: InjectedIntlProps) => {
 
@@ -12,20 +12,21 @@ const AapRad = (props?: InjectedIntlProps) => {
 
     const tekster = {
         rettPaAapPanelTittel: messages['aap-rad-rett-pa-aap-panel-tittel'],
-        soknadsTidspunktPanelTittel: messages['aap-rad-soknadstidspunkt-panel-tittel'],
+        soketidspunktPanelTittel: messages['aap-rad-soketidspunkt-panel-tittel'],
+        tilSoknadKnappUrl: messages['aap-rad-til-soknad-knapp-url']
     };
 
     return (
         <div className="aap-rad">
-            <Undertittel>
+            <Systemtittel className="blokk-xl aap-rad--tittel">
                 <FormattedMessage id="aap-rad-tittel" />
-            </Undertittel>
-
-            <Systemtittel>
-                <FormattedMessage id="aap-rad-ingress-tittel"/>
             </Systemtittel>
 
-            <Normaltekst>
+            <Undertittel className="blokk-s">
+                <FormattedMessage id="aap-rad-ingress-tittel"/>
+            </Undertittel>
+
+            <Normaltekst className="blokk-m aap-rad--ingress">
                 <FormattedMessage id="aap-rad-ingress"/>
             </Normaltekst>
 
@@ -33,14 +34,14 @@ const AapRad = (props?: InjectedIntlProps) => {
                 <RettPaAapInnhold/>
             </Ekspanderbartpanel>
 
-            <Ekspanderbartpanel tittel={tekster.soknadsTidspunktPanelTittel} tittelProps="undertittel" border={true}>
+            <Ekspanderbartpanel tittel={tekster.soketidspunktPanelTittel} tittelProps="undertittel" border={true}>
                 <SoketidspunktInnhold/>
             </Ekspanderbartpanel>
 
-            <a className="knapp knapp--hoved" href="PLACEHOLDER">
-                <FormattedMessage id=""/>
+            <a className="knapp knapp--hoved aap-rad--til-soknad-knapp" href={tekster.tilSoknadKnappUrl}>
+                <FormattedMessage id="aap-rad-til-soknad-knapp-tekst"/>
             </a>
-            
+
         </div>
     );
 };
