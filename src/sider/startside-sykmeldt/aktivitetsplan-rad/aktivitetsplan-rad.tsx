@@ -5,7 +5,7 @@ import './aktivitetsplan-rad.less';
 const AktivitetsplanRad = () => {
     return (
         <div className="aktivitetsplan-rad">
-            <Aktivitetsplan/>
+            <Aktivitetsplan erBrukerSykmeldt={true}/>
         </div>
     );
 };
