@@ -1,20 +1,28 @@
 import * as React from 'react';
 import { connect, Dispatch } from 'react-redux';
+import { AppState } from '../../reducer';
+import Innholdslaster from '../innholdslaster/innholdslaster';
+import Feilmelding from '../feilmeldinger/feilmelding';
 import { hentOppfolging, selectOppfolging, State as OppfolgingState } from '../../ducks/oppfolging';
 import {
     hentFeatureToggles,
     selectFeatureToggles,
     selectHentServicegruppekodeFeatureToggle,
     selectHentSykeforloepMetadata,
+    selectHentJobbsokerbesvarelseFeatureToggle,
     servicekodeToggleKey,
+    jobbsokerbesvarelseToggleKey,
     State as FeatureTogglesState, sykeforloepMetadataToggleKey
 } from '../../ducks/feature-toggles';
 import { hentServicegruppe, selectServicegruppe, State as ServicegruppeState } from '../../ducks/servicegruppe';
-import { AppState } from '../../reducer';
-import Innholdslaster from '../innholdslaster/innholdslaster';
-import Feilmelding from '../feilmeldinger/feilmelding';
-import { selectSykeforloepMetadata, hentSykeforloepMetadata, State as SykeforloepMetadataState }
-    from '../../ducks/sykeforloep-metadata';
+import {
+    selectSykeforloepMetadata, hentSykeforloepMetadata, State as SykeforloepMetadataState
+} from '../../ducks/sykeforloep-metadata';
+import {
+    hentJobbsokerbesvarelse,
+    selectJobbsokerbesvarelse,
+    State as JobbsokerbesvarelseState
+} from '../../ducks/jobbsokerbesvarelse';
 
 interface OwnProps {
     children: React.ReactNode;
@@ -25,15 +33,18 @@ interface StateProps {
     featureToggles: FeatureTogglesState;
     servicegruppe: ServicegruppeState;
     sykeforloepMetadata: SykeforloepMetadataState;
+    jobbsokerbesvarelse: JobbsokerbesvarelseState;
     featureToggleServicegruppe: boolean;
     featureToggleSykeforloepMetadata: boolean;
+    featureToggleJobbsokerbesvarelse: boolean;
 }
 
 interface DispatchProps {
-    hentOppfolging: () => void;
+    hentOppfolging: () => Promise<void | {}>;
     hentFeatureToggles: () => Promise<void | {}>;
     hentServicegruppe: () => void;
     hentSykeforloepMetadata: () => void;
+    hentJobbsokerbesvarelse: () => void;
 }
 
 type Props = StateProps & DispatchProps & OwnProps;
@@ -42,7 +53,12 @@ class HentInitialData extends React.Component<Props> {
     componentWillMount() {
         this.props.hentFeatureToggles().then((response) => {
 
-            this.props.hentOppfolging();
+            this.props.hentOppfolging().then(() => {
+                const featureToggleJobbsokerbesvarelse = response[jobbsokerbesvarelseToggleKey];
+                if (featureToggleJobbsokerbesvarelse && this.props.oppfolging.data.underOppfolging) {
+                    this.props.hentJobbsokerbesvarelse();
+                }
+            });
 
             const featureToggleSykeforloepMetadata = response[sykeforloepMetadataToggleKey];
             if (featureToggleSykeforloepMetadata) {
@@ -61,16 +77,26 @@ class HentInitialData extends React.Component<Props> {
             oppfolging,
             servicegruppe,
             sykeforloepMetadata,
+            jobbsokerbesvarelse,
             featureToggleServicegruppe,
             featureToggleSykeforloepMetadata,
+            featureToggleJobbsokerbesvarelse,
         } = this.props;
 
-        if (featureToggleServicegruppe && featureToggleSykeforloepMetadata) {
+        if (featureToggleServicegruppe && featureToggleSykeforloepMetadata && featureToggleJobbsokerbesvarelse) {
+            return [oppfolging, servicegruppe, sykeforloepMetadata, jobbsokerbesvarelse];
+        } else if (featureToggleServicegruppe && featureToggleSykeforloepMetadata) {
             return [oppfolging, servicegruppe, sykeforloepMetadata];
+        } else if (featureToggleServicegruppe && featureToggleJobbsokerbesvarelse) {
+            return [oppfolging, servicegruppe, jobbsokerbesvarelse];
+        } else if (featureToggleSykeforloepMetadata && featureToggleJobbsokerbesvarelse) {
+            return [oppfolging, sykeforloepMetadata, jobbsokerbesvarelse];
         } else if (featureToggleServicegruppe) {
             return [oppfolging, servicegruppe];
         } else if (featureToggleSykeforloepMetadata) {
             return [oppfolging, sykeforloepMetadata];
+        } else if (featureToggleJobbsokerbesvarelse) {
+        return [oppfolging, jobbsokerbesvarelse];
         } else {
             return [oppfolging];
         }
@@ -100,8 +126,10 @@ const mapStateToProps = (state: AppState): StateProps => ({
     featureToggles: selectFeatureToggles(state),
     servicegruppe: selectServicegruppe(state),
     sykeforloepMetadata: selectSykeforloepMetadata(state),
+    jobbsokerbesvarelse: selectJobbsokerbesvarelse(state),
     featureToggleServicegruppe: selectHentServicegruppekodeFeatureToggle(state),
     featureToggleSykeforloepMetadata: selectHentSykeforloepMetadata(state),
+    featureToggleJobbsokerbesvarelse: selectHentJobbsokerbesvarelseFeatureToggle(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AppState>): DispatchProps => ({
@@ -109,6 +137,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AppState>): DispatchProps => ({
     hentFeatureToggles: () => dispatch(hentFeatureToggles()),
     hentServicegruppe: () => dispatch(hentServicegruppe()),
     hentSykeforloepMetadata: () => dispatch(hentSykeforloepMetadata()),
+    hentJobbsokerbesvarelse: () => dispatch(hentJobbsokerbesvarelse()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HentInitialData);

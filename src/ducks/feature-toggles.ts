@@ -10,6 +10,7 @@ export enum ActionTypes {
 
 export interface Data {
     'veientilarbeid.hentservicekode': boolean;
+    'veientilarbeid.hentJobbsokerbesvarelse': boolean;
 }
 
 export interface State {
@@ -24,15 +25,18 @@ interface Action {
 
 export const servicekodeToggleKey = 'veientilarbeid.hentservicekode';
 export const sykeforloepMetadataToggleKey = 'veientilarbeid.hentSykeforloepMetadata';
+export const jobbsokerbesvarelseToggleKey = 'veientilarbeid.hentJobbsokerbesvarelse';
 
 export const alleFeatureToggles = [
     servicekodeToggleKey,
-    sykeforloepMetadataToggleKey
+    sykeforloepMetadataToggleKey,
+    jobbsokerbesvarelseToggleKey
 ];
 
 const initialState = {
     data : {
         'veientilarbeid.hentservicekode': false,
+        'veientilarbeid.hentJobbsokerbesvarelse': false
     },
     status: STATUS.NOT_STARTED
 };
@@ -72,4 +76,8 @@ export function selectHentServicegruppekodeFeatureToggle(state: AppState): boole
 
 export function selectHentSykeforloepMetadata(state: AppState): boolean {
     return state.featureToggles.data[sykeforloepMetadataToggleKey];
+}
+
+export function selectHentJobbsokerbesvarelseFeatureToggle(state: AppState): boolean {
+    return state.featureToggles.data[jobbsokerbesvarelseToggleKey];
 }
