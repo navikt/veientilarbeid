@@ -34,7 +34,7 @@ class StartsideOrdinaer extends React.Component<StateProps> {
                 bannerTittelId="startside-banner-tittel"
                 bannerBrodsmuleId="startside-banner-brodsmule"
             >
-                <section className="innhold">
+                <main className="innhold">
                     <ReaktiveringMelding />
                     <Aktivitetsplan />
                     <Meldekort />
@@ -43,7 +43,7 @@ class StartsideOrdinaer extends React.Component<StateProps> {
                         <Tiltakinfo />
                     )}
                     <Dagpenger />
-                </section>
+                </main>
             </Side>
         );
     }
