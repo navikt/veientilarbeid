@@ -3,6 +3,7 @@ import { InjectedIntlProps, injectIntl, FormattedMessage } from 'react-intl';
 import './okonomi-panel.less';
 import { Systemtittel } from 'nav-frontend-typografi';
 import Html from '../../../komponenter/html';
+import LenkeMedChevron from '../../../komponenter/lenke-med-chevron/lenke-med-chevron';
 
 const infoBilde = require('./info.svg');
 
@@ -33,9 +34,9 @@ const OkonomiPanel = (props: AllProps) => {
                 }
             </Systemtittel>
 
-            <a className="lenke okonomi-panel--lenke" href={lenkeUrl}>
+            <LenkeMedChevron path={lenkeUrl} className="okonomi-panel--lenke">
                 <FormattedMessage id={lenkeTekstId}/>
-            </a>
+            </LenkeMedChevron>
 
         </div>
     );
