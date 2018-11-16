@@ -8,14 +8,14 @@ const RettPaAapInnhold: React.SFC<InjectedIntlProps> = (props?: InjectedIntlProp
     const { messages } = props!.intl;
 
     const tekster = {
-        innhold: messages.innhold,
-        relatertTittel: messages['relatertinnhold.tittel'],
-        relatertInnhold: messages['relatertinnhold.innhold'],
-        rettTilAapIngress: messages['undertittel.ingress'],
+        innhold: messages['aap-rett-pa-innhold'],
+        relatertTittel: messages['aap-rett-pa-relatertinnhold-tittel'],
+        relatertInnhold: messages['aap-rett-pa-relatertinnhold-innhold'],
+        rettTilAapIngress: messages['aap-rett-pa-undertittel-ingress'],
     };
 
     return (
-        <div className="panel-innhold to-kol">
+        <div className="panel-innhold rett-pa-aap-innhold">
             <div className="hovedinnhold">
                 <Normaltekst className="blokk-s">
                     {tekster.rettTilAapIngress}

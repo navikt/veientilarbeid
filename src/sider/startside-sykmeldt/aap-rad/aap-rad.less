@@ -1,69 +1,114 @@
 @import "../../../../node_modules/nav-frontend-core/less/_variabler";
 
 .aap-rad {
+    margin: 0 1rem;
+
+    .panel-innhold {
+        padding: 1rem 0rem;
+    }
+
     .ekspanderbartPanel {
         margin-bottom: 1rem;
     }
-}
 
-.relatert-innhold-boks {
-    margin-top: 3rem;
-
-    .relatert-innhold {
-        background-color: @navLysBlaLighten80;
+    &--tittel {
+        text-align: center;
     }
 
-    .relatert-innhold-lenkeliste ul {
-        padding: 0;
-        margin: 0;
-        list-style-type: none;
-        li {
-            border-bottom: 1px solid @navLysBlaLighten40;
+    &--ingress {
+        width: 60%;
+    }
+
+    &--til-soknad-knapp {
+        margin-top: 1rem;
+    }
+
+    .knapp--hoved {
+        padding: .75em 4em;
+    }
+
+    .rett-pa-aap-innhold {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .relatert-innhold-boks {
+        margin: 1rem;
+
+        .relatert-innhold {
+            background-color: @navLysBlaLighten80;
+        }
+
+        .relatert-innhold-lenkeliste ul {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+            li {
+                border-bottom: 1px solid @navLysBlaLighten40;
+                padding: 1rem 2rem;
+            }
+        }
+
+    }
+
+    .sjekkboks-liste {
+        padding-left: 43px;
+        position: relative;
+
+        div.avsnitt {
+            position: relative;
+
+            p {
+                margin-top: 0;
+            }
+
+            &:before {
+                content: "";
+                position: absolute;
+                left: -25px;
+                top: 3px;
+                width: 25px;
+                height: 25px;
+                background-size: 32px 32px;
+                background: @white url(./sjekk-sirkel.svg) no-repeat;
+            }
+            &:last-child:before {
+                padding-bottom: 6px;
+                height: 100%;
+                min-height: 32px;
+            }
+        }
+    }
+
+}
+
+@media (min-width: @screen-md-min) {
+
+    .aap-rad {
+
+        .rett-pa-aap-innhold {
+            flex-direction: row;
+            flex-wrap: nowrap;
+        }
+
+        .panel-innhold {
             padding: 1rem 2rem;
         }
-    }
-}
 
-@media (min-width: @screen-md-min) {
-
-    .to-kol {
-        display: flex;
-        justify-content: space-between;
-        align-items: start;
-        flex-wrap: wrap;
-
-        .kol {
-            width: 49%;
+        .hovedinnhold {
+            width: 59%;
         }
-    }
 
-    .relatert-innhold-boks {
-        .panel.relatert-innhold{
-            padding: 1rem 0 1rem 2rem;
+        .relatert-innhold-boks {
+            width: 39%;
+            margin: 0 0 0 2rem;
+
+            .panel.relatert-innhold{
+                padding: 1rem 0 1rem 2rem;
+            }
+
         }
+
     }
 
-    .hovedinnhold {
-        width: 59%;
-    }
-
-    .relatert-innhold-boks {
-        width: ~'calc(39% - 1rem)';
-        margin: 1rem 0 0 1rem;
-    }
-
-    .panel-innhold.to-kol {
-        justify-content: normal;
-        margin: 2rem auto 1rem;
-        padding: 0 1.5rem;
-    }
-
-}
-
-@media (min-width: @screen-md-min) {
-    .aap-rad {
-        .panel-innhold {
-            padding: 1.5rem 10rem 1.5rem 2rem;
-        }
-    }
 }
