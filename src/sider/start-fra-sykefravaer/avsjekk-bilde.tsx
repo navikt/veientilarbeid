@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { erIE } from '../../../utils/ie-test';
-
+import * as classnames from 'classnames';
+import { erIE } from '../../utils/ie-test';
 import './avsjekk-bilde.less';
 
 export default class AvsjekkBilde extends React.Component {
@@ -9,7 +9,7 @@ export default class AvsjekkBilde extends React.Component {
         return (
             <svg
                 role="img"
-                className={`avsjekk__bilde ${erIE() && 'erIE'}`}
+                className={classnames('avsjekk__bilde', erIE() ? 'erIE' : '')}
                 aria-label="Laster innhold"
                 id="Layer_1"
                 data-name="Layer 1"
