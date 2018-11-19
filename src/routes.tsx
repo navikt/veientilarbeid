@@ -25,7 +25,7 @@ class Routes extends React.Component<StateProps> {
             return (
                 <Switch>
                     <Route path="/" exact={true} component={StartsideSykmeldt}/>
-                    <Route path="/fullfort-registrering" component={FullfortRegistreringSykmeldt}/>
+                    <Route path="/sykmeldt-registrert" component={FullfortRegistreringSykmeldt}/>
                     <Redirect to="/"/>
                 </Switch>
             );
