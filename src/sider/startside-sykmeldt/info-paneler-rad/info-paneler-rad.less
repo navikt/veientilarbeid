@@ -46,24 +46,13 @@
 @media (min-width: @screen-sm-min) {
     .info-paneler-rad {
         display: flex;
-        flex-direction: row;
+        flex-direction: row-reverse;
         margin: 0;
 
         .info-panel {
-            flex-grow: 1;
-            flex-basis: 0;
-
-            &:first-child {
-                margin-bottom: 0;
-            }
-
-            &:nth-child(odd) {
-                margin-right: 1.5rem;
-            }
-
-            &:nth-child(even) {
-                margin-left: 1.5rem;
-            }
+            flex: none;
+            margin-bottom: 0;
+            width: 48%;
 
             &--bilde {
                 width: 90%;
