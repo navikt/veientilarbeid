@@ -1,15 +1,15 @@
 import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
-const DITTNAVN_PATH = '/dittnav/';
-
 import personSvg from './person.svg';
 import './brodsmuler.less';
 
-interface OwnProps {
-    tittelId: string;
+const DITTNAVN_PATH = '/dittnav/';
+
+interface BrodsmulerProps {
+    brodsmuleId: string;
 }
 
-function Brodsmuler({tittelId}: OwnProps) {
+const Brodsmuler: React.SFC<BrodsmulerProps> = (props: BrodsmulerProps) => {
     return (
         <div className="brodsmuler">
             <img src={personSvg} alt="person-illustrasjon" className="brodsmuler__illustrasjon"/>
@@ -20,11 +20,11 @@ function Brodsmuler({tittelId}: OwnProps) {
                     </a>
                 </li>
                 <li className="brodsmuler__item typo-normal">
-                    <FormattedMessage id={tittelId}/>
+                    <FormattedMessage id={props.brodsmuleId}/>
                 </li>
             </ol>
         </div>
     );
-}
+};
 
 export default Brodsmuler;

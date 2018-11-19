@@ -3,8 +3,8 @@ import { FormattedMessage } from 'react-intl';
 import { Ingress, Innholdstittel } from 'nav-frontend-typografi';
 import { parse } from 'query-string';
 import LenkeMedChevron from '../lenke-med-chevron/lenke-med-chevron';
-
-import aktivitetsplanSvg from './aktivitetsplan.svg';
+import ordinaerAktivitetsplanSvg from './ordinaer-aktivitetsplan.svg';
+import sykmeldingAktivitetsplanSvg from './sykmelding-aktivitetsplan.svg';
 import './aktivitetsplan.less';
 
 export const AKTIVITETSPLAN_URL = '/aktivitetsplan/';
@@ -13,12 +13,12 @@ interface State {
     nyRegistrering: boolean;
 }
 
-interface Props {
-    beskrivelseId?: string;
+interface AktivitetsplanProps {
+    erBrukerSykmeldt?: boolean;
 }
 
-class Aktivitetsplan extends React.PureComponent<Props, State> {
-    constructor(props: Props) {
+class Aktivitetsplan extends React.PureComponent<AktivitetsplanProps, State> {
+    constructor(props: AktivitetsplanProps) {
         super(props);
         this.state = {
             nyRegistrering: parse(location.search).nyRegistrering === 'true'
@@ -26,31 +26,38 @@ class Aktivitetsplan extends React.PureComponent<Props, State> {
     }
 
     render() {
-        const { beskrivelseId } = this.props;
+        const { erBrukerSykmeldt } = this.props;
 
+        let overskriftTekstId;
         let beskrivelseTekstId;
-        if (beskrivelseId) {
-            beskrivelseTekstId = beskrivelseId;
+        let lenkeId;
+
+        if (erBrukerSykmeldt) {
+            overskriftTekstId = 'aktivitetsplan-overskrift-sykmeldt';
+            beskrivelseTekstId = 'aktivitetsplan-beskrivelse-sykmeldt';
+            lenkeId = 'aktivitetsplan-lenke-sykmeldt';
         } else {
+            overskriftTekstId = 'aktivitetsplan-overskrift-ordinaer';
             beskrivelseTekstId = 'aktivitetsplan-beskrivelse' + (this.state.nyRegistrering ? '-ny' : '');
+            lenkeId = 'aktivitetsplan-lenke-ordinaer';
         }
 
         return (
             <div className="aktivitetsplan">
                 <img
-                    src={aktivitetsplanSvg}
+                    src={erBrukerSykmeldt ? sykmeldingAktivitetsplanSvg : ordinaerAktivitetsplanSvg}
                     alt="aktivitetsplan-illustrasjon"
                     className="aktivitetsplan__illustrasjon"
                 />
                 <div className="aktivitetsplan__tekst">
                     <Innholdstittel tag="h2" className="aktivitetsplan__overskrift" >
-                        <FormattedMessage id="aktivitetsplan-overskrift"/>
+                        <FormattedMessage id={overskriftTekstId}/>
                     </Innholdstittel>
                     <Ingress >
                         <FormattedMessage id={beskrivelseTekstId}/>
                     </Ingress>
                     <LenkeMedChevron path={AKTIVITETSPLAN_URL} className="aktivitetsplan__lenke">
-                        <FormattedMessage id="aktivitetsplan-lenke"/>
+                        <FormattedMessage id={lenkeId}/>
                     </LenkeMedChevron>
                 </div>
             </div>

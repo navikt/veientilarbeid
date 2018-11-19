@@ -1,0 +1,156 @@
+@import '../../../node_modules/nav-frontend-core/less/_variabler';
+
+@keyframes avsjekk-plassering {
+    0% {
+        left: ~'calc((100% - 159px) / 2)';
+        top: 8rem;
+        height: 159px;
+    }
+    67% {
+        left: ~'calc((100% - 159px) / 2)';
+        top: 8rem;
+        height: 159px;
+    }
+    100% {
+        left: 10px;
+        top: 0;
+        height: 70px;
+    }
+}
+
+@keyframes tittel-plassering {
+    0% {
+        margin-top: 100vh;
+    }
+    80% {
+        margin-top: 100vh;
+    }
+    100% {
+        margin-top: 8px;
+    }
+}
+
+@keyframes panel-plassering {
+    0% {
+        margin-top: 100vh;
+    }
+    80% {
+        margin-top: 100vh;
+    }
+    100% {
+        margin-top: 8rem;
+    }
+}
+
+.registrert {
+    &.innhold {
+        position: relative;
+    }
+
+    &__avsjekk {
+        position: absolute;
+        animation: avsjekk-plassering 5s both;
+        margin: 2rem 0 0 1rem;
+    }
+
+    &__tittel {
+        position: absolute;
+        left: 4rem;
+        top: -7px;
+        width: ~'calc(100vw - 7.4rem)';
+        animation: tittel-plassering 6s both;
+    }
+
+    &__aksjonspanel {
+        position: absolute;
+        top: 2rem;
+        padding: 2rem;
+        text-align: left;
+        border: 3px solid @navBlaLighten80;
+        border-radius: 8px;
+        margin: 0 1rem;
+        animation: panel-plassering 6.5s both;
+    }
+
+    &__handinfo-ikon {
+        display: none;
+    }
+
+    &__knapperad {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+
+        .knapp {
+            margin: 0.5rem 0;
+        }
+    }
+}
+
+.registrert.erIE {
+    .registrert__avsjekk {
+        left: 108px;
+        top: 40px;
+        height: 70px;
+        animation: none;
+    }
+
+    .registrert__tittel {
+        animation: none;
+    }
+
+    .registrert__aksjonspanel {
+        margin-top: 11rem;
+        animation: none;
+    }
+}
+
+@media (min-width: @screen-sm-min) {
+    .registrert {
+        text-align: left;
+        width: 36rem;
+        margin: 0 auto;
+
+        .avsjekk__bilde {
+            margin-top: 1rem;
+        }
+
+        &__avsjekk {
+            margin: 0;
+        }
+
+        &__tittel {
+            width: ~'calc(36rem - 140px)';
+            top: 5px;
+        }
+
+        &__aksjonspanel {
+            padding: 4rem 5.5rem;
+            margin: 0;
+        }
+
+        &__handinfo-ikon {
+            display: block;
+            position: absolute;
+            top: -53px;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+
+        &__knapperad {
+            display: flex;
+            flex-direction: row;
+
+            .knapp:first-child {
+                margin-right: 1rem;
+            }
+        }
+
+        &__lenke {
+            max-width: ~'calc(50% - 0.5rem)';
+            flex-grow: 1;
+        }
+    }
+}
+

@@ -1,0 +1,30 @@
+@import '../../../node_modules/nav-frontend-core/less/_variabler';
+@import '../../index';
+
+.startside-sykmeldt {
+
+    &--rader {
+        margin-bottom: 10rem;
+    }
+
+    &--rad {
+        width: 100%;
+        padding: 6rem 0;
+
+        &-innhold {
+            .innhold();
+            padding: 0; // override padding fra .innhold
+            margin: 0 auto;
+        }
+
+        &:nth-child(odd) {
+            background-color: white;
+        }
+
+        &:nth-child(even) {
+            background-color: @navLysGra;
+        }
+
+    }
+
+}
