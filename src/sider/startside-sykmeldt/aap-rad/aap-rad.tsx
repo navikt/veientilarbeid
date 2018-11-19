@@ -1,49 +1,86 @@
 import * as React from 'react';
+import * as queryString from 'query-string';
 import { Normaltekst, Systemtittel, Undertittel } from 'nav-frontend-typografi';
 import { FormattedMessage, InjectedIntlProps, injectIntl } from 'react-intl';
 import './aap-rad.less';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import RettPaAapInnhold from './rett-pa-aap-innhold';
 import SoketidspunktInnhold from './soketidspunkt-innhold';
+import { findDOMNode } from 'react-dom';
 
-const AapRad = (props?: InjectedIntlProps) => {
+interface AapRadState {
+    visAap: boolean;
+}
 
-    const { messages } = props!.intl;
+class AapRad extends React.Component<InjectedIntlProps, AapRadState> {
 
-    const tekster = {
-        rettPaAapPanelTittel: messages['aap-rad-rett-pa-aap-panel-tittel'],
-        soketidspunktPanelTittel: messages['aap-rad-soketidspunkt-panel-tittel'],
-        tilSoknadKnappUrl: messages['aap-rad-til-soknad-knapp-url']
-    };
+    constructor(props: InjectedIntlProps) {
+        super(props);
+        this.state = {
+            visAap: queryString.parse(window.location.search).visAap === 'true'
+        };
+    }
 
-    return (
-        <div className="aap-rad">
-            <Systemtittel className="blokk-xl aap-rad--tittel">
-                <FormattedMessage id="aap-rad-tittel" />
-            </Systemtittel>
+    componentDidMount() {
+        if (this.state.visAap) {
+            findDOMNode(this).scrollIntoView(
+                {
+                    block: 'start',
+                    behavior: 'smooth'
+                }
+                );
+        }
+    }
 
-            <Undertittel className="blokk-s">
-                <FormattedMessage id="aap-rad-ingress-tittel"/>
-            </Undertittel>
+    render() {
 
-            <Normaltekst className="blokk-m aap-rad--ingress">
-                <FormattedMessage id="aap-rad-ingress"/>
-            </Normaltekst>
+        const {messages} = this.props.intl;
 
-            <Ekspanderbartpanel tittel={tekster.rettPaAapPanelTittel} tittelProps="undertittel" border={true}>
-                <RettPaAapInnhold/>
-            </Ekspanderbartpanel>
+        const tekster = {
+            rettPaAapPanelTittel: messages['aap-rad-rett-pa-aap-panel-tittel'],
+            soketidspunktPanelTittel: messages['aap-rad-soketidspunkt-panel-tittel'],
+            tilSoknadKnappUrl: messages['aap-rad-til-soknad-knapp-url']
+        };
 
-            <Ekspanderbartpanel tittel={tekster.soketidspunktPanelTittel} tittelProps="undertittel" border={true}>
-                <SoketidspunktInnhold/>
-            </Ekspanderbartpanel>
+        return (
+            <div className="aap-rad">
+                <Systemtittel className="blokk-xl aap-rad--tittel">
+                    <FormattedMessage id="aap-rad-tittel"/>
+                </Systemtittel>
 
-            <a className="knapp knapp--hoved aap-rad--til-soknad-knapp" href={tekster.tilSoknadKnappUrl}>
-                <FormattedMessage id="aap-rad-til-soknad-knapp-tekst"/>
-            </a>
+                <Undertittel className="blokk-s">
+                    <FormattedMessage id="aap-rad-ingress-tittel"/>
+                </Undertittel>
 
-        </div>
-    );
-};
+                <Normaltekst className="blokk-m aap-rad--ingress">
+                    <FormattedMessage id="aap-rad-ingress"/>
+                </Normaltekst>
+
+                <Ekspanderbartpanel
+                    tittel={tekster.rettPaAapPanelTittel}
+                    tittelProps="undertittel"
+                    border={true}
+                    apen={this.state.visAap}
+                >
+                    <RettPaAapInnhold/>
+                </Ekspanderbartpanel>
+
+                <Ekspanderbartpanel
+                    tittel={tekster.soketidspunktPanelTittel}
+                    tittelProps="undertittel"
+                    border={true}
+                >
+                    <SoketidspunktInnhold/>
+                </Ekspanderbartpanel>
+
+                <a className="knapp knapp--hoved aap-rad--til-soknad-knapp" href={tekster.tilSoknadKnappUrl}>
+                    <FormattedMessage id="aap-rad-til-soknad-knapp-tekst"/>
+                </a>
+
+            </div>
+        );
+    }
+
+}
 
 export default injectIntl(AapRad);
