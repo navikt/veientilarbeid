@@ -24,8 +24,8 @@ class Routes extends React.Component<StateProps> {
         if (erSykemeldt && erUnderOppfolging(oppfolging)) {
             return (
                 <Switch>
-                    <Route path="/" exact={true} component={StartFraSykefravaer}/>
-                    <Route path="/oppfolging" component={SykemeldingOppfolgingInnhold}/>
+                    <Route path="/" exact={true} component={SykemeldingOppfolgingInnhold}/>
+                    <Route path="/sykmeldt-registrert" component={StartFraSykefravaer}/>
                     <Redirect to="/"/>
                 </Switch>
             );
