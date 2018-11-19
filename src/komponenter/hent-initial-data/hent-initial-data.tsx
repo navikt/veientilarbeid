@@ -47,15 +47,19 @@ interface DispatchProps {
     hentJobbsokerbesvarelse: () => void;
 }
 
+interface Oppfolging {
+    underOppfolging: boolean;
+}
+
 type Props = StateProps & DispatchProps & OwnProps;
 
 class HentInitialData extends React.Component<Props> {
     componentWillMount() {
         this.props.hentFeatureToggles().then((response) => {
 
-            this.props.hentOppfolging().then(() => {
+            this.props.hentOppfolging().then((oppfolgingresponse: Oppfolging) => {
                 const featureToggleJobbsokerbesvarelse = response[jobbsokerbesvarelseToggleKey];
-                if (featureToggleJobbsokerbesvarelse && this.props.oppfolging.data.underOppfolging) {
+                if (featureToggleJobbsokerbesvarelse && oppfolgingresponse.underOppfolging) {
                     this.props.hentJobbsokerbesvarelse();
                 }
             });

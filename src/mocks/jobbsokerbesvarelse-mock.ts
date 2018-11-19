@@ -1,6 +1,6 @@
-/* Hvis jobbsøkerbesvarelse finnes (raad: []) så vises link direkte til resultatsiden på Jobbsøkerkompetanse.
-   Hvis det ikke finnes jobbsøkerbesvarelse (raad: undefined) så vises link til veiviserarbeidssoker/veiviser2. */
+/* Hvis jobbsøkerbesvarelse finnes (raad: []) så vises link direkte til resultatsiden (Jobbsøkerkompetanse).
+   Hvis det ikke finnes jobbsøkerbesvarelse (raad: undefined) så vises link til Veiviserarbeidssoker. */
 
 export default {
-    raad: undefined
+    raad: []
 };
