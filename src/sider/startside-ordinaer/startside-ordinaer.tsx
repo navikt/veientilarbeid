@@ -31,8 +31,8 @@ class StartsideOrdinaer extends React.Component<StateProps> {
 
         return (
             <Side
-                bannerTittelId="startside-banner-tittel"
-                bannerBrodsmuleId="startside-banner-brodsmule"
+                bannerTittelId="startside-ordinaer-banner-tittel"
+                bannerBrodsmuleId="startside-ordinaer-banner-brodsmule"
             >
                 <main className="innhold">
                     <ReaktiveringMelding />
