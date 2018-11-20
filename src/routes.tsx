@@ -7,7 +7,6 @@ import { selectOppfolging, Data as OppfolgingData } from './ducks/oppfolging';
 import { erUnderOppfolging } from './komponenter/hent-initial-data/sjekk-oppfolging-utils';
 import StartsideSykmeldt from './sider/startside-sykmeldt/startside-sykmeldt';
 import StartsideOrdinaer from './sider/startside-ordinaer/startside-ordinaer';
-import FullfortRegistreringSykmeldt from './sider/fullfort-registrering-sykmeldt/fullfort-registrering-sykmeldt';
 import { Redirect, Route, Switch } from 'react-router';
 
 interface StateProps {
@@ -25,7 +24,6 @@ class Routes extends React.Component<StateProps> {
             return (
                 <Switch>
                     <Route path="/" exact={true} component={StartsideSykmeldt}/>
-                    <Route path="/sykmeldt-registrert" component={FullfortRegistreringSykmeldt}/>
                     <Redirect to="/"/>
                 </Switch>
             );
