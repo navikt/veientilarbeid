@@ -21,8 +21,11 @@ import {
 import {
     hentJobbsokerbesvarelse,
     selectJobbsokerbesvarelse,
-    State as JobbsokerbesvarelseState
+    State as JobbsokerbesvarelseState,
+    ActionTypes as ActionTypesJobbsokerbesvarelse
 } from '../../ducks/jobbsokerbesvarelse';
+import getStore from '../../store';
+import { STATUS } from '../../ducks/api-utils';
 
 interface OwnProps {
     children: React.ReactNode;
@@ -47,18 +50,29 @@ interface DispatchProps {
     hentJobbsokerbesvarelse: () => void;
 }
 
+interface Oppfolging {
+    underOppfolging: boolean;
+}
+
 type Props = StateProps & DispatchProps & OwnProps;
 
 class HentInitialData extends React.Component<Props> {
     componentWillMount() {
         this.props.hentFeatureToggles().then((response) => {
 
-            this.props.hentOppfolging();
+            this.props.hentOppfolging().then((oppfolgingresponse: Oppfolging) => {
 
-            const featureToggleJobbsokerbesvarelse = response[jobbsokerbesvarelseToggleKey];
-            if (featureToggleJobbsokerbesvarelse) {
-                this.props.hentJobbsokerbesvarelse();
-            }
+                const featureToggleJobbsokerbesvarelse = response[jobbsokerbesvarelseToggleKey];
+
+                if (featureToggleJobbsokerbesvarelse && oppfolgingresponse.underOppfolging) {
+                    this.props.hentJobbsokerbesvarelse();
+                } else {
+                    getStore().dispatch({
+                        type: ActionTypesJobbsokerbesvarelse.HENT_JOBBSOKERBESVARELSE_OK,
+                        data: { STATUS: STATUS.OK }
+                    });
+                }
+            });
 
             const featureToggleSykeforloepMetadata = response[sykeforloepMetadataToggleKey];
             if (featureToggleSykeforloepMetadata) {
