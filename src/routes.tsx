@@ -1,14 +1,13 @@
 import * as React from 'react';
-import { Route, Switch, Redirect } from 'react-router';
-import StartFraSykefravaer from './komponenter/start-fra-sykefravaer/start-fra-sykefravaer';
 import SjekkOppfolging from './komponenter/hent-initial-data/sjekk-oppfolging';
 import { connect } from 'react-redux';
 import { AppState } from './reducer';
 import { selectSykeforloepMetadata, State as SykeforloepMetadataState } from './ducks/sykeforloep-metadata';
-import Startside from './komponenter/startside/startside';
-import SykemeldingOppfolgingInnhold from './komponenter/start-fra-sykefravaer/innhold-sykmelding/innhold-sykmelding';
 import { selectOppfolging, Data as OppfolgingData } from './ducks/oppfolging';
 import { erUnderOppfolging } from './komponenter/hent-initial-data/sjekk-oppfolging-utils';
+import StartsideSykmeldt from './sider/startside-sykmeldt/startside-sykmeldt';
+import StartsideOrdinaer from './sider/startside-ordinaer/startside-ordinaer';
+import { Redirect, Route, Switch } from 'react-router';
 
 interface StateProps {
     sykeforloepMetadata: SykeforloepMetadataState;
@@ -24,15 +23,14 @@ class Routes extends React.Component<StateProps> {
         if (erSykemeldt && erUnderOppfolging(oppfolging)) {
             return (
                 <Switch>
-                    <Route path="/" exact={true} component={SykemeldingOppfolgingInnhold}/>
-                    <Route path="/sykmeldt-registrert" component={StartFraSykefravaer}/>
+                    <Route path="/" exact={true} component={StartsideSykmeldt}/>
                     <Redirect to="/"/>
                 </Switch>
             );
         } else {
             return (
                 <SjekkOppfolging>
-                    <Route path="/" exact={true} component={Startside}/>
+                    <Route path="/" exact={true} component={StartsideOrdinaer}/>
                     <Redirect to="/"/>
                 </SjekkOppfolging>
             );
