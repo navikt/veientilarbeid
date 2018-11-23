@@ -10,5 +10,6 @@ RUN npm ci && npm run build
 FROM docker.adeo.no:5000/pus/decorator
 ENV APPLICATION_NAME=veientilarbeid
 COPY --from=node-builder /source/build /app
+ADD proxy.json /proxy.json
 
 ENV OIDC_LOGIN_URL /veilarbstepup/oidc
