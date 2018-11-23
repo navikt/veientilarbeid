@@ -17,6 +17,12 @@ const OkonomiRad = () => {
                 lenkeUrlId="okonomi-rad-nodsituasjon-lenke-url"
                 renderTittelAsHtml={true}
             />
+            <OkonomiPanel
+                tittelId="okonomi-rad-sykepenger-tittel"
+                lenkeTekstId="okonomi-rad-sykepenger-lenke-tekst"
+                lenkeUrlId="okonomi-rad-sykepenger-lenke-url"
+                renderTittelAsHtml={true}
+            />
         </div>
     );
 };
