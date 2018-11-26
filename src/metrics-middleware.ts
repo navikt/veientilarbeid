@@ -16,7 +16,7 @@ export const metricsMiddleWare = (store: any) => (next: any) => (action: any) =>
         {
             type: FeatureTogglesTypes.FEATURE_TOGGLES_FEILET,
             eventnavn: 'veientilarbeid.feil.featuretoggle',
-            apikall: 'GET /feature'
+            apikall: 'GET /veientilarbeid/api/feature'
         },
         {
             type: ServicegruppeTypes.HENT_SERVICEGRUPPE_FEILET,
