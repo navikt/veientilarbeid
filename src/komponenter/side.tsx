@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Banner from '../banner/banner';
+import Banner from './banner/banner';
 
 interface SideProps {
     bannerTittelId: string;
