@@ -12,7 +12,7 @@ const StartsideSykmeldt = () => {
             bannerTittelId="startside-sykmeldt-banner-tittel"
             bannerBrodsmuleId="startside-sykmeldt-banner-brodsmule"
         >
-            <main className="startside-sykmeldt--rader">
+            <main className="'startside-sykmeldt--rader">
                 <section className="startside-sykmeldt--rad">
                     <div className="startside-sykmeldt--rad-innhold">
                         <AktivitetsplanRad/>

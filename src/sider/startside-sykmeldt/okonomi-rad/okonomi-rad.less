@@ -3,14 +3,14 @@
 .okonomi-rad {
     display: flex;
     flex-direction: column;
-    padding: 2rem 0;
 
-    & > * {
+    & > .okonomi-panel {
         flex: 0 1 48%;
+        margin-bottom: 5rem;
     }
 
-    .okonomi-panel:first-child {
-        margin-bottom: 6rem;
+    .okonomi-panel:last-child {
+        margin-bottom: 0;
     }
 
 }
@@ -20,7 +20,7 @@
         flex-direction: row;
         justify-content: space-evenly;
 
-        .okonomi-panel:first-child {
+        .okonomi-panel {
             margin-bottom: 0;
         }
 
