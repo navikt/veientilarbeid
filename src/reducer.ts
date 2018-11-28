@@ -4,7 +4,6 @@ import featureToggles, { State as FeatureTogglesState } from './ducks/feature-to
 import servicegruppe, { State as ServicegruppeState } from './ducks/servicegruppe';
 import sykeforloepMetadata, { State as SykeforloepMetadata } from './ducks/sykeforloep-metadata';
 import jobbsokerbesvarelse, { State as JobbsokerbesvarelseState } from './ducks/jobbsokerbesvarelse';
-import registrering, { State as RegistreringState } from './ducks/registrering';
 
 export interface AppState {
     oppfolging: OppfolgingState;
@@ -12,7 +11,6 @@ export interface AppState {
     servicegruppe: ServicegruppeState;
     sykeforloepMetadata: SykeforloepMetadata;
     jobbsokerbesvarelse: JobbsokerbesvarelseState;
-    registrering: RegistreringState;
 }
 
 export default combineReducers<AppState>({
@@ -21,5 +19,4 @@ export default combineReducers<AppState>({
     servicegruppe,
     sykeforloepMetadata,
     jobbsokerbesvarelse,
-    registrering
 });
