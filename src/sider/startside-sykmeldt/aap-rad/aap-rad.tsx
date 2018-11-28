@@ -22,14 +22,17 @@ class AapRad extends React.Component<InjectedIntlProps, AapRadState> {
     }
 
     componentDidMount() {
-        if (this.state.visAap) {
-            findDOMNode(this).scrollIntoView(
-                {
-                    block: 'start',
-                    behavior: 'smooth'
-                }
+        // Vent til animasjonen til AAP-panelet er ferdig, slik at vi scroller til riktig posisjon
+        setTimeout(() => {
+            if (this.state.visAap) {
+                findDOMNode(this).scrollIntoView(
+                    {
+                            block: 'center',
+                            behavior: 'smooth'
+                        }
                 );
-        }
+            }
+        },         250);
     }
 
     render() {
