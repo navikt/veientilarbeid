@@ -5,7 +5,6 @@ export const VEILARBOPPFOLGINGPROXY_URL = '/veilarboppfolging/api';
 export const FEATURE_URL = '/veientilarbeid/api/feature';
 export const SERVICEGRUPPE_URL = '/veilarbtiltakinfo/api/servicegruppekode';
 export const SYKEFORLOEP_METADATA_URL = '/syforest/sykeforloep/metadata';
-export const REGISTRERING_URL = '/veilarbregistrering/api/registrering';
 export const JOBBSOKERBESVARELSE_URL = '/veilarbjobbsokerkompetanse/api/hent';
 
 export const getCookie = (name: string) => {
@@ -70,16 +69,6 @@ export function hentSykeforloepMetadata() {
 export function hentJobbsokerbesvarelse() {
     return fetchToJson({
         url: `${JOBBSOKERBESVARELSE_URL}`,
-        config: {
-            ...CREDENTIALS_SAME_ORIGIN,
-            headers: getHeaders(),
-        }
-    });
-}
-
-export function hentRegistrering() {
-    return fetchToJson({
-        url: `${REGISTRERING_URL}`,
         config: {
             ...CREDENTIALS_SAME_ORIGIN,
             headers: getHeaders(),
