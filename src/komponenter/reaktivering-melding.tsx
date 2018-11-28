@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { InjectedIntlProps, injectIntl } from 'react-intl';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { AppState } from '../../reducer';
+import { AppState } from '../reducer';
 
 interface StateProps {
     kanReaktiveres: boolean;

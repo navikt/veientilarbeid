@@ -97,23 +97,21 @@ class HentInitialData extends React.Component<Props> {
             featureToggleJobbsokerbesvarelse,
         } = this.props;
 
-        if (featureToggleServicegruppe && featureToggleSykeforloepMetadata && featureToggleJobbsokerbesvarelse) {
-            return [oppfolging, servicegruppe, sykeforloepMetadata, jobbsokerbesvarelse];
-        } else if (featureToggleServicegruppe && featureToggleSykeforloepMetadata) {
-            return [oppfolging, servicegruppe, sykeforloepMetadata];
-        } else if (featureToggleServicegruppe && featureToggleJobbsokerbesvarelse) {
-            return [oppfolging, servicegruppe, jobbsokerbesvarelse];
-        } else if (featureToggleSykeforloepMetadata && featureToggleJobbsokerbesvarelse) {
-            return [oppfolging, sykeforloepMetadata, jobbsokerbesvarelse];
-        } else if (featureToggleServicegruppe) {
-            return [oppfolging, servicegruppe];
-        } else if (featureToggleSykeforloepMetadata) {
-            return [oppfolging, sykeforloepMetadata];
-        } else if (featureToggleJobbsokerbesvarelse) {
-        return [oppfolging, jobbsokerbesvarelse];
-        } else {
-            return [oppfolging];
+        const avhengigheter: any[] = [oppfolging]; // tslint:disable-line no-any
+
+        if (featureToggleServicegruppe) {
+            avhengigheter.push(servicegruppe);
         }
+
+        if (featureToggleSykeforloepMetadata) {
+            avhengigheter.push(sykeforloepMetadata);
+        }
+
+        if (featureToggleJobbsokerbesvarelse) {
+            avhengigheter.push(jobbsokerbesvarelse);
+        }
+
+        return avhengigheter;
     }
 
     render() {
