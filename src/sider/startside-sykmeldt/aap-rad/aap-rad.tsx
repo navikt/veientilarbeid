@@ -32,7 +32,7 @@ class AapRad extends React.Component<InjectedIntlProps, AapRadState> {
                         }
                 );
             }
-        },         250);
+        },         300);
     }
 
     render() {
