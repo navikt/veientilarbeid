@@ -1,10 +1,10 @@
 import * as React from 'react';
-import Side from '../../komponenter/side/side';
+import Side from '../../komponenter/side';
 import { selectServicegruppe, SituasjonOption, State as ServicegruppeState } from '../../ducks/servicegruppe';
 import { AppState } from '../../reducer';
 import { selectHentServicegruppekodeFeatureToggle } from '../../ducks/feature-toggles';
 import { connect } from 'react-redux';
-import ReaktiveringMelding from '../../komponenter/reaktivering-melding/reaktivering-melding';
+import ReaktiveringMelding from '../../komponenter/reaktivering-melding';
 import Aktivitetsplan from '../../komponenter/aktivitetsplan/aktivitetsplan';
 import Meldekort from '../../komponenter/meldekort/meldekort';
 import Ressurslenker from '../../komponenter/ressurslenker/ressurslenker';
