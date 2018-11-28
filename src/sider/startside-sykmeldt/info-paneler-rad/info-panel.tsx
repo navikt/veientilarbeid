@@ -8,17 +8,14 @@ interface InfoPanelProps {
     tittelId: string;
     tekstId: string;
     lenkeTekstId: string;
-    lenkeUrlId?: string;
-    lenkeUrl?: string;
+    lenkeUrlId: string;
 }
 
 type AllProps = InfoPanelProps & InjectedIntlProps;
 
 const InfoPanel = (props: AllProps) => {
 
-    const { tittelId, tekstId, lenkeTekstId, lenkeUrlId, lenkeUrl, intl, bilde } = props;
-
-    const lenkeTekst = lenkeUrlId ? intl.messages[lenkeUrlId] : lenkeUrl;
+    const { tittelId, tekstId, lenkeTekstId, lenkeUrlId, intl, bilde } = props;
 
     return (
         <div className="info-panel">
@@ -32,7 +29,7 @@ const InfoPanel = (props: AllProps) => {
                 <Normaltekst className="blokk-m">
                     <FormattedMessage id={tekstId} />
                 </Normaltekst>
-                <LenkeMedChevron path={lenkeTekst ? lenkeTekst : ''} className="okonomi-panel--lenke">
+                <LenkeMedChevron path={intl.messages[lenkeUrlId]} className="okonomi-panel--lenke">
                     <FormattedMessage id={lenkeTekstId}/>
                 </LenkeMedChevron>
             </div>
