@@ -7,7 +7,7 @@ import {
 } from '../ducks/api';
 import featureTogglesMock from './feature-toggles-mock';
 import servicegruppeResponse from './servicegruppe-mock';
-import sykeforloepMetadataResponse from './sykeforloep-metadata-mock';
+import sykmeldtInfoResponse from './sykmeldt-info-mock';
 import jobbsokerbesvarelseResponse from './jobbsokerbesvarelse-mock';
 
 const MOCK_OPPFOLGING = true;
@@ -31,7 +31,7 @@ if (MOCK_SERVICEGRUPPE) {
 }
 
 if (MOCK_SYKMELDTINFO) {
-    (mock as any).get(SYKMELDT_INFO_URL, respondWith(delayed(DELAY, sykeforloepMetadataResponse)))
+    (mock as any).get(SYKMELDT_INFO_URL, respondWith(delayed(DELAY, sykmeldtInfoResponse)))
 }
 
 if (MOCK_JOBBSOKERBESVARELSE) {

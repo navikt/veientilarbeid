@@ -56,7 +56,7 @@ export function hentServicegruppe() {
     });
 }
 
-export function hentSykeforloepMetadata() {
+export function hentSykmeldtInfo() {
     return fetchToJson({
         url: `${SYKMELDT_INFO_URL}`,
         config: {

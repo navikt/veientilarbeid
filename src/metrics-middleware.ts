@@ -1,7 +1,7 @@
 import { ActionTypes as OppfolgingTypes } from './ducks/oppfolging';
 import { ActionTypes as FeatureTogglesTypes } from './ducks/feature-toggles';
 import { ActionTypes as ServicegruppeTypes } from './ducks/servicegruppe';
-import { ActionTypes as SykeforloepMetadataTypes } from './ducks/sykeforloep-metadata';
+import { ActionTypes as SykmeldtInfodataTypes } from './ducks/sykmeldt-info';
 import { ActionTypes as JobbsokerbesvarelseTypes } from './ducks/jobbsokerbesvarelse';
 
 export const metricsMiddleWare = (store: any) => (next: any) => (action: any) => { // tslint:disable-line:no-any
@@ -24,9 +24,9 @@ export const metricsMiddleWare = (store: any) => (next: any) => (action: any) =>
             apikall: 'GET /servicegruppe'
         },
         {
-            type: SykeforloepMetadataTypes.HENT_SYKEFORLOEP_METADATA_FEILET,
-            eventnavn: 'veientilarbeid.feil.sykeforloepmetadata',
-            apikall: 'GET /sykeforloepmetadata'
+            type: SykmeldtInfodataTypes.HENT_SYKMELDT_INFO_FEILET,
+            eventnavn: 'veientilarbeid.feil.sykmeldtinfo',
+            apikall: 'GET /veilarbregistrering/api/sykmeldtinfo'
         },
         {
             type: JobbsokerbesvarelseTypes.HENT_JOBBSOKERBESVARELSE_FEILET,

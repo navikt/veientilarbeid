@@ -8,16 +8,16 @@ import {
     hentFeatureToggles,
     selectFeatureToggles,
     selectHentServicegruppekodeFeatureToggle,
-    selectHentSykeforloepMetadata,
+    selectHentSykmeldtInfodata,
     selectHentJobbsokerbesvarelseFeatureToggle,
     servicekodeToggleKey,
     jobbsokerbesvarelseToggleKey,
-    State as FeatureTogglesState, sykeforloepMetadataToggleKey
+    State as FeatureTogglesState, sykmeldtInfodataToggleKey
 } from '../../ducks/feature-toggles';
 import { hentServicegruppe, selectServicegruppe, State as ServicegruppeState } from '../../ducks/servicegruppe';
 import {
-    selectSykeforloepMetadata, hentSykeforloepMetadata, State as SykeforloepMetadataState
-} from '../../ducks/sykeforloep-metadata';
+    selectSykmeldtInfo, hentSykmeldtInfo, State as SykmeldtInfodataState
+} from '../../ducks/sykmeldt-info';
 import {
     hentJobbsokerbesvarelse,
     selectJobbsokerbesvarelse,
@@ -35,10 +35,10 @@ interface StateProps {
     oppfolging: OppfolgingState;
     featureToggles: FeatureTogglesState;
     servicegruppe: ServicegruppeState;
-    sykeforloepMetadata: SykeforloepMetadataState;
+    sykmeldtInfo: SykmeldtInfodataState;
     jobbsokerbesvarelse: JobbsokerbesvarelseState;
     featureToggleServicegruppe: boolean;
-    featureToggleSykeforloepMetadata: boolean;
+    featureToggleSykmeldtInfodata: boolean;
     featureToggleJobbsokerbesvarelse: boolean;
 }
 
@@ -46,7 +46,7 @@ interface DispatchProps {
     hentOppfolging: () => Promise<void | {}>;
     hentFeatureToggles: () => Promise<void | {}>;
     hentServicegruppe: () => void;
-    hentSykeforloepMetadata: () => void;
+    hentSykmeldtInfo: () => void;
     hentJobbsokerbesvarelse: () => void;
 }
 
@@ -74,9 +74,9 @@ class HentInitialData extends React.Component<Props> {
                 }
             });
 
-            const featureToggleSykeforloepMetadata = response[sykeforloepMetadataToggleKey];
-            if (featureToggleSykeforloepMetadata) {
-                this.props.hentSykeforloepMetadata();
+            const featureToggleSykmeldtInfodata = response[sykmeldtInfodataToggleKey];
+            if (featureToggleSykmeldtInfodata) {
+                this.props.hentSykmeldtInfo();
             }
 
             const featureToggleServicegruppe = response[servicekodeToggleKey];
@@ -90,10 +90,10 @@ class HentInitialData extends React.Component<Props> {
         const {
             oppfolging,
             servicegruppe,
-            sykeforloepMetadata,
+            sykmeldtInfo,
             jobbsokerbesvarelse,
             featureToggleServicegruppe,
-            featureToggleSykeforloepMetadata,
+            featureToggleSykmeldtInfodata,
             featureToggleJobbsokerbesvarelse,
         } = this.props;
 
@@ -103,8 +103,8 @@ class HentInitialData extends React.Component<Props> {
             avhengigheter.push(servicegruppe);
         }
 
-        if (featureToggleSykeforloepMetadata) {
-            avhengigheter.push(sykeforloepMetadata);
+        if (featureToggleSykmeldtInfodata) {
+            avhengigheter.push(sykmeldtInfo);
         }
 
         if (featureToggleJobbsokerbesvarelse) {
@@ -137,10 +137,10 @@ const mapStateToProps = (state: AppState): StateProps => ({
     oppfolging: selectOppfolging(state),
     featureToggles: selectFeatureToggles(state),
     servicegruppe: selectServicegruppe(state),
-    sykeforloepMetadata: selectSykeforloepMetadata(state),
+    sykmeldtInfo: selectSykmeldtInfo(state),
     jobbsokerbesvarelse: selectJobbsokerbesvarelse(state),
     featureToggleServicegruppe: selectHentServicegruppekodeFeatureToggle(state),
-    featureToggleSykeforloepMetadata: selectHentSykeforloepMetadata(state),
+    featureToggleSykmeldtInfodata: selectHentSykmeldtInfodata(state),
     featureToggleJobbsokerbesvarelse: selectHentJobbsokerbesvarelseFeatureToggle(state),
 });
 
@@ -148,7 +148,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AppState>): DispatchProps => ({
     hentOppfolging: () => dispatch(hentOppfolging()),
     hentFeatureToggles: () => dispatch(hentFeatureToggles()),
     hentServicegruppe: () => dispatch(hentServicegruppe()),
-    hentSykeforloepMetadata: () => dispatch(hentSykeforloepMetadata()),
+    hentSykmeldtInfo: () => dispatch(hentSykmeldtInfo()),
     hentJobbsokerbesvarelse: () => dispatch(hentJobbsokerbesvarelse()),
 });
 
