@@ -1,7 +1,4 @@
 export default {
-    erSykmeldt: false,
-    sykmeldtFraDato: null,
-    arbeidsSituasjonIAktiveSykmeldinger: null,
-    erTiltakSykmeldteInngangAktiv: true,
+    maksDato: null,
     erArbeidsrettetOppfolgingSykmeldtInngangAktiv: true
 };
