@@ -16,7 +16,7 @@
     "test:coverage": "npm test -- --coverage",
     "heroku": "npm-run-all -s heroku:build heroku:start",
     "heroku:start": "node heroku-server.js",
-    "heroku:build": "npm run build:tekster && cross-env REACT_APP_MOCK=true GENERATE_SOURCEMAP=false react-scripts-ts --max_old_space_size=384 build",
+    "heroku:build": "npm run build:tekster && cross-env REACT_APP_MOCK=true REACT_APP_HEROKU=true GENERATE_SOURCEMAP=false react-scripts-ts --max_old_space_size=384 build",
     "deploy": "npm run build && gh-pages -d build",
     "eject": "react-scripts-ts eject",
     "prettier": "prettier --write --single-quote --tab-width 4 src/**/*.ts src/**/*.tsx src/**/*.less"
