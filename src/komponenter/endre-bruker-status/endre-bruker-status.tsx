@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { InjectedIntlProps, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
+import { parse } from 'query-string';
 import { AppState } from '../../reducer';
 import getStore from '../../store';
 import { Normaltekst } from 'nav-frontend-typografi';
@@ -17,8 +18,18 @@ type Props = InjectedIntlProps & StateProps;
 
 class EndreBrukerStatus extends React.Component<Props> {
 
+    componentWillMount() {
+        const brukerStatus = parse(window.location.search).brukerStatus;
+
+        if (brukerStatus === 'ordinaer') {
+            this.dispatchErSykmeldt(false);
+        } else if (brukerStatus === 'sykmeldt') {
+            this.dispatchErSykmeldt(true);
+        }
+
+    }
+
     dispatchErSykmeldt = (erSykmeldt: boolean) => {
-        console.log(erSykmeldt); // tslint:disable-line
         getStore().dispatch(
             {
                 type: SykeforloepMetadataActionTypes.HENT_SYKEFORLOEP_METADATA_OK,
