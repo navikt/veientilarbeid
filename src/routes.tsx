@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import { AppState } from './reducer';
 import { selectSykmeldtInfo, State as SykmeldtInfoState } from './ducks/sykmeldt-info';
 import {Data as OppfolgingData, selectOppfolging } from './ducks/oppfolging';
-import { erUnderOppfolging, redirectTilDittNav } from './komponenter/hent-initial-data/sjekk-oppfolging-utils';
+import {
+    erUnderOppfolging, redirectTilSykefravarArbrettetOppfolg
+} from './komponenter/hent-initial-data/sjekk-oppfolging-utils';
 import StartsideSykmeldt from './sider/startside-sykmeldt/startside-sykmeldt';
 import StartsideOrdinaer from './sider/startside-ordinaer/startside-ordinaer';
 import { Redirect, Route, RouteComponentProps, Switch, withRouter } from 'react-router';
@@ -23,7 +25,7 @@ class Routes extends React.Component<AllProps> {
         const search = location.search;
 
         if (erSykemeldt && !erUnderOppfolging(oppfolging)) {
-            redirectTilDittNav();
+            redirectTilSykefravarArbrettetOppfolg();
             return null;
         } else if (erSykemeldt && erUnderOppfolging(oppfolging)) {
             return (
