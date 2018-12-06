@@ -5,9 +5,9 @@ import { parse } from 'query-string';
 import { AppState } from '../../reducer';
 import getStore from '../../store';
 import { Normaltekst } from 'nav-frontend-typografi';
-import sykeforloepMetadataMock from '../../mocks/sykeforloep-metadata-mock';
-import { selectSykeforloepMetadata, State as SykeforloepMetadataState,
-    ActionTypes as SykeforloepMetadataActionTypes } from '../../ducks/sykeforloep-metadata';
+import sykeforloepMetadataMock from '../../mocks/sykmeldt-info-mock';
+import { selectSykmeldtInfo, State as SykeforloepMetadataState,
+    ActionTypes as SykmeldtInfoActionTypes } from '../../ducks/sykmeldt-info';
 import './endre-bruker-status.less';
 
 interface StateProps {
@@ -32,7 +32,7 @@ class EndreBrukerStatus extends React.Component<Props> {
     dispatchErSykmeldt = (erSykmeldt: boolean) => {
         getStore().dispatch(
             {
-                type: SykeforloepMetadataActionTypes.HENT_SYKEFORLOEP_METADATA_OK,
+                type: SykmeldtInfoActionTypes.HENT_SYKMELDT_INFO_OK,
                 data: Object.assign({}, sykeforloepMetadataMock,
                                     { erArbeidsrettetOppfolgingSykmeldtInngangAktiv: erSykmeldt})
             }
@@ -87,7 +87,7 @@ class EndreBrukerStatus extends React.Component<Props> {
     }
 }
 const mapStateToProps = (state: AppState): StateProps => ({
-    sykeforloepMetadata: selectSykeforloepMetadata(state),
+    sykeforloepMetadata: selectSykmeldtInfo(state),
 });
 
 export default connect(mapStateToProps)(injectIntl(EndreBrukerStatus));
