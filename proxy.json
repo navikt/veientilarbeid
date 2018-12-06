@@ -1,7 +1,7 @@
 [
 	{
 		"contextPath": "/veilarbregistrering",
-		"baseUrl": "http://veilarbregistrering"
+		"baseUrl": "http://veilarbproxy"
 	},
 	{
 		"contextPath": "/veilarboppfolging",
@@ -9,10 +9,10 @@
 	},
 	{
 		"contextPath": "/veilarbtiltakinfo",
-		"baseUrl": "http://veilarbtiltakinfo"
+		"baseUrl": "http://veilarbproxy"
 	},
 	{
 		"contextPath": "/veilarbjobbsokerkompetanse",
-		"baseUrl": "http://veilarbjobbsokerkompetanse"
+		"baseUrl": "http://veilarbproxy"
 	}
 ]
