@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { AppState } from './reducer';
 import { selectSykmeldtInfo, State as SykmeldtInfoState } from './ducks/sykmeldt-info';
 import {Data as OppfolgingData, selectOppfolging } from './ducks/oppfolging';
-import { erUnderOppfolging } from './komponenter/hent-initial-data/sjekk-oppfolging-utils';
+import { erUnderOppfolging, redirectTilDittNav } from './komponenter/hent-initial-data/sjekk-oppfolging-utils';
 import StartsideSykmeldt from './sider/startside-sykmeldt/startside-sykmeldt';
 import StartsideOrdinaer from './sider/startside-ordinaer/startside-ordinaer';
 import { Redirect, Route, RouteComponentProps, Switch, withRouter } from 'react-router';
@@ -18,12 +18,14 @@ type AllProps = StateProps & RouteComponentProps<any>; // tslint:disable-line
 
 class Routes extends React.Component<AllProps> {
     render() {
-        // TODO: Bytt verdi når beregning av gjenstående sykedager er på plass
         const erSykemeldt = this.props.sykmeldtInfo.data!.erArbeidsrettetOppfolgingSykmeldtInngangAktiv;
         const { oppfolging, location } = this.props;
         const search = location.search;
 
-        if (erSykemeldt && erUnderOppfolging(oppfolging)) {
+        if (erSykemeldt && !erUnderOppfolging(oppfolging)) {
+            redirectTilDittNav();
+            return null;
+        } else if (erSykemeldt && erUnderOppfolging(oppfolging)) {
             return (
                 <Switch>
                     <Route path="/" exact={true} component={StartsideSykmeldt}/>
