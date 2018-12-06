@@ -4,7 +4,7 @@ import { alleFeatureToggles } from './feature-toggles';
 export const VEILARBOPPFOLGINGPROXY_URL = '/veilarboppfolging/api';
 export const FEATURE_URL = '/veientilarbeid/api/feature';
 export const SERVICEGRUPPE_URL = '/veilarbtiltakinfo/api/servicegruppekode';
-export const SYKEFORLOEP_METADATA_URL = '/syforest/sykeforloep/metadata';
+export const SYKMELDT_INFO_URL = '/veilarbregistrering/api/sykmeldtinfodata';
 export const JOBBSOKERBESVARELSE_URL = '/veilarbjobbsokerkompetanse/api/hent';
 
 export const getCookie = (name: string) => {
@@ -56,9 +56,9 @@ export function hentServicegruppe() {
     });
 }
 
-export function hentSykeforloepMetadata() {
+export function hentSykmeldtInfo() {
     return fetchToJson({
-        url: `${SYKEFORLOEP_METADATA_URL}`,
+        url: `${SYKMELDT_INFO_URL}`,
         config: {
             ...CREDENTIALS_SAME_ORIGIN,
             headers: getHeaders(),

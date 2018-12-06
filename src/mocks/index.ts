@@ -2,18 +2,18 @@
 import {mock, respondWith, delayed } from './utils';
 import oppfolgingResponse from './oppfolging-mock';
 import {
-    FEATURE_URL, JOBBSOKERBESVARELSE_URL, SERVICEGRUPPE_URL, SYKEFORLOEP_METADATA_URL,
+    FEATURE_URL, JOBBSOKERBESVARELSE_URL, SERVICEGRUPPE_URL, SYKMELDT_INFO_URL,
     VEILARBOPPFOLGINGPROXY_URL
 } from '../ducks/api';
 import featureTogglesMock from './feature-toggles-mock';
 import servicegruppeResponse from './servicegruppe-mock';
-import sykeforloepMetadataResponse from './sykeforloep-metadata-mock';
+import sykmeldtInfoResponse from './sykmeldt-info-mock';
 import jobbsokerbesvarelseResponse from './jobbsokerbesvarelse-mock';
 
 const MOCK_OPPFOLGING = true;
 const MOCK_FEATURE_TOGGLES = true;
 const MOCK_SERVICEGRUPPE = true;
-const MOCK_SYKEFORLOEPMETADATAGRUPPE = true;
+const MOCK_SYKMELDTINFO = true;
 const MOCK_JOBBSOKERBESVARELSE = true;
 
 const DELAY = 0;
@@ -30,8 +30,8 @@ if (MOCK_SERVICEGRUPPE) {
     (mock as any).get(SERVICEGRUPPE_URL, respondWith(delayed(DELAY, servicegruppeResponse)));
 }
 
-if (MOCK_SYKEFORLOEPMETADATAGRUPPE) {
-    (mock as any).get(SYKEFORLOEP_METADATA_URL, respondWith(delayed(DELAY, sykeforloepMetadataResponse)))
+if (MOCK_SYKMELDTINFO) {
+    (mock as any).get(SYKMELDT_INFO_URL, respondWith(delayed(DELAY, sykmeldtInfoResponse)))
 }
 
 if (MOCK_JOBBSOKERBESVARELSE) {

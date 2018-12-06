@@ -1,6 +1,6 @@
 const featureTogglesMock = {
     'veientilarbeid.hentservicekode': true,
-    'veientilarbeid.hentSykeforloepMetadata': true,
+    'veientilarbeid.hentSykmeldtInfodata': true,
     'veientilarbeid.hentJobbsokerbesvarelse': true,
 };
 

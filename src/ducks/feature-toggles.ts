@@ -24,12 +24,12 @@ interface Action {
 }
 
 export const servicekodeToggleKey = 'veientilarbeid.hentservicekode';
-export const sykeforloepMetadataToggleKey = 'veientilarbeid.hentSykeforloepMetadata';
+export const sykmeldtInfodataToggleKey = 'veientilarbeid.hentSykmeldtInfodata';
 export const jobbsokerbesvarelseToggleKey = 'veientilarbeid.hentJobbsokerbesvarelse';
 
 export const alleFeatureToggles = [
     servicekodeToggleKey,
-    sykeforloepMetadataToggleKey,
+    sykmeldtInfodataToggleKey,
     jobbsokerbesvarelseToggleKey
 ];
 
@@ -74,8 +74,8 @@ export function selectHentServicegruppekodeFeatureToggle(state: AppState): boole
     return state.featureToggles.data[servicekodeToggleKey];
 }
 
-export function selectHentSykeforloepMetadata(state: AppState): boolean {
-    return state.featureToggles.data[sykeforloepMetadataToggleKey];
+export function selectHentSykmeldtInfodata(state: AppState): boolean {
+    return state.featureToggles.data[sykmeldtInfodataToggleKey];
 }
 
 export function selectHentJobbsokerbesvarelseFeatureToggle(state: AppState): boolean {
