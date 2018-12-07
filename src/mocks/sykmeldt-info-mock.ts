@@ -1,4 +1,5 @@
+import { RegistreringType } from '../ducks/sykmeldt-info';
+
 export default {
-    maksDato: null,
-    erArbeidsrettetOppfolgingSykmeldtInngangAktiv: true
+    registreringType: RegistreringType.SYKMELDT_REGISTRERING
 };

@@ -2,7 +2,7 @@
 import {mock, respondWith, delayed } from './utils';
 import oppfolgingResponse from './oppfolging-mock';
 import {
-    FEATURE_URL, JOBBSOKERBESVARELSE_URL, SERVICEGRUPPE_URL, SYKMELDT_INFO_URL,
+    FEATURE_URL, JOBBSOKERBESVARELSE_URL, SERVICEGRUPPE_URL, STARTREGISTRERING_URL,
     VEILARBOPPFOLGINGPROXY_URL
 } from '../ducks/api';
 import featureTogglesMock from './feature-toggles-mock';
@@ -13,7 +13,7 @@ import jobbsokerbesvarelseResponse from './jobbsokerbesvarelse-mock';
 const MOCK_OPPFOLGING = true;
 const MOCK_FEATURE_TOGGLES = true;
 const MOCK_SERVICEGRUPPE = true;
-const MOCK_SYKMELDTINFO = true;
+const MOCK_STARTREGISTRERING = true;
 const MOCK_JOBBSOKERBESVARELSE = true;
 
 const DELAY = 0;
@@ -30,8 +30,8 @@ if (MOCK_SERVICEGRUPPE) {
     (mock as any).get(SERVICEGRUPPE_URL, respondWith(delayed(DELAY, servicegruppeResponse)));
 }
 
-if (MOCK_SYKMELDTINFO) {
-    (mock as any).get(SYKMELDT_INFO_URL, respondWith(delayed(DELAY, sykmeldtInfoResponse)))
+if (MOCK_STARTREGISTRERING) {
+    (mock as any).get(STARTREGISTRERING_URL, respondWith(delayed(DELAY, sykmeldtInfoResponse)))
 }
 
 if (MOCK_JOBBSOKERBESVARELSE) {
