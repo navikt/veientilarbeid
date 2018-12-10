@@ -8,7 +8,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import sykeforloepMetadataMock from '../../mocks/sykmeldt-info-mock';
 import {
     selectSykmeldtInfo, State as SykeforloepMetadataState,
-    ActionTypes as SykmeldtInfoActionTypes, RegistreringType
+    ActionTypes as SykmeldtInfoActionTypes, erSykmeldt
 } from '../../ducks/sykmeldt-info';
 import './endre-bruker-status.less';
 
@@ -24,26 +24,26 @@ class EndreBrukerStatus extends React.Component<Props> {
         const brukerStatus = parse(window.location.search).brukerStatus;
 
         if (brukerStatus === 'ordinaer') {
-            this.dispatchType(RegistreringType.ORDINAER_REGISTRERING);
+            this.dispatchType(!erSykmeldt);
         } else if (brukerStatus === 'sykmeldt') {
-            this.dispatchType(RegistreringType.SYKMELDT_REGISTRERING);
+            this.dispatchType(erSykmeldt);
         }
 
     }
 
-    dispatchType = (registreringsType: RegistreringType) => {
+    dispatchType = (erSyk: boolean) => {
         getStore().dispatch(
             {
                 type: SykmeldtInfoActionTypes.HENT_SYKMELDT_INFO_OK,
                 data: Object.assign({}, sykeforloepMetadataMock,
-                                    { registreringType: registreringsType})
+                                    { erSykmeldtMedArbeidsgiver: erSyk})
             }
         );
     }
 
     render() {
 
-        const registreringType = this.props.sykeforloepMetadata.data!.registreringType;
+        const erSykmeldtMedArbeidsgiver = this.props.sykeforloepMetadata.data!.erSykmeldtMedArbeidsgiver;
 
         return (
             <div className="endre-bruker-status">
@@ -57,13 +57,13 @@ class EndreBrukerStatus extends React.Component<Props> {
                     <div className="endre-bruker-status__radio-btn-wrapper">
                         <input
                             onChange={() => {
-                                this.dispatchType(RegistreringType.SYKMELDT_REGISTRERING);
+                                this.dispatchType(erSykmeldt);
                             }}
                             type="radio"
                             id="sykmeldt"
                             value="Sykmeldt"
                             name="brukerStatus"
-                            checked={registreringType === RegistreringType.SYKMELDT_REGISTRERING}
+                            checked={erSykmeldtMedArbeidsgiver === erSykmeldt}
                         />
                         <label htmlFor="sykmeldt">Sykmeldt</label>
                     </div>
@@ -71,13 +71,13 @@ class EndreBrukerStatus extends React.Component<Props> {
                     <div className="endre-bruker-status__radio-btn-wrapper">
                         <input
                             onChange={() => {
-                                this.dispatchType(RegistreringType.ORDINAER_REGISTRERING);
+                                this.dispatchType(!erSykmeldt);
                             }}
                             type="radio"
                             id="ordinaer"
                             value="Ordinær"
                             name="brukerStatus"
-                            checked={registreringType === RegistreringType.ORDINAER_REGISTRERING}
+                            checked={erSykmeldtMedArbeidsgiver === !erSykmeldt}
                         />
                         <label htmlFor="ordinaer">Ordinær</label>
                     </div>

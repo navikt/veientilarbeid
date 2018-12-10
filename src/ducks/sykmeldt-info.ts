@@ -2,10 +2,7 @@ import * as Api from './api';
 import { doThenDispatch, STATUS } from './api-utils';
 import { AppState } from '../reducer';
 
-export enum RegistreringType {
-    ORDINAER_REGISTRERING = 'ORDINAER_REGISTRERING',
-    SYKMELDT_REGISTRERING = 'SYKMELDT_REGISTRERING'
-}
+export const erSykmeldt = true;
 
 export enum ActionTypes {
     HENT_SYKMELDT_INFO_OK = 'HENT_SYKMELDT_INFO_OK',
@@ -19,13 +16,13 @@ export interface State {
 }
 
 export interface Data {
-    registreringType: RegistreringType;
+    erSykmeldtMedArbeidsgiver: boolean;
 }
 
 const initialState: State = {
     status: STATUS.NOT_STARTED,
     data: {
-        registreringType: RegistreringType.ORDINAER_REGISTRERING
+        erSykmeldtMedArbeidsgiver: !erSykmeldt
     }
 };
 
