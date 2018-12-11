@@ -2,6 +2,8 @@ import * as Api from './api';
 import { doThenDispatch, STATUS } from './api-utils';
 import { AppState } from '../reducer';
 
+export const erSykmeldt = true;
+
 export enum ActionTypes {
     HENT_SYKMELDT_INFO_OK = 'HENT_SYKMELDT_INFO_OK',
     HENT_SYKMELDT_INFO_PENDING = 'HENT_SYKMELDT_INFO_PENDING',
@@ -14,15 +16,13 @@ export interface State {
 }
 
 export interface Data {
-    maksDato: string | null;
-    erArbeidsrettetOppfolgingSykmeldtInngangAktiv: boolean;
+    erSykmeldtMedArbeidsgiver: boolean;
 }
 
 const initialState: State = {
     status: STATUS.NOT_STARTED,
     data: {
-        maksDato: null,
-        erArbeidsrettetOppfolgingSykmeldtInngangAktiv: false,
+        erSykmeldtMedArbeidsgiver: !erSykmeldt
     }
 };
 

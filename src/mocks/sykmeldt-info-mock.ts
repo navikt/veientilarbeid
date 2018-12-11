@@ -1,4 +1,3 @@
 export default {
-    maksDato: null,
-    erArbeidsrettetOppfolgingSykmeldtInngangAktiv: true
+    erSykmeldtMedArbeidsgiver: false
 };
