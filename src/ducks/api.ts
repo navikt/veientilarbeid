@@ -4,7 +4,7 @@ import { alleFeatureToggles } from './feature-toggles';
 export const VEILARBOPPFOLGINGPROXY_URL = '/veilarboppfolging/api';
 export const FEATURE_URL = '/veientilarbeid/api/feature';
 export const SERVICEGRUPPE_URL = '/veilarbtiltakinfo/api/oppfolgingsstatus';
-export const SYKMELDT_INFO_URL = '/veilarbregistrering/api/sykmeldtinfodata';
+export const STARTREGISTRERING_URL = '/veilarbregistrering/api/startregistrering';
 export const JOBBSOKERBESVARELSE_URL = '/veilarbjobbsokerkompetanse/api/hent';
 
 export const getCookie = (name: string) => {
@@ -58,7 +58,7 @@ export function hentServicegruppe() {
 
 export function hentSykmeldtInfo() {
     return fetchToJson({
-        url: `${SYKMELDT_INFO_URL}`,
+        url: `${STARTREGISTRERING_URL}`,
         config: {
             ...CREDENTIALS_SAME_ORIGIN,
             headers: getHeaders(),
