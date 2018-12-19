@@ -1,7 +1,5 @@
 import * as React from 'react';
 import { injectIntl, InjectedIntlProps, FormattedMessage } from 'react-intl';
-import { Undertekst } from 'nav-frontend-typografi';
-import TableBody from './table-body';
 
 import './hvor-mye-dagpenger.less';
 
@@ -18,38 +16,9 @@ class HvorMyeDagpenger extends React.Component<Props> {
     }
 
     render() {
-        const intl = this.props.intl;
-
         return (
             <>
                 <FormattedMessage id="dagpenger.belop.innhold">
-                    {(text: string) => {
-                        return (
-                            <div
-                                className="typo-normal"
-                                dangerouslySetInnerHTML={{
-                                    __html: text
-                                }}
-                            />
-                        );
-                    }}
-                </FormattedMessage>
-                <table className="hvor-mye-dagpenger__tabell blokk-l">
-                    <caption>{intl.messages['dagpenger.belop.tabell.caption']}</caption>
-                    <thead>
-                    <tr>
-                        <th><Undertekst>{intl.messages['dagpenger.belop.tabell.1.header']}</Undertekst></th>
-                        <th><Undertekst>{intl.messages['dagpenger.belop.tabell.2.header']}</Undertekst></th>
-                        <th><Undertekst>{intl.messages['dagpenger.belop.tabell.3.header']}</Undertekst></th>
-                    </tr>
-                    </thead>
-                    <TableBody
-                        antallRader={3}
-                        antallKolonner={5}
-                        getTabellverdi={(rad, kolonne) => this.getTabellverdi(rad, kolonne)}
-                    />
-                </table>
-                <FormattedMessage id="dagpenger.belop.ekstra">
                     {(text: string) => {
                         return (
                             <div
