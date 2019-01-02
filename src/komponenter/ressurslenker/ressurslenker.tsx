@@ -41,10 +41,20 @@ class Ressurslenker extends React.Component<StateProps> {
                     href={URL}
                 >
                     <Innholdstittel className="blokk-s">
-                        <FormattedMessage id="jobbsokertips-overskrift" />
+                        { harJobbbsokerbesvarelse &&
+                        <FormattedMessage id="jobbsokertips-overskrift-har-besvarelse" />
+                        }
+                        { !harJobbbsokerbesvarelse &&
+                        <FormattedMessage id="jobbsokertips-overskrift-har-ikke-besvarelse" />
+                        }
                     </Innholdstittel>
                     <Normaltekst className="blokk-s">
-                        <FormattedMessage id="jobbsokertips-tekst" />
+                        {harJobbbsokerbesvarelse &&
+                        <FormattedMessage id="jobbsokertips-tekst-har-besvarelse" />
+                        }
+                        { !harJobbbsokerbesvarelse &&
+                        <FormattedMessage id="jobbsokertips-tekst-har-ikke-besvarelse" />
+                        }
                     </Normaltekst>
                 </LenkepanelMedBilde>
             </div>
