@@ -24,12 +24,10 @@ interface Action {
 }
 
 export const servicekodeToggleKey = 'veientilarbeid.hentservicekode';
-export const sykmeldtInfodataToggleKey = 'veientilarbeid.hentSykmeldtInfodata';
 export const jobbsokerbesvarelseToggleKey = 'veientilarbeid.hentJobbsokerbesvarelse';
 
 export const alleFeatureToggles = [
     servicekodeToggleKey,
-    sykmeldtInfodataToggleKey,
     jobbsokerbesvarelseToggleKey
 ];
 
@@ -72,10 +70,6 @@ export function selectFeatureToggles(state: AppState): State {
 
 export function selectHentServicegruppekodeFeatureToggle(state: AppState): boolean {
     return state.featureToggles.data[servicekodeToggleKey];
-}
-
-export function selectHentSykmeldtInfodata(state: AppState): boolean {
-    return state.featureToggles.data[sykmeldtInfodataToggleKey];
 }
 
 export function selectHentJobbsokerbesvarelseFeatureToggle(state: AppState): boolean {
