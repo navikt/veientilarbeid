@@ -48,7 +48,6 @@ export interface HentOppfolgingFEILETAction {
     type: ActionType.HENT_OPPFOLGING_FEILET;
 }
 
-
 export interface HentServicegruppeOKAction {
     type: ActionType.HENT_SERVICEGRUPPE_OK;
     data: ServicegruppeState;
@@ -88,8 +87,7 @@ export interface HentSykmeldtInfoFEILETAction {
     type: ActionType.HENT_SYKMELDT_INFO_FEILET;
 }
 
-export type Handling =
-      FeatureTogglesOKAction
+export type Handling = FeatureTogglesOKAction
     | FeatureTogglesPENDINGAction
     | FeatureTogglesFEILETAction
     | HentOppfolgingOKAction
@@ -104,4 +102,3 @@ export type Handling =
     | HentSykmeldtInfoOKAction
     | HentSykmeldtInfoPENDINGAction
     | HentSykmeldtInfoFEILETAction;
-

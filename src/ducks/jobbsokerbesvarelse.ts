@@ -7,7 +7,7 @@ import { AppState } from '../reducer';
 import { hentJobbsokerbesvarelseFetch, DataElement, STATUS } from './api';
 import { doThenDispatch } from './api-utils';
 
-export interface State extends DataElement{
+export interface State extends DataElement {
     data: {
         raad?: [] | undefined;
     };

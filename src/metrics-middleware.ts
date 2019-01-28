@@ -1,35 +1,31 @@
-import { ActionTypes as OppfolgingTypes } from './ducks/oppfolging';
-import { ActionTypes as FeatureTogglesTypes } from './ducks/feature-toggles';
-import { ActionTypes as ServicegruppeTypes } from './ducks/servicegruppe';
-import { ActionTypes as SykmeldtInfodataTypes } from './ducks/sykmeldt-info';
-import { ActionTypes as JobbsokerbesvarelseTypes } from './ducks/jobbsokerbesvarelse';
+import { ActionType } from './ducks/actions';
 
 export const metricsMiddleWare = (store: any) => (next: any) => (action: any) => { // tslint:disable-line:no-any
     const { frontendlogger } = (window as any); // tslint:disable-line:no-any
 
     const feilTyper = [
         {
-            type: OppfolgingTypes.HENT_OPPFOLGING_FEILET,
+            type: ActionType.HENT_OPPFOLGING_FEILET,
             eventnavn: 'veientilarbeid.feil.hentoppfolging',
             apikall: 'GET /startregistrering'
         },
         {
-            type: FeatureTogglesTypes.FEATURE_TOGGLES_FEILET,
+            type: ActionType.FEATURE_TOGGLES_FEILET,
             eventnavn: 'veientilarbeid.feil.featuretoggle',
             apikall: 'GET /veientilarbeid/api/feature'
         },
         {
-            type: ServicegruppeTypes.HENT_SERVICEGRUPPE_FEILET,
+            type: ActionType.HENT_SERVICEGRUPPE_FEILET,
             eventnavn: 'veientilarbeid.feil.servicegruppe',
             apikall: 'GET /servicegruppe'
         },
         {
-            type: SykmeldtInfodataTypes.HENT_SYKMELDT_INFO_FEILET,
+            type: ActionType.HENT_SYKMELDT_INFO_FEILET,
             eventnavn: 'veientilarbeid.feil.sykmeldtinfo',
             apikall: 'GET /veilarbregistrering/api/sykmeldtinfo'
         },
         {
-            type: JobbsokerbesvarelseTypes.HENT_JOBBSOKERBESVARELSE_FEILET,
+            type: ActionType.HENT_JOBBSOKERBESVARELSE_FEILET,
             eventnavn: 'veientilarbeid.feil.jobbsokerbesvarelse',
             apikall: 'GET /jobbsokerbesvarelse'
         },

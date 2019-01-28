@@ -10,7 +10,6 @@ import Meldekort from '../../komponenter/meldekort/meldekort';
 import Ressurslenker from '../../komponenter/ressurslenker/ressurslenker';
 import Tiltakinfo from '../../komponenter/tiltakinfo/tiltakinfo';
 import Dagpenger from '../../komponenter/informasjonsmoduler/dagpenger/dagpenger';
-import StillingSok from '../../komponenter/stilling-sok/stilling-sok';
 
 interface StateProps {
     servicegruppe: ServicegruppeState;
@@ -39,7 +38,6 @@ class StartsideOrdinaer extends React.Component<StateProps> {
                     <ReaktiveringMelding />
                     <Aktivitetsplan />
                     <Meldekort />
-                    <StillingSok/>
                     <Ressurslenker />
                     {innsatsgruppe && featureToggleServicegruppe && (
                         <Tiltakinfo />

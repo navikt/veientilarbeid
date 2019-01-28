@@ -16,7 +16,7 @@ export interface Data {
     erSykmeldtMedArbeidsgiver?: boolean;
 }
 
-const initialState : State = {
+const initialState: State = {
     data: {},
     status: STATUS.NOT_STARTED
 };

@@ -74,9 +74,9 @@ export function selectFeatureToggles(state: AppState): FeatureToggleState {
 }
 
 export function selectHentServicegruppekodeFeatureToggle(state: AppState): boolean {
-    return state.featureToggles.data[servicekodeToggleKey];
+    return state.featureToggles[servicekodeToggleKey];
 }
 
 export function selectHentJobbsokerbesvarelseFeatureToggle(state: AppState): boolean {
-    return state.featureToggles.data[jobbsokerbesvarelseToggleKey];
+    return state.featureToggles[jobbsokerbesvarelseToggleKey];
 }

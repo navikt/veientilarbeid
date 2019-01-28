@@ -7,7 +7,7 @@ import { State as SykmeldtInfoState } from './sykmeldt-info';
 
 export enum STATUS {
     OK = 'OK',
-    NOT_STARTED ='NOT_STARTED',
+    NOT_STARTED = 'NOT_STARTED',
     PENDING = 'PENDING',
     RELOADING = 'RELOADING',
     ERROR = 'ERROR',
