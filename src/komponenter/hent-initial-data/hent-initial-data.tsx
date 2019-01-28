@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { connect, Dispatch } from 'react-redux';
+import { connect } from 'react-redux';
+import { Dispatch } from '../../dispatch-type';
 import { AppState } from '../../reducer';
 import Innholdslaster from '../innholdslaster/innholdslaster';
 import Feilmelding from '../feilmeldinger/feilmelding';
@@ -11,7 +12,7 @@ import {
     selectHentJobbsokerbesvarelseFeatureToggle,
     servicekodeToggleKey,
     jobbsokerbesvarelseToggleKey,
-    State as FeatureTogglesState
+    FeatureToggleState
 } from '../../ducks/feature-toggles';
 import { hentServicegruppe, selectServicegruppe, State as ServicegruppeState } from '../../ducks/servicegruppe';
 import {
@@ -21,10 +22,10 @@ import {
     hentJobbsokerbesvarelse,
     selectJobbsokerbesvarelse,
     State as JobbsokerbesvarelseState,
-    ActionTypes as ActionTypesJobbsokerbesvarelse
 } from '../../ducks/jobbsokerbesvarelse';
 import getStore from '../../store';
-import { STATUS } from '../../ducks/api-utils';
+import { STATUS } from '../../ducks/api';
+import { ActionType } from '../../ducks/actions';
 
 interface OwnProps {
     children: React.ReactNode;
@@ -32,7 +33,7 @@ interface OwnProps {
 
 interface StateProps {
     oppfolging: OppfolgingState;
-    featureToggles: FeatureTogglesState;
+    featureToggles: FeatureToggleState;
     servicegruppe: ServicegruppeState;
     sykmeldtInfo: SykmeldtInfodataState;
     jobbsokerbesvarelse: JobbsokerbesvarelseState;
@@ -66,7 +67,7 @@ class HentInitialData extends React.Component<Props> {
                     this.props.hentJobbsokerbesvarelse();
                 } else {
                     getStore().dispatch({
-                        type: ActionTypesJobbsokerbesvarelse.HENT_JOBBSOKERBESVARELSE_OK,
+                        type: ActionType.HENT_JOBBSOKERBESVARELSE_OK,
                         data: { STATUS: STATUS.OK }
                     });
                 }
@@ -134,12 +135,12 @@ const mapStateToProps = (state: AppState): StateProps => ({
     featureToggleJobbsokerbesvarelse: selectHentJobbsokerbesvarelseFeatureToggle(state),
 });
 
-const mapDispatchToProps = (dispatch: Dispatch<AppState>): DispatchProps => ({
-    hentOppfolging: () => dispatch(hentOppfolging()),
-    hentFeatureToggles: () => dispatch(hentFeatureToggles()),
-    hentServicegruppe: () => dispatch(hentServicegruppe()),
-    hentSykmeldtInfo: () => dispatch(hentSykmeldtInfo()),
-    hentJobbsokerbesvarelse: () => dispatch(hentJobbsokerbesvarelse()),
+const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
+    hentOppfolging: () => hentOppfolging()(dispatch),
+    hentFeatureToggles: () => hentFeatureToggles()(dispatch),
+    hentServicegruppe: () => hentServicegruppe()(dispatch),
+    hentSykmeldtInfo: () => hentSykmeldtInfo()(dispatch),
+    hentJobbsokerbesvarelse: () => hentJobbsokerbesvarelse()(dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HentInitialData);

@@ -1,16 +1,13 @@
-import * as Api from './api';
-import { doThenDispatch, STATUS } from './api-utils';
+import {
+    ActionType, Handling, HentOppfolgingFEILETAction, HentOppfolgingOKAction, HentOppfolgingPENDINGAction,
+} from './actions';
+import { Dispatch } from '../dispatch-type';
 import { AppState } from '../reducer';
+import { hentOppfolgingFetch, DataElement, STATUS } from './api';
+import { doThenDispatch } from './api-utils';
 
-export enum ActionTypes {
-    HENT_OPPFOLGING_OK = 'HENT_OPPFOLGING_OK',
-    HENT_OPPFOLGING_PENDING = 'HENT_OPPFOLGING_PENDING',
-    HENT_OPPFOLGING_FEILET = 'HENT_OPPFOLGING_FEILET'
-}
-
-export interface State {
+export interface State extends DataElement {
     data: Data;
-    status: string;
 }
 
 export interface Data {
@@ -19,39 +16,54 @@ export interface Data {
     erSykmeldtMedArbeidsgiver?: boolean;
 }
 
-interface Action {
-    type: ActionTypes;
-    data: Data;
-}
-
-const initialState = {
+const initialState : State = {
     data: {},
     status: STATUS.NOT_STARTED
 };
 
-export default function (state: State = initialState, action: Action): State {
+//  Reducer
+export default function reducer(state: State = initialState, action: Handling): State {
     switch (action.type) {
-        case ActionTypes.HENT_OPPFOLGING_PENDING:
+        case ActionType.HENT_OPPFOLGING_PENDING:
             if (state.status === STATUS.OK) {
                 return {...state, status: STATUS.RELOADING};
             }
             return {...state, status: STATUS.PENDING};
-        case ActionTypes.HENT_OPPFOLGING_FEILET:
+        case ActionType.HENT_OPPFOLGING_FEILET:
             return {...state, status: STATUS.ERROR};
-        case ActionTypes.HENT_OPPFOLGING_OK: {
-            return {...state, status: STATUS.OK, data: action.data};
+        case ActionType.HENT_OPPFOLGING_OK: {
+            return {...state, status: STATUS.OK, data: action.data.data};
         }
         default:
             return state;
     }
 }
 
-export function hentOppfolging() {
-    return doThenDispatch(() => Api.hentOppfolging(), {
-        PENDING: ActionTypes.HENT_OPPFOLGING_PENDING,
-        OK: ActionTypes.HENT_OPPFOLGING_OK,
-        FEILET: ActionTypes.HENT_OPPFOLGING_FEILET,
+export function hentOppfolging(): (dispatch: Dispatch) => Promise<void> {
+    return doThenDispatch<State>(() => hentOppfolgingFetch(), {
+        ok: hentOppfolgingOk,
+        feilet: hentOppfolgingFeilet,
+        pending: hentOppfolgingPending,
     });
+}
+
+function hentOppfolgingOk(oppfolging: State): HentOppfolgingOKAction {
+    return {
+        type: ActionType.HENT_OPPFOLGING_OK,
+        data: oppfolging
+    };
+}
+
+function hentOppfolgingFeilet(): HentOppfolgingFEILETAction {
+    return {
+        type: ActionType.HENT_OPPFOLGING_FEILET,
+    };
+}
+
+function hentOppfolgingPending(): HentOppfolgingPENDINGAction {
+    return {
+        type: ActionType.HENT_OPPFOLGING_PENDING,
+    };
 }
 
 export function selectOppfolging(state: AppState): State {

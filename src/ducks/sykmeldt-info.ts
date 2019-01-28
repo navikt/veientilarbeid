@@ -1,55 +1,58 @@
-import * as Api from './api';
-import { doThenDispatch, STATUS } from './api-utils';
+import {
+    ActionType, Handling, HentSykmeldtInfoFEILETAction, HentSykmeldtInfoOKAction, HentSykmeldtInfoPENDINGAction,
+} from './actions';
+import { Dispatch } from '../dispatch-type';
 import { AppState } from '../reducer';
+import { hentSykmeldtInfoFetch, DataElement, STATUS } from './api';
+import { doThenDispatch } from './api-utils';
 
-export const erSykmeldt = true;
-
-export enum ActionTypes {
-    HENT_SYKMELDT_INFO_OK = 'HENT_SYKMELDT_INFO_OK',
-    HENT_SYKMELDT_INFO_PENDING = 'HENT_SYKMELDT_INFO_PENDING',
-    HENT_SYKMELDT_INFO_FEILET = 'HENT_SYKMELDT_INFO_FEILET'
-}
-
-export interface State {
-    status: string;
-    data?: Data;
-}
-
-export interface Data {
+export interface State extends DataElement{
     erSykmeldtMedArbeidsgiver: boolean;
 }
 
 const initialState: State = {
     status: STATUS.NOT_STARTED,
-    data: {
-        erSykmeldtMedArbeidsgiver: !erSykmeldt
-    }
+    erSykmeldtMedArbeidsgiver: false
 };
 
-interface Action {
-    type: ActionTypes;
-    data?: Data;
-}
-
-export default function (state: State = initialState, action: Action): State {
+export default function reducer(state: State = initialState, action: Handling): State {
     switch (action.type) {
-        case ActionTypes.HENT_SYKMELDT_INFO_PENDING:
+        case ActionType.HENT_SYKMELDT_INFO_PENDING:
             return {...state, status: STATUS.PENDING};
-        case ActionTypes.HENT_SYKMELDT_INFO_FEILET:
+        case ActionType.HENT_SYKMELDT_INFO_FEILET:
             return {...state, status: STATUS.ERROR};
-        case ActionTypes.HENT_SYKMELDT_INFO_OK:
-            return {...state, status: STATUS.OK, data: action.data};
+        case ActionType.HENT_SYKMELDT_INFO_OK:
+            return {...state, status: STATUS.OK, erSykmeldtMedArbeidsgiver: action.data.erSykmeldtMedArbeidsgiver};
         default:
             return state;
     }
 }
 
-export function hentSykmeldtInfo() {
-    return doThenDispatch(() => Api.hentSykmeldtInfo(), {
-        PENDING: ActionTypes.HENT_SYKMELDT_INFO_PENDING,
-        OK: ActionTypes.HENT_SYKMELDT_INFO_OK,
-        FEILET: ActionTypes.HENT_SYKMELDT_INFO_FEILET,
+export function hentSykmeldtInfo(): (dispatch: Dispatch) => Promise<void> {
+    return doThenDispatch<State>(() => hentSykmeldtInfoFetch(), {
+        ok: hentSykmeldtInfoOk,
+        feilet: hentSykmeldtInfoFeilet,
+        pending: hentSykmeldtInfoPending,
     });
+}
+
+function hentSykmeldtInfoOk(oppfolging: State): HentSykmeldtInfoOKAction {
+    return {
+        type: ActionType.HENT_SYKMELDT_INFO_OK,
+        data: oppfolging
+    };
+}
+
+function hentSykmeldtInfoFeilet(): HentSykmeldtInfoFEILETAction {
+    return {
+        type: ActionType.HENT_SYKMELDT_INFO_FEILET,
+    };
+}
+
+function hentSykmeldtInfoPending(): HentSykmeldtInfoPENDINGAction {
+    return {
+        type: ActionType.HENT_SYKMELDT_INFO_PENDING,
+    };
 }
 
 export function selectSykmeldtInfo(state: AppState): State {

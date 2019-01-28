@@ -2,7 +2,7 @@ import * as React from 'react';
 import SjekkOppfolging from './komponenter/hent-initial-data/sjekk-oppfolging';
 import { connect } from 'react-redux';
 import { AppState } from './reducer';
-import { erSykmeldt, selectSykmeldtInfo, State as SykmeldtInfoState } from './ducks/sykmeldt-info';
+import { selectSykmeldtInfo, State as SykmeldtInfoState } from './ducks/sykmeldt-info';
 import StartsideSykmeldt from './sider/startside-sykmeldt/startside-sykmeldt';
 import StartsideOrdinaer from './sider/startside-ordinaer/startside-ordinaer';
 import { Redirect, Route, RouteComponentProps, Switch, withRouter } from 'react-router';
@@ -16,11 +16,11 @@ type AllProps = StateProps & RouteComponentProps<any>; // tslint:disable-line
 class Routes extends React.Component<AllProps> {
     render() {
         // TODO: Bytt verdi når beregning av gjenstående sykedager er på plass
-        const erSykmeldtMedArbeidsgiver = this.props.sykmeldtInfo.data!.erSykmeldtMedArbeidsgiver;
+        const erSykmeldtMedArbeidsgiver = this.props.sykmeldtInfo.erSykmeldtMedArbeidsgiver;
         const { location } = this.props;
         const search = location.search;
 
-        if (erSykmeldtMedArbeidsgiver === erSykmeldt) {
+        if (erSykmeldtMedArbeidsgiver === true) {
             return (
                 <Switch>
                     <Route path="/" exact={true} component={StartsideSykmeldt}/>

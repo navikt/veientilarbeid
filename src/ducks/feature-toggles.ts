@@ -1,70 +1,75 @@
-import * as Api from './api';
-import { doThenDispatch, STATUS } from './api-utils';
+import {
+    ActionType, Handling, FeatureTogglesFEILETAction, FeatureTogglesOKAction, FeatureTogglesPENDINGAction,
+} from './actions';
+import { Dispatch } from '../dispatch-type';
+import { doThenDispatch } from './api-utils';
 import { AppState } from '../reducer';
-
-export enum ActionTypes {
-    FEATURE_TOGGLES_PENDING = 'FEATURE_TOGGLES_PENDING',
-    FEATURE_TOGGLES_OK = 'FEATURE_TOGGLES_OK',
-    FEATURE_TOGGLES_FEILET = 'FEATURE_TOGGLES_FEILET',
-}
-
-export interface Data {
-    'veientilarbeid.hentservicekode': boolean;
-    'veientilarbeid.hentJobbsokerbesvarelse': boolean;
-}
-
-export interface State {
-    data: Data;
-    status: string;
-}
-
-interface Action {
-    type: ActionTypes;
-    data: Data;
-}
+import { hentFeatureTogglesFetch, DataElement, STATUS } from './api';
 
 export const servicekodeToggleKey = 'veientilarbeid.hentservicekode';
 export const jobbsokerbesvarelseToggleKey = 'veientilarbeid.hentJobbsokerbesvarelse';
 
-export const alleFeatureToggles = [
-    servicekodeToggleKey,
-    jobbsokerbesvarelseToggleKey
-];
+export interface FeatureToggleState extends DataElement {
+    [servicekodeToggleKey]: boolean;
+    [jobbsokerbesvarelseToggleKey]: boolean;
+}
 
-const initialState = {
-    data : {
-        'veientilarbeid.hentservicekode': false,
-        'veientilarbeid.hentJobbsokerbesvarelse': false
-    },
-    status: STATUS.NOT_STARTED
+const initialState: FeatureToggleState = {
+    status: STATUS.NOT_STARTED,
+    [servicekodeToggleKey]: false,
+    [jobbsokerbesvarelseToggleKey]: false,
 };
 
-export default function (state: State = initialState, action: Action): State {
+export default function reducer(state: FeatureToggleState = initialState, action: Handling): FeatureToggleState {
     switch (action.type) {
-        case ActionTypes.FEATURE_TOGGLES_PENDING:
+        case ActionType.FEATURE_TOGGLES_PENDING:
             if (state.status === STATUS.OK) {
                 return { ...state, status: STATUS.RELOADING };
             }
             return { ...state, status: STATUS.PENDING };
-        case ActionTypes.FEATURE_TOGGLES_FEILET:
+        case ActionType.FEATURE_TOGGLES_FEILET:
             return { ...state, status: STATUS.ERROR };
-        case ActionTypes.FEATURE_TOGGLES_OK: {
-            return { ...state, status: STATUS.OK, data: action.data};
+        case ActionType.FEATURE_TOGGLES_OK: {
+            return {
+                ...state,
+                status: STATUS.OK,
+                [servicekodeToggleKey]: action.unleash[servicekodeToggleKey],
+                [jobbsokerbesvarelseToggleKey]: action.unleash[jobbsokerbesvarelseToggleKey]};
         }
         default:
             return state;
     }
 }
 
-export function hentFeatureToggles() {
-    return doThenDispatch(() => Api.hentFeatureToggles(), {
-        PENDING: ActionTypes.FEATURE_TOGGLES_PENDING,
-        OK : ActionTypes.FEATURE_TOGGLES_OK,
-        FEILET: ActionTypes.FEATURE_TOGGLES_FEILET,
+export function hentFeatureToggles(): (dispatch: Dispatch) => Promise<void> {
+    return doThenDispatch<FeatureToggleState>(
+        () => hentFeatureTogglesFetch([servicekodeToggleKey, jobbsokerbesvarelseToggleKey]), {
+        ok: hentFeatureTogglesOk,
+        feilet: hentFeatureTogglesFeilet,
+        pending: hentFeatureTogglesPending,
     });
 }
 
-export function selectFeatureToggles(state: AppState): State {
+function hentFeatureTogglesOk(unleash: FeatureToggleState): FeatureTogglesOKAction {
+    return {
+        type: ActionType.FEATURE_TOGGLES_OK,
+        unleash
+    };
+}
+
+function hentFeatureTogglesFeilet(): FeatureTogglesFEILETAction {
+    return {
+        type: ActionType.FEATURE_TOGGLES_FEILET,
+    };
+}
+
+function hentFeatureTogglesPending(): FeatureTogglesPENDINGAction {
+    return {
+        type: ActionType.FEATURE_TOGGLES_PENDING,
+    };
+}
+
+export function selectFeatureToggles(state: AppState): FeatureToggleState {
     return state.featureToggles;
 }
 

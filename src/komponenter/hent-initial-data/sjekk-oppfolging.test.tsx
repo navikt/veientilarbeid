@@ -7,7 +7,7 @@ import * as Adapter from 'enzyme-adapter-react-16';
 import SjekkOppfolging from './sjekk-oppfolging';
 import { create } from '../../store';
 import { mountWithStore } from '../../test/test-utils';
-import { ActionTypes as OppfolgingActionTypes } from '../../ducks/oppfolging';
+import { ActionType as OppfolgingActionTypes } from '../../ducks/actions';
 import {
     redirectTilAktivitetsplan,
 } from './sjekk-oppfolging-utils';
