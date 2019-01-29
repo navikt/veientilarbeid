@@ -6,23 +6,11 @@ import Innholdslaster from '../innholdslaster/innholdslaster';
 import Feilmelding from '../feilmeldinger/feilmelding';
 import { hentOppfolging, selectOppfolging, State as OppfolgingState } from '../../ducks/oppfolging';
 import {
-    hentFeatureToggles,
-    selectFeatureToggles,
-    selectHentServicegruppekodeFeatureToggle,
-    selectHentJobbsokerbesvarelseFeatureToggle,
-    servicekodeToggleKey,
-    jobbsokerbesvarelseToggleKey,
-    FeatureToggleState
+    hentFeatureToggles, servicekodeToggleKey, jobbsokerbesvarelseToggleKey, FeatureToggleState
 } from '../../ducks/feature-toggles';
-import { hentServicegruppe, selectServicegruppe, State as ServicegruppeState } from '../../ducks/servicegruppe';
-import {
-    selectSykmeldtInfo, hentSykmeldtInfo, State as SykmeldtInfodataState
-} from '../../ducks/sykmeldt-info';
-import {
-    hentJobbsokerbesvarelse,
-    selectJobbsokerbesvarelse,
-    State as JobbsokerbesvarelseState,
-} from '../../ducks/jobbsokerbesvarelse';
+import { hentServicegruppe, State as ServicegruppeState } from '../../ducks/servicegruppe';
+import { hentSykmeldtInfo, State as SykmeldtInfodataState } from '../../ducks/sykmeldt-info';
+import { hentJobbsokerbesvarelse, State as JobbsokerbesvarelseState, } from '../../ducks/jobbsokerbesvarelse';
 import getStore from '../../store';
 import { STATUS } from '../../ducks/api';
 import { ActionType } from '../../ducks/actions';
@@ -37,8 +25,6 @@ interface StateProps {
     servicegruppe: ServicegruppeState;
     sykmeldtInfo: SykmeldtInfodataState;
     jobbsokerbesvarelse: JobbsokerbesvarelseState;
-    featureToggleServicegruppe: boolean;
-    featureToggleJobbsokerbesvarelse: boolean;
 }
 
 interface DispatchProps {
@@ -61,9 +47,9 @@ class HentInitialData extends React.Component<Props> {
 
             this.props.hentOppfolging().then((oppfolgingresponse: Oppfolging) => {
 
-                const featureToggleJobbsokerbesvarelse = response[jobbsokerbesvarelseToggleKey];
+                const featureJobbsokerbesvarelse = response[jobbsokerbesvarelseToggleKey];
 
-                if (featureToggleJobbsokerbesvarelse && oppfolgingresponse.underOppfolging) {
+                if (featureJobbsokerbesvarelse && oppfolgingresponse.underOppfolging) {
                     this.props.hentJobbsokerbesvarelse();
                 } else {
                     getStore().dispatch({
@@ -75,8 +61,8 @@ class HentInitialData extends React.Component<Props> {
 
             this.props.hentSykmeldtInfo();
 
-            const featureToggleServicegruppe = response[servicekodeToggleKey];
-            if (featureToggleServicegruppe) {
+            const featureServicegruppe = response[servicekodeToggleKey];
+            if (featureServicegruppe) {
                 this.props.hentServicegruppe();
             }
         });
@@ -88,29 +74,23 @@ class HentInitialData extends React.Component<Props> {
             servicegruppe,
             sykmeldtInfo,
             jobbsokerbesvarelse,
-            featureToggleServicegruppe,
-            featureToggleJobbsokerbesvarelse,
+            featureToggles
         } = this.props;
 
         const avhengigheter: any[] = [oppfolging]; // tslint:disable-line no-any
         avhengigheter.push(sykmeldtInfo);
 
-        if (featureToggleServicegruppe) {
+        if (featureToggles[servicekodeToggleKey]) {
             avhengigheter.push(servicegruppe);
         }
-
-        if (featureToggleJobbsokerbesvarelse) {
+        if (featureToggles[jobbsokerbesvarelseToggleKey]) {
             avhengigheter.push(jobbsokerbesvarelse);
         }
-
         return avhengigheter;
     }
 
     render() {
-        const {
-            children
-        } = this.props;
-
+        const { children } = this.props;
         const avhengigheter = this.finnAvhengigheter();
 
         return (
@@ -127,12 +107,10 @@ class HentInitialData extends React.Component<Props> {
 
 const mapStateToProps = (state: AppState): StateProps => ({
     oppfolging: selectOppfolging(state),
-    featureToggles: selectFeatureToggles(state),
-    servicegruppe: selectServicegruppe(state),
-    sykmeldtInfo: selectSykmeldtInfo(state),
-    jobbsokerbesvarelse: selectJobbsokerbesvarelse(state),
-    featureToggleServicegruppe: selectHentServicegruppekodeFeatureToggle(state),
-    featureToggleJobbsokerbesvarelse: selectHentJobbsokerbesvarelseFeatureToggle(state),
+    servicegruppe: state.servicegruppe,
+    sykmeldtInfo: state.sykmeldtInfodata,
+    jobbsokerbesvarelse: state.jobbsokerbesvarelse,
+    featureToggles: state.featureToggles,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({

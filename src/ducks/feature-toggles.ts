@@ -23,6 +23,7 @@ const initialState: FeatureToggleState = {
 export default function reducer(state: FeatureToggleState = initialState, action: Handling): FeatureToggleState {
     switch (action.type) {
         case ActionType.FEATURE_TOGGLES_PENDING:
+            console.log('action:', action); /* tslint:disable-line:no-console*/
             if (state.status === STATUS.OK) {
                 return { ...state, status: STATUS.RELOADING };
             }
