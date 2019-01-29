@@ -5,15 +5,14 @@ import { AppState } from '../../reducer';
 import Innholdslaster from '../innholdslaster/innholdslaster';
 import Feilmelding from '../feilmeldinger/feilmelding';
 import { hentOppfolging, selectOppfolging, State as OppfolgingState } from '../../ducks/oppfolging';
-import {
-    hentFeatureToggles, servicekodeToggleKey, jobbsokerbesvarelseToggleKey, FeatureToggleState
-} from '../../ducks/feature-toggles';
+import { FeatureToggleState, jobbsokerbesvarelseToggleKey, servicekodeToggleKey } from '../../ducks/feature-toggles';
 import { hentServicegruppe, State as ServicegruppeState } from '../../ducks/servicegruppe';
 import { hentSykmeldtInfo, State as SykmeldtInfodataState } from '../../ducks/sykmeldt-info';
 import { hentJobbsokerbesvarelse, State as JobbsokerbesvarelseState, } from '../../ducks/jobbsokerbesvarelse';
 import getStore from '../../store';
 import { STATUS } from '../../ducks/api';
 import { ActionType } from '../../ducks/actions';
+import FeatureToggleProvider from './feature-toggle-provider';
 
 interface OwnProps {
     children: React.ReactNode;
@@ -21,7 +20,7 @@ interface OwnProps {
 
 interface StateProps {
     oppfolging: OppfolgingState;
-    featureToggles: FeatureToggleState;
+    features: FeatureToggleState;
     servicegruppe: ServicegruppeState;
     sykmeldtInfo: SykmeldtInfodataState;
     jobbsokerbesvarelse: JobbsokerbesvarelseState;
@@ -29,7 +28,6 @@ interface StateProps {
 
 interface DispatchProps {
     hentOppfolging: () => Promise<void | {}>;
-    hentFeatureToggles: () => Promise<void | {}>;
     hentServicegruppe: () => void;
     hentSykmeldtInfo: () => void;
     hentJobbsokerbesvarelse: () => void;
@@ -42,30 +40,27 @@ interface Oppfolging {
 type Props = StateProps & DispatchProps & OwnProps;
 
 class HentInitialData extends React.Component<Props> {
-    componentWillMount() {
-        this.props.hentFeatureToggles().then((response) => {
+    componentDidMount() {
+        const featureJobbsokerbesvarelse = this.props.features[jobbsokerbesvarelseToggleKey];
+        const featureServicegruppe = this.props.features[servicekodeToggleKey];
+        console.log('servicegruooe:', featureServicegruppe); // tslint:disable-line
 
-            this.props.hentOppfolging().then((oppfolgingresponse: Oppfolging) => {
-
-                const featureJobbsokerbesvarelse = response[jobbsokerbesvarelseToggleKey];
-
-                if (featureJobbsokerbesvarelse && oppfolgingresponse.underOppfolging) {
-                    this.props.hentJobbsokerbesvarelse();
-                } else {
-                    getStore().dispatch({
-                        type: ActionType.HENT_JOBBSOKERBESVARELSE_OK,
-                        data: { STATUS: STATUS.OK }
-                    });
-                }
-            });
-
-            this.props.hentSykmeldtInfo();
-
-            const featureServicegruppe = response[servicekodeToggleKey];
-            if (featureServicegruppe) {
-                this.props.hentServicegruppe();
+        this.props.hentOppfolging().then((oppfolgingresponse: Oppfolging) => {
+            if (featureJobbsokerbesvarelse && oppfolgingresponse.underOppfolging) {
+                this.props.hentJobbsokerbesvarelse();
+            } else {
+                getStore().dispatch({
+                    type: ActionType.HENT_JOBBSOKERBESVARELSE_OK,
+                    data: { STATUS: STATUS.OK }
+                });
             }
         });
+
+        this.props.hentSykmeldtInfo();
+
+        if (featureServicegruppe) {
+            this.props.hentServicegruppe();
+        }
     }
 
     finnAvhengigheter () {
@@ -74,16 +69,16 @@ class HentInitialData extends React.Component<Props> {
             servicegruppe,
             sykmeldtInfo,
             jobbsokerbesvarelse,
-            featureToggles
+            features
         } = this.props;
 
         const avhengigheter: any[] = [oppfolging]; // tslint:disable-line no-any
         avhengigheter.push(sykmeldtInfo);
 
-        if (featureToggles[servicekodeToggleKey]) {
+        if (features[servicekodeToggleKey]) {
             avhengigheter.push(servicegruppe);
         }
-        if (featureToggles[jobbsokerbesvarelseToggleKey]) {
+        if (features[jobbsokerbesvarelseToggleKey]) {
             avhengigheter.push(jobbsokerbesvarelse);
         }
         return avhengigheter;
@@ -94,13 +89,15 @@ class HentInitialData extends React.Component<Props> {
         const avhengigheter = this.finnAvhengigheter();
 
         return (
-            <Innholdslaster
-                feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse"/>}
-                storrelse="XXL"
-                avhengigheter={avhengigheter}
-            >
-                {children}
-            </Innholdslaster>
+            <FeatureToggleProvider>
+                <Innholdslaster
+                    feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse"/>}
+                    storrelse="XXL"
+                    avhengigheter={avhengigheter}
+                >
+                    {children}
+                </Innholdslaster>
+            </FeatureToggleProvider>
         );
     }
 }
@@ -110,12 +107,11 @@ const mapStateToProps = (state: AppState): StateProps => ({
     servicegruppe: state.servicegruppe,
     sykmeldtInfo: state.sykmeldtInfodata,
     jobbsokerbesvarelse: state.jobbsokerbesvarelse,
-    featureToggles: state.featureToggles,
+    features: state.featureToggles,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
     hentOppfolging: () => hentOppfolging()(dispatch),
-    hentFeatureToggles: () => hentFeatureToggles()(dispatch),
     hentServicegruppe: () => hentServicegruppe()(dispatch),
     hentSykmeldtInfo: () => hentSykmeldtInfo()(dispatch),
     hentJobbsokerbesvarelse: () => hentJobbsokerbesvarelse()(dispatch),

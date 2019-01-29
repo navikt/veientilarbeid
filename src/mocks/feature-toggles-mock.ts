@@ -1,6 +1,8 @@
+import { servicekodeToggleKey, jobbsokerbesvarelseToggleKey } from '../ducks/feature-toggles';
+
 const featureTogglesMock = {
-    'veientilarbeid.hentservicekode': true,
-    'veientilarbeid.hentJobbsokerbesvarelse': true,
+    [servicekodeToggleKey]: true,
+    [jobbsokerbesvarelseToggleKey]: true,
 };
 
 export default featureTogglesMock;

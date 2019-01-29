@@ -3,13 +3,12 @@ import {
     HentJobbsokerbesvarelsePENDINGAction,
 } from './actions';
 import { Dispatch } from '../dispatch-type';
-import { AppState } from '../reducer';
 import { hentJobbsokerbesvarelseFetch, DataElement, STATUS } from './api';
 import { doThenDispatch } from './api-utils';
 
 export interface State extends DataElement {
     data: {
-        raad?: [] | undefined;
+        raad?: [];
     };
     harJobbsokerbesvarelse: boolean;
 }
@@ -69,8 +68,4 @@ function hentJobbsokerbesvarelsePending(): HentJobbsokerbesvarelsePENDINGAction 
     return {
         type: ActionType.HENT_JOBBSOKERBESVARELSE_PENDING,
     };
-}
-
-export function selectJobbsokerbesvarelse(state: AppState): State {
-    return state.jobbsokerbesvarelse;
 }

@@ -3,7 +3,6 @@ import {
 } from './actions';
 import { Dispatch } from '../dispatch-type';
 import { doThenDispatch } from './api-utils';
-import { AppState } from '../reducer';
 import { hentFeatureTogglesFetch, DataElement, STATUS } from './api';
 
 export const servicekodeToggleKey = 'veientilarbeid.hentservicekode';
@@ -23,7 +22,6 @@ const initialState: FeatureToggleState = {
 export default function reducer(state: FeatureToggleState = initialState, action: Handling): FeatureToggleState {
     switch (action.type) {
         case ActionType.FEATURE_TOGGLES_PENDING:
-            console.log('action:', action); /* tslint:disable-line:no-console*/
             if (state.status === STATUS.OK) {
                 return { ...state, status: STATUS.RELOADING };
             }
@@ -31,6 +29,7 @@ export default function reducer(state: FeatureToggleState = initialState, action
         case ActionType.FEATURE_TOGGLES_FEILET:
             return { ...state, status: STATUS.ERROR };
         case ActionType.FEATURE_TOGGLES_OK: {
+            console.log('actionFT:', action); /* tslint:disable-line:no-console*/
             return {
                 ...state,
                 status: STATUS.OK,
@@ -54,7 +53,7 @@ export function hentFeatureToggles(): (dispatch: Dispatch) => Promise<void> {
 function hentFeatureTogglesOk(unleash: FeatureToggleState): FeatureTogglesOKAction {
     return {
         type: ActionType.FEATURE_TOGGLES_OK,
-        unleash
+        unleash: unleash
     };
 }
 
@@ -68,16 +67,4 @@ function hentFeatureTogglesPending(): FeatureTogglesPENDINGAction {
     return {
         type: ActionType.FEATURE_TOGGLES_PENDING,
     };
-}
-
-export function selectFeatureToggles(state: AppState): FeatureToggleState {
-    return state.featureToggles;
-}
-
-export function selectHentServicegruppekodeFeatureToggle(state: AppState): boolean {
-    return state.featureToggles[servicekodeToggleKey];
-}
-
-export function selectHentJobbsokerbesvarelseFeatureToggle(state: AppState): boolean {
-    return state.featureToggles[jobbsokerbesvarelseToggleKey];
 }

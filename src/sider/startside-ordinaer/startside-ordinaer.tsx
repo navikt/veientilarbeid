@@ -1,8 +1,8 @@
 import * as React from 'react';
 import Side from '../../komponenter/side';
-import { selectServicegruppe, SituasjonOption, State as ServicegruppeState } from '../../ducks/servicegruppe';
+import { SituasjonOption, State as ServicegruppeState } from '../../ducks/servicegruppe';
 import { AppState } from '../../reducer';
-import { selectHentServicegruppekodeFeatureToggle } from '../../ducks/feature-toggles';
+import { servicekodeToggleKey } from '../../ducks/feature-toggles';
 import { connect } from 'react-redux';
 import ReaktiveringMelding from '../../komponenter/reaktivering-melding';
 import Aktivitetsplan from '../../komponenter/aktivitetsplan/aktivitetsplan';
@@ -51,8 +51,8 @@ class StartsideOrdinaer extends React.Component<StateProps> {
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
-    servicegruppe: selectServicegruppe(state),
-    featureToggleServicegruppe: selectHentServicegruppekodeFeatureToggle(state),
+    servicegruppe: state.servicegruppe,
+    featureToggleServicegruppe: state.featureToggles[servicekodeToggleKey],
 });
 
 export default connect(mapStateToProps)(StartsideOrdinaer);

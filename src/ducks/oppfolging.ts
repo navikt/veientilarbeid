@@ -47,10 +47,10 @@ export function hentOppfolging(): (dispatch: Dispatch) => Promise<void> {
     });
 }
 
-function hentOppfolgingOk(oppfolging: State): HentOppfolgingOKAction {
+function hentOppfolgingOk(data: State): HentOppfolgingOKAction {
     return {
         type: ActionType.HENT_OPPFOLGING_OK,
-        data: oppfolging
+        data: data
     };
 }
 
