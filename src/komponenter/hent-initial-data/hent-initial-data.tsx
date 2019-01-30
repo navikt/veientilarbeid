@@ -12,7 +12,6 @@ import { hentJobbsokerbesvarelse, State as JobbsokerbesvarelseState, } from '../
 import getStore from '../../store';
 import { STATUS } from '../../ducks/api';
 import { ActionType } from '../../ducks/actions';
-import FeatureToggleProvider from './feature-toggle-provider';
 
 interface OwnProps {
     children: React.ReactNode;
@@ -55,7 +54,6 @@ class HentInitialData extends React.Component<Props> {
                 });
             }
         });
-
         this.props.hentSykmeldtInfo();
 
         if (featureServicegruppe) {
@@ -89,15 +87,13 @@ class HentInitialData extends React.Component<Props> {
         const avhengigheter = this.finnAvhengigheter();
 
         return (
-            <FeatureToggleProvider>
-                <Innholdslaster
-                    feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse"/>}
-                    storrelse="XXL"
-                    avhengigheter={avhengigheter}
-                >
-                    {children}
-                </Innholdslaster>
-            </FeatureToggleProvider>
+            <Innholdslaster
+                feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse"/>}
+                storrelse="XXL"
+                avhengigheter={avhengigheter}
+            >
+                {children}
+            </Innholdslaster>
         );
     }
 }

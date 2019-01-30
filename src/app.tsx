@@ -6,6 +6,7 @@ import IntlProvider from './Intl-provider';
 import HentInitialData from './komponenter/hent-initial-data/hent-initial-data';
 import Routes from './routes';
 import EndreBrukerStatus from './komponenter/endre-bruker-status/endre-bruker-status';
+import FeatureToggleProvider from './komponenter/hent-initial-data/feature-toggle-provider';
 
 const store = getStore();
 const basename = '/veientilarbeid';
@@ -21,14 +22,16 @@ class App extends React.Component {
         return (
             <Provider store={store}>
                 <IntlProvider>
-                    <HentInitialData>
-                        {endreBrukerStatus}
-                        <main id="maincontent" role="main" tabIndex={-1}>
-                            <Router basename={basename}>
-                                <Routes />
-                            </Router>
-                        </main>
-                    </HentInitialData>
+                    <FeatureToggleProvider>
+                        <HentInitialData>
+                            {endreBrukerStatus}
+                            <main id="maincontent" role="main" tabIndex={-1}>
+                                <Router basename={basename}>
+                                    <Routes />
+                                </Router>
+                            </main>
+                        </HentInitialData>
+                    </FeatureToggleProvider>
                 </IntlProvider>
             </Provider>
         );
