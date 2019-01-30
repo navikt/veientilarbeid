@@ -1,0 +1,42 @@
+@import '../../../node_modules/nav-frontend-core/less/_variabler';
+
+.panel.stillingsok {
+    background-color: @navDypBlaLighten80;
+    margin-top: 2rem;
+
+    .input-container {
+        margin-bottom: 1rem;
+        .sok-stillinger-input {
+            margin-bottom: 1rem;
+            .skjemaelement__label {
+                margin: 0;
+            }
+        }
+        .sok-stillinger-knapp {
+        }
+    }
+}
+
+
+@media (min-width: @screen-sm-min) {
+    .panel.stillingsok {
+
+        .input-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            .sok-stillinger-input {
+                width: 80%;
+                margin: 0;
+                .skjemaelement__label {
+                    margin: 0;
+                }
+            }
+            .sok-stillinger-knapp {
+                width: 20%;
+                margin-left: 1rem;
+            }
+        }
+    }
+
+}
