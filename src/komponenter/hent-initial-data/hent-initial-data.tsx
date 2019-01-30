@@ -4,7 +4,7 @@ import { Dispatch } from '../../dispatch-type';
 import { AppState } from '../../reducer';
 import Innholdslaster from '../innholdslaster/innholdslaster';
 import Feilmelding from '../feilmeldinger/feilmelding';
-import { hentOppfolging, selectOppfolging, State as OppfolgingState } from '../../ducks/oppfolging';
+import { Data, hentOppfolging, selectOppfolging, State as OppfolgingState } from '../../ducks/oppfolging';
 import { FeatureToggleState, jobbsokerbesvarelseToggleKey, servicekodeToggleKey } from '../../ducks/feature-toggles';
 import { hentServicegruppe, State as ServicegruppeState } from '../../ducks/servicegruppe';
 import { hentSykmeldtInfo, State as SykmeldtInfodataState } from '../../ducks/sykmeldt-info';
@@ -32,19 +32,16 @@ interface DispatchProps {
     hentJobbsokerbesvarelse: () => void;
 }
 
-interface Oppfolging {
-    underOppfolging: boolean;
-}
-
 type Props = StateProps & DispatchProps & OwnProps;
 
 class HentInitialData extends React.Component<Props> {
-    componentDidMount() {
+    componentWillMount() {
         const featureJobbsokerbesvarelse = this.props.features[jobbsokerbesvarelseToggleKey];
         const featureServicegruppe = this.props.features[servicekodeToggleKey];
-        console.log('servicegruooe:', featureServicegruppe); // tslint:disable-line
+        console.log('servicegruppe:', featureServicegruppe); // tslint:disable-line
 
-        this.props.hentOppfolging().then((oppfolgingresponse: Oppfolging) => {
+        this.props.hentOppfolging().then((oppfolgingresponse: Data) => {
+            console.log('oppfolgingsresponse:', oppfolgingresponse); // tslint:disable-line
             if (featureJobbsokerbesvarelse && oppfolgingresponse.underOppfolging) {
                 this.props.hentJobbsokerbesvarelse();
             } else {
@@ -70,8 +67,7 @@ class HentInitialData extends React.Component<Props> {
             features
         } = this.props;
 
-        const avhengigheter: any[] = [oppfolging]; // tslint:disable-line no-any
-        avhengigheter.push(sykmeldtInfo);
+        const avhengigheter: any[] = [oppfolging, sykmeldtInfo]; // tslint:disable-line no-any
 
         if (features[servicekodeToggleKey]) {
             avhengigheter.push(servicegruppe);
