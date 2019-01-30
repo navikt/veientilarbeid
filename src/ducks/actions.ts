@@ -1,5 +1,5 @@
 import { FeatureToggleState } from './feature-toggles';
-import {State as OppfolgingState } from './oppfolging';
+import { DataFetchState } from './oppfolging';
 import {State as ServicegruppeState } from './servicegruppe';
 import {State as JobbsokerbesvarelseState } from './jobbsokerbesvarelse';
 import {State as SykmeldtInfoState } from './sykmeldt-info';
@@ -37,7 +37,7 @@ export interface FeatureTogglesFEILETAction {
 
 export interface HentOppfolgingOKAction {
     type: ActionType.HENT_OPPFOLGING_OK;
-    data: OppfolgingState;
+    data: DataFetchState;
 }
 
 export interface HentOppfolgingPENDINGAction {
