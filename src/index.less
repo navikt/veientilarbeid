@@ -35,12 +35,20 @@ body {
 }
 
 .innhold {
-    max-width: 768px;
-    padding-top: 2rem;
+    margin: 0 1rem;
+    padding: 2rem 0 4rem;
 }
 
 @media (min-width: @screen-sm-min) {
     .innhold {
-        margin: 2rem auto;
+        max-width: 728px;
+        margin: 0 auto;
     }
 }
+
+@media (min-width: @screen-md-min) {
+    .innhold {
+        max-width: 768px;
+    }
+}
+

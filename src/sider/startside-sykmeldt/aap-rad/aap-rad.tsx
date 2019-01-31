@@ -6,7 +6,6 @@ import './aap-rad.less';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import RettPaAapInnhold from './rett-pa-aap-innhold';
 import SoketidspunktInnhold from './soketidspunkt-innhold';
-// import { findDOMNode } from 'react-dom';
 
 interface AapRadState {
     visAap: boolean;
@@ -26,7 +25,6 @@ class AapRad extends React.Component<InjectedIntlProps, AapRadState> {
         setTimeout(() => {
             if (this.state.visAap) {
                 const aap = document.querySelector('.aap-rad');
-                // findDOMNode(this).scrollIntoView(
                 if (aap) {
                     aap.scrollIntoView(
                         {

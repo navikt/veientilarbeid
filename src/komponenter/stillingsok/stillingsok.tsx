@@ -1,18 +1,21 @@
 import * as React from 'react';
+import { InjectedIntlProps, injectIntl } from 'react-intl';
 import { Innholdstittel } from 'nav-frontend-typografi';
 import { FormattedMessage } from 'react-intl';
 import { Input } from 'nav-frontend-skjema';
 import './stillingsok.less';
-import { Panel } from 'nav-frontend-paneler';
 
-// export const STILLINGSOK_URL = 'https://stillingsok.nav.no'; // tslint:disable-line
+export const STILLINGSOK_URL = 'https://stillingsok.nav.no/stillinger'; // tslint:disable-line
 
-interface Props {
-    dummy?: string;
+interface DummyProp {
+    dummy?: string; // TypeScript klager hvis props kun er InjectedIntlProps
 }
+
 interface InputState {
     inputValue: string;
 }
+
+type Props = DummyProp & InjectedIntlProps;
 
 class StillingSok extends React.Component<Props, InputState> {
     constructor(props: Props) {
@@ -21,18 +24,30 @@ class StillingSok extends React.Component<Props, InputState> {
             inputValue: ''
         };
         this.handleChange = this.handleChange.bind(this);
+        this.handlePressEnter = this.handlePressEnter.bind(this);
     }
 
     handleChange(e: React.FormEvent<HTMLInputElement>) {
+        e.preventDefault();
         this.setState({
-            inputValue: e.currentTarget.value;
+            inputValue: e.currentTarget.value
         });
+        console.log('state', this.state); //tslint:disable-line
+    }
+
+    handlePressEnter(e: React.KeyboardEvent, url: string) {
+        if (e.key === 'Enter') {
+           window.location.href = url;
+        }
     }
 
     render() {
-        const knappetekst = this.state.inputValue === '' ? 'stillingsok-knapp-sok' : 'stillingsok-knapp-sok-alle';
+        const { inputValue } = this.state;
+        const intl = this.props.intl;
+        const URL = `${STILLINGSOK_URL}/?q=${inputValue}`;
+
         return (
-            <Panel className="stillingsok">
+            <div className="stillingsok">
 
                 <Innholdstittel className="stillingsok__tittel blokk-s">
                     <FormattedMessage id="stillingsok-overskrift" />
@@ -42,21 +57,21 @@ class StillingSok extends React.Component<Props, InputState> {
                     <Input
                         className="sok-stillinger-input"
                         label=""
-                        placeholder="Søk i ledige stillinger"
-                        // value={this.state.inputValue}
-                        onChange={ () =>
-                            this.handleChange.bind(this)
-                        }
+                        placeholder={intl.messages['stillingsok-placeholder']}
+                        onChange={event => this.handleChange(event)}
+                        onKeyPress={(event) => this.handlePressEnter(event, URL)}
                     />
                     <div className="sok-stillinger-knapp">
-                        <a className="knapp knapp--hoved" href="https://stillingsok.nav.no">
-                            <FormattedMessage id={knappetekst}/>
+                        <a className="knapp knapp--hoved" href={URL}>
+                            {inputValue === ''
+                                ? <FormattedMessage id="stillingsok-knapp-sok-alle" />
+                                : <FormattedMessage id="stillingsok-knapp-sok" />
+                            }
                         </a>
                     </div>
                 </div>
-            </Panel>
-
+            </div>
         );
     }
 }
-export default StillingSok;
+export default injectIntl(StillingSok);
