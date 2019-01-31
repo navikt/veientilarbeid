@@ -32,7 +32,6 @@ class StillingSok extends React.Component<Props, InputState> {
         this.setState({
             inputValue: e.currentTarget.value
         });
-        console.log('state', this.state); //tslint:disable-line
     }
 
     handlePressEnter(e: React.KeyboardEvent, url: string) {
