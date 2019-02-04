@@ -5,21 +5,15 @@ import { FormattedMessage } from 'react-intl';
 import { Input } from 'nav-frontend-skjema';
 import './stillingsok.less';
 
-export const STILLINGSOK_URL = 'https://stillingsok.nav.no/stillinger'; // tslint:disable-line
-
-interface DummyProp {
-    dummy?: string; // TypeScript klager hvis props kun er InjectedIntlProps
-}
+export const STILLINGSOK_URL = 'https://stillingsok.nav.no/stillinger';
 
 interface InputState {
     inputValue: string;
 }
 
-type Props = DummyProp & InjectedIntlProps;
+class StillingSok extends React.Component<InjectedIntlProps, InputState> {
 
-class StillingSok extends React.Component<Props, InputState> {
-
-    constructor(props: Props) {
+    constructor(props: InjectedIntlProps) {
         super(props);
         this.state = {
             inputValue: ''
@@ -42,7 +36,7 @@ class StillingSok extends React.Component<Props, InputState> {
     render() {
         const intl = this.props.intl;
         const { inputValue } = this.state;
-        const URL = `${STILLINGSOK_URL}/?q=${inputValue}`;
+        const URL = `${STILLINGSOK_URL}?q=${inputValue}`;
 
         return (
             <div className="stillingsok">
