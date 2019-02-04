@@ -4,7 +4,7 @@
     display: flex;
     align-items: center;
 
-    > .brodsmuler__list {
+    & > .brodsmuler__list {
         list-style: none;
         margin: inherit;
         padding: 0.5rem;
@@ -25,8 +25,18 @@
             }
         }
     }
-    > .brodsmuler__illustrasjon {
-        max-width: 30px;
-        max-height: 30px;
+    & > .brodsmuler__illustrasjon {
+        display: none;
     }
+}
+
+@media (min-width: 384px) {
+    .brodsmuler {
+        & > .brodsmuler__illustrasjon {
+            max-width: 30px;
+            max-height: 30px;
+            display: block;
+        }
+    }
+
 }

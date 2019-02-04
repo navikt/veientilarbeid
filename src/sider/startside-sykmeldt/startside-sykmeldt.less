@@ -2,29 +2,31 @@
 @import '../../index';
 
 .startside-sykmeldt {
-
     &--rader {
         margin-bottom: 10rem;
     }
-
     &--rad {
         width: 100%;
         padding: 5rem 0;
 
-        &-innhold {
-            .innhold();
-            padding: 0; // override padding fra .innhold
-            margin: 0 auto;
-        }
-
         &:nth-child(odd) {
             background-color: white;
         }
-
         &:nth-child(even) {
             background-color: @navLysGra;
         }
-
     }
+}
 
+@media (min-width: @screen-sm-min) {
+    .startside-sykmeldt--rad-innhold {
+        max-width: @tablet-width;
+        margin: 0 auto;
+    }
+}
+
+@media (min-width: @screen-md-min) {
+    .startside-sykmeldt--rad-innhold {
+        max-width: @desktop-width;
+    }
 }
