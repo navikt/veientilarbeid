@@ -4,7 +4,7 @@ import { Dispatch } from '../../dispatch-type';
 import { AppState } from '../../reducer';
 import Innholdslaster from '../innholdslaster/innholdslaster';
 import Feilmelding from '../feilmeldinger/feilmelding';
-import { hentOppfolging, State as OppfolgingState } from '../../ducks/oppfolging';
+import { State as OppfolgingState } from '../../ducks/oppfolging';
 import { FeatureToggleState, jobbsokerbesvarelseToggleKey, servicekodeToggleKey } from '../../ducks/feature-toggles';
 import { hentServicegruppe, State as ServicegruppeState } from '../../ducks/servicegruppe';
 import { hentSykmeldtInfo, State as SykmeldtInfodataState } from '../../ducks/sykmeldt-info';
@@ -26,7 +26,6 @@ interface StateProps {
 }
 
 interface DispatchProps {
-    hentOppfolging: () => Promise<void | {}>;
     hentServicegruppe: () => void;
     hentSykmeldtInfo: () => void;
     hentJobbsokerbesvarelse: () => void;
@@ -38,9 +37,8 @@ class HentInitialData extends React.Component<Props> {
     componentWillMount() {
         const featureJobbsokerbesvarelse = this.props.features[jobbsokerbesvarelseToggleKey];
         const featureServicegruppe = this.props.features[servicekodeToggleKey];
-        console.log('servicegruppe:', featureServicegruppe); // tslint:disable-line
-        console.log('jsk:', featureJobbsokerbesvarelse); // tslint:disable-line
-        console.log('oppfolging:', this.props.oppfolging); // tslint:disable-line
+
+        this.props.hentSykmeldtInfo();
 
         if (featureJobbsokerbesvarelse && this.props.oppfolging.data.underOppfolging) {
             this.props.hentJobbsokerbesvarelse();
@@ -50,8 +48,6 @@ class HentInitialData extends React.Component<Props> {
                 data: { STATUS: STATUS.OK }
             });
         }
-        this.props.hentSykmeldtInfo();
-
         if (featureServicegruppe) {
             this.props.hentServicegruppe();
         }
@@ -102,7 +98,6 @@ const mapStateToProps = (state: AppState): StateProps => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
-    hentOppfolging: () => hentOppfolging()(dispatch),
     hentServicegruppe: () => hentServicegruppe()(dispatch),
     hentSykmeldtInfo: () => hentSykmeldtInfo()(dispatch),
     hentJobbsokerbesvarelse: () => hentJobbsokerbesvarelse()(dispatch),
