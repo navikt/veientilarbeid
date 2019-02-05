@@ -1,6 +1,6 @@
 import { FeatureToggleState } from './feature-toggles';
 import { Data as OppfolgingData } from './oppfolging';
-import {State as ServicegruppeState } from './servicegruppe';
+import {Data as ServicegruppeData } from './servicegruppe';
 import {Data as JobbsokerbesvarelseData } from './jobbsokerbesvarelse';
 import {State as SykmeldtInfoState } from './sykmeldt-info';
 
@@ -50,7 +50,7 @@ export interface HentOppfolgingFEILETAction {
 
 export interface HentServicegruppeOKAction {
     type: ActionType.HENT_SERVICEGRUPPE_OK;
-    data: ServicegruppeState;
+    data: ServicegruppeData;
 }
 
 export interface HentServicegruppePENDINGAction {

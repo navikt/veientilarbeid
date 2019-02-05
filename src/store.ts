@@ -1,7 +1,7 @@
 import { createStore, compose, Store } from 'redux';
 import { reducer, AppState } from './reducer';
 
-function create() {
+export function create() {
     /* tslint:disable-next-line */
     const useExtension = (window as any).__REDUX_DEVTOOLS_EXTENSION__ !== undefined;
     /* tslint:disable-next-line */

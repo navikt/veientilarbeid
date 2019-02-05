@@ -3,7 +3,6 @@ import {
 } from './actions';
 import { Dispatch } from '../dispatch-type';
 import { doThenDispatch } from './api-utils';
-import { AppState } from '../reducer';
 import { hentServicegruppeFetch, DataElement, STATUS } from './api';
 
 export enum SituasjonOption {
@@ -38,7 +37,7 @@ export default function reducer(state: State = initialState, action: Handling): 
             return {...state, status: STATUS.ERROR};
         case ActionType.HENT_SERVICEGRUPPE_OK: {
 
-            const servicegruppe: string =  action.data.data.servicegruppe;
+            const servicegruppe: string =  action.data.servicegruppe;
             const situasjonsMap = {
                 'BATT': SituasjonOption.SPESIELT_TILPASSET,
                 'BFORM': SituasjonOption.SITUASJONSBESTEMT,
@@ -57,17 +56,17 @@ export default function reducer(state: State = initialState, action: Handling): 
 }
 
 export function hentServicegruppe(): (dispatch: Dispatch) => Promise<void> {
-    return doThenDispatch<State>(() => hentServicegruppeFetch(), {
+    return doThenDispatch<Data>(() => hentServicegruppeFetch(), {
         ok: hentServicegruppeOk,
         feilet: hentServicegruppeFeilet,
         pending: hentServicegruppePending,
     });
 }
 
-function hentServicegruppeOk(servicegruppe: State): HentServicegruppeOKAction {
+function hentServicegruppeOk(servicegruppeData: Data): HentServicegruppeOKAction {
     return {
         type: ActionType.HENT_SERVICEGRUPPE_OK,
-        data: servicegruppe
+        data: servicegruppeData
     };
 }
 
@@ -81,8 +80,4 @@ function hentServicegruppePending(): HentServicegruppePENDINGAction {
     return {
         type: ActionType.HENT_SERVICEGRUPPE_PENDING,
     };
-}
-
-export function selectServicegruppe(state: AppState): State {
-    return state.servicegruppe;
 }

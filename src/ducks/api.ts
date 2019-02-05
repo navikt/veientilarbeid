@@ -1,7 +1,7 @@
 import { fetchToJson } from './api-utils';
 import { FeatureToggleState } from './feature-toggles';
 import { Data as OppfolgingData } from './oppfolging';
-import { State as ServicegruppeState } from './servicegruppe';
+import { Data as ServicegruppeData } from './servicegruppe';
 import { Data as JobbsokerbesvarelseData } from './jobbsokerbesvarelse';
 import { State as SykmeldtInfoState } from './sykmeldt-info';
 
@@ -51,7 +51,7 @@ export function hentOppfolgingFetch(): Promise<OppfolgingData> {
     return fetchToJson(`${VEILARBOPPFOLGINGPROXY_URL}/oppfolging`, requestConfig);
 }
 
-export function hentServicegruppeFetch(): Promise<ServicegruppeState> {
+export function hentServicegruppeFetch(): Promise<ServicegruppeData> {
     return fetchToJson(SERVICEGRUPPE_URL, requestConfig);
 }
 
