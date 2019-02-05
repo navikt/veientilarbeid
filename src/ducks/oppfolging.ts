@@ -2,22 +2,8 @@ import {
     ActionType, Handling, HentOppfolgingFEILETAction, HentOppfolgingOKAction, HentOppfolgingPENDINGAction,
 } from './actions';
 import { Dispatch } from '../dispatch-type';
-import { AppState } from '../reducer';
 import { hentOppfolgingFetch, DataElement, STATUS } from './api';
 import { doThenDispatch } from './api-utils';
-
-export declare type JSONValue = null | string | number | boolean | JSONObject | JSONArray;
-export declare type JSONObject = {
-    [member: string]: JSONValue;
-};
-export interface JSONArray extends Array<JSONValue> {
-}
-
-export interface DataFetchState extends JSONObject {
-    underOppfolging: boolean;
-    kanReaktiveres: boolean;
-    erSykmeldtMedArbeidsgiver: boolean;
-}
 
 export interface State extends DataElement {
     data: Data;
@@ -53,14 +39,14 @@ export default function reducer(state: State = initialState, action: Handling): 
 }
 
 export function hentOppfolging(): (dispatch: Dispatch) => Promise<void> {
-    return doThenDispatch<DataFetchState>(() => hentOppfolgingFetch(), {
+    return doThenDispatch<Data>(() => hentOppfolgingFetch(), {
         ok: hentOppfolgingOk,
         feilet: hentOppfolgingFeilet,
         pending: hentOppfolgingPending,
     });
 }
 
-function hentOppfolgingOk(data: DataFetchState): HentOppfolgingOKAction {
+function hentOppfolgingOk(data: Data): HentOppfolgingOKAction {
     return {
         type: ActionType.HENT_OPPFOLGING_OK,
         data: data
@@ -77,8 +63,4 @@ function hentOppfolgingPending(): HentOppfolgingPENDINGAction {
     return {
         type: ActionType.HENT_OPPFOLGING_PENDING,
     };
-}
-
-export function selectOppfolging(state: AppState): State {
-    return state.oppfolging;
 }

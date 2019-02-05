@@ -1,7 +1,7 @@
 import { FeatureToggleState } from './feature-toggles';
-import { DataFetchState } from './oppfolging';
+import { Data as OppfolgingData } from './oppfolging';
 import {State as ServicegruppeState } from './servicegruppe';
-import {State as JobbsokerbesvarelseState } from './jobbsokerbesvarelse';
+import {Data as JobbsokerbesvarelseData } from './jobbsokerbesvarelse';
 import {State as SykmeldtInfoState } from './sykmeldt-info';
 
 export enum ActionType {
@@ -37,7 +37,7 @@ export interface FeatureTogglesFEILETAction {
 
 export interface HentOppfolgingOKAction {
     type: ActionType.HENT_OPPFOLGING_OK;
-    data: DataFetchState;
+    data: OppfolgingData;
 }
 
 export interface HentOppfolgingPENDINGAction {
@@ -63,7 +63,7 @@ export interface HentServicegruppeFEILETAction {
 
 export interface HentJobbsokerbesvarelseOKAction {
     type: ActionType.HENT_JOBBSOKERBESVARELSE_OK;
-    data: JobbsokerbesvarelseState;
+    data: JobbsokerbesvarelseData;
 }
 
 export interface HentJobbsokerbesvarelsePENDINGAction {

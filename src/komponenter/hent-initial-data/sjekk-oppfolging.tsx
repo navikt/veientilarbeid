@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../../reducer';
-import { Data as OppfolgingData, selectOppfolging } from '../../ducks/oppfolging';
+import { Data as OppfolgingData } from '../../ducks/oppfolging';
 import {
     erUnderOppfolging, redirectTilAktivitetsplan,
     redirectTilDittNav
@@ -43,7 +43,7 @@ class SjekkOppfolging extends React.PureComponent<Props> {
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
-        oppfolging: selectOppfolging(state).data
+        oppfolging: state.oppfolging.data
     }
 );
 

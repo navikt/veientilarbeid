@@ -7,19 +7,21 @@ import { hentJobbsokerbesvarelseFetch, DataElement, STATUS } from './api';
 import { doThenDispatch } from './api-utils';
 
 export interface State extends DataElement {
-    data: {
-        raad?: [];
-    };
+    data: {};
     harJobbsokerbesvarelse: boolean;
 }
 
 const initialState: State = {
-    data: {
-        raad: undefined
-    },
+    data: {},
     harJobbsokerbesvarelse: false,
     status: STATUS.NOT_STARTED
 };
+
+export interface Data {
+    data: {
+        raad?: []
+    };
+}
 
 export default function reducer(state: State = initialState, action: Handling): State {
     switch (action.type) {
@@ -44,17 +46,17 @@ export default function reducer(state: State = initialState, action: Handling): 
 }
 
 export function hentJobbsokerbesvarelse(): (dispatch: Dispatch) => Promise<void> {
-    return doThenDispatch<State>(() => hentJobbsokerbesvarelseFetch(), {
+    return doThenDispatch<Data>(() => hentJobbsokerbesvarelseFetch(), {
         ok: hentJobbsokerbesvarelseOk,
         feilet: hentJobbsokerbesvarelseFeilet,
         pending: hentJobbsokerbesvarelsePending,
     });
 }
 
-function hentJobbsokerbesvarelseOk(jobbsokerbesvarelse: State): HentJobbsokerbesvarelseOKAction {
+function hentJobbsokerbesvarelseOk(jobbsokerbesvarelseData: Data): HentJobbsokerbesvarelseOKAction {
     return {
         type: ActionType.HENT_JOBBSOKERBESVARELSE_OK,
-        data: jobbsokerbesvarelse
+        data: jobbsokerbesvarelseData
     };
 }
 
