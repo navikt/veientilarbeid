@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import personSvg from './person.svg';
 import './brodsmuler.less';
 
-const DITTNAVN_PATH = '/dittnav/';
+const DITTNAV_PATH = '/dittnav/';
 
 interface BrodsmulerProps {
     brodsmuleId: string;
@@ -15,7 +15,7 @@ const Brodsmuler: React.SFC<BrodsmulerProps> = (props: BrodsmulerProps) => {
             <img src={personSvg} alt="person-illustrasjon" className="brodsmuler__illustrasjon"/>
             <ol className="brodsmuler__list">
                 <li className="brodsmuler__item typo-normal">
-                    <a href={DITTNAVN_PATH} className="lenke">
+                    <a href={DITTNAV_PATH} className="lenke">
                         Ditt NAV
                     </a>
                 </li>

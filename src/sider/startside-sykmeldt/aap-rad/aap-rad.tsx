@@ -6,7 +6,6 @@ import './aap-rad.less';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import RettPaAapInnhold from './rett-pa-aap-innhold';
 import SoketidspunktInnhold from './soketidspunkt-innhold';
-// import { findDOMNode } from 'react-dom';
 
 interface AapRadState {
     visAap: boolean;
@@ -22,13 +21,12 @@ class AapRad extends React.Component<InjectedIntlProps, AapRadState> {
     }
 
     componentDidMount() {
-        const element = document.querySelector('.aap-rad');
         // Vent til animasjonen til AAP-panelet er ferdig, slik at vi scroller til riktig posisjon
         setTimeout(() => {
             if (this.state.visAap) {
-                // const DOMNode = findDOMNode(this);
-                if (element) {
-                    element.scrollIntoView(
+                const aap = document.querySelector('.aap-rad');
+                if (aap) {
+                    aap.scrollIntoView(
                         {
                             block: 'center',
                             behavior: 'smooth'

@@ -1,0 +1,51 @@
+@import '../../../node_modules/nav-frontend-core/less/_variabler';
+
+.stillingsok {
+    background-color: @navDypBlaLighten80;
+    margin-top: 2rem;
+    border-radius: 8px;
+    color: @navMorkGra;
+    padding: 2rem 2rem 1.5rem;
+
+    .input-container {
+        margin-bottom: 0;
+
+        .sok-stillinger-input {
+            margin-bottom: 1rem;
+            .skjemaelement__label {
+                margin-left: -3000px;
+                position: absolute;
+                line-height: 0;
+                height: 0;
+                width: 0;
+                color: transparent;
+            }
+            input[type="search"] {
+                box-sizing: border-box;
+            }
+        }
+        .sok-stillinger-knapp {
+            display: block;
+            margin: 0 auto;
+        }
+    }
+}
+
+@media (min-width: @screen-sm-min) {
+    .stillingsok {
+        .input-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+
+            .sok-stillinger-input {
+                width: 77%;
+                margin: 0;
+            }
+            .sok-stillinger-knapp {
+                width: 20%;
+                margin: 0;
+            }
+        }
+    }
+}
