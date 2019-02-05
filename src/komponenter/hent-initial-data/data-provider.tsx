@@ -33,7 +33,7 @@ interface DispatchProps {
 
 type Props = StateProps & DispatchProps & OwnProps;
 
-class HentInitialData extends React.Component<Props> {
+class DataProvider extends React.Component<Props> {
     componentWillMount() {
         const featureJobbsokerbesvarelse = this.props.features[jobbsokerbesvarelseToggleKey];
         const featureServicegruppe = this.props.features[servicekodeToggleKey];
@@ -103,4 +103,4 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
     hentJobbsokerbesvarelse: () => hentJobbsokerbesvarelse()(dispatch),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(HentInitialData);
+export default connect(mapStateToProps, mapDispatchToProps)(DataProvider);

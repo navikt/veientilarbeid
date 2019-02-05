@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import getStore from './store';
 import IntlProvider from './Intl-provider';
-import HentInitialData from './komponenter/hent-initial-data/hent-initial-data';
+import DataProvider from './komponenter/hent-initial-data/data-provider';
 import Routes from './routes';
 import EndreBrukerStatus from './komponenter/endre-bruker-status/endre-bruker-status';
 import FeatureToggleProvider from './komponenter/hent-initial-data/feature-toggle-provider';
@@ -25,14 +25,14 @@ class App extends React.Component {
                 <IntlProvider>
                     <FeatureToggleProvider>
                         <OppfolgingProvider>
-                            <HentInitialData>
+                            <DataProvider>
                                 {endreBrukerStatus}
                                 <main id="maincontent" role="main" tabIndex={-1}>
                                     <Router basename={basename}>
                                         <Routes />
                                     </Router>
                                 </main>
-                            </HentInitialData>
+                            </DataProvider>
                         </OppfolgingProvider>
                     </FeatureToggleProvider>
                 </IntlProvider>
