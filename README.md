@@ -15,10 +15,10 @@ Veien til arbeid
 
 # Henvendelser
 
-Spørsmål knyttet til koden eller prosjektet kan rettes mot:
+Spørsmål knyttet til koden kan rettes mot:
 
+* Johan Rusvik, Johan.Rusvik@nav.no
 * Kjell Arne Brødreskift, Kjell.Arne.Brodreskift@nav.no
-* Ola Galde, Ola.Galde@nav.no
-* Lars Andreas Tveiten, Lars.Andreas.van.Woensel.Kooy.Tveiten@nav.no
-* Gård, Alexander Alexander.Gard@nav.no
-* Joselito Poblete, Joselito.Poblete@nav.no
+* Terese Haug, Terese.Haug@nav.no
+
+For NAV-interne henvendelser kan Slack-kanalen #fo-warp benyttes.
