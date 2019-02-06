@@ -78,6 +78,9 @@
   },
   "devDependencies": {
     "@navikt/create-react-app-typescript-less": "^1.0.0-beta.16",
+    "@types/chai": "^4.1.7",
+    "@types/enzyme": "^3.1.16",
+    "@types/enzyme-adapter-react-16": "^1.0.3",
     "@navikt/react-intl-bundler": "^1.0.4",
     "@types/fetch-mock": "7.2.2",
     "@types/jest": "24.0.0",
@@ -89,6 +92,7 @@
     "@types/react-intl": "^2.3.12",
     "@types/react-redux": "7.0.1",
     "@types/react-router-dom": "^4.3.1",
+    "@types/sinon": "^7.0.5",
     "chai": "4.2.0",
     "chai-as-promised": "7.1.1",
     "copyfiles": "2.1.0",

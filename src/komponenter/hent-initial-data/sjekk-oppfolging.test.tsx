@@ -8,17 +8,13 @@ import SjekkOppfolging from './sjekk-oppfolging';
 import { create } from '../../store';
 import { mountWithStore } from '../../test/test-utils';
 import { ActionType as OppfolgingActionTypes } from '../../ducks/actions';
-import {
-    redirectTilAktivitetsplan,
-} from './sjekk-oppfolging-utils';
-// import Innhold from '../../komponenter/innhold/innhold';
-// import InnholdSykmelding from '../start-fra-sykefravaer/innhold-sykmelding/innhold-sykmelding';
+import { redirectTilAktivitetsplan } from './sjekk-oppfolging-utils';
 
 enzyme.configure({adapter: new Adapter()});
 
 let sandbox;
 beforeEach(() => {
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
 });
 afterEach(() => {
     sandbox.restore();
@@ -46,7 +42,7 @@ describe('<SjekkOppfolging />', () => {
         const sendBrukerTilAktivitetsplanSpy = sandbox.spy(redirectTilAktivitetsplan);
         const sjekkOppfolgingConfig = {
             sendBrukerTilAktivitetsplan: sendBrukerTilAktivitetsplanSpy,
-            sendBrukerTilDittNav: redirectTilAktivitetsplan
+            sendBrukerTilDittNav: redirectTilAktivitetsplan,
         };
 
         store.dispatch({
@@ -55,8 +51,7 @@ describe('<SjekkOppfolging />', () => {
         });
 
         const wrapper = mountWithStore(
-            <SjekkOppfolging config={sjekkOppfolgingConfig}><span>dummy</span></SjekkOppfolging>,
-            store
+            <SjekkOppfolging config={sjekkOppfolgingConfig}><span>dummy</span></SjekkOppfolging>, store
         );
 
         expect(sendBrukerTilAktivitetsplanSpy.called).to.be.equal(true);

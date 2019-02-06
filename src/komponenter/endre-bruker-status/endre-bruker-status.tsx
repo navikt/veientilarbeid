@@ -26,7 +26,6 @@ class EndreBrukerStatus extends React.Component<Props> {
         } else if (brukerStatus === 'sykmeldt') {
             this.dispatchType(true);
         }
-
     }
 
     dispatchType = (erSyk: boolean) => {
