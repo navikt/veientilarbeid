@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { EkspanderbartpanelPureProps } from '../../../../@types/ekspanderbartpanel-pure';
 import { InformasjonsmodulPureProps } from '../informasjonsmodul/src/informasjonsmodul-pure';
-
 import './ekspanderbartpanel-gruppe.less';
+import { EkspanderbartpanelPureProps } from 'nav-frontend-ekspanderbartpanel/lib/ekspanderbartpanel-pure';
 
 interface Props {
     indexOfOpenEkspanderbartpanel?: number;
