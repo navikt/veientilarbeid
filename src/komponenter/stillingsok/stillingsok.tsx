@@ -4,7 +4,7 @@ import { Innholdstittel } from 'nav-frontend-typografi';
 import { FormattedMessage } from 'react-intl';
 import { Input } from 'nav-frontend-skjema';
 import './stillingsok.less';
-import { klikkPaSokLedigeStillinger } from '../../metrics';
+import { klikkPaSokLedigeStillinger, logInputSokLedigeStillinger } from '../../metrics';
 
 export const STILLINGSOK_URL = 'https://stillingsok.nav.no/stillinger';
 
@@ -36,6 +36,9 @@ class StillingSok extends React.Component<InjectedIntlProps, InputState> {
 
         const sokeKnappType = inputValue !== '' ? 'SOK-SPESIFIKK-STILLING' : 'SE-ALLE-STILLINGER';
         klikkPaSokLedigeStillinger(sokeKnappType);
+        if (sokeKnappType === 'SOK-SPESIFIKK-STILLING') {
+            logInputSokLedigeStillinger(inputValue);
+        }
     }
 
     render() {

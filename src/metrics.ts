@@ -9,3 +9,9 @@ export const klikkPaSokLedigeStillinger = (sokeKnappType: string) => {
         sokeKnappType
     });
 };
+
+export const logInputSokLedigeStillinger = (inputSokefelt: string) => {
+    logEvent(`${domene}.inputsokledigestillinger`, {}, {
+        inputSokefelt
+    });
+};
