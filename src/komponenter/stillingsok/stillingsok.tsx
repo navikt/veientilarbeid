@@ -4,6 +4,7 @@ import { Innholdstittel } from 'nav-frontend-typografi';
 import { FormattedMessage } from 'react-intl';
 import { Input } from 'nav-frontend-skjema';
 import './stillingsok.less';
+import { klikkPaSokLedigeStillinger } from '../../metrics';
 
 export const STILLINGSOK_URL = 'https://stillingsok.nav.no/stillinger';
 
@@ -28,9 +29,13 @@ class StillingSok extends React.Component<InjectedIntlProps, InputState> {
         });
     }
 
-    handleSubmit(e: React.FormEvent<HTMLFormElement>, url: string) {
+    handleSubmit(e: React.FormEvent<HTMLFormElement>, url: string, inputValue: string) {
         e.preventDefault();
+
         location.href = url;
+
+        const sokeKnappType = inputValue !== '' ? 'SOK-SPESIFIKK-STILLING' : 'SE-ALLE-STILLINGER';
+        klikkPaSokLedigeStillinger(sokeKnappType);
     }
 
     render() {
@@ -46,7 +51,7 @@ class StillingSok extends React.Component<InjectedIntlProps, InputState> {
                 <form
                     className="input-container"
                     role="search"
-                    onSubmit={event => this.handleSubmit(event, URL)}
+                    onSubmit={event => this.handleSubmit(event, URL, inputValue)}
                 >
                     <Input
                         className="sok-stillinger-input"
