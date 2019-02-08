@@ -3,7 +3,7 @@ import { FeatureToggleState } from './feature-toggles';
 import { Data as OppfolgingData } from './oppfolging';
 import { Data as ServicegruppeData } from './servicegruppe';
 import { Data as JobbsokerbesvarelseData } from './jobbsokerbesvarelse';
-import { State as SykmeldtInfoState } from './sykmeldt-info';
+import { Data as SykmeldtInfoData } from './sykmeldt-info';
 
 export enum STATUS {
     OK = 'OK',
@@ -31,7 +31,7 @@ const requestConfig: RequestInit = {
     }
 };
 
-export const VEILARBOPPFOLGINGPROXY_URL = '/veilarboppfolging/api',
+export const VEILARBOPPFOLGING_URL = '/veilarboppfolging/api',
              FEATURE_URL = '/veientilarbeid/api/feature',
              SERVICEGRUPPE_URL = '/veilarbtiltakinfo/api/oppfolgingsstatus',
              STARTREGISTRERING_URL = '/veilarbregistrering/api/startregistrering',
@@ -48,7 +48,7 @@ export function hentFeatureTogglesFetch(features: string[]): Promise<FeatureTogg
 }
 
 export function hentOppfolgingFetch(): Promise<OppfolgingData> {
-    return fetchToJson(`${VEILARBOPPFOLGINGPROXY_URL}/oppfolging`, requestConfig);
+    return fetchToJson(`${VEILARBOPPFOLGING_URL}/oppfolging`, requestConfig);
 }
 
 export function hentServicegruppeFetch(): Promise<ServicegruppeData> {
@@ -59,6 +59,6 @@ export function hentJobbsokerbesvarelseFetch(): Promise<JobbsokerbesvarelseData>
     return fetchToJson(JOBBSOKERBESVARELSE_URL, requestConfig);
 }
 
-export function hentSykmeldtInfoFetch(): Promise<SykmeldtInfoState> {
+export function hentSykmeldtInfoFetch(): Promise<SykmeldtInfoData> {
     return fetchToJson(STARTREGISTRERING_URL, requestConfig);
 }

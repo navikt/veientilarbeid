@@ -7,12 +7,18 @@ import { hentSykmeldtInfoFetch, DataElement, STATUS } from './api';
 import { doThenDispatch } from './api-utils';
 
 export interface State extends DataElement {
+    data: Data;
+}
+
+export interface Data {
     erSykmeldtMedArbeidsgiver: boolean;
 }
 
 const initialState: State = {
     status: STATUS.NOT_STARTED,
-    erSykmeldtMedArbeidsgiver: false
+    data: {
+        erSykmeldtMedArbeidsgiver: false
+    }
 };
 
 export default function reducer(state: State = initialState, action: Handling): State {
@@ -22,24 +28,24 @@ export default function reducer(state: State = initialState, action: Handling): 
         case ActionType.HENT_SYKMELDT_INFO_FEILET:
             return {...state, status: STATUS.ERROR};
         case ActionType.HENT_SYKMELDT_INFO_OK:
-            return {...state, status: STATUS.OK, erSykmeldtMedArbeidsgiver: action.data.erSykmeldtMedArbeidsgiver};
+            return {...state, status: STATUS.OK, data: action.data};
         default:
             return state;
     }
 }
 
 export function hentSykmeldtInfo(): (dispatch: Dispatch) => Promise<void> {
-    return doThenDispatch<State>(() => hentSykmeldtInfoFetch(), {
+    return doThenDispatch<Data>(() => hentSykmeldtInfoFetch(), {
         ok: hentSykmeldtInfoOk,
         feilet: hentSykmeldtInfoFeilet,
         pending: hentSykmeldtInfoPending,
     });
 }
 
-function hentSykmeldtInfoOk(oppfolging: State): HentSykmeldtInfoOKAction {
+function hentSykmeldtInfoOk(sykmeldtinfo: Data): HentSykmeldtInfoOKAction {
     return {
         type: ActionType.HENT_SYKMELDT_INFO_OK,
-        data: oppfolging
+        data: sykmeldtinfo
     };
 }
 

@@ -2,7 +2,7 @@ import { Handling }  from './actions';
 import { Dispatch } from '../dispatch-type';
 
 interface StatusActions<T> {
-    ok: (temaer: T) => Handling;
+    ok: (data: T) => Handling;
     feilet: () => Handling;
     pending: () => Handling;
 }

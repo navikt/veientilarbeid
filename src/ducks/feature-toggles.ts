@@ -29,7 +29,6 @@ export default function reducer(state: FeatureToggleState = initialState, action
         case ActionType.FEATURE_TOGGLES_FEILET:
             return { ...state, status: STATUS.ERROR };
         case ActionType.FEATURE_TOGGLES_OK: {
-            console.log('actionFT:', action); /* tslint:disable-line:no-console*/
             return {
                 ...state,
                 status: STATUS.OK,

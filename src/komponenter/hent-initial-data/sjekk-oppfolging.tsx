@@ -46,5 +46,4 @@ const mapStateToProps = (state: AppState): StateProps => ({
     }
 );
 
-// tslint:disable-next-line:no-any
 export default connect(mapStateToProps)(SjekkOppfolging);

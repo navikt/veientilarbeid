@@ -40,7 +40,7 @@ class EndreBrukerStatus extends React.Component<Props> {
 
     render() {
 
-        const erSykmeldtMedArbeidsgiver = this.props.sykeforloepMetadata.erSykmeldtMedArbeidsgiver;
+        const erSykmeldtMedArbeidsgiver = this.props.sykeforloepMetadata.data.erSykmeldtMedArbeidsgiver;
 
         return (
             <div className="endre-bruker-status">
