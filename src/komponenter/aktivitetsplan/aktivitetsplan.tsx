@@ -50,10 +50,10 @@ class Aktivitetsplan extends React.PureComponent<AktivitetsplanProps, State> {
                     className="aktivitetsplan__illustrasjon"
                 />
                 <div className="aktivitetsplan__tekst">
-                    <Innholdstittel tag="h2" className="aktivitetsplan__overskrift" >
+                    <Innholdstittel tag="h2" className="aktivitetsplan__overskrift blokk-xs" >
                         <FormattedMessage id={overskriftTekstId}/>
                     </Innholdstittel>
-                    <Ingress >
+                    <Ingress className="blokk-s">
                         <FormattedMessage id={beskrivelseTekstId}/>
                     </Ingress>
                     <LenkeMedChevron path={AKTIVITETSPLAN_URL} className="aktivitetsplan__lenke">
