@@ -8,10 +8,9 @@ import { State as OppfolgingState } from '../../ducks/oppfolging';
 import { FeatureToggleState, jobbsokerbesvarelseToggleKey, servicekodeToggleKey } from '../../ducks/feature-toggles';
 import { hentServicegruppe, State as ServicegruppeState } from '../../ducks/servicegruppe';
 import { hentSykmeldtInfo, State as SykmeldtInfodataState } from '../../ducks/sykmeldt-info';
-import { hentJobbsokerbesvarelse, State as JobbsokerbesvarelseState, } from '../../ducks/jobbsokerbesvarelse';
-import getStore from '../../store';
-import { STATUS } from '../../ducks/api';
-import { ActionType } from '../../ducks/actions';
+import {
+    hentJobbsokerbesvarelse, settJobbsokerbesvarelseOK, State as JobbsokerbesvarelseState,
+} from '../../ducks/jobbsokerbesvarelse';
 
 interface OwnProps {
     children: React.ReactNode;
@@ -29,6 +28,7 @@ interface DispatchProps {
     hentServicegruppe: () => void;
     hentSykmeldtInfo: () => void;
     hentJobbsokerbesvarelse: () => void;
+    settJobbsokerbesvarelseOK: () => void;
 }
 
 type Props = StateProps & DispatchProps & OwnProps;
@@ -43,10 +43,7 @@ class DataProvider extends React.Component<Props> {
         if (featureJobbsokerbesvarelse && this.props.oppfolging.data.underOppfolging) {
             this.props.hentJobbsokerbesvarelse();
         } else {
-            getStore().dispatch({
-                type: ActionType.HENT_JOBBSOKERBESVARELSE_OK,
-                data: { STATUS: STATUS.OK }
-            });
+            this.props.settJobbsokerbesvarelseOK();
         }
         if (featureServicegruppe) {
             this.props.hentServicegruppe();
@@ -101,6 +98,7 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
     hentServicegruppe: () => hentServicegruppe()(dispatch),
     hentSykmeldtInfo: () => hentSykmeldtInfo()(dispatch),
     hentJobbsokerbesvarelse: () => hentJobbsokerbesvarelse()(dispatch),
+    settJobbsokerbesvarelseOK: () => dispatch(settJobbsokerbesvarelseOK())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DataProvider);

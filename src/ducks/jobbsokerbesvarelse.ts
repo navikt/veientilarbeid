@@ -1,6 +1,6 @@
 import {
     ActionType, Handling, HentJobbsokerbesvarelseFEILETAction, HentJobbsokerbesvarelseOKAction,
-    HentJobbsokerbesvarelsePENDINGAction,
+    HentJobbsokerbesvarelsePENDINGAction, SettJobbsokerbesvarelseOKAction,
 } from './actions';
 import { Dispatch } from '../dispatch-type';
 import { hentJobbsokerbesvarelseFetch, DataElement, STATUS } from './api';
@@ -23,13 +23,6 @@ export interface Data {
 
 export default function reducer(state: State = initialState, action: Handling): State {
     switch (action.type) {
-        case ActionType.HENT_JOBBSOKERBESVARELSE_PENDING:
-            if (state.status === STATUS.OK) {
-                return {...state, status: STATUS.RELOADING};
-            }
-            return {...state, status: STATUS.PENDING};
-        case ActionType.HENT_JOBBSOKERBESVARELSE_FEILET:
-            return {...state, status: STATUS.ERROR};
         case ActionType.HENT_JOBBSOKERBESVARELSE_OK: {
             return {
                 ...state,
@@ -38,6 +31,15 @@ export default function reducer(state: State = initialState, action: Handling): 
                 data: action.data,
             };
         }
+        case ActionType.HENT_JOBBSOKERBESVARELSE_PENDING:
+            if (state.status === STATUS.OK) {
+                return {...state, status: STATUS.RELOADING};
+            }
+            return {...state, status: STATUS.PENDING};
+        case ActionType.HENT_JOBBSOKERBESVARELSE_FEILET:
+            return {...state, status: STATUS.ERROR};
+        case ActionType.SETT_JOBBSOKERBESVARELSE_OK:
+            return {...state, status: STATUS.OK};
         default:
             return state;
     }
@@ -67,5 +69,11 @@ function hentJobbsokerbesvarelseFeilet(): HentJobbsokerbesvarelseFEILETAction {
 function hentJobbsokerbesvarelsePending(): HentJobbsokerbesvarelsePENDINGAction {
     return {
         type: ActionType.HENT_JOBBSOKERBESVARELSE_PENDING,
+    };
+}
+
+export function settJobbsokerbesvarelseOK(): SettJobbsokerbesvarelseOKAction {
+    return {
+        type: ActionType.SETT_JOBBSOKERBESVARELSE_OK
     };
 }
