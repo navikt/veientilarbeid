@@ -3,10 +3,6 @@ import { Data as OppfolgingData } from '../../ducks/oppfolging';
 export const AKTIVITETSPLAN_REDIRECT_URL = '/aktivitetsplan/?redirected=true';
 export const DITTNAV_URL = '/dittnav/';
 
-export function erSykmeldt(oppfolging: OppfolgingData) {
-    return oppfolging.erSykmeldtMedArbeidsgiver;
-}
-
 export function erUnderOppfolging(oppfolging: OppfolgingData) {
     return oppfolging.underOppfolging;
 }

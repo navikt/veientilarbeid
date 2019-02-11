@@ -10,13 +10,15 @@ export interface State extends DataElement {
 }
 
 export interface Data {
-    underOppfolging?: boolean;
-    kanReaktiveres?: boolean;
-    erSykmeldtMedArbeidsgiver?: boolean;
+    underOppfolging: boolean;
+    kanReaktiveres: boolean;
 }
 
 const initialState: State = {
-    data: {},
+    data: {
+        underOppfolging: false,
+        kanReaktiveres: false
+    },
     status: STATUS.NOT_STARTED
 };
 
