@@ -2,12 +2,9 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../../reducer';
 import { Data as OppfolgingData } from '../../ducks/oppfolging';
-import {
-    erUnderOppfolging, redirectTilAktivitetsplan, redirectTilDittNav
-} from './sjekk-oppfolging-utils';
+import { erUnderOppfolging, redirectTilDittNav } from './sjekk-oppfolging-utils';
 
 interface SjekkOppfolgingConfig {
-    sendBrukerTilAktivitetsplan: () => void;
     sendBrukerTilDittNav: () => void;
 }
 
@@ -24,7 +21,6 @@ type Props = OwnProps & StateProps;
 class SjekkOppfolging extends React.PureComponent<Props> {
     static defaultProps: Partial<Props> = {
         config: {
-            sendBrukerTilAktivitetsplan: redirectTilAktivitetsplan,
             sendBrukerTilDittNav: redirectTilDittNav,
         }
     };
@@ -36,7 +32,7 @@ class SjekkOppfolging extends React.PureComponent<Props> {
             return children;
         }
 
-        config!.sendBrukerTilAktivitetsplan();
+        config!.sendBrukerTilDittNav();
         return null;
     }
 }

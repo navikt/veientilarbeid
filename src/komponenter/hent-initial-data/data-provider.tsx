@@ -51,13 +51,7 @@ class DataProvider extends React.Component<Props> {
     }
 
     finnAvhengigheter () {
-        const {
-            oppfolging,
-            servicegruppe,
-            sykmeldtInfo,
-            jobbsokerbesvarelse,
-            features
-        } = this.props;
+        const { oppfolging, servicegruppe, sykmeldtInfo, jobbsokerbesvarelse, features } = this.props;
 
         const avhengigheter: any[] = [oppfolging, sykmeldtInfo]; // tslint:disable-line no-any
 

@@ -8,7 +8,7 @@ import SjekkOppfolging from './sjekk-oppfolging';
 import { create } from '../../store';
 import { mountWithStore } from '../../test/test-utils';
 import { ActionType as OppfolgingActionTypes } from '../../ducks/actions';
-import { redirectTilAktivitetsplan } from './sjekk-oppfolging-utils';
+import { redirectTilDittNav } from './sjekk-oppfolging-utils';
 
 enzyme.configure({adapter: new Adapter()});
 
@@ -39,10 +39,9 @@ describe('<SjekkOppfolging />', () => {
         const store = create();
         const HAR_AAPNET_AKTIVITETSPLAN_IKKE_UNDER_OPPFOLGING = {underOppfolging: false};
 
-        const sendBrukerTilAktivitetsplanSpy = sandbox.spy(redirectTilAktivitetsplan);
+        const sendBrukerTilDittNavSpy = sandbox.spy(redirectTilDittNav);
         const sjekkOppfolgingConfig = {
-            sendBrukerTilAktivitetsplan: sendBrukerTilAktivitetsplanSpy,
-            sendBrukerTilDittNav: redirectTilAktivitetsplan,
+            sendBrukerTilDittNav: sendBrukerTilDittNavSpy,
         };
 
         store.dispatch({
@@ -54,7 +53,7 @@ describe('<SjekkOppfolging />', () => {
             <SjekkOppfolging config={sjekkOppfolgingConfig}><span>dummy</span></SjekkOppfolging>, store
         );
 
-        expect(sendBrukerTilAktivitetsplanSpy.called).to.be.equal(true);
+        expect(sendBrukerTilDittNavSpy.called).to.be.equal(true);
         expect(wrapper.html()).to.equal(null);
     });
 });
