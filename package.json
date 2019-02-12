@@ -21,6 +21,7 @@
         "prettier": "prettier --write --single-quote --tab-width 4 src/**/*.ts src/**/*.tsx src/**/*.less"
     },
     "dependencies": {
+        "ajv": "6.8.1",
         "babel-polyfill": "6.26.0",
         "classnames": "^2.2.6",
         "intl": "1.2.5",
@@ -73,9 +74,6 @@
         "react-router": "^4.3.1",
         "react-router-dom": "^4.3.1",
         "redux": "4.0.1"
-    },
-    "peerDependencies": {
-        "ajv": "6.8.1"
     },
     "devDependencies": {
         "@navikt/create-react-app-typescript-less": "^1.0.0-beta.16",
