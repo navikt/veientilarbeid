@@ -1,8 +1,8 @@
 import { FeatureToggleState } from './feature-toggles';
 import { Data as OppfolgingData } from './oppfolging';
-import {Data as ServicegruppeData } from './servicegruppe';
-import {Data as JobbsokerbesvarelseData } from './jobbsokerbesvarelse';
-import {Data as SykmeldtInfoData } from './sykmeldt-info';
+import { Data as ServicegruppeData } from './servicegruppe';
+import { Data as JobbsokerbesvarelseData } from './jobbsokerbesvarelse';
+import { Data as SykmeldtInfoData } from './sykmeldt-info';
 
 export enum ActionType {
     FEATURE_TOGGLES_PENDING = 'FEATURE_TOGGLES_PENDING',
@@ -53,6 +53,7 @@ export interface HentServicegruppeOKAction {
     type: ActionType.HENT_SERVICEGRUPPE_OK;
     data: ServicegruppeData;
 }
+
 export interface HentServicegruppePENDINGAction {
     type: ActionType.HENT_SERVICEGRUPPE_PENDING;
 }
