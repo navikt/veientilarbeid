@@ -2,8 +2,7 @@
 import {mock, respondWith, delayed } from './utils';
 import oppfolgingResponse from './oppfolging-mock';
 import {
-    FEATURE_URL, JOBBSOKERBESVARELSE_URL, SERVICEGRUPPE_URL, STARTREGISTRERING_URL,
-    VEILARBOPPFOLGINGPROXY_URL
+    FEATURE_URL, JOBBSOKERBESVARELSE_URL, SERVICEGRUPPE_URL, STARTREGISTRERING_URL, VEILARBOPPFOLGING_URL
 } from '../ducks/api';
 import featureTogglesMock from './feature-toggles-mock';
 import servicegruppeResponse from './servicegruppe-mock';
@@ -19,7 +18,7 @@ const MOCK_JOBBSOKERBESVARELSE = true;
 const DELAY = 0;
 
 if (MOCK_OPPFOLGING) {
-    (mock as any).get(`${VEILARBOPPFOLGINGPROXY_URL}/oppfolging`, respondWith(delayed(DELAY, oppfolgingResponse)));
+    (mock as any).get(`${VEILARBOPPFOLGING_URL}/oppfolging`, respondWith(delayed(DELAY, oppfolgingResponse)));
 }
 
 if (MOCK_FEATURE_TOGGLES) {

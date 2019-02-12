@@ -12,7 +12,7 @@ class Tiltakinfo extends React.Component {
     render() {
         return (
             <section className="tiltakinfo">
-                <Lenkepanel href={TILTAKINFO_URL}>
+                <Lenkepanel tittelProps="undertittel" href={TILTAKINFO_URL}>
                     <div className="tiltakinfo__innhold">
                         <div className="tiltakinfo__bilde">
                             <img

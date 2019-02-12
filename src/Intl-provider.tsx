@@ -31,7 +31,6 @@ class IntlProvider extends React.Component {
 
         const alleTekster = {
             nb: {...lokaleTekster.nb},
-            en: {...lokaleTekster.en}
         };
 
         const tekster = skalViseTekstnokler() ? mapTeksterTilNokler(alleTekster.nb) : alleTekster.nb;

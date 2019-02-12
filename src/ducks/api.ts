@@ -1,11 +1,21 @@
 import { fetchToJson } from './api-utils';
-import { alleFeatureToggles } from './feature-toggles';
+import { FeatureToggleState } from './feature-toggles';
+import { Data as OppfolgingData } from './oppfolging';
+import { Data as ServicegruppeData } from './servicegruppe';
+import { Data as JobbsokerbesvarelseData } from './jobbsokerbesvarelse';
+import { Data as SykmeldtInfoData } from './sykmeldt-info';
 
-export const VEILARBOPPFOLGINGPROXY_URL = '/veilarboppfolging/api';
-export const FEATURE_URL = '/veientilarbeid/api/feature';
-export const SERVICEGRUPPE_URL = '/veilarbtiltakinfo/api/oppfolgingsstatus';
-export const STARTREGISTRERING_URL = '/veilarbregistrering/api/startregistrering';
-export const JOBBSOKERBESVARELSE_URL = '/veilarbjobbsokerkompetanse/api/hent';
+export enum STATUS {
+    OK = 'OK',
+    NOT_STARTED = 'NOT_STARTED',
+    PENDING = 'PENDING',
+    RELOADING = 'RELOADING',
+    ERROR = 'ERROR',
+}
+
+export interface DataElement {
+    status: STATUS;
+}
 
 export const getCookie = (name: string) => {
     const re = new RegExp(`${name}=([^;]+)`);
@@ -13,65 +23,42 @@ export const getCookie = (name: string) => {
     return match !== null ? match[1] : '';
 };
 
-function getHeaders() {
-    return new Headers({
+const requestConfig: RequestInit = {
+    credentials: 'same-origin',
+    headers: {
         'Content-Type': 'application/json',
         'NAV_CSRF_PROTECTION': getCookie('NAV_CSRF_PROTECTION'),
-    });
-}
-
-const CREDENTIALS_SAME_ORIGIN = {
-    credentials: ('same-origin' as RequestCredentials)
+    }
 };
 
-export function hentOppfolging() {
-    return fetchToJson({
-        url: `${VEILARBOPPFOLGINGPROXY_URL}/oppfolging`,
-        config: {
-            ...CREDENTIALS_SAME_ORIGIN,
-            headers: getHeaders(),
-        }
-    });
+export const VEILARBOPPFOLGING_URL = '/veilarboppfolging/api',
+             FEATURE_URL = '/veientilarbeid/api/feature',
+             SERVICEGRUPPE_URL = '/veilarbtiltakinfo/api/oppfolgingsstatus',
+             STARTREGISTRERING_URL = '/veilarbregistrering/api/startregistrering',
+             JOBBSOKERBESVARELSE_URL = '/veilarbjobbsokerkompetanse/api/hent';
+
+export const featureQueryParams = (features: string[]): string => {
+    const reduceFunc = (acc: string, toggle: string, i: number) => `${acc}${i === 0 ? '?' : '&'}feature=${toggle}`;
+    return features.reduce(reduceFunc, '');
+};
+
+export function hentFeatureTogglesFetch(features: string[]): Promise<FeatureToggleState> {
+    const unleashUrl = FEATURE_URL + featureQueryParams(features);
+    return fetchToJson<FeatureToggleState>(unleashUrl, requestConfig);
 }
 
-export function hentFeatureToggles() {
-    if (alleFeatureToggles.length === 0) {
-        return Promise.resolve({});
-    }
-    const parameters = alleFeatureToggles.map(element => 'feature=' + element).join('&');
-    return fetchToJson({
-        url: `${FEATURE_URL}/?${parameters}`,
-        config: CREDENTIALS_SAME_ORIGIN,
-        recoverWith: () => ({})
-    });
+export function hentOppfolgingFetch(): Promise<OppfolgingData> {
+    return fetchToJson(`${VEILARBOPPFOLGING_URL}/oppfolging`, requestConfig);
 }
 
-export function hentServicegruppe() {
-    return fetchToJson({
-        url: `${SERVICEGRUPPE_URL}`,
-        config: {
-            ...CREDENTIALS_SAME_ORIGIN,
-            headers: getHeaders(),
-        }
-    });
+export function hentServicegruppeFetch(): Promise<ServicegruppeData> {
+    return fetchToJson(SERVICEGRUPPE_URL, requestConfig);
 }
 
-export function hentSykmeldtInfo() {
-    return fetchToJson({
-        url: `${STARTREGISTRERING_URL}`,
-        config: {
-            ...CREDENTIALS_SAME_ORIGIN,
-            headers: getHeaders(),
-        }
-    });
+export function hentJobbsokerbesvarelseFetch(): Promise<JobbsokerbesvarelseData> {
+    return fetchToJson(JOBBSOKERBESVARELSE_URL, requestConfig);
 }
 
-export function hentJobbsokerbesvarelse() {
-    return fetchToJson({
-        url: `${JOBBSOKERBESVARELSE_URL}`,
-        config: {
-            ...CREDENTIALS_SAME_ORIGIN,
-            headers: getHeaders(),
-        }
-    });
+export function hentSykmeldtInfoFetch(): Promise<SykmeldtInfoData> {
+    return fetchToJson(STARTREGISTRERING_URL, requestConfig);
 }

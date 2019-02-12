@@ -1,12 +1,9 @@
-import * as Api from './api';
-import { doThenDispatch, STATUS } from './api-utils';
-import { AppState } from '../reducer';
-
-export enum ActionTypes {
-    HENT_SERVICEGRUPPE_OK = 'HENT_SERVICEGRUPPE_OK',
-    HENT_SERVICEGRUPPE_PENDING = 'HENT_SERVICEGRUPPE_PENDING',
-    HENT_SERVICEGRUPPE_FEILET = 'HENT_SERVICEGRUPPE_FEILET'
-}
+import {
+    ActionType, Handling, HentServicegruppeFEILETAction, HentServicegruppeOKAction, HentServicegruppePENDINGAction,
+} from './actions';
+import { Dispatch } from '../dispatch-type';
+import { doThenDispatch } from './api-utils';
+import { hentServicegruppeFetch, DataElement, STATUS } from './api';
 
 export enum SituasjonOption {
     UBESTEMT = 'situasjonoption-ubestemt',
@@ -14,9 +11,8 @@ export enum SituasjonOption {
     SPESIELT_TILPASSET = 'situasjonoption-spesielttilpasset',
 }
 
-export interface State {
+export interface State extends DataElement {
     data: Data;
-    status: string;
 }
 
 export interface Data {
@@ -30,21 +26,16 @@ const initialState: State = {
     status: STATUS.NOT_STARTED
 };
 
-interface Action {
-    type: ActionTypes;
-    data: Data;
-}
-
-export default function (state: State = initialState, action: Action): State {
+export default function reducer(state: State = initialState, action: Handling): State {
     switch (action.type) {
-        case ActionTypes.HENT_SERVICEGRUPPE_PENDING:
+        case ActionType.HENT_SERVICEGRUPPE_PENDING:
             if (state.status === STATUS.OK) {
                 return {...state, status: STATUS.RELOADING};
             }
             return {...state, status: STATUS.PENDING};
-        case ActionTypes.HENT_SERVICEGRUPPE_FEILET:
+        case ActionType.HENT_SERVICEGRUPPE_FEILET:
             return {...state, status: STATUS.ERROR};
-        case ActionTypes.HENT_SERVICEGRUPPE_OK: {
+        case ActionType.HENT_SERVICEGRUPPE_OK: {
 
             const servicegruppe: string =  action.data.servicegruppe;
             const situasjonsMap = {
@@ -64,14 +55,29 @@ export default function (state: State = initialState, action: Action): State {
     }
 }
 
-export function hentServicegruppe() {
-    return doThenDispatch(() => Api.hentServicegruppe(), {
-        PENDING: ActionTypes.HENT_SERVICEGRUPPE_PENDING,
-        OK: ActionTypes.HENT_SERVICEGRUPPE_OK,
-        FEILET: ActionTypes.HENT_SERVICEGRUPPE_FEILET,
+export function hentServicegruppe(): (dispatch: Dispatch) => Promise<void> {
+    return doThenDispatch<Data>(() => hentServicegruppeFetch(), {
+        ok: hentServicegruppeOk,
+        feilet: hentServicegruppeFeilet,
+        pending: hentServicegruppePending,
     });
 }
 
-export function selectServicegruppe(state: AppState): State {
-    return state.servicegruppe;
+function hentServicegruppeOk(servicegruppeData: Data): HentServicegruppeOKAction {
+    return {
+        type: ActionType.HENT_SERVICEGRUPPE_OK,
+        data: servicegruppeData
+    };
+}
+
+function hentServicegruppeFeilet(): HentServicegruppeFEILETAction {
+    return {
+        type: ActionType.HENT_SERVICEGRUPPE_FEILET,
+    };
+}
+
+function hentServicegruppePending(): HentServicegruppePENDINGAction {
+    return {
+        type: ActionType.HENT_SERVICEGRUPPE_PENDING,
+    };
 }

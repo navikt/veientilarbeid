@@ -1,17 +1,14 @@
-import * as Api from './api';
-import { doThenDispatch, STATUS } from './api-utils';
-import { AppState } from '../reducer';
+import {
+    ActionType, Handling, HentJobbsokerbesvarelseFEILETAction, HentJobbsokerbesvarelseOKAction,
+    HentJobbsokerbesvarelsePENDINGAction, SettJobbsokerbesvarelseOKAction,
+} from './actions';
+import { Dispatch } from '../dispatch-type';
+import { hentJobbsokerbesvarelseFetch, DataElement, STATUS } from './api';
+import { doThenDispatch } from './api-utils';
 
-export enum ActionTypes {
-    HENT_JOBBSOKERBESVARELSE_OK = 'HENT_JOBBSOKERBESVARELSE_OK',
-    HENT_JOBBSOKERBESVARELSE_PENDING = 'HENT_JOBBSOKERBESVARELSE_PENDING',
-    HENT_JOBBSOKERBESVARELSE_FEILET = 'HENT_JOBBSOKERBESVARELSE_FEILET',
-}
-
-export interface State {
-    data: {};
+export interface State extends DataElement {
+    data: Data;
     harJobbsokerbesvarelse: boolean;
-    status: string;
 }
 
 const initialState: State = {
@@ -20,23 +17,13 @@ const initialState: State = {
     status: STATUS.NOT_STARTED
 };
 
-interface Action {
-    type: ActionTypes;
-    data: {
-        raad?: {};
-    };
+export interface Data {
+    raad?: {};
 }
 
-export default function (state: State = initialState, action: Action): State {
+export default function reducer(state: State = initialState, action: Handling): State {
     switch (action.type) {
-        case ActionTypes.HENT_JOBBSOKERBESVARELSE_PENDING:
-            if (state.status === STATUS.OK) {
-                return {...state, status: STATUS.RELOADING};
-            }
-            return {...state, status: STATUS.PENDING};
-        case ActionTypes.HENT_JOBBSOKERBESVARELSE_FEILET:
-            return {...state, status: STATUS.ERROR};
-        case ActionTypes.HENT_JOBBSOKERBESVARELSE_OK: {
+        case ActionType.HENT_JOBBSOKERBESVARELSE_OK: {
             return {
                 ...state,
                 status: STATUS.OK,
@@ -44,19 +31,49 @@ export default function (state: State = initialState, action: Action): State {
                 data: action.data,
             };
         }
+        case ActionType.HENT_JOBBSOKERBESVARELSE_PENDING:
+            if (state.status === STATUS.OK) {
+                return {...state, status: STATUS.RELOADING};
+            }
+            return {...state, status: STATUS.PENDING};
+        case ActionType.HENT_JOBBSOKERBESVARELSE_FEILET:
+            return {...state, status: STATUS.ERROR};
+        case ActionType.SETT_JOBBSOKERBESVARELSE_OK:
+            return {...state, status: STATUS.OK};
         default:
             return state;
     }
 }
 
-export function hentJobbsokerbesvarelse() {
-    return doThenDispatch(() => Api.hentJobbsokerbesvarelse(), {
-        PENDING: ActionTypes.HENT_JOBBSOKERBESVARELSE_PENDING,
-        OK: ActionTypes.HENT_JOBBSOKERBESVARELSE_OK,
-        FEILET: ActionTypes.HENT_JOBBSOKERBESVARELSE_FEILET,
+export function hentJobbsokerbesvarelse(): (dispatch: Dispatch) => Promise<void> {
+    return doThenDispatch<Data>(() => hentJobbsokerbesvarelseFetch(), {
+        ok: hentJobbsokerbesvarelseOk,
+        feilet: hentJobbsokerbesvarelseFeilet,
+        pending: hentJobbsokerbesvarelsePending,
     });
 }
 
-export function selectJobbsokerbesvarelse(state: AppState): State {
-    return state.jobbsokerbesvarelse;
+function hentJobbsokerbesvarelseOk(jobbsokerbesvarelseData: Data): HentJobbsokerbesvarelseOKAction {
+    return {
+        type: ActionType.HENT_JOBBSOKERBESVARELSE_OK,
+        data: jobbsokerbesvarelseData
+    };
+}
+
+function hentJobbsokerbesvarelseFeilet(): HentJobbsokerbesvarelseFEILETAction {
+    return {
+        type: ActionType.HENT_JOBBSOKERBESVARELSE_FEILET,
+    };
+}
+
+function hentJobbsokerbesvarelsePending(): HentJobbsokerbesvarelsePENDINGAction {
+    return {
+        type: ActionType.HENT_JOBBSOKERBESVARELSE_PENDING,
+    };
+}
+
+export function settJobbsokerbesvarelseOK(): SettJobbsokerbesvarelseOKAction {
+    return {
+        type: ActionType.SETT_JOBBSOKERBESVARELSE_OK
+    };
 }
