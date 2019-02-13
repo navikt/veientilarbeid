@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { Ingress, Innholdstittel } from 'nav-frontend-typografi';
+import { Normaltekst, Innholdstittel } from 'nav-frontend-typografi';
 import { parse } from 'query-string';
 import LenkeMedChevron from '../lenke-med-chevron/lenke-med-chevron';
 import ordinaerAktivitetsplanSvg from './ordinaer-aktivitetsplan.svg';
@@ -53,9 +53,9 @@ class Aktivitetsplan extends React.PureComponent<AktivitetsplanProps, State> {
                     <Innholdstittel tag="h2" className="aktivitetsplan__overskrift blokk-xs" >
                         <FormattedMessage id={overskriftTekstId}/>
                     </Innholdstittel>
-                    <Ingress className="blokk-s">
+                    <Normaltekst className="blokk-s">
                         <FormattedMessage id={beskrivelseTekstId}/>
-                    </Ingress>
+                    </Normaltekst>
                     <LenkeMedChevron path={AKTIVITETSPLAN_URL} className="aktivitetsplan__lenke">
                         <FormattedMessage id={lenkeId}/>
                     </LenkeMedChevron>
