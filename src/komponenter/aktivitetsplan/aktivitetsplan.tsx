@@ -2,9 +2,9 @@ import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Normaltekst, Innholdstittel } from 'nav-frontend-typografi';
 import { parse } from 'query-string';
-import LenkeMedChevron from '../lenke-med-chevron/lenke-med-chevron';
+import Lenkepanel from 'nav-frontend-lenkepanel';
 import ordinaerAktivitetsplanSvg from './ordinaer-aktivitetsplan.svg';
-import sykmeldingAktivitetsplanSvg from './sykmelding-aktivitetsplan.svg';
+// import sykmeldingAktivitetsplanSvg from './sykmelding-aktivitetsplan.svg';
 import './aktivitetsplan.less';
 
 export const AKTIVITETSPLAN_URL = '/aktivitetsplan/';
@@ -28,39 +28,36 @@ class Aktivitetsplan extends React.PureComponent<AktivitetsplanProps, State> {
     render() {
         const { erBrukerSykmeldt } = this.props;
 
-        let overskriftTekstId;
+        let overskriftTekstId = 'aktivitetsplan-overskrift-ordinaer';
         let beskrivelseTekstId;
-        let lenkeId;
 
         if (erBrukerSykmeldt) {
-            overskriftTekstId = 'aktivitetsplan-overskrift-sykmeldt';
             beskrivelseTekstId = 'aktivitetsplan-beskrivelse-sykmeldt';
-            lenkeId = 'aktivitetsplan-lenke-sykmeldt';
         } else {
-            overskriftTekstId = 'aktivitetsplan-overskrift-ordinaer';
             beskrivelseTekstId = 'aktivitetsplan-beskrivelse' + (this.state.nyRegistrering ? '-ny' : '');
-            lenkeId = 'aktivitetsplan-lenke-ordinaer';
         }
 
         return (
-            <div className="aktivitetsplan">
-                <img
-                    src={erBrukerSykmeldt ? sykmeldingAktivitetsplanSvg : ordinaerAktivitetsplanSvg}
-                    alt="aktivitetsplan-illustrasjon"
-                    className="aktivitetsplan__illustrasjon"
-                />
-                <div className="aktivitetsplan__tekst">
-                    <Innholdstittel tag="h2" className="aktivitetsplan__overskrift blokk-xs" >
-                        <FormattedMessage id={overskriftTekstId}/>
-                    </Innholdstittel>
-                    <Normaltekst className="blokk-s">
-                        <FormattedMessage id={beskrivelseTekstId}/>
-                    </Normaltekst>
-                    <LenkeMedChevron path={AKTIVITETSPLAN_URL} className="aktivitetsplan__lenke">
-                        <FormattedMessage id={lenkeId}/>
-                    </LenkeMedChevron>
-                </div>
-            </div>
+            <section className="aktivitetsplan">
+                <Lenkepanel tittelProps="undertittel" href={AKTIVITETSPLAN_URL}>
+                    <div className="aktivitetsplan__innhold">
+                        <div className="aktivitetsplan__illustrasjon">
+                            <img
+                                src={ordinaerAktivitetsplanSvg}
+                                alt="aktivitetsplan-illustrasjon"
+                            />
+                        </div>
+                        <div className="aktivitetsplan__tekst">
+                            <Innholdstittel tag="h2" className="informasjonsmodul__heading blokk-s">
+                                <FormattedMessage id={overskriftTekstId}/>
+                            </Innholdstittel>
+                            <Normaltekst className="ingress__tekst">
+                                <FormattedMessage id={beskrivelseTekstId}/>
+                            </Normaltekst>
+                        </div>
+                    </div>
+                </Lenkepanel>
+            </section>
         );
     }
 }
