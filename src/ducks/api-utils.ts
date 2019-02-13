@@ -44,7 +44,7 @@ function handterFeil(dispatch: Dispatch, feiletAction: () => Handling): (error: 
 export async function fetchToJson<T>(url: string, config: RequestInit): Promise<T> {
     const respons = await fetch(url, config);
     const gyldigRespons = sjekkStatuskode(respons);
-    return await toJson<T>(gyldigRespons);
+    return await toJson(gyldigRespons);
 }
 
 class FetchError extends Error {
@@ -63,6 +63,9 @@ function sjekkStatuskode(response: Response): Response {
     throw new FetchError(response.statusText || response.type, response);
 }
 
-function toJson<T>(response: Response): Promise<T> {
-    return response.json();
+function toJson(response: Response) {
+    if (response.status !== 204) { // No content
+        return response.json();
+    }
+    return null;
 }
