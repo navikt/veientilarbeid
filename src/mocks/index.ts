@@ -1,5 +1,3 @@
-/*tslint:disable*/
-import {mock, respondWith, delayed } from './utils';
 import oppfolgingResponse from './oppfolging-mock';
 import {
     FEATURE_URL, JOBBSOKERBESVARELSE_URL, SERVICEGRUPPE_URL, STARTREGISTRERING_URL, VEILARBOPPFOLGING_URL
@@ -8,6 +6,21 @@ import featureTogglesMock from './feature-toggles-mock';
 import servicegruppeResponse from './servicegruppe-mock';
 import sykmeldtInfoResponse from './sykmeldt-info-mock';
 import jobbsokerbesvarelseResponse from './jobbsokerbesvarelse-mock';
+import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
+
+const loggingMiddleware: Middleware = (request, response) => {
+    console.log(request.url, request.method, response); // tslint:disable-line:no-console
+    return response;
+};
+
+const fetchMock = FetchMock.configure({
+    enableFallback: true, // default: true
+    middleware: MiddlewareUtils.combine(
+        MiddlewareUtils.delayMiddleware(200),
+        MiddlewareUtils.failurerateMiddleware(0.00),
+        loggingMiddleware,
+    ),
+});
 
 const MOCK_OPPFOLGING = true;
 const MOCK_FEATURE_TOGGLES = true;
@@ -15,27 +28,23 @@ const MOCK_SERVICEGRUPPE = true;
 const MOCK_STARTREGISTRERING = true;
 const MOCK_JOBBSOKERBESVARELSE = true;
 
-const DELAY = 0;
-
 if (MOCK_OPPFOLGING) {
-    (mock as any).get(`${VEILARBOPPFOLGING_URL}/oppfolging`, respondWith(delayed(DELAY, oppfolgingResponse)));
+    fetchMock.get(`${VEILARBOPPFOLGING_URL}/oppfolging`, oppfolgingResponse);
 }
 
 if (MOCK_FEATURE_TOGGLES) {
-    (mock as any).get(`express:${FEATURE_URL}(.*)`, respondWith(delayed(DELAY, featureTogglesMock)));
+    fetchMock.get(`express:${FEATURE_URL}(.*)`, featureTogglesMock);
+    fetchMock.get(`${FEATURE_URL}(.*)`, featureTogglesMock);
 }
 
 if (MOCK_SERVICEGRUPPE) {
-    (mock as any).get(SERVICEGRUPPE_URL, respondWith(delayed(DELAY, servicegruppeResponse)));
+    fetchMock.get(SERVICEGRUPPE_URL, servicegruppeResponse);
 }
 
 if (MOCK_STARTREGISTRERING) {
-    (mock as any).get(STARTREGISTRERING_URL, respondWith(delayed(DELAY, sykmeldtInfoResponse)))
+    fetchMock.get(STARTREGISTRERING_URL, sykmeldtInfoResponse);
 }
 
 if (MOCK_JOBBSOKERBESVARELSE) {
-    (mock as any).get(JOBBSOKERBESVARELSE_URL, respondWith(delayed(1000, jobbsokerbesvarelseResponse)));
+    fetchMock.get(JOBBSOKERBESVARELSE_URL, jobbsokerbesvarelseResponse);
 }
-
-(mock as any).mock('*', respondWith((url: string, config: {}) => mock.realFetch.call(window, url, config)));
-
