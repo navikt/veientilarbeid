@@ -18,7 +18,7 @@ const initialState: State = {
 };
 
 export interface Data {
-    raad?: {};
+    raad?: [];
 }
 
 export default function reducer(state: State = initialState, action: Handling): State {
@@ -27,7 +27,7 @@ export default function reducer(state: State = initialState, action: Handling): 
             return {
                 ...state,
                 status: STATUS.OK,
-                harJobbsokerbesvarelse: action.data && action.data.raad !== undefined,
+                harJobbsokerbesvarelse: action.data && !!action.data.raad,
                 data: action.data,
             };
         }
