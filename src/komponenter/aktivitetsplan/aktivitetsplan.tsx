@@ -4,8 +4,8 @@ import { Normaltekst, Innholdstittel } from 'nav-frontend-typografi';
 import { parse } from 'query-string';
 import Lenkepanel from 'nav-frontend-lenkepanel';
 import ordinaerAktivitetsplanSvg from './ordinaer-aktivitetsplan.svg';
-// import sykmeldingAktivitetsplanSvg from './sykmelding-aktivitetsplan.svg';
 import './aktivitetsplan.less';
+import { gaTilAktivitetsplan } from '../../metrics';
 
 export const AKTIVITETSPLAN_URL = '/aktivitetsplan/';
 
@@ -14,7 +14,6 @@ interface State {
 }
 
 interface AktivitetsplanProps {
-    erBrukerSykmeldt?: boolean;
 }
 
 class Aktivitetsplan extends React.PureComponent<AktivitetsplanProps, State> {
@@ -26,20 +25,16 @@ class Aktivitetsplan extends React.PureComponent<AktivitetsplanProps, State> {
     }
 
     render() {
-        const { erBrukerSykmeldt } = this.props;
-
         let overskriftTekstId = 'aktivitetsplan-overskrift-ordinaer';
-        let beskrivelseTekstId;
+        let beskrivelseTekstId = 'aktivitetsplan-beskrivelse' + (this.state.nyRegistrering ? '-ny' : '');
 
-        if (erBrukerSykmeldt) {
-            beskrivelseTekstId = 'aktivitetsplan-beskrivelse-sykmeldt';
-        } else {
-            beskrivelseTekstId = 'aktivitetsplan-beskrivelse' + (this.state.nyRegistrering ? '-ny' : '');
-        }
+        const linkCreator = (props: {}) => {
+          return <a onClick={gaTilAktivitetsplan} {...props}/>;
+        };
 
         return (
             <section className="aktivitetsplan">
-                <Lenkepanel tittelProps="undertittel" href={AKTIVITETSPLAN_URL}>
+                <Lenkepanel tittelProps="undertittel" href={AKTIVITETSPLAN_URL} linkCreator={linkCreator}>
                     <div className="aktivitetsplan__innhold">
                         <div className="aktivitetsplan__illustrasjon">
                             <img
