@@ -16,8 +16,8 @@ export const metricsMiddleWare = (store: any) => (next: any) => (action: any) =>
         },
         {
             type: ActionType.HENT_SERVICEGRUPPE_FEILET,
-            eventnavn: 'veientilarbeid.feil.SERVICEGRUPPE',
-            apikall: 'GET /SERVICEGRUPPE'
+            eventnavn: 'veientilarbeid.feil.servicegruppe',
+            apikall: 'GET /servicegruppe'
         },
         {
             type: ActionType.HENT_SYKMELDT_INFO_FEILET,
