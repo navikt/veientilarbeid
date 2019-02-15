@@ -1,7 +1,5 @@
 import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { connect } from 'react-redux';
-import { AppState } from '../../reducer';
 import { Normaltekst, Innholdstittel } from 'nav-frontend-typografi';
 import { parse } from 'query-string';
 import Lenkepanel from 'nav-frontend-lenkepanel';
@@ -16,7 +14,6 @@ interface State {
 }
 
 interface AktivitetsplanProps {
-    underOppfolging: boolean;
 }
 
 class Aktivitetsplan extends React.PureComponent<AktivitetsplanProps, State> {
@@ -28,13 +25,11 @@ class Aktivitetsplan extends React.PureComponent<AktivitetsplanProps, State> {
     }
 
     render() {
-        const { underOppfolging } = this.props;
-
         let overskriftTekstId = 'aktivitetsplan-overskrift-ordinaer';
         let beskrivelseTekstId = 'aktivitetsplan-beskrivelse' + (this.state.nyRegistrering ? '-ny' : '');
 
         const linkCreator = (props: {}) => {
-          return <a onClick={() => gaTilAktivitetsplan(underOppfolging)} {...props}/>;
+          return <a onClick={gaTilAktivitetsplan} {...props}/>;
         };
 
         return (
@@ -62,8 +57,4 @@ class Aktivitetsplan extends React.PureComponent<AktivitetsplanProps, State> {
     }
 }
 
-const mapStateToProps = (state: AppState): AktivitetsplanProps => ({
-    underOppfolging: state.oppfolging.data.underOppfolging
-});
-
-export default connect(mapStateToProps)(Aktivitetsplan);
+export default Aktivitetsplan;

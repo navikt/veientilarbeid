@@ -12,6 +12,6 @@ export const logInputSokLedigeStillinger = (inputSokefelt: string) => {
     logEvent(`${domene}.inputsokledigestillinger`, {inputSokefelt}, {});
 };
 
-export const gaTilAktivitetsplan = (underOppfolging: boolean) => {
-    logEvent(`${domene}.gatilaktivitetsplan`, {}, {underOppfolging});
+export const gaTilAktivitetsplan = () => {
+    logEvent(`${domene}.gatilaktivitetsplan`, {}, {});
 };
