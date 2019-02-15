@@ -14,7 +14,7 @@ import {
 } from './demo-state';
 
 export default function () {
-    const SYKMELDT = DemoData.SYKMELDT_MED_ARBEIDSGIVER;
+    const SYKMELDT_MED_ARBEIDSGIVER = DemoData.SYKMELDT_MED_ARBEIDSGIVER;
     const JSK = DemoData.JSK;
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -23,7 +23,7 @@ export default function () {
     };
 
     const handleClick = (e: SyntheticEvent<HTMLInputElement>) => {
-        if (e.currentTarget.id === SYKMELDT) {
+        if (e.currentTarget.id === SYKMELDT_MED_ARBEIDSGIVER) {
             settSykmeldtMedArbeidsgiver(`${e.currentTarget.checked}`);
         } else if (e.currentTarget.id === JSK) {
             if (e.currentTarget.checked) {
@@ -72,7 +72,7 @@ export default function () {
                 onChange={handleClick}
                 legend=""
                 checkboxes={[
-                    { label: 'Sykmelding', checked: hentSykmeldtMedArbeidsgiver(), id: SYKMELDT },
+                    { label: 'Sykmelding', checked: hentSykmeldtMedArbeidsgiver(), id: SYKMELDT_MED_ARBEIDSGIVER },
                     { label: 'Lagret JSK', checked: !!hentJsk(), id: JSK },
                 ]}
             />
