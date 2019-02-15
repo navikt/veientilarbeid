@@ -1,9 +1,9 @@
 import { fetchToJson } from './api-utils';
-import { FeatureToggleState } from './feature-toggles';
 import { Data as OppfolgingData } from './oppfolging';
 import { Data as ServicegruppeData } from './servicegruppe';
 import { Data as JobbsokerbesvarelseData } from './jobbsokerbesvarelse';
 import { Data as SykmeldtInfoData } from './sykmeldt-info';
+import { FeatureToggles } from './feature-toggles';
 
 export enum STATUS {
     OK = 'OK',
@@ -42,9 +42,9 @@ export const featureQueryParams = (features: string[]): string => {
     return features.reduce(reduceFunc, '');
 };
 
-export function hentFeatureTogglesFetch(features: string[]): Promise<FeatureToggleState> {
+export function hentFeatureTogglesFetch(features: string[]): Promise<FeatureToggles> {
     const unleashUrl = FEATURE_URL + featureQueryParams(features);
-    return fetchToJson<FeatureToggleState>(unleashUrl, requestConfig);
+    return fetchToJson<FeatureToggles>(unleashUrl, requestConfig);
 }
 
 export function hentOppfolgingFetch(): Promise<OppfolgingData> {
