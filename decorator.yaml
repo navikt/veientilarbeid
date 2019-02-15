@@ -10,3 +10,7 @@ proxy:
 
   - contextPath: /veilarbjobbsokerkompetanse
     baseUrl: http://veilarbproxy
+
+redirect:
+  - from: /aktivitetsplan
+    to: {{ AKTIVITETSPLAN_URL }}
