@@ -17,8 +17,8 @@ type AllProps = StateProps & RouteComponentProps<any>; // tslint:disable-line
 class Routes extends React.Component<AllProps> {
 
     componentDidMount() {
-      const erSykmeldtMedArbeidsgiver = this.props.sykmeldtInfo.data.erSykmeldtMedArbeidsgiver;
-      seVeientilarbeid(erSykmeldtMedArbeidsgiver);
+        const erSykmeldtMedArbeidsgiver = this.props.sykmeldtInfo.data.erSykmeldtMedArbeidsgiver;
+        seVeientilarbeid(erSykmeldtMedArbeidsgiver);
     }
 
     render() {
