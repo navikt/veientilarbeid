@@ -4,6 +4,10 @@ const logEvent = w.frontendlogger ? w.frontendlogger.event : () => { return; };
 
 const domene = 'veientilarbeid';
 
+export const seVeientilarbeid = (erSykmeldtMedArbeidsgiver: boolean) => {
+    logEvent(`${domene}.seveientilarbeid`, {}, {erSykmeldtMedArbeidsgiver});
+};
+
 export const klikkPaSokLedigeStillinger = (sokeKnappType: string) => {
     logEvent(`${domene}.sokledigestillinger`, {}, {sokeKnappType});
 };
