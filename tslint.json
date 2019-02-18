@@ -2,7 +2,7 @@
     "extends": ["tslint-react"],
     "rules": {
         "align": [
-            false,
+            true,
             "parameters",
             "arguments",
             "statements"
@@ -66,7 +66,7 @@
         ],
         "quotemark": [true, "single", "jsx-double"],
         "radix": true,
-        "semicolon": [true, "always", "ignore-bound-class-methods"],
+        "semicolon": [true, "always"],
         "switch-default": true,
 
         "trailing-comma": [false],

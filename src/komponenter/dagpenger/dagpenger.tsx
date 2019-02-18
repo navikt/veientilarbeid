@@ -22,21 +22,23 @@ class Dagpenger extends React.Component<InjectedIntlProps> {
     handleButtonClick = () => {
         klikkPaSoknadDagpenger();
         window.location.href = this.props.intl.formatMessage({id: 'dagpenger-lenke-url'});
-    };
+    }
 
     scrollTilInformasjonsmodul() {
-        setTimeout(() => {
-            const isSupported = 'scrollBehavior' in document.documentElement.style;
-            const target = document.getElementById('informasjonsmodul');
-            if (target) {
-                if (isSupported) {
-                    window.scrollTo({'behavior': 'smooth', 'top': target.offsetTop});
-                } else {
-                    window.scrollTo(0, target.offsetTop);
+        setTimeout(
+            () => {
+                const isSupported = 'scrollBehavior' in document.documentElement.style;
+                const target = document.getElementById('informasjonsmodul');
+                if (target) {
+                    if (isSupported) {
+                        window.scrollTo({'behavior': 'smooth', 'top': target.offsetTop});
+                    } else {
+                        window.scrollTo(0, target.offsetTop);
+                    }
                 }
-            }
-
-        }, 400);
+            },
+            400
+        );
     }
 
     render() {
