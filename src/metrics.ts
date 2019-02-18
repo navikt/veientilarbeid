@@ -12,6 +12,10 @@ export const logInputSokLedigeStillinger = (inputSokefelt: string) => {
     logEvent(`${domene}.inputsokledigestillinger`, {inputSokefelt}, {});
 };
 
+export const gaTilAktivitetsplan = () => {
+    logEvent(`${domene}.gatilaktivitetsplan`, {}, {});
+};
+
 export const klikkPaSoknadDagpenger = () => {
     logEvent(`${domene}.soknaddagpenger`, {}, {});
 };
