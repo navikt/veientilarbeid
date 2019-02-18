@@ -15,3 +15,7 @@ export const logInputSokLedigeStillinger = (inputSokefelt: string) => {
 export const gaTilAktivitetsplan = () => {
     logEvent(`${domene}.gatilaktivitetsplan`, {}, {});
 };
+
+export const klikkPaSoknadDagpenger = () => {
+    logEvent(`${domene}.soknaddagpenger`, {}, {});
+};
