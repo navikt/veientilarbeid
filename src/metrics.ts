@@ -11,3 +11,7 @@ export const klikkPaSokLedigeStillinger = (sokeKnappType: string) => {
 export const logInputSokLedigeStillinger = (inputSokefelt: string) => {
     logEvent(`${domene}.inputsokledigestillinger`, {inputSokefelt}, {});
 };
+
+export const klikkPaSoknadDagpenger = () => {
+    logEvent(`${domene}.soknaddagpenger`, {}, {});
+};

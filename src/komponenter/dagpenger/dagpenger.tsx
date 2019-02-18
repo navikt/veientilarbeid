@@ -4,10 +4,12 @@ import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 
 import './dagpenger.less';
 import { Hovedknapp } from 'nav-frontend-knapper';
+import { klikkPaSoknadDagpenger } from '../../metrics';
 
 const Dagpenger = injectIntl(({intl}) => {
 
     const handleButtonClick = () => {
+        klikkPaSoknadDagpenger();
         window.location.href = intl.formatMessage({id: 'dagpenger-lenke-url'});
     };
 
