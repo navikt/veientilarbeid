@@ -7,16 +7,21 @@ import { hentFeatureTogglesFetch, DataElement, STATUS } from './api';
 
 export const servicekodeToggleKey = 'veientilarbeid.hentservicekode';
 export const jobbsokerbesvarelseToggleKey = 'veientilarbeid.hentJobbsokerbesvarelse';
+export const demoToggleKey = 'veientilarbeid.demo';
 
-export interface FeatureToggleState extends DataElement {
+export interface FeatureToggles {
     [servicekodeToggleKey]: boolean;
     [jobbsokerbesvarelseToggleKey]: boolean;
+    [demoToggleKey]: boolean;
 }
+
+export type FeatureToggleState = FeatureToggles & DataElement;
 
 const initialState: FeatureToggleState = {
     status: STATUS.NOT_STARTED,
     [servicekodeToggleKey]: false,
     [jobbsokerbesvarelseToggleKey]: false,
+    [demoToggleKey]: false,
 };
 
 export default function reducer(state: FeatureToggleState = initialState, action: Handling): FeatureToggleState {
@@ -33,7 +38,9 @@ export default function reducer(state: FeatureToggleState = initialState, action
                 ...state,
                 status: STATUS.OK,
                 [servicekodeToggleKey]: action.unleash[servicekodeToggleKey],
-                [jobbsokerbesvarelseToggleKey]: action.unleash[jobbsokerbesvarelseToggleKey]};
+                [jobbsokerbesvarelseToggleKey]: action.unleash[jobbsokerbesvarelseToggleKey],
+                [demoToggleKey]: action.unleash[demoToggleKey]
+            };
         }
         default:
             return state;
@@ -41,8 +48,8 @@ export default function reducer(state: FeatureToggleState = initialState, action
 }
 
 export function hentFeatureToggles(): (dispatch: Dispatch) => Promise<void> {
-    return doThenDispatch<FeatureToggleState>(
-        () => hentFeatureTogglesFetch([servicekodeToggleKey, jobbsokerbesvarelseToggleKey]), {
+    return doThenDispatch<FeatureToggles>(
+        () => hentFeatureTogglesFetch([servicekodeToggleKey, jobbsokerbesvarelseToggleKey, demoToggleKey]), {
         ok: hentFeatureTogglesOk,
         feilet: hentFeatureTogglesFeilet,
         pending: hentFeatureTogglesPending,

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
 import { FormattedMessage } from 'react-intl';
 import Lenkepanel from 'nav-frontend-lenkepanel';
+import { gaTilTiltaksinfo } from '../../metrics';
 
 import tiltakinfo from './tiltakinfo.svg';
 import './tiltakinfo.less';
@@ -10,9 +11,14 @@ export const TILTAKINFO_URL = '/tiltakinfo';
 
 class Tiltakinfo extends React.Component {
     render() {
+
+        const linkCreator = (props: {}) => {
+          return <a onClick={gaTilTiltaksinfo} {...props}/>;
+        };
+
         return (
             <section className="tiltakinfo">
-                <Lenkepanel tittelProps="undertittel" href={TILTAKINFO_URL}>
+                <Lenkepanel tittelProps="undertittel" href={TILTAKINFO_URL} linkCreator={linkCreator}>
                     <div className="tiltakinfo__innhold">
                         <div className="tiltakinfo__bilde">
                             <img

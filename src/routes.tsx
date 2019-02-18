@@ -22,7 +22,6 @@ class Routes extends React.Component<AllProps> {
     }
 
     render() {
-        // TODO: Bytt verdi når beregning av gjenstående sykedager er på plass
         const erSykmeldtMedArbeidsgiver = this.props.sykmeldtInfo.data.erSykmeldtMedArbeidsgiver;
         const { location } = this.props;
         const search = location.search;

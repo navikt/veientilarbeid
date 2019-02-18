@@ -8,13 +8,14 @@ interface Props {
     alt: string;
     href: string;
     className?: string;
+    onClick?: () => void;
 }
 
 class LenkepanelMedBilde extends React.Component<Props> {
     render() {
-        const {src, href, children, alt, className} = this.props;
+        const {src, href, children, alt, className, onClick} = this.props;
         return (
-            <a href={href} className={classnames('lenkepanel-med-bilde', className)}>
+            <a href={href} className={classnames('lenkepanel-med-bilde', className)} onClick={onClick}>
                 <div className="lenkepanel-med-bilde__innhold">
                     {children}
                 </div>

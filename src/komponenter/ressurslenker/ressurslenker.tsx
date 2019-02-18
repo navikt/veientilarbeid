@@ -4,6 +4,8 @@ import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 import LenkepanelMedBilde from '../lenkepanel-med-bilde/lenkepanel-med-bilde';
 import { connect } from 'react-redux';
 import { AppState } from '../../reducer';
+import { gaTilMIA } from '../../metrics';
+import { gaTilJobbsokerkompetanse } from '../../metrics';
 
 import './ressurslenker.less';
 
@@ -26,6 +28,7 @@ class Ressurslenker extends React.Component<StateProps> {
                     src={require('./mia.svg')}
                     alt="Norgeskart med forstørrelsesglass"
                     href={MIA_URL}
+                    onClick={gaTilMIA}
                 >
                     <Innholdstittel className="blokk-s">
                         <FormattedMessage id="mia-overskrift" />
@@ -39,6 +42,7 @@ class Ressurslenker extends React.Component<StateProps> {
                     src={require('./jobbsokertips.svg')}
                     alt="Jobbsøkerutstyr"
                     href={URL}
+                    onClick={gaTilJobbsokerkompetanse}
                 >
                     <Innholdstittel className="blokk-s">
                         { harJobbbsokerbesvarelse &&

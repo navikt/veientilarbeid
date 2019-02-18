@@ -1,9 +1,9 @@
 import { fetchToJson } from './api-utils';
-import { FeatureToggleState } from './feature-toggles';
 import { Data as OppfolgingData } from './oppfolging';
 import { Data as ServicegruppeData } from './servicegruppe';
 import { Data as JobbsokerbesvarelseData } from './jobbsokerbesvarelse';
 import { Data as SykmeldtInfoData } from './sykmeldt-info';
+import { FeatureToggles } from './feature-toggles';
 
 export enum STATUS {
     OK = 'OK',
@@ -17,13 +17,13 @@ export interface DataElement {
     status: STATUS;
 }
 
-export const getCookie = (name: string) => {
+const getCookie = (name: string) => {
     const re = new RegExp(`${name}=([^;]+)`);
     const match = re.exec(document.cookie);
     return match !== null ? match[1] : '';
 };
 
-const requestConfig: RequestInit = {
+export const requestConfig: RequestInit = {
     credentials: 'same-origin',
     headers: {
         'Content-Type': 'application/json',
@@ -42,9 +42,9 @@ export const featureQueryParams = (features: string[]): string => {
     return features.reduce(reduceFunc, '');
 };
 
-export function hentFeatureTogglesFetch(features: string[]): Promise<FeatureToggleState> {
+export function hentFeatureTogglesFetch(features: string[]): Promise<FeatureToggles> {
     const unleashUrl = FEATURE_URL + featureQueryParams(features);
-    return fetchToJson<FeatureToggleState>(unleashUrl, requestConfig);
+    return fetchToJson<FeatureToggles>(unleashUrl, requestConfig);
 }
 
 export function hentOppfolgingFetch(): Promise<OppfolgingData> {

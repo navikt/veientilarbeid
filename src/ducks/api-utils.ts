@@ -56,14 +56,14 @@ class FetchError extends Error {
     }
 }
 
-function sjekkStatuskode(response: Response): Response {
+export function sjekkStatuskode(response: Response): Response {
     if (response.status >= 200 && response.status < 300) {
         return response;
     }
     throw new FetchError(response.statusText || response.type, response);
 }
 
-function toJson(response: Response) {
+export function toJson(response: Response) {
     if (response.status !== 204) { // No content
         return response.json();
     }
