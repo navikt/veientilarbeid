@@ -35,3 +35,7 @@ export const gaTilJobbsokerkompetanse = () => {
 export const gaTilTiltaksinfo = () => {
     logEvent(`${domene}.gatiltiltaksinfo`, {}, {});
 };
+
+export const klikkPaSoknadDagpenger = () => {
+    logEvent(`${domene}.soknaddagpenger`, {}, {});
+};
