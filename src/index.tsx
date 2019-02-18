@@ -9,7 +9,7 @@ import './index.less';
 import { erDemo } from './demo/demo-state';
 import { sjekkStatuskode, toJson } from './ducks/api-utils';
 import { demoToggleKey } from './ducks/feature-toggles';
-import { FEATURE_URL, featureQueryParams, getCookie } from './ducks/api';
+import { FEATURE_URL, featureQueryParams, requestConfig } from './ducks/api';
 
 if (process.env.REACT_APP_MOCK && !erDemo()) {
     console.log('=========================='); /*tslint:disable-line:no-console*/
@@ -22,13 +22,6 @@ if (process.env.REACT_APP_MOCK && !erDemo()) {
 
 async function featureToggleIsActive() {
     const unleashUrl = FEATURE_URL + featureQueryParams([demoToggleKey]);
-    const requestConfig: RequestInit = {
-        credentials: 'same-origin',
-        headers: {
-            'Content-Type': 'application/json',
-            'NAV_CSRF_PROTECTION': getCookie('NAV_CSRF_PROTECTION'),
-        }
-    };
     interface DemoFeatureToggle {
         [demoToggleKey]: boolean;
     }

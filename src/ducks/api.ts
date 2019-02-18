@@ -17,13 +17,13 @@ export interface DataElement {
     status: STATUS;
 }
 
-export const getCookie = (name: string) => {
+const getCookie = (name: string) => {
     const re = new RegExp(`${name}=([^;]+)`);
     const match = re.exec(document.cookie);
     return match !== null ? match[1] : '';
 };
 
-const requestConfig: RequestInit = {
+export const requestConfig: RequestInit = {
     credentials: 'same-origin',
     headers: {
         'Content-Type': 'application/json',
