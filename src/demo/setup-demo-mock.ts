@@ -2,7 +2,7 @@ import {
     FEATURE_URL, JOBBSOKERBESVARELSE_URL, SERVICEGRUPPE_URL, STARTREGISTRERING_URL, VEILARBOPPFOLGING_URL
 } from '../ducks/api';
 import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
-import { jobbsokerbesvarelseToggleKey, servicekodeToggleKey } from '../ducks/feature-toggles';
+import { demoToggleKey, jobbsokerbesvarelseToggleKey, servicekodeToggleKey } from '../ducks/feature-toggles';
 import { hentJsk, hentServicegruppe, hentSykmeldtMedArbeidsgiver } from './demo-state';
 
 const loggingMiddleware: Middleware = (request, response) => {
@@ -27,10 +27,12 @@ fetchMock.get(`${VEILARBOPPFOLGING_URL}/oppfolging`, {
 fetchMock.get(`express:${FEATURE_URL}(.*)`, {
     [servicekodeToggleKey]: true,
     [jobbsokerbesvarelseToggleKey]: true,
+    [demoToggleKey]: false,
 });
 fetchMock.get(`${FEATURE_URL}(.*)`, {
     [servicekodeToggleKey]: true,
     [jobbsokerbesvarelseToggleKey]: true,
+    [demoToggleKey]: true,
 });
 
 fetchMock.get(SERVICEGRUPPE_URL, {

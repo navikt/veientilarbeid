@@ -7,23 +7,50 @@ import DemoDashboard from './demo/demo-dashboard';
 
 import './index.less';
 import { erDemo } from './demo/demo-state';
+import { sjekkStatuskode, toJson } from './ducks/api-utils';
+import { demoToggleKey } from './ducks/feature-toggles';
+import { FEATURE_URL, featureQueryParams, getCookie } from './ducks/api';
 
 if (process.env.REACT_APP_MOCK && !erDemo()) {
     console.log('=========================='); /*tslint:disable-line:no-console*/
     console.log('======= DEVELOPMENT ======'); /*tslint:disable-line:no-console*/
     console.log('=========================='); /*tslint:disable-line:no-console*/
     require('./mocks');
-}
-
-if (erDemo()) {
+} else if (erDemo()) {
     require('./demo/setup-demo-mock');
-
-    // TODO require inn fra egen fil
-    ReactDOM.render(
-        <DemoDashboard/>,
-        document.getElementById('demo') as HTMLElement
-    );
 }
+
+async function featureToggleIsActive() {
+    const unleashUrl = FEATURE_URL + featureQueryParams([demoToggleKey]);
+    const requestConfig: RequestInit = {
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json',
+            'NAV_CSRF_PROTECTION': getCookie('NAV_CSRF_PROTECTION'),
+        }
+    };
+    interface DemoFeatureToggle {
+        [demoToggleKey]: boolean;
+    }
+
+    const respons = await fetch(unleashUrl, requestConfig);
+    const gyldigRespons = sjekkStatuskode(respons);
+    const json: DemoFeatureToggle = await toJson(gyldigRespons);
+
+    if (json[demoToggleKey] === true) {
+        if (erDemo()) {
+
+            // TODO require inn fra egen fil
+            ReactDOM.render(
+                <DemoDashboard/>,
+                document.getElementById('demo') as HTMLElement
+            );
+        }
+
+    }
+}
+
+featureToggleIsActive();
 
 ReactDOM.render(
     <App/>,
