@@ -29,12 +29,15 @@ fasitResources:
     resourceType: baseUrl
   - alias: appdynamics
     resourceType: applicationproperties
-
+  - alias: loadbalancer:veientilarbeid
+    resourceType: loadbalancerconfig
   # oidc med AzureAD B2C
   - alias: aad_b2c_clientid
     resourceType: credential
   - alias: aad_b2c_discovery
     resourceType: baseurl
+  - alias: aktivitetsplan
+    resourceType: baseUrl
 alertProfiles:
   - common-java-modules
 

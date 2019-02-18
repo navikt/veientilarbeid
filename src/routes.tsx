@@ -6,6 +6,7 @@ import { selectSykmeldtInfo, State as SykmeldtInfoState } from './ducks/sykmeldt
 import StartsideSykmeldt from './sider/startside-sykmeldt/startside-sykmeldt';
 import StartsideOrdinaer from './sider/startside-ordinaer/startside-ordinaer';
 import { Redirect, Route, RouteComponentProps, Switch, withRouter } from 'react-router';
+import { seVeientilarbeid } from './metrics';
 
 interface StateProps {
     sykmeldtInfo: SykmeldtInfoState;
@@ -14,6 +15,12 @@ interface StateProps {
 type AllProps = StateProps & RouteComponentProps<any>; // tslint:disable-line
 
 class Routes extends React.Component<AllProps> {
+
+    componentDidMount() {
+        const erSykmeldtMedArbeidsgiver = this.props.sykmeldtInfo.data.erSykmeldtMedArbeidsgiver;
+        seVeientilarbeid(erSykmeldtMedArbeidsgiver);
+    }
+
     render() {
         const erSykmeldtMedArbeidsgiver = this.props.sykmeldtInfo.data.erSykmeldtMedArbeidsgiver;
         const { location } = this.props;

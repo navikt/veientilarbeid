@@ -7,13 +7,14 @@ import './lenke-med-chevron.less';
 interface Props {
     path: string;
     className?: string;
+    onClick?: () => void;
 }
 
 export default class LenkeMedChevron extends React.Component<Props> {
     render() {
         return (
             <div className={classnames('nav-frontend-lenker', this.props.className)}>
-                <a href={this.props.path} className="lenke">
+                <a href={this.props.path} className="lenke" onClick={this.props.onClick}>
                     {this.props.children}
                 </a>
                 <HoyreChevron />

@@ -34,16 +34,16 @@
         "no-bitwise": true,
         "no-console": {
             "options": [
-                true,
-                "log",
-                "error",
-                "debug",
-                "info",
-                "time",
-                "timeEnd",
-                "trace"
-            ],
-            "severity": "warning"
+              true,
+              "log",
+              "error",
+              "debug",
+              "info",
+              "time",
+              "timeEnd",
+              "trace"
+              ],
+              "severity": "warning"
         },
         "no-consecutive-blank-lines": true,
         "no-construct": true,

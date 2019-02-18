@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { FormattedHTMLMessage, FormattedMessage } from 'react-intl';
 import LenkeMedChevron from '../lenke-med-chevron/lenke-med-chevron';
+import { gaTilMeldekort } from '../../metrics';
 
 import meldekort from './meldekort.svg';
 import './meldekort.less';
@@ -21,7 +22,11 @@ class Meldekort extends React.Component {
                     <Normaltekst className="meldekort__tekst">
                         <FormattedMessage id="meldekort-beskrivelse"/>
                     </Normaltekst>
-                    <LenkeMedChevron path={MELDEKORT_URL} className="meldekort__lenke">
+                    <LenkeMedChevron
+                        path={MELDEKORT_URL}
+                        className="meldekort__lenke"
+                        onClick={gaTilMeldekort}
+                    >
                         <FormattedHTMLMessage id="meldekort-lenke"/>
                     </LenkeMedChevron>
                 </div>

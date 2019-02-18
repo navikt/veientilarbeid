@@ -9,7 +9,7 @@ import Aktivitetsplan from '../../komponenter/aktivitetsplan/aktivitetsplan';
 import Meldekort from '../../komponenter/meldekort/meldekort';
 import Ressurslenker from '../../komponenter/ressurslenker/ressurslenker';
 import Tiltakinfo from '../../komponenter/tiltakinfo/tiltakinfo';
-import Dagpenger from '../../komponenter/informasjonsmoduler/dagpenger/dagpenger';
+import Dagpenger from '../../komponenter/dagpenger/dagpenger';
 import StillingSok from '../../komponenter/stillingsok/stillingsok';
 
 interface StateProps {
@@ -28,7 +28,7 @@ class StartsideOrdinaer extends React.Component<StateProps> {
 
     render() {
         const innsatsgruppe = this.erInnsatsgruppe();
-        const { featureToggleServicegruppe } = this.props;
+        const {featureToggleServicegruppe} = this.props;
 
         return (
             <Side
@@ -36,15 +36,15 @@ class StartsideOrdinaer extends React.Component<StateProps> {
                 bannerBrodsmuleId="startside-ordinaer-banner-brodsmule"
             >
                 <main className="innhold">
-                    <ReaktiveringMelding />
-                    <Aktivitetsplan />
-                    <Meldekort />
-                    <StillingSok />
-                    <Ressurslenker />
+                    <ReaktiveringMelding/>
+                    <Aktivitetsplan/>
+                    <Meldekort/>
+                    <StillingSok/>
+                    <Ressurslenker/>
                     {innsatsgruppe && featureToggleServicegruppe && (
-                        <Tiltakinfo />
+                        <Tiltakinfo/>
                     )}
-                    <Dagpenger />
+                    <Dagpenger/>
                 </main>
             </Side>
         );
