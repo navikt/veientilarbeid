@@ -23,7 +23,7 @@ class EndreBrukerStatus extends React.Component<Props> {
 
         if (brukerStatus === 'ordinaer') {
             this.dispatchType(false);
-        } else if (brukerStatus === 'sykmeldt') {
+        } else if (brukerStatus === 'sykmeldtMedArbeidsgiver') {
             this.dispatchType(true);
         }
     }

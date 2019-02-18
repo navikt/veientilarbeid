@@ -1,8 +1,8 @@
-import { FeatureToggleState } from './feature-toggles';
 import { Data as OppfolgingData } from './oppfolging';
 import { Data as ServicegruppeData } from './servicegruppe';
 import { Data as JobbsokerbesvarelseData } from './jobbsokerbesvarelse';
 import { Data as SykmeldtInfoData } from './sykmeldt-info';
+import { FeatureToggles } from './feature-toggles';
 
 export enum ActionType {
     FEATURE_TOGGLES_PENDING = 'FEATURE_TOGGLES_PENDING',
@@ -25,7 +25,7 @@ export enum ActionType {
 
 export interface FeatureTogglesOKAction {
     type: ActionType.FEATURE_TOGGLES_OK;
-    unleash: FeatureToggleState;
+    unleash: FeatureToggles;
 }
 
 export interface FeatureTogglesPENDINGAction {
