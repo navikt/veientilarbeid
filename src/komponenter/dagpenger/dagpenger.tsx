@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 import { injectIntl, FormattedMessage, InjectedIntlProps } from 'react-intl';
-import { klikkPaSoknadDagpenger } from '../../metrics';
+import { klikkPaSoknadDagpenger, visInfoOmDagpenger } from '../../metrics';
 import { visRettTilDagPenger } from '../../utils/utils';
 
 import './dagpenger.less';
@@ -16,6 +16,7 @@ class Dagpenger extends React.Component<InjectedIntlProps> {
     componentDidMount() {
         if (visRettTilDagPenger(location.search)) {
             this.scrollTilInformasjonsmodul();
+            visInfoOmDagpenger();
         }
     }
 
