@@ -6,6 +6,7 @@ import { servicekodeToggleKey } from '../../ducks/feature-toggles';
 import { connect } from 'react-redux';
 import ReaktiveringMelding from '../../komponenter/reaktivering-melding';
 import Aktivitetsplan from '../../komponenter/aktivitetsplan/aktivitetsplan';
+import Dialog from '../../komponenter/dialog/dialog';
 import Meldekort from '../../komponenter/meldekort/meldekort';
 import Ressurslenker from '../../komponenter/ressurslenker/ressurslenker';
 import Tiltakinfo from '../../komponenter/tiltakinfo/tiltakinfo';
@@ -38,6 +39,7 @@ class StartsideOrdinaer extends React.Component<StateProps> {
                 <main className="innhold">
                     <ReaktiveringMelding/>
                     <Aktivitetsplan/>
+                    <Dialog/>
                     <Meldekort/>
                     <StillingSok/>
                     <Ressurslenker/>
