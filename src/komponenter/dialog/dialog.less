@@ -2,6 +2,29 @@
 
 .dialog {
     margin: 2rem 0 0 0;
+
+    &__innhold {
+        display: flex;
+        flex-direction: row;
+    }
+
+    &__ikon {
+        display: flex;
+        margin-right: 1.5rem;
+    }
+
+    &__tittel {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.lenkepanel {
+    padding: 1.5rem;
+    color: @navMorkGra;
+    border-width: 2px;
+    border-color: @navGra20;
+    border-radius: 8px;
 }
 
 @media (min-width: @screen-sm-min) {

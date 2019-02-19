@@ -1,14 +1,25 @@
 import * as React from 'react';
-import Lenkepanel from 'nav-frontend-lenkepanel';
+import LenkepanelBase from 'nav-frontend-lenkepanel';
+import { Systemtittel } from 'nav-frontend-typografi';
 import './dialog.less';
+import dialogIkon from './dialog.svg';
 
 class Dialog extends React.Component  {
     render() {
         return (
             <section className="dialog">
-                <Lenkepanel href="./aktivitetsplan/dialog" tittelProps="undertittel" border={true}>
-                    Dialog
-                </Lenkepanel>
+                <LenkepanelBase href="./aktivitetsplan/dialog" tittelProps="undertittel" border={true}>
+                    <div className="dialog__innhold">
+                        <img
+                            src={dialogIkon}
+                            className="dialog__ikon"
+                            alt="dialog-ikon"
+                        />
+                        <Systemtittel className="dialog__tittel">
+                            Oppdater CV-en og jobbprofilen din
+                        </Systemtittel>
+                    </div>
+                </LenkepanelBase>
             </section>
         );
     }
