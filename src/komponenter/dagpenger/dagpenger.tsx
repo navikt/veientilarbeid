@@ -1,31 +1,62 @@
 import * as React from 'react';
-import { injectIntl, FormattedMessage } from 'react-intl';
+import { Hovedknapp } from 'nav-frontend-knapper';
 import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
+import { injectIntl, FormattedMessage, InjectedIntlProps } from 'react-intl';
+import { klikkPaSoknadDagpenger, visInfoOmDagpenger } from '../../metrics';
+import { visRettTilDagPenger } from '../../utils/utils';
 
 import './dagpenger.less';
-import { Hovedknapp } from 'nav-frontend-knapper';
-import { klikkPaSoknadDagpenger } from '../../metrics';
 
-const Dagpenger = injectIntl(({intl}) => {
+class Dagpenger extends React.Component<InjectedIntlProps> {
 
-    const handleButtonClick = () => {
+    constructor(props: InjectedIntlProps) {
+        super(props);
+    }
+
+    componentDidMount() {
+        if (visRettTilDagPenger(location.search)) {
+            this.scrollTilInformasjonsmodul();
+            visInfoOmDagpenger();
+        }
+    }
+
+    handleButtonClick = () => {
         klikkPaSoknadDagpenger();
-        window.location.href = intl.formatMessage({id: 'dagpenger-lenke-url'});
-    };
+        window.location.href = this.props.intl.formatMessage({id: 'dagpenger-lenke-url'});
+    }
 
-    return (
-        <section className="dagpenger">
-            <Innholdstittel tag="h1" className="blokk-xs">
-                <FormattedMessage id="dagpenger-tittel"/>
-            </Innholdstittel>
-            <Normaltekst className="blokk-m dagpenger__tekst">
-                <FormattedMessage id="dagpenger-tekst"/>
-            </Normaltekst>
-            <Hovedknapp onClick={handleButtonClick}>
-                <FormattedMessage id="dagpenger-lenke-tekst"/>
-            </Hovedknapp>
-        </section>
-    );
-});
+    scrollTilInformasjonsmodul() {
+        setTimeout(
+            () => {
+                const isSupported = 'scrollBehavior' in document.documentElement.style;
+                const target = document.getElementById('informasjonsmodul');
+                if (target) {
+                    if (isSupported) {
+                        window.scrollTo({'behavior': 'smooth', 'top': target.offsetTop});
+                    } else {
+                        window.scrollTo(0, target.offsetTop);
+                    }
+                }
+            },
+            400
+        );
+    }
 
-export default Dagpenger;
+    render() {
+        return (
+            <section className="dagpenger" id="informasjonsmodul">
+                <Innholdstittel tag="h1" className="blokk-xs">
+                    <FormattedMessage id="dagpenger-tittel"/>
+                </Innholdstittel>
+                <Normaltekst className="blokk-m dagpenger__tekst">
+                    <FormattedMessage id="dagpenger-tekst"/>
+                </Normaltekst>
+                <Hovedknapp onClick={this.handleButtonClick}>
+                    <FormattedMessage id="dagpenger-lenke-tekst"/>
+                </Hovedknapp>
+            </section>
+        );
+    }
+}
+
+export default injectIntl(Dagpenger);
