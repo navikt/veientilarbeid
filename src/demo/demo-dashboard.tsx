@@ -36,7 +36,6 @@ export default function () {
     };
 
     const servicegrupper = {
-        'IkkeValgt': 'Ikke valgt',
         'IKVAL': 'Standard',
         'BATT': 'Spesielt tilpasset',
         'BFORM': 'Situasjonsbestemt',
@@ -55,7 +54,7 @@ export default function () {
                 label="Velg"
                 onChange={handleChange}
                 id="velg-bruker"
-                defaultValue={hentServicegruppe() || 'Ikke valgt'}
+                defaultValue={hentServicegruppe()}
             >
                 {
                     Object.keys(servicegrupper).map((gruppe: string) =>
