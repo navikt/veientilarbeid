@@ -7,7 +7,6 @@ import StartsideSykmeldt from './sider/startside-sykmeldt/startside-sykmeldt';
 import StartsideOrdinaer from './sider/startside-ordinaer/startside-ordinaer';
 import { Redirect, Route, RouteComponentProps, Switch, withRouter } from 'react-router';
 import { seVeientilarbeid } from './metrics';
-import { erDemo } from './demo/demo-state';
 
 interface StateProps {
     sykmeldtInfo: SykmeldtInfoState;
@@ -26,7 +25,7 @@ class Routes extends React.Component<AllProps> {
         const erSykmeldtMedArbeidsgiver = this.props.sykmeldtInfo.data.erSykmeldtMedArbeidsgiver;
         const { location } = this.props;
         const search = location.search;
-        const path = erDemo() ? '/demo' : '/';
+        const path = location.pathname;
 
         if (erSykmeldtMedArbeidsgiver === true) {
             return (
