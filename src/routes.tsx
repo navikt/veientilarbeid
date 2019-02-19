@@ -25,19 +25,20 @@ class Routes extends React.Component<AllProps> {
         const erSykmeldtMedArbeidsgiver = this.props.sykmeldtInfo.data.erSykmeldtMedArbeidsgiver;
         const { location } = this.props;
         const search = location.search;
+        const path = location.pathname;
 
         if (erSykmeldtMedArbeidsgiver === true) {
             return (
                 <Switch>
-                    <Route path="/" exact={true} component={StartsideSykmeldt}/>
-                    <Redirect to={'/' + search}/>
+                    <Route path={path} exact={true} component={StartsideSykmeldt}/>
+                    <Redirect to={path + search}/>
                 </Switch>
             );
         } else {
             return (
                 <SjekkOppfolging>
-                    <Route path="/" exact={true} component={StartsideOrdinaer}/>
-                    <Redirect to={'/' + search}/>
+                    <Route path={path} exact={true} component={StartsideOrdinaer}/>
+                    <Redirect to={path + search}/>
                 </SjekkOppfolging>
             );
         }
