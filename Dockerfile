@@ -13,7 +13,7 @@ RUN npm run build
 FROM docker.adeo.no:5000/pus/decorator
 ENV APPLICATION_NAME=veientilarbeid
 COPY --from=node-builder /source/build /app
-COPY --from=builder /demo /app/demo
+COPY --from=node-builder /demo /app/demo
 
 ADD decorator.yaml /decorator.yaml
 
