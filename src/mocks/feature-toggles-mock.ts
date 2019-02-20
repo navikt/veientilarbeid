@@ -1,8 +1,6 @@
-import { servicekodeToggleKey, jobbsokerbesvarelseToggleKey, demoToggleKey } from '../ducks/feature-toggles';
+import { demoToggleKey } from '../ducks/feature-toggles';
 
 const featureTogglesMock = {
-    [servicekodeToggleKey]: true,
-    [jobbsokerbesvarelseToggleKey]: true,
     [demoToggleKey]: false
 };
 
