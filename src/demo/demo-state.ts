@@ -1,6 +1,5 @@
 import { JSONObject } from 'yet-another-fetch-mock';
 
-// TODO Utlede ved hjelp av å sette en property på window?
 export function erDemo(): boolean {
     const path: string = window.location.pathname;
     return path.includes('/veientilarbeid/demo');
