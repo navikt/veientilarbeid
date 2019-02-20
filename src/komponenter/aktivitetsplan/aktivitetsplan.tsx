@@ -34,7 +34,7 @@ class Aktivitetsplan extends React.PureComponent<AktivitetsplanProps, State> {
 
         return (
             <section className="aktivitetsplan">
-                <Lenkepanel tittelProps="undertittel" href={AKTIVITETSPLAN_URL} linkCreator={linkCreator}>
+                <Lenkepanel tittelProps="undertittel" href={AKTIVITETSPLAN_URL} linkCreator={linkCreator} border={true}>
                     <div className="aktivitetsplan__innhold">
                         <div className="aktivitetsplan__illustrasjon">
                             <img
