@@ -14,3 +14,17 @@ proxy:
 redirect:
   - from: /aktivitetsplan
     to: {{ AKTIVITETSPLAN_URL }}
+  - from: /veiviserarbeidssoker
+    to: {{ VEIVISERARBEIDSSOKER_URL }}
+  - from: /veiledearbeidssoker
+    to: {{ VEILEDEARBEIDSSOKER_URL }}
+  - from: /tiltakinfo
+    to: {{ TILTAKINFO_URL }}
+  - from: /jobbsokerkompetanse
+    to: {{ JOBBSOKERKOMPETANSE_URL }}
+  - from: /dittnav
+    to: {{ DITTNAV_LINK_URL }}
+  - from: /sykefravaer
+    to: {{ SYFOFRONT_URL }}
+  - from: /veivisersosialhjelp
+    to: {{ VEIVISERSOSIALHJELP_URL }}
