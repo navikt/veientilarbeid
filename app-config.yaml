@@ -36,8 +36,25 @@ fasitResources:
     resourceType: credential
   - alias: aad_b2c_discovery
     resourceType: baseurl
+
+  # eksterne lenker
   - alias: aktivitetsplan
     resourceType: baseUrl
+  - alias: veiviserarbeidssoker
+    resourceType: baseUrl
+  - alias: veiledearbeidssoker
+    resourceType: baseUrl
+  - alias: tiltakinfo
+    resourceType: baseUrl
+  - alias: jobbsokerkompetanse
+    resourceType: baseUrl
+  - alias: dittnav.link
+    resourceType: baseUrl
+  - alias: syfofront
+    resourceType: baseUrl
+  - alias: veivisersosialhjelp
+    resourceType: baseUrl
+
 alertProfiles:
   - common-java-modules
 
