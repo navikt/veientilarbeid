@@ -16,7 +16,7 @@ class Dialog extends React.Component  {
                             alt="dialog-ikon"
                         />
                         <Systemtittel className="dialog__tittel">
-                            Oppdater CV-en og jobbprofilen din
+                            Dialog med veileder
                         </Systemtittel>
                     </div>
                 </LenkepanelBase>
