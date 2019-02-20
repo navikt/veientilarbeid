@@ -8,6 +8,10 @@ export const seVeientilarbeid = (erSykmeldtMedArbeidsgiver: boolean) => {
     logEvent(`${domene}.seveientilarbeid`, {}, {erSykmeldtMedArbeidsgiver});
 };
 
+export const visInfoOmDagpenger = () => {
+    logEvent(`${domene}.visinfoomdagpenger`, {}, {});
+};
+
 export const klikkPaSokLedigeStillinger = (sokeKnappType: string) => {
     logEvent(`${domene}.sokledigestillinger`, {}, {sokeKnappType});
 };

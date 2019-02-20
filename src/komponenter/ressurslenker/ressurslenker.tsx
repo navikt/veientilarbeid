@@ -11,7 +11,7 @@ import './ressurslenker.less';
 
 const VEIVISER2_URL = '/veiviserarbeidssoker/';
 const JOBBSOKERKOMPETANSE_RESULTAT_URL = '/jobbsokerkompetanse/resultatside';
-const MIA_URL = '/mia/';
+const MIA_URL = 'https://mia.nav.no';
 
 interface StateProps {
     harJobbbsokerbesvarelse: boolean;
