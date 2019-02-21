@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { FormattedMessage } from 'react-intl';
 import LenkepanelBase from 'nav-frontend-lenkepanel';
 import { Systemtittel } from 'nav-frontend-typografi';
 import './meldekort-ny.less';
@@ -18,7 +19,7 @@ class Meldekort extends React.Component  {
                             alt="meldekort-ikon"
                         />
                         <Systemtittel className="meldekort__tittel">
-                            Send meldekort
+                            <FormattedMessage id="meldekort-ny"/>
                         </Systemtittel>
                     </div>
                 </LenkepanelBase>

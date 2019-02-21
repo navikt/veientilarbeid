@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { FormattedMessage } from 'react-intl';
 import LenkepanelBase from 'nav-frontend-lenkepanel';
 import { Systemtittel } from 'nav-frontend-typografi';
 import './dialog.less';
@@ -16,7 +17,7 @@ class Dialog extends React.Component  {
                             alt="dialog-ikon"
                         />
                         <Systemtittel className="dialog__tittel">
-                            Dialog med veileder
+                            <FormattedMessage id="dialog"/>
                         </Systemtittel>
                     </div>
                 </LenkepanelBase>
