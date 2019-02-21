@@ -5,7 +5,7 @@ import { AppState } from './reducer';
 import { selectSykmeldtInfo, State as SykmeldtInfoState } from './ducks/sykmeldt-info';
 import StartsideSykmeldt from './sider/startside-sykmeldt/startside-sykmeldt';
 import StartsideOrdinaer from './sider/startside-ordinaer/startside-ordinaer';
-import { Redirect, Route, RouteComponentProps, Switch, withRouter } from 'react-router';
+import { Route, RouteComponentProps, Switch, withRouter } from 'react-router';
 import { seVeientilarbeid } from './metrics';
 
 interface StateProps {
@@ -24,24 +24,23 @@ class Routes extends React.Component<AllProps> {
     render() {
         const erSykmeldtMedArbeidsgiver = this.props.sykmeldtInfo.data.erSykmeldtMedArbeidsgiver;
         const { location } = this.props;
-        const search = location.search;
         const path = location.pathname;
 
-        if (erSykmeldtMedArbeidsgiver === true) {
-            return (
-                <Switch>
-                    <Route path={path} exact={true} component={StartsideSykmeldt}/>
-                    <Redirect to={path + search}/>
-                </Switch>
-            );
-        } else {
-            return (
-                <SjekkOppfolging>
-                    <Route path={path} exact={true} component={StartsideOrdinaer}/>
-                    <Redirect to={path + search}/>
-                </SjekkOppfolging>
-            );
-        }
+        const Startside = erSykmeldtMedArbeidsgiver === true ? StartsideSykmeldt : StartsideOrdinaer;
+
+        return (
+            <Switch>
+                <Route
+                    path={path}
+                    exact={true}
+                    component={() =>
+                        <SjekkOppfolging>
+                            <Startside/>
+                        </SjekkOppfolging>
+                    }
+                />
+            </Switch>
+        );
     }
 }
 
