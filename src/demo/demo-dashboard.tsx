@@ -47,7 +47,6 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
             'IVURD': 'Ikke fastsatt',
         };
 
-        // TODO Test for å sjekke at dashboard har rendret
         return (
             <section className="demodashboard">
                 <Innholdstittel className="blokk-s">
