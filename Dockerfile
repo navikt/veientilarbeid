@@ -17,4 +17,3 @@ COPY --from=node-builder /demo /app/demo
 
 ADD decorator.yaml /decorator.yaml
 
-ENV OIDC_LOGIN_URL /veilarbstepup/oidc
