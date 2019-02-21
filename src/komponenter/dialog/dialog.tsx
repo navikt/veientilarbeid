@@ -9,7 +9,7 @@ class Dialog extends React.Component  {
     render() {
         return (
             <section className="dialog">
-                <LenkepanelBase href="./aktivitetsplan/dialog" tittelProps="undertittel" border={true}>
+                <LenkepanelBase href="/aktivitetsplan/dialog" tittelProps="undertittel" border={true}>
                     <div className="dialog__innhold">
                         <img
                             src={dialogIkon}
