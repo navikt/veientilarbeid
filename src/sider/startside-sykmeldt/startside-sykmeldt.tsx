@@ -5,6 +5,7 @@ import OkonomiRad from './okonomi-rad/okonomi-rad';
 import './startside-sykmeldt.less';
 import AapRad from './aap-rad/aap-rad';
 import Aktivitetsplan from '../../komponenter/aktivitetsplan/aktivitetsplan';
+import Dialog from '../../komponenter/dialog/dialog';
 
 const StartsideSykmeldt = () => {
     return (
@@ -16,6 +17,7 @@ const StartsideSykmeldt = () => {
                 <section className="startside-sykmeldt--rad">
                     <div className="startside-sykmeldt--rad-innhold">
                         <Aktivitetsplan/>
+                        <Dialog/>
                     </div>
                 </section>
 

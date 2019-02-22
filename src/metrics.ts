@@ -24,6 +24,10 @@ export const gaTilAktivitetsplan = () => {
     logEvent(`${domene}.gatilaktivitetsplan`, {}, {});
 };
 
+export const gaTilDialog = () => {
+    logEvent(`${domene}.gatildialog`, {}, {});
+};
+
 export const gaTilMeldekort = () => {
     logEvent(`${domene}.gatilmeldekort`, {}, {});
 };

@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import ReaktiveringMelding from '../../komponenter/reaktivering-melding';
 import Aktivitetsplan from '../../komponenter/aktivitetsplan/aktivitetsplan';
 import Meldekort from '../../komponenter/meldekort/meldekort';
+import Dialog from '../../komponenter/dialog/dialog';
 import Ressurslenker from '../../komponenter/ressurslenker/ressurslenker';
 import Tiltakinfo from '../../komponenter/tiltakinfo/tiltakinfo';
 import Dagpenger from '../../komponenter/dagpenger/dagpenger';
@@ -35,6 +36,7 @@ class StartsideOrdinaer extends React.Component<StateProps> {
                 <main className="innhold">
                     <ReaktiveringMelding/>
                     <Aktivitetsplan/>
+                    <Dialog/>
                     <Meldekort/>
                     <StillingSok/>
                     <Ressurslenker/>
