@@ -45,7 +45,7 @@ class Dialog extends React.Component<StateProps>  {
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
-    antallUlesteDialoger: state.ulesteDialoger.antallUlesteDialoger
+    antallUlesteDialoger: state.ulesteDialoger.data.antallUlesteDialoger
 });
 
 export default connect(mapStateToProps)(Dialog);

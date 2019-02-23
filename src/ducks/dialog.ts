@@ -2,20 +2,21 @@ import {
     ActionType, Handling, HentUlesteDialogerFEILETAction, HentUlesteDialogerOKAction, HentUlesteDialogerPENDINGAction,
 } from './actions';
 import { Dispatch } from '../dispatch-type';
-import { doThenDispatch } from './api-utils';
 import { hentUlesteDialogerFetch, DataElement, STATUS } from './api';
+import { doThenDispatch } from './api-utils';
 
 export interface State extends DataElement {
     data: Data;
-    antallUlesteDialoger: number;
 }
 
 export interface Data {
+    antallUlesteDialoger: number;
 }
 
 const initialState: State = {
-    data: {},
-    antallUlesteDialoger: 0,
+    data: {
+        antallUlesteDialoger: 0
+    },
     status: STATUS.NOT_STARTED
 };
 
