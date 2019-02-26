@@ -30,7 +30,6 @@ export const gaTilDialog = () => {
 
 export const loggeUlesteDialoger = (antall: number) => {
     logEvent(`${domene}.loggeulestedialoger`, {}, {antall});
-    console.log(antall);
 };
 
 export const gaTilMeldekort = () => {
