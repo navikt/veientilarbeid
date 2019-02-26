@@ -6,14 +6,13 @@ ADD / /source
 ENV CI=true
 WORKDIR /source
 
-RUN npm ci && npm run build:demo
-RUN cp -r /source/build /demo
+RUN npm ci
 RUN npm run build
 
 FROM docker.adeo.no:5000/pus/decorator
 ENV APPLICATION_NAME=veientilarbeid
 COPY --from=node-builder /source/build /app
-COPY --from=node-builder /demo /app/demo
+COPY --from=node-builder /source/build/index.html /app/demo/index.html
 
 ADD decorator.yaml /decorator.yaml
 

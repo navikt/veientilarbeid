@@ -10,7 +10,6 @@
     "build": "npm-run-all -s build:tekster build:ts",
     "build:ts": "react-scripts-ts build",
     "build:tekster": "react-intl-bundler --no-lookup src/tekster src/tekster",
-    "build:demo": "node scripts/predemo.js && cross-env REACT_APP_MOCK=true npm run build:ts && node scripts/postdemo.js",
     "lint": "tslint ./src/**/*.ts*",
     "lint:fix": "tslint ./src/**/*.ts* --fix",
     "test": "npm run build:tekster && react-scripts-ts test --env=jsdom",
