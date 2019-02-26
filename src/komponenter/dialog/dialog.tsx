@@ -7,15 +7,19 @@ import { AppState } from '../../reducer';
 import './dialog.less';
 import dialogIkon from './dialog.svg';
 import { gaTilDialog } from '../../metrics';
+import { loggeUlesteDialoger } from '../../metrics';
 
 interface StateProps {
     antallUlesteDialoger: number;
 }
 
 class Dialog extends React.Component<StateProps>  {
-    render() {
-        const { antallUlesteDialoger } = this.props;
 
+    componentDidMount() {
+        loggeUlesteDialoger(this.props.antallUlesteDialoger);
+    }
+
+    render() {
         const linkCreator = (props: {}) => {
           return <a onClick={gaTilDialog} {...props}/>;
         };
@@ -35,7 +39,7 @@ class Dialog extends React.Component<StateProps>  {
                             alt="dialog-ikon"
                         />
                         <Systemtittel className="dialog__tittel">
-                            {antallUlesteDialoger}<FormattedMessage id="dialog"/>
+                            <FormattedMessage id="dialog"/>
                         </Systemtittel>
                     </div>
                 </LenkepanelBase>
