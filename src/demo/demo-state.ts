@@ -2,7 +2,7 @@ import { JSONObject } from 'yet-another-fetch-mock';
 
 export function erDemo(): boolean {
     const path: string = window.location.pathname;
-    return path.includes('/veientilarbeid/demo');
+    return path.includes('/veientilarbeid/demo/index.html');
 }
 
 export enum DemoData {
