@@ -5,17 +5,13 @@ import { Dispatch } from '../dispatch-type';
 import { doThenDispatch } from './api-utils';
 import { hentFeatureTogglesFetch, DataElement, STATUS } from './api';
 
-export const demoToggleKey = 'veientilarbeid.demo';
-
 export interface FeatureToggles {
-    [demoToggleKey]: boolean;
 }
 
 export type FeatureToggleState = FeatureToggles & DataElement;
 
 const initialState: FeatureToggleState = {
     status: STATUS.NOT_STARTED,
-    [demoToggleKey]: false,
 };
 
 export default function reducer(state: FeatureToggleState = initialState, action: Handling): FeatureToggleState {
@@ -30,8 +26,7 @@ export default function reducer(state: FeatureToggleState = initialState, action
         case ActionType.FEATURE_TOGGLES_OK: {
             return {
                 ...state,
-                status: STATUS.OK,
-                [demoToggleKey]: action.unleash[demoToggleKey]
+                status: STATUS.OK
             };
         }
         default:
@@ -41,7 +36,7 @@ export default function reducer(state: FeatureToggleState = initialState, action
 
 export function hentFeatureToggles(): (dispatch: Dispatch) => Promise<void> {
     return doThenDispatch<FeatureToggles>(
-        () => hentFeatureTogglesFetch([demoToggleKey]), {
+        () => hentFeatureTogglesFetch([]), {
         ok: hentFeatureTogglesOk,
         feilet: hentFeatureTogglesFeilet,
         pending: hentFeatureTogglesPending,

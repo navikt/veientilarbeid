@@ -2,7 +2,6 @@ import oppfolgingResponse from './oppfolging-mock';
 import {
     FEATURE_URL, JOBBSOKERBESVARELSE_URL, SERVICEGRUPPE_URL, STARTREGISTRERING_URL, VEILARBOPPFOLGING_URL
 } from '../ducks/api';
-import featureTogglesMock from './feature-toggles-mock';
 import servicegruppeResponse from './servicegruppe-mock';
 import sykmeldtInfoResponse from './sykmeldt-info-mock';
 import jobbsokerbesvarelseResponse from './jobbsokerbesvarelse-mock';
@@ -33,8 +32,8 @@ if (MOCK_OPPFOLGING) {
 }
 
 if (MOCK_FEATURE_TOGGLES) {
-    fetchMock.get(`express:${FEATURE_URL}(.*)`, featureTogglesMock);
-    fetchMock.get(`${FEATURE_URL}(.*)`, featureTogglesMock);
+    fetchMock.get(`express:${FEATURE_URL}(.*)`, {});
+    fetchMock.get(`${FEATURE_URL}(.*)`, {});
 }
 
 if (MOCK_SERVICEGRUPPE) {
