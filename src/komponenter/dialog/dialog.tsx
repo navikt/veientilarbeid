@@ -2,13 +2,24 @@ import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 import LenkepanelBase from 'nav-frontend-lenkepanel';
 import { Systemtittel } from 'nav-frontend-typografi';
+import { connect } from 'react-redux';
+import { AppState } from '../../reducer';
 import './dialog.less';
 import dialogIkon from './dialog.svg';
 import { gaTilDialog } from '../../metrics';
+import { loggeUlesteDialoger } from '../../metrics';
 
-class Dialog extends React.Component  {
+interface StateProps {
+    antallUlesteDialoger: number;
+}
+
+class Dialog extends React.Component<StateProps>  {
+
+    componentDidMount() {
+        loggeUlesteDialoger(this.props.antallUlesteDialoger);
+    }
+
     render() {
-
         const linkCreator = (props: {}) => {
           return <a onClick={gaTilDialog} {...props}/>;
         };
@@ -37,4 +48,8 @@ class Dialog extends React.Component  {
     }
 }
 
-export default Dialog;
+const mapStateToProps = (state: AppState): StateProps => ({
+    antallUlesteDialoger: state.ulesteDialoger.data.antallUlesteDialoger
+});
+
+export default connect(mapStateToProps)(Dialog);

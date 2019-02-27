@@ -2,6 +2,7 @@ import { Data as OppfolgingData } from './oppfolging';
 import { Data as ServicegruppeData } from './servicegruppe';
 import { Data as JobbsokerbesvarelseData } from './jobbsokerbesvarelse';
 import { Data as SykmeldtInfoData } from './sykmeldt-info';
+import { Data as UlesteDialogerData } from './dialog';
 import { FeatureToggles } from './feature-toggles';
 
 export enum ActionType {
@@ -21,6 +22,9 @@ export enum ActionType {
     HENT_SYKMELDT_INFO_OK = 'HENT_SYKMELDT_INFO_OK',
     HENT_SYKMELDT_INFO_PENDING = 'HENT_SYKMELDT_INFO_PENDING',
     HENT_SYKMELDT_INFO_FEILET = 'HENT_SYKMELDT_INFO_FEILET',
+    HENT_ULESTE_DIALOGER_OK = 'HENT_ULESTE_DIALOGER_OK',
+    HENT_ULESTE_DIALOGER_PENDING = 'HENT_ULESTE_DIALOGER_PENDING',
+    HENT_ULESTE_DIALOGER_FEILET = 'HENT_ULESTE_DIALOGER_FEILET',
 }
 
 export interface FeatureTogglesOKAction {
@@ -92,6 +96,19 @@ export interface HentSykmeldtInfoFEILETAction {
     type: ActionType.HENT_SYKMELDT_INFO_FEILET;
 }
 
+export interface HentUlesteDialogerOKAction {
+    type: ActionType.HENT_ULESTE_DIALOGER_OK;
+    data: UlesteDialogerData;
+}
+
+export interface HentUlesteDialogerPENDINGAction {
+    type: ActionType.HENT_ULESTE_DIALOGER_PENDING;
+}
+
+export interface HentUlesteDialogerFEILETAction {
+    type: ActionType.HENT_ULESTE_DIALOGER_FEILET;
+}
+
 export type Handling = FeatureTogglesOKAction
     | FeatureTogglesPENDINGAction
     | FeatureTogglesFEILETAction
@@ -107,4 +124,7 @@ export type Handling = FeatureTogglesOKAction
     | SettJobbsokerbesvarelseOKAction
     | HentSykmeldtInfoOKAction
     | HentSykmeldtInfoPENDINGAction
-    | HentSykmeldtInfoFEILETAction;
+    | HentSykmeldtInfoFEILETAction
+    | HentUlesteDialogerOKAction
+    | HentUlesteDialogerPENDINGAction
+    | HentUlesteDialogerFEILETAction;

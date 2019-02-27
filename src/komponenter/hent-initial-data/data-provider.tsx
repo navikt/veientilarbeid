@@ -7,6 +7,7 @@ import Feilmelding from '../feilmeldinger/feilmelding';
 import { State as OppfolgingState } from '../../ducks/oppfolging';
 import { hentServicegruppe, State as ServicegruppeState } from '../../ducks/servicegruppe';
 import { hentSykmeldtInfo, State as SykmeldtInfodataState } from '../../ducks/sykmeldt-info';
+import { hentUlesteDialoger, State as UlesteDialogerState } from '../../ducks/dialog';
 import {
     hentJobbsokerbesvarelse, settJobbsokerbesvarelseOK, State as JobbsokerbesvarelseState,
 } from '../../ducks/jobbsokerbesvarelse';
@@ -20,6 +21,7 @@ interface StateProps {
     servicegruppe: ServicegruppeState;
     sykmeldtInfo: SykmeldtInfodataState;
     jobbsokerbesvarelse: JobbsokerbesvarelseState;
+    ulesteDialoger: UlesteDialogerState;
 }
 
 interface DispatchProps {
@@ -27,6 +29,7 @@ interface DispatchProps {
     hentSykmeldtInfo: () => void;
     hentJobbsokerbesvarelse: () => void;
     settJobbsokerbesvarelseOK: () => void;
+    hentUlesteDialoger: () => void;
 }
 
 type Props = StateProps & DispatchProps & OwnProps;
@@ -42,13 +45,14 @@ class DataProvider extends React.Component<Props> {
             this.props.settJobbsokerbesvarelseOK();
         }
         this.props.hentServicegruppe();
+        this.props.hentUlesteDialoger();
 
     }
 
     render() {
-        const { children, oppfolging, servicegruppe, sykmeldtInfo, jobbsokerbesvarelse } = this.props;
+        const { children, oppfolging, servicegruppe, sykmeldtInfo, jobbsokerbesvarelse, ulesteDialoger } = this.props;
 
-        const avhengigheter: any[] = [oppfolging, sykmeldtInfo, servicegruppe, jobbsokerbesvarelse]; // tslint:disable-line
+        const avhengigheter: any[] = [oppfolging, sykmeldtInfo, servicegruppe, jobbsokerbesvarelse, ulesteDialoger]; // tslint:disable-line
 
         return (
             <Innholdslaster
@@ -67,13 +71,15 @@ const mapStateToProps = (state: AppState): StateProps => ({
     servicegruppe: state.servicegruppe,
     sykmeldtInfo: state.sykmeldtInfodata,
     jobbsokerbesvarelse: state.jobbsokerbesvarelse,
+    ulesteDialoger: state.ulesteDialoger,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
     hentServicegruppe: () => hentServicegruppe()(dispatch),
     hentSykmeldtInfo: () => hentSykmeldtInfo()(dispatch),
     hentJobbsokerbesvarelse: () => hentJobbsokerbesvarelse()(dispatch),
-    settJobbsokerbesvarelseOK: () => dispatch(settJobbsokerbesvarelseOK())
+    settJobbsokerbesvarelseOK: () => dispatch(settJobbsokerbesvarelseOK()),
+    hentUlesteDialoger: () => hentUlesteDialoger()(dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DataProvider);
