@@ -4,10 +4,11 @@ import LenkepanelBase from 'nav-frontend-lenkepanel';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { connect } from 'react-redux';
 import { AppState } from '../../reducer';
-import './dialog.less';
-import dialogIkon from './dialog.svg';
 import { gaTilDialog } from '../../metrics';
 import { loggeUlesteDialoger } from '../../metrics';
+import DialogFill from './dialog-fill';
+
+import './dialog.less';
 
 interface StateProps {
     antallUlesteDialoger: number;
@@ -33,11 +34,7 @@ class Dialog extends React.Component<StateProps>  {
                     border={true}
                 >
                     <div className="dialog__innhold">
-                        <img
-                            src={dialogIkon}
-                            className="dialog__ikon"
-                            alt="dialog-ikon"
-                        />
+                        <DialogFill messagesCount={this.props.antallUlesteDialoger}/>
                         <Systemtittel className="dialog__tittel">
                             <FormattedMessage id="dialog"/>
                         </Systemtittel>
