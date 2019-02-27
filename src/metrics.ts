@@ -1,5 +1,4 @@
 const w = (window as any); // tslint:disable-line:no-any
-import { erDemo } from './mock/utils';
 
 const logEvent = w.frontendlogger ? w.frontendlogger.event : () => { return; };
 
