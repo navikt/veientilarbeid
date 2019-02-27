@@ -1,4 +1,10 @@
-import { JOBBSOKERBESVARELSE_URL, SERVICEGRUPPE_URL, STARTREGISTRERING_URL, VEILARBOPPFOLGING_URL } from '../ducks/api';
+import {
+    FEATURE_URL,
+    JOBBSOKERBESVARELSE_URL,
+    SERVICEGRUPPE_URL,
+    STARTREGISTRERING_URL,
+    VEILARBOPPFOLGING_URL
+} from '../ducks/api';
 import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 import { hentJsk, hentServicegruppe, hentSykmeldtMedArbeidsgiver } from './demo-state';
 
@@ -30,3 +36,9 @@ fetchMock.get(STARTREGISTRERING_URL, {
 });
 
 fetchMock.get(JOBBSOKERBESVARELSE_URL, hentJsk());
+
+// For kjøring av demo lokalt
+if (process.env.REACT_APP_MOCK) {
+    fetchMock.get(`express:${FEATURE_URL}(.*)`, {});
+    fetchMock.get(`${FEATURE_URL}(.*)`, {});
+}
