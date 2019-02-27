@@ -17,14 +17,14 @@ const fetchMock = FetchMock.configure({
     enableFallback: true,
     middleware: MiddlewareUtils.combine(
         MiddlewareUtils.delayMiddleware(200),
-        MiddlewareUtils.failurerateMiddleware(0.02),
+        MiddlewareUtils.failurerateMiddleware(0.00),
         loggingMiddleware,
     ),
 });
 
 fetchMock.get(`${VEILARBOPPFOLGING_URL}/oppfolging`, {
     underOppfolging: true,
-    kanReaktiveres: true,
+    kanReaktiveres: false,
 });
 
 fetchMock.get(SERVICEGRUPPE_URL, {
