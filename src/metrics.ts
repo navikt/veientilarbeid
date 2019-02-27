@@ -28,6 +28,10 @@ export const gaTilDialog = () => {
     logEvent(`${domene}.gatildialog`, {}, {});
 };
 
+export const loggeUlesteDialoger = (antall: number) => {
+    logEvent(`${domene}.loggeulestedialoger`, {}, {antall});
+};
+
 export const gaTilMeldekort = () => {
     logEvent(`${domene}.gatilmeldekort`, {}, {});
 };
