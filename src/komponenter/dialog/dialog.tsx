@@ -7,6 +7,7 @@ import { AppState } from '../../reducer';
 import { gaTilDialog } from '../../metrics';
 import { loggeUlesteDialoger } from '../../metrics';
 import DialogFill from './dialog-fill';
+import dialogLine from './dialog-line.svg';
 
 import './dialog.less';
 
@@ -25,6 +26,8 @@ class Dialog extends React.Component<StateProps>  {
           return <a onClick={gaTilDialog} {...props}/>;
         };
 
+        const tittelClass = this.props.antallUlesteDialoger > 0 ? 'dialog__tittel__notification' : 'dialog__tittel';
+
         return (
             <section className="dialog">
                 <LenkepanelBase
@@ -34,8 +37,15 @@ class Dialog extends React.Component<StateProps>  {
                     border={true}
                 >
                     <div className="dialog__innhold">
-                        <DialogFill messagesCount={this.props.antallUlesteDialoger}/>
-                        <Systemtittel className="dialog__tittel">
+                        {this.props.antallUlesteDialoger  > 0 ?
+                            <DialogFill messagesCount={this.props.antallUlesteDialoger}/> :
+                            <img
+                                src={dialogLine}
+                                className="dialog__ikon"
+                                alt="dialog-ikon"
+                            />
+                        }
+                        <Systemtittel className={tittelClass}>
                             <FormattedMessage id="dialog"/>
                         </Systemtittel>
                     </div>

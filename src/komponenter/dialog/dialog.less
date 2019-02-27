@@ -8,7 +8,6 @@
     }
 
     &__innhold {
-        margin-top: -0.25rem;
         padding: 0.5rem;
         display: flex;
         flex-direction: row;
@@ -16,6 +15,20 @@
 
     &__tittel {
         display: inline-block;
-        margin: 0.3rem 0 0 0.7rem;
+
+        &__notification {
+            margin: 0.3rem 0 0 -1rem;
+        }
+    }
+
+
+    &__ikon {
+        display: inline-block;
+        margin-right: 1.5rem;
+
+        &__notification {
+            font-size: 13px;
+            font-weight: 400;
+        }
     }
 }
