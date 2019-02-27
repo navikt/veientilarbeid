@@ -1,13 +1,9 @@
 const w = (window as any); // tslint:disable-line:no-any
+import { erDemo } from './demo/demo-state';
 
 const logEvent = w.frontendlogger ? w.frontendlogger.event : () => { return; };
 
 const domene = 'veientilarbeid';
-
-function erDemo(): boolean {
-    const path: string = window.location.pathname;
-    return path.includes('/demo/index.html');
-}
 
 export const seVeientilarbeid = (erSykmeldtMedArbeidsgiver: boolean) => {
     if (!erDemo()) {
