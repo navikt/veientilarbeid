@@ -1,8 +1,11 @@
 import {
-    FEATURE_URL, JOBBSOKERBESVARELSE_URL, SERVICEGRUPPE_URL, STARTREGISTRERING_URL, VEILARBOPPFOLGING_URL
+    FEATURE_URL,
+    JOBBSOKERBESVARELSE_URL,
+    SERVICEGRUPPE_URL,
+    STARTREGISTRERING_URL,
+    VEILARBOPPFOLGING_URL
 } from '../ducks/api';
 import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
-import { demoToggleKey } from '../ducks/feature-toggles';
 import { hentJsk, hentServicegruppe, hentSykmeldtMedArbeidsgiver } from './demo-state';
 
 const loggingMiddleware: Middleware = (request, response) => {
@@ -14,21 +17,14 @@ const fetchMock = FetchMock.configure({
     enableFallback: true,
     middleware: MiddlewareUtils.combine(
         MiddlewareUtils.delayMiddleware(200),
-        MiddlewareUtils.failurerateMiddleware(0.02),
+        MiddlewareUtils.failurerateMiddleware(0.00),
         loggingMiddleware,
     ),
 });
 
 fetchMock.get(`${VEILARBOPPFOLGING_URL}/oppfolging`, {
     underOppfolging: true,
-    kanReaktiveres: true,
-});
-
-fetchMock.get(`express:${FEATURE_URL}(.*)`, {
-    [demoToggleKey]: false,
-});
-fetchMock.get(`${FEATURE_URL}(.*)`, {
-    [demoToggleKey]: true,
+    kanReaktiveres: false,
 });
 
 fetchMock.get(SERVICEGRUPPE_URL, {
@@ -40,3 +36,9 @@ fetchMock.get(STARTREGISTRERING_URL, {
 });
 
 fetchMock.get(JOBBSOKERBESVARELSE_URL, hentJsk());
+
+// For kjøring av demo lokalt
+if (process.env.REACT_APP_MOCK) {
+    fetchMock.get(`express:${FEATURE_URL}(.*)`, {});
+    fetchMock.get(`${FEATURE_URL}(.*)`, {});
+}
