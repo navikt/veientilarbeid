@@ -1,7 +1,7 @@
 @import '../../../node_modules/nav-frontend-core/less/_variabler';
 
 .dialog {
-    margin: 1rem 0 0 0;
+    margin-top: 1rem;
 
     .lenkepanel {
         border-radius: 8px;
@@ -11,24 +11,16 @@
         padding: 0.5rem;
         display: flex;
         flex-direction: row;
+        align-items: center;
     }
-
-    &__tittel {
-        display: inline-block;
-
-        &__notification {
-            margin: 0.3rem 0 0 -1rem;
-        }
-    }
-
 
     &__ikon {
-        display: inline-block;
         margin-right: 1.5rem;
+        font-size: 13px;
+        font-weight: 400;
 
-        &__notification {
-            font-size: 13px;
-            font-weight: 400;
+        &.notification {
+            margin-right: 0.5rem;
         }
     }
 }

@@ -26,8 +26,6 @@ class Dialog extends React.Component<StateProps>  {
           return <a onClick={gaTilDialog} {...props}/>;
         };
 
-        const tittelClass = this.props.antallUlesteDialoger > 0 ? 'dialog__tittel__notification' : 'dialog__tittel';
-
         return (
             <section className="dialog">
                 <LenkepanelBase
@@ -45,7 +43,7 @@ class Dialog extends React.Component<StateProps>  {
                                 alt="dialog-ikon"
                             />
                         }
-                        <Systemtittel className={tittelClass}>
+                        <Systemtittel className="dialog__tittel">
                             <FormattedMessage id="dialog"/>
                         </Systemtittel>
                     </div>
