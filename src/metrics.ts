@@ -12,12 +12,8 @@ export const visInfoOmDagpenger = () => {
     logEvent(`${domene}.visinfoomdagpenger`, {}, {});
 };
 
-export const klikkPaSokLedigeStillinger = (sokeKnappType: string) => {
-    logEvent(`${domene}.sokledigestillinger`, {}, {sokeKnappType});
-};
-
-export const logInputSokLedigeStillinger = (inputSokefelt: string) => {
-    logEvent(`${domene}.inputsokledigestillinger`, {inputSokefelt}, {});
+export const klikkPaSokLedigeStillinger = () => {
+    logEvent(`${domene}.sokledigestillinger`, {}, {});
 };
 
 export const gaTilAktivitetsplan = () => {
@@ -34,6 +30,10 @@ export const gaTilMeldekort = () => {
 
 export const gaTilMIA = () => {
     logEvent(`${domene}.gatilmia`, {}, {});
+};
+
+export const gaTilCV = () => {
+    logEvent(`${domene}.gatilcv`, {}, {});
 };
 
 export const gaTilJobbsokerkompetanse = () => {
