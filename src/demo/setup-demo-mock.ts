@@ -3,10 +3,11 @@ import {
     JOBBSOKERBESVARELSE_URL,
     SERVICEGRUPPE_URL,
     STARTREGISTRERING_URL,
-    VEILARBOPPFOLGING_URL
+    VEILARBOPPFOLGING_URL,
+    ULESTEDIALOGER_URL
 } from '../ducks/api';
 import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
-import { hentJsk, hentServicegruppe, hentSykmeldtMedArbeidsgiver } from './demo-state';
+import { hentJsk, hentServicegruppe, hentSykmeldtMedArbeidsgiver, hentUlesteDialoger } from './demo-state';
 
 const loggingMiddleware: Middleware = (request, response) => {
     console.log(request.url, request.method, response); // tslint:disable-line:no-console
@@ -22,6 +23,12 @@ const fetchMock = FetchMock.configure({
     ),
 });
 
+const randomUlesteDialoger = () => {
+    const min = 1;
+    const max = 99;
+    return Math.floor(min + (Math.random() * (max - min)));
+};
+
 fetchMock.get(`${VEILARBOPPFOLGING_URL}/oppfolging`, {
     underOppfolging: true,
     kanReaktiveres: false,
@@ -33,6 +40,10 @@ fetchMock.get(SERVICEGRUPPE_URL, {
 
 fetchMock.get(STARTREGISTRERING_URL, {
     erSykmeldtMedArbeidsgiver: hentSykmeldtMedArbeidsgiver()
+});
+
+fetchMock.get(ULESTEDIALOGER_URL, {
+    antallUlesteDialoger: hentUlesteDialoger() ? randomUlesteDialoger() : 0
 });
 
 fetchMock.get(JOBBSOKERBESVARELSE_URL, hentJsk());

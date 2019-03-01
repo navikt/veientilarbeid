@@ -9,6 +9,7 @@ export enum DemoData {
     SERVICEGRUPPE = 'innsatsgruppe',
     SYKMELDT_MED_ARBEIDSGIVER = 'sykmeldtMedArbeidsGiver',
     JSK = 'jsk',
+    ULESTE_DIALOGER = 'ulesteDialoger',
 }
 
 const hentFraLocalStorage = (key: string): string | null => {
@@ -37,6 +38,14 @@ export const hentSykmeldtMedArbeidsgiver = (): boolean => {
 
 export const settSykmeldtMedArbeidsgiver = (value: string) => {
     settILocalStorage(DemoData.SYKMELDT_MED_ARBEIDSGIVER, value);
+};
+
+export const hentUlesteDialoger = (): boolean => {
+    return hentFraLocalStorage(DemoData.ULESTE_DIALOGER) === 'true';
+};
+
+export const settUlesteDialoger = (value: string) => {
+    settILocalStorage(DemoData.ULESTE_DIALOGER, value);
 };
 
 export const hentJsk = (): JSONObject | null => {

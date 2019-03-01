@@ -7,6 +7,7 @@ import { SyntheticEvent } from 'react';
 import {
     DemoData, hentJsk,
     hentServicegruppe, hentSykmeldtMedArbeidsgiver,
+    hentUlesteDialoger, settUlesteDialoger,
     settJsk,
     settServicegruppe,
     settSykmeldtMedArbeidsgiver,
@@ -18,6 +19,7 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
     render() {
         const SYKMELDT_MED_ARBEIDSGIVER = DemoData.SYKMELDT_MED_ARBEIDSGIVER;
         const JSK = DemoData.JSK;
+        const ULESTE_DIALOGER = DemoData.ULESTE_DIALOGER;
 
         const { messages } = this.props.intl;
 
@@ -35,6 +37,8 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
                 } else {
                     slettJsk();
                 }
+            } else if (e.currentTarget.id === ULESTE_DIALOGER) {
+                settUlesteDialoger(`${e.currentTarget.checked}`);
             }
             window.location.reload();
         };
@@ -79,6 +83,11 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
                             id: SYKMELDT_MED_ARBEIDSGIVER
                         },
                         { label: messages['demo-jsk'], checked: !!hentJsk(), id: JSK },
+                        {
+                            label: messages['demo-dialog'],
+                            checked: hentUlesteDialoger(),
+                            id: ULESTE_DIALOGER
+                        },
                     ]}
                 />
             </section>
