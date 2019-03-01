@@ -1,47 +1,48 @@
 import * as React from 'react';
-import './lenkepanel-med-bilde.less';
+import './lenkepanel-med-ikon.less';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { FormattedMessage } from 'react-intl';
-import { klikkPaSokLedigeStillinger } from '../../metrics';
 import LenkepanelBase from 'nav-frontend-lenkepanel';
 
 interface Props {
     href: string;
     alt: string;
-    onClick?: () => void; // tslint:disable-line:no-any
+    onClick?: () => void;
     className?: string;
-
     ikon: any; // tslint:disable-line:no-any
+    lenketekst: string;
 }
 
-class LenkepanelMedBilde extends React.Component<Props> {
+class LenkepanelMedIkon extends React.Component<Props> {
     render() {
-        const {href, alt, onClick, className, onClick} = this.props;
+        const {href, alt, onClick, className, ikon, lenketekst} = this.props;
 
         const linkCreator = (props: {}) => {
-            return <a onClick={klikkPaSokLedigeStillinger} {...props}/>;
+            return <a onClick={onClick} {...props}/>;
         };
 
         return (
             <LenkepanelBase
+                className={className}
                 href={href}
                 tittelProps="undertittel"
-                linkCreator={() => linkCreator}
+                linkCreator={linkCreator}
                 border={true}
             >
                 <div className="lenkepanel__innhold">
-                    <img
-                        src={ikon}
-                        className="lenkepanel__ikon"
-                        alt="stillingsok-ikon"
-                    />
+                    <div className="lenkepanel__ikon">
+                        <img
+                            src={ikon}
+                            className="ikon"
+                            alt={alt}
+                        />
+                    </div>
                     <Systemtittel className="lenkepanel__tittel">
-                        <FormattedMessage id="stillingsok-overskrift"/>
+                        <FormattedMessage id={lenketekst}/>
                     </Systemtittel>
                 </div>
             </LenkepanelBase>
         );
     }
 }
-
-export default LenkepanelMedBilde;
+export default LenkepanelMedIkon;

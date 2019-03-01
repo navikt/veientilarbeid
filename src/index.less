@@ -29,19 +29,23 @@ body {
 }
 
 .innhold {
-    margin: 0 1rem;
     padding: 2rem 0 4rem;
 }
 
+.limit {
+    margin: 0 1rem;
+    padding: 0;
+}
+
 @media (min-width: @screen-sm-min) {
-    .innhold {
+    .limit {
         max-width: @tablet-width;
         margin: 0 auto;
     }
 }
 
 @media (min-width: @screen-md-min) {
-    .innhold {
+    .limit {
         max-width: @desktop-width;
     }
 }

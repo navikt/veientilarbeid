@@ -1,27 +1,14 @@
 @import '../../../node_modules/nav-frontend-core/less/_variabler';
 
-.lenkepanel-med-bilde {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    background-color: @navDypBlaLighten80;
+.lenkepanel {
     border-radius: 8px;
-    color: @navMorkGra;
-    text-decoration: none;
-    outline: none;
-    padding: 2rem;
 
     &__innhold {
-        width: 100%; // IE-fix
+        padding: 0.5rem;
+        display: flex;
+        flex-direction: row;
     }
-
-    &:hover {
-        box-shadow: 0 2px 1px 0 @grayIcon;
-        text-decoration: underline;
-    }
-
-    &:focus, &:active {
-        box-shadow: 0 0 0 3px @orangeFocus;
+    &__ikon {
+        margin-right: 1rem;
     }
 }
