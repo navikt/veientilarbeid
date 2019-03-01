@@ -10,12 +10,12 @@ export interface State extends DataElement {
 }
 
 export interface Data {
-    antallUlesteDialoger: number;
+    antallUleste: number;
 }
 
 const initialState: State = {
     data: {
-        antallUlesteDialoger: 0
+        antallUleste: 0
     },
     status: STATUS.NOT_STARTED
 };

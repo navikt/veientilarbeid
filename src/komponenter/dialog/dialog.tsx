@@ -12,13 +12,13 @@ import dialogLine from './dialog-line.svg';
 import './dialog.less';
 
 interface StateProps {
-    antallUlesteDialoger: number;
+    antallUleste: number;
 }
 
 class Dialog extends React.Component<StateProps>  {
 
     componentDidMount() {
-        loggeUlesteDialoger(this.props.antallUlesteDialoger);
+        loggeUlesteDialoger(this.props.antallUleste);
     }
 
     render() {
@@ -35,8 +35,8 @@ class Dialog extends React.Component<StateProps>  {
                     border={true}
                 >
                     <div className="dialog__innhold">
-                        {this.props.antallUlesteDialoger  > 0 ?
-                            <DialogFill messagesCount={this.props.antallUlesteDialoger}/> :
+                        {this.props.antallUleste  > 0 ?
+                            <DialogFill messagesCount={this.props.antallUleste}/> :
                             <img
                                 src={dialogLine}
                                 className="dialog__ikon"
@@ -54,7 +54,7 @@ class Dialog extends React.Component<StateProps>  {
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
-    antallUlesteDialoger: state.ulesteDialoger.data.antallUlesteDialoger
+    antallUleste: state.ulesteDialoger.data.antallUleste
 });
 
 export default connect(mapStateToProps)(Dialog);
