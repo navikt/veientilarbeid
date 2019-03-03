@@ -10,7 +10,6 @@ import FeatureToggleProvider from './komponenter/hent-initial-data/feature-toggl
 import OppfolgingProvider from './komponenter/hent-initial-data/oppfolging-provider';
 
 const store = getStore();
-const basename = '/veientilarbeid';
 
 class App extends React.Component {
     render() {
@@ -28,7 +27,7 @@ class App extends React.Component {
                             <DataProvider>
                                 {endreBrukerStatus}
                                 <main id="maincontent" role="main" tabIndex={-1}>
-                                    <Router basename={basename}>
+                                    <Router>
                                         <Routes />
                                     </Router>
                                 </main>
