@@ -12,7 +12,7 @@ export const metricsMiddleWare = (store: any) => (next: any) => (action: any) =>
         {
             type: ActionType.FEATURE_TOGGLES_FEILET,
             eventnavn: 'veientilarbeid.feil.featuretoggle',
-            apikall: 'GET /veientilarbeid/api/feature'
+            apikall: 'GET /api/feature'
         },
         {
             type: ActionType.HENT_SERVICEGRUPPE_FEILET,
