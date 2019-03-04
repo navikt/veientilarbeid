@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../../reducer';
-import { gaTilJobbsokerkompetanse } from '../../metrics';
+import { gaTilJobbsokerkompetanse, gaTilVeiviserarbeidssoker } from '../../metrics';
 import jobbsokertipsIkon from './svg/jobbsokertips.svg';
 import LenkepanelMedIkon from '../lenkepanel-med-bilde/lenkepanel-med-ikon';
 
@@ -16,16 +16,21 @@ class Ressurslenker extends React.Component<StateProps> {
     render () {
         const {harJobbbsokerbesvarelse} = this.props;
         const URL = harJobbbsokerbesvarelse ? JOBBSOKERKOMPETANSE_RESULTAT_URL : VEIVISER2_URL;
+
         const lenketekst = harJobbbsokerbesvarelse
             ? 'jobbsokertips-overskrift-har-besvarelse'
             : 'jobbsokertips-overskrift-har-ikke-besvarelse';
+
+        const gaTil = harJobbbsokerbesvarelse
+            ? gaTilJobbsokerkompetanse
+            : gaTilVeiviserarbeidssoker;
 
         return (
             <div className="jobbsokertips">
                 <LenkepanelMedIkon
                     href={URL}
                     alt=""
-                    onClick={gaTilJobbsokerkompetanse}
+                    onClick={gaTil}
                     ikon={jobbsokertipsIkon}
                     lenketekst={lenketekst}
                 />

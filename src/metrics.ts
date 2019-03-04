@@ -61,7 +61,13 @@ export const gaTilCV = () => {
 
 export const gaTilJobbsokerkompetanse = () => {
     if (!erDemo()) {
-        logEvent(`${domene}.gatiljobbsokerkompetanse`, {}, {});
+        logEvent(`${domene}.gatiljobbsokerkompetanseresultat`, {}, {});
+    }
+};
+
+export const gaTilVeiviserarbeidssoker = () => {
+    if (!erDemo()) {
+        logEvent(`${domene}.gatilveiviserarbeidssoker`, {}, {});
     }
 };
 
