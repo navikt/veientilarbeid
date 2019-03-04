@@ -33,7 +33,7 @@ export const requestConfig: RequestInit = {
 };
 
 export const VEILARBOPPFOLGING_URL = '/veilarboppfolging/api',
-             FEATURE_URL = '/veientilarbeid/api/feature',
+             FEATURE_URL = '/api/feature',
              SERVICEGRUPPE_URL = '/veilarbtiltakinfo/api/oppfolgingsstatus',
              STARTREGISTRERING_URL = '/veilarbregistrering/api/startregistrering',
              JOBBSOKERBESVARELSE_URL = '/veilarbjobbsokerkompetanse/api/hent',
