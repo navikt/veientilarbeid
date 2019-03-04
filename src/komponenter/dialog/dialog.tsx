@@ -5,7 +5,7 @@ import { Systemtittel } from 'nav-frontend-typografi';
 import { connect } from 'react-redux';
 import { AppState } from '../../reducer';
 import { gaTilDialog } from '../../metrics';
-import { loggeUlesteDialoger } from '../../metrics';
+import { antallUlesteDialoger } from '../../metrics';
 import DialogFill from './dialog-fill';
 import dialogLine from './dialog-line.svg';
 
@@ -18,7 +18,7 @@ interface StateProps {
 class Dialog extends React.Component<StateProps>  {
 
     componentDidMount() {
-        loggeUlesteDialoger(this.props.antallUleste);
+        antallUlesteDialoger(this.props.antallUleste);
     }
 
     render() {
