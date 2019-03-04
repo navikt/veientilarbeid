@@ -35,9 +35,9 @@ export const gaTilAktivitetsplan = () => {
     }
 };
 
-export const gaTilDialog = () => {
+export const gaTilDialog = (antall: number) => {
     if (!erDemo()) {
-        logEvent(`${domene}.gatildialog`, {}, {});
+        logEvent(`${domene}.gatildialog`, {antallField: antall}, {antallTag: antall});
     }
 };
 
