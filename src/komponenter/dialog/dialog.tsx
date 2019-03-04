@@ -35,7 +35,7 @@ class Dialog extends React.Component<StateProps>  {
                     border={true}
                 >
                     <div className="dialog__innhold">
-                        {this.props.antallUleste  > 0 ?
+                        {this.props.antallUleste > 0 ?
                             <DialogFill messagesCount={this.props.antallUleste}/> :
                             <img
                                 src={dialogLine}

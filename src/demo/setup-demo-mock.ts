@@ -43,7 +43,7 @@ fetchMock.get(STARTREGISTRERING_URL, {
 });
 
 fetchMock.get(ULESTEDIALOGER_URL, {
-    antallUlesteDialoger: hentUlesteDialoger() ? randomUlesteDialoger() : 0
+    antallUleste: hentUlesteDialoger() ? randomUlesteDialoger() : 0
 });
 
 fetchMock.get(JOBBSOKERBESVARELSE_URL, hentJsk());
