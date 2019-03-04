@@ -41,9 +41,9 @@ export const gaTilDialog = () => {
     }
 };
 
-export const loggeUlesteDialoger = (antall: number) => {
+export const antallUlesteDialoger = (antall: number) => {
     if (!erDemo()) {
-        logEvent(`${domene}.loggeulestedialoger`, {antallField: 5}, {antall});
+        logEvent(`${domene}.antallulestedialoger`, {antallField: antall}, {antallTag: antall});
     }
 };
 

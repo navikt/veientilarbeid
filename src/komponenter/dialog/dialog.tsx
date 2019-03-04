@@ -4,19 +4,21 @@ import LenkepanelBase from 'nav-frontend-lenkepanel';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { connect } from 'react-redux';
 import { AppState } from '../../reducer';
-import './dialog.less';
-import dialogIkon from './dialog.svg';
 import { gaTilDialog } from '../../metrics';
-import { loggeUlesteDialoger } from '../../metrics';
+import { antallUlesteDialoger } from '../../metrics';
+import DialogFill from './dialog-fill';
+import dialogLine from './dialog-line.svg';
+
+import './dialog.less';
 
 interface StateProps {
-    antallUlesteDialoger: number;
+    antallUleste: number;
 }
 
 class Dialog extends React.Component<StateProps>  {
 
     componentDidMount() {
-        loggeUlesteDialoger(this.props.antallUlesteDialoger);
+        antallUlesteDialoger(this.props.antallUleste);
     }
 
     render() {
@@ -33,11 +35,14 @@ class Dialog extends React.Component<StateProps>  {
                     border={true}
                 >
                     <div className="dialog__innhold">
-                        <img
-                            src={dialogIkon}
-                            className="dialog__ikon"
-                            alt="dialog-ikon"
-                        />
+                        {this.props.antallUleste > 0 ?
+                            <DialogFill messagesCount={this.props.antallUleste}/> :
+                            <img
+                                src={dialogLine}
+                                className="dialog__ikon"
+                                alt="dialog-ikon"
+                            />
+                        }
                         <Systemtittel className="dialog__tittel">
                             <FormattedMessage id="dialog"/>
                         </Systemtittel>
@@ -49,7 +54,7 @@ class Dialog extends React.Component<StateProps>  {
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
-    antallUlesteDialoger: state.ulesteDialoger.data.antallUlesteDialoger
+    antallUleste: state.ulesteDialoger.data.antallUleste
 });
 
 export default connect(mapStateToProps)(Dialog);
