@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { HoyreChevron } from 'nav-frontend-chevron';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 
 import './lenke-med-chevron.less';
 
