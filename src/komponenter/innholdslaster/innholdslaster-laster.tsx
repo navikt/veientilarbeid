@@ -1,10 +1,10 @@
 import * as React from 'react';
-import NavFrontendSpinner from 'nav-frontend-spinner';
+import NavFrontendSpinner, { storrelseType } from 'nav-frontend-spinner';
 
 import './innholdslaster-laster.less';
 
 interface LasterInterface {
-    storrelse?: 'XXS' | 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
+    storrelse?: storrelseType;
     className?: string;
 }
 

@@ -48,7 +48,7 @@ export function hentFeatureToggles(): (dispatch: Dispatch) => Promise<void> {
     });
 }
 
-function hentFeatureTogglesOk(unleash: FeatureToggles): FeatureTogglesOKAction {
+function hentFeatureTogglesOk(unleash: FeatureToggleState): FeatureTogglesOKAction {
     return {
         type: ActionType.FEATURE_TOGGLES_OK,
         unleash: unleash
