@@ -1,3 +1,3 @@
 export default {
-    antallUleste: 87
+    antallUleste: 0
 };
