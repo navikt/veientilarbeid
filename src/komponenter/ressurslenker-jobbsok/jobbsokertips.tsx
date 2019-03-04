@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { AppState } from '../../reducer';
 import { gaTilJobbsokerkompetanse, gaTilVeiviserarbeidssoker } from '../../metrics';
 import jobbsokertipsIkon from './svg/jobbsokertips.svg';
-import LenkepanelMedIkon from '../lenkepanel-med-bilde/lenkepanel-med-ikon';
+import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 
 const VEIVISER2_URL = '/veiviserarbeidssoker/';
 const JOBBSOKERKOMPETANSE_RESULTAT_URL = '/jobbsokerkompetanse/resultatside';

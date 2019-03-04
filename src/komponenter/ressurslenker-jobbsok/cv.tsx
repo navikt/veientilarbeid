@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { gaTilCV } from '../../metrics';
 import cvIkon from './svg/cv.svg';
-import LenkepanelMedIkon from '../lenkepanel-med-bilde/lenkepanel-med-ikon';
+import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 
 const CV_URL = 'https://arbeidsplassen.nav.no/cv/';
 

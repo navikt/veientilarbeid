@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { klikkPaSokLedigeStillinger } from '../../metrics';
 import stillingsokIkon from './svg/stillingsok.svg';
-import LenkepanelMedIkon from '../lenkepanel-med-bilde/lenkepanel-med-ikon';
+import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 
 export const STILLINGSOK_URL = 'https://stillingsok.nav.no/stillinger';
 

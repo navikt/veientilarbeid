@@ -1,6 +1,6 @@
 import * as React from 'react';
 import meldekortIkon from './meldekort-ny.svg';
-import LenkepanelMedIkon from '../lenkepanel-med-bilde/lenkepanel-med-ikon';
+import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { gaTilMeldekort } from '../../metrics';
 
 export const MELDEKORT_URL = 'https://www.nav.no/no/Person/Arbeid/Dagpenger+ved+arbeidsloshet+og+permittering/Meldekort+hvordan+gjor+du+det/Slik+sender+du+elektroniske+meldekort'; // tslint:disable-line
