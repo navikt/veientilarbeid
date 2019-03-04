@@ -3,6 +3,7 @@ import { Data as OppfolgingData } from './oppfolging';
 import { Data as ServicegruppeData } from './servicegruppe';
 import { Data as JobbsokerbesvarelseData } from './jobbsokerbesvarelse';
 import { Data as SykmeldtInfoData } from './sykmeldt-info';
+import { Data as UlesteDialogerData } from './dialog';
 import { FeatureToggles } from './feature-toggles';
 
 export enum STATUS {
@@ -35,7 +36,8 @@ export const VEILARBOPPFOLGING_URL = '/veilarboppfolging/api',
              FEATURE_URL = '/veientilarbeid/api/feature',
              SERVICEGRUPPE_URL = '/veilarbtiltakinfo/api/oppfolgingsstatus',
              STARTREGISTRERING_URL = '/veilarbregistrering/api/startregistrering',
-             JOBBSOKERBESVARELSE_URL = '/veilarbjobbsokerkompetanse/api/hent';
+             JOBBSOKERBESVARELSE_URL = '/veilarbjobbsokerkompetanse/api/hent',
+             ULESTEDIALOGER_URL = '/veilarbdialog/api/dialog/antallUleste';
 
 export const featureQueryParams = (features: string[]): string => {
     const reduceFunc = (acc: string, toggle: string, i: number) => `${acc}${i === 0 ? '?' : '&'}feature=${toggle}`;
@@ -61,4 +63,8 @@ export function hentJobbsokerbesvarelseFetch(): Promise<JobbsokerbesvarelseData>
 
 export function hentSykmeldtInfoFetch(): Promise<SykmeldtInfoData> {
     return fetchToJson(STARTREGISTRERING_URL, requestConfig);
+}
+
+export function hentUlesteDialogerFetch(): Promise<UlesteDialogerData> {
+    return fetchToJson(ULESTEDIALOGER_URL, requestConfig);
 }
