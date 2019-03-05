@@ -12,25 +12,29 @@ export const MELDEKORT_URL = 'https://www.nav.no/no/Person/Arbeid/Dagpenger+ved+
 class Meldekort extends React.Component {
     render() {
         return (
-            <div className="meldekort">
-                <img
-                    src={meldekort}
-                    alt="Konvolutt med brev"
-                    className="meldekort__bilde"
-                />
-                <div className="meldekort__innhold">
-                    <Normaltekst className="meldekort__tekst">
-                        <FormattedMessage id="meldekort-beskrivelse"/>
-                    </Normaltekst>
-                    <LenkeMedChevron
-                        path={MELDEKORT_URL}
-                        className="meldekort__lenke"
-                        onClick={gaTilMeldekort}
-                    >
-                        <FormattedHTMLMessage id="meldekort-lenke"/>
-                    </LenkeMedChevron>
+            <section className="meldekort blokk-xl">
+                <div className="limit">
+                    <div className="innhold">
+                        <img
+                            src={meldekort}
+                            alt="Konvolutt med brev"
+                            className="meldekort__bilde"
+                        />
+                        <div className="meldekort__innhold">
+                            <Normaltekst className="meldekort__tekst">
+                                <FormattedMessage id="meldekort-beskrivelse"/>
+                            </Normaltekst>
+                            <LenkeMedChevron
+                                path={MELDEKORT_URL}
+                                className="meldekort__lenke"
+                                onClick={gaTilMeldekort}
+                            >
+                                <FormattedHTMLMessage id="meldekort-lenke"/>
+                            </LenkeMedChevron>
+                    </div>
+                    </div>
                 </div>
-            </div>
+            </section>
         );
     }
 }

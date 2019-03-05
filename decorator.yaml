@@ -39,3 +39,5 @@ redirect:
     to: {{ SYFOFRONT_URL }}
   - from: /veivisersosialhjelp
     to: {{ VEIVISERSOSIALHJELP_URL }}
+  - from: /arbeidsplassen
+    to: {{ ARBEIDSPLASSEN_URL }}

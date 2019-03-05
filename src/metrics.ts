@@ -17,15 +17,9 @@ export const visInfoOmDagpenger = () => {
     }
 };
 
-export const klikkPaSokLedigeStillinger = (sokeKnappType: string) => {
+export const klikkPaSokLedigeStillinger = () => {
     if (!erDemo()) {
-        logEvent(`${domene}.sokledigestillinger`, {}, {sokeKnappType});
-    }
-};
-
-export const logInputSokLedigeStillinger = (inputSokefelt: string) => {
-    if (!erDemo()) {
-        logEvent(`${domene}.inputsokledigestillinger`, {inputSokefelt}, {});
+        logEvent(`${domene}.sokledigestillinger`, {}, {});
     }
 };
 
@@ -59,9 +53,21 @@ export const gaTilMIA = () => {
     }
 };
 
+export const gaTilCV = () => {
+    if (!erDemo()) {
+        logEvent(`${domene}.gatilcv`, {}, {});
+    }
+};
+
 export const gaTilJobbsokerkompetanse = () => {
     if (!erDemo()) {
-        logEvent(`${domene}.gatiljobbsokerkompetanse`, {}, {});
+        logEvent(`${domene}.gatiljobbsokerkompetanseresultat`, {}, {});
+    }
+};
+
+export const gaTilVeiviserarbeidssoker = () => {
+    if (!erDemo()) {
+        logEvent(`${domene}.gatilveiviserarbeidssoker`, {}, {});
     }
 };
 
