@@ -58,6 +58,8 @@ fasitResources:
     resourceType: baseUrl
   - alias: veivisersosialhjelp
     resourceType: baseUrl
+  - alias: arbeidsplassen
+    resourceType: baseUrl
 
 alertProfiles:
   - common-java-modules
