@@ -10,6 +10,7 @@ import DialogFill from './dialog-fill';
 import dialogLine from './dialog-line.svg';
 
 import './dialog.less';
+export const DIALOG_URL = '/aktivitetsplan/dialog';
 
 interface StateProps {
     antallUleste: number;
@@ -28,26 +29,28 @@ class Dialog extends React.Component<StateProps>  {
 
         return (
             <section className="dialog">
-                <LenkepanelBase
-                    href="/aktivitetsplan/dialog"
-                    tittelProps="undertittel"
-                    linkCreator={linkCreator}
-                    border={true}
-                >
-                    <div className="dialog__innhold">
-                        {this.props.antallUleste > 0 ?
-                            <DialogFill messagesCount={this.props.antallUleste}/> :
-                            <img
-                                src={dialogLine}
-                                className="dialog__ikon"
-                                alt="dialog-ikon"
-                            />
-                        }
-                        <Systemtittel className="dialog__tittel">
-                            <FormattedMessage id="dialog"/>
-                        </Systemtittel>
-                    </div>
-                </LenkepanelBase>
+                <div className="limit">
+                    <LenkepanelBase
+                        href={DIALOG_URL}
+                        tittelProps="undertittel"
+                        linkCreator={linkCreator}
+                        border={true}
+                    >
+                        <div className="dialog__innhold">
+                            {this.props.antallUleste > 0 ?
+                                <DialogFill messagesCount={this.props.antallUleste}/> :
+                                <img
+                                    src={dialogLine}
+                                    className="dialog__ikon"
+                                    alt=""
+                                />
+                            }
+                            <Systemtittel className="dialog__tittel">
+                                <FormattedMessage id="dialog"/>
+                            </Systemtittel>
+                        </div>
+                    </LenkepanelBase>
+                </div>
             </section>
         );
     }
