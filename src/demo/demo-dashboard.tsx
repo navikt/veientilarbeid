@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { Innholdstittel } from 'nav-frontend-typografi';
-import { FormattedMessage, InjectedIntlProps, injectIntl } from 'react-intl';
+import './demo-dashboard.less';
 import { Select as SelectKomponent, CheckboksPanelGruppe } from 'nav-frontend-skjema';
+import './demo-dashboard.less';
+import { Innholdstittel } from 'nav-frontend-typografi';
+import { SyntheticEvent } from 'react';
 import {
     DemoData, hentJsk,
     hentServicegruppe, hentSykmeldtMedArbeidsgiver,
@@ -11,8 +13,7 @@ import {
     settSykmeldtMedArbeidsgiver,
     slettJsk
 } from './demo-state';
-
-import './demo-dashboard.less';
+import { FormattedMessage, InjectedIntlProps, injectIntl } from 'react-intl';
 
 class DemoDashboard extends React.Component<InjectedIntlProps> {
     render() {
@@ -27,12 +28,11 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
             window.location.reload();
         };
 
-        const handleClick = (e: React.SyntheticEvent<EventTarget, Event>, value: string | undefined) => {
-            const element = (e.currentTarget as HTMLInputElement);
-            if (element.id === SYKMELDT_MED_ARBEIDSGIVER) {
-                settSykmeldtMedArbeidsgiver(`${value}`);
-            } else if (element.id === JSK) {
-                if (element.checked) {
+        const handleClick = (e: SyntheticEvent<HTMLInputElement>) => {
+            if (e.currentTarget.id === SYKMELDT_MED_ARBEIDSGIVER) {
+                settSykmeldtMedArbeidsgiver(`${e.currentTarget.checked}`);
+            } else if (e.currentTarget.id === JSK) {
+                if (e.currentTarget.checked) {
                     settJsk();
                 } else {
                     slettJsk();

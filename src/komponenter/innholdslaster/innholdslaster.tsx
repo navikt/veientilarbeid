@@ -1,20 +1,21 @@
 import * as React from 'react';
 import './innholdslaster.less';
+import { storrelseType } from 'nav-frontend-spinner';
 import Laster from './innholdslaster-laster';
 import { STATUS } from '../../ducks/api';
 const array = (value: {}) => (Array.isArray(value) ? value : [value]);
 const harStatus = (...status: string[]) =>
     (element: {status: string}) => array(status).toString().includes(element.status);
-const noenHarFeil = (avhengigheter: any[]) => avhengigheter && avhengigheter.some(harStatus(STATUS.ERROR));
-const alleLastet = (avhengigheter: any[]) => avhengigheter && avhengigheter.every(harStatus(STATUS.OK));
-const alleLastetEllerReloading = (avhengigheter: any[]) => (
+const noenHarFeil = (avhengigheter: {}[]) => avhengigheter && avhengigheter.some(harStatus(STATUS.ERROR));
+const alleLastet = (avhengigheter: {}[]) => avhengigheter && avhengigheter.every(harStatus(STATUS.OK));
+const alleLastetEllerReloading = (avhengigheter: {}[]) => (
     avhengigheter && avhengigheter.every(harStatus(STATUS.OK, STATUS.RELOADING))
 );
 
 interface InnholdslasterProps {
     avhengigheter: {status: string}[];
     feilmeldingKomponent?: React.ReactNode | React.ReactChild;
-    storrelse?: 'XXS' | 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
+    storrelse?: storrelseType;
 }
 
 interface InnholdslasterState {
