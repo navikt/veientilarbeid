@@ -7,10 +7,9 @@ import ReaktiveringMelding from '../../komponenter/reaktivering-melding';
 import Aktivitetsplan from '../../komponenter/aktivitetsplan/aktivitetsplan';
 import Meldekort from '../../komponenter/meldekort/meldekort';
 import Dialog from '../../komponenter/dialog/dialog';
-import Ressurslenker from '../../komponenter/ressurslenker/ressurslenker';
+import RessurslenkerJobbsok from '../../komponenter/ressurslenker-jobbsok/ressurslenker-jobbsok';
 import Tiltakinfo from '../../komponenter/tiltakinfo/tiltakinfo';
 import Dagpenger from '../../komponenter/dagpenger/dagpenger';
-import StillingSok from '../../komponenter/stillingsok/stillingsok';
 
 interface StateProps {
     servicegruppe: ServicegruppeState;
@@ -38,8 +37,7 @@ class StartsideOrdinaer extends React.Component<StateProps> {
                     <Aktivitetsplan/>
                     <Dialog/>
                     <Meldekort/>
-                    <StillingSok/>
-                    <Ressurslenker/>
+                    <RessurslenkerJobbsok/>
                     {innsatsgruppe && (
                         <Tiltakinfo/>
                     )}

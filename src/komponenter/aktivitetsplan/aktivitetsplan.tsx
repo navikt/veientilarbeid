@@ -33,25 +33,32 @@ class Aktivitetsplan extends React.PureComponent<AktivitetsplanProps, State> {
         };
 
         return (
-            <section className="aktivitetsplan">
-                <Lenkepanel tittelProps="undertittel" href={AKTIVITETSPLAN_URL} linkCreator={linkCreator} border={true}>
-                    <div className="aktivitetsplan__innhold">
-                        <div className="aktivitetsplan__illustrasjon">
-                            <img
-                                src={ordinaerAktivitetsplanSvg}
-                                alt="aktivitetsplan-illustrasjon"
-                            />
+            <section className="aktivitetsplan blokk-xs">
+                <div className="limit">
+                    <Lenkepanel
+                        tittelProps="undertittel"
+                        href={AKTIVITETSPLAN_URL}
+                        linkCreator={linkCreator}
+                        border={true}
+                    >
+                        <div className="aktivitetsplan__innhold">
+                            <div className="aktivitetsplan__illustrasjon">
+                                <img
+                                    src={ordinaerAktivitetsplanSvg}
+                                    alt="aktivitetsplan-illustrasjon"
+                                />
+                            </div>
+                            <div className="aktivitetsplan__tekst">
+                                <Innholdstittel tag="h2" className="informasjonsmodul__heading blokk-s">
+                                    <FormattedMessage id={overskriftTekstId}/>
+                                </Innholdstittel>
+                                <Normaltekst className="ingress__tekst">
+                                    <FormattedMessage id={beskrivelseTekstId}/>
+                                </Normaltekst>
+                            </div>
                         </div>
-                        <div className="aktivitetsplan__tekst">
-                            <Innholdstittel tag="h2" className="informasjonsmodul__heading blokk-s">
-                                <FormattedMessage id={overskriftTekstId}/>
-                            </Innholdstittel>
-                            <Normaltekst className="ingress__tekst">
-                                <FormattedMessage id={beskrivelseTekstId}/>
-                            </Normaltekst>
-                        </div>
-                    </div>
-                </Lenkepanel>
+                    </Lenkepanel>
+                </div>
             </section>
         );
     }
