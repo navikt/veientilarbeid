@@ -21,7 +21,7 @@ class Dagpenger extends React.Component<InjectedIntlProps> {
     }
 
     handleButtonClick = () => {
-        klikkPaSoknadDagpenger();
+        klikkPaSoknadDagpenger(visRettTilDagPenger(location.search));
         window.location.href = this.props.intl.formatMessage({id: 'dagpenger-lenke-url'});
     }
 
