@@ -3,7 +3,7 @@ import * as React from 'react';
 import * as sinon from 'sinon';
 import { expect } from 'chai';
 import * as enzyme from 'enzyme';
-import * as Adapter from 'enzyme-adapter-react-16';
+import Adapter from 'enzyme-adapter-react-16';
 import SjekkOppfolging from './sjekk-oppfolging';
 import { create } from '../../store';
 import { mountWithStore } from '../../test/test-utils';
@@ -12,7 +12,7 @@ import { redirectTilDittNav } from './sjekk-oppfolging-utils';
 
 enzyme.configure({adapter: new Adapter()});
 
-let sandbox;
+let sandbox: any;
 beforeEach(() => {
     sandbox = sinon.createSandbox();
 });
