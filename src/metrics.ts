@@ -7,7 +7,7 @@ const domene = 'veientilarbeid';
 
 export const seVeientilarbeid = (erSykmeldtMedArbeidsgiver: boolean) => {
     if (!erDemo()) {
-        logEvent(`${domene}.seveientilarbeid`, {}, {erSykmeldtMedArbeidsgiver});
+        logEvent(`${domene}.seveientilarbeid`, {erSykmeldtMedArbeidsgiverField: erSykmeldtMedArbeidsgiver}, {erSykmeldtMedArbeidsgiver});
     }
 };
 
@@ -29,9 +29,9 @@ export const gaTilAktivitetsplan = () => {
     }
 };
 
-export const gaTilDialog = () => {
+export const gaTilDialog = (antall: number) => {
     if (!erDemo()) {
-        logEvent(`${domene}.gatildialog`, {}, {});
+        logEvent(`${domene}.gatildialog`, {antallField: antall}, {antallTag: antall});
     }
 };
 
@@ -77,8 +77,14 @@ export const gaTilTiltaksinfo = () => {
     }
 };
 
-export const klikkPaSoknadDagpenger = () => {
+export const seTiltaksinfo = () => {
     if (!erDemo()) {
-        logEvent(`${domene}.soknaddagpenger`, {}, {});
+        logEvent(`${domene}.setiltaksinfo`, {}, {});
+    }
+};
+
+export const klikkPaSoknadDagpenger = (nyregistrert: boolean) => {
+    if (!erDemo()) {
+        logEvent(`${domene}.soknaddagpenger`, {nyregistrertField: nyregistrert}, {nyregistrertTag: nyregistrert});
     }
 };

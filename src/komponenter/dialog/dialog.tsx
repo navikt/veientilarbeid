@@ -24,7 +24,7 @@ class Dialog extends React.Component<StateProps>  {
 
     render() {
         const linkCreator = (props: {}) => {
-          return <a onClick={gaTilDialog} {...props}/>;
+          return <a onClick={() => gaTilDialog(this.props.antallUleste)} {...props}/>;
         };
 
         return (
