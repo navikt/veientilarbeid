@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Side from '../../komponenter/side';
-import { SituasjonOption, State as ServicegruppeState } from '../../ducks/servicegruppe';
+import { Servicegruppe, State as ServicegruppeState } from '../../ducks/servicegruppe';
 import { AppState } from '../../reducer';
 import { connect } from 'react-redux';
 import ReaktiveringMelding from '../../komponenter/reaktivering-melding';
@@ -19,8 +19,8 @@ class StartsideOrdinaer extends React.Component<StateProps> {
 
     erInnsatsgruppe() {
         return (
-            this.props.servicegruppe.data.servicegruppe === SituasjonOption.SITUASJONSBESTEMT ||
-            this.props.servicegruppe.data.servicegruppe === SituasjonOption.SPESIELT_TILPASSET
+            this.props.servicegruppe.data.servicegruppe === Servicegruppe.BFORM ||
+            this.props.servicegruppe.data.servicegruppe === Servicegruppe.BATT
         );
     }
 

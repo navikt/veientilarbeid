@@ -2,13 +2,16 @@ import {
     ActionType, Handling, HentServicegruppeFEILETAction, HentServicegruppeOKAction, HentServicegruppePENDINGAction,
 } from './actions';
 import { Dispatch } from '../dispatch-type';
+import { AppState } from '../reducer';
 import { doThenDispatch } from './api-utils';
 import { hentServicegruppeFetch, DataElement, STATUS } from './api';
 
-export enum SituasjonOption {
-    UBESTEMT = 'situasjonoption-ubestemt',
-    SITUASJONSBESTEMT = 'situasjonoption-situasjonsbestemt',
-    SPESIELT_TILPASSET = 'situasjonoption-spesielttilpasset',
+export enum Servicegruppe {
+    IKVAL = 'Standard',
+    BATT = 'Spesielt tilpasset',
+    BFORM = 'Situasjonsbestemt',
+    VARIG = 'Varig',
+    IVURD = 'Ikke fastsatt',
 }
 
 export interface State extends DataElement {
@@ -16,12 +19,12 @@ export interface State extends DataElement {
 }
 
 export interface Data {
-    servicegruppe: SituasjonOption;
+    servicegruppe: Servicegruppe;
 }
 
 const initialState: State = {
     data: {
-        servicegruppe: SituasjonOption.UBESTEMT
+        servicegruppe: Servicegruppe.IKVAL,
     },
     status: STATUS.NOT_STARTED
 };
@@ -37,17 +40,14 @@ export default function reducer(state: State = initialState, action: Handling): 
             return {...state, status: STATUS.ERROR};
         case ActionType.HENT_SERVICEGRUPPE_OK: {
 
-            const servicegruppe: string =  action.data.servicegruppe;
-            const situasjonsMap = {
-                'BATT': SituasjonOption.SPESIELT_TILPASSET,
-                'BFORM': SituasjonOption.SITUASJONSBESTEMT,
-            };
+            const servicegruppekode: string =  action.data.servicegruppe;
+
             return {
                 ...state,
                 status: STATUS.OK,
-                data: Object.keys(situasjonsMap).includes(servicegruppe)
-                    ? {servicegruppe: situasjonsMap[servicegruppe]}
-                    : {servicegruppe: SituasjonOption.UBESTEMT}
+                data: {
+                    servicegruppe: Servicegruppe[servicegruppekode],
+                }
             };
         }
         default:
@@ -80,4 +80,8 @@ function hentServicegruppePending(): HentServicegruppePENDINGAction {
     return {
         type: ActionType.HENT_SERVICEGRUPPE_PENDING,
     };
+}
+
+export function selectServicegruppe(state: AppState): State {
+    return state.servicegruppe;
 }
