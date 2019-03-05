@@ -2,6 +2,7 @@ import {
     ActionType, Handling, HentServicegruppeFEILETAction, HentServicegruppeOKAction, HentServicegruppePENDINGAction,
 } from './actions';
 import { Dispatch } from '../dispatch-type';
+import { AppState } from '../reducer';
 import { doThenDispatch } from './api-utils';
 import { hentServicegruppeFetch, DataElement, STATUS } from './api';
 
@@ -80,4 +81,8 @@ function hentServicegruppePending(): HentServicegruppePENDINGAction {
     return {
         type: ActionType.HENT_SERVICEGRUPPE_PENDING,
     };
+}
+
+export function selectServicegruppe(state: AppState): State {
+    return state.servicegruppe;
 }
