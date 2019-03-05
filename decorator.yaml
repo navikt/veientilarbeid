@@ -1,3 +1,5 @@
+contextPath: /
+
 auth:
   enforce: true
   loginUrl: {{ VEILARBSTEPUP_OIDC_URL }}
@@ -19,6 +21,8 @@ proxy:
     baseUrl: http://veilarbproxy
 
 redirect:
+  - from: /veientilarbeid
+    to: {{ VEIENTILARBEID_URL }}
   - from: /aktivitetsplan
     to: {{ AKTIVITETSPLAN_URL }}
   - from: /veiviserarbeidssoker
@@ -35,3 +39,5 @@ redirect:
     to: {{ SYFOFRONT_URL }}
   - from: /veivisersosialhjelp
     to: {{ VEIVISERSOSIALHJELP_URL }}
+  - from: /arbeidsplassen
+    to: {{ ARBEIDSPLASSEN_URL }}

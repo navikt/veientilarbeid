@@ -8,15 +8,15 @@ replicas:
 port: 8080
 healthcheck:
   liveness:
-    path: veientilarbeid/internal/isAlive
+    path: /internal/isAlive
     initialDelay: 20
   readiness:
-    path: veientilarbeid/internal/isReady
+    path: /internal/isReady
     initialDelay: 20
 prometheus:
   # NB: pus-decorator sine metrikker
   enabled: true
-  path: veientilarbeid/internal/metrics
+  path: /internal/metrics
 resources: # Optional. See: http://kubernetes.io/docs/user-guide/compute-resources/
   limits:
     cpu: 3
@@ -39,7 +39,9 @@ fasitResources:
   - alias: veilarbstepup_oidc
     resourceType: baseurl
 
-  # eksterne lenker
+  # lenker
+  - alias: veientilarbeid
+    resourceType: baseUrl
   - alias: aktivitetsplan
     resourceType: baseUrl
   - alias: veiviserarbeidssoker
@@ -55,6 +57,8 @@ fasitResources:
   - alias: syfofront
     resourceType: baseUrl
   - alias: veivisersosialhjelp
+    resourceType: baseUrl
+  - alias: arbeidsplassen
     resourceType: baseUrl
 
 alertProfiles:

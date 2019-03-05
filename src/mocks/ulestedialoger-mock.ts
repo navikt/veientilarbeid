@@ -1,3 +1,3 @@
 export default {
-    antallUlesteDialoger: 3
+    antallUleste: 0
 };

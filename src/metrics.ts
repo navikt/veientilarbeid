@@ -7,7 +7,7 @@ const domene = 'veientilarbeid';
 
 export const seVeientilarbeid = (erSykmeldtMedArbeidsgiver: boolean) => {
     if (!erDemo()) {
-        logEvent(`${domene}.seveientilarbeid`, {}, {erSykmeldtMedArbeidsgiver});
+        logEvent(`${domene}.seveientilarbeid`, {erSykmeldtMedArbeidsgiverField: erSykmeldtMedArbeidsgiver}, {erSykmeldtMedArbeidsgiver});
     }
 };
 
@@ -17,15 +17,9 @@ export const visInfoOmDagpenger = () => {
     }
 };
 
-export const klikkPaSokLedigeStillinger = (sokeKnappType: string) => {
+export const klikkPaSokLedigeStillinger = () => {
     if (!erDemo()) {
-        logEvent(`${domene}.sokledigestillinger`, {}, {sokeKnappType});
-    }
-};
-
-export const logInputSokLedigeStillinger = (inputSokefelt: string) => {
-    if (!erDemo()) {
-        logEvent(`${domene}.inputsokledigestillinger`, {inputSokefelt}, {});
+        logEvent(`${domene}.sokledigestillinger`, {}, {});
     }
 };
 
@@ -35,15 +29,15 @@ export const gaTilAktivitetsplan = () => {
     }
 };
 
-export const gaTilDialog = () => {
+export const gaTilDialog = (antall: number) => {
     if (!erDemo()) {
-        logEvent(`${domene}.gatildialog`, {}, {});
+        logEvent(`${domene}.gatildialog`, {antallField: antall}, {antallTag: antall});
     }
 };
 
-export const loggeUlesteDialoger = (antall: number) => {
+export const antallUlesteDialoger = (antall: number) => {
     if (!erDemo()) {
-        logEvent(`${domene}.loggeulestedialoger`, {antallField: 5}, {antall});
+        logEvent(`${domene}.antallulestedialoger`, {antallField: antall}, {antallTag: antall});
     }
 };
 
@@ -59,9 +53,21 @@ export const gaTilMIA = () => {
     }
 };
 
+export const gaTilCV = () => {
+    if (!erDemo()) {
+        logEvent(`${domene}.gatilcv`, {}, {});
+    }
+};
+
 export const gaTilJobbsokerkompetanse = () => {
     if (!erDemo()) {
-        logEvent(`${domene}.gatiljobbsokerkompetanse`, {}, {});
+        logEvent(`${domene}.gatiljobbsokerkompetanseresultat`, {}, {});
+    }
+};
+
+export const gaTilVeiviserarbeidssoker = () => {
+    if (!erDemo()) {
+        logEvent(`${domene}.gatilveiviserarbeidssoker`, {}, {});
     }
 };
 
@@ -71,8 +77,14 @@ export const gaTilTiltaksinfo = () => {
     }
 };
 
-export const klikkPaSoknadDagpenger = () => {
+export const seTiltaksinfo = () => {
     if (!erDemo()) {
-        logEvent(`${domene}.soknaddagpenger`, {}, {});
+        logEvent(`${domene}.setiltaksinfo`, {}, {});
+    }
+};
+
+export const klikkPaSoknadDagpenger = (nyregistrert: boolean) => {
+    if (!erDemo()) {
+        logEvent(`${domene}.soknaddagpenger`, {nyregistrertField: nyregistrert}, {nyregistrertTag: nyregistrert});
     }
 };

@@ -2,14 +2,18 @@ import * as React from 'react';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
 import { FormattedMessage } from 'react-intl';
 import Lenkepanel from 'nav-frontend-lenkepanel';
-import { gaTilTiltaksinfo } from '../../metrics';
-
+import { gaTilTiltaksinfo, seTiltaksinfo } from '../../metrics';
 import tiltakinfo from './tiltakinfo.svg';
 import './tiltakinfo.less';
 
 export const TILTAKINFO_URL = '/tiltakinfo';
 
 class Tiltakinfo extends React.Component {
+
+    componentDidMount() {
+        seTiltaksinfo();
+    }
+
     render() {
 
         const linkCreator = (props: {}) => {
@@ -17,26 +21,28 @@ class Tiltakinfo extends React.Component {
         };
 
         return (
-            <section className="tiltakinfo">
-                <Lenkepanel tittelProps="undertittel" href={TILTAKINFO_URL} linkCreator={linkCreator}>
-                    <div className="tiltakinfo__innhold">
-                        <div className="tiltakinfo__bilde">
-                            <img
-                                src={tiltakinfo}
-                                alt="Hånd med forstørrelsesglass"
-                            />
-                        </div>
+            <section className="tiltakinfo blokk-m">
+                <div className="limit">
+                    <Lenkepanel tittelProps="undertittel" href={TILTAKINFO_URL} linkCreator={linkCreator}>
+                        <div className="tiltakinfo__innhold">
+                            <div className="tiltakinfo__bilde">
+                                <img
+                                    src={tiltakinfo}
+                                    alt="Hånd med forstørrelsesglass"
+                                />
+                            </div>
 
-                        <div className="tiltakinfo__tekst">
-                            <Systemtittel tag="h2" className="informasjonsmodul__heading blokk-s">
-                                <FormattedMessage id="tiltakinfo-tittel"/>
-                            </Systemtittel>
-                            <Normaltekst className="ingress__tekst">
-                                <FormattedMessage id="tiltakinfo-ingress"/>
-                            </Normaltekst>
+                            <div className="tiltakinfo__tekst">
+                                <Systemtittel tag="h2" className="informasjonsmodul__heading blokk-s">
+                                    <FormattedMessage id="tiltakinfo-tittel"/>
+                                </Systemtittel>
+                                <Normaltekst className="ingress__tekst">
+                                    <FormattedMessage id="tiltakinfo-ingress"/>
+                                </Normaltekst>
+                            </div>
                         </div>
-                    </div>
-                </Lenkepanel>
+                    </Lenkepanel>
+                </div>
             </section>
         );
     }
