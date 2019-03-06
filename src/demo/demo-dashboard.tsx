@@ -27,10 +27,10 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
             window.location.reload();
         };
 
-        const handleClick = (e: React.SyntheticEvent<EventTarget, Event>, value: string | undefined) => {
+        const handleClick = (e: React.SyntheticEvent<EventTarget, Event>) => {
             const element = (e.currentTarget as HTMLInputElement);
             if (element.id === SYKMELDT_MED_ARBEIDSGIVER) {
-                settSykmeldtMedArbeidsgiver(`${value}`);
+                settSykmeldtMedArbeidsgiver(element.checked.toString());
             } else if (element.id === JSK) {
                 if (element.checked) {
                     settJsk();
