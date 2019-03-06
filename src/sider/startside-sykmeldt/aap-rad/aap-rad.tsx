@@ -1,11 +1,12 @@
 import * as React from 'react';
 import * as queryString from 'query-string';
-import { Normaltekst, Systemtittel, Undertittel } from 'nav-frontend-typografi';
-import { FormattedMessage, InjectedIntlProps, injectIntl } from 'react-intl';
-import './aap-rad.less';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
+import { FormattedMessage, InjectedIntlProps, injectIntl } from 'react-intl';
+import { Normaltekst, Systemtittel, Undertittel } from 'nav-frontend-typografi';
 import RettPaAapInnhold from './rett-pa-aap-innhold';
 import SoketidspunktInnhold from './soketidspunkt-innhold';
+
+import './aap-rad.less';
 
 interface AapRadState {
     visAap: boolean;
@@ -34,7 +35,7 @@ class AapRad extends React.Component<InjectedIntlProps, AapRadState> {
                     );
                 }
             }
-        },         300);
+        }, 300);
     }
 
     render() {
@@ -81,7 +82,6 @@ class AapRad extends React.Component<InjectedIntlProps, AapRadState> {
                 <a className="knapp knapp--hoved aap-rad--til-soknad-knapp" href={tekster.tilSoknadKnappUrl}>
                     <FormattedMessage id="aap-rad-til-soknad-knapp-tekst"/>
                 </a>
-
             </div>
         );
     }

@@ -1,16 +1,20 @@
 import * as React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { FormattedHTMLMessage, FormattedMessage } from 'react-intl';
+import { FormattedHTMLMessage, FormattedMessage, InjectedIntlProps, injectIntl } from 'react-intl';
 import LenkeMedChevron from '../lenke-med-chevron/lenke-med-chevron';
 import { gaTilMeldekort } from '../../metrics';
 
 import meldekort from './meldekort.svg';
 import './meldekort.less';
 
-export const MELDEKORT_URL = 'https://www.nav.no/no/Person/Arbeid/Dagpenger+ved+arbeidsloshet+og+permittering/Meldekort+hvordan+gjor+du+det/Slik+sender+du+elektroniske+meldekort'; // tslint:disable-line
-
-class Meldekort extends React.Component {
+class Meldekort extends React.Component<InjectedIntlProps> {
     render() {
+
+        const {messages} = this.props.intl;
+        const tekster = {
+            meldekortUrl: messages['meldekort-url'],
+        };
+
         return (
             <section className="meldekort blokk-xl">
                 <div className="limit">
@@ -25,13 +29,13 @@ class Meldekort extends React.Component {
                                 <FormattedMessage id="meldekort-beskrivelse"/>
                             </Normaltekst>
                             <LenkeMedChevron
-                                path={MELDEKORT_URL}
+                                path={tekster.meldekortUrl}
                                 className="meldekort__lenke"
                                 onClick={gaTilMeldekort}
                             >
                                 <FormattedHTMLMessage id="meldekort-lenke"/>
                             </LenkeMedChevron>
-                    </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -39,4 +43,4 @@ class Meldekort extends React.Component {
     }
 }
 
-export default Meldekort;
+export default injectIntl(Meldekort);
