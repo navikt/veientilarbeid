@@ -5,9 +5,11 @@ const logEvent = w.frontendlogger ? w.frontendlogger.event : () => { return; };
 
 const domene = 'veientilarbeid';
 
-export const seVeientilarbeid = (erSykmeldtMedArbeidsgiver: boolean) => {
+export const seVeientilarbeid = (erSykmeldtMedArbeidsgiver: boolean, servicegruppe: string) => {
     if (!erDemo()) {
-        logEvent(`${domene}.seveientilarbeid`, {erSykmeldtMedArbeidsgiverField: erSykmeldtMedArbeidsgiver}, {erSykmeldtMedArbeidsgiver});
+        logEvent(`${domene}.seveientilarbeid`,
+            {erSykmeldtMedArbeidsgiverField: erSykmeldtMedArbeidsgiver, servicegruppeField: servicegruppe},
+            {erSykmeldtMedArbeidsgiver, servicegruppeTag: servicegruppe});
     }
 };
 
