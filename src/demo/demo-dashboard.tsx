@@ -1,9 +1,7 @@
 import * as React from 'react';
-import './demo-dashboard.less';
-import { Select as SelectKomponent, CheckboksPanelGruppe } from 'nav-frontend-skjema';
-import './demo-dashboard.less';
 import { Innholdstittel } from 'nav-frontend-typografi';
-import { SyntheticEvent } from 'react';
+import { FormattedMessage, InjectedIntlProps, injectIntl } from 'react-intl';
+import { Select as SelectKomponent, CheckboksPanelGruppe } from 'nav-frontend-skjema';
 import {
     DemoData, hentJsk,
     hentServicegruppe, hentSykmeldtMedArbeidsgiver,
@@ -13,7 +11,8 @@ import {
     settSykmeldtMedArbeidsgiver,
     slettJsk
 } from './demo-state';
-import { FormattedMessage, InjectedIntlProps, injectIntl } from 'react-intl';
+
+import './demo-dashboard.less';
 
 class DemoDashboard extends React.Component<InjectedIntlProps> {
     render() {
@@ -28,17 +27,18 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
             window.location.reload();
         };
 
-        const handleClick = (e: SyntheticEvent<HTMLInputElement>) => {
-            if (e.currentTarget.id === SYKMELDT_MED_ARBEIDSGIVER) {
-                settSykmeldtMedArbeidsgiver(`${e.currentTarget.checked}`);
-            } else if (e.currentTarget.id === JSK) {
-                if (e.currentTarget.checked) {
+        const handleClick = (e: React.SyntheticEvent<EventTarget, Event>, value: string | undefined) => {
+            const element = (e.currentTarget as HTMLInputElement);
+            if (element.id === SYKMELDT_MED_ARBEIDSGIVER) {
+                settSykmeldtMedArbeidsgiver(`${value}`);
+            } else if (element.id === JSK) {
+                if (element.checked) {
                     settJsk();
                 } else {
                     slettJsk();
                 }
-            } else if (e.currentTarget.id === ULESTE_DIALOGER) {
-                settUlesteDialoger(`${e.currentTarget.checked}`);
+            } else if (element.id === ULESTE_DIALOGER) {
+                settUlesteDialoger(`${element.checked}`);
             }
             window.location.reload();
         };
