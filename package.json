@@ -23,6 +23,7 @@
     "ajv": "6.9.2",
     "babel-polyfill": "6.26.0",
     "classnames": "^2.2.6",
+    "gsap": "^2.1.2",
     "intl": "1.2.5",
     "intl-locales-supported": "1.0.0",
     "lodash.throttle": "^4.1.1",

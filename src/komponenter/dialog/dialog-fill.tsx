@@ -26,8 +26,8 @@ const DialogFill = ({messagesCount}: DialogFillProps) => {
                         c0.138-0.152,0.167-0.373,0.076-0.557c-0.276-0.554-1.069-2.137-1.325-2.65C23.327,19.289,24,17.868,24,16.25
                         C24,12.727,20.565,9.75,16.5,9.75z"/>
                 </svg>
-                <circle fill="#c30000" cx="30.0" cy="10.0" r="10"/>
-                <text x={xPos} y="14.4" fill="#ffffff">{messagesCount}</text>
+                <circle fill="#FFFFFF" cx="30.0" cy="10.0" r="5"/>
+                <text x={xPos} y="14.4" fill="#ffffff" opacity="0">{messagesCount}</text>
             </svg>
         </div>
     );
