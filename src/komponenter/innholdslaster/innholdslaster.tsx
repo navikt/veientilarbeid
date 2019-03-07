@@ -1,18 +1,24 @@
 import * as React from 'react';
 import './innholdslaster.less';
 import Laster from './innholdslaster-laster';
-import { STATUS } from '../../ducks/api';
+import { DataElement, STATUS } from '../../ducks/api';
+
 const array = (value: {}) => (Array.isArray(value) ? value : [value]);
+
 const harStatus = (...status: string[]) =>
     (element: {status: string}) => array(status).toString().includes(element.status);
-const noenHarFeil = (avhengigheter: any[]) => avhengigheter && avhengigheter.some(harStatus(STATUS.ERROR));
-const alleLastet = (avhengigheter: any[]) => avhengigheter && avhengigheter.every(harStatus(STATUS.OK));
+
+const noenHarFeil = (avhengigheter: DataElement[]) => avhengigheter && avhengigheter.some(harStatus(STATUS.ERROR));
+const alleLastet = (avhengigheter: DataElement[]) => avhengigheter && avhengigheter.every(harStatus(STATUS.OK));
+const alleVentetPa = (ventPa?: DataElement[]) => ventPa ? ventPa.every(harStatus(STATUS.OK, STATUS.ERROR)) : true;
+
 const alleLastetEllerReloading = (avhengigheter: any[]) => (
     avhengigheter && avhengigheter.every(harStatus(STATUS.OK, STATUS.RELOADING))
 );
 
 interface InnholdslasterProps {
-    avhengigheter: {status: string}[];
+    avhengigheter: DataElement[];
+    ventPa?: DataElement[];
     feilmeldingKomponent?: React.ReactNode | React.ReactChild;
     storrelse?: 'XXS' | 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
 }
@@ -63,22 +69,22 @@ class Innholdslaster extends React.Component<InnholdslasterProps, Innholdslaster
     }
 
     render() {
-        const { avhengigheter, feilmeldingKomponent, storrelse } = this.props;
-        if (alleLastet(avhengigheter)) {
+        const { avhengigheter, ventPa, feilmeldingKomponent, storrelse } = this.props;
+
+        if (alleLastet(avhengigheter) && alleVentetPa(ventPa)) {
+            // Alle avhengigheter lastet inn uten problemer og ventPa er ferdig (enten OK eller FEILET){
             return this.renderChildren();
+
         } else if (!this.state.timeout && alleLastetEllerReloading(avhengigheter)) {
             this.setTimer();
             return this.renderChildren();
-        }
 
-        if (noenHarFeil(avhengigheter)) {
+        } else if (noenHarFeil(avhengigheter)) {
             this.clearTimer();
-
             return (
                 <div className="innholdslaster-feilmelding">{feilmeldingKomponent}</div>
             );
         }
-
         return <Laster className="innholdslaster-laster" storrelse={storrelse} />;
     }
 }
