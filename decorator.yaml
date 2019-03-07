@@ -14,12 +14,11 @@ proxy:
   - contextPath: /veilarbtiltakinfo
     baseUrl: http://veilarbproxy
 
-  - contextPath: /jobbsokerkompetanse
+  - contextPath: /veilarbjobbsokerkompetanse
     baseUrl: http://veilarbproxy
 
   - contextPath: /veilarbdialog
     baseUrl: http://veilarbproxy
-
 
 redirect:
   - from: /veientilarbeid
