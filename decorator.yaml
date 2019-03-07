@@ -14,7 +14,7 @@ proxy:
   - contextPath: /veilarbtiltakinfo
     baseUrl: http://veilarbproxy
 
-  - contextPath: /veilarbjobbsokerkompetanse
+  - contextPath: /jobbsokerkompetanse
     baseUrl: http://veilarbproxy
 
   - contextPath: /veilarbdialog
