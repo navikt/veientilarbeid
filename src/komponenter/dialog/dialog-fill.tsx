@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Power2, TweenLite } from 'gsap/all';
+import { Power2, TweenLite } from 'gsap';
 
 interface DialogFillProps {
     messagesCount: number;
