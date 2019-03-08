@@ -12,8 +12,6 @@ import './dialog.less';
 
 export const DIALOG_URL = '/aktivitetsplan/dialog';
 
-// const plugins = [AttrPlugin];
-
 interface StateProps {
     antallUleste: number;
 }
