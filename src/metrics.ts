@@ -92,8 +92,7 @@ export const klikkPaSoknadDagpenger = (nyregistrert: boolean) => {
 };
 
 export const lesOmOkonomi = (stonad: string) => {
-    console.log('Her kjorer vi: ', stonad);
     if (!erDemo()) {
-        logEvent(`${domene}.lesmkonomi`, {stonadField: stonad}, {stonadTag: stonad});
+        logEvent(`${domene}.lesomkonomi`, {stonadField: stonad}, {stonadTag: stonad});
     }
 };
