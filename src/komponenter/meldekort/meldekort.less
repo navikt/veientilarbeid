@@ -1,49 +1,20 @@
 @import '../../../node_modules/nav-frontend-core/less/_variabler';
 
 .meldekort {
-    .innhold {
-        display: flex;
-        border: 2px solid @navDypBlaLighten80;
+    .lenkepanel {
         border-radius: 8px;
-        margin-top: 2rem;
-        padding: 2rem;
-
-        .meldekort__bilde {
-            display: none;
-        }
-
-        .meldekort__lenke {
-            margin-top: 1rem;
-            text-align: center;
-        }
     }
-}
 
-@media (min-width: @screen-sm-min) {
-    .meldekort {
-        .innhold {
+    &__innhold {
+        padding: 0.5rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
 
-            .meldekort__bilde {
-                display: block;
-            }
-
-            .meldekort__lenke {
-                margin: 0;
-                text-align: left;
-            }
-
-            .meldekort__innhold {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                padding-left: 4rem;
-                height: 114px;
-                width: 100%; // IE-fix
-            }
-
-            .meldekort__beskrivelse {
-                margin-top: 1rem;
-            }
-        }
+    &__ikon {
+        margin-right: 1.5rem;
+        font-size: 13px;
+        font-weight: 400;
     }
 }

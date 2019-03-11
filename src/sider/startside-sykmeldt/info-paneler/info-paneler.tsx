@@ -1,13 +1,13 @@
 import * as React from 'react';
-import './info-paneler-rad.less';
 import InfoPanel from './info-panel';
 import sykefravaerBilde from './sykefravaer.svg';
 import hjelpTilJobbBilde from './hjelp-til-jobb.svg';
 
-const InfoPanelerRad: React.SFC = () => {
+import './info-paneler.less';
 
+const InfoPaneler: React.FunctionComponent = () => {
     return (
-        <div className="info-paneler-rad">
+        <div className="info-paneler">
             <InfoPanel
                 tittelId="info-paneler-rad-hjelp-til-jobb-tittel"
                 tekstId="info-paneler-rad-hjelp-til-jobb-tekst"
@@ -24,7 +24,6 @@ const InfoPanelerRad: React.SFC = () => {
             />
         </div>
     );
-
 };
 
-export default InfoPanelerRad;
+export default InfoPaneler;

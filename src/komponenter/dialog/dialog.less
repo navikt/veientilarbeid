@@ -1,10 +1,15 @@
 @import '../../../node_modules/nav-frontend-core/less/_variabler';
 
 .dialog {
-    margin-top: 1rem;
-
     .lenkepanel {
         border-radius: 8px;
+    }
+
+    &.uleste {
+        .lenkepanel {
+            border-color: @navBla;
+            background-color: @navBlaLighten80;
+        }
     }
 
     &__innhold {

@@ -22,5 +22,5 @@ if (erDemo()) {
 
 ReactDOM.render(
     <App/>,
-    document.getElementById('root') as HTMLElement
+    document.getElementById('maincontent') as HTMLElement
 );

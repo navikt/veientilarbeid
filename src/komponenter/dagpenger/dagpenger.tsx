@@ -44,18 +44,16 @@ class Dagpenger extends React.Component<InjectedIntlProps> {
 
     render() {
         return (
-            <section className="dagpenger blokk-xl" id="informasjonsmodul">
-                <div className="limit">
-                    <Innholdstittel tag="h1" className="blokk-xs">
-                        <FormattedMessage id="dagpenger-tittel"/>
-                    </Innholdstittel>
-                    <Normaltekst className="blokk-m dagpenger__tekst">
-                        <FormattedMessage id="dagpenger-tekst"/>
-                    </Normaltekst>
-                    <Hovedknapp onClick={this.handleButtonClick}>
-                        <FormattedMessage id="dagpenger-lenke-tekst"/>
-                    </Hovedknapp>
-                </div>
+            <section className="dagpenger" id="informasjonsmodul">
+                <Innholdstittel tag="h1" className="blokk-xs">
+                    <FormattedMessage id="dagpenger-tittel"/>
+                </Innholdstittel>
+                <Normaltekst className="blokk-m dagpenger__tekst">
+                    <FormattedMessage id="dagpenger-tekst"/>
+                </Normaltekst>
+                <Hovedknapp onClick={this.handleButtonClick}>
+                    <FormattedMessage id="dagpenger-lenke-tekst"/>
+                </Hovedknapp>
             </section>
         );
     }

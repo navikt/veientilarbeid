@@ -17,32 +17,30 @@ class Tiltakinfo extends React.Component {
     render() {
 
         const linkCreator = (props: {}) => {
-          return <a onClick={gaTilTiltaksinfo} {...props}/>;
+            return <a onClick={gaTilTiltaksinfo} {...props}/>;
         };
 
         return (
-            <section className="tiltakinfo blokk-m">
-                <div className="limit">
-                    <Lenkepanel tittelProps="undertittel" href={TILTAKINFO_URL} linkCreator={linkCreator}>
-                        <div className="tiltakinfo__innhold">
-                            <div className="tiltakinfo__bilde">
-                                <img
-                                    src={tiltakinfo}
-                                    alt="Hånd med forstørrelsesglass"
-                                />
-                            </div>
-
-                            <div className="tiltakinfo__tekst">
-                                <Systemtittel tag="h2" className="informasjonsmodul__heading blokk-s">
-                                    <FormattedMessage id="tiltakinfo-tittel"/>
-                                </Systemtittel>
-                                <Normaltekst className="ingress__tekst">
-                                    <FormattedMessage id="tiltakinfo-ingress"/>
-                                </Normaltekst>
-                            </div>
+            <section className="tiltakinfo">
+                <Lenkepanel tittelProps="undertittel" href={TILTAKINFO_URL} linkCreator={linkCreator}>
+                    <div className="tiltakinfo__innhold">
+                        <div className="tiltakinfo__bilde">
+                            <img
+                                src={tiltakinfo}
+                                alt="Hånd med forstørrelsesglass"
+                            />
                         </div>
-                    </Lenkepanel>
-                </div>
+
+                        <div className="tiltakinfo__tekst">
+                            <Systemtittel tag="h2" className="informasjonsmodul__heading blokk-s">
+                                <FormattedMessage id="tiltakinfo-tittel"/>
+                            </Systemtittel>
+                            <Normaltekst className="ingress__tekst">
+                                <FormattedMessage id="tiltakinfo-ingress"/>
+                            </Normaltekst>
+                        </div>
+                    </div>
+                </Lenkepanel>
             </section>
         );
     }

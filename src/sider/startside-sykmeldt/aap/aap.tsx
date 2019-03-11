@@ -6,13 +6,13 @@ import { Normaltekst, Systemtittel, Undertittel } from 'nav-frontend-typografi';
 import RettPaAapInnhold from './rett-pa-aap-innhold';
 import SoketidspunktInnhold from './soketidspunkt-innhold';
 
-import './aap-rad.less';
+import './aap.less';
 
 interface AapRadState {
     visAap: boolean;
 }
 
-class AapRad extends React.Component<InjectedIntlProps, AapRadState> {
+class Aap extends React.Component<InjectedIntlProps, AapRadState> {
 
     constructor(props: InjectedIntlProps) {
         super(props);
@@ -25,7 +25,7 @@ class AapRad extends React.Component<InjectedIntlProps, AapRadState> {
         // Vent til animasjonen til AAP-panelet er ferdig, slik at vi scroller til riktig posisjon
         setTimeout(() => {
             if (this.state.visAap) {
-                const aap = document.querySelector('.aap-rad');
+                const aap = document.querySelector('.aap');
                 if (aap) {
                     aap.scrollIntoView(
                         {
@@ -39,7 +39,6 @@ class AapRad extends React.Component<InjectedIntlProps, AapRadState> {
     }
 
     render() {
-
         const {messages} = this.props.intl;
 
         const tekster = {
@@ -49,8 +48,8 @@ class AapRad extends React.Component<InjectedIntlProps, AapRadState> {
         };
 
         return (
-            <div className="aap-rad">
-                <Systemtittel className="blokk-xl aap-rad--tittel">
+            <div className="aap">
+                <Systemtittel className="blokk-xl aap--tittel">
                     <FormattedMessage id="aap-rad-tittel"/>
                 </Systemtittel>
 
@@ -58,7 +57,7 @@ class AapRad extends React.Component<InjectedIntlProps, AapRadState> {
                     <FormattedMessage id="aap-rad-ingress-tittel"/>
                 </Undertittel>
 
-                <Normaltekst className="blokk-m aap-rad--ingress">
+                <Normaltekst className="blokk-m aap--ingress">
                     <FormattedMessage id="aap-rad-ingress"/>
                 </Normaltekst>
 
@@ -79,13 +78,12 @@ class AapRad extends React.Component<InjectedIntlProps, AapRadState> {
                     <SoketidspunktInnhold/>
                 </Ekspanderbartpanel>
 
-                <a className="knapp knapp--hoved aap-rad--til-soknad-knapp" href={tekster.tilSoknadKnappUrl}>
+                <a className="knapp knapp--hoved aap--til-soknad-knapp" href={tekster.tilSoknadKnappUrl}>
                     <FormattedMessage id="aap-rad-til-soknad-knapp-tekst"/>
                 </a>
             </div>
         );
     }
-
 }
 
-export default injectIntl(AapRad);
+export default injectIntl(Aap);

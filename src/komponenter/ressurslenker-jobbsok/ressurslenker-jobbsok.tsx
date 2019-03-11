@@ -8,20 +8,18 @@ import { Systemtittel } from 'nav-frontend-typografi';
 import { FormattedMessage } from 'react-intl';
 
 class RessurslenkerJobbsok extends React.Component {
-    render () {
+    render() {
         return (
-            <section className="ressurslenker-jobbsok blokk-xl">
-                <div className="limit">
-                    <Systemtittel tag="h2" className="ressurslenker__heading blokk-m">
-                        <FormattedMessage id="ressurslenker-jobbsok-overskrift"/>
-                    </Systemtittel>
+            <section className="ressurslenker-jobbsok">
+                <Systemtittel tag="h2" className="ressurslenker__heading blokk-m">
+                    <FormattedMessage id="ressurslenker-jobbsok-overskrift"/>
+                </Systemtittel>
 
-                    <div className="paneler">
-                        <StillingSok/>
-                        <CV/>
-                        <Mia/>
-                        <Jobbsokertips/>
-                    </div>
+                <div className="paneler">
+                    <StillingSok/>
+                    <CV/>
+                    <Mia/>
+                    <Jobbsokertips/>
                 </div>
             </section>
         );

@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { InjectedIntlProps, injectIntl, FormattedMessage } from 'react-intl';
-import './okonomi-panel.less';
+import Parser from 'html-react-parser';
 import { Systemtittel } from 'nav-frontend-typografi';
-import Html from '../../../komponenter/html';
+import { InjectedIntlProps, injectIntl, FormattedMessage } from 'react-intl';
 import LenkeMedChevron from '../../../komponenter/lenke-med-chevron/lenke-med-chevron';
+
+import './okonomi-panel.less';
 
 interface OkonomiPanelProps {
     tittelId: string;
@@ -27,7 +28,7 @@ const OkonomiPanel = (props: AllProps) => {
 
             <Systemtittel className="blokk-m okonomi-panel--tittel">
                 { renderTittelAsHtml ?
-                    <Html html={tekst}/>
+                    Parser(tekst)
                     :
                     tekst
                 }
