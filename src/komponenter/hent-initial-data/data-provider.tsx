@@ -35,8 +35,8 @@ interface DispatchProps {
 type Props = StateProps & DispatchProps & OwnProps;
 
 class DataProvider extends React.Component<Props> {
-    componentWillMount() {
 
+    componentWillMount() {
         this.props.hentSykmeldtInfo();
 
         if (this.props.oppfolging.data.underOppfolging) {
@@ -46,19 +46,19 @@ class DataProvider extends React.Component<Props> {
         }
         this.props.hentServicegruppe();
         this.props.hentUlesteDialoger();
-
     }
 
     render() {
         const { children, oppfolging, servicegruppe, sykmeldtInfo, jobbsokerbesvarelse, ulesteDialoger } = this.props;
 
-        const avhengigheter: any[] = [oppfolging, sykmeldtInfo, servicegruppe, jobbsokerbesvarelse, ulesteDialoger]; // tslint:disable-line
-
+        const avhengigheter: any[] = [oppfolging, sykmeldtInfo]; // tslint:disable-line:no-any
+        const ventPa: any[] = [servicegruppe, jobbsokerbesvarelse, ulesteDialoger]; // tslint:disable-line:no-any
         return (
             <Innholdslaster
                 feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse"/>}
                 storrelse="XXL"
                 avhengigheter={avhengigheter}
+                ventPa={ventPa}
             >
                 {children}
             </Innholdslaster>

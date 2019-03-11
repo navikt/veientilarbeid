@@ -8,8 +8,8 @@ import { gaTilDialog } from '../../metrics';
 import { antallUlesteDialoger } from '../../metrics';
 import DialogFill from './dialog-fill';
 import dialogLine from './dialog-line.svg';
-
 import './dialog.less';
+
 export const DIALOG_URL = '/aktivitetsplan/dialog';
 
 interface StateProps {
