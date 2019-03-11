@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { FormattedMessage } from 'react-intl';
-import { Normaltekst, Innholdstittel } from 'nav-frontend-typografi';
 import { parse } from 'query-string';
+import { FormattedMessage } from 'react-intl';
 import Lenkepanel from 'nav-frontend-lenkepanel';
-import ordinaerAktivitetsplanSvg from './ordinaer-aktivitetsplan.svg';
-import './aktivitetsplan.less';
+import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
+import designMug from './design-mug.svg';
 import { gaTilAktivitetsplan } from '../../metrics';
+
+import './aktivitetsplan.less';
 
 export const AKTIVITETSPLAN_URL = '/aktivitetsplan/';
 
@@ -41,16 +42,16 @@ class Aktivitetsplan extends React.PureComponent<AktivitetsplanProps, State> {
                     border={true}
                 >
                     <div className="aktivitetsplan__innhold">
-                        <div className="aktivitetsplan__illustrasjon">
+                        <div className="aktivitetsplan__ikon">
                             <img
-                                src={ordinaerAktivitetsplanSvg}
-                                alt="aktivitetsplan-illustrasjon"
+                                src={designMug}
+                                alt=""
                             />
                         </div>
                         <div className="aktivitetsplan__tekst">
-                            <Innholdstittel tag="h2" className="informasjonsmodul__heading blokk-s">
+                            <Systemtittel tag="h2" className="informasjonsmodul__heading blokk-s">
                                 <FormattedMessage id={overskriftTekstId}/>
-                            </Innholdstittel>
+                            </Systemtittel>
                             <Normaltekst className="ingress__tekst">
                                 <FormattedMessage id={beskrivelseTekstId}/>
                             </Normaltekst>

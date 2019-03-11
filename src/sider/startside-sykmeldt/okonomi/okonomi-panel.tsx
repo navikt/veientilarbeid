@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Parser from 'html-react-parser';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { InjectedIntlProps, injectIntl, FormattedMessage } from 'react-intl';
+import { lesOmOkonomi } from '../../../metrics';
 import LenkeMedChevron from '../../../komponenter/lenke-med-chevron/lenke-med-chevron';
 
 import './okonomi-panel.less';
@@ -10,7 +10,6 @@ interface OkonomiPanelProps {
     tittelId: string;
     lenkeTekstId: string;
     lenkeUrlId: string;
-    renderTittelAsHtml?: boolean;
     bilde: string;
 }
 
@@ -18,23 +17,18 @@ type AllProps = OkonomiPanelProps & InjectedIntlProps;
 
 const OkonomiPanel = (props: AllProps) => {
 
-    const { intl, tittelId, lenkeTekstId, lenkeUrlId, renderTittelAsHtml, bilde } = props;
+    const { intl, tittelId, lenkeTekstId, lenkeUrlId, bilde } = props;
     const lenkeUrl = intl.messages[lenkeUrlId];
-    const tekst = intl.messages[tittelId];
 
     return (
         <div className="okonomi-panel">
             <img src={bilde} className="okonomi-panel--bilde blokk-m"/>
 
             <Systemtittel className="blokk-m okonomi-panel--tittel">
-                { renderTittelAsHtml ?
-                    Parser(tekst)
-                    :
-                    tekst
-                }
+                <FormattedMessage id={tittelId}/>
             </Systemtittel>
 
-            <LenkeMedChevron path={lenkeUrl} className="okonomi-panel--lenke">
+            <LenkeMedChevron path={lenkeUrl} className="okonomi-panel--lenke" onClick={() => lesOmOkonomi(lenkeUrl)} >
                 <FormattedMessage id={lenkeTekstId}/>
             </LenkeMedChevron>
 

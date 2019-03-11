@@ -13,21 +13,18 @@ const OkonomiRad = () => {
                 tittelId="okonomi-rad-stotte-arbeidsledig-tittel"
                 lenkeTekstId="okonomi-rad-stotte-arbeidsledig-lenke-tekst"
                 lenkeUrlId="okonomi-rad-stotte-arbeidsledig-lenke-url"
-                renderTittelAsHtml={true}
                 bilde={dagpengerBilde}
             />
             <OkonomiPanel
                 tittelId="okonomi-rad-nodsituasjon-tittel"
                 lenkeTekstId="okonomi-rad-nodsituasjon-lenke-tekst"
                 lenkeUrlId="okonomi-rad-nodsituasjon-lenke-url"
-                renderTittelAsHtml={true}
                 bilde={okonomiskSosialhjelpBilde}
             />
             <OkonomiPanel
                 tittelId="okonomi-rad-sykepenger-tittel"
                 lenkeTekstId="okonomi-rad-sykepenger-lenke-tekst"
                 lenkeUrlId="okonomi-rad-sykepenger-lenke-url"
-                renderTittelAsHtml={true}
                 bilde={nyRettTilSykepengerBilde}
             />
         </div>
