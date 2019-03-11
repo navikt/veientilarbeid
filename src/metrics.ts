@@ -90,3 +90,9 @@ export const klikkPaSoknadDagpenger = (nyregistrert: boolean) => {
         logEvent(`${domene}.soknaddagpenger`, {nyregistrertField: nyregistrert}, {nyregistrertTag: nyregistrert});
     }
 };
+
+export const lesOmOkonomi = (stonad: string) => {
+    if (!erDemo()) {
+        logEvent(`${domene}.lesomokonomi`, {stonadField: stonad}, {stonadTag: stonad});
+    }
+};
