@@ -21,7 +21,9 @@
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
     "@craco/craco": "^3.5.0",
+    "acorn": "^6.1.1",
     "ajv": "6.10.0",
+    "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.6",
     "craco-less": "^1.6.0",
     "gsap": "^2.1.2",
