@@ -22,6 +22,22 @@ class Dialog extends React.Component<StateProps> {
         antallUlesteDialoger(this.props.antallUleste);
     }
 
+    byggDialogTekst() {
+        let dialogTekst;
+        switch (this.props.antallUleste) {
+            case 0:
+                dialogTekst = 'Ingen uleste dialoger';
+                break;
+            case 1:
+                dialogTekst = this.props.antallUleste.toString() + ' ulest dialog';
+                break;
+            default:
+                dialogTekst = this.props.antallUleste.toString() + ' uleste dialoger';
+                break;
+        }
+        return dialogTekst;
+    }
+
     render() {
         const linkCreator = (props: {}) => {
             return <a onClick={() => gaTilDialog(this.props.antallUleste)} {...props}/>;
@@ -30,36 +46,30 @@ class Dialog extends React.Component<StateProps> {
         const className = this.props.antallUleste > 0 ? ' uleste' : '';
 
         return (
-            <section className={'dialog' + className}>
-                <LenkepanelBase
-                    href={DIALOG_URL}
-                    tittelProps="undertittel"
-                    linkCreator={linkCreator}
-                    border={true}
-                >
-                    <div className="dialog__innhold">
+            <LenkepanelBase
+                href={DIALOG_URL}
+                tittelProps="undertittel"
+                linkCreator={linkCreator}
+                border={true}
+                className={'dialog' + className}
+            >
+                <div className="lp-innhold">
+                    <div className="lp-ikon">
                         {this.props.antallUleste > 0 ?
                             <DialogFill messagesCount={this.props.antallUleste}/> :
-                            <img
-                                src={dialogLine}
-                                className="dialog__ikon"
-                                alt=""
-                            />
+                            <img src={dialogLine} alt=""/>
                         }
-                        <div>
-                            <Systemtittel className="dialog__tittel">
-                                <FormattedMessage id="dialog"/>
-                            </Systemtittel>
-                            <Normaltekst>
-                                {this.props.antallUleste > 0 ?
-                                    this.props.antallUleste + ' ' :
-                                    'Ingen '}
-                                <FormattedMessage id="dialog-tekst"/>
-                            </Normaltekst>
-                        </div>
                     </div>
-                </LenkepanelBase>
-            </section>
+                    <div className="lp-tekst">
+                        <Systemtittel>
+                            <FormattedMessage id="dialog"/>
+                        </Systemtittel>
+                        <Normaltekst>
+                            {this.byggDialogTekst()}
+                        </Normaltekst>
+                    </div>
+                </div>
+            </LenkepanelBase>
         );
     }
 }

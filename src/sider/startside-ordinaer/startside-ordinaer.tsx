@@ -47,15 +47,11 @@ class StartsideOrdinaer extends React.Component<StateProps> {
                         <RessurslenkerJobbsok/>
                     </div>
                 </div>
-                {innsatsgruppe && (
-                    <div className="rad">
-                        <div className="limit">
-                            <Tiltakinfo/>
-                        </div>
-                    </div>
-                )}
                 <div className="rad">
                     <div className="limit">
+                        {innsatsgruppe && (
+                            <Tiltakinfo/>
+                        )}
                         <Dagpenger/>
                     </div>
                 </div>

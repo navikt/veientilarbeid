@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { parse } from 'query-string';
-import { FormattedMessage } from 'react-intl';
-import Lenkepanel from 'nav-frontend-lenkepanel';
+import { FormattedMessage, FormattedHTMLMessage } from 'react-intl';
+import LenkepanelBase from 'nav-frontend-lenkepanel';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import designMug from './design-mug.svg';
 import { gaTilAktivitetsplan } from '../../metrics';
@@ -34,31 +34,27 @@ class Aktivitetsplan extends React.PureComponent<AktivitetsplanProps, State> {
         };
 
         return (
-            <section className="aktivitetsplan">
-                <Lenkepanel
-                    tittelProps="undertittel"
-                    href={AKTIVITETSPLAN_URL}
-                    linkCreator={linkCreator}
-                    border={true}
-                >
-                    <div className="aktivitetsplan__innhold">
-                        <div className="aktivitetsplan__ikon">
-                            <img
-                                src={designMug}
-                                alt=""
-                            />
-                        </div>
-                        <div className="aktivitetsplan__tekst">
-                            <Systemtittel tag="h2" className="informasjonsmodul__heading blokk-s">
-                                <FormattedMessage id={overskriftTekstId}/>
-                            </Systemtittel>
-                            <Normaltekst className="ingress__tekst">
-                                <FormattedMessage id={beskrivelseTekstId}/>
-                            </Normaltekst>
-                        </div>
+            <LenkepanelBase
+                tittelProps="undertittel"
+                href={AKTIVITETSPLAN_URL}
+                linkCreator={linkCreator}
+                border={true}
+                className="aktivitetsplan"
+            >
+                <div className="lp-innhold">
+                    <div className="lp-ikon">
+                        <img src={designMug} alt="" />
                     </div>
-                </Lenkepanel>
-            </section>
+                    <div className="lp-tekst">
+                        <Systemtittel tag="h2" className="lenkepanel__heading blokk-xxxs">
+                            <FormattedMessage id={overskriftTekstId}/>
+                        </Systemtittel>
+                        <Normaltekst className="lenkepanel__tekst">
+                            <FormattedHTMLMessage id={beskrivelseTekstId}/>
+                        </Normaltekst>
+                    </div>
+                </div>
+            </LenkepanelBase>
         );
     }
 }

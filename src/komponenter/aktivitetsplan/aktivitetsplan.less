@@ -1,41 +1,25 @@
 @import '../../../node_modules/nav-frontend-core/less/_variabler';
 
 .aktivitetsplan {
-
-    .lenkepanel {
-        border-radius: 8px;
-        color: @navMorkGra;
-    }
-
-    &__innhold {
-        padding: 0.5rem;
-    }
-
-    .informasjonsmodul__heading.blokk-s {
-        margin-bottom: 0.5rem;
-    }
+    border-radius: 8px;
+    padding-left: 0;
+    color: @navMorkGra;
 }
 
-@media (min-width: @screen-sm-min) {
-    .aktivitetsplan {
+.lp-innhold {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        &__innhold {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-            align-items: center;
-        }
+.lp-ikon {
+    width: 4rem;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 400;
+}
 
-        &__ikon {
-            margin-right: 1.5rem;
-            font-size: 13px;
-            font-weight: 400;
-        }
-
-        &__tekst {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-    }
+.lp-tekst {
+    width: calc(100% - 4rem);
 }

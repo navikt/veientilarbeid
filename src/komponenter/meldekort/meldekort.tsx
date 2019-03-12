@@ -18,30 +18,27 @@ class Meldekort extends React.Component<InjectedIntlProps> {
         };
 
         return (
-            <section className="meldekort">
-                <LenkepanelBase
-                    href={tekster.meldekortUrl}
-                    tittelProps="undertittel"
-                    linkCreator={linkCreator}
-                    border={true}
-                >
-                    <div className="meldekort__innhold">
-                        <img
-                            src={emailText}
-                            className="dialog__ikon"
-                            alt=""
-                        />
-                        <div>
-                            <Systemtittel>
-                                <FormattedHTMLMessage id="meldekort-lenke"/>
-                            </Systemtittel>
-                            <Normaltekst className="meldekort__tekst">
-                                <FormattedMessage id="meldekort-beskrivelse"/>
-                            </Normaltekst>
-                        </div>
+            <LenkepanelBase
+                href={tekster.meldekortUrl}
+                tittelProps="undertittel"
+                linkCreator={linkCreator}
+                border={true}
+                className="meldekort"
+            >
+                <div className="lp-innhold">
+                    <div className="lp-ikon">
+                        <img src={emailText} alt="" />
                     </div>
-                </LenkepanelBase>
-            </section>
+                    <div className="lp-tekst">
+                        <Systemtittel>
+                            <FormattedHTMLMessage id="meldekort-lenke"/>
+                        </Systemtittel>
+                        <Normaltekst>
+                            <FormattedMessage id="meldekort-beskrivelse"/>
+                        </Normaltekst>
+                    </div>
+                </div>
+            </LenkepanelBase>
         );
     }
 }
