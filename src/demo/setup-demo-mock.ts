@@ -6,8 +6,8 @@ import {
     VEILARBOPPFOLGING_URL,
     ULESTEDIALOGER_URL, featureQueryParams
 } from '../ducks/api';
-import FetchMock, {Middleware, MiddlewareUtils} from 'yet-another-fetch-mock';
-import {hentJsk, hentServicegruppe, hentSykmeldtMedArbeidsgiver, hentUlesteDialoger} from './demo-state';
+import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
+import { hentJsk, hentServicegruppe, hentSykmeldtMedArbeidsgiver, hentUlesteDialoger } from './demo-state';
 
 const loggingMiddleware: Middleware = (request, response) => {
     console.log(request.url, request.method, response); // tslint:disable-line:no-console
