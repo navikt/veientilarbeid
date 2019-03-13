@@ -4,10 +4,10 @@ import {
     SERVICEGRUPPE_URL,
     STARTREGISTRERING_URL,
     VEILARBOPPFOLGING_URL,
-    ULESTEDIALOGER_URL
+    ULESTEDIALOGER_URL, featureQueryParams
 } from '../ducks/api';
-import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
-import { hentJsk, hentServicegruppe, hentSykmeldtMedArbeidsgiver, hentUlesteDialoger } from './demo-state';
+import FetchMock, {Middleware, MiddlewareUtils} from 'yet-another-fetch-mock';
+import {hentJsk, hentServicegruppe, hentSykmeldtMedArbeidsgiver, hentUlesteDialoger} from './demo-state';
 
 const loggingMiddleware: Middleware = (request, response) => {
     console.log(request.url, request.method, response); // tslint:disable-line:no-console
@@ -48,8 +48,5 @@ fetchMock.get(ULESTEDIALOGER_URL, {
 
 fetchMock.get(JOBBSOKERBESVARELSE_URL, hentJsk());
 
-// For kjøring av demo lokalt
-if (process.env.REACT_APP_MOCK) {
-    fetchMock.get(`express:${FEATURE_URL}(.*)`, {});
-    fetchMock.get(`${FEATURE_URL}(.*)`, {});
-}
+const unleashUrl = FEATURE_URL + featureQueryParams([]);
+fetchMock.get(unleashUrl, {});
