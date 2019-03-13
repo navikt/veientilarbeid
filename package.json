@@ -19,11 +19,10 @@
     "prettier": "prettier --write --single-quote --tab-width 4 src/**/*.ts src/**/*.tsx src/**/*.less"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.2.5",
     "@craco/craco": "^3.5.0",
     "ajv": "6.10.0",
-    "babel-polyfill": "6.26.0",
     "classnames": "^2.2.6",
-    "gsap": "^2.1.2",
     "craco-less": "^1.6.0",
     "html-react-parser": "^0.6.2",
     "intl": "1.2.5",
