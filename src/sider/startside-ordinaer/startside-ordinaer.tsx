@@ -11,8 +11,6 @@ import Aktivitetsplan from '../../komponenter/aktivitetsplan/aktivitetsplan';
 import { Servicegruppe, State as ServicegruppeState } from '../../ducks/servicegruppe';
 import RessurslenkerJobbsok from '../../komponenter/ressurslenker-jobbsok/ressurslenker-jobbsok';
 
-import './startside-ordinaer.less';
-
 interface StateProps {
     servicegruppe: ServicegruppeState;
 }

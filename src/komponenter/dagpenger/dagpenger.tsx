@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
+import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
 import { injectIntl, FormattedMessage, InjectedIntlProps } from 'react-intl';
 import { klikkPaSoknadDagpenger, visInfoOmDagpenger } from '../../metrics';
 import { visRettTilDagPenger } from '../../utils/utils';
@@ -45,9 +45,9 @@ class Dagpenger extends React.Component<InjectedIntlProps> {
     render() {
         return (
             <section className="dagpenger" id="informasjonsmodul">
-                <Innholdstittel tag="h1" className="blokk-xs">
+                <Systemtittel tag="h1" className="blokk-xs">
                     <FormattedMessage id="dagpenger-tittel"/>
-                </Innholdstittel>
+                </Systemtittel>
                 <Normaltekst className="blokk-m dagpenger__tekst">
                     <FormattedMessage id="dagpenger-tekst"/>
                 </Normaltekst>

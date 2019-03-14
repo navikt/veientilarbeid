@@ -1,14 +1,8 @@
 import * as React from 'react';
 import { parse } from 'query-string';
-import { FormattedMessage, FormattedHTMLMessage } from 'react-intl';
-import LenkepanelBase from 'nav-frontend-lenkepanel';
-import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
+import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import designMug from './design-mug.svg';
 import { gaTilAktivitetsplan } from '../../metrics';
-
-import './aktivitetsplan.less';
-
-export const AKTIVITETSPLAN_URL = '/aktivitetsplan/';
 
 interface State {
     nyRegistrering: boolean;
@@ -26,35 +20,19 @@ class Aktivitetsplan extends React.PureComponent<AktivitetsplanProps, State> {
     }
 
     render() {
-        let overskriftTekstId = 'aktivitetsplan-overskrift-ordinaer';
-        let beskrivelseTekstId = 'aktivitetsplan-beskrivelse' + (this.state.nyRegistrering ? '-ny' : '');
-
-        const linkCreator = (props: {}) => {
-            return <a onClick={gaTilAktivitetsplan} {...props}/>;
-        };
+        const overskrift = 'aktivitetsplan-overskrift-ordinaer';
+        const ingress = 'aktivitetsplan-beskrivelse' + (this.state.nyRegistrering ? '-ny' : '');
+        const url = '/aktivitetsplan/';
 
         return (
-            <LenkepanelBase
-                tittelProps="undertittel"
-                href={AKTIVITETSPLAN_URL}
-                linkCreator={linkCreator}
-                border={true}
-                className="aktivitetsplan"
-            >
-                <div className="lp-innhold">
-                    <div className="lp-ikon">
-                        <img src={designMug} alt="" />
-                    </div>
-                    <div className="lp-tekst">
-                        <Systemtittel tag="h2" className="lenkepanel__heading blokk-xxxs">
-                            <FormattedMessage id={overskriftTekstId}/>
-                        </Systemtittel>
-                        <Normaltekst className="lenkepanel__tekst">
-                            <FormattedHTMLMessage id={beskrivelseTekstId}/>
-                        </Normaltekst>
-                    </div>
-                </div>
-            </LenkepanelBase>
+            <LenkepanelMedIkon
+                href={url}
+                alt=""
+                onClick={gaTilAktivitetsplan}
+                ikon={designMug}
+                overskrift={overskrift}
+                ingress={ingress}
+            />
         );
     }
 }

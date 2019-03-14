@@ -1,15 +1,22 @@
 @import '../../../node_modules/nav-frontend-core/less/_variabler';
 
-.lenkepanel {
-    border-radius: 8px;
+.lenkepanel__innhold {
+    padding: 0.5rem 0.5rem 0.5rem 0rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
 
-    &__innhold {
-        padding: 0.5rem;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
+.lenkepanel__ikon {
+    margin-right: 1rem;
+}
+
+@media (min-width: @screen-sm-min) {
+    .lenkepanel__innhold {
+        padding: 0.5rem 1rem 0.5rem 0.5rem;
     }
-    &__ikon {
+
+    .lenkepanel__ikon {
         margin-right: 1rem;
     }
 }
