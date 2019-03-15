@@ -6,8 +6,6 @@ import Dialog from '../../komponenter/dialog/dialog';
 import InfoPaneler from './info-paneler/info-paneler';
 import Aktivitetsplan from '../../komponenter/aktivitetsplan/aktivitetsplan';
 
-import './startside-sykmeldt.less';
-
 const StartsideSykmeldt = () => {
     return (
         <>
