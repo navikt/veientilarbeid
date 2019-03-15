@@ -1,41 +1,12 @@
 @import '../../../node_modules/nav-frontend-core/less/_variabler';
 
-.tiltakinfo {
-    .lenkepanel {
-        background-color: @navDypBlaLighten80;
-        border-radius: 8px;
-        margin-bottom: 0;
-        color: @navMorkGra;
-    }
-    &__innhold {
-        padding: 1rem 1rem 1rem .5rem;
-    }
-    &__bilde {
-        display: none;
-    }
-    .informasjonsmodul__heading.blokk-s {
-        margin-bottom: 0.5rem;
-    }
+.tiltakinfo .ikon {
+    display: none;
 }
 
 @media (min-width: @screen-sm-min) {
-    .tiltakinfo {
-
-        &__innhold {
-            min-width: 600px;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-        }
-        &__bilde {
-            display: flex;
-            width: 20%;
-        }
-        &__tekst {
-            width: 80%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+    .tiltakinfo .ikon {
+        display: block;
+        width: 70px;
     }
 }
