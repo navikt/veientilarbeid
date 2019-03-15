@@ -62,7 +62,7 @@ class Dialog extends React.Component<StateProps> {
                         <Undertittel>
                             <FormattedMessage id="dialog"/>
                         </Undertittel>
-                        <Normaltekst>
+                        <Normaltekst className="lenkepanel__ingress">
                             {this.byggDialogTekst()}
                         </Normaltekst>
                     </div>
