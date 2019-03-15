@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './lenkepanel-med-ikon.less';
-import { Systemtittel } from 'nav-frontend-typografi';
+import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { FormattedMessage } from 'react-intl';
 import LenkepanelBase from 'nav-frontend-lenkepanel';
 
@@ -10,12 +10,13 @@ interface Props {
     onClick?: () => void;
     className?: string;
     ikon: any; // tslint:disable-line:no-any
-    lenketekst: string;
+    overskrift: string;
+    ingress?: string;
 }
 
 class LenkepanelMedIkon extends React.Component<Props> {
     render() {
-        const {href, alt, onClick, className, ikon, lenketekst} = this.props;
+        const {href, alt, onClick, className, ikon, overskrift, ingress} = this.props;
 
         const linkCreator = (props: {}) => {
             return <a onClick={onClick} {...props}/>;
@@ -37,9 +38,15 @@ class LenkepanelMedIkon extends React.Component<Props> {
                             alt={alt}
                         />
                     </div>
-                    <Systemtittel className="lenkepanel__tittel">
-                        <FormattedMessage id={lenketekst}/>
-                    </Systemtittel>
+                    <div>
+                        <Undertittel>
+                            <FormattedMessage id={overskrift}/>
+                        </Undertittel>
+                        {(ingress) ?
+                            <Normaltekst>
+                                <FormattedMessage id={ingress}/>
+                            </Normaltekst> : ""}
+                    </div>
                 </div>
             </LenkepanelBase>
         );

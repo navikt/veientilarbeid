@@ -8,15 +8,13 @@ export const STILLINGSOK_URL = '/arbeidsplassen/stillinger';
 class StillingSok extends React.Component {
     render() {
         return (
-            <div className="stillingsok">
-                <LenkepanelMedIkon
-                    href={STILLINGSOK_URL}
-                    alt=""
-                    onClick={klikkPaSokLedigeStillinger}
-                    ikon={stillingsokIkon}
-                    lenketekst="stillingsok-overskrift"
-                />
-            </div>
+            <LenkepanelMedIkon
+                href={STILLINGSOK_URL}
+                alt=""
+                onClick={klikkPaSokLedigeStillinger}
+                ikon={stillingsokIkon}
+                overskrift="stillingsok-overskrift"
+            />
         );
     }
 }

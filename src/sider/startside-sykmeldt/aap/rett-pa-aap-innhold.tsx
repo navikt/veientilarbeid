@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
+import Parser from 'html-react-parser';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
-import Html from '../../../komponenter/html';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
 
-const RettPaAapInnhold: React.SFC<InjectedIntlProps> = (props?: InjectedIntlProps) => {
+const RettPaAapInnhold: React.FunctionComponent<InjectedIntlProps> = (props?: InjectedIntlProps) => {
 
-    const { messages } = props!.intl;
+    const {messages} = props!.intl;
 
     const tekster = {
         innhold: messages['aap-rett-pa-innhold'],
@@ -22,7 +22,7 @@ const RettPaAapInnhold: React.SFC<InjectedIntlProps> = (props?: InjectedIntlProp
                 </Normaltekst>
                 <div className="sjekkboks-liste">
                     <Normaltekst>
-                        <Html html={tekster.innhold}/>
+                        {Parser(tekster.innhold)}
                     </Normaltekst>
                 </div>
             </div>
@@ -33,7 +33,7 @@ const RettPaAapInnhold: React.SFC<InjectedIntlProps> = (props?: InjectedIntlProp
                     </Element>
                 </div>
                 <Normaltekst className="relatert-innhold-lenkeliste">
-                   <Html html={tekster.relatertInnhold}/>
+                    {Parser(tekster.relatertInnhold)}
                 </Normaltekst>
             </div>
         </div>
