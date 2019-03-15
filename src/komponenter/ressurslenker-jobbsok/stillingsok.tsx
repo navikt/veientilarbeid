@@ -3,7 +3,7 @@ import { klikkPaSokLedigeStillinger } from '../../metrics';
 import stillingsokIkon from './svg/stillingsok.svg';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 
-export const STILLINGSOK_URL = 'https://stillingsok.nav.no/stillinger';
+export const STILLINGSOK_URL = '/arbeidsplassen/stillinger';
 
 class StillingSok extends React.Component {
     render() {
