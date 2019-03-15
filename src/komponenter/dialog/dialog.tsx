@@ -23,19 +23,14 @@ class Dialog extends React.Component<StateProps> {
     }
 
     byggDialogTekst() {
-        let dialogTekst;
         switch (this.props.antallUleste) {
             case 0:
-                dialogTekst = 'Ingen uleste dialoger';
-                break;
+                return 'Ingen uleste dialoger';
             case 1:
-                dialogTekst = this.props.antallUleste.toString() + ' ulest dialog';
-                break;
+                return this.props.antallUleste.toString() + ' ulest dialog';
             default:
-                dialogTekst = this.props.antallUleste.toString() + ' uleste dialoger';
-                break;
+                return this.props.antallUleste.toString() + ' uleste dialoger';
         }
-        return dialogTekst;
     }
 
     render() {
