@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 import LenkepanelBase from 'nav-frontend-lenkepanel';
-import { Systemtittel } from 'nav-frontend-typografi';
+import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { connect } from 'react-redux';
 import { AppState } from '../../reducer';
 import { gaTilDialog } from '../../metrics';
@@ -16,42 +16,53 @@ interface StateProps {
     antallUleste: number;
 }
 
-class Dialog extends React.Component<StateProps>  {
+class Dialog extends React.Component<StateProps> {
 
     componentDidMount() {
         antallUlesteDialoger(this.props.antallUleste);
     }
 
+    byggDialogTekst() {
+        switch (this.props.antallUleste) {
+            case 0:
+                return 'Ingen uleste dialoger';
+            case 1:
+                return this.props.antallUleste.toString() + ' ulest dialog';
+            default:
+                return this.props.antallUleste.toString() + ' uleste dialoger';
+        }
+    }
+
     render() {
         const linkCreator = (props: {}) => {
-          return <a onClick={() => gaTilDialog(this.props.antallUleste)} {...props}/>;
+            return <a onClick={() => gaTilDialog(this.props.antallUleste)} {...props}/>;
         };
 
         return (
-            <section className="dialog">
-                <div className="limit">
-                    <LenkepanelBase
-                        href={DIALOG_URL}
-                        tittelProps="undertittel"
-                        linkCreator={linkCreator}
-                        border={true}
-                    >
-                        <div className="dialog__innhold">
-                            {this.props.antallUleste > 0 ?
-                                <DialogFill messagesCount={this.props.antallUleste}/> :
-                                <img
-                                    src={dialogLine}
-                                    className="dialog__ikon"
-                                    alt=""
-                                />
-                            }
-                            <Systemtittel className="dialog__tittel">
-                                <FormattedMessage id="dialog"/>
-                            </Systemtittel>
-                        </div>
-                    </LenkepanelBase>
+            <LenkepanelBase
+                href={DIALOG_URL}
+                tittelProps="undertittel"
+                linkCreator={linkCreator}
+                border={true}
+                className="dialog"
+            >
+                <div className="lenkepanel__innhold">
+                    <div className="lenkepanel__ikon">
+                        {this.props.antallUleste > 0 ?
+                            <DialogFill messagesCount={this.props.antallUleste}/> :
+                            <img src={dialogLine} alt=""/>
+                        }
+                    </div>
+                    <div className="lenkepanel__tekst">
+                        <Undertittel>
+                            <FormattedMessage id="dialog"/>
+                        </Undertittel>
+                        <Normaltekst className="lenkepanel__ingress">
+                            {this.byggDialogTekst()}
+                        </Normaltekst>
+                    </div>
                 </div>
-            </section>
+            </LenkepanelBase>
         );
     }
 }

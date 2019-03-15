@@ -1,21 +1,18 @@
 import * as React from 'react';
-import { addLocaleData, IntlProvider as Provider } from 'react-intl';
-import * as nb from 'react-intl/locale-data/nb';
-import lokaleTekster from './tekster/bundle';
 import { parse } from 'query-string';
+import * as nb from 'react-intl/locale-data/nb';
+import { addLocaleData, IntlProvider as Provider } from 'react-intl';
+import lokaleTekster from './tekster/bundle';
 
 addLocaleData(nb);
 
 function mapTeksterTilNokler(tekster: any) { // tslint:disable-line no-any
     return Object.keys(tekster)
         .map(key => ({key, value: `[${key}]`}))
-        .reduce(
-            (previous, current) => {
-                previous[current.key] = current.value;
-                return previous;
-            },
-            {}
-        );
+        .reduce((previous, current) => {
+            previous[current.key] = current.value;
+            return previous;
+        }, {});
 }
 
 function skalViseTekstnokler(): boolean {

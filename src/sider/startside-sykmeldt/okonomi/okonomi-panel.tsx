@@ -1,15 +1,15 @@
 import * as React from 'react';
-import { InjectedIntlProps, injectIntl, FormattedMessage } from 'react-intl';
-import './okonomi-panel.less';
 import { Systemtittel } from 'nav-frontend-typografi';
-import LenkeMedChevron from '../../../komponenter/lenke-med-chevron/lenke-med-chevron';
+import { InjectedIntlProps, injectIntl, FormattedMessage } from 'react-intl';
 import { lesOmOkonomi } from '../../../metrics';
+import LenkeMedChevron from '../../../komponenter/lenke-med-chevron/lenke-med-chevron';
+
+import './okonomi-panel.less';
 
 interface OkonomiPanelProps {
     tittelId: string;
     lenkeTekstId: string;
     lenkeUrlId: string;
-    renderTittelAsHtml?: boolean;
     bilde: string;
 }
 

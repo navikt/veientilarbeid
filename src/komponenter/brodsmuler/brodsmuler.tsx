@@ -10,7 +10,7 @@ interface BrodsmulerProps {
     brodsmuleId: string;
 }
 
-const Brodsmuler: React.SFC<BrodsmulerProps> = (props: BrodsmulerProps) => {
+const Brodsmuler: React.FunctionComponent<BrodsmulerProps> = (props: BrodsmulerProps) => {
     return (
         <div className="brodsmuler">
             <img src={personSvg} alt="person-illustrasjon" className="brodsmuler__illustrasjon"/>

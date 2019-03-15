@@ -23,7 +23,7 @@ class DialogFill extends React.Component<DialogFillProps> {
 
         const xPos = messagesCount > 9 ? 23.6 : 26.8;
         return (
-            <div className="dialog__ikon notification">
+            <div className="notification">
                 <svg version="1.1" id="Filled_Version" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px"
                     y="0px" width="40px" height="32px" viewBox="0 0 40 32" enableBackground="new 0 0 40 32" xmlSpace="preserve">
                     <svg x="0" y="8">

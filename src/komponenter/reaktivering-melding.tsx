@@ -20,16 +20,14 @@ class ReaktiveringMelding extends React.Component<Props> {
         }
         return (
             <section className="reaktivering-melding blokk-m">
-                <div className="limit">
-                    <AlertStripe type="advarsel">
-                        <Normaltekst>
-                            {intl.messages['reaktivering-melding-tekst']}&ensp;
-                            <a href={intl.messages['reaktivering-melding-lenke-url']} className="lenke">
-                                {intl.messages['reaktivering-melding-lenke-tekst']}
-                            </a>
-                        </Normaltekst>
-                    </AlertStripe>
-                </div>
+                <AlertStripe type="advarsel">
+                    <Normaltekst>
+                        {intl.messages['reaktivering-melding-tekst']}&ensp;
+                        <a href={intl.messages['reaktivering-melding-lenke-url']} className="lenke">
+                            {intl.messages['reaktivering-melding-lenke-tekst']}
+                        </a>
+                    </Normaltekst>
+                </AlertStripe>
             </section>
         );
     }

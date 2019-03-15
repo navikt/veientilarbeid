@@ -26,15 +26,13 @@ class Ressurslenker extends React.Component<StateProps> {
             : gaTilVeiviserarbeidssoker;
 
         return (
-            <div className="jobbsokertips">
-                <LenkepanelMedIkon
-                    href={URL}
-                    alt=""
-                    onClick={gaTil}
-                    ikon={jobbsokertipsIkon}
-                    lenketekst={lenketekst}
-                />
-            </div>
+            <LenkepanelMedIkon
+                href={URL}
+                alt=""
+                onClick={gaTil}
+                ikon={jobbsokertipsIkon}
+                overskrift={lenketekst}
+            />
         );
     }
 }

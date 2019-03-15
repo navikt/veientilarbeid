@@ -1,13 +1,13 @@
 import * as React from 'react';
-import SjekkOppfolging from './komponenter/hent-initial-data/sjekk-oppfolging';
 import { connect } from 'react-redux';
+import { Route, RouteComponentProps, Switch, withRouter } from 'react-router';
 import { AppState } from './reducer';
-import { selectSykmeldtInfo, State as SykmeldtInfoState } from './ducks/sykmeldt-info';
-import { selectServicegruppe, State as ServicegruppeState } from './ducks/servicegruppe';
+import { seVeientilarbeid } from './metrics';
 import StartsideSykmeldt from './sider/startside-sykmeldt/startside-sykmeldt';
 import StartsideOrdinaer from './sider/startside-ordinaer/startside-ordinaer';
-import { Route, RouteComponentProps, Switch, withRouter } from 'react-router';
-import { seVeientilarbeid } from './metrics';
+import SjekkOppfolging from './komponenter/hent-initial-data/sjekk-oppfolging';
+import { selectSykmeldtInfo, State as SykmeldtInfoState } from './ducks/sykmeldt-info';
+import { selectServicegruppe, State as ServicegruppeState } from './ducks/servicegruppe';
 
 interface StateProps {
     sykmeldtInfo: SykmeldtInfoState;
@@ -28,8 +28,7 @@ class Routes extends React.Component<AllProps> {
         const erSykmeldtMedArbeidsgiver = this.props.sykmeldtInfo.data.erSykmeldtMedArbeidsgiver;
         const { location } = this.props;
         const path = location.pathname;
-
-        const Startside = erSykmeldtMedArbeidsgiver === true ? StartsideSykmeldt : StartsideOrdinaer;
+        const Startside = erSykmeldtMedArbeidsgiver ? StartsideSykmeldt : StartsideOrdinaer;
 
         return (
             <Switch>
