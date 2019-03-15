@@ -60,6 +60,8 @@ fasitResources:
     resourceType: baseUrl
   - alias: arbeidsplassen
     resourceType: baseUrl
+  - alias: mia
+    resourceType: baseUrl
 
 alertProfiles:
   - common-java-modules
