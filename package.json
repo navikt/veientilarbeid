@@ -21,7 +21,9 @@
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
     "@craco/craco": "^3.5.0",
+    "acorn": "^6.1.1",
     "ajv": "6.10.0",
+    "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.6",
     "gsap": "^2.1.2",
     "craco-less": "^1.6.0",
@@ -69,7 +71,6 @@
     "react-day-picker": "^7.3.0",
     "react-dom": "16.8.4",
     "react-intl": "^2.8.0",
-    "react-maskedinput": "^4.0.1",
     "react-modal": "3.8.1",
     "react-motion": "^0.5.2",
     "react-redux": "6.0.1",

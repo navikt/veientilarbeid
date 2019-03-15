@@ -12,7 +12,7 @@ const noenHarFeil = (avhengigheter: DataElement[]) => avhengigheter && avhengigh
 const alleLastet = (avhengigheter: DataElement[]) => avhengigheter && avhengigheter.every(harStatus(STATUS.OK));
 const alleVentetPa = (ventPa?: DataElement[]) => ventPa ? ventPa.every(harStatus(STATUS.OK, STATUS.ERROR)) : true;
 
-const alleLastetEllerReloading = (avhengigheter: any[]) => (
+const alleLastetEllerReloading = (avhengigheter: DataElement[]) => (
     avhengigheter && avhengigheter.every(harStatus(STATUS.OK, STATUS.RELOADING))
 );
 
