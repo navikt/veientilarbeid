@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
-import Html from '../../../komponenter/html';
+import Parser from 'html-react-parser';
 
-const SoketidspunktInnhold: React.SFC<InjectedIntlProps> = (props?: InjectedIntlProps) => {
+const SoketidspunktInnhold: React.FunctionComponent<InjectedIntlProps> = (props?: InjectedIntlProps) => {
 
     const innhold = props!.intl.messages['aap-rad-soketidspunkt-innhold'];
 
     return (
         <div className="panel-innhold">
-            <Html html={innhold}/>
+            {Parser(innhold)}
         </div>
     );
 };

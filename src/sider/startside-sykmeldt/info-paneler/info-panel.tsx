@@ -14,7 +14,6 @@ interface InfoPanelProps {
 type AllProps = InfoPanelProps & InjectedIntlProps;
 
 const InfoPanel = (props: AllProps) => {
-
     const { tittelId, tekstId, lenkeTekstId, lenkeUrlId, intl, bilde } = props;
 
     return (

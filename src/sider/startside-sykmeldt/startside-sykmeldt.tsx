@@ -1,45 +1,43 @@
 import * as React from 'react';
-import Side from '../../komponenter/side';
-import InfoPanelerRad from './info-paneler-rad/info-paneler-rad';
-import OkonomiRad from './okonomi-rad/okonomi-rad';
-import './startside-sykmeldt.less';
-import AapRad from './aap-rad/aap-rad';
-import Aktivitetsplan from '../../komponenter/aktivitetsplan/aktivitetsplan';
+import AapRad from './aap/aap';
+import OkonomiRad from './okonomi/okonomi-rad';
+import Banner from '../../komponenter/banner/banner';
 import Dialog from '../../komponenter/dialog/dialog';
+import InfoPaneler from './info-paneler/info-paneler';
+import Aktivitetsplan from '../../komponenter/aktivitetsplan/aktivitetsplan';
+
+import './startside-sykmeldt.less';
 
 const StartsideSykmeldt = () => {
     return (
-        <Side
-            bannerTittelId="startside-sykmeldt-banner-tittel"
-            bannerBrodsmuleId="startside-sykmeldt-banner-brodsmule"
-        >
-            <main className="'startside-sykmeldt--rader">
-                <section className="startside-sykmeldt--rad">
-                    <div className="startside-sykmeldt--rad-innhold">
-                        <Aktivitetsplan/>
-                        <Dialog/>
-                    </div>
-                </section>
+        <>
+            <Banner tittelId="startside-sykmeldt-banner-tittel" brodsmuleId="startside-sykmeldt-banner-brodsmule"/>
 
-                <section className="startside-sykmeldt--rad">
-                    <div className="startside-sykmeldt--rad-innhold">
-                        <InfoPanelerRad/>
-                    </div>
-                </section>
+            <div className="rad">
+                <div className="limit">
+                    <Aktivitetsplan/>
+                    <Dialog/>
+                </div>
+            </div>
 
-                <section className="startside-sykmeldt--rad">
-                    <div className="startside-sykmeldt--rad-innhold">
-                        <AapRad/>
-                    </div>
-                </section>
+            <div className="rad">
+                <div className="limit">
+                    <InfoPaneler/>
+                </div>
+            </div>
 
-                <section className="startside-sykmeldt--rad">
-                    <div className="startside-sykmeldt--rad-innhold">
-                        <OkonomiRad/>
-                    </div>
-                </section>
-            </main>
-        </Side>
+            <div className="rad">
+                <div className="limit">
+                    <AapRad/>
+                </div>
+            </div>
+
+            <div className="rad">
+                <div className="limit">
+                    <OkonomiRad/>
+                </div>
+            </div>
+        </>
     );
 };
 

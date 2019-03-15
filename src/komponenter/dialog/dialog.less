@@ -1,26 +1,17 @@
 @import '../../../node_modules/nav-frontend-core/less/_variabler';
 
-.dialog {
-    margin-top: 1rem;
+.dialog .lenkepanel__ikon {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 400;
+}
 
-    .lenkepanel {
-        border-radius: 8px;
-    }
+.dialog .lenkepanel__ingress{
+    display: none;
+}
 
-    &__innhold {
-        padding: 0.5rem;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-    }
-
-    &__ikon {
-        margin-right: 1.5rem;
-        font-size: 13px;
-        font-weight: 400;
-
-        &.notification {
-            margin-right: 0.5rem;
-        }
+@media (min-width: @screen-sm-min) {
+    .dialog .lenkepanel__ingress{
+        display: block;
     }
 }

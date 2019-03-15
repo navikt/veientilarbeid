@@ -26,11 +26,9 @@ class App extends React.Component {
                         <OppfolgingProvider>
                             <DataProvider>
                                 {endreBrukerStatus}
-                                <main id="maincontent" role="main" tabIndex={-1}>
-                                    <Router>
-                                        <Routes />
-                                    </Router>
-                                </main>
+                                <Router>
+                                    <Routes/>
+                                </Router>
                             </DataProvider>
                         </OppfolgingProvider>
                     </FeatureToggleProvider>

@@ -8,15 +8,13 @@ const CV_URL = '/arbeidsplassen/cv/';
 class CV extends React.Component {
     render() {
         return (
-            <div className="cv">
-                <LenkepanelMedIkon
-                    href={CV_URL}
-                    alt=""
-                    onClick={gaTilCV}
-                    ikon={cvIkon}
-                    lenketekst="cv-overskrift"
-                />
-            </div>
+            <LenkepanelMedIkon
+                href={CV_URL}
+                alt=""
+                onClick={gaTilCV}
+                ikon={cvIkon}
+                overskrift="cv-overskrift"
+            />
         );
     }
 }

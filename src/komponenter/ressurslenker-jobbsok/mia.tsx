@@ -8,15 +8,13 @@ const MIA_URL = '/mia';
 class Mia extends React.Component {
     render() {
         return (
-            <div className="mia">
-                <LenkepanelMedIkon
-                    href={MIA_URL}
-                    alt=""
-                    onClick={gaTilMIA}
-                    ikon={miaIkon}
-                    lenketekst="mia-overskrift"
-                />
-            </div>
+            <LenkepanelMedIkon
+                href={MIA_URL}
+                alt=""
+                onClick={gaTilMIA}
+                ikon={miaIkon}
+                overskrift="mia-overskrift"
+            />
         );
     }
 }

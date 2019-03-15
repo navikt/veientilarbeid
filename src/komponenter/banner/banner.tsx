@@ -9,7 +9,7 @@ interface BannerProps {
     brodsmuleId: string;
 }
 
-const Banner: React.SFC<BannerProps> = (props: BannerProps) => {
+const Banner: React.FunctionComponent<BannerProps> = (props: BannerProps) => {
     return (
         <header className="banner">
             <div className="banner--veientilarbeid">
