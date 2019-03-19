@@ -41,3 +41,5 @@ redirect:
     to: {{ VEIVISERSOSIALHJELP_URL }}
   - from: /arbeidsplassen
     to: {{ ARBEIDSPLASSEN_URL }}
+  - from: /mia
+    to: {{ MIA_URL }}
