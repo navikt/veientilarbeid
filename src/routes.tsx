@@ -9,6 +9,8 @@ import SjekkOppfolging from './komponenter/hent-initial-data/sjekk-oppfolging';
 import { selectSykmeldtInfo, State as SykmeldtInfoState } from './ducks/sykmeldt-info';
 import { selectServicegruppe, State as ServicegruppeState } from './ducks/servicegruppe';
 
+import './sider/startside.less';
+
 interface StateProps {
     sykmeldtInfo: SykmeldtInfoState;
     servicegruppe: ServicegruppeState;

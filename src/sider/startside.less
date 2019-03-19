@@ -1,5 +1,5 @@
-@import '../../../node_modules/nav-frontend-core/less/_variabler';
-@import '../../index';
+@import '../../node_modules/nav-frontend-core/less/_variabler';
+@import '../index.less';
 
 .rad {
     width: 100%;
@@ -14,15 +14,25 @@
     }
 }
 
+.limit {
+    margin: 0 1rem;
+    padding: 0;
+}
+
 @media (min-width: @screen-sm-min) {
-    .startside-sykmeldt--rad-innhold {
+    .limit {
         max-width: @tablet-width;
         margin: 0 auto;
+    }
+
+    .tokol {
+        display: flex;
+        justify-content: space-between;
     }
 }
 
 @media (min-width: @screen-md-min) {
-    .startside-sykmeldt--rad-innhold {
+    .limit {
         max-width: @desktop-width;
     }
 }
