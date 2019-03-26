@@ -1,8 +1,9 @@
 import * as React from 'react';
+import Lenke from 'nav-frontend-lenker';
+import { HoyreChevron } from 'nav-frontend-chevron';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { InjectedIntlProps, injectIntl, FormattedMessage } from 'react-intl';
-import { lesOmOkonomi } from '../../../metrics';
-import LenkeMedChevron from '../../../komponenter/lenke-med-chevron/lenke-med-chevron';
+import { lesOmOkonomi } from '../../metrics';
 
 import './okonomi-panel.less';
 
@@ -16,7 +17,6 @@ interface OkonomiPanelProps {
 type AllProps = OkonomiPanelProps & InjectedIntlProps;
 
 const OkonomiPanel = (props: AllProps) => {
-
     const { intl, tittelId, lenkeTekstId, lenkeUrlId, bilde } = props;
     const lenkeUrl = intl.messages[lenkeUrlId];
 
@@ -28,10 +28,10 @@ const OkonomiPanel = (props: AllProps) => {
                 <FormattedMessage id={tittelId}/>
             </Systemtittel>
 
-            <LenkeMedChevron path={lenkeUrl} className="okonomi-panel--lenke" onClick={() => lesOmOkonomi(lenkeUrl)} >
+            <Lenke href={lenkeUrl} className="okonomi-panel--lenke" onClick={() => lesOmOkonomi(lenkeUrl)}>
                 <FormattedMessage id={lenkeTekstId}/>
-            </LenkeMedChevron>
-
+                <HoyreChevron />
+            </Lenke>
         </div>
     );
 };

@@ -42,14 +42,18 @@ class LenkepanelMedIkon extends React.Component<Props> {
                         <Undertittel>
                             <FormattedMessage id={overskrift}/>
                         </Undertittel>
-                        {(ingress) ?
+                        {(ingress)
+                            ?
                             <Normaltekst>
                                 <FormattedMessage id={ingress}/>
-                            </Normaltekst> : ""}
+                            </Normaltekst>
+                            : ""
+                        }
                     </div>
                 </div>
             </LenkepanelBase>
         );
     }
 }
+
 export default LenkepanelMedIkon;

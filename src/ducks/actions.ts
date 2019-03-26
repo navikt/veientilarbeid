@@ -2,6 +2,7 @@ import { Data as OppfolgingData } from './oppfolging';
 import { Data as ServicegruppeData } from './servicegruppe';
 import { Data as JobbsokerbesvarelseData } from './jobbsokerbesvarelse';
 import { Data as SykmeldtInfoData } from './sykmeldt-info';
+import { Data as BrukerRegistreringData } from './brukerregistrering';
 import { Data as UlesteDialogerData } from './dialog';
 import { FeatureToggles } from './feature-toggles';
 
@@ -25,6 +26,9 @@ export enum ActionType {
     HENT_ULESTE_DIALOGER_OK = 'HENT_ULESTE_DIALOGER_OK',
     HENT_ULESTE_DIALOGER_PENDING = 'HENT_ULESTE_DIALOGER_PENDING',
     HENT_ULESTE_DIALOGER_FEILET = 'HENT_ULESTE_DIALOGER_FEILET',
+    HENT_BRUKER_REGISTRERING_OK = 'HENT_BRUKER_REGISTRERING_OK',
+    HENT_BRUKER_REGISTRERING_PENDING = 'HENT_BRUKER_REGISTRERING_PENDING',
+    HENT_BRUKER_REGISTRERING_FEILET = 'HENT_BRUKER_REGISTRERING_FEILET',
 }
 
 export interface FeatureTogglesOKAction {
@@ -96,6 +100,19 @@ export interface HentSykmeldtInfoFEILETAction {
     type: ActionType.HENT_SYKMELDT_INFO_FEILET;
 }
 
+export interface HentBrukerRegistreringOKAction {
+    type: ActionType.HENT_BRUKER_REGISTRERING_OK;
+    data: BrukerRegistreringData;
+}
+
+export interface HentBrukerRegistreringPENDINGAction {
+    type: ActionType.HENT_BRUKER_REGISTRERING_PENDING;
+}
+
+export interface HentBrukerRegistreringFEILETAction {
+    type: ActionType.HENT_BRUKER_REGISTRERING_FEILET;
+}
+
 export interface HentUlesteDialogerOKAction {
     type: ActionType.HENT_ULESTE_DIALOGER_OK;
     data: UlesteDialogerData;
@@ -127,4 +144,7 @@ export type Handling = FeatureTogglesOKAction
     | HentSykmeldtInfoFEILETAction
     | HentUlesteDialogerOKAction
     | HentUlesteDialogerPENDINGAction
-    | HentUlesteDialogerFEILETAction;
+    | HentUlesteDialogerFEILETAction
+    | HentBrukerRegistreringOKAction
+    | HentBrukerRegistreringPENDINGAction
+    | HentBrukerRegistreringFEILETAction;

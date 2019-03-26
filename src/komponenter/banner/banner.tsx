@@ -5,17 +5,16 @@ import { FormattedMessage } from 'react-intl';
 import './banner.less';
 
 interface BannerProps {
-    tittelId: string;
-    brodsmuleId: string;
+    type: string;
 }
 
 const Banner: React.FunctionComponent<BannerProps> = (props: BannerProps) => {
     return (
         <header className="banner">
             <div className="banner--veientilarbeid">
-                <Brodsmuler brodsmuleId={props.brodsmuleId}/>
+                <Brodsmuler brodsmuleId={`startside-${props.type}-banner-tittel`}/>
                 <Sidetittel className="banner--veientilarbeid__tittel">
-                    <FormattedMessage id={props.tittelId}/>
+                    <FormattedMessage id={`startside-${props.type}-banner-brodsmule`}/>
                 </Sidetittel>
             </div>
         </header>

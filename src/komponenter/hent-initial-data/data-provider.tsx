@@ -8,6 +8,7 @@ import { State as OppfolgingState } from '../../ducks/oppfolging';
 import { hentServicegruppe, State as ServicegruppeState } from '../../ducks/servicegruppe';
 import { hentSykmeldtInfo, State as SykmeldtInfodataState } from '../../ducks/sykmeldt-info';
 import { hentUlesteDialoger, State as UlesteDialogerState } from '../../ducks/dialog';
+import { hentBrukerRegistrering, State as BrukerRegistreringState } from '../../ducks/brukerregistrering';
 import {
     hentJobbsokerbesvarelse, settJobbsokerbesvarelseOK, State as JobbsokerbesvarelseState,
 } from '../../ducks/jobbsokerbesvarelse';
@@ -22,6 +23,7 @@ interface StateProps {
     sykmeldtInfo: SykmeldtInfodataState;
     jobbsokerbesvarelse: JobbsokerbesvarelseState;
     ulesteDialoger: UlesteDialogerState;
+    brukerRegistrering: BrukerRegistreringState;
 }
 
 interface DispatchProps {
@@ -30,6 +32,7 @@ interface DispatchProps {
     hentJobbsokerbesvarelse: () => void;
     settJobbsokerbesvarelseOK: () => void;
     hentUlesteDialoger: () => void;
+    hentBrukerRegistrering: () => void;
 }
 
 type Props = StateProps & DispatchProps & OwnProps;
@@ -46,13 +49,18 @@ class DataProvider extends React.Component<Props> {
         }
         this.props.hentServicegruppe();
         this.props.hentUlesteDialoger();
+        this.props.hentBrukerRegistrering();
     }
 
     render() {
-        const { children, oppfolging, servicegruppe, sykmeldtInfo, jobbsokerbesvarelse, ulesteDialoger } = this.props;
+        const {
+            children, oppfolging, servicegruppe, sykmeldtInfo,
+            jobbsokerbesvarelse, ulesteDialoger, brukerRegistrering
+        } = this.props;
 
         const avhengigheter: any[] = [oppfolging, sykmeldtInfo]; // tslint:disable-line:no-any
-        const ventPa: any[] = [servicegruppe, jobbsokerbesvarelse, ulesteDialoger]; // tslint:disable-line:no-any
+        const ventPa: any[] = [servicegruppe, jobbsokerbesvarelse, ulesteDialoger, brukerRegistrering]; // tslint:disable-line:no-any
+
         return (
             <Innholdslaster
                 feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse"/>}
@@ -72,6 +80,7 @@ const mapStateToProps = (state: AppState): StateProps => ({
     sykmeldtInfo: state.sykmeldtInfodata,
     jobbsokerbesvarelse: state.jobbsokerbesvarelse,
     ulesteDialoger: state.ulesteDialoger,
+    brukerRegistrering: state.brukerRegistrering,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
@@ -79,7 +88,8 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
     hentSykmeldtInfo: () => hentSykmeldtInfo()(dispatch),
     hentJobbsokerbesvarelse: () => hentJobbsokerbesvarelse()(dispatch),
     settJobbsokerbesvarelseOK: () => dispatch(settJobbsokerbesvarelseOK()),
-    hentUlesteDialoger: () => hentUlesteDialoger()(dispatch)
+    hentUlesteDialoger: () => hentUlesteDialoger()(dispatch),
+    hentBrukerRegistrering: () => hentBrukerRegistrering()(dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DataProvider);

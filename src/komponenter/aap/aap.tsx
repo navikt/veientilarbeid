@@ -1,10 +1,12 @@
 import * as React from 'react';
+import Lenke from 'nav-frontend-lenker';
 import * as queryString from 'query-string';
+import { HoyreChevron } from 'nav-frontend-chevron';
+import RettPaAapInnhold from './rett-pa-aap-innhold';
+import SoketidspunktInnhold from './soketidspunkt-innhold';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { FormattedMessage, InjectedIntlProps, injectIntl } from 'react-intl';
 import { Normaltekst, Systemtittel, Undertittel } from 'nav-frontend-typografi';
-import RettPaAapInnhold from './rett-pa-aap-innhold';
-import SoketidspunktInnhold from './soketidspunkt-innhold';
 
 import './aap.less';
 
@@ -78,9 +80,12 @@ class Aap extends React.Component<InjectedIntlProps, AapRadState> {
                     <SoketidspunktInnhold/>
                 </Ekspanderbartpanel>
 
-                <a className="knapp knapp--hoved aap--til-soknad-knapp" href={tekster.tilSoknadKnappUrl}>
-                    <FormattedMessage id="aap-rad-til-soknad-knapp-tekst"/>
-                </a>
+                <Lenke className="aap--til-soknad-knapp" href={tekster.tilSoknadKnappUrl}>
+                    <Undertittel tag="span">
+                        <FormattedMessage id="aap-rad-til-soknad-knapp-tekst"/>
+                        <HoyreChevron type={'høyre'} />
+                    </Undertittel>
+                </Lenke>
             </div>
         );
     }

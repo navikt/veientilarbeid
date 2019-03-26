@@ -3,27 +3,32 @@ import { Innholdstittel } from 'nav-frontend-typografi';
 import { FormattedMessage, InjectedIntlProps, injectIntl } from 'react-intl';
 import { Select as SelectKomponent, CheckboksPanelGruppe } from 'nav-frontend-skjema';
 import {
-    DemoData, hentJsk,
-    hentServicegruppe, hentSykmeldtMedArbeidsgiver,
+    DemoData, hentJsk, settJsk, slettJsk,
+    hentSykmeldtMedArbeidsgiver, settSykmeldtMedArbeidsgiver,
     hentUlesteDialoger, settUlesteDialoger,
-    settJsk,
-    settServicegruppe,
-    settSykmeldtMedArbeidsgiver,
-    slettJsk
+    hentServicegruppe, settServicegruppe,
+    hentBrukerRegistrering, settBrukerRegistrering
 } from './demo-state';
 
 import './demo-dashboard.less';
+import { FremtidigSituasjonSvar } from '../ducks/brukerregistrering';
 
 class DemoDashboard extends React.Component<InjectedIntlProps> {
     render() {
         const SYKMELDT_MED_ARBEIDSGIVER = DemoData.SYKMELDT_MED_ARBEIDSGIVER;
         const JSK = DemoData.JSK;
         const ULESTE_DIALOGER = DemoData.ULESTE_DIALOGER;
+        const BRUKER_REGISTRERING = DemoData.BRUKER_REGISTRERING;
 
-        const { messages } = this.props.intl;
+        const {messages} = this.props.intl;
 
-        const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const handleChangeServicegruppe = (e: React.ChangeEvent<HTMLSelectElement>) => {
             settServicegruppe(e.target.value);
+            window.location.reload();
+        };
+
+        const handleChangeBrukerregistrering = (e: React.ChangeEvent<HTMLSelectElement>) => {
+            settBrukerRegistrering(e.target.value);
             window.location.reload();
         };
 
@@ -39,6 +44,8 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
                 }
             } else if (element.id === ULESTE_DIALOGER) {
                 settUlesteDialoger(`${element.checked}`);
+            } else if (element.id === BRUKER_REGISTRERING) {
+                settBrukerRegistrering(element.checked.toString())
             }
             window.location.reload();
         };
@@ -51,28 +58,55 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
             'IVURD': 'Ikke fastsatt',
         };
 
+        const fremtidigeSituasjoner = {
+            SAMME_ARBEIDSGIVER: 'Samme arbeidsgiver',
+            SAMME_ARBEIDSGIVER_NY_STILLING: 'Samme arbeidsgiver, ny stilling',
+            NY_ARBEIDSGIVER: 'Ny arbeidsgiver',
+            USIKKER: 'Usikker',
+            INGEN_PASSER: 'Ingen passer',
+        };
+
         return (
             <section className="demodashboard">
                 <Innholdstittel className="blokk-s">
                     <FormattedMessage id="demo-tittel"/>
                 </Innholdstittel>
-                <SelectKomponent
-                    label={messages['demo-velgservicegruppe']}
-                    onChange={handleChange}
-                    id="velg-bruker"
-                    defaultValue={hentServicegruppe()}
-                >
-                    {
-                        Object.keys(servicegrupper).map((gruppe: string) =>
-                            <option
-                                key={gruppe}
-                                value={gruppe}
-                            >
-                                {servicegrupper[gruppe]}
-                            </option>
-                        )
-                    }
-                </SelectKomponent>
+                <div className="two-select">
+                    <SelectKomponent
+                        label={messages['demo-velgservicegruppe']}
+                        onChange={handleChangeServicegruppe}
+                        id="velg-bruker"
+                        defaultValue={hentServicegruppe()}
+                    >
+                        {
+                            Object.keys(servicegrupper).map((gruppe: string) =>
+                                <option
+                                    key={gruppe}
+                                    value={gruppe}
+                                >
+                                    {servicegrupper[gruppe]}
+                                </option>
+                            )
+                        }
+                    </SelectKomponent>
+                    <SelectKomponent
+                        label={messages['demo-brukerregistrering']}
+                        onChange={handleChangeBrukerregistrering}
+                        id="velg-fremtidig-situasjon"
+                        defaultValue={hentBrukerRegistrering().registrering.besvarelse.fremtidigSituasjon}
+                    >
+                        {
+                            Object.keys(FremtidigSituasjonSvar).map((svar: string) =>
+                                <option
+                                    key={svar}
+                                    value={svar}
+                                >
+                                    {fremtidigeSituasjoner[svar]}
+                                </option>
+                            )
+                        }
+                    </SelectKomponent>
+                </div>
                 <CheckboksPanelGruppe
                     onChange={handleClick}
                     legend=""
@@ -82,12 +116,12 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
                             checked: hentSykmeldtMedArbeidsgiver(),
                             id: SYKMELDT_MED_ARBEIDSGIVER
                         },
-                        { label: messages['demo-jsk'], checked: !!hentJsk(), id: JSK },
+                        {label: messages['demo-jsk'], checked: !!hentJsk(), id: JSK},
                         {
                             label: messages['demo-dialog'],
                             checked: hentUlesteDialoger(),
                             id: ULESTE_DIALOGER
-                        },
+                        }
                     ]}
                 />
             </section>
