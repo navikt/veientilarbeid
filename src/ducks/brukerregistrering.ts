@@ -76,10 +76,7 @@ function hentBrukerRegistreringPending(): HentBrukerRegistreringPENDINGAction {
     };
 }
 
-export function selectFremtidigSituasjonSvar(state: AppState): FremtidigSituasjonSvar | undefined {
+export function selectFremtidigSituasjonSvar(state: AppState): FremtidigSituasjonSvar {
     const data = state.brukerRegistrering.data;
-    if (!data) {
-        return undefined;
-    }
     return data.registrering.besvarelse.fremtidigSituasjon;
 }

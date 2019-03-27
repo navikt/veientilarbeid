@@ -19,7 +19,7 @@ import { FremtidigSituasjonSvar, selectFremtidigSituasjonSvar } from '../../duck
 interface StateProps {
     sykmeldtInfo: SykmeldtInfoState;
     servicegruppe: ServicegruppeState;
-    fremtidigSvar?: FremtidigSituasjonSvar;
+    fremtidigSvar: FremtidigSituasjonSvar;
 }
 
 class Startside extends React.Component<StateProps> {
@@ -31,8 +31,8 @@ class Startside extends React.Component<StateProps> {
         );
     }
 
-    static skalIkkeSeArbeidstjenester(svar: FremtidigSituasjonSvar | undefined): boolean {
-        return svar !== undefined && (
+    static skalIkkeSeArbeidstjenester(svar: FremtidigSituasjonSvar): boolean {
+        return (
             svar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER ||
             svar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER_NY_STILLING
         );
