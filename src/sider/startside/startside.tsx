@@ -31,15 +31,17 @@ class Startside extends React.Component<StateProps> {
         );
     }
 
-    static skalTilNyJobb(svar: FremtidigSituasjonSvar | undefined): boolean {
-        return svar !== undefined && (svar === FremtidigSituasjonSvar.NY_ARBEIDSGIVER ||
-            svar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER_NY_STILLING);
+    static skalIkkeSeArbeidstjenester(svar: FremtidigSituasjonSvar | undefined): boolean {
+        return svar !== undefined && (
+            svar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER ||
+            svar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER_NY_STILLING
+        );
     }
 
     render() {
         const erSykmeldtMedArbeidsgiver = this.props.sykmeldtInfo.data.erSykmeldtMedArbeidsgiver;
         const innsatsgruppe = this.erInnsatsgruppe();
-        const tilNyJobb = Startside.skalTilNyJobb(this.props.fremtidigSvar);
+        const ikkeArbeidstjenester = Startside.skalIkkeSeArbeidstjenester(this.props.fremtidigSvar);
 
         return (
             <>
@@ -57,7 +59,7 @@ class Startside extends React.Component<StateProps> {
                         <Rad>
                             <AapRad/>
                         </Rad>
-                        {tilNyJobb ?
+                        {!ikkeArbeidstjenester ?
                             <Rad>
                                 <RessurslenkerJobbsok/>
                             </Rad> : null
