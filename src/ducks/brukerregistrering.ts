@@ -11,7 +11,7 @@ import { doThenDispatch } from './api-utils';
 import { AppState } from '../reducer';
 
 export interface State extends DataElement {
-    data?: Data;
+    data: Data;
 }
 
 interface Brukerregistrering {
@@ -32,10 +32,10 @@ export interface Data {
 
 const initialState: State = {
     status: STATUS.NOT_STARTED,
+    data: {registrering: {besvarelse: {fremtidigSituasjon: FremtidigSituasjonSvar.USIKKER}}}
 };
 
 export default function reducer(state: State = initialState, action: Handling): State {
-    console.log('action', action); //tslint:disable-line
 
     switch (action.type) {
         case ActionType.HENT_BRUKER_REGISTRERING_PENDING:

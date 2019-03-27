@@ -41,9 +41,8 @@ export const settSykmeldtMedArbeidsgiver = (value: string) => {
     settILocalStorage(DemoData.SYKMELDT_MED_ARBEIDSGIVER, value);
 };
 
-export const hentBrukerRegistrering = (): any => {
+export const hentBrukerRegistrering = (): any => { //tslint:disable-line
     const data = hentFraLocalStorage(DemoData.BRUKER_REGISTRERING);
-    console.log('hentBrukerRegistrering', data); //tslint:disable-line
 
     if (data) {
         return JSON.parse(data);

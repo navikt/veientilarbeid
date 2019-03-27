@@ -18,8 +18,6 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
         const SYKMELDT_MED_ARBEIDSGIVER = DemoData.SYKMELDT_MED_ARBEIDSGIVER;
         const JSK = DemoData.JSK;
         const ULESTE_DIALOGER = DemoData.ULESTE_DIALOGER;
-        const BRUKER_REGISTRERING = DemoData.BRUKER_REGISTRERING;
-
         const {messages} = this.props.intl;
 
         const handleChangeServicegruppe = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -44,8 +42,6 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
                 }
             } else if (element.id === ULESTE_DIALOGER) {
                 settUlesteDialoger(`${element.checked}`);
-            } else if (element.id === BRUKER_REGISTRERING) {
-                settBrukerRegistrering(element.checked.toString())
             }
             window.location.reload();
         };
