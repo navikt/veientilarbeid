@@ -10,7 +10,7 @@ import { FormattedMessage } from 'react-intl';
 class RessurslenkerJobbsok extends React.Component {
     render() {
         return (
-            <section>
+            <section className="ressurslenker">
                 <Systemtittel tag="h2" className="ressurslenker__heading blokk-m">
                     <FormattedMessage id="ressurslenker-jobbsok-overskrift"/>
                 </Systemtittel>
