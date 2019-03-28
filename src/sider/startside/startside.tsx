@@ -6,6 +6,7 @@ import AapRad from '../../komponenter/aap/aap';
 import Dialog from '../../komponenter/dialog/dialog';
 import Banner from '../../komponenter/banner/banner';
 import Meldekort from '../../komponenter/meldekort/meldekort';
+import Dagpenger from '../../komponenter/dagpenger/dagpenger';
 import Tiltakinfo from '../../komponenter/tiltakinfo/tiltakinfo';
 import OkonomiRad from '../../komponenter/okonomi/okonomi-rad';
 import InfoPaneler from '../../komponenter/info-paneler/info-paneler';
@@ -54,16 +55,15 @@ class Startside extends React.Component<StateProps> {
                             <Dialog/>
                         </Rad>
                         <Rad>
+                            {!ikkeArbeidstjenester ?
+                                <RessurslenkerJobbsok/>
+                                : null
+                            }
                             <InfoPaneler/>
                         </Rad>
                         <Rad>
                             <AapRad/>
                         </Rad>
-                        {!ikkeArbeidstjenester ?
-                            <Rad>
-                                <RessurslenkerJobbsok/>
-                            </Rad> : null
-                        }
                         <Rad>
                             <OkonomiRad/>
                         </Rad>
@@ -82,11 +82,12 @@ class Startside extends React.Component<StateProps> {
                         <Rad>
                             <RessurslenkerJobbsok/>
                         </Rad>
-                        {innsatsgruppe && (
-                            <Rad>
+                        <Rad>
+                            {innsatsgruppe && (
                                 <Tiltakinfo/>
-                            </Rad>
-                        )}
+                            )}
+                            <Dagpenger/>
+                        </Rad>
                     </>
                 }
             </>
