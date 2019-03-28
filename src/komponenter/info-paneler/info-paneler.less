@@ -1,8 +1,6 @@
 @import '../../../node_modules/nav-frontend-core/less/_variabler';
 
 .info-paneler {
-    margin-top: 4rem;
-
     .info-panel {
         &:first-child {
             margin-bottom: 2rem;
@@ -28,6 +26,10 @@
             border-top-width: 0;
         }
     }
+}
+
+.ressurslenker + .info-paneler {
+    margin-top: 4rem;
 }
 
 @media (min-width: @screen-sm-min) {
