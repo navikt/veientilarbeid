@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { InjectedIntlProps, injectIntl } from 'react-intl';
-import AlertStripe from 'nav-frontend-alertstriper';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { AppState } from '../reducer';
 
@@ -20,14 +20,14 @@ class ReaktiveringMelding extends React.Component<Props> {
         }
         return (
             <section className="reaktivering-melding blokk-m">
-                <AlertStripe type="advarsel">
+                <AlertStripeAdvarsel>
                     <Normaltekst>
                         {intl.messages['reaktivering-melding-tekst']}&ensp;
                         <a href={intl.messages['reaktivering-melding-lenke-url']} className="lenke">
                             {intl.messages['reaktivering-melding-lenke-tekst']}
                         </a>
                     </Normaltekst>
-                </AlertStripe>
+                </AlertStripeAdvarsel>
             </section>
         );
     }

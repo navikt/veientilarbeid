@@ -1,7 +1,8 @@
+import * as React from 'react';
+import Lenke from 'nav-frontend-lenker';
+import { HoyreChevron } from 'nav-frontend-chevron';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { FormattedMessage, injectIntl, InjectedIntlProps } from 'react-intl';
-import * as React from 'react';
-import LenkeMedChevron from '../../../komponenter/lenke-med-chevron/lenke-med-chevron';
 
 interface InfoPanelProps {
     bilde: string; // tslint:disable-line
@@ -14,7 +15,7 @@ interface InfoPanelProps {
 type AllProps = InfoPanelProps & InjectedIntlProps;
 
 const InfoPanel = (props: AllProps) => {
-    const { tittelId, tekstId, lenkeTekstId, lenkeUrlId, intl, bilde } = props;
+    const { tittelId, tekstId, lenkeTekstId, intl, lenkeUrlId, bilde } = props;
 
     return (
         <div className="info-panel">
@@ -28,9 +29,10 @@ const InfoPanel = (props: AllProps) => {
                 <Normaltekst className="blokk-m">
                     <FormattedMessage id={tekstId} />
                 </Normaltekst>
-                <LenkeMedChevron path={intl.messages[lenkeUrlId]} className="okonomi-panel--lenke">
+                <Lenke href={intl.messages[lenkeUrlId]} className="okonomi-panel--lenke">
                     <FormattedMessage id={lenkeTekstId}/>
-                </LenkeMedChevron>
+                    <HoyreChevron />
+                </Lenke>
             </div>
         </div>
     );

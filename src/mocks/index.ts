@@ -1,12 +1,14 @@
 import oppfolgingResponse from './oppfolging-mock';
 import {
     FEATURE_URL, JOBBSOKERBESVARELSE_URL, SERVICEGRUPPE_URL,
-    STARTREGISTRERING_URL, VEILARBOPPFOLGING_URL, ULESTEDIALOGER_URL
+    STARTREGISTRERING_URL, VEILARBOPPFOLGING_URL, ULESTEDIALOGER_URL, BRUKERREGISTRERING_URL
 } from '../ducks/api';
 import servicegruppeResponse from './servicegruppe-mock';
 import sykmeldtInfoResponse from './sykmeldt-info-mock';
 import jobbsokerbesvarelseResponse from './jobbsokerbesvarelse-mock';
 import ulesteDialogerResponse from './ulestedialoger-mock';
+import brukerRegistreringResponse from './brukerregistrering-mock';
+
 import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 
 const loggingMiddleware: Middleware = (request, response) => {
@@ -29,6 +31,7 @@ const MOCK_SERVICEGRUPPE = true;
 const MOCK_STARTREGISTRERING = true;
 const MOCK_JOBBSOKERBESVARELSE = true;
 const MOCK_ULESTEDIALOGER = true;
+const MOCK_BRUKERREGISTRERING = true;
 
 if (MOCK_OPPFOLGING) {
     fetchMock.get(`${VEILARBOPPFOLGING_URL}/oppfolging`, oppfolgingResponse);
@@ -53,4 +56,8 @@ if (MOCK_JOBBSOKERBESVARELSE) {
 
 if (MOCK_ULESTEDIALOGER) {
     fetchMock.get(ULESTEDIALOGER_URL, ulesteDialogerResponse);
+}
+
+if (MOCK_BRUKERREGISTRERING) {
+    fetchMock.get(BRUKERREGISTRERING_URL, brukerRegistreringResponse);
 }

@@ -3,13 +3,12 @@ import { connect } from 'react-redux';
 import { Route, RouteComponentProps, Switch, withRouter } from 'react-router';
 import { AppState } from './reducer';
 import { seVeientilarbeid } from './metrics';
-import StartsideSykmeldt from './sider/startside-sykmeldt/startside-sykmeldt';
-import StartsideOrdinaer from './sider/startside-ordinaer/startside-ordinaer';
+import Startside from './sider/startside/startside';
 import SjekkOppfolging from './komponenter/hent-initial-data/sjekk-oppfolging';
 import { selectSykmeldtInfo, State as SykmeldtInfoState } from './ducks/sykmeldt-info';
 import { selectServicegruppe, State as ServicegruppeState } from './ducks/servicegruppe';
 
-import './sider/startside.less';
+import './sider/startside/startside.less';
 
 interface StateProps {
     sykmeldtInfo: SykmeldtInfoState;
@@ -27,10 +26,8 @@ class Routes extends React.Component<AllProps> {
     }
 
     render() {
-        const erSykmeldtMedArbeidsgiver = this.props.sykmeldtInfo.data.erSykmeldtMedArbeidsgiver;
         const { location } = this.props;
         const path = location.pathname;
-        const Startside = erSykmeldtMedArbeidsgiver ? StartsideSykmeldt : StartsideOrdinaer;
 
         return (
             <Switch>
@@ -39,7 +36,7 @@ class Routes extends React.Component<AllProps> {
                     exact={true}
                     component={() =>
                         <SjekkOppfolging>
-                            <Startside/>
+                            <Startside />
                         </SjekkOppfolging>
                     }
                 />

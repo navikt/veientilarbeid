@@ -20,11 +20,9 @@ const RettPaAapInnhold: React.FunctionComponent<InjectedIntlProps> = (props?: In
                 <Normaltekst className="blokk-s">
                     {tekster.rettTilAapIngress}
                 </Normaltekst>
-                <div className="sjekkboks-liste">
-                    <Normaltekst>
-                        {Parser(tekster.innhold)}
-                    </Normaltekst>
-                </div>
+                <Normaltekst tag="div" className="sjekkboks-liste">
+                    {Parser(tekster.innhold)}
+                </Normaltekst>
             </div>
             <div className="relatert-innhold-boks">
                 <div className="relatert-innhold panel">
@@ -32,7 +30,7 @@ const RettPaAapInnhold: React.FunctionComponent<InjectedIntlProps> = (props?: In
                         {tekster.relatertTittel}
                     </Element>
                 </div>
-                <Normaltekst className="relatert-innhold-lenkeliste">
+                <Normaltekst tag="div" className="relatert-innhold-lenkeliste">
                     {Parser(tekster.relatertInnhold)}
                 </Normaltekst>
             </div>

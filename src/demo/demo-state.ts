@@ -8,6 +8,7 @@ export function erDemo(): boolean {
 export enum DemoData {
     SERVICEGRUPPE = 'innsatsgruppe',
     SYKMELDT_MED_ARBEIDSGIVER = 'sykmeldtMedArbeidsGiver',
+    BRUKER_REGISTRERING = 'brukerRegistrering',
     JSK = 'jsk',
     ULESTE_DIALOGER = 'ulesteDialoger',
 }
@@ -38,6 +39,32 @@ export const hentSykmeldtMedArbeidsgiver = (): boolean => {
 
 export const settSykmeldtMedArbeidsgiver = (value: string) => {
     settILocalStorage(DemoData.SYKMELDT_MED_ARBEIDSGIVER, value);
+};
+
+export const hentBrukerRegistrering = (): any => { //tslint:disable-line
+    const data = hentFraLocalStorage(DemoData.BRUKER_REGISTRERING);
+
+    if (data) {
+        return JSON.parse(data);
+    }
+    return {
+        registrering: {
+            besvarelse: {
+                fremtidigSituasjon: 'NY_ARBEIDSGIVER'
+            }
+        }
+    };
+};
+
+export const settBrukerRegistrering = (value: string) => {
+    const data = {
+        registrering: {
+            besvarelse: {
+                fremtidigSituasjon: value
+            }
+        }
+    };
+    settILocalStorage(DemoData.BRUKER_REGISTRERING, JSON.stringify(data));
 };
 
 export const hentUlesteDialoger = (): boolean => {

@@ -3,11 +3,13 @@ import {
     JOBBSOKERBESVARELSE_URL,
     SERVICEGRUPPE_URL,
     STARTREGISTRERING_URL,
+    BRUKERREGISTRERING_URL,
     VEILARBOPPFOLGING_URL,
-    ULESTEDIALOGER_URL, featureQueryParams
+    ULESTEDIALOGER_URL,
+    featureQueryParams
 } from '../ducks/api';
 import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
-import { hentJsk, hentServicegruppe, hentSykmeldtMedArbeidsgiver, hentUlesteDialoger } from './demo-state';
+import { hentJsk, hentServicegruppe, hentSykmeldtMedArbeidsgiver, hentBrukerRegistrering, hentUlesteDialoger } from './demo-state';
 
 const loggingMiddleware: Middleware = (request, response) => {
     console.log(request.url, request.method, response); // tslint:disable-line:no-console
@@ -41,6 +43,8 @@ fetchMock.get(SERVICEGRUPPE_URL, {
 fetchMock.get(STARTREGISTRERING_URL, {
     erSykmeldtMedArbeidsgiver: hentSykmeldtMedArbeidsgiver()
 });
+
+fetchMock.get(BRUKERREGISTRERING_URL, hentBrukerRegistrering());
 
 fetchMock.get(ULESTEDIALOGER_URL, {
     antallUleste: hentUlesteDialoger() ? randomUlesteDialoger() : 0

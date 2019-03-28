@@ -1,4 +1,4 @@
-@import "../../../../node_modules/nav-frontend-core/less/_variabler";
+@import "../../../node_modules/nav-frontend-core/less/_variabler";
 
 .aap {
     margin: 0;
@@ -16,11 +16,8 @@
     }
 
     &--til-soknad-knapp {
+        display: inline-block;
         margin-top: 1rem;
-    }
-
-    .knapp--hoved {
-        padding: .75em 4em;
     }
 
     .rett-pa-aap-innhold {
@@ -65,7 +62,7 @@
                 width: 25px;
                 height: 25px;
                 background-size: 32px 32px;
-                background: @white url(./sjekk-sirkel.svg) no-repeat;
+                background: @white url(sjekk-sirkel.svg) no-repeat;
             }
             &:last-child:before {
                 padding-bottom: 6px;
