@@ -77,6 +77,9 @@ function hentBrukerRegistreringPending(): HentBrukerRegistreringPENDINGAction {
 }
 
 export function selectFremtidigSituasjonSvar(state: AppState): FremtidigSituasjonSvar {
-    const data = state.brukerRegistrering.data;
+    let data = state.brukerRegistrering.data;
+    if (data === null) {
+        data = initialState.data;
+    }
     return data.registrering.besvarelse.fremtidigSituasjon;
 }
