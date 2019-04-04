@@ -4,7 +4,6 @@ import Rad from './rad';
 import { AppState } from '../../reducer';
 import AapRad from '../../komponenter/aap/aap';
 import Dialog from '../../komponenter/dialog/dialog';
-import Banner from '../../komponenter/banner/banner';
 import Meldekort from '../../komponenter/meldekort/meldekort';
 import Dagpenger from '../../komponenter/dagpenger/dagpenger';
 import Tiltakinfo from '../../komponenter/tiltakinfo/tiltakinfo';
@@ -49,7 +48,6 @@ class Startside extends React.Component<StateProps> {
                 {erSykmeldtMedArbeidsgiver
                     ?
                     <>
-                        <Banner type="sykmeldt"/>
                         <Rad>
                             <Aktivitetsplan/>
                             <Dialog/>
@@ -70,7 +68,6 @@ class Startside extends React.Component<StateProps> {
                     </>
                     :
                     <>
-                        <Banner type="ordinaer"/>
                         <Rad>
                             <ReaktiveringMelding/>
                             <Aktivitetsplan/>

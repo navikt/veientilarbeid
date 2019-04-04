@@ -12,12 +12,6 @@ if (process.env.REACT_APP_MOCK && !erDemo()) {
     console.log('======= DEVELOPMENT ======'); /*tslint:disable-line:no-console*/
     console.log('=========================='); /*tslint:disable-line:no-console*/
     require('./mocks');
-} else if (erDemo()) {
-    require('./demo/setup-demo-mock');
-}
-
-if (erDemo()) {
-    require('./demo/render-demo');
 }
 
 ReactDOM.render(
