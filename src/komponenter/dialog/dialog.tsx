@@ -7,7 +7,7 @@ import { AppState } from '../../reducer';
 import { gaTilDialog } from '../../metrics';
 import { antallUlesteDialoger } from '../../metrics';
 import DialogFill from './dialog-fill';
-import dialogLine from './dialog-line.svg';
+import DialogLine from './dialog-line';
 import './dialog.less';
 
 export const DIALOG_URL = '/aktivitetsplan/dialog';
@@ -50,7 +50,7 @@ class Dialog extends React.Component<StateProps> {
                     <div className="lenkepanel__ikon">
                         {this.props.antallUleste > 0 ?
                             <DialogFill messagesCount={this.props.antallUleste}/> :
-                            <img src={dialogLine} alt=""/>
+                            <DialogLine/>
                         }
                     </div>
                     <div className="lenkepanel__tekst">

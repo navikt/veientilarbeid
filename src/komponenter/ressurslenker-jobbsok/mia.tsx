@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { gaTilMIA } from '../../metrics';
-import miaIkon from './svg/mia.svg';
+import MiaIkon from './svg/mia';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 
 const MIA_URL = '/mia';
@@ -12,9 +12,10 @@ class Mia extends React.Component {
                 href={MIA_URL}
                 alt=""
                 onClick={gaTilMIA}
-                ikon={miaIkon}
                 overskrift="mia-overskrift"
-            />
+            >
+                <MiaIkon/>
+            </LenkepanelMedIkon>
         );
     }
 }

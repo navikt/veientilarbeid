@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../../reducer';
 import { gaTilJobbsokerkompetanse, gaTilVeiviserarbeidssoker } from '../../metrics';
-import jobbsokertipsIkon from './svg/jobbsokertips.svg';
+import JobbsokertipsIkon from './svg/jobbsokertips';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 
 const VEIVISER2_URL = '/veiviserarbeidssoker/';
@@ -30,9 +30,10 @@ class Ressurslenker extends React.Component<StateProps> {
                 href={URL}
                 alt=""
                 onClick={gaTil}
-                ikon={jobbsokertipsIkon}
                 overskrift={lenketekst}
-            />
+            >
+                <JobbsokertipsIkon/>
+            </LenkepanelMedIkon>
         );
     }
 }
