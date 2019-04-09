@@ -49,6 +49,12 @@ export const gaTilMeldekort = () => {
     }
 };
 
+export const gaTilDittSykefravaer = () => {
+    if (!erDemo()) {
+        logEvent(`${domene}.gatildittsykefravaer`, {}, {});
+    }
+};
+
 export const gaTilMIA = () => {
     if (!erDemo()) {
         logEvent(`${domene}.gatilmia`, {}, {});

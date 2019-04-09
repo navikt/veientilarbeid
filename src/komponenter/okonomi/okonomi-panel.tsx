@@ -22,9 +22,9 @@ const OkonomiPanel = (props: AllProps) => {
 
     return (
         <div className="okonomi-panel">
-            <img src={bilde} className="okonomi-panel--bilde blokk-m"/>
+            <img src={bilde} className="okonomi-panel--bilde blokk-s"/>
 
-            <Systemtittel className="blokk-m okonomi-panel--tittel">
+            <Systemtittel className="blokk-xs okonomi-panel--tittel">
                 <FormattedMessage id={tittelId}/>
             </Systemtittel>
 

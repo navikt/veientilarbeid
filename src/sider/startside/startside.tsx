@@ -6,10 +6,10 @@ import AapRad from '../../komponenter/aap/aap';
 import Dialog from '../../komponenter/dialog/dialog';
 import Banner from '../../komponenter/banner/banner';
 import Meldekort from '../../komponenter/meldekort/meldekort';
+import DittSykefravaer from '../../komponenter/ditt-sykefravaer/ditt-sykefravaer';
 import Dagpenger from '../../komponenter/dagpenger/dagpenger';
 import Tiltakinfo from '../../komponenter/tiltakinfo/tiltakinfo';
 import OkonomiRad from '../../komponenter/okonomi/okonomi-rad';
-import InfoPaneler from '../../komponenter/info-paneler/info-paneler';
 import ReaktiveringMelding from '../../komponenter/reaktivering-melding';
 import Aktivitetsplan from '../../komponenter/aktivitetsplan/aktivitetsplan';
 import { Servicegruppe, State as ServicegruppeState } from '../../ducks/servicegruppe';
@@ -46,50 +46,29 @@ class Startside extends React.Component<StateProps> {
 
         return (
             <>
-                {erSykmeldtMedArbeidsgiver
-                    ?
-                    <>
-                        <Banner type="sykmeldt"/>
-                        <Rad>
-                            <Aktivitetsplan/>
-                            <Dialog/>
-                        </Rad>
-                        <Rad>
-                            {!ikkeArbeidstjenester ?
-                                <RessurslenkerJobbsok/>
-                                : null
-                            }
-                            <InfoPaneler/>
-                        </Rad>
-                        <Rad>
-                            <AapRad/>
-                        </Rad>
-                        <Rad>
-                            <OkonomiRad/>
-                        </Rad>
-                    </>
-                    :
-                    <>
-                        <Banner type="ordinaer"/>
-                        <Rad>
-                            <ReaktiveringMelding/>
-                            <Aktivitetsplan/>
-                            <div className="tokol">
-                                <Dialog/>
-                                <Meldekort/>
-                            </div>
-                        </Rad>
-                        <Rad>
-                            <RessurslenkerJobbsok/>
-                        </Rad>
-                        <Rad>
-                            {innsatsgruppe && (
-                                <Tiltakinfo/>
-                            )}
-                            <Dagpenger/>
-                        </Rad>
-                    </>
-                }
+                { erSykmeldtMedArbeidsgiver ? <Banner type="sykmeldt"/> : <Banner type="ordinaer"/> }
+
+                <Rad>
+                    <ReaktiveringMelding/>
+                    <Aktivitetsplan/>
+                    <div className="tokol">
+                        <Dialog/>
+                        { erSykmeldtMedArbeidsgiver ? <DittSykefravaer/> : <Meldekort/> }
+                    </div>
+                </Rad>
+
+                { erSykmeldtMedArbeidsgiver && (
+                    <Rad><AapRad/></Rad>
+                )}
+
+                <Rad>
+                    { !(erSykmeldtMedArbeidsgiver && ikkeArbeidstjenester) ? <RessurslenkerJobbsok/> : null }
+                    { (innsatsgruppe || erSykmeldtMedArbeidsgiver) ? <Tiltakinfo/> : null }
+                </Rad>
+
+                <Rad>
+                    { erSykmeldtMedArbeidsgiver ? <OkonomiRad/> : <Dagpenger/> }
+                </Rad>
             </>
         );
     }
