@@ -33,6 +33,7 @@ class IntlProvider extends React.Component {
         const tekster = skalViseTekstnokler() ? mapTeksterTilNokler(alleTekster.nb) : alleTekster.nb;
 
         return (
+            // TODO Fjerne React-intl
             <Provider {...props} locale={locale} messages={tekster || []}>
                 {children}
             </Provider>
