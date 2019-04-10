@@ -1,0 +1,32 @@
+@import '../../../node_modules/nav-frontend-core/less/_variabler';
+
+.banner {
+    height: 8rem;
+    border-bottom: 5px solid @navDypBlaLighten60;
+    background: @navDypBlaLighten80;
+    padding: 1rem 2rem;
+
+    &--veientilarbeid {
+        max-width: @screen-md-min;
+        margin: 0 auto;
+    }
+
+    &--veientilarbeid__tittel {
+        padding-top: 0.5rem;
+        text-align: center;
+    }
+}
+
+@media (min-width: @screen-sm-min) {
+    .banner {
+        height: 10rem;
+
+        &--veientilarbeid {
+            padding: 0 2rem;
+        }
+
+        &--veientilarbeid__tittel {
+            padding-top: 1rem;
+        }
+    }
+}
