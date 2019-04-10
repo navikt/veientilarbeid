@@ -32,7 +32,7 @@ class Startside extends React.Component<StateProps> {
         );
     }
 
-    static skalIkkeSeArbeidstjenester(svar: FremtidigSituasjonSvar): boolean {
+    static tilbakeTilSammeArbeidsgiver(svar: FremtidigSituasjonSvar): boolean {
         return (
             svar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER ||
             svar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER_NY_STILLING
@@ -42,7 +42,7 @@ class Startside extends React.Component<StateProps> {
     render() {
         const erSykmeldtMedArbeidsgiver = this.props.sykmeldtInfo.data.erSykmeldtMedArbeidsgiver;
         const innsatsgruppe = this.erInnsatsgruppe();
-        const ikkeArbeidstjenester = Startside.skalIkkeSeArbeidstjenester(this.props.fremtidigSvar);
+        const visRessurslenker = !(Startside.tilbakeTilSammeArbeidsgiver(this.props.fremtidigSvar) && erSykmeldtMedArbeidsgiver);
 
         return (
             <>
@@ -62,7 +62,7 @@ class Startside extends React.Component<StateProps> {
                 )}
 
                 <Rad>
-                    { !(erSykmeldtMedArbeidsgiver && ikkeArbeidstjenester) ? <RessurslenkerJobbsok/> : null }
+                    { visRessurslenker ? <RessurslenkerJobbsok/> : null }
                     { (innsatsgruppe || erSykmeldtMedArbeidsgiver) ? <Tiltakinfo/> : null }
                 </Rad>
 
