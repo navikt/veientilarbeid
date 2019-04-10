@@ -1,7 +1,7 @@
 import * as React from 'react';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { gaTilMeldekort } from '../../metrics';
-import emailText from './email-text.svg';
+import EmailText from './email-text';
 
 const MELDEKORT_URL = 'https://www.nav.no/no/Person/Arbeid/Dagpenger+ved+arbeidsloshet+og+permittering/Meldekort+hvordan+gjor+du+det/Slik+sender+du+elektroniske+meldekort';
 
@@ -16,10 +16,11 @@ class Meldekort extends React.Component {
                 className='meldekort'
                 alt=""
                 onClick={gaTilMeldekort}
-                ikon={emailText}
                 overskrift={overskrift}
                 ingress={ingress}
-            />
+            >
+                <EmailText />
+            </LenkepanelMedIkon>
         );
     }
 }

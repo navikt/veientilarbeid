@@ -1,7 +1,7 @@
 import * as React from 'react';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { gaTilTiltaksinfo, seTiltaksinfo } from '../../metrics';
-import tiltakinfo from './tiltakinfo.svg';
+import TiltakinfoIkon from './tiltakinfoIkon';
 
 import './tiltakinfo.less';
 
@@ -23,10 +23,11 @@ class Tiltakinfo extends React.Component {
                 className="tiltakinfo"
                 alt=""
                 onClick={gaTilTiltaksinfo}
-                ikon={tiltakinfo}
                 overskrift={overskrift}
                 ingress={ingress}
-            />
+            >
+                <TiltakinfoIkon/>
+            </LenkepanelMedIkon>
         );
     }
 }
