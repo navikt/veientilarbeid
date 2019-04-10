@@ -44,6 +44,7 @@ class Startside extends React.Component<StateProps> {
         const innsatsgruppe = this.erInnsatsgruppe();
         const ikkeArbeidstjenester = Startside.skalIkkeSeArbeidstjenester(this.props.fremtidigSvar);
 
+        // TODO Fjerne banner (inkl. brødsmuler)
         return (
             <>
                 {erSykmeldtMedArbeidsgiver
