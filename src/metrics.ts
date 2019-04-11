@@ -25,6 +25,12 @@ export const klikkPaSokLedigeStillinger = () => {
     }
 };
 
+export const gaTilEgenvurdering = () => {
+    if (!erDemo()) {
+        logEvent(`${domene}.gatilegenvurdering`, {}, {});
+    }
+};
+
 export const gaTilAktivitetsplan = () => {
     if (!erDemo()) {
         logEvent(`${domene}.gatilaktivitetsplan`, {}, {});
