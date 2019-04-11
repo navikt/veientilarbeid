@@ -41,6 +41,11 @@ export default {
                 sporsmal: 'Er det noe annet enn helsen din som NAV bør ta hensyn til?',
                 svar: 'Nei'
             }
-        ]
+        ],
+        profilering: {
+            jobbetSammenhengendeSeksAvTolvSisteManeder: true,
+            alder: 40,
+            innsatsgruppe: 'STANDARD_INNSATS'
+        }
     }
 };
