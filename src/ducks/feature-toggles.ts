@@ -5,13 +5,17 @@ import { Dispatch } from '../dispatch-type';
 import { doThenDispatch } from './api-utils';
 import { hentFeatureTogglesFetch, DataElement, STATUS } from './api';
 
+export const egenvurderingToggleKey = 'veientilarbeid.egenvurdering';
+
 export interface FeatureToggles {
+    [egenvurderingToggleKey]: boolean;
 }
 
 export type FeatureToggleState = FeatureToggles & DataElement;
 
 const initialState: FeatureToggleState = {
     status: STATUS.NOT_STARTED,
+    [egenvurderingToggleKey]: false,
 };
 
 export default function reducer(state: FeatureToggleState = initialState, action: Handling): FeatureToggleState {
@@ -26,7 +30,8 @@ export default function reducer(state: FeatureToggleState = initialState, action
         case ActionType.FEATURE_TOGGLES_OK: {
             return {
                 ...state,
-                status: STATUS.OK
+                status: STATUS.OK,
+                [egenvurderingToggleKey]: action.unleash[egenvurderingToggleKey]
             };
         }
         default:
@@ -36,7 +41,7 @@ export default function reducer(state: FeatureToggleState = initialState, action
 
 export function hentFeatureToggles(): (dispatch: Dispatch) => Promise<void> {
     return doThenDispatch<FeatureToggles>(
-        () => hentFeatureTogglesFetch([]), {
+        () => hentFeatureTogglesFetch([egenvurderingToggleKey]), {
         ok: hentFeatureTogglesOk,
         feilet: hentFeatureTogglesFeilet,
         pending: hentFeatureTogglesPending,
