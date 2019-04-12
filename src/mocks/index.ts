@@ -25,6 +25,7 @@ const fetchMock = FetchMock.configure({
     ),
 });
 
+// TODO Kan fjernes
 const MOCK_OPPFOLGING = true;
 const MOCK_FEATURE_TOGGLES = true;
 const MOCK_SERVICEGRUPPE = true;
@@ -38,6 +39,7 @@ if (MOCK_OPPFOLGING) {
 }
 
 if (MOCK_FEATURE_TOGGLES) {
+    // TODO Fjerne heroku og express
     fetchMock.get(`express:${FEATURE_URL}(.*)`, {});
     fetchMock.get(`${FEATURE_URL}(.*)`, {});
 }

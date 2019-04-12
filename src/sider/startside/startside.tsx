@@ -44,6 +44,7 @@ class Startside extends React.Component<StateProps> {
         const innsatsgruppe = this.erInnsatsgruppe();
         const visRessurslenker = !(Startside.tilbakeTilSammeArbeidsgiver(this.props.fremtidigSvar) && erSykmeldtMedArbeidsgiver);
 
+        // TODO Fjerne banner (inkl. brødsmuler)
         return (
             <>
                 { erSykmeldtMedArbeidsgiver ? <Banner type="sykmeldt"/> : <Banner type="ordinaer"/> }

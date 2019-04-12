@@ -6,8 +6,11 @@ import App from './app';
 
 import './index.less';
 import { erDemo } from './demo/demo-state';
+import NAVSPA from './NAVSPA';
 
-if (process.env.REACT_APP_MOCK && !erDemo()) {
+const erMikrofrontend = process.env.REACT_APP_MICRO;
+
+if ((process.env.REACT_APP_MOCK && !erDemo()) || erMikrofrontend) {
     console.log('=========================='); /*tslint:disable-line:no-console*/
     console.log('======= DEVELOPMENT ======'); /*tslint:disable-line:no-console*/
     console.log('=========================='); /*tslint:disable-line:no-console*/
@@ -20,7 +23,13 @@ if (erDemo()) {
     require('./demo/render-demo');
 }
 
-ReactDOM.render(
-    <App/>,
-    document.getElementById('maincontent') as HTMLElement
-);
+if (!erMikrofrontend) {
+    ReactDOM.render(
+        <App/>,
+        document.getElementById('maincontent') as HTMLElement
+    );
+}
+
+if (erMikrofrontend) {
+    NAVSPA.eksporter('vta', App);
+}

@@ -1,5 +1,7 @@
 import { parse, stringify } from 'query-string';
 
+// TODO Rydde opp i denne filen
+
 export function getCurrentUrlWithoutQueryParam(queryParam: string, baseUrl?: string, search?: string) {
     let query = parse(search ? search : location.search);
     delete query[queryParam];

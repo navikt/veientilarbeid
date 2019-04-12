@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { parse } from 'query-string';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
-import designMug from './design-mug.svg';
+import DesignMug from './design-mug';
 import { gaTilAktivitetsplan } from '../../metrics';
 
 interface State {
@@ -29,10 +29,11 @@ class Aktivitetsplan extends React.PureComponent<AktivitetsplanProps, State> {
                 href={url}
                 alt=""
                 onClick={gaTilAktivitetsplan}
-                ikon={designMug}
                 overskrift={overskrift}
                 ingress={ingress}
-            />
+            >
+                <DesignMug/>
+            </LenkepanelMedIkon>
         );
     }
 }
