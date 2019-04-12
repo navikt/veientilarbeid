@@ -12,12 +12,14 @@ export interface State extends DataElement {
 export interface Data {
     underOppfolging: boolean;
     kanReaktiveres: boolean;
+    reservasjonKRR: boolean;
 }
 
 const initialState: State = {
     data: {
         underOppfolging: false,
-        kanReaktiveres: false
+        kanReaktiveres: false,
+        reservasjonKRR: false
     },
     status: STATUS.NOT_STARTED
 };
