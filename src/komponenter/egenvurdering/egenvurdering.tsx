@@ -12,9 +12,6 @@ class Egenvurdering extends React.Component<InjectedIntlProps> {
         super(props);
     }
 
-    componentDidMount() {
-    }
-
     handleButtonClick = () => {
         gaTilEgenvurdering();
         window.location.href = this.props.intl.formatMessage({id: 'egenvurdering-lenke-url'});
@@ -22,16 +19,18 @@ class Egenvurdering extends React.Component<InjectedIntlProps> {
 
     render() {
         return (
-            <section className="egenvurdering">
-                <Systemtittel tag="h1" className="blokk-xs">
-                    <FormattedMessage id="egenvurdering-tittel"/>
-                </Systemtittel>
-                <Normaltekst className="blokk-m egenvurdering__tekst">
-                    <FormattedMessage id="egenvurdering-tekst"/>
-                </Normaltekst>
-                <Hovedknapp onClick={this.handleButtonClick}>
-                    <FormattedMessage id="egenvurdering-lenke-tekst"/>
-                </Hovedknapp>
+            <section className="egenvurdering blokk-m">
+                <div className="innhold">
+                    <Systemtittel tag="h1" className="blokk-xs">
+                        <FormattedMessage id="egenvurdering-tittel"/>
+                    </Systemtittel>
+                    <Normaltekst className="blokk-m egenvurdering__tekst">
+                        <FormattedMessage id="egenvurdering-tekst"/>
+                    </Normaltekst>
+                    <Hovedknapp onClick={this.handleButtonClick}>
+                        <FormattedMessage id="egenvurdering-lenke-tekst"/>
+                    </Hovedknapp>
+                </div>
             </section>
         );
     }
