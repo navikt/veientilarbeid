@@ -1,3 +1,5 @@
+import {Innsatsgruppe} from "../ducks/brukerregistrering";
+
 export default {
     type: 'SYKMELDT',
     registrering: {
@@ -45,7 +47,7 @@ export default {
         profilering: {
             jobbetSammenhengendeSeksAvTolvSisteManeder: true,
             alder: 40,
-            innsatsgruppe: 'STANDARD_INNSATS'
+            innsatsgruppe: Innsatsgruppe.STANDARD_INNSATS
         }
     }
 };

@@ -52,7 +52,7 @@ const initialState: State = {
                 fremtidigSituasjon: FremtidigSituasjonSvar.USIKKER
             },
             profilering: {
-                innsatsgruppe: Innsatsgruppe.UBESTEMT
+                innsatsgruppe: Innsatsgruppe.STANDARD_INNSATS
             }
         }
     }
@@ -105,4 +105,12 @@ export function selectFremtidigSituasjonSvar(state: AppState): FremtidigSituasjo
         data = initialState.data;
     }
     return data.registrering.besvarelse.fremtidigSituasjon;
+}
+
+export function selectInnsatsgruppe(state: AppState): Innsatsgruppe {
+    let data = state.brukerRegistrering.data;
+    if (data === null) {
+        data = initialState.data;
+    }
+    return data.registrering.profilering.innsatsgruppe;
 }
