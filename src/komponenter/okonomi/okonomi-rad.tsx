@@ -2,9 +2,9 @@ import * as React from 'react';
 import OkonomiPanel from './okonomi-panel';
 import './okonomi-rad.less';
 
-import dagpengerBilde from './dagpenger.svg';
-import nyRettTilSykepengerBilde from './ny-rett-til-sykepenger.svg';
-import okonomiskSosialhjelpBilde from './okonomisk-sosialhjelp.svg';
+import DagpengerBilde from './dagpenger';
+import NyRettTilSykepengerBilde from './ny-rett-til-sykepenger';
+import OkonomiskSosialhjelpBilde from './okonomisk-sosialhjelp';
 
 const OkonomiRad = () => {
     return (
@@ -13,20 +13,23 @@ const OkonomiRad = () => {
                 tittelId="okonomi-rad-stotte-arbeidsledig-tittel"
                 lenkeTekstId="okonomi-rad-stotte-arbeidsledig-lenke-tekst"
                 lenkeUrlId="okonomi-rad-stotte-arbeidsledig-lenke-url"
-                bilde={dagpengerBilde}
-            />
+            >
+                <DagpengerBilde className="okonomi-panel--bilde blokk-s"/>
+            </OkonomiPanel>
             <OkonomiPanel
                 tittelId="okonomi-rad-nodsituasjon-tittel"
                 lenkeTekstId="okonomi-rad-nodsituasjon-lenke-tekst"
                 lenkeUrlId="okonomi-rad-nodsituasjon-lenke-url"
-                bilde={okonomiskSosialhjelpBilde}
-            />
+            >
+                <OkonomiskSosialhjelpBilde className="okonomi-panel--bilde blokk-s"/>
+            </OkonomiPanel>
             <OkonomiPanel
                 tittelId="okonomi-rad-sykepenger-tittel"
                 lenkeTekstId="okonomi-rad-sykepenger-lenke-tekst"
                 lenkeUrlId="okonomi-rad-sykepenger-lenke-url"
-                bilde={nyRettTilSykepengerBilde}
-            />
+            >
+                <NyRettTilSykepengerBilde className="okonomi-panel--bilde blokk-s"/>
+            </OkonomiPanel>
         </div>
     );
 };
