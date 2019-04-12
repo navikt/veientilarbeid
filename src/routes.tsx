@@ -17,6 +17,7 @@ interface StateProps {
 
 type AllProps = StateProps & RouteComponentProps<any>; // tslint:disable-line
 
+// TODO Fjerne react router
 class Routes extends React.Component<AllProps> {
 
     componentDidMount() {

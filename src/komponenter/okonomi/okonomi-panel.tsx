@@ -11,18 +11,18 @@ interface OkonomiPanelProps {
     tittelId: string;
     lenkeTekstId: string;
     lenkeUrlId: string;
-    bilde: string;
+    children: React.ReactNode;
 }
 
 type AllProps = OkonomiPanelProps & InjectedIntlProps;
 
 const OkonomiPanel = (props: AllProps) => {
-    const {intl, tittelId, lenkeTekstId, lenkeUrlId, bilde} = props;
+    const {intl, tittelId, lenkeTekstId, lenkeUrlId, children} = props;
     const lenkeUrl = intl.messages[lenkeUrlId];
 
     return (
         <div className="okonomi-panel">
-            <img src={bilde} className="okonomi-panel--bilde blokk-s"/>
+            {children}
 
             <Systemtittel className="blokk-xs okonomi-panel--tittel">
                 <FormattedMessage id={tittelId}/>

@@ -9,14 +9,14 @@ interface Props {
     alt: string;
     onClick?: () => void;
     className?: string;
-    ikon: any; // tslint:disable-line:no-any
+    children: React.ReactNode;
     overskrift: string;
     ingress?: string;
 }
 
 class LenkepanelMedIkon extends React.Component<Props> {
     render() {
-        const {href, alt, onClick, className, ikon, overskrift, ingress} = this.props;
+        const {href, onClick, className, overskrift, ingress, children} = this.props;
 
         const linkCreator = (props: {}) => {
             return <a onClick={onClick} {...props}/>;
@@ -32,11 +32,7 @@ class LenkepanelMedIkon extends React.Component<Props> {
             >
                 <div className="lenkepanel__innhold">
                     <div className="lenkepanel__ikon">
-                        <img
-                            src={ikon}
-                            className="ikon"
-                            alt={alt}
-                        />
+                        {children}
                     </div>
                     <div>
                         <Undertittel>

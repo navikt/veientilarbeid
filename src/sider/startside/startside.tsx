@@ -59,6 +59,8 @@ class Startside extends React.Component<StateProps> {
         const skalviseEgenvurdering = this.skalViseEgenvurdering();
         const visRessurslenker = !(Startside.tilbakeTilSammeArbeidsgiver(this.props.fremtidigSvar) && erSykmeldtMedArbeidsgiver);
         const featureEgenvurdering = this.props.features[egenvurderingToggleKey];
+
+        // TODO Fjerne banner (inkl. brødsmuler)
         return (
             <>
                 { erSykmeldtMedArbeidsgiver ? <Banner type="sykmeldt"/> : <Banner type="ordinaer"/> }

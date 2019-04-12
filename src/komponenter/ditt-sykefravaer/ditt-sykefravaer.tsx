@@ -1,7 +1,7 @@
 import * as React from 'react';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { gaTilDittSykefravaer } from '../../metrics';
-import plaster from './ditt-sykefravaer.svg';
+import Plaster from './plaster';
 
 const DITTSYKEFRAVAER_URL = '/sykefravaer/';
 
@@ -16,10 +16,11 @@ class DittSykefravaer extends React.Component {
                 className='sykefravaer'
                 alt=""
                 onClick={gaTilDittSykefravaer}
-                ikon={plaster}
                 overskrift={overskrift}
                 ingress={ingress}
-            />
+            >
+                <Plaster/>
+            </LenkepanelMedIkon>
         );
     }
 }
