@@ -1,4 +1,5 @@
-import { JSONObject } from 'yet-another-fetch-mock';
+import {JSONObject} from 'yet-another-fetch-mock';
+import {FremtidigSituasjonSvar, Innsatsgruppe} from "../ducks/brukerregistrering";
 
 export function erDemo(): boolean {
     const path: string = window.location.pathname;
@@ -41,26 +42,73 @@ export const settSykmeldtMedArbeidsgiver = (value: string) => {
     settILocalStorage(DemoData.SYKMELDT_MED_ARBEIDSGIVER, value);
 };
 
-export const hentBrukerRegistrering = (): any => { //tslint:disable-line
-    const data = hentFraLocalStorage(DemoData.BRUKER_REGISTRERING);
-
+export const sjekkLocalStorage = (felt: string) => {
+    const data = hentFraLocalStorage(felt);
     if (data) {
         return JSON.parse(data);
+    }
+    return null;
+}
+
+export const hentBrukerRegistrering = (): any => { //tslint:disable-line
+    const localStorageData = sjekkLocalStorage(DemoData.BRUKER_REGISTRERING);
+
+    if (localStorageData) {
+        return localStorageData;
     }
     return {
         registrering: {
             besvarelse: {
-                fremtidigSituasjon: 'NY_ARBEIDSGIVER'
+                fremtidigSituasjon: FremtidigSituasjonSvar.NY_ARBEIDSGIVER
+            },
+            profilering: {
+                innsatsgruppe: Innsatsgruppe.STANDARD_INNSATS
             }
         }
     };
 };
 
 export const settBrukerRegistrering = (value: string) => {
+    let innsatsgruppe = Innsatsgruppe.STANDARD_INNSATS;
+
+    const localStorageData = sjekkLocalStorage(DemoData.BRUKER_REGISTRERING);
+    if (localStorageData) {
+        const innsatsgruppeData = localStorageData.registrering.profilering.innsatsgruppe;
+        if (innsatsgruppeData) {
+            innsatsgruppe = innsatsgruppeData;
+        }
+    }
+
     const data = {
         registrering: {
             besvarelse: {
                 fremtidigSituasjon: value
+            },
+            profilering: {
+                innsatsgruppe: innsatsgruppe
+            }
+        }   };
+    settILocalStorage(DemoData.BRUKER_REGISTRERING, JSON.stringify(data));
+};
+
+export const settForeslaattInnsatsgruppe = (value: string) => {
+    let fremtidigSituasjon: FremtidigSituasjonSvar = FremtidigSituasjonSvar.NY_ARBEIDSGIVER;
+    const localStorageData = sjekkLocalStorage(DemoData.BRUKER_REGISTRERING);
+
+    if (localStorageData) {
+        const fremtidigSituasjonData = localStorageData.registrering.besvarelse.fremtidigSituasjon;
+        if (fremtidigSituasjonData) {
+            fremtidigSituasjon = fremtidigSituasjonData;
+        }
+    }
+
+    const data = {
+        registrering: {
+            besvarelse: {
+                fremtidigSituasjon: fremtidigSituasjon
+            },
+            profilering: {
+                innsatsgruppe: value
             }
         }
     };

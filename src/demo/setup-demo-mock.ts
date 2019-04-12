@@ -6,10 +6,11 @@ import {
     BRUKERREGISTRERING_URL,
     VEILARBOPPFOLGING_URL,
     ULESTEDIALOGER_URL,
-    featureQueryParams
-} from '../ducks/api';
+} from '../ducks/api'; // featureQueryParams
 import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
-import { hentJsk, hentServicegruppe, hentSykmeldtMedArbeidsgiver, hentBrukerRegistrering, hentUlesteDialoger } from './demo-state';
+import { hentJsk, hentServicegruppe, hentSykmeldtMedArbeidsgiver,
+    hentBrukerRegistrering, hentUlesteDialoger } from './demo-state';
+import featureTogglesMock from "../mocks/feature-toggles-mock";
 
 const loggingMiddleware: Middleware = (request, response) => {
     console.log(request.url, request.method, response); // tslint:disable-line:no-console
@@ -34,6 +35,7 @@ const randomUlesteDialoger = () => {
 fetchMock.get(`${VEILARBOPPFOLGING_URL}/oppfolging`, {
     underOppfolging: true,
     kanReaktiveres: false,
+    reservasjonKRR: false
 });
 
 fetchMock.get(SERVICEGRUPPE_URL, {
@@ -52,5 +54,10 @@ fetchMock.get(ULESTEDIALOGER_URL, {
 
 fetchMock.get(JOBBSOKERBESVARELSE_URL, hentJsk());
 
-const unleashUrl = FEATURE_URL + featureQueryParams([]);
-fetchMock.get(unleashUrl, {});
+/* ????
+const unleashUrl = FEATURE_URL + featureQueryParams([egenvurderingToggleKey]);
+fetchMock.get(unleashUrl, {[egenvurderingToggleKey]: true});
+*/
+
+fetchMock.get(`express:${FEATURE_URL}(.*)`, featureTogglesMock);
+fetchMock.get(`${FEATURE_URL}(.*)`, featureTogglesMock);

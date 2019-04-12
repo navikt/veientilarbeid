@@ -7,11 +7,11 @@ import {
     hentSykmeldtMedArbeidsgiver, settSykmeldtMedArbeidsgiver,
     hentUlesteDialoger, settUlesteDialoger,
     hentServicegruppe, settServicegruppe,
-    hentBrukerRegistrering, settBrukerRegistrering
+    hentBrukerRegistrering, settBrukerRegistrering, settForeslaattInnsatsgruppe
 } from './demo-state';
 
 import './demo-dashboard.less';
-import { FremtidigSituasjonSvar } from '../ducks/brukerregistrering';
+import { FremtidigSituasjonSvar, Innsatsgruppe } from '../ducks/brukerregistrering';
 
 class DemoDashboard extends React.Component<InjectedIntlProps> {
     render() {
@@ -27,6 +27,11 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
 
         const handleChangeBrukerregistrering = (e: React.ChangeEvent<HTMLSelectElement>) => {
             settBrukerRegistrering(e.target.value);
+            window.location.reload();
+        };
+
+        const handleChangeForeslaattInnsatsgruppe = (e: React.ChangeEvent<HTMLSelectElement>) => {
+            settForeslaattInnsatsgruppe(e.target.value);
             window.location.reload();
         };
 
@@ -60,6 +65,13 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
             NY_ARBEIDSGIVER: 'Ny arbeidsgiver',
             USIKKER: 'Usikker',
             INGEN_PASSER: 'Ingen passer',
+        };
+
+        const innsatsgrupper = {
+            STANDARD_INNSATS: 'Standard innsats',
+            SITUASJONSBESTEMT_INNSATS: 'Situasjonsbestemt innsats',
+            BEHOV_FOR_ARBEIDSEVNEVURDERING: 'Behov for arbeidsevnevurdering',
+            UBESTEMT: 'Ubestemt'
         };
 
         return (
@@ -98,6 +110,23 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
                                     value={svar}
                                 >
                                     {fremtidigeSituasjoner[svar]}
+                                </option>
+                            )
+                        }
+                    </SelectKomponent>
+                    <SelectKomponent
+                        label={messages['demo-foreslaatt-innsatsgruppe']}
+                        onChange={handleChangeForeslaattInnsatsgruppe}
+                        id="velg-foreslaatt-innsatsgruppe"
+                        defaultValue={hentBrukerRegistrering().registrering.profilering.innsatsgruppe}
+                    >
+                        {
+                            Object.keys(Innsatsgruppe).map((svar: string) =>
+                                <option
+                                    key={svar}
+                                    value={svar}
+                                >
+                                    {innsatsgrupper[svar]}
                                 </option>
                             )
                         }
