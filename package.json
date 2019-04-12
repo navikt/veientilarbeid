@@ -14,8 +14,6 @@
     "lint:fix": "tslint ./src/**/*.ts* --fix",
     "test": "npm run build:tekster && craco test --env=jsdom",
     "test:coverage": "npm test -- --coverage",
-    "heroku-serve": "node heroku-server.js",
-    "heroku-postbuild": "npm run build:tekster && cross-env REACT_APP_MOCK=true REACT_APP_HEROKU=true craco build",
     "deploy": "npm run build && gh-pages -d build",
     "prettier": "prettier --write --single-quote --tab-width 4 src/**/*.ts src/**/*.tsx src/**/*.less"
   },
@@ -106,7 +104,6 @@
     "enzyme": "3.9.0",
     "enzyme-adapter-react-16": "1.11.2",
     "enzyme-react-intl": "2.0.4",
-    "express": "^4.16.4",
     "file-loader": "3.0.1",
     "i": "^0.3.6",
     "less": "3.9.0",
