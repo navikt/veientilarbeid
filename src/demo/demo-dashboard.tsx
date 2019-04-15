@@ -7,7 +7,7 @@ import {
     hentSykmeldtMedArbeidsgiver, settSykmeldtMedArbeidsgiver,
     hentUlesteDialoger, settUlesteDialoger,
     hentServicegruppe, settServicegruppe,
-    hentBrukerRegistrering, settBrukerRegistrering
+    hentFremtidigSituasjon, settFremtidigSituasjon
 } from './demo-state';
 
 import './demo-dashboard.less';
@@ -26,7 +26,7 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
         };
 
         const handleChangeBrukerregistrering = (e: React.ChangeEvent<HTMLSelectElement>) => {
-            settBrukerRegistrering(e.target.value);
+            settFremtidigSituasjon(e.target.value);
             window.location.reload();
         };
 
@@ -89,7 +89,7 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
                         label={messages['demo-brukerregistrering']}
                         onChange={handleChangeBrukerregistrering}
                         id="velg-fremtidig-situasjon"
-                        defaultValue={hentBrukerRegistrering().registrering.besvarelse.fremtidigSituasjon}
+                        defaultValue={hentFremtidigSituasjon()}
                     >
                         {
                             Object.keys(FremtidigSituasjonSvar).map((svar: string) =>

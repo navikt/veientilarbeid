@@ -1,4 +1,5 @@
 import { JSONObject } from 'yet-another-fetch-mock';
+import { Data as BrukerRegistrering } from '../ducks/brukerregistrering';
 
 export function erDemo(): boolean {
     const path: string = window.location.pathname;
@@ -41,22 +42,20 @@ export const settSykmeldtMedArbeidsgiver = (value: string) => {
     settILocalStorage(DemoData.SYKMELDT_MED_ARBEIDSGIVER, value);
 };
 
-export const hentBrukerRegistrering = (): any => { //tslint:disable-line
+export const hentFremtidigSituasjon = (): string => {
     const data = hentFraLocalStorage(DemoData.BRUKER_REGISTRERING);
 
     if (data) {
-        return JSON.parse(data);
-    }
-    return {
-        registrering: {
-            besvarelse: {
-                fremtidigSituasjon: 'NY_ARBEIDSGIVER'
-            }
+        const json: BrukerRegistrering = JSON.parse(data);
+        if (json.registrering && json.registrering.besvarelse && json.registrering.besvarelse.fremtidigSituasjon) {
+            return json.registrering.besvarelse.fremtidigSituasjon;
         }
-    };
+    }
+
+    return 'NY_ARBEIDSGIVER';
 };
 
-export const settBrukerRegistrering = (value: string) => {
+export const settFremtidigSituasjon = (value: string) => {
     const data = {
         registrering: {
             besvarelse: {
