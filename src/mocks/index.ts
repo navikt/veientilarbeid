@@ -25,41 +25,16 @@ const fetchMock = FetchMock.configure({
     ),
 });
 
-// TODO Kan fjernes
-const MOCK_OPPFOLGING = true;
-const MOCK_FEATURE_TOGGLES = true;
-const MOCK_SERVICEGRUPPE = true;
-const MOCK_STARTREGISTRERING = true;
-const MOCK_JOBBSOKERBESVARELSE = true;
-const MOCK_ULESTEDIALOGER = true;
-const MOCK_BRUKERREGISTRERING = true;
+fetchMock.get(`${VEILARBOPPFOLGING_URL}/oppfolging`, oppfolgingResponse);
 
-if (MOCK_OPPFOLGING) {
-    fetchMock.get(`${VEILARBOPPFOLGING_URL}/oppfolging`, oppfolgingResponse);
-}
+fetchMock.get(`${FEATURE_URL}(.*)`, {});
 
-if (MOCK_FEATURE_TOGGLES) {
-    // TODO Fjerne heroku og express
-    fetchMock.get(`express:${FEATURE_URL}(.*)`, {});
-    fetchMock.get(`${FEATURE_URL}(.*)`, {});
-}
+fetchMock.get(SERVICEGRUPPE_URL, servicegruppeResponse);
 
-if (MOCK_SERVICEGRUPPE) {
-    fetchMock.get(SERVICEGRUPPE_URL, servicegruppeResponse);
-}
+fetchMock.get(STARTREGISTRERING_URL, sykmeldtInfoResponse);
 
-if (MOCK_STARTREGISTRERING) {
-    fetchMock.get(STARTREGISTRERING_URL, sykmeldtInfoResponse);
-}
+fetchMock.get(JOBBSOKERBESVARELSE_URL, jobbsokerbesvarelseResponse);
 
-if (MOCK_JOBBSOKERBESVARELSE) {
-    fetchMock.get(JOBBSOKERBESVARELSE_URL, jobbsokerbesvarelseResponse);
-}
+fetchMock.get(ULESTEDIALOGER_URL, ulesteDialogerResponse);
 
-if (MOCK_ULESTEDIALOGER) {
-    fetchMock.get(ULESTEDIALOGER_URL, ulesteDialogerResponse);
-}
-
-if (MOCK_BRUKERREGISTRERING) {
-    fetchMock.get(BRUKERREGISTRERING_URL, brukerRegistreringResponse);
-}
+fetchMock.get(BRUKERREGISTRERING_URL, brukerRegistreringResponse);
