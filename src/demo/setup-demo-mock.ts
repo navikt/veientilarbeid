@@ -14,8 +14,8 @@ import {
     hentServicegruppe,
     hentSykmeldtMedArbeidsgiver,
     hentUlesteDialoger,
-    hentBrukerRegistreringData
 } from './demo-state';
+import { hentBrukerRegistreringData } from './demo-state-brukerregistrering';
 
 const loggingMiddleware: Middleware = (request, response) => {
     console.log(request.url, request.method, response); // tslint:disable-line:no-console

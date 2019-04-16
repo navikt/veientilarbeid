@@ -7,12 +7,16 @@ import {
     hentSykmeldtMedArbeidsgiver, settSykmeldtMedArbeidsgiver,
     hentUlesteDialoger, settUlesteDialoger,
     hentServicegruppe, settServicegruppe,
-    hentFremtidigSituasjon, settFremtidigSituasjon,
-    settForeslattInnsatsgruppe, hentForeslattInnsatsgruppe
 } from './demo-state';
 
 import './demo-dashboard.less';
 import { FremtidigSituasjonSvar, ForeslattInnsatsgruppe } from '../ducks/brukerregistrering';
+import {
+    hentForeslattInnsatsgruppe,
+    hentFremtidigSituasjon,
+    settForeslattInnsatsgruppe,
+    settFremtidigSituasjon
+} from './demo-state-brukerregistrering';
 
 class DemoDashboard extends React.Component<InjectedIntlProps> {
     render() {
