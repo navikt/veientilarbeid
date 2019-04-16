@@ -15,6 +15,9 @@ export default {
             fremtidigSituasjon: 'NY_ARBEIDSGIVER',
             tilbakeIArbeid: null
         },
+        profilering: {
+            innsatsgruppe: 'SITUASJONSBESTEMT_INNSATS',
+        },
         teksterForBesvarelse: [
             {
                 sporsmalId: 'fremtidigSituasjon',

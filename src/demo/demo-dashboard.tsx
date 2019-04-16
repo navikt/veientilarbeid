@@ -7,11 +7,16 @@ import {
     hentSykmeldtMedArbeidsgiver, settSykmeldtMedArbeidsgiver,
     hentUlesteDialoger, settUlesteDialoger,
     hentServicegruppe, settServicegruppe,
-    hentBrukerRegistrering, settBrukerRegistrering
 } from './demo-state';
 
 import './demo-dashboard.less';
-import { FremtidigSituasjonSvar } from '../ducks/brukerregistrering';
+import { FremtidigSituasjonSvar, ForeslattInnsatsgruppe } from '../ducks/brukerregistrering';
+import {
+    hentForeslattInnsatsgruppe,
+    hentFremtidigSituasjon,
+    settForeslattInnsatsgruppe,
+    settFremtidigSituasjon
+} from './demo-state-brukerregistrering';
 
 class DemoDashboard extends React.Component<InjectedIntlProps> {
     render() {
@@ -26,7 +31,12 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
         };
 
         const handleChangeBrukerregistrering = (e: React.ChangeEvent<HTMLSelectElement>) => {
-            settBrukerRegistrering(e.target.value);
+            settFremtidigSituasjon(e.target.value as FremtidigSituasjonSvar);
+            window.location.reload();
+        };
+
+        const handleChangeForeslaattInnsatsgruppe = (e: React.ChangeEvent<HTMLSelectElement>) => {
+            settForeslattInnsatsgruppe(e.target.value as ForeslattInnsatsgruppe);
             window.location.reload();
         };
 
@@ -62,6 +72,12 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
             INGEN_PASSER: 'Ingen passer',
         };
 
+        const foreslattInnsatsgrupper = {
+            STANDARD_INNSATS: 'Standard innsats',
+            SITUASJONSBESTEMT_INNSATS: 'Situasjonsbestemt innsats',
+            BEHOV_FOR_ARBEIDSEVNEVURDERING: 'Behov for arbeidsevnevurdering',
+        };
+
         return (
             <section className="demodashboard">
                 <Innholdstittel className="blokk-s">
@@ -89,7 +105,7 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
                         label={messages['demo-brukerregistrering']}
                         onChange={handleChangeBrukerregistrering}
                         id="velg-fremtidig-situasjon"
-                        defaultValue={hentBrukerRegistrering().registrering.besvarelse.fremtidigSituasjon}
+                        defaultValue={hentFremtidigSituasjon()}
                     >
                         {
                             Object.keys(FremtidigSituasjonSvar).map((svar: string) =>
@@ -98,6 +114,23 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
                                     value={svar}
                                 >
                                     {fremtidigeSituasjoner[svar]}
+                                </option>
+                            )
+                        }
+                    </SelectKomponent>
+                    <SelectKomponent
+                        label={messages['demo-foreslatt-innsatsgruppe']}
+                        onChange={handleChangeForeslaattInnsatsgruppe}
+                        id="velg-foreslaatt-innsatsgruppe"
+                        defaultValue={hentForeslattInnsatsgruppe()}
+                    >
+                        {
+                            Object.keys(ForeslattInnsatsgruppe).map((svar: string) =>
+                                <option
+                                    key={svar}
+                                    value={svar}
+                                >
+                                    {foreslattInnsatsgrupper[svar]}
                                 </option>
                             )
                         }

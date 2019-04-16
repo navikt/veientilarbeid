@@ -10,14 +10,6 @@ import { hentBrukerRegistreringFetch, DataElement, STATUS } from './api';
 import { doThenDispatch } from './api-utils';
 import { AppState } from '../reducer';
 
-export interface State extends DataElement {
-    data: Data;
-}
-
-interface Brukerregistrering {
-    besvarelse: { fremtidigSituasjon: FremtidigSituasjonSvar };
-}
-
 export enum FremtidigSituasjonSvar {
     SAMME_ARBEIDSGIVER = 'SAMME_ARBEIDSGIVER',
     SAMME_ARBEIDSGIVER_NY_STILLING = 'SAMME_ARBEIDSGIVER_NY_STILLING',
@@ -26,13 +18,45 @@ export enum FremtidigSituasjonSvar {
     INGEN_PASSER = 'INGEN_PASSER',
 }
 
+export interface Besvarelse {
+    fremtidigSituasjon: FremtidigSituasjonSvar;
+}
+
+export enum ForeslattInnsatsgruppe {
+    STANDARD_INNSATS = 'STANDARD_INNSATS',
+    SITUASJONSBESTEMT_INNSATS = 'SITUASJONSBESTEMT_INNSATS',
+    BEHOV_FOR_ARBEIDSEVNEVURDERING = 'BEHOV_FOR_ARBEIDSEVNEVURDERING',
+}
+
+export interface Profilering {
+    innsatsgruppe: ForeslattInnsatsgruppe;
+}
+
+interface Brukerregistrering {
+    besvarelse: Besvarelse;
+    profilering: Profilering;
+}
+
 export interface Data {
     registrering: Brukerregistrering;
 }
 
+export interface State extends DataElement {
+    data: Data;
+}
+
 const initialState: State = {
     status: STATUS.NOT_STARTED,
-    data: {registrering: {besvarelse: {fremtidigSituasjon: FremtidigSituasjonSvar.USIKKER}}}
+    data: {
+        registrering: {
+            besvarelse: {
+                fremtidigSituasjon: FremtidigSituasjonSvar.USIKKER
+            },
+            profilering: {
+                innsatsgruppe: ForeslattInnsatsgruppe.STANDARD_INNSATS
+            }
+        }
+    }
 };
 
 export default function reducer(state: State = initialState, action: Handling): State {

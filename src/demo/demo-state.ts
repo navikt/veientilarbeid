@@ -13,11 +13,11 @@ export enum DemoData {
     ULESTE_DIALOGER = 'ulesteDialoger',
 }
 
-const hentFraLocalStorage = (key: string): string | null => {
+export const hentFraLocalStorage = (key: string): string | null => {
     return window.localStorage.getItem(key);
 };
 
-const settILocalStorage = (key: string, value: string): void => {
+export const settILocalStorage = (key: string, value: string): void => {
     window.localStorage.setItem(key, value);
 };
 
@@ -39,32 +39,6 @@ export const hentSykmeldtMedArbeidsgiver = (): boolean => {
 
 export const settSykmeldtMedArbeidsgiver = (value: string) => {
     settILocalStorage(DemoData.SYKMELDT_MED_ARBEIDSGIVER, value);
-};
-
-export const hentBrukerRegistrering = (): any => { //tslint:disable-line
-    const data = hentFraLocalStorage(DemoData.BRUKER_REGISTRERING);
-
-    if (data) {
-        return JSON.parse(data);
-    }
-    return {
-        registrering: {
-            besvarelse: {
-                fremtidigSituasjon: 'NY_ARBEIDSGIVER'
-            }
-        }
-    };
-};
-
-export const settBrukerRegistrering = (value: string) => {
-    const data = {
-        registrering: {
-            besvarelse: {
-                fremtidigSituasjon: value
-            }
-        }
-    };
-    settILocalStorage(DemoData.BRUKER_REGISTRERING, JSON.stringify(data));
 };
 
 export const hentUlesteDialoger = (): boolean => {

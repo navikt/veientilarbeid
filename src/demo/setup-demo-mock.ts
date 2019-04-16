@@ -9,7 +9,13 @@ import {
     featureQueryParams
 } from '../ducks/api';
 import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
-import { hentJsk, hentServicegruppe, hentSykmeldtMedArbeidsgiver, hentBrukerRegistrering, hentUlesteDialoger } from './demo-state';
+import {
+    hentJsk,
+    hentServicegruppe,
+    hentSykmeldtMedArbeidsgiver,
+    hentUlesteDialoger,
+} from './demo-state';
+import { hentBrukerRegistreringData } from './demo-state-brukerregistrering';
 
 const loggingMiddleware: Middleware = (request, response) => {
     console.log(request.url, request.method, response); // tslint:disable-line:no-console
@@ -44,7 +50,7 @@ fetchMock.get(STARTREGISTRERING_URL, {
     erSykmeldtMedArbeidsgiver: hentSykmeldtMedArbeidsgiver()
 });
 
-fetchMock.get(BRUKERREGISTRERING_URL, hentBrukerRegistrering());
+fetchMock.get(BRUKERREGISTRERING_URL, hentBrukerRegistreringData());
 
 fetchMock.get(ULESTEDIALOGER_URL, {
     antallUleste: hentUlesteDialoger() ? randomUlesteDialoger() : 0
