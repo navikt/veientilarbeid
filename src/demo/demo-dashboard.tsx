@@ -13,10 +13,20 @@ import './demo-dashboard.less';
 import { FremtidigSituasjonSvar, ForeslattInnsatsgruppe } from '../ducks/brukerregistrering';
 import {
     hentForeslattInnsatsgruppe,
-    hentFremtidigSituasjon,
+    hentFremtidigSituasjon, hentOpprettetDato,
     settForeslattInnsatsgruppe,
-    settFremtidigSituasjon
+    settFremtidigSituasjon, settOpprettetDato
 } from './demo-state-brukerregistrering';
+
+interface OpprettetRegistreringDato {
+    registrertIForkantAvLansering: string;
+    registrertIEtterkantAvLansering: string;
+}
+
+export const opprettetRegistreringDato: OpprettetRegistreringDato = {
+    registrertIForkantAvLansering: new Date(2020, 0, 1).toString(),
+    registrertIEtterkantAvLansering: new Date(2020, 0, 3).toString()
+};
 
 class DemoDashboard extends React.Component<InjectedIntlProps> {
     render() {
@@ -37,6 +47,11 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
 
         const handleChangeForeslaattInnsatsgruppe = (e: React.ChangeEvent<HTMLSelectElement>) => {
             settForeslattInnsatsgruppe(e.target.value as ForeslattInnsatsgruppe);
+            window.location.reload();
+        };
+
+        const handleChangeOpprettetRegistreringDato = (e: React.ChangeEvent<HTMLSelectElement>) => {
+            settOpprettetDato(e.target.value);
             window.location.reload();
         };
 
@@ -76,6 +91,11 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
             STANDARD_INNSATS: 'Standard innsats',
             SITUASJONSBESTEMT_INNSATS: 'Situasjonsbestemt innsats',
             BEHOV_FOR_ARBEIDSEVNEVURDERING: 'Behov for arbeidsevnevurdering',
+        };
+
+        const opprettetRegistreringDatoLabels = {
+            registrertIForkantAvLansering: '01.01.20',
+            registrertIEtterkantAvLansering: '03.01.20',
         };
 
         return (
@@ -131,6 +151,23 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
                                     value={svar}
                                 >
                                     {foreslattInnsatsgrupper[svar]}
+                                </option>
+                            )
+                        }
+                    </SelectKomponent>
+                    <SelectKomponent
+                        label={messages['demo-opprettetregistreringdato']}
+                        onChange={handleChangeOpprettetRegistreringDato}
+                        id="velg-opprettetdato"
+                        defaultValue={hentOpprettetDato()}
+                    >
+                        {
+                            Object.keys(opprettetRegistreringDato).map((key: string) =>
+                                <option
+                                    key={key}
+                                    value={opprettetRegistreringDato[key]}
+                                >
+                                    {opprettetRegistreringDatoLabels[key]}
                                 </option>
                             )
                         }

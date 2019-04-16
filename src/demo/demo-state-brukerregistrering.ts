@@ -1,9 +1,11 @@
 import { Besvarelse, ForeslattInnsatsgruppe, FremtidigSituasjonSvar, Profilering } from '../ducks/brukerregistrering';
 import { DemoData, hentFraLocalStorage, settILocalStorage } from './demo-state';
+import { opprettetRegistreringDato } from './demo-dashboard';
 
-const settRegistrering = (besvarelse?: Besvarelse, profilering?: Profilering) => {
+const settRegistrering = (besvarelse?: Besvarelse, profilering?: Profilering, opprettetDato?: string) => {
     const data = {
         registrering: {
+            opprettetDato: opprettetDato || hentOpprettetDato(),
             besvarelse: besvarelse || {fremtidigSituasjon: hentFremtidigSituasjon()},
             profilering: profilering || {innsatsgruppe: hentForeslattInnsatsgruppe()},
         }
@@ -28,14 +30,24 @@ export const settForeslattInnsatsgruppe = (innsatsgruppe: ForeslattInnsatsgruppe
     );
 };
 
+export const settOpprettetDato = (opprettetDato: string) => {
+    settRegistrering(
+        undefined,
+        undefined,
+        opprettetDato,
+    );
+};
+
 const defaultFremtidigSituasjon = FremtidigSituasjonSvar.NY_ARBEIDSGIVER;
 const defaultForeslattInnsatsgruppe = ForeslattInnsatsgruppe.STANDARD_INNSATS;
+const defaultOpprettetDato = opprettetRegistreringDato.registrertIEtterkantAvLansering;
 
 export const hentBrukerRegistreringData = () => {
     const data = hentFraLocalStorage(DemoData.BRUKER_REGISTRERING);
 
     return data ? JSON.parse(data) : {
         registrering: {
+            opprettetDato: defaultOpprettetDato,
             besvarelse: {
                 fremtidigSituasjon: defaultFremtidigSituasjon,
             },
@@ -44,7 +56,6 @@ export const hentBrukerRegistreringData = () => {
             }
         }
     };
-
 };
 
 export const hentFremtidigSituasjon = (): string => {
@@ -65,4 +76,14 @@ export const hentForeslattInnsatsgruppe = (): string => {
     }
 
     return defaultForeslattInnsatsgruppe;
+};
+
+export const hentOpprettetDato = (): string => {
+    const data = hentBrukerRegistreringData();
+
+    if (data.registrering && data.registrering.opprettetDato) {
+        return data.registrering.opprettetDato;
+    }
+
+    return defaultOpprettetDato;
 };
