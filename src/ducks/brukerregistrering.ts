@@ -10,12 +10,22 @@ import { hentBrukerRegistreringFetch, DataElement, STATUS } from './api';
 import { doThenDispatch } from './api-utils';
 import { AppState } from '../reducer';
 
-export interface State extends DataElement {
-    data: Data;
+export enum FremtidigSituasjonSvar {
+    SAMME_ARBEIDSGIVER = 'SAMME_ARBEIDSGIVER',
+    SAMME_ARBEIDSGIVER_NY_STILLING = 'SAMME_ARBEIDSGIVER_NY_STILLING',
+    NY_ARBEIDSGIVER = 'NY_ARBEIDSGIVER',
+    USIKKER = 'USIKKER',
+    INGEN_PASSER = 'INGEN_PASSER',
 }
 
 export interface Besvarelse {
     fremtidigSituasjon: FremtidigSituasjonSvar;
+}
+
+export enum ForeslattInnsatsgruppe {
+    STANDARD_INNSATS = 'STANDARD_INNSATS',
+    SITUASJONSBESTEMT_INNSATS = 'SITUASJONSBESTEMT_INNSATS',
+    BEHOV_FOR_ARBEIDSEVNEVURDERING = 'BEHOV_FOR_ARBEIDSEVNEVURDERING',
 }
 
 export interface Profilering {
@@ -27,22 +37,12 @@ interface Brukerregistrering {
     profilering: Profilering;
 }
 
-export enum FremtidigSituasjonSvar {
-    SAMME_ARBEIDSGIVER = 'SAMME_ARBEIDSGIVER',
-    SAMME_ARBEIDSGIVER_NY_STILLING = 'SAMME_ARBEIDSGIVER_NY_STILLING',
-    NY_ARBEIDSGIVER = 'NY_ARBEIDSGIVER',
-    USIKKER = 'USIKKER',
-    INGEN_PASSER = 'INGEN_PASSER',
-}
-
-export enum ForeslattInnsatsgruppe {
-    STANDARD_INNSATS = 'STANDARD_INNSATS',
-    SITUASJONSBESTEMT_INNSATS = 'SITUASJONSBESTEMT_INNSATS',
-    BEHOV_FOR_ARBEIDSEVNEVURDERING = 'BEHOV_FOR_ARBEIDSEVNEVURDERING',
-}
-
 export interface Data {
     registrering: Brukerregistrering;
+}
+
+export interface State extends DataElement {
+    data: Data;
 }
 
 const initialState: State = {
