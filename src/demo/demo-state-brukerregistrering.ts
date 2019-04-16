@@ -25,7 +25,7 @@ export const settForeslattInnsatsgruppe = (innsatsgruppe: ForeslattInnsatsgruppe
         {
             innsatsgruppe: innsatsgruppe,
         }
-    )
+    );
 };
 
 const defaultFremtidigSituasjon = FremtidigSituasjonSvar.NY_ARBEIDSGIVER;
