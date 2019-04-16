@@ -86,4 +86,4 @@ export const hentOpprettetDato = (): string => {
     }
 
     return defaultOpprettetDato;
-}
+};
