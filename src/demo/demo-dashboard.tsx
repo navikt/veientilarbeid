@@ -67,7 +67,7 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
                     slettJsk();
                 }
             } else if (element.id === ULESTE_DIALOGER) {
-                settUlesteDialoger(`${element.checked}`);
+                settUlesteDialoger(element.checked.toString());
             } else if (element.id === RESERVASJON_KRR) {
                 settReservasjonKRR(element.checked.toString());
             }
