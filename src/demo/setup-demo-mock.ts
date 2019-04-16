@@ -37,7 +37,7 @@ const randomUlesteDialoger = () => {
     return Math.floor(min + (Math.random() * (max - min)));
 };
 
-fetchMock.get(`${VEILARBOPPFOLGING_URL}/oppfolging`, {
+fetchMock.get(VEILARBOPPFOLGING_URL, {
     underOppfolging: true,
     kanReaktiveres: false,
     reservasjonKRR: hentReservasjonKRR(),
