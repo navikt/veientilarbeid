@@ -1,5 +1,10 @@
 import { JSONObject } from 'yet-another-fetch-mock';
-import { Data as BrukerRegistrering } from '../ducks/brukerregistrering';
+import {
+    Besvarelse,
+    ForeslattInnsatsgruppe,
+    FremtidigSituasjonSvar,
+    Profilering
+} from '../ducks/brukerregistrering';
 
 export function erDemo(): boolean {
     const path: string = window.location.pathname;
@@ -42,28 +47,70 @@ export const settSykmeldtMedArbeidsgiver = (value: string) => {
     settILocalStorage(DemoData.SYKMELDT_MED_ARBEIDSGIVER, value);
 };
 
-export const hentFremtidigSituasjon = (): string => {
-    const data = hentFraLocalStorage(DemoData.BRUKER_REGISTRERING);
-
-    if (data) {
-        const json: BrukerRegistrering = JSON.parse(data);
-        if (json.registrering && json.registrering.besvarelse && json.registrering.besvarelse.fremtidigSituasjon) {
-            return json.registrering.besvarelse.fremtidigSituasjon;
-        }
-    }
-
-    return 'NY_ARBEIDSGIVER';
-};
-
-export const settFremtidigSituasjon = (value: string) => {
+const settRegistrering = (besvarelse?: Besvarelse, profilering?: Profilering) => {
     const data = {
         registrering: {
+            besvarelse: besvarelse || {fremtidigSituasjon: hentFremtidigSituasjon()},
+            profilering: profilering || {innsatsgruppe: hentForeslattInnsatsgruppe()},
+        }
+    };
+
+    settILocalStorage(DemoData.BRUKER_REGISTRERING, JSON.stringify(data));
+};
+
+export const settFremtidigSituasjon = (fremtidigSituasjon: FremtidigSituasjonSvar) => {
+    settRegistrering(
+        {fremtidigSituasjon: fremtidigSituasjon},
+        undefined,
+    );
+};
+
+export const settForeslattInnsatsgruppe = (innsatsgruppe: ForeslattInnsatsgruppe) => {
+    settRegistrering(
+        undefined,
+        {
+            innsatsgruppe: innsatsgruppe,
+        }
+    )
+};
+
+const defaultFremtidigSituasjon = FremtidigSituasjonSvar.NY_ARBEIDSGIVER;
+const defaultForeslattInnsatsgruppe = ForeslattInnsatsgruppe.STANDARD_INNSATS;
+
+export const hentBrukerRegistreringData = () => {
+    const data = hentFraLocalStorage(DemoData.BRUKER_REGISTRERING);
+
+    return data ? JSON.parse(data) : {
+        registrering: {
             besvarelse: {
-                fremtidigSituasjon: value
+                fremtidigSituasjon: defaultFremtidigSituasjon,
+            },
+            profilering: {
+                innsatsgruppe: defaultForeslattInnsatsgruppe,
             }
         }
     };
-    settILocalStorage(DemoData.BRUKER_REGISTRERING, JSON.stringify(data));
+
+};
+
+export const hentFremtidigSituasjon = (): string => {
+    const data = hentBrukerRegistreringData();
+
+    if (data.registrering && data.registrering.besvarelse && data.registrering.besvarelse.fremtidigSituasjon) {
+        return data.registrering.besvarelse.fremtidigSituasjon;
+    }
+
+    return defaultFremtidigSituasjon;
+};
+
+export const hentForeslattInnsatsgruppe = (): string => {
+    const data = hentBrukerRegistreringData();
+
+    if (data.registrering && data.registrering.profilering && data.registrering.profilering.innsatsgruppe) {
+        return data.registrering.profilering.innsatsgruppe;
+    }
+
+    return defaultForeslattInnsatsgruppe;
 };
 
 export const hentUlesteDialoger = (): boolean => {

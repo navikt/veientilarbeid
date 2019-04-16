@@ -14,8 +14,17 @@ export interface State extends DataElement {
     data: Data;
 }
 
+export interface Besvarelse {
+    fremtidigSituasjon: FremtidigSituasjonSvar;
+}
+
+export interface Profilering {
+    innsatsgruppe: ForeslattInnsatsgruppe;
+}
+
 interface Brukerregistrering {
-    besvarelse: { fremtidigSituasjon: FremtidigSituasjonSvar };
+    besvarelse: Besvarelse;
+    profilering: Profilering;
 }
 
 export enum FremtidigSituasjonSvar {
@@ -26,13 +35,28 @@ export enum FremtidigSituasjonSvar {
     INGEN_PASSER = 'INGEN_PASSER',
 }
 
+export enum ForeslattInnsatsgruppe {
+    STANDARD_INNSATS = 'STANDARD_INNSATS',
+    SITUASJONSBESTEMT_INNSATS = 'SITUASJONSBESTEMT_INNSATS',
+    BEHOV_FOR_ARBEIDSEVNEVURDERING = 'BEHOV_FOR_ARBEIDSEVNEVURDERING',
+}
+
 export interface Data {
     registrering: Brukerregistrering;
 }
 
 const initialState: State = {
     status: STATUS.NOT_STARTED,
-    data: {registrering: {besvarelse: {fremtidigSituasjon: FremtidigSituasjonSvar.USIKKER}}}
+    data: {
+        registrering: {
+            besvarelse: {
+                fremtidigSituasjon: FremtidigSituasjonSvar.USIKKER
+            },
+            profilering: {
+                innsatsgruppe: ForeslattInnsatsgruppe.STANDARD_INNSATS
+            }
+        }
+    }
 };
 
 export default function reducer(state: State = initialState, action: Handling): State {
