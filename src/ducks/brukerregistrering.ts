@@ -33,6 +33,7 @@ export interface Profilering {
 }
 
 interface Brukerregistrering {
+    opprettetDato: string;
     besvarelse: Besvarelse;
     profilering: Profilering;
 }
@@ -49,6 +50,7 @@ const initialState: State = {
     status: STATUS.NOT_STARTED,
     data: {
         registrering: {
+            opprettetDato: Date.now().toString(),
             besvarelse: {
                 fremtidigSituasjon: FremtidigSituasjonSvar.USIKKER
             },
