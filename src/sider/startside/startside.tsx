@@ -33,16 +33,16 @@ class Startside extends React.Component<StateProps> {
         );
     }
 
-    static tilbakeTilSammeArbeidsgiver(svar: FremtidigSituasjonSvar): boolean {
+    tilbakeTilSammeArbeidsgiver(): boolean {
         return (
-            svar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER ||
-            svar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER_NY_STILLING
+            this.props.fremtidigSvar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER ||
+            this.props.fremtidigSvar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER_NY_STILLING
         );
     }
 
     render() {
         const erSykmeldtMedArbeidsgiver = this.props.sykmeldtInfo.data.erSykmeldtMedArbeidsgiver;
-        const visRessurslenker = !(Startside.tilbakeTilSammeArbeidsgiver(this.props.fremtidigSvar) && erSykmeldtMedArbeidsgiver);
+        const visRessurslenker = !(this.tilbakeTilSammeArbeidsgiver() && erSykmeldtMedArbeidsgiver);
 
         // TODO Fjerne banner (inkl. brødsmuler)
         return (
