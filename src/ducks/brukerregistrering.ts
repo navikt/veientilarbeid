@@ -109,3 +109,19 @@ export function selectFremtidigSituasjonSvar(state: AppState): FremtidigSituasjo
     }
     return data.registrering.besvarelse.fremtidigSituasjon;
 }
+
+export function selectForeslattInnsatsgruppe(state: AppState): ForeslattInnsatsgruppe {
+    let data = state.brukerRegistrering.data;
+    if (data === null) {
+        data = initialState.data;
+    }
+    return data.registrering.profilering.innsatsgruppe;
+}
+
+export function selectOpprettetRegistreringDato(state: AppState): string {
+    let data = state.brukerRegistrering.data;
+    if (data === null) {
+        data = initialState.data;
+    }
+    return data.registrering.opprettetDato;
+}
