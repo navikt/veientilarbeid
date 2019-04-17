@@ -20,7 +20,7 @@ const fetchMock = FetchMock.configure({
     enableFallback: true, // default: true
     middleware: MiddlewareUtils.combine(
         MiddlewareUtils.delayMiddleware(200),
-        MiddlewareUtils.failurerateMiddleware(0.00),
+        MiddlewareUtils.failurerateMiddleware(0.01),
         loggingMiddleware,
     ),
 });

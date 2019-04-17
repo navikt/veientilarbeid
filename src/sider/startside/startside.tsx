@@ -17,8 +17,8 @@ import { selectSykmeldtInfo, State as SykmeldtInfoState } from '../../ducks/sykm
 import RessurslenkerJobbsok from '../../komponenter/ressurslenker-jobbsok/ressurslenker-jobbsok';
 import {
     ForeslattInnsatsgruppe,
-    FremtidigSituasjonSvar,
-    selectFremtidigSituasjonSvar
+    FremtidigSituasjonSvar, selectForeslattInnsatsgruppe,
+    selectFremtidigSituasjonSvar, selectOpprettetRegistreringDato
 } from '../../ducks/brukerregistrering';
 import Egenvurdering from '../../komponenter/egenvurdering/egenvurdering';
 
@@ -93,8 +93,8 @@ const mapStateToProps = (state: AppState): StateProps => ({
     servicegruppe: state.servicegruppe,
     fremtidigSvar: selectFremtidigSituasjonSvar(state),
     reservasjonKRR: state.oppfolging.data.reservasjonKRR,
-    foreslattInnsatsgruppe: state.brukerRegistrering.data.registrering.profilering.innsatsgruppe,
-    opprettetRegistreringDato: new Date(state.brukerRegistrering.data.registrering.opprettetDato),
+    foreslattInnsatsgruppe: selectForeslattInnsatsgruppe(state),
+    opprettetRegistreringDato: new Date(selectOpprettetRegistreringDato(state)),
 
 });
 
