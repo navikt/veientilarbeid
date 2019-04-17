@@ -23,56 +23,51 @@ interface StateProps {
     fremtidigSvar: FremtidigSituasjonSvar;
 }
 
-class Startside extends React.Component<StateProps> {
+const Startside = ({sykmeldtInfo, servicegruppe, fremtidigSvar}: StateProps) => {
 
-    skalViseTiltaksinfoLenke() {
-        return (
-            this.props.sykmeldtInfo.data.erSykmeldtMedArbeidsgiver ||
-            this.props.servicegruppe.data.servicegruppe === Servicegruppe.BFORM ||
-            this.props.servicegruppe.data.servicegruppe === Servicegruppe.BATT
-        );
-    }
+    const erSykmeldtMedArbeidsgiver = sykmeldtInfo.data.erSykmeldtMedArbeidsgiver;
 
-    tilbakeTilSammeArbeidsgiver(): boolean {
-        return (
-            this.props.fremtidigSvar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER ||
-            this.props.fremtidigSvar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER_NY_STILLING
-        );
-    }
+    const skalViseTiltaksinfoLenke = (
+        erSykmeldtMedArbeidsgiver ||
+        servicegruppe.data.servicegruppe === Servicegruppe.BFORM ||
+        servicegruppe.data.servicegruppe === Servicegruppe.BATT
+    );
 
-    render() {
-        const erSykmeldtMedArbeidsgiver = this.props.sykmeldtInfo.data.erSykmeldtMedArbeidsgiver;
-        const visRessurslenker = !(this.tilbakeTilSammeArbeidsgiver() && erSykmeldtMedArbeidsgiver);
+    const tilbakeTilSammeArbeidsgiver = (
+        fremtidigSvar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER ||
+        fremtidigSvar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER_NY_STILLING
+    );
 
-        // TODO Fjerne banner (inkl. brødsmuler)
-        return (
-            <>
-                { erSykmeldtMedArbeidsgiver ? <Banner type="sykmeldt"/> : <Banner type="ordinaer"/> }
+    const visRessurslenker = !(tilbakeTilSammeArbeidsgiver && erSykmeldtMedArbeidsgiver);
 
-                <Rad>
-                    <ReaktiveringMelding/>
-                    <Aktivitetsplan/>
-                    <div className="tokol">
-                        <Dialog/>
-                        { erSykmeldtMedArbeidsgiver ? <DittSykefravaer/> : <Meldekort/> }
-                    </div>
-                </Rad>
+    // TODO Fjerne banner (inkl. brødsmuler)
+    return (
+        <>
+            {erSykmeldtMedArbeidsgiver ? <Banner type="sykmeldt"/> : <Banner type="ordinaer"/>}
 
-                { erSykmeldtMedArbeidsgiver && (
-                    <Rad><AapRad/></Rad>
-                )}
+            <Rad>
+                <ReaktiveringMelding/>
+                <Aktivitetsplan/>
+                <div className="tokol">
+                    <Dialog/>
+                    {erSykmeldtMedArbeidsgiver ? <DittSykefravaer/> : <Meldekort/>}
+                </div>
+            </Rad>
 
-                <Rad>
-                    { visRessurslenker ? <RessurslenkerJobbsok/> : null }
-                    { this.skalViseTiltaksinfoLenke() ? <Tiltakinfo/> : null }
-                </Rad>
+            {erSykmeldtMedArbeidsgiver && (
+                <Rad><AapRad/></Rad>
+            )}
 
-                <Rad>
-                    { erSykmeldtMedArbeidsgiver ? <OkonomiRad/> : <Dagpenger/> }
-                </Rad>
-            </>
-        );
-    }
+            <Rad>
+                {visRessurslenker ? <RessurslenkerJobbsok/> : null}
+                {skalViseTiltaksinfoLenke ? <Tiltakinfo/> : null}
+            </Rad>
+
+            <Rad>
+                {erSykmeldtMedArbeidsgiver ? <OkonomiRad/> : <Dagpenger/>}
+            </Rad>
+        </>
+    );
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
