@@ -15,15 +15,25 @@ import Aktivitetsplan from '../../komponenter/aktivitetsplan/aktivitetsplan';
 import { Servicegruppe, State as ServicegruppeState } from '../../ducks/servicegruppe';
 import { selectSykmeldtInfo, State as SykmeldtInfoState } from '../../ducks/sykmeldt-info';
 import RessurslenkerJobbsok from '../../komponenter/ressurslenker-jobbsok/ressurslenker-jobbsok';
-import { FremtidigSituasjonSvar, selectFremtidigSituasjonSvar } from '../../ducks/brukerregistrering';
+import {
+    ForeslattInnsatsgruppe,
+    FremtidigSituasjonSvar,
+    selectFremtidigSituasjonSvar
+} from '../../ducks/brukerregistrering';
+import Egenvurdering from '../../komponenter/egenvurdering/egenvurdering';
+
+const LANSERINGSDATO = new Date(2020, 0, 2);
 
 interface StateProps {
     sykmeldtInfo: SykmeldtInfoState;
     servicegruppe: ServicegruppeState;
     fremtidigSvar: FremtidigSituasjonSvar;
+    foreslattInnsatsgruppe: ForeslattInnsatsgruppe;
+    reservasjonKRR: boolean;
+    opprettetRegistreringDato: Date;
 }
 
-const Startside = ({sykmeldtInfo, servicegruppe, fremtidigSvar}: StateProps) => {
+const Startside = ({sykmeldtInfo, servicegruppe, fremtidigSvar, foreslattInnsatsgruppe, reservasjonKRR, opprettetRegistreringDato}: StateProps) => {
 
     const erSykmeldtMedArbeidsgiver = sykmeldtInfo.data.erSykmeldtMedArbeidsgiver;
 
@@ -40,6 +50,13 @@ const Startside = ({sykmeldtInfo, servicegruppe, fremtidigSvar}: StateProps) => 
 
     const visRessurslenker = !(tilbakeTilSammeArbeidsgiver && erSykmeldtMedArbeidsgiver);
 
+    const skalViseEgenvurderingLenke = (
+        opprettetRegistreringDato > LANSERINGSDATO &&
+        !reservasjonKRR &&
+        (foreslattInnsatsgruppe === ForeslattInnsatsgruppe.STANDARD_INNSATS ||
+        foreslattInnsatsgruppe === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS)
+    );
+
     // TODO Fjerne banner (inkl. brødsmuler)
     return (
         <>
@@ -47,6 +64,7 @@ const Startside = ({sykmeldtInfo, servicegruppe, fremtidigSvar}: StateProps) => 
 
             <Rad>
                 <ReaktiveringMelding/>
+                { skalViseEgenvurderingLenke ? <Egenvurdering/> : null }
                 <Aktivitetsplan/>
                 <div className="tokol">
                     <Dialog/>
@@ -68,12 +86,16 @@ const Startside = ({sykmeldtInfo, servicegruppe, fremtidigSvar}: StateProps) => 
             </Rad>
         </>
     );
-}
+};
 
 const mapStateToProps = (state: AppState): StateProps => ({
     sykmeldtInfo: selectSykmeldtInfo(state),
     servicegruppe: state.servicegruppe,
     fremtidigSvar: selectFremtidigSituasjonSvar(state),
+    reservasjonKRR: state.oppfolging.data.reservasjonKRR,
+    foreslattInnsatsgruppe: state.brukerRegistrering.data.registrering.profilering.innsatsgruppe,
+    opprettetRegistreringDato: new Date(state.brukerRegistrering.data.registrering.opprettetDato),
+
 });
 
 export default connect(mapStateToProps)(Startside);
