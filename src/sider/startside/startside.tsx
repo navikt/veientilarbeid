@@ -25,8 +25,9 @@ interface StateProps {
 
 class Startside extends React.Component<StateProps> {
 
-    erInnsatsgruppe() {
+    skalViseTiltaksinfoLenke() {
         return (
+            this.props.sykmeldtInfo.data.erSykmeldtMedArbeidsgiver ||
             this.props.servicegruppe.data.servicegruppe === Servicegruppe.BFORM ||
             this.props.servicegruppe.data.servicegruppe === Servicegruppe.BATT
         );
@@ -41,7 +42,6 @@ class Startside extends React.Component<StateProps> {
 
     render() {
         const erSykmeldtMedArbeidsgiver = this.props.sykmeldtInfo.data.erSykmeldtMedArbeidsgiver;
-        const innsatsgruppe = this.erInnsatsgruppe();
         const visRessurslenker = !(Startside.tilbakeTilSammeArbeidsgiver(this.props.fremtidigSvar) && erSykmeldtMedArbeidsgiver);
 
         // TODO Fjerne banner (inkl. brødsmuler)
@@ -64,7 +64,7 @@ class Startside extends React.Component<StateProps> {
 
                 <Rad>
                     { visRessurslenker ? <RessurslenkerJobbsok/> : null }
-                    { (innsatsgruppe || erSykmeldtMedArbeidsgiver) ? <Tiltakinfo/> : null }
+                    { this.skalViseTiltaksinfoLenke() ? <Tiltakinfo/> : null }
                 </Rad>
 
                 <Rad>
