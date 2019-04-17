@@ -3,7 +3,7 @@ export default {
     registrering: {
         manueltRegistrertAv: null,
         id: 103,
-        opprettetDato: '2019-03-14T11:53:05.486686+01:00',
+        opprettetDato: '2020-01-03T11:53:05.486686+01:00',
         besvarelse: {
             utdanning: 'INGEN_UTDANNING',
             utdanningBestatt: 'INGEN_SVAR',
