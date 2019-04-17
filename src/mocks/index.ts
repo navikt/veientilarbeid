@@ -25,7 +25,7 @@ const fetchMock = FetchMock.configure({
     ),
 });
 
-fetchMock.get(`${VEILARBOPPFOLGING_URL}/oppfolging`, oppfolgingResponse);
+fetchMock.get(VEILARBOPPFOLGING_URL, oppfolgingResponse);
 
 fetchMock.get(`${FEATURE_URL}(.*)`, {});
 

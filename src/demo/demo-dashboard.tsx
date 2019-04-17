@@ -6,7 +6,7 @@ import {
     DemoData, hentJsk, settJsk, slettJsk,
     hentSykmeldtMedArbeidsgiver, settSykmeldtMedArbeidsgiver,
     hentUlesteDialoger, settUlesteDialoger,
-    hentServicegruppe, settServicegruppe,
+    hentServicegruppe, settServicegruppe, settReservasjonKRR, hentReservasjonKRR,
 } from './demo-state';
 
 import './demo-dashboard.less';
@@ -33,6 +33,7 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
         const SYKMELDT_MED_ARBEIDSGIVER = DemoData.SYKMELDT_MED_ARBEIDSGIVER;
         const JSK = DemoData.JSK;
         const ULESTE_DIALOGER = DemoData.ULESTE_DIALOGER;
+        const RESERVASJON_KRR = DemoData.RESERVASJON_KRR;
         const {messages} = this.props.intl;
 
         const handleChangeServicegruppe = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -66,7 +67,9 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
                     slettJsk();
                 }
             } else if (element.id === ULESTE_DIALOGER) {
-                settUlesteDialoger(`${element.checked}`);
+                settUlesteDialoger(element.checked.toString());
+            } else if (element.id === RESERVASJON_KRR) {
+                settReservasjonKRR(element.checked.toString());
             }
             window.location.reload();
         };
@@ -187,6 +190,11 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
                             label: messages['demo-dialog'],
                             checked: hentUlesteDialoger(),
                             id: ULESTE_DIALOGER
+                        },
+                        {
+                            label: messages['demo-krr'],
+                            checked: hentReservasjonKRR(),
+                            id: RESERVASJON_KRR,
                         }
                     ]}
                 />

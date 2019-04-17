@@ -33,7 +33,7 @@ export const requestConfig: RequestInit = {
     }
 };
 
-export const VEILARBOPPFOLGING_URL = '/veilarboppfolging/api',
+export const VEILARBOPPFOLGING_URL = '/veilarboppfolging/api/oppfolging',
     FEATURE_URL = '/api/feature',
     SERVICEGRUPPE_URL = '/veilarbtiltakinfo/api/oppfolgingsstatus',
     STARTREGISTRERING_URL = '/veilarbregistrering/api/startregistrering',
@@ -52,7 +52,7 @@ export function hentFeatureTogglesFetch(features: string[]): Promise<FeatureTogg
 }
 
 export function hentOppfolgingFetch(): Promise<OppfolgingData> {
-    return fetchToJson(`${VEILARBOPPFOLGING_URL}/oppfolging`, requestConfig);
+    return fetchToJson(VEILARBOPPFOLGING_URL, requestConfig);
 }
 
 export function hentServicegruppeFetch(): Promise<ServicegruppeData> {

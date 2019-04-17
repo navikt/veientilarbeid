@@ -10,7 +10,7 @@ import {
 } from '../ducks/api';
 import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 import {
-    hentJsk,
+    hentJsk, hentReservasjonKRR,
     hentServicegruppe,
     hentSykmeldtMedArbeidsgiver,
     hentUlesteDialoger,
@@ -37,9 +37,10 @@ const randomUlesteDialoger = () => {
     return Math.floor(min + (Math.random() * (max - min)));
 };
 
-fetchMock.get(`${VEILARBOPPFOLGING_URL}/oppfolging`, {
+fetchMock.get(VEILARBOPPFOLGING_URL, {
     underOppfolging: true,
     kanReaktiveres: false,
+    reservasjonKRR: hentReservasjonKRR(),
 });
 
 fetchMock.get(SERVICEGRUPPE_URL, {

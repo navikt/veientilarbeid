@@ -11,6 +11,7 @@ export enum DemoData {
     BRUKER_REGISTRERING = 'brukerRegistrering',
     JSK = 'jsk',
     ULESTE_DIALOGER = 'ulesteDialoger',
+    RESERVASJON_KRR = 'reservasjonKRR',
 }
 
 export const hentFraLocalStorage = (key: string): string | null => {
@@ -60,4 +61,12 @@ export const settJsk = () => {
 
 export const slettJsk = () => {
     slettFraLocalStorage(DemoData.JSK);
+};
+
+export const settReservasjonKRR = (value: string) => {
+    settILocalStorage(DemoData.RESERVASJON_KRR, value);
+};
+
+export const hentReservasjonKRR = (): boolean => {
+    return hentFraLocalStorage(DemoData.RESERVASJON_KRR) === 'true';
 };
