@@ -102,26 +102,22 @@ function hentBrukerRegistreringPending(): HentBrukerRegistreringPENDINGAction {
     };
 }
 
+const selectData = (state: AppState): Data => state.brukerRegistrering.data || initialState.data;
+
 export function selectFremtidigSituasjonSvar(state: AppState): FremtidigSituasjonSvar {
-    let data = state.brukerRegistrering.data;
-    if (data === null) {
-        data = initialState.data;
-    }
-    return data.registrering.besvarelse.fremtidigSituasjon;
+    const data = selectData(state);
+
+    return data.registrering.besvarelse
+        ? data.registrering.besvarelse.fremtidigSituasjon
+        : initialState.data.registrering.besvarelse.fremtidigSituasjon;
 }
 
 export function selectForeslattInnsatsgruppe(state: AppState): ForeslattInnsatsgruppe {
-    let data = state.brukerRegistrering.data;
-    if (data === null) {
-        data = initialState.data;
-    }
-    return data.registrering.profilering.innsatsgruppe;
+    const data = selectData(state);
+
+    return data.registrering.profilering
+        ? data.registrering.profilering.innsatsgruppe
+        : initialState.data.registrering.profilering.innsatsgruppe;
 }
 
-export function selectOpprettetRegistreringDato(state: AppState): string {
-    let data = state.brukerRegistrering.data;
-    if (data === null) {
-        data = initialState.data;
-    }
-    return data.registrering.opprettetDato;
-}
+export const selectOpprettetRegistreringDato = (state: AppState): string => selectData(state).registrering.opprettetDato;
