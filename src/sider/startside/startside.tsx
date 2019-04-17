@@ -15,70 +15,87 @@ import Aktivitetsplan from '../../komponenter/aktivitetsplan/aktivitetsplan';
 import { Servicegruppe, State as ServicegruppeState } from '../../ducks/servicegruppe';
 import { selectSykmeldtInfo, State as SykmeldtInfoState } from '../../ducks/sykmeldt-info';
 import RessurslenkerJobbsok from '../../komponenter/ressurslenker-jobbsok/ressurslenker-jobbsok';
-import { FremtidigSituasjonSvar, selectFremtidigSituasjonSvar } from '../../ducks/brukerregistrering';
+import {
+    ForeslattInnsatsgruppe,
+    FremtidigSituasjonSvar,
+    selectFremtidigSituasjonSvar
+} from '../../ducks/brukerregistrering';
+import Egenvurdering from '../../komponenter/egenvurdering/egenvurdering';
+
+const LANSERINGSDATO = new Date(2020, 0, 2);
 
 interface StateProps {
     sykmeldtInfo: SykmeldtInfoState;
     servicegruppe: ServicegruppeState;
     fremtidigSvar: FremtidigSituasjonSvar;
+    foreslattInnsatsgruppe: ForeslattInnsatsgruppe;
+    reservasjonKRR: boolean;
+    opprettetRegistreringDato: Date;
 }
 
-class Startside extends React.Component<StateProps> {
+const Startside = ({sykmeldtInfo, servicegruppe, fremtidigSvar, foreslattInnsatsgruppe, reservasjonKRR, opprettetRegistreringDato}: StateProps) => {
 
-    erInnsatsgruppe() {
-        return (
-            this.props.servicegruppe.data.servicegruppe === Servicegruppe.BFORM ||
-            this.props.servicegruppe.data.servicegruppe === Servicegruppe.BATT
-        );
-    }
+    const erSykmeldtMedArbeidsgiver = sykmeldtInfo.data.erSykmeldtMedArbeidsgiver;
 
-    static tilbakeTilSammeArbeidsgiver(svar: FremtidigSituasjonSvar): boolean {
-        return (
-            svar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER ||
-            svar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER_NY_STILLING
-        );
-    }
+    const skalViseTiltaksinfoLenke = (
+        erSykmeldtMedArbeidsgiver ||
+        servicegruppe.data.servicegruppe === Servicegruppe.BFORM ||
+        servicegruppe.data.servicegruppe === Servicegruppe.BATT
+    );
 
-    render() {
-        const erSykmeldtMedArbeidsgiver = this.props.sykmeldtInfo.data.erSykmeldtMedArbeidsgiver;
-        const innsatsgruppe = this.erInnsatsgruppe();
-        const visRessurslenker = !(Startside.tilbakeTilSammeArbeidsgiver(this.props.fremtidigSvar) && erSykmeldtMedArbeidsgiver);
+    const tilbakeTilSammeArbeidsgiver = (
+        fremtidigSvar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER ||
+        fremtidigSvar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER_NY_STILLING
+    );
 
-        // TODO Fjerne banner (inkl. brødsmuler)
-        return (
-            <>
-                { erSykmeldtMedArbeidsgiver ? <Banner type="sykmeldt"/> : <Banner type="ordinaer"/> }
+    const visRessurslenker = !(tilbakeTilSammeArbeidsgiver && erSykmeldtMedArbeidsgiver);
 
-                <Rad>
-                    <ReaktiveringMelding/>
-                    <Aktivitetsplan/>
-                    <div className="tokol">
-                        <Dialog/>
-                        { erSykmeldtMedArbeidsgiver ? <DittSykefravaer/> : <Meldekort/> }
-                    </div>
-                </Rad>
+    const skalViseEgenvurderingLenke = (
+        opprettetRegistreringDato > LANSERINGSDATO &&
+        !reservasjonKRR &&
+        (foreslattInnsatsgruppe === ForeslattInnsatsgruppe.STANDARD_INNSATS ||
+        foreslattInnsatsgruppe === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS)
+    );
 
-                { erSykmeldtMedArbeidsgiver && (
-                    <Rad><AapRad/></Rad>
-                )}
+    // TODO Fjerne banner (inkl. brødsmuler)
+    return (
+        <>
+            {erSykmeldtMedArbeidsgiver ? <Banner type="sykmeldt"/> : <Banner type="ordinaer"/>}
 
-                <Rad>
-                    { visRessurslenker ? <RessurslenkerJobbsok/> : null }
-                    { (innsatsgruppe || erSykmeldtMedArbeidsgiver) ? <Tiltakinfo/> : null }
-                </Rad>
+            <Rad>
+                <ReaktiveringMelding/>
+                { skalViseEgenvurderingLenke ? <Egenvurdering/> : null }
+                <Aktivitetsplan/>
+                <div className="tokol">
+                    <Dialog/>
+                    {erSykmeldtMedArbeidsgiver ? <DittSykefravaer/> : <Meldekort/>}
+                </div>
+            </Rad>
 
-                <Rad>
-                    { erSykmeldtMedArbeidsgiver ? <OkonomiRad/> : <Dagpenger/> }
-                </Rad>
-            </>
-        );
-    }
-}
+            {erSykmeldtMedArbeidsgiver && (
+                <Rad><AapRad/></Rad>
+            )}
+
+            <Rad>
+                {visRessurslenker ? <RessurslenkerJobbsok/> : null}
+                {skalViseTiltaksinfoLenke ? <Tiltakinfo/> : null}
+            </Rad>
+
+            <Rad>
+                {erSykmeldtMedArbeidsgiver ? <OkonomiRad/> : <Dagpenger/>}
+            </Rad>
+        </>
+    );
+};
 
 const mapStateToProps = (state: AppState): StateProps => ({
     sykmeldtInfo: selectSykmeldtInfo(state),
     servicegruppe: state.servicegruppe,
     fremtidigSvar: selectFremtidigSituasjonSvar(state),
+    reservasjonKRR: state.oppfolging.data.reservasjonKRR,
+    foreslattInnsatsgruppe: state.brukerRegistrering.data.registrering.profilering.innsatsgruppe,
+    opprettetRegistreringDato: new Date(state.brukerRegistrering.data.registrering.opprettetDato),
+
 });
 
 export default connect(mapStateToProps)(Startside);

@@ -24,8 +24,8 @@ interface OpprettetRegistreringDato {
 }
 
 export const opprettetRegistreringDato: OpprettetRegistreringDato = {
-    registrertIForkantAvLansering: new Date(2020, 0, 1).toString(),
-    registrertIEtterkantAvLansering: new Date(2020, 0, 3).toString()
+    registrertIForkantAvLansering: '2020-01-01T12:00:00.111111+01:00',
+    registrertIEtterkantAvLansering: '2020-01-03T12:00:00.111111+01:00'
 };
 
 class DemoDashboard extends React.Component<InjectedIntlProps> {
