@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Route, RouteComponentProps, Switch, withRouter } from 'react-router';
 import { AppState } from './reducer';
 import { seVeientilarbeid } from './metrics';
 import Startside from './sider/startside/startside';
@@ -15,10 +14,7 @@ interface StateProps {
     servicegruppe: ServicegruppeState;
 }
 
-type AllProps = StateProps & RouteComponentProps<any>; // tslint:disable-line
-
-// TODO Fjerne react router
-class Routes extends React.Component<AllProps> {
+class Innhold extends React.Component<StateProps> {
 
     componentDidMount() {
         const erSykmeldtMedArbeidsgiver = this.props.sykmeldtInfo.data.erSykmeldtMedArbeidsgiver;
@@ -27,21 +23,10 @@ class Routes extends React.Component<AllProps> {
     }
 
     render() {
-        const { location } = this.props;
-        const path = location.pathname;
-
         return (
-            <Switch>
-                <Route
-                    path={path}
-                    exact={true}
-                    component={() =>
-                        <SjekkOppfolging>
-                            <Startside />
-                        </SjekkOppfolging>
-                    }
-                />
-            </Switch>
+            <SjekkOppfolging>
+                <Startside/>
+            </SjekkOppfolging>
         );
     }
 }
@@ -51,4 +36,4 @@ const mapStateToProps = (state: AppState): StateProps => ({
     servicegruppe: selectServicegruppe(state),
 });
 
-export default connect(mapStateToProps, null, null, {pure: false})(withRouter(Routes));
+export default connect(mapStateToProps, null, null, {pure: false})(Innhold);
