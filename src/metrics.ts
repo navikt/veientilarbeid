@@ -1,3 +1,5 @@
+import {ForeslattInnsatsgruppe} from "./ducks/brukerregistrering";
+
 const w = (window as any); // tslint:disable-line:no-any
 import { erDemo } from './demo/demo-state';
 
@@ -46,6 +48,18 @@ export const antallUlesteDialoger = (antall: number) => {
 export const gaTilMeldekort = () => {
     if (!erDemo()) {
         logEvent(`${domene}.gatilmeldekort`, {}, {});
+    }
+};
+
+export const seEgenvurdering = (foreslaattinnsatsgruppe: ForeslattInnsatsgruppe) => {
+    if (!erDemo()) {
+        logEvent(`${domene}.seegenvurdering`, {}, {foreslaattInnsatsgruppe: foreslaattinnsatsgruppe});
+    }
+};
+
+export const gaTilEgenvurdering = (antallTimer: number, foreslaattinnsatsgruppe: ForeslattInnsatsgruppe) => {
+    if (!erDemo()) {
+        logEvent(`${domene}.gatilegenvurdering`, {}, {antallTimer: antallTimer, foreslaattInnsatsgruppe: foreslaattinnsatsgruppe});
     }
 };
 
