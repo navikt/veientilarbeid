@@ -6,6 +6,7 @@ import {
     BRUKERREGISTRERING_URL,
     VEILARBOPPFOLGING_URL,
     ULESTEDIALOGER_URL,
+    EGENVURDERINGBESVARELSE_URL,
     featureQueryParams
 } from '../ducks/api';
 import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
@@ -13,7 +14,7 @@ import {
     hentJsk, hentReservasjonKRR,
     hentServicegruppe,
     hentSykmeldtMedArbeidsgiver,
-    hentUlesteDialoger,
+    hentUlesteDialoger, hentEgenvurdering
 } from './demo-state';
 import { hentBrukerRegistreringData } from './demo-state-brukerregistrering';
 
@@ -58,6 +59,8 @@ fetchMock.get(ULESTEDIALOGER_URL, {
 });
 
 fetchMock.get(JOBBSOKERBESVARELSE_URL, hentJsk());
+
+fetchMock.get(EGENVURDERINGBESVARELSE_URL, hentEgenvurdering());
 
 const unleashUrl = FEATURE_URL + featureQueryParams([]);
 fetchMock.get(unleashUrl, {});
