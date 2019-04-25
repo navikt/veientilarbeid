@@ -31,9 +31,11 @@ interface StateProps {
     foreslattInnsatsgruppe: ForeslattInnsatsgruppe;
     reservasjonKRR: boolean;
     opprettetRegistreringDato: Date;
+    harEgenvurderingbesvarelse: boolean;
 }
 
-const Startside = ({sykmeldtInfo, servicegruppe, fremtidigSvar, foreslattInnsatsgruppe, reservasjonKRR, opprettetRegistreringDato}: StateProps) => {
+const Startside = ({sykmeldtInfo, servicegruppe, fremtidigSvar, foreslattInnsatsgruppe, reservasjonKRR,
+                    opprettetRegistreringDato, harEgenvurderingbesvarelse }: StateProps) => {
 
     const erSykmeldtMedArbeidsgiver = sykmeldtInfo.data.erSykmeldtMedArbeidsgiver;
 
@@ -51,6 +53,7 @@ const Startside = ({sykmeldtInfo, servicegruppe, fremtidigSvar, foreslattInnsats
     const visRessurslenker = !(tilbakeTilSammeArbeidsgiver && erSykmeldtMedArbeidsgiver);
 
     const skalViseEgenvurderingLenke = (
+        !harEgenvurderingbesvarelse &&
         opprettetRegistreringDato > LANSERINGSDATO &&
         !reservasjonKRR &&
         (foreslattInnsatsgruppe === ForeslattInnsatsgruppe.STANDARD_INNSATS ||
@@ -95,7 +98,7 @@ const mapStateToProps = (state: AppState): StateProps => ({
     reservasjonKRR: state.oppfolging.data.reservasjonKRR,
     foreslattInnsatsgruppe: selectForeslattInnsatsgruppe(state),
     opprettetRegistreringDato: new Date(selectOpprettetRegistreringDato(state)),
-
+    harEgenvurderingbesvarelse: state.egenvurderingbesvarelse.harEgenvurderingbesvarelse,
 });
 
 export default connect(mapStateToProps)(Startside);

@@ -12,6 +12,9 @@ import { hentBrukerRegistrering, State as BrukerRegistreringState } from '../../
 import {
     hentJobbsokerbesvarelse, settJobbsokerbesvarelseOK, State as JobbsokerbesvarelseState,
 } from '../../ducks/jobbsokerbesvarelse';
+import {
+    hentEgenvurderingbesvarelse, settEgenvurderingbesvarelseOK, State as EgenvurderingbesvarelseState,
+} from '../../ducks/egenvurdering';
 
 interface OwnProps {
     children: React.ReactNode;
@@ -24,6 +27,7 @@ interface StateProps {
     jobbsokerbesvarelse: JobbsokerbesvarelseState;
     ulesteDialoger: UlesteDialogerState;
     brukerRegistrering: BrukerRegistreringState;
+    egenvurderingbesvarelse: EgenvurderingbesvarelseState
 }
 
 interface DispatchProps {
@@ -33,6 +37,8 @@ interface DispatchProps {
     settJobbsokerbesvarelseOK: () => void;
     hentUlesteDialoger: () => void;
     hentBrukerRegistrering: () => void;
+    hentEgenvurderingbesvarelse: () => void;
+    settEgenvurderingbesvarelseOK: () => void;
 }
 
 type Props = StateProps & DispatchProps & OwnProps;
@@ -50,16 +56,17 @@ class DataProvider extends React.Component<Props> {
         this.props.hentServicegruppe();
         this.props.hentUlesteDialoger();
         this.props.hentBrukerRegistrering();
+        this.props.hentEgenvurderingbesvarelse();
     }
 
     render() {
         const {
             children, oppfolging, servicegruppe, sykmeldtInfo,
-            jobbsokerbesvarelse, ulesteDialoger, brukerRegistrering
+            jobbsokerbesvarelse, ulesteDialoger, brukerRegistrering, egenvurderingbesvarelse
         } = this.props;
 
         const avhengigheter: any[] = [oppfolging, sykmeldtInfo]; // tslint:disable-line:no-any
-        const ventPa: any[] = [servicegruppe, jobbsokerbesvarelse, ulesteDialoger, brukerRegistrering]; // tslint:disable-line:no-any
+        const ventPa: any[] = [servicegruppe, jobbsokerbesvarelse, ulesteDialoger, brukerRegistrering, egenvurderingbesvarelse]; // tslint:disable-line:no-any
 
         return (
             <Innholdslaster
@@ -81,6 +88,7 @@ const mapStateToProps = (state: AppState): StateProps => ({
     jobbsokerbesvarelse: state.jobbsokerbesvarelse,
     ulesteDialoger: state.ulesteDialoger,
     brukerRegistrering: state.brukerRegistrering,
+    egenvurderingbesvarelse: state.egenvurderingbesvarelse,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
@@ -90,6 +98,8 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
     settJobbsokerbesvarelseOK: () => dispatch(settJobbsokerbesvarelseOK()),
     hentUlesteDialoger: () => hentUlesteDialoger()(dispatch),
     hentBrukerRegistrering: () => hentBrukerRegistrering()(dispatch),
+    hentEgenvurderingbesvarelse: () => hentEgenvurderingbesvarelse()(dispatch),
+    settEgenvurderingbesvarelseOK: () => dispatch(settEgenvurderingbesvarelseOK()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DataProvider);
