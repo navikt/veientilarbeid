@@ -80,4 +80,3 @@ export function hentUlesteDialogerFetch(): Promise<UlesteDialogerData> {
 export function hentEgenvurderingbesvarelseFetch(): Promise<EgenvurderingbesvarelseData> {
     return fetchToJson(EGENVURDERINGBESVARELSE_URL, requestConfig);
 }
-

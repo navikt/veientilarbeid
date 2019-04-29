@@ -14,7 +14,7 @@ import { hentEgenvurderingbesvarelse, State as EgenvurderingbesvarelseState } fr
 const skalSjekkeEgenvurderingBesvarelse = (foreslaattInnsatsgruppe: ForeslattInnsatsgruppe): boolean => {
     return foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.STANDARD_INNSATS ||
         foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS;
-}
+};
 
 interface OwnProps {
     children: React.ReactNode;
@@ -27,7 +27,7 @@ interface StateProps {
     jobbsokerbesvarelse: JobbsokerbesvarelseState;
     ulesteDialoger: UlesteDialogerState;
     foreslaattInnsatsgruppe: ForeslattInnsatsgruppe;
-    egenvurderingbesvarelse: EgenvurderingbesvarelseState
+    egenvurderingbesvarelse: EgenvurderingbesvarelseState;
 }
 
 interface DispatchProps {
@@ -61,7 +61,6 @@ class DataProvider extends React.Component<Props> {
             children, underOppfolging, foreslaattInnsatsgruppe, servicegruppe, sykmeldtInfo,
             jobbsokerbesvarelse, ulesteDialoger, egenvurderingbesvarelse
         } = this.props;
-
 
         const avhengigheter: any[] = [jobbsokerbesvarelse, egenvurderingbesvarelse, sykmeldtInfo]; // tslint:disable-line:no-any
         const ventPa: any[] = [servicegruppe, ulesteDialoger]; // tslint:disable-line:no-any

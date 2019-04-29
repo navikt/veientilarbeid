@@ -5,7 +5,7 @@ import { AppState } from '../../reducer';
 import Innholdslaster from '../innholdslaster/innholdslaster';
 import { hentOppfolging, State as OppfolgingState } from '../../ducks/oppfolging';
 import Feilmelding from '../feilmeldinger/feilmelding';
-import {hentBrukerRegistrering, State as BrukerregistreringState} from "../../ducks/brukerregistrering";
+import { hentBrukerRegistrering, State as BrukerregistreringState } from '../../ducks/brukerregistrering';
 
 interface OwnProps {
     children: React.ReactElement<any>; // tslint:disable-line:no-any
