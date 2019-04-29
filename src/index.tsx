@@ -5,10 +5,10 @@ import * as ReactDOM from 'react-dom';
 import App from './app';
 
 import './index.less';
-import { erDemo, erMikrofrontend } from './utils/app-state-utils';
+import { erDemo, erMikrofrontend, erMock } from './utils/app-state-utils';
 import NAVSPA from './NAVSPA';
 
-if ((process.env.REACT_APP_MOCK && !erDemo())) {
+if ((erMock() && !erDemo())) {
     console.log('=========================='); /*tslint:disable-line:no-console*/
     console.log('======= DEVELOPMENT ======'); /*tslint:disable-line:no-console*/
     console.log('=========================='); /*tslint:disable-line:no-console*/
