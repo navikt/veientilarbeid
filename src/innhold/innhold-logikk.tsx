@@ -13,7 +13,6 @@ import SjekkOppfolging from '../komponenter/hent-initial-data/sjekk-oppfolging';
 import './innhold.less';
 import InnholdView from './innhold-view';
 
-
 const LANSERINGSDATO = new Date(2020, 0, 2);
 
 interface StateProps {
@@ -70,7 +69,7 @@ class InnholdLogikk extends React.Component<StateProps> {
             </SjekkOppfolging>
         );
     }
-};
+}
 
 const mapStateToProps = (state: AppState): StateProps => ({
     sykmeldtInfo: selectSykmeldtInfo(state),
