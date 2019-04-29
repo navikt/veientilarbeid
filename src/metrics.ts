@@ -1,7 +1,7 @@
 import {ForeslattInnsatsgruppe} from "./ducks/brukerregistrering";
 
 const w = (window as any); // tslint:disable-line:no-any
-import { erDemo } from './demo/demo-state';
+import { erDemo } from './utils/app-state-utils';
 
 const logEvent = w.frontendlogger ? w.frontendlogger.event : () => { return; };
 

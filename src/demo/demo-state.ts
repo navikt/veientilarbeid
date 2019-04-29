@@ -1,10 +1,5 @@
 import { JSONObject } from 'yet-another-fetch-mock';
 
-export function erDemo(): boolean {
-    const path: string = window.location.pathname;
-    return path.includes('/demo/index.html');
-}
-
 export enum DemoData {
     SERVICEGRUPPE = 'innsatsgruppe',
     SYKMELDT_MED_ARBEIDSGIVER = 'sykmeldtMedArbeidsGiver',
