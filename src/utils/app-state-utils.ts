@@ -3,4 +3,4 @@ export function erDemo(): boolean {
     return path.includes('/demo/index.html');
 }
 
-export const erMikrofrontend = process.env.REACT_APP_MICRO;
+export const erMikrofrontend = () => process.env.REACT_APP_MICRO;
