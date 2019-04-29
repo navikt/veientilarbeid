@@ -5,10 +5,8 @@ import * as ReactDOM from 'react-dom';
 import App from './app';
 
 import './index.less';
-import { erDemo } from './demo/demo-state';
+import { erDemo, erMikrofrontend } from './utils/app-state-utils';
 import NAVSPA from './NAVSPA';
-
-const erMikrofrontend = process.env.REACT_APP_MICRO;
 
 if ((process.env.REACT_APP_MOCK && !erDemo()) || erMikrofrontend) {
     console.log('=========================='); /*tslint:disable-line:no-console*/
