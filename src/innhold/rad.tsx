@@ -7,7 +7,7 @@ const Rad: React.FunctionComponent = ({children}) => {
                 {children}
             </div>
         </div>
-    )
+    );
 };
 
 export default Rad;
