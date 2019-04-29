@@ -1,6 +1,5 @@
 import {
-    ActionType, Handling, HentEgenvurderingbesvarelseFEILETAction, HentEgenvurderingbesvarelseOKAction,
-    HentEgenvurderingbesvarelsePENDINGAction, SettEgenvurderingbesvarelseOKAction,
+    ActionType, Handling, HentEgenvurderingbesvarelseFEILETAction, HentEgenvurderingbesvarelseOKAction, HentEgenvurderingbesvarelsePENDINGAction,
 } from './actions';
 import { Dispatch } from '../dispatch-type';
 import { hentEgenvurderingbesvarelseFetch, DataElement, STATUS } from './api';
@@ -38,8 +37,6 @@ export default function reducer(state: State = initialState, action: Handling): 
             return {...state, status: STATUS.PENDING};
         case ActionType.HENT_EGENVURDERINGBESVARELSE_FEILET:
             return {...state, status: STATUS.ERROR};
-        case ActionType.SETT_EGENVURDERINGBESVARELSE_OK:
-            return {...state, status: STATUS.OK};
         default:
             return state;
     }
@@ -69,11 +66,5 @@ function hentEgenvurderingbesvarelseFeilet(): HentEgenvurderingbesvarelseFEILETA
 function hentEgenvurderingbesvarelsePending(): HentEgenvurderingbesvarelsePENDINGAction {
     return {
         type: ActionType.HENT_EGENVURDERINGBESVARELSE_PENDING,
-    };
-}
-
-export function settEgenvurderingbesvarelseOK(): SettEgenvurderingbesvarelseOKAction {
-    return {
-        type: ActionType.SETT_EGENVURDERINGBESVARELSE_OK
     };
 }

@@ -5,6 +5,7 @@ import { AppState } from '../../reducer';
 import Innholdslaster from '../innholdslaster/innholdslaster';
 import { hentOppfolging, State as OppfolgingState } from '../../ducks/oppfolging';
 import Feilmelding from '../feilmeldinger/feilmelding';
+import {hentBrukerRegistrering, State as BrukerregistreringState} from "../../ducks/brukerregistrering";
 
 interface OwnProps {
     children: React.ReactElement<any>; // tslint:disable-line:no-any
@@ -12,29 +13,33 @@ interface OwnProps {
 
 interface StateProps {
     oppfolging: OppfolgingState;
+    brukerRegistering: BrukerregistreringState;
 }
 
 interface DispatchProps {
     hentOppfolging: () => void;
+    hentBrukerRegistrering: () => void;
 }
 
 type OppfolgingProviderProps = OwnProps & DispatchProps & StateProps;
 
-class OppfolgingProvider extends React.Component<OppfolgingProviderProps> {
+class OppfolgingBrukerregistreringProvider extends React.Component<OppfolgingProviderProps> {
     constructor(props: OppfolgingProviderProps) {
         super(props);
     }
 
     componentDidMount() {
         this.props.hentOppfolging();
+        this.props.hentBrukerRegistrering();
     }
 
     render() {
+        const {oppfolging, brukerRegistering} = this.props;
         return (
             <Innholdslaster
                 feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse"/>}
                 storrelse="XXL"
-                avhengigheter={[this.props.oppfolging]}
+                avhengigheter={[oppfolging, brukerRegistering]}
             >
                 {this.props.children}
             </Innholdslaster>
@@ -44,10 +49,12 @@ class OppfolgingProvider extends React.Component<OppfolgingProviderProps> {
 
 const mapStateToProps = (state: AppState): StateProps => ({
     oppfolging: state.oppfolging,
+    brukerRegistering: state.brukerRegistrering,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
     hentOppfolging: () => hentOppfolging()(dispatch),
+    hentBrukerRegistrering: () => hentBrukerRegistrering()(dispatch),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(OppfolgingProvider);
+export default connect(mapStateToProps, mapDispatchToProps)(OppfolgingBrukerregistreringProvider);

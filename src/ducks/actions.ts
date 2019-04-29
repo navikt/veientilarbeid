@@ -20,7 +20,6 @@ export enum ActionType {
     HENT_JOBBSOKERBESVARELSE_OK = 'HENT_JOBBSOKERBESVARELSE_OK',
     HENT_JOBBSOKERBESVARELSE_PENDING = 'HENT_JOBBSOKERBESVARELSE_PENDING',
     HENT_JOBBSOKERBESVARELSE_FEILET = 'HENT_JOBBSOKERBESVARELSE_FEILET',
-    SETT_JOBBSOKERBESVARELSE_OK = 'SETT_JOBBSOKERBESVARELSE_OK',
     HENT_SYKMELDT_INFO_OK = 'HENT_SYKMELDT_INFO_OK',
     HENT_SYKMELDT_INFO_PENDING = 'HENT_SYKMELDT_INFO_PENDING',
     HENT_SYKMELDT_INFO_FEILET = 'HENT_SYKMELDT_INFO_FEILET',
@@ -33,7 +32,6 @@ export enum ActionType {
     HENT_EGENVURDERINGBESVARELSE_OK = 'HENT_EGENVURDERINGBESVARELSE_OK',
     HENT_EGENVURDERINGBESVARELSE_PENDING = 'HENT_EGENVURDERINGBESVARELSE_PENDING',
     HENT_EGENVURDERINGBESVARELSE_FEILET = 'HENT_EGENVURDERINGBESVARELSE_FEILET',
-    SETT_EGENVURDERINGBESVARELSE_OK = 'SETT_EGENVURDERINGBESVARELSE_OK',
 }
 
 export interface FeatureTogglesOKAction {
@@ -88,10 +86,6 @@ export interface HentJobbsokerbesvarelseFEILETAction {
     type: ActionType.HENT_JOBBSOKERBESVARELSE_FEILET;
 }
 
-export interface SettJobbsokerbesvarelseOKAction {
-    type: ActionType.SETT_JOBBSOKERBESVARELSE_OK;
-}
-
 export interface HentSykmeldtInfoOKAction {
     type: ActionType.HENT_SYKMELDT_INFO_OK;
     data: SykmeldtInfoData;
@@ -144,11 +138,6 @@ export interface HentEgenvurderingbesvarelseFEILETAction {
     type: ActionType.HENT_EGENVURDERINGBESVARELSE_FEILET;
 }
 
-export interface SettEgenvurderingbesvarelseOKAction {
-    type: ActionType.SETT_EGENVURDERINGBESVARELSE_OK;
-}
-
-
 export type Handling = FeatureTogglesOKAction
     | FeatureTogglesPENDINGAction
     | FeatureTogglesFEILETAction
@@ -161,7 +150,6 @@ export type Handling = FeatureTogglesOKAction
     | HentJobbsokerbesvarelseOKAction
     | HentJobbsokerbesvarelsePENDINGAction
     | HentJobbsokerbesvarelseFEILETAction
-    | SettJobbsokerbesvarelseOKAction
     | HentSykmeldtInfoOKAction
     | HentSykmeldtInfoPENDINGAction
     | HentSykmeldtInfoFEILETAction
@@ -173,5 +161,4 @@ export type Handling = FeatureTogglesOKAction
     | HentBrukerRegistreringFEILETAction
     | HentEgenvurderingbesvarelseOKAction
     | HentEgenvurderingbesvarelsePENDINGAction
-    | HentEgenvurderingbesvarelseFEILETAction
-    | SettEgenvurderingbesvarelseOKAction;
+    | HentEgenvurderingbesvarelseFEILETAction;

@@ -12,7 +12,6 @@ import egenvurderingbesvarelseResponse from './egenvurderingbesvarelse-mock';
 
 import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 
-
 const loggingMiddleware: Middleware = (request, response) => {
     console.log(request.url, request.method, response); // tslint:disable-line:no-console
     return response;

@@ -6,7 +6,7 @@ import IntlProvider from './Intl-provider';
 import DataProvider from './komponenter/hent-initial-data/data-provider';
 import Routes from './routes';
 import FeatureToggleProvider from './komponenter/hent-initial-data/feature-toggle-provider';
-import OppfolgingProvider from './komponenter/hent-initial-data/oppfolging-provider';
+import OppfolgingBrukerregistreringProvider from "./komponenter/hent-initial-data/oppfolging-brukerregistrering-provider";
 
 const store = getStore();
 
@@ -16,13 +16,13 @@ class App extends React.Component {
             <Provider store={store}>
                 <IntlProvider>
                     <FeatureToggleProvider>
-                        <OppfolgingProvider>
+                        <OppfolgingBrukerregistreringProvider>
                             <DataProvider>
                                 <Router>
                                     <Routes/>
                                 </Router>
                             </DataProvider>
-                        </OppfolgingProvider>
+                        </OppfolgingBrukerregistreringProvider>
                     </FeatureToggleProvider>
                 </IntlProvider>
             </Provider>

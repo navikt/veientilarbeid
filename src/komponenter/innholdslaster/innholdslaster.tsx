@@ -19,6 +19,7 @@ const alleLastetEllerReloading = (avhengigheter: DataElement[]) => (
 interface InnholdslasterProps {
     avhengigheter: DataElement[];
     ventPa?: DataElement[];
+    betingelser?: boolean[];
     feilmeldingKomponent?: React.ReactNode | React.ReactChild;
     storrelse?: 'XXS' | 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
 }
@@ -69,17 +70,19 @@ class Innholdslaster extends React.Component<InnholdslasterProps, Innholdslaster
     }
 
     render() {
-        const { avhengigheter, ventPa, feilmeldingKomponent, storrelse } = this.props;
+        const { avhengigheter, ventPa, betingelser, feilmeldingKomponent, storrelse } = this.props;
 
-        if (alleLastet(avhengigheter) && alleVentetPa(ventPa)) {
+        const avhengigheterFiltrert = betingelser ? avhengigheter.filter((a, i) => betingelser[i] === true) : avhengigheter;
+
+        if (alleLastet(avhengigheterFiltrert) && alleVentetPa(ventPa)) {
             // Alle avhengigheter lastet inn uten problemer og ventPa er ferdig (enten OK eller FEILET){
             return this.renderChildren();
 
-        } else if (!this.state.timeout && alleLastetEllerReloading(avhengigheter)) {
+        } else if (!this.state.timeout && alleLastetEllerReloading(avhengigheterFiltrert)) {
             this.setTimer();
             return this.renderChildren();
 
-        } else if (noenHarFeil(avhengigheter)) {
+        } else if (noenHarFeil(avhengigheterFiltrert)) {
             this.clearTimer();
             return (
                 <div className="innholdslaster-feilmelding">{feilmeldingKomponent}</div>
