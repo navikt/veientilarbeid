@@ -5,7 +5,7 @@ import IntlProvider from './Intl-provider';
 import DataProvider from './komponenter/hent-initial-data/data-provider';
 import FeatureToggleProvider from './komponenter/hent-initial-data/feature-toggle-provider';
 import OppfolgingProvider from './komponenter/hent-initial-data/oppfolging-provider';
-import Innhold from './innhold/innhold';
+import Innhold from './innhold/innhold-logikk';
 
 const store = getStore();
 
