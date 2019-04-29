@@ -8,7 +8,7 @@ import './index.less';
 import { erDemo, erMikrofrontend } from './utils/app-state-utils';
 import NAVSPA from './NAVSPA';
 
-if ((process.env.REACT_APP_MOCK && !erDemo()) || erMikrofrontend()) {
+if ((process.env.REACT_APP_MOCK && !erDemo())) {
     console.log('=========================='); /*tslint:disable-line:no-console*/
     console.log('======= DEVELOPMENT ======'); /*tslint:disable-line:no-console*/
     console.log('=========================='); /*tslint:disable-line:no-console*/
