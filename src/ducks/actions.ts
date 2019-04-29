@@ -19,7 +19,6 @@ export enum ActionType {
     HENT_JOBBSOKERBESVARELSE_OK = 'HENT_JOBBSOKERBESVARELSE_OK',
     HENT_JOBBSOKERBESVARELSE_PENDING = 'HENT_JOBBSOKERBESVARELSE_PENDING',
     HENT_JOBBSOKERBESVARELSE_FEILET = 'HENT_JOBBSOKERBESVARELSE_FEILET',
-    SETT_JOBBSOKERBESVARELSE_OK = 'SETT_JOBBSOKERBESVARELSE_OK',
     HENT_SYKMELDT_INFO_OK = 'HENT_SYKMELDT_INFO_OK',
     HENT_SYKMELDT_INFO_PENDING = 'HENT_SYKMELDT_INFO_PENDING',
     HENT_SYKMELDT_INFO_FEILET = 'HENT_SYKMELDT_INFO_FEILET',
@@ -83,10 +82,6 @@ export interface HentJobbsokerbesvarelseFEILETAction {
     type: ActionType.HENT_JOBBSOKERBESVARELSE_FEILET;
 }
 
-export interface SettJobbsokerbesvarelseOKAction {
-    type: ActionType.SETT_JOBBSOKERBESVARELSE_OK;
-}
-
 export interface HentSykmeldtInfoOKAction {
     type: ActionType.HENT_SYKMELDT_INFO_OK;
     data: SykmeldtInfoData;
@@ -138,7 +133,6 @@ export type Handling = FeatureTogglesOKAction
     | HentJobbsokerbesvarelseOKAction
     | HentJobbsokerbesvarelsePENDINGAction
     | HentJobbsokerbesvarelseFEILETAction
-    | SettJobbsokerbesvarelseOKAction
     | HentSykmeldtInfoOKAction
     | HentSykmeldtInfoPENDINGAction
     | HentSykmeldtInfoFEILETAction
