@@ -8,8 +8,8 @@ import './krr-melding.less';
 class KrrMelding extends React.Component<InjectedIntlProps> {
     render() {
         return (
-            <AlertStripeAdvarselSolid className="krr-melding blokk-m">
-                <Normaltekst className="blokk-s">
+            <AlertStripeAdvarselSolid className="krr-melding blokk-xs">
+                <Normaltekst className="blokk-xs">
                     <FormattedMessage id="krr-melding-ingress"/>
                 </Normaltekst>
                 <Normaltekst>
