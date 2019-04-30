@@ -60,6 +60,7 @@ class InnholdLogikk extends React.Component<StateProps> {
         return (
             <InnholdView
                 erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}
+                skalViseKrrMelding={this.props.reservasjonKRR}
                 skalViseEgenvurderingLenke={skalViseEgenvurderingLenke}
                 visRessurslenker={visRessurslenker}
                 skalViseTiltaksinfoLenke={skalViseTiltaksinfoLenke}
