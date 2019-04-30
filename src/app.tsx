@@ -6,6 +6,7 @@ import DataProvider from './komponenter/hent-initial-data/data-provider';
 import FeatureToggleProvider from './komponenter/hent-initial-data/feature-toggle-provider';
 import OppfolgingProvider from './komponenter/hent-initial-data/oppfolging-provider';
 import Innhold from './innhold/innhold-logikk';
+import SjekkOppfolging from "./komponenter/hent-initial-data/sjekk-oppfolging";
 
 const store = getStore();
 
@@ -16,9 +17,11 @@ class App extends React.Component {
                 <IntlProvider>
                     <FeatureToggleProvider>
                         <OppfolgingProvider>
-                            <DataProvider>
-                                <Innhold/>
-                            </DataProvider>
+                            <SjekkOppfolging>
+                                <DataProvider>
+                                    <Innhold/>
+                                </DataProvider>
+                            </SjekkOppfolging>
                         </OppfolgingProvider>
                     </FeatureToggleProvider>
                 </IntlProvider>
