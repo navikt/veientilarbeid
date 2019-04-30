@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { AlertStripeAdvarselSolid } from 'nav-frontend-alertstriper';
 import Lenke from 'nav-frontend-lenker';
-import {FormattedMessage, InjectedIntlProps, injectIntl} from "react-intl";
-import {Normaltekst} from "nav-frontend-typografi";
+import { FormattedMessage, InjectedIntlProps, injectIntl } from 'react-intl';
+import { Normaltekst } from 'nav-frontend-typografi';
 import './krr-melding.less';
 
 class KrrMelding extends React.Component<InjectedIntlProps> {
@@ -31,7 +31,5 @@ class KrrMelding extends React.Component<InjectedIntlProps> {
 }
 
 export default injectIntl(KrrMelding);
-
-
 
 
