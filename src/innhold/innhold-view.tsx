@@ -13,7 +13,7 @@ import Aktivitetsplan from '../komponenter/aktivitetsplan/aktivitetsplan';
 import RessurslenkerJobbsok from '../komponenter/ressurslenker-jobbsok/ressurslenker-jobbsok';
 import Egenvurdering from '../komponenter/egenvurdering/egenvurdering';
 import './innhold.less';
-import KrrMelding from "../komponenter/krr-melding/krr-melding";
+import KrrMelding from '../komponenter/krr-melding/krr-melding';
 
 interface OwnProps {
     erSykmeldtMedArbeidsgiver: boolean;
