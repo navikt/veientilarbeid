@@ -7,7 +7,6 @@ import { Data as BrukerRegistreringData } from './brukerregistrering';
 import { Data as UlesteDialogerData } from './dialog';
 import { Data as EgenvurderingbesvarelseData } from './egenvurdering';
 import { FeatureToggles } from './feature-toggles';
-import { erMikrofrontend } from '../utils/app-state-utils';
 
 export enum STATUS {
     OK = 'OK',
@@ -35,10 +34,8 @@ export const requestConfig: RequestInit = {
     }
 };
 
-const contextpath = erMikrofrontend() ? '/veientilarbeid' : '';
-
 export const VEILARBOPPFOLGING_URL = '/veilarboppfolging/api/oppfolging',
-    FEATURE_URL = `${contextpath}/api/feature`,
+    FEATURE_URL = '/api/feature',
     SERVICEGRUPPE_URL = '/veilarbtiltakinfo/api/oppfolgingsstatus',
     STARTREGISTRERING_URL = '/veilarbregistrering/api/startregistrering',
     BRUKERREGISTRERING_URL = '/veilarbregistrering/api/registrering',
