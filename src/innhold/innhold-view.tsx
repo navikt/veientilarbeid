@@ -12,24 +12,26 @@ import ReaktiveringMelding from '../komponenter/reaktivering-melding';
 import Aktivitetsplan from '../komponenter/aktivitetsplan/aktivitetsplan';
 import RessurslenkerJobbsok from '../komponenter/ressurslenker-jobbsok/ressurslenker-jobbsok';
 import Egenvurdering from '../komponenter/egenvurdering/egenvurdering';
-import SjekkOppfolging from '../komponenter/hent-initial-data/sjekk-oppfolging';
 import './innhold.less';
+import KrrMelding from '../komponenter/krr-melding/krr-melding';
 
 interface OwnProps {
     erSykmeldtMedArbeidsgiver: boolean;
+    skalViseKrrMelding: boolean;
     skalViseEgenvurderingLenke: boolean;
     visRessurslenker: boolean;
     skalViseTiltaksinfoLenke: boolean;
 }
 
-export default ({erSykmeldtMedArbeidsgiver, skalViseEgenvurderingLenke, visRessurslenker, skalViseTiltaksinfoLenke}: OwnProps) => {
+export default ({erSykmeldtMedArbeidsgiver, skalViseKrrMelding, skalViseEgenvurderingLenke, visRessurslenker, skalViseTiltaksinfoLenke}: OwnProps) => {
     // TODO Fjerne banner (inkl. brødsmuler)
     return (
-        <SjekkOppfolging>
+        <>
             {erSykmeldtMedArbeidsgiver ? <Banner type="sykmeldt"/> : <Banner type="ordinaer"/>}
 
             <Rad>
                 <ReaktiveringMelding/>
+                {skalViseKrrMelding ? <KrrMelding/> : null}
                 {skalViseEgenvurderingLenke ? <Egenvurdering/> : null}
                 <Aktivitetsplan/>
                 <div className="tokol">
@@ -50,6 +52,6 @@ export default ({erSykmeldtMedArbeidsgiver, skalViseEgenvurderingLenke, visRessu
             <Rad>
                 {erSykmeldtMedArbeidsgiver ? <OkonomiRad/> : <Dagpenger/>}
             </Rad>
-        </SjekkOppfolging>
+        </>
     );
 };
