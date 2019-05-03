@@ -9,7 +9,6 @@ import {
     selectFremtidigSituasjonSvar, selectOpprettetRegistreringDato
 } from '../ducks/brukerregistrering';
 import { seVeientilarbeid } from '../metrics';
-import SjekkOppfolging from '../komponenter/hent-initial-data/sjekk-oppfolging';
 import './innhold.less';
 import InnholdView from './innhold-view';
 
@@ -59,14 +58,13 @@ class InnholdLogikk extends React.Component<StateProps> {
         );
 
         return (
-            <SjekkOppfolging>
-                <InnholdView
-                    erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}
-                    skalViseEgenvurderingLenke={skalViseEgenvurderingLenke}
-                    visRessurslenker={visRessurslenker}
-                    skalViseTiltaksinfoLenke={skalViseTiltaksinfoLenke}
-                />
-            </SjekkOppfolging>
+            <InnholdView
+                erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}
+                skalViseKrrMelding={this.props.reservasjonKRR}
+                skalViseEgenvurderingLenke={skalViseEgenvurderingLenke}
+                visRessurslenker={visRessurslenker}
+                skalViseTiltaksinfoLenke={skalViseTiltaksinfoLenke}
+            />
         );
     }
 }
