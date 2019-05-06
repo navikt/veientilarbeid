@@ -5,28 +5,24 @@ import { Dispatch } from '../dispatch-type';
 import { hentEgenvurderingbesvarelseFetch, DataElement, STATUS } from './api';
 import { doThenDispatch } from './api-utils';
 
+export interface Data {
+    sistOppdatert: string;
+}
+
 export interface State extends DataElement {
-    data: Data;
-    harEgenvurderingbesvarelse: boolean;
+    data: Data | null;
 }
 
 const initialState: State = {
-    data: {},
-    harEgenvurderingbesvarelse: false,
+    data: null,
     status: STATUS.NOT_STARTED
 };
-
-export interface Data {
-    egenvurderingbesvarelse?: [];
-}
 
 export default function reducer(state: State = initialState, action: Handling): State {
     switch (action.type) {
         case ActionType.HENT_EGENVURDERINGBESVARELSE_OK: {
             return {
-                ...state,
                 status: STATUS.OK,
-                harEgenvurderingbesvarelse: action.data && !!action.data.egenvurderingbesvarelse,
                 data: action.data,
             };
         }

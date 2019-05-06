@@ -78,7 +78,7 @@ const mapStateToProps = (state: AppState): StateProps => ({
     reservasjonKRR: state.oppfolging.data.reservasjonKRR,
     foreslattInnsatsgruppe: selectForeslattInnsatsgruppe(state),
     opprettetRegistreringDato: new Date(selectOpprettetRegistreringDato(state)),
-    harEgenvurderingbesvarelse: state.egenvurderingbesvarelse.harEgenvurderingbesvarelse,
+    harEgenvurderingbesvarelse: state.egenvurderingbesvarelse.data !== null,
 
 });
 

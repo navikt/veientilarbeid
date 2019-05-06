@@ -41,3 +41,4 @@ fetchMock.get(ULESTEDIALOGER_URL, ulesteDialogerResponse);
 fetchMock.get(BRUKERREGISTRERING_URL, brukerRegistreringResponse);
 
 fetchMock.get(EGENVURDERINGBESVARELSE_URL, egenvurderingbesvarelseResponse);
+// fetchMock.get(EGENVURDERINGBESVARELSE_URL, ResponseUtils.statusCode(204));
