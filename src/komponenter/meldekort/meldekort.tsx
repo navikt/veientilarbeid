@@ -13,7 +13,7 @@ class Meldekort extends React.Component {
         return (
             <LenkepanelMedIkon
                 href={MELDEKORT_URL}
-                className='meldekort'
+                className="meldekort"
                 alt=""
                 onClick={gaTilMeldekort}
                 overskrift={overskrift}

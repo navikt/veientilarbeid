@@ -13,7 +13,7 @@ class DittSykefravaer extends React.Component {
         return (
             <LenkepanelMedIkon
                 href={DITTSYKEFRAVAER_URL}
-                className='sykefravaer'
+                className="sykefravaer"
                 alt=""
                 onClick={gaTilDittSykefravaer}
                 overskrift={overskrift}

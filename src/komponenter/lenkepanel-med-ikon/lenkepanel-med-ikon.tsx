@@ -43,7 +43,7 @@ class LenkepanelMedIkon extends React.Component<Props> {
                             <Normaltekst>
                                 <FormattedMessage id={ingress}/>
                             </Normaltekst>
-                            : ""
+                            : ''
                         }
                     </div>
                 </div>

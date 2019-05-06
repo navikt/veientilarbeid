@@ -2,19 +2,19 @@ import * as React from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
 import { injectIntl, FormattedMessage, InjectedIntlProps } from 'react-intl';
-import { seEgenvurdering, gaTilEgenvurdering} from '../../metrics';
-import { AppState } from "../../reducer";
-import { connect } from "react-redux";
-import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe, selectOpprettetRegistreringDato } from "../../ducks/brukerregistrering";
+import { seEgenvurdering, gaTilEgenvurdering } from '../../metrics';
+import { AppState } from '../../reducer';
+import { connect } from 'react-redux';
+import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe, selectOpprettetRegistreringDato } from '../../ducks/brukerregistrering';
 
 import './egenvurdering.less';
 
-export const finnAntallTimerSidenRegistrering = (opprettetRegistreringsdato: Date) : number => {
-    const oneHour_ms = 1000*60*60;
-    const opprettetDato_ms = opprettetRegistreringsdato.getTime();
-    const naatid_ms = Date.now();
-    const difference_ms = naatid_ms - opprettetDato_ms;
-    return Math.round(difference_ms/oneHour_ms);
+export const finnAntallTimerSidenRegistrering = (opprettetRegistreringsdato: Date): number => {
+    const oneHourMs = 1000 * 60 * 60;
+    const opprettetDatoMs = opprettetRegistreringsdato.getTime();
+    const naatidMs = Date.now();
+    const differenceMs = naatidMs - opprettetDatoMs;
+    return Math.round(differenceMs / oneHourMs);
 };
 
 interface StateProps {
@@ -52,7 +52,7 @@ class Egenvurdering extends React.Component<EgenvurderingProps> {
             </section>
         );
     }
-};
+}
 
 const mapStateToProps = (state: AppState): StateProps => ({
     foreslattInnsatsgruppe: selectForeslattInnsatsgruppe(state),

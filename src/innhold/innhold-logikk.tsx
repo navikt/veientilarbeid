@@ -21,6 +21,7 @@ interface StateProps {
     foreslattInnsatsgruppe: ForeslattInnsatsgruppe;
     reservasjonKRR: boolean;
     opprettetRegistreringDato: Date;
+    harEgenvurderingbesvarelse: boolean;
 }
 
 class InnholdLogikk extends React.Component<StateProps> {
@@ -32,7 +33,7 @@ class InnholdLogikk extends React.Component<StateProps> {
     }
 
     render() {
-        const {sykmeldtInfo, servicegruppe, fremtidigSvar,
+        const {sykmeldtInfo, servicegruppe, fremtidigSvar, harEgenvurderingbesvarelse,
             foreslattInnsatsgruppe, reservasjonKRR, opprettetRegistreringDato} = this.props;
 
         const erSykmeldtMedArbeidsgiver = sykmeldtInfo.data.erSykmeldtMedArbeidsgiver;
@@ -51,6 +52,7 @@ class InnholdLogikk extends React.Component<StateProps> {
         const visRessurslenker = !(tilbakeTilSammeArbeidsgiver && erSykmeldtMedArbeidsgiver);
 
         const skalViseEgenvurderingLenke = (
+            !harEgenvurderingbesvarelse &&
             opprettetRegistreringDato > LANSERINGSDATO &&
             !reservasjonKRR &&
             (foreslattInnsatsgruppe === ForeslattInnsatsgruppe.STANDARD_INNSATS ||
@@ -76,6 +78,7 @@ const mapStateToProps = (state: AppState): StateProps => ({
     reservasjonKRR: state.oppfolging.data.reservasjonKRR,
     foreslattInnsatsgruppe: selectForeslattInnsatsgruppe(state),
     opprettetRegistreringDato: new Date(selectOpprettetRegistreringDato(state)),
+    harEgenvurderingbesvarelse: state.egenvurderingbesvarelse.data !== null,
 
 });
 

@@ -12,6 +12,7 @@ export enum DemoData {
     JSK = 'jsk',
     ULESTE_DIALOGER = 'ulesteDialoger',
     RESERVASJON_KRR = 'reservasjonKRR',
+    EGENVURDERING = 'egenvurdering',
 }
 
 export const hentFraLocalStorage = (key: string): string | null => {
@@ -61,6 +62,19 @@ export const settJsk = () => {
 
 export const slettJsk = () => {
     slettFraLocalStorage(DemoData.JSK);
+};
+
+export const hentEgenvurdering = (): JSONObject | null => {
+    const verdi = hentFraLocalStorage(DemoData.EGENVURDERING);
+    return verdi ? JSON.parse(verdi) : null;
+};
+
+export const settEgenvurdering = () => {
+    settILocalStorage(DemoData.EGENVURDERING, JSON.stringify({sistOppdatert: '2019-05-06T09:39:01.635+02:00'}));
+};
+
+export const slettEgenvurdering = () => {
+    slettFraLocalStorage(DemoData.EGENVURDERING);
 };
 
 export const settReservasjonKRR = (value: string) => {

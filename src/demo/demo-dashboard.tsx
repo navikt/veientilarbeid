@@ -3,7 +3,7 @@ import { Innholdstittel } from 'nav-frontend-typografi';
 import { FormattedMessage, InjectedIntlProps, injectIntl } from 'react-intl';
 import { Select as SelectKomponent, CheckboksPanelGruppe } from 'nav-frontend-skjema';
 import {
-    DemoData, hentJsk, settJsk, slettJsk,
+    DemoData, hentJsk, settJsk, slettJsk, hentEgenvurdering, settEgenvurdering, slettEgenvurdering,
     hentSykmeldtMedArbeidsgiver, settSykmeldtMedArbeidsgiver,
     hentUlesteDialoger, settUlesteDialoger,
     hentServicegruppe, settServicegruppe, settReservasjonKRR, hentReservasjonKRR,
@@ -32,6 +32,7 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
     render() {
         const SYKMELDT_MED_ARBEIDSGIVER = DemoData.SYKMELDT_MED_ARBEIDSGIVER;
         const JSK = DemoData.JSK;
+        const EGENVURDERING = DemoData.EGENVURDERING;
         const ULESTE_DIALOGER = DemoData.ULESTE_DIALOGER;
         const RESERVASJON_KRR = DemoData.RESERVASJON_KRR;
         const {messages} = this.props.intl;
@@ -65,6 +66,12 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
                     settJsk();
                 } else {
                     slettJsk();
+                }
+            } else if (element.id === EGENVURDERING) {
+                if (element.checked) {
+                    settEgenvurdering();
+                } else {
+                    slettEgenvurdering();
                 }
             } else if (element.id === ULESTE_DIALOGER) {
                 settUlesteDialoger(element.checked.toString());
@@ -185,7 +192,9 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
                             checked: hentSykmeldtMedArbeidsgiver(),
                             id: SYKMELDT_MED_ARBEIDSGIVER
                         },
-                        {label: messages['demo-jsk'], checked: !!hentJsk(), id: JSK},
+                        {   label: messages['demo-jsk'],
+                            checked: !!hentJsk(),
+                            id: JSK},
                         {
                             label: messages['demo-dialog'],
                             checked: hentUlesteDialoger(),
@@ -195,6 +204,11 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
                             label: messages['demo-krr'],
                             checked: hentReservasjonKRR(),
                             id: RESERVASJON_KRR,
+                        },
+                        {
+                            label: messages['demo-egenvurdering'],
+                            checked: !!hentEgenvurdering(),
+                            id: EGENVURDERING,
                         }
                     ]}
                 />

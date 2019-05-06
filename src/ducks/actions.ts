@@ -5,6 +5,7 @@ import { Data as SykmeldtInfoData } from './sykmeldt-info';
 import { Data as BrukerRegistreringData } from './brukerregistrering';
 import { Data as UlesteDialogerData } from './dialog';
 import { FeatureToggles } from './feature-toggles';
+import { Data as EgenvurderingbesvarelseData } from './egenvurdering';
 
 export enum ActionType {
     FEATURE_TOGGLES_PENDING = 'FEATURE_TOGGLES_PENDING',
@@ -28,6 +29,9 @@ export enum ActionType {
     HENT_BRUKER_REGISTRERING_OK = 'HENT_BRUKER_REGISTRERING_OK',
     HENT_BRUKER_REGISTRERING_PENDING = 'HENT_BRUKER_REGISTRERING_PENDING',
     HENT_BRUKER_REGISTRERING_FEILET = 'HENT_BRUKER_REGISTRERING_FEILET',
+    HENT_EGENVURDERINGBESVARELSE_OK = 'HENT_EGENVURDERINGBESVARELSE_OK',
+    HENT_EGENVURDERINGBESVARELSE_PENDING = 'HENT_EGENVURDERINGBESVARELSE_PENDING',
+    HENT_EGENVURDERINGBESVARELSE_FEILET = 'HENT_EGENVURDERINGBESVARELSE_FEILET',
 }
 
 export interface FeatureTogglesOKAction {
@@ -121,6 +125,19 @@ export interface HentUlesteDialogerFEILETAction {
     type: ActionType.HENT_ULESTE_DIALOGER_FEILET;
 }
 
+export interface HentEgenvurderingbesvarelseOKAction {
+    type: ActionType.HENT_EGENVURDERINGBESVARELSE_OK;
+    data: EgenvurderingbesvarelseData;
+}
+
+export interface HentEgenvurderingbesvarelsePENDINGAction {
+    type: ActionType.HENT_EGENVURDERINGBESVARELSE_PENDING;
+}
+
+export interface HentEgenvurderingbesvarelseFEILETAction {
+    type: ActionType.HENT_EGENVURDERINGBESVARELSE_FEILET;
+}
+
 export type Handling = FeatureTogglesOKAction
     | FeatureTogglesPENDINGAction
     | FeatureTogglesFEILETAction
@@ -141,4 +158,7 @@ export type Handling = FeatureTogglesOKAction
     | HentUlesteDialogerFEILETAction
     | HentBrukerRegistreringOKAction
     | HentBrukerRegistreringPENDINGAction
-    | HentBrukerRegistreringFEILETAction;
+    | HentBrukerRegistreringFEILETAction
+    | HentEgenvurderingbesvarelseOKAction
+    | HentEgenvurderingbesvarelsePENDINGAction
+    | HentEgenvurderingbesvarelseFEILETAction;

@@ -20,6 +20,9 @@ proxy:
   - contextPath: /veilarbdialog
     baseUrl: http://veilarbproxy
 
+  - contextPath: /veilarbvedtakinfo
+    baseUrl: http://veilarbproxy
+
 redirect:
   - from: /veientilarbeid
     to: {{ VEIENTILARBEID_URL }}
