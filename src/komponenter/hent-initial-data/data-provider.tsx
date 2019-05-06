@@ -45,7 +45,6 @@ class DataProvider extends React.Component<Props> {
     componentWillMount() {
         const {underOppfolging, foreslaattInnsatsgruppe} = this.props;
         this.props.hentSykmeldtInfo();
-
         if (underOppfolging) {
             this.props.hentJobbsokerbesvarelse();
         }
@@ -54,6 +53,7 @@ class DataProvider extends React.Component<Props> {
         if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
             this.props.hentEgenvurderingbesvarelse();
         }
+
     }
 
     render() {

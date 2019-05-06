@@ -1,5 +1,5 @@
 import {
-    ActionType, Handling, HentJobbsokerbesvarelseFEILETAction, HentJobbsokerbesvarelseOKAction, HentJobbsokerbesvarelsePENDINGAction,
+    ActionType, Handling, HentJobbsokerbesvarelseFEILETAction, HentJobbsokerbesvarelseOKAction, HentJobbsokerbesvarelsePENDINGAction
 } from './actions';
 import { Dispatch } from '../dispatch-type';
 import { hentJobbsokerbesvarelseFetch, DataElement, STATUS } from './api';
