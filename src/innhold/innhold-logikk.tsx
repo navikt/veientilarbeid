@@ -12,7 +12,7 @@ import { seVeientilarbeid } from '../metrics';
 import './innhold.less';
 import InnholdView from './innhold-view';
 
-const LANSERINGSDATO = new Date(2020, 0, 2);
+const LANSERINGSDATO = new Date(2019, 0, 1);
 
 interface StateProps {
     sykmeldtInfo: SykmeldtInfoState;
@@ -53,7 +53,7 @@ class InnholdLogikk extends React.Component<StateProps> {
 
         const skalViseEgenvurderingLenke = (
             !harEgenvurderingbesvarelse &&
-            opprettetRegistreringDato > LANSERINGSDATO &&
+            opprettetRegistreringDato >= LANSERINGSDATO &&
             !reservasjonKRR &&
             (foreslattInnsatsgruppe === ForeslattInnsatsgruppe.STANDARD_INNSATS ||
                 foreslattInnsatsgruppe === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS)
