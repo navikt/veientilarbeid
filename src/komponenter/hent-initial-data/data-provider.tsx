@@ -7,7 +7,7 @@ import Feilmelding from '../feilmeldinger/feilmelding';
 import { hentServicegruppe, State as ServicegruppeState } from '../../ducks/servicegruppe';
 import { hentSykmeldtInfo, State as SykmeldtInfodataState } from '../../ducks/sykmeldt-info';
 import { hentUlesteDialoger, State as UlesteDialogerState } from '../../ducks/dialog';
-import { ForeslattInnsatsgruppe } from '../../ducks/brukerregistrering';
+import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe } from '../../ducks/brukerregistrering';
 import { hentJobbsokerbesvarelse, State as JobbsokerbesvarelseState } from '../../ducks/jobbsokerbesvarelse';
 import { hentEgenvurderingbesvarelse, State as EgenvurderingbesvarelseState } from '../../ducks/egenvurdering';
 
@@ -86,7 +86,7 @@ const mapStateToProps = (state: AppState): StateProps => ({
     sykmeldtInfo: state.sykmeldtInfodata,
     jobbsokerbesvarelse: state.jobbsokerbesvarelse,
     ulesteDialoger: state.ulesteDialoger,
-    foreslaattInnsatsgruppe: state.brukerRegistrering.data.registrering.profilering.innsatsgruppe,
+    foreslaattInnsatsgruppe: selectForeslattInnsatsgruppe(state),
     egenvurderingbesvarelse: state.egenvurderingbesvarelse,
 });
 
