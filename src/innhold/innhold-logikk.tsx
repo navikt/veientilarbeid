@@ -53,7 +53,6 @@ class InnholdLogikk extends React.Component<StateProps> {
 
         const skalViseEgenvurderingLenke = (
             !harEgenvurderingbesvarelse &&
-            opprettetRegistreringDato >= LANSERINGSDATO &&
             !reservasjonKRR &&
             (foreslattInnsatsgruppe === ForeslattInnsatsgruppe.STANDARD_INNSATS ||
                 foreslattInnsatsgruppe === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS)
