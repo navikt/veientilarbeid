@@ -12,8 +12,6 @@ import { seVeientilarbeid } from '../metrics';
 import './innhold.less';
 import InnholdView from './innhold-view';
 
-const LANSERINGSDATO = new Date(2019, 0, 1);
-
 interface StateProps {
     sykmeldtInfo: SykmeldtInfoState;
     servicegruppe: ServicegruppeState;
