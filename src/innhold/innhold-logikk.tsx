@@ -6,7 +6,7 @@ import { selectSykmeldtInfo, State as SykmeldtInfoState } from '../ducks/sykmeld
 import {
     ForeslattInnsatsgruppe,
     FremtidigSituasjonSvar, selectForeslattInnsatsgruppe,
-    selectFremtidigSituasjonSvar, selectOpprettetRegistreringDato
+    selectFremtidigSituasjonSvar
 } from '../ducks/brukerregistrering';
 import { seVeientilarbeid } from '../metrics';
 import './innhold.less';
