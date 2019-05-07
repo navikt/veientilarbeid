@@ -155,7 +155,7 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
                         defaultValue={hentForeslattInnsatsgruppe()}
                     >
                         {
-                            Object.keys(ForeslattInnsatsgruppe).map((svar: string) =>
+                            Object.keys(foreslattInnsatsgrupper).map((svar: string) =>
                                 <option
                                     key={svar}
                                     value={svar}
