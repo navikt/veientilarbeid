@@ -18,7 +18,7 @@ interface StateProps {
     sykmeldtInfo: SykmeldtInfoState;
     servicegruppe: ServicegruppeState;
     fremtidigSvar: FremtidigSituasjonSvar;
-    foreslattInnsatsgruppe: ForeslattInnsatsgruppe;
+    foreslattInnsatsgruppe: ForeslattInnsatsgruppe | undefined;
     reservasjonKRR: boolean;
     opprettetRegistreringDato: Date;
     harEgenvurderingbesvarelse: boolean;

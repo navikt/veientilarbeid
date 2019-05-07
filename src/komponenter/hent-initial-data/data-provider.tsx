@@ -11,7 +11,7 @@ import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe } from '../../duck
 import { hentJobbsokerbesvarelse, State as JobbsokerbesvarelseState } from '../../ducks/jobbsokerbesvarelse';
 import { hentEgenvurderingbesvarelse, State as EgenvurderingbesvarelseState } from '../../ducks/egenvurdering';
 
-const skalSjekkeEgenvurderingBesvarelse = (foreslaattInnsatsgruppe: ForeslattInnsatsgruppe): boolean => {
+const skalSjekkeEgenvurderingBesvarelse = (foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined): boolean => {
     return foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.STANDARD_INNSATS ||
         foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS;
 };
@@ -26,7 +26,7 @@ interface StateProps {
     sykmeldtInfo: SykmeldtInfodataState;
     jobbsokerbesvarelse: JobbsokerbesvarelseState;
     ulesteDialoger: UlesteDialogerState;
-    foreslaattInnsatsgruppe: ForeslattInnsatsgruppe;
+    foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined;
     egenvurderingbesvarelse: EgenvurderingbesvarelseState;
 }
 

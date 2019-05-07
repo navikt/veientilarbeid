@@ -55,7 +55,7 @@ class Egenvurdering extends React.Component<EgenvurderingProps> {
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
-    foreslattInnsatsgruppe: selectForeslattInnsatsgruppe(state),
+    foreslattInnsatsgruppe: selectForeslattInnsatsgruppe(state)!, // Komponent blir rendret kun hvis foreslått innsatsgruppe er satt
     opprettetRegistreringDato: new Date(selectOpprettetRegistreringDato(state)),
 
 });
