@@ -18,7 +18,7 @@ interface StateProps {
     sykmeldtInfo: SykmeldtInfoState;
     servicegruppe: ServicegruppeState;
     fremtidigSvar: FremtidigSituasjonSvar;
-    foreslattInnsatsgruppe: ForeslattInnsatsgruppe;
+    foreslattInnsatsgruppe: ForeslattInnsatsgruppe | undefined;
     reservasjonKRR: boolean;
     opprettetRegistreringDato: Date;
     harEgenvurderingbesvarelse: boolean;
@@ -53,7 +53,7 @@ class InnholdLogikk extends React.Component<StateProps> {
 
         const skalViseEgenvurderingLenke = (
             !harEgenvurderingbesvarelse &&
-            opprettetRegistreringDato > LANSERINGSDATO &&
+            opprettetRegistreringDato >= LANSERINGSDATO &&
             !reservasjonKRR &&
             (foreslattInnsatsgruppe === ForeslattInnsatsgruppe.STANDARD_INNSATS ||
                 foreslattInnsatsgruppe === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS)

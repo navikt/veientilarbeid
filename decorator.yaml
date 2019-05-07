@@ -46,3 +46,5 @@ redirect:
     to: {{ ARBEIDSPLASSEN_URL }}
   - from: /mia
     to: {{ MIA_URL }}
+  - from: /behovsvurdering
+    to: {{ BEHOVSVURDERING_URL }}

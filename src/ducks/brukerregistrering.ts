@@ -35,7 +35,7 @@ export interface Profilering {
 interface Brukerregistrering {
     opprettetDato: string;
     besvarelse: Besvarelse;
-    profilering: Profilering;
+    profilering?: Profilering;
 }
 
 export interface Data {
@@ -53,9 +53,6 @@ const initialState: State = {
             opprettetDato: Date.now().toString(),
             besvarelse: {
                 fremtidigSituasjon: FremtidigSituasjonSvar.USIKKER
-            },
-            profilering: {
-                innsatsgruppe: ForeslattInnsatsgruppe.STANDARD_INNSATS
             }
         }
     }
@@ -104,6 +101,8 @@ function hentBrukerRegistreringPending(): HentBrukerRegistreringPENDINGAction {
 
 const selectData = (state: AppState): Data => state.brukerRegistrering.data || initialState.data;
 
+const selectProfilering = (state: AppState): Profilering | undefined => selectData(state).registrering.profilering;
+
 export function selectFremtidigSituasjonSvar(state: AppState): FremtidigSituasjonSvar {
     const data = selectData(state);
 
@@ -112,12 +111,10 @@ export function selectFremtidigSituasjonSvar(state: AppState): FremtidigSituasjo
         : initialState.data.registrering.besvarelse.fremtidigSituasjon;
 }
 
-export function selectForeslattInnsatsgruppe(state: AppState): ForeslattInnsatsgruppe {
-    const data = selectData(state);
+export function selectForeslattInnsatsgruppe(state: AppState): ForeslattInnsatsgruppe | undefined {
+    const profilering = selectProfilering(state);
 
-    return data.registrering.profilering
-        ? data.registrering.profilering.innsatsgruppe
-        : initialState.data.registrering.profilering.innsatsgruppe;
+    return profilering ? profilering.innsatsgruppe : undefined;
 }
 
 export const selectOpprettetRegistreringDato = (state: AppState): string => selectData(state).registrering.opprettetDato;
