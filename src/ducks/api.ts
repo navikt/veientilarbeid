@@ -35,7 +35,7 @@ export const requestConfig: RequestInit = {
     }
 };
 
-const contextpath = erMikrofrontend() ? '/veientilarbeid' : '';
+const contextpath = erMikrofrontend() ? '/person/dittnav/veientilarbeid' : '';
 
 export const VEILARBOPPFOLGING_URL = `${contextpath}/veilarboppfolging/api/oppfolging`,
     FEATURE_URL = `${contextpath}/api/feature`,
