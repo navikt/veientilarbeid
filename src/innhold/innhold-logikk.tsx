@@ -12,7 +12,7 @@ import { seVeientilarbeid } from '../metrics';
 import './innhold.less';
 import InnholdView from './innhold-view';
 
-const LANSERINGSDATO = new Date(2019, 4, 8);
+const LANSERINGSDATO = new Date(2019, 4, 9);
 
 interface StateProps {
     sykmeldtInfo: SykmeldtInfoState;
