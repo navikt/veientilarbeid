@@ -59,7 +59,7 @@ export const seEgenvurdering = (foreslaattinnsatsgruppe: ForeslattInnsatsgruppe)
 
 export const gaTilEgenvurdering = (antallTimer: number, foreslaattinnsatsgruppe: ForeslattInnsatsgruppe) => {
     if (!erDemo()) {
-        logEvent(`${domene}.gatilegenvurdering`, {}, {antallTimer: antallTimer, foreslaattInnsatsgruppe: foreslaattinnsatsgruppe});
+        logEvent(`${domene}.gatilegenvurdering`, {antallTimer: antallTimer}, {foreslaattInnsatsgruppe: foreslaattinnsatsgruppe});
     }
 };
 
