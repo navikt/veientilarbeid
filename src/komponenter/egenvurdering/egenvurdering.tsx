@@ -14,7 +14,7 @@ export const finnAntallTimerSidenRegistrering = (opprettetRegistreringsdato: Dat
     const opprettetDatoMs = opprettetRegistreringsdato.getTime();
     const naatidMs = Date.now();
     const differenceMs = naatidMs - opprettetDatoMs;
-    return Math.round(differenceMs / oneHourMs);
+    return Math.ceil(differenceMs / oneHourMs);
 };
 
 interface StateProps {

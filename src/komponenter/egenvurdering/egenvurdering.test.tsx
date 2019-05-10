@@ -7,19 +7,37 @@ describe('finnAntallTimerSidenRegistrering', () => {
         naatid = new Date();
     });
 
-    it('skal returnere 0 timer hvis det er mindre enn en halvtime (10 minutter) siden registrering ', () => {
+    it('skal returnere 1 time hvis det er 10 minutter siden registrering ', () => {
         const registreringstidspunktMs = naatid.setMinutes(naatid.getMinutes() - 10);
         const registreringstidspunkt = new Date(registreringstidspunktMs);
-        const expected = 0;
+        const expected = 1;
         const timer = finnAntallTimerSidenRegistrering(registreringstidspunkt);
 
         expect(timer).toEqual(expected);
     });
 
-    it('skal returnere 1 timer hvis det er en halvtime (30 minutter) siden registrering', () => {
+    it('skal returnere 1 time hvis det er 30 minutter siden registrering', () => {
         const registreringstidspunktMs = naatid.setMinutes(naatid.getMinutes() - 30);
         const registreringstidspunkt = new Date(registreringstidspunktMs);
         const expected = 1;
+        const timer = finnAntallTimerSidenRegistrering(registreringstidspunkt);
+
+        expect(timer).toEqual(expected);
+    });
+
+    it('skal returnere 1 time hvis det er 60 minutter siden registrering', () => {
+        const registreringstidspunktMs = naatid.setMinutes(naatid.getMinutes() - 60);
+        const registreringstidspunkt = new Date(registreringstidspunktMs);
+        const expected = 1;
+        const timer = finnAntallTimerSidenRegistrering(registreringstidspunkt);
+
+        expect(timer).toEqual(expected);
+    });
+
+    it('skal returnere 2 timer hvis det er 61 minutter siden registrering', () => {
+        const registreringstidspunktMs = naatid.setMinutes(naatid.getMinutes() - 61);
+        const registreringstidspunkt = new Date(registreringstidspunktMs);
+        const expected = 2;
         const timer = finnAntallTimerSidenRegistrering(registreringstidspunkt);
 
         expect(timer).toEqual(expected);
@@ -38,15 +56,6 @@ describe('finnAntallTimerSidenRegistrering', () => {
         const registreringstidspunktMs = naatid.setMinutes(naatid.getMinutes() - 1440);
         const registreringstidspunkt = new Date(registreringstidspunktMs);
         const expected = 24;
-        const timer = finnAntallTimerSidenRegistrering(registreringstidspunkt);
-
-        expect(timer).toEqual(expected);
-    });
-
-    it('skal returnere 240 timer hvis det er 10 dager siden registrering', () => {
-        const registreringstidspunktMs = naatid.setMinutes(naatid.getMinutes() - 14400);
-        const registreringstidspunkt = new Date(registreringstidspunktMs);
-        const expected = 240;
         const timer = finnAntallTimerSidenRegistrering(registreringstidspunkt);
 
         expect(timer).toEqual(expected);
