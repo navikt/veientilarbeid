@@ -3,8 +3,6 @@ ARG BASE_IMAGE_PREFIX=""
 FROM ${BASE_IMAGE_PREFIX}node as node-builder
 
 ADD / /source
-ENV CI=true
-WORKDIR /source
 
 RUN npm ci
 
