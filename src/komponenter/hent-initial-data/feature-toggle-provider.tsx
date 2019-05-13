@@ -2,9 +2,9 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from '../../dispatch-type';
 import { AppState } from '../../reducer';
-// import Innholdslaster from '../innholdslaster/innholdslaster';
+import Innholdslaster from '../innholdslaster/innholdslaster';
 import { hentFeatureToggles, FeatureToggleState } from '../../ducks/feature-toggles';
-// import Feilmelding from '../feilmeldinger/feilmelding';
+import Feilmelding from '../feilmeldinger/feilmelding';
 
 interface OwnProps {
     children: React.ReactElement<any>; // tslint:disable-line:no-any
@@ -26,11 +26,19 @@ class FeatureToggleProvider extends React.Component<FeatureToggleProviderProps> 
     }
 
     componentDidMount() {
-        // this.props.hentFeatureToggles();
+        this.props.hentFeatureToggles();
     }
 
     render() {
-        return this.props.children;
+        return (
+            <Innholdslaster
+                feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse"/>}
+                storrelse="XXL"
+                avhengigheter={[this.props.features]}
+            >
+                {this.props.children}
+            </Innholdslaster>
+        );
     }
 }
 
