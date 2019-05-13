@@ -37,8 +37,10 @@ export const requestConfig: RequestInit = {
 
 const contextpath = erMikrofrontend() ? '/person/dittnav/veientilarbeid' : '';
 
+const contextpathFeature = erMikrofrontend() ? '/person/dittnav/veientilarbeid' : '/veientilarbeid';
+
 export const VEILARBOPPFOLGING_URL = `${contextpath}/veilarboppfolging/api/oppfolging`,
-    FEATURE_URL = `${contextpath}/api/feature`,
+    FEATURE_URL = `${contextpathFeature}/api/feature`,
     SERVICEGRUPPE_URL = `${contextpath}/veilarbtiltakinfo/api/oppfolgingsstatus`,
     STARTREGISTRERING_URL = `${contextpath}/veilarbregistrering/api/startregistrering`,
     BRUKERREGISTRERING_URL = `${contextpath}/veilarbregistrering/api/registrering`,
