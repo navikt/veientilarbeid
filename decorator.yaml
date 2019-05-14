@@ -4,13 +4,6 @@ auth:
   enforce: true
   loginUrl: {{ VEILARBSTEPUP_OIDC_URL }}
 
-spa: # default: /* => /index.html
-  - forwardTarget: /index.html
-    urlPattern: /
-
-  - forwardTarget: /micro/index.html
-    urlPattern: /micro
-
 proxy:
   - contextPath: /veilarbregistrering
     baseUrl: http://veilarbproxy
