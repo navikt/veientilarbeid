@@ -13,7 +13,7 @@ RUN cp -r /source/build /micro
 
 RUN npm run build
 
-FROM docker.adeo.no:5000/pus/decorator
+FROM navikt/pus-decorator
 ENV APPLICATION_NAME=veientilarbeid
 
 COPY --from=node-builder /source/build /app
