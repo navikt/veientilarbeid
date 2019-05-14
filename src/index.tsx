@@ -29,6 +29,6 @@ if (!erMikrofrontend()) {
 }
 
 // TODO Dra ut avhengigheter som Ditt Nav har som peer-dependencies
-// if (erMikrofrontend()) {
-NAVSPA.eksporter('vta', App);
-// }
+if (erMikrofrontend()) {
+    NAVSPA.eksporter('vta', App);
+}
