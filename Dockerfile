@@ -21,7 +21,7 @@ COPY --from=node-builder /source/build /app
 # Pus-decorator enforcer ikke autentisering på enkeltfiler. Vi utnytter den egenskapen for demo.
 COPY --from=node-builder /source/build/index.html /app/demo/index.html
 
-COPY --from=node-builder /micro/index.html /app/micro/index.html
+COPY --from=node-builder /micro /app/micro
 
 ADD decorator.yaml /decorator.yaml
 
