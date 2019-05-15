@@ -19,4 +19,4 @@ export default {
     meldekort: 'https://www.nav.no/no/Person/Arbeid/Dagpenger+ved+arbeidsloshet+og+permittering/Meldekort+hvordan+gjor+du+det/Slik+sender+du+elektroniske+meldekort',
     aap_soknad: 'https://www.nav.no/no/Person/Skjemaer-for-privatpersoner/Skjemaer/Arbeid%2C+helse+og+sykdom/arbeidsavklaringspenger',
     difi: 'https://brukerprofil.difi.no/minprofil/',
-}
+};
