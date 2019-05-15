@@ -9,3 +9,6 @@ export const erMikrofrontend = () => {
 };
 
 export const erMock = () => process.env.REACT_APP_MOCK;
+
+
+export const contextpathDittNav = '/person/dittnav/veientilarbeid';
