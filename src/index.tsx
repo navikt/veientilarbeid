@@ -5,7 +5,7 @@ import * as ReactDOM from 'react-dom';
 import App from './app';
 
 import './index.less';
-import { erDemo, erMock } from './utils/app-state-utils';
+import { erDemo, erMikrofrontend, erMock } from './utils/app-state-utils';
 import NAVSPA from './NAVSPA';
 
 if ((erMock() && !erDemo())) {
@@ -21,10 +21,14 @@ if (erDemo()) {
     require('./demo/render-demo');
 }
 
-ReactDOM.render(
-    <App/>,
-    document.getElementById('maincontent') as HTMLElement
-);
+if (!erMikrofrontend()) {
+    ReactDOM.render(
+        <App/>,
+        document.getElementById('maincontent') as HTMLElement
+    );
+}
 
 // TODO Dra ut avhengigheter som Ditt Nav har som peer-dependencies
-NAVSPA.eksporter('vta', App);
+if (erMikrofrontend()) {
+    NAVSPA.eksporter('vta', App);
+}
