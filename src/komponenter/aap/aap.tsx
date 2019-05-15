@@ -9,6 +9,7 @@ import { FormattedMessage, InjectedIntlProps, injectIntl } from 'react-intl';
 import { Normaltekst, Systemtittel, Undertittel } from 'nav-frontend-typografi';
 
 import './aap.less';
+import lenker from '../../innhold/lenker';
 
 interface AapRadState {
     visAap: boolean;
@@ -46,7 +47,6 @@ class Aap extends React.Component<InjectedIntlProps, AapRadState> {
         const tekster = {
             rettPaAapPanelTittel: messages['aap-rad-rett-pa-aap-panel-tittel'],
             soketidspunktPanelTittel: messages['aap-rad-soketidspunkt-panel-tittel'],
-            tilSoknadKnappUrl: messages['aap-rad-til-soknad-knapp-url']
         };
 
         return (
@@ -80,7 +80,7 @@ class Aap extends React.Component<InjectedIntlProps, AapRadState> {
                     <SoketidspunktInnhold/>
                 </Ekspanderbartpanel>
 
-                <Lenke className="aap--til-soknad-knapp" href={tekster.tilSoknadKnappUrl}>
+                <Lenke className="aap--til-soknad-knapp" href={lenker.aap_soknad}>
                     <Undertittel tag="span">
                         <FormattedMessage id="aap-rad-til-soknad-knapp-tekst"/>
                         <HoyreChevron type={'høyre'} />

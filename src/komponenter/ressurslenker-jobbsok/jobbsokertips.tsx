@@ -4,9 +4,7 @@ import { AppState } from '../../reducer';
 import { gaTilJobbsokerkompetanse, gaTilVeiviserarbeidssoker } from '../../metrics';
 import JobbsokertipsIkon from './svg/jobbsokertips';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
-
-const VEIVISER2_URL = '/veiviserarbeidssoker/';
-const JOBBSOKERKOMPETANSE_RESULTAT_URL = '/jobbsokerkompetanse/resultatside';
+import lenker from '../../innhold/lenker';
 
 interface StateProps {
     harJobbbsokerbesvarelse: boolean;
@@ -15,7 +13,7 @@ interface StateProps {
 class Ressurslenker extends React.Component<StateProps> {
     render () {
         const {harJobbbsokerbesvarelse} = this.props;
-        const URL = harJobbbsokerbesvarelse ? JOBBSOKERKOMPETANSE_RESULTAT_URL : VEIVISER2_URL;
+        const URL = harJobbbsokerbesvarelse ? lenker.jobbsokerkompetanse : lenker.veiviserarbeidssoker;
 
         const lenketekst = harJobbbsokerbesvarelse
             ? 'jobbsokertips-overskrift-har-besvarelse'

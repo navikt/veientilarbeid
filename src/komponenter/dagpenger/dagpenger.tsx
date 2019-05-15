@@ -1,15 +1,16 @@
 import * as React from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
-import { injectIntl, FormattedMessage, InjectedIntlProps } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { klikkPaSoknadDagpenger, visInfoOmDagpenger } from '../../metrics';
 import { visRettTilDagPenger } from '../../utils/utils';
 
 import './dagpenger.less';
+import lenker from '../../innhold/lenker';
 
-class Dagpenger extends React.Component<InjectedIntlProps> {
+class Dagpenger extends React.Component<{}> {
 
-    constructor(props: InjectedIntlProps) {
+    constructor(props: {}) {
         super(props);
     }
 
@@ -22,7 +23,7 @@ class Dagpenger extends React.Component<InjectedIntlProps> {
 
     handleButtonClick = () => {
         klikkPaSoknadDagpenger(visRettTilDagPenger(location.search));
-        window.location.href = this.props.intl.formatMessage({id: 'dagpenger-lenke-url'});
+        window.location.href = lenker.dagpenger_soknad;
     }
 
     scrollTilInformasjonsmodul() {
@@ -59,4 +60,4 @@ class Dagpenger extends React.Component<InjectedIntlProps> {
     }
 }
 
-export default injectIntl(Dagpenger);
+export default Dagpenger;

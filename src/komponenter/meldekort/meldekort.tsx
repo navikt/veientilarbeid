@@ -2,8 +2,7 @@ import * as React from 'react';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { gaTilMeldekort } from '../../metrics';
 import EmailText from './email-text';
-
-const MELDEKORT_URL = 'https://www.nav.no/no/Person/Arbeid/Dagpenger+ved+arbeidsloshet+og+permittering/Meldekort+hvordan+gjor+du+det/Slik+sender+du+elektroniske+meldekort';
+import lenker from '../../innhold/lenker';
 
 class Meldekort extends React.Component {
     render() {
@@ -12,7 +11,7 @@ class Meldekort extends React.Component {
 
         return (
             <LenkepanelMedIkon
-                href={MELDEKORT_URL}
+                href={lenker.meldekort}
                 className="meldekort"
                 alt=""
                 onClick={gaTilMeldekort}

@@ -2,7 +2,7 @@ import * as React from 'react';
 import Lenke from 'nav-frontend-lenker';
 import { HoyreChevron } from 'nav-frontend-chevron';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
-import { InjectedIntlProps, injectIntl, FormattedMessage } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { lesOmOkonomi } from '../../metrics';
 
 import './okonomi-panel.less';
@@ -10,15 +10,14 @@ import './okonomi-panel.less';
 interface OkonomiPanelProps {
     tittelId: string;
     lenkeTekstId: string;
-    lenkeUrlId: string;
+    lenkeUrl: string;
     children: React.ReactNode;
 }
 
-type AllProps = OkonomiPanelProps & InjectedIntlProps;
+type AllProps = OkonomiPanelProps;
 
 const OkonomiPanel = (props: AllProps) => {
-    const {intl, tittelId, lenkeTekstId, lenkeUrlId, children} = props;
-    const lenkeUrl = intl.messages[lenkeUrlId];
+    const {tittelId, lenkeTekstId, lenkeUrl, children} = props;
 
     return (
         <div className="okonomi-panel">
@@ -38,4 +37,4 @@ const OkonomiPanel = (props: AllProps) => {
     );
 };
 
-export default injectIntl(OkonomiPanel);
+export default OkonomiPanel;

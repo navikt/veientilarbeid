@@ -2,14 +2,13 @@ import * as React from 'react';
 import { klikkPaSokLedigeStillinger } from '../../metrics';
 import StillingsokIkon from './svg/stillingsok';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
-
-export const STILLINGSOK_URL = '/arbeidsplassen/stillinger';
+import lenker from '../../innhold/lenker';
 
 class StillingSok extends React.Component {
     render() {
         return (
             <LenkepanelMedIkon
-                href={STILLINGSOK_URL}
+                href={lenker.stilling}
                 alt=""
                 onClick={klikkPaSokLedigeStillinger}
                 overskrift="stillingsok-overskrift"
