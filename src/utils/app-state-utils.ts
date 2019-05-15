@@ -4,7 +4,6 @@ export function erDemo(): boolean {
 }
 
 export const erMikrofrontend = () => {
-    console.log(process.env.REACT_APP_MICRO);
     return process.env.REACT_APP_MICRO;
 };
 
