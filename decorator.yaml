@@ -7,9 +7,11 @@ auth:
 proxy:
   - contextPath: /veilarbregistrering
     baseUrl: http://veilarbproxy
+    minSecurityLevel: 3
 
   - contextPath: /veilarboppfolging
     baseUrl: http://veilarbproxy
+    minSecurityLevel: 3
 
   - contextPath: /veilarbtiltakinfo
     baseUrl: http://veilarbproxy
