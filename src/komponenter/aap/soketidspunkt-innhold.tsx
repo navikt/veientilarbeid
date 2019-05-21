@@ -4,6 +4,7 @@ import Parser from 'html-react-parser';
 
 const SoketidspunktInnhold: React.FunctionComponent<InjectedIntlProps> = (props?: InjectedIntlProps) => {
 
+    // TODO Dra ut html fra tekstfil (aap-rad-soketidspunkt-innhold)
     const innhold = props!.intl.messages['aap-rad-soketidspunkt-innhold'];
 
     return (

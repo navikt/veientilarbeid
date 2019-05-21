@@ -7,6 +7,7 @@ const RettPaAapInnhold: React.FunctionComponent<InjectedIntlProps> = (props?: In
 
     const {messages} = props!.intl;
 
+    // TODO Dra ut html fra tekstfil (aap-rett-pa-relatertinnhold-innhold)
     const tekster = {
         innhold: messages['aap-rett-pa-innhold'],
         relatertTittel: messages['aap-rett-pa-relatertinnhold-tittel'],

@@ -3,6 +3,7 @@ import { parse } from 'query-string';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import DesignMug from './design-mug';
 import { gaTilAktivitetsplan } from '../../metrics';
+import { aktivitetsplanLenke } from '../../innhold/lenker';
 
 interface State {
     nyRegistrering: boolean;
@@ -22,11 +23,10 @@ class Aktivitetsplan extends React.PureComponent<AktivitetsplanProps, State> {
     render() {
         const overskrift = 'aktivitetsplan-overskrift-ordinaer';
         const ingress = 'aktivitetsplan-beskrivelse' + (this.state.nyRegistrering ? '-ny' : '');
-        const url = '/aktivitetsplan/';
 
         return (
             <LenkepanelMedIkon
-                href={url}
+                href={aktivitetsplanLenke}
                 alt=""
                 onClick={gaTilAktivitetsplan}
                 overskrift={overskrift}

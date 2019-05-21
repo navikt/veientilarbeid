@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { AlertStripeAdvarselSolid } from 'nav-frontend-alertstriper';
 import Lenke from 'nav-frontend-lenker';
-import { FormattedMessage, InjectedIntlProps, injectIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { Normaltekst } from 'nav-frontend-typografi';
 import './krr-melding.less';
+import { difiLenke } from '../../innhold/lenker';
 
-class KrrMelding extends React.Component<InjectedIntlProps> {
+class KrrMelding extends React.Component<{}> {
     render() {
         return (
             <AlertStripeAdvarselSolid className="krr-melding blokk-xs">
@@ -20,7 +21,7 @@ class KrrMelding extends React.Component<InjectedIntlProps> {
                     <li><Normaltekst><FormattedMessage id="krr-melding-kulepunkt2"/></Normaltekst></li>
                     <li><Normaltekst><FormattedMessage id="krr-melding-kulepunkt3"/></Normaltekst></li>
                 </ul>
-                <Lenke href={this.props.intl.formatMessage({id: 'krr-melding-lenke-url'})}>
+                <Lenke href={difiLenke}>
                     <Normaltekst>
                         <FormattedMessage id="krr-melding-lenketekst"/>
                     </Normaltekst>
@@ -30,6 +31,6 @@ class KrrMelding extends React.Component<InjectedIntlProps> {
     }
 }
 
-export default injectIntl(KrrMelding);
+export default KrrMelding;
 
 

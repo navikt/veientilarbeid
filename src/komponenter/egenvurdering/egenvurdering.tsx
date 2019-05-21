@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
-import { injectIntl, FormattedMessage, InjectedIntlProps } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { seEgenvurdering, gaTilEgenvurdering } from '../../metrics';
 import { AppState } from '../../reducer';
 import { connect } from 'react-redux';
 import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe, selectOpprettetRegistreringDato } from '../../ducks/brukerregistrering';
 
 import './egenvurdering.less';
+import { behovsvurderingLenke } from '../../innhold/lenker';
 
 export const finnAntallTimerSidenRegistrering = (opprettetRegistreringsdato: Date): number => {
     const oneHourMs = 1000 * 60 * 60;
@@ -22,7 +23,7 @@ interface StateProps {
     opprettetRegistreringDato: Date;
 }
 
-type EgenvurderingProps = StateProps & InjectedIntlProps;
+type EgenvurderingProps = StateProps;
 
 class Egenvurdering extends React.Component<EgenvurderingProps> {
 
@@ -32,7 +33,7 @@ class Egenvurdering extends React.Component<EgenvurderingProps> {
 
     handleButtonClick = () => {
         gaTilEgenvurdering(finnAntallTimerSidenRegistrering(this.props.opprettetRegistreringDato), this.props.foreslattInnsatsgruppe);
-        window.location.href = this.props.intl.formatMessage({id: 'egenvurdering-lenke-url'});
+        window.location.href = behovsvurderingLenke;
     };
 
     render() {
@@ -60,4 +61,4 @@ const mapStateToProps = (state: AppState): StateProps => ({
 
 });
 
-export default connect(mapStateToProps) (injectIntl(Egenvurdering));
+export default connect(mapStateToProps)(Egenvurdering);

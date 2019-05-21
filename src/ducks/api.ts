@@ -7,7 +7,7 @@ import { Data as BrukerRegistreringData } from './brukerregistrering';
 import { Data as UlesteDialogerData } from './dialog';
 import { Data as EgenvurderingbesvarelseData } from './egenvurdering';
 import { FeatureToggles } from './feature-toggles';
-import { erMikrofrontend } from '../utils/app-state-utils';
+import { contextpathDittNav, erMikrofrontend } from '../utils/app-state-utils';
 
 export enum STATUS {
     OK = 'OK',
@@ -35,9 +35,9 @@ export const requestConfig: RequestInit = {
     }
 };
 
-const contextpath = erMikrofrontend() ? '/person/dittnav/veientilarbeid' : '';
+const contextpath = erMikrofrontend() ? contextpathDittNav : '';
 
-const contextpathFeature = erMikrofrontend() ? '/person/dittnav/veientilarbeid' : '/veientilarbeid';
+const contextpathFeature = erMikrofrontend() ? contextpathDittNav : '/veientilarbeid';
 
 export const VEILARBOPPFOLGING_URL = `${contextpath}/veilarboppfolging/api/oppfolging`,
     FEATURE_URL = `${contextpathFeature}/api/feature`,

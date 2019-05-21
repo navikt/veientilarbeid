@@ -9,8 +9,7 @@ import { antallUlesteDialoger } from '../../metrics';
 import DialogFill from './dialog-fill';
 import DialogLine from './dialog-line';
 import './dialog.less';
-
-export const DIALOG_URL = '/aktivitetsplan/dialog';
+import { dialogLenke } from '../../innhold/lenker';
 
 interface StateProps {
     antallUleste: number;
@@ -40,7 +39,7 @@ class Dialog extends React.Component<StateProps> {
 
         return (
             <LenkepanelBase
-                href={DIALOG_URL}
+                href={dialogLenke}
                 tittelProps="undertittel"
                 linkCreator={linkCreator}
                 border={true}

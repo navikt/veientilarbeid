@@ -5,6 +5,7 @@ import './okonomi-rad.less';
 import DagpengerBilde from './dagpenger';
 import NyRettTilSykepengerBilde from './ny-rett-til-sykepenger';
 import OkonomiskSosialhjelpBilde from './okonomisk-sosialhjelp';
+import { dagpengerLesmerLenke, sosialhjelpLenke, sykepengerLenke } from '../../innhold/lenker';
 
 const OkonomiRad = () => {
     return (
@@ -12,21 +13,21 @@ const OkonomiRad = () => {
             <OkonomiPanel
                 tittelId="okonomi-rad-stotte-arbeidsledig-tittel"
                 lenkeTekstId="okonomi-rad-stotte-arbeidsledig-lenke-tekst"
-                lenkeUrlId="okonomi-rad-stotte-arbeidsledig-lenke-url"
+                lenkeUrl={dagpengerLesmerLenke}
             >
                 <DagpengerBilde className="okonomi-panel--bilde blokk-s"/>
             </OkonomiPanel>
             <OkonomiPanel
                 tittelId="okonomi-rad-nodsituasjon-tittel"
                 lenkeTekstId="okonomi-rad-nodsituasjon-lenke-tekst"
-                lenkeUrlId="okonomi-rad-nodsituasjon-lenke-url"
+                lenkeUrl={sosialhjelpLenke}
             >
                 <OkonomiskSosialhjelpBilde className="okonomi-panel--bilde blokk-s"/>
             </OkonomiPanel>
             <OkonomiPanel
                 tittelId="okonomi-rad-sykepenger-tittel"
                 lenkeTekstId="okonomi-rad-sykepenger-lenke-tekst"
-                lenkeUrlId="okonomi-rad-sykepenger-lenke-url"
+                lenkeUrl={sykepengerLenke}
             >
                 <NyRettTilSykepengerBilde className="okonomi-panel--bilde blokk-s"/>
             </OkonomiPanel>
