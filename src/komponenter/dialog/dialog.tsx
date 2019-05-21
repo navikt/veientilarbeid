@@ -15,56 +15,55 @@ interface StateProps {
     antallUleste: number;
 }
 
-function Dialog({antallUleste}: StateProps) {
-    const firstRender = React.useRef(true);
+class Dialog extends React.Component<StateProps> {
 
-    React.useEffect(() => {
-        if (firstRender.current) {
-            antallUlesteDialoger(antallUleste);
-        }
-    });
+    componentDidMount() {
+        antallUlesteDialoger(this.props.antallUleste);
+    }
 
-    function byggDialogTekst() {
-        switch (antallUleste) {
+    byggDialogTekst() {
+        switch (this.props.antallUleste) {
             case 0:
                 return 'Ingen uleste dialoger';
             case 1:
-                return antallUleste.toString() + ' ulest dialog';
+                return this.props.antallUleste.toString() + ' ulest dialog';
             default:
-                return antallUleste.toString() + ' uleste dialoger';
+                return this.props.antallUleste.toString() + ' uleste dialoger';
         }
     }
 
-    const linkCreator = (props: {}) => {
-        return <a onClick={() => gaTilDialog(antallUleste)} {...props}/>;
-    };
+    render() {
+        const linkCreator = (props: {}) => {
+            return <a onClick={() => gaTilDialog(this.props.antallUleste)} {...props}/>;
+        };
 
-    return (
-        <LenkepanelBase
-            href={dialogLenke}
-            tittelProps="undertittel"
-            linkCreator={linkCreator}
-            border={true}
-            className="dialog"
-        >
-            <div className="lenkepanel__innhold">
-                <div className="lenkepanel__ikon">
-                    {antallUleste > 0 ?
-                        <DialogFill messagesCount={antallUleste}/> :
-                        <DialogLine/>
-                    }
+        return (
+            <LenkepanelBase
+                href={dialogLenke}
+                tittelProps="undertittel"
+                linkCreator={linkCreator}
+                border={true}
+                className="dialog"
+            >
+                <div className="lenkepanel__innhold">
+                    <div className="lenkepanel__ikon">
+                        {this.props.antallUleste > 0 ?
+                            <DialogFill messagesCount={this.props.antallUleste}/> :
+                            <DialogLine/>
+                        }
+                    </div>
+                    <div className="lenkepanel__tekst">
+                        <Undertittel>
+                            <FormattedMessage id="dialog"/>
+                        </Undertittel>
+                        <Normaltekst className="lenkepanel__ingress">
+                            {this.byggDialogTekst()}
+                        </Normaltekst>
+                    </div>
                 </div>
-                <div className="lenkepanel__tekst">
-                    <Undertittel>
-                        <FormattedMessage id="dialog"/>
-                    </Undertittel>
-                    <Normaltekst className="lenkepanel__ingress">
-                        {byggDialogTekst()}
-                    </Normaltekst>
-                </div>
-            </div>
-        </LenkepanelBase>
-    );
+            </LenkepanelBase>
+        );
+    }
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
