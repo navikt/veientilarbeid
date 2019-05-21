@@ -74,7 +74,7 @@ class DataProvider extends React.Component<Props> {
                 ventPa={ventPa}
                 betingelser={betingelser}
             >
-                {children}
+                {() => children}
             </Innholdslaster>
         );
     }

@@ -60,8 +60,8 @@ class Innholdslaster extends React.Component<InnholdslasterProps, Innholdslaster
         }
     }
 
-    renderChildren() {
-        const { avhengigheter, children } = this.props;
+    renderChildren(avhengigheter: DataElement[]) {
+        const { children } = this.props;
 
         if (children instanceof Function) {
             return children(avhengigheter);
@@ -76,11 +76,11 @@ class Innholdslaster extends React.Component<InnholdslasterProps, Innholdslaster
 
         if (alleLastet(avhengigheterFiltrert) && alleVentetPa(ventPa)) {
             // Alle avhengigheter lastet inn uten problemer og ventPa er ferdig (enten OK eller FEILET){
-            return this.renderChildren();
+            return this.renderChildren(avhengigheterFiltrert);
 
         } else if (!this.state.timeout && alleLastetEllerReloading(avhengigheterFiltrert)) {
             this.setTimer();
-            return this.renderChildren();
+            return this.renderChildren(avhengigheterFiltrert);
 
         } else if (noenHarFeil(avhengigheterFiltrert)) {
             this.clearTimer();
