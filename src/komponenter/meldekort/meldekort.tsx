@@ -2,7 +2,7 @@ import * as React from 'react';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { gaTilMeldekort } from '../../metrics';
 import EmailText from './email-text';
-import lenker from '../../innhold/lenker';
+import { meldekortLenke } from '../../innhold/lenker';
 
 class Meldekort extends React.Component {
     render() {
@@ -11,7 +11,7 @@ class Meldekort extends React.Component {
 
         return (
             <LenkepanelMedIkon
-                href={lenker.meldekort}
+                href={meldekortLenke}
                 className="meldekort"
                 alt=""
                 onClick={gaTilMeldekort}

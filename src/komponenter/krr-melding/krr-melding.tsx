@@ -4,7 +4,7 @@ import Lenke from 'nav-frontend-lenker';
 import { FormattedMessage } from 'react-intl';
 import { Normaltekst } from 'nav-frontend-typografi';
 import './krr-melding.less';
-import lenker from '../../innhold/lenker';
+import { difiLenke } from '../../innhold/lenker';
 
 class KrrMelding extends React.Component<{}> {
     render() {
@@ -21,7 +21,7 @@ class KrrMelding extends React.Component<{}> {
                     <li><Normaltekst><FormattedMessage id="krr-melding-kulepunkt2"/></Normaltekst></li>
                     <li><Normaltekst><FormattedMessage id="krr-melding-kulepunkt3"/></Normaltekst></li>
                 </ul>
-                <Lenke href={lenker.difi}>
+                <Lenke href={difiLenke}>
                     <Normaltekst>
                         <FormattedMessage id="krr-melding-lenketekst"/>
                     </Normaltekst>

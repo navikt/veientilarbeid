@@ -3,7 +3,7 @@ import { parse } from 'query-string';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import DesignMug from './design-mug';
 import { gaTilAktivitetsplan } from '../../metrics';
-import lenker from '../../innhold/lenker';
+import { aktivitetsplanLenke } from '../../innhold/lenker';
 
 interface State {
     nyRegistrering: boolean;
@@ -26,7 +26,7 @@ class Aktivitetsplan extends React.PureComponent<AktivitetsplanProps, State> {
 
         return (
             <LenkepanelMedIkon
-                href={lenker.aktivitetsplan}
+                href={aktivitetsplanLenke}
                 alt=""
                 onClick={gaTilAktivitetsplan}
                 overskrift={overskrift}

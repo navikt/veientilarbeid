@@ -2,7 +2,7 @@ import * as React from 'react';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { gaTilDittSykefravaer } from '../../metrics';
 import Plaster from './plaster';
-import lenker from '../../innhold/lenker';
+import { sykefravaerLenke } from '../../innhold/lenker';
 
 class DittSykefravaer extends React.Component {
     render() {
@@ -11,7 +11,7 @@ class DittSykefravaer extends React.Component {
 
         return (
             <LenkepanelMedIkon
-                href={lenker.sykefravaer}
+                href={sykefravaerLenke}
                 className="sykefravaer"
                 alt=""
                 onClick={gaTilDittSykefravaer}

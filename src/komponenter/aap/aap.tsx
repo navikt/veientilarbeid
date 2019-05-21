@@ -9,7 +9,7 @@ import { FormattedMessage, InjectedIntlProps, injectIntl } from 'react-intl';
 import { Normaltekst, Systemtittel, Undertittel } from 'nav-frontend-typografi';
 
 import './aap.less';
-import lenker from '../../innhold/lenker';
+import { aapSoknadLenke } from '../../innhold/lenker';
 
 interface AapRadState {
     visAap: boolean;
@@ -80,7 +80,7 @@ class Aap extends React.Component<InjectedIntlProps, AapRadState> {
                     <SoketidspunktInnhold/>
                 </Ekspanderbartpanel>
 
-                <Lenke className="aap--til-soknad-knapp" href={lenker.aap_soknad}>
+                <Lenke className="aap--til-soknad-knapp" href={aapSoknadLenke}>
                     <Undertittel tag="span">
                         <FormattedMessage id="aap-rad-til-soknad-knapp-tekst"/>
                         <HoyreChevron type={'høyre'} />

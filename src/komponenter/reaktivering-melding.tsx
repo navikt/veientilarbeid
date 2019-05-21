@@ -4,7 +4,7 @@ import { InjectedIntlProps, injectIntl } from 'react-intl';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { AppState } from '../reducer';
-import lenker from '../innhold/lenker';
+import { reaktiveringLenke } from '../innhold/lenker';
 
 interface StateProps {
     kanReaktiveres: boolean;
@@ -24,7 +24,7 @@ class ReaktiveringMelding extends React.Component<Props> {
                 <AlertStripeAdvarsel>
                     <Normaltekst>
                         {intl.messages['reaktivering-melding-tekst']}&ensp;
-                        <a href={lenker.reaktivering} className="lenke">
+                        <a href={reaktiveringLenke} className="lenke">
                             {intl.messages['reaktivering-melding-lenke-tekst']}
                         </a>
                     </Normaltekst>

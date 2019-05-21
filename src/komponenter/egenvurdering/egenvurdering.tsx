@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe, selectOpprettetRegistreringDato } from '../../ducks/brukerregistrering';
 
 import './egenvurdering.less';
-import lenker from '../../innhold/lenker';
+import { behovsvurderingLenke } from '../../innhold/lenker';
 
 export const finnAntallTimerSidenRegistrering = (opprettetRegistreringsdato: Date): number => {
     const oneHourMs = 1000 * 60 * 60;
@@ -33,7 +33,7 @@ class Egenvurdering extends React.Component<EgenvurderingProps> {
 
     handleButtonClick = () => {
         gaTilEgenvurdering(finnAntallTimerSidenRegistrering(this.props.opprettetRegistreringDato), this.props.foreslattInnsatsgruppe);
-        window.location.href = lenker.behovsvurdering;
+        window.location.href = behovsvurderingLenke;
     };
 
     render() {

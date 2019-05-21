@@ -9,7 +9,7 @@ import { antallUlesteDialoger } from '../../metrics';
 import DialogFill from './dialog-fill';
 import DialogLine from './dialog-line';
 import './dialog.less';
-import lenker from '../../innhold/lenker';
+import { dialogLenke } from '../../innhold/lenker';
 
 interface StateProps {
     antallUleste: number;
@@ -39,7 +39,7 @@ class Dialog extends React.Component<StateProps> {
 
         return (
             <LenkepanelBase
-                href={lenker.dialog}
+                href={dialogLenke}
                 tittelProps="undertittel"
                 linkCreator={linkCreator}
                 border={true}

@@ -4,7 +4,7 @@ import { gaTilTiltaksinfo, seTiltaksinfo } from '../../metrics';
 import TiltakinfoIkon from './tiltakinfoIkon';
 
 import './tiltakinfo.less';
-import lenker from '../../innhold/lenker';
+import { tiltakinfoLenke } from '../../innhold/lenker';
 
 class Tiltakinfo extends React.Component {
 
@@ -18,7 +18,7 @@ class Tiltakinfo extends React.Component {
 
         return (
             <LenkepanelMedIkon
-                href={lenker.tiltakinfo}
+                href={tiltakinfoLenke}
                 className="tiltakinfo"
                 alt=""
                 onClick={gaTilTiltaksinfo}

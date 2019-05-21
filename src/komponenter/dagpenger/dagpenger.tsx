@@ -6,7 +6,7 @@ import { klikkPaSoknadDagpenger, visInfoOmDagpenger } from '../../metrics';
 import { visRettTilDagPenger } from '../../utils/utils';
 
 import './dagpenger.less';
-import lenker from '../../innhold/lenker';
+import { dagpengerSoknadLenke } from '../../innhold/lenker';
 
 class Dagpenger extends React.Component<{}> {
 
@@ -23,7 +23,7 @@ class Dagpenger extends React.Component<{}> {
 
     handleButtonClick = () => {
         klikkPaSoknadDagpenger(visRettTilDagPenger(location.search));
-        window.location.href = lenker.dagpenger_soknad;
+        window.location.href = dagpengerSoknadLenke;
     }
 
     scrollTilInformasjonsmodul() {
