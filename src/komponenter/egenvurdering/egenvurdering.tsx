@@ -32,7 +32,9 @@ class Egenvurdering extends React.Component<EgenvurderingProps> {
     }
 
     handleButtonClick = () => {
-        gaTilEgenvurdering(antallTimerSidenRegistrering(this.props.opprettetRegistreringDato), this.props.foreslattInnsatsgruppe);
+        const { opprettetRegistreringDato, foreslattInnsatsgruppe } = this.props;
+
+        gaTilEgenvurdering(antallTimerSidenRegistrering(opprettetRegistreringDato), foreslattInnsatsgruppe);
         window.location.href = behovsvurderingLenke;
     };
 
