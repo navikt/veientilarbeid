@@ -14,7 +14,7 @@ export const antallTimerMellomAOgBRundetOpp = (a: Date, b: Date): number => {
     return Math.ceil((b.getTime() - a.getTime()) / 36e5);
 };
 
-export const antallTimerSidenRegistrering = (registreringsDato: Date) => {
+const antallTimerSidenRegistrering = (registreringsDato: Date) => {
     return antallTimerMellomAOgBRundetOpp(registreringsDato, new Date());
 };
 
