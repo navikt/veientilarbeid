@@ -13,6 +13,8 @@ Veien til arbeid
 * Clone og start `veilarbregistrering` https://github.com/navikt/veilarbregistrering
 * Åpne appen i `localhost:8080`
 
+For å gå over til demovisning gå til [/demo/index.html](http://localhost:3002/demo/index.html)
+
 # Henvendelser
 
 Spørsmål knyttet til koden kan rettes mot:
