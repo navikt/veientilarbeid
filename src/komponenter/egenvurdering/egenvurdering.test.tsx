@@ -1,4 +1,4 @@
-import { finnAntallTimerSidenRegistrering } from './egenvurdering';
+import { antallTimerMellomAOgBRundetOpp } from './egenvurdering';
 
 describe('finnAntallTimerSidenRegistrering', () => {
     let naatid: Date;
@@ -7,57 +7,48 @@ describe('finnAntallTimerSidenRegistrering', () => {
         naatid = new Date();
     });
 
-    it('skal returnere 1 time hvis det er 10 minutter siden registrering ', () => {
-        const registreringstidspunktMs = naatid.setMinutes(naatid.getMinutes() - 10);
-        const registreringstidspunkt = new Date(registreringstidspunktMs);
-        const expected = 1;
-        const timer = finnAntallTimerSidenRegistrering(registreringstidspunkt);
+    it('skal returnere 1 time hvis registreringstidspunkt er for 40 sekunder siden', () => {
+        const naaMS = naatid.getTime();
+        const registreringstidspunktMs = naaMS - (40 * 1e3);
 
-        expect(timer).toEqual(expected);
+        const timerBeregnet = antallTimerMellomAOgBRundetOpp(new Date(registreringstidspunktMs), new Date(naaMS));
+
+        expect(timerBeregnet).toEqual(1);
     });
 
-    it('skal returnere 1 time hvis det er 30 minutter siden registrering', () => {
-        const registreringstidspunktMs = naatid.setMinutes(naatid.getMinutes() - 30);
-        const registreringstidspunkt = new Date(registreringstidspunktMs);
-        const expected = 1;
-        const timer = finnAntallTimerSidenRegistrering(registreringstidspunkt);
+    it('skal returnere 1 time hvis registreringstidspunkt er for 10 minutter siden', () => {
+        const naaMS = naatid.getTime();
+        const registreringstidspunktMs = naaMS - (10 * 6e4);
 
-        expect(timer).toEqual(expected);
+        const timerBeregnet = antallTimerMellomAOgBRundetOpp(new Date(registreringstidspunktMs), new Date(naaMS));
+
+        expect(timerBeregnet).toEqual(1);
     });
 
-    it('skal returnere 1 time hvis det er 60 minutter siden registrering', () => {
-        const registreringstidspunktMs = naatid.setMinutes(naatid.getMinutes() - 60);
-        const registreringstidspunkt = new Date(registreringstidspunktMs);
-        const expected = 1;
-        const timer = finnAntallTimerSidenRegistrering(registreringstidspunkt);
+    it('skal returnere 1 time hvis registreringstidspunkt er for 59 minutter siden', () => {
+        const naaMS = naatid.getTime();
+        const registreringstidspunktMs = naaMS - (59 * 6e4);
 
-        expect(timer).toEqual(expected);
+        const timerBeregnet = antallTimerMellomAOgBRundetOpp(new Date(registreringstidspunktMs), new Date(naaMS));
+
+        expect(timerBeregnet).toEqual(1);
     });
 
-    it('skal returnere 2 timer hvis det er 61 minutter siden registrering', () => {
-        const registreringstidspunktMs = naatid.setMinutes(naatid.getMinutes() - 61);
-        const registreringstidspunkt = new Date(registreringstidspunktMs);
-        const expected = 2;
-        const timer = finnAntallTimerSidenRegistrering(registreringstidspunkt);
+    it('skal returnere 2 timer hvis registreringstidspunkt er for 61 minutter siden', () => {
+        const naaMS = naatid.getTime();
+        const registreringstidspunktMs = naaMS - (61 * 6e4);
 
-        expect(timer).toEqual(expected);
+        const timerBeregnet = antallTimerMellomAOgBRundetOpp(new Date(registreringstidspunktMs), new Date(naaMS));
+
+        expect(timerBeregnet).toEqual(2);
     });
 
-    it('skal returnere 2 timer hvis det er to timer siden registrering', () => {
-        const registreringstidspunktMs = naatid.setMinutes(naatid.getMinutes() - 120);
-        const registreringstidspunkt = new Date(registreringstidspunktMs);
-        const expected = 2;
-        const timer = finnAntallTimerSidenRegistrering(registreringstidspunkt);
+    it('skal returnere 24 timer hvis registreringstidspunkt er for 23 timer og 30 minutter siden', () => {
+        const naaMS = naatid.getTime();
+        const registreringstidspunktMs = naaMS - (23 * 36e5 + 30 * 6e4);
 
-        expect(timer).toEqual(expected);
-    });
+        const timerBeregnet = antallTimerMellomAOgBRundetOpp(new Date(registreringstidspunktMs), new Date(naaMS));
 
-    it('skal returnere 24 timer hvis det er 1 dag (24 timer) siden registrering', () => {
-        const registreringstidspunktMs = naatid.setMinutes(naatid.getMinutes() - 1440);
-        const registreringstidspunkt = new Date(registreringstidspunktMs);
-        const expected = 24;
-        const timer = finnAntallTimerSidenRegistrering(registreringstidspunkt);
-
-        expect(timer).toEqual(expected);
+        expect(timerBeregnet).toEqual(24);
     });
 });
