@@ -1,6 +1,6 @@
 import { fetchToJson } from './api-utils';
 import { Data as OppfolgingData } from './oppfolging';
-import { Data as ServicegruppeData } from './servicegruppe';
+import { Data as InnsatsgruppeData } from './innsatsgruppe';
 import { Data as JobbsokerbesvarelseData } from './jobbsokerbesvarelse';
 import { Data as SykmeldtInfoData } from './sykmeldt-info';
 import { Data as BrukerRegistreringData } from './brukerregistrering';
@@ -41,7 +41,7 @@ const contextpathFeature = erMikrofrontend() ? contextpathDittNav : '/veientilar
 
 export const VEILARBOPPFOLGING_URL = `${contextpath}/veilarboppfolging/api/oppfolging`,
     FEATURE_URL = `${contextpathFeature}/api/feature`,
-    SERVICEGRUPPE_URL = `${contextpath}/veilarbtiltakinfo/api/oppfolgingsstatus`,
+    INNSATSGRUPPE_URL = `${contextpath}/veilarbtiltakinfo/api/oppfolgingsstatus`,
     STARTREGISTRERING_URL = `${contextpath}/veilarbregistrering/api/startregistrering`,
     BRUKERREGISTRERING_URL = `${contextpath}/veilarbregistrering/api/registrering`,
     JOBBSOKERBESVARELSE_URL = `${contextpath}/veilarbjobbsokerkompetanse/api/hent`,
@@ -62,8 +62,8 @@ export function hentOppfolgingFetch(): Promise<OppfolgingData> {
     return fetchToJson(VEILARBOPPFOLGING_URL, requestConfig);
 }
 
-export function hentServicegruppeFetch(): Promise<ServicegruppeData> {
-    return fetchToJson(SERVICEGRUPPE_URL, requestConfig);
+export function hentInnsatsgruppeFetch(): Promise<InnsatsgruppeData> {
+    return fetchToJson(INNSATSGRUPPE_URL, requestConfig);
 }
 
 export function hentJobbsokerbesvarelseFetch(): Promise<JobbsokerbesvarelseData> {

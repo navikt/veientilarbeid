@@ -1,7 +1,7 @@
 import { JSONObject } from 'yet-another-fetch-mock';
 
 export enum DemoData {
-    SERVICEGRUPPE = 'innsatsgruppe',
+    INNSATSGRUPPE = 'innsatsgruppe',
     SYKMELDT_MED_ARBEIDSGIVER = 'sykmeldtMedArbeidsGiver',
     BRUKER_REGISTRERING = 'brukerRegistrering',
     JSK = 'jsk',
@@ -22,12 +22,12 @@ const slettFraLocalStorage = (key: string): void => {
     window.localStorage.removeItem(key);
 };
 
-export const hentServicegruppe = (): string => {
-    return hentFraLocalStorage(DemoData.SERVICEGRUPPE) || 'IKVAL';
+export const hentInnsatsgruppe = (): string => {
+    return hentFraLocalStorage(DemoData.INNSATSGRUPPE) || 'IKVAL';
 };
 
-export const settServicegruppe = (value: string) => {
-    settILocalStorage(DemoData.SERVICEGRUPPE, value);
+export const settInnsatsgruppe = (value: string) => {
+    settILocalStorage(DemoData.INNSATSGRUPPE, value);
 };
 
 export const hentSykmeldtMedArbeidsgiver = (): boolean => {

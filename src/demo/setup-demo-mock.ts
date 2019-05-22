@@ -1,7 +1,7 @@
 import {
     FEATURE_URL,
     JOBBSOKERBESVARELSE_URL,
-    SERVICEGRUPPE_URL,
+    INNSATSGRUPPE_URL,
     STARTREGISTRERING_URL,
     BRUKERREGISTRERING_URL,
     VEILARBOPPFOLGING_URL,
@@ -12,7 +12,7 @@ import {
 import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 import {
     hentJsk, hentReservasjonKRR,
-    hentServicegruppe,
+    hentInnsatsgruppe,
     hentSykmeldtMedArbeidsgiver,
     hentUlesteDialoger, hentEgenvurdering
 } from './demo-state';
@@ -44,8 +44,8 @@ fetchMock.get(VEILARBOPPFOLGING_URL, {
     reservasjonKRR: hentReservasjonKRR(),
 });
 
-fetchMock.get(SERVICEGRUPPE_URL, {
-    servicegruppe: hentServicegruppe()
+fetchMock.get(INNSATSGRUPPE_URL, {
+    innsatsgruppe: hentInnsatsgruppe()
 });
 
 fetchMock.get(STARTREGISTRERING_URL, {

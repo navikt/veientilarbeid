@@ -6,7 +6,7 @@ import {
     DemoData, hentJsk, settJsk, slettJsk, hentEgenvurdering, settEgenvurdering, slettEgenvurdering,
     hentSykmeldtMedArbeidsgiver, settSykmeldtMedArbeidsgiver,
     hentUlesteDialoger, settUlesteDialoger,
-    hentServicegruppe, settServicegruppe, settReservasjonKRR, hentReservasjonKRR,
+    hentInnsatsgruppe, settInnsatsgruppe, settReservasjonKRR, hentReservasjonKRR,
 } from './demo-state';
 
 import './demo-dashboard.less';
@@ -38,7 +38,7 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
         const {messages} = this.props.intl;
 
         const handleChangeServicegruppe = (e: React.ChangeEvent<HTMLSelectElement>) => {
-            settServicegruppe(e.target.value);
+            settInnsatsgruppe(e.target.value);
             window.location.reload();
         };
 
@@ -81,7 +81,7 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
             window.location.reload();
         };
 
-        const servicegrupper = {
+        const innsatsgrupper = {
             'IKVAL': 'Standard',
             'BATT': 'Spesielt tilpasset',
             'BFORM': 'Situasjonsbestemt',
@@ -118,15 +118,15 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
                         label={messages['demo-velgservicegruppe']}
                         onChange={handleChangeServicegruppe}
                         id="velg-bruker"
-                        defaultValue={hentServicegruppe()}
+                        defaultValue={hentInnsatsgruppe()}
                     >
                         {
-                            Object.keys(servicegrupper).map((gruppe: string) =>
+                            Object.keys(innsatsgrupper).map((gruppe: string) =>
                                 <option
                                     key={gruppe}
                                     value={gruppe}
                                 >
-                                    {servicegrupper[gruppe]}
+                                    {innsatsgrupper[gruppe]}
                                 </option>
                             )
                         }
