@@ -10,12 +10,12 @@ import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe, selectOpprettetRe
 import './egenvurdering.less';
 import { behovsvurderingLenke } from '../../innhold/lenker';
 
-export const finnAntallTimerSidenRegistrering = (opprettetRegistreringsdato: Date): number => {
-    const oneHourMs = 1000 * 60 * 60;
-    const opprettetDatoMs = opprettetRegistreringsdato.getTime();
-    const naatidMs = Date.now();
-    const differenceMs = naatidMs - opprettetDatoMs;
-    return Math.ceil(differenceMs / oneHourMs);
+export const antallTimerMellomAOgBRundetOpp = (a: Date, b: Date): number => {
+    return Math.ceil((b.getTime() - a.getTime()) / 36e5);
+};
+
+const antallTimerSidenRegistrering = (registreringsDato: Date) => {
+    return antallTimerMellomAOgBRundetOpp(registreringsDato, new Date());
 };
 
 interface StateProps {
@@ -32,7 +32,9 @@ class Egenvurdering extends React.Component<EgenvurderingProps> {
     }
 
     handleButtonClick = () => {
-        gaTilEgenvurdering(finnAntallTimerSidenRegistrering(this.props.opprettetRegistreringDato), this.props.foreslattInnsatsgruppe);
+        const { opprettetRegistreringDato, foreslattInnsatsgruppe } = this.props;
+
+        gaTilEgenvurdering(antallTimerSidenRegistrering(opprettetRegistreringDato), foreslattInnsatsgruppe);
         window.location.href = behovsvurderingLenke;
     };
 
