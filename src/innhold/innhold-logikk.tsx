@@ -52,6 +52,7 @@ class InnholdLogikk extends React.Component<StateProps> {
         const visRessurslenker = !(tilbakeTilSammeArbeidsgiver && erSykmeldtMedArbeidsgiver);
 
         const skalViseEgenvurderingLenke = (
+            servicegruppe.data.servicegruppe === Servicegruppe.IVURD &&
             !harEgenvurderingbesvarelse &&
             opprettetRegistreringDato >= LANSERINGSDATO &&
             !reservasjonKRR &&
