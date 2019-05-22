@@ -14,6 +14,7 @@ import RessurslenkerJobbsok from '../komponenter/ressurslenker-jobbsok/ressursle
 import Egenvurdering from '../komponenter/egenvurdering/egenvurdering';
 import './innhold.less';
 import KrrMelding from '../komponenter/krr-melding/krr-melding';
+import { erMikrofrontend } from '../utils/app-state-utils';
 
 interface OwnProps {
     erSykmeldtMedArbeidsgiver: boolean;
@@ -27,7 +28,7 @@ export default ({erSykmeldtMedArbeidsgiver, skalViseKrrMelding, skalViseEgenvurd
     // TODO Fjerne banner (inkl. brødsmuler)
     return (
         <>
-            {erSykmeldtMedArbeidsgiver ? <Banner type="sykmeldt"/> : <Banner type="ordinaer"/>}
+            {erMikrofrontend() ? null : (erSykmeldtMedArbeidsgiver ? <Banner type="sykmeldt"/> : <Banner type="ordinaer"/>)}
 
             <Rad>
                 <ReaktiveringMelding/>
