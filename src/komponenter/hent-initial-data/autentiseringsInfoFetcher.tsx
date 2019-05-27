@@ -18,9 +18,9 @@ export enum InnloggingsNiva {
     UKJENT = 'Ukjent',
 }
 
-const InnloggingsInfoFetcher = ({children}: AutentiseringsInfoFetcher) => {
+export const InnloggingsInfoContext = React.createContext({});
 
-    const InnloggingsInfoContext = React.createContext({});
+const InnloggingsInfoFetcher = ({children}: AutentiseringsInfoFetcher) => {
 
     interface Data {
         isLoggedIn: boolean;
