@@ -8,6 +8,7 @@ import Innhold from './innhold/innhold-logikk';
 import SjekkOppfolging from "./komponenter/hent-initial-data/sjekk-oppfolging";
 import OppfolgingBrukerregistreringProvider
     from './komponenter/hent-initial-data/oppfolging-brukerregistrering-provider';
+import AutentiseringsInfoFetcher from './komponenter/hent-initial-data/autentiseringsInfoFetcher';
 
 const store = getStore();
 
@@ -17,13 +18,15 @@ class App extends React.Component {
             <Provider store={store}>
                 <IntlProvider>
                     <FeatureToggleProvider>
-                        <OppfolgingBrukerregistreringProvider>
-                            <SjekkOppfolging>
-                                <DataProvider>
-                                    <Innhold/>
-                                </DataProvider>
-                            </SjekkOppfolging>
-                        </OppfolgingBrukerregistreringProvider>
+                        <AutentiseringsInfoFetcher>
+                            <OppfolgingBrukerregistreringProvider>
+                                <SjekkOppfolging>
+                                    <DataProvider>
+                                        <Innhold/>
+                                    </DataProvider>
+                                </SjekkOppfolging>
+                            </OppfolgingBrukerregistreringProvider>
+                        </AutentiseringsInfoFetcher>
                     </FeatureToggleProvider>
                 </IntlProvider>
             </Provider>
