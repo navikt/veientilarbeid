@@ -23,29 +23,22 @@ interface DispatchProps {
 
 type OppfolgingProviderProps = OwnProps & DispatchProps & StateProps;
 
-class OppfolgingBrukerregistreringProvider extends React.Component<OppfolgingProviderProps> {
-    constructor(props: OppfolgingProviderProps) {
-        super(props);
-    }
+const OppfolgingBrukerregistreringProvider = ({oppfolging, brukerRegistering, hentOppfolging, hentBrukerRegistrering, children}: OppfolgingProviderProps) => {
+    React.useEffect(() => {
+        hentOppfolging();
+        hentBrukerRegistrering();
+    }, []);
 
-    componentDidMount() {
-        this.props.hentOppfolging();
-        this.props.hentBrukerRegistrering();
-    }
-
-    render() {
-        const {oppfolging, brukerRegistering} = this.props;
-        return (
-            <Innholdslaster
-                feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse"/>}
-                storrelse="XXL"
-                avhengigheter={[oppfolging, brukerRegistering]}
-            >
-                {this.props.children}
-            </Innholdslaster>
-        );
-    }
-}
+    return (
+        <Innholdslaster
+            feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse"/>}
+            storrelse="XXL"
+            avhengigheter={[oppfolging, brukerRegistering]}
+        >
+            {children}
+        </Innholdslaster>
+    );
+};
 
 const mapStateToProps = (state: AppState): StateProps => ({
     oppfolging: state.oppfolging,
