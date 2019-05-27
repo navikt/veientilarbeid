@@ -1,4 +1,5 @@
 import { JSONObject } from 'yet-another-fetch-mock';
+import { InnloggingsNiva } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
 
 export enum DemoData {
     SERVICEGRUPPE = 'innsatsgruppe',
@@ -8,6 +9,7 @@ export enum DemoData {
     ULESTE_DIALOGER = 'ulesteDialoger',
     RESERVASJON_KRR = 'reservasjonKRR',
     EGENVURDERING = 'egenvurdering',
+    AUTENTISERINGS_INFO = 'autentiseringsInfo',
 }
 
 export const hentFraLocalStorage = (key: string): string | null => {
@@ -78,4 +80,23 @@ export const settReservasjonKRR = (value: string) => {
 
 export const hentReservasjonKRR = (): boolean => {
     return hentFraLocalStorage(DemoData.RESERVASJON_KRR) === 'true';
+};
+
+export const settAutentiseringsInfo = () => {
+    settILocalStorage(DemoData.AUTENTISERINGS_INFO, JSON.stringify({
+        securityLevel: InnloggingsNiva.LEVEL_3,
+        isLoggedIn: true,
+    }));
+};
+
+export const hentAutentiseringsInfo = (): JSONObject => {
+    const verdi = hentFraLocalStorage(DemoData.AUTENTISERINGS_INFO);
+    return verdi ? JSON.parse(verdi) : {
+        securityLevel: InnloggingsNiva.LEVEL_4,
+        isLoggedIn: true,
+    };
+};
+
+export const slettAutentiseringsInfo = () => {
+    slettFraLocalStorage(DemoData.AUTENTISERINGS_INFO);
 };

@@ -29,7 +29,7 @@ const initialState: InnloggingsInfo = {
 
 export const InnloggingsInfoContext = React.createContext(initialState);
 
-interface Data {
+export interface Data {
     isLoggedIn: boolean;
     securityLevel: string;
 }
