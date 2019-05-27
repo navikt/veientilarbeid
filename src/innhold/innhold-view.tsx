@@ -15,6 +15,7 @@ import Egenvurdering from '../komponenter/egenvurdering/egenvurdering';
 import './innhold.less';
 import KrrMelding from '../komponenter/krr-melding/krr-melding';
 import { erMikrofrontend } from '../utils/app-state-utils';
+import { InnloggingsInfoContext } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
 
 interface OwnProps {
     erSykmeldtMedArbeidsgiver: boolean;
@@ -26,6 +27,10 @@ interface OwnProps {
 
 export default ({erSykmeldtMedArbeidsgiver, skalViseKrrMelding, skalViseEgenvurderingLenke, visRessurslenker, skalViseTiltaksinfoLenke}: OwnProps) => {
     // TODO Fjerne banner (inkl. brødsmuler)
+
+    const value = React.useContext(InnloggingsInfoContext);
+    console.log(value);
+
     return (
         <>
             {erMikrofrontend() ? null : (erSykmeldtMedArbeidsgiver ? <Banner type="sykmeldt"/> : <Banner type="ordinaer"/>)}
