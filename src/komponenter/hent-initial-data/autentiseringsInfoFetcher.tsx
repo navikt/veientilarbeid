@@ -46,8 +46,18 @@ const InnloggingsInfoFetcher = ({children}: AutentiseringsInfoFetcher) => {
 
     React.useEffect(() => {
         const fetchData = async () => {
-            const data: Data = await fetchToJson(`${contextpath}${AUTH_API}`, requestConfig);
-            setState({data, status: STATUS.OK});
+            try {
+                const data: Data = await fetchToJson(`${contextpath}${AUTH_API}`, requestConfig);
+                setState({data, status: STATUS.OK});
+            } catch (error) {
+                if (error.response) {
+                    error.response.text().then(() => {
+                        setState({...state, status: STATUS.ERROR});
+                    });
+                } else {
+                    setState({...state, status: STATUS.ERROR});
+                }
+            }
         };
 
         setState({...state, status: STATUS.PENDING});
