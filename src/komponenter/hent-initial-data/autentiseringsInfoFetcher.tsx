@@ -3,6 +3,7 @@ import Innholdslaster from '../innholdslaster/innholdslaster';
 import Feilmelding from '../feilmeldinger/feilmelding';
 import { fetchToJson } from '../../ducks/api-utils';
 import { DataElement, requestConfig, STATUS } from '../../ducks/api';
+import { contextpathDittNav, erMikrofrontend } from '../../utils/app-state-utils';
 
 interface AutentiseringsInfoFetcher {
     children: React.ReactElement<any>;
@@ -41,9 +42,11 @@ const InnloggingsInfoFetcher = ({children}: AutentiseringsInfoFetcher) => {
 
     const [state, setState] = React.useState(initialState);
 
+    const contextpath = erMikrofrontend() ? contextpathDittNav : '';
+
     React.useEffect(() => {
         const fetchData = async () => {
-            const data: Data = await fetchToJson(AUTH_API, requestConfig);
+            const data: Data = await fetchToJson(`${contextpath}${AUTH_API}`, requestConfig);
             setState({data, status: STATUS.OK});
         };
 
