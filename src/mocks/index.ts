@@ -1,7 +1,7 @@
 import oppfolgingResponse from './oppfolging-mock';
 import {
     FEATURE_URL, JOBBSOKERBESVARELSE_URL, SERVICEGRUPPE_URL, STARTREGISTRERING_URL, VEILARBOPPFOLGING_URL,
-    ULESTEDIALOGER_URL, BRUKERREGISTRERING_URL, EGENVURDERINGBESVARELSE_URL
+    ULESTEDIALOGER_URL, BRUKERREGISTRERING_URL, EGENVURDERINGBESVARELSE_URL, MOTESTOTTE_URL
 } from '../ducks/api';
 import servicegruppeResponse from './servicegruppe-mock';
 import sykmeldtInfoResponse from './sykmeldt-info-mock';
@@ -11,7 +11,7 @@ import brukerRegistreringResponse from './brukerregistrering-mock';
 import egenvurderingbesvarelseResponse from './egenvurderingbesvarelse-mock';
 import authResponse from './auth-mock';
 
-import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
+import FetchMock, {Middleware, MiddlewareUtils, ResponseUtils} from 'yet-another-fetch-mock';
 import { AUTH_API } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
 
 const loggingMiddleware: Middleware = (request, response) => {
@@ -44,5 +44,6 @@ fetchMock.get(BRUKERREGISTRERING_URL, brukerRegistreringResponse);
 
 fetchMock.get(EGENVURDERINGBESVARELSE_URL, egenvurderingbesvarelseResponse);
 // fetchMock.get(EGENVURDERINGBESVARELSE_URL, ResponseUtils.statusCode(204));
+fetchMock.get(MOTESTOTTE_URL, ResponseUtils.statusCode(204));
 
 fetchMock.get(AUTH_API, authResponse);

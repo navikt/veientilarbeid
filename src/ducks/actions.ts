@@ -6,6 +6,7 @@ import { Data as BrukerRegistreringData } from './brukerregistrering';
 import { Data as UlesteDialogerData } from './dialog';
 import { FeatureToggles } from './feature-toggles';
 import { Data as EgenvurderingbesvarelseData } from './egenvurdering';
+import { Data as MotestottebesvarelseData } from './motestotte';
 
 export enum ActionType {
     FEATURE_TOGGLES_PENDING = 'FEATURE_TOGGLES_PENDING',
@@ -32,6 +33,9 @@ export enum ActionType {
     HENT_EGENVURDERINGBESVARELSE_OK = 'HENT_EGENVURDERINGBESVARELSE_OK',
     HENT_EGENVURDERINGBESVARELSE_PENDING = 'HENT_EGENVURDERINGBESVARELSE_PENDING',
     HENT_EGENVURDERINGBESVARELSE_FEILET = 'HENT_EGENVURDERINGBESVARELSE_FEILET',
+    HENT_MOTESTOTTEBESVARELSE_OK = 'HENT_MOTESTOTTEBESVARELSE_OK',
+    HENT_MOTESTOTTEBESVARELSE_PENDING = 'HENT_MOTESTOTTEBESVARELSE_PENDING',
+    HENT_MOTESTOTTEBESVARELSE_FEILET = 'HENT_MOTESTOTTEBESVARELSE_FEILET',
 }
 
 export interface FeatureTogglesOKAction {
@@ -127,7 +131,7 @@ export interface HentUlesteDialogerFEILETAction {
 
 export interface HentEgenvurderingbesvarelseOKAction {
     type: ActionType.HENT_EGENVURDERINGBESVARELSE_OK;
-    data: EgenvurderingbesvarelseData;
+    data: MotestottebesvarelseData;
 }
 
 export interface HentEgenvurderingbesvarelsePENDINGAction {
@@ -137,6 +141,20 @@ export interface HentEgenvurderingbesvarelsePENDINGAction {
 export interface HentEgenvurderingbesvarelseFEILETAction {
     type: ActionType.HENT_EGENVURDERINGBESVARELSE_FEILET;
 }
+
+export interface HentMotestottebesvarelseOKAction {
+    type: ActionType.HENT_MOTESTOTTEBESVARELSE_OK;
+    data: EgenvurderingbesvarelseData;
+}
+
+export interface HentMotestottebesvarelsePENDINGAction {
+    type: ActionType.HENT_MOTESTOTTEBESVARELSE_PENDING;
+}
+
+export interface HentMotestottebesvarelseFEILETAction {
+    type: ActionType.HENT_MOTESTOTTEBESVARELSE_FEILET;
+}
+
 
 export type Handling = FeatureTogglesOKAction
     | FeatureTogglesPENDINGAction
@@ -161,4 +179,7 @@ export type Handling = FeatureTogglesOKAction
     | HentBrukerRegistreringFEILETAction
     | HentEgenvurderingbesvarelseOKAction
     | HentEgenvurderingbesvarelsePENDINGAction
-    | HentEgenvurderingbesvarelseFEILETAction;
+    | HentEgenvurderingbesvarelseFEILETAction
+    | HentMotestottebesvarelseOKAction
+    | HentMotestottebesvarelsePENDINGAction
+    | HentMotestottebesvarelseFEILETAction;

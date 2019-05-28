@@ -13,6 +13,7 @@ import './innhold.less';
 import InnholdView from './innhold-view';
 
 const LANSERINGSDATO = new Date(2019, 4, 10);
+const LANSERINGSDATO_V2 = new Date(2019, 6, 1);
 
 interface StateProps {
     sykmeldtInfo: SykmeldtInfoState;
@@ -22,6 +23,7 @@ interface StateProps {
     reservasjonKRR: boolean;
     opprettetRegistreringDato: Date;
     harEgenvurderingbesvarelse: boolean;
+    harMotestottebesvarelse: boolean;
 }
 
 class InnholdLogikk extends React.Component<StateProps> {
@@ -34,7 +36,7 @@ class InnholdLogikk extends React.Component<StateProps> {
 
     render() {
         const {sykmeldtInfo, servicegruppe, fremtidigSvar, harEgenvurderingbesvarelse,
-            foreslattInnsatsgruppe, reservasjonKRR, opprettetRegistreringDato} = this.props;
+            foreslattInnsatsgruppe, reservasjonKRR, harMotestottebesvarelse, opprettetRegistreringDato} = this.props;
 
         const erSykmeldtMedArbeidsgiver = sykmeldtInfo.data.erSykmeldtMedArbeidsgiver;
 
@@ -59,11 +61,19 @@ class InnholdLogikk extends React.Component<StateProps> {
                 foreslattInnsatsgruppe === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS)
         );
 
+        const skalViseMoteStotteLenke = (
+            !harMotestottebesvarelse &&
+            opprettetRegistreringDato >= LANSERINGSDATO_V2 &&
+            !reservasjonKRR &&
+            (foreslattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING)
+        );
+
         return (
             <InnholdView
                 erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}
                 skalViseKrrMelding={this.props.reservasjonKRR}
                 skalViseEgenvurderingLenke={skalViseEgenvurderingLenke}
+                skalViseMoteStotteLenke={skalViseMoteStotteLenke}
                 visRessurslenker={visRessurslenker}
                 skalViseTiltaksinfoLenke={skalViseTiltaksinfoLenke}
             />
@@ -79,6 +89,7 @@ const mapStateToProps = (state: AppState): StateProps => ({
     foreslattInnsatsgruppe: selectForeslattInnsatsgruppe(state),
     opprettetRegistreringDato: new Date(selectOpprettetRegistreringDato(state)),
     harEgenvurderingbesvarelse: state.egenvurderingbesvarelse.data !== null,
+    harMotestottebesvarelse: state.motestottebesvarelse.data !== null,
 
 });
 

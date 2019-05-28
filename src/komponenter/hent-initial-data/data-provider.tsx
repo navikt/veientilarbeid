@@ -10,6 +10,7 @@ import { hentUlesteDialoger, State as UlesteDialogerState } from '../../ducks/di
 import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe } from '../../ducks/brukerregistrering';
 import { hentJobbsokerbesvarelse, State as JobbsokerbesvarelseState } from '../../ducks/jobbsokerbesvarelse';
 import { hentEgenvurderingbesvarelse, State as EgenvurderingbesvarelseState } from '../../ducks/egenvurdering';
+import { hentMotestottebesvarelse, State as MotestottebesvarelseState } from '../../ducks/motestotte';
 
 const skalSjekkeEgenvurderingBesvarelse = (foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined): boolean => {
     return foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.STANDARD_INNSATS ||
@@ -28,6 +29,7 @@ interface StateProps {
     ulesteDialoger: UlesteDialogerState;
     foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined;
     egenvurderingbesvarelse: EgenvurderingbesvarelseState;
+    motestottebesvarelse: MotestottebesvarelseState;
 }
 
 interface DispatchProps {
@@ -36,14 +38,15 @@ interface DispatchProps {
     hentJobbsokerbesvarelse: () => void;
     hentUlesteDialoger: () => void;
     hentEgenvurderingbesvarelse: () => void;
+    hentMotestottebesvarelse: () => void;
 }
 
 type Props = StateProps & DispatchProps & OwnProps;
 
 const DataProvider = ({
                           children, underOppfolging, foreslaattInnsatsgruppe, servicegruppe, sykmeldtInfo, jobbsokerbesvarelse,
-                          ulesteDialoger, egenvurderingbesvarelse, hentSykmeldtInfo, hentJobbsokerbesvarelse,
-                          hentServicegruppe, hentUlesteDialoger, hentEgenvurderingbesvarelse
+                          ulesteDialoger, egenvurderingbesvarelse, motestottebesvarelse, hentSykmeldtInfo, hentJobbsokerbesvarelse,
+                          hentServicegruppe, hentUlesteDialoger, hentEgenvurderingbesvarelse, hentMotestottebesvarelse
                       }: Props) => {
 
     React.useEffect(() => {
@@ -54,11 +57,13 @@ const DataProvider = ({
             hentUlesteDialoger();
             if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
                 hentEgenvurderingbesvarelse();
+            } else {
+                hentMotestottebesvarelse();
             }
         }
     }, []);
 
-    const avhengigheter: any[] = [jobbsokerbesvarelse, egenvurderingbesvarelse, sykmeldtInfo]; // tslint:disable-line:no-any
+    const avhengigheter: any[] = [jobbsokerbesvarelse, egenvurderingbesvarelse, sykmeldtInfo, motestottebesvarelse]; // tslint:disable-line:no-any
     const ventPa: any[] = [servicegruppe, ulesteDialoger]; // tslint:disable-line:no-any
     const betingelser: boolean[] = [underOppfolging, skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe), true];
 
@@ -83,6 +88,7 @@ const mapStateToProps = (state: AppState): StateProps => ({
     ulesteDialoger: state.ulesteDialoger,
     foreslaattInnsatsgruppe: selectForeslattInnsatsgruppe(state),
     egenvurderingbesvarelse: state.egenvurderingbesvarelse,
+    motestottebesvarelse: state.motestottebesvarelse,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
@@ -91,6 +97,7 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
     hentJobbsokerbesvarelse: () => hentJobbsokerbesvarelse()(dispatch),
     hentUlesteDialoger: () => hentUlesteDialoger()(dispatch),
     hentEgenvurderingbesvarelse: () => hentEgenvurderingbesvarelse()(dispatch),
+    hentMotestottebesvarelse: () => hentMotestottebesvarelse()(dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DataProvider);
