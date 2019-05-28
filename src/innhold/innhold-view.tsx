@@ -47,7 +47,7 @@ export default ({erSykmeldtMedArbeidsgiver,
                 <ReaktiveringMelding/>
                 {skalViseKrrMelding ? <KrrMelding/> : null}
                 {skalViseEgenvurderingLenke ? <Egenvurdering/> : null}
-                {skalViseMoteStotteLenke ? <Motestotte/> : null}
+                {skalViseMoteStotteLenke ? <Motestotte erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}/> : null}
                 <Aktivitetsplan/>
                 <div className="tokol">
                     <Dialog/>

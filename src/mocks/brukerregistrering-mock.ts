@@ -16,7 +16,7 @@ export default {
             tilbakeIArbeid: null
         },
         profilering: {
-            innsatsgruppe: 'BEHOV_FOR_ARBEIDSEVNEVURDERING',
+            innsatsgruppe: 'SITUASJONSBESTEMT_INNSATS',
         },
         teksterForBesvarelse: [
             {

@@ -14,7 +14,11 @@ interface StateProps {
     opprettetRegistreringDato: Date;
 }
 
-type MotestotteProps = StateProps;
+interface InputProps{
+    erSykmeldtMedArbeidsgiver: boolean;
+}
+
+type MotestotteProps = StateProps & InputProps;
 
 class Motestotte extends React.Component<MotestotteProps> {
 
@@ -30,6 +34,29 @@ class Motestotte extends React.Component<MotestotteProps> {
     };
 
     render() {
+        const {erSykmeldtMedArbeidsgiver} = this.props;
+
+        if(erSykmeldtMedArbeidsgiver){
+            return <section className="motestotte blokk-m">
+                <div className="innhold">
+                    <Systemtittel tag="h1" className="blokk-xs">
+                        Du kan få mer veiledning
+                    </Systemtittel>
+                    <Normaltekst className="blokk-m motestotte__tekst">
+                        Du har svart at du trenger mer veiledning nå som retten til sykepenger nærmer seg slutten.                    </Normaltekst>
+                    <Normaltekst className="blokk-m motestotte__tekst">
+                        Vi ønsker å bli bedre kjent med situasjonen din, slik at du kan få veiledning som passer for deg.
+                    </Normaltekst>
+                    <Normaltekst className="blokk-m motestotte__tekst">
+                        Det du forteller vil også bli brukt i en skriftlig vurdering av behovet ditt for hjelp fra NAV.
+                    </Normaltekst>
+                    <Hovedknapp onClick={this.handleButtonClick}>
+                        Start
+                    </Hovedknapp>
+                </div>
+            </section>
+        }
+
         return (
             <section className="motestotte blokk-m">
                 <div className="innhold">
