@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../../reducer';
-import { Data as OppfolgingData } from '../../ducks/oppfolging';
-import { erUnderOppfolging, redirectTilDittNav } from './sjekk-oppfolging-utils';
+import { redirectTilDittNav } from './redirect-dittnav-utils';
 import { InnloggingsInfo, InnloggingsInfoContext, InnloggingsNiva } from './autentiseringsInfoFetcher';
 import { erMikrofrontend } from '../../utils/app-state-utils';
 
@@ -16,12 +15,12 @@ interface OwnProps {
 }
 
 interface StateProps {
-    oppfolging: OppfolgingData;
+    underOppfolging: boolean;
 }
 
 type Props = OwnProps & StateProps;
 
-const SjekkOppfolging = ({config = {sendBrukerTilDittNav: redirectTilDittNav}, oppfolging, children}: Props) => {
+const SjekkOppfolging = ({config = {sendBrukerTilDittNav: redirectTilDittNav}, underOppfolging, children}: Props) => {
 
     const innloggingsInfo: InnloggingsInfo = React.useContext(InnloggingsInfoContext);
 
@@ -30,7 +29,7 @@ const SjekkOppfolging = ({config = {sendBrukerTilDittNav: redirectTilDittNav}, o
         innloggingsInfo.data.isLoggedIn &&
         innloggingsInfo.data.securityLevel === InnloggingsNiva.LEVEL_3;
 
-    if (erUnderOppfolging(oppfolging) || erPaDittNavPaNiva3()) {
+    if (underOppfolging || erPaDittNavPaNiva3()) {
         return children;
     }
 
@@ -39,7 +38,7 @@ const SjekkOppfolging = ({config = {sendBrukerTilDittNav: redirectTilDittNav}, o
 };
 
 const mapStateToProps = (state: AppState): StateProps => ({
-        oppfolging: state.oppfolging.data
+        underOppfolging: state.oppfolging.data.underOppfolging,
     }
 );
 
