@@ -3,10 +3,23 @@ import { Innholdstittel } from 'nav-frontend-typografi';
 import { FormattedMessage, InjectedIntlProps, injectIntl } from 'react-intl';
 import { Select as SelectKomponent, CheckboksPanelGruppe } from 'nav-frontend-skjema';
 import {
-    DemoData, hentJsk, settJsk, slettJsk, hentEgenvurdering, settEgenvurdering, slettEgenvurdering,
-    hentSykmeldtMedArbeidsgiver, settSykmeldtMedArbeidsgiver,
-    hentUlesteDialoger, settUlesteDialoger,
-    hentServicegruppe, settServicegruppe, settReservasjonKRR, hentReservasjonKRR,
+    DemoData,
+    hentJsk,
+    settJsk,
+    slettJsk,
+    hentEgenvurdering,
+    settEgenvurdering,
+    slettEgenvurdering,
+    hentSykmeldtMedArbeidsgiver,
+    settSykmeldtMedArbeidsgiver,
+    hentUlesteDialoger,
+    settUlesteDialoger,
+    hentServicegruppe,
+    settServicegruppe,
+    settReservasjonKRR,
+    hentReservasjonKRR,
+    settAutentiseringsInfo,
+    slettAutentiseringsInfo, hentAutentiseringsInfo,
 } from './demo-state';
 
 import './demo-dashboard.less';
@@ -17,6 +30,7 @@ import {
     settForeslattInnsatsgruppe,
     settFremtidigSituasjon, settOpprettetDato
 } from './demo-state-brukerregistrering';
+import { InnloggingsNiva } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
 
 interface OpprettetRegistreringDato {
     registrertIForkantAvLansering: string;
@@ -35,6 +49,7 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
         const EGENVURDERING = DemoData.EGENVURDERING;
         const ULESTE_DIALOGER = DemoData.ULESTE_DIALOGER;
         const RESERVASJON_KRR = DemoData.RESERVASJON_KRR;
+        const AUTENTISERINGS_INFO = DemoData.AUTENTISERINGS_INFO;
         const {messages} = this.props.intl;
 
         const handleChangeServicegruppe = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -77,6 +92,12 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
                 settUlesteDialoger(element.checked.toString());
             } else if (element.id === RESERVASJON_KRR) {
                 settReservasjonKRR(element.checked.toString());
+            } else if (element.id === AUTENTISERINGS_INFO) {
+                if (element.checked) {
+                    settAutentiseringsInfo();
+                } else {
+                    slettAutentiseringsInfo();
+                }
             }
             window.location.reload();
         };
@@ -209,6 +230,11 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
                             label: messages['demo-egenvurdering'],
                             checked: !!hentEgenvurdering(),
                             id: EGENVURDERING,
+                        },
+                        {
+                            label: messages['demo-autentiseringsinfo'],
+                            checked: hentAutentiseringsInfo().securityLevel === InnloggingsNiva.LEVEL_3,
+                            id: AUTENTISERINGS_INFO,
                         }
                     ]}
                 />

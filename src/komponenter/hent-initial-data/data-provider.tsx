@@ -40,44 +40,39 @@ interface DispatchProps {
 
 type Props = StateProps & DispatchProps & OwnProps;
 
-class DataProvider extends React.Component<Props> {
+const DataProvider = ({
+                          children, underOppfolging, foreslaattInnsatsgruppe, servicegruppe, sykmeldtInfo, jobbsokerbesvarelse,
+                          ulesteDialoger, egenvurderingbesvarelse, hentSykmeldtInfo, hentJobbsokerbesvarelse,
+                          hentServicegruppe, hentUlesteDialoger, hentEgenvurderingbesvarelse
+                      }: Props) => {
 
-    componentWillMount() {
-        const {underOppfolging, foreslaattInnsatsgruppe} = this.props;
-        this.props.hentSykmeldtInfo();
+    React.useEffect(() => {
         if (underOppfolging) {
-            this.props.hentJobbsokerbesvarelse();
+            hentSykmeldtInfo();
+            hentJobbsokerbesvarelse();
+            hentServicegruppe();
+            hentUlesteDialoger();
+            if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
+                hentEgenvurderingbesvarelse();
+            }
         }
-        this.props.hentServicegruppe();
-        this.props.hentUlesteDialoger();
-        if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
-            this.props.hentEgenvurderingbesvarelse();
-        }
+    }, []);
 
-    }
+    const avhengigheter: any[] = [jobbsokerbesvarelse, egenvurderingbesvarelse, sykmeldtInfo]; // tslint:disable-line:no-any
+    const ventPa: any[] = [servicegruppe, ulesteDialoger]; // tslint:disable-line:no-any
+    const betingelser: boolean[] = [underOppfolging, skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe), true];
 
-    render() {
-        const {
-            children, underOppfolging, foreslaattInnsatsgruppe, servicegruppe, sykmeldtInfo,
-            jobbsokerbesvarelse, ulesteDialoger, egenvurderingbesvarelse
-        } = this.props;
-
-        const avhengigheter: any[] = [jobbsokerbesvarelse, egenvurderingbesvarelse, sykmeldtInfo]; // tslint:disable-line:no-any
-        const ventPa: any[] = [servicegruppe, ulesteDialoger]; // tslint:disable-line:no-any
-        const betingelser: boolean[] = [underOppfolging, skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe), true];
-
-        return (
-            <Innholdslaster
-                feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse"/>}
-                storrelse="XXL"
-                avhengigheter={avhengigheter}
-                ventPa={ventPa}
-                betingelser={betingelser}
-            >
-                {children}
-            </Innholdslaster>
-        );
-    }
+    return (
+        <Innholdslaster
+            feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse"/>}
+            storrelse="XXL"
+            avhengigheter={avhengigheter}
+            ventPa={ventPa}
+            betingelser={betingelser}
+        >
+            {children}
+        </Innholdslaster>
+    );
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({

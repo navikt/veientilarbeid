@@ -3,6 +3,7 @@ import Innholdslaster from '../innholdslaster/innholdslaster';
 import Feilmelding from '../feilmeldinger/feilmelding';
 import { fetchToJson } from '../../ducks/api-utils';
 import { DataElement, requestConfig, STATUS } from '../../ducks/api';
+import { contextpathDittNav, erMikrofrontend } from '../../utils/app-state-utils';
 
 interface AutentiseringsInfoFetcher {
     children: React.ReactElement<any>;
@@ -18,33 +19,45 @@ export enum InnloggingsNiva {
     UKJENT = 'Ukjent',
 }
 
-export const InnloggingsInfoContext = React.createContext({});
+const initialState: InnloggingsInfo = {
+    data: {
+        isLoggedIn: false,
+        securityLevel: InnloggingsNiva.UKJENT,
+    },
+    status: STATUS.NOT_STARTED,
+};
+
+export const InnloggingsInfoContext = React.createContext(initialState);
+
+export interface Data {
+    isLoggedIn: boolean;
+    securityLevel: string;
+}
+
+export interface InnloggingsInfo extends DataElement {
+    data: Data;
+}
 
 const InnloggingsInfoFetcher = ({children}: AutentiseringsInfoFetcher) => {
 
-    interface Data {
-        isLoggedIn: boolean;
-        securityLevel: string;
-    }
-
-    interface InnloggingsInfo extends DataElement {
-        data: Data;
-    }
-
-    const initialState: InnloggingsInfo = {
-        data: {
-            isLoggedIn: false,
-            securityLevel: InnloggingsNiva.UKJENT,
-        },
-        status: STATUS.NOT_STARTED,
-    };
-
     const [state, setState] = React.useState(initialState);
+
+    const contextpath = erMikrofrontend() ? contextpathDittNav : '';
 
     React.useEffect(() => {
         const fetchData = async () => {
-            const data: Data = await fetchToJson(AUTH_API, requestConfig);
-            setState({data, status: STATUS.OK});
+            try {
+                const data: Data = await fetchToJson(`${contextpath}${AUTH_API}`, requestConfig);
+                setState({data, status: STATUS.OK});
+            } catch (error) {
+                if (error.response) {
+                    error.response.text().then(() => {
+                        setState({...state, status: STATUS.ERROR});
+                    });
+                } else {
+                    setState({...state, status: STATUS.ERROR});
+                }
+            }
         };
 
         setState({...state, status: STATUS.PENDING});

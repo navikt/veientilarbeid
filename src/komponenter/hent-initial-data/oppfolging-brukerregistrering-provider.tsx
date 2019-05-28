@@ -6,6 +6,7 @@ import Innholdslaster from '../innholdslaster/innholdslaster';
 import { hentOppfolging, State as OppfolgingState } from '../../ducks/oppfolging';
 import Feilmelding from '../feilmeldinger/feilmelding';
 import { hentBrukerRegistrering, State as BrukerregistreringState } from '../../ducks/brukerregistrering';
+import { InnloggingsInfo, InnloggingsInfoContext, InnloggingsNiva } from './autentiseringsInfoFetcher';
 
 interface OwnProps {
     children: React.ReactElement<any>; // tslint:disable-line:no-any
@@ -23,29 +24,26 @@ interface DispatchProps {
 
 type OppfolgingProviderProps = OwnProps & DispatchProps & StateProps;
 
-class OppfolgingBrukerregistreringProvider extends React.Component<OppfolgingProviderProps> {
-    constructor(props: OppfolgingProviderProps) {
-        super(props);
-    }
+const OppfolgingBrukerregistreringProvider = ({oppfolging, brukerRegistering, hentOppfolging, hentBrukerRegistrering, children}: OppfolgingProviderProps) => {
+    const innloggingsInfo: InnloggingsInfo = React.useContext(InnloggingsInfoContext);
 
-    componentDidMount() {
-        this.props.hentOppfolging();
-        this.props.hentBrukerRegistrering();
-    }
+    React.useEffect(() => {
+        if (innloggingsInfo.data.isLoggedIn && innloggingsInfo.data.securityLevel === InnloggingsNiva.LEVEL_4) {
+            hentOppfolging();
+            hentBrukerRegistrering();
+        }
+    }, []);
 
-    render() {
-        const {oppfolging, brukerRegistering} = this.props;
-        return (
-            <Innholdslaster
-                feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse"/>}
-                storrelse="XXL"
-                avhengigheter={[oppfolging, brukerRegistering]}
-            >
-                {this.props.children}
-            </Innholdslaster>
-        );
-    }
-}
+    return (
+        <Innholdslaster
+            feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse"/>}
+            storrelse="XXL"
+            avhengigheter={[oppfolging, brukerRegistering]}
+        >
+            {children}
+        </Innholdslaster>
+    );
+};
 
 const mapStateToProps = (state: AppState): StateProps => ({
     oppfolging: state.oppfolging,
