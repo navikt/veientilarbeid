@@ -4,10 +4,10 @@ import Feilmelding from '../feilmeldinger/feilmelding';
 import { fetchToJson } from '../../ducks/api-utils';
 import { DataElement, requestConfig, STATUS } from '../../ducks/api';
 import { contextpathDittNav, erMikrofrontend } from '../../utils/app-state-utils';
-
-interface AutentiseringsInfoFetcher {
-    children: React.ReactElement<any>;
-}
+import SjekkOppfolging from './sjekk-oppfolging';
+import DataProvider from './data-provider';
+import Innhold from '../../innhold/innhold-logikk';
+import OppfolgingBrukerregistreringProvider from './oppfolging-brukerregistrering-provider';
 
 export const AUTH_API = '/api/auth';
 
@@ -38,7 +38,7 @@ export interface InnloggingsInfo extends DataElement {
     data: Data;
 }
 
-const InnloggingsInfoFetcher = ({children}: AutentiseringsInfoFetcher) => {
+const InnloggingsInfoFetcher = () => {
 
     const [state, setState] = React.useState(initialState);
 
@@ -65,17 +65,23 @@ const InnloggingsInfoFetcher = ({children}: AutentiseringsInfoFetcher) => {
         fetchData();
     }, []);
 
-
     return (
-        <InnloggingsInfoContext.Provider value={state}>
-            <Innholdslaster
-                feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse"/>}
-                storrelse="XXL"
-                avhengigheter={[state]}
-            >
-                {children}
-            </Innholdslaster>
-        </InnloggingsInfoContext.Provider>
+        <Innholdslaster
+            feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse"/>}
+            storrelse="XXL"
+            avhengigheter={[state]}
+        >
+            {state.data.securityLevel === InnloggingsNiva.LEVEL_3
+                ? <div>Bruker er logget inn med nivå 3</div>
+                : <OppfolgingBrukerregistreringProvider>
+                    <SjekkOppfolging>
+                        <DataProvider>
+                            <Innhold/>
+                        </DataProvider>
+                    </SjekkOppfolging>
+                </OppfolgingBrukerregistreringProvider>
+            }
+        </Innholdslaster>
     );
 };
 
