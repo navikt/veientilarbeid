@@ -27,9 +27,6 @@ interface OwnProps {
 
 export default ({erSykmeldtMedArbeidsgiver, skalViseKrrMelding, skalViseEgenvurderingLenke, visRessurslenker, skalViseTiltaksinfoLenke}: OwnProps) => {
 
-    const value = React.useContext(InnloggingsInfoContext);
-    console.log(value);
-
     return (
         <>
             {erMikrofrontend() ? null : (erSykmeldtMedArbeidsgiver ? <Banner type="sykmeldt"/> : <Banner type="ordinaer"/>)}
