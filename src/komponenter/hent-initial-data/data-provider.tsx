@@ -40,19 +40,21 @@ interface DispatchProps {
 
 type Props = StateProps & DispatchProps & OwnProps;
 
-const DataProvider = ({children, underOppfolging, foreslaattInnsatsgruppe, servicegruppe, sykmeldtInfo, jobbsokerbesvarelse,
+const DataProvider = ({
+                          children, underOppfolging, foreslaattInnsatsgruppe, servicegruppe, sykmeldtInfo, jobbsokerbesvarelse,
                           ulesteDialoger, egenvurderingbesvarelse, hentSykmeldtInfo, hentJobbsokerbesvarelse,
-                          hentServicegruppe, hentUlesteDialoger, hentEgenvurderingbesvarelse}: Props) => {
+                          hentServicegruppe, hentUlesteDialoger, hentEgenvurderingbesvarelse
+                      }: Props) => {
 
     React.useEffect(() => {
-        hentSykmeldtInfo();
         if (underOppfolging) {
+            hentSykmeldtInfo();
             hentJobbsokerbesvarelse();
-        }
-        hentServicegruppe();
-        hentUlesteDialoger();
-        if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
-            hentEgenvurderingbesvarelse();
+            hentServicegruppe();
+            hentUlesteDialoger();
+            if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
+                hentEgenvurderingbesvarelse();
+            }
         }
     }, []);
 
