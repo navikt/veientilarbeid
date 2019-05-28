@@ -37,7 +37,7 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
         const RESERVASJON_KRR = DemoData.RESERVASJON_KRR;
         const {messages} = this.props.intl;
 
-        const handleChangeServicegruppe = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const handleChangeInnsatsgruppe = (e: React.ChangeEvent<HTMLSelectElement>) => {
             settInnsatsgruppe(e.target.value);
             window.location.reload();
         };
@@ -116,7 +116,7 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
                 <div className="two-select">
                     <SelectKomponent
                         label={messages['demo-velgservicegruppe']}
-                        onChange={handleChangeServicegruppe}
+                        onChange={handleChangeInnsatsgruppe}
                         id="velg-bruker"
                         defaultValue={hentInnsatsgruppe()}
                     >
