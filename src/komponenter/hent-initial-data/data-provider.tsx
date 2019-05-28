@@ -47,14 +47,12 @@ const DataProvider = ({
                       }: Props) => {
 
     React.useEffect(() => {
-        if (underOppfolging) {
-            hentSykmeldtInfo();
-            hentJobbsokerbesvarelse();
-            hentServicegruppe();
-            hentUlesteDialoger();
-            if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
-                hentEgenvurderingbesvarelse();
-            }
+        hentSykmeldtInfo();
+        hentJobbsokerbesvarelse();
+        hentServicegruppe();
+        hentUlesteDialoger();
+        if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
+            hentEgenvurderingbesvarelse();
         }
     }, []);
 
