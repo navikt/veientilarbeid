@@ -15,7 +15,6 @@ import Egenvurdering from '../komponenter/egenvurdering/egenvurdering';
 import './innhold.less';
 import KrrMelding from '../komponenter/krr-melding/krr-melding';
 import { erMikrofrontend } from '../utils/app-state-utils';
-import { InnloggingsInfoContext } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
 
 interface OwnProps {
     erSykmeldtMedArbeidsgiver: boolean;
