@@ -26,7 +26,6 @@ interface OwnProps {
 }
 
 export default ({erSykmeldtMedArbeidsgiver, skalViseKrrMelding, skalViseEgenvurderingLenke, visRessurslenker, skalViseTiltaksinfoLenke}: OwnProps) => {
-    // TODO Fjerne banner (inkl. brødsmuler)
 
     const value = React.useContext(InnloggingsInfoContext);
     console.log(value);
