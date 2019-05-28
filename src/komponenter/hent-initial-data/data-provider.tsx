@@ -50,16 +50,15 @@ const DataProvider = ({
                       }: Props) => {
 
     React.useEffect(() => {
-        if (underOppfolging) {
-            hentSykmeldtInfo();
-            hentJobbsokerbesvarelse();
-            hentServicegruppe();
-            hentUlesteDialoger();
-            if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
-                hentEgenvurderingbesvarelse();
-            } else {
-                hentMotestottebesvarelse();
-            }
+        hentSykmeldtInfo();
+        hentJobbsokerbesvarelse();
+        hentServicegruppe();
+        hentUlesteDialoger();
+        if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
+            hentEgenvurderingbesvarelse();
+        }
+        else if(foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING){
+            hentMotestottebesvarelse();
         }
     }, []);
 

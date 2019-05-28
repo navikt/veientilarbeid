@@ -6,7 +6,6 @@ import Innholdslaster from '../innholdslaster/innholdslaster';
 import { hentOppfolging, State as OppfolgingState } from '../../ducks/oppfolging';
 import Feilmelding from '../feilmeldinger/feilmelding';
 import { hentBrukerRegistrering, State as BrukerregistreringState } from '../../ducks/brukerregistrering';
-import { InnloggingsInfo, InnloggingsInfoContext, InnloggingsNiva } from './autentiseringsInfoFetcher';
 
 interface OwnProps {
     children: React.ReactElement<any>; // tslint:disable-line:no-any
@@ -25,13 +24,10 @@ interface DispatchProps {
 type OppfolgingProviderProps = OwnProps & DispatchProps & StateProps;
 
 const OppfolgingBrukerregistreringProvider = ({oppfolging, brukerRegistering, hentOppfolging, hentBrukerRegistrering, children}: OppfolgingProviderProps) => {
-    const innloggingsInfo: InnloggingsInfo = React.useContext(InnloggingsInfoContext);
 
     React.useEffect(() => {
-        if (innloggingsInfo.data.isLoggedIn && innloggingsInfo.data.securityLevel === InnloggingsNiva.LEVEL_4) {
-            hentOppfolging();
-            hentBrukerRegistrering();
-        }
+        hentOppfolging();
+        hentBrukerRegistrering();
     }, []);
 
     return (
