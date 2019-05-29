@@ -27,8 +27,6 @@ const initialState: InnloggingsInfo = {
     status: STATUS.NOT_STARTED,
 };
 
-export const InnloggingsInfoContext = React.createContext(initialState);
-
 export interface Data {
     isLoggedIn: boolean;
     securityLevel: string;
