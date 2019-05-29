@@ -8,7 +8,7 @@ import SjekkOppfolging from './sjekk-oppfolging';
 import { create } from '../../store';
 import { mountWithStore } from '../../test/test-utils';
 import { ActionType as OppfolgingActionTypes } from '../../ducks/actions';
-import { redirectTilDittNav } from './sjekk-oppfolging-utils';
+import { redirectTilDittNav } from './redirect-dittnav-utils';
 
 enzyme.configure({adapter: new Adapter()});
 

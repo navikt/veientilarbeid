@@ -14,9 +14,10 @@ import {
     hentJsk, hentReservasjonKRR,
     hentInnsatsgruppe,
     hentSykmeldtMedArbeidsgiver,
-    hentUlesteDialoger, hentEgenvurdering
+    hentUlesteDialoger, hentEgenvurdering, hentAutentiseringsInfo
 } from './demo-state';
 import { hentBrukerRegistreringData } from './demo-state-brukerregistrering';
+import { AUTH_API } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
 
 const loggingMiddleware: Middleware = (request, response) => {
     console.log(request.url, request.method, response); // tslint:disable-line:no-console
@@ -61,6 +62,8 @@ fetchMock.get(ULESTEDIALOGER_URL, {
 fetchMock.get(JOBBSOKERBESVARELSE_URL, hentJsk());
 
 fetchMock.get(EGENVURDERINGBESVARELSE_URL, hentEgenvurdering());
+
+fetchMock.get(AUTH_API, hentAutentiseringsInfo());
 
 const unleashUrl = FEATURE_URL + featureQueryParams([]);
 fetchMock.get(unleashUrl, {});

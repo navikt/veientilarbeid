@@ -9,8 +9,10 @@ import jobbsokerbesvarelseResponse from './jobbsokerbesvarelse-mock';
 import ulesteDialogerResponse from './ulestedialoger-mock';
 import brukerRegistreringResponse from './brukerregistrering-mock';
 import egenvurderingbesvarelseResponse from './egenvurderingbesvarelse-mock';
+import authResponse from './auth-mock';
 
 import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
+import { AUTH_API } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
 
 const loggingMiddleware: Middleware = (request, response) => {
     console.log(request.url, request.method, response); // tslint:disable-line:no-console
@@ -42,3 +44,5 @@ fetchMock.get(BRUKERREGISTRERING_URL, brukerRegistreringResponse);
 
 fetchMock.get(EGENVURDERINGBESVARELSE_URL, egenvurderingbesvarelseResponse);
 // fetchMock.get(EGENVURDERINGBESVARELSE_URL, ResponseUtils.statusCode(204));
+
+fetchMock.get(AUTH_API, authResponse);
