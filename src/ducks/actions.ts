@@ -155,7 +155,6 @@ export interface HentMotestottebesvarelseFEILETAction {
     type: ActionType.HENT_MOTESTOTTEBESVARELSE_FEILET;
 }
 
-
 export type Handling = FeatureTogglesOKAction
     | FeatureTogglesPENDINGAction
     | FeatureTogglesFEILETAction

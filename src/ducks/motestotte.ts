@@ -4,9 +4,9 @@ import {
     HentMotestottebesvarelseFEILETAction,
     HentMotestottebesvarelseOKAction, HentMotestottebesvarelsePENDINGAction,
 } from './actions';
-import {Dispatch} from '../dispatch-type';
-import {DataElement, STATUS, hentMotestottebesvarelseFetch} from './api';
-import {doThenDispatch} from './api-utils';
+import { Dispatch } from '../dispatch-type';
+import { DataElement, STATUS, hentMotestottebesvarelseFetch } from './api';
+import { doThenDispatch } from './api-utils';
 
 export interface Data {
     sistOppdatert: string;
