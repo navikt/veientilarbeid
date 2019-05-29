@@ -36,7 +36,7 @@ export interface InnloggingsInfo extends DataElement {
     data: Data;
 }
 
-const InnloggingsInfoFetcher = () => {
+const AutentiseringsInfoFetcher = () => {
 
     const [state, setState] = React.useState(initialState);
 
@@ -83,4 +83,4 @@ const InnloggingsInfoFetcher = () => {
     );
 };
 
-export default InnloggingsInfoFetcher;
+export default AutentiseringsInfoFetcher;
