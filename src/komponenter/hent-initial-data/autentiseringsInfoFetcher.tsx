@@ -6,7 +6,7 @@ import { DataElement, requestConfig, STATUS } from '../../ducks/api';
 import { contextpathDittNav, erMikrofrontend } from '../../utils/app-state-utils';
 import SjekkOppfolging from './sjekk-oppfolging';
 import DataProvider from './data-provider';
-import Innhold from '../../innhold/innhold-logikk';
+import InnholdLogikkNiva4 from '../../innhold/innhold-logikk-niva4';
 import OppfolgingBrukerregistreringProvider from './oppfolging-brukerregistrering-provider';
 
 export const AUTH_API = '/api/auth';
@@ -74,7 +74,7 @@ const AutentiseringsInfoFetcher = () => {
                 : <OppfolgingBrukerregistreringProvider>
                     <SjekkOppfolging>
                         <DataProvider>
-                            <Innhold/>
+                            <InnholdLogikkNiva4/>
                         </DataProvider>
                     </SjekkOppfolging>
                 </OppfolgingBrukerregistreringProvider>
