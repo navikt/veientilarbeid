@@ -8,7 +8,7 @@
     "start:tekster": "node ./scripts/watch-tekster.js",
     "build": "npm-run-all -s build:tekster build:ts",
     "build:micro": "cross-env REACT_APP_MICRO=true npm-run-all -s build:tekster build:ts",
-    "build:ts": " craco build",
+    "build:ts": "craco build",
     "build:tekster": "react-intl-bundler --no-lookup src/tekster src/tekster",
     "lint": "tslint ./src/**/*.ts*",
     "lint:fix": "tslint ./src/**/*.ts* --fix",
