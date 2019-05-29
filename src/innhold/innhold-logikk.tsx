@@ -64,6 +64,7 @@ class InnholdLogikk extends React.Component<StateProps> {
         );
 
         const skalViseMoteStotteLenke = (
+            innsatsgruppe.data.innsatsgruppe === Innsatsgruppe.IVURD &&
             !harMotestottebesvarelse &&
             opprettetRegistreringDato >= LANSERINGSDATO_MOTESTOTTE &&
             !reservasjonKRR &&
