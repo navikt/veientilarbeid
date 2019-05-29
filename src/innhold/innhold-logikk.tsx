@@ -12,8 +12,9 @@ import { seVeientilarbeid } from '../metrics';
 import './innhold.less';
 import InnholdView from './innhold-view';
 
-const LANSERINGSDATO = new Date(2019, 4, 10);
-const LANSERINGSDATO_V2 = new Date(2019, 6, 1);
+// TODO Fjerne etter tre mnd?
+const LANSERINGSDATO_EGENVURDERING = new Date(2019, 4, 10);
+const LANSERINGSDATO_MOTESTOTTE = new Date(2019, 5, 4);
 
 interface StateProps {
     sykmeldtInfo: SykmeldtInfoState;
@@ -56,7 +57,7 @@ class InnholdLogikk extends React.Component<StateProps> {
         const skalViseEgenvurderingLenke = (
             innsatsgruppe.data.innsatsgruppe === Innsatsgruppe.IVURD &&
             !harEgenvurderingbesvarelse &&
-            opprettetRegistreringDato >= LANSERINGSDATO &&
+            opprettetRegistreringDato >= LANSERINGSDATO_EGENVURDERING &&
             !reservasjonKRR &&
             (foreslattInnsatsgruppe === ForeslattInnsatsgruppe.STANDARD_INNSATS ||
                 foreslattInnsatsgruppe === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS)
@@ -64,7 +65,7 @@ class InnholdLogikk extends React.Component<StateProps> {
 
         const skalViseMoteStotteLenke = (
             !harMotestottebesvarelse &&
-            opprettetRegistreringDato >= LANSERINGSDATO_V2 &&
+            opprettetRegistreringDato >= LANSERINGSDATO_MOTESTOTTE &&
             !reservasjonKRR &&
             (foreslattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING)
         );
