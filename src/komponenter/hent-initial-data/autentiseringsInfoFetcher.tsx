@@ -7,6 +7,7 @@ import { contextpathDittNav, erMikrofrontend } from '../../utils/app-state-utils
 import SjekkOppfolging from './sjekk-oppfolging';
 import DataProvider from './data-provider';
 import InnholdLogikkNiva4 from '../../innhold/innhold-logikk-niva4';
+import InnholdLogikkNiva3 from '../../innhold/innhold-logikk-niva3';
 import OppfolgingBrukerregistreringProvider from './oppfolging-brukerregistrering-provider';
 
 export const AUTH_API = '/api/auth';
@@ -70,7 +71,7 @@ const AutentiseringsInfoFetcher = () => {
             avhengigheter={[state]}
         >
             {state.data.securityLevel === InnloggingsNiva.LEVEL_3
-                ? <div>Bruker er logget inn med nivå 3</div>
+                ? <InnholdLogikkNiva3/>
                 : <OppfolgingBrukerregistreringProvider>
                     <SjekkOppfolging>
                         <DataProvider>
