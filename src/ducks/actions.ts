@@ -1,5 +1,5 @@
 import { Data as OppfolgingData } from './oppfolging';
-import { Data as ServicegruppeData } from './servicegruppe';
+import { Data as InnsatsgruppeData } from './innsatsgruppe';
 import { Data as JobbsokerbesvarelseData } from './jobbsokerbesvarelse';
 import { Data as SykmeldtInfoData } from './sykmeldt-info';
 import { Data as BrukerRegistreringData } from './brukerregistrering';
@@ -15,9 +15,9 @@ export enum ActionType {
     HENT_OPPFOLGING_OK = 'HENT_OPPFOLGING_OK',
     HENT_OPPFOLGING_PENDING = 'HENT_OPPFOLGING_PENDING',
     HENT_OPPFOLGING_FEILET = 'HENT_OPPFOLGING_FEILET',
-    HENT_SERVICEGRUPPE_OK = 'HENT_SERVICEGRUPPE_OK',
-    HENT_SERVICEGRUPPE_PENDING = 'HENT_SERVICEGRUPPE_PENDING',
-    HENT_SERVICEGRUPPE_FEILET = 'HENT_SERVICEGRUPPE_FEILET',
+    HENT_INNSATSGRUPPE_OK = 'HENT_INNSATSGRUPPE_OK',
+    HENT_INNSATSGRUPPE_PENDING = 'HENT_INNSATSGRUPPE_PENDING',
+    HENT_INNSATSGRUPPE_FEILET = 'HENT_INNSATSGRUPPE_FEILET',
     HENT_JOBBSOKERBESVARELSE_OK = 'HENT_JOBBSOKERBESVARELSE_OK',
     HENT_JOBBSOKERBESVARELSE_PENDING = 'HENT_JOBBSOKERBESVARELSE_PENDING',
     HENT_JOBBSOKERBESVARELSE_FEILET = 'HENT_JOBBSOKERBESVARELSE_FEILET',
@@ -64,17 +64,17 @@ export interface HentOppfolgingFEILETAction {
     type: ActionType.HENT_OPPFOLGING_FEILET;
 }
 
-export interface HentServicegruppeOKAction {
-    type: ActionType.HENT_SERVICEGRUPPE_OK;
-    data: ServicegruppeData;
+export interface HentInnsatsgruppeOKAction {
+    type: ActionType.HENT_INNSATSGRUPPE_OK;
+    data: InnsatsgruppeData;
 }
 
-export interface HentServicegruppePENDINGAction {
-    type: ActionType.HENT_SERVICEGRUPPE_PENDING;
+export interface HentInnsatsgruppePENDINGAction {
+    type: ActionType.HENT_INNSATSGRUPPE_PENDING;
 }
 
-export interface HentServicegruppeFEILETAction {
-    type: ActionType.HENT_SERVICEGRUPPE_FEILET;
+export interface HentInnsatsgruppeFEILETAction {
+    type: ActionType.HENT_INNSATSGRUPPE_FEILET;
 }
 
 export interface HentJobbsokerbesvarelseOKAction {
@@ -161,9 +161,9 @@ export type Handling = FeatureTogglesOKAction
     | HentOppfolgingOKAction
     | HentOppfolgingPENDINGAction
     | HentOppfolgingFEILETAction
-    | HentServicegruppeOKAction
-    | HentServicegruppePENDINGAction
-    | HentServicegruppeFEILETAction
+    | HentInnsatsgruppeOKAction
+    | HentInnsatsgruppePENDINGAction
+    | HentInnsatsgruppeFEILETAction
     | HentJobbsokerbesvarelseOKAction
     | HentJobbsokerbesvarelsePENDINGAction
     | HentJobbsokerbesvarelseFEILETAction
