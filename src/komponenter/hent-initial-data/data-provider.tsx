@@ -46,7 +46,7 @@ type Props = StateProps & DispatchProps & OwnProps;
 const DataProvider = ({
                           children, underOppfolging, foreslaattInnsatsgruppe, innsatsgruppe, sykmeldtInfo, jobbsokerbesvarelse,
                           ulesteDialoger, egenvurderingbesvarelse, hentSykmeldtInfo, hentJobbsokerbesvarelse,
-                          hentInnsatsgruppe, hentUlesteDialoger, hentEgenvurderingbesvarelse
+                          hentInnsatsgruppe, hentUlesteDialoger, hentEgenvurderingbesvarelse, hentMotestottebesvarelse
                       }: Props) => {
 
     React.useEffect(() => {
