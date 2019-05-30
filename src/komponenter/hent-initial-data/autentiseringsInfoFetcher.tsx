@@ -44,24 +44,16 @@ const AutentiseringsInfoFetcher = () => {
     const contextpath = erMikrofrontend() ? contextpathDittNav : '';
 
     React.useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const data: Data = await fetchToJson(`${contextpath}${AUTH_API}`, requestConfig);
-                setState({data, status: STATUS.OK});
-            } catch (error) {
-                if (error.response) {
-                    error.response.text().then(() => {
-                        setState({...state, status: STATUS.ERROR});
-                    });
-                } else {
-                    setState({...state, status: STATUS.ERROR});
-                }
-            }
-        };
-
         setState({...state, status: STATUS.PENDING});
+        const fetchAsync = async () => {
+            const data = await fetchToJson<Data>(`${contextpath}${AUTH_API}`, requestConfig);
+            setState({data: data, status: STATUS.OK});
+        };
+        fetchAsync().catch(err => {
+            setState({...state, status: STATUS.ERROR});
+            return Promise.reject(err);
+        })
 
-        fetchData();
     }, []);
 
     return (
