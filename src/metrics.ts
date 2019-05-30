@@ -15,6 +15,12 @@ export const seVeientilarbeid = (erSykmeldtMedArbeidsgiver: boolean, servicegrup
     }
 };
 
+export const seVeientilarbeidNiva3 = () => {
+    if (!erDemo()) {
+        logEvent(`${domene}.seveientilarbeidniva3`, {}, {});
+    }
+};
+
 export const visInfoOmDagpenger = () => {
     if (!erDemo()) {
         logEvent(`${domene}.visinfoomdagpenger`, {}, {});
