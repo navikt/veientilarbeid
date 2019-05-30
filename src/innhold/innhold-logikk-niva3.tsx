@@ -16,7 +16,7 @@ const InnholdLogikkNiva3 = () => {
             skalViseEgenvurderingLenke={false}
             visRessurslenker={true}
             skalViseTiltaksinfoLenke={false}
-            skalViseMoteStotteLenke={false}
+            skalViseMotestotteLenke={false}
         />
     );
 };

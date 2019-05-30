@@ -21,7 +21,7 @@ interface OwnProps {
     erSykmeldtMedArbeidsgiver: boolean;
     skalViseKrrMelding: boolean;
     skalViseEgenvurderingLenke: boolean;
-    skalViseMoteStotteLenke: boolean;
+    skalViseMotestotteLenke: boolean;
     visRessurslenker: boolean;
     skalViseTiltaksinfoLenke: boolean;
 }
@@ -29,7 +29,7 @@ interface OwnProps {
 export default ({erSykmeldtMedArbeidsgiver,
                     skalViseKrrMelding,
                     skalViseEgenvurderingLenke,
-                    skalViseMoteStotteLenke,
+                    skalViseMotestotteLenke,
                     visRessurslenker,
                     skalViseTiltaksinfoLenke}: OwnProps) => {
 
@@ -42,7 +42,7 @@ export default ({erSykmeldtMedArbeidsgiver,
                 <ReaktiveringMelding/>
                 {skalViseKrrMelding ? <KrrMelding/> : null}
                 {skalViseEgenvurderingLenke ? <Egenvurdering/> : null}
-                {skalViseMoteStotteLenke ? <Motestotte erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}/> : null}
+                {skalViseMotestotteLenke ? <Motestotte erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}/> : null}
                 <Aktivitetsplan/>
                 <div className="tokol">
                     <Dialog/>

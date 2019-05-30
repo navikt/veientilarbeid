@@ -60,7 +60,7 @@ const InnholdLogikkNiva4 = ({
 
     const harMotestottebesvarelse = React.useContext(MotestotteContext).data !== null;
 
-    const skalViseMoteStotteLenke = (
+    const skalViseMotestotteLenke = (
         innsatsgruppe === Innsatsgruppe.IVURD &&
         !harMotestottebesvarelse &&
         opprettetRegistreringDato >= LANSERINGSDATO_MOTESTOTTE &&
@@ -73,7 +73,7 @@ const InnholdLogikkNiva4 = ({
             erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}
             skalViseKrrMelding={reservasjonKRR}
             skalViseEgenvurderingLenke={skalViseEgenvurderingLenke}
-            skalViseMoteStotteLenke={skalViseMoteStotteLenke}
+            skalViseMotestotteLenke={skalViseMotestotteLenke}
             visRessurslenker={visRessurslenker}
             skalViseTiltaksinfoLenke={skalViseTiltaksinfoLenke}
         />
