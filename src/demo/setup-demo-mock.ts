@@ -46,7 +46,7 @@ fetchMock.get(VEILARBOPPFOLGING_URL, {
 });
 
 fetchMock.get(INNSATSGRUPPE_URL, {
-    innsatsgruppe: hentInnsatsgruppe()
+    servicegruppe: hentInnsatsgruppe()
 });
 
 fetchMock.get(STARTREGISTRERING_URL, {
