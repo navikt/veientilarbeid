@@ -99,7 +99,7 @@ function hentBrukerRegistreringPending(): HentBrukerRegistreringPENDINGAction {
     };
 }
 
-const selectData = (state: AppState): Data => state.brukerRegistrering.data || initialState.data;
+const selectData = (state: AppState): Data => state.brukerRegistrering.data;
 
 const selectProfilering = (state: AppState): Profilering | undefined => selectData(state).registrering.profilering;
 
