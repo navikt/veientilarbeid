@@ -27,7 +27,7 @@ interface StateProps {
     harMotestottebesvarelse: boolean;
 }
 
-class InnholdLogikk extends React.Component<StateProps> {
+class InnholdLogikkNiva4 extends React.Component<StateProps> {
 
     componentDidMount() {
         const erSykmeldtMedArbeidsgiver = this.props.sykmeldtInfo.data.erSykmeldtMedArbeidsgiver;
@@ -96,4 +96,4 @@ const mapStateToProps = (state: AppState): StateProps => ({
 
 });
 
-export default connect(mapStateToProps)(InnholdLogikk);
+export default connect(mapStateToProps)(InnholdLogikkNiva4);

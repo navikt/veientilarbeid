@@ -1,6 +1,6 @@
 import { fetchToJson } from './api-utils';
 import { Data as OppfolgingData } from './oppfolging';
-import { Data as InnsatsgruppeData } from './innsatsgruppe';
+import { FetchData as InnsatsgruppeData } from './innsatsgruppe';
 import { Data as JobbsokerbesvarelseData } from './jobbsokerbesvarelse';
 import { Data as SykmeldtInfoData } from './sykmeldt-info';
 import { Data as BrukerRegistreringData } from './brukerregistrering';
