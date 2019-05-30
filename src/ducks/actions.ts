@@ -131,7 +131,7 @@ export interface HentUlesteDialogerFEILETAction {
 
 export interface HentEgenvurderingbesvarelseOKAction {
     type: ActionType.HENT_EGENVURDERINGBESVARELSE_OK;
-    data: MotestottebesvarelseData;
+    data: EgenvurderingbesvarelseData;
 }
 
 export interface HentEgenvurderingbesvarelsePENDINGAction {
@@ -144,7 +144,7 @@ export interface HentEgenvurderingbesvarelseFEILETAction {
 
 export interface HentMotestottebesvarelseOKAction {
     type: ActionType.HENT_MOTESTOTTEBESVARELSE_OK;
-    data: EgenvurderingbesvarelseData;
+    data: MotestottebesvarelseData;
 }
 
 export interface HentMotestottebesvarelsePENDINGAction {

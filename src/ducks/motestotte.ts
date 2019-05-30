@@ -9,7 +9,7 @@ import { DataElement, STATUS, hentMotestottebesvarelseFetch } from './api';
 import { doThenDispatch } from './api-utils';
 
 export interface Data {
-    sistOppdatert: string;
+    dato: string;
 }
 
 export interface State extends DataElement {
