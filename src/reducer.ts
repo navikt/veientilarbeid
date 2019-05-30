@@ -7,7 +7,6 @@ import brukerRegistreringReducer, { State as BrukerRegistreringState } from './d
 import jobbsokerbesvarelseReducer, { State as JobbsokerbesvarelseState } from './ducks/jobbsokerbesvarelse';
 import ulesteDialogerReducer, { State as UlesteDialogerState } from './ducks/dialog';
 import egenvurderingbesvarelseReducer, { State as EgenvurderingbesvarelseState } from './ducks/egenvurdering';
-import motestottebesvarelseReducer, { State as MotestottebesvarelseState } from './ducks/motestotte';
 
 export interface AppState {
     oppfolging: OppfolgingState;
@@ -18,7 +17,6 @@ export interface AppState {
     jobbsokerbesvarelse: JobbsokerbesvarelseState;
     ulesteDialoger: UlesteDialogerState;
     egenvurderingbesvarelse: EgenvurderingbesvarelseState;
-    motestottebesvarelse: MotestottebesvarelseState;
 }
 
 export const reducer = combineReducers<AppState>({
@@ -30,5 +28,4 @@ export const reducer = combineReducers<AppState>({
     jobbsokerbesvarelse: jobbsokerbesvarelseReducer,
     ulesteDialoger: ulesteDialogerReducer,
     egenvurderingbesvarelse: egenvurderingbesvarelseReducer,
-    motestottebesvarelse: motestottebesvarelseReducer,
 });

@@ -6,7 +6,6 @@ import { Data as SykmeldtInfoData } from './sykmeldt-info';
 import { Data as BrukerRegistreringData } from './brukerregistrering';
 import { Data as UlesteDialogerData } from './dialog';
 import { Data as EgenvurderingbesvarelseData } from './egenvurdering';
-import { Data as MotestottebesvarelseData } from './motestotte';
 import { FeatureToggles } from './feature-toggles';
 import { contextpathDittNav, erMikrofrontend } from '../utils/app-state-utils';
 
@@ -86,8 +85,4 @@ export function hentUlesteDialogerFetch(): Promise<UlesteDialogerData> {
 
 export function hentEgenvurderingbesvarelseFetch(): Promise<EgenvurderingbesvarelseData> {
     return fetchToJson(EGENVURDERINGBESVARELSE_URL, requestConfig);
-}
-
-export function hentMotestottebesvarelseFetch(): Promise<MotestottebesvarelseData> {
-    return fetchToJson(MOTESTOTTE_URL, requestConfig);
 }

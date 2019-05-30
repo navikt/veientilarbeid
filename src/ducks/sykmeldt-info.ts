@@ -61,6 +61,6 @@ function hentSykmeldtInfoPending(): HentSykmeldtInfoPENDINGAction {
     };
 }
 
-export function selectSykmeldtInfo(state: AppState): State {
-    return state.sykmeldtInfodata;
+export function selectSykmeldtMedArbeidsgiver(state: AppState): boolean {
+    return state.sykmeldtInfodata.data.erSykmeldtMedArbeidsgiver;
 }
