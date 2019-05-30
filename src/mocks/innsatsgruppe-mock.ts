@@ -3,5 +3,5 @@
 // For brukere med andre innsatsgruppekoder blir komponenten skjult for bruker
 
 export default {
-    innsatsgruppe: 'BFORM'
+    servicegruppe: 'IVURD'
 };
