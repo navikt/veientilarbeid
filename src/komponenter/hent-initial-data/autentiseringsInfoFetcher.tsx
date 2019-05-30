@@ -1,8 +1,8 @@
 import * as React from 'react';
 import Innholdslaster from '../innholdslaster/innholdslaster';
 import Feilmelding from '../feilmeldinger/feilmelding';
-import { fetchToJson } from '../../ducks/api-utils';
-import { DataElement, requestConfig, STATUS } from '../../ducks/api';
+import { fetchData } from '../../ducks/api-utils';
+import { DataElement, STATUS } from '../../ducks/api';
 import { contextpathDittNav, erMikrofrontend } from '../../utils/app-state-utils';
 import SjekkOppfolging from './sjekk-oppfolging';
 import DataProvider from './data-provider';
@@ -39,22 +39,11 @@ export interface InnloggingsInfo extends DataElement {
 
 const AutentiseringsInfoFetcher = () => {
 
-    const [state, setState] = React.useState(initialState);
+    const [state, setState] = React.useState<InnloggingsInfo>(initialState);
 
     const contextpath = erMikrofrontend() ? contextpathDittNav : '';
 
-    React.useEffect(() => {
-        setState({...state, status: STATUS.PENDING});
-        const fetchAsync = async () => {
-            const data = await fetchToJson<Data>(`${contextpath}${AUTH_API}`, requestConfig);
-            setState({data: data, status: STATUS.OK});
-        };
-        fetchAsync().catch(err => {
-            setState({...state, status: STATUS.ERROR});
-            return Promise.reject(err);
-        })
-
-    }, []);
+    React.useEffect(fetchData<InnloggingsInfo, Data>(state, setState, `${contextpath}${AUTH_API}`), []);
 
     return (
         <Innholdslaster
