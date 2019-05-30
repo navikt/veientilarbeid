@@ -75,7 +75,7 @@ export const slettEgenvurdering = () => {
     slettFraLocalStorage(DemoData.EGENVURDERING);
 };
 
-export const hentMotestotte = () : JSONObject | null => {
+export const hentMotestotte = (): JSONObject | null => {
     const verdi = hentFraLocalStorage(DemoData.MOTESTOTTE);
     return verdi ? JSON.parse(verdi) : null;
 };
