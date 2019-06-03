@@ -99,22 +99,22 @@ function hentBrukerRegistreringPending(): HentBrukerRegistreringPENDINGAction {
     };
 }
 
-const selectData = (state: AppState): Data => state.brukerRegistrering.data;
+export function selectFremtidigSituasjonSvar(state: AppState): FremtidigSituasjonSvar | null {
+    const data = state.brukerRegistrering.data;
 
-const selectProfilering = (state: AppState): Profilering | undefined => selectData(state).registrering.profilering;
-
-export function selectFremtidigSituasjonSvar(state: AppState): FremtidigSituasjonSvar {
-    const data = selectData(state);
-
-    return data.registrering.besvarelse
-        ? data.registrering.besvarelse.fremtidigSituasjon
-        : initialState.data.registrering.besvarelse.fremtidigSituasjon;
+    return data ? data.registrering.besvarelse.fremtidigSituasjon : null;
 }
 
-export function selectForeslattInnsatsgruppe(state: AppState): ForeslattInnsatsgruppe | undefined {
-    const profilering = selectProfilering(state);
+export function selectForeslattInnsatsgruppe(state: AppState): ForeslattInnsatsgruppe | undefined | null {
+    const data = state.brukerRegistrering.data;
+
+    const profilering = data ? data.registrering.profilering : null;
 
     return profilering ? profilering.innsatsgruppe : undefined;
 }
 
-export const selectOpprettetRegistreringDato = (state: AppState): string => selectData(state).registrering.opprettetDato;
+export const selectOpprettetRegistreringDato = (state: AppState): string | null => {
+    const data = state.brukerRegistrering.data;
+
+    return data ? data.registrering.opprettetDato : null;
+};

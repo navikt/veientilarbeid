@@ -20,7 +20,7 @@ const antallTimerSidenRegistrering = (registreringsDato: Date) => {
 
 interface StateProps {
     foreslattInnsatsgruppe: ForeslattInnsatsgruppe;
-    opprettetRegistreringDato: Date;
+    opprettetRegistreringDato: Date | null;
 }
 
 type EgenvurderingProps = StateProps;
@@ -34,7 +34,7 @@ class Egenvurdering extends React.Component<EgenvurderingProps> {
     handleButtonClick = () => {
         const { opprettetRegistreringDato, foreslattInnsatsgruppe } = this.props;
 
-        gaTilEgenvurdering(antallTimerSidenRegistrering(opprettetRegistreringDato), foreslattInnsatsgruppe);
+        gaTilEgenvurdering(antallTimerSidenRegistrering(opprettetRegistreringDato!), foreslattInnsatsgruppe);
         window.location.href = behovsvurderingLenke;
     };
 
@@ -57,10 +57,13 @@ class Egenvurdering extends React.Component<EgenvurderingProps> {
     }
 }
 
-const mapStateToProps = (state: AppState): StateProps => ({
-    foreslattInnsatsgruppe: selectForeslattInnsatsgruppe(state)!, // Komponent blir rendret kun hvis foreslått innsatsgruppe er satt
-    opprettetRegistreringDato: new Date(selectOpprettetRegistreringDato(state)),
+const mapStateToProps = (state: AppState): StateProps => {
+    const opprettetRegistreringDato = selectOpprettetRegistreringDato(state);
 
-});
+    return {
+        foreslattInnsatsgruppe: selectForeslattInnsatsgruppe(state)!, // Komponent blir rendret kun hvis foreslått innsatsgruppe er satt
+        opprettetRegistreringDato: opprettetRegistreringDato ? new Date(opprettetRegistreringDato) : null,
+    };
+};
 
 export default connect(mapStateToProps)(Egenvurdering);
