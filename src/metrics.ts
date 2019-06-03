@@ -63,9 +63,21 @@ export const seEgenvurdering = (foreslaattinnsatsgruppe: ForeslattInnsatsgruppe)
     }
 };
 
+export const seMotestotte = (foreslaattinnsatsgruppe: ForeslattInnsatsgruppe) => {
+    if (!erDemo()) {
+        logEvent(`${domene}.semotestotte`, {}, {foreslaattInnsatsgruppe: foreslaattinnsatsgruppe});
+    }
+};
+
 export const gaTilEgenvurdering = (antallTimer: number, foreslaattinnsatsgruppe: ForeslattInnsatsgruppe) => {
     if (!erDemo()) {
         logEvent(`${domene}.gatilegenvurdering`, {antallTimer: antallTimer}, {foreslaattInnsatsgruppe: foreslaattinnsatsgruppe});
+    }
+};
+
+export const gaTilMotestotte = (antallTimer: number, foreslaattinnsatsgruppe: ForeslattInnsatsgruppe) => {
+    if (!erDemo()) {
+        logEvent(`${domene}.gatilmotestotte`, {antallTimer: antallTimer}, {foreslaattInnsatsgruppe: foreslaattinnsatsgruppe});
     }
 };
 

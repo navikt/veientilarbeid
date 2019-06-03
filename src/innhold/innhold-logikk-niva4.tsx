@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../reducer';
-import { Innsatsgruppe, State as InnsatsgruppeState } from '../ducks/innsatsgruppe';
-import { selectSykmeldtInfo, State as SykmeldtInfoState } from '../ducks/sykmeldt-info';
+import { Innsatsgruppe } from '../ducks/innsatsgruppe';
+import { selectSykmeldtMedArbeidsgiver } from '../ducks/sykmeldt-info';
 import {
     ForeslattInnsatsgruppe,
     FremtidigSituasjonSvar, selectForeslattInnsatsgruppe,
@@ -11,12 +11,15 @@ import {
 import { seVeientilarbeid } from '../metrics';
 import './innhold.less';
 import InnholdView from './innhold-view';
+import { MotestotteContext } from '../ducks/motestotte';
 
-const LANSERINGSDATO = new Date(2019, 4, 10);
+// TODO Fjerne etter tre mnd?
+const LANSERINGSDATO_EGENVURDERING = new Date(2019, 4, 10);
+const LANSERINGSDATO_MOTESTOTTE = new Date(2019, 5, 4);
 
 interface StateProps {
-    sykmeldtInfo: SykmeldtInfoState;
-    innsatsgruppe: InnsatsgruppeState;
+    erSykmeldtMedArbeidsgiver: boolean;
+    innsatsgruppe: Innsatsgruppe;
     fremtidigSvar: FremtidigSituasjonSvar | null;
     foreslattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null;
     reservasjonKRR: boolean;
@@ -24,65 +27,71 @@ interface StateProps {
     harEgenvurderingbesvarelse: boolean;
 }
 
-class InnholdLogikkNiva4 extends React.Component<StateProps> {
+const InnholdLogikkNiva4 = ({
+                                erSykmeldtMedArbeidsgiver, innsatsgruppe, fremtidigSvar, harEgenvurderingbesvarelse,
+                                foreslattInnsatsgruppe, reservasjonKRR, opprettetRegistreringDato
+                            }: StateProps) => {
 
-    componentDidMount() {
-        const erSykmeldtMedArbeidsgiver = this.props.sykmeldtInfo.data.erSykmeldtMedArbeidsgiver;
-        const innsatsgruppe = this.props.innsatsgruppe.data.innsatsgruppe;
+    React.useEffect(() => {
         seVeientilarbeid(erSykmeldtMedArbeidsgiver, innsatsgruppe);
-    }
+    }, []);
 
-    render() {
-        const {sykmeldtInfo, innsatsgruppe, fremtidigSvar, harEgenvurderingbesvarelse,
-            foreslattInnsatsgruppe, reservasjonKRR, opprettetRegistreringDato} = this.props;
+    const skalViseTiltaksinfoLenke = (
+        erSykmeldtMedArbeidsgiver ||
+        innsatsgruppe === Innsatsgruppe.BFORM ||
+        innsatsgruppe === Innsatsgruppe.BATT
+    );
 
-        const erSykmeldtMedArbeidsgiver = sykmeldtInfo.data.erSykmeldtMedArbeidsgiver;
+    const tilbakeTilSammeArbeidsgiver = (
+        fremtidigSvar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER ||
+        fremtidigSvar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER_NY_STILLING
+    );
 
-        const skalViseTiltaksinfoLenke = (
-            erSykmeldtMedArbeidsgiver ||
-            innsatsgruppe.data.innsatsgruppe === Innsatsgruppe.BFORM ||
-            innsatsgruppe.data.innsatsgruppe === Innsatsgruppe.BATT
-        );
+    const visRessurslenker = !(tilbakeTilSammeArbeidsgiver && erSykmeldtMedArbeidsgiver);
 
-        const tilbakeTilSammeArbeidsgiver = (
-            fremtidigSvar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER ||
-            fremtidigSvar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER_NY_STILLING
-        );
+    const skalViseEgenvurderingLenke = (
+        innsatsgruppe === Innsatsgruppe.IVURD &&
+        !harEgenvurderingbesvarelse &&
+        (opprettetRegistreringDato !== null && opprettetRegistreringDato >= LANSERINGSDATO_EGENVURDERING) &&
+        !reservasjonKRR &&
+        (foreslattInnsatsgruppe === ForeslattInnsatsgruppe.STANDARD_INNSATS ||
+            foreslattInnsatsgruppe === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS)
+    );
 
-        const visRessurslenker = !(tilbakeTilSammeArbeidsgiver && erSykmeldtMedArbeidsgiver);
+    const harMotestottebesvarelse = React.useContext(MotestotteContext).data !== null;
 
-        const skalViseEgenvurderingLenke = (
-            innsatsgruppe.data.innsatsgruppe === Innsatsgruppe.IVURD &&
-            !harEgenvurderingbesvarelse &&
-            (opprettetRegistreringDato !== null && opprettetRegistreringDato >= LANSERINGSDATO) &&
-            !reservasjonKRR &&
-            (foreslattInnsatsgruppe === ForeslattInnsatsgruppe.STANDARD_INNSATS ||
-                foreslattInnsatsgruppe === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS)
-        );
+    const skalViseMotestotteLenke = (
+        innsatsgruppe === Innsatsgruppe.IVURD &&
+        !harMotestottebesvarelse &&
+        (opprettetRegistreringDato !== null && opprettetRegistreringDato >= LANSERINGSDATO_MOTESTOTTE) &&
+        !reservasjonKRR &&
+        (foreslattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING)
+    );
 
-        return (
-            <InnholdView
-                erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}
-                skalViseKrrMelding={this.props.reservasjonKRR}
-                skalViseEgenvurderingLenke={skalViseEgenvurderingLenke}
-                visRessurslenker={visRessurslenker}
-                skalViseTiltaksinfoLenke={skalViseTiltaksinfoLenke}
-            />
-        );
-    }
+    return (
+        <InnholdView
+            erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}
+            skalViseKrrMelding={reservasjonKRR}
+            skalViseEgenvurderingLenke={skalViseEgenvurderingLenke}
+            skalViseMotestotteLenke={skalViseMotestotteLenke}
+            visRessurslenker={visRessurslenker}
+            skalViseTiltaksinfoLenke={skalViseTiltaksinfoLenke}
+        />
+    );
 }
 
 const mapStateToProps = (state: AppState): StateProps => {
     const opprettetRegistreringDato = selectOpprettetRegistreringDato(state);
 
     return {
-        sykmeldtInfo: selectSykmeldtInfo(state),
-        innsatsgruppe: state.innsatsgruppe,
+        erSykmeldtMedArbeidsgiver: selectSykmeldtMedArbeidsgiver(state),
+        innsatsgruppe: state.innsatsgruppe.data.innsatsgruppe,
         fremtidigSvar: selectFremtidigSituasjonSvar(state),
         reservasjonKRR: state.oppfolging.data.reservasjonKRR,
         foreslattInnsatsgruppe: selectForeslattInnsatsgruppe(state),
         opprettetRegistreringDato: opprettetRegistreringDato ? new Date(opprettetRegistreringDato) : null,
         harEgenvurderingbesvarelse: state.egenvurderingbesvarelse.data !== null,
+
     };
 };
 

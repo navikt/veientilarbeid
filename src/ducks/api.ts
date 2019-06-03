@@ -46,7 +46,8 @@ export const VEILARBOPPFOLGING_URL = `${contextpath}/veilarboppfolging/api/oppfo
     BRUKERREGISTRERING_URL = `${contextpath}/veilarbregistrering/api/registrering`,
     JOBBSOKERBESVARELSE_URL = `${contextpath}/veilarbjobbsokerkompetanse/api/hent`,
     ULESTEDIALOGER_URL = `${contextpath}/veilarbdialog/api/dialog/antallUleste`,
-    EGENVURDERINGBESVARELSE_URL = '/veilarbvedtakinfo/api/behovsvurdering/besvarelse';
+    EGENVURDERINGBESVARELSE_URL = '/veilarbvedtakinfo/api/behovsvurdering/besvarelse',
+    MOTESTOTTE_URL = '/veilarbvedtakinfo/api/motestotte';
 
 export const featureQueryParams = (features: string[]): string => {
     const reduceFunc = (acc: string, toggle: string, i: number) => `${acc}${i === 0 ? '?' : '&'}feature=${toggle}`;

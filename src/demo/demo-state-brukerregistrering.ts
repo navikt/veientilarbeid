@@ -40,7 +40,7 @@ export const settOpprettetDato = (opprettetDato: string) => {
 
 const defaultFremtidigSituasjon = FremtidigSituasjonSvar.NY_ARBEIDSGIVER;
 const defaultForeslattInnsatsgruppe = ForeslattInnsatsgruppe.STANDARD_INNSATS;
-const defaultOpprettetDato = opprettetRegistreringDato.registrertIEtterkantAvLansering;
+const defaultOpprettetDato = opprettetRegistreringDato.registrertEtterLanseringMotestotte;
 
 export const hentBrukerRegistreringData = () => {
     const data = hentFraLocalStorage(DemoData.BRUKER_REGISTRERING);
