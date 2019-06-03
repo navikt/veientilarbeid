@@ -7,6 +7,7 @@ import AutentiseringsInfoFetcher from './komponenter/hent-initial-data/autentise
 
 const store = getStore();
 
+// TODO Legge til Error Boundaries med logging til Frontendlogger
 class App extends React.Component {
     render() {
         return (

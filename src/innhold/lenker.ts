@@ -13,6 +13,7 @@ export const dagpengerLesmerLenke = erMikrofrontend() ? `${contextpathDittNav}/v
 export const dagpengerSoknadLenke = 'https://www.nav.no/no/Person/Skjemaer-for-privatpersoner/Skjemaer/Uten+arbeid/Dagpenger';
 export const sosialhjelpLenke = erMikrofrontend() ? `${contextpathDittNav}/veivisersosialhjelp` : '/veivisersosialhjelp';
 export const behovsvurderingLenke = erMikrofrontend() ? `${contextpathDittNav}/behovsvurdering` : '/behovsvurdering';
+export const motestotteLenke = erMikrofrontend() ? `${contextpathDittNav}/forberede-moete` : '/forberede-moete';
 export const reaktiveringLenke = erMikrofrontend() ? `${contextpathDittNav}/arbeidssokerregistrering/start` : '/arbeidssokerregistrering/start';
 export const sykepengerLenke = 'https://www.nav.no/no/Person/Arbeid/Sykmeldt%2C+arbeidsavklaringspenger+og+yrkesskade/Sykepenger/Sykepenger+til+arbeidstakere#chapter-7';
 export const meldekortLenke = 'https://www.nav.no/no/Person/Arbeid/Dagpenger+ved+arbeidsloshet+og+permittering/Meldekort+hvordan+gjor+du+det/Slik+sender+du+elektroniske+meldekort';
