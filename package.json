@@ -64,7 +64,7 @@
     "prop-types": "15.7.2",
     "query-string": "5.1.1",
     "react": "16.8.6",
-    "react-app-polyfill": "0.2.2",
+    "react-app-polyfill": "1.0.1",
     "react-collapse": "4.0.3",
     "react-day-picker": "7.3.0",
     "react-dom": "16.8.6",
