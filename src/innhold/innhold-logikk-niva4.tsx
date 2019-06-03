@@ -78,7 +78,7 @@ const InnholdLogikkNiva4 = ({
             skalViseTiltaksinfoLenke={skalViseTiltaksinfoLenke}
         />
     );
-}
+};
 
 const mapStateToProps = (state: AppState): StateProps => {
     const opprettetRegistreringDato = selectOpprettetRegistreringDato(state);
