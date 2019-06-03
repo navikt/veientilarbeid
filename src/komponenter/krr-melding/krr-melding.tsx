@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AlertStripeAdvarselSolid } from 'nav-frontend-alertstriper';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import Lenke from 'nav-frontend-lenker';
 import { FormattedMessage } from 'react-intl';
 import { Normaltekst } from 'nav-frontend-typografi';
@@ -9,7 +9,7 @@ import { difiLenke } from '../../innhold/lenker';
 class KrrMelding extends React.Component<{}> {
     render() {
         return (
-            <AlertStripeAdvarselSolid className="krr-melding blokk-xs">
+            <AlertStripeAdvarsel className="krr-melding blokk-xs">
                 <Normaltekst className="blokk-xs">
                     <FormattedMessage id="krr-melding-ingress"/>
                 </Normaltekst>
@@ -26,7 +26,7 @@ class KrrMelding extends React.Component<{}> {
                         <FormattedMessage id="krr-melding-lenketekst"/>
                     </Normaltekst>
                 </Lenke>
-            </AlertStripeAdvarselSolid>
+            </AlertStripeAdvarsel>
         );
     }
 }
