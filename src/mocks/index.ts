@@ -1,6 +1,6 @@
 import oppfolgingResponse from './oppfolging-mock';
 import {
-    FEATURE_URL, JOBBSOKERBESVARELSE_URL, INNSATSGRUPPE_URL, STARTREGISTRERING_URL, VEILARBOPPFOLGING_URL,
+    JOBBSOKERBESVARELSE_URL, INNSATSGRUPPE_URL, STARTREGISTRERING_URL, VEILARBOPPFOLGING_URL,
     ULESTEDIALOGER_URL, BRUKERREGISTRERING_URL, EGENVURDERINGBESVARELSE_URL, MOTESTOTTE_URL
 } from '../ducks/api';
 import innsatsgruppeResponse from './innsatsgruppe-mock';
@@ -29,8 +29,6 @@ const fetchMock = FetchMock.configure({
 });
 
 fetchMock.get(VEILARBOPPFOLGING_URL, oppfolgingResponse);
-
-fetchMock.get(`${FEATURE_URL}(.*)`, {});
 
 fetchMock.get(INNSATSGRUPPE_URL, innsatsgruppeResponse);
 

@@ -4,7 +4,6 @@ import { Data as JobbsokerbesvarelseData } from './jobbsokerbesvarelse';
 import { Data as SykmeldtInfoData } from './sykmeldt-info';
 import { Data as BrukerRegistreringData } from './brukerregistrering';
 import { Data as UlesteDialogerData } from './dialog';
-import { FeatureToggles } from './feature-toggles';
 import { Data as EgenvurderingbesvarelseData } from './egenvurdering';
 
 export enum ActionType {
@@ -32,19 +31,6 @@ export enum ActionType {
     HENT_EGENVURDERINGBESVARELSE_OK = 'HENT_EGENVURDERINGBESVARELSE_OK',
     HENT_EGENVURDERINGBESVARELSE_PENDING = 'HENT_EGENVURDERINGBESVARELSE_PENDING',
     HENT_EGENVURDERINGBESVARELSE_FEILET = 'HENT_EGENVURDERINGBESVARELSE_FEILET',
-}
-
-export interface FeatureTogglesOKAction {
-    type: ActionType.FEATURE_TOGGLES_OK;
-    unleash: FeatureToggles;
-}
-
-export interface FeatureTogglesPENDINGAction {
-    type: ActionType.FEATURE_TOGGLES_PENDING;
-}
-
-export interface FeatureTogglesFEILETAction {
-    type: ActionType.FEATURE_TOGGLES_FEILET;
 }
 
 export interface HentOppfolgingOKAction {
@@ -138,9 +124,7 @@ export interface HentEgenvurderingbesvarelseFEILETAction {
     type: ActionType.HENT_EGENVURDERINGBESVARELSE_FEILET;
 }
 
-export type Handling = FeatureTogglesOKAction
-    | FeatureTogglesPENDINGAction
-    | FeatureTogglesFEILETAction
+export type Handling =
     | HentOppfolgingOKAction
     | HentOppfolgingPENDINGAction
     | HentOppfolgingFEILETAction
