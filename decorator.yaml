@@ -49,4 +49,4 @@ redirect:
   - from: /behovsvurdering
     to: {{ BEHOVSVURDERING_URL }}
   - from: /forberede-moete
-    to: {{ FORBEREDE-MOETE_URL }}
+    to: {{ FORBEREDE_MOETE_URL }}
