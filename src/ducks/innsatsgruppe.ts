@@ -2,7 +2,6 @@ import {
     ActionType, Handling, HentInnsatsgruppeFEILETAction, HentInnsatsgruppeOKAction, HentInnsatsgruppePENDINGAction,
 } from './actions';
 import { Dispatch } from '../dispatch-type';
-import { AppState } from '../reducer';
 import { doThenDispatch } from './api-utils';
 import { hentInnsatsgruppeFetch, DataElement, STATUS } from './api';
 
@@ -84,8 +83,4 @@ function hentInnsatsgruppePending(): HentInnsatsgruppePENDINGAction {
     return {
         type: ActionType.HENT_INNSATSGRUPPE_PENDING,
     };
-}
-
-export function selectInnsatsgruppegruppe(state: AppState): State {
-    return state.innsatsgruppe;
 }
