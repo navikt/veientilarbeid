@@ -4,7 +4,6 @@ import { Dispatch } from '../../dispatch-type';
 import { AppState } from '../../reducer';
 import Innholdslaster from '../innholdslaster/innholdslaster';
 import Feilmelding from '../feilmeldinger/feilmelding';
-import { hentInnsatsgruppe, State as InnsatsgruppeState } from '../../ducks/innsatsgruppe';
 import { hentSykmeldtInfo, State as SykmeldtInfodataState } from '../../ducks/sykmeldt-info';
 import { hentUlesteDialoger, State as UlesteDialogerState } from '../../ducks/dialog';
 import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe } from '../../ducks/brukerregistrering';
@@ -13,9 +12,10 @@ import { hentEgenvurderingbesvarelse, State as EgenvurderingbesvarelseState } fr
 import {
     Data,
     initialState,
-    State,
+    State as MotestotteState,
     MotestotteContext
 } from '../../ducks/motestotte';
+import { hentInnsatsgruppe, State as InnsatsgruppeState } from '../../ducks/innsatsgruppe';
 import { fetchData } from '../../ducks/api-utils';
 import { MOTESTOTTE_URL } from '../../ducks/api';
 
@@ -54,7 +54,7 @@ const DataProvider = ({
                           hentInnsatsgruppe, hentUlesteDialoger, hentEgenvurderingbesvarelse
                       }: Props) => {
 
-    const [state, setState] = React.useState<State>(initialState);
+    const [motestotteState, setMotestotteState] = React.useState<MotestotteState>(initialState);
 
     React.useEffect(() => {
         hentSykmeldtInfo();
@@ -64,7 +64,7 @@ const DataProvider = ({
         if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
             hentEgenvurderingbesvarelse();
         } else if (foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING) {
-            fetchData<State, Data>(state, setState, MOTESTOTTE_URL)();
+            fetchData<MotestotteState, Data>(motestotteState, setMotestotteState, MOTESTOTTE_URL)();
         }
     }, []);
 
@@ -73,7 +73,7 @@ const DataProvider = ({
     const betingelser: boolean[] = [underOppfolging, skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe), true];
 
     return (
-        <MotestotteContext.Provider value={state}>
+        <MotestotteContext.Provider value={motestotteState}>
             <Innholdslaster
                 feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse"/>}
                 storrelse="XXL"
