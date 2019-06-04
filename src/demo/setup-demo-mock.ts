@@ -43,6 +43,16 @@ fetchMock.get(VEILARBOPPFOLGING_URL, {
     underOppfolging: true,
     kanReaktiveres: false,
     reservasjonKRR: hentReservasjonKRR(),
+    oppfolgingsPerioder:  [
+        {
+          startDato: '2019-05-29T09:23:20.346Z',
+          sluttDato: '2019-05-29T09:23:20.346Z'
+        },
+        {
+            startDato: '2019-05-29T09:23:20.346Z',
+            sluttDato: ''
+          }
+    ]
 });
 
 fetchMock.get(INNSATSGRUPPE_URL, {

@@ -10,6 +10,7 @@ export enum DemoData {
     RESERVASJON_KRR = 'reservasjonKRR',
     EGENVURDERING = 'egenvurdering',
     AUTENTISERINGS_INFO = 'autentiseringsInfo',
+    ER_REAKTIVERT = 'erReaktivert'
 }
 
 export const hentFraLocalStorage = (key: string): string | null => {
@@ -72,6 +73,15 @@ export const settEgenvurdering = () => {
 
 export const slettEgenvurdering = () => {
     slettFraLocalStorage(DemoData.EGENVURDERING);
+};
+
+export const hentErReaktivert = (): boolean => {
+    const verdi = hentFraLocalStorage(DemoData.ER_REAKTIVERT);
+    return verdi === 'true';
+};
+
+export const settErReaktivert = (value: string) => {
+    settILocalStorage(DemoData.ER_REAKTIVERT, value.toString());
 };
 
 export const settReservasjonKRR = (value: string) => {

@@ -19,7 +19,10 @@ import {
     settReservasjonKRR,
     hentReservasjonKRR,
     settAutentiseringsInfo,
-    slettAutentiseringsInfo, hentAutentiseringsInfo,
+    slettAutentiseringsInfo,
+    hentAutentiseringsInfo,
+    settErReaktivert,
+    hentErReaktivert
 } from './demo-state';
 
 import './demo-dashboard.less';
@@ -50,6 +53,7 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
         const ULESTE_DIALOGER = DemoData.ULESTE_DIALOGER;
         const RESERVASJON_KRR = DemoData.RESERVASJON_KRR;
         const AUTENTISERINGS_INFO = DemoData.AUTENTISERINGS_INFO;
+        const ER_REAKTIVERT= DemoData.ER_REAKTIVERT;
         const {messages} = this.props.intl;
 
         const handleChangeInnsatsgruppe = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -92,6 +96,8 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
                 settUlesteDialoger(element.checked.toString());
             } else if (element.id === RESERVASJON_KRR) {
                 settReservasjonKRR(element.checked.toString());
+            } else if (element.id === ER_REAKTIVERT) {
+                settErReaktivert(element.checked.toString());
             } else if (element.id === AUTENTISERINGS_INFO) {
                 if (element.checked) {
                     settAutentiseringsInfo();
@@ -230,6 +236,11 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
                             label: messages['demo-egenvurdering'],
                             checked: !!hentEgenvurdering(),
                             id: EGENVURDERING,
+                        },
+                        {
+                            label: messages['demo-erreaktivert'],
+                            checked: hentErReaktivert(),
+                            id: ER_REAKTIVERT,
                         },
                         {
                             label: messages['demo-autentiseringsinfo'],

@@ -4,6 +4,7 @@ import {
 import { Dispatch } from '../dispatch-type';
 import { hentOppfolgingFetch, DataElement, STATUS } from './api';
 import { doThenDispatch } from './api-utils';
+import { parseOppfolging } from '../utils/oppfolging-parser'
 
 export interface State extends DataElement {
     data: Data;
@@ -13,6 +14,7 @@ export interface Data {
     underOppfolging: boolean;
     kanReaktiveres: boolean;
     reservasjonKRR: boolean;
+    erReaktivert: boolean;
 }
 
 const initialState: State = {
@@ -20,6 +22,7 @@ const initialState: State = {
         underOppfolging: false,
         kanReaktiveres: false,
         reservasjonKRR: false,
+        erReaktivert: false
     },
     status: STATUS.NOT_STARTED
 };
@@ -53,7 +56,7 @@ export function hentOppfolging(): (dispatch: Dispatch) => Promise<void> {
 function hentOppfolgingOk(data: Data): HentOppfolgingOKAction {
     return {
         type: ActionType.HENT_OPPFOLGING_OK,
-        data: data
+        data: Object.assign({}, data, { erReaktivert: parseOppfolging(data) })
     };
 }
 
