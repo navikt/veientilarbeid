@@ -18,6 +18,10 @@ export interface State extends DataElement {
     data: Data;
 }
 
+export interface FetchData {
+    servicegruppe: Innsatsgruppe;
+}
+
 export interface Data {
     innsatsgruppe: Innsatsgruppe;
 }
@@ -40,7 +44,7 @@ export default function reducer(state: State = initialState, action: Handling): 
             return {...state, status: STATUS.ERROR};
         case ActionType.HENT_INNSATSGRUPPE_OK: {
 
-            const innsatsgruppekode: string =  action.data.innsatsgruppe;
+            const innsatsgruppekode: string =  action.data.servicegruppe;
 
             return {
                 ...state,
@@ -56,14 +60,14 @@ export default function reducer(state: State = initialState, action: Handling): 
 }
 
 export function hentInnsatsgruppe(): (dispatch: Dispatch) => Promise<void> {
-    return doThenDispatch<Data>(() => hentInnsatsgruppeFetch(), {
+    return doThenDispatch<FetchData>(() => hentInnsatsgruppeFetch(), {
         ok: hentInnsatsgruppeOk,
         feilet: hentInnsatsgruppeFeilet,
         pending: hentInnsatsgruppePending,
     });
 }
 
-function hentInnsatsgruppeOk(innsatsgruppeData: Data): HentInnsatsgruppeOKAction {
+function hentInnsatsgruppeOk(innsatsgruppeData: FetchData): HentInnsatsgruppeOKAction {
     return {
         type: ActionType.HENT_INNSATSGRUPPE_OK,
         data: innsatsgruppeData

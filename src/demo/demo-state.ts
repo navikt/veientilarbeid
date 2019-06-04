@@ -10,7 +10,8 @@ export enum DemoData {
     RESERVASJON_KRR = 'reservasjonKRR',
     EGENVURDERING = 'egenvurdering',
     AUTENTISERINGS_INFO = 'autentiseringsInfo',
-    ER_REAKTIVERT = 'erReaktivert'
+    ER_REAKTIVERT = 'erReaktivert',
+    MOTESTOTTE = 'motestotte'
 }
 
 export const hentFraLocalStorage = (key: string): string | null => {
@@ -82,6 +83,19 @@ export const hentErReaktivert = (): boolean => {
 
 export const settErReaktivert = (value: string) => {
     settILocalStorage(DemoData.ER_REAKTIVERT, value.toString());
+}
+
+export const hentMotestotte = (): JSONObject | null => {
+    const verdi = hentFraLocalStorage(DemoData.MOTESTOTTE);
+    return verdi ? JSON.parse(verdi) : null;
+};
+
+export const settMotestotte = () => {
+    settILocalStorage(DemoData.MOTESTOTTE, JSON.stringify({dato: '2019-05-06T09:39:01.635+02:00'}));
+};
+
+export const slettMotestotte = () => {
+    slettFraLocalStorage(DemoData.MOTESTOTTE);
 };
 
 export const settReservasjonKRR = (value: string) => {

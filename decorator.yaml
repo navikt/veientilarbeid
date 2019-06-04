@@ -48,3 +48,5 @@ redirect:
     to: {{ MIA_URL }}
   - from: /behovsvurdering
     to: {{ BEHOVSVURDERING_URL }}
+  - from: /forberede-moete
+    to: {{ FORBEREDE_MOETE_URL }}

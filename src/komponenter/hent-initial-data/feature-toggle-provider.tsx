@@ -19,7 +19,7 @@ interface DispatchProps {
 }
 
 type FeatureToggleProviderProps = OwnProps & DispatchProps & StateProps;
-
+// TODO Fjerne kall til Feature
 class FeatureToggleProvider extends React.Component<FeatureToggleProviderProps> {
     constructor(props: FeatureToggleProviderProps) {
         super(props);

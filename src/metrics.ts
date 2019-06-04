@@ -15,6 +15,12 @@ export const seVeientilarbeid = (erSykmeldtMedArbeidsgiver: boolean, servicegrup
     }
 };
 
+export const seVeientilarbeidNiva3 = () => {
+    if (!erDemo()) {
+        logEvent(`${domene}.seveientilarbeidniva3`, {}, {});
+    }
+};
+
 export const visInfoOmDagpenger = () => {
     if (!erDemo()) {
         logEvent(`${domene}.visinfoomdagpenger`, {}, {});
@@ -57,9 +63,21 @@ export const seEgenvurdering = (foreslaattinnsatsgruppe: ForeslattInnsatsgruppe)
     }
 };
 
+export const seMotestotte = (foreslaattinnsatsgruppe: ForeslattInnsatsgruppe) => {
+    if (!erDemo()) {
+        logEvent(`${domene}.semotestotte`, {}, {foreslaattInnsatsgruppe: foreslaattinnsatsgruppe});
+    }
+};
+
 export const gaTilEgenvurdering = (antallTimer: number, foreslaattinnsatsgruppe: ForeslattInnsatsgruppe) => {
     if (!erDemo()) {
         logEvent(`${domene}.gatilegenvurdering`, {antallTimer: antallTimer}, {foreslaattInnsatsgruppe: foreslaattinnsatsgruppe});
+    }
+};
+
+export const gaTilMotestotte = (antallTimer: number, foreslaattinnsatsgruppe: ForeslattInnsatsgruppe) => {
+    if (!erDemo()) {
+        logEvent(`${domene}.gatilmotestotte`, {antallTimer: antallTimer}, {foreslaattInnsatsgruppe: foreslaattinnsatsgruppe});
     }
 };
 

@@ -19,8 +19,7 @@ import {
     settReservasjonKRR,
     hentReservasjonKRR,
     settAutentiseringsInfo,
-    slettAutentiseringsInfo,
-    hentAutentiseringsInfo,
+    slettAutentiseringsInfo, hentAutentiseringsInfo, hentMotestotte, settMotestotte, slettMotestotte,
     settErReaktivert,
     hentErReaktivert
 } from './demo-state';
@@ -36,13 +35,15 @@ import {
 import { InnloggingsNiva } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
 
 interface OpprettetRegistreringDato {
-    registrertIForkantAvLansering: string;
-    registrertIEtterkantAvLansering: string;
+    registrertForLanseringEgenvurdering: string;
+    registrertMellomLanseringEgenvurderingOgMotestotte: string;
+    registrertEtterLanseringMotestotte: string;
 }
 
 export const opprettetRegistreringDato: OpprettetRegistreringDato = {
-    registrertIForkantAvLansering: '2020-01-01T12:00:00.111111+01:00',
-    registrertIEtterkantAvLansering: '2020-01-03T12:00:00.111111+01:00'
+    registrertForLanseringEgenvurdering: '2019-05-09T12:00:00.111111+01:00',
+    registrertMellomLanseringEgenvurderingOgMotestotte: '2019-05-11T12:00:00.111111+01:00',
+    registrertEtterLanseringMotestotte: '2019-06-05T12:00:00.111111+01:00',
 };
 
 class DemoDashboard extends React.Component<InjectedIntlProps> {
@@ -50,6 +51,7 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
         const SYKMELDT_MED_ARBEIDSGIVER = DemoData.SYKMELDT_MED_ARBEIDSGIVER;
         const JSK = DemoData.JSK;
         const EGENVURDERING = DemoData.EGENVURDERING;
+        const MOTESTOTTE = DemoData.MOTESTOTTE;
         const ULESTE_DIALOGER = DemoData.ULESTE_DIALOGER;
         const RESERVASJON_KRR = DemoData.RESERVASJON_KRR;
         const AUTENTISERINGS_INFO = DemoData.AUTENTISERINGS_INFO;
@@ -92,6 +94,12 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
                 } else {
                     slettEgenvurdering();
                 }
+            } else if (element.id === MOTESTOTTE) {
+                if (element.checked) {
+                    settMotestotte();
+                } else {
+                    slettMotestotte();
+                }
             } else if (element.id === ULESTE_DIALOGER) {
                 settUlesteDialoger(element.checked.toString());
             } else if (element.id === RESERVASJON_KRR) {
@@ -131,8 +139,9 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
         };
 
         const opprettetRegistreringDatoLabels = {
-            registrertIForkantAvLansering: '01.01.20',
-            registrertIEtterkantAvLansering: '03.01.20',
+            registrertForLanseringEgenvurdering: '09.05.19',
+            registrertMellomLanseringEgenvurderingOgMotestotte: '11.05.19',
+            registrertEtterLanseringMotestotte: '05.06.19'
         };
 
         return (
@@ -219,9 +228,11 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
                             checked: hentSykmeldtMedArbeidsgiver(),
                             id: SYKMELDT_MED_ARBEIDSGIVER
                         },
-                        {   label: messages['demo-jsk'],
+                        {
+                            label: messages['demo-jsk'],
                             checked: !!hentJsk(),
-                            id: JSK},
+                            id: JSK
+                        },
                         {
                             label: messages['demo-dialog'],
                             checked: hentUlesteDialoger(),
@@ -240,7 +251,12 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
                         {
                             label: messages['demo-erreaktivert'],
                             checked: hentErReaktivert(),
-                            id: ER_REAKTIVERT,
+                            id: ER_REAKTIVERT
+                        },
+                        {   
+                            label: messages['demo-motestotte'],
+                            checked: !!hentMotestotte(),
+                            id: MOTESTOTTE,
                         },
                         {
                             label: messages['demo-autentiseringsinfo'],
