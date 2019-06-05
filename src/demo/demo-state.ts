@@ -99,7 +99,7 @@ export const hentReservasjonKRR = (): boolean => {
 export const settAutentiseringsInfo = () => {
     settILocalStorage(DemoData.AUTENTISERINGS_INFO, JSON.stringify({
         securityLevel: InnloggingsNiva.LEVEL_3,
-        isLoggedIn: true,
+        loggedIn: true,
     }));
 };
 
@@ -107,7 +107,7 @@ export const hentAutentiseringsInfo = (): JSONObject => {
     const verdi = hentFraLocalStorage(DemoData.AUTENTISERINGS_INFO);
     return verdi ? JSON.parse(verdi) : {
         securityLevel: InnloggingsNiva.LEVEL_4,
-        isLoggedIn: true,
+        loggedIn: true,
     };
 };
 
