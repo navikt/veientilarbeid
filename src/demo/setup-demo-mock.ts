@@ -1,5 +1,4 @@
 import {
-    FEATURE_URL,
     JOBBSOKERBESVARELSE_URL,
     INNSATSGRUPPE_URL,
     STARTREGISTRERING_URL,
@@ -7,7 +6,7 @@ import {
     VEILARBOPPFOLGING_URL,
     ULESTEDIALOGER_URL,
     EGENVURDERINGBESVARELSE_URL,
-    featureQueryParams, MOTESTOTTE_URL
+    MOTESTOTTE_URL
 } from '../ducks/api';
 import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 import {
@@ -66,6 +65,3 @@ fetchMock.get(EGENVURDERINGBESVARELSE_URL, hentEgenvurdering());
 fetchMock.get(MOTESTOTTE_URL, hentMotestotte());
 
 fetchMock.get(AUTH_API, hentAutentiseringsInfo());
-
-const unleashUrl = FEATURE_URL + featureQueryParams([]);
-fetchMock.get(unleashUrl, {});

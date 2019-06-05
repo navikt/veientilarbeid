@@ -6,7 +6,6 @@ import { Data as SykmeldtInfoData } from './sykmeldt-info';
 import { Data as BrukerRegistreringData } from './brukerregistrering';
 import { Data as UlesteDialogerData } from './dialog';
 import { Data as EgenvurderingbesvarelseData } from './egenvurdering';
-import { FeatureToggles } from './feature-toggles';
 import { contextpathDittNav, erMikrofrontend } from '../utils/app-state-utils';
 
 export enum STATUS {
@@ -37,10 +36,7 @@ export const requestConfig: RequestInit = {
 
 const contextpath = erMikrofrontend() ? contextpathDittNav : '';
 
-const contextpathFeature = erMikrofrontend() ? contextpathDittNav : '/veientilarbeid';
-
 export const VEILARBOPPFOLGING_URL = `${contextpath}/veilarboppfolging/api/oppfolging`,
-    FEATURE_URL = `${contextpathFeature}/api/feature`,
     INNSATSGRUPPE_URL = `${contextpath}/veilarbtiltakinfo/api/oppfolgingsstatus`,
     STARTREGISTRERING_URL = `${contextpath}/veilarbregistrering/api/startregistrering`,
     BRUKERREGISTRERING_URL = `${contextpath}/veilarbregistrering/api/registrering`,
@@ -48,16 +44,6 @@ export const VEILARBOPPFOLGING_URL = `${contextpath}/veilarboppfolging/api/oppfo
     ULESTEDIALOGER_URL = `${contextpath}/veilarbdialog/api/dialog/antallUleste`,
     EGENVURDERINGBESVARELSE_URL = '/veilarbvedtakinfo/api/behovsvurdering/besvarelse',
     MOTESTOTTE_URL = '/veilarbvedtakinfo/api/motestotte';
-
-export const featureQueryParams = (features: string[]): string => {
-    const reduceFunc = (acc: string, toggle: string, i: number) => `${acc}${i === 0 ? '?' : '&'}feature=${toggle}`;
-    return features.reduce(reduceFunc, '');
-};
-
-export function hentFeatureTogglesFetch(features: string[]): Promise<FeatureToggles> {
-    const unleashUrl = FEATURE_URL + featureQueryParams(features);
-    return fetchToJson<FeatureToggles>(unleashUrl, requestConfig);
-}
 
 export function hentOppfolgingFetch(): Promise<OppfolgingData> {
     return fetchToJson(VEILARBOPPFOLGING_URL, requestConfig);
