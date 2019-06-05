@@ -15,7 +15,7 @@ import { MotestotteContext } from '../ducks/motestotte';
 
 // TODO Fjerne etter tre mnd?
 const LANSERINGSDATO_EGENVURDERING = new Date(2019, 4, 10);
-const LANSERINGSDATO_MOTESTOTTE = new Date(2019, 5, 3);
+const LANSERINGSDATO_MOTESTOTTE = new Date(2020, 5, 3);
 
 interface StateProps {
     erSykmeldtMedArbeidsgiver: boolean;
