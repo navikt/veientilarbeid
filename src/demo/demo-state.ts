@@ -1,5 +1,6 @@
 import { JSONObject } from 'yet-another-fetch-mock';
 import { InnloggingsNiva } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
+import { parseOppfolging } from '../utils/oppfolging-parser'
 
 export enum DemoData {
     INNSATSGRUPPE = 'innsatsgruppe',
@@ -76,13 +77,40 @@ export const slettEgenvurdering = () => {
     slettFraLocalStorage(DemoData.EGENVURDERING);
 };
 
-export const hentErReaktivert = (): boolean => {
+export const hentErReaktivert = (): JSONObject | null => {
     const verdi = hentFraLocalStorage(DemoData.ER_REAKTIVERT);
-    return verdi === 'true';
+    return verdi ? JSON.parse(verdi) : null;
 };
 
-export const settErReaktivert = (value: string) => {
-    settILocalStorage(DemoData.ER_REAKTIVERT, value.toString());
+export const settErReaktivert = () => {
+    const data = [
+        {
+          startDato: '2019-05-29T09:23:20.346Z',
+          sluttDato: '2019-05-29T09:23:20.346Z'
+        },
+        {
+            startDato: '2019-05-29T09:23:20.346Z',
+            sluttDato: ''
+        }
+    ]
+    settILocalStorage(DemoData.ER_REAKTIVERT, JSON.stringify(data));
+}
+
+export const settErIkkeReaktivert = () => {
+    const data = [
+        {
+          startDato: '2019-05-29T09:23:20.346Z',
+          sluttDato: '2019-05-29T09:23:20.346Z'
+        }
+    ]
+    settILocalStorage(DemoData.ER_REAKTIVERT, JSON.stringify(data));
+}
+
+export const validerReaktivering = (): boolean => {
+    const data = {
+        oppfolgingsPerioder: hentErReaktivert()
+    }
+    return parseOppfolging(data)
 }
 
 export const hentMotestotte = (): JSONObject | null => {

@@ -19,9 +19,14 @@ import {
     settReservasjonKRR,
     hentReservasjonKRR,
     settAutentiseringsInfo,
-    slettAutentiseringsInfo, hentAutentiseringsInfo, hentMotestotte, settMotestotte, slettMotestotte,
+    slettAutentiseringsInfo,
+    hentAutentiseringsInfo,
+    hentMotestotte,
+    settMotestotte,
+    slettMotestotte,
     settErReaktivert,
-    hentErReaktivert
+    settErIkkeReaktivert,
+    validerReaktivering
 } from './demo-state';
 
 import './demo-dashboard.less';
@@ -105,7 +110,11 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
             } else if (element.id === RESERVASJON_KRR) {
                 settReservasjonKRR(element.checked.toString());
             } else if (element.id === ER_REAKTIVERT) {
-                settErReaktivert(element.checked.toString());
+                if (element.checked) {
+                    settErReaktivert();
+                } else {
+                    settErIkkeReaktivert();
+                }
             } else if (element.id === AUTENTISERINGS_INFO) {
                 if (element.checked) {
                     settAutentiseringsInfo();
@@ -250,7 +259,7 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
                         },
                         {
                             label: messages['demo-erreaktivert'],
-                            checked: hentErReaktivert(),
+                            checked: validerReaktivering(),
                             id: ER_REAKTIVERT
                         },
                         {   
