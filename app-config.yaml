@@ -64,7 +64,7 @@ fasitResources:
     resourceType: baseUrl
   - alias: behovsvurdering
     resourceType: baseUrl
-  - alias: forberede_moete
+  - alias: forberede-moete
     resourceType: baseUrl
 
 alertProfiles:
