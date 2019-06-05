@@ -4,17 +4,22 @@ import {
 import { Dispatch } from '../dispatch-type';
 import { hentOppfolgingFetch, DataElement, STATUS } from './api';
 import { doThenDispatch } from './api-utils';
-import { parseOppfolging } from '../utils/oppfolging-parser'
+import { parseOppfolging } from '../utils/oppfolging-parser';
 
 export interface State extends DataElement {
     data: Data;
+    erReaktivert: boolean;
+}
+
+export interface Periode {
+    sluttDato: string;
 }
 
 export interface Data {
     underOppfolging: boolean;
     kanReaktiveres: boolean;
     reservasjonKRR: boolean;
-    erReaktivert: boolean;
+    oppfolgingsPerioder: Array<Periode> | [];
 }
 
 const initialState: State = {
@@ -22,8 +27,9 @@ const initialState: State = {
         underOppfolging: false,
         kanReaktiveres: false,
         reservasjonKRR: false,
-        erReaktivert: false
+        oppfolgingsPerioder: []
     },
+    erReaktivert: false,
     status: STATUS.NOT_STARTED
 };
 
@@ -38,7 +44,7 @@ export default function reducer(state: State = initialState, action: Handling): 
         case ActionType.HENT_OPPFOLGING_FEILET:
             return {...state, status: STATUS.ERROR};
         case ActionType.HENT_OPPFOLGING_OK: {
-            return {...state, status: STATUS.OK, data: action.data};
+            return {...state, status: STATUS.OK, data: action.data, erReaktivert: parseOppfolging(action.data)};
         }
         default:
             return state;
@@ -56,7 +62,7 @@ export function hentOppfolging(): (dispatch: Dispatch) => Promise<void> {
 function hentOppfolgingOk(data: Data): HentOppfolgingOKAction {
     return {
         type: ActionType.HENT_OPPFOLGING_OK,
-        data: Object.assign({}, data, { erReaktivert: parseOppfolging(data) })
+        data: data,
     };
 }
 

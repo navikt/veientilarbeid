@@ -92,7 +92,7 @@ const mapStateToProps = (state: AppState): StateProps => {
         foreslattInnsatsgruppe: selectForeslattInnsatsgruppe(state),
         opprettetRegistreringDato: opprettetRegistreringDato ? new Date(opprettetRegistreringDato) : null,
         harEgenvurderingbesvarelse: state.egenvurderingbesvarelse.data !== null,
-        erReaktivert: state.oppfolging.data.erReaktivert
+        erReaktivert: state.oppfolging.erReaktivert
 
     };
 };

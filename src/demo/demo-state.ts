@@ -1,6 +1,8 @@
 import { JSONObject } from 'yet-another-fetch-mock';
+import { Periode } from '../ducks/oppfolging'
 import { InnloggingsNiva } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
-import { parseOppfolging } from '../utils/oppfolging-parser'
+import { parseOppfolging } from '../utils/oppfolging-parser';
+
 
 export enum DemoData {
     INNSATSGRUPPE = 'innsatsgruppe',
@@ -77,7 +79,7 @@ export const slettEgenvurdering = () => {
     slettFraLocalStorage(DemoData.EGENVURDERING);
 };
 
-export const hentErReaktivert = (): JSONObject | null => {
+export const hentErReaktivert = (): Array<Periode> | [] => {
     const verdi = hentFraLocalStorage(DemoData.ER_REAKTIVERT);
     return verdi ? JSON.parse(verdi) : null;
 };
@@ -92,9 +94,9 @@ export const settErReaktivert = () => {
             startDato: '2019-05-29T09:23:20.346Z',
             sluttDato: ''
         }
-    ]
+    ];
     settILocalStorage(DemoData.ER_REAKTIVERT, JSON.stringify(data));
-}
+};
 
 export const settErIkkeReaktivert = () => {
     const data = [
@@ -102,16 +104,19 @@ export const settErIkkeReaktivert = () => {
           startDato: '2019-05-29T09:23:20.346Z',
           sluttDato: '2019-05-29T09:23:20.346Z'
         }
-    ]
+    ];
     settILocalStorage(DemoData.ER_REAKTIVERT, JSON.stringify(data));
-}
+};
 
 export const validerReaktivering = (): boolean => {
     const data = {
-        oppfolgingsPerioder: hentErReaktivert()
-    }
-    return parseOppfolging(data)
-}
+        oppfolgingsPerioder: hentErReaktivert(),
+        underOppfolging: true,
+        kanReaktiveres: false,
+        reservasjonKRR: false
+    };
+    return parseOppfolging(data);
+};
 
 export const hentMotestotte = (): JSONObject | null => {
     const verdi = hentFraLocalStorage(DemoData.MOTESTOTTE);

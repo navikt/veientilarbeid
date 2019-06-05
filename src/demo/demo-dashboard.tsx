@@ -60,7 +60,7 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
         const ULESTE_DIALOGER = DemoData.ULESTE_DIALOGER;
         const RESERVASJON_KRR = DemoData.RESERVASJON_KRR;
         const AUTENTISERINGS_INFO = DemoData.AUTENTISERINGS_INFO;
-        const ER_REAKTIVERT= DemoData.ER_REAKTIVERT;
+        const ER_REAKTIVERT = DemoData.ER_REAKTIVERT;
         const {messages} = this.props.intl;
 
         const handleChangeInnsatsgruppe = (e: React.ChangeEvent<HTMLSelectElement>) => {
