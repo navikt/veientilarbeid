@@ -15,11 +15,6 @@ export const metricsMiddleWare = (store: any) => (next: any) => (action: any) =>
             apikall: 'GET /api/feature'
         },
         {
-            type: ActionType.HENT_INNSATSGRUPPE_FEILET,
-            eventnavn: 'veientilarbeid.feil.servicegruppe',
-            apikall: 'GET /servicegruppe'
-        },
-        {
             type: ActionType.HENT_SYKMELDT_INFO_FEILET,
             eventnavn: 'veientilarbeid.feil.sykmeldtinfo',
             apikall: 'GET /veilarbregistrering/api/sykmeldtinfo'

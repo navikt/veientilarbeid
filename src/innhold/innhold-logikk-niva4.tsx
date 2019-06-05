@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../reducer';
-import { Innsatsgruppe } from '../ducks/innsatsgruppe';
+import { Data, Innsatsgruppe, InnsatsgruppeContext } from '../ducks/innsatsgruppe';
 import { selectSykmeldtMedArbeidsgiver } from '../ducks/sykmeldt-info';
 import {
     ForeslattInnsatsgruppe,
@@ -19,7 +19,6 @@ const LANSERINGSDATO_MOTESTOTTE = new Date(2019, 5, 3);
 
 interface StateProps {
     erSykmeldtMedArbeidsgiver: boolean;
-    innsatsgruppe: Innsatsgruppe;
     fremtidigSvar: FremtidigSituasjonSvar | null;
     foreslattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null;
     reservasjonKRR: boolean;
@@ -28,9 +27,12 @@ interface StateProps {
 }
 
 const InnholdLogikkNiva4 = ({
-                                erSykmeldtMedArbeidsgiver, innsatsgruppe, fremtidigSvar, harEgenvurderingbesvarelse,
+                                erSykmeldtMedArbeidsgiver, fremtidigSvar, harEgenvurderingbesvarelse,
                                 foreslattInnsatsgruppe, reservasjonKRR, opprettetRegistreringDato
                             }: StateProps) => {
+
+    const innsatsgruppeData: Data | null = React.useContext(InnsatsgruppeContext).data;
+    const innsatsgruppe = innsatsgruppeData ? innsatsgruppeData.servicegruppe : null;
 
     React.useEffect(() => {
         seVeientilarbeid(erSykmeldtMedArbeidsgiver, innsatsgruppe);
@@ -85,7 +87,6 @@ const mapStateToProps = (state: AppState): StateProps => {
 
     return {
         erSykmeldtMedArbeidsgiver: selectSykmeldtMedArbeidsgiver(state),
-        innsatsgruppe: state.innsatsgruppe.data.innsatsgruppe,
         fremtidigSvar: selectFremtidigSituasjonSvar(state),
         reservasjonKRR: state.oppfolging.data.reservasjonKRR,
         foreslattInnsatsgruppe: selectForeslattInnsatsgruppe(state),

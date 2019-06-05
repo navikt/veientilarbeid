@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 import oppfolgingReducer, { State as OppfolgingState } from './ducks/oppfolging';
-import innsatsgruppeReducer, { State as InnsatsgruppeState } from './ducks/innsatsgruppe';
 import sykmeldtInfodataReducer, { State as SykmeldtInfoState } from './ducks/sykmeldt-info';
 import brukerRegistreringReducer, { State as BrukerRegistreringState } from './ducks/brukerregistrering';
 import jobbsokerbesvarelseReducer, { State as JobbsokerbesvarelseState } from './ducks/jobbsokerbesvarelse';
@@ -9,7 +8,6 @@ import egenvurderingbesvarelseReducer, { State as EgenvurderingbesvarelseState }
 
 export interface AppState {
     oppfolging: OppfolgingState;
-    innsatsgruppe: InnsatsgruppeState;
     sykmeldtInfodata: SykmeldtInfoState;
     brukerRegistrering: BrukerRegistreringState;
     jobbsokerbesvarelse: JobbsokerbesvarelseState;
@@ -19,7 +17,6 @@ export interface AppState {
 
 export const reducer = combineReducers<AppState>({
     oppfolging: oppfolgingReducer,
-    innsatsgruppe: innsatsgruppeReducer,
     sykmeldtInfodata: sykmeldtInfodataReducer,
     brukerRegistrering: brukerRegistreringReducer,
     jobbsokerbesvarelse: jobbsokerbesvarelseReducer,

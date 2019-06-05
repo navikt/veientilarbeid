@@ -1,6 +1,5 @@
 import { fetchToJson } from './api-utils';
 import { Data as OppfolgingData } from './oppfolging';
-import { FetchData as InnsatsgruppeData } from './innsatsgruppe';
 import { Data as JobbsokerbesvarelseData } from './jobbsokerbesvarelse';
 import { Data as SykmeldtInfoData } from './sykmeldt-info';
 import { Data as BrukerRegistreringData } from './brukerregistrering';
@@ -47,10 +46,6 @@ export const VEILARBOPPFOLGING_URL = `${contextpath}/veilarboppfolging/api/oppfo
 
 export function hentOppfolgingFetch(): Promise<OppfolgingData> {
     return fetchToJson(VEILARBOPPFOLGING_URL, requestConfig);
-}
-
-export function hentInnsatsgruppeFetch(): Promise<InnsatsgruppeData> {
-    return fetchToJson(INNSATSGRUPPE_URL, requestConfig);
 }
 
 export function hentJobbsokerbesvarelseFetch(): Promise<JobbsokerbesvarelseData> {
