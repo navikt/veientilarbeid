@@ -23,4 +23,3 @@ export const initialState = {
 };
 
 export const InnsatsgruppeContext = React.createContext<State>(initialState);
-
