@@ -56,10 +56,10 @@ const InnholdLogikkNiva4 = ({
     const egenvurderingsbesvarelseValid = (): boolean => {
         let isValid = false;
         if (opprettetRegistreringDato && egenvurderingbesvarelseDato) {
-            isValid = opprettetRegistreringDato <= egenvurderingbesvarelseDato
+            isValid = opprettetRegistreringDato <= egenvurderingbesvarelseDato;
         }
-        return isValid
-    }
+        return isValid;
+    };
 
     const skalViseEgenvurderingLenke = (
         innsatsgruppe === Innsatsgruppe.IVURD &&
