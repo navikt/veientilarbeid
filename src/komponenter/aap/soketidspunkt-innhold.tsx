@@ -4,7 +4,7 @@ import tekster from '../../tekster/tekster';
 
 const SoketidspunktInnhold = () => {
 
-    // TODO Dra ut html fra tekstfil (aap-rad-soketidspunkt-innhold)
+    // TODO Dra ut html fra tekstfil (aap-rad-soketidspunkt-innhold) - kan fjerne react-html-parser
     return (
         <div className="panel-innhold">
             {Parser(tekster['aap-rad-soketidspunkt-innhold'])}

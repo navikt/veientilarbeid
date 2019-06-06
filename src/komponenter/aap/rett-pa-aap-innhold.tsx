@@ -5,7 +5,7 @@ import tekster from '../../tekster/tekster';
 
 const RettPaAapInnhold = () => {
 
-    // TODO Dra ut html fra tekstfil (aap-rett-pa-relatertinnhold-innhold)
+    // TODO Dra ut html fra tekstfil (aap-rett-pa-relatertinnhold-innhold) - kan fjerne react-html-parser
     return (
         <div className="panel-innhold rett-pa-aap-innhold">
             <div className="hovedinnhold">
