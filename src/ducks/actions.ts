@@ -1,10 +1,8 @@
 import { Data as OppfolgingData } from './oppfolging';
-import { FetchData as InnsatsgruppeData } from './innsatsgruppe';
 import { Data as JobbsokerbesvarelseData } from './jobbsokerbesvarelse';
 import { Data as SykmeldtInfoData } from './sykmeldt-info';
 import { Data as BrukerRegistreringData } from './brukerregistrering';
 import { Data as UlesteDialogerData } from './dialog';
-import { FeatureToggles } from './feature-toggles';
 import { Data as EgenvurderingbesvarelseData } from './egenvurdering';
 
 export enum ActionType {
@@ -14,9 +12,6 @@ export enum ActionType {
     HENT_OPPFOLGING_OK = 'HENT_OPPFOLGING_OK',
     HENT_OPPFOLGING_PENDING = 'HENT_OPPFOLGING_PENDING',
     HENT_OPPFOLGING_FEILET = 'HENT_OPPFOLGING_FEILET',
-    HENT_INNSATSGRUPPE_OK = 'HENT_INNSATSGRUPPE_OK',
-    HENT_INNSATSGRUPPE_PENDING = 'HENT_INNSATSGRUPPE_PENDING',
-    HENT_INNSATSGRUPPE_FEILET = 'HENT_INNSATSGRUPPE_FEILET',
     HENT_JOBBSOKERBESVARELSE_OK = 'HENT_JOBBSOKERBESVARELSE_OK',
     HENT_JOBBSOKERBESVARELSE_PENDING = 'HENT_JOBBSOKERBESVARELSE_PENDING',
     HENT_JOBBSOKERBESVARELSE_FEILET = 'HENT_JOBBSOKERBESVARELSE_FEILET',
@@ -34,19 +29,6 @@ export enum ActionType {
     HENT_EGENVURDERINGBESVARELSE_FEILET = 'HENT_EGENVURDERINGBESVARELSE_FEILET',
 }
 
-export interface FeatureTogglesOKAction {
-    type: ActionType.FEATURE_TOGGLES_OK;
-    unleash: FeatureToggles;
-}
-
-export interface FeatureTogglesPENDINGAction {
-    type: ActionType.FEATURE_TOGGLES_PENDING;
-}
-
-export interface FeatureTogglesFEILETAction {
-    type: ActionType.FEATURE_TOGGLES_FEILET;
-}
-
 export interface HentOppfolgingOKAction {
     type: ActionType.HENT_OPPFOLGING_OK;
     data: OppfolgingData;
@@ -58,19 +40,6 @@ export interface HentOppfolgingPENDINGAction {
 
 export interface HentOppfolgingFEILETAction {
     type: ActionType.HENT_OPPFOLGING_FEILET;
-}
-
-export interface HentInnsatsgruppeOKAction {
-    type: ActionType.HENT_INNSATSGRUPPE_OK;
-    data: InnsatsgruppeData;
-}
-
-export interface HentInnsatsgruppePENDINGAction {
-    type: ActionType.HENT_INNSATSGRUPPE_PENDING;
-}
-
-export interface HentInnsatsgruppeFEILETAction {
-    type: ActionType.HENT_INNSATSGRUPPE_FEILET;
 }
 
 export interface HentJobbsokerbesvarelseOKAction {
@@ -138,15 +107,10 @@ export interface HentEgenvurderingbesvarelseFEILETAction {
     type: ActionType.HENT_EGENVURDERINGBESVARELSE_FEILET;
 }
 
-export type Handling = FeatureTogglesOKAction
-    | FeatureTogglesPENDINGAction
-    | FeatureTogglesFEILETAction
+export type Handling =
     | HentOppfolgingOKAction
     | HentOppfolgingPENDINGAction
     | HentOppfolgingFEILETAction
-    | HentInnsatsgruppeOKAction
-    | HentInnsatsgruppePENDINGAction
-    | HentInnsatsgruppeFEILETAction
     | HentJobbsokerbesvarelseOKAction
     | HentJobbsokerbesvarelsePENDINGAction
     | HentJobbsokerbesvarelseFEILETAction

@@ -1,6 +1,6 @@
 import { InnloggingsNiva } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
 
 export default {
-    isLoggedIn: true,
+    loggedIn: true,
     securityLevel: InnloggingsNiva.LEVEL_4,
 };
