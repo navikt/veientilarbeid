@@ -14,4 +14,4 @@ export const initialState: State = {
     status: STATUS.NOT_STARTED
 };
 
-export const MotestotteContext = React.createContext(initialState);
+export const MotestotteContext = React.createContext<State>(initialState);

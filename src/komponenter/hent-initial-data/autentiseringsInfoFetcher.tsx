@@ -22,14 +22,14 @@ export enum InnloggingsNiva {
 
 const initialState: InnloggingsInfo = {
     data: {
-        isLoggedIn: false,
+        loggedIn: false,
         securityLevel: InnloggingsNiva.UKJENT,
     },
     status: STATUS.NOT_STARTED,
 };
 
 export interface Data {
-    isLoggedIn: boolean;
+    loggedIn: boolean;
     securityLevel: string;
 }
 

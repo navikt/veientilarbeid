@@ -2,12 +2,13 @@ import { ForeslattInnsatsgruppe } from './ducks/brukerregistrering';
 
 const w = (window as any); // tslint:disable-line:no-any
 import { erDemo } from './utils/app-state-utils';
+import { Innsatsgruppe } from './ducks/innsatsgruppe';
 
 const logEvent = w.frontendlogger ? w.frontendlogger.event : () => { return; };
 
 const domene = 'veientilarbeid';
 
-export const seVeientilarbeid = (erSykmeldtMedArbeidsgiver: boolean, servicegruppe: string) => {
+export const seVeientilarbeid = (erSykmeldtMedArbeidsgiver: boolean, servicegruppe: Innsatsgruppe | null) => {
     if (!erDemo()) {
         logEvent(`${domene}.seveientilarbeid`,
             {erSykmeldtMedArbeidsgiverField: erSykmeldtMedArbeidsgiver, servicegruppeField: servicegruppe},

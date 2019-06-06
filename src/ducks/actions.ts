@@ -1,5 +1,4 @@
 import { Data as OppfolgingData } from './oppfolging';
-import { FetchData as InnsatsgruppeData } from './innsatsgruppe';
 import { Data as JobbsokerbesvarelseData } from './jobbsokerbesvarelse';
 import { Data as SykmeldtInfoData } from './sykmeldt-info';
 import { Data as BrukerRegistreringData } from './brukerregistrering';
@@ -13,9 +12,6 @@ export enum ActionType {
     HENT_OPPFOLGING_OK = 'HENT_OPPFOLGING_OK',
     HENT_OPPFOLGING_PENDING = 'HENT_OPPFOLGING_PENDING',
     HENT_OPPFOLGING_FEILET = 'HENT_OPPFOLGING_FEILET',
-    HENT_INNSATSGRUPPE_OK = 'HENT_INNSATSGRUPPE_OK',
-    HENT_INNSATSGRUPPE_PENDING = 'HENT_INNSATSGRUPPE_PENDING',
-    HENT_INNSATSGRUPPE_FEILET = 'HENT_INNSATSGRUPPE_FEILET',
     HENT_JOBBSOKERBESVARELSE_OK = 'HENT_JOBBSOKERBESVARELSE_OK',
     HENT_JOBBSOKERBESVARELSE_PENDING = 'HENT_JOBBSOKERBESVARELSE_PENDING',
     HENT_JOBBSOKERBESVARELSE_FEILET = 'HENT_JOBBSOKERBESVARELSE_FEILET',
@@ -44,19 +40,6 @@ export interface HentOppfolgingPENDINGAction {
 
 export interface HentOppfolgingFEILETAction {
     type: ActionType.HENT_OPPFOLGING_FEILET;
-}
-
-export interface HentInnsatsgruppeOKAction {
-    type: ActionType.HENT_INNSATSGRUPPE_OK;
-    data: InnsatsgruppeData;
-}
-
-export interface HentInnsatsgruppePENDINGAction {
-    type: ActionType.HENT_INNSATSGRUPPE_PENDING;
-}
-
-export interface HentInnsatsgruppeFEILETAction {
-    type: ActionType.HENT_INNSATSGRUPPE_FEILET;
 }
 
 export interface HentJobbsokerbesvarelseOKAction {
@@ -128,9 +111,6 @@ export type Handling =
     | HentOppfolgingOKAction
     | HentOppfolgingPENDINGAction
     | HentOppfolgingFEILETAction
-    | HentInnsatsgruppeOKAction
-    | HentInnsatsgruppePENDINGAction
-    | HentInnsatsgruppeFEILETAction
     | HentJobbsokerbesvarelseOKAction
     | HentJobbsokerbesvarelsePENDINGAction
     | HentJobbsokerbesvarelseFEILETAction
