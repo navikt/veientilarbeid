@@ -68,7 +68,7 @@ export const hentEgenvurdering = (): JSONObject | null => {
 };
 
 export const settEgenvurdering = () => {
-    settILocalStorage(DemoData.EGENVURDERING, JSON.stringify({sistOppdatert: '2019-05-06T09:39:01.635+02:00'}));
+    settILocalStorage(DemoData.EGENVURDERING, JSON.stringify({sistOppdatert: '2019-05-12T09:39:01.635+02:00'}));
 };
 
 export const slettEgenvurdering = () => {
