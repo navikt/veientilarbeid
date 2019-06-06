@@ -24,10 +24,12 @@ interface StateProps {
     reservasjonKRR: boolean;
     opprettetRegistreringDato: Date | null;
     harEgenvurderingbesvarelse: boolean;
+    egenvurderingbesvarelseDato: Date | null;
 }
 
 const InnholdLogikkNiva4 = ({
                                 erSykmeldtMedArbeidsgiver, fremtidigSvar, harEgenvurderingbesvarelse,
+                                egenvurderingbesvarelseDato,
                                 foreslattInnsatsgruppe, reservasjonKRR, opprettetRegistreringDato
                             }: StateProps) => {
 
@@ -51,9 +53,17 @@ const InnholdLogikkNiva4 = ({
 
     const visRessurslenker = !(tilbakeTilSammeArbeidsgiver && erSykmeldtMedArbeidsgiver);
 
+    const egenvurderingsbesvarelseValid = (): boolean => {
+        let isValid = false;
+        if (opprettetRegistreringDato && egenvurderingbesvarelseDato) {
+            isValid = opprettetRegistreringDato <= egenvurderingbesvarelseDato;
+        }
+        return isValid;
+    };
+
     const skalViseEgenvurderingLenke = (
         innsatsgruppe === Innsatsgruppe.IVURD &&
-        !harEgenvurderingbesvarelse &&
+        (!harEgenvurderingbesvarelse || !egenvurderingsbesvarelseValid()) &&
         (opprettetRegistreringDato !== null && opprettetRegistreringDato >= LANSERINGSDATO_EGENVURDERING) &&
         !reservasjonKRR &&
         (foreslattInnsatsgruppe === ForeslattInnsatsgruppe.STANDARD_INNSATS ||
@@ -92,6 +102,7 @@ const mapStateToProps = (state: AppState): StateProps => {
         foreslattInnsatsgruppe: selectForeslattInnsatsgruppe(state),
         opprettetRegistreringDato: opprettetRegistreringDato ? new Date(opprettetRegistreringDato) : null,
         harEgenvurderingbesvarelse: state.egenvurderingbesvarelse.data !== null,
+        egenvurderingbesvarelseDato: state.egenvurderingbesvarelse.data ? new Date(state.egenvurderingbesvarelse.data.sistOppdatert) : null
 
     };
 };

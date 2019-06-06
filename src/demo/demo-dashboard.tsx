@@ -133,9 +133,9 @@ class DemoDashboard extends React.Component<{}> {
         };
 
         const opprettetRegistreringDatoLabels = {
-            registrertForLanseringEgenvurdering: '09.05.19',
-            registrertMellomLanseringEgenvurderingOgMotestotte: '11.05.19',
-            registrertEtterLanseringMotestotte: '05.06.19'
+            registrertForLanseringEgenvurdering: '09.05.19 - Før lansering egenvurdering/møtestøtte',
+            registrertMellomLanseringEgenvurderingOgMotestotte: '11.05.19 - Etter egenvurdering/før møtestøtte',
+            registrertEtterLanseringMotestotte: '05.06.19 - Etter lansering møtestøtte'
         };
 
         return (
