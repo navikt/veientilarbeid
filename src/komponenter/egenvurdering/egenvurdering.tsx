@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
-import { FormattedMessage } from 'react-intl';
 import { seEgenvurdering, gaTilEgenvurdering } from '../../metrics';
 import { AppState } from '../../reducer';
 import { connect } from 'react-redux';
@@ -9,6 +8,7 @@ import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe, selectOpprettetRe
 
 import './egenvurdering.less';
 import { behovsvurderingLenke } from '../../innhold/lenker';
+import tekster from '../../tekster/tekster';
 
 export const antallTimerMellomAOgBRundetOpp = (a: Date, b: Date): number => {
     return Math.ceil((b.getTime() - a.getTime()) / 36e5);
@@ -43,13 +43,13 @@ class Egenvurdering extends React.Component<EgenvurderingProps> {
             <section className="egenvurdering blokk-m">
                 <div className="innhold">
                     <Systemtittel tag="h1" className="blokk-xs">
-                        <FormattedMessage id="egenvurdering-tittel"/>
+                        {tekster['egenvurdering-tittel']}
                     </Systemtittel>
                     <Normaltekst className="blokk-m egenvurdering__tekst">
-                        <FormattedMessage id="egenvurdering-tekst"/>
+                        {tekster['egenvurdering-tekst']}
                     </Normaltekst>
                     <Hovedknapp onClick={this.handleButtonClick}>
-                        <FormattedMessage id="egenvurdering-lenke-tekst"/>
+                        {tekster['egenvurdering-lenke-tekst']}
                     </Hovedknapp>
                 </div>
             </section>
