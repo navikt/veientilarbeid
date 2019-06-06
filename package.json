@@ -8,7 +8,7 @@
     "build": "craco build",
     "lint": "tslint ./src/**/*.ts*",
     "lint:fix": "tslint ./src/**/*.ts* --fix",
-    "test": "npm run lint && npm run build:tekster && craco test --env=jsdom",
+    "test": "npm run lint && craco test --env=jsdom",
     "test:coverage": "npm test -- --coverage",
     "deploy": "npm run build && gh-pages -d build",
     "prettier": "prettier --write --single-quote --tab-width 4 src/**/*.ts src/**/*.tsx src/**/*.less"
