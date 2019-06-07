@@ -31,6 +31,7 @@ class Aktivitetsplan extends React.PureComponent<AktivitetsplanProps, State> {
                 onClick={gaTilAktivitetsplan}
                 overskrift={overskrift}
                 ingress={ingress}
+                className="aktivitetsplanPanel"
             >
                 <DesignMug/>
             </LenkepanelMedIkon>
