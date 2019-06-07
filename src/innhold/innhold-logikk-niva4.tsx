@@ -70,11 +70,21 @@ const InnholdLogikkNiva4 = ({
             foreslattInnsatsgruppe === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS)
     );
 
-    const harMotestottebesvarelse = React.useContext(MotestotteContext).data !== null;
+    const motestotteData = React.useContext(MotestotteContext).data;
+    const harMotestottebesvarelse = motestotteData !== null;
+
+    const motestottebesvarelseValid = (): boolean => {
+        let isValid = false;
+        if (opprettetRegistreringDato && motestotteData) {
+            const motestottebesvarelseDato = new Date(motestotteData.dato);
+            isValid = opprettetRegistreringDato <= motestottebesvarelseDato;
+        }
+        return isValid;
+    };
 
     const skalViseMotestotteLenke = (
         innsatsgruppe === Innsatsgruppe.IVURD &&
-        !harMotestottebesvarelse &&
+        (!harMotestottebesvarelse || !motestottebesvarelseValid()) &&
         (opprettetRegistreringDato !== null && opprettetRegistreringDato >= LANSERINGSDATO_MOTESTOTTE) &&
         !reservasjonKRR &&
         (foreslattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING)

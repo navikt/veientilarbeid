@@ -81,7 +81,7 @@ export const hentMotestotte = (): JSONObject | null => {
 };
 
 export const settMotestotte = () => {
-    settILocalStorage(DemoData.MOTESTOTTE, JSON.stringify({dato: '2019-05-06T09:39:01.635+02:00'}));
+    settILocalStorage(DemoData.MOTESTOTTE, JSON.stringify({dato: '2019-06-06T09:39:01.635+02:00'}));
 };
 
 export const slettMotestotte = () => {
