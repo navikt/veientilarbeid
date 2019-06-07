@@ -50,3 +50,5 @@ redirect:
     to: {{ BEHOVSVURDERING_URL }}
   - from: /forberede-moete
     to: {{ FORBEREDE_MOETE_URL }}
+  - from: /arbeidssokerregistrering
+    to: {{ ARBEIDSSOKERREGISTRERING_URL }}

@@ -66,6 +66,8 @@ fasitResources:
     resourceType: baseUrl
   - alias: forberede-moete
     resourceType: baseUrl
+  - alias: arbeidssokerregistrering
+    resourceType: baseUrl
 
 alertProfiles:
   - common-java-modules
