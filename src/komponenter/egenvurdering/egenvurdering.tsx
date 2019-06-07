@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
+import { Panel } from 'nav-frontend-paneler';
 import { FormattedMessage } from 'react-intl';
 import { seEgenvurdering, gaTilEgenvurdering } from '../../metrics';
 import { AppState } from '../../reducer';
@@ -40,19 +41,21 @@ class Egenvurdering extends React.Component<EgenvurderingProps> {
 
     render() {
         return (
-            <section className="egenvurdering blokk-m">
-                <div className="innhold">
-                    <Systemtittel tag="h1" className="blokk-xs">
-                        <FormattedMessage id="egenvurdering-tittel"/>
-                    </Systemtittel>
-                    <Normaltekst className="blokk-m egenvurdering__tekst">
-                        <FormattedMessage id="egenvurdering-tekst"/>
-                    </Normaltekst>
-                    <Hovedknapp onClick={this.handleButtonClick}>
-                        <FormattedMessage id="egenvurdering-lenke-tekst"/>
-                    </Hovedknapp>
-                </div>
-            </section>
+            <Panel border className="ramme">
+                <section className="egenvurdering blokk-m">
+                    <div className="innhold">
+                        <Systemtittel tag="h1" className="blokk-xs">
+                            <FormattedMessage id="egenvurdering-tittel"/>
+                        </Systemtittel>
+                        <Normaltekst className="blokk-m egenvurdering__tekst">
+                            <FormattedMessage id="egenvurdering-tekst"/>
+                        </Normaltekst>
+                        <Hovedknapp onClick={this.handleButtonClick}>
+                            <FormattedMessage id="egenvurdering-lenke-tekst"/>
+                        </Hovedknapp>
+                    </div>
+                </section>
+            </Panel>
         );
     }
 }
