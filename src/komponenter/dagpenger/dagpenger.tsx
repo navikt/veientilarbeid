@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
+import { Panel } from 'nav-frontend-paneler';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
 import { klikkPaSoknadDagpenger, visInfoOmDagpenger } from '../../metrics';
 import { visRettTilDagPenger } from '../../utils/utils';
-
 import './dagpenger.less';
 import { dagpengerSoknadLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
@@ -45,17 +45,21 @@ class Dagpenger extends React.Component<{}> {
 
     render() {
         return (
-            <section className="dagpenger" id="informasjonsmodul">
-                <Systemtittel tag="h1" className="blokk-xs">
-                    {tekster['dagpenger-tittel']}
-                </Systemtittel>
-                <Normaltekst className="blokk-m dagpenger__tekst">
-                    {tekster['dagpenger-tekst']}
-                </Normaltekst>
-                <Hovedknapp onClick={this.handleButtonClick}>
-                    {tekster['dagpenger-lenke-tekst']}
-                </Hovedknapp>
-            </section>
+            <Panel border className="dagpenger-ramme">
+                <section className="dagpenger" id="informasjonsmodul">
+                    <div className="innhold">
+                        <Systemtittel tag="h1" className="blokk-xs">
+                            {tekster['dagpenger-tittel']}
+                        </Systemtittel>
+                        <Normaltekst className="blokk-m dagpenger__tekst">
+                            {tekster['dagpenger-tekst']}
+                        </Normaltekst>
+                        <Hovedknapp onClick={this.handleButtonClick}>
+                            {tekster['dagpenger-lenke-tekst']}
+                        </Hovedknapp>
+                    </div>
+                </section>
+            </Panel>
         );
     }
 }

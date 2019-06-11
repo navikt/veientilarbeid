@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
+import { Panel } from 'nav-frontend-paneler';
 import { seEgenvurdering, gaTilEgenvurdering } from '../../metrics';
 import { AppState } from '../../reducer';
 import { connect } from 'react-redux';
 import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe, selectOpprettetRegistreringDato } from '../../ducks/brukerregistrering';
-
 import './egenvurdering.less';
 import { behovsvurderingLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
@@ -40,19 +40,21 @@ class Egenvurdering extends React.Component<EgenvurderingProps> {
 
     render() {
         return (
-            <section className="egenvurdering blokk-m">
-                <div className="innhold">
-                    <Systemtittel tag="h1" className="blokk-xs">
-                        {tekster['egenvurdering-tittel']}
-                    </Systemtittel>
-                    <Normaltekst className="blokk-m egenvurdering__tekst">
-                        {tekster['egenvurdering-tekst']}
-                    </Normaltekst>
-                    <Hovedknapp onClick={this.handleButtonClick}>
-                        {tekster['egenvurdering-lenke-tekst']}
-                    </Hovedknapp>
-                </div>
-            </section>
+            <Panel border className="ramme">
+                <section className="egenvurdering blokk-m">
+                    <div className="innhold">
+                        <Systemtittel tag="h1" className="blokk-xs">
+                            {tekster['egenvurdering-tittel']}
+                        </Systemtittel>
+                        <Normaltekst className="blokk-m egenvurdering__tekst">
+                            {tekster['egenvurdering-tekst']}
+                        </Normaltekst>
+                        <Hovedknapp onClick={this.handleButtonClick}>
+                            {tekster['egenvurdering-lenke-tekst']}
+                        </Hovedknapp>
+                    </div>
+                </section>
+            </Panel>
         );
     }
 }

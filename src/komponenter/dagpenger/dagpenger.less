@@ -1,14 +1,35 @@
 @import '../../../node_modules/nav-frontend-core/less/_variabler';
 
 .dagpenger {
-    text-align: center;
-
-    &__tekst {
-        max-width: 24rem;
-        margin: 0 auto
+    .innhold {
+        padding: 0 1.4rem;
     }
+}
+
+.dagpenger-ramme {
+    width: 100%;
+    border-color: #78706A;
+    margin-top: 56px;
+    margin-bottom: 32px;
 }
 
 .tiltakinfo + .dagpenger {
     margin-top: 4rem;
+}
+
+@media (min-width: @screen-sm-min) {
+    .dagpenger-ramme {
+        width: calc(50% - 0.5rem);
+    }
+    
+    .innhold {
+        text-align: center;
+        padding: 0;
+        margin: 0 auto;
+        max-width: 24rem;
+    }
+
+    &__tekst {
+        text-align: left;
+    }
 }
