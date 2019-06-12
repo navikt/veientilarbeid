@@ -37,10 +37,10 @@ const InnholdLogikkNiva4 = ({
     const innsatsgruppe = innsatsgruppeData ? innsatsgruppeData.servicegruppe : null;
 
     const hotjarTrigger = () => {
-        if (window && window.hasOwnProperty('hj')) {
-            window['hj']('trigger', 'vta-dittnav-ny')
+        if (window && window.hj) {
+            window.hj('trigger', 'vta-dittnav-ny');
         }
-    }
+    };
 
     React.useEffect(() => {
         seVeientilarbeid(erSykmeldtMedArbeidsgiver, innsatsgruppe);
