@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Hovedknapp } from 'nav-frontend-knapper';
+import { Knapp } from 'nav-frontend-knapper';
 import { Panel } from 'nav-frontend-paneler';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
 import { FormattedMessage } from 'react-intl';
@@ -55,9 +55,9 @@ class Dagpenger extends React.Component<{}> {
                         <Normaltekst className="blokk-m dagpenger__tekst">
                             <FormattedMessage id="dagpenger-tekst"/>
                         </Normaltekst>
-                        <Hovedknapp onClick={this.handleButtonClick}>
+                        <Knapp onClick={this.handleButtonClick}>
                             <FormattedMessage id="dagpenger-lenke-tekst"/>
-                        </Hovedknapp>
+                        </Knapp>
                     </div>
                 </section>
             </Panel>
