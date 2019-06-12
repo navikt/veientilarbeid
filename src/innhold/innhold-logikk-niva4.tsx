@@ -37,8 +37,9 @@ const InnholdLogikkNiva4 = ({
     const innsatsgruppe = innsatsgruppeData ? innsatsgruppeData.servicegruppe : null;
 
     const hotjarTrigger = () => {
-        if (window && window.hj) {
-            window.hj('trigger', 'vta-dittnav-ny');
+        if (typeof window !== 'undefined' && window.hasOwnProperty('hj')) {
+            const hotjar = 'hj';
+            window[hotjar]('trigger', 'vta-dittnav-ny');
         }
     };
 
