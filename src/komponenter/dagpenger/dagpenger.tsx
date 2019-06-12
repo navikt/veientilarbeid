@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Hovedknapp } from 'nav-frontend-knapper';
+import { Knapp } from 'nav-frontend-knapper';
+import { Panel } from 'nav-frontend-paneler';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
 import { FormattedMessage } from 'react-intl';
 import { klikkPaSoknadDagpenger, visInfoOmDagpenger } from '../../metrics';
@@ -45,17 +46,21 @@ class Dagpenger extends React.Component<{}> {
 
     render() {
         return (
-            <section className="dagpenger" id="informasjonsmodul">
-                <Systemtittel tag="h1" className="blokk-xs">
-                    <FormattedMessage id="dagpenger-tittel"/>
-                </Systemtittel>
-                <Normaltekst className="blokk-m dagpenger__tekst">
-                    <FormattedMessage id="dagpenger-tekst"/>
-                </Normaltekst>
-                <Hovedknapp onClick={this.handleButtonClick}>
-                    <FormattedMessage id="dagpenger-lenke-tekst"/>
-                </Hovedknapp>
-            </section>
+            <Panel border className="dagpenger-ramme">
+                <section className="dagpenger" id="informasjonsmodul">
+                    <div className="innhold">
+                        <Systemtittel tag="h1" className="blokk-xs">
+                            <FormattedMessage id="dagpenger-tittel"/>
+                        </Systemtittel>
+                        <Normaltekst className="blokk-m dagpenger__tekst">
+                            <FormattedMessage id="dagpenger-tekst"/>
+                        </Normaltekst>
+                        <Knapp onClick={this.handleButtonClick}>
+                            <FormattedMessage id="dagpenger-lenke-tekst"/>
+                        </Knapp>
+                    </div>
+                </section>
+            </Panel>
         );
     }
 }
