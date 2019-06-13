@@ -1,12 +1,9 @@
 import * as ReactDOM from 'react-dom';
 import DemoDashboard from './demo-dashboard';
 import * as React from 'react';
-import IntlProvider from '../Intl-provider';
 
 const Demo = () => (
-    <IntlProvider>
-        <DemoDashboard/>
-    </IntlProvider>
+    <DemoDashboard/>
 );
 
 ReactDOM.render(
