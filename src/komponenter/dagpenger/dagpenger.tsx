@@ -46,21 +46,25 @@ class Dagpenger extends React.Component<{}> {
 
     render() {
         return (
-            <Panel border className="dagpenger-ramme">
-                <section className="dagpenger" id="informasjonsmodul">
+            <section className="dagpenger" id="informasjonsmodul">
+                <Systemtittel tag="h2" className="dagpenger__heading blokk-s">
+                    <FormattedMessage id="dagpenger-heading-tekst"/>
+                </Systemtittel>
+                <Panel border className="dagpenger-ramme blokk-l">
                     <div className="innhold">
                         <Systemtittel tag="h1" className="blokk-xs">
                             <FormattedMessage id="dagpenger-tittel"/>
                         </Systemtittel>
-                        <Normaltekst className="blokk-m dagpenger__tekst">
+                        <Normaltekst className="blokk-s dagpenger__tekst">
                             <FormattedMessage id="dagpenger-tekst"/>
                         </Normaltekst>
-                        <Knapp onClick={this.handleButtonClick}>
+                        <Knapp onClick={this.handleButtonClick} >
                             <FormattedMessage id="dagpenger-lenke-tekst"/>
                         </Knapp>
                     </div>
-                </section>
+                
             </Panel>
+            </section>
         );
     }
 }
