@@ -1,8 +1,8 @@
 import * as React from 'react';
 import Lenke from 'nav-frontend-lenker';
-import { FormattedMessage } from 'react-intl';
 import personSvg from './person.svg';
 import './brodsmuler.less';
+import tekster from '../../tekster/tekster';
 
 const DITTNAV_PATH = '/dittnav/';
 
@@ -21,7 +21,7 @@ const Brodsmuler: React.FunctionComponent<BrodsmulerProps> = (props: BrodsmulerP
                     </Lenke>
                 </li>
                 <li className="brodsmuler__item typo-normal">
-                    <FormattedMessage id={props.brodsmuleId}/>
+                    {tekster[props.brodsmuleId]}
                 </li>
             </ol>
         </div>

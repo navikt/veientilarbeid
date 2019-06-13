@@ -1,8 +1,8 @@
 import * as React from 'react';
 import './lenkepanel-med-ikon.less';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
-import { FormattedMessage } from 'react-intl';
 import LenkepanelBase from 'nav-frontend-lenkepanel';
+import tekster from '../../tekster/tekster';
 
 interface Props {
     href: string;
@@ -36,12 +36,12 @@ class LenkepanelMedIkon extends React.Component<Props> {
                     </div>
                     <div>
                         <Undertittel>
-                            <FormattedMessage id={overskrift}/>
+                            {tekster[overskrift]}
                         </Undertittel>
                         {(ingress)
                             ?
                             <Normaltekst>
-                                <FormattedMessage id={ingress}/>
+                                {tekster[ingress]}
                             </Normaltekst>
                             : ''
                         }

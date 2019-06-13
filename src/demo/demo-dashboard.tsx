@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Innholdstittel } from 'nav-frontend-typografi';
-import { FormattedMessage, InjectedIntlProps, injectIntl } from 'react-intl';
 import { Select as SelectKomponent, CheckboksPanelGruppe } from 'nav-frontend-skjema';
 import {
     DemoData,
@@ -31,6 +30,7 @@ import {
     settFremtidigSituasjon, settOpprettetDato
 } from './demo-state-brukerregistrering';
 import { InnloggingsNiva } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
+import tekster from '../tekster/tekster';
 
 interface OpprettetRegistreringDato {
     registrertForLanseringEgenvurdering: string;
@@ -44,7 +44,7 @@ export const opprettetRegistreringDato: OpprettetRegistreringDato = {
     registrertEtterLanseringMotestotte: '2019-06-05T12:00:00.111111+01:00',
 };
 
-class DemoDashboard extends React.Component<InjectedIntlProps> {
+class DemoDashboard extends React.Component<{}> {
     render() {
         const SYKMELDT_MED_ARBEIDSGIVER = DemoData.SYKMELDT_MED_ARBEIDSGIVER;
         const JSK = DemoData.JSK;
@@ -53,7 +53,6 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
         const ULESTE_DIALOGER = DemoData.ULESTE_DIALOGER;
         const RESERVASJON_KRR = DemoData.RESERVASJON_KRR;
         const AUTENTISERINGS_INFO = DemoData.AUTENTISERINGS_INFO;
-        const {messages} = this.props.intl;
 
         const handleChangeInnsatsgruppe = (e: React.ChangeEvent<HTMLSelectElement>) => {
             settInnsatsgruppe(e.target.value);
@@ -142,11 +141,11 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
         return (
             <section className="demodashboard">
                 <Innholdstittel className="blokk-s">
-                    <FormattedMessage id="demo-tittel"/>
+                    {tekster['demo-tittel']}
                 </Innholdstittel>
                 <div className="two-select">
                     <SelectKomponent
-                        label={messages['demo-velgservicegruppe']}
+                        label={tekster['demo-velgservicegruppe']}
                         onChange={handleChangeInnsatsgruppe}
                         id="velg-bruker"
                         defaultValue={hentInnsatsgruppe()}
@@ -163,7 +162,7 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
                         }
                     </SelectKomponent>
                     <SelectKomponent
-                        label={messages['demo-brukerregistrering']}
+                        label={tekster['demo-brukerregistrering']}
                         onChange={handleChangeBrukerregistrering}
                         id="velg-fremtidig-situasjon"
                         defaultValue={hentFremtidigSituasjon()}
@@ -180,7 +179,7 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
                         }
                     </SelectKomponent>
                     <SelectKomponent
-                        label={messages['demo-foreslatt-innsatsgruppe']}
+                        label={tekster['demo-foreslatt-innsatsgruppe']}
                         onChange={handleChangeForeslaattInnsatsgruppe}
                         id="velg-foreslaatt-innsatsgruppe"
                         defaultValue={hentForeslattInnsatsgruppe()}
@@ -197,7 +196,7 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
                         }
                     </SelectKomponent>
                     <SelectKomponent
-                        label={messages['demo-opprettetregistreringdato']}
+                        label={tekster['demo-opprettetregistreringdato']}
                         onChange={handleChangeOpprettetRegistreringDato}
                         id="velg-opprettetdato"
                         defaultValue={hentOpprettetDato()}
@@ -219,37 +218,37 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
                     legend=""
                     checkboxes={[
                         {
-                            label: messages['demo-sykmelding'],
+                            label: tekster['demo-sykmelding'],
                             checked: hentSykmeldtMedArbeidsgiver(),
                             id: SYKMELDT_MED_ARBEIDSGIVER
                         },
                         {
-                            label: messages['demo-jsk'],
+                            label: tekster['demo-jsk'],
                             checked: !!hentJsk(),
                             id: JSK
                         },
                         {
-                            label: messages['demo-dialog'],
+                            label: tekster['demo-dialog'],
                             checked: hentUlesteDialoger(),
                             id: ULESTE_DIALOGER
                         },
                         {
-                            label: messages['demo-krr'],
+                            label: tekster['demo-krr'],
                             checked: hentReservasjonKRR(),
                             id: RESERVASJON_KRR,
                         },
                         {
-                            label: messages['demo-egenvurdering'],
+                            label: tekster['demo-egenvurdering'],
                             checked: !!hentEgenvurdering(),
                             id: EGENVURDERING,
                         },
                         {
-                            label: messages['demo-motestotte'],
+                            label: tekster['demo-motestotte'],
                             checked: !!hentMotestotte(),
                             id: MOTESTOTTE,
                         },
                         {
-                            label: messages['demo-autentiseringsinfo'],
+                            label: tekster['demo-autentiseringsinfo'],
                             checked: hentAutentiseringsInfo().securityLevel === InnloggingsNiva.LEVEL_3,
                             id: AUTENTISERINGS_INFO,
                         }
@@ -260,4 +259,4 @@ class DemoDashboard extends React.Component<InjectedIntlProps> {
     }
 }
 
-export default injectIntl(DemoDashboard);
+export default DemoDashboard;
