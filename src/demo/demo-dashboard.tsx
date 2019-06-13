@@ -36,12 +36,14 @@ interface OpprettetRegistreringDato {
     registrertForLanseringEgenvurdering: string;
     registrertMellomLanseringEgenvurderingOgMotestotte: string;
     registrertEtterLanseringMotestotte: string;
+    registrertNaa: Date;
 }
 
 export const opprettetRegistreringDato: OpprettetRegistreringDato = {
     registrertForLanseringEgenvurdering: '2019-05-09T12:00:00.111111+01:00',
     registrertMellomLanseringEgenvurderingOgMotestotte: '2019-05-11T12:00:00.111111+01:00',
     registrertEtterLanseringMotestotte: '2019-06-05T12:00:00.111111+01:00',
+    registrertNaa: new Date()
 };
 
 class DemoDashboard extends React.Component<{}> {
@@ -135,7 +137,8 @@ class DemoDashboard extends React.Component<{}> {
         const opprettetRegistreringDatoLabels = {
             registrertForLanseringEgenvurdering: '09.05.19 - Før lansering egenvurdering/møtestøtte',
             registrertMellomLanseringEgenvurderingOgMotestotte: '11.05.19 - Etter egenvurdering/før møtestøtte',
-            registrertEtterLanseringMotestotte: '05.06.19 - Etter lansering møtestøtte'
+            registrertEtterLanseringMotestotte: '05.06.19 - Etter lansering møtestøtte',
+            registrertNaa: 'Registrert nå'
         };
 
         return (
