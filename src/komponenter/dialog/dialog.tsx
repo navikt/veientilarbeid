@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { FormattedMessage } from 'react-intl';
 import LenkepanelBase from 'nav-frontend-lenkepanel';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { connect } from 'react-redux';
@@ -10,6 +9,7 @@ import DialogFill from './dialog-fill';
 import DialogLine from './dialog-line';
 import './dialog.less';
 import { dialogLenke } from '../../innhold/lenker';
+import tekster from '../../tekster/tekster';
 
 interface StateProps {
     antallUleste: number;
@@ -54,7 +54,7 @@ class Dialog extends React.Component<StateProps> {
                     </div>
                     <div className="lenkepanel__tekst">
                         <Undertittel>
-                            <FormattedMessage id="dialog"/>
+                            {tekster['dialog']}
                         </Undertittel>
                         <Normaltekst className="lenkepanel__ingress">
                             {this.byggDialogTekst()}

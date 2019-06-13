@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
 import getStore from './store';
-import IntlProvider from './Intl-provider';
 import AutentiseringsInfoFetcher from './komponenter/hent-initial-data/autentiseringsInfoFetcher';
 
 const store = getStore();
@@ -11,9 +10,7 @@ class App extends React.Component {
     render() {
         return (
             <Provider store={store}>
-                <IntlProvider>
-                    <AutentiseringsInfoFetcher/>
-                </IntlProvider>
+                <AutentiseringsInfoFetcher/>
             </Provider>
         );
     }

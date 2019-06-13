@@ -1,17 +1,15 @@
 import * as React from 'react';
-import { injectIntl, InjectedIntlProps } from 'react-intl';
 import Parser from 'html-react-parser';
+import tekster from '../../tekster/tekster';
 
-const SoketidspunktInnhold: React.FunctionComponent<InjectedIntlProps> = (props?: InjectedIntlProps) => {
+const SoketidspunktInnhold = () => {
 
-    // TODO Dra ut html fra tekstfil (aap-rad-soketidspunkt-innhold)
-    const innhold = props!.intl.messages['aap-rad-soketidspunkt-innhold'];
-
+    // TODO Dra ut html fra tekstfil (aap-rad-soketidspunkt-innhold) - kan fjerne react-html-parser
     return (
         <div className="panel-innhold">
-            {Parser(innhold)}
+            {Parser(tekster['aap-rad-soketidspunkt-innhold'])}
         </div>
     );
 };
 
-export default injectIntl(SoketidspunktInnhold);
+export default SoketidspunktInnhold;
