@@ -1,6 +1,7 @@
-export const hotjarTrigger = () => {
+export const hotjarTrigger = (isMicrofrontend: boolean) => {
   if (typeof window !== 'undefined' && window.hasOwnProperty('hj')) {
       const hotjar = 'hj';
-      window[hotjar]('trigger', 'vta-dittnav-generell');
+      const triggerType = isMicrofrontend ? 'vta-dittnav-generell' : 'vta-generell';
+      window[hotjar]('trigger', triggerType);
   }
 };
