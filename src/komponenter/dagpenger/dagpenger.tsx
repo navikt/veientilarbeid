@@ -2,12 +2,11 @@ import * as React from 'react';
 import { Knapp } from 'nav-frontend-knapper';
 import { Panel } from 'nav-frontend-paneler';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
-import { FormattedMessage } from 'react-intl';
 import { klikkPaSoknadDagpenger, visInfoOmDagpenger } from '../../metrics';
 import { visRettTilDagPenger } from '../../utils/utils';
-
 import './dagpenger.less';
 import { dagpengerSoknadLenke } from '../../innhold/lenker';
+import tekster from '../../tekster/tekster';
 
 class Dagpenger extends React.Component<{}> {
 
@@ -53,13 +52,21 @@ class Dagpenger extends React.Component<{}> {
                 <Panel border className="dagpenger-ramme blokk-l">
                     <div className="innhold">
                         <Systemtittel tag="h1" className="blokk-xs">
-                            <FormattedMessage id="dagpenger-tittel"/>
+                            {tekster['dagpenger-tittel']}
                         </Systemtittel>
+<<<<<<< HEAD
                         <Normaltekst className="blokk-s dagpenger__tekst">
                             <FormattedMessage id="dagpenger-tekst"/>
                         </Normaltekst>
                         <Knapp onClick={this.handleButtonClick} >
                             <FormattedMessage id="dagpenger-lenke-tekst"/>
+=======
+                        <Normaltekst className="blokk-m dagpenger__tekst">
+                            {tekster['dagpenger-tekst']}
+                        </Normaltekst>
+                        <Knapp onClick={this.handleButtonClick}>
+                            {tekster['dagpenger-lenke-tekst']}
+>>>>>>> master
                         </Knapp>
                     </div>
                 

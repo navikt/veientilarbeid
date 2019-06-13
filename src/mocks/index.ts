@@ -7,8 +7,8 @@ import innsatsgruppeResponse from './innsatsgruppe-mock';
 import sykmeldtInfoResponse from './sykmeldt-info-mock';
 import jobbsokerbesvarelseResponse from './jobbsokerbesvarelse-mock';
 import ulesteDialogerResponse from './ulestedialoger-mock';
-import brukerRegistreringResponse from './brukerregistrering-mock';
 import egenvurderingbesvarelseResponse from './egenvurderingbesvarelse-mock';
+import brukerRegistreringResponse from  './brukerregistrering-mock';
 import authResponse from './auth-mock';
 
 import FetchMock, { Middleware, MiddlewareUtils, ResponseUtils } from 'yet-another-fetch-mock';
@@ -39,10 +39,11 @@ fetchMock.get(JOBBSOKERBESVARELSE_URL, jobbsokerbesvarelseResponse);
 fetchMock.get(ULESTEDIALOGER_URL, ulesteDialogerResponse);
 
 fetchMock.get(BRUKERREGISTRERING_URL, brukerRegistreringResponse);
-// fetchMock.get(EGENVURDERINGBESVARELSE_URL, ResponseUtils.statusCode(204));
+// fetchMock.get(BRUKERREGISTRERING_URL, ResponseUtils.statusCode(404));
 
 fetchMock.get(EGENVURDERINGBESVARELSE_URL, egenvurderingbesvarelseResponse);
 // fetchMock.get(EGENVURDERINGBESVARELSE_URL, ResponseUtils.statusCode(204));
+
 fetchMock.get(MOTESTOTTE_URL, ResponseUtils.statusCode(204));
 
 fetchMock.get(AUTH_API, authResponse);

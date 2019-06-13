@@ -5,14 +5,14 @@ import CV from './cv';
 import Mia from './mia';
 import Jobbsokertips from './jobbsokertips';
 import { Systemtittel } from 'nav-frontend-typografi';
-import { FormattedMessage } from 'react-intl';
+import tekster from '../../tekster/tekster';
 
 class RessurslenkerJobbsok extends React.Component {
     render() {
         return (
             <section className="ressurslenker">
-                <Systemtittel tag="h2" className="ressurslenker__heading blokk-s">
-                    <FormattedMessage id="ressurslenker-jobbsok-overskrift"/>
+                <Systemtittel tag="h2" className="ressurslenker__heading blokk-m">
+                    {tekster['ressurslenker-jobbsok-overskrift']}
                 </Systemtittel>
 
                 <div className="tokol">

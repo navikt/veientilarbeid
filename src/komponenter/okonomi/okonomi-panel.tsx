@@ -2,10 +2,10 @@ import * as React from 'react';
 import Lenke from 'nav-frontend-lenker';
 import { HoyreChevron } from 'nav-frontend-chevron';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
-import { FormattedMessage } from 'react-intl';
 import { lesOmOkonomi } from '../../metrics';
 
 import './okonomi-panel.less';
+import tekster from '../../tekster/tekster';
 
 interface OkonomiPanelProps {
     tittelId: string;
@@ -24,12 +24,12 @@ const OkonomiPanel = (props: AllProps) => {
             {children}
 
             <Systemtittel className="blokk-xs okonomi-panel--tittel">
-                <FormattedMessage id={tittelId}/>
+                {tekster[tittelId]}
             </Systemtittel>
 
             <Lenke href={lenkeUrl} className="okonomi-panel--lenke" onClick={() => lesOmOkonomi(lenkeUrl)}>
                 <Normaltekst tag="span">
-                    <FormattedMessage id={lenkeTekstId}/>
+                    {tekster[lenkeTekstId]}
                 </Normaltekst>
                 <HoyreChevron/>
             </Lenke>

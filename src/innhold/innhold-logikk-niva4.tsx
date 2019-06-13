@@ -9,6 +9,7 @@ import {
     selectFremtidigSituasjonSvar, selectOpprettetRegistreringDato
 } from '../ducks/brukerregistrering';
 import { seVeientilarbeid } from '../metrics';
+import { hotjarTrigger } from '../hotjar';
 import './innhold.less';
 import InnholdView from './innhold-view';
 import { MotestotteContext } from '../ducks/motestotte';
@@ -35,13 +36,6 @@ const InnholdLogikkNiva4 = ({
 
     const innsatsgruppeData: Data | null = React.useContext(InnsatsgruppeContext).data;
     const innsatsgruppe = innsatsgruppeData ? innsatsgruppeData.servicegruppe : null;
-
-    const hotjarTrigger = () => {
-        if (typeof window !== 'undefined' && window.hasOwnProperty('hj')) {
-            const hotjar = 'hj';
-            window[hotjar]('trigger', 'vta-dittnav-ny');
-        }
-    };
 
     React.useEffect(() => {
         seVeientilarbeid(erSykmeldtMedArbeidsgiver, innsatsgruppe);
@@ -78,11 +72,21 @@ const InnholdLogikkNiva4 = ({
             foreslattInnsatsgruppe === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS)
     );
 
-    const harMotestottebesvarelse = React.useContext(MotestotteContext).data !== null;
+    const motestotteData = React.useContext(MotestotteContext).data;
+    const harMotestottebesvarelse = motestotteData !== null;
+
+    const motestottebesvarelseValid = (): boolean => {
+        let isValid = false;
+        if (opprettetRegistreringDato && motestotteData) {
+            const motestottebesvarelseDato = new Date(motestotteData.dato);
+            isValid = opprettetRegistreringDato <= motestottebesvarelseDato;
+        }
+        return isValid;
+    };
 
     const skalViseMotestotteLenke = (
         innsatsgruppe === Innsatsgruppe.IVURD &&
-        !harMotestottebesvarelse &&
+        (!harMotestottebesvarelse || !motestottebesvarelseValid()) &&
         (opprettetRegistreringDato !== null && opprettetRegistreringDato >= LANSERINGSDATO_MOTESTOTTE) &&
         !reservasjonKRR &&
         (foreslattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING)

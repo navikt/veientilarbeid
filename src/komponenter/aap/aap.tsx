@@ -5,19 +5,19 @@ import { HoyreChevron } from 'nav-frontend-chevron';
 import RettPaAapInnhold from './rett-pa-aap-innhold';
 import SoketidspunktInnhold from './soketidspunkt-innhold';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
-import { FormattedMessage, InjectedIntlProps, injectIntl } from 'react-intl';
 import { Normaltekst, Systemtittel, Undertittel } from 'nav-frontend-typografi';
 
 import './aap.less';
 import { aapSoknadLenke } from '../../innhold/lenker';
+import tekster from '../../tekster/tekster';
 
 interface AapRadState {
     visAap: boolean;
 }
 
-class Aap extends React.Component<InjectedIntlProps, AapRadState> {
+class Aap extends React.Component<{}, AapRadState> {
 
-    constructor(props: InjectedIntlProps) {
+    constructor(props: {}) {
         super(props);
         this.state = {
             visAap: queryString.parse(window.location.search).visAap === 'true'
@@ -42,29 +42,22 @@ class Aap extends React.Component<InjectedIntlProps, AapRadState> {
     }
 
     render() {
-        const {messages} = this.props.intl;
-
-        const tekster = {
-            rettPaAapPanelTittel: messages['aap-rad-rett-pa-aap-panel-tittel'],
-            soketidspunktPanelTittel: messages['aap-rad-soketidspunkt-panel-tittel'],
-        };
-
         return (
             <div className="aap">
                 <Systemtittel className="blokk-xl aap--tittel">
-                    <FormattedMessage id="aap-rad-tittel"/>
+                    {tekster['aap-rad-tittel']}
                 </Systemtittel>
 
                 <Undertittel className="blokk-s">
-                    <FormattedMessage id="aap-rad-ingress-tittel"/>
+                    {tekster['aap-rad-ingress-tittel']}
                 </Undertittel>
 
                 <Normaltekst className="blokk-m aap--ingress">
-                    <FormattedMessage id="aap-rad-ingress"/>
+                    {tekster['aap-rad-ingress']}
                 </Normaltekst>
 
                 <Ekspanderbartpanel
-                    tittel={tekster.rettPaAapPanelTittel}
+                    tittel={tekster['aap-rad-rett-pa-aap-panel-tittel']}
                     tittelProps="undertittel"
                     border={true}
                     apen={this.state.visAap}
@@ -73,7 +66,7 @@ class Aap extends React.Component<InjectedIntlProps, AapRadState> {
                 </Ekspanderbartpanel>
 
                 <Ekspanderbartpanel
-                    tittel={tekster.soketidspunktPanelTittel}
+                    tittel={tekster['aap-rad-soketidspunkt-panel-tittel']}
                     tittelProps="undertittel"
                     border={true}
                 >
@@ -82,7 +75,7 @@ class Aap extends React.Component<InjectedIntlProps, AapRadState> {
 
                 <Lenke className="aap--til-soknad-knapp" href={aapSoknadLenke}>
                     <Undertittel tag="span">
-                        <FormattedMessage id="aap-rad-til-soknad-knapp-tekst"/>
+                        {tekster['aap-rad-til-soknad-knapp-tekst']}
                         <HoyreChevron type={'høyre'} />
                     </Undertittel>
                 </Lenke>
@@ -91,4 +84,4 @@ class Aap extends React.Component<InjectedIntlProps, AapRadState> {
     }
 }
 
-export default injectIntl(Aap);
+export default Aap;
