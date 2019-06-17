@@ -1,7 +1,5 @@
 import * as React from 'react';
-// import Lenke from 'nav-frontend-lenker';
 import * as queryString from 'query-string';
-// import { HoyreChevron } from 'nav-frontend-chevron';
 import { Knapp } from 'nav-frontend-knapper';
 import { Panel } from 'nav-frontend-paneler';
 import RettPaAapInnhold from './rett-pa-aap-innhold';
