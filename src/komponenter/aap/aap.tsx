@@ -1,7 +1,9 @@
 import * as React from 'react';
-import Lenke from 'nav-frontend-lenker';
+// import Lenke from 'nav-frontend-lenker';
 import * as queryString from 'query-string';
-import { HoyreChevron } from 'nav-frontend-chevron';
+// import { HoyreChevron } from 'nav-frontend-chevron';
+import { Knapp } from 'nav-frontend-knapper';
+import { Panel } from 'nav-frontend-paneler';
 import RettPaAapInnhold from './rett-pa-aap-innhold';
 import SoketidspunktInnhold from './soketidspunkt-innhold';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
@@ -22,6 +24,10 @@ class Aap extends React.Component<{}, AapRadState> {
         this.state = {
             visAap: queryString.parse(window.location.search).visAap === 'true'
         };
+    }
+
+    handleButtonClick = () => {
+        window.location.href = aapSoknadLenke;
     }
 
     componentDidMount() {
@@ -47,38 +53,38 @@ class Aap extends React.Component<{}, AapRadState> {
                 <Systemtittel className="blokk-s aap--tittel">
                     {tekster['aap-rad-tittel']}
                 </Systemtittel>
-
-                <Undertittel className="blokk-s">
-                    {tekster['aap-rad-ingress-tittel']}
-                </Undertittel>
-
-                <Normaltekst className="blokk-s aap--ingress">
-                    {tekster['aap-rad-ingress']}
-                </Normaltekst>
-
-                <Ekspanderbartpanel
-                    tittel={tekster['aap-rad-rett-pa-aap-panel-tittel']}
-                    tittelProps="undertittel"
-                    border={true}
-                    apen={this.state.visAap}
-                >
-                    <RettPaAapInnhold/>
-                </Ekspanderbartpanel>
-
-                <Ekspanderbartpanel
-                    tittel={tekster['aap-rad-soketidspunkt-panel-tittel']}
-                    tittelProps="undertittel"
-                    border={true}
-                >
-                    <SoketidspunktInnhold/>
-                </Ekspanderbartpanel>
-
-                <Lenke className="aap--til-soknad-knapp" href={aapSoknadLenke}>
-                    <Undertittel tag="span">
-                        {tekster['aap-rad-til-soknad-knapp-tekst']}
-                        <HoyreChevron type={'høyre'} />
-                    </Undertittel>
-                </Lenke>
+                <div className="tokol">
+                    <div className="kolonne blokk-m">
+                        <Panel border className="panelramme">
+                            <Undertittel className="blokk-s">
+                                {tekster['aap-rad-ingress-tittel']}
+                            </Undertittel>
+                            <Normaltekst className="blokk-s">
+                                {tekster['aap-rad-ingress']}
+                            </Normaltekst>
+                            <Knapp onClick={this.handleButtonClick} className="blokk-xs">
+                                {tekster['aap-rad-til-soknad-knapp-tekst']}
+                            </Knapp>
+                        </Panel>
+                    </div>
+                    <div className="kolonne blokk-m">
+                        <Ekspanderbartpanel
+                            tittel={tekster['aap-rad-rett-pa-aap-panel-tittel']}
+                            tittelProps="undertittel"
+                            border={true}
+                            apen={this.state.visAap}
+                        >
+                            <RettPaAapInnhold/>
+                        </Ekspanderbartpanel>
+                        <Ekspanderbartpanel
+                            tittel={tekster['aap-rad-soketidspunkt-panel-tittel']}
+                            tittelProps="undertittel"
+                            border={true}
+                        >
+                            <SoketidspunktInnhold/>
+                        </Ekspanderbartpanel>
+                    </div>
+                </div>
             </div>
         );
     }

@@ -3,6 +3,11 @@
 .aap {
     margin: 0;
 
+    .panelramme {
+        border-color: @navGra60;
+        padding: 24px;
+    }
+
     .panel-innhold {
         padding: 1rem 0;
     }
@@ -26,7 +31,6 @@
     }
 
     .relatert-innhold-boks {
-        margin: 1rem;
 
         .relatert-innhold {
             background-color: @navLysBlaLighten80;
@@ -38,7 +42,7 @@
             list-style-type: none;
             li {
                 border-bottom: 1px solid @navLysBlaLighten40;
-                padding: 1rem 2rem;
+                padding-top: 1rem;
             }
         }
     }
@@ -81,26 +85,12 @@
             width: 60%;
         }
 
-        .rett-pa-aap-innhold {
-            flex-direction: row;
-            flex-wrap: nowrap;
-        }
-
         .panel-innhold {
             padding: 1rem 2rem;
         }
 
-        .hovedinnhold {
-            width: 59%;
-        }
-
-        .relatert-innhold-boks {
-            width: 39%;
-            margin: 0 0 0 2rem;
-
-            .panel.relatert-innhold{
-                padding: 1rem 0 1rem 2rem;
-            }
+        .kolonne {
+            width: calc(50% - 0.5rem);
         }
     }
 }

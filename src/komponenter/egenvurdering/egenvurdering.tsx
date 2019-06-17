@@ -43,13 +43,13 @@ class Egenvurdering extends React.Component<EgenvurderingProps> {
             <Panel border className="ramme blokk-s">
                 <section className="egenvurdering">
                     <div className="innhold">
-                        <Systemtittel tag="h1" className="blokk-xs">
+                        <Systemtittel tag="h2" className="blokk-xs">
                             {tekster['egenvurdering-tittel']}
                         </Systemtittel>
                         <Normaltekst className="blokk-s egenvurdering__tekst">
                             {tekster['egenvurdering-tekst']}
                         </Normaltekst>
-                        <Hovedknapp onClick={this.handleButtonClick}>
+                        <Hovedknapp onClick={this.handleButtonClick} className="blokk-xs">
                             {tekster['egenvurdering-lenke-tekst']}
                         </Hovedknapp>
                     </div>
