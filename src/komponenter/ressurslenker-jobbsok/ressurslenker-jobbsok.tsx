@@ -11,7 +11,7 @@ class RessurslenkerJobbsok extends React.Component {
     render() {
         return (
             <section className="ressurslenker">
-                <Systemtittel tag="h2" className="ressurslenker__heading blokk-m">
+                <Systemtittel tag="h2" className="ressurslenker__heading blokk-s">
                     {tekster['ressurslenker-jobbsok-overskrift']}
                 </Systemtittel>
 
