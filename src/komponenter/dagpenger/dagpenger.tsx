@@ -57,7 +57,7 @@ class Dagpenger extends React.Component<{}> {
                         <Normaltekst className="blokk-s dagpenger__tekst">
                             {tekster['dagpenger-tekst']}
                         </Normaltekst>
-                        <Knapp onClick={this.handleButtonClick}>
+                        <Knapp onClick={this.handleButtonClick} className="blokk-xs">
                             {tekster['dagpenger-lenke-tekst']}
                         </Knapp>
                     </div>
