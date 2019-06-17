@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../reducer';
+import { erMikrofrontend } from '../utils/app-state-utils';
 import { Data, Innsatsgruppe, InnsatsgruppeContext } from '../ducks/innsatsgruppe';
 import { selectSykmeldtMedArbeidsgiver } from '../ducks/sykmeldt-info';
 import {
@@ -36,10 +37,10 @@ const InnholdLogikkNiva4 = ({
 
     const innsatsgruppeData: Data | null = React.useContext(InnsatsgruppeContext).data;
     const innsatsgruppe = innsatsgruppeData ? innsatsgruppeData.servicegruppe : null;
-
+    
     React.useEffect(() => {
         seVeientilarbeid(erSykmeldtMedArbeidsgiver, innsatsgruppe);
-        hotjarTrigger();
+        hotjarTrigger(erMikrofrontend());
     }, []);
 
     const skalViseTiltaksinfoLenke = (
@@ -115,7 +116,6 @@ const mapStateToProps = (state: AppState): StateProps => {
         opprettetRegistreringDato: opprettetRegistreringDato ? new Date(opprettetRegistreringDato) : null,
         harEgenvurderingbesvarelse: state.egenvurderingbesvarelse.data !== null,
         egenvurderingbesvarelseDato: state.egenvurderingbesvarelse.data ? new Date(state.egenvurderingbesvarelse.data.sistOppdatert) : null
-
     };
 };
 
