@@ -37,11 +37,10 @@ const InnholdLogikkNiva4 = ({
 
     const innsatsgruppeData: Data | null = React.useContext(InnsatsgruppeContext).data;
     const innsatsgruppe = innsatsgruppeData ? innsatsgruppeData.servicegruppe : null;
-    const isMicrofrontend = erMikrofrontend ? erMikrofrontend.toString() === 'true' : false;
-
+    
     React.useEffect(() => {
         seVeientilarbeid(erSykmeldtMedArbeidsgiver, innsatsgruppe);
-        hotjarTrigger(isMicrofrontend);
+        hotjarTrigger(erMikrofrontend());
     }, []);
 
     const skalViseTiltaksinfoLenke = (
