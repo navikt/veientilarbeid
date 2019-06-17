@@ -44,7 +44,7 @@ class Aap extends React.Component<{}, AapRadState> {
     render() {
         return (
             <div className="aap">
-                <Systemtittel className="blokk-xl aap--tittel">
+                <Systemtittel className="blokk-s aap--tittel">
                     {tekster['aap-rad-tittel']}
                 </Systemtittel>
 
@@ -52,7 +52,7 @@ class Aap extends React.Component<{}, AapRadState> {
                     {tekster['aap-rad-ingress-tittel']}
                 </Undertittel>
 
-                <Normaltekst className="blokk-m aap--ingress">
+                <Normaltekst className="blokk-s aap--ingress">
                     {tekster['aap-rad-ingress']}
                 </Normaltekst>
 
