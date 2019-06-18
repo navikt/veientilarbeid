@@ -124,9 +124,9 @@ export const seTiltaksinfo = () => {
     }
 };
 
-export const klikkPaSoknadDagpenger = (nyregistrert: boolean) => {
+export const klikkPaSoknadDagpenger = () => {
     if (!erDemo()) {
-        logEvent(`${domene}.soknaddagpenger`, {nyregistrertField: nyregistrert}, {nyregistrertTag: nyregistrert});
+        logEvent(`${domene}.soknaddagpenger`, {}, {});
     }
 };
 
