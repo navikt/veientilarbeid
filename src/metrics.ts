@@ -52,9 +52,9 @@ export const antallUlesteDialoger = (antall: number) => {
     }
 };
 
-export const gaTilMeldekort = () => {
+export const gaTilMeldekort = (innsatsgruppe: String | null) => {
     if (!erDemo()) {
-        logEvent(`${domene}.gatilmeldekort`, {}, {});
+        logEvent(`${domene}.gatilmeldekort`, {innsatsgruppeField: innsatsgruppe}, {innsatsgruppeTag: innsatsgruppe});
     }
 };
 
@@ -82,9 +82,9 @@ export const gaTilMotestotte = (antallTimer: number, foreslaattinnsatsgruppe: Fo
     }
 };
 
-export const gaTilDittSykefravaer = () => {
+export const gaTilDittSykefravaer = (innsatsgruppe: String | null) => {
     if (!erDemo()) {
-        logEvent(`${domene}.gatildittsykefravaer`, {}, {});
+        logEvent(`${domene}.gatildittsykefravaer`, {innsatsgruppeField: innsatsgruppe}, {innsatsgruppeTag: innsatsgruppe});
     }
 };
 
