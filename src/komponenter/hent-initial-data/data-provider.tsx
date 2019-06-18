@@ -73,9 +73,8 @@ const DataProvider = ({
         }
     }, []);
 
-    const avhengigheter: any[] = [jobbsokerbesvarelse, egenvurderingbesvarelse, sykmeldtInfo]; // tslint:disable-line:no-any
-    const ventPa: any[] = [innsatsgruppeState, ulesteDialoger]; // tslint:disable-line:no-any
-    const betingelser: boolean[] = [underOppfolging, skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe), true];
+    const avhengigheter: any[] = [sykmeldtInfo]; // tslint:disable-line:no-any
+    const ventPa: any[] = [innsatsgruppeState, ulesteDialoger, egenvurderingbesvarelse, jobbsokerbesvarelse]; // tslint:disable-line:no-any
 
     return (
 
@@ -84,7 +83,6 @@ const DataProvider = ({
             storrelse="XXL"
             avhengigheter={avhengigheter}
             ventPa={ventPa}
-            betingelser={betingelser}
         >
             <InnsatsgruppeContext.Provider value={innsatsgruppeState}>
                 <MotestotteContext.Provider value={motestotteState}>
