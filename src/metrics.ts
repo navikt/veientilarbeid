@@ -28,9 +28,9 @@ export const visInfoOmDagpenger = () => {
     }
 };
 
-export const klikkPaSokLedigeStillinger = () => {
+export const klikkPaSokLedigeStillinger = (innsatsgruppe: String | null) => {
     if (!erDemo()) {
-        logEvent(`${domene}.sokledigestillinger`, {}, {});
+        logEvent(`${domene}.sokledigestillinger`, {innsatsgruppeField: innsatsgruppe}, {innsatsgruppeTag: innsatsgruppe});
     }
 };
 
