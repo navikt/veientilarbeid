@@ -74,8 +74,13 @@ const DataProvider = ({
     }, []);
 
     const avhengigheter: any[] = [sykmeldtInfo]; // tslint:disable-line:no-any
-    const ventPa: any[] = [innsatsgruppeState, ulesteDialoger, egenvurderingbesvarelse, jobbsokerbesvarelse]; // tslint:disable-line:no-any
-
+    const ventPa: any[] = [innsatsgruppeState, ulesteDialoger, jobbsokerbesvarelse]; // tslint:disable-line:no-any
+    if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
+        ventPa.push(egenvurderingbesvarelse);
+    }
+    if (foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING) {
+        ventPa.push(motestotteState)
+    }
     return (
 
         <Innholdslaster
