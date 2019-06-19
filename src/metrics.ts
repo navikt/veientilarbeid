@@ -82,39 +82,39 @@ export const gaTilDittSykefravaer = (innsatsgruppe: String | null) => {
     }
 };
 
-export const gaTilMIA = () => {
+export const gaTilMIA = (innsatsgruppe: String | null) => {
     if (!erDemo()) {
-        logEvent(`${domene}.gatilmia`, {}, {});
+        logEvent(`${domene}.gatilmia`, {innsatsgruppeField: innsatsgruppe}, {innsatsgruppeTag: innsatsgruppe});
     }
 };
 
-export const gaTilCV = () => {
+export const gaTilCV = (innsatsgruppe: String | null) => {
     if (!erDemo()) {
-        logEvent(`${domene}.gatilcv`, {}, {});
+        logEvent(`${domene}.gatilcv`, {innsatsgruppeField: innsatsgruppe}, {innsatsgruppeTag: innsatsgruppe});
     }
 };
 
-export const gaTilJobbsokerkompetanse = () => {
+export const gaTilJobbsokerkompetanse = (innsatsgruppe: String | null) => {
     if (!erDemo()) {
-        logEvent(`${domene}.gatiljobbsokerkompetanseresultat`, {}, {});
+        logEvent(`${domene}.gatiljobbsokerkompetanseresultat`, {innsatsgruppeField: innsatsgruppe}, {innsatsgruppeTag: innsatsgruppe});
     }
 };
 
-export const gaTilVeiviserarbeidssoker = () => {
+export const gaTilVeiviserarbeidssoker = (innsatsgruppe: String | null) => {
     if (!erDemo()) {
-        logEvent(`${domene}.gatilveiviserarbeidssoker`, {}, {});
+        logEvent(`${domene}.gatilveiviserarbeidssoker`, {innsatsgruppeField: innsatsgruppe}, {innsatsgruppeTag: innsatsgruppe});
     }
 };
 
-export const gaTilTiltaksinfo = () => {
+export const gaTilTiltaksinfo = (innsatsgruppe: String | null) => {
     if (!erDemo()) {
-        logEvent(`${domene}.gatiltiltaksinfo`, {}, {});
+        logEvent(`${domene}.gatiltiltaksinfo`, {innsatsgruppeField: innsatsgruppe}, {innsatsgruppeTag: innsatsgruppe});
     }
 };
 
-export const seTiltaksinfo = () => {
+export const seTiltaksinfo = (innsatsgruppe: String | null) => {
     if (!erDemo()) {
-        logEvent(`${domene}.setiltaksinfo`, {}, {});
+        logEvent(`${domene}.setiltaksinfo`, {innsatsgruppeField: innsatsgruppe}, {innsatsgruppeTag: innsatsgruppe});
     }
 };
 
