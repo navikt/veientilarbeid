@@ -8,23 +8,17 @@ const logEvent = w.frontendlogger ? w.frontendlogger.event : () => { return; };
 
 const domene = 'veientilarbeid';
 
-export const seVeientilarbeid = (erSykmeldtMedArbeidsgiver: boolean, servicegruppe: Innsatsgruppe | null) => {
+export const seVeientilarbeid = (erSykmeldtMedArbeidsgiver: boolean, servicegruppe: Innsatsgruppe | null, microfrontend: boolean) => {
     if (!erDemo()) {
         logEvent(`${domene}.seveientilarbeid`,
-            {erSykmeldtMedArbeidsgiverField: erSykmeldtMedArbeidsgiver, servicegruppeField: servicegruppe},
-            {erSykmeldtMedArbeidsgiver, servicegruppeTag: servicegruppe});
+            {erSykmeldtMedArbeidsgiverField: erSykmeldtMedArbeidsgiver, servicegruppeField: servicegruppe, microfrontendField: microfrontend},
+            {erSykmeldtMedArbeidsgiver, servicegruppeTag: servicegruppe, microfrontendTag: microfrontend});
     }
 };
 
 export const seVeientilarbeidNiva3 = () => {
     if (!erDemo()) {
         logEvent(`${domene}.seveientilarbeidniva3`, {}, {});
-    }
-};
-
-export const visInfoOmDagpenger = () => {
-    if (!erDemo()) {
-        logEvent(`${domene}.visinfoomdagpenger`, {}, {});
     }
 };
 
@@ -40,9 +34,9 @@ export const gaTilAktivitetsplan = () => {
     }
 };
 
-export const gaTilDialog = (antall: number) => {
+export const gaTilDialog = (antall: number, innsatsgruppe: string | null) => {
     if (!erDemo()) {
-        logEvent(`${domene}.gatildialog`, {antallField: antall}, {antallTag: antall});
+        logEvent(`${domene}.gatildialog`, {antallField: antall, innsatsgruppeField: innsatsgruppe}, {antallTag: antall, innsatsgruppeTag: innsatsgruppe});
     }
 };
 
@@ -130,8 +124,8 @@ export const klikkPaSoknadDagpenger = () => {
     }
 };
 
-export const lesOmOkonomi = (stonad: string) => {
+export const lesOmOkonomi = (stonad: string, innsatsgruppe: string | null) => {
     if (!erDemo()) {
-        logEvent(`${domene}.lesomokonomi`, {stonadField: stonad}, {stonadTag: stonad});
+        logEvent(`${domene}.lesomokonomi`, {stonadField: stonad, innsatsgruppeField: innsatsgruppe}, {stonadTag: stonad, innsatsgruppeTag: innsatsgruppe});
     }
 };

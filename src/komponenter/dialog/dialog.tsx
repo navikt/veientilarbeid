@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
+import { Data, InnsatsgruppeContext } from '../../ducks/innsatsgruppe';
 import LenkepanelBase from 'nav-frontend-lenkepanel';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { connect } from 'react-redux';
 import { AppState } from '../../reducer';
 import { gaTilDialog } from '../../metrics';
-import { antallUlesteDialoger } from '../../metrics';
 import DialogFill from './dialog-fill';
 import DialogLine from './dialog-line';
 import './dialog.less';
@@ -15,55 +15,53 @@ interface StateProps {
     antallUleste: number;
 }
 
-class Dialog extends React.Component<StateProps> {
+type AllProps = StateProps
 
-    componentDidMount() {
-        antallUlesteDialoger(this.props.antallUleste);
-    }
+const Dialog = (props: AllProps) => {
+    const { antallUleste } = props;
+    const innsatsgruppeData: Data | null = useContext(InnsatsgruppeContext).data;
+    const innsatsgruppe = innsatsgruppeData ? innsatsgruppeData.servicegruppe : null;
+    const linkCreator = (props: {}) => {
+        return <a onClick={() => gaTilDialog(antallUleste, innsatsgruppe)} {...props}/>;
+    };
 
-    byggDialogTekst() {
-        switch (this.props.antallUleste) {
+    const byggDialogTekst = () => {
+        switch (antallUleste) {
             case 0:
                 return 'Ingen uleste dialoger';
             case 1:
-                return this.props.antallUleste.toString() + ' ulest dialog';
+                return antallUleste.toString() + ' ulest dialog';
             default:
-                return this.props.antallUleste.toString() + ' uleste dialoger';
+                return antallUleste.toString() + ' uleste dialoger';
         }
     }
 
-    render() {
-        const linkCreator = (props: {}) => {
-            return <a onClick={() => gaTilDialog(this.props.antallUleste)} {...props}/>;
-        };
-
-        return (
-            <LenkepanelBase
-                href={dialogLenke}
-                tittelProps="undertittel"
-                linkCreator={linkCreator}
-                border={true}
-                className="dialog"
-            >
-                <div className="lenkepanel__innhold">
-                    <div className="lenkepanel__ikon">
-                        {this.props.antallUleste > 0 ?
-                            <DialogFill messagesCount={this.props.antallUleste}/> :
-                            <DialogLine/>
-                        }
-                    </div>
-                    <div className="lenkepanel__tekst">
-                        <Undertittel>
-                            {tekster['dialog']}
-                        </Undertittel>
-                        <Normaltekst className="lenkepanel__ingress">
-                            {this.byggDialogTekst()}
-                        </Normaltekst>
-                    </div>
+    return (
+        <LenkepanelBase
+            href={dialogLenke}
+            tittelProps="undertittel"
+            linkCreator={linkCreator}
+            border={true}
+            className="dialog"
+        >
+            <div className="lenkepanel__innhold">
+                <div className="lenkepanel__ikon">
+                    {antallUleste > 0 ?
+                        <DialogFill messagesCount={antallUleste}/> :
+                        <DialogLine/>
+                    }
                 </div>
-            </LenkepanelBase>
-        );
-    }
+                <div className="lenkepanel__tekst">
+                    <Undertittel>
+                        {tekster['dialog']}
+                    </Undertittel>
+                    <Normaltekst className="lenkepanel__ingress">
+                        {byggDialogTekst()}
+                    </Normaltekst>
+                </div>
+            </div>
+        </LenkepanelBase>
+    );
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
