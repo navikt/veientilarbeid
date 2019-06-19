@@ -16,6 +16,6 @@ export const behovsvurderingLenke = erMikrofrontend() ? `${contextpathDittNav}/b
 export const motestotteLenke = erMikrofrontend() ? `${contextpathDittNav}/forberede-moete` : '/forberede-moete';
 export const reaktiveringLenke = erMikrofrontend() ? `${contextpathDittNav}/arbeidssokerregistrering/start` : '/arbeidssokerregistrering/start';
 export const sykepengerLenke = 'https://www.nav.no/no/Person/Arbeid/Sykmeldt%2C+arbeidsavklaringspenger+og+yrkesskade/Sykepenger/Sykepenger+til+arbeidstakere#chapter-7';
-export const meldekortLenke = 'https://www.nav.no/no/Person/Arbeid/Dagpenger+ved+arbeidsloshet+og+permittering/Meldekort+hvordan+gjor+du+det/Slik+sender+du+elektroniske+meldekort';
+export const meldekortLenke = 'https://tjenester.nav.no/meldekort/genereltommeldekort/';
 export const aapSoknadLenke = 'https://www.nav.no/no/Person/Skjemaer-for-privatpersoner/Skjemaer/Arbeid%2C+helse+og+sykdom/arbeidsavklaringspenger';
 export const difiLenke = 'https://brukerprofil.difi.no/minprofil/';
