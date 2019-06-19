@@ -28,9 +28,9 @@ export const klikkPaSokLedigeStillinger = (innsatsgruppe: String | null) => {
     }
 };
 
-export const gaTilAktivitetsplan = () => {
+export const gaTilAktivitetsplan = (innsatsgruppe: String | null) => {
     if (!erDemo()) {
-        logEvent(`${domene}.gatilaktivitetsplan`, {}, {});
+        logEvent(`${domene}.gatilaktivitetsplan`, {innsatsgruppeField: innsatsgruppe}, {innsatsgruppeTag: innsatsgruppe});
     }
 };
 
