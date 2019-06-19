@@ -6,7 +6,6 @@ import ErrorBoundary from './error-boundary';
 
 const store = getStore();
 
-// TODO Legge til Error Boundaries med logging til Frontendlogger
 class App extends React.Component {
     render() {
         return (
