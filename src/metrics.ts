@@ -118,9 +118,9 @@ export const seTiltaksinfo = (innsatsgruppe: String | null) => {
     }
 };
 
-export const klikkPaSoknadDagpenger = () => {
+export const klikkPaSoknadDagpenger = (innsatsgruppe: string | null) => {
     if (!erDemo()) {
-        logEvent(`${domene}.soknaddagpenger`, {}, {});
+        logEvent(`${domene}.soknaddagpenger`, {innsatsgruppeField: innsatsgruppe}, {innsatsgruppeTag: innsatsgruppe});
     }
 };
 
