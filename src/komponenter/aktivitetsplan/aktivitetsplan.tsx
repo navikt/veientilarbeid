@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Data, InnsatsgruppeContext } from '../../ducks/innsatsgruppe';
 import { parse } from 'query-string';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
@@ -7,7 +7,7 @@ import { gaTilAktivitetsplan } from '../../metrics';
 import { aktivitetsplanLenke } from '../../innhold/lenker';
 
 const Aktivitetsplan = () => {
-    const [nyRegistrering] = useState(parse(location.search).nyRegistrering === 'true') 
+    const nyRegistrering = parse(location.search).nyRegistrering === 'true';
     const overskrift = 'aktivitetsplan-overskrift-ordinaer';
     const ingress = 'aktivitetsplan-beskrivelse' + (nyRegistrering ? '-ny' : '');
     const innsatsgruppeData: Data | null = useContext(InnsatsgruppeContext).data;
