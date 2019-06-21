@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useContext, useEffect } from 'react';
+import { Data, InnsatsgruppeContext } from '../../ducks/innsatsgruppe';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { gaTilTiltaksinfo, seTiltaksinfo } from '../../metrics';
 import TiltakinfoIkon from './tiltakinfoIkon';
@@ -6,29 +7,33 @@ import TiltakinfoIkon from './tiltakinfoIkon';
 import './tiltakinfo.less';
 import { tiltakinfoLenke } from '../../innhold/lenker';
 
-class Tiltakinfo extends React.Component {
+const Tiltakinfo = () => {
+    const innsatsgruppeData: Data | null = useContext(InnsatsgruppeContext).data;
+    const innsatsgruppe = innsatsgruppeData ? innsatsgruppeData.servicegruppe : null;
 
-    componentDidMount() {
-        seTiltaksinfo();
-    }
+    useEffect(() => {
+        seTiltaksinfo(innsatsgruppe);
+    }, []);
 
-    render() {
-        const overskrift = 'tiltakinfo-tittel';
-        const ingress = 'tiltakinfo-ingress';
+    const handleClick = () => {
+        gaTilTiltaksinfo(innsatsgruppe);
+    };
 
-        return (
-            <LenkepanelMedIkon
-                href={tiltakinfoLenke}
-                className="tiltakinfo"
-                alt=""
-                onClick={gaTilTiltaksinfo}
-                overskrift={overskrift}
-                ingress={ingress}
-            >
-                <TiltakinfoIkon/>
-            </LenkepanelMedIkon>
-        );
-    }
+    const overskrift = 'tiltakinfo-tittel';
+    const ingress = 'tiltakinfo-ingress';
+
+    return (
+        <LenkepanelMedIkon
+            href={tiltakinfoLenke}
+            className="tiltakinfo"
+            alt=""
+            onClick={handleClick}
+            overskrift={overskrift}
+            ingress={ingress}
+        >
+            <TiltakinfoIkon/>
+        </LenkepanelMedIkon>
+    );
 }
 
 export default Tiltakinfo;

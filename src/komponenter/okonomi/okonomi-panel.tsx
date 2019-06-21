@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
+import { Data, InnsatsgruppeContext } from '../../ducks/innsatsgruppe';
 import Lenke from 'nav-frontend-lenker';
 import { HoyreChevron } from 'nav-frontend-chevron';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
@@ -18,6 +19,12 @@ type AllProps = OkonomiPanelProps;
 
 const OkonomiPanel = (props: AllProps) => {
     const {tittelId, lenkeTekstId, lenkeUrl, children} = props;
+    const innsatsgruppeData: Data | null = useContext(InnsatsgruppeContext).data;
+    const innsatsgruppe = innsatsgruppeData ? innsatsgruppeData.servicegruppe : null;
+
+    const handleClick = () => {
+        lesOmOkonomi(lenkeUrl, innsatsgruppe);
+    };
 
     return (
         <div className="okonomi-panel">
@@ -27,7 +34,7 @@ const OkonomiPanel = (props: AllProps) => {
                 {tekster[tittelId]}
             </Systemtittel>
 
-            <Lenke href={lenkeUrl} className="okonomi-panel--lenke" onClick={() => lesOmOkonomi(lenkeUrl)}>
+            <Lenke href={lenkeUrl} className="okonomi-panel--lenke" onClick={handleClick}>
                 <Normaltekst tag="span">
                     {tekster[lenkeTekstId]}
                 </Normaltekst>

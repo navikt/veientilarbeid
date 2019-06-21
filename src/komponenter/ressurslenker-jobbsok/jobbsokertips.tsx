@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
+import { Data, InnsatsgruppeContext } from '../../ducks/innsatsgruppe';
 import { connect } from 'react-redux';
 import { AppState } from '../../reducer';
 import { gaTilJobbsokerkompetanse, gaTilVeiviserarbeidssoker } from '../../metrics';
@@ -10,30 +11,38 @@ interface StateProps {
     harJobbbsokerbesvarelse: boolean;
 }
 
-class Ressurslenker extends React.Component<StateProps> {
-    render () {
-        const {harJobbbsokerbesvarelse} = this.props;
-        const URL = harJobbbsokerbesvarelse ? jobbsokerkompetanseLenke : veiviserarbeidssokerLenke;
+type AllProps = StateProps
 
-        const lenketekst = harJobbbsokerbesvarelse
-            ? 'jobbsokertips-overskrift-har-besvarelse'
-            : 'jobbsokertips-overskrift-har-ikke-besvarelse';
+const Ressurslenker = (props: AllProps) => {
+    const { harJobbbsokerbesvarelse } = props;
+    const URL = harJobbbsokerbesvarelse ? jobbsokerkompetanseLenke : veiviserarbeidssokerLenke;
 
-        const gaTil = harJobbbsokerbesvarelse
-            ? gaTilJobbsokerkompetanse
-            : gaTilVeiviserarbeidssoker;
+    const innsatsgruppeData: Data | null = useContext(InnsatsgruppeContext).data;
+    const innsatsgruppe = innsatsgruppeData ? innsatsgruppeData.servicegruppe : null;
 
-        return (
-            <LenkepanelMedIkon
-                href={URL}
-                alt=""
-                onClick={gaTil}
-                overskrift={lenketekst}
-            >
-                <JobbsokertipsIkon/>
-            </LenkepanelMedIkon>
-        );
-    }
+    const lenketekst = harJobbbsokerbesvarelse
+        ? 'jobbsokertips-overskrift-har-besvarelse'
+        : 'jobbsokertips-overskrift-har-ikke-besvarelse';
+
+    const gaTil = harJobbbsokerbesvarelse
+        ? gaTilJobbsokerkompetanse
+        : gaTilVeiviserarbeidssoker;
+
+
+    const handleClick = () => {
+        gaTil(innsatsgruppe);
+    };
+
+    return (
+        <LenkepanelMedIkon
+            href={URL}
+            alt=""
+            onClick={handleClick}
+            overskrift={lenketekst}
+        >
+            <JobbsokertipsIkon/>
+        </LenkepanelMedIkon>
+    );
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({

@@ -39,7 +39,7 @@ const InnholdLogikkNiva4 = ({
     const innsatsgruppe = innsatsgruppeData ? innsatsgruppeData.servicegruppe : null;
     
     React.useEffect(() => {
-        seVeientilarbeid(erSykmeldtMedArbeidsgiver, innsatsgruppe);
+        seVeientilarbeid(erSykmeldtMedArbeidsgiver, innsatsgruppe, erMikrofrontend());
         hotjarTrigger(erMikrofrontend());
     }, []);
 

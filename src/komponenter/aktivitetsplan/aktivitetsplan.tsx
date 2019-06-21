@@ -1,42 +1,34 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
+import { Data, InnsatsgruppeContext } from '../../ducks/innsatsgruppe';
 import { parse } from 'query-string';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import DesignMug from './design-mug';
 import { gaTilAktivitetsplan } from '../../metrics';
 import { aktivitetsplanLenke } from '../../innhold/lenker';
 
-interface State {
-    nyRegistrering: boolean;
-}
+const Aktivitetsplan = () => {
+    const nyRegistrering = parse(location.search).nyRegistrering === 'true';
+    const overskrift = 'aktivitetsplan-overskrift-ordinaer';
+    const ingress = 'aktivitetsplan-beskrivelse' + (nyRegistrering ? '-ny' : '');
+    const innsatsgruppeData: Data | null = useContext(InnsatsgruppeContext).data;
+    const innsatsgruppe = innsatsgruppeData ? innsatsgruppeData.servicegruppe : null;
 
-interface AktivitetsplanProps {
-}
+    const handleClick = () => {
+        gaTilAktivitetsplan(innsatsgruppe);
+    };
 
-class Aktivitetsplan extends React.PureComponent<AktivitetsplanProps, State> {
-    constructor(props: AktivitetsplanProps) {
-        super(props);
-        this.state = {
-            nyRegistrering: parse(location.search).nyRegistrering === 'true'
-        };
-    }
-
-    render() {
-        const overskrift = 'aktivitetsplan-overskrift-ordinaer';
-        const ingress = 'aktivitetsplan-beskrivelse' + (this.state.nyRegistrering ? '-ny' : '');
-
-        return (
-            <LenkepanelMedIkon
-                href={aktivitetsplanLenke}
-                alt=""
-                onClick={gaTilAktivitetsplan}
-                overskrift={overskrift}
-                ingress={ingress}
-                className="aktivitetsplanPanel"
-            >
-                <DesignMug/>
-            </LenkepanelMedIkon>
-        );
-    }
+    return (
+        <LenkepanelMedIkon
+            href={aktivitetsplanLenke}
+            alt=""
+            onClick={handleClick}
+            overskrift={overskrift}
+            ingress={ingress}
+            className="aktivitetsplanPanel"
+        >
+            <DesignMug/>
+        </LenkepanelMedIkon>
+    );
 }
 
 export default Aktivitetsplan;
