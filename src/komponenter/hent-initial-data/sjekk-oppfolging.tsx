@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { AppState } from '../../reducer';
 import { redirectTilDittNav } from './redirect-dittnav-utils';
 import { erMikrofrontend } from '../../utils/app-state-utils';
+import InnholdLogikkNiva3 from '../../innhold/innhold-logikk-niva3';
 
 interface SjekkOppfolgingConfig {
     sendBrukerTilDittNav: () => void;
@@ -20,6 +21,10 @@ interface StateProps {
 type Props = OwnProps & StateProps;
 
 const SjekkOppfolging = ({config = {sendBrukerTilDittNav: redirectTilDittNav}, underOppfolging, children}: Props) => {
+
+    if (!underOppfolging && erMikrofrontend()) {
+        return <InnholdLogikkNiva3/>;
+    }
 
     if (underOppfolging || erMikrofrontend()) {
         return children;
