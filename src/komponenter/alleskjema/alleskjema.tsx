@@ -3,32 +3,32 @@ import { Data, InnsatsgruppeContext } from '../../ducks/innsatsgruppe';
 import { Knapp } from 'nav-frontend-knapper';
 import { Panel } from 'nav-frontend-paneler';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
-import { klikkPaSoknadDagpenger } from '../../metrics';
-import './dagpenger.less';
-import { dagpengerSoknadLenke } from '../../innhold/lenker';
+import { klikkPaSoknadAlleSkjema } from '../../metrics';
+import './alleskjema.less';
+import { alleSkjemaSoknadLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 
-const Dagpenger = () => {
+const AlleSkjema = () => {
     const innsatsgruppeData: Data | null = useContext(InnsatsgruppeContext).data;
     const innsatsgruppe = innsatsgruppeData ? innsatsgruppeData.servicegruppe : null;
 
     const handleButtonClick = () => {
-        klikkPaSoknadDagpenger(innsatsgruppe);
-        window.location.href = dagpengerSoknadLenke;
+        klikkPaSoknadAlleSkjema(innsatsgruppe);
+        window.location.href = alleSkjemaSoknadLenke;
     }
   
     return (
-        <div className="dagpenger">
-            <Panel border className="dagpenger-ramme blokk-l">
+        <div className="alleskjema">
+            <Panel border className="alleskjema-ramme blokk-l">
                 <div className="innhold">
                     <Systemtittel tag="h1" className="blokk-xs">
-                        {tekster['dagpenger-tittel']}
+                        {tekster['alleskjema-tittel']}
                     </Systemtittel>
                     <Normaltekst className="blokk-s dagpenger__tekst">
-                        {tekster['dagpenger-tekst']}
+                        {tekster['alleskjema-tekst']}
                     </Normaltekst>
                     <Knapp onClick={handleButtonClick} className="blokk-xs">
-                        {tekster['dagpenger-lenke-tekst']}
+                        {tekster['alleskjema-lenke-tekst']}
                     </Knapp>
                 </div>
         </Panel>
@@ -36,4 +36,4 @@ const Dagpenger = () => {
     );
 }
 
-export default Dagpenger;
+export default AlleSkjema;

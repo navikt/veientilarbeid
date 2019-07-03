@@ -118,6 +118,12 @@ export const seTiltaksinfo = (innsatsgruppe: String | null) => {
     }
 };
 
+export const klikkPaSoknadAlleSkjema = (innsatsgruppe: string | null) => {
+    if (!erDemo()) {
+        logEvent(`${domene}.soknadalleskjema`, {innsatsgruppeField: innsatsgruppe}, {innsatsgruppeTag: innsatsgruppe});
+    }
+};
+
 export const klikkPaSoknadDagpenger = (innsatsgruppe: string | null) => {
     if (!erDemo()) {
         logEvent(`${domene}.soknaddagpenger`, {innsatsgruppeField: innsatsgruppe}, {innsatsgruppeTag: innsatsgruppe});

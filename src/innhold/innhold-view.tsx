@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Systemtittel } from 'nav-frontend-typografi';
 import Rad from './rad';
 import AapRad from '../komponenter/aap/aap';
 import Dialog from '../komponenter/dialog/dialog';
@@ -6,6 +7,7 @@ import Banner from '../komponenter/banner/banner';
 import Meldekort from '../komponenter/meldekort/meldekort';
 import DittSykefravaer from '../komponenter/ditt-sykefravaer/ditt-sykefravaer';
 import Dagpenger from '../komponenter/dagpenger/dagpenger';
+import AlleSkjema from '../komponenter/alleskjema/alleskjema';
 import Tiltakinfo from '../komponenter/tiltakinfo/tiltakinfo';
 import OkonomiRad from '../komponenter/okonomi/okonomi-rad';
 import ReaktiveringMelding from '../komponenter/reaktivering-melding';
@@ -16,6 +18,7 @@ import Motestotte from '../komponenter/motestotte/motestotte';
 import './innhold.less';
 import KrrMelding from '../komponenter/krr-melding/krr-melding';
 import { erMikrofrontend } from '../utils/app-state-utils';
+import tekster from '../tekster/tekster';
 
 interface OwnProps {
     erSykmeldtMedArbeidsgiver: boolean;
@@ -59,9 +62,10 @@ export default ({erSykmeldtMedArbeidsgiver,
                 {skalViseTiltaksinfoLenke ? <Tiltakinfo/> : null}
             </Rad>
 
-            <Rad>
-                {erSykmeldtMedArbeidsgiver ? <OkonomiRad/> : <Dagpenger/>}
-            </Rad>
+            { erSykmeldtMedArbeidsgiver ? <Rad><OkonomiRad/></Rad> : <Rad><Systemtittel tag="h2" className="dagpenger__heading blokk-s">
+                {tekster['dagpenger-heading-tekst']}
+            </Systemtittel><div className="tokol"><Dagpenger/><AlleSkjema/></div></Rad>}
+            
         </>
     );
 };
