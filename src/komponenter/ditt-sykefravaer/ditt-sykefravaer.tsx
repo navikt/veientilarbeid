@@ -7,12 +7,16 @@ import { ServicegruppeOrNull } from '../../ducks/oppfolging';
 import { AppState } from '../../reducer';
 import { connect } from 'react-redux';
 
-const DittSykefravaer = (servicegruppe: ServicegruppeOrNull) => {
+interface StateProps {
+    servicegruppe: ServicegruppeOrNull
+}
+
+const DittSykefravaer = (props: StateProps) => {
     const overskrift = 'ditt-sykefravaer-overskrift';
     const ingress = 'ditt-sykefravaer-ingress';
 
     const handleClick = () => {
-        gaTilDittSykefravaer(servicegruppe);
+        gaTilDittSykefravaer(props.servicegruppe);
     };
 
     return (
@@ -29,6 +33,8 @@ const DittSykefravaer = (servicegruppe: ServicegruppeOrNull) => {
     );
 }
 
-const mapStateToProps = (state: AppState): ServicegruppeOrNull => state.oppfolging.data.servicegruppe;
+const mapStateToProps = (state: AppState): StateProps => ({
+    servicegruppe: state.oppfolging.data.servicegruppe
+});
 
 export default connect(mapStateToProps)(DittSykefravaer);

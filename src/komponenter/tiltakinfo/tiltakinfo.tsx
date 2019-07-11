@@ -9,14 +9,17 @@ import { AppState } from '../../reducer';
 import { ServicegruppeOrNull } from '../../ducks/oppfolging';
 import { connect } from 'react-redux';
 
-const Tiltakinfo = (servicegruppe: ServicegruppeOrNull) => {
+interface StateProps {
+    servicegruppe: ServicegruppeOrNull
+}
 
+const Tiltakinfo = (props: StateProps) => {
     useEffect(() => {
-        seTiltaksinfo(servicegruppe);
+        seTiltaksinfo(props.servicegruppe);
     }, []);
 
     const handleClick = () => {
-        gaTilTiltaksinfo(servicegruppe);
+        gaTilTiltaksinfo(props.servicegruppe);
     };
 
     const overskrift = 'tiltakinfo-tittel';
@@ -36,6 +39,8 @@ const Tiltakinfo = (servicegruppe: ServicegruppeOrNull) => {
     );
 }
 
-const mapStateToProps = (state: AppState): ServicegruppeOrNull => state.oppfolging.data.servicegruppe;
+const mapStateToProps = (state: AppState): StateProps => ({
+    servicegruppe: state.oppfolging.data.servicegruppe,
+});
 
 export default connect(mapStateToProps)(Tiltakinfo);
