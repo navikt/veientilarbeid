@@ -13,7 +13,7 @@ import { hotjarTrigger } from '../hotjar';
 import './innhold.less';
 import InnholdView from './innhold-view';
 import { MotestotteContext } from '../ducks/motestotte';
-import { Servicegruppe } from '../ducks/oppfolging'
+import { Servicegruppe } from '../ducks/oppfolging';
 
 // TODO Fjerne etter tre mnd?
 const LANSERINGSDATO_EGENVURDERING = new Date(2019, 4, 10);
