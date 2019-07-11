@@ -1,22 +1,22 @@
-import React, { useContext, useEffect } from 'react';
-import { Data, InnsatsgruppeContext } from '../../ducks/innsatsgruppe';
+import React, { useEffect } from 'react';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { gaTilTiltaksinfo, seTiltaksinfo } from '../../metrics';
 import TiltakinfoIkon from './tiltakinfoIkon';
 
 import './tiltakinfo.less';
 import { tiltakinfoLenke } from '../../innhold/lenker';
+import { AppState } from '../../reducer';
+import { ServicegruppeOrNull } from '../../ducks/oppfolging';
+import { connect } from 'react-redux';
 
-const Tiltakinfo = () => {
-    const innsatsgruppeData: Data | null = useContext(InnsatsgruppeContext).data;
-    const innsatsgruppe = innsatsgruppeData ? innsatsgruppeData.servicegruppe : null;
+const Tiltakinfo = (servicegruppe: ServicegruppeOrNull) => {
 
     useEffect(() => {
-        seTiltaksinfo(innsatsgruppe);
+        seTiltaksinfo(servicegruppe);
     }, []);
 
     const handleClick = () => {
-        gaTilTiltaksinfo(innsatsgruppe);
+        gaTilTiltaksinfo(servicegruppe);
     };
 
     const overskrift = 'tiltakinfo-tittel';
@@ -36,4 +36,6 @@ const Tiltakinfo = () => {
     );
 }
 
-export default Tiltakinfo;
+const mapStateToProps = (state: AppState): ServicegruppeOrNull => state.oppfolging.data.servicegruppe;
+
+export default connect(mapStateToProps)(Tiltakinfo);

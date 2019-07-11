@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { Data, InnsatsgruppeContext } from '../../ducks/innsatsgruppe';
+import React from 'react';
 import LenkepanelBase from 'nav-frontend-lenkepanel';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { connect } from 'react-redux';
@@ -10,19 +9,19 @@ import DialogLine from './dialog-line';
 import './dialog.less';
 import { dialogLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
+import { ServicegruppeOrNull } from '../../ducks/oppfolging';
 
 interface StateProps {
     antallUleste: number;
+    servicegruppe: ServicegruppeOrNull;
 }
 
 type AllProps = StateProps
 
 const Dialog = (props: AllProps) => {
-    const { antallUleste } = props;
-    const innsatsgruppeData: Data | null = useContext(InnsatsgruppeContext).data;
-    const innsatsgruppe = innsatsgruppeData ? innsatsgruppeData.servicegruppe : null;
+    const { antallUleste, servicegruppe } = props;
     const linkCreator = (props: {}) => {
-        return <a onClick={() => gaTilDialog(antallUleste, innsatsgruppe)} {...props}/>;
+        return <a onClick={() => gaTilDialog(antallUleste, servicegruppe)} {...props}/>;
     };
 
     const byggDialogTekst = () => {
@@ -65,7 +64,8 @@ const Dialog = (props: AllProps) => {
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
-    antallUleste: state.ulesteDialoger.data.antallUleste
+    antallUleste: state.ulesteDialoger.data.antallUleste,
+    servicegruppe: state.oppfolging.data.servicegruppe,
 });
 
 export default connect(mapStateToProps)(Dialog);
