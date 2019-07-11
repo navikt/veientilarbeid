@@ -5,6 +5,16 @@ import { Dispatch } from '../dispatch-type';
 import { hentOppfolgingFetch, DataElement, STATUS } from './api';
 import { doThenDispatch } from './api-utils';
 
+export enum Servicegruppe {
+    IKVAL = 'IKVAL',
+    BATT = 'BATT',
+    BFORM = 'BFORM',
+    VARIG = 'VARIG',
+    IVURD = 'IVURD',
+}
+
+export type ServicegruppeOrNull = Servicegruppe | null;
+
 export interface State extends DataElement {
     data: Data;
 }
@@ -13,6 +23,7 @@ export interface Data {
     underOppfolging: boolean;
     kanReaktiveres: boolean;
     reservasjonKRR: boolean;
+    servicegruppe: ServicegruppeOrNull;
 }
 
 const initialState: State = {
@@ -20,6 +31,7 @@ const initialState: State = {
         underOppfolging: false,
         kanReaktiveres: false,
         reservasjonKRR: false,
+        servicegruppe: null,
     },
     status: STATUS.NOT_STARTED
 };

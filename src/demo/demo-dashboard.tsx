@@ -13,8 +13,8 @@ import {
     settSykmeldtMedArbeidsgiver,
     hentUlesteDialoger,
     settUlesteDialoger,
-    hentInnsatsgruppe,
-    settInnsatsgruppe,
+    hentServicegruppe,
+    settServicegruppe,
     settReservasjonKRR,
     hentReservasjonKRR,
     settAutentiseringsInfo,
@@ -56,8 +56,8 @@ class DemoDashboard extends React.Component<{}> {
         const RESERVASJON_KRR = DemoData.RESERVASJON_KRR;
         const AUTENTISERINGS_INFO = DemoData.AUTENTISERINGS_INFO;
 
-        const handleChangeInnsatsgruppe = (e: React.ChangeEvent<HTMLSelectElement>) => {
-            settInnsatsgruppe(e.target.value);
+        const handleChangeServicegruppe = (e: React.ChangeEvent<HTMLSelectElement>) => {
+            settServicegruppe(e.target.value);
             window.location.reload();
         };
 
@@ -112,7 +112,7 @@ class DemoDashboard extends React.Component<{}> {
             window.location.reload();
         };
 
-        const innsatsgrupper = {
+        const servicegrupper = {
             'IKVAL': 'Standard',
             'BATT': 'Spesielt tilpasset',
             'BFORM': 'Situasjonsbestemt',
@@ -149,17 +149,17 @@ class DemoDashboard extends React.Component<{}> {
                 <div className="two-select">
                     <SelectKomponent
                         label={tekster['demo-velgservicegruppe']}
-                        onChange={handleChangeInnsatsgruppe}
+                        onChange={handleChangeServicegruppe}
                         id="velg-bruker"
-                        defaultValue={hentInnsatsgruppe()}
+                        defaultValue={hentServicegruppe()}
                     >
                         {
-                            Object.keys(innsatsgrupper).map((gruppe: string) =>
+                            Object.keys(servicegrupper).map((gruppe: string) =>
                                 <option
                                     key={gruppe}
                                     value={gruppe}
                                 >
-                                    {innsatsgrupper[gruppe]}
+                                    {servicegrupper[gruppe]}
                                 </option>
                             )
                         }

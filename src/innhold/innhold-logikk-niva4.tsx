@@ -2,7 +2,6 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../reducer';
 import { erMikrofrontend } from '../utils/app-state-utils';
-import { Data, Innsatsgruppe, InnsatsgruppeContext } from '../ducks/innsatsgruppe';
 import { selectSykmeldtMedArbeidsgiver } from '../ducks/sykmeldt-info';
 import {
     ForeslattInnsatsgruppe,
@@ -14,6 +13,7 @@ import { hotjarTrigger } from '../hotjar';
 import './innhold.less';
 import InnholdView from './innhold-view';
 import { MotestotteContext } from '../ducks/motestotte';
+import { Servicegruppe } from '../ducks/oppfolging'
 
 // TODO Fjerne etter tre mnd?
 const LANSERINGSDATO_EGENVURDERING = new Date(2019, 4, 10);
@@ -24,6 +24,7 @@ interface StateProps {
     fremtidigSvar: FremtidigSituasjonSvar | null;
     foreslattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null;
     reservasjonKRR: boolean;
+    servicegruppe: Servicegruppe | null;
     opprettetRegistreringDato: Date | null;
     harEgenvurderingbesvarelse: boolean;
     egenvurderingbesvarelseDato: Date | null;
@@ -31,22 +32,19 @@ interface StateProps {
 
 const InnholdLogikkNiva4 = ({
                                 erSykmeldtMedArbeidsgiver, fremtidigSvar, harEgenvurderingbesvarelse,
-                                egenvurderingbesvarelseDato,
-                                foreslattInnsatsgruppe, reservasjonKRR, opprettetRegistreringDato
+                                egenvurderingbesvarelseDato, foreslattInnsatsgruppe, reservasjonKRR, servicegruppe,
+                                opprettetRegistreringDato
                             }: StateProps) => {
 
-    const innsatsgruppeData: Data | null = React.useContext(InnsatsgruppeContext).data;
-    const innsatsgruppe = innsatsgruppeData ? innsatsgruppeData.servicegruppe : null;
-    
     React.useEffect(() => {
-        seVeientilarbeid(erSykmeldtMedArbeidsgiver, innsatsgruppe, erMikrofrontend());
+        seVeientilarbeid(erSykmeldtMedArbeidsgiver, servicegruppe, erMikrofrontend());
         hotjarTrigger(erMikrofrontend());
     }, []);
 
     const skalViseTiltaksinfoLenke = (
         erSykmeldtMedArbeidsgiver ||
-        innsatsgruppe === Innsatsgruppe.BFORM ||
-        innsatsgruppe === Innsatsgruppe.BATT
+        servicegruppe === Servicegruppe.BFORM ||
+        servicegruppe === Servicegruppe.BATT
     );
 
     const tilbakeTilSammeArbeidsgiver = (
@@ -65,7 +63,7 @@ const InnholdLogikkNiva4 = ({
     };
 
     const skalViseEgenvurderingLenke = (
-        innsatsgruppe === Innsatsgruppe.IVURD &&
+        servicegruppe === Servicegruppe.IVURD &&
         (!harEgenvurderingbesvarelse || !egenvurderingsbesvarelseValid()) &&
         (opprettetRegistreringDato !== null && opprettetRegistreringDato >= LANSERINGSDATO_EGENVURDERING) &&
         !reservasjonKRR &&
@@ -86,7 +84,7 @@ const InnholdLogikkNiva4 = ({
     };
 
     const skalViseMotestotteLenke = (
-        innsatsgruppe === Innsatsgruppe.IVURD &&
+        servicegruppe === Servicegruppe.IVURD &&
         (!harMotestottebesvarelse || !motestottebesvarelseValid()) &&
         (opprettetRegistreringDato !== null && opprettetRegistreringDato >= LANSERINGSDATO_MOTESTOTTE) &&
         !reservasjonKRR &&
@@ -112,6 +110,7 @@ const mapStateToProps = (state: AppState): StateProps => {
         erSykmeldtMedArbeidsgiver: selectSykmeldtMedArbeidsgiver(state),
         fremtidigSvar: selectFremtidigSituasjonSvar(state),
         reservasjonKRR: state.oppfolging.data.reservasjonKRR,
+        servicegruppe: state.oppfolging.data.servicegruppe,
         foreslattInnsatsgruppe: selectForeslattInnsatsgruppe(state),
         opprettetRegistreringDato: opprettetRegistreringDato ? new Date(opprettetRegistreringDato) : null,
         harEgenvurderingbesvarelse: state.egenvurderingbesvarelse.data !== null,

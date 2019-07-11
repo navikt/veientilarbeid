@@ -15,14 +15,8 @@ import {
     State as MotestotteState,
     MotestotteContext
 } from '../../ducks/motestotte';
-import {
-    State as InnsatsgruppeState,
-    Data as InnsatsgruppeData,
-    initialState as initialStateInnsatsgruppe,
-    InnsatsgruppeContext
-} from '../../ducks/innsatsgruppe';
 import { fetchData } from '../../ducks/api-utils';
-import { INNSATSGRUPPE_URL, MOTESTOTTE_URL } from '../../ducks/api';
+import { MOTESTOTTE_URL } from '../../ducks/api';
 
 const skalSjekkeEgenvurderingBesvarelse = (foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null): boolean => {
     return foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.STANDARD_INNSATS ||
@@ -59,12 +53,10 @@ const DataProvider = ({
 
 
     const [motestotteState, setMotestotteState] = React.useState<MotestotteState>(initialStateMotestotte);
-    const [innsatsgruppeState, setInnsatsgruppeState] = React.useState<InnsatsgruppeState>(initialStateInnsatsgruppe);
 
     React.useEffect(() => {
         hentSykmeldtInfo();
         hentJobbsokerbesvarelse();
-        fetchData<InnsatsgruppeState, InnsatsgruppeData>(innsatsgruppeState, setInnsatsgruppeState, INNSATSGRUPPE_URL)();
         hentUlesteDialoger();
         if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
             hentEgenvurderingbesvarelse();
@@ -74,7 +66,7 @@ const DataProvider = ({
     }, []);
 
     const avhengigheter: any[] = [sykmeldtInfo]; // tslint:disable-line:no-any
-    const ventPa: any[] = [innsatsgruppeState, ulesteDialoger, jobbsokerbesvarelse]; // tslint:disable-line:no-any
+    const ventPa: any[] = [ulesteDialoger, jobbsokerbesvarelse]; // tslint:disable-line:no-any
     if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
         ventPa.push(egenvurderingbesvarelse);
     }
@@ -89,11 +81,9 @@ const DataProvider = ({
             avhengigheter={avhengigheter}
             ventPa={ventPa}
         >
-            <InnsatsgruppeContext.Provider value={innsatsgruppeState}>
-                <MotestotteContext.Provider value={motestotteState}>
-                    {children}
-                </MotestotteContext.Provider>
-            </InnsatsgruppeContext.Provider>
+            <MotestotteContext.Provider value={motestotteState}>
+                {children}
+            </MotestotteContext.Provider>
         </Innholdslaster>
     );
 };

@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { Data, InnsatsgruppeContext } from '../../ducks/innsatsgruppe';
+import React from 'react';
 import { Knapp } from 'nav-frontend-knapper';
 import { Panel } from 'nav-frontend-paneler';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
@@ -7,13 +6,20 @@ import { klikkPaSoknadDagpenger } from '../../metrics';
 import './dagpenger.less';
 import { dagpengerSoknadLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
+import { AppState } from '../../reducer';
+import { ServicegruppeOrNull } from '../../ducks/oppfolging';
+import { connect } from 'react-redux';
 
-const Dagpenger = () => {
-    const innsatsgruppeData: Data | null = useContext(InnsatsgruppeContext).data;
-    const innsatsgruppe = innsatsgruppeData ? innsatsgruppeData.servicegruppe : null;
+interface StateProps {
+    servicegruppe: ServicegruppeOrNull
+}
+
+const Dagpenger = (props: StateProps) => {
+
+    const { servicegruppe } = props;
 
     const handleButtonClick = () => {
-        klikkPaSoknadDagpenger(innsatsgruppe);
+        klikkPaSoknadDagpenger(servicegruppe);
         window.location.href = dagpengerSoknadLenke;
     }
   
@@ -39,4 +45,8 @@ const Dagpenger = () => {
     );
 }
 
-export default Dagpenger;
+const mapStateToProps = (state: AppState): StateProps => ({
+    servicegruppe: state.oppfolging.data.servicegruppe,
+});
+
+export default connect(mapStateToProps)(Dagpenger);

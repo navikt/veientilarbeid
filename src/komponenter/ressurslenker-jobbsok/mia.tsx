@@ -1,16 +1,22 @@
-import React, { useContext } from 'react';
-import { Data, InnsatsgruppeContext } from '../../ducks/innsatsgruppe';
+import React from 'react';
 import { gaTilMIA } from '../../metrics';
 import MiaIkon from './svg/mia';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { miaLenke } from '../../innhold/lenker';
+import { ServicegruppeOrNull } from '../../ducks/oppfolging';
+import { AppState } from '../../reducer';
+import { connect } from 'react-redux';
 
-const Mia = () => {
-    const innsatsgruppeData: Data | null = useContext(InnsatsgruppeContext).data;
-    const innsatsgruppe = innsatsgruppeData ? innsatsgruppeData.servicegruppe : null;
+interface StateProps {
+    servicegruppe: ServicegruppeOrNull;
+}
+
+const Mia = (props: StateProps) => {
+
+    const { servicegruppe } = props;
 
     const handleClick = () => {
-        gaTilMIA(innsatsgruppe);
+        gaTilMIA(servicegruppe);
     };
     
     return (
@@ -25,4 +31,8 @@ const Mia = () => {
     );
 }
 
-export default Mia;
+const mapStateToProps = (state: AppState): StateProps => ({
+    servicegruppe: state.oppfolging.data.servicegruppe,
+});
+
+export default connect(mapStateToProps)(Mia);

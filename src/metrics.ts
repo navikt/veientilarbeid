@@ -2,13 +2,13 @@ import { ForeslattInnsatsgruppe } from './ducks/brukerregistrering';
 
 const w = (window as any); // tslint:disable-line:no-any
 import { erDemo } from './utils/app-state-utils';
-import { Innsatsgruppe } from './ducks/innsatsgruppe';
+import { ServicegruppeOrNull } from './ducks/oppfolging';
 
 const logEvent = w.frontendlogger ? w.frontendlogger.event : () => { return; };
 
 const domene = 'veientilarbeid';
 
-export const seVeientilarbeid = (erSykmeldtMedArbeidsgiver: boolean, servicegruppe: Innsatsgruppe | null, microfrontend: boolean) => {
+export const seVeientilarbeid = (erSykmeldtMedArbeidsgiver: boolean, servicegruppe: ServicegruppeOrNull, microfrontend: boolean) => {
     if (!erDemo()) {
         logEvent(`${domene}.seveientilarbeid`,
             {erSykmeldtMedArbeidsgiverField: erSykmeldtMedArbeidsgiver, servicegruppeField: servicegruppe, microfrontendField: microfrontend},
@@ -22,21 +22,21 @@ export const seVeientilarbeidNiva3 = () => {
     }
 };
 
-export const klikkPaSokLedigeStillinger = (innsatsgruppe: String | null) => {
+export const klikkPaSokLedigeStillinger = (servicegruppe: String | null) => {
     if (!erDemo()) {
-        logEvent(`${domene}.sokledigestillinger`, {innsatsgruppeField: innsatsgruppe}, {innsatsgruppeTag: innsatsgruppe});
+        logEvent(`${domene}.sokledigestillinger`, {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
     }
 };
 
-export const gaTilAktivitetsplan = (innsatsgruppe: String | null) => {
+export const gaTilAktivitetsplan = (servicegruppe: String | null) => {
     if (!erDemo()) {
-        logEvent(`${domene}.gatilaktivitetsplan`, {innsatsgruppeField: innsatsgruppe}, {innsatsgruppeTag: innsatsgruppe});
+        logEvent(`${domene}.gatilaktivitetsplan`, {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
     }
 };
 
-export const gaTilDialog = (antall: number, innsatsgruppe: string | null) => {
+export const gaTilDialog = (antall: number, servicegruppe: string | null) => {
     if (!erDemo()) {
-        logEvent(`${domene}.gatildialog`, {antallField: antall, innsatsgruppeField: innsatsgruppe}, {antallTag: antall, innsatsgruppeTag: innsatsgruppe});
+        logEvent(`${domene}.gatildialog`, {antallField: antall, innsatsgruppeField: servicegruppe}, {antallTag: antall, innsatsgruppeTag: servicegruppe});
     }
 };
 
@@ -46,9 +46,9 @@ export const antallUlesteDialoger = (antall: number) => {
     }
 };
 
-export const gaTilMeldekort = (innsatsgruppe: String | null) => {
+export const gaTilMeldekort = (servicegruppe: String | null) => {
     if (!erDemo()) {
-        logEvent(`${domene}.gatilmeldekort`, {innsatsgruppeField: innsatsgruppe}, {innsatsgruppeTag: innsatsgruppe});
+        logEvent(`${domene}.gatilmeldekort`, {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
     }
 };
 
@@ -76,56 +76,56 @@ export const gaTilMotestotte = (antallTimer: number, foreslaattinnsatsgruppe: Fo
     }
 };
 
-export const gaTilDittSykefravaer = (innsatsgruppe: String | null) => {
+export const gaTilDittSykefravaer = (servicegruppe: String | null) => {
     if (!erDemo()) {
-        logEvent(`${domene}.gatildittsykefravaer`, {innsatsgruppeField: innsatsgruppe}, {innsatsgruppeTag: innsatsgruppe});
+        logEvent(`${domene}.gatildittsykefravaer`, {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
     }
 };
 
-export const gaTilMIA = (innsatsgruppe: String | null) => {
+export const gaTilMIA = (servicegruppe: String | null) => {
     if (!erDemo()) {
-        logEvent(`${domene}.gatilmia`, {innsatsgruppeField: innsatsgruppe}, {innsatsgruppeTag: innsatsgruppe});
+        logEvent(`${domene}.gatilmia`, {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
     }
 };
 
-export const gaTilCV = (innsatsgruppe: String | null) => {
+export const gaTilCV = (servicegruppe: String | null) => {
     if (!erDemo()) {
-        logEvent(`${domene}.gatilcv`, {innsatsgruppeField: innsatsgruppe}, {innsatsgruppeTag: innsatsgruppe});
+        logEvent(`${domene}.gatilcv`, {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
     }
 };
 
-export const gaTilJobbsokerkompetanse = (innsatsgruppe: String | null) => {
+export const gaTilJobbsokerkompetanse = (servicegruppe: String | null) => {
     if (!erDemo()) {
-        logEvent(`${domene}.gatiljobbsokerkompetanseresultat`, {innsatsgruppeField: innsatsgruppe}, {innsatsgruppeTag: innsatsgruppe});
+        logEvent(`${domene}.gatiljobbsokerkompetanseresultat`, {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
     }
 };
 
-export const gaTilVeiviserarbeidssoker = (innsatsgruppe: String | null) => {
+export const gaTilVeiviserarbeidssoker = (servicegruppe: String | null) => {
     if (!erDemo()) {
-        logEvent(`${domene}.gatilveiviserarbeidssoker`, {innsatsgruppeField: innsatsgruppe}, {innsatsgruppeTag: innsatsgruppe});
+        logEvent(`${domene}.gatilveiviserarbeidssoker`, {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
     }
 };
 
-export const gaTilTiltaksinfo = (innsatsgruppe: String | null) => {
+export const gaTilTiltaksinfo = (servicegruppe: String | null) => {
     if (!erDemo()) {
-        logEvent(`${domene}.gatiltiltaksinfo`, {innsatsgruppeField: innsatsgruppe}, {innsatsgruppeTag: innsatsgruppe});
+        logEvent(`${domene}.gatiltiltaksinfo`, {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
     }
 };
 
-export const seTiltaksinfo = (innsatsgruppe: String | null) => {
+export const seTiltaksinfo = (servicegruppe: String | null) => {
     if (!erDemo()) {
-        logEvent(`${domene}.setiltaksinfo`, {innsatsgruppeField: innsatsgruppe}, {innsatsgruppeTag: innsatsgruppe});
+        logEvent(`${domene}.setiltaksinfo`, {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
     }
 };
 
-export const klikkPaSoknadDagpenger = (innsatsgruppe: string | null) => {
+export const klikkPaSoknadDagpenger = (servicegruppe: string | null) => {
     if (!erDemo()) {
-        logEvent(`${domene}.soknaddagpenger`, {innsatsgruppeField: innsatsgruppe}, {innsatsgruppeTag: innsatsgruppe});
+        logEvent(`${domene}.soknaddagpenger`, {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
     }
 };
 
-export const lesOmOkonomi = (stonad: string, innsatsgruppe: string | null) => {
+export const lesOmOkonomi = (stonad: string, servicegruppe: string | null) => {
     if (!erDemo()) {
-        logEvent(`${domene}.lesomokonomi`, {stonadField: stonad, innsatsgruppeField: innsatsgruppe}, {stonadTag: stonad, innsatsgruppeTag: innsatsgruppe});
+        logEvent(`${domene}.lesomokonomi`, {stonadField: stonad, innsatsgruppeField: servicegruppe}, {stonadTag: stonad, innsatsgruppeTag: servicegruppe});
     }
 };

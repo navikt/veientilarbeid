@@ -2,7 +2,7 @@ import { JSONObject } from 'yet-another-fetch-mock';
 import { InnloggingsNiva } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
 
 export enum DemoData {
-    INNSATSGRUPPE = 'innsatsgruppe',
+    SERVICEGRUPPE = 'servicegruppe',
     SYKMELDT_MED_ARBEIDSGIVER = 'sykmeldtMedArbeidsGiver',
     BRUKER_REGISTRERING = 'brukerRegistrering',
     JSK = 'jsk',
@@ -25,12 +25,14 @@ const slettFraLocalStorage = (key: string): void => {
     window.localStorage.removeItem(key);
 };
 
-export const hentInnsatsgruppe = (): string => {
-    return hentFraLocalStorage(DemoData.INNSATSGRUPPE) || 'IKVAL';
+export const hentServicegruppe = (): string => {
+    slettFraLocalStorage('innsatsgruppe'); // Rydder opp etter oppdatering av key fra innsatsgruppe til servicegruppe
+    return hentFraLocalStorage(DemoData.SERVICEGRUPPE) || 'IKVAL';
 };
 
-export const settInnsatsgruppe = (value: string) => {
-    settILocalStorage(DemoData.INNSATSGRUPPE, value);
+export const settServicegruppe = (value: string) => {
+    slettFraLocalStorage('innsatsgruppe'); // Rydder opp etter oppdatering av key fra innsatsgruppe til servicegruppe
+    settILocalStorage(DemoData.SERVICEGRUPPE, value);
 };
 
 export const hentSykmeldtMedArbeidsgiver = (): boolean => {
