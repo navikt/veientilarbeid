@@ -1,10 +1,18 @@
 import { ForeslattInnsatsgruppe } from './ducks/brukerregistrering';
-
-const w = (window as any); // tslint:disable-line:no-any
 import { erDemo } from './utils/app-state-utils';
 import { ServicegruppeOrNull } from './ducks/oppfolging';
+import { CreatedMetrics } from './created-metrics';
 
-const logEvent = w.frontendlogger ? w.frontendlogger.event : () => { return; };
+const createdMetrics = new CreatedMetrics();
+
+const w = (window as any); // tslint:disable-line:no-any
+
+const logEvent = w.frontendlogger ? (name: string, fields: any, tags: any) => {
+    if (!createdMetrics.alreadyCreated(name)) {
+        w.frontendlogger.event(name, fields, tags);
+        createdMetrics.registerCreatedMetric(name);
+    }
+} : () => { return; };
 
 const domene = 'veientilarbeid';
 
