@@ -11,7 +11,14 @@ const domene = 'veientilarbeid';
 
 const logEvent = w.frontendlogger ? (navn: string, fields: object, tags: object) => {
     const metrikkId = `${domene}.${navn}`;
-    if (!createdMetrics.alreadyCreated(metrikkId)) {
+
+    const metrikkAlleredeOpprettet = createdMetrics.alreadyCreated(metrikkId);
+
+    if (metrikkAlleredeOpprettet) {
+        w.frontendlogger.event(`${domene}.duplikat`, {}, {metrikk: metrikkId});
+    }
+
+    if (!metrikkAlleredeOpprettet) {
         w.frontendlogger.event(metrikkId, fields, tags);
         createdMetrics.registerCreatedMetric(metrikkId);
     }
