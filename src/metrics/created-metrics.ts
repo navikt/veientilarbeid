@@ -17,7 +17,7 @@ export class CreatedMetrics {
     }
 
     deleteOutdated(metrics: CreatedMetric[]) {
-        return metrics.filter((m: CreatedMetric) => CreatedMetrics.lessThenThreeSecondsAgo(m))
+        return metrics.filter((m: CreatedMetric) => CreatedMetrics.lessThenThreeSecondsAgo(m));
     }
 
     fetchAndRefreshCreatedMetrics(): CreatedMetric[] {

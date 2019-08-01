@@ -1,5 +1,5 @@
 import React from 'react';
-import { gaTilCV } from '../../metrics';
+import { gaTilCV } from '../../metrics/metrics';
 import CvIkon from './svg/cv';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { cvLenke } from '../../innhold/lenker';

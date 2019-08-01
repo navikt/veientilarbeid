@@ -2,7 +2,7 @@ import React from 'react';
 import { parse } from 'query-string';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import DesignMug from './design-mug';
-import { gaTilAktivitetsplan } from '../../metrics';
+import { gaTilAktivitetsplan } from '../../metrics/metrics';
 import { aktivitetsplanLenke } from '../../innhold/lenker';
 import { connect } from 'react-redux';
 import { AppState } from '../../reducer';

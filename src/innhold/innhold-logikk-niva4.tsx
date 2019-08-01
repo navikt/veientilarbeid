@@ -8,7 +8,7 @@ import {
     FremtidigSituasjonSvar, selectForeslattInnsatsgruppe,
     selectFremtidigSituasjonSvar, selectOpprettetRegistreringDato
 } from '../ducks/brukerregistrering';
-import { seVeientilarbeid } from '../metrics';
+import { seVeientilarbeid } from '../metrics/metrics';
 import { hotjarTrigger } from '../hotjar';
 import './innhold.less';
 import InnholdView from './innhold-view';

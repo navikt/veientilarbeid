@@ -1,13 +1,13 @@
-import { ForeslattInnsatsgruppe } from './ducks/brukerregistrering';
-import { erDemo } from './utils/app-state-utils';
-import { ServicegruppeOrNull } from './ducks/oppfolging';
+import { ForeslattInnsatsgruppe } from '../ducks/brukerregistrering';
+import { erDemo } from '../utils/app-state-utils';
+import { ServicegruppeOrNull } from '../ducks/oppfolging';
 import { CreatedMetrics } from './created-metrics';
 
 const createdMetrics = new CreatedMetrics();
 
 const w = (window as any); // tslint:disable-line:no-any
 
-const logEvent = w.frontendlogger ? (name: string, fields: any, tags: any) => {
+const logEvent = w.frontendlogger ? (name: string, fields: object, tags: object) => {
     if (!createdMetrics.alreadyCreated(name)) {
         w.frontendlogger.event(name, fields, tags);
         createdMetrics.registerCreatedMetric(name);

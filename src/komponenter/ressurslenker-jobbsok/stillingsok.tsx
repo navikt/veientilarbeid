@@ -1,5 +1,5 @@
 import React from 'react';
-import { klikkPaSokLedigeStillinger } from '../../metrics';
+import { klikkPaSokLedigeStillinger } from '../../metrics/metrics';
 import StillingsokIkon from './svg/stillingsok';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { stillingLenke } from '../../innhold/lenker';

@@ -2,7 +2,7 @@ import React from 'react';
 import Lenke from 'nav-frontend-lenker';
 import { HoyreChevron } from 'nav-frontend-chevron';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
-import { lesOmOkonomi } from '../../metrics';
+import { lesOmOkonomi } from '../../metrics/metrics';
 import './okonomi-panel.less';
 import tekster from '../../tekster/tekster';
 import { AppState } from '../../reducer';

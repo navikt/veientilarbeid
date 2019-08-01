@@ -3,7 +3,7 @@ import LenkepanelBase from 'nav-frontend-lenkepanel';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { connect } from 'react-redux';
 import { AppState } from '../../reducer';
-import { gaTilDialog } from '../../metrics';
+import { gaTilDialog } from '../../metrics/metrics';
 import DialogFill from './dialog-fill';
 import DialogLine from './dialog-line';
 import './dialog.less';
