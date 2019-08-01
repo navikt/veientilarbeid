@@ -1,6 +1,6 @@
 import React from 'react';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
-import { gaTilDittSykefravaer } from '../../metrics';
+import { gaTilDittSykefravaer } from '../../metrics/metrics';
 import Plaster from './plaster';
 import { sykefravaerLenke } from '../../innhold/lenker';
 import { ServicegruppeOrNull } from '../../ducks/oppfolging';

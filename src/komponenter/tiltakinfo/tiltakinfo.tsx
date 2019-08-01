@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
-import { gaTilTiltaksinfo, seTiltaksinfo } from '../../metrics';
+import { gaTilTiltaksinfo, seTiltaksinfo } from '../../metrics/metrics';
 import TiltakinfoIkon from './tiltakinfoIkon';
 
 import './tiltakinfo.less';

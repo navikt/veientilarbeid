@@ -1,5 +1,5 @@
 import React from 'react';
-import { gaTilMIA } from '../../metrics';
+import { gaTilMIA } from '../../metrics/metrics';
 import MiaIkon from './svg/mia';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { miaLenke } from '../../innhold/lenker';

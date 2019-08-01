@@ -1,6 +1,6 @@
 import React  from 'react';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
-import { gaTilMeldekort } from '../../metrics';
+import { gaTilMeldekort } from '../../metrics/metrics';
 import EmailText from './email-text';
 import { meldekortLenke } from '../../innhold/lenker';
 import { ServicegruppeOrNull } from '../../ducks/oppfolging';

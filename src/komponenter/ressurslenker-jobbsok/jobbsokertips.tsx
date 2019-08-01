@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../../reducer';
-import { gaTilJobbsokerkompetanse, gaTilVeiviserarbeidssoker } from '../../metrics';
+import { gaTilJobbsokerkompetanse, gaTilVeiviserarbeidssoker } from '../../metrics/metrics';
 import JobbsokertipsIkon from './svg/jobbsokertips';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { jobbsokerkompetanseLenke, veiviserarbeidssokerLenke } from '../../innhold/lenker';
