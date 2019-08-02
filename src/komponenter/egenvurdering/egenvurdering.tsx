@@ -5,7 +5,11 @@ import { Panel } from 'nav-frontend-paneler';
 import { seEgenvurdering, gaTilEgenvurdering } from '../../metrics/metrics';
 import { AppState } from '../../reducer';
 import { connect } from 'react-redux';
-import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe, selectOpprettetRegistreringDato } from '../../ducks/brukerregistrering';
+import {
+    ForeslattInnsatsgruppe,
+    selectForeslattInnsatsgruppe,
+    selectOpprettetRegistreringDato
+} from '../../ducks/brukerregistrering';
 import './egenvurdering.less';
 import { behovsvurderingLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
@@ -23,41 +27,35 @@ interface StateProps {
     opprettetRegistreringDato: Date | null;
 }
 
-type EgenvurderingProps = StateProps;
+const Egenvurdering = ({opprettetRegistreringDato, foreslattInnsatsgruppe}: StateProps) => {
 
-class Egenvurdering extends React.Component<EgenvurderingProps> {
+    React.useEffect(() => {
+        seEgenvurdering(foreslattInnsatsgruppe);
+    }, []);
 
-    componentDidMount() {
-        seEgenvurdering(this.props.foreslattInnsatsgruppe);
-    }
-
-    handleButtonClick = () => {
-        const { opprettetRegistreringDato, foreslattInnsatsgruppe } = this.props;
-
+    const handleButtonClick = () => {
         gaTilEgenvurdering(antallTimerSidenRegistrering(opprettetRegistreringDato!), foreslattInnsatsgruppe);
         window.location.href = behovsvurderingLenke;
     };
 
-    render() {
-        return (
-            <Panel border className="ramme blokk-s">
-                <section className="egenvurdering">
-                    <div className="innhold">
-                        <Systemtittel tag="h2" className="blokk-xs">
-                            {tekster['egenvurdering-tittel']}
-                        </Systemtittel>
-                        <Normaltekst className="blokk-s egenvurdering__tekst">
-                            {tekster['egenvurdering-tekst']}
-                        </Normaltekst>
-                        <Hovedknapp onClick={this.handleButtonClick} className="blokk-xs">
-                            {tekster['egenvurdering-lenke-tekst']}
-                        </Hovedknapp>
-                    </div>
-                </section>
-            </Panel>
-        );
-    }
-}
+    return (
+        <Panel border className="ramme blokk-s">
+            <section className="egenvurdering">
+                <div className="innhold">
+                    <Systemtittel tag="h2" className="blokk-xs">
+                        {tekster['egenvurdering-tittel']}
+                    </Systemtittel>
+                    <Normaltekst className="blokk-s egenvurdering__tekst">
+                        {tekster['egenvurdering-tekst']}
+                    </Normaltekst>
+                    <Hovedknapp onClick={handleButtonClick} className="blokk-xs">
+                        {tekster['egenvurdering-lenke-tekst']}
+                    </Hovedknapp>
+                </div>
+            </section>
+        </Panel>
+    );
+};
 
 const mapStateToProps = (state: AppState): StateProps => {
     const opprettetRegistreringDato = selectOpprettetRegistreringDato(state);
