@@ -2,7 +2,6 @@ import { fetchToJson } from './api-utils';
 import { Data as OppfolgingData } from './oppfolging';
 import { Data as JobbsokerbesvarelseData } from './jobbsokerbesvarelse';
 import { Data as SykmeldtInfoData } from './sykmeldt-info';
-import { Data as BrukerRegistreringData } from './brukerregistrering';
 import { Data as UlesteDialogerData } from './dialog';
 import { Data as EgenvurderingbesvarelseData } from './egenvurdering';
 import { contextpathDittNav, erMikrofrontend } from '../utils/app-state-utils';
@@ -53,10 +52,6 @@ export function hentJobbsokerbesvarelseFetch(): Promise<JobbsokerbesvarelseData>
 
 export function hentSykmeldtInfoFetch(): Promise<SykmeldtInfoData> {
     return fetchToJson(STARTREGISTRERING_URL, requestConfig);
-}
-
-export function hentBrukerRegistreringFetch(): Promise<BrukerRegistreringData> {
-    return fetchToJson(BRUKERREGISTRERING_URL, requestConfig);
 }
 
 export function hentUlesteDialogerFetch(): Promise<UlesteDialogerData> {

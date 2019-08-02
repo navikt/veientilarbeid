@@ -4,6 +4,7 @@ import { AppState } from '../reducer';
 import { erMikrofrontend } from '../utils/app-state-utils';
 import { selectSykmeldtMedArbeidsgiver } from '../ducks/sykmeldt-info';
 import {
+    BrukerregistreringContext,
     ForeslattInnsatsgruppe,
     FremtidigSituasjonSvar, selectForeslattInnsatsgruppe,
     selectFremtidigSituasjonSvar, selectOpprettetRegistreringDato
@@ -21,20 +22,22 @@ const LANSERINGSDATO_MOTESTOTTE = new Date(2020, 5, 3);
 
 interface StateProps {
     erSykmeldtMedArbeidsgiver: boolean;
-    fremtidigSvar: FremtidigSituasjonSvar | null;
-    foreslattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null;
     reservasjonKRR: boolean;
     servicegruppe: Servicegruppe | null;
-    opprettetRegistreringDato: Date | null;
     harEgenvurderingbesvarelse: boolean;
     egenvurderingbesvarelseDato: Date | null;
 }
 
 const InnholdLogikkNiva4 = ({
-                                erSykmeldtMedArbeidsgiver, fremtidigSvar, harEgenvurderingbesvarelse,
-                                egenvurderingbesvarelseDato, foreslattInnsatsgruppe, reservasjonKRR, servicegruppe,
-                                opprettetRegistreringDato
+                                erSykmeldtMedArbeidsgiver, harEgenvurderingbesvarelse, egenvurderingbesvarelseDato,
+                                reservasjonKRR, servicegruppe,
                             }: StateProps) => {
+
+    const data = React.useContext(BrukerregistreringContext).data;
+    const opprettetRegistreringDatoString = selectOpprettetRegistreringDato(data);
+    const opprettetRegistreringDato = opprettetRegistreringDatoString ? new Date(opprettetRegistreringDatoString) : null;
+    const fremtidigSvar = selectFremtidigSituasjonSvar(data);
+    const foreslattInnsatsgruppe = selectForeslattInnsatsgruppe(data);
 
     React.useEffect(() => {
         seVeientilarbeid(erSykmeldtMedArbeidsgiver, servicegruppe, erMikrofrontend());
@@ -103,19 +106,12 @@ const InnholdLogikkNiva4 = ({
     );
 };
 
-const mapStateToProps = (state: AppState): StateProps => {
-    const opprettetRegistreringDato = selectOpprettetRegistreringDato(state);
-
-    return {
-        erSykmeldtMedArbeidsgiver: selectSykmeldtMedArbeidsgiver(state),
-        fremtidigSvar: selectFremtidigSituasjonSvar(state),
-        reservasjonKRR: state.oppfolging.data.reservasjonKRR,
-        servicegruppe: state.oppfolging.data.servicegruppe,
-        foreslattInnsatsgruppe: selectForeslattInnsatsgruppe(state),
-        opprettetRegistreringDato: opprettetRegistreringDato ? new Date(opprettetRegistreringDato) : null,
-        harEgenvurderingbesvarelse: state.egenvurderingbesvarelse.data !== null,
-        egenvurderingbesvarelseDato: state.egenvurderingbesvarelse.data ? new Date(state.egenvurderingbesvarelse.data.sistOppdatert) : null
-    };
-};
+const mapStateToProps = (state: AppState): StateProps => ({
+    erSykmeldtMedArbeidsgiver: selectSykmeldtMedArbeidsgiver(state),
+    reservasjonKRR: state.oppfolging.data.reservasjonKRR,
+    servicegruppe: state.oppfolging.data.servicegruppe,
+    harEgenvurderingbesvarelse: state.egenvurderingbesvarelse.data !== null,
+    egenvurderingbesvarelseDato: state.egenvurderingbesvarelse.data ? new Date(state.egenvurderingbesvarelse.data.sistOppdatert) : null
+});
 
 export default connect(mapStateToProps)(InnholdLogikkNiva4);

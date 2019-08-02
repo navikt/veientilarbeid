@@ -2,10 +2,8 @@ import * as React from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
 import { gaTilMotestotte, seMotestotte } from '../../metrics/metrics';
-import { AppState } from '../../reducer';
-import { connect } from 'react-redux';
 import {
-    ForeslattInnsatsgruppe,
+    BrukerregistreringContext,
     selectForeslattInnsatsgruppe,
     selectOpprettetRegistreringDato
 } from '../../ducks/brukerregistrering';
@@ -13,18 +11,17 @@ import { antallTimerSidenRegistrering } from '../egenvurdering/egenvurdering'
 import { motestotteLenke } from '../../innhold/lenker';
 import './motestotte.less';
 
-interface StateProps {
-    foreslattInnsatsgruppe: ForeslattInnsatsgruppe;
-    opprettetRegistreringDato: Date | null;
-}
-
 interface InputProps {
     erSykmeldtMedArbeidsgiver: boolean;
 }
 
-type MotestotteProps = StateProps & InputProps;
+const Motestotte = ({erSykmeldtMedArbeidsgiver}: InputProps) => {
 
-const Motestotte = ({opprettetRegistreringDato, foreslattInnsatsgruppe, erSykmeldtMedArbeidsgiver}: MotestotteProps) => {
+    const data = React.useContext(BrukerregistreringContext).data;
+    const opprettetRegistreringDatoString = selectOpprettetRegistreringDato(data);
+    const opprettetRegistreringDato = opprettetRegistreringDatoString ? new Date(opprettetRegistreringDatoString) : null;
+    const foreslattInnsatsgruppe = selectForeslattInnsatsgruppe(data)!; // Komponent blir rendret kun hvis foreslått innsatsgruppe er satt
+
 
     React.useEffect(() => {
         seMotestotte(foreslattInnsatsgruppe);
@@ -80,15 +77,6 @@ const Motestotte = ({opprettetRegistreringDato, foreslattInnsatsgruppe, erSykmel
             </div>
         </section>
     );
-}
-
-const mapStateToProps = (state: AppState): StateProps => {
-    const opprettetRegistreringDato = selectOpprettetRegistreringDato(state);
-
-    return {
-        foreslattInnsatsgruppe: selectForeslattInnsatsgruppe(state)!, // Komponent blir rendret kun hvis foreslått innsatsgruppe er satt
-        opprettetRegistreringDato: opprettetRegistreringDato ? new Date(opprettetRegistreringDato) : null,
-    };
 };
 
-export default connect(mapStateToProps)(Motestotte);
+export default Motestotte;

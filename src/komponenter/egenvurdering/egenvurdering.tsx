@@ -3,10 +3,8 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
 import { Panel } from 'nav-frontend-paneler';
 import { seEgenvurdering, gaTilEgenvurdering } from '../../metrics/metrics';
-import { AppState } from '../../reducer';
-import { connect } from 'react-redux';
 import {
-    ForeslattInnsatsgruppe,
+    BrukerregistreringContext,
     selectForeslattInnsatsgruppe,
     selectOpprettetRegistreringDato
 } from '../../ducks/brukerregistrering';
@@ -22,12 +20,12 @@ export const antallTimerSidenRegistrering = (registreringsDato: Date) => {
     return antallTimerMellomAOgBRundetOpp(registreringsDato, new Date());
 };
 
-interface StateProps {
-    foreslattInnsatsgruppe: ForeslattInnsatsgruppe;
-    opprettetRegistreringDato: Date | null;
-}
+const Egenvurdering = () => {
 
-const Egenvurdering = ({opprettetRegistreringDato, foreslattInnsatsgruppe}: StateProps) => {
+    const data = React.useContext(BrukerregistreringContext).data;
+    const opprettetRegistreringDatoString = selectOpprettetRegistreringDato(data);
+    const opprettetRegistreringDato = opprettetRegistreringDatoString ? new Date(opprettetRegistreringDatoString) : null;
+    const foreslattInnsatsgruppe = selectForeslattInnsatsgruppe(data)!; // Komponent blir rendret kun hvis foreslått innsatsgruppe er satt
 
     React.useEffect(() => {
         seEgenvurdering(foreslattInnsatsgruppe);
@@ -57,13 +55,4 @@ const Egenvurdering = ({opprettetRegistreringDato, foreslattInnsatsgruppe}: Stat
     );
 };
 
-const mapStateToProps = (state: AppState): StateProps => {
-    const opprettetRegistreringDato = selectOpprettetRegistreringDato(state);
-
-    return {
-        foreslattInnsatsgruppe: selectForeslattInnsatsgruppe(state)!, // Komponent blir rendret kun hvis foreslått innsatsgruppe er satt
-        opprettetRegistreringDato: opprettetRegistreringDato ? new Date(opprettetRegistreringDato) : null,
-    };
-};
-
-export default connect(mapStateToProps)(Egenvurdering);
+export default Egenvurdering;
