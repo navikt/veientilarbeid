@@ -43,7 +43,9 @@ const AutentiseringsInfoFetcher = () => {
 
     const contextpath = erMikrofrontend() ? contextpathDittNav : '';
 
-    React.useEffect(fetchData<InnloggingsInfo, Data>(state, setState, `${contextpath}${AUTH_API}`), []);
+    React.useEffect(() => {
+        fetchData<InnloggingsInfo, Data>(state, setState, `${contextpath}${AUTH_API}`);
+    } , []);
 
     return (
         <Innholdslaster

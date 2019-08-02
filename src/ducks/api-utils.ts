@@ -72,16 +72,15 @@ export function toJson(response: Response) {
     return null;
 }
 
-export const fetchData = <S, D>(state: S, setState: Dispatch<SetStateAction<S>>, url: string): () => void => {
-    return () => {
-        setState({...state, status: STATUS.PENDING});
-        const fetchAsync = async () => {
-            const data = await fetchToJson<D>(url, requestConfig);
-            setState({...state, data: data, status: STATUS.OK});
-        };
-        fetchAsync().catch(err => {
-            setState({...state, status: STATUS.ERROR});
-            return Promise.reject(err);
-        });
+export const fetchData = <S, D>(state: S, setState: Dispatch<SetStateAction<S>>, url: string): Promise<D | void> => {
+    setState({...state, status: STATUS.PENDING});
+    const fetchAsync = async () => {
+        const data = await fetchToJson<D>(url, requestConfig);
+        setState({...state, data: data, status: STATUS.OK});
+        return Promise.resolve(data);
     };
+    return fetchAsync().catch(err => {
+        setState({...state, status: STATUS.ERROR});
+        return Promise.reject(err);
+    });
 };

@@ -61,7 +61,7 @@ const DataProvider = ({
         if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
             hentEgenvurderingbesvarelse();
         } else if (foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING) {
-            fetchData<MotestotteState, Data>(motestotteState, setMotestotteState, MOTESTOTTE_URL)();
+            fetchData<MotestotteState, Data>(motestotteState, setMotestotteState, MOTESTOTTE_URL);
         }
     }, []);
 
