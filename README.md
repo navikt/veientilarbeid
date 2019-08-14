@@ -23,5 +23,6 @@ Spørsmål knyttet til koden kan rettes mot:
 
 * Johan Rusvik, Johan.Rusvik@nav.no
 * Geir Gåsodden, geir.gasodden@nav.no
+* Terje Heen, Terje.Heen@nav.no
 
-For NAV-interne henvendelser kan Slack-kanalen #fo-warp benyttes.
+For NAV-interne henvendelser kan Slack-kanalen #område-arbeid-pilot benyttes.
