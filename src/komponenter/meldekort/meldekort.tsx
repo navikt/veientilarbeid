@@ -1,17 +1,23 @@
-import React, { useContext } from 'react';
-import { Data, InnsatsgruppeContext } from '../../ducks/innsatsgruppe';
+import React  from 'react';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
-import { gaTilMeldekort } from '../../metrics';
+import { gaTilMeldekort } from '../../metrics/metrics';
 import EmailText from './email-text';
 import { meldekortLenke } from '../../innhold/lenker';
+import { ServicegruppeOrNull } from '../../ducks/oppfolging';
+import { AppState } from '../../reducer';
+import { connect } from 'react-redux';
 
-const Meldekort = () => {
+interface StateProps {
+    servicegruppe: ServicegruppeOrNull;
+}
+
+const Meldekort = (props: StateProps) => {
+    const { servicegruppe } = props;
     const overskrift = 'meldekort-overskrift';
     const ingress = 'meldekort-ingress';
-    const innsatsgruppeData: Data | null = useContext(InnsatsgruppeContext).data;
-    const innsatsgruppe = innsatsgruppeData ? innsatsgruppeData.servicegruppe : null;
+
     const handleClick = () => {
-        gaTilMeldekort(innsatsgruppe);
+        gaTilMeldekort(servicegruppe);
     };
 
     return (
@@ -28,4 +34,8 @@ const Meldekort = () => {
     );
 }
 
-export default Meldekort;
+const mapStateToProps = (state: AppState): StateProps => ({
+    servicegruppe: state.oppfolging.data.servicegruppe,
+});
+
+export default connect(mapStateToProps)(Meldekort);

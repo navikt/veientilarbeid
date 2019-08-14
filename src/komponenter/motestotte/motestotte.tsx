@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
-import { gaTilMotestotte, seMotestotte} from '../../metrics';
+import { gaTilMotestotte, seMotestotte} from '../../metrics/metrics';
 import { AppState } from '../../reducer';
 import { connect } from 'react-redux';
 import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe, selectOpprettetRegistreringDato } from '../../ducks/brukerregistrering';

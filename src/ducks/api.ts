@@ -36,7 +36,6 @@ export const requestConfig: RequestInit = {
 const contextpath = erMikrofrontend() ? contextpathDittNav : '';
 
 export const VEILARBOPPFOLGING_URL = `${contextpath}/veilarboppfolging/api/oppfolging`,
-    INNSATSGRUPPE_URL = `${contextpath}/veilarbtiltakinfo/api/oppfolgingsstatus`,
     STARTREGISTRERING_URL = `${contextpath}/veilarbregistrering/api/startregistrering`,
     BRUKERREGISTRERING_URL = `${contextpath}/veilarbregistrering/api/registrering`,
     JOBBSOKERBESVARELSE_URL = `${contextpath}/veilarbjobbsokerkompetanse/api/hent`,

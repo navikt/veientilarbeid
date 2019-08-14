@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
 import { Panel } from 'nav-frontend-paneler';
-import { seEgenvurdering, gaTilEgenvurdering } from '../../metrics';
+import { seEgenvurdering, gaTilEgenvurdering } from '../../metrics/metrics';
 import { AppState } from '../../reducer';
 import { connect } from 'react-redux';
 import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe, selectOpprettetRegistreringDato } from '../../ducks/brukerregistrering';

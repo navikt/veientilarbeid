@@ -1,12 +1,13 @@
-import React, { useContext } from 'react';
-import { Data, InnsatsgruppeContext } from '../../ducks/innsatsgruppe';
+import React from 'react';
 import Lenke from 'nav-frontend-lenker';
 import { HoyreChevron } from 'nav-frontend-chevron';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
-import { lesOmOkonomi } from '../../metrics';
-
+import { lesOmOkonomi } from '../../metrics/metrics';
 import './okonomi-panel.less';
 import tekster from '../../tekster/tekster';
+import { AppState } from '../../reducer';
+import { ServicegruppeOrNull } from '../../ducks/oppfolging';
+import { connect } from 'react-redux';
 
 interface OkonomiPanelProps {
     tittelId: string;
@@ -15,15 +16,17 @@ interface OkonomiPanelProps {
     children: React.ReactNode;
 }
 
-type AllProps = OkonomiPanelProps;
+interface StateProps {
+    servicegruppe: ServicegruppeOrNull;
+}
+
+type AllProps = OkonomiPanelProps & StateProps;
 
 const OkonomiPanel = (props: AllProps) => {
-    const {tittelId, lenkeTekstId, lenkeUrl, children} = props;
-    const innsatsgruppeData: Data | null = useContext(InnsatsgruppeContext).data;
-    const innsatsgruppe = innsatsgruppeData ? innsatsgruppeData.servicegruppe : null;
+    const {tittelId, lenkeTekstId, lenkeUrl, children, servicegruppe} = props;
 
     const handleClick = () => {
-        lesOmOkonomi(lenkeUrl, innsatsgruppe);
+        lesOmOkonomi(lenkeUrl, servicegruppe);
     };
 
     return (
@@ -44,4 +47,8 @@ const OkonomiPanel = (props: AllProps) => {
     );
 };
 
-export default OkonomiPanel;
+const mapStateToProps = (state: AppState): StateProps => ({
+    servicegruppe: state.oppfolging.data.servicegruppe,
+});
+
+export default connect(mapStateToProps)(OkonomiPanel);

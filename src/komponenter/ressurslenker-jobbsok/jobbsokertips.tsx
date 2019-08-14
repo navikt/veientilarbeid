@@ -1,24 +1,22 @@
-import React, { useContext } from 'react';
-import { Data, InnsatsgruppeContext } from '../../ducks/innsatsgruppe';
+import React from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../../reducer';
-import { gaTilJobbsokerkompetanse, gaTilVeiviserarbeidssoker } from '../../metrics';
+import { gaTilJobbsokerkompetanse, gaTilVeiviserarbeidssoker } from '../../metrics/metrics';
 import JobbsokertipsIkon from './svg/jobbsokertips';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { jobbsokerkompetanseLenke, veiviserarbeidssokerLenke } from '../../innhold/lenker';
+import { ServicegruppeOrNull } from '../../ducks/oppfolging';
 
 interface StateProps {
     harJobbbsokerbesvarelse: boolean;
+    servicegruppe: ServicegruppeOrNull;
 }
 
 type AllProps = StateProps
 
 const Ressurslenker = (props: AllProps) => {
-    const { harJobbbsokerbesvarelse } = props;
+    const { harJobbbsokerbesvarelse, servicegruppe } = props;
     const URL = harJobbbsokerbesvarelse ? jobbsokerkompetanseLenke : veiviserarbeidssokerLenke;
-
-    const innsatsgruppeData: Data | null = useContext(InnsatsgruppeContext).data;
-    const innsatsgruppe = innsatsgruppeData ? innsatsgruppeData.servicegruppe : null;
 
     const lenketekst = harJobbbsokerbesvarelse
         ? 'jobbsokertips-overskrift-har-besvarelse'
@@ -30,7 +28,7 @@ const Ressurslenker = (props: AllProps) => {
 
 
     const handleClick = () => {
-        gaTil(innsatsgruppe);
+        gaTil(servicegruppe);
     };
 
     return (
@@ -46,7 +44,8 @@ const Ressurslenker = (props: AllProps) => {
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
-    harJobbbsokerbesvarelse: state.jobbsokerbesvarelse.harJobbsokerbesvarelse
+    harJobbbsokerbesvarelse: state.jobbsokerbesvarelse.harJobbsokerbesvarelse,
+    servicegruppe: state.oppfolging.data.servicegruppe,
 });
 
 export default connect(mapStateToProps)(Ressurslenker);
