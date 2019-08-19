@@ -19,10 +19,8 @@ For å gå over til demovisning gå til [/demo/index.html](http://localhost:3002
 
 # Henvendelser
 
-Spørsmål knyttet til koden kan rettes mot:
+Spørsmål knyttet til koden eller prosjektet kan stilles via issues her på github.
 
-* Johan Rusvik, Johan.Rusvik@nav.no
-* Geir Gåsodden, geir.gasodden@nav.no
-* Terje Heen, Terje.Heen@nav.no
+# For NAV-ansatte
 
-For NAV-interne henvendelser kan Slack-kanalen #område-arbeid-pilot benyttes.
+Interne henvendelser kan sendes via Slack i kanalen #område-arbeid-pilot
