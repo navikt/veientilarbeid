@@ -13,7 +13,40 @@
         text-align: center;
 
         .skjemaelement {
-            width: 11.5rem;
+            width: 47%;
+        }
+    }
+
+    .inputPanelGruppe__inner {
+        display: flex;
+
+        .inputPanel {
+            margin: 0 0.5rem;
+        }
+    }
+
+    .two-select {
+        display: flex;
+        flex-wrap: wrap;
+
+        .skjemaelement {
+            margin: 0 0.5rem 1rem;
+        }
+    }
+}
+
+@media (min-width: @screen-md-min) {
+    .demodashboard {
+        flex-wrap: wrap;
+        .skjemaelement {
+            width: 14.5rem;
+        }
+    }
+    .two-select {
+        flex-wrap: nowrap;
+
+        .skjemaelement {
+            margin: 0 0.5rem 0;
         }
     }
 }

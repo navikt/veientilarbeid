@@ -1,40 +1,43 @@
-import * as React from 'react';
+import React from 'react';
 import { parse } from 'query-string';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
-import designMug from './design-mug.svg';
-import { gaTilAktivitetsplan } from '../../metrics';
+import DesignMug from './design-mug';
+import { gaTilAktivitetsplan } from '../../metrics/metrics';
+import { aktivitetsplanLenke } from '../../innhold/lenker';
+import { connect } from 'react-redux';
+import { AppState } from '../../reducer';
+import { ServicegruppeOrNull } from '../../ducks/oppfolging';
 
-interface State {
-    nyRegistrering: boolean;
+interface StateProps {
+    servicegruppe: ServicegruppeOrNull;
 }
 
-interface AktivitetsplanProps {
+const Aktivitetsplan = (props: StateProps) => {
+    const { servicegruppe } = props;
+    const nyRegistrering = parse(location.search).nyRegistrering === 'true';
+    const overskrift = 'aktivitetsplan-overskrift-ordinaer';
+    const ingress = 'aktivitetsplan-beskrivelse' + (nyRegistrering ? '-ny' : '');
+
+    const handleClick = () => {
+        gaTilAktivitetsplan(servicegruppe);
+    };
+
+    return (
+        <LenkepanelMedIkon
+            href={aktivitetsplanLenke}
+            alt=""
+            onClick={handleClick}
+            overskrift={overskrift}
+            ingress={ingress}
+            className="aktivitetsplanPanel"
+        >
+            <DesignMug/>
+        </LenkepanelMedIkon>
+    );
 }
 
-class Aktivitetsplan extends React.PureComponent<AktivitetsplanProps, State> {
-    constructor(props: AktivitetsplanProps) {
-        super(props);
-        this.state = {
-            nyRegistrering: parse(location.search).nyRegistrering === 'true'
-        };
-    }
+const mapStateToProps = (state: AppState): StateProps => ({
+    servicegruppe: state.oppfolging.data.servicegruppe,
+});
 
-    render() {
-        const overskrift = 'aktivitetsplan-overskrift-ordinaer';
-        const ingress = 'aktivitetsplan-beskrivelse' + (this.state.nyRegistrering ? '-ny' : '');
-        const url = '/aktivitetsplan/';
-
-        return (
-            <LenkepanelMedIkon
-                href={url}
-                alt=""
-                onClick={gaTilAktivitetsplan}
-                ikon={designMug}
-                overskrift={overskrift}
-                ingress={ingress}
-            />
-        );
-    }
-}
-
-export default Aktivitetsplan;
+export default connect(mapStateToProps)(Aktivitetsplan);

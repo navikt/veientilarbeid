@@ -1,22 +1,23 @@
 import { JSONObject } from 'yet-another-fetch-mock';
-
-export function erDemo(): boolean {
-    const path: string = window.location.pathname;
-    return path.includes('/demo/index.html');
-}
+import { InnloggingsNiva } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
 
 export enum DemoData {
-    SERVICEGRUPPE = 'innsatsgruppe',
+    SERVICEGRUPPE = 'servicegruppe',
     SYKMELDT_MED_ARBEIDSGIVER = 'sykmeldtMedArbeidsGiver',
+    BRUKER_REGISTRERING = 'brukerRegistrering',
     JSK = 'jsk',
     ULESTE_DIALOGER = 'ulesteDialoger',
+    RESERVASJON_KRR = 'reservasjonKRR',
+    EGENVURDERING = 'egenvurdering',
+    AUTENTISERINGS_INFO = 'autentiseringsInfo',
+    MOTESTOTTE = 'motestotte',
 }
 
-const hentFraLocalStorage = (key: string): string | null => {
+export const hentFraLocalStorage = (key: string): string | null => {
     return window.localStorage.getItem(key);
 };
 
-const settILocalStorage = (key: string, value: string): void => {
+export const settILocalStorage = (key: string, value: string): void => {
     window.localStorage.setItem(key, value);
 };
 
@@ -25,10 +26,12 @@ const slettFraLocalStorage = (key: string): void => {
 };
 
 export const hentServicegruppe = (): string => {
+    slettFraLocalStorage('innsatsgruppe'); // Rydder opp etter oppdatering av key fra innsatsgruppe til servicegruppe
     return hentFraLocalStorage(DemoData.SERVICEGRUPPE) || 'IKVAL';
 };
 
 export const settServicegruppe = (value: string) => {
+    slettFraLocalStorage('innsatsgruppe'); // Rydder opp etter oppdatering av key fra innsatsgruppe til servicegruppe
     settILocalStorage(DemoData.SERVICEGRUPPE, value);
 };
 
@@ -59,4 +62,57 @@ export const settJsk = () => {
 
 export const slettJsk = () => {
     slettFraLocalStorage(DemoData.JSK);
+};
+
+export const hentEgenvurdering = (): JSONObject | null => {
+    const verdi = hentFraLocalStorage(DemoData.EGENVURDERING);
+    return verdi ? JSON.parse(verdi) : null;
+};
+
+export const settEgenvurdering = () => {
+    settILocalStorage(DemoData.EGENVURDERING, JSON.stringify({sistOppdatert: '2019-05-12T09:39:01.635+02:00'}));
+};
+
+export const slettEgenvurdering = () => {
+    slettFraLocalStorage(DemoData.EGENVURDERING);
+};
+
+export const hentMotestotte = (): JSONObject | null => {
+    const verdi = hentFraLocalStorage(DemoData.MOTESTOTTE);
+    return verdi ? JSON.parse(verdi) : null;
+};
+
+export const settMotestotte = () => {
+    settILocalStorage(DemoData.MOTESTOTTE, JSON.stringify({dato: '2019-06-06T09:39:01.635+02:00'}));
+};
+
+export const slettMotestotte = () => {
+    slettFraLocalStorage(DemoData.MOTESTOTTE);
+};
+
+export const settReservasjonKRR = (value: string) => {
+    settILocalStorage(DemoData.RESERVASJON_KRR, value);
+};
+
+export const hentReservasjonKRR = (): boolean => {
+    return hentFraLocalStorage(DemoData.RESERVASJON_KRR) === 'true';
+};
+
+export const settAutentiseringsInfo = () => {
+    settILocalStorage(DemoData.AUTENTISERINGS_INFO, JSON.stringify({
+        securityLevel: InnloggingsNiva.LEVEL_3,
+        loggedIn: true,
+    }));
+};
+
+export const hentAutentiseringsInfo = (): JSONObject => {
+    const verdi = hentFraLocalStorage(DemoData.AUTENTISERINGS_INFO);
+    return verdi ? JSON.parse(verdi) : {
+        securityLevel: InnloggingsNiva.LEVEL_4,
+        loggedIn: true,
+    };
+};
+
+export const slettAutentiseringsInfo = () => {
+    slettFraLocalStorage(DemoData.AUTENTISERINGS_INFO);
 };

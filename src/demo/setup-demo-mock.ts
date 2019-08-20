@@ -1,13 +1,21 @@
 import {
-    FEATURE_URL,
     JOBBSOKERBESVARELSE_URL,
-    SERVICEGRUPPE_URL,
     STARTREGISTRERING_URL,
+    BRUKERREGISTRERING_URL,
     VEILARBOPPFOLGING_URL,
-    ULESTEDIALOGER_URL, featureQueryParams
+    ULESTEDIALOGER_URL,
+    EGENVURDERINGBESVARELSE_URL,
+    MOTESTOTTE_URL
 } from '../ducks/api';
 import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
-import { hentJsk, hentServicegruppe, hentSykmeldtMedArbeidsgiver, hentUlesteDialoger } from './demo-state';
+import {
+    hentJsk, hentReservasjonKRR,
+    hentServicegruppe,
+    hentSykmeldtMedArbeidsgiver,
+    hentUlesteDialoger, hentEgenvurdering, hentAutentiseringsInfo, hentMotestotte
+} from './demo-state';
+import { hentBrukerRegistreringData } from './demo-state-brukerregistrering';
+import { AUTH_API } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
 
 const loggingMiddleware: Middleware = (request, response) => {
     console.log(request.url, request.method, response); // tslint:disable-line:no-console
@@ -29,18 +37,18 @@ const randomUlesteDialoger = () => {
     return Math.floor(min + (Math.random() * (max - min)));
 };
 
-fetchMock.get(`${VEILARBOPPFOLGING_URL}/oppfolging`, {
+fetchMock.get(VEILARBOPPFOLGING_URL, {
     underOppfolging: true,
     kanReaktiveres: false,
-});
-
-fetchMock.get(SERVICEGRUPPE_URL, {
-    servicegruppe: hentServicegruppe()
+    reservasjonKRR: hentReservasjonKRR(),
+    servicegruppe: hentServicegruppe(),
 });
 
 fetchMock.get(STARTREGISTRERING_URL, {
     erSykmeldtMedArbeidsgiver: hentSykmeldtMedArbeidsgiver()
 });
+
+fetchMock.get(BRUKERREGISTRERING_URL, hentBrukerRegistreringData());
 
 fetchMock.get(ULESTEDIALOGER_URL, {
     antallUleste: hentUlesteDialoger() ? randomUlesteDialoger() : 0
@@ -48,5 +56,8 @@ fetchMock.get(ULESTEDIALOGER_URL, {
 
 fetchMock.get(JOBBSOKERBESVARELSE_URL, hentJsk());
 
-const unleashUrl = FEATURE_URL + featureQueryParams([]);
-fetchMock.get(unleashUrl, {});
+fetchMock.get(EGENVURDERINGBESVARELSE_URL, hentEgenvurdering());
+
+fetchMock.get(MOTESTOTTE_URL, hentMotestotte());
+
+fetchMock.get(AUTH_API, hentAutentiseringsInfo());

@@ -1,5 +1,7 @@
 import { Handling }  from './actions';
-import { Dispatch } from '../dispatch-type';
+import { Dispatch as ReduxDispatch } from '../dispatch-type';
+import { requestConfig, STATUS } from './api';
+import { Dispatch, SetStateAction } from 'react';
 
 interface StatusActions<T> {
     ok: (data: T) => Handling;
@@ -10,8 +12,8 @@ interface StatusActions<T> {
 export function doThenDispatch<T>(
     fetchFunction: () => Promise<T>,
     { ok, feilet, pending }: StatusActions<T>
-): (dispatch: Dispatch) => Promise<void> {
-    return async (dispatch: Dispatch): Promise<void> => {
+): (dispatch: ReduxDispatch) => Promise<void> {
+    return async (dispatch: ReduxDispatch): Promise<void> => {
         dispatch(pending());
         try {
             const data = await fetchFunction();
@@ -23,13 +25,13 @@ export function doThenDispatch<T>(
     };
 }
 
-function sendResultatTilDispatch<T>(dispatch: Dispatch, okAction: (temaer: T) => Handling): (jsonData: T) => void {
+function sendResultatTilDispatch<T>(dispatch: ReduxDispatch, okAction: (temaer: T) => Handling): (jsonData: T) => void {
     return (jsonData: T) => {
         dispatch(okAction(jsonData));
     };
 }
 
-function handterFeil(dispatch: Dispatch, feiletAction: () => Handling): (error: FetchError) => void {
+function handterFeil(dispatch: ReduxDispatch, feiletAction: () => Handling): (error: FetchError) => void {
     return (error: FetchError) => {
         if (error.response) {
             error.response.text().then(() => {
@@ -69,3 +71,17 @@ export function toJson(response: Response) {
     }
     return null;
 }
+
+export const fetchData = <S, D>(state: S, setState: Dispatch<SetStateAction<S>>, url: string): () => void => {
+    return () => {
+        setState({...state, status: STATUS.PENDING});
+        const fetchAsync = async () => {
+            const data = await fetchToJson<D>(url, requestConfig);
+            setState({...state, data: data, status: STATUS.OK});
+        };
+        fetchAsync().catch(err => {
+            setState({...state, status: STATUS.ERROR});
+            return Promise.reject(err);
+        });
+    };
+};

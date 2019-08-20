@@ -1,21 +1,38 @@
-import * as React from 'react';
-import { gaTilMIA } from '../../metrics';
-import miaIkon from './svg/mia.svg';
+import React from 'react';
+import { gaTilMIA } from '../../metrics/metrics';
+import MiaIkon from './svg/mia';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
+import { miaLenke } from '../../innhold/lenker';
+import { ServicegruppeOrNull } from '../../ducks/oppfolging';
+import { AppState } from '../../reducer';
+import { connect } from 'react-redux';
 
-const MIA_URL = '/mia';
-
-class Mia extends React.Component {
-    render() {
-        return (
-            <LenkepanelMedIkon
-                href={MIA_URL}
-                alt=""
-                onClick={gaTilMIA}
-                ikon={miaIkon}
-                overskrift="mia-overskrift"
-            />
-        );
-    }
+interface StateProps {
+    servicegruppe: ServicegruppeOrNull;
 }
-export default Mia;
+
+const Mia = (props: StateProps) => {
+
+    const { servicegruppe } = props;
+
+    const handleClick = () => {
+        gaTilMIA(servicegruppe);
+    };
+    
+    return (
+        <LenkepanelMedIkon
+            href={miaLenke}
+            alt=""
+            onClick={handleClick}
+            overskrift="mia-overskrift"
+        >
+            <MiaIkon/>
+        </LenkepanelMedIkon>
+    );
+}
+
+const mapStateToProps = (state: AppState): StateProps => ({
+    servicegruppe: state.oppfolging.data.servicegruppe,
+});
+
+export default connect(mapStateToProps)(Mia);

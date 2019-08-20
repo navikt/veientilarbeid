@@ -1,44 +1,51 @@
-import * as React from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../../reducer';
-import { gaTilJobbsokerkompetanse, gaTilVeiviserarbeidssoker } from '../../metrics';
-import jobbsokertipsIkon from './svg/jobbsokertips.svg';
+import { gaTilJobbsokerkompetanse, gaTilVeiviserarbeidssoker } from '../../metrics/metrics';
+import JobbsokertipsIkon from './svg/jobbsokertips';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
-
-const VEIVISER2_URL = '/veiviserarbeidssoker/';
-const JOBBSOKERKOMPETANSE_RESULTAT_URL = '/jobbsokerkompetanse/resultatside';
+import { jobbsokerkompetanseLenke, veiviserarbeidssokerLenke } from '../../innhold/lenker';
+import { ServicegruppeOrNull } from '../../ducks/oppfolging';
 
 interface StateProps {
     harJobbbsokerbesvarelse: boolean;
+    servicegruppe: ServicegruppeOrNull;
 }
 
-class Ressurslenker extends React.Component<StateProps> {
-    render () {
-        const {harJobbbsokerbesvarelse} = this.props;
-        const URL = harJobbbsokerbesvarelse ? JOBBSOKERKOMPETANSE_RESULTAT_URL : VEIVISER2_URL;
+type AllProps = StateProps
 
-        const lenketekst = harJobbbsokerbesvarelse
-            ? 'jobbsokertips-overskrift-har-besvarelse'
-            : 'jobbsokertips-overskrift-har-ikke-besvarelse';
+const Ressurslenker = (props: AllProps) => {
+    const { harJobbbsokerbesvarelse, servicegruppe } = props;
+    const URL = harJobbbsokerbesvarelse ? jobbsokerkompetanseLenke : veiviserarbeidssokerLenke;
 
-        const gaTil = harJobbbsokerbesvarelse
-            ? gaTilJobbsokerkompetanse
-            : gaTilVeiviserarbeidssoker;
+    const lenketekst = harJobbbsokerbesvarelse
+        ? 'jobbsokertips-overskrift-har-besvarelse'
+        : 'jobbsokertips-overskrift-har-ikke-besvarelse';
 
-        return (
-            <LenkepanelMedIkon
-                href={URL}
-                alt=""
-                onClick={gaTil}
-                ikon={jobbsokertipsIkon}
-                overskrift={lenketekst}
-            />
-        );
-    }
+    const gaTil = harJobbbsokerbesvarelse
+        ? gaTilJobbsokerkompetanse
+        : gaTilVeiviserarbeidssoker;
+
+
+    const handleClick = () => {
+        gaTil(servicegruppe);
+    };
+
+    return (
+        <LenkepanelMedIkon
+            href={URL}
+            alt=""
+            onClick={handleClick}
+            overskrift={lenketekst}
+        >
+            <JobbsokertipsIkon/>
+        </LenkepanelMedIkon>
+    );
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
-    harJobbbsokerbesvarelse: state.jobbsokerbesvarelse.harJobbsokerbesvarelse
+    harJobbbsokerbesvarelse: state.jobbsokerbesvarelse.harJobbsokerbesvarelse,
+    servicegruppe: state.oppfolging.data.servicegruppe,
 });
 
 export default connect(mapStateToProps)(Ressurslenker);

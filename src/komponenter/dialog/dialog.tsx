@@ -1,74 +1,71 @@
-import * as React from 'react';
-import { FormattedMessage } from 'react-intl';
+import React from 'react';
 import LenkepanelBase from 'nav-frontend-lenkepanel';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { connect } from 'react-redux';
 import { AppState } from '../../reducer';
-import { gaTilDialog } from '../../metrics';
-import { antallUlesteDialoger } from '../../metrics';
+import { gaTilDialog } from '../../metrics/metrics';
 import DialogFill from './dialog-fill';
-import dialogLine from './dialog-line.svg';
+import DialogLine from './dialog-line';
 import './dialog.less';
-
-export const DIALOG_URL = '/aktivitetsplan/dialog';
+import { dialogLenke } from '../../innhold/lenker';
+import tekster from '../../tekster/tekster';
+import { ServicegruppeOrNull } from '../../ducks/oppfolging';
 
 interface StateProps {
     antallUleste: number;
+    servicegruppe: ServicegruppeOrNull;
 }
 
-class Dialog extends React.Component<StateProps> {
+type AllProps = StateProps
 
-    componentDidMount() {
-        antallUlesteDialoger(this.props.antallUleste);
-    }
+const Dialog = (props: AllProps) => {
+    const { antallUleste, servicegruppe } = props;
+    const linkCreator = (props: {}) => {
+        return <a onClick={() => gaTilDialog(antallUleste, servicegruppe)} {...props}/>;
+    };
 
-    byggDialogTekst() {
-        switch (this.props.antallUleste) {
+    const byggDialogTekst = () => {
+        switch (antallUleste) {
             case 0:
                 return 'Ingen uleste dialoger';
             case 1:
-                return this.props.antallUleste.toString() + ' ulest dialog';
+                return antallUleste.toString() + ' ulest dialog';
             default:
-                return this.props.antallUleste.toString() + ' uleste dialoger';
+                return antallUleste.toString() + ' uleste dialoger';
         }
     }
 
-    render() {
-        const linkCreator = (props: {}) => {
-            return <a onClick={() => gaTilDialog(this.props.antallUleste)} {...props}/>;
-        };
-
-        return (
-            <LenkepanelBase
-                href={DIALOG_URL}
-                tittelProps="undertittel"
-                linkCreator={linkCreator}
-                border={true}
-                className="dialog"
-            >
-                <div className="lenkepanel__innhold">
-                    <div className="lenkepanel__ikon">
-                        {this.props.antallUleste > 0 ?
-                            <DialogFill messagesCount={this.props.antallUleste}/> :
-                            <img src={dialogLine} alt=""/>
-                        }
-                    </div>
-                    <div className="lenkepanel__tekst">
-                        <Undertittel>
-                            <FormattedMessage id="dialog"/>
-                        </Undertittel>
-                        <Normaltekst className="lenkepanel__ingress">
-                            {this.byggDialogTekst()}
-                        </Normaltekst>
-                    </div>
+    return (
+        <LenkepanelBase
+            href={dialogLenke}
+            tittelProps="undertittel"
+            linkCreator={linkCreator}
+            border={true}
+            className="dialog"
+        >
+            <div className="lenkepanel__innhold">
+                <div className="lenkepanel__ikon">
+                    {antallUleste > 0 ?
+                        <DialogFill messagesCount={antallUleste}/> :
+                        <DialogLine/>
+                    }
                 </div>
-            </LenkepanelBase>
-        );
-    }
+                <div className="lenkepanel__tekst">
+                    <Undertittel>
+                        {tekster['dialog']}
+                    </Undertittel>
+                    <Normaltekst className="lenkepanel__ingress">
+                        {byggDialogTekst()}
+                    </Normaltekst>
+                </div>
+            </div>
+        </LenkepanelBase>
+    );
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
-    antallUleste: state.ulesteDialoger.data.antallUleste
+    antallUleste: state.ulesteDialoger.data.antallUleste,
+    servicegruppe: state.oppfolging.data.servicegruppe,
 });
 
 export default connect(mapStateToProps)(Dialog);

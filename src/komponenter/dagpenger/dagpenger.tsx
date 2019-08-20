@@ -1,62 +1,52 @@
-import * as React from 'react';
-import { Hovedknapp } from 'nav-frontend-knapper';
+import React from 'react';
+import { Knapp } from 'nav-frontend-knapper';
+import { Panel } from 'nav-frontend-paneler';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
-import { injectIntl, FormattedMessage, InjectedIntlProps } from 'react-intl';
-import { klikkPaSoknadDagpenger, visInfoOmDagpenger } from '../../metrics';
-import { visRettTilDagPenger } from '../../utils/utils';
-
+import { klikkPaSoknadDagpenger } from '../../metrics/metrics';
 import './dagpenger.less';
+import { dagpengerSoknadLenke } from '../../innhold/lenker';
+import tekster from '../../tekster/tekster';
+import { AppState } from '../../reducer';
+import { ServicegruppeOrNull } from '../../ducks/oppfolging';
+import { connect } from 'react-redux';
 
-class Dagpenger extends React.Component<InjectedIntlProps> {
-
-    constructor(props: InjectedIntlProps) {
-        super(props);
-    }
-
-    componentDidMount() {
-        if (visRettTilDagPenger(location.search)) {
-            this.scrollTilInformasjonsmodul();
-            visInfoOmDagpenger();
-        }
-    }
-
-    handleButtonClick = () => {
-        klikkPaSoknadDagpenger(visRettTilDagPenger(location.search));
-        window.location.href = this.props.intl.formatMessage({id: 'dagpenger-lenke-url'});
-    }
-
-    scrollTilInformasjonsmodul() {
-        setTimeout(
-            () => {
-                const isSupported = 'scrollBehavior' in document.documentElement.style;
-                const target = document.getElementById('informasjonsmodul');
-                if (target) {
-                    if (isSupported) {
-                        window.scrollTo({'behavior': 'smooth', 'top': target.offsetTop});
-                    } else {
-                        window.scrollTo(0, target.offsetTop);
-                    }
-                }
-            },
-            400
-        );
-    }
-
-    render() {
-        return (
-            <section className="dagpenger" id="informasjonsmodul">
-                <Systemtittel tag="h1" className="blokk-xs">
-                    <FormattedMessage id="dagpenger-tittel"/>
-                </Systemtittel>
-                <Normaltekst className="blokk-m dagpenger__tekst">
-                    <FormattedMessage id="dagpenger-tekst"/>
-                </Normaltekst>
-                <Hovedknapp onClick={this.handleButtonClick}>
-                    <FormattedMessage id="dagpenger-lenke-tekst"/>
-                </Hovedknapp>
-            </section>
-        );
-    }
+interface StateProps {
+    servicegruppe: ServicegruppeOrNull
 }
 
-export default injectIntl(Dagpenger);
+const Dagpenger = (props: StateProps) => {
+
+    const { servicegruppe } = props;
+
+    const handleButtonClick = () => {
+        klikkPaSoknadDagpenger(servicegruppe);
+        window.location.href = dagpengerSoknadLenke;
+    }
+  
+    return (
+        <section className="dagpenger" id="informasjonsmodul">
+            <Systemtittel tag="h2" className="dagpenger__heading blokk-s">
+                {tekster['dagpenger-heading-tekst']}
+            </Systemtittel>
+            <Panel border className="dagpenger-ramme blokk-l">
+                <div className="innhold">
+                    <Systemtittel tag="h1" className="blokk-xs">
+                        {tekster['dagpenger-tittel']}
+                    </Systemtittel>
+                    <Normaltekst className="blokk-s dagpenger__tekst">
+                        {tekster['dagpenger-tekst']}
+                    </Normaltekst>
+                    <Knapp onClick={handleButtonClick} className="blokk-xs">
+                        {tekster['dagpenger-lenke-tekst']}
+                    </Knapp>
+                </div>
+        </Panel>
+        </section>
+    );
+}
+
+const mapStateToProps = (state: AppState): StateProps => ({
+    servicegruppe: state.oppfolging.data.servicegruppe,
+});
+
+export default connect(mapStateToProps)(Dagpenger);

@@ -1,10 +1,11 @@
 import { fetchToJson } from './api-utils';
 import { Data as OppfolgingData } from './oppfolging';
-import { Data as ServicegruppeData } from './servicegruppe';
 import { Data as JobbsokerbesvarelseData } from './jobbsokerbesvarelse';
 import { Data as SykmeldtInfoData } from './sykmeldt-info';
+import { Data as BrukerRegistreringData } from './brukerregistrering';
 import { Data as UlesteDialogerData } from './dialog';
-import { FeatureToggles } from './feature-toggles';
+import { Data as EgenvurderingbesvarelseData } from './egenvurdering';
+import { contextpathDittNav, erMikrofrontend } from '../utils/app-state-utils';
 
 export enum STATUS {
     OK = 'OK',
@@ -32,29 +33,18 @@ export const requestConfig: RequestInit = {
     }
 };
 
-export const VEILARBOPPFOLGING_URL = '/veilarboppfolging/api',
-             FEATURE_URL = '/api/feature',
-             SERVICEGRUPPE_URL = '/veilarbtiltakinfo/api/oppfolgingsstatus',
-             STARTREGISTRERING_URL = '/veilarbregistrering/api/startregistrering',
-             JOBBSOKERBESVARELSE_URL = '/veilarbjobbsokerkompetanse/api/hent',
-             ULESTEDIALOGER_URL = '/veilarbdialog/api/dialog/antallUleste';
+const contextpath = erMikrofrontend() ? contextpathDittNav : '';
 
-export const featureQueryParams = (features: string[]): string => {
-    const reduceFunc = (acc: string, toggle: string, i: number) => `${acc}${i === 0 ? '?' : '&'}feature=${toggle}`;
-    return features.reduce(reduceFunc, '');
-};
-
-export function hentFeatureTogglesFetch(features: string[]): Promise<FeatureToggles> {
-    const unleashUrl = FEATURE_URL + featureQueryParams(features);
-    return fetchToJson<FeatureToggles>(unleashUrl, requestConfig);
-}
+export const VEILARBOPPFOLGING_URL = `${contextpath}/veilarboppfolging/api/oppfolging`,
+    STARTREGISTRERING_URL = `${contextpath}/veilarbregistrering/api/startregistrering`,
+    BRUKERREGISTRERING_URL = `${contextpath}/veilarbregistrering/api/registrering`,
+    JOBBSOKERBESVARELSE_URL = `${contextpath}/veilarbjobbsokerkompetanse/api/hent`,
+    ULESTEDIALOGER_URL = `${contextpath}/veilarbdialog/api/dialog/antallUleste`,
+    EGENVURDERINGBESVARELSE_URL = `${contextpath}/veilarbvedtakinfo/api/behovsvurdering/besvarelse`,
+    MOTESTOTTE_URL = `${contextpath}/veilarbvedtakinfo/api/motestotte`;
 
 export function hentOppfolgingFetch(): Promise<OppfolgingData> {
-    return fetchToJson(`${VEILARBOPPFOLGING_URL}/oppfolging`, requestConfig);
-}
-
-export function hentServicegruppeFetch(): Promise<ServicegruppeData> {
-    return fetchToJson(SERVICEGRUPPE_URL, requestConfig);
+    return fetchToJson(VEILARBOPPFOLGING_URL, requestConfig);
 }
 
 export function hentJobbsokerbesvarelseFetch(): Promise<JobbsokerbesvarelseData> {
@@ -65,6 +55,14 @@ export function hentSykmeldtInfoFetch(): Promise<SykmeldtInfoData> {
     return fetchToJson(STARTREGISTRERING_URL, requestConfig);
 }
 
+export function hentBrukerRegistreringFetch(): Promise<BrukerRegistreringData> {
+    return fetchToJson(BRUKERREGISTRERING_URL, requestConfig);
+}
+
 export function hentUlesteDialogerFetch(): Promise<UlesteDialogerData> {
     return fetchToJson(ULESTEDIALOGER_URL, requestConfig);
+}
+
+export function hentEgenvurderingbesvarelseFetch(): Promise<EgenvurderingbesvarelseData> {
+    return fetchToJson(EGENVURDERINGBESVARELSE_URL, requestConfig);
 }

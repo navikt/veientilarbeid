@@ -4,82 +4,104 @@ import { Dispatch } from '../../dispatch-type';
 import { AppState } from '../../reducer';
 import Innholdslaster from '../innholdslaster/innholdslaster';
 import Feilmelding from '../feilmeldinger/feilmelding';
-import { State as OppfolgingState } from '../../ducks/oppfolging';
-import { hentServicegruppe, State as ServicegruppeState } from '../../ducks/servicegruppe';
 import { hentSykmeldtInfo, State as SykmeldtInfodataState } from '../../ducks/sykmeldt-info';
 import { hentUlesteDialoger, State as UlesteDialogerState } from '../../ducks/dialog';
+import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe } from '../../ducks/brukerregistrering';
+import { hentJobbsokerbesvarelse, State as JobbsokerbesvarelseState } from '../../ducks/jobbsokerbesvarelse';
+import { hentEgenvurderingbesvarelse, State as EgenvurderingbesvarelseState } from '../../ducks/egenvurdering';
 import {
-    hentJobbsokerbesvarelse, settJobbsokerbesvarelseOK, State as JobbsokerbesvarelseState,
-} from '../../ducks/jobbsokerbesvarelse';
+    Data,
+    initialState as initialStateMotestotte,
+    State as MotestotteState,
+    MotestotteContext
+} from '../../ducks/motestotte';
+import { fetchData } from '../../ducks/api-utils';
+import { MOTESTOTTE_URL } from '../../ducks/api';
+
+const skalSjekkeEgenvurderingBesvarelse = (foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null): boolean => {
+    return foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.STANDARD_INNSATS ||
+        foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS;
+};
 
 interface OwnProps {
     children: React.ReactNode;
 }
 
 interface StateProps {
-    oppfolging: OppfolgingState;
-    servicegruppe: ServicegruppeState;
+    underOppfolging: boolean;
     sykmeldtInfo: SykmeldtInfodataState;
     jobbsokerbesvarelse: JobbsokerbesvarelseState;
     ulesteDialoger: UlesteDialogerState;
+    foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null;
+    egenvurderingbesvarelse: EgenvurderingbesvarelseState;
 }
 
 interface DispatchProps {
-    hentServicegruppe: () => void;
     hentSykmeldtInfo: () => void;
     hentJobbsokerbesvarelse: () => void;
-    settJobbsokerbesvarelseOK: () => void;
     hentUlesteDialoger: () => void;
+    hentEgenvurderingbesvarelse: () => void;
 }
 
 type Props = StateProps & DispatchProps & OwnProps;
 
-class DataProvider extends React.Component<Props> {
+const DataProvider = ({
+                          children, underOppfolging, foreslaattInnsatsgruppe, sykmeldtInfo, jobbsokerbesvarelse,
+                          ulesteDialoger, egenvurderingbesvarelse, hentSykmeldtInfo, hentJobbsokerbesvarelse,
+                          hentUlesteDialoger, hentEgenvurderingbesvarelse
+                      }: Props) => {
 
-    componentWillMount() {
-        this.props.hentSykmeldtInfo();
 
-        if (this.props.oppfolging.data.underOppfolging) {
-            this.props.hentJobbsokerbesvarelse();
-        } else {
-            this.props.settJobbsokerbesvarelseOK();
+    const [motestotteState, setMotestotteState] = React.useState<MotestotteState>(initialStateMotestotte);
+
+    React.useEffect(() => {
+        hentSykmeldtInfo();
+        hentJobbsokerbesvarelse();
+        hentUlesteDialoger();
+        if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
+            hentEgenvurderingbesvarelse();
+        } else if (foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING) {
+            fetchData<MotestotteState, Data>(motestotteState, setMotestotteState, MOTESTOTTE_URL)();
         }
-        this.props.hentServicegruppe();
-        this.props.hentUlesteDialoger();
+    }, []);
+
+    const avhengigheter: any[] = [sykmeldtInfo]; // tslint:disable-line:no-any
+    const ventPa: any[] = [ulesteDialoger, jobbsokerbesvarelse]; // tslint:disable-line:no-any
+    if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
+        ventPa.push(egenvurderingbesvarelse);
     }
+    if (foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING) {
+        ventPa.push(motestotteState)
+    }
+    return (
 
-    render() {
-        const { children, oppfolging, servicegruppe, sykmeldtInfo, jobbsokerbesvarelse, ulesteDialoger } = this.props;
-
-        const avhengigheter: any[] = [oppfolging, sykmeldtInfo]; // tslint:disable-line:no-any
-        const ventPa: any[] = [servicegruppe, jobbsokerbesvarelse, ulesteDialoger]; // tslint:disable-line:no-any
-        return (
-            <Innholdslaster
-                feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse"/>}
-                storrelse="XXL"
-                avhengigheter={avhengigheter}
-                ventPa={ventPa}
-            >
+        <Innholdslaster
+            feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse"/>}
+            storrelse="XXL"
+            avhengigheter={avhengigheter}
+            ventPa={ventPa}
+        >
+            <MotestotteContext.Provider value={motestotteState}>
                 {children}
-            </Innholdslaster>
-        );
-    }
-}
+            </MotestotteContext.Provider>
+        </Innholdslaster>
+    );
+};
 
 const mapStateToProps = (state: AppState): StateProps => ({
-    oppfolging: state.oppfolging,
-    servicegruppe: state.servicegruppe,
+    underOppfolging: state.oppfolging.data.underOppfolging,
     sykmeldtInfo: state.sykmeldtInfodata,
     jobbsokerbesvarelse: state.jobbsokerbesvarelse,
     ulesteDialoger: state.ulesteDialoger,
+    foreslaattInnsatsgruppe: selectForeslattInnsatsgruppe(state),
+    egenvurderingbesvarelse: state.egenvurderingbesvarelse,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
-    hentServicegruppe: () => hentServicegruppe()(dispatch),
     hentSykmeldtInfo: () => hentSykmeldtInfo()(dispatch),
     hentJobbsokerbesvarelse: () => hentJobbsokerbesvarelse()(dispatch),
-    settJobbsokerbesvarelseOK: () => dispatch(settJobbsokerbesvarelseOK()),
-    hentUlesteDialoger: () => hentUlesteDialoger()(dispatch)
+    hentUlesteDialoger: () => hentUlesteDialoger()(dispatch),
+    hentEgenvurderingbesvarelse: () => hentEgenvurderingbesvarelse()(dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DataProvider);

@@ -1,21 +1,38 @@
-import * as React from 'react';
-import { gaTilCV } from '../../metrics';
-import cvIkon from './svg/cv.svg';
+import React from 'react';
+import { gaTilCV } from '../../metrics/metrics';
+import CvIkon from './svg/cv';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
+import { cvLenke } from '../../innhold/lenker';
+import { ServicegruppeOrNull } from '../../ducks/oppfolging';
+import { AppState } from '../../reducer';
+import { connect } from 'react-redux';
 
-const CV_URL = '/arbeidsplassen/cv/';
-
-class CV extends React.Component {
-    render() {
-        return (
-            <LenkepanelMedIkon
-                href={CV_URL}
-                alt=""
-                onClick={gaTilCV}
-                ikon={cvIkon}
-                overskrift="cv-overskrift"
-            />
-        );
-    }
+interface StateProps {
+    servicegruppe: ServicegruppeOrNull
 }
-export default CV;
+
+const CV = (props: StateProps) => {
+
+    const { servicegruppe } = props;
+
+    const handleClick = () => {
+        gaTilCV(servicegruppe);
+    };
+
+    return (
+        <LenkepanelMedIkon
+            href={cvLenke}
+            alt=""
+            onClick={handleClick}
+            overskrift="cv-overskrift"
+        >
+            <CvIkon/>
+        </LenkepanelMedIkon>
+    );
+}
+
+const mapStateToProps = (state: AppState): StateProps => ({
+    servicegruppe: state.oppfolging.data.servicegruppe,
+});
+
+export default connect(mapStateToProps)(CV);

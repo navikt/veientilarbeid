@@ -1,13 +1,17 @@
 import oppfolgingResponse from './oppfolging-mock';
 import {
-    FEATURE_URL, JOBBSOKERBESVARELSE_URL, SERVICEGRUPPE_URL,
-    STARTREGISTRERING_URL, VEILARBOPPFOLGING_URL, ULESTEDIALOGER_URL
+    JOBBSOKERBESVARELSE_URL, STARTREGISTRERING_URL, VEILARBOPPFOLGING_URL,
+    ULESTEDIALOGER_URL, BRUKERREGISTRERING_URL, EGENVURDERINGBESVARELSE_URL, MOTESTOTTE_URL
 } from '../ducks/api';
-import servicegruppeResponse from './servicegruppe-mock';
 import sykmeldtInfoResponse from './sykmeldt-info-mock';
 import jobbsokerbesvarelseResponse from './jobbsokerbesvarelse-mock';
 import ulesteDialogerResponse from './ulestedialoger-mock';
-import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
+import egenvurderingbesvarelseResponse from './egenvurderingbesvarelse-mock';
+import brukerRegistreringResponse from  './brukerregistrering-mock';
+import authResponse from './auth-mock';
+
+import FetchMock, { Middleware, MiddlewareUtils, ResponseUtils } from 'yet-another-fetch-mock';
+import { AUTH_API } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
 
 const loggingMiddleware: Middleware = (request, response) => {
     console.log(request.url, request.method, response); // tslint:disable-line:no-console
@@ -18,39 +22,25 @@ const fetchMock = FetchMock.configure({
     enableFallback: true, // default: true
     middleware: MiddlewareUtils.combine(
         MiddlewareUtils.delayMiddleware(200),
-        MiddlewareUtils.failurerateMiddleware(0.00),
+        MiddlewareUtils.failurerateMiddleware(0.01),
         loggingMiddleware,
     ),
 });
 
-const MOCK_OPPFOLGING = true;
-const MOCK_FEATURE_TOGGLES = true;
-const MOCK_SERVICEGRUPPE = true;
-const MOCK_STARTREGISTRERING = true;
-const MOCK_JOBBSOKERBESVARELSE = true;
-const MOCK_ULESTEDIALOGER = true;
+fetchMock.get(VEILARBOPPFOLGING_URL, oppfolgingResponse);
 
-if (MOCK_OPPFOLGING) {
-    fetchMock.get(`${VEILARBOPPFOLGING_URL}/oppfolging`, oppfolgingResponse);
-}
+fetchMock.get(STARTREGISTRERING_URL, sykmeldtInfoResponse);
 
-if (MOCK_FEATURE_TOGGLES) {
-    fetchMock.get(`express:${FEATURE_URL}(.*)`, {});
-    fetchMock.get(`${FEATURE_URL}(.*)`, {});
-}
+fetchMock.get(JOBBSOKERBESVARELSE_URL, jobbsokerbesvarelseResponse);
 
-if (MOCK_SERVICEGRUPPE) {
-    fetchMock.get(SERVICEGRUPPE_URL, servicegruppeResponse);
-}
+fetchMock.get(ULESTEDIALOGER_URL, ulesteDialogerResponse);
 
-if (MOCK_STARTREGISTRERING) {
-    fetchMock.get(STARTREGISTRERING_URL, sykmeldtInfoResponse);
-}
+fetchMock.get(BRUKERREGISTRERING_URL, brukerRegistreringResponse);
+// fetchMock.get(BRUKERREGISTRERING_URL, ResponseUtils.statusCode(404));
 
-if (MOCK_JOBBSOKERBESVARELSE) {
-    fetchMock.get(JOBBSOKERBESVARELSE_URL, jobbsokerbesvarelseResponse);
-}
+fetchMock.get(EGENVURDERINGBESVARELSE_URL, egenvurderingbesvarelseResponse);
+// fetchMock.get(EGENVURDERINGBESVARELSE_URL, ResponseUtils.statusCode(204));
 
-if (MOCK_ULESTEDIALOGER) {
-    fetchMock.get(ULESTEDIALOGER_URL, ulesteDialogerResponse);
-}
+fetchMock.get(MOTESTOTTE_URL, ResponseUtils.statusCode(204));
+
+fetchMock.get(AUTH_API, authResponse);

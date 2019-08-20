@@ -1,9 +1,9 @@
 import { Data as OppfolgingData } from './oppfolging';
-import { Data as ServicegruppeData } from './servicegruppe';
 import { Data as JobbsokerbesvarelseData } from './jobbsokerbesvarelse';
 import { Data as SykmeldtInfoData } from './sykmeldt-info';
+import { Data as BrukerRegistreringData } from './brukerregistrering';
 import { Data as UlesteDialogerData } from './dialog';
-import { FeatureToggles } from './feature-toggles';
+import { Data as EgenvurderingbesvarelseData } from './egenvurdering';
 
 export enum ActionType {
     FEATURE_TOGGLES_PENDING = 'FEATURE_TOGGLES_PENDING',
@@ -12,32 +12,21 @@ export enum ActionType {
     HENT_OPPFOLGING_OK = 'HENT_OPPFOLGING_OK',
     HENT_OPPFOLGING_PENDING = 'HENT_OPPFOLGING_PENDING',
     HENT_OPPFOLGING_FEILET = 'HENT_OPPFOLGING_FEILET',
-    HENT_SERVICEGRUPPE_OK = 'HENT_SERVICEGRUPPE_OK',
-    HENT_SERVICEGRUPPE_PENDING = 'HENT_SERVICEGRUPPE_PENDING',
-    HENT_SERVICEGRUPPE_FEILET = 'HENT_SERVICEGRUPPE_FEILET',
     HENT_JOBBSOKERBESVARELSE_OK = 'HENT_JOBBSOKERBESVARELSE_OK',
     HENT_JOBBSOKERBESVARELSE_PENDING = 'HENT_JOBBSOKERBESVARELSE_PENDING',
     HENT_JOBBSOKERBESVARELSE_FEILET = 'HENT_JOBBSOKERBESVARELSE_FEILET',
-    SETT_JOBBSOKERBESVARELSE_OK = 'SETT_JOBBSOKERBESVARELSE_OK',
     HENT_SYKMELDT_INFO_OK = 'HENT_SYKMELDT_INFO_OK',
     HENT_SYKMELDT_INFO_PENDING = 'HENT_SYKMELDT_INFO_PENDING',
     HENT_SYKMELDT_INFO_FEILET = 'HENT_SYKMELDT_INFO_FEILET',
     HENT_ULESTE_DIALOGER_OK = 'HENT_ULESTE_DIALOGER_OK',
     HENT_ULESTE_DIALOGER_PENDING = 'HENT_ULESTE_DIALOGER_PENDING',
     HENT_ULESTE_DIALOGER_FEILET = 'HENT_ULESTE_DIALOGER_FEILET',
-}
-
-export interface FeatureTogglesOKAction {
-    type: ActionType.FEATURE_TOGGLES_OK;
-    unleash: FeatureToggles;
-}
-
-export interface FeatureTogglesPENDINGAction {
-    type: ActionType.FEATURE_TOGGLES_PENDING;
-}
-
-export interface FeatureTogglesFEILETAction {
-    type: ActionType.FEATURE_TOGGLES_FEILET;
+    HENT_BRUKER_REGISTRERING_OK = 'HENT_BRUKER_REGISTRERING_OK',
+    HENT_BRUKER_REGISTRERING_PENDING = 'HENT_BRUKER_REGISTRERING_PENDING',
+    HENT_BRUKER_REGISTRERING_FEILET = 'HENT_BRUKER_REGISTRERING_FEILET',
+    HENT_EGENVURDERINGBESVARELSE_OK = 'HENT_EGENVURDERINGBESVARELSE_OK',
+    HENT_EGENVURDERINGBESVARELSE_PENDING = 'HENT_EGENVURDERINGBESVARELSE_PENDING',
+    HENT_EGENVURDERINGBESVARELSE_FEILET = 'HENT_EGENVURDERINGBESVARELSE_FEILET',
 }
 
 export interface HentOppfolgingOKAction {
@@ -53,19 +42,6 @@ export interface HentOppfolgingFEILETAction {
     type: ActionType.HENT_OPPFOLGING_FEILET;
 }
 
-export interface HentServicegruppeOKAction {
-    type: ActionType.HENT_SERVICEGRUPPE_OK;
-    data: ServicegruppeData;
-}
-
-export interface HentServicegruppePENDINGAction {
-    type: ActionType.HENT_SERVICEGRUPPE_PENDING;
-}
-
-export interface HentServicegruppeFEILETAction {
-    type: ActionType.HENT_SERVICEGRUPPE_FEILET;
-}
-
 export interface HentJobbsokerbesvarelseOKAction {
     type: ActionType.HENT_JOBBSOKERBESVARELSE_OK;
     data: JobbsokerbesvarelseData;
@@ -77,10 +53,6 @@ export interface HentJobbsokerbesvarelsePENDINGAction {
 
 export interface HentJobbsokerbesvarelseFEILETAction {
     type: ActionType.HENT_JOBBSOKERBESVARELSE_FEILET;
-}
-
-export interface SettJobbsokerbesvarelseOKAction {
-    type: ActionType.SETT_JOBBSOKERBESVARELSE_OK;
 }
 
 export interface HentSykmeldtInfoOKAction {
@@ -96,6 +68,19 @@ export interface HentSykmeldtInfoFEILETAction {
     type: ActionType.HENT_SYKMELDT_INFO_FEILET;
 }
 
+export interface HentBrukerRegistreringOKAction {
+    type: ActionType.HENT_BRUKER_REGISTRERING_OK;
+    data: BrukerRegistreringData;
+}
+
+export interface HentBrukerRegistreringPENDINGAction {
+    type: ActionType.HENT_BRUKER_REGISTRERING_PENDING;
+}
+
+export interface HentBrukerRegistreringFEILETAction {
+    type: ActionType.HENT_BRUKER_REGISTRERING_FEILET;
+}
+
 export interface HentUlesteDialogerOKAction {
     type: ActionType.HENT_ULESTE_DIALOGER_OK;
     data: UlesteDialogerData;
@@ -109,22 +94,35 @@ export interface HentUlesteDialogerFEILETAction {
     type: ActionType.HENT_ULESTE_DIALOGER_FEILET;
 }
 
-export type Handling = FeatureTogglesOKAction
-    | FeatureTogglesPENDINGAction
-    | FeatureTogglesFEILETAction
+export interface HentEgenvurderingbesvarelseOKAction {
+    type: ActionType.HENT_EGENVURDERINGBESVARELSE_OK;
+    data: EgenvurderingbesvarelseData;
+}
+
+export interface HentEgenvurderingbesvarelsePENDINGAction {
+    type: ActionType.HENT_EGENVURDERINGBESVARELSE_PENDING;
+}
+
+export interface HentEgenvurderingbesvarelseFEILETAction {
+    type: ActionType.HENT_EGENVURDERINGBESVARELSE_FEILET;
+}
+
+export type Handling =
     | HentOppfolgingOKAction
     | HentOppfolgingPENDINGAction
     | HentOppfolgingFEILETAction
-    | HentServicegruppeOKAction
-    | HentServicegruppePENDINGAction
-    | HentServicegruppeFEILETAction
     | HentJobbsokerbesvarelseOKAction
     | HentJobbsokerbesvarelsePENDINGAction
     | HentJobbsokerbesvarelseFEILETAction
-    | SettJobbsokerbesvarelseOKAction
     | HentSykmeldtInfoOKAction
     | HentSykmeldtInfoPENDINGAction
     | HentSykmeldtInfoFEILETAction
     | HentUlesteDialogerOKAction
     | HentUlesteDialogerPENDINGAction
-    | HentUlesteDialogerFEILETAction;
+    | HentUlesteDialogerFEILETAction
+    | HentBrukerRegistreringOKAction
+    | HentBrukerRegistreringPENDINGAction
+    | HentBrukerRegistreringFEILETAction
+    | HentEgenvurderingbesvarelseOKAction
+    | HentEgenvurderingbesvarelsePENDINGAction
+    | HentEgenvurderingbesvarelseFEILETAction;

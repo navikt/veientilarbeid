@@ -20,6 +20,9 @@ proxy:
   - contextPath: /veilarbdialog
     baseUrl: http://veilarbproxy
 
+  - contextPath: /veilarbvedtakinfo
+    baseUrl: http://veilarbproxy
+
 redirect:
   - from: /veientilarbeid
     to: {{ VEIENTILARBEID_URL }}
@@ -43,3 +46,9 @@ redirect:
     to: {{ ARBEIDSPLASSEN_URL }}
   - from: /mia
     to: {{ MIA_URL }}
+  - from: /behovsvurdering
+    to: {{ BEHOVSVURDERING_URL }}
+  - from: /forberede-moete
+    to: {{ FORBEREDE_MOETE_URL }}
+  - from: /arbeidssokerregistrering
+    to: {{ ARBEIDSSOKERREGISTRERING_URL }}

@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { FormattedMessage } from 'react-intl';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 
 import './feilmelding.less';
+import tekster from '../../tekster/tekster';
 
 interface FeilmeldingProps {
     tekstId: string;
@@ -11,9 +11,9 @@ interface FeilmeldingProps {
 
 function Feilmelding({tekstId}: FeilmeldingProps) {
     return (
-            <AlertStripeAdvarsel className="feilmelding-container">
-                <Normaltekst><FormattedMessage id={tekstId}/></Normaltekst>
-            </AlertStripeAdvarsel>
+            <AlertStripeFeil className="feilmelding-container">
+                <Normaltekst>{tekster[tekstId]}</Normaltekst>
+            </AlertStripeFeil>
     );
 }
 

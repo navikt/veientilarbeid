@@ -1,27 +1,41 @@
-import * as React from 'react';
+import React  from 'react';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
-import { gaTilMeldekort } from '../../metrics';
-import emailText from './email-text.svg';
+import { gaTilMeldekort } from '../../metrics/metrics';
+import EmailText from './email-text';
+import { meldekortLenke } from '../../innhold/lenker';
+import { ServicegruppeOrNull } from '../../ducks/oppfolging';
+import { AppState } from '../../reducer';
+import { connect } from 'react-redux';
 
-const MELDEKORT_URL = 'https://www.nav.no/no/Person/Arbeid/Dagpenger+ved+arbeidsloshet+og+permittering/Meldekort+hvordan+gjor+du+det/Slik+sender+du+elektroniske+meldekort';
-
-class Meldekort extends React.Component {
-    render() {
-        const overskrift = 'meldekort-overskrift';
-        const ingress = 'meldekort-ingress';
-
-        return (
-            <LenkepanelMedIkon
-                href={MELDEKORT_URL}
-                className='meldekort'
-                alt=""
-                onClick={gaTilMeldekort}
-                ikon={emailText}
-                overskrift={overskrift}
-                ingress={ingress}
-            />
-        );
-    }
+interface StateProps {
+    servicegruppe: ServicegruppeOrNull;
 }
 
-export default Meldekort;
+const Meldekort = (props: StateProps) => {
+    const { servicegruppe } = props;
+    const overskrift = 'meldekort-overskrift';
+    const ingress = 'meldekort-ingress';
+
+    const handleClick = () => {
+        gaTilMeldekort(servicegruppe);
+    };
+
+    return (
+        <LenkepanelMedIkon
+            href={meldekortLenke}
+            className="meldekort"
+            alt=""
+            onClick={handleClick}
+            overskrift={overskrift}
+            ingress={ingress}
+        >
+            <EmailText />
+        </LenkepanelMedIkon>
+    );
+}
+
+const mapStateToProps = (state: AppState): StateProps => ({
+    servicegruppe: state.oppfolging.data.servicegruppe,
+});
+
+export default connect(mapStateToProps)(Meldekort);
