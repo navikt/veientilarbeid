@@ -1,19 +1,24 @@
-import React, { useContext } from 'react';
-import { Data, InnsatsgruppeContext } from '../../ducks/innsatsgruppe';
+import React from 'react';
 import { Knapp } from 'nav-frontend-knapper';
 import { Panel } from 'nav-frontend-paneler';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
-import { klikkPaSoknadAlleSkjema } from '../../metrics';
+import { klikkPaSoknadAlleSkjema } from '../../metrics/metrics';
 import './alleskjema.less';
 import { alleSkjemaSoknadLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
+import { AppState } from '../../reducer';
+import { ServicegruppeOrNull } from '../../ducks/oppfolging';
+import { connect } from 'react-redux';
 
-const AlleSkjema = () => {
-    const innsatsgruppeData: Data | null = useContext(InnsatsgruppeContext).data;
-    const innsatsgruppe = innsatsgruppeData ? innsatsgruppeData.servicegruppe : null;
+interface StateProps {
+    servicegruppe: ServicegruppeOrNull
+}
+
+const AlleSkjema = (props: StateProps) => {
+    const { servicegruppe } = props;
 
     const handleButtonClick = () => {
-        klikkPaSoknadAlleSkjema(innsatsgruppe);
+        klikkPaSoknadAlleSkjema(servicegruppe);
         window.location.href = alleSkjemaSoknadLenke;
     }
   
@@ -36,4 +41,8 @@ const AlleSkjema = () => {
     );
 }
 
-export default AlleSkjema;
+const mapStateToProps = (state: AppState): StateProps => ({
+    servicegruppe: state.oppfolging.data.servicegruppe,
+});
+
+export default connect(mapStateToProps)(AlleSkjema);
