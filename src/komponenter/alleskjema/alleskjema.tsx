@@ -2,9 +2,9 @@ import React from 'react';
 import { Knapp } from 'nav-frontend-knapper';
 import { Panel } from 'nav-frontend-paneler';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
-import { klikkPaSoknadDagpenger } from '../../metrics/metrics';
-import './dagpenger.less';
-import { dagpengerSoknadLenke } from '../../innhold/lenker';
+import { klikkPaSoknadAlleSkjema } from '../../metrics/metrics';
+import './alleskjema.less';
+import { alleSkjemaSoknadLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 import { AppState } from '../../reducer';
 import { ServicegruppeOrNull } from '../../ducks/oppfolging';
@@ -14,27 +14,26 @@ interface StateProps {
     servicegruppe: ServicegruppeOrNull
 }
 
-const Dagpenger = (props: StateProps) => {
-
+const AlleSkjema = (props: StateProps) => {
     const { servicegruppe } = props;
 
     const handleButtonClick = () => {
-        klikkPaSoknadDagpenger(servicegruppe);
-        window.location.href = dagpengerSoknadLenke;
+        klikkPaSoknadAlleSkjema(servicegruppe);
+        window.location.href = alleSkjemaSoknadLenke;
     }
   
     return (
-        <div className="dagpenger">
-            <Panel border className="dagpenger-ramme blokk-l">
+        <div className="alleskjema">
+            <Panel border className="alleskjema-ramme blokk-l">
                 <div className="innhold">
                     <Systemtittel tag="h1" className="blokk-xs">
-                        {tekster['dagpenger-tittel']}
+                        {tekster['alleskjema-tittel']}
                     </Systemtittel>
                     <Normaltekst className="blokk-s dagpenger__tekst">
-                        {tekster['dagpenger-tekst']}
+                        {tekster['alleskjema-tekst']}
                     </Normaltekst>
                     <Knapp onClick={handleButtonClick} className="blokk-xs">
-                        {tekster['dagpenger-lenke-tekst']}
+                        {tekster['alleskjema-lenke-tekst']}
                     </Knapp>
                 </div>
         </Panel>
@@ -46,4 +45,4 @@ const mapStateToProps = (state: AppState): StateProps => ({
     servicegruppe: state.oppfolging.data.servicegruppe,
 });
 
-export default connect(mapStateToProps)(Dagpenger);
+export default connect(mapStateToProps)(AlleSkjema);

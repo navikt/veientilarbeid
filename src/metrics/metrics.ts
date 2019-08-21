@@ -102,6 +102,10 @@ export const seTiltaksinfo = (servicegruppe: String | null) => {
     logEvent('setiltaksinfo', {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
 };
 
+export const klikkPaSoknadAlleSkjema = (servicegruppe: string | null) => {
+    logEvent('soknaddagpenger', {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
+};
+
 export const klikkPaSoknadDagpenger = (servicegruppe: string | null) => {
     logEvent('soknaddagpenger', {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
 };
