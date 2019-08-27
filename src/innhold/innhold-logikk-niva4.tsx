@@ -16,7 +16,6 @@ import InnholdView from './innhold-view';
 import { MotestotteContext } from '../ducks/motestotte';
 import { OppfolgingContext, Servicegruppe } from '../ducks/oppfolging';
 
-// TODO Fjerne etter tre mnd?
 const LANSERINGSDATO_EGENVURDERING = new Date(2019, 4, 10);
 const LANSERINGSDATO_MOTESTOTTE = new Date(2020, 5, 3);
 
