@@ -3,17 +3,11 @@ import { gaTilMIA } from '../../metrics/metrics';
 import MiaIkon from './svg/mia';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { miaLenke } from '../../innhold/lenker';
-import { ServicegruppeOrNull } from '../../ducks/oppfolging';
-import { AppState } from '../../reducer';
-import { connect } from 'react-redux';
+import { OppfolgingContext } from '../../ducks/oppfolging';
 
-interface StateProps {
-    servicegruppe: ServicegruppeOrNull;
-}
+const Mia = () => {
 
-const Mia = (props: StateProps) => {
-
-    const { servicegruppe } = props;
+    const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
 
     const handleClick = () => {
         gaTilMIA(servicegruppe);
@@ -31,8 +25,4 @@ const Mia = (props: StateProps) => {
     );
 }
 
-const mapStateToProps = (state: AppState): StateProps => ({
-    servicegruppe: state.oppfolging.data.servicegruppe,
-});
-
-export default connect(mapStateToProps)(Mia);
+export default Mia;

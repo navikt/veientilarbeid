@@ -6,22 +6,16 @@ import { klikkPaSoknadDagpenger } from '../../metrics/metrics';
 import './dagpenger.less';
 import { dagpengerSoknadLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
-import { AppState } from '../../reducer';
-import { ServicegruppeOrNull } from '../../ducks/oppfolging';
-import { connect } from 'react-redux';
+import { OppfolgingContext } from '../../ducks/oppfolging';
 
-interface StateProps {
-    servicegruppe: ServicegruppeOrNull
-}
+const Dagpenger = () => {
 
-const Dagpenger = (props: StateProps) => {
-
-    const { servicegruppe } = props;
+    const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
 
     const handleButtonClick = () => {
         klikkPaSoknadDagpenger(servicegruppe);
         window.location.href = dagpengerSoknadLenke;
-    }
+    };
   
     return (
         <section className="dagpenger" id="informasjonsmodul">
@@ -43,10 +37,6 @@ const Dagpenger = (props: StateProps) => {
         </Panel>
         </section>
     );
-}
+};
 
-const mapStateToProps = (state: AppState): StateProps => ({
-    servicegruppe: state.oppfolging.data.servicegruppe,
-});
-
-export default connect(mapStateToProps)(Dagpenger);
+export default Dagpenger;

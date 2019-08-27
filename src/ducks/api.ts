@@ -1,5 +1,4 @@
 import { fetchToJson } from './api-utils';
-import { Data as OppfolgingData } from './oppfolging';
 import { Data as JobbsokerbesvarelseData } from './jobbsokerbesvarelse';
 import { Data as SykmeldtInfoData } from './sykmeldt-info';
 import { Data as UlesteDialogerData } from './dialog';
@@ -41,10 +40,6 @@ export const VEILARBOPPFOLGING_URL = `${contextpath}/veilarboppfolging/api/oppfo
     ULESTEDIALOGER_URL = `${contextpath}/veilarbdialog/api/dialog/antallUleste`,
     EGENVURDERINGBESVARELSE_URL = `${contextpath}/veilarbvedtakinfo/api/behovsvurdering/besvarelse`,
     MOTESTOTTE_URL = `${contextpath}/veilarbvedtakinfo/api/motestotte`;
-
-export function hentOppfolgingFetch(): Promise<OppfolgingData> {
-    return fetchToJson(VEILARBOPPFOLGING_URL, requestConfig);
-}
 
 export function hentJobbsokerbesvarelseFetch(): Promise<JobbsokerbesvarelseData> {
     return fetchToJson(JOBBSOKERBESVARELSE_URL, requestConfig);

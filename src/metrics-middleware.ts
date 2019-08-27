@@ -5,11 +5,6 @@ export const metricsMiddleWare = (store: any) => (next: any) => (action: any) =>
 
     const feilTyper = [
         {
-            type: ActionType.HENT_OPPFOLGING_FEILET,
-            eventnavn: 'veientilarbeid.feil.hentoppfolging',
-            apikall: 'GET /startregistrering'
-        },
-        {
             type: ActionType.FEATURE_TOGGLES_FEILET,
             eventnavn: 'veientilarbeid.feil.featuretoggle',
             apikall: 'GET /api/feature'
