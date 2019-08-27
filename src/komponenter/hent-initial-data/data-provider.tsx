@@ -6,7 +6,11 @@ import Innholdslaster from '../innholdslaster/innholdslaster';
 import Feilmelding from '../feilmeldinger/feilmelding';
 import { hentSykmeldtInfo, State as SykmeldtInfodataState } from '../../ducks/sykmeldt-info';
 import { hentUlesteDialoger, State as UlesteDialogerState } from '../../ducks/dialog';
-import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe } from '../../ducks/brukerregistrering';
+import {
+    BrukerregistreringContext,
+    ForeslattInnsatsgruppe,
+    selectForeslattInnsatsgruppe
+} from '../../ducks/brukerregistrering';
 import { hentJobbsokerbesvarelse, State as JobbsokerbesvarelseState } from '../../ducks/jobbsokerbesvarelse';
 import { hentEgenvurderingbesvarelse, State as EgenvurderingbesvarelseState } from '../../ducks/egenvurdering';
 import {
@@ -32,7 +36,6 @@ interface StateProps {
     sykmeldtInfo: SykmeldtInfodataState;
     jobbsokerbesvarelse: JobbsokerbesvarelseState;
     ulesteDialoger: UlesteDialogerState;
-    foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null;
     egenvurderingbesvarelse: EgenvurderingbesvarelseState;
 }
 
@@ -46,13 +49,16 @@ interface DispatchProps {
 type Props = StateProps & DispatchProps & OwnProps;
 
 const DataProvider = ({
-                          children, underOppfolging, foreslaattInnsatsgruppe, sykmeldtInfo, jobbsokerbesvarelse,
+                          children, underOppfolging, sykmeldtInfo, jobbsokerbesvarelse,
                           ulesteDialoger, egenvurderingbesvarelse, hentSykmeldtInfo, hentJobbsokerbesvarelse,
                           hentUlesteDialoger, hentEgenvurderingbesvarelse
                       }: Props) => {
 
 
     const [motestotteState, setMotestotteState] = React.useState<MotestotteState>(initialStateMotestotte);
+
+    const data = React.useContext(BrukerregistreringContext).data;
+    const foreslaattInnsatsgruppe = selectForeslattInnsatsgruppe(data);
 
     React.useEffect(() => {
         hentSykmeldtInfo();
@@ -61,7 +67,7 @@ const DataProvider = ({
         if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
             hentEgenvurderingbesvarelse();
         } else if (foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING) {
-            fetchData<MotestotteState, Data>(motestotteState, setMotestotteState, MOTESTOTTE_URL)();
+            fetchData<MotestotteState, Data>(motestotteState, setMotestotteState, MOTESTOTTE_URL);
         }
     }, []);
 
@@ -93,7 +99,6 @@ const mapStateToProps = (state: AppState): StateProps => ({
     sykmeldtInfo: state.sykmeldtInfodata,
     jobbsokerbesvarelse: state.jobbsokerbesvarelse,
     ulesteDialoger: state.ulesteDialoger,
-    foreslaattInnsatsgruppe: selectForeslattInnsatsgruppe(state),
     egenvurderingbesvarelse: state.egenvurderingbesvarelse,
 });
 
