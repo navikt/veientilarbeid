@@ -15,6 +15,7 @@ import {
 } from '../../ducks/brukerregistrering';
 import { fetchData } from '../../ducks/api-utils';
 import { BRUKERREGISTRERING_URL, VEILARBOPPFOLGING_URL } from '../../ducks/api';
+import SjekkOppfolging from './sjekk-oppfolging';
 
 interface OwnProps {
     children: React.ReactElement<any>; // tslint:disable-line:no-any
@@ -40,9 +41,11 @@ const OppfolgingBrukerregistreringProvider = ({children}: OppfolgingProviderProp
             avhengigheter={[oppfolgingState, brukerregistreringState]}
         >
             <OppfolgingContext.Provider value={oppfolgingState}>
-                <BrukerregistreringContext.Provider value={brukerregistreringState}>
-                    {children}
-                </BrukerregistreringContext.Provider>
+                <SjekkOppfolging underOppfolging={oppfolgingState.data.underOppfolging}>
+                    <BrukerregistreringContext.Provider value={brukerregistreringState}>
+                        {children}
+                    </BrukerregistreringContext.Provider>
+                </SjekkOppfolging>
             </OppfolgingContext.Provider>
         </Innholdslaster>
     );
