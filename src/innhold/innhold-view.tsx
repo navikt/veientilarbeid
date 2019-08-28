@@ -5,7 +5,6 @@ import Dialog from '../komponenter/dialog/dialog';
 import Banner from '../komponenter/banner/banner';
 import Meldekort from '../komponenter/meldekort/meldekort';
 import DittSykefravaer from '../komponenter/ditt-sykefravaer/ditt-sykefravaer';
-import Dagpenger from '../komponenter/dagpenger/dagpenger';
 import Tiltakinfo from '../komponenter/tiltakinfo/tiltakinfo';
 import OkonomiRad from '../komponenter/okonomi/okonomi-rad';
 import ReaktiveringMelding from '../komponenter/reaktivering-melding';
@@ -13,6 +12,7 @@ import Aktivitetsplan from '../komponenter/aktivitetsplan/aktivitetsplan';
 import RessurslenkerJobbsok from '../komponenter/ressurslenker-jobbsok/ressurslenker-jobbsok';
 import Egenvurdering from '../komponenter/egenvurdering/egenvurdering';
 import Motestotte from '../komponenter/motestotte/motestotte';
+import OkonomiRadDagpenger from '../komponenter/okonomi/okonomi-rad-dagpenger';
 import './innhold.less';
 import KrrMelding from '../komponenter/krr-melding/krr-melding';
 import { erMikrofrontend } from '../utils/app-state-utils';
@@ -59,9 +59,7 @@ export default ({erSykmeldtMedArbeidsgiver,
                 {skalViseTiltaksinfoLenke ? <Tiltakinfo/> : null}
             </Rad>
 
-            <Rad>
-                {erSykmeldtMedArbeidsgiver ? <OkonomiRad/> : <Dagpenger/>}
-            </Rad>
+            { erSykmeldtMedArbeidsgiver ? <Rad><OkonomiRad/></Rad> : <OkonomiRadDagpenger />}
         </>
     );
 };

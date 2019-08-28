@@ -1,6 +1,7 @@
 import { contextpathDittNav, erMikrofrontend } from '../utils/app-state-utils';
 
 export const aktivitetsplanLenke = erMikrofrontend() ? `${contextpathDittNav}/aktivitetsplan` : '/aktivitetsplan';
+export const alleSkjemaSoknadLenke = 'https://www.nav.no/no/Person/Skjemaer-for-privatpersoner';
 export const dialogLenke = erMikrofrontend() ? `${contextpathDittNav}/aktivitetsplan/dialog` : '/aktivitetsplan/dialog';
 export const stillingLenke = erMikrofrontend() ? `${contextpathDittNav}/arbeidsplassen/stillinger` : '/arbeidsplassen/stillinger';
 export const cvLenke = erMikrofrontend() ? `${contextpathDittNav}/arbeidsplassen/cv` : '/arbeidsplassen/cv';
@@ -16,6 +17,6 @@ export const behovsvurderingLenke = erMikrofrontend() ? `${contextpathDittNav}/b
 export const motestotteLenke = erMikrofrontend() ? `${contextpathDittNav}/forberede-moete` : '/forberede-moete';
 export const reaktiveringLenke = erMikrofrontend() ? `${contextpathDittNav}/arbeidssokerregistrering/start` : '/arbeidssokerregistrering/start';
 export const sykepengerLenke = 'https://www.nav.no/no/Person/Arbeid/Sykmeldt%2C+arbeidsavklaringspenger+og+yrkesskade/Sykepenger/Sykepenger+til+arbeidstakere#chapter-7';
-export const meldekortLenke = 'https://tjenester.nav.no/meldekort/genereltommeldekort/';
+export const meldekortLenke = 'https://www.nav.no/meldekort/om-meldekort';
 export const aapSoknadLenke = 'https://www.nav.no/no/Person/Skjemaer-for-privatpersoner/Skjemaer/Arbeid%2C+helse+og+sykdom/arbeidsavklaringspenger';
 export const difiLenke = 'https://brukerprofil.difi.no/minprofil/';

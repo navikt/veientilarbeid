@@ -18,10 +18,7 @@ const Dagpenger = () => {
     };
   
     return (
-        <section className="dagpenger" id="informasjonsmodul">
-            <Systemtittel tag="h2" className="dagpenger__heading blokk-s">
-                {tekster['dagpenger-heading-tekst']}
-            </Systemtittel>
+        <div className="dagpenger">
             <Panel border className="dagpenger-ramme blokk-l">
                 <div className="innhold">
                     <Systemtittel tag="h1" className="blokk-xs">
@@ -35,7 +32,7 @@ const Dagpenger = () => {
                     </Knapp>
                 </div>
         </Panel>
-        </section>
+        </div>
     );
 };
 
