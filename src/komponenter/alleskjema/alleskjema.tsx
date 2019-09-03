@@ -6,21 +6,15 @@ import { klikkPaSoknadAlleSkjema } from '../../metrics/metrics';
 import './alleskjema.less';
 import { alleSkjemaSoknadLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
-import { AppState } from '../../reducer';
-import { ServicegruppeOrNull } from '../../ducks/oppfolging';
-import { connect } from 'react-redux';
+import { OppfolgingContext } from '../../ducks/oppfolging';
 
-interface StateProps {
-    servicegruppe: ServicegruppeOrNull
-}
-
-const AlleSkjema = (props: StateProps) => {
-    const { servicegruppe } = props;
+const AlleSkjema = () => {
+    const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
 
     const handleButtonClick = () => {
         klikkPaSoknadAlleSkjema(servicegruppe);
         window.location.href = alleSkjemaSoknadLenke;
-    }
+    };
   
     return (
         <div className="alleskjema">
@@ -41,8 +35,4 @@ const AlleSkjema = (props: StateProps) => {
     );
 }
 
-const mapStateToProps = (state: AppState): StateProps => ({
-    servicegruppe: state.oppfolging.data.servicegruppe,
-});
-
-export default connect(mapStateToProps)(AlleSkjema);
+export default AlleSkjema;
