@@ -1,4 +1,3 @@
-import { Data as OppfolgingData } from './oppfolging';
 import { Data as JobbsokerbesvarelseData } from './jobbsokerbesvarelse';
 import { Data as SykmeldtInfoData } from './sykmeldt-info';
 import { Data as UlesteDialogerData } from './dialog';
@@ -8,9 +7,6 @@ export enum ActionType {
     FEATURE_TOGGLES_PENDING = 'FEATURE_TOGGLES_PENDING',
     FEATURE_TOGGLES_OK = 'FEATURE_TOGGLES_OK',
     FEATURE_TOGGLES_FEILET = 'FEATURE_TOGGLES_FEILET',
-    HENT_OPPFOLGING_OK = 'HENT_OPPFOLGING_OK',
-    HENT_OPPFOLGING_PENDING = 'HENT_OPPFOLGING_PENDING',
-    HENT_OPPFOLGING_FEILET = 'HENT_OPPFOLGING_FEILET',
     HENT_JOBBSOKERBESVARELSE_OK = 'HENT_JOBBSOKERBESVARELSE_OK',
     HENT_JOBBSOKERBESVARELSE_PENDING = 'HENT_JOBBSOKERBESVARELSE_PENDING',
     HENT_JOBBSOKERBESVARELSE_FEILET = 'HENT_JOBBSOKERBESVARELSE_FEILET',
@@ -23,19 +19,6 @@ export enum ActionType {
     HENT_EGENVURDERINGBESVARELSE_OK = 'HENT_EGENVURDERINGBESVARELSE_OK',
     HENT_EGENVURDERINGBESVARELSE_PENDING = 'HENT_EGENVURDERINGBESVARELSE_PENDING',
     HENT_EGENVURDERINGBESVARELSE_FEILET = 'HENT_EGENVURDERINGBESVARELSE_FEILET',
-}
-
-export interface HentOppfolgingOKAction {
-    type: ActionType.HENT_OPPFOLGING_OK;
-    data: OppfolgingData;
-}
-
-export interface HentOppfolgingPENDINGAction {
-    type: ActionType.HENT_OPPFOLGING_PENDING;
-}
-
-export interface HentOppfolgingFEILETAction {
-    type: ActionType.HENT_OPPFOLGING_FEILET;
 }
 
 export interface HentJobbsokerbesvarelseOKAction {
@@ -91,9 +74,6 @@ export interface HentEgenvurderingbesvarelseFEILETAction {
 }
 
 export type Handling =
-    | HentOppfolgingOKAction
-    | HentOppfolgingPENDINGAction
-    | HentOppfolgingFEILETAction
     | HentJobbsokerbesvarelseOKAction
     | HentJobbsokerbesvarelsePENDINGAction
     | HentJobbsokerbesvarelseFEILETAction

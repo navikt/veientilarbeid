@@ -5,9 +5,7 @@ import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { lesOmOkonomi } from '../../metrics/metrics';
 import './okonomi-panel.less';
 import tekster from '../../tekster/tekster';
-import { AppState } from '../../reducer';
-import { ServicegruppeOrNull } from '../../ducks/oppfolging';
-import { connect } from 'react-redux';
+import { OppfolgingContext } from '../../ducks/oppfolging';
 
 interface OkonomiPanelProps {
     tittelId: string;
@@ -16,14 +14,9 @@ interface OkonomiPanelProps {
     children: React.ReactNode;
 }
 
-interface StateProps {
-    servicegruppe: ServicegruppeOrNull;
-}
-
-type AllProps = OkonomiPanelProps & StateProps;
-
-const OkonomiPanel = (props: AllProps) => {
-    const {tittelId, lenkeTekstId, lenkeUrl, children, servicegruppe} = props;
+const OkonomiPanel = (props: OkonomiPanelProps) => {
+    const {tittelId, lenkeTekstId, lenkeUrl, children} = props;
+    const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
 
     const handleClick = () => {
         lesOmOkonomi(lenkeUrl, servicegruppe);
@@ -47,8 +40,4 @@ const OkonomiPanel = (props: AllProps) => {
     );
 };
 
-const mapStateToProps = (state: AppState): StateProps => ({
-    servicegruppe: state.oppfolging.data.servicegruppe,
-});
-
-export default connect(mapStateToProps)(OkonomiPanel);
+export default OkonomiPanel;

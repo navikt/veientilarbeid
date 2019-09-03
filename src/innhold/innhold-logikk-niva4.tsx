@@ -14,40 +14,38 @@ import { hotjarTrigger } from '../hotjar';
 import './innhold.less';
 import InnholdView from './innhold-view';
 import { MotestotteContext } from '../ducks/motestotte';
-import { Servicegruppe } from '../ducks/oppfolging';
+import { OppfolgingContext, Servicegruppe } from '../ducks/oppfolging';
 
-// TODO Fjerne etter tre mnd?
 const LANSERINGSDATO_EGENVURDERING = new Date(2019, 4, 10);
 const LANSERINGSDATO_MOTESTOTTE = new Date(2020, 5, 3);
 
 interface StateProps {
     erSykmeldtMedArbeidsgiver: boolean;
-    reservasjonKRR: boolean;
-    servicegruppe: Servicegruppe | null;
     harEgenvurderingbesvarelse: boolean;
     egenvurderingbesvarelseDato: Date | null;
 }
 
 const InnholdLogikkNiva4 = ({
-                                erSykmeldtMedArbeidsgiver, harEgenvurderingbesvarelse, egenvurderingbesvarelseDato,
-                                reservasjonKRR, servicegruppe,
+                                erSykmeldtMedArbeidsgiver, harEgenvurderingbesvarelse, egenvurderingbesvarelseDato
                             }: StateProps) => {
 
-    const data = React.useContext(BrukerregistreringContext).data;
-    const opprettetRegistreringDatoString = selectOpprettetRegistreringDato(data);
+    const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
+    const opprettetRegistreringDatoString = selectOpprettetRegistreringDato(brukerregistreringData);
     const opprettetRegistreringDato = opprettetRegistreringDatoString ? new Date(opprettetRegistreringDatoString) : null;
-    const fremtidigSvar = selectFremtidigSituasjonSvar(data);
-    const foreslattInnsatsgruppe = selectForeslattInnsatsgruppe(data);
+    const fremtidigSvar = selectFremtidigSituasjonSvar(brukerregistreringData);
+    const foreslattInnsatsgruppe = selectForeslattInnsatsgruppe(brukerregistreringData);
+
+    const oppfolgingData = React.useContext(OppfolgingContext).data;
 
     React.useEffect(() => {
-        seVeientilarbeid(erSykmeldtMedArbeidsgiver, servicegruppe, erMikrofrontend());
+        seVeientilarbeid(erSykmeldtMedArbeidsgiver, oppfolgingData.servicegruppe, erMikrofrontend());
         hotjarTrigger(erMikrofrontend());
     }, []);
 
     const skalViseTiltaksinfoLenke = (
         erSykmeldtMedArbeidsgiver ||
-        servicegruppe === Servicegruppe.BFORM ||
-        servicegruppe === Servicegruppe.BATT
+        oppfolgingData.servicegruppe === Servicegruppe.BFORM ||
+        oppfolgingData.servicegruppe === Servicegruppe.BATT
     );
 
     const tilbakeTilSammeArbeidsgiver = (
@@ -66,10 +64,10 @@ const InnholdLogikkNiva4 = ({
     };
 
     const skalViseEgenvurderingLenke = (
-        servicegruppe === Servicegruppe.IVURD &&
+        oppfolgingData.servicegruppe === Servicegruppe.IVURD &&
         (!harEgenvurderingbesvarelse || !egenvurderingsbesvarelseValid()) &&
         (opprettetRegistreringDato !== null && opprettetRegistreringDato >= LANSERINGSDATO_EGENVURDERING) &&
-        !reservasjonKRR &&
+        !oppfolgingData.reservasjonKRR &&
         (foreslattInnsatsgruppe === ForeslattInnsatsgruppe.STANDARD_INNSATS ||
             foreslattInnsatsgruppe === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS)
     );
@@ -87,17 +85,17 @@ const InnholdLogikkNiva4 = ({
     };
 
     const skalViseMotestotteLenke = (
-        servicegruppe === Servicegruppe.IVURD &&
+        oppfolgingData.servicegruppe === Servicegruppe.IVURD &&
         (!harMotestottebesvarelse || !motestottebesvarelseValid()) &&
         (opprettetRegistreringDato !== null && opprettetRegistreringDato >= LANSERINGSDATO_MOTESTOTTE) &&
-        !reservasjonKRR &&
+        !oppfolgingData.reservasjonKRR &&
         (foreslattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING)
     );
 
     return (
         <InnholdView
             erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}
-            skalViseKrrMelding={reservasjonKRR}
+            skalViseKrrMelding={oppfolgingData.reservasjonKRR}
             skalViseEgenvurderingLenke={skalViseEgenvurderingLenke}
             skalViseMotestotteLenke={skalViseMotestotteLenke}
             visRessurslenker={visRessurslenker}
@@ -108,8 +106,6 @@ const InnholdLogikkNiva4 = ({
 
 const mapStateToProps = (state: AppState): StateProps => ({
     erSykmeldtMedArbeidsgiver: selectSykmeldtMedArbeidsgiver(state),
-    reservasjonKRR: state.oppfolging.data.reservasjonKRR,
-    servicegruppe: state.oppfolging.data.servicegruppe,
     harEgenvurderingbesvarelse: state.egenvurderingbesvarelse.data !== null,
     egenvurderingbesvarelseDato: state.egenvurderingbesvarelse.data ? new Date(state.egenvurderingbesvarelse.data.sistOppdatert) : null
 });

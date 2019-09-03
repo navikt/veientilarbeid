@@ -5,17 +5,18 @@ import { gaTilJobbsokerkompetanse, gaTilVeiviserarbeidssoker } from '../../metri
 import JobbsokertipsIkon from './svg/jobbsokertips';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { jobbsokerkompetanseLenke, veiviserarbeidssokerLenke } from '../../innhold/lenker';
-import { ServicegruppeOrNull } from '../../ducks/oppfolging';
+import { OppfolgingContext } from '../../ducks/oppfolging';
 
 interface StateProps {
     harJobbbsokerbesvarelse: boolean;
-    servicegruppe: ServicegruppeOrNull;
 }
 
 type AllProps = StateProps
 
 const Ressurslenker = (props: AllProps) => {
-    const { harJobbbsokerbesvarelse, servicegruppe } = props;
+    const { harJobbbsokerbesvarelse } = props;
+    const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
+
     const URL = harJobbbsokerbesvarelse ? jobbsokerkompetanseLenke : veiviserarbeidssokerLenke;
 
     const lenketekst = harJobbbsokerbesvarelse
@@ -45,7 +46,6 @@ const Ressurslenker = (props: AllProps) => {
 
 const mapStateToProps = (state: AppState): StateProps => ({
     harJobbbsokerbesvarelse: state.jobbsokerbesvarelse.harJobbsokerbesvarelse,
-    servicegruppe: state.oppfolging.data.servicegruppe,
 });
 
 export default connect(mapStateToProps)(Ressurslenker);

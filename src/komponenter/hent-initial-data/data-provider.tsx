@@ -32,7 +32,6 @@ interface OwnProps {
 }
 
 interface StateProps {
-    underOppfolging: boolean;
     sykmeldtInfo: SykmeldtInfodataState;
     jobbsokerbesvarelse: JobbsokerbesvarelseState;
     ulesteDialoger: UlesteDialogerState;
@@ -49,7 +48,7 @@ interface DispatchProps {
 type Props = StateProps & DispatchProps & OwnProps;
 
 const DataProvider = ({
-                          children, underOppfolging, sykmeldtInfo, jobbsokerbesvarelse,
+                          children, sykmeldtInfo, jobbsokerbesvarelse,
                           ulesteDialoger, egenvurderingbesvarelse, hentSykmeldtInfo, hentJobbsokerbesvarelse,
                           hentUlesteDialoger, hentEgenvurderingbesvarelse
                       }: Props) => {
@@ -95,7 +94,6 @@ const DataProvider = ({
 };
 
 const mapStateToProps = (state: AppState): StateProps => ({
-    underOppfolging: state.oppfolging.data.underOppfolging,
     sykmeldtInfo: state.sykmeldtInfodata,
     jobbsokerbesvarelse: state.jobbsokerbesvarelse,
     ulesteDialoger: state.ulesteDialoger,

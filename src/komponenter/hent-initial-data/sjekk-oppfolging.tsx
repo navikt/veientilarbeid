@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
-import { AppState } from '../../reducer';
 import { redirectTilDittNav } from './redirect-dittnav-utils';
 import { erMikrofrontend } from '../../utils/app-state-utils';
 import InnholdLogikkNiva3 from '../../innhold/innhold-logikk-niva3';
@@ -11,17 +9,11 @@ interface SjekkOppfolgingConfig {
 
 interface OwnProps {
     config?: SjekkOppfolgingConfig;
+    underOppfolging: boolean,
     children: React.ReactElement<any>;
 }
 
-interface StateProps {
-    underOppfolging: boolean;
-}
-
-type Props = OwnProps & StateProps;
-
-const SjekkOppfolging = ({config = {sendBrukerTilDittNav: redirectTilDittNav}, underOppfolging, children}: Props) => {
-
+const SjekkOppfolging = ({config = {sendBrukerTilDittNav: redirectTilDittNav}, underOppfolging, children}: OwnProps) => {
     if (!underOppfolging && erMikrofrontend()) {
         return <InnholdLogikkNiva3/>;
     }
@@ -34,9 +26,4 @@ const SjekkOppfolging = ({config = {sendBrukerTilDittNav: redirectTilDittNav}, u
     return null;
 };
 
-const mapStateToProps = (state: AppState): StateProps => ({
-        underOppfolging: state.oppfolging.data.underOppfolging,
-    }
-);
-
-export default connect(mapStateToProps)(SjekkOppfolging);
+export default SjekkOppfolging;

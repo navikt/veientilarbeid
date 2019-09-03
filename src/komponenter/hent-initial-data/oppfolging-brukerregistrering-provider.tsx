@@ -1,35 +1,36 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
-import { Dispatch } from '../../dispatch-type';
-import { AppState } from '../../reducer';
 import Innholdslaster from '../innholdslaster/innholdslaster';
-import { hentOppfolging, State as OppfolgingState } from '../../ducks/oppfolging';
+import {
+    State as OppfolgingState,
+    Data as OppfolgingData,
+    initialState as oppfolgingInitialState,
+    OppfolgingContext
+} from '../../ducks/oppfolging';
 import Feilmelding from '../feilmeldinger/feilmelding';
-import { State as BrukerregistreringState, Data, initialState, BrukerregistreringContext } from '../../ducks/brukerregistrering';
+import {
+    State as BrukerregistreringState,
+    Data as BrukerregistreringData,
+    initialState as brukerregistreringInitialState,
+    BrukerregistreringContext
+} from '../../ducks/brukerregistrering';
 import { fetchData } from '../../ducks/api-utils';
-import { BRUKERREGISTRERING_URL} from '../../ducks/api';
+import { BRUKERREGISTRERING_URL, VEILARBOPPFOLGING_URL } from '../../ducks/api';
+import SjekkOppfolging from './sjekk-oppfolging';
 
 interface OwnProps {
     children: React.ReactElement<any>; // tslint:disable-line:no-any
 }
 
-interface StateProps {
-    oppfolging: OppfolgingState;
-}
+type OppfolgingProviderProps = OwnProps;
 
-interface DispatchProps {
-    hentOppfolging: () => void;
-}
+const OppfolgingBrukerregistreringProvider = ({children}: OppfolgingProviderProps) => {
 
-type OppfolgingProviderProps = OwnProps & DispatchProps & StateProps;
-
-const OppfolgingBrukerregistreringProvider = ({oppfolging, hentOppfolging, children}: OppfolgingProviderProps) => {
-
-    const [brukerregistreringState, setBrukerregistreringState] = React.useState<BrukerregistreringState>(initialState);
+    const [brukerregistreringState, setBrukerregistreringState] = React.useState<BrukerregistreringState>(brukerregistreringInitialState);
+    const [oppfolgingState, setOppfolgingState] = React.useState<OppfolgingState>(oppfolgingInitialState);
 
     React.useEffect(() => {
-        hentOppfolging();
-        fetchData<BrukerregistreringState, Data>(brukerregistreringState, setBrukerregistreringState, BRUKERREGISTRERING_URL);
+        fetchData<OppfolgingState, OppfolgingData>(oppfolgingState, setOppfolgingState, VEILARBOPPFOLGING_URL);
+        fetchData<BrukerregistreringState, BrukerregistreringData>(brukerregistreringState, setBrukerregistreringState, BRUKERREGISTRERING_URL);
 
     }, []);
 
@@ -37,21 +38,17 @@ const OppfolgingBrukerregistreringProvider = ({oppfolging, hentOppfolging, child
         <Innholdslaster
             feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse"/>}
             storrelse="XXL"
-            avhengigheter={[oppfolging, brukerregistreringState]}
+            avhengigheter={[oppfolgingState, brukerregistreringState]}
         >
-            <BrukerregistreringContext.Provider value={brukerregistreringState}>
-                {children}
-            </BrukerregistreringContext.Provider>
+            <OppfolgingContext.Provider value={oppfolgingState}>
+                <SjekkOppfolging underOppfolging={oppfolgingState.data.underOppfolging}>
+                    <BrukerregistreringContext.Provider value={brukerregistreringState}>
+                        {children}
+                    </BrukerregistreringContext.Provider>
+                </SjekkOppfolging>
+            </OppfolgingContext.Provider>
         </Innholdslaster>
     );
 };
 
-const mapStateToProps = (state: AppState): StateProps => ({
-    oppfolging: state.oppfolging,
-});
-
-const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
-    hentOppfolging: () => hentOppfolging()(dispatch),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(OppfolgingBrukerregistreringProvider);
+export default OppfolgingBrukerregistreringProvider;

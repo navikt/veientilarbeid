@@ -9,17 +9,18 @@ import DialogLine from './dialog-line';
 import './dialog.less';
 import { dialogLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
-import { ServicegruppeOrNull } from '../../ducks/oppfolging';
+import { OppfolgingContext } from '../../ducks/oppfolging';
 
 interface StateProps {
     antallUleste: number;
-    servicegruppe: ServicegruppeOrNull;
 }
 
 type AllProps = StateProps
 
 const Dialog = (props: AllProps) => {
-    const { antallUleste, servicegruppe } = props;
+    const { antallUleste } = props;
+    const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
+
     const linkCreator = (props: {}) => {
         return <a onClick={() => gaTilDialog(antallUleste, servicegruppe)} {...props}/>;
     };
@@ -65,7 +66,6 @@ const Dialog = (props: AllProps) => {
 
 const mapStateToProps = (state: AppState): StateProps => ({
     antallUleste: state.ulesteDialoger.data.antallUleste,
-    servicegruppe: state.oppfolging.data.servicegruppe,
 });
 
 export default connect(mapStateToProps)(Dialog);

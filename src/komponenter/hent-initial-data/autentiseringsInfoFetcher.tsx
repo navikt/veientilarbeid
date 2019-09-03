@@ -4,7 +4,6 @@ import Feilmelding from '../feilmeldinger/feilmelding';
 import { fetchData } from '../../ducks/api-utils';
 import { DataElement, STATUS } from '../../ducks/api';
 import { contextpathDittNav, erMikrofrontend } from '../../utils/app-state-utils';
-import SjekkOppfolging from './sjekk-oppfolging';
 import DataProvider from './data-provider';
 import InnholdLogikkNiva4 from '../../innhold/innhold-logikk-niva4';
 import InnholdLogikkNiva3 from '../../innhold/innhold-logikk-niva3';
@@ -45,7 +44,7 @@ const AutentiseringsInfoFetcher = () => {
 
     React.useEffect(() => {
         fetchData<InnloggingsInfo, Data>(state, setState, `${contextpath}${AUTH_API}`);
-    } , []);
+    }, []);
 
     return (
         <Innholdslaster
@@ -56,11 +55,9 @@ const AutentiseringsInfoFetcher = () => {
             {state.data.securityLevel === InnloggingsNiva.LEVEL_3
                 ? <InnholdLogikkNiva3/>
                 : <OppfolgingBrukerregistreringProvider>
-                    <SjekkOppfolging>
-                        <DataProvider>
-                            <InnholdLogikkNiva4/>
-                        </DataProvider>
-                    </SjekkOppfolging>
+                    <DataProvider>
+                        <InnholdLogikkNiva4/>
+                    </DataProvider>
                 </OppfolgingBrukerregistreringProvider>
             }
         </Innholdslaster>

@@ -3,17 +3,11 @@ import { gaTilCV } from '../../metrics/metrics';
 import CvIkon from './svg/cv';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { cvLenke } from '../../innhold/lenker';
-import { ServicegruppeOrNull } from '../../ducks/oppfolging';
-import { AppState } from '../../reducer';
-import { connect } from 'react-redux';
+import { OppfolgingContext } from '../../ducks/oppfolging';
 
-interface StateProps {
-    servicegruppe: ServicegruppeOrNull
-}
+const CV = () => {
 
-const CV = (props: StateProps) => {
-
-    const { servicegruppe } = props;
+    const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
 
     const handleClick = () => {
         gaTilCV(servicegruppe);
@@ -31,8 +25,4 @@ const CV = (props: StateProps) => {
     );
 }
 
-const mapStateToProps = (state: AppState): StateProps => ({
-    servicegruppe: state.oppfolging.data.servicegruppe,
-});
-
-export default connect(mapStateToProps)(CV);
+export default CV;

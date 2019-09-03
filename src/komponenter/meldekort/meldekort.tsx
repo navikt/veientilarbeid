@@ -3,16 +3,11 @@ import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { gaTilMeldekort } from '../../metrics/metrics';
 import EmailText from './email-text';
 import { meldekortLenke } from '../../innhold/lenker';
-import { ServicegruppeOrNull } from '../../ducks/oppfolging';
-import { AppState } from '../../reducer';
-import { connect } from 'react-redux';
+import { OppfolgingContext } from '../../ducks/oppfolging';
 
-interface StateProps {
-    servicegruppe: ServicegruppeOrNull;
-}
+const Meldekort = () => {
+    const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
 
-const Meldekort = (props: StateProps) => {
-    const { servicegruppe } = props;
     const overskrift = 'meldekort-overskrift';
     const ingress = 'meldekort-ingress';
 
@@ -34,8 +29,4 @@ const Meldekort = (props: StateProps) => {
     );
 }
 
-const mapStateToProps = (state: AppState): StateProps => ({
-    servicegruppe: state.oppfolging.data.servicegruppe,
-});
-
-export default connect(mapStateToProps)(Meldekort);
+export default Meldekort;
