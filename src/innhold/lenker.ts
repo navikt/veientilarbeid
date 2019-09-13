@@ -1,7 +1,7 @@
 import { contextpathDittNav, erMikrofrontend } from '../utils/app-state-utils';
 
 export const aktivitetsplanLenke = erMikrofrontend() ? `${contextpathDittNav}/aktivitetsplan` : '/aktivitetsplan';
-export const alleSkjemaSoknadLenke = 'https://www.nav.no/no/Person/Skjemaer-for-privatpersoner';
+export const alleSkjemaSoknadLenke = 'https://www.nav.no/soknader';
 export const dialogLenke = erMikrofrontend() ? `${contextpathDittNav}/aktivitetsplan/dialog` : '/aktivitetsplan/dialog';
 export const stillingLenke = erMikrofrontend() ? `${contextpathDittNav}/arbeidsplassen/stillinger` : '/arbeidsplassen/stillinger';
 export const cvLenke = erMikrofrontend() ? `${contextpathDittNav}/arbeidsplassen/cv` : '/arbeidsplassen/cv';
