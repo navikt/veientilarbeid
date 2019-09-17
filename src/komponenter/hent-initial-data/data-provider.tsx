@@ -14,7 +14,7 @@ import {
 import { hentJobbsokerbesvarelse, State as JobbsokerbesvarelseState } from '../../ducks/jobbsokerbesvarelse';
 import { hentEgenvurderingbesvarelse, State as EgenvurderingbesvarelseState } from '../../ducks/egenvurdering';
 import {
-    Data,
+    Data as MotestotteData,
     initialState as initialStateMotestotte,
     State as MotestotteState,
     MotestotteContext
@@ -66,7 +66,7 @@ const DataProvider = ({
         if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
             hentEgenvurderingbesvarelse();
         } else if (foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING) {
-            fetchData<MotestotteState, Data>(motestotteState, setMotestotteState, MOTESTOTTE_URL);
+            fetchData<MotestotteState, MotestotteData>(motestotteState, setMotestotteState, MOTESTOTTE_URL);
         }
     }, []);
 
