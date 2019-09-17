@@ -4,7 +4,7 @@ import { Dispatch } from '../../dispatch-type';
 import { AppState } from '../../reducer';
 import Innholdslaster from '../innholdslaster/innholdslaster';
 import Feilmelding from '../feilmeldinger/feilmelding';
-import { hentSykmeldtInfo, State as SykmeldtInfodataState } from '../../ducks/sykmeldt-info';
+import { hentSykmeldtInfo, State as SykmeldtInfoState } from '../../ducks/sykmeldt-info';
 import { hentUlesteDialoger, State as UlesteDialogerState } from '../../ducks/dialog';
 import {
     BrukerregistreringContext,
@@ -32,7 +32,7 @@ interface OwnProps {
 }
 
 interface StateProps {
-    sykmeldtInfo: SykmeldtInfodataState;
+    sykmeldtInfo: SykmeldtInfoState;
     jobbsokerbesvarelse: JobbsokerbesvarelseState;
     ulesteDialoger: UlesteDialogerState;
     egenvurderingbesvarelse: EgenvurderingbesvarelseState;
