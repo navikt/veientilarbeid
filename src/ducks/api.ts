@@ -1,6 +1,5 @@
 import { fetchToJson } from './api-utils';
 import { Data as JobbsokerbesvarelseData } from './jobbsokerbesvarelse';
-import { Data as SykmeldtInfoData } from './sykmeldt-info';
 import { Data as UlesteDialogerData } from './dialog';
 import { Data as EgenvurderingbesvarelseData } from './egenvurdering';
 import { contextpathDittNav, erMikrofrontend } from '../utils/app-state-utils';
@@ -43,10 +42,6 @@ export const VEILARBOPPFOLGING_URL = `${contextpath}/veilarboppfolging/api/oppfo
 
 export function hentJobbsokerbesvarelseFetch(): Promise<JobbsokerbesvarelseData> {
     return fetchToJson(JOBBSOKERBESVARELSE_URL, requestConfig);
-}
-
-export function hentSykmeldtInfoFetch(): Promise<SykmeldtInfoData> {
-    return fetchToJson(STARTREGISTRERING_URL, requestConfig);
 }
 
 export function hentUlesteDialogerFetch(): Promise<UlesteDialogerData> {
