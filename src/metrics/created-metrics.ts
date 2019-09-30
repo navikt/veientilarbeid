@@ -1,3 +1,14 @@
+const w = (window as any); // tslint:disable-line:no-any
+
+const logError = w.frontendlogger ? (melding: string, error: Error) => {
+    w.frontendlogger.error({
+        userMessage: melding,
+        message: error.message,
+        name: error.name,
+        stacktrace: error.stack,
+    });
+} : () => { return; };
+
 export class CreatedMetrics {
 
     private static readonly STORAGE_KEY = 'createdmetrics';
@@ -9,7 +20,14 @@ export class CreatedMetrics {
     }
 
     static setCreatedMetrics(metrics: CreatedMetric[]) {
-        sessionStorage.setItem(CreatedMetrics.STORAGE_KEY, JSON.stringify(metrics));
+        try {
+            sessionStorage.setItem(CreatedMetrics.STORAGE_KEY, JSON.stringify(metrics));
+        } catch (e) {
+            const feilmelding = 'Lagring til sessionStorage feilet ifm. å forhindre duplikate metrikker';
+            console.error(feilmelding, e);
+            logError(feilmelding, e);
+            throw e;
+        }
     }
 
     static lessThenThreeSecondsAgo(metric: CreatedMetric) {
