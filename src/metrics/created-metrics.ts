@@ -26,7 +26,6 @@ export class CreatedMetrics {
             const feilmelding = 'Lagring til sessionStorage feilet ifm. å forhindre duplikate metrikker';
             console.error(feilmelding, e);
             logError(feilmelding, e);
-            throw e;
         }
     }
 
