@@ -5,21 +5,21 @@
   "scripts": {
     "start": "cross-env REACT_APP_MOCK=true craco start",
     "build:micro": "cross-env REACT_APP_MICRO=true npm run build",
-    "build": "craco build",
+    "build": "CI=false craco build",
     "lint": "tslint ./src/**/*.ts*",
     "lint:fix": "tslint ./src/**/*.ts* --fix",
     "test": "npm run lint && craco test --env=jsdom",
-    "test:coverage": "npm test -- --coverage",
+    "test:coverage": "CI=true npm test",
     "deploy": "npm run build && gh-pages -d build",
-    "prettier": "prettier --write --single-quote --tab-width 4 src/**/*.ts src/**/*.tsx src/**/*.less"
+    "prettier": "prettier --write --single-quote --tab-width 4 src/**/*.ts src/**/*.tsx src/**/*.less",
+    "refresh": "rm -rf node_modules && rm package-lock.json && npm i"
   },
   "dependencies": {
-    "@babel/polyfill": "7.4.4",
-    "@craco/craco": "3.5.0",
+    "@craco/craco": "5.5.0",
     "acorn": "6.1.1",
-    "babel-polyfill": "6.26.0",
     "classnames": "2.2.6",
-    "craco-less": "1.7.0",
+    "core-js": "3.2.1",
+    "craco-less": "1.13.0",
     "gsap": "2.1.3",
     "html-react-parser": "0.7.1",
     "lodash.throttle": "4.1.1",
@@ -58,7 +58,7 @@
     "react-modal": "3.8.1",
     "react-motion": "0.5.2",
     "react-redux": "7.0.3",
-    "react-scripts": "2.1.8",
+    "react-scripts": "3.2.0",
     "redux": "4.0.1",
     "yet-another-fetch-mock": "3.1.1"
   },

@@ -8,7 +8,7 @@ import { OppfolgingContext } from '../../ducks/oppfolging';
 
 const Aktivitetsplan = () => {
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
-
+    const { location } = window
     const nyRegistrering = parse(location.search).nyRegistrering === 'true';
     const overskrift = 'aktivitetsplan-overskrift-ordinaer';
     const ingress = 'aktivitetsplan-beskrivelse' + (nyRegistrering ? '-ny' : '');
