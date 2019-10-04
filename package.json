@@ -5,7 +5,7 @@
   "scripts": {
     "start": "cross-env REACT_APP_MOCK=true craco start",
     "build:micro": "cross-env REACT_APP_MICRO=true npm run build",
-    "build": "craco build",
+    "build": "CI=false craco build",
     "lint": "tslint ./src/**/*.ts*",
     "lint:fix": "tslint ./src/**/*.ts* --fix",
     "test": "npm run lint && craco test --env=jsdom",
