@@ -11,7 +11,8 @@
     "test": "npm run lint && craco test --env=jsdom",
     "test:coverage": "npm test -- --coverage",
     "deploy": "npm run build && gh-pages -d build",
-    "prettier": "prettier --write --single-quote --tab-width 4 src/**/*.ts src/**/*.tsx src/**/*.less"
+    "prettier": "prettier --write --single-quote --tab-width 4 src/**/*.ts src/**/*.tsx src/**/*.less",
+    "refresh": "rm -rf node_modules && rm package-lock.json && npm i"
   },
   "dependencies": {
     "@babel/polyfill": "7.4.4",
