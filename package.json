@@ -17,6 +17,7 @@
   "dependencies": {
     "@craco/craco": "5.5.0",
     "acorn": "6.1.1",
+    "babel-polyfill": "6.26.0",
     "classnames": "2.2.6",
     "core-js": "3.2.1",
     "craco-less": "1.13.0",
