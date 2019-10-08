@@ -5,11 +5,11 @@
   "scripts": {
     "start": "cross-env REACT_APP_MOCK=true craco start",
     "build:micro": "cross-env REACT_APP_MICRO=true npm run build",
-    "build": "CI=false craco build",
+    "build": "craco build",
     "lint": "tslint ./src/**/*.ts*",
     "lint:fix": "tslint ./src/**/*.ts* --fix",
     "test": "npm run lint && craco test --env=jsdom",
-    "test:coverage": "CI=true npm test",
+    "test:coverage": "npm test",
     "deploy": "npm run build && gh-pages -d build",
     "prettier": "prettier --write --single-quote --tab-width 4 src/**/*.ts src/**/*.tsx src/**/*.less",
     "refresh": "rm -rf node_modules && rm package-lock.json && npm i"
