@@ -18,7 +18,7 @@ import { hentBrukerRegistreringData } from './demo-state-brukerregistrering';
 import { AUTH_API } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
 
 const loggingMiddleware: Middleware = (request, response) => {
-    console.log(request.url, request.method, response); // tslint:disable-line:no-console
+    console.log(request.url, request.method, response);
     return response;
 };
 

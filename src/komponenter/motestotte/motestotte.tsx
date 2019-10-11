@@ -25,6 +25,7 @@ const Motestotte = ({erSykmeldtMedArbeidsgiver}: InputProps) => {
 
     React.useEffect(() => {
         seMotestotte(foreslattInnsatsgruppe);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleButtonClick = () => {

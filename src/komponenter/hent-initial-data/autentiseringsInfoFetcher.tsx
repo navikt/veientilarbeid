@@ -44,6 +44,7 @@ const AutentiseringsInfoFetcher = () => {
 
     React.useEffect(() => {
         fetchData<InnloggingsInfo, Data>(state, setState, `${contextpath}${AUTH_API}`);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

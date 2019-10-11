@@ -1,4 +1,4 @@
-const w = (window as any); // tslint:disable-line:no-any
+const w = (window as any);
 
 const logError = w.frontendlogger ? (melding: string, error: Error) => {
     w.frontendlogger.error({

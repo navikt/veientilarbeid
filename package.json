@@ -5,11 +5,11 @@
   "scripts": {
     "start": "cross-env REACT_APP_MOCK=true craco start",
     "build:micro": "cross-env REACT_APP_MICRO=true npm run build",
-    "build": "CI=false craco build",
-    "lint": "tslint ./src/**/*.ts*",
-    "lint:fix": "tslint ./src/**/*.ts* --fix",
+    "build": "craco build",
+    "lint": "eslint --ext=jsx,js,ts,tsx ./src",
+    "lint:fix": "eslint --ext=jsx,js,ts,tsx ./src --fix",
     "test": "npm run lint && craco test --env=jsdom",
-    "test:coverage": "CI=true npm test",
+    "test:coverage": "npm test -- --coverage --watchAll=false",
     "deploy": "npm run build && gh-pages -d build",
     "prettier": "prettier --write --single-quote --tab-width 4 src/**/*.ts src/**/*.tsx src/**/*.less",
     "refresh": "rm -rf node_modules && rm package-lock.json && npm i"
@@ -76,6 +76,7 @@
     "@types/react-dom": "16.8.4",
     "@types/react-redux": "7.0.9",
     "@types/sinon": "7.0.12",
+    "@typescript-eslint/parser": "2.3.3",
     "chai": "4.2.0",
     "copyfiles": "2.1.0",
     "cross-env": "5.2.0",
@@ -86,7 +87,6 @@
     "less": "3.9.0",
     "npm-run-all": "4.1.5",
     "sinon": "7.3.2",
-    "tslint": "5.17.0",
     "typescript": "3.5.1"
   },
   "browserslist": [

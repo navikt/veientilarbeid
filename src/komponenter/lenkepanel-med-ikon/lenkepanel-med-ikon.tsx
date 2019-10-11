@@ -19,6 +19,7 @@ class LenkepanelMedIkon extends React.Component<Props> {
         const {href, onClick, className, overskrift, ingress, children} = this.props;
 
         const linkCreator = (props: {}) => {
+            // eslint-disable-next-line jsx-a11y/anchor-has-content
             return <a onClick={onClick} {...props}/>;
         };
 

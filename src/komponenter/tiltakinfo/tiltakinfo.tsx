@@ -12,6 +12,7 @@ const Tiltakinfo = () => {
 
     useEffect(() => {
         seTiltaksinfo(servicegruppe);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleClick = () => {

@@ -18,7 +18,7 @@ import { BRUKERREGISTRERING_URL, VEILARBOPPFOLGING_URL } from '../../ducks/api';
 import SjekkOppfolging from './sjekk-oppfolging';
 
 interface OwnProps {
-    children: React.ReactElement<any>; // tslint:disable-line:no-any
+    children: React.ReactElement<any>;
 }
 
 type OppfolgingProviderProps = OwnProps;
@@ -31,7 +31,7 @@ const OppfolgingBrukerregistreringProvider = ({children}: OppfolgingProviderProp
     React.useEffect(() => {
         fetchData<OppfolgingState, OppfolgingData>(oppfolgingState, setOppfolgingState, VEILARBOPPFOLGING_URL);
         fetchData<BrukerregistreringState, BrukerregistreringData>(brukerregistreringState, setBrukerregistreringState, BRUKERREGISTRERING_URL);
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

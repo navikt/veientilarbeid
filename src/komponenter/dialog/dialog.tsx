@@ -22,6 +22,7 @@ const Dialog = (props: AllProps) => {
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
 
     const linkCreator = (props: {}) => {
+        // eslint-disable-next-line jsx-a11y/anchor-has-content
         return <a onClick={() => gaTilDialog(antallUleste, servicegruppe)} {...props}/>;
     };
 
