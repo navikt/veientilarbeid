@@ -13,5 +13,5 @@ export default class NAVSPA {
         };
     }
 
-    private static scope: NAVSPAScope = (global as any)['NAVSPA'] = (global as any)['NAVSPA'] || {}; // tslint:disable-line
+    private static scope: NAVSPAScope = (global as any)['NAVSPA'] = (global as any)['NAVSPA'] || {};
 }

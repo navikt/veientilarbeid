@@ -29,6 +29,7 @@ const Egenvurdering = () => {
 
     React.useEffect(() => {
         seEgenvurdering(foreslattInnsatsgruppe);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleButtonClick = () => {

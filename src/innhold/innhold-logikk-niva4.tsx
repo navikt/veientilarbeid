@@ -39,6 +39,7 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
     React.useEffect(() => {
         seVeientilarbeid(erSykmeldtMedArbeidsgiver, oppfolgingData.servicegruppe, erMikrofrontend());
         hotjarTrigger(erMikrofrontend());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const skalViseTiltaksinfoLenke = (
