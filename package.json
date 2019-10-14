@@ -9,7 +9,7 @@
     "lint": "eslint --ext=jsx,js,ts,tsx ./src",
     "lint:fix": "eslint --ext=jsx,js,ts,tsx ./src --fix",
     "test": "npm run lint && craco test --env=jsdom",
-    "test:coverage": "npm test -- --coverage --watchAll=false",
+    "test:coverage": "CI=true npm test",
     "deploy": "npm run build && gh-pages -d build",
     "prettier": "prettier --write --single-quote --tab-width 4 src/**/*.ts src/**/*.tsx src/**/*.less",
     "refresh": "rm -rf node_modules && rm package-lock.json && npm i"
