@@ -1,7 +1,7 @@
 import { ActionType } from './ducks/actions';
 
-export const metricsMiddleWare = (store: any) => (next: any) => (action: any) => { // tslint:disable-line:no-any
-    const { frontendlogger } = (window as any); // tslint:disable-line:no-any
+export const metricsMiddleWare = (store: any) => (next: any) => (action: any) => {
+    const { frontendlogger } = (window as any);
 
     const feilTyper = [
         {
@@ -22,7 +22,7 @@ export const metricsMiddleWare = (store: any) => (next: any) => (action: any) =>
     ];
 
     /* Feil logging */
-    feilTyper.map((feil) => {
+    feilTyper.forEach((feil) => {
         if (action.type === feil.type) {
             if (frontendlogger) {
                 if (!action.data) {

@@ -5,7 +5,7 @@ import { CreatedMetrics } from './created-metrics';
 
 const createdMetrics = new CreatedMetrics();
 
-const w = (window as any); // tslint:disable-line:no-any
+const w = (window as any);
 
 const domene = 'veientilarbeid';
 

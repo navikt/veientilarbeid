@@ -70,10 +70,11 @@ const DataProvider = ({
         } else if (foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING) {
             fetchData<MotestotteState, MotestotteData>(motestotteState, setMotestotteState, MOTESTOTTE_URL);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const avhengigheter: any[] = [sykmeldtInfoState]; // tslint:disable-line:no-any
-    const ventPa: any[] = [ulesteDialoger, jobbsokerbesvarelse]; // tslint:disable-line:no-any
+    const avhengigheter: any[] = [sykmeldtInfoState];
+    const ventPa: any[] = [ulesteDialoger, jobbsokerbesvarelse];
     if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
         ventPa.push(egenvurderingbesvarelse);
     }

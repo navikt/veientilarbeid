@@ -1,4 +1,3 @@
-// tslint:disable
 const tekster = {
     'demo-autentiseringsinfo': 'Nivå 3',
     'demo-brukerregistrering': 'Velg fremtidig situasjon',

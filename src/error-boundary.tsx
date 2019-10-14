@@ -5,11 +5,8 @@ interface OwnProps {
 }
 
 export default class ErrorBoundary extends React.Component<OwnProps> {
-    constructor(props: OwnProps) {
-        super(props);
-    }
     componentDidCatch(error: any, info: any) {
-        const w = (window as any); // tslint:disable-line:no-any
+        const w = (window as any);
         const logError = w.frontendlogger ? w.frontendlogger.error : (message: any) => { console.error(message); };
 
         logError({

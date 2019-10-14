@@ -9,9 +9,9 @@ import { erDemo, erMikrofrontend, erMock } from './utils/app-state-utils';
 import NAVSPA from './NAVSPA';
 
 if ((erMock() && !erDemo())) {
-    console.log('=========================='); /*tslint:disable-line:no-console*/
-    console.log('======= DEVELOPMENT ======'); /*tslint:disable-line:no-console*/
-    console.log('=========================='); /*tslint:disable-line:no-console*/
+    console.log('==========================');
+    console.log('======= DEVELOPMENT ======');
+    console.log('==========================');
     require('./mocks');
 } else if (erDemo()) {
     require('./demo/setup-demo-mock');
