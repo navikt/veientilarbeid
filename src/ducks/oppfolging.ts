@@ -9,6 +9,14 @@ export enum Servicegruppe {
     IVURD = 'IVURD',
 }
 
+export enum Formidlingsgruppe {
+    ARBS = 'ARBS',
+    IARBS = 'IARBS',
+    ISERV = 'ISERV',
+}
+
+export type FormidlingsgruppeOrNull = Formidlingsgruppe | null;
+
 export type ServicegruppeOrNull = Servicegruppe | null;
 
 export interface State extends DataElement {
@@ -20,6 +28,7 @@ export interface Data {
     kanReaktiveres: boolean;
     reservasjonKRR: boolean;
     servicegruppe: ServicegruppeOrNull;
+    formidlingsgruppe: FormidlingsgruppeOrNull;
 }
 
 export const initialState: State = {
@@ -28,6 +37,7 @@ export const initialState: State = {
         kanReaktiveres: false,
         reservasjonKRR: false,
         servicegruppe: null,
+        formidlingsgruppe: null,
     },
     status: STATUS.NOT_STARTED
 };
