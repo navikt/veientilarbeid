@@ -37,7 +37,12 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
     const erSykmeldtMedArbeidsgiver = React.useContext(SykmeldtInfoContext).data.erSykmeldtMedArbeidsgiver;
 
     React.useEffect(() => {
-        seVeientilarbeid(erSykmeldtMedArbeidsgiver, oppfolgingData.servicegruppe, erMikrofrontend());
+        seVeientilarbeid(
+            erSykmeldtMedArbeidsgiver,
+            oppfolgingData.servicegruppe,
+            erMikrofrontend(),
+            oppfolgingData.formidlingsgruppe
+        );
         hotjarTrigger(erMikrofrontend());
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

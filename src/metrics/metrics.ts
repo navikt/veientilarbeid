@@ -1,6 +1,6 @@
 import { ForeslattInnsatsgruppe } from '../ducks/brukerregistrering';
 import { erDemo } from '../utils/app-state-utils';
-import { ServicegruppeOrNull } from '../ducks/oppfolging';
+import { FormidlingsgruppeOrNull, ServicegruppeOrNull } from '../ducks/oppfolging';
 import { CreatedMetrics } from './created-metrics';
 
 const createdMetrics = new CreatedMetrics();
@@ -28,10 +28,24 @@ const logEvent = w.frontendlogger ? (navn: string, fields: object, tags: object)
     }
 } : () => { return; };
 
-export const seVeientilarbeid = (erSykmeldtMedArbeidsgiver: boolean, servicegruppe: ServicegruppeOrNull, microfrontend: boolean) => {
+export const seVeientilarbeid = (
+    erSykmeldtMedArbeidsgiver: boolean,
+    servicegruppe: ServicegruppeOrNull,
+    microfrontend: boolean,
+    formidlingsgruppe: FormidlingsgruppeOrNull) =>
+{
     logEvent('seveientilarbeid',
-        {erSykmeldtMedArbeidsgiverField: erSykmeldtMedArbeidsgiver, servicegruppeField: servicegruppe, microfrontendField: microfrontend},
-        {erSykmeldtMedArbeidsgiver, servicegruppeTag: servicegruppe, microfrontendTag: microfrontend});
+        {
+            erSykmeldtMedArbeidsgiverField: erSykmeldtMedArbeidsgiver,
+            servicegruppeField: servicegruppe,
+            microfrontendField: microfrontend,
+        },
+        {
+            erSykmeldtMedArbeidsgiver,
+            servicegruppeTag: servicegruppe,
+            microfrontendTag: microfrontend,
+            formidlingsgruppe,
+        });
 };
 
 export const seVeientilarbeidNiva3 = () => {
