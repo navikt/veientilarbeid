@@ -15,6 +15,7 @@ import Motestotte from '../komponenter/motestotte/motestotte';
 import OkonomiRadDagpenger from '../komponenter/okonomi/okonomi-rad-dagpenger';
 import './innhold.less';
 import KrrMelding from '../komponenter/krr-melding/krr-melding';
+import IARBSMelding from '../komponenter/iarbs-melding/iarbs-melding';
 import { erMikrofrontend } from '../utils/app-state-utils';
 
 interface OwnProps {
@@ -24,6 +25,7 @@ interface OwnProps {
     skalViseMotestotteLenke: boolean;
     visRessurslenker: boolean;
     skalViseTiltaksinfoLenke: boolean;
+    isIARBS: boolean;
 }
 
 export default ({erSykmeldtMedArbeidsgiver,
@@ -31,7 +33,8 @@ export default ({erSykmeldtMedArbeidsgiver,
                     skalViseEgenvurderingLenke,
                     skalViseMotestotteLenke,
                     visRessurslenker,
-                    skalViseTiltaksinfoLenke}: OwnProps) => {
+                    skalViseTiltaksinfoLenke,
+                    isIARBS}: OwnProps) => {
 
     return (
         <>
@@ -41,6 +44,7 @@ export default ({erSykmeldtMedArbeidsgiver,
             <Rad>
                 <ReaktiveringMelding/>
                 {skalViseKrrMelding ? <KrrMelding/> : null}
+                {isIARBS ? <IARBSMelding/> : null}
                 {skalViseEgenvurderingLenke ? <Egenvurdering/> : null}
                 {skalViseMotestotteLenke ? <Motestotte erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}/> : null}
                 <Aktivitetsplan/>

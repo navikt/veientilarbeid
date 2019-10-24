@@ -33,6 +33,8 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
     const foreslattInnsatsgruppe = selectForeslattInnsatsgruppe(brukerregistreringData);
 
     const oppfolgingData = React.useContext(OppfolgingContext).data;
+    const isIARBS = oppfolgingData.formidlingsgruppe === 'IARBS'
+    console.log(oppfolgingData)
 
     const erSykmeldtMedArbeidsgiver = React.useContext(SykmeldtInfoContext).data.erSykmeldtMedArbeidsgiver;
 
@@ -105,6 +107,7 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
             skalViseMotestotteLenke={skalViseMotestotteLenke}
             visRessurslenker={visRessurslenker}
             skalViseTiltaksinfoLenke={skalViseTiltaksinfoLenke}
+            isIARBS={isIARBS}
         />
     );
 };
