@@ -3,6 +3,7 @@ import { InnloggingsNiva } from '../komponenter/hent-initial-data/autentiserings
 
 export enum DemoData {
     SERVICEGRUPPE = 'servicegruppe',
+    FORMIDLINGSGRUPPE = 'formidlingsgruppe',
     SYKMELDT_MED_ARBEIDSGIVER = 'sykmeldtMedArbeidsGiver',
     BRUKER_REGISTRERING = 'brukerRegistrering',
     JSK = 'jsk',
@@ -33,6 +34,14 @@ export const hentServicegruppe = (): string => {
 export const settServicegruppe = (value: string) => {
     slettFraLocalStorage('innsatsgruppe'); // Rydder opp etter oppdatering av key fra innsatsgruppe til servicegruppe
     settILocalStorage(DemoData.SERVICEGRUPPE, value);
+};
+
+export const hentFormidlingsgruppe = (): string => {
+    return hentFraLocalStorage(DemoData.FORMIDLINGSGRUPPE) || 'ARBS';
+};
+
+export const settFormidlingsgruppe = (value: string) => {
+    settILocalStorage(DemoData.FORMIDLINGSGRUPPE, value);
 };
 
 export const hentSykmeldtMedArbeidsgiver = (): boolean => {
