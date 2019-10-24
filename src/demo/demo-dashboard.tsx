@@ -15,6 +15,8 @@ import {
     settUlesteDialoger,
     hentServicegruppe,
     settServicegruppe,
+    hentFormidlingsgruppe,
+    settFormidlingsgruppe,
     settReservasjonKRR,
     hentReservasjonKRR,
     settAutentiseringsInfo,
@@ -58,6 +60,11 @@ class DemoDashboard extends React.Component<{}> {
 
         const handleChangeServicegruppe = (e: React.ChangeEvent<HTMLSelectElement>) => {
             settServicegruppe(e.target.value);
+            window.location.reload();
+        };
+
+        const handleChangeFormidlingsgruppe = (e: React.ChangeEvent<HTMLSelectElement>) => {
+            settFormidlingsgruppe(e.target.value);
             window.location.reload();
         };
 
@@ -120,6 +127,12 @@ class DemoDashboard extends React.Component<{}> {
             'IVURD': 'Ikke fastsatt',
         };
 
+        const formidlingsgrupper = {
+            'ARBS': 'ARBS',
+            'IARBS': 'IARBS',
+            'ISERV': 'ISERV'
+        };
+
         const fremtidigeSituasjoner = {
             SAMME_ARBEIDSGIVER: 'Samme arbeidsgiver',
             SAMME_ARBEIDSGIVER_NY_STILLING: 'Samme arbeidsgiver, ny stilling',
@@ -160,6 +173,23 @@ class DemoDashboard extends React.Component<{}> {
                                     value={gruppe}
                                 >
                                     {servicegrupper[gruppe]}
+                                </option>
+                            )
+                        }
+                    </SelectKomponent>
+                    <SelectKomponent
+                        label={tekster['demo-velgformidlingsgruppe']}
+                        onChange={handleChangeFormidlingsgruppe}
+                        id="velg-formidlingsgruppe"
+                        defaultValue={hentFormidlingsgruppe()}
+                    >
+                        {
+                            Object.keys(formidlingsgrupper).map((gruppe: string) =>
+                                <option
+                                    key={gruppe}
+                                    value={gruppe}
+                                >
+                                    {formidlingsgrupper[gruppe]}
                                 </option>
                             )
                         }

@@ -7,4 +7,5 @@ export default {
     kanReaktiveres: false,
     reservasjonKRR: false,
     servicegruppe: 'IVURD',
+    formidlingsgruppe: 'IARBS'
 };
