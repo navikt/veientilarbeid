@@ -12,7 +12,8 @@
     "test:coverage": "npm test -- --coverage --watchAll=false",
     "deploy": "npm run build && gh-pages -d build",
     "prettier": "prettier --write --single-quote --tab-width 4 src/**/*.ts src/**/*.tsx src/**/*.less",
-    "refresh": "rm -rf node_modules && rm package-lock.json && npm i"
+    "refresh": "rm -rf node_modules && rm package-lock.json && npm i",
+    "now-build": "cross-env REACT_APP_MOCK=true npm run build"
   },
   "dependencies": {
     "@craco/craco": "5.5.0",

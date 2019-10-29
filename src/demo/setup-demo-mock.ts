@@ -11,8 +11,12 @@ import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 import {
     hentJsk, hentReservasjonKRR,
     hentServicegruppe,
+    hentFormidlingsgruppe,
     hentSykmeldtMedArbeidsgiver,
-    hentUlesteDialoger, hentEgenvurdering, hentAutentiseringsInfo, hentMotestotte, hentFormidlingsgruppe
+    hentUlesteDialoger,
+    hentEgenvurdering,
+    hentAutentiseringsInfo,
+    hentMotestotte
 } from './demo-state';
 import { hentBrukerRegistreringData } from './demo-state-brukerregistrering';
 import { AUTH_API } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
