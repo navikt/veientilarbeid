@@ -12,7 +12,7 @@ import {
     hentJsk, hentReservasjonKRR,
     hentServicegruppe,
     hentSykmeldtMedArbeidsgiver,
-    hentUlesteDialoger, hentEgenvurdering, hentAutentiseringsInfo, hentMotestotte
+    hentUlesteDialoger, hentEgenvurdering, hentAutentiseringsInfo, hentMotestotte, hentFormidlingsgruppe
 } from './demo-state';
 import { hentBrukerRegistreringData } from './demo-state-brukerregistrering';
 import { AUTH_API } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
@@ -42,6 +42,7 @@ fetchMock.get(VEILARBOPPFOLGING_URL, {
     kanReaktiveres: false,
     reservasjonKRR: hentReservasjonKRR(),
     servicegruppe: hentServicegruppe(),
+    formidlingsgruppe: hentFormidlingsgruppe(),
 });
 
 fetchMock.get(STARTREGISTRERING_URL, {
