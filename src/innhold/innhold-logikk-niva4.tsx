@@ -35,7 +35,9 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
     const foreslattInnsatsgruppe = selectForeslattInnsatsgruppe(brukerregistreringData);
 
     const oppfolgingData = React.useContext(OppfolgingContext).data;
-    const isIARBS = oppfolgingData.formidlingsgruppe === 'IARBS'
+
+    const isIARBS = oppfolgingData.formidlingsgruppe === Formidlingsgruppe.IARBS;
+    const skalViseRegistrert = oppfolgingData.formidlingsgruppe === Formidlingsgruppe.ARBS;
 
     const erSykmeldtMedArbeidsgiver = React.useContext(SykmeldtInfoContext).data.erSykmeldtMedArbeidsgiver;
 
@@ -49,8 +51,6 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
         hotjarTrigger(erMikrofrontend());
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    const skalViseRegistrert = oppfolgingData.formidlingsgruppe === Formidlingsgruppe.ARBS;
 
     const skalViseTiltaksinfoLenke = (
         erSykmeldtMedArbeidsgiver ||
