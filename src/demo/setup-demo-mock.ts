@@ -11,6 +11,7 @@ import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 import {
     hentJsk, hentReservasjonKRR,
     hentServicegruppe,
+    hentFormidlingsgruppe,
     hentSykmeldtMedArbeidsgiver,
     hentUlesteDialoger, hentEgenvurdering, hentAutentiseringsInfo, hentMotestotte
 } from './demo-state';
@@ -42,6 +43,7 @@ fetchMock.get(VEILARBOPPFOLGING_URL, {
     kanReaktiveres: false,
     reservasjonKRR: hentReservasjonKRR(),
     servicegruppe: hentServicegruppe(),
+    formidlingsgruppe: hentFormidlingsgruppe()
 });
 
 fetchMock.get(STARTREGISTRERING_URL, {
