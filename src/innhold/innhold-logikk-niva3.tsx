@@ -18,6 +18,7 @@ const InnholdLogikkNiva3 = () => {
             skalViseTiltaksinfoLenke={false}
             skalViseMotestotteLenke={false}
             isIARBS={false}
+            skalViseRegistrert={false}
         />
     );
 };

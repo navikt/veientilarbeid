@@ -17,6 +17,7 @@ import './innhold.less';
 import KrrMelding from '../komponenter/krr-melding/krr-melding';
 import IARBSMelding from '../komponenter/iarbs-melding/iarbs-melding';
 import { erMikrofrontend } from '../utils/app-state-utils';
+import Registrert from '../komponenter/registrert';
 
 interface OwnProps {
     erSykmeldtMedArbeidsgiver: boolean;
@@ -26,6 +27,7 @@ interface OwnProps {
     visRessurslenker: boolean;
     skalViseTiltaksinfoLenke: boolean;
     isIARBS: boolean;
+    skalViseRegistrert: boolean;
 }
 
 export default ({erSykmeldtMedArbeidsgiver,
@@ -34,7 +36,8 @@ export default ({erSykmeldtMedArbeidsgiver,
                     skalViseMotestotteLenke,
                     visRessurslenker,
                     skalViseTiltaksinfoLenke,
-                    isIARBS}: OwnProps) => {
+                    isIARBS,
+                    skalViseRegistrert}: OwnProps) => {
 
     return (
         <>
@@ -44,6 +47,7 @@ export default ({erSykmeldtMedArbeidsgiver,
             <Rad>
                 <ReaktiveringMelding/>
                 {skalViseKrrMelding ? <KrrMelding/> : null}
+                {skalViseRegistrert ? <Registrert/> : null }
                 {isIARBS ? <IARBSMelding/> : null}
                 {skalViseEgenvurderingLenke ? <Egenvurdering/> : null}
                 {skalViseMotestotteLenke ? <Motestotte erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}/> : null}
