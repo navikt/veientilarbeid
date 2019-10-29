@@ -49,8 +49,7 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const skalViseRegistrert = oppfolgingData.underOppfolging &&
-        oppfolgingData.formidlingsgruppe === Formidlingsgruppe.ARBS;
+    const skalViseRegistrert = oppfolgingData.formidlingsgruppe === Formidlingsgruppe.ARBS;
 
     const skalViseTiltaksinfoLenke = (
         erSykmeldtMedArbeidsgiver ||
