@@ -6,15 +6,17 @@ import { SykmeldtInfoContext } from '../ducks/sykmeldt-info';
 import {
     BrukerregistreringContext,
     ForeslattInnsatsgruppe,
-    FremtidigSituasjonSvar, selectForeslattInnsatsgruppe,
-    selectFremtidigSituasjonSvar, selectOpprettetRegistreringDato
+    FremtidigSituasjonSvar,
+    selectForeslattInnsatsgruppe,
+    selectFremtidigSituasjonSvar,
+    selectOpprettetRegistreringDato
 } from '../ducks/brukerregistrering';
 import { seVeientilarbeid } from '../metrics/metrics';
 import { hotjarTrigger } from '../hotjar';
 import './innhold.less';
 import InnholdView from './innhold-view';
 import { MotestotteContext } from '../ducks/motestotte';
-import { OppfolgingContext, Servicegruppe } from '../ducks/oppfolging';
+import { Formidlingsgruppe, OppfolgingContext, Servicegruppe } from '../ducks/oppfolging';
 
 const LANSERINGSDATO_EGENVURDERING = new Date(2019, 4, 10);
 const LANSERINGSDATO_MOTESTOTTE = new Date(2020, 5, 3);
@@ -46,6 +48,9 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
         hotjarTrigger(erMikrofrontend());
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    const skalViseRegistrert = oppfolgingData.underOppfolging &&
+        oppfolgingData.formidlingsgruppe === Formidlingsgruppe.ARBS;
 
     const skalViseTiltaksinfoLenke = (
         erSykmeldtMedArbeidsgiver ||
@@ -105,6 +110,7 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
             skalViseMotestotteLenke={skalViseMotestotteLenke}
             visRessurslenker={visRessurslenker}
             skalViseTiltaksinfoLenke={skalViseTiltaksinfoLenke}
+            skalViseRegistrert={skalViseRegistrert}
         />
     );
 };

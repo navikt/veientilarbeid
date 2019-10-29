@@ -16,6 +16,7 @@ import OkonomiRadDagpenger from '../komponenter/okonomi/okonomi-rad-dagpenger';
 import './innhold.less';
 import KrrMelding from '../komponenter/krr-melding/krr-melding';
 import { erMikrofrontend } from '../utils/app-state-utils';
+import Registrert from '../komponenter/registrert';
 
 interface OwnProps {
     erSykmeldtMedArbeidsgiver: boolean;
@@ -24,6 +25,7 @@ interface OwnProps {
     skalViseMotestotteLenke: boolean;
     visRessurslenker: boolean;
     skalViseTiltaksinfoLenke: boolean;
+    skalViseRegistrert: boolean;
 }
 
 export default ({erSykmeldtMedArbeidsgiver,
@@ -31,7 +33,8 @@ export default ({erSykmeldtMedArbeidsgiver,
                     skalViseEgenvurderingLenke,
                     skalViseMotestotteLenke,
                     visRessurslenker,
-                    skalViseTiltaksinfoLenke}: OwnProps) => {
+                    skalViseTiltaksinfoLenke,
+                    skalViseRegistrert}: OwnProps) => {
 
     return (
         <>
@@ -41,6 +44,7 @@ export default ({erSykmeldtMedArbeidsgiver,
             <Rad>
                 <ReaktiveringMelding/>
                 {skalViseKrrMelding ? <KrrMelding/> : null}
+                {skalViseRegistrert ? <Registrert/> : null }
                 {skalViseEgenvurderingLenke ? <Egenvurdering/> : null}
                 {skalViseMotestotteLenke ? <Motestotte erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}/> : null}
                 <Aktivitetsplan/>
