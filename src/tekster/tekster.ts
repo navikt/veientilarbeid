@@ -92,7 +92,8 @@ const tekster = {
     'startside-sykmeldt-banner-tittel': 'Mer veiledning fra NAV',
     'stillingsok-overskrift': 'Finn ledige stillinger',
     'tiltakinfo-ingress': 'Les mer om hva NAV kan gjøre hvis du har ekstra behov.',
-    'tiltakinfo-tittel': 'Trenger du ekstra hjelp til å skaffe jobb?'
+    'tiltakinfo-tittel': 'Trenger du ekstra hjelp til å skaffe jobb?',
+    'registrert': 'Du er registrert som arbeidssøker',
 };
 
 export default tekster;
