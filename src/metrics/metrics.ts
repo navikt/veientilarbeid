@@ -52,6 +52,12 @@ export const seVeientilarbeidNiva3 = () => {
     logEvent('seveientilarbeidniva3', {}, {});
 };
 
+export const seIARBSPlaster = (skalViseIARBSPlaster: boolean, formidlingsgruppe: String | null, servicegruppe: String | null) => {
+    if (skalViseIARBSPlaster) {
+        logEvent('viseriarbsplaster', {}, { formidlingsgruppeTag: formidlingsgruppe, servicegruppeTag: servicegruppe });
+    }
+}
+
 export const klikkPaSokLedigeStillinger = (servicegruppe: String | null) => {
     logEvent('sokledigestillinger', {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
 };
