@@ -26,7 +26,7 @@ interface OwnProps {
     skalViseMotestotteLenke: boolean;
     visRessurslenker: boolean;
     skalViseTiltaksinfoLenke: boolean;
-    isIARBS: boolean;
+    skalViseIARBSPlaster: boolean;
     skalViseRegistrert: boolean;
 }
 
@@ -36,7 +36,7 @@ export default ({erSykmeldtMedArbeidsgiver,
                     skalViseMotestotteLenke,
                     visRessurslenker,
                     skalViseTiltaksinfoLenke,
-                    isIARBS,
+                    skalViseIARBSPlaster,
                     skalViseRegistrert}: OwnProps) => {
 
     return (
@@ -48,7 +48,7 @@ export default ({erSykmeldtMedArbeidsgiver,
                 <ReaktiveringMelding/>
                 {skalViseKrrMelding ? <KrrMelding/> : null}
                 {skalViseRegistrert ? <Registrert/> : null }
-                {isIARBS ? <IARBSMelding/> : null}
+                {skalViseIARBSPlaster ? <IARBSMelding/> : null}
                 {skalViseEgenvurderingLenke ? <Egenvurdering/> : null}
                 {skalViseMotestotteLenke ? <Motestotte erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}/> : null}
                 <Aktivitetsplan/>

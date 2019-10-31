@@ -11,7 +11,7 @@ import {
     selectFremtidigSituasjonSvar,
     selectOpprettetRegistreringDato
 } from '../ducks/brukerregistrering';
-import { seVeientilarbeid } from '../metrics/metrics';
+import { seVeientilarbeid, seIARBSPlaster } from '../metrics/metrics';
 import { hotjarTrigger } from '../hotjar';
 import './innhold.less';
 import InnholdView from './innhold-view';
@@ -36,10 +36,10 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
 
     const oppfolgingData = React.useContext(OppfolgingContext).data;
 
-    const isIARBS = oppfolgingData.formidlingsgruppe === Formidlingsgruppe.IARBS;
     const skalViseRegistrert = oppfolgingData.formidlingsgruppe === Formidlingsgruppe.ARBS;
-
+    
     const erSykmeldtMedArbeidsgiver = React.useContext(SykmeldtInfoContext).data.erSykmeldtMedArbeidsgiver;
+    const skalViseIARBSPlaster = oppfolgingData.formidlingsgruppe === Formidlingsgruppe.IARBS && !erSykmeldtMedArbeidsgiver;
 
     React.useEffect(() => {
         seVeientilarbeid(
@@ -49,6 +49,7 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
             oppfolgingData.formidlingsgruppe
         );
         hotjarTrigger(erMikrofrontend());
+        seIARBSPlaster(skalViseIARBSPlaster, oppfolgingData.formidlingsgruppe, oppfolgingData.servicegruppe)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -110,7 +111,7 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
             skalViseMotestotteLenke={skalViseMotestotteLenke}
             visRessurslenker={visRessurslenker}
             skalViseTiltaksinfoLenke={skalViseTiltaksinfoLenke}
-            isIARBS={isIARBS}
+            skalViseIARBSPlaster={skalViseIARBSPlaster}
             skalViseRegistrert={skalViseRegistrert}
         />
     );
