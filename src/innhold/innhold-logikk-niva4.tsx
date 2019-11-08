@@ -39,7 +39,7 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
     const skalViseRegistrert = oppfolgingData.formidlingsgruppe === Formidlingsgruppe.ARBS;
     
     const erSykmeldtMedArbeidsgiver = React.useContext(SykmeldtInfoContext).data.erSykmeldtMedArbeidsgiver;
-    const skalViseIARBSPlaster = oppfolgingData.formidlingsgruppe === Formidlingsgruppe.IARBS && !erSykmeldtMedArbeidsgiver;
+    const skalViseIARBSPlaster = oppfolgingData.formidlingsgruppe === Formidlingsgruppe.IARBS;
 
     React.useEffect(() => {
         seVeientilarbeid(
