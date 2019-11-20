@@ -1,6 +1,6 @@
 import { ForeslattInnsatsgruppe } from '../ducks/brukerregistrering';
 import { erDemo } from '../utils/app-state-utils';
-import { FormidlingsgruppeOrNull, ServicegruppeOrNull } from '../ducks/oppfolging';
+import { FormidlingsgruppeOrIngenVerdi, ServicegruppeOrIngenVerdi } from '../ducks/oppfolging';
 import { CreatedMetrics } from './created-metrics';
 
 const createdMetrics = new CreatedMetrics();
@@ -30,9 +30,9 @@ const logEvent = w.frontendlogger ? (navn: string, fields: object, tags: object)
 
 export const seVeientilarbeid = (
     erSykmeldtMedArbeidsgiver: boolean,
-    servicegruppe: ServicegruppeOrNull,
+    servicegruppe: ServicegruppeOrIngenVerdi,
     microfrontend: boolean,
-    formidlingsgruppe: FormidlingsgruppeOrNull) =>
+    formidlingsgruppe: FormidlingsgruppeOrIngenVerdi) =>
 {
     logEvent('seveientilarbeid',
         {
@@ -122,12 +122,12 @@ export const seTiltaksinfo = (servicegruppe: String | null) => {
     logEvent('setiltaksinfo', {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
 };
 
-export const klikkPaSoknadAlleSkjema = (servicegruppe: string | null) => {
-    logEvent('soknaddagpenger', {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
+export const klikkPaSoknadAlleSkjema = (formidlingsgruppe: FormidlingsgruppeOrIngenVerdi, servicegruppe: ServicegruppeOrIngenVerdi) => {
+    logEvent('klikk.soknad.alleskjema', {innsatsgruppeField: servicegruppe}, { formidlingsgruppe, servicegruppe });
 };
 
-export const klikkPaSoknadDagpenger = (servicegruppe: string | null) => {
-    logEvent('soknaddagpenger', {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
+export const klikkPaSoknadDagpenger = (formidlingsgruppe: FormidlingsgruppeOrIngenVerdi, servicegruppe: ServicegruppeOrIngenVerdi) => {
+    logEvent('klikk.soknad.dagpenger', {innsatsgruppeField: servicegruppe}, { formidlingsgruppe, servicegruppe });
 };
 
 export const lesOmOkonomi = (stonad: string, servicegruppe: string | null) => {

@@ -9,10 +9,11 @@ import tekster from '../../tekster/tekster';
 import { OppfolgingContext } from '../../ducks/oppfolging';
 
 const AlleSkjema = () => {
+    const formidlingsgruppe = React.useContext(OppfolgingContext).data.formidlingsgruppe;
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
 
     const handleButtonClick = () => {
-        klikkPaSoknadAlleSkjema(servicegruppe);
+        klikkPaSoknadAlleSkjema(formidlingsgruppe, servicegruppe);
         window.location.href = alleSkjemaSoknadLenke;
     };
   

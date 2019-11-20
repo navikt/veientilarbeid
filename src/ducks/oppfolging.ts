@@ -15,9 +15,9 @@ export enum Formidlingsgruppe {
     ISERV = 'ISERV',
 }
 
-export type FormidlingsgruppeOrNull = Formidlingsgruppe | null;
+export type FormidlingsgruppeOrIngenVerdi = Formidlingsgruppe | 'INGEN_VERDI';
 
-export type ServicegruppeOrNull = Servicegruppe | null;
+export type ServicegruppeOrIngenVerdi = Servicegruppe | 'INGEN_VERDI';
 
 export interface State extends DataElement {
     data: Data;
@@ -27,8 +27,8 @@ export interface Data {
     underOppfolging: boolean;
     kanReaktiveres: boolean;
     reservasjonKRR: boolean;
-    servicegruppe: ServicegruppeOrNull;
-    formidlingsgruppe: FormidlingsgruppeOrNull;
+    servicegruppe: ServicegruppeOrIngenVerdi;
+    formidlingsgruppe: FormidlingsgruppeOrIngenVerdi;
 }
 
 export const initialState: State = {
@@ -36,8 +36,8 @@ export const initialState: State = {
         underOppfolging: false,
         kanReaktiveres: false,
         reservasjonKRR: false,
-        servicegruppe: null,
-        formidlingsgruppe: null,
+        servicegruppe: 'INGEN_VERDI',
+        formidlingsgruppe: 'INGEN_VERDI',
     },
     status: STATUS.NOT_STARTED
 };

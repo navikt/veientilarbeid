@@ -10,10 +10,11 @@ import { OppfolgingContext } from '../../ducks/oppfolging';
 
 const Dagpenger = () => {
 
+    const formidlingsgruppe = React.useContext(OppfolgingContext).data.formidlingsgruppe;
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
 
     const handleButtonClick = () => {
-        klikkPaSoknadDagpenger(servicegruppe);
+        klikkPaSoknadDagpenger(formidlingsgruppe, servicegruppe);
         window.location.href = dagpengerSoknadLenke;
     };
   
