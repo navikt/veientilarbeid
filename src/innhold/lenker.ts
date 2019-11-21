@@ -11,7 +11,7 @@ export const jobbsokerkompetanseLenke = erMikrofrontend() ? `${contextpathDittNa
 export const tiltakinfoLenke = erMikrofrontend() ? `${contextpathDittNav}/tiltakinfo` : '/tiltakinfo';
 export const sykefravaerLenke = erMikrofrontend() ? `${contextpathDittNav}/sykefravaer` : '/sykefravaer';
 export const dagpengerLesmerLenke = erMikrofrontend() ? `${contextpathDittNav}/veiledearbeidssoker/mistet-jobben/dagpenger?sprak=nb` : '/veiledearbeidssoker/mistet-jobben/dagpenger?sprak=nb';
-export const dagpengerSoknadLenke = 'https://www.nav.no/no/Person/Skjemaer-for-privatpersoner/Skjemaer/Uten+arbeid/Dagpenger';
+export const dagpengerSoknadLenke = 'https://www.nav.no/soknader/nb/person/arbeid/dagpenger';
 export const sosialhjelpLenke = erMikrofrontend() ? `${contextpathDittNav}/veivisersosialhjelp` : '/veivisersosialhjelp';
 export const behovsvurderingLenke = erMikrofrontend() ? `${contextpathDittNav}/behovsvurdering` : '/behovsvurdering';
 export const motestotteLenke = erMikrofrontend() ? `${contextpathDittNav}/forberede-moete` : '/forberede-moete';
