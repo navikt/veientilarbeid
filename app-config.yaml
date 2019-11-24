@@ -60,8 +60,6 @@ fasitResources:
     resourceType: baseUrl
   - alias: arbeidsplassen
     resourceType: baseUrl
-  - alias: mia
-    resourceType: baseUrl
   - alias: behovsvurdering
     resourceType: baseUrl
   - alias: forberede-moete
