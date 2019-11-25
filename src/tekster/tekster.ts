@@ -77,7 +77,6 @@ const tekster = {
     'krr-melding-lenketekst': 'Jeg vil fjerne reservasjonen',
     'meldekort-ingress': 'Du må sende meldekort hver 14. dag.',
     'meldekort-overskrift': 'Meldekort',
-    'mia-overskrift': 'Lær om arbeidsmarkedet',
     'okonomi-rad-nodsituasjon-lenke-tekst': 'Økonomisk sosialhjelp',
     'okonomi-rad-nodsituasjon-tittel': 'Økonomisk sosialhjelp',
     'okonomi-rad-stotte-arbeidsledig-lenke-tekst': 'Les mer om dagpenger',
