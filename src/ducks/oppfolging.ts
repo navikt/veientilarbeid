@@ -2,11 +2,15 @@ import { DataElement, STATUS } from './api';
 import * as React from 'react';
 
 export enum Servicegruppe {
-    IKVAL = 'IKVAL',
     BATT = 'BATT',
     BFORM = 'BFORM',
-    VARIG = 'VARIG',
+    BKART = 'BKART',
+    IKVAL = 'IKVAL',
     IVURD = 'IVURD',
+    OPPFI = 'OPPFI',
+    VARIG = 'VARIG',
+    VURDI = 'VURDI',
+    VURDU = 'VURDU'
 }
 
 export enum Formidlingsgruppe {
