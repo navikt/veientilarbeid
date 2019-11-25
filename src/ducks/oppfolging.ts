@@ -31,6 +31,8 @@ export type FormidlingsgruppeOrNull = Formidlingsgruppe | null;
 
 export type ServicegruppeOrNull = Servicegruppe | null;
 
+export type RegistreringTypeOrIngenVerdi = RegistreringType | 'INGEN_VERDI';
+
 export interface State extends DataElement {
     data: Data;
 }
@@ -41,6 +43,7 @@ export interface Data {
     reservasjonKRR: boolean;
     servicegruppe: ServicegruppeOrNull;
     formidlingsgruppe: FormidlingsgruppeOrNull;
+    registreringType: RegistreringTypeOrIngenVerdi;
 }
 
 export const initialState: State = {
@@ -50,6 +53,7 @@ export const initialState: State = {
         reservasjonKRR: false,
         servicegruppe: null,
         formidlingsgruppe: null,
+        registreringType: 'INGEN_VERDI'
     },
     status: STATUS.NOT_STARTED
 };
