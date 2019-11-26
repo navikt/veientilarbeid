@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../reducer';
 import { erMikrofrontend } from '../utils/app-state-utils';
-import { SykmeldtInfoContext } from '../ducks/sykmeldt-info';
+import { BrukerInfoContext } from '../ducks/bruker-info';
 import {
     BrukerregistreringContext,
     ForeslattInnsatsgruppe,
@@ -17,6 +17,7 @@ import './innhold.less';
 import InnholdView from './innhold-view';
 import { MotestotteContext } from '../ducks/motestotte';
 import { Formidlingsgruppe, OppfolgingContext, Servicegruppe } from '../ducks/oppfolging';
+import { RegistreringType } from '../ducks/bruker-info'
 
 const LANSERINGSDATO_EGENVURDERING = new Date(2019, 4, 10);
 const LANSERINGSDATO_MOTESTOTTE = new Date(2020, 5, 3);
@@ -35,28 +36,29 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
     const foreslattInnsatsgruppe = selectForeslattInnsatsgruppe(brukerregistreringData);
 
     const oppfolgingData = React.useContext(OppfolgingContext).data;
-
-    const skalViseRegistrert = oppfolgingData.formidlingsgruppe === Formidlingsgruppe.ARBS;
+    const { formidlingsgruppe, servicegruppe } = oppfolgingData
+    const skalViseRegistrert = formidlingsgruppe === Formidlingsgruppe.ARBS;
     
-    const erSykmeldtMedArbeidsgiver = React.useContext(SykmeldtInfoContext).data.erSykmeldtMedArbeidsgiver;
-    const skalViseIARBSPlaster = oppfolgingData.formidlingsgruppe === Formidlingsgruppe.IARBS;
+    const brukerinfoData = React.useContext(BrukerInfoContext).data;
+    const { erSykmeldtMedArbeidsgiver, registreringType } = brukerinfoData
+    const skalViseIARBSPlaster = formidlingsgruppe === Formidlingsgruppe.IARBS && registreringType === RegistreringType.ALLEREDE_REGISTRERT;
 
     React.useEffect(() => {
         seVeientilarbeid(
             erSykmeldtMedArbeidsgiver,
-            oppfolgingData.servicegruppe,
+            servicegruppe,
             erMikrofrontend(),
-            oppfolgingData.formidlingsgruppe
+            formidlingsgruppe
         );
         hotjarTrigger(erMikrofrontend());
-        seIARBSPlaster(skalViseIARBSPlaster, oppfolgingData.formidlingsgruppe, oppfolgingData.servicegruppe)
+        seIARBSPlaster(skalViseIARBSPlaster, formidlingsgruppe, servicegruppe)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const skalViseTiltaksinfoLenke = (
         erSykmeldtMedArbeidsgiver ||
-        oppfolgingData.servicegruppe === Servicegruppe.BFORM ||
-        oppfolgingData.servicegruppe === Servicegruppe.BATT
+        servicegruppe === Servicegruppe.BFORM ||
+        servicegruppe === Servicegruppe.BATT
     );
 
     const tilbakeTilSammeArbeidsgiver = (

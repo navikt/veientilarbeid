@@ -1,14 +1,6 @@
 import { DataElement, STATUS } from './api';
 import * as React from 'react';
 
-export enum RegistreringType {
-    REAKTIVERING = 'REAKTIVERING',
-    SPERRET = 'SPERRET',
-    ALLEREDE_REGISTRERT = 'ALLEREDE_REGISTRERT',
-    SYKMELDT_REGISTRERING = 'SYKMELDT_REGISTRERING',
-    ORDINAER_REGISTRERING = 'ORDINAER_REGISTRERING'
-}
-
 export enum Servicegruppe {
     BATT = 'BATT',
     BFORM = 'BFORM',
@@ -31,8 +23,6 @@ export type FormidlingsgruppeOrNull = Formidlingsgruppe | null;
 
 export type ServicegruppeOrNull = Servicegruppe | null;
 
-export type RegistreringTypeOrIngenVerdi = RegistreringType | 'INGEN_VERDI';
-
 export interface State extends DataElement {
     data: Data;
 }
@@ -43,8 +33,6 @@ export interface Data {
     reservasjonKRR: boolean;
     servicegruppe: ServicegruppeOrNull;
     formidlingsgruppe: FormidlingsgruppeOrNull;
-    registreringType?: RegistreringTypeOrIngenVerdi;
-    geografiskTilknytning?: string;
 }
 
 export const initialState: State = {
@@ -53,10 +41,7 @@ export const initialState: State = {
         kanReaktiveres: false,
         reservasjonKRR: false,
         servicegruppe: null,
-        formidlingsgruppe: null,
-        registreringType: 'INGEN_VERDI',
-        geografiskTilknytning: ''
-
+        formidlingsgruppe: null
     },
     status: STATUS.NOT_STARTED
 };

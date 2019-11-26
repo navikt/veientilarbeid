@@ -20,7 +20,13 @@ import {
     settReservasjonKRR,
     hentReservasjonKRR,
     settAutentiseringsInfo,
-    slettAutentiseringsInfo, hentAutentiseringsInfo, hentMotestotte, settMotestotte, slettMotestotte,
+    slettAutentiseringsInfo,
+    hentAutentiseringsInfo,
+    hentMotestotte,
+    settMotestotte,
+    slettMotestotte,
+    hentRegistreringType,
+    settRegistreringType
 } from './demo-state';
 
 import './demo-dashboard.less';
@@ -65,6 +71,11 @@ class DemoDashboard extends React.Component<{}> {
 
         const handleChangeFormidlingsgruppe = (e: React.ChangeEvent<HTMLSelectElement>) => {
             settFormidlingsgruppe(e.target.value);
+            window.location.reload();
+        };
+
+        const handleChangeRegistreringType = (e: React.ChangeEvent<HTMLSelectElement>) => {
+            settRegistreringType(e.target.value);
             window.location.reload();
         };
 
@@ -133,6 +144,15 @@ class DemoDashboard extends React.Component<{}> {
             'ISERV': 'ISERV'
         };
 
+        const registreringTyper = {
+            'REAKTIVERING': 'REAKTIVERING',
+            'SPERRET': 'SPERRET',
+            'ALLEREDE_REGISTRERT': 'ALLEREDE_REGISTRERT',
+            'SYKMELDT_REGISTRERING': 'SYKMELDT_REGISTRERING',
+            'ORDINAER_REGISTRERING': 'ORDINAER_REGISTRERING',
+            'INGEN_VERDI': 'INGEN_VERDI'
+        }
+
         const fremtidigeSituasjoner = {
             SAMME_ARBEIDSGIVER: 'Samme arbeidsgiver',
             SAMME_ARBEIDSGIVER_NY_STILLING: 'Samme arbeidsgiver, ny stilling',
@@ -160,6 +180,23 @@ class DemoDashboard extends React.Component<{}> {
                     {tekster['demo-tittel']}
                 </Innholdstittel>
                 <div className="two-select">
+                    <SelectKomponent
+                        label={'Velg registreringstype'}
+                        onChange={handleChangeRegistreringType}
+                        id="velg-registreringtype"
+                        defaultValue={hentRegistreringType()}
+                    >
+                        {
+                            Object.keys(registreringTyper).map((gruppe: string) =>
+                                <option
+                                    key={gruppe}
+                                    value={gruppe}
+                                >
+                                    {registreringTyper[gruppe]}
+                                </option>
+                            )
+                        }
+                    </SelectKomponent>
                     <SelectKomponent
                         label={tekster['demo-velgservicegruppe']}
                         onChange={handleChangeServicegruppe}
