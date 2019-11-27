@@ -5,7 +5,6 @@ export const alleSkjemaSoknadLenke = 'https://www.nav.no/soknader';
 export const dialogLenke = erMikrofrontend() ? `${contextpathDittNav}/aktivitetsplan/dialog` : '/aktivitetsplan/dialog';
 export const stillingLenke = erMikrofrontend() ? `${contextpathDittNav}/arbeidsplassen/stillinger` : '/arbeidsplassen/stillinger';
 export const cvLenke = erMikrofrontend() ? `${contextpathDittNav}/arbeidsplassen/cv` : '/arbeidsplassen/cv';
-export const miaLenke = erMikrofrontend() ? `${contextpathDittNav}/mia` : '/mia';
 export const veiviserarbeidssokerLenke = erMikrofrontend() ? `${contextpathDittNav}/veiviserarbeidssoker` : '/veiviserarbeidssoker';
 export const jobbsokerkompetanseLenke = erMikrofrontend() ? `${contextpathDittNav}/jobbsokerkompetanse/resultatside` : '/jobbsokerkompetanse/resultatside';
 export const tiltakinfoLenke = erMikrofrontend() ? `${contextpathDittNav}/tiltakinfo` : '/tiltakinfo';

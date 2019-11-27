@@ -98,10 +98,6 @@ export const gaTilDittSykefravaer = (servicegruppe: String | null) => {
     logEvent('gatildittsykefravaer', {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
 };
 
-export const gaTilMIA = (servicegruppe: String | null) => {
-    logEvent('gatilmia', {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
-};
-
 export const gaTilCV = (servicegruppe: String | null) => {
     logEvent('gatilcv', {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
 };
