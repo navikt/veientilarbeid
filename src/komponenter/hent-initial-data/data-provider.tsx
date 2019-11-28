@@ -5,11 +5,11 @@ import { AppState } from '../../reducer';
 import Innholdslaster from '../innholdslaster/innholdslaster';
 import Feilmelding from '../feilmeldinger/feilmelding';
 import {
-    State as SykmeldtInfoState,
-    Data as SykmeldtInfoData,
-    initialState as sykmeldtDataInitialstate,
-    SykmeldtInfoContext,
-} from '../../ducks/sykmeldt-info';
+    State as BrukerInfoState,
+    Data as BrukerInfoData,
+    initialState as brukerInfoDataInitialstate,
+    BrukerInfoContext,
+} from '../../ducks/bruker-info';
 import { hentUlesteDialoger, State as UlesteDialogerState } from '../../ducks/dialog';
 import {
     BrukerregistreringContext,
@@ -25,7 +25,7 @@ import {
     MotestotteContext
 } from '../../ducks/motestotte';
 import { fetchData } from '../../ducks/api-utils';
-import { MOTESTOTTE_URL, STARTREGISTRERING_URL } from '../../ducks/api';
+import { MOTESTOTTE_URL, BRUKERINFO_URL } from '../../ducks/api';
 
 const skalSjekkeEgenvurderingBesvarelse = (foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null): boolean => {
     return foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.STANDARD_INNSATS ||
@@ -56,13 +56,13 @@ const DataProvider = ({
                       }: Props) => {
 
     const [motestotteState, setMotestotteState] = React.useState<MotestotteState>(initialStateMotestotte);
-    const [sykmeldtInfoState, setSykmeldtInfoState] = React.useState<SykmeldtInfoState>(sykmeldtDataInitialstate);
+    const [brukerInfoState, setBrukerInfoState] = React.useState<BrukerInfoState>(brukerInfoDataInitialstate);
 
     const data = React.useContext(BrukerregistreringContext).data;
     const foreslaattInnsatsgruppe = selectForeslattInnsatsgruppe(data);
 
     React.useEffect(() => {
-        fetchData<SykmeldtInfoState, SykmeldtInfoData>(sykmeldtInfoState, setSykmeldtInfoState, STARTREGISTRERING_URL);
+        fetchData<BrukerInfoState, BrukerInfoData>(brukerInfoState, setBrukerInfoState, BRUKERINFO_URL);
         hentJobbsokerbesvarelse();
         hentUlesteDialoger();
         if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
@@ -73,7 +73,7 @@ const DataProvider = ({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const avhengigheter: any[] = [sykmeldtInfoState];
+    const avhengigheter: any[] = [brukerInfoState];
     const ventPa: any[] = [ulesteDialoger, jobbsokerbesvarelse];
     if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
         ventPa.push(egenvurderingbesvarelse);
@@ -89,11 +89,11 @@ const DataProvider = ({
             avhengigheter={avhengigheter}
             ventPa={ventPa}
         >
-            <SykmeldtInfoContext.Provider value={sykmeldtInfoState}>
+            <BrukerInfoContext.Provider value={ brukerInfoState }>
                 <MotestotteContext.Provider value={motestotteState}>
                     {children}
                 </MotestotteContext.Provider>
-            </SykmeldtInfoContext.Provider>
+            </BrukerInfoContext.Provider>
         </Innholdslaster>
     );
 };

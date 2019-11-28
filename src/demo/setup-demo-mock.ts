@@ -1,11 +1,11 @@
 import {
     JOBBSOKERBESVARELSE_URL,
-    STARTREGISTRERING_URL,
     BRUKERREGISTRERING_URL,
     VEILARBOPPFOLGING_URL,
     ULESTEDIALOGER_URL,
     EGENVURDERINGBESVARELSE_URL,
-    MOTESTOTTE_URL
+    MOTESTOTTE_URL,
+    BRUKERINFO_URL
 } from '../ducks/api';
 import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 import {
@@ -16,7 +16,9 @@ import {
     hentUlesteDialoger,
     hentEgenvurdering,
     hentAutentiseringsInfo,
-    hentMotestotte
+    hentMotestotte,
+    hentGeografiskTilknytning,
+    hentRegistreringType
 } from './demo-state';
 import { hentBrukerRegistreringData } from './demo-state-brukerregistrering';
 import { AUTH_API } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
@@ -47,10 +49,14 @@ fetchMock.get(VEILARBOPPFOLGING_URL, {
     reservasjonKRR: hentReservasjonKRR(),
     servicegruppe: hentServicegruppe(),
     formidlingsgruppe: hentFormidlingsgruppe(),
+    registreringType: 'INGEN_VERDI',
+    geografiskTilknytning: '010302'
 });
 
-fetchMock.get(STARTREGISTRERING_URL, {
-    erSykmeldtMedArbeidsgiver: hentSykmeldtMedArbeidsgiver()
+fetchMock.get(BRUKERINFO_URL, {
+    erSykmeldtMedArbeidsgiver: hentSykmeldtMedArbeidsgiver(),
+    geografiskTilknytning: hentGeografiskTilknytning(),
+    registreringType: hentRegistreringType()
 });
 
 fetchMock.get(BRUKERREGISTRERING_URL, hentBrukerRegistreringData());

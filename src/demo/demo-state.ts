@@ -12,6 +12,8 @@ export enum DemoData {
     EGENVURDERING = 'egenvurdering',
     AUTENTISERINGS_INFO = 'autentiseringsInfo',
     MOTESTOTTE = 'motestotte',
+    GEOGRAFISK_TILKNYTNING = 'geografiskTilknytning',
+    REGISTRERING_TYPE = 'registreringType'
 }
 
 export const hentFraLocalStorage = (key: string): string | null => {
@@ -50,6 +52,22 @@ export const hentSykmeldtMedArbeidsgiver = (): boolean => {
 
 export const settSykmeldtMedArbeidsgiver = (value: string) => {
     settILocalStorage(DemoData.SYKMELDT_MED_ARBEIDSGIVER, value);
+};
+
+export const hentRegistreringType = (): string => {
+    return hentFraLocalStorage(DemoData.REGISTRERING_TYPE) || 'ORDINAER_REGISTRERING';
+};
+
+export const settRegistreringType = (value: string) => {
+    settILocalStorage(DemoData.REGISTRERING_TYPE, value);
+};
+
+export const hentGeografiskTilknytning = (): string => {
+    return hentFraLocalStorage(DemoData.GEOGRAFISK_TILKNYTNING) || '0807';
+};
+
+export const settGeografiskTilknytning = (value: string) => {
+    settILocalStorage(DemoData.GEOGRAFISK_TILKNYTNING, value);
 };
 
 export const hentUlesteDialoger = (): boolean => {
