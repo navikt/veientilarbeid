@@ -55,7 +55,7 @@ export const settSykmeldtMedArbeidsgiver = (value: string) => {
 };
 
 export const hentRegistreringType = (): string => {
-    return hentFraLocalStorage(DemoData.REGISTRERING_TYPE) || 'INGEN_VERDI';
+    return hentFraLocalStorage(DemoData.REGISTRERING_TYPE) || 'ORDINAER_REGISTRERING';
 };
 
 export const settRegistreringType = (value: string) => {

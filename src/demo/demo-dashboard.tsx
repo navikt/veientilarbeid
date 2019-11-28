@@ -149,8 +149,7 @@ class DemoDashboard extends React.Component<{}> {
             'SPERRET': 'SPERRET',
             'ALLEREDE_REGISTRERT': 'ALLEREDE_REGISTRERT',
             'SYKMELDT_REGISTRERING': 'SYKMELDT_REGISTRERING',
-            'ORDINAER_REGISTRERING': 'ORDINAER_REGISTRERING',
-            'INGEN_VERDI': 'INGEN_VERDI'
+            'ORDINAER_REGISTRERING': 'ORDINAER_REGISTRERING'
         }
 
         const fremtidigeSituasjoner = {
