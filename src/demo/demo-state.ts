@@ -13,7 +13,8 @@ export enum DemoData {
     AUTENTISERINGS_INFO = 'autentiseringsInfo',
     MOTESTOTTE = 'motestotte',
     GEOGRAFISK_TILKNYTNING = 'geografiskTilknytning',
-    REGISTRERING_TYPE = 'registreringType'
+    REGISTRERING_TYPE = 'registreringType',
+    RETTIGHETSGRUPPE = 'rettighetsgruppe'
 }
 
 export const hentFraLocalStorage = (key: string): string | null => {
@@ -44,6 +45,14 @@ export const hentFormidlingsgruppe = (): string => {
 
 export const settFormidlingsgruppe = (value: string) => {
     settILocalStorage(DemoData.FORMIDLINGSGRUPPE, value);
+};
+
+export const hentRettighetsgruppe = (): string => {
+    return hentFraLocalStorage(DemoData.RETTIGHETSGRUPPE) || 'INGEN_VERDI';
+};
+
+export const settRettighetsgruppe = (value: string) => {
+    settILocalStorage(DemoData.RETTIGHETSGRUPPE, value);
 };
 
 export const hentSykmeldtMedArbeidsgiver = (): boolean => {

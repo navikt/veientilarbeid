@@ -40,8 +40,8 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
     const skalViseRegistrert = formidlingsgruppe === Formidlingsgruppe.ARBS;
     
     const brukerinfoData = React.useContext(BrukerInfoContext).data;
-    const { erSykmeldtMedArbeidsgiver, registreringType } = brukerinfoData
-    const skalViseIARBSPlaster = formidlingsgruppe === Formidlingsgruppe.IARBS && registreringType === RegistreringType.ALLEREDE_REGISTRERT;
+    const { erSykmeldtMedArbeidsgiver, registreringType, rettighetsgruppe } = brukerinfoData
+    const skalViseIARBSPlaster = formidlingsgruppe === Formidlingsgruppe.IARBS && registreringType === RegistreringType.ALLEREDE_REGISTRERT && rettighetsgruppe !== 'AAP';
 
     React.useEffect(() => {
         seVeientilarbeid(

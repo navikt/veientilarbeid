@@ -18,7 +18,8 @@ import {
     hentAutentiseringsInfo,
     hentMotestotte,
     hentGeografiskTilknytning,
-    hentRegistreringType
+    hentRegistreringType,
+    hentRettighetsgruppe
 } from './demo-state';
 import { hentBrukerRegistreringData } from './demo-state-brukerregistrering';
 import { AUTH_API } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
@@ -56,7 +57,8 @@ fetchMock.get(VEILARBOPPFOLGING_URL, {
 fetchMock.get(BRUKERINFO_URL, {
     erSykmeldtMedArbeidsgiver: hentSykmeldtMedArbeidsgiver(),
     geografiskTilknytning: hentGeografiskTilknytning(),
-    registreringType: hentRegistreringType()
+    registreringType: hentRegistreringType(),
+    rettighetsgruppe: hentRettighetsgruppe()
 });
 
 fetchMock.get(BRUKERREGISTRERING_URL, hentBrukerRegistreringData());

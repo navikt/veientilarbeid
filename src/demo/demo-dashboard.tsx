@@ -28,7 +28,9 @@ import {
     hentRegistreringType,
     settRegistreringType,
     hentGeografiskTilknytning,
-    settGeografiskTilknytning
+    settGeografiskTilknytning,
+    hentRettighetsgruppe,
+    settRettighetsgruppe
 } from './demo-state';
 
 import './demo-dashboard.less';
@@ -83,6 +85,11 @@ class DemoDashboard extends React.Component<{}> {
 
         const handleChangeGeografiskTilknytning = (e: React.ChangeEvent<HTMLSelectElement>) => {
             settGeografiskTilknytning(e.target.value);
+            window.location.reload();
+        };
+
+        const handleChangeRettighetsgruppe = (e: React.ChangeEvent<HTMLSelectElement>) => {
+            settRettighetsgruppe(e.target.value);
             window.location.reload();
         };
 
@@ -164,6 +171,13 @@ class DemoDashboard extends React.Component<{}> {
             '010302': 'Grünerløkka'
         }
 
+        const rettighetsgrupper = {
+            'AAP': 'AAP',
+            'DAGP': 'DAGP',
+            'INGEN_VERDI': 'INGEN_VERDI',
+            'IYT': 'IYT'
+        }
+
         const fremtidigeSituasjoner = {
             SAMME_ARBEIDSGIVER: 'Samme arbeidsgiver',
             SAMME_ARBEIDSGIVER_NY_STILLING: 'Samme arbeidsgiver, ny stilling',
@@ -204,6 +218,23 @@ class DemoDashboard extends React.Component<{}> {
                                     value={gruppe}
                                 >
                                     {geografiskeTilknytninger[gruppe]}
+                                </option>
+                            )
+                        }
+                    </SelectKomponent>
+                    <SelectKomponent
+                        label={'Velg rettighetsgrupp'}
+                        onChange={ handleChangeRettighetsgruppe }
+                        id="velg-rettighetsgruppe"
+                        defaultValue={hentRettighetsgruppe()}
+                    >
+                        {
+                            Object.keys(rettighetsgrupper).map((gruppe: string) =>
+                                <option
+                                    key={gruppe}
+                                    value={gruppe}
+                                >
+                                    {rettighetsgrupper[gruppe]}
                                 </option>
                             )
                         }
