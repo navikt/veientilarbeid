@@ -32,7 +32,8 @@ export const seVeientilarbeid = (
     erSykmeldtMedArbeidsgiver: boolean,
     servicegruppe: ServicegruppeOrNull,
     microfrontend: boolean,
-    formidlingsgruppe: FormidlingsgruppeOrNull) =>
+    formidlingsgruppe: FormidlingsgruppeOrNull,
+    rettighetsgruppe: String) =>
 {
     logEvent('seveientilarbeid',
         {
@@ -45,6 +46,7 @@ export const seVeientilarbeid = (
             servicegruppeTag: servicegruppe,
             microfrontendTag: microfrontend,
             formidlingsgruppe,
+            rettighetsgruppe
         });
 };
 
@@ -52,9 +54,9 @@ export const seVeientilarbeidNiva3 = () => {
     logEvent('seveientilarbeidniva3', {}, {});
 };
 
-export const seIARBSPlaster = (skalViseIARBSPlaster: boolean, formidlingsgruppe: String | null, servicegruppe: String | null) => {
+export const seIARBSPlaster = (skalViseIARBSPlaster: boolean, formidlingsgruppe: String | null, servicegruppe: String | null, rettighetsgruppe: String) => {
     if (skalViseIARBSPlaster) {
-        logEvent('viseriarbsplaster', {}, { formidlingsgruppeTag: formidlingsgruppe, servicegruppeTag: servicegruppe });
+        logEvent('viseriarbsplaster', {}, { formidlingsgruppeTag: formidlingsgruppe, servicegruppeTag: servicegruppe, rettighetsgruppe });
     }
 }
 
