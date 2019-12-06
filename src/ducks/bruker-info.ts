@@ -19,7 +19,7 @@ export interface Data {
     erSykmeldtMedArbeidsgiver: boolean;
     registreringType?: RegistreringTypeOrIngenVerdi;
     geografiskTilknytning?: string;
-    rettighetsgruppe?: string;
+    rettighetsgruppe: string;
 }
 
 export const initialState: State = {

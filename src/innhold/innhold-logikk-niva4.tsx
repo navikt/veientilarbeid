@@ -48,10 +48,11 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
             erSykmeldtMedArbeidsgiver,
             servicegruppe,
             erMikrofrontend(),
-            formidlingsgruppe
+            formidlingsgruppe,
+            rettighetsgruppe
         );
         hotjarTrigger(erMikrofrontend());
-        seIARBSPlaster(skalViseIARBSPlaster, formidlingsgruppe, servicegruppe)
+        seIARBSPlaster(skalViseIARBSPlaster, formidlingsgruppe, servicegruppe, rettighetsgruppe)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
