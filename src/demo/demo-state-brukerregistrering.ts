@@ -6,7 +6,18 @@ const settRegistrering = (besvarelse?: Besvarelse, profilering?: Profilering, op
     const data = {
         registrering: {
             opprettetDato: opprettetDato || hentOpprettetDato(),
-            besvarelse: besvarelse || {fremtidigSituasjon: hentFremtidigSituasjon()},
+            manueltRegistrertAv: null,
+            besvarelse: {
+                dinSituasjon: null,
+                fremtidigSituasjon: hentFremtidigSituasjon(),
+                sisteStilling: null,
+                tilbakeIArbeid: null,
+	            andreForhold: null,
+	            helseHinder: null,
+	            utdanning: null,
+	            utdanningBestatt: null,
+	            utdanningGodkjent: null
+            },
             profilering: profilering || {innsatsgruppe: hentForeslattInnsatsgruppe()},
         }
     };
@@ -15,8 +26,17 @@ const settRegistrering = (besvarelse?: Besvarelse, profilering?: Profilering, op
 };
 
 export const settFremtidigSituasjon = (fremtidigSituasjon: FremtidigSituasjonSvar) => {
-    settRegistrering(
-        {fremtidigSituasjon: fremtidigSituasjon},
+    settRegistrering({
+        dinSituasjon: null,
+        fremtidigSituasjon: fremtidigSituasjon,
+        sisteStilling: null,
+        tilbakeIArbeid: null,
+	    andreForhold: null,
+	    helseHinder: null,
+	    utdanning: null,
+	    utdanningBestatt: null,
+	    utdanningGodkjent: null
+    },
         undefined,
     );
 };
