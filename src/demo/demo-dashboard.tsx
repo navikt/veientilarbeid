@@ -223,7 +223,7 @@ class DemoDashboard extends React.Component<{}> {
                         }
                     </SelectKomponent>
                     <SelectKomponent
-                        label={'Velg rettighetsgrupp'}
+                        label={'Velg rettighetsgruppe'}
                         onChange={ handleChangeRettighetsgruppe }
                         id="velg-rettighetsgruppe"
                         defaultValue={hentRettighetsgruppe()}
