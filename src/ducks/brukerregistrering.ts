@@ -10,7 +10,15 @@ export enum FremtidigSituasjonSvar {
 }
 
 export interface Besvarelse {
-    fremtidigSituasjon: FremtidigSituasjonSvar;
+    dinSituasjon: string | null;
+	fremtidigSituasjon: FremtidigSituasjonSvar;
+	sisteStilling: string | null;
+	tilbakeIArbeid: string | null;
+	andreForhold: string | null;
+	helseHinder: string | null;
+	utdanning: string | null;
+	utdanningBestatt: string | null;
+	utdanningGodkjent: string | null;
 }
 
 export enum ForeslattInnsatsgruppe {
@@ -25,6 +33,7 @@ export interface Profilering {
 
 interface Brukerregistrering {
     opprettetDato: string;
+    manueltRegistrertAv: object | null;
     besvarelse: Besvarelse;
     profilering?: Profilering;
 }
@@ -42,8 +51,17 @@ export const initialState: State = {
     data: {
         registrering: {
             opprettetDato: Date.now().toString(),
-            besvarelse: {
-                fremtidigSituasjon: FremtidigSituasjonSvar.USIKKER
+            manueltRegistrertAv: null,
+            besvarelse: {              
+                dinSituasjon: null,
+                fremtidigSituasjon: FremtidigSituasjonSvar.USIKKER,
+	            sisteStilling: null,
+                tilbakeIArbeid: null,
+	            andreForhold: null,
+	            helseHinder: null,
+	            utdanning: null,
+	            utdanningBestatt: null,
+	            utdanningGodkjent: null
             }
         }
     }
@@ -53,6 +71,10 @@ export const BrukerregistreringContext = React.createContext<State>(initialState
 
 export function selectFremtidigSituasjonSvar(data: Data): FremtidigSituasjonSvar | null {
     return data ? data.registrering.besvarelse.fremtidigSituasjon : null;
+}
+
+export function selectDinSituasjonSvar(data: Data): string | null {
+    return data ? data.registrering.besvarelse.dinSituasjon : 'INGEN_VERDI';
 }
 
 export function selectForeslattInnsatsgruppe(data: Data): ForeslattInnsatsgruppe | undefined | null {

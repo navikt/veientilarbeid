@@ -33,7 +33,8 @@ export const seVeientilarbeid = (
     servicegruppe: ServicegruppeOrNull,
     microfrontend: boolean,
     formidlingsgruppe: FormidlingsgruppeOrNull,
-    rettighetsgruppe: String) =>
+    rettighetsgruppe: String,
+    dinSituasjon: String) =>
 {
     logEvent('seveientilarbeid',
         {
@@ -46,7 +47,8 @@ export const seVeientilarbeid = (
             servicegruppeTag: servicegruppe,
             microfrontendTag: microfrontend,
             formidlingsgruppe,
-            rettighetsgruppe
+            rettighetsgruppe,
+            dinSituasjon
         });
 };
 
