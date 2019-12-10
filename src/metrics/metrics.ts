@@ -1,6 +1,7 @@
 import { ForeslattInnsatsgruppe } from '../ducks/brukerregistrering';
 import { erDemo } from '../utils/app-state-utils';
 import { FormidlingsgruppeOrNull, ServicegruppeOrNull } from '../ducks/oppfolging';
+import { RegistreringTypeOrIngenVerdi } from '../ducks/bruker-info';
 import { CreatedMetrics } from './created-metrics';
 
 const createdMetrics = new CreatedMetrics();
@@ -34,7 +35,10 @@ export const seVeientilarbeid = (
     microfrontend: boolean,
     formidlingsgruppe: FormidlingsgruppeOrNull,
     rettighetsgruppe: String,
-    dinSituasjon: String) =>
+    dinSituasjon: String,
+    underOppfolging: String,
+    registreringType: RegistreringTypeOrIngenVerdi,
+    fremtidigSituasjon: String) =>
 {
     logEvent('seveientilarbeid',
         {
@@ -48,7 +52,10 @@ export const seVeientilarbeid = (
             microfrontendTag: microfrontend,
             formidlingsgruppe,
             rettighetsgruppe,
-            dinSituasjon
+            dinSituasjon,
+            underOppfolging,
+            registreringType,
+            fremtidigSituasjon
         });
 };
 
