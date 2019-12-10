@@ -9,7 +9,8 @@ import {
     FremtidigSituasjonSvar,
     selectForeslattInnsatsgruppe,
     selectFremtidigSituasjonSvar,
-    selectOpprettetRegistreringDato
+    selectOpprettetRegistreringDato,
+    selectDinSituasjonSvar
 } from '../ducks/brukerregistrering';
 import { seVeientilarbeid, seIARBSPlaster } from '../metrics/metrics';
 import { hotjarTrigger } from '../hotjar';
@@ -34,6 +35,7 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
     const opprettetRegistreringDato = opprettetRegistreringDatoString ? new Date(opprettetRegistreringDatoString) : null;
     const fremtidigSvar = selectFremtidigSituasjonSvar(brukerregistreringData);
     const foreslattInnsatsgruppe = selectForeslattInnsatsgruppe(brukerregistreringData);
+    const dinSituasjon = selectDinSituasjonSvar(brukerregistreringData) || 'INGEN_VERDI'
 
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const { formidlingsgruppe, servicegruppe } = oppfolgingData
@@ -49,7 +51,8 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
             servicegruppe,
             erMikrofrontend(),
             formidlingsgruppe,
-            rettighetsgruppe
+            rettighetsgruppe,
+            dinSituasjon
         );
         hotjarTrigger(erMikrofrontend());
         seIARBSPlaster(skalViseIARBSPlaster, formidlingsgruppe, servicegruppe, rettighetsgruppe)
