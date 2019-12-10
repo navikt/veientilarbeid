@@ -4,6 +4,7 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { BrukerregistreringContext } from '../../ducks/brukerregistrering';
 import Opplysninger from '../innsyn/registreringsopplysninger'
+import './registrert.less'
 
 const Registrert = () => {
     const brukerregistreringData = useContext(BrukerregistreringContext).data;
@@ -12,10 +13,10 @@ const Registrert = () => {
 
     return (
         <div className="blokk-s">
-            <AlertStripeInfo>
+            <AlertStripeInfo className="registrering-info">
                 <Element>Du er registrert som arbeidssøker.</Element>
             </AlertStripeInfo>
-            <Ekspanderbartpanel tittel="Se svarene fra registreringen" border>
+            <Ekspanderbartpanel tittel="Se svarene fra registreringen" border tittelProps="normaltekst" className="registrering-svar">
                 <Opplysninger
                     opprettetDato={ opprettetDato }
                     manueltRegistrertAv={ manueltRegistrertAv }
