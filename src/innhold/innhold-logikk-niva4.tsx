@@ -38,12 +38,15 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
     const dinSituasjon = selectDinSituasjonSvar(brukerregistreringData) || 'INGEN_VERDI'
 
     const oppfolgingData = React.useContext(OppfolgingContext).data;
-    const { formidlingsgruppe, servicegruppe } = oppfolgingData
+    const { formidlingsgruppe, servicegruppe, underOppfolging } = oppfolgingData
+    const underOppfolgingJaNei = underOppfolging ? 'ja' : 'nei'
     const skalViseRegistrert = formidlingsgruppe === Formidlingsgruppe.ARBS;
     
     const brukerinfoData = React.useContext(BrukerInfoContext).data;
     const { erSykmeldtMedArbeidsgiver, registreringType, rettighetsgruppe } = brukerinfoData
     const skalViseIARBSPlaster = formidlingsgruppe === Formidlingsgruppe.IARBS && registreringType === RegistreringType.ALLEREDE_REGISTRERT && rettighetsgruppe !== 'AAP';
+    const registreringTypeOrIngenVerdi = registreringType ? registreringType : 'INGEN_VERDI'
+    const fremtidigSvarOrIngenVerdi = fremtidigSvar ? fremtidigSvar : 'INGEN_VERDI'
 
     React.useEffect(() => {
         seVeientilarbeid(
@@ -52,7 +55,10 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
             erMikrofrontend(),
             formidlingsgruppe,
             rettighetsgruppe,
-            dinSituasjon
+            dinSituasjon,
+            underOppfolgingJaNei,
+            registreringTypeOrIngenVerdi,
+            fremtidigSvarOrIngenVerdi
         );
         hotjarTrigger(erMikrofrontend());
         seIARBSPlaster(skalViseIARBSPlaster, formidlingsgruppe, servicegruppe, rettighetsgruppe)
