@@ -1,44 +1,28 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Element } from 'nav-frontend-typografi';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import Modal from 'nav-frontend-modal';
+import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { BrukerregistreringContext } from '../../ducks/brukerregistrering';
 import Opplysninger from '../innsyn/registreringsopplysninger'
 
 const Registrert = () => {
-    const [modalIsOpen, setModalState] = useState(false);
     const brukerregistreringData = useContext(BrukerregistreringContext).data;
-    const { registrering } = brukerregistreringData
-    const { opprettetDato, manueltRegistrertAv, besvarelse } = registrering
-
-    const openModal = (event: any) => {
-        event.preventDefault();
-        setModalState(true);
-    };
-    const closeModal = () => {
-        setModalState(false);
-    };
+    const { registrering } = brukerregistreringData;
+    const { opprettetDato, manueltRegistrertAv, besvarelse } = registrering;
 
     return (
-        <>
-        <AlertStripeInfo className="blokk-s">
-            <Element>Du er registrert som arbeidssøker. <a href="" onClick={openModal}>Vis informasjon fra registreringen</a></Element>
-        </AlertStripeInfo>
-        <Modal
-            isOpen={ modalIsOpen }
-            onRequestClose={() => closeModal()}
-            closeButton={true}
-            contentLabel="Informasjon fra registreringen"
-        >
-            <div style={{padding:'2rem 2.5rem'}}>
+        <div className="blokk-s">
+            <AlertStripeInfo>
+                <Element>Du er registrert som arbeidssøker.</Element>
+            </AlertStripeInfo>
+            <Ekspanderbartpanel tittel="Se svarene fra registreringen" border>
                 <Opplysninger
                     opprettetDato={ opprettetDato }
                     manueltRegistrertAv={ manueltRegistrertAv }
                     besvarelse={ besvarelse }
                 />
-            </div>
-        </Modal>
-        </>
+            </Ekspanderbartpanel>
+        </div>
     );
 };
 
