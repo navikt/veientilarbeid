@@ -17,7 +17,7 @@ import './innhold.less';
 import KrrMelding from '../komponenter/krr-melding/krr-melding';
 import IARBSMelding from '../komponenter/iarbs-melding/iarbs-melding';
 import { erMikrofrontend } from '../utils/app-state-utils';
-import Registrert from '../komponenter/registrert';
+import Registrert from '../komponenter/registrert/registrert';
 
 interface OwnProps {
     erSykmeldtMedArbeidsgiver: boolean;
