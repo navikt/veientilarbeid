@@ -1,6 +1,8 @@
 import React from 'react';
+import { Normaltekst } from 'nav-frontend-typografi';
 import { klikkPaDineOpplysninger } from '../../metrics/metrics'
 import { dialogLenke } from '../../innhold/lenker';
+import './registreringsopplysninger.less'
 
 function getMndNavn (mnd:number) {
   const navn = [
@@ -82,38 +84,54 @@ const opplysninger = (props: any) => {
   return (
     <>
       <div className="blokk-s">
-        Opplysningene {manueltRegistrertAv ? 'NAV': 'du'} registrerte {formaterDato(opprettetDato)}
-      </div>
-      <div className="blokk-s">  
-        Hva er din høyeste fullførte utdanning?<br />
-        <strong>{ besvarelse.utdanning ? getUtdannelse(besvarelse.utdanning) : 'Ingen svar' }</strong>
-      </div>
-      <div className="blokk-s">
-        Velg den situasjonen som passer deg best:<br />
-        <strong>{ besvarelse.dinSituasjon ? getSituasjon(besvarelse.dinSituasjon) : 'Ingen svar' }</strong>
+          <Normaltekst>
+            {manueltRegistrertAv ? 'NAV': 'Du'} registrerte deg som arbeidssøker {formaterDato(opprettetDato)}.<br/>
+            Du kan endre opplysningene du ga (se under) ved å kontakte NAV.<br/>
+            Veilederen din bruker opplysningene for å vurdere hvor mye veiledning du trenger.<br/>
+            <a href={dialogLenke} onClick={ handleDialogClick }>Gi beskjed til veilederen din</a> hvis situasjonen din endrer seg.
+          </Normaltekst>         
       </div>
       <div className="blokk-s">
-        Har du helseproblemer som hindrer deg i å søke eller være i jobb?<br />
-        <strong>{ besvarelse.helseHinder ? formaterSvar(besvarelse.helseHinder) : 'Ingen svar' }</strong>
+        <Normaltekst>
+          Hva er din høyeste fullførte utdanning?<br />
+          <strong>{ besvarelse.utdanning ? getUtdannelse(besvarelse.utdanning) : 'Ingen svar' }</strong>
+        </Normaltekst>
       </div>
       <div className="blokk-s">
-        Har du andre problemer med å søke eller være i jobb?<br/>
-        <strong>{ besvarelse.andreForhold ? formaterSvar(besvarelse.andreForhold) : 'Ingen svar' }</strong>
+        <Normaltekst>
+          Velg den situasjonen som passer deg best:<br />
+          <strong>{ besvarelse.dinSituasjon ? getSituasjon(besvarelse.dinSituasjon) : 'Ingen svar' }</strong>
+        </Normaltekst>
       </div>
       <div className="blokk-s">
-        Din siste stilling:<br />
-        <strong>{ besvarelse.sisteStilling ? besvarelse.sisteStilling : 'Ingen svar' }</strong>
+        <Normaltekst>
+          Har du helseproblemer som hindrer deg i å søke eller være i jobb?<br />
+          <strong>{ besvarelse.helseHinder ? formaterSvar(besvarelse.helseHinder) : 'Ingen svar' }</strong>
+        </Normaltekst>
       </div>
       <div className="blokk-s">
-        Hva tenker du om din fremtidige situasjon?<br />
-        <strong>{ besvarelse.fremtidigSituasjon ? getFremtidigSituasjon(besvarelse.fremtidigSituasjon) : 'Ingen svar' }</strong>
+        <Normaltekst>
+          Har du andre problemer med å søke eller være i jobb?<br/>
+          <strong>{ besvarelse.andreForhold ? formaterSvar(besvarelse.andreForhold) : 'Ingen svar' }</strong>
+        </Normaltekst>
       </div>
       <div className="blokk-s">
-      Tror du at du kommer tilbake i jobb før du har vært sykmeldt i 52 uker?<br />
-        <strong>{ besvarelse.tilbakeIArbeid ? getTilbakeIArbeid(besvarelse.tilbakeIArbeid) : 'Ingen svar' }</strong>
+        <Normaltekst>
+          Din siste stilling:<br />
+          <strong>{ besvarelse.sisteStilling ? besvarelse.sisteStilling : 'Ingen svar' }</strong>
+        </Normaltekst>
       </div>
       <div className="blokk-s">
-        <a href={dialogLenke} onClick={ handleDialogClick }>Gi beskjed til veilederen din</a> hvis situasjonen din endrer seg
+        <Normaltekst>
+          Hva tenker du om din fremtidige situasjon?<br />
+          <strong>{ besvarelse.fremtidigSituasjon ? getFremtidigSituasjon(besvarelse.fremtidigSituasjon) : 'Ingen svar' }</strong>
+        </Normaltekst>
+      </div>
+      <div className="blokk-s">
+        <Normaltekst>
+          Tror du at du kommer tilbake i jobb før du har vært sykmeldt i 52 uker?<br />
+          <strong>{ besvarelse.tilbakeIArbeid ? getTilbakeIArbeid(besvarelse.tilbakeIArbeid) : 'Ingen svar' }</strong>
+        </Normaltekst>
       </div>
     </>
   )

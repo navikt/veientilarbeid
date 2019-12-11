@@ -39,7 +39,7 @@ const Registrert = () => {
     return (
         <div className="blokk-s">
             <AlertStripeInfo className="registrering-info">
-                <Element>Du er registrert som arbeidssøker.</Element>
+                <Element>Du er registrert som arbeidssøker</Element>
             </AlertStripeInfo>
             <Ekspanderbartpanel tittel="Se svarene fra registreringen" border tittelProps="normaltekst" className="registrering-svar" onClick={ handleClickOpen }>
                 <Opplysninger
