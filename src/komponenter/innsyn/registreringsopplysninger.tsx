@@ -1,4 +1,5 @@
 import React from 'react';
+import { klikkPaDineOpplysninger } from '../../metrics/metrics'
 import { dialogLenke } from '../../innhold/lenker';
 
 function getMndNavn (mnd:number) {
@@ -73,7 +74,11 @@ function formaterSvar (svar: string) {
 }
 
 const opplysninger = (props: any) => {
-  const { opprettetDato, manueltRegistrertAv, besvarelse } = props;
+  const { opprettetDato, manueltRegistrertAv, besvarelse, metrikkData } = props;
+  const handleDialogClick = () => {
+    klikkPaDineOpplysninger(metrikkData)
+  }
+
   return (
     <>
       <div className="blokk-s">
@@ -108,7 +113,7 @@ const opplysninger = (props: any) => {
         <strong>{ besvarelse.tilbakeIArbeid ? getTilbakeIArbeid(besvarelse.tilbakeIArbeid) : 'Ingen svar' }</strong>
       </div>
       <div className="blokk-s">
-        <a href={dialogLenke}>Gi beskjed til veilederen din</a> hvis situasjonen din endrer seg
+        <a href={dialogLenke} onClick={ handleDialogClick }>Gi beskjed til veilederen din</a> hvis situasjonen din endrer seg
       </div>
     </>
   )

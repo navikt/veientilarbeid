@@ -140,3 +140,16 @@ export const klikkPaSoknadDagpenger = (servicegruppe: string | null) => {
 export const lesOmOkonomi = (stonad: string, servicegruppe: string | null) => {
     logEvent('lesomokonomi', {stonadField: stonad, innsatsgruppeField: servicegruppe}, {stonadTag: stonad, innsatsgruppeTag: servicegruppe});
 };
+
+type standardMetrikkData = {
+    servicegruppe: ServicegruppeOrNull;
+    formidlingsgruppe: FormidlingsgruppeOrNull;
+    rettighetsgruppe: String;
+    dinSituasjon: String;
+    underOppfolging: String;
+    registreringType: RegistreringTypeOrIngenVerdi;
+}
+
+export const klikkPaDineOpplysninger = (metrikker: standardMetrikkData) => {
+    logEvent('click.dineopplysninger', {}, metrikker);
+};
