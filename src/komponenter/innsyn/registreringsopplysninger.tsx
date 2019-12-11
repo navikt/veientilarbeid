@@ -40,6 +40,28 @@ function getSituasjon (valg: string) {
   return situasjoner[valg] || 'Ukjent svar'
 }
 
+function getFremtidigSituasjon (valg: string) {
+  const situasjoner = {
+    'SAMME_ARBEIDSGIVER': 'Jeg skal tilbake til jobben jeg har',
+    'SAMME_ARBEIDSGIVER_NY_STILLING': 'Jeg skal tilbake til arbeidsgiveren min, men i ny stilling',
+    'USIKKER': 'Jeg er usikker',
+    'NY_ARBEIDSGIVER': 'Jeg trenger ny jobb',
+    'INGEN_PASSER': 'Ingen av disse alternativene passer',
+    'INGEN_SVAR': 'Ingen svar'
+  }
+  return situasjoner[valg] || 'Ukjent svar'
+}
+
+function getTilbakeIArbeid (valg: string) {
+  const alternativer = {
+    'JA_FULL_STILLING': 'Ja, i full stilling',
+    'JA_REDUSERT_STILLING': 'Ja, i redusert stilling',
+    'NEI': 'Nei',
+    'USIKKER': 'Usikker'
+  }
+  return alternativer[valg] || 'Ukjent svar'
+}
+
 function formaterDato (datostreng: string) {
   const dato = new Date(datostreng)
   return `${dato.getDay()}. ${getMndNavn(dato.getMonth())} ${dato.getFullYear()}`
@@ -78,7 +100,15 @@ const opplysninger = (props: any) => {
         <strong>{ besvarelse.sisteStilling ? besvarelse.sisteStilling : 'Ingen svar' }</strong>
       </div>
       <div className="blokk-s">
-        <a href={dialogLenke}>Gi beskjed til veilederen din hvis situasjonen din endrer seg</a>
+        Hva tenker du om din fremtidige situasjon?<br />
+        <strong>{ besvarelse.fremtidigSituasjon ? getFremtidigSituasjon(besvarelse.fremtidigSituasjon) : 'Ingen svar' }</strong>
+      </div>
+      <div className="blokk-s">
+      Tror du at du kommer tilbake i jobb før du har vært sykmeldt i 52 uker?<br />
+        <strong>{ besvarelse.tilbakeIArbeid ? getTilbakeIArbeid(besvarelse.tilbakeIArbeid) : 'Ingen svar' }</strong>
+      </div>
+      <div className="blokk-s">
+        <a href={dialogLenke}>Gi beskjed til veilederen din</a> hvis situasjonen din endrer seg
       </div>
     </>
   )

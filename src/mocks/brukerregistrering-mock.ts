@@ -14,7 +14,7 @@ export default {
             sisteStilling: 'Barne- og ungdomsarbeider i skolefritidsordning',
             dinSituasjon: 'MISTET_JOBBEN',
             fremtidigSituasjon: 'NY_ARBEIDSGIVER',
-            tilbakeIArbeid: null
+            tilbakeIArbeid: 'USIKKER'
         },
         profilering: {
             innsatsgruppe: 'SITUASJONSBESTEMT_INNSATS',
