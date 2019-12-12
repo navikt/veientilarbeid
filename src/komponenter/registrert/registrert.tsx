@@ -23,6 +23,7 @@ const Registrert = () => {
     const { formidlingsgruppe, servicegruppe, underOppfolging } = oppfolgingData;
     const underOppfolgingJaNei = underOppfolging ? 'ja' : 'nei';
     const registreringTypeOrIngenVerdi = registreringType ? registreringType : 'INGEN_VERDI';
+    const showOpplysninger = opprettetDato && besvarelse
     const metrikkData = {
         servicegruppe,
         formidlingsgruppe,
@@ -38,17 +39,20 @@ const Registrert = () => {
 
     return (
         <div className="blokk-s">
-            <AlertStripeInfo className="registrering-info">
+            <AlertStripeInfo className={showOpplysninger ? 'registrering-info' : ''}>
                 <Element>Du er registrert som arbeidssøker</Element>
             </AlertStripeInfo>
-            <Ekspanderbartpanel tittel="Se svarene fra registreringen" border tittelProps="normaltekst" className="registrering-svar" onClick={ handleClickOpen }>
-                <Opplysninger
-                    opprettetDato={ opprettetDato }
-                    manueltRegistrertAv={ manueltRegistrertAv }
-                    besvarelse={ besvarelse }
-                    metrikkData={ metrikkData }
-                />
-            </Ekspanderbartpanel>
+            { showOpplysninger ?
+                <Ekspanderbartpanel tittel="Se svarene fra registreringen" border tittelProps="normaltekst" className="registrering-svar" onClick={ handleClickOpen }>
+                    <Opplysninger
+                        opprettetDato={ opprettetDato }
+                        manueltRegistrertAv={ manueltRegistrertAv }
+                        besvarelse={ besvarelse }
+                        metrikkData={ metrikkData }
+                    />
+                </Ekspanderbartpanel>
+                : null
+            }
         </div>
     );
 };
