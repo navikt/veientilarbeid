@@ -31,10 +31,17 @@ export interface Profilering {
     innsatsgruppe: ForeslattInnsatsgruppe;
 }
 
+export interface Svar {
+    sporsmalId: string;
+    sporsmal: string;
+    svar: string;
+}
+
 interface Brukerregistrering {
     opprettetDato: string;
     manueltRegistrertAv: object | null;
     besvarelse: Besvarelse;
+    teksterForBesvarelse: Array<Svar> | null;
     profilering?: Profilering;
 }
 
@@ -62,7 +69,8 @@ export const initialState: State = {
 	            utdanning: null,
 	            utdanningBestatt: null,
 	            utdanningGodkjent: null
-            }
+            },
+            teksterForBesvarelse: []
         }
     }
 };

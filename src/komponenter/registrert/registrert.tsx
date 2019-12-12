@@ -9,21 +9,19 @@ import { klikkPaDineOpplysninger } from '../../metrics/metrics'
 import Opplysninger from '../innsyn/registreringsopplysninger'
 import './registrert.less'
 
-
-
 const Registrert = () => {
     const brukerregistreringData = useContext(BrukerregistreringContext).data;
     const brukerinfoData = React.useContext(BrukerInfoContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const { registrering } = brukerregistreringData;
-    const { opprettetDato, manueltRegistrertAv, besvarelse } = registrering;
+    const { opprettetDato, manueltRegistrertAv, besvarelse, teksterForBesvarelse } = registrering;
     const { dinSituasjon } = besvarelse;
     const dinSituasjonOrIngenVerdi = dinSituasjon ? dinSituasjon : 'INGEN_VERDI';
     const { registreringType, rettighetsgruppe } = brukerinfoData;
     const { formidlingsgruppe, servicegruppe, underOppfolging } = oppfolgingData;
     const underOppfolgingJaNei = underOppfolging ? 'ja' : 'nei';
     const registreringTypeOrIngenVerdi = registreringType ? registreringType : 'INGEN_VERDI';
-    const showOpplysninger = opprettetDato && besvarelse
+    const showOpplysninger = opprettetDato && besvarelse && teksterForBesvarelse
     const metrikkData = {
         servicegruppe,
         formidlingsgruppe,
@@ -48,6 +46,7 @@ const Registrert = () => {
                         opprettetDato={ opprettetDato }
                         manueltRegistrertAv={ manueltRegistrertAv }
                         besvarelse={ besvarelse }
+                        teksterForBesvarelse={ teksterForBesvarelse }
                         metrikkData={ metrikkData }
                     />
                 </Ekspanderbartpanel>
