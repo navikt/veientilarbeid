@@ -1,22 +1,22 @@
 import React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { klikkPaDineOpplysninger } from '../../metrics/metrics'
+import { klikkPaDineOpplysninger } from '../../metrics/metrics';
 import { dialogLenke } from '../../innhold/lenker';
-import { Besvarelse, Svar } from '../../ducks/brukerregistrering'
-import './registreringsopplysninger.less'
+import { Besvarelse, Svar } from '../../ducks/brukerregistrering';
+import './registreringsopplysninger.less';
 
 function getMndNavn (mnd:number) {
   const navn = [
     'januar', 'februar', 'mars', 'april', 'mai', 'juni', 'juli',
     'august', 'september', 'oktober', 'november', 'desember'
-  ]
+  ];
 
-  return navn[mnd]
-}
+  return navn[mnd];
+};
 
 function formaterDato (datostreng: string) {
-  const dato = new Date(datostreng)
-  return `${dato.getDay()}. ${getMndNavn(dato.getMonth())} ${dato.getFullYear()}`
+  const dato = new Date(datostreng);
+  return `${dato.getDay()}. ${getMndNavn(dato.getMonth())} ${dato.getFullYear()}`;
 }
 
 const Opplysning = (props: any) => {
@@ -28,23 +28,23 @@ const Opplysning = (props: any) => {
           <strong>{ svar }</strong>
         </Normaltekst>
       </div>
-  )
+  );
 };
 
 const repackBesvarelser = (besvarelse: Besvarelse, teksterForBesvarelse: Array<Svar>) => {
-  const tekster = teksterForBesvarelse || []
-  const besvarelserMedInnhold = Object.keys(besvarelse).filter(item => besvarelse[item])
-  const alleSvar = besvarelserMedInnhold.map(item => tekster.find(svar => svar.sporsmalId === item))
-  const svarMedInnhold = alleSvar.filter(svar => svar !== undefined)
-  return svarMedInnhold
-}
+  const tekster = teksterForBesvarelse || [];
+  const besvarelserMedInnhold = Object.keys(besvarelse).filter(item => besvarelse[item]);
+  const alleSvar = besvarelserMedInnhold.map(item => tekster.find(svar => svar.sporsmalId === item));
+  const svarMedInnhold = alleSvar.filter(svar => svar !== undefined);
+  return svarMedInnhold;
+};
 
 const opplysninger = (props: any) => {
   const { opprettetDato, manueltRegistrertAv, besvarelse, metrikkData, teksterForBesvarelse } = props;
-  const besvarelser = repackBesvarelser(besvarelse, teksterForBesvarelse)
+  const besvarelser = repackBesvarelser(besvarelse, teksterForBesvarelse);
   const handleDialogClick = () => {
-    klikkPaDineOpplysninger(metrikkData)
-  }
+    klikkPaDineOpplysninger(metrikkData);
+  };
 
   return (
     <>
