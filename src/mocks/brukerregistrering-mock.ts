@@ -9,12 +9,12 @@ export default {
             utdanning: 'INGEN_UTDANNING',
             utdanningBestatt: 'INGEN_SVAR',
             utdanningGodkjent: 'INGEN_SVAR',
-            helseHinder: null,
+            helseHinder: 'NEI',
             andreForhold: 'NEI',
-            sisteStilling: null,
-            dinSituasjon: null,
+            sisteStilling: 'Barne- og ungdomsarbeider i skolefritidsordning',
+            dinSituasjon: 'MISTET_JOBBEN',
             fremtidigSituasjon: 'NY_ARBEIDSGIVER',
-            tilbakeIArbeid: null
+            tilbakeIArbeid: 'USIKKER'
         },
         profilering: {
             innsatsgruppe: 'SITUASJONSBESTEMT_INNSATS',
