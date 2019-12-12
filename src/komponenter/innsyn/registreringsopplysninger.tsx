@@ -77,6 +77,8 @@ function formaterSvar (svar: string) {
 
 const opplysninger = (props: any) => {
   const { opprettetDato, manueltRegistrertAv, besvarelse, metrikkData } = props;
+  const { utdanning, dinSituasjon, helseHinder,
+          andreForhold, sisteStilling, fremtidigSituasjon, tilbakeIArbeid } = besvarelse;
   const handleDialogClick = () => {
     klikkPaDineOpplysninger(metrikkData)
   }
@@ -94,43 +96,43 @@ const opplysninger = (props: any) => {
       <div className="blokk-s">
         <Normaltekst>
           Hva er din høyeste fullførte utdanning?<br />
-          <strong>{ besvarelse.utdanning ? getUtdannelse(besvarelse.utdanning) : 'Ingen svar' }</strong>
+          <strong>{ utdanning ? getUtdannelse(utdanning) : 'Ingen svar' }</strong>
         </Normaltekst>
       </div>
       <div className="blokk-s">
         <Normaltekst>
           Velg den situasjonen som passer deg best:<br />
-          <strong>{ besvarelse.dinSituasjon ? getSituasjon(besvarelse.dinSituasjon) : 'Ingen svar' }</strong>
+          <strong>{ dinSituasjon ? getSituasjon(dinSituasjon) : 'Ingen svar' }</strong>
         </Normaltekst>
       </div>
       <div className="blokk-s">
         <Normaltekst>
           Har du helseproblemer som hindrer deg i å søke eller være i jobb?<br />
-          <strong>{ besvarelse.helseHinder ? formaterSvar(besvarelse.helseHinder) : 'Ingen svar' }</strong>
+          <strong>{ helseHinder ? formaterSvar(helseHinder) : 'Ingen svar' }</strong>
         </Normaltekst>
       </div>
       <div className="blokk-s">
         <Normaltekst>
           Har du andre problemer med å søke eller være i jobb?<br/>
-          <strong>{ besvarelse.andreForhold ? formaterSvar(besvarelse.andreForhold) : 'Ingen svar' }</strong>
+          <strong>{ andreForhold ? formaterSvar(andreForhold) : 'Ingen svar' }</strong>
         </Normaltekst>
       </div>
       <div className="blokk-s">
         <Normaltekst>
           Din siste stilling:<br />
-          <strong>{ besvarelse.sisteStilling ? besvarelse.sisteStilling : 'Ingen svar' }</strong>
+          <strong>{ sisteStilling ? sisteStilling : 'Ingen svar' }</strong>
         </Normaltekst>
       </div>
       <div className="blokk-s">
         <Normaltekst>
           Hva tenker du om din fremtidige situasjon?<br />
-          <strong>{ besvarelse.fremtidigSituasjon ? getFremtidigSituasjon(besvarelse.fremtidigSituasjon) : 'Ingen svar' }</strong>
+          <strong>{ fremtidigSituasjon ? getFremtidigSituasjon(fremtidigSituasjon) : 'Ingen svar' }</strong>
         </Normaltekst>
       </div>
       <div className="blokk-s">
         <Normaltekst>
           Tror du at du kommer tilbake i jobb før du har vært sykmeldt i 52 uker?<br />
-          <strong>{ besvarelse.tilbakeIArbeid ? getTilbakeIArbeid(besvarelse.tilbakeIArbeid) : 'Ingen svar' }</strong>
+          <strong>{ tilbakeIArbeid ? getTilbakeIArbeid(tilbakeIArbeid) : 'Ingen svar' }</strong>
         </Normaltekst>
       </div>
     </>
