@@ -51,7 +51,7 @@ const opplysninger = (props: any) => {
       <div className="blokk-s">
           <Normaltekst>
             {manueltRegistrertAv ? 'NAV': 'Du'} registrerte deg som arbeidssøker {formaterDato(opprettetDato)}.<br/>
-            Du kan endre opplysningene du ga (se under) ved å kontakte NAV.<br/>
+            Du kan endre opplysningene du ga ved å kontakte NAV.<br/>
             Veilederen din bruker opplysningene for å vurdere hvor mye veiledning du trenger.<br/>
             <a href={dialogLenke} onClick={ handleDialogClick }>Gi beskjed til veilederen din</a> hvis situasjonen din endrer seg.
           </Normaltekst>         

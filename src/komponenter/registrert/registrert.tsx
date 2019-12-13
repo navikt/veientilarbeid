@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Element } from 'nav-frontend-typografi';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
@@ -13,6 +13,7 @@ const Registrert = () => {
     const brukerregistreringData = useContext(BrukerregistreringContext).data;
     const brukerinfoData = React.useContext(BrukerInfoContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
+    const [clickedInnsyn, setClickedInnsyn] = useState(false);
     const { registrering } = brukerregistreringData;
     const { opprettetDato, manueltRegistrertAv, besvarelse, teksterForBesvarelse } = registrering;
     const { dinSituasjon } = besvarelse;
@@ -32,7 +33,10 @@ const Registrert = () => {
     }
 
     const handleClickOpen = () => {
-        klikkPaDineOpplysninger(metrikkData)
+        if (!clickedInnsyn) {
+            klikkPaDineOpplysninger(metrikkData);
+            setClickedInnsyn(true);
+        }
     }
 
     return (
