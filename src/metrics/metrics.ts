@@ -153,3 +153,11 @@ type StandardMetrikkData = {
 export const klikkPaDineOpplysninger = (metrikker: StandardMetrikkData) => {
     logEvent('click.dineopplysninger', {}, metrikker);
 };
+
+interface KrrMetrikkData extends StandardMetrikkData {
+    reservasjonKRR: boolean;
+}
+
+export const klikkPaDifiLenke = (metrikker: KrrMetrikkData) => {
+    logEvent('krr.difi.click', {}, metrikker);
+};
