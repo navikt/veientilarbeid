@@ -22,6 +22,7 @@ const KrrMelding = () => {
     const {registreringType, rettighetsgruppe} = brukerinfoData;
     const {formidlingsgruppe, servicegruppe, underOppfolging, reservasjonKRR} = oppfolgingData;
     const underOppfolgingJaNei = underOppfolging ? 'ja' : 'nei';
+    const reservasjonKRRJaNei = reservasjonKRR ? 'ja' : 'nei';
     const registreringTypeOrIngenVerdi = registreringType ? registreringType : 'INGEN_VERDI';
 
     const metrikkData = {
@@ -31,7 +32,7 @@ const KrrMelding = () => {
         dinSituasjon: dinSituasjonOrIngenVerdi,
         underOppfolging: underOppfolgingJaNei,
         registreringType: registreringTypeOrIngenVerdi,
-        reservasjonKRR,
+        reservasjonKRR: reservasjonKRRJaNei,
     };
 
     const klikkLenkeMetrikk = () => klikkPaDifiLenke(metrikkData);

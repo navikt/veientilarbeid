@@ -144,9 +144,9 @@ export const lesOmOkonomi = (stonad: string, servicegruppe: string | null) => {
 type StandardMetrikkData = {
     servicegruppe: ServicegruppeOrNull;
     formidlingsgruppe: FormidlingsgruppeOrNull;
-    rettighetsgruppe: String;
-    dinSituasjon: String;
-    underOppfolging: String;
+    rettighetsgruppe: string;
+    dinSituasjon: string;
+    underOppfolging: string;
     registreringType: RegistreringTypeOrIngenVerdi;
 }
 
@@ -155,7 +155,7 @@ export const klikkPaDineOpplysninger = (metrikker: StandardMetrikkData) => {
 };
 
 interface KrrMetrikkData extends StandardMetrikkData {
-    reservasjonKRR: boolean;
+    reservasjonKRR: string;
 }
 
 export const klikkPaDifiLenke = (metrikker: KrrMetrikkData) => {
