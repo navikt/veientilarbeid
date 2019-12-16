@@ -144,9 +144,9 @@ export const lesOmOkonomi = (stonad: string, servicegruppe: string | null) => {
 type StandardMetrikkData = {
     servicegruppe: ServicegruppeOrNull;
     formidlingsgruppe: FormidlingsgruppeOrNull;
-    rettighetsgruppe: String;
-    dinSituasjon: String;
-    underOppfolging: String;
+    rettighetsgruppe: string;
+    dinSituasjon: string;
+    underOppfolging: string;
     registreringType: RegistreringTypeOrIngenVerdi;
 }
 
