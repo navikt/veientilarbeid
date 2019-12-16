@@ -155,7 +155,7 @@ export const klikkPaDineOpplysninger = (metrikker: StandardMetrikkData) => {
 };
 
 interface KrrMetrikkData extends StandardMetrikkData {
-    reservasjonKRR: boolean;
+    reservasjonKRR: string;
 }
 
 export const klikkPaDifiLenke = (metrikker: KrrMetrikkData) => {
