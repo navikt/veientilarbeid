@@ -141,7 +141,7 @@ export const lesOmOkonomi = (stonad: string, servicegruppe: string | null) => {
     logEvent('lesomokonomi', {stonadField: stonad, innsatsgruppeField: servicegruppe}, {stonadTag: stonad, innsatsgruppeTag: servicegruppe});
 };
 
-type standardMetrikkData = {
+type StandardMetrikkData = {
     servicegruppe: ServicegruppeOrNull;
     formidlingsgruppe: FormidlingsgruppeOrNull;
     rettighetsgruppe: String;
@@ -150,6 +150,14 @@ type standardMetrikkData = {
     registreringType: RegistreringTypeOrIngenVerdi;
 }
 
-export const klikkPaDineOpplysninger = (metrikker: standardMetrikkData) => {
+export const klikkPaDineOpplysninger = (metrikker: StandardMetrikkData) => {
     logEvent('click.dineopplysninger', {}, metrikker);
+};
+
+interface KrrMetrikkData extends StandardMetrikkData {
+    reservasjonKRR: boolean;
+}
+
+export const klikkPaDifiLenke = (metrikker: KrrMetrikkData) => {
+    logEvent('krr.difi.click', {}, metrikker);
 };
