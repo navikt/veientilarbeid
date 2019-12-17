@@ -38,7 +38,8 @@ export const seVeientilarbeid = (
     dinSituasjon: String,
     underOppfolging: String,
     registreringType: RegistreringTypeOrIngenVerdi,
-    fremtidigSituasjon: String) =>
+    fremtidigSituasjon: String,
+    reservasjonKRR: string) =>
 {
     logEvent('seveientilarbeid',
         {
@@ -55,7 +56,8 @@ export const seVeientilarbeid = (
             dinSituasjon,
             underOppfolging,
             registreringType,
-            fremtidigSituasjon
+            fremtidigSituasjon,
+            reservasjonKRR,
         });
 };
 
