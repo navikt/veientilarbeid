@@ -38,8 +38,9 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
     const dinSituasjon = selectDinSituasjonSvar(brukerregistreringData) || 'INGEN_VERDI'
 
     const oppfolgingData = React.useContext(OppfolgingContext).data;
-    const { formidlingsgruppe, servicegruppe, underOppfolging } = oppfolgingData
-    const underOppfolgingJaNei = underOppfolging ? 'ja' : 'nei'
+    const { formidlingsgruppe, servicegruppe, underOppfolging, reservasjonKRR } = oppfolgingData
+    const underOppfolgingJaNei = underOppfolging ? 'ja' : 'nei';
+    const reservasjonKRRJaNei = reservasjonKRR ? 'ja' : 'nei';
     const skalViseRegistrert = formidlingsgruppe === Formidlingsgruppe.ARBS;
     
     const brukerinfoData = React.useContext(BrukerInfoContext).data;
@@ -58,8 +59,9 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
             dinSituasjon,
             underOppfolgingJaNei,
             registreringTypeOrIngenVerdi,
-            fremtidigSvarOrIngenVerdi
-        );
+            fremtidigSvarOrIngenVerdi,
+            reservasjonKRRJaNei,
+    );
         hotjarTrigger(erMikrofrontend());
         seIARBSPlaster(skalViseIARBSPlaster, formidlingsgruppe, servicegruppe, rettighetsgruppe)
         // eslint-disable-next-line react-hooks/exhaustive-deps
