@@ -1,6 +1,6 @@
 import React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { klikkPaDineOpplysninger } from '../../metrics/metrics';
+import { klikkPaEndreDineOpplysninger } from '../../metrics/metrics';
 import { dialogLenke } from '../../innhold/lenker';
 import { Besvarelse, Svar } from '../../ducks/brukerregistrering';
 import './registreringsopplysninger.less';
@@ -43,7 +43,7 @@ const opplysninger = (props: any) => {
   const { opprettetDato, manueltRegistrertAv, besvarelse, metrikkData, teksterForBesvarelse } = props;
   const besvarelser = repackBesvarelser(besvarelse, teksterForBesvarelse);
   const handleDialogClick = () => {
-    klikkPaDineOpplysninger(metrikkData);
+    klikkPaEndreDineOpplysninger(metrikkData);
   };
 
   return (

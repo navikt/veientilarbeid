@@ -152,8 +152,16 @@ type StandardMetrikkData = {
     registreringType: RegistreringTypeOrIngenVerdi;
 }
 
+export const seDineOpplysninger = (metrikker: StandardMetrikkData) => {
+    logEvent('viser.dineopplysninger', {}, metrikker);
+};
+
 export const klikkPaDineOpplysninger = (metrikker: StandardMetrikkData) => {
     logEvent('click.dineopplysninger', {}, metrikker);
+};
+
+export const klikkPaEndreDineOpplysninger = (metrikker: StandardMetrikkData) => {
+    logEvent('click.endredineopplysninger', {}, metrikker);
 };
 
 interface KrrMetrikkData extends StandardMetrikkData {
