@@ -5,9 +5,9 @@ import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { BrukerregistreringContext } from '../../ducks/brukerregistrering';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { OppfolgingContext } from '../../ducks/oppfolging';
-import { klikkPaDineOpplysninger } from '../../metrics/metrics'
-import Opplysninger from '../innsyn/registreringsopplysninger'
-import './registrert.less'
+import { klikkPaDineOpplysninger, seDineOpplysninger } from '../../metrics/metrics';
+import Opplysninger from '../innsyn/registreringsopplysninger';
+import './registrert.less';
 
 const Registrert = () => {
     const brukerregistreringData = useContext(BrukerregistreringContext).data;
@@ -22,7 +22,7 @@ const Registrert = () => {
     const { formidlingsgruppe, servicegruppe, underOppfolging } = oppfolgingData;
     const underOppfolgingJaNei = underOppfolging ? 'ja' : 'nei';
     const registreringTypeOrIngenVerdi = registreringType ? registreringType : 'INGEN_VERDI';
-    const showOpplysninger = opprettetDato && besvarelse && teksterForBesvarelse
+    const showOpplysninger = opprettetDato && besvarelse && teksterForBesvarelse;
     const metrikkData = {
         servicegruppe,
         formidlingsgruppe,
@@ -30,14 +30,16 @@ const Registrert = () => {
         dinSituasjon: dinSituasjonOrIngenVerdi,
         underOppfolging: underOppfolgingJaNei,
         registreringType: registreringTypeOrIngenVerdi
-    }
+    };
 
     const handleClickOpen = () => {
         if (!clickedInnsyn) {
             klikkPaDineOpplysninger(metrikkData);
             setClickedInnsyn(true);
         }
-    }
+    };
+
+    seDineOpplysninger(metrikkData);
 
     return (
         <div className="blokk-s">
