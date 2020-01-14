@@ -2,23 +2,57 @@ import { Besvarelse, ForeslattInnsatsgruppe, FremtidigSituasjonSvar, Profilering
 import { DemoData, hentFraLocalStorage, settILocalStorage } from './demo-state';
 import { opprettetRegistreringDato } from './demo-dashboard';
 
+const defaultFremtidigSituasjon = FremtidigSituasjonSvar.NY_ARBEIDSGIVER;
+const defaultBesvarelse = {
+    utdanning: 'INGEN_UTDANNING',
+    utdanningBestatt: 'INGEN_SVAR',
+    utdanningGodkjent: 'INGEN_SVAR',
+    helseHinder: 'NEI',
+    andreForhold: 'NEI',
+    sisteStilling: 'Barne- og ungdomsarbeider i skolefritidsordning',
+    dinSituasjon: 'MISTET_JOBBEN',
+    fremtidigSituasjon: FremtidigSituasjonSvar.NY_ARBEIDSGIVER,
+    tilbakeIArbeid: 'USIKKER'
+};
+const defaultForeslattInnsatsgruppe = ForeslattInnsatsgruppe.STANDARD_INNSATS;
+const defaultOpprettetDato = opprettetRegistreringDato.registrertEtterLanseringMotestotte;
+const defaultTeksterForBesvarelse = [
+    {
+        sporsmalId: 'fremtidigSituasjon',
+        sporsmal: 'Hva tenker du om din fremtidige situasjon?',
+        svar: 'Jeg trenger ny jobb'
+    },
+    {
+        sporsmalId: 'utdanningBestatt',
+        sporsmal: 'Er utdanningen din bestått?',
+        svar: 'Ikke aktuelt'
+    },
+    {
+        sporsmalId: 'utdanningGodkjent',
+        sporsmal: 'Er utdanningen din godkjent i Norge?',
+        svar: 'Ikke aktuelt'
+    },
+    {
+        sporsmalId: 'utdanning',
+        sporsmal: 'Hva er din høyeste fullførte utdanning?',
+        svar: 'Ingen utdanning'
+    },
+    {
+        sporsmalId: 'andreForhold',
+        sporsmal: 'Er det noe annet enn helsen din som NAV bør ta hensyn til?',
+        svar: 'Nei'
+    }
+];
+
+
 const settRegistrering = (besvarelse?: Besvarelse, profilering?: Profilering, opprettetDato?: string) => {
     const data = {
         registrering: {
             opprettetDato: opprettetDato || hentOpprettetDato(),
             manueltRegistrertAv: null,
-            besvarelse: {
-                dinSituasjon: null,
-                fremtidigSituasjon: hentFremtidigSituasjon(),
-                sisteStilling: null,
-                tilbakeIArbeid: null,
-	            andreForhold: null,
-	            helseHinder: null,
-	            utdanning: null,
-	            utdanningBestatt: null,
-	            utdanningGodkjent: null
-            },
+            besvarelse: besvarelse || defaultBesvarelse,
             profilering: profilering || {innsatsgruppe: hentForeslattInnsatsgruppe()},
+            teksterForBesvarelse: defaultTeksterForBesvarelse,
         }
     };
 
@@ -26,17 +60,8 @@ const settRegistrering = (besvarelse?: Besvarelse, profilering?: Profilering, op
 };
 
 export const settFremtidigSituasjon = (fremtidigSituasjon: FremtidigSituasjonSvar) => {
-    settRegistrering({
-        dinSituasjon: null,
-        fremtidigSituasjon: fremtidigSituasjon,
-        sisteStilling: null,
-        tilbakeIArbeid: null,
-	    andreForhold: null,
-	    helseHinder: null,
-	    utdanning: null,
-	    utdanningBestatt: null,
-	    utdanningGodkjent: null
-    },
+    settRegistrering(
+        Object.assign({}, defaultBesvarelse, { fremtidigSituasjon }),
         undefined,
     );
 };
@@ -58,22 +83,18 @@ export const settOpprettetDato = (opprettetDato: string) => {
     );
 };
 
-const defaultFremtidigSituasjon = FremtidigSituasjonSvar.NY_ARBEIDSGIVER;
-const defaultForeslattInnsatsgruppe = ForeslattInnsatsgruppe.STANDARD_INNSATS;
-const defaultOpprettetDato = opprettetRegistreringDato.registrertEtterLanseringMotestotte;
-
 export const hentBrukerRegistreringData = () => {
     const data = hentFraLocalStorage(DemoData.BRUKER_REGISTRERING);
 
     return data ? JSON.parse(data) : {
         registrering: {
             opprettetDato: defaultOpprettetDato,
-            besvarelse: {
-                fremtidigSituasjon: defaultFremtidigSituasjon,
-            },
+            besvarelse: defaultBesvarelse,
             profilering: {
                 innsatsgruppe: defaultForeslattInnsatsgruppe,
-            }
+            },
+            teksterForBesvarelse: defaultTeksterForBesvarelse,
+            manueltRegistrertAv: null,
         }
     };
 };
