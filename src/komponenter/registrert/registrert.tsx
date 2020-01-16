@@ -14,6 +14,15 @@ const Registrert = () => {
     const brukerinfoData = React.useContext(BrukerInfoContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const [clickedInnsyn, setClickedInnsyn] = useState(false);
+    if (!brukerregistreringData) {
+        return (
+            <div className="blokk-s">
+                <AlertStripeInfo>
+                    <Element>Du er registrert som arbeidssøker</Element>
+                </AlertStripeInfo>
+            </div>
+        );
+    }
     const { registrering } = brukerregistreringData;
     const { opprettetDato, manueltRegistrertAv, besvarelse, teksterForBesvarelse } = registrering;
     const { dinSituasjon } = besvarelse;
