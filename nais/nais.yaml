@@ -9,39 +9,39 @@ metadata:
 spec:
   env:
   - name: APPRES_CMS_URL
-    value: {{appres_cms_url}}
+    value: {{ appres_cms_url }}
   - name: AAD_B2C_CLIENTID_USERNAME
-    value: {{aad_b2c_clientid_username}}
+    value: {{ aad_b2c_clientid_username }}
   - name: AAD_B2C_DISCOVERY_URL
-    value: {{aad_b2c_discovery_url}}
+    value: {{ aad_b2c_discovery_url }}
   - name: VEILARBSTEPUP_OIDC_URL
-    value: {{veilarbstepup_oidc_url}}
+    value: {{ veilarbstepup_oidc_url }}
   - name: VEIENTILARBEID_URL
-    value: {{veientilarbeid_url}}
+    value: {{ veientilarbeid_url }}
   - name: AKTIVITETSPLAN_URL
-    value: {{aktivitetsplan_url}}
+    value: {{ aktivitetsplan_url }}
   - name: VEIVISERARBEIDSSOKER_URL
-    value: {{veiviserarbeidssoker_url}}
+    value: {{ veiviserarbeidssoker_url }}
   - name: VEILEDEARBEIDSSOKER_URL
-    value: {{veiledearbeidssoker_url}}
+    value: {{ veiledearbeidssoker_url }}
   - name: TILTAKINFO_URL
-    value: {{tiltakinfo_url}}
+    value: {{ tiltakinfo_url }}
   - name: JOBBSOKERKOMPETANSE_URL
-    value: {{jobbsokerkompetanse_url}}
+    value: {{ jobbsokerkompetanse_url }}
   - name: DITTNAV_LINK_URL
-    value: {{dittnav_link_url}}
+    value: {{ dittnav_link_url }}
   - name: SYFOFRONT_URL
-    value: {{ syfofront_url}}
+    value: {{ syfofront_url }}
   - name: VEIVISERSOSIALHJELP_URL
-    value: {{veivisersosialhjelp_url}}
+    value: {{ veivisersosialhjelp_url }}
   - name: ARBEIDSPLASSEN_URL
-    value: {{arbeidsplassen_url}}
+    value: {{ arbeidsplassen_url }}
   - name: BEHOVSVURDERING_URL
-    value: {{ behovsvurdering_url}}
+    value: {{ behovsvurdering_url }}
   - name: FORBEREDE_MOETE_URL
-    value: {{ forberedemoete_url}}
+    value: {{ forberedemoete_url }}
   - name: ARBEIDSSOKERREGISTRERING_URL
-    value: {{arbeidssokerregistrering_url}}
+    value: {{ arbeidssokerregistrering_url }}
   image: {{image}}
   ingresses:
   {{#each ingresses as |url|}}
