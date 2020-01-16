@@ -1,6 +1,6 @@
 namespace: q0
 appres_cms_url: https://appres-q0.nav.no
-aad_b2c_clientid: 0090b6e1-ffcc-4c37-bc21-049f7d1f0fe5
+aad_b2c_clientid_username: 0090b6e1-ffcc-4c37-bc21-049f7d1f0fe5
 aad_b2c_discovery_url: https://login.microsoftonline.com/NAVtestB2C.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=B2C_1A_idporten_ver1
 veilarbstepup_oidc_url: https://veilarbstepup-q.nav.no/veilarbstepup/oidc
 veientilarbeid_url: https://veientilarbeid-q.nav.no
