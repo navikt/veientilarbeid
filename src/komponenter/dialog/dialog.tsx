@@ -31,9 +31,9 @@ const Dialog = (props: AllProps) => {
             case 0:
                 return 'Ingen uleste dialoger';
             case 1:
-                return antallUleste.toString() + ' ulest dialog';
+                return antallUleste.toString() + ' ulest melding';
             default:
-                return antallUleste.toString() + ' uleste dialoger';
+                return antallUleste.toString() + ' uleste meldinger';
         }
     }
 
