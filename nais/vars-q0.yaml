@@ -19,3 +19,4 @@ arbeidssokerregistrering_url: https://arbeidssokerregistrering-q.nav.no
 ingresses:
   - https://veientilarbeid.nais.oera-q.local
   - https://veientilarbeid-q.nav.no/
+  - https://tjenester-q0.nav.no/veientilarbeid
