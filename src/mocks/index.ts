@@ -32,14 +32,17 @@ fetchMock.get(VEILARBOPPFOLGING_URL, oppfolgingResponse);
 fetchMock.get(BRUKERINFO_URL, brukerInfoResponse);
 
 fetchMock.get(JOBBSOKERBESVARELSE_URL, jobbsokerbesvarelseResponse);
+// fetchMock.get(JOBBSOKERBESVARELSE_URL, ResponseUtils.statusCode(404));
 
 fetchMock.get(ULESTEDIALOGER_URL, ulesteDialogerResponse);
+// fetchMock.get(ULESTEDIALOGER_URL, ResponseUtils.statusCode(404));
 
 fetchMock.get(BRUKERREGISTRERING_URL, brukerRegistreringResponse);
 // fetchMock.get(BRUKERREGISTRERING_URL, ResponseUtils.statusCode(404));
 
 fetchMock.get(EGENVURDERINGBESVARELSE_URL, egenvurderingbesvarelseResponse);
 // fetchMock.get(EGENVURDERINGBESVARELSE_URL, ResponseUtils.statusCode(204));
+// fetchMock.get(EGENVURDERINGBESVARELSE_URL, ResponseUtils.statusCode(404));
 
 fetchMock.get(MOTESTOTTE_URL, ResponseUtils.statusCode(204));
 
