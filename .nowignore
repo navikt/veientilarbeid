@@ -1,0 +1,5 @@
+.github
+build
+coverage
+nais
+node_modules
