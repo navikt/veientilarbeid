@@ -114,3 +114,34 @@ jobs:
           tag_name: release/prod@${{ env.TAG }}
           release_name: Release ${{ env.TAG }} to prod
           prerelease: false
+  
+  deploy-demo:
+    name: Deploy demo
+    needs: deploy-prod
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+        name: Checkout
+      - run: now --prod --token ${ZEIT_TOKEN}
+        env:
+          ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
+  
+  take-screenshots:
+    name: Ta skjermbilder og last opp
+    needs: deploy-demo
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: navikt/screenshots-action@1.0.5
+      name: Tar bilde av forsiden
+      with:
+        url: https://veientilarbeid.nav.party
+    - uses: actions/upload-artifact@v1
+      name: Laster opp skjermbilder som artifakt
+      with:
+        name: Screenshots
+        path: screenshots
+    - run: now screenshots --local-config now-screenshots.json --prod --token ${ZEIT_TOKEN}
+      name: Legger skjermbilder på ZEIT/Now
+      env:
+        ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
