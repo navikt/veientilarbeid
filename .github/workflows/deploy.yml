@@ -132,7 +132,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - uses: navikt/screenshots-action@1.0.5
+    - uses: navikt/screenshots-action@1.0.6
       name: Tar bilde av forsiden
       with:
         url: https://veientilarbeid.nav.party
