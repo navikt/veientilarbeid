@@ -1,12 +1,13 @@
-Veien til arbeid
-================
+# Veien til arbeid
 
 Veien til arbeid
 
 # For å kjøre lokalt
  
-* `npm ci`
-* `npm start`
+- `npm ci`
+- `npm start`
+
+Dersom testene feiler etter oppdatering av f.eks. Node versjon kan det være lurt å tømme cachen `npm run test -- --clearCache` 
 
 # Som mikrofrontend på Ditt Nav
 
