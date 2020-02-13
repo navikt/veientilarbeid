@@ -29,7 +29,7 @@ const Dialog = (props: AllProps) => {
     const byggDialogTekst = () => {
         switch (antallUleste) {
             case 0:
-                return 'Ingen uleste dialoger';
+                return 'Send melding hvis du lurer på noe';
             case 1:
                 return antallUleste.toString() + ' ulest melding';
             default:
