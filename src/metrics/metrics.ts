@@ -123,14 +123,6 @@ export const gaTilVeiviserarbeidssoker = (servicegruppe: String | null) => {
     logEvent('gatilveiviserarbeidssoker', {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
 };
 
-export const gaTilTiltaksinfo = (servicegruppe: String | null) => {
-    logEvent('gatiltiltaksinfo', {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
-};
-
-export const seTiltaksinfo = (servicegruppe: String | null) => {
-    logEvent('setiltaksinfo', {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
-};
-
 export const klikkPaSoknadAlleSkjema = (servicegruppe: string | null) => {
     logEvent('soknaddagpenger', {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
 };
