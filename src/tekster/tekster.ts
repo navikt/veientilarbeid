@@ -56,7 +56,7 @@ const tekster = {
     'dagpenger-tekst': 'Dagpenger skal gi deg som har blitt arbeidsledig økonomisk støtte mens du søker ny jobb.',
     'dagpenger-tittel': 'Dagpenger',
     'lenke-dagpenger': '/veiledearbeidssoker/mistet-jobben/dagpenger?sprak=nb',
-    'dialog': 'Dialog med veileder',
+    'dialog': 'Dialog med veilederen din',
     'ditt-sykefravaer-ingress': 'Se sykemeldingene dine og annen informasjon om sykefraværet ditt.',
     'ditt-sykefravaer-overskrift': 'Ditt sykefravær',
     'egenvurdering-lenke-tekst': 'SVAR HER',
