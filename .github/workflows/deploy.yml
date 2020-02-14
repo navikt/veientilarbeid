@@ -51,6 +51,7 @@ jobs:
           CLUSTER: dev-sbs
           RESOURCE: nais/nais.yaml
           VARS: nais/vars-q0.yaml
+  
   deploy-q1:
     name: Deploy til Q1
     needs: deploy-prod
@@ -122,7 +123,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
         name: Checkout
-      - run: now --prod --token ${ZEIT_TOKEN}
+      - run: now --prod --token ${ZEIT_TOKEN} --confirm
         env:
           ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
   
@@ -141,7 +142,7 @@ jobs:
       with:
         name: Screenshots
         path: screenshots
-    - run: now screenshots --local-config now-screenshots.json --prod --token ${ZEIT_TOKEN}
+    - run: now screenshots --local-config now-screenshots.json --prod --token ${ZEIT_TOKEN} --confirm
       name: Legger skjermbilder på ZEIT/Now
       env:
         ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}

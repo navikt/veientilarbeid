@@ -67,12 +67,6 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const skalViseTiltaksinfoLenke = (
-        erSykmeldtMedArbeidsgiver ||
-        servicegruppe === Servicegruppe.BFORM ||
-        servicegruppe === Servicegruppe.BATT
-    );
-
     const tilbakeTilSammeArbeidsgiver = (
         fremtidigSvar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER ||
         fremtidigSvar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER_NY_STILLING
@@ -124,7 +118,6 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
             skalViseEgenvurderingLenke={skalViseEgenvurderingLenke}
             skalViseMotestotteLenke={skalViseMotestotteLenke}
             visRessurslenker={visRessurslenker}
-            skalViseTiltaksinfoLenke={skalViseTiltaksinfoLenke}
             skalViseIARBSPlaster={skalViseIARBSPlaster}
             skalViseRegistrert={skalViseRegistrert}
         />

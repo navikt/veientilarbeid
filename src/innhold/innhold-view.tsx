@@ -5,7 +5,6 @@ import Dialog from '../komponenter/dialog/dialog';
 import Banner from '../komponenter/banner/banner';
 import Meldekort from '../komponenter/meldekort/meldekort';
 import DittSykefravaer from '../komponenter/ditt-sykefravaer/ditt-sykefravaer';
-import Tiltakinfo from '../komponenter/tiltakinfo/tiltakinfo';
 import OkonomiRad from '../komponenter/okonomi/okonomi-rad';
 import ReaktiveringMelding from '../komponenter/reaktivering-melding';
 import Aktivitetsplan from '../komponenter/aktivitetsplan/aktivitetsplan';
@@ -25,7 +24,6 @@ interface OwnProps {
     skalViseEgenvurderingLenke: boolean;
     skalViseMotestotteLenke: boolean;
     visRessurslenker: boolean;
-    skalViseTiltaksinfoLenke: boolean;
     skalViseIARBSPlaster: boolean;
     skalViseRegistrert: boolean;
 }
@@ -35,7 +33,6 @@ export default ({erSykmeldtMedArbeidsgiver,
                     skalViseEgenvurderingLenke,
                     skalViseMotestotteLenke,
                     visRessurslenker,
-                    skalViseTiltaksinfoLenke,
                     skalViseIARBSPlaster,
                     skalViseRegistrert}: OwnProps) => {
 
@@ -64,7 +61,6 @@ export default ({erSykmeldtMedArbeidsgiver,
 
             <Rad>
                 {visRessurslenker ? <RessurslenkerJobbsok/> : null}
-                {skalViseTiltaksinfoLenke ? <Tiltakinfo/> : null}
             </Rad>
 
             { erSykmeldtMedArbeidsgiver ? <Rad><OkonomiRad/></Rad> : <OkonomiRadDagpenger />}

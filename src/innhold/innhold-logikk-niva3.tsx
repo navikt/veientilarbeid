@@ -15,7 +15,6 @@ const InnholdLogikkNiva3 = () => {
             skalViseKrrMelding={false}
             skalViseEgenvurderingLenke={false}
             visRessurslenker={true}
-            skalViseTiltaksinfoLenke={false}
             skalViseMotestotteLenke={false}
             skalViseIARBSPlaster={false}
             skalViseRegistrert={false}

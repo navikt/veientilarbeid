@@ -48,8 +48,6 @@ fasitResources:
     resourceType: baseUrl
   - alias: veiledearbeidssoker
     resourceType: baseUrl
-  - alias: tiltakinfo
-    resourceType: baseUrl
   - alias: jobbsokerkompetanse
     resourceType: baseUrl
   - alias: dittnav.link
