@@ -11,9 +11,6 @@ proxy:
   - contextPath: /veilarboppfolging
     baseUrl: http://veilarbproxy
 
-  - contextPath: /veilarbtiltakinfo
-    baseUrl: http://veilarbproxy
-
   - contextPath: /veilarbjobbsokerkompetanse
     baseUrl: http://veilarbproxy
 
@@ -32,8 +29,6 @@ redirect:
     to: {{ VEIVISERARBEIDSSOKER_URL }}
   - from: /veiledearbeidssoker
     to: {{ VEILEDEARBEIDSSOKER_URL }}
-  - from: /tiltakinfo
-    to: {{ TILTAKINFO_URL }}
   - from: /jobbsokerkompetanse
     to: {{ JOBBSOKERKOMPETANSE_URL }}
   - from: /dittnav
