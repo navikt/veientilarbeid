@@ -37,7 +37,7 @@ class DialogFill extends React.Component<DialogFillProps> {
                             C24,12.727,20.565,9.75,16.5,9.75z"/>
                     </svg>
                     <circle fill="#ffffff" cx="30.0" cy="10.0" r="3"/>
-                    <text x={xPos} y="14.4" fill="#ffffff" opacity="0">{messagesCount > 99 ? 99 : messagesCount}</text>
+                    <text x={xPos} y="14.4" fill="#ffffff" opacity="1">{messagesCount > 99 ? 99 : messagesCount}</text>
                 </svg>
             </div>
         );
