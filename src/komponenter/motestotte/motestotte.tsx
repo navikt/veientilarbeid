@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
+import { Panel } from 'nav-frontend-paneler';
 import { gaTilMotestotte, seMotestotte } from '../../metrics/metrics';
 import {
     BrukerregistreringContext,
@@ -34,7 +35,9 @@ const Motestotte = ({erSykmeldtMedArbeidsgiver}: InputProps) => {
     };
 
     if (erSykmeldtMedArbeidsgiver) {
-        return <section className="motestotte blokk-m">
+        return (
+            <Panel border className="ramme blokk-s">
+        <section className="motestotte blokk-m">
             <div className="innhold">
                 <Systemtittel tag="h1" className="blokk-xs">
                     Du kan få mer veiledning
@@ -54,9 +57,12 @@ const Motestotte = ({erSykmeldtMedArbeidsgiver}: InputProps) => {
                 </Hovedknapp>
             </div>
         </section>
+        </Panel>
+        )
     }
 
     return (
+        <Panel border className="ramme blokk-s">
         <section className="motestotte blokk-m">
             <div className="innhold">
                 <Systemtittel tag="h1" className="blokk-xs">
@@ -77,6 +83,7 @@ const Motestotte = ({erSykmeldtMedArbeidsgiver}: InputProps) => {
                 </Hovedknapp>
             </div>
         </section>
+        </Panel>
     );
 };
 
