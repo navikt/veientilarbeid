@@ -5,11 +5,6 @@ export const metricsMiddleWare = (store: any) => (next: any) => (action: any) =>
 
     const feilTyper = [
         {
-            type: ActionType.FEATURE_TOGGLES_FEILET,
-            eventnavn: 'veientilarbeid.feil.featuretoggle',
-            apikall: 'GET /api/feature'
-        },
-        {
             type: ActionType.HENT_JOBBSOKERBESVARELSE_FEILET,
             eventnavn: 'veientilarbeid.feil.jobbsokerbesvarelse',
             apikall: 'GET /jobbsokerbesvarelse'

@@ -14,7 +14,8 @@ export enum DemoData {
     MOTESTOTTE = 'motestotte',
     GEOGRAFISK_TILKNYTNING = 'geografiskTilknytning',
     REGISTRERING_TYPE = 'registreringType',
-    RETTIGHETSGRUPPE = 'rettighetsgruppe'
+    RETTIGHETSGRUPPE = 'rettighetsgruppe',
+    FEATURE_TOGGLES = 'featureToggles'
 }
 
 export const hentFraLocalStorage = (key: string): string | null => {
@@ -124,6 +125,19 @@ export const settMotestotte = () => {
 
 export const slettMotestotte = () => {
     slettFraLocalStorage(DemoData.MOTESTOTTE);
+};
+
+export const hentFeatureToggles = (): JSONObject | null => {
+    const verdi = hentFraLocalStorage(DemoData.FEATURE_TOGGLES);
+    return verdi ? JSON.parse(verdi) : null;
+};
+
+export const settFeatureToggles = () => {
+    settILocalStorage(DemoData.FEATURE_TOGGLES, JSON.stringify({'veientilarbeid.motestotte.lansert': true}));
+};
+
+export const slettFeatureToggles = () => {
+    slettFraLocalStorage(DemoData.FEATURE_TOGGLES);
 };
 
 export const settReservasjonKRR = (value: string) => {
