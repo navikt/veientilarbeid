@@ -30,7 +30,10 @@ import {
     hentGeografiskTilknytning,
     settGeografiskTilknytning,
     hentRettighetsgruppe,
-    settRettighetsgruppe
+    settRettighetsgruppe,
+    hentFeatureToggles,
+    settFeatureToggles,
+    slettFeatureToggles
 } from './demo-state';
 
 import './demo-dashboard.less';
@@ -67,6 +70,7 @@ class DemoDashboard extends React.Component<{}> {
         const ULESTE_DIALOGER = DemoData.ULESTE_DIALOGER;
         const RESERVASJON_KRR = DemoData.RESERVASJON_KRR;
         const AUTENTISERINGS_INFO = DemoData.AUTENTISERINGS_INFO;
+        const FEATURES = DemoData.FEATURE_TOGGLES
 
         const handleChangeServicegruppe = (e: React.ChangeEvent<HTMLSelectElement>) => {
             settServicegruppe(e.target.value);
@@ -129,6 +133,12 @@ class DemoDashboard extends React.Component<{}> {
                     settMotestotte();
                 } else {
                     slettMotestotte();
+                }
+            } else if (element.id === FEATURES) {
+                if (element.checked) {
+                    settFeatureToggles();
+                } else {
+                    slettFeatureToggles();
                 }
             } else if (element.id === ULESTE_DIALOGER) {
                 settUlesteDialoger(element.checked.toString());
@@ -382,6 +392,11 @@ class DemoDashboard extends React.Component<{}> {
                             label: tekster['demo-autentiseringsinfo'],
                             checked: hentAutentiseringsInfo().securityLevel === InnloggingsNiva.LEVEL_3,
                             id: AUTENTISERINGS_INFO,
+                        },
+                        {
+                            label: 'Aktiver features',
+                            checked: !!hentFeatureToggles(),
+                            id: FEATURES,
                         }
                     ]}
                 />
