@@ -5,7 +5,8 @@ import {
     ULESTEDIALOGER_URL,
     EGENVURDERINGBESVARELSE_URL,
     MOTESTOTTE_URL,
-    BRUKERINFO_URL
+    BRUKERINFO_URL,
+    FEATURE_URL
 } from '../ducks/api';
 import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 import {
@@ -19,7 +20,8 @@ import {
     hentMotestotte,
     hentGeografiskTilknytning,
     hentRegistreringType,
-    hentRettighetsgruppe
+    hentRettighetsgruppe,
+    hentFeatureToggles
 } from './demo-state';
 import { hentBrukerRegistreringData } from './demo-state-brukerregistrering';
 import { AUTH_API } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
@@ -72,5 +74,7 @@ fetchMock.get(JOBBSOKERBESVARELSE_URL, hentJsk());
 fetchMock.get(EGENVURDERINGBESVARELSE_URL, hentEgenvurdering());
 
 fetchMock.get(MOTESTOTTE_URL, hentMotestotte());
+
+fetchMock.get(FEATURE_URL, hentFeatureToggles());
 
 fetchMock.get(AUTH_API, hentAutentiseringsInfo());

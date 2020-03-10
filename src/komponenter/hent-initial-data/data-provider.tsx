@@ -24,6 +24,7 @@ import {
     State as MotestotteState,
     MotestotteContext
 } from '../../ducks/motestotte';
+
 import { fetchData } from '../../ducks/api-utils';
 import { MOTESTOTTE_URL, BRUKERINFO_URL } from '../../ducks/api';
 
@@ -101,7 +102,7 @@ const DataProvider = ({
 const mapStateToProps = (state: AppState): StateProps => ({
     jobbsokerbesvarelse: state.jobbsokerbesvarelse,
     ulesteDialoger: state.ulesteDialoger,
-    egenvurderingbesvarelse: state.egenvurderingbesvarelse,
+    egenvurderingbesvarelse: state.egenvurderingbesvarelse
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({

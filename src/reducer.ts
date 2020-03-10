@@ -12,5 +12,5 @@ export interface AppState {
 export const reducer = combineReducers<AppState>({
     jobbsokerbesvarelse: jobbsokerbesvarelseReducer,
     ulesteDialoger: ulesteDialogerReducer,
-    egenvurderingbesvarelse: egenvurderingbesvarelseReducer,
+    egenvurderingbesvarelse: egenvurderingbesvarelseReducer
 });

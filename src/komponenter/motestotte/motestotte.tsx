@@ -49,9 +49,6 @@ const Motestotte = ({erSykmeldtMedArbeidsgiver}: InputProps) => {
                     Vi ønsker å bli bedre kjent med situasjonen din, slik at du kan få veiledning som passer for
                     deg.
                 </Normaltekst>
-                <Normaltekst className="blokk-m motestotte__tekst">
-                    Det du forteller vil også bli brukt i en skriftlig vurdering av behovet ditt for hjelp fra NAV.
-                </Normaltekst>
                 <Hovedknapp onClick={handleButtonClick}>
                     Start
                 </Hovedknapp>
@@ -74,9 +71,6 @@ const Motestotte = ({erSykmeldtMedArbeidsgiver}: InputProps) => {
                 <Normaltekst className="blokk-m motestotte__tekst">
                     Vi ønsker å bli bedre kjent med situasjonen din, slik at du kan få veiledning som passer for
                     deg.
-                </Normaltekst>
-                <Normaltekst className="blokk-m motestotte__tekst">
-                    Det du forteller vil også bli brukt i en skriftlig vurdering av behovet ditt for hjelp fra NAV.
                 </Normaltekst>
                 <Hovedknapp onClick={handleButtonClick}>
                     Start
