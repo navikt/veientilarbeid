@@ -22,7 +22,7 @@ import { Formidlingsgruppe, OppfolgingContext, Servicegruppe } from '../ducks/op
 import { RegistreringType } from '../ducks/bruker-info'
 
 const LANSERINGSDATO_EGENVURDERING = new Date(2019, 4, 10);
-const LANSERINGSDATO_MOTESTOTTE = new Date('2020-03-11');
+const LANSERINGSDATO_MOTESTOTTE = new Date('2020-03-12');
 
 interface StateProps {
     harEgenvurderingbesvarelse: boolean;
