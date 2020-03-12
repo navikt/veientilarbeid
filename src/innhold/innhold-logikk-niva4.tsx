@@ -108,7 +108,7 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
 
     const skalViseMotestotteLenke = (
         motestotteToggle &&
-        oppfolgingData.servicegruppe === Servicegruppe.IVURD &&
+        oppfolgingData.servicegruppe === Servicegruppe.BKART &&
         (!harMotestottebesvarelse || !motestottebesvarelseValid()) &&
         (opprettetRegistreringDato !== null && opprettetRegistreringDato >= LANSERINGSDATO_MOTESTOTTE) &&
         !oppfolgingData.reservasjonKRR &&
