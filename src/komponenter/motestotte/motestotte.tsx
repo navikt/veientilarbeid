@@ -2,14 +2,14 @@ import * as React from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
 import { Panel } from 'nav-frontend-paneler';
-import { gaTilMotestotte, seMotestotte } from '../../metrics/metrics';
 import {
     BrukerregistreringContext,
     selectForeslattInnsatsgruppe,
     selectOpprettetRegistreringDato
 } from '../../ducks/brukerregistrering';
-import { antallTimerSidenRegistrering } from '../egenvurdering/egenvurdering'
+import { antallTimerSidenRegistrering } from '../egenvurdering/egenvurdering';
 import { motestotteLenke } from '../../innhold/lenker';
+import { uniLogger } from '../../metrics/uni-logger';
 import './motestotte.less';
 
 interface InputProps {
@@ -22,15 +22,15 @@ const Motestotte = ({erSykmeldtMedArbeidsgiver}: InputProps) => {
     const opprettetRegistreringDatoString = selectOpprettetRegistreringDato(data);
     const opprettetRegistreringDato = opprettetRegistreringDatoString ? new Date(opprettetRegistreringDatoString) : null;
     const foreslattInnsatsgruppe = selectForeslattInnsatsgruppe(data)!; // Komponent blir rendret kun hvis foreslått innsatsgruppe er satt
-
+    const antallTimer = antallTimerSidenRegistrering(opprettetRegistreringDato!)
 
     React.useEffect(() => {
-        seMotestotte(foreslattInnsatsgruppe);
+        uniLogger('veientilarbeid.motestotte.visning', { antallTimer, foreslattInnsatsgruppe });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleButtonClick = () => {
-        gaTilMotestotte(antallTimerSidenRegistrering(opprettetRegistreringDato!), foreslattInnsatsgruppe);
+        uniLogger('veientilarbeid.motestotte.gatil', { antallTimer, foreslattInnsatsgruppe });
         window.location.href = motestotteLenke;
     };
 

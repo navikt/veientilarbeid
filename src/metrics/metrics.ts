@@ -95,16 +95,8 @@ export const seEgenvurdering = (foreslaattinnsatsgruppe: ForeslattInnsatsgruppe)
     logEvent('seegenvurdering', {}, {foreslaattInnsatsgruppe: foreslaattinnsatsgruppe});
 };
 
-export const seMotestotte = (foreslaattinnsatsgruppe: ForeslattInnsatsgruppe) => {
-    logEvent('semotestotte', {}, {foreslaattInnsatsgruppe: foreslaattinnsatsgruppe});
-};
-
 export const gaTilEgenvurdering = (antallTimer: number, foreslaattinnsatsgruppe: ForeslattInnsatsgruppe) => {
     logEvent('gatilegenvurdering', {antallTimer: antallTimer}, {foreslaattInnsatsgruppe: foreslaattinnsatsgruppe});
-};
-
-export const gaTilMotestotte = (antallTimer: number, foreslaattinnsatsgruppe: ForeslattInnsatsgruppe) => {
-    logEvent('gatilmotestotte', {antallTimer: antallTimer}, {foreslaattInnsatsgruppe: foreslaattinnsatsgruppe});
 };
 
 export const gaTilDittSykefravaer = (servicegruppe: String | null) => {
