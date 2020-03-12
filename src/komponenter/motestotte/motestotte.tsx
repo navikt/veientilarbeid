@@ -25,12 +25,12 @@ const Motestotte = ({erSykmeldtMedArbeidsgiver}: InputProps) => {
     const antallTimer = antallTimerSidenRegistrering(opprettetRegistreringDato!)
 
     React.useEffect(() => {
-        uniLogger('veientilarbeid.semotestotte', { antallTimer, foreslattInnsatsgruppe });
+        uniLogger('veientilarbeid.motestotte.visning', { antallTimer, foreslattInnsatsgruppe });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleButtonClick = () => {
-        uniLogger('veientilarbeid.gatilmotestotte', { antallTimer, foreslattInnsatsgruppe });
+        uniLogger('veientilarbeid.motestotte.gatil', { antallTimer, foreslattInnsatsgruppe });
         window.location.href = motestotteLenke;
     };
 
