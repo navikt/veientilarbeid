@@ -36,8 +36,8 @@ spec:
     value: {{ arbeidsplassen_url }}
   - name: BEHOVSVURDERING_URL
     value: {{ behovsvurdering_url }}
-  - name: FORBEREDE_MOETE_URL
-    value: {{ forberedemoete_url }}
+  - name: START_SAMTALE_URL
+    value: {{ start_samtale_url }}
   - name: ARBEIDSSOKERREGISTRERING_URL
     value: {{ arbeidssokerregistrering_url }}
   image: {{image}}

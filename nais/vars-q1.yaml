@@ -13,7 +13,7 @@ syfofront_url: https://tjenester-q1.nav.no/sykefravaer
 veivisersosialhjelp_url: https://tjenester-q1.nav.no/veivisersosialhjelp
 arbeidsplassen_url: https://arbeidsplassen-t.nav.no
 behovsvurdering_url: https://behovsvurdering-q1.dev-sbs.nais.io
-forberedemoete_url: https://forberede-moete-q1.nais.oera-q.local
+start_samtale_url: https://www-q1.nav.no/arbeid/start-samtale
 arbeidssokerregistrering_url: https://arbeidssokerregistrering-q1.dev-sbs.nais.io/
 ingresses:
   - https://veientilarbeid.nais.oera-q.local
