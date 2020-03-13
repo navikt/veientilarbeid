@@ -160,6 +160,7 @@ class DemoDashboard extends React.Component<{}> {
             'BFORM': 'Situasjonsbestemt',
             'VARIG': 'Varig',
             'IVURD': 'Ikke fastsatt',
+            'BKART': 'BKART'
         };
 
         const formidlingsgrupper = {
