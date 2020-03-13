@@ -41,7 +41,7 @@ redirect:
     to: {{ ARBEIDSPLASSEN_URL }}
   - from: /behovsvurdering
     to: {{ BEHOVSVURDERING_URL }}
-  - from: /forberede-moete
-    to: {{ FORBEREDE_MOETE_URL }}
+  - from: /start-samtale
+    to: {{ START_SAMTALE_URL }}
   - from: /arbeidssokerregistrering
     to: {{ ARBEIDSSOKERREGISTRERING_URL }}
