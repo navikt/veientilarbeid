@@ -86,6 +86,7 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
     };
 
     const skalViseEgenvurderingLenke = (
+        dinSituasjon !== 'ER_PERMITTERT' &&
         oppfolgingData.servicegruppe === Servicegruppe.IVURD &&
         (!harEgenvurderingbesvarelse || !egenvurderingsbesvarelseValid()) &&
         (opprettetRegistreringDato !== null && opprettetRegistreringDato >= LANSERINGSDATO_EGENVURDERING) &&
@@ -108,6 +109,7 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
 
     const skalViseMotestotteLenke = (
         motestotteToggle &&
+        dinSituasjon !== 'ER_PERMITTERT' &&
         oppfolgingData.servicegruppe === Servicegruppe.BKART &&
         (!harMotestottebesvarelse || !motestottebesvarelseValid()) &&
         (opprettetRegistreringDato !== null && opprettetRegistreringDato >= LANSERINGSDATO_MOTESTOTTE) &&
