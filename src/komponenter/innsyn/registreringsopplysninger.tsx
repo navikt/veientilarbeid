@@ -12,7 +12,7 @@ function getMndNavn (mnd:number) {
   ];
 
   return navn[mnd];
-};
+}
 
 function formaterDato (datostreng: string) {
   const dato = new Date(datostreng);
