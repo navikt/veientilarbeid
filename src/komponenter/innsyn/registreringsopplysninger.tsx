@@ -16,7 +16,7 @@ function getMndNavn (mnd:number) {
 
 function formaterDato (datostreng: string) {
   const dato = new Date(datostreng);
-  return `${dato.getDay()}. ${getMndNavn(dato.getMonth())} ${dato.getFullYear()}`;
+  return `${dato.getDate()}. ${getMndNavn(dato.getMonth())} ${dato.getFullYear()}`;
 }
 
 const Opplysning = (props: any) => {
