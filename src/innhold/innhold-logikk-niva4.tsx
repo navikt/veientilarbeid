@@ -19,7 +19,7 @@ import './innhold.less';
 import InnholdView from './innhold-view';
 import { MotestotteContext } from '../ducks/motestotte';
 import { Formidlingsgruppe, OppfolgingContext, Servicegruppe } from '../ducks/oppfolging';
-import { RegistreringType } from '../ducks/bruker-info'
+// import { RegistreringType } from '../ducks/bruker-info'
 
 const LANSERINGSDATO_EGENVURDERING = new Date(2019, 4, 10);
 const LANSERINGSDATO_MOTESTOTTE = new Date('2020-03-12');
@@ -47,7 +47,7 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
     
     const brukerinfoData = React.useContext(BrukerInfoContext).data;
     const { erSykmeldtMedArbeidsgiver, registreringType, rettighetsgruppe } = brukerinfoData;
-    const skalViseIARBSPlaster = formidlingsgruppe === Formidlingsgruppe.IARBS && registreringType === RegistreringType.ALLEREDE_REGISTRERT && rettighetsgruppe !== 'AAP';
+    const skalViseIARBSPlaster = false // formidlingsgruppe === Formidlingsgruppe.IARBS && registreringType === RegistreringType.ALLEREDE_REGISTRERT && rettighetsgruppe !== 'AAP';
     const registreringTypeOrIngenVerdi = registreringType ? registreringType : 'INGEN_VERDI';
     const fremtidigSvarOrIngenVerdi = fremtidigSvar ? fremtidigSvar : 'INGEN_VERDI';
     const motestotteToggle = featureToggleData ? featureToggleData['veientilarbeid.motestotte.lansert'] : false;
