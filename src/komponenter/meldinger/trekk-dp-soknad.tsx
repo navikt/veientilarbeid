@@ -18,7 +18,7 @@ class sjekkKontonummer extends React.Component<{}> {
                                 Trekk dagpengesøknaden
                             </Systemtittel>
                             <Normaltekst className="blokk-xs">
-                                Har det skjedd endringer i arbeidsforhold som gjør at du ønsker å trekke dagpengesøknaden?
+                                Har det skjedd endringer som gjør at du ønsker å trekke dagpengesøknaden?
                             </Normaltekst>
                             <Normaltekst className="blokk-xs">
                                 Du kan kontakte oss skriftlig og oppgi grunn for at du ønsker å trekke søknaden, så vil vi hjelpe deg.
