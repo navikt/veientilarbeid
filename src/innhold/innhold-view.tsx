@@ -2,6 +2,7 @@ import * as React from 'react';
 import Rad from './rad';
 import AapRad from '../komponenter/aap/aap';
 import Dialog from '../komponenter/dialog/dialog';
+import DialogPermittert from '../komponenter/dialog/dialog-permittert';
 import Banner from '../komponenter/banner/banner';
 import Meldekort from '../komponenter/meldekort/meldekort';
 import DittSykefravaer from '../komponenter/ditt-sykefravaer/ditt-sykefravaer';
@@ -26,6 +27,31 @@ interface OwnProps {
     visRessurslenker: boolean;
     skalViseIARBSPlaster: boolean;
     skalViseRegistrert: boolean;
+    erPermittert: boolean;
+}
+
+const AktivitetDialogMeldekort = (erSykmeldtMedArbeidsgiver: any) => {
+    return (
+        <>
+            <Aktivitetsplan/>
+                <div className="tokol">
+                    <Dialog/>
+                    {erSykmeldtMedArbeidsgiver ? <DittSykefravaer/> : <Meldekort/>}
+                </div>
+        </>
+    )
+}
+
+const PermittertDialogAktivitetsplan = (erSykmeldtMedArbeidsgiver: any) => {
+    return (
+        <>
+            <DialogPermittert/>
+                <div className="tokol">
+                    <Aktivitetsplan/>
+                    {erSykmeldtMedArbeidsgiver ? <DittSykefravaer/> : <Meldekort/>}
+                </div>
+        </>
+    )
 }
 
 export default ({erSykmeldtMedArbeidsgiver,
@@ -34,7 +60,8 @@ export default ({erSykmeldtMedArbeidsgiver,
                     skalViseMotestotteLenke,
                     visRessurslenker,
                     skalViseIARBSPlaster,
-                    skalViseRegistrert}: OwnProps) => {
+                    skalViseRegistrert,
+                    erPermittert}: OwnProps) => {
 
     return (
         <>
@@ -48,11 +75,9 @@ export default ({erSykmeldtMedArbeidsgiver,
                 {skalViseIARBSPlaster ? <IARBSMelding/> : null}
                 {skalViseEgenvurderingLenke ? <Egenvurdering/> : null}
                 {skalViseMotestotteLenke ? <Motestotte erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}/> : null}
-                <Aktivitetsplan/>
-                <div className="tokol">
-                    <Dialog/>
-                    {erSykmeldtMedArbeidsgiver ? <DittSykefravaer/> : <Meldekort/>}
-                </div>
+                {erPermittert ? 
+                    <PermittertDialogAktivitetsplan erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver} /> :
+                    <AktivitetDialogMeldekort erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver} />}
             </Rad>
 
             {erSykmeldtMedArbeidsgiver && (

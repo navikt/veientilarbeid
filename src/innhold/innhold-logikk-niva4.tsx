@@ -51,6 +51,9 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
     const registreringTypeOrIngenVerdi = registreringType ? registreringType : 'INGEN_VERDI';
     const fremtidigSvarOrIngenVerdi = fremtidigSvar ? fremtidigSvar : 'INGEN_VERDI';
     const motestotteToggle = featureToggleData ? featureToggleData['veientilarbeid.motestotte.lansert'] : false;
+    const permittertToggle = featureToggleData ? featureToggleData['veientilarbeid.permittert.ny-dialog'] : false;
+
+    const erPermittert = dinSituasjon === 'ER_PERMITTERT' && permittertToggle === true
 
     React.useEffect(() => {
         seVeientilarbeid(
@@ -63,7 +66,7 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
             underOppfolgingJaNei,
             registreringTypeOrIngenVerdi,
             fremtidigSvarOrIngenVerdi,
-            reservasjonKRRJaNei,
+            reservasjonKRRJaNei
     );
         hotjarTrigger(erMikrofrontend());
         seIARBSPlaster(skalViseIARBSPlaster, formidlingsgruppe, servicegruppe, rettighetsgruppe)
@@ -126,6 +129,7 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
             visRessurslenker={visRessurslenker}
             skalViseIARBSPlaster={skalViseIARBSPlaster}
             skalViseRegistrert={skalViseRegistrert}
+            erPermittert={erPermittert}
         />
     );
 };
