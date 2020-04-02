@@ -42,10 +42,10 @@ const DialogPermittert = (props: AllProps) => {
                     }
                 </div>
                 <div className="lenkepanel__tekst">
-                    <Undertittel className="blokk-s">
+                    <Undertittel>
                         {tekster['dialog']}
                     </Undertittel>
-                    <Normaltekst className="lenkepanel__ingress blokk-s">
+                    <Normaltekst className="lenkepanel__ingress">
                         Er du fortsatt permittert?<br />
                         Hvis du har begynt å jobbe igjen eller har mistet jobben, er det viktig at du gir beskjed til NAV.<br />
                         Det kan du gjøre her.
