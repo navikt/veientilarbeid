@@ -26,17 +26,6 @@ const DialogPermittert = (props: AllProps) => {
         return <a onClick={() => gaTilDialog(antallUleste, servicegruppe)} {...props}/>;
     };
 
-    const byggDialogTekst = () => {
-        switch (antallUleste) {
-            case 0:
-                return 'Send gjerne melding hvis du lurer på noe';
-            case 1:
-                return antallUleste.toString() + ' ulest melding';
-            default:
-                return antallUleste.toString() + ' uleste meldinger';
-        }
-    }
-
     return (
         <LenkepanelBase
             href={dialogLenke}
@@ -57,14 +46,10 @@ const DialogPermittert = (props: AllProps) => {
                         {tekster['dialog']}
                     </Undertittel>
                     <Normaltekst className="lenkepanel__ingress blokk-s">
-                        Er du fortsatt permittert?<br/>
-                        Hvis du har begynt å jobbe igjen eller har mistet jobben, er det viktig at du gir beskjed til NAV.
+                        Er du fortsatt permittert?<br />
+                        Hvis du har begynt å jobbe igjen eller har mistet jobben, er det viktig at du gir beskjed til NAV.<br />
                         Det kan du gjøre her.
                     </Normaltekst>
-                    <Normaltekst className="lenkepanel__ingress">
-                        {byggDialogTekst()}
-                    </Normaltekst>
-                    
                 </div>
             </div>
         </LenkepanelBase>
