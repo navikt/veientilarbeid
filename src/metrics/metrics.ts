@@ -83,6 +83,10 @@ export const gaTilDialog = (antall: number, servicegruppe: string | null) => {
     logEvent('gatildialog', {antallField: antall, innsatsgruppeField: servicegruppe}, {antallTag: antall, innsatsgruppeTag: servicegruppe});
 };
 
+export const gaTilDialogPermittert = (antall: number, servicegruppe: string | null) => {
+    logEvent('gatildialogpermittert', {antallField: antall, innsatsgruppeField: servicegruppe}, {antallTag: antall, innsatsgruppeTag: servicegruppe});
+};
+
 export const antallUlesteDialoger = (antall: number) => {
     logEvent('antallulestedialoger', {antallField: antall}, {antallTag: antall});
 };

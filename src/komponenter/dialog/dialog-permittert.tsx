@@ -3,7 +3,7 @@ import LenkepanelBase from 'nav-frontend-lenkepanel';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { connect } from 'react-redux';
 import { AppState } from '../../reducer';
-import { gaTilDialog } from '../../metrics/metrics';
+import { gaTilDialogPermittert } from '../../metrics/metrics';
 import DialogFill from './dialog-fill';
 import DialogLine from './dialog-line';
 import './dialog.less';
@@ -23,7 +23,7 @@ const DialogPermittert = (props: AllProps) => {
 
     const linkCreator = (props: {}) => {
         // eslint-disable-next-line jsx-a11y/anchor-has-content
-        return <a onClick={() => gaTilDialog(antallUleste, servicegruppe)} {...props}/>;
+        return <a onClick={() => gaTilDialogPermittert(antallUleste, servicegruppe)} {...props}/>;
     };
 
     return (
