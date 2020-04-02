@@ -18,6 +18,7 @@ const InnholdLogikkNiva3 = () => {
             skalViseMotestotteLenke={false}
             skalViseIARBSPlaster={false}
             skalViseRegistrert={false}
+            erPermittert={false}
         />
     );
 };

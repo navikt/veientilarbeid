@@ -1,4 +1,5 @@
 export default {
   'veientilarbeid.motestotte.lansert': true,
-  'veientilarbeid.meldekort.ny-tekst': true
+  'veientilarbeid.meldekort.ny-tekst': true,
+  'veientilarbeid.permittert.ny-dialog': true
 };
