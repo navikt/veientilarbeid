@@ -30,7 +30,11 @@ interface OwnProps {
     erPermittert: boolean;
 }
 
-const AktivitetDialogMeldekort = (erSykmeldtMedArbeidsgiver: any) => {
+interface ErSykmeldtMedArbeidsgiverProps {
+    erSykmeldtMedArbeidsgiver: boolean
+}
+
+const AktivitetDialogMeldekort = ({erSykmeldtMedArbeidsgiver}: ErSykmeldtMedArbeidsgiverProps) => {
     return (
         <>
             <Aktivitetsplan/>
@@ -42,7 +46,7 @@ const AktivitetDialogMeldekort = (erSykmeldtMedArbeidsgiver: any) => {
     )
 }
 
-const PermittertDialogAktivitetsplan = (erSykmeldtMedArbeidsgiver: any) => {
+const PermittertDialogAktivitetsplan = ({erSykmeldtMedArbeidsgiver}: ErSykmeldtMedArbeidsgiverProps) => {
     return (
         <>
             <DialogPermittert/>
@@ -62,7 +66,6 @@ export default ({erSykmeldtMedArbeidsgiver,
                     skalViseIARBSPlaster,
                     skalViseRegistrert,
                     erPermittert}: OwnProps) => {
-
     return (
         <>
             {erMikrofrontend() ? null : (erSykmeldtMedArbeidsgiver ? <Banner type="sykmeldt"/> :
