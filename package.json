@@ -18,7 +18,7 @@
   "dependencies": {
     "@craco/craco": "5.6.3",
     "@types/amplitude-js": "5.8.0",
-    "acorn": "7.1.0",
+    "acorn": "7.1.1",
     "amplitude-js": "5.10.0",
     "babel-polyfill": "6.26.0",
     "classnames": "2.2.6",
