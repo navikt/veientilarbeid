@@ -18,6 +18,7 @@ import KrrMelding from '../komponenter/krr-melding/krr-melding';
 import IARBSMelding from '../komponenter/iarbs-melding/iarbs-melding';
 import { erMikrofrontend } from '../utils/app-state-utils';
 import Registrert from '../komponenter/registrert/registrert';
+import Situasjon from '../komponenter/din-situasjon/situasjon'
 
 interface OwnProps {
     erSykmeldtMedArbeidsgiver: boolean;
@@ -74,6 +75,7 @@ export default ({erSykmeldtMedArbeidsgiver,
             <Rad>
                 <ReaktiveringMelding/>
                 {skalViseKrrMelding ? <KrrMelding/> : null}
+                {erPermittert && <Situasjon />}
                 {skalViseRegistrert ? <Registrert/> : null }
                 {skalViseIARBSPlaster ? <IARBSMelding/> : null}
                 {skalViseEgenvurderingLenke ? <Egenvurdering/> : null}

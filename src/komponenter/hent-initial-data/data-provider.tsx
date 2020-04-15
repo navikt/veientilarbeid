@@ -24,9 +24,15 @@ import {
     State as MotestotteState,
     MotestotteContext
 } from '../../ducks/motestotte';
+import {
+    Data as SituasjonData,
+    initialState as initialStateSituasjon,
+    State as SituasjonState,
+    SituasjonContext
+} from '../../ducks/situasjon';
 
 import { fetchData } from '../../ducks/api-utils';
-import { MOTESTOTTE_URL, BRUKERINFO_URL } from '../../ducks/api';
+import { MOTESTOTTE_URL, BRUKERINFO_URL, SITUASJON_URL } from '../../ducks/api';
 
 const skalSjekkeEgenvurderingBesvarelse = (foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null): boolean => {
     return foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.STANDARD_INNSATS ||
@@ -57,6 +63,7 @@ const DataProvider = ({
                       }: Props) => {
 
     const [motestotteState, setMotestotteState] = React.useState<MotestotteState>(initialStateMotestotte);
+    const [situasjonState, setSituasjonState] = React.useState<SituasjonState>(initialStateSituasjon);
     const [brukerInfoState, setBrukerInfoState] = React.useState<BrukerInfoState>(brukerInfoDataInitialstate);
 
     const data = React.useContext(BrukerregistreringContext).data;
@@ -64,6 +71,7 @@ const DataProvider = ({
 
     React.useEffect(() => {
         fetchData<BrukerInfoState, BrukerInfoData>(brukerInfoState, setBrukerInfoState, BRUKERINFO_URL);
+        fetchData<SituasjonState, SituasjonData>(situasjonState, setSituasjonState, SITUASJON_URL);
         hentJobbsokerbesvarelse();
         hentUlesteDialoger();
         if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
@@ -75,7 +83,7 @@ const DataProvider = ({
     }, []);
 
     const avhengigheter: any[] = [brukerInfoState];
-    const ventPa: any[] = [ulesteDialoger, jobbsokerbesvarelse];
+    const ventPa: any[] = [ulesteDialoger, jobbsokerbesvarelse, situasjonState];
     if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
         ventPa.push(egenvurderingbesvarelse);
     }
@@ -92,7 +100,9 @@ const DataProvider = ({
         >
             <BrukerInfoContext.Provider value={ brukerInfoState }>
                 <MotestotteContext.Provider value={motestotteState}>
-                    {children}
+                    <SituasjonContext.Provider value={situasjonState}>
+                        {children}
+                    </SituasjonContext.Provider>
                 </MotestotteContext.Provider>
             </BrukerInfoContext.Provider>
         </Innholdslaster>

@@ -2,7 +2,7 @@ import oppfolgingResponse from './oppfolging-mock';
 import {
     BRUKERINFO_URL, JOBBSOKERBESVARELSE_URL, VEILARBOPPFOLGING_URL,
     ULESTEDIALOGER_URL, BRUKERREGISTRERING_URL, EGENVURDERINGBESVARELSE_URL, MOTESTOTTE_URL,
-    FEATURE_URL
+    FEATURE_URL, SITUASJON_URL
 } from '../ducks/api';
 import brukerInfoResponse from './bruker-info-mock';
 import jobbsokerbesvarelseResponse from './jobbsokerbesvarelse-mock';
@@ -11,7 +11,8 @@ import egenvurderingbesvarelseResponse from './egenvurderingbesvarelse-mock';
 import brukerRegistreringResponse from  './brukerregistrering-mock';
 import authResponse from './auth-mock';
 import featureTogglesResponse from './feature-toggles-mock';
-import motestotteResponse from './motestotte-mock'
+import motestotteResponse from './motestotte-mock';
+import situasjonResponse from './situasjon-mock'
 
 import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 // import FetchMock, { Middleware, MiddlewareUtils, ResponseUtils } from 'yet-another-fetch-mock';
@@ -52,5 +53,7 @@ fetchMock.get(FEATURE_URL, featureTogglesResponse);
 
 fetchMock.get(MOTESTOTTE_URL, motestotteResponse);
 // fetchMock.get(MOTESTOTTE_URL, ResponseUtils.statusCode(204));
+
+fetchMock.get(SITUASJON_URL, situasjonResponse);
 
 fetchMock.get(AUTH_API, authResponse);

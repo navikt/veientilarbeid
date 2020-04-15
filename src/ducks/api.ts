@@ -39,7 +39,8 @@ export const VEILARBOPPFOLGING_URL = `${contextpath}/veilarboppfolging/api/oppfo
     ULESTEDIALOGER_URL = `${contextpath}/veilarbdialog/api/dialog/antallUleste`,
     EGENVURDERINGBESVARELSE_URL = `${contextpath}/veilarbvedtakinfo/api/behovsvurdering/besvarelse`,
     FEATURE_URL = `${contextpath}/api/feature`,
-    MOTESTOTTE_URL = `${contextpath}/veilarbvedtakinfo/api/motestotte`;
+    MOTESTOTTE_URL = `${contextpath}/veilarbvedtakinfo/api/motestotte`,
+    SITUASJON_URL = `${contextpath}/veilarbvedtakinfo/api/situasjon`;
 
 export function hentJobbsokerbesvarelseFetch(): Promise<JobbsokerbesvarelseData> {
     return fetchToJson(JOBBSOKERBESVARELSE_URL, requestConfig);
