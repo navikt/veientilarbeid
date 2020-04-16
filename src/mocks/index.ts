@@ -15,7 +15,7 @@ import motestotteResponse from './motestotte-mock';
 import situasjonResponse from './situasjon-mock'
 
 import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
-// import FetchMock, { Middleware, MiddlewareUtils, ResponseUtils } from 'yet-another-fetch-mock';
+//import FetchMock, { Middleware, MiddlewareUtils, ResponseUtils } from 'yet-another-fetch-mock';
 import { AUTH_API } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
 
 const loggingMiddleware: Middleware = (request, response) => {
