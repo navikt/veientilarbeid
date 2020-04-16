@@ -43,5 +43,7 @@ redirect:
     to: {{ BEHOVSVURDERING_URL }}
   - from: /start-samtale
     to: {{ START_SAMTALE_URL }}
+  - from: /endre-situasjon
+    to: {{ ENDRE_SITUASJON_URL }}
   - from: /arbeidssokerregistrering
     to: {{ ARBEIDSSOKERREGISTRERING_URL }}
