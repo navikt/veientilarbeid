@@ -2,7 +2,7 @@ import { DataElement, STATUS } from './api';
 import * as React from 'react';
 
 export interface Data {
-  oprettet: string;
+  opprettet: string;
   endretAv: string;
   svarId: string;
   svarTekst: string;

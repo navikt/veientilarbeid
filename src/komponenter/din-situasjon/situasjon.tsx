@@ -19,7 +19,7 @@ const Situasjon = () => {
   const dinSituasjonOrIngenVerdi = dinSituasjon ? dinSituasjon : 'INGEN_VERDI';
   const situasjonsbeskrivelse = situasjonData !== null ? situasjonData.svarTekst : getSituasjon(dinSituasjonOrIngenVerdi)
   const situasjonsId = situasjonData !== null ? situasjonData.svarId : dinSituasjonOrIngenVerdi
-  const endretDato = situasjonData !== null ? situasjonData.oprettet : opprettetDato
+  const endretDato = situasjonData !== null ? situasjonData.opprettet : opprettetDato
 
   const handleClick = (event:any) => {
     event.preventDefault();
