@@ -6,6 +6,8 @@ import { BrukerregistreringContext } from '../../ducks/brukerregistrering';
 import { SituasjonContext } from '../../ducks/situasjon';
 import getSituasjon from './get-situasjon'
 import prettyPrintDato from '../../utils/pretty-print-dato'
+import { endresituasjonLenke } from '../../innhold/lenker';
+import { uniLogger } from '../../metrics/uni-logger';
 import './situasjon.less'
 
 const Situasjon = () => {
@@ -16,8 +18,14 @@ const Situasjon = () => {
   const { dinSituasjon } = besvarelse;
   const dinSituasjonOrIngenVerdi = dinSituasjon ? dinSituasjon : 'INGEN_VERDI';
   const situasjonsbeskrivelse = situasjonData !== null ? situasjonData.svarTekst : getSituasjon(dinSituasjonOrIngenVerdi)
+  const situasjonsId = situasjonData !== null ? situasjonData.svarId : dinSituasjonOrIngenVerdi
   const endretDato = situasjonData !== null ? situasjonData.oprettet : opprettetDato
-  const situasjonEndreUrl = '/arbeid/situasjon'
+
+  const handleClick = (event:any) => {
+    event.preventDefault();
+    uniLogger('veientilarbeid.endresituasjon.gatil', { situasjonsId });
+    window.location.href = endresituasjonLenke;
+  };
   
   return (
     <Panel border className="ramme blokk-s">
@@ -28,7 +36,7 @@ const Situasjon = () => {
         { situasjonsbeskrivelse }
       </Normaltekst>
       <Normaltekst>
-        Oppdatert: { prettyPrintDato(endretDato) } <Lenke href={situasjonEndreUrl}>Oppdater din situasjon</Lenke>
+        Oppdatert: { prettyPrintDato(endretDato) } <Lenke href={endresituasjonLenke} onClick={handleClick}>Oppdater din situasjon</Lenke>
       </Normaltekst>
     </Panel>
   );
