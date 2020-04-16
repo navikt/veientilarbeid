@@ -12,7 +12,7 @@ export default {
             helseHinder: 'NEI',
             andreForhold: 'NEI',
             sisteStilling: 'Barne- og ungdomsarbeider i skolefritidsordning',
-            dinSituasjon: 'ER_PERMITTERT',
+            dinSituasjon: 'MISTET_JOBBEN',
             fremtidigSituasjon: 'NY_ARBEIDSGIVER',
             tilbakeIArbeid: 'USIKKER'
         },

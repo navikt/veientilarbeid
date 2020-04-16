@@ -18,6 +18,7 @@ import { hotjarTrigger } from '../hotjar';
 import './innhold.less';
 import InnholdView from './innhold-view';
 import { MotestotteContext } from '../ducks/motestotte';
+import { SituasjonContext } from '../ducks/situasjon';
 import { Formidlingsgruppe, OppfolgingContext, Servicegruppe } from '../ducks/oppfolging';
 // import { RegistreringType } from '../ducks/bruker-info'
 
@@ -33,6 +34,7 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
 
     const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
     const featureToggleData = React.useContext(FeaturetoggleContext).data;
+    const SituasjonData = React.useContext(SituasjonContext).data;
     const opprettetRegistreringDatoString = selectOpprettetRegistreringDato(brukerregistreringData);
     const opprettetRegistreringDato = opprettetRegistreringDatoString ? new Date(opprettetRegistreringDatoString) : null;
     const fremtidigSvar = selectFremtidigSituasjonSvar(brukerregistreringData);
@@ -52,8 +54,10 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
     const fremtidigSvarOrIngenVerdi = fremtidigSvar ? fremtidigSvar : 'INGEN_VERDI';
     const motestotteToggle = featureToggleData ? featureToggleData['veientilarbeid.motestotte.lansert'] : false;
     const permittertToggle = featureToggleData ? featureToggleData['veientilarbeid.permittert.ny-dialog'] : false;
+    const endreSituasjonToggle = featureToggleData ? featureToggleData['veientilarbeid.permittert.situasjon.endre'] : false;
 
     const erPermittert = dinSituasjon === 'ER_PERMITTERT' && permittertToggle === true
+    const erPermittertEllerEndret = endreSituasjonToggle && (erPermittert || SituasjonData !== null)
 
     React.useEffect(() => {
         seVeientilarbeid(
@@ -130,6 +134,7 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
             skalViseIARBSPlaster={skalViseIARBSPlaster}
             skalViseRegistrert={skalViseRegistrert}
             erPermittert={erPermittert}
+            erPermittertEllerEndret={erPermittertEllerEndret}
         />
     );
 };

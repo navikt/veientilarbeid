@@ -55,5 +55,7 @@ fetchMock.get(MOTESTOTTE_URL, motestotteResponse);
 // fetchMock.get(MOTESTOTTE_URL, ResponseUtils.statusCode(204));
 
 fetchMock.get(SITUASJON_URL, situasjonResponse);
+//fetchMock.get(SITUASJON_URL, ResponseUtils.statusCode(204));
+
 
 fetchMock.get(AUTH_API, authResponse);

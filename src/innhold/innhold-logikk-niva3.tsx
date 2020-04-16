@@ -19,6 +19,7 @@ const InnholdLogikkNiva3 = () => {
             skalViseIARBSPlaster={false}
             skalViseRegistrert={false}
             erPermittert={false}
+            erPermittertEllerEndret={false}
         />
     );
 };
