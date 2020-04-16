@@ -27,6 +27,11 @@ const Situasjon = () => {
     window.location.href = endresituasjonLenke;
   };
   
+  React.useEffect(() => {
+    uniLogger('veientilarbeid.endresituasjon.visning', { situasjonsId });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <Panel border className="ramme blokk-s">
       <Undertittel>
