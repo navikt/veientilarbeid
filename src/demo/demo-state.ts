@@ -15,7 +15,8 @@ export enum DemoData {
     GEOGRAFISK_TILKNYTNING = 'geografiskTilknytning',
     REGISTRERING_TYPE = 'registreringType',
     RETTIGHETSGRUPPE = 'rettighetsgruppe',
-    FEATURE_TOGGLES = 'featureToggles'
+    FEATURE_TOGGLES = 'featureToggles',
+    SITUASJON = 'situasjon'
 }
 
 export const hentFraLocalStorage = (key: string): string | null => {
@@ -125,6 +126,23 @@ export const settMotestotte = () => {
 
 export const slettMotestotte = () => {
     slettFraLocalStorage(DemoData.MOTESTOTTE);
+};
+
+export const hentSituasjon = (): JSONObject | null => {
+    const verdi = hentFraLocalStorage(DemoData.SITUASJON);
+    return verdi ? JSON.parse(verdi) : null;
+};
+
+export const settSituasjon = () => {
+    settILocalStorage(DemoData.SITUASJON, JSON.stringify({
+        oprettet: '2020-04-07T11:53:05.486686+01:00',
+        endretAv: 'string',
+        svarId: 'SKAL_I_JOBB',
+        svarTekst: 'Har fått beskjed fra arbeidsgiver når jeg kan komme tilbake i jobben'}));
+};
+
+export const slettSituasjon = () => {
+    slettFraLocalStorage(DemoData.SITUASJON);
 };
 
 export const hentFeatureToggles = (): JSONObject | null => {

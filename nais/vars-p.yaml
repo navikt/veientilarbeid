@@ -14,6 +14,7 @@ veivisersosialhjelp_url: https://tjenester.nav.no/veivisersosialhjelp
 arbeidsplassen_url: https://arbeidsplassen.nav.no
 behovsvurdering_url: https://behovsvurdering.nav.no/
 start_samtale_url: https://nav.no/arbeid/start-samtale
+endre_situasjon_url: https://nav.no/arbeid/situasjon
 arbeidssokerregistrering_url: https://arbeidssokerregistrering.nav.no
 app_environment_name: p
 ingresses:

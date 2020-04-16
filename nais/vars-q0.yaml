@@ -14,6 +14,7 @@ veivisersosialhjelp_url: https://tjenester-q0.nav.no/veivisersosialhjelp
 arbeidsplassen_url: https://arbeidsplassen-q.nav.no
 behovsvurdering_url: https://behovsvurdering-q.nav.no/
 start_samtale_url: https://www-q0.nav.no/arbeid/start-samtale
+endre_situasjon_url: https://www-q0.nav.no/arbeid/situasjon
 arbeidssokerregistrering_url: https://arbeidssokerregistrering-q.nav.no
 app_environment_name: q0
 ingresses:

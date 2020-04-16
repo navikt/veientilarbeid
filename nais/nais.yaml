@@ -38,6 +38,8 @@ spec:
     value: {{ behovsvurdering_url }}
   - name: START_SAMTALE_URL
     value: {{ start_samtale_url }}
+  - name: ENDRE_SITUASJON_URL
+    value: {{ endre_situasjon_url }}
   - name: ARBEIDSSOKERREGISTRERING_URL
     value: {{ arbeidssokerregistrering_url }}
   - name: FASIT_ENVIRONMENT_NAME

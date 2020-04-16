@@ -18,6 +18,7 @@ import KrrMelding from '../komponenter/krr-melding/krr-melding';
 import IARBSMelding from '../komponenter/iarbs-melding/iarbs-melding';
 import { erMikrofrontend } from '../utils/app-state-utils';
 import Registrert from '../komponenter/registrert/registrert';
+import Situasjon from '../komponenter/din-situasjon/situasjon'
 
 interface OwnProps {
     erSykmeldtMedArbeidsgiver: boolean;
@@ -28,6 +29,7 @@ interface OwnProps {
     skalViseIARBSPlaster: boolean;
     skalViseRegistrert: boolean;
     erPermittert: boolean;
+    erPermittertEllerEndret: boolean;
 }
 
 interface ErSykmeldtMedArbeidsgiverProps {
@@ -65,7 +67,8 @@ export default ({erSykmeldtMedArbeidsgiver,
                     visRessurslenker,
                     skalViseIARBSPlaster,
                     skalViseRegistrert,
-                    erPermittert}: OwnProps) => {
+                    erPermittert,
+                    erPermittertEllerEndret}: OwnProps) => {
     return (
         <>
             {erMikrofrontend() ? null : (erSykmeldtMedArbeidsgiver ? <Banner type="sykmeldt"/> :
@@ -74,6 +77,7 @@ export default ({erSykmeldtMedArbeidsgiver,
             <Rad>
                 <ReaktiveringMelding/>
                 {skalViseKrrMelding ? <KrrMelding/> : null}
+                {erPermittertEllerEndret && <Situasjon />}
                 {skalViseRegistrert ? <Registrert/> : null }
                 {skalViseIARBSPlaster ? <IARBSMelding/> : null}
                 {skalViseEgenvurderingLenke ? <Egenvurdering/> : null}
