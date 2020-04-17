@@ -17,7 +17,6 @@
   },
   "dependencies": {
     "@craco/craco": "5.6.4",
-    "@types/amplitude-js": "5.8.0",
     "acorn": "7.1.1",
     "amplitude-js": "5.11.0",
     "babel-polyfill": "6.26.0",
@@ -68,6 +67,7 @@
     "yet-another-fetch-mock": "3.4.0"
   },
   "devDependencies": {
+    "@types/amplitude-js": "5.8.0",
     "@types/chai": "4.2.7",
     "@types/classnames": "2.2.9",
     "@types/enzyme": "3.10.4",
