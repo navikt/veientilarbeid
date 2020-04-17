@@ -10,7 +10,7 @@ import getSituasjon from './get-situasjon'
 import prettyPrintDato from '../../utils/pretty-print-dato'
 import { endresituasjonLenke } from '../../innhold/lenker';
 import { uniLogger } from '../../metrics/uni-logger';
-import Ikon from './email-text';
+import Ikon from './person-med-blyant';
 import './situasjon.less'
 
 const Situasjon = () => {
@@ -25,7 +25,6 @@ const Situasjon = () => {
   const endretDato = situasjonData !== null ? situasjonData.opprettet : opprettetDato
   
   const handleClick = () => {
-    //event.preventDefault();
     uniLogger('veientilarbeid.endresituasjon.gatil', { situasjonsId });
     window.location.href = endresituasjonLenke;
   };
@@ -36,56 +35,28 @@ const Situasjon = () => {
   }, []);
 
   
-        return (
-          <LenkepanelBase
-    href={endresituasjonLenke}
-    onClick={handleClick}
-    tittelProps="undertittel"
-    border={true}
-    >
-                <div className="lenkepanel__innhold">
-                    <div className="lenkepanel__ikon">
-                        <Ikon />
-                    </div>
-                    <div>
-                        <Undertittel>
-                          Her kan du oppdatere situasjonen din
-                        </Undertittel>
-                        <Normaltekst>
-                          Sist endret { prettyPrintDato(endretDato) }: { situasjonsbeskrivelse }
-                        </Normaltekst>
-                    </div>
-                </div>
-            </LenkepanelBase>
-        );
-  /*
   return (
-    <LenkepanelMedIkon
-        href={endresituasjonLenke}
-        alt=""
-        onClick={handleClick}
-        overskrift="Endre din situasjon"
-        ingress={ingress}
+    <LenkepanelBase
+      href={endresituasjonLenke}
+      onClick={handleClick}
+      tittelProps="undertittel"
+      border={true}
     >
-        <Ikon />
-    </LenkepanelMedIkon>
-);
-*/
-  /*
-  return (
-    <Panel border className="ramme blokk-s">
-      <Undertittel>
-        Din situasjon
-      </Undertittel>
-      <Normaltekst>
-        { situasjonsbeskrivelse }
-      </Normaltekst>
-      <Normaltekst>
-        Oppdatert: { prettyPrintDato(endretDato) } <Lenke href={endresituasjonLenke} onClick={handleClick}>Oppdater din situasjon</Lenke>
-      </Normaltekst>
-    </Panel>
+      <div className="lenkepanel__innhold">
+        <div className="lenkepanel__ikon">
+          <Ikon />
+        </div>
+        <div>
+          <Undertittel>
+            Her kan du oppdatere situasjonen din
+          </Undertittel>
+          <Normaltekst>
+            Sist endret { prettyPrintDato(endretDato) }: { situasjonsbeskrivelse }
+          </Normaltekst>
+        </div>
+      </div>
+    </LenkepanelBase>
   );
-  */
 };
 
 export default Situasjon;
