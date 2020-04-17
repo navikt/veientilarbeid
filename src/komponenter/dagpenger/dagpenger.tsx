@@ -1,6 +1,6 @@
 import React from 'react';
 import { Knapp } from 'nav-frontend-knapper';
-import { Panel } from 'nav-frontend-paneler';
+import Panel from 'nav-frontend-paneler';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
 import { klikkPaSoknadDagpenger } from '../../metrics/metrics';
 import './dagpenger.less';

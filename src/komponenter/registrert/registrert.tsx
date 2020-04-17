@@ -56,7 +56,7 @@ const Registrert = () => {
                 <Element>Du er registrert som arbeidssøker</Element>
             </AlertStripeInfo>
             { showOpplysninger ?
-                <Ekspanderbartpanel tittel="Se svarene fra registreringen" border tittelProps="normaltekst" className="registrering-svar" onClick={ handleClickOpen }>
+                <Ekspanderbartpanel tittel="Se svarene fra registreringen" border className="registrering-svar" onClick={ handleClickOpen }>
                     <Opplysninger
                         opprettetDato={ opprettetDato }
                         manueltRegistrertAv={ manueltRegistrertAv }

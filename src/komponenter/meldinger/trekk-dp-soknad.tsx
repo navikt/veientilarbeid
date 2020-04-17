@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Lenke from 'nav-frontend-lenker';
-import { Panel } from 'nav-frontend-paneler';
+import Panel from 'nav-frontend-paneler';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { uniLogger } from '../../metrics/uni-logger'
 import './melding.less';
@@ -11,6 +11,7 @@ class sjekkKontonummer extends React.Component<{}> {
             uniLogger('veientilarbeid.trekk-dp-soknad.click')
         }
         return (
+            <div className="wrapper">
                 <Panel border className="ramme blokk-s">
                     <section className="paminnelse">
                         <div className="innhold">
@@ -33,6 +34,7 @@ class sjekkKontonummer extends React.Component<{}> {
                         </div>
                     </section>
                 </Panel>
+            </div>
         );
     }
 }
