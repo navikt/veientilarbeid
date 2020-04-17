@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as queryString from 'query-string';
 import { Knapp } from 'nav-frontend-knapper';
-import { Panel } from 'nav-frontend-paneler';
+import Panel from 'nav-frontend-paneler';
 import RettPaAapInnhold from './rett-pa-aap-innhold';
 import SoketidspunktInnhold from './soketidspunkt-innhold';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
@@ -68,7 +68,6 @@ class Aap extends React.Component<{}, AapRadState> {
                     <div className="kolonne blokk-m">
                         <Ekspanderbartpanel
                             tittel={tekster['aap-rad-rett-pa-aap-panel-tittel']}
-                            tittelProps="undertittel"
                             border={true}
                             apen={this.state.visAap}
                         >
@@ -76,7 +75,6 @@ class Aap extends React.Component<{}, AapRadState> {
                         </Ekspanderbartpanel>
                         <Ekspanderbartpanel
                             tittel={tekster['aap-rad-soketidspunkt-panel-tittel']}
-                            tittelProps="undertittel"
                             border={true}
                         >
                             <SoketidspunktInnhold/>

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
-import { Panel } from 'nav-frontend-paneler';
+import Panel from 'nav-frontend-paneler';
 import { seEgenvurdering, gaTilEgenvurdering } from '../../metrics/metrics';
 import {
     BrukerregistreringContext,
