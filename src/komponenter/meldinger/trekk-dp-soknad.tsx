@@ -8,7 +8,7 @@ import './melding.less';
 class sjekkKontonummer extends React.Component<{}> {
     render() {
         const handleClick = () => {
-            uniLogger('veientilarbeid.trekk-dp-soknad.click')
+            uniLogger('trekk-dp-soknad.click')
         }
         return (
             <div className="wrapper">

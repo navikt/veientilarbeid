@@ -3,6 +3,9 @@ import { erDemo } from '../utils/app-state-utils';
 import { FormidlingsgruppeOrNull, ServicegruppeOrNull } from '../ducks/oppfolging';
 import { RegistreringTypeOrIngenVerdi } from '../ducks/bruker-info';
 import { CreatedMetrics } from './created-metrics';
+import { amplitudeLogger } from './amplitude-utils'
+import { uniLogger } from './uni-logger'
+
 
 const createdMetrics = new CreatedMetrics();
 
@@ -59,6 +62,18 @@ export const seVeientilarbeid = (
             fremtidigSituasjon,
             reservasjonKRR,
         });
+    amplitudeLogger(`${domene}.visning`, {
+        erSykmeldtMedArbeidsgiver,
+        servicegruppe,
+        microfrontend,
+        formidlingsgruppe,
+        rettighetsgruppe,
+        dinSituasjon,
+        underOppfolging,
+        registreringType,
+        fremtidigSituasjon,
+        reservasjonKRR
+    })
 };
 
 export const seVeientilarbeidNiva3 = () => {
@@ -141,15 +156,15 @@ type StandardMetrikkData = {
 }
 
 export const seDineOpplysninger = (metrikker: StandardMetrikkData) => {
-    logEvent('viser.dineopplysninger', {}, metrikker);
+    uniLogger('viser.dineopplysninger', metrikker);
 };
 
 export const klikkPaDineOpplysninger = (metrikker: StandardMetrikkData) => {
-    logEvent('click.dineopplysninger', {}, metrikker);
+    uniLogger('click.dineopplysninger', metrikker);
 };
 
 export const klikkPaEndreDineOpplysninger = (metrikker: StandardMetrikkData) => {
-    logEvent('click.endredineopplysninger', {}, metrikker);
+    uniLogger('click.endredineopplysninger', metrikker);
 };
 
 interface KrrMetrikkData extends StandardMetrikkData {
@@ -157,5 +172,5 @@ interface KrrMetrikkData extends StandardMetrikkData {
 }
 
 export const klikkPaDifiLenke = (metrikker: KrrMetrikkData) => {
-    logEvent('krr.difi.click', {}, metrikker);
+    uniLogger('krr.difi.click', metrikker);
 };

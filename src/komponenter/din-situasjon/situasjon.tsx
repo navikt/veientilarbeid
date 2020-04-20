@@ -25,12 +25,12 @@ const Situasjon = () => {
   const endretDato = situasjonData !== null ? situasjonData.opprettet : opprettetDato
   
   const handleClick = () => {
-    uniLogger('veientilarbeid.endresituasjon.gatil', { situasjonsId });
+    uniLogger('endresituasjon.gatil', { situasjonsId });
     window.location.href = endresituasjonLenke;
   };
   
   React.useEffect(() => {
-    uniLogger('veientilarbeid.endresituasjon.visning', { situasjonsId });
+    uniLogger('endresituasjon.visning', { situasjonsId });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
