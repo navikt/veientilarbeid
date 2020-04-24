@@ -6,7 +6,6 @@ import { CreatedMetrics } from './created-metrics';
 import { amplitudeLogger } from './amplitude-utils'
 import { uniLogger } from './uni-logger'
 
-
 const createdMetrics = new CreatedMetrics();
 
 const w = (window as any);
@@ -78,28 +77,34 @@ export const seVeientilarbeid = (
 
 export const seVeientilarbeidNiva3 = () => {
     logEvent('seveientilarbeidniva3', {}, {});
+    amplitudeLogger(`${domene}.nivaa3.visning`);
 };
 
 export const seIARBSPlaster = (skalViseIARBSPlaster: boolean, formidlingsgruppe: String | null, servicegruppe: String | null, rettighetsgruppe: String) => {
     if (skalViseIARBSPlaster) {
         logEvent('viseriarbsplaster', {}, { formidlingsgruppeTag: formidlingsgruppe, servicegruppeTag: servicegruppe, rettighetsgruppe });
+        amplitudeLogger(`${domene}.iarbsplaster.`, { formidlingsgruppe, servicegruppe, rettighetsgruppe });
     }
 }
 
 export const klikkPaSokLedigeStillinger = (servicegruppe: String | null) => {
     logEvent('sokledigestillinger', {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
+    amplitudeLogger(`${domene}.ledigestillinger.click`, { servicegruppe });
 };
 
 export const gaTilAktivitetsplan = (servicegruppe: String | null) => {
     logEvent('gatilaktivitetsplan', {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
+    amplitudeLogger(`${domene}.aktivitetsplan.click`, { servicegruppe });
 };
 
 export const gaTilDialog = (antall: number, servicegruppe: string | null) => {
     logEvent('gatildialog', {antallField: antall, innsatsgruppeField: servicegruppe}, {antallTag: antall, innsatsgruppeTag: servicegruppe});
+    amplitudeLogger(`${domene}.dialog.click`, { antall, servicegruppe });
 };
 
 export const gaTilDialogPermittert = (antall: number, servicegruppe: string | null) => {
     logEvent('gatildialogpermittert', {antallField: antall, innsatsgruppeField: servicegruppe}, {antallTag: antall, innsatsgruppeTag: servicegruppe});
+    amplitudeLogger(`${domene}.dialog.permittert.click`, { antall, servicegruppe })
 };
 
 export const antallUlesteDialoger = (antall: number) => {
@@ -108,42 +113,52 @@ export const antallUlesteDialoger = (antall: number) => {
 
 export const gaTilMeldekort = (servicegruppe: String | null) => {
     logEvent('gatilmeldekort', {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
+    amplitudeLogger(`${domene}.meldekort.click`, { servicegruppe });
 };
 
 export const seEgenvurdering = (foreslaattinnsatsgruppe: ForeslattInnsatsgruppe) => {
     logEvent('seegenvurdering', {}, {foreslaattInnsatsgruppe: foreslaattinnsatsgruppe});
+    amplitudeLogger(`${domene}.egenvurdering.visning`, { foreslaattinnsatsgruppe });
 };
 
 export const gaTilEgenvurdering = (antallTimer: number, foreslaattinnsatsgruppe: ForeslattInnsatsgruppe) => {
     logEvent('gatilegenvurdering', {antallTimer: antallTimer}, {foreslaattInnsatsgruppe: foreslaattinnsatsgruppe});
+    amplitudeLogger(`${domene}.egenvurdering.click`, { antallTimer, foreslaattinnsatsgruppe });
 };
 
 export const gaTilDittSykefravaer = (servicegruppe: String | null) => {
     logEvent('gatildittsykefravaer', {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
+    amplitudeLogger(`${domene}.sykefravaer.click`, { servicegruppe });
 };
 
 export const gaTilCV = (servicegruppe: String | null) => {
     logEvent('gatilcv', {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
+    amplitudeLogger(`${domene}.click`, { servicegruppe });
 };
 
 export const gaTilJobbsokerkompetanse = (servicegruppe: String | null) => {
     logEvent('gatiljobbsokerkompetanseresultat', {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
+    amplitudeLogger(`${domene}.jobbsokerkompentanseresultat.click`, { servicegruppe });
 };
 
 export const gaTilVeiviserarbeidssoker = (servicegruppe: String | null) => {
     logEvent('gatilveiviserarbeidssoker', {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
+    amplitudeLogger(`${domene}.veiviserarbeidssoker.click`, { servicegruppe });
 };
 
 export const klikkPaSoknadAlleSkjema = (servicegruppe: string | null) => {
-    logEvent('soknaddagpenger', {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
+    logEvent('soknaddagalleskjema', {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
+    amplitudeLogger(`${domene}.alleskjema.click`, { servicegruppe });
 };
 
 export const klikkPaSoknadDagpenger = (servicegruppe: string | null) => {
     logEvent('soknaddagpenger', {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
+    amplitudeLogger(`${domene}.dagpengersoknad.click`, { servicegruppe });
 };
 
 export const lesOmOkonomi = (stonad: string, servicegruppe: string | null) => {
     logEvent('lesomokonomi', {stonadField: stonad, innsatsgruppeField: servicegruppe}, {stonadTag: stonad, innsatsgruppeTag: servicegruppe});
+    amplitudeLogger(`${domene}.okonomi.click`, { stonad, servicegruppe });
 };
 
 type StandardMetrikkData = {
