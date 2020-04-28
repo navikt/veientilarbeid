@@ -20,6 +20,8 @@ spec:
     value: {{ veientilarbeid_url }}
   - name: AKTIVITETSPLAN_URL
     value: {{ aktivitetsplan_url }}
+  - name: DIALOG_URL
+    value: {{ dialog_url }}
   - name: VEIVISERARBEIDSSOKER_URL
     value: {{ veiviserarbeidssoker_url }}
   - name: VEILEDEARBEIDSSOKER_URL
