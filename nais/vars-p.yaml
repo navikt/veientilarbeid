@@ -4,7 +4,8 @@ aad_b2c_clientid_username: 45104d6a-f5bc-4e8c-b352-4bbfc9381f25
 aad_b2c_discovery_url: https://login.microsoftonline.com/navnob2c.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=B2C_1A_idporten
 veilarbstepup_oidc_url: https://veilarbstepup.nav.no/veilarbstepup/oidc
 veientilarbeid_url: https://veientilarbeid.nav.no
-aktivitetsplan_url: https://tjenester.nav.no/aktivitetsplan
+aktivitetsplan_url: https://aktivitetsplan.nav.no
+dialog_url: https://nav.no/arbeid/dialog
 veiviserarbeidssoker_url: https://veiviserarbeidssoker.nav.no
 veiledearbeidssoker_url: https://veiledearbeidssoker.nav.no
 jobbsokerkompetanse_url: https://jobbsokerkompetanse.nav.no
