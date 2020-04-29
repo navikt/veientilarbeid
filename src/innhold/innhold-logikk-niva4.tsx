@@ -13,13 +13,14 @@ import {
     selectOpprettetRegistreringDato,
     selectDinSituasjonSvar
 } from '../ducks/brukerregistrering';
-import { seVeientilarbeid, seIARBSPlaster } from '../metrics/metrics';
+import { seVeientilarbeid, seIARBSPlaster, tellPoaGruppe } from '../metrics/metrics';
 import { hotjarTrigger } from '../hotjar';
 import './innhold.less';
 import InnholdView from './innhold-view';
 import { MotestotteContext } from '../ducks/motestotte';
 import { SituasjonContext } from '../ducks/situasjon';
 import { Formidlingsgruppe, OppfolgingContext, Servicegruppe } from '../ducks/oppfolging';
+import getPoaGroup from '../utils/get-poa-group'
 // import { RegistreringType } from '../ducks/bruker-info'
 
 const LANSERINGSDATO_EGENVURDERING = new Date(2019, 4, 10);
@@ -51,13 +52,16 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
     const { erSykmeldtMedArbeidsgiver, registreringType, rettighetsgruppe } = brukerinfoData;
     const skalViseIARBSPlaster = false // formidlingsgruppe === Formidlingsgruppe.IARBS && registreringType === RegistreringType.ALLEREDE_REGISTRERT && rettighetsgruppe !== 'AAP';
     const registreringTypeOrIngenVerdi = registreringType ? registreringType : 'INGEN_VERDI';
+    const foreslattInnsatsgruppeOrIngenVerdi = foreslattInnsatsgruppe ? foreslattInnsatsgruppe : 'INGEN_VERDI'
     const fremtidigSvarOrIngenVerdi = fremtidigSvar ? fremtidigSvar : 'INGEN_VERDI';
+    const formidlingsgruppeOrIngenVerdi = formidlingsgruppe ? formidlingsgruppe : 'INGEN_VERDI';
     const motestotteToggle = featureToggleData ? featureToggleData['veientilarbeid.motestotte.lansert'] : false;
     const permittertToggle = featureToggleData ? featureToggleData['veientilarbeid.permittert.ny-dialog'] : false;
     const endreSituasjonToggle = featureToggleData ? featureToggleData['veientilarbeid.permittert.situasjon.endre'] : false;
 
     const erPermittert = dinSituasjon === 'ER_PERMITTERT' && permittertToggle === true
     const erPermittertEllerEndret = endreSituasjonToggle && (erPermittert || SituasjonData !== null)
+    const POAGruppe = getPoaGroup({ dinSituasjon, formidlingsgruppe: formidlingsgruppeOrIngenVerdi, innsatsgruppe: foreslattInnsatsgruppeOrIngenVerdi });
 
     React.useEffect(() => {
         seVeientilarbeid(
@@ -73,7 +77,8 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
             reservasjonKRRJaNei
     );
         hotjarTrigger(erMikrofrontend());
-        seIARBSPlaster(skalViseIARBSPlaster, formidlingsgruppe, servicegruppe, rettighetsgruppe)
+        seIARBSPlaster(skalViseIARBSPlaster, formidlingsgruppe, servicegruppe, rettighetsgruppe);
+        tellPoaGruppe(POAGruppe);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
