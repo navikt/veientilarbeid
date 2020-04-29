@@ -189,3 +189,7 @@ interface KrrMetrikkData extends StandardMetrikkData {
 export const klikkPaDifiLenke = (metrikker: KrrMetrikkData) => {
     uniLogger('krr.difi.click', metrikker);
 };
+
+export const tellPoaGruppe = (gruppe: string) => {
+    uniLogger('poagruppe', { gruppe: gruppe });
+};
