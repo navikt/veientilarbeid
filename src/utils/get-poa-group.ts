@@ -9,7 +9,7 @@ const getPoaGroup = (data: Data): string => {
   const kriterier = [];
   kriterier.push(dinSituasjon === 'MISTET_JOBBEN' ? 'kss' : 'boo');
   kriterier.push(innsatsgruppe === 'STANDARD_INNSATS' ? 'kss' : 'boo');
-  kriterier.push(formidlingsgruppe === 'IARBS' ? 'kss' : 'boo');
+  kriterier.push(formidlingsgruppe === 'ARBS' ? 'kss' : 'boo');
   const isKSS = !kriterier.includes('boo');
   return isKSS ? 'kss' : 'boo';
 };
