@@ -76,7 +76,7 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
             fremtidigSvarOrIngenVerdi,
             reservasjonKRRJaNei
     );
-        hotjarTrigger(erMikrofrontend());
+        hotjarTrigger(erMikrofrontend(), POAGruppe);
         seIARBSPlaster(skalViseIARBSPlaster, formidlingsgruppe, servicegruppe, rettighetsgruppe);
         tellPoaGruppe(POAGruppe);
         // eslint-disable-next-line react-hooks/exhaustive-deps

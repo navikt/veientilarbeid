@@ -18,6 +18,19 @@ Dersom testene feiler etter oppdatering av f.eks. Node versjon kan det være lur
 
 For å gå over til demovisning gå til [/demo/index.html](http://localhost:3002/demo/index.html)
 
+# For å benytte HotJar
+
+Veien til arbeid kan nås på to måter. Som standalone app eller inkludert under dittNAV.
+Vi grupperer også brukere i 2 grupper kss (klare seg selv) og boo (bistand og oppfølging).
+
+For å bruke HotJar må du benytte "JavaScript trigger" som du finner under punktet "Behavior" og fanen "Pages".
+Innholdet i trigger avgjør hvem som får vist undersøkelsen. Du kan ha flere triggere pr undersøkelse.
+
+`vta-kss` - Veien til arbeid standalone kss bruker
+`vta-boo` - Veien til arbeid standalone boo bruker
+`vta-dittnav-kss` - Veien til arbeid under dittNAV kss bruker
+`vta-dittnav-boo` - Veien til arbeid under dittNAV boo bruker
+
 # Henvendelser
 
 Spørsmål knyttet til koden eller prosjektet kan stilles via issues her på github.
