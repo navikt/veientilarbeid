@@ -20,6 +20,7 @@ export interface Data {
     registreringType?: RegistreringTypeOrIngenVerdi;
     geografiskTilknytning?: string;
     rettighetsgruppe: string;
+    alder: number;
 }
 
 export const initialState: State = {
@@ -28,7 +29,8 @@ export const initialState: State = {
         erSykmeldtMedArbeidsgiver: false,
         registreringType: 'INGEN_VERDI',
         geografiskTilknytning: '',
-        rettighetsgruppe: 'INGEN_VERDI'
+        rettighetsgruppe: 'INGEN_VERDI',
+        alder: 0
     }
 };
 
