@@ -49,7 +49,7 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
     const skalViseRegistrert = formidlingsgruppe === Formidlingsgruppe.ARBS;
     
     const brukerinfoData = React.useContext(BrukerInfoContext).data;
-    const { erSykmeldtMedArbeidsgiver, registreringType, rettighetsgruppe } = brukerinfoData;
+    const { erSykmeldtMedArbeidsgiver, registreringType, rettighetsgruppe, alder } = brukerinfoData;
     const skalViseIARBSPlaster = false // formidlingsgruppe === Formidlingsgruppe.IARBS && registreringType === RegistreringType.ALLEREDE_REGISTRERT && rettighetsgruppe !== 'AAP';
     const registreringTypeOrIngenVerdi = registreringType ? registreringType : 'INGEN_VERDI';
     const foreslattInnsatsgruppeOrIngenVerdi = foreslattInnsatsgruppe ? foreslattInnsatsgruppe : 'INGEN_VERDI'
@@ -61,7 +61,7 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
 
     const erPermittert = dinSituasjon === 'ER_PERMITTERT' && permittertToggle === true
     const erPermittertEllerEndret = endreSituasjonToggle && (erPermittert || SituasjonData !== null)
-    const POAGruppe = getPoaGroup({ dinSituasjon, formidlingsgruppe: formidlingsgruppeOrIngenVerdi, innsatsgruppe: foreslattInnsatsgruppeOrIngenVerdi });
+    const POAGruppe = getPoaGroup({ dinSituasjon, formidlingsgruppe: formidlingsgruppeOrIngenVerdi, innsatsgruppe: foreslattInnsatsgruppeOrIngenVerdi, alder });
 
     React.useEffect(() => {
         seVeientilarbeid(
