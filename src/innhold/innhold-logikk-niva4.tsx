@@ -61,7 +61,7 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
 
     const erPermittert = dinSituasjon === 'ER_PERMITTERT' && permittertToggle === true
     const erPermittertEllerEndret = endreSituasjonToggle && (erPermittert || SituasjonData !== null)
-    const POAGruppe = getPoaGroup({ dinSituasjon, formidlingsgruppe: formidlingsgruppeOrIngenVerdi, innsatsgruppe: foreslattInnsatsgruppeOrIngenVerdi, alder });
+    const POAGruppe = getPoaGroup({ dinSituasjon, formidlingsgruppe: formidlingsgruppeOrIngenVerdi, innsatsgruppe: foreslattInnsatsgruppeOrIngenVerdi, alder, opprettetRegistreringDato });
 
     React.useEffect(() => {
         seVeientilarbeid(
