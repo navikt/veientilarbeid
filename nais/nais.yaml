@@ -16,6 +16,8 @@ spec:
     value: {{ aad_b2c_discovery_url }}
   - name: VEILARBSTEPUP_OIDC_URL
     value: {{ veilarbstepup_oidc_url }}
+  - name: LOGINSERVICE_URL
+    value: {{ loginservice_url }}
   - name: VEIENTILARBEID_URL
     value: {{ veientilarbeid_url }}
   - name: AKTIVITETSPLAN_URL
