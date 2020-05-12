@@ -1,9 +1,6 @@
 import React, { useContext } from 'react';
-// import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import LenkepanelBase from 'nav-frontend-lenkepanel';
-// import Panel from 'nav-frontend-paneler';
-// import Lenke from 'nav-frontend-lenker';
 import { BrukerregistreringContext } from '../../ducks/brukerregistrering';
 import { SituasjonContext } from '../../ducks/situasjon';
 import getSituasjon from './get-situasjon'
