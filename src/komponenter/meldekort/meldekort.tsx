@@ -8,7 +8,7 @@ import { FeaturetoggleContext } from '../../ducks/feature-toggles'
 
 const Meldekort = () => {
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
-    const meldekortNyTekst = React.useContext(FeaturetoggleContext).data["veientilarbeid.meldekort.ny-tekst"];
+    const meldekortNyTekst = React.useContext(FeaturetoggleContext).data['veientilarbeid.meldekort.ny-tekst'];
 
     const overskrift = 'meldekort-overskrift';
     const ingress = meldekortNyTekst ? 'meldekort-ingress-ny' : 'meldekort-ingress';
