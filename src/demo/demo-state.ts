@@ -151,7 +151,7 @@ export const hentFeatureToggles = (): JSONObject | null => {
 };
 
 export const settFeatureToggles = () => {
-    settILocalStorage(DemoData.FEATURE_TOGGLES, JSON.stringify({'veientilarbeid.motestotte.lansert': true, 'veientilarbeid.meldekort.ny-tekst': true}));
+    settILocalStorage(DemoData.FEATURE_TOGGLES, JSON.stringify({ 'veientilarbeid.meldekort.ny-tekst': true}));
 };
 
 export const slettFeatureToggles = () => {
