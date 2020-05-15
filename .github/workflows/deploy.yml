@@ -95,7 +95,6 @@ jobs:
           CLUSTER: prod-sbs
           RESOURCE: nais/nais.yaml
           VARS: nais/vars-p.yaml
-          DRY_RUN: true
 
   release:
     name: Tag and release
