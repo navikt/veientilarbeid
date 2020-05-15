@@ -33,7 +33,6 @@ import {
     settRettighetsgruppe,
     hentFeatureToggles,
     settFeatureToggles,
-    slettFeatureToggles
 } from './demo-state';
 
 import './demo-dashboard.less';
@@ -136,9 +135,9 @@ class DemoDashboard extends React.Component<{}> {
                 }
             } else if (element.id === FEATURES) {
                 if (element.checked) {
-                    settFeatureToggles();
+                    settFeatureToggles(true);
                 } else {
-                    slettFeatureToggles();
+                    settFeatureToggles(false);
                 }
             } else if (element.id === ULESTE_DIALOGER) {
                 settUlesteDialoger(element.checked.toString());
@@ -396,7 +395,7 @@ class DemoDashboard extends React.Component<{}> {
                         },
                         {
                             label: 'Aktiver features',
-                            checked: !!hentFeatureToggles(),
+                            checked: !!hentFeatureToggles()[Object.keys(hentFeatureToggles())[0]],
                             id: FEATURES,
                         }
                     ]}

@@ -145,17 +145,19 @@ export const slettSituasjon = () => {
     slettFraLocalStorage(DemoData.SITUASJON);
 };
 
-export const hentFeatureToggles = (): JSONObject | null => {
+const features = (checked: boolean) => ({
+    'veientilarbeid.meldekort.ny-tekst': checked,
+    'veientilarbeid.permittert.ny-dialog': checked,
+    'veientilarbeid.permittert.situasjon.endre': checked
+});
+
+export const hentFeatureToggles = (): JSONObject => {
     const verdi = hentFraLocalStorage(DemoData.FEATURE_TOGGLES);
-    return verdi ? JSON.parse(verdi) : null;
+    return verdi ? JSON.parse(verdi) : features(true);
 };
 
-export const settFeatureToggles = () => {
-    settILocalStorage(DemoData.FEATURE_TOGGLES, JSON.stringify({'veientilarbeid.motestotte.lansert': true, 'veientilarbeid.meldekort.ny-tekst': true}));
-};
-
-export const slettFeatureToggles = () => {
-    slettFraLocalStorage(DemoData.FEATURE_TOGGLES);
+export const settFeatureToggles = (checked: boolean) => {
+    settILocalStorage(DemoData.FEATURE_TOGGLES, JSON.stringify(features(checked)));
 };
 
 export const settReservasjonKRR = (value: string) => {
