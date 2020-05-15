@@ -20,6 +20,6 @@ endre_situasjon_url: https://nav.no/arbeid/situasjon
 arbeidssokerregistrering_url: https://arbeidssokerregistrering.nav.no
 app_environment_name: p
 ingresses:
-  - https://veientilarbeid.nais.oera.no
+  - https://veientilarbeid.nais.oera.no # Kun for tilgang til /internal/selftest
   - https://veientilarbeid.nav.no/
   - https://tjenester.nav.no/veientilarbeid

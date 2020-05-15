@@ -20,6 +20,6 @@ endre_situasjon_url: https://www-q0.nav.no/arbeid/situasjon
 arbeidssokerregistrering_url: https://arbeidssokerregistrering-q.nav.no
 app_environment_name: q0
 ingresses:
-  - https://veientilarbeid.nais.oera-q.local
+  - https://veientilarbeid.nais.oera-q.local # Kun for tilgang til /internal/selftest
   - https://veientilarbeid-q.nav.no/
   - https://tjenester-q0.nav.no/veientilarbeid
