@@ -1,4 +1,3 @@
----
 kind: Application
 apiVersion: nais.io/v1alpha1
 metadata:
@@ -14,8 +13,8 @@ spec:
     value: {{ aad_b2c_clientid_username }}
   - name: AAD_B2C_DISCOVERY_URL
     value: {{ aad_b2c_discovery_url }}
-  - name: VEILARBSTEPUP_OIDC_URL
-    value: {{ veilarbstepup_oidc_url }}
+  - name: LOGINSERVICE_URL
+    value: {{ loginservice_url }}
   - name: VEIENTILARBEID_URL
     value: {{ veientilarbeid_url }}
   - name: AKTIVITETSPLAN_URL
