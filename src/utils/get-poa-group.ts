@@ -17,11 +17,14 @@ const erInnenfor16uker = (dato: Date|null) => {
 
 const getPoaGroup = (data: Data): POAGruppe => {
   const { dinSituasjon, innsatsgruppe, formidlingsgruppe, alder, opprettetRegistreringDato } = data;
+  const lavesteAlder = 30;
+  const hoyesteAlder = 55;
+  const kssSituasjoner = ['HAR_SAGT_OPP', 'MISTET_JOBBEN']
   const kriterier = [];
-  kriterier.push(dinSituasjon === 'MISTET_JOBBEN' ? 'kss' : 'boo');
+  kriterier.push(kssSituasjoner.includes(dinSituasjon) ? 'kss' : 'boo');
   kriterier.push(innsatsgruppe === 'STANDARD_INNSATS' ? 'kss' : 'boo');
   kriterier.push(formidlingsgruppe === 'ARBS' ? 'kss' : 'boo');
-  kriterier.push(alder > 30 && alder < 50 ? 'kss' : 'boo')
+  kriterier.push(alder > lavesteAlder && alder < hoyesteAlder ? 'kss' : 'boo')
   kriterier.push(erInnenfor16uker(opprettetRegistreringDato) ? 'kss': 'boo')
   const isKSS = !kriterier.includes('boo');
   return isKSS ? 'kss' : 'boo';

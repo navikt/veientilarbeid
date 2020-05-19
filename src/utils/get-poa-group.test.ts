@@ -13,6 +13,17 @@ describe('getPoaGroup returnerer forventede verdier', () => {
     expect(getPoaGroup(data)).to.equal('kss');
   });
 
+  it('returnerer kss for standard, har sagt opp, arbs, rett alder og under 16 uker', () => {
+    const data = {
+      dinSituasjon: 'HAR_SAGT_OPP',
+      innsatsgruppe: 'STANDARD_INNSATS',
+      formidlingsgruppe: 'ARBS',
+      alder: 32,
+      opprettetRegistreringDato: new Date()
+    };
+    expect(getPoaGroup(data)).to.equal('kss');
+  });
+
   it('returnerer boo for standard, mistet jobben, arbs, rett alder og over 16 uker', () => {
     const data = {
       dinSituasjon: 'MISTET_JOBBEN',
@@ -51,7 +62,7 @@ describe('getPoaGroup returnerer forventede verdier', () => {
       dinSituasjon: 'MISTET_JOBBEN',
       innsatsgruppe: 'STANDARD_INNSATS',
       formidlingsgruppe: 'ARBS',
-      alder: 51,
+      alder: 56,
       opprettetRegistreringDato: new Date()
     };
     expect(getPoaGroup(data)).to.equal('boo');
