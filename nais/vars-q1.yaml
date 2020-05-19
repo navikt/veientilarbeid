@@ -3,12 +3,12 @@ appres_cms_url: https://appres-q1.nav.no
 aad_b2c_clientid_username: 0090b6e1-ffcc-4c37-bc21-049f7d1f0fe5
 aad_b2c_discovery_url: https://login.microsoftonline.com/NAVtestB2C.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=B2C_1A_idporten_ver1
 loginservice_url: https://loginservice-q.nav.no/login
-veientilarbeid_url: https://veientilarbeid-q1.dev-sbs.nais.io
+veientilarbeid_url: https://veientilarbeid-q1.nav.no
 aktivitetsplan_url: https://aktivitetsplan-q1.dev-sbs.nais.io
 dialog_url: https://www-q1.nav.no/arbeid/dialog
-veiviserarbeidssoker_url: https://veiviserarbeidssoker-q1.dev-sbs.nais.io
-veiledearbeidssoker_url: https://veiledearbeidssoker-q1.nais.oera-q.local
-jobbsokerkompetanse_url: https://jobbsokerkompetanse-q1.dev-sbs.nais.io
+veiviserarbeidssoker_url: https://veiviserarbeidssoker-q1.nav.no
+veiledearbeidssoker_url: https://veiledearbeidssoker-q1.nav.no
+jobbsokerkompetanse_url: https://jobbsokerkompetanse-q.nav.no
 dittnav_link_url: https://tjenester-q1.nav.no/dittnav/
 syfofront_url: https://tjenester-q1.nav.no/sykefravaer
 veivisersosialhjelp_url: https://tjenester-q1.nav.no/veivisersosialhjelp
@@ -16,7 +16,7 @@ arbeidsplassen_url: https://arbeidsplassen-t.nav.no
 behovsvurdering_url: https://behovsvurdering-q1.dev-sbs.nais.io
 start_samtale_url: https://www-q1.nav.no/arbeid/start-samtale
 endre_situasjon_url: https://www-q1.nav.no/arbeid/situasjon
-arbeidssokerregistrering_url: https://arbeidssokerregistrering-q1.dev-sbs.nais.io/
+arbeidssokerregistrering_url: https://arbeidssokerregistrering-q1.nav.no
 app_environment_name: q1
 ingresses:
   - https://veientilarbeid.nais.oera-q.local # Kun for tilgang til /internal/selftest
