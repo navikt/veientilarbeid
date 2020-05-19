@@ -19,7 +19,7 @@ const getPoaGroup = (data: Data): POAGruppe => {
   const { dinSituasjon, innsatsgruppe, formidlingsgruppe, alder, opprettetRegistreringDato } = data;
   const lavesteAlder = 30;
   const hoyesteAlder = 55;
-  const kssSituasjoner = ['HAR_SAGT_OPP', 'MISTET_JOBBEN']
+  const kssSituasjoner = ['MISTET_JOBBEN']
   const kriterier = [];
   kriterier.push(kssSituasjoner.includes(dinSituasjon) ? 'kss' : 'boo');
   kriterier.push(innsatsgruppe === 'STANDARD_INNSATS' ? 'kss' : 'boo');
