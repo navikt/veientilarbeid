@@ -18,7 +18,8 @@ import KrrMelding from '../komponenter/krr-melding/krr-melding';
 import IARBSMelding from '../komponenter/iarbs-melding/iarbs-melding';
 import { erMikrofrontend } from '../utils/app-state-utils';
 import Registrert from '../komponenter/registrert/registrert';
-import Situasjon from '../komponenter/din-situasjon/situasjon'
+import Situasjon from '../komponenter/din-situasjon/situasjon';
+import { POAGruppe } from '../utils/get-poa-group';
 
 interface OwnProps {
     erSykmeldtMedArbeidsgiver: boolean;
@@ -30,6 +31,7 @@ interface OwnProps {
     skalViseRegistrert: boolean;
     erPermittert: boolean;
     erPermittertEllerEndret: boolean;
+    POAGruppe: POAGruppe;
 }
 
 interface ErSykmeldtMedArbeidsgiverProps {
@@ -68,7 +70,8 @@ export default ({erSykmeldtMedArbeidsgiver,
                     skalViseIARBSPlaster,
                     skalViseRegistrert,
                     erPermittert,
-                    erPermittertEllerEndret}: OwnProps) => {
+                    erPermittertEllerEndret,
+                    POAGruppe}: OwnProps) => {
     return (
         <>
             {erMikrofrontend() ? null : (erSykmeldtMedArbeidsgiver ? <Banner type="sykmeldt"/> :
