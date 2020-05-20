@@ -5,6 +5,7 @@ import { RegistreringTypeOrIngenVerdi } from '../ducks/bruker-info';
 import { CreatedMetrics } from './created-metrics';
 import { amplitudeLogger } from './amplitude-utils'
 import { uniLogger } from './uni-logger'
+import { POAGruppe } from '../utils/get-poa-group';
 
 const createdMetrics = new CreatedMetrics();
 
@@ -192,4 +193,13 @@ export const klikkPaDifiLenke = (metrikker: KrrMetrikkData) => {
 
 export const tellPoaGruppe = (gruppe: string) => {
     uniLogger('poagruppe', { gruppe: gruppe });
+};
+
+export type AktivitetsMetrikkData = {
+    aktivitet: string;
+    gruppe: POAGruppe;
+};
+
+export const loggAktivitet = (data: AktivitetsMetrikkData) => {
+    amplitudeLogger(`${domene}.aktivitet`, data);
 };

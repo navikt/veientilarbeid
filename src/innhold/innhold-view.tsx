@@ -18,7 +18,8 @@ import KrrMelding from '../komponenter/krr-melding/krr-melding';
 import IARBSMelding from '../komponenter/iarbs-melding/iarbs-melding';
 import { erMikrofrontend } from '../utils/app-state-utils';
 import Registrert from '../komponenter/registrert/registrert';
-import Situasjon from '../komponenter/din-situasjon/situasjon'
+import Situasjon from '../komponenter/din-situasjon/situasjon';
+import { POAGruppe } from '../utils/get-poa-group';
 
 interface OwnProps {
     erSykmeldtMedArbeidsgiver: boolean;
@@ -30,31 +31,33 @@ interface OwnProps {
     skalViseRegistrert: boolean;
     erPermittert: boolean;
     erPermittertEllerEndret: boolean;
+    poaGruppe: POAGruppe;
 }
 
 interface ErSykmeldtMedArbeidsgiverProps {
-    erSykmeldtMedArbeidsgiver: boolean
+    erSykmeldtMedArbeidsgiver: boolean;
+    poaGruppe: POAGruppe
 }
 
-const AktivitetDialogMeldekort = ({erSykmeldtMedArbeidsgiver}: ErSykmeldtMedArbeidsgiverProps) => {
+const AktivitetDialogMeldekort = ({erSykmeldtMedArbeidsgiver, poaGruppe}: ErSykmeldtMedArbeidsgiverProps) => {
     return (
         <>
-            <Aktivitetsplan/>
+            <Aktivitetsplan poaGruppe={poaGruppe}/>
                 <div className="tokol">
-                    <Dialog/>
-                    {erSykmeldtMedArbeidsgiver ? <DittSykefravaer/> : <Meldekort/>}
+                    <Dialog poaGruppe={poaGruppe}/>
+                    {erSykmeldtMedArbeidsgiver ? <DittSykefravaer/> : <Meldekort poaGruppe={poaGruppe}/>}
                 </div>
         </>
     )
 }
 
-const PermittertDialogAktivitetsplan = ({erSykmeldtMedArbeidsgiver}: ErSykmeldtMedArbeidsgiverProps) => {
+const PermittertDialogAktivitetsplan = ({erSykmeldtMedArbeidsgiver, poaGruppe}: ErSykmeldtMedArbeidsgiverProps) => {
     return (
         <>
             <DialogPermittert/>
                 <div className="tokol">
-                    <Aktivitetsplan/>
-                    {erSykmeldtMedArbeidsgiver ? <DittSykefravaer/> : <Meldekort/>}
+                    <Aktivitetsplan poaGruppe={poaGruppe}/>
+                    {erSykmeldtMedArbeidsgiver ? <DittSykefravaer/> : <Meldekort poaGruppe={poaGruppe}/>}
                 </div>
         </>
     )
@@ -68,7 +71,8 @@ export default ({erSykmeldtMedArbeidsgiver,
                     skalViseIARBSPlaster,
                     skalViseRegistrert,
                     erPermittert,
-                    erPermittertEllerEndret}: OwnProps) => {
+                    erPermittertEllerEndret,
+                    poaGruppe}: OwnProps) => {
     return (
         <>
             {erMikrofrontend() ? null : (erSykmeldtMedArbeidsgiver ? <Banner type="sykmeldt"/> :
@@ -83,8 +87,12 @@ export default ({erSykmeldtMedArbeidsgiver,
                 {skalViseEgenvurderingLenke ? <Egenvurdering/> : null}
                 {skalViseMotestotteLenke ? <Motestotte erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}/> : null}
                 {erPermittert ? 
-                    <PermittertDialogAktivitetsplan erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver} /> :
-                    <AktivitetDialogMeldekort erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver} />}
+                    <PermittertDialogAktivitetsplan
+                        erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}
+                        poaGruppe={poaGruppe} /> :
+                    <AktivitetDialogMeldekort
+                        erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}
+                        poaGruppe={poaGruppe}/>}
             </Rad>
 
             {erSykmeldtMedArbeidsgiver && (

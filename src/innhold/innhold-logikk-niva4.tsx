@@ -138,6 +138,7 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
             skalViseRegistrert={skalViseRegistrert}
             erPermittert={erPermittert}
             erPermittertEllerEndret={erPermittertEllerEndret}
+            poaGruppe={POAGruppe}
         />
     );
 };

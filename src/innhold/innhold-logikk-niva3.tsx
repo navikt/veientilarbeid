@@ -20,6 +20,7 @@ const InnholdLogikkNiva3 = () => {
             skalViseRegistrert={false}
             erPermittert={false}
             erPermittertEllerEndret={false}
+            poaGruppe='boo'
         />
     );
 };

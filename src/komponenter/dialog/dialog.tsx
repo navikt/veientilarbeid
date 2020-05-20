@@ -3,27 +3,38 @@ import LenkepanelBase from 'nav-frontend-lenkepanel';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { connect } from 'react-redux';
 import { AppState } from '../../reducer';
-import { gaTilDialog } from '../../metrics/metrics';
+import { gaTilDialog, loggAktivitet } from '../../metrics/metrics';
 import DialogFill from './dialog-fill';
 import DialogLine from './dialog-line';
 import './dialog.less';
 import { dialogLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 import { OppfolgingContext } from '../../ducks/oppfolging';
+import { POAGruppe } from '../../utils/get-poa-group'
 
 interface StateProps {
     antallUleste: number;
 }
 
-type AllProps = StateProps
+interface OwnProps {
+    poaGruppe: POAGruppe;
+}
+
+type AllProps = StateProps & OwnProps;
 
 const Dialog = (props: AllProps) => {
-    const { antallUleste } = props;
+    const { antallUleste, poaGruppe } = props;
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
+
+    const handleClick = () => {
+        gaTilDialog(antallUleste, servicegruppe);
+        loggAktivitet({ aktivitet: 'Går til dialogen', gruppe: poaGruppe})
+    };
+    
 
     const linkCreator = (props: {}) => {
         // eslint-disable-next-line jsx-a11y/anchor-has-content
-        return <a onClick={() => gaTilDialog(antallUleste, servicegruppe)} {...props}/>;
+        return <a onClick={() => handleClick} {...props}/>;
     };
 
     const byggDialogTekst = () => {
