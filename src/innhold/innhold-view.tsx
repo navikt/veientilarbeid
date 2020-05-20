@@ -31,32 +31,33 @@ interface OwnProps {
     skalViseRegistrert: boolean;
     erPermittert: boolean;
     erPermittertEllerEndret: boolean;
-    POAGruppe: POAGruppe;
+    poaGruppe: POAGruppe;
 }
 
 interface ErSykmeldtMedArbeidsgiverProps {
-    erSykmeldtMedArbeidsgiver: boolean
+    erSykmeldtMedArbeidsgiver: boolean;
+    poaGruppe: POAGruppe
 }
 
-const AktivitetDialogMeldekort = ({erSykmeldtMedArbeidsgiver}: ErSykmeldtMedArbeidsgiverProps) => {
+const AktivitetDialogMeldekort = ({erSykmeldtMedArbeidsgiver, poaGruppe}: ErSykmeldtMedArbeidsgiverProps) => {
     return (
         <>
-            <Aktivitetsplan/>
+            <Aktivitetsplan poaGruppe={poaGruppe}/>
                 <div className="tokol">
-                    <Dialog/>
-                    {erSykmeldtMedArbeidsgiver ? <DittSykefravaer/> : <Meldekort/>}
+                    <Dialog poaGruppe={poaGruppe}/>
+                    {erSykmeldtMedArbeidsgiver ? <DittSykefravaer/> : <Meldekort poaGruppe={poaGruppe}/>}
                 </div>
         </>
     )
 }
 
-const PermittertDialogAktivitetsplan = ({erSykmeldtMedArbeidsgiver}: ErSykmeldtMedArbeidsgiverProps) => {
+const PermittertDialogAktivitetsplan = ({erSykmeldtMedArbeidsgiver, poaGruppe}: ErSykmeldtMedArbeidsgiverProps) => {
     return (
         <>
             <DialogPermittert/>
                 <div className="tokol">
-                    <Aktivitetsplan/>
-                    {erSykmeldtMedArbeidsgiver ? <DittSykefravaer/> : <Meldekort/>}
+                    <Aktivitetsplan poaGruppe={poaGruppe}/>
+                    {erSykmeldtMedArbeidsgiver ? <DittSykefravaer/> : <Meldekort poaGruppe={poaGruppe}/>}
                 </div>
         </>
     )
@@ -71,7 +72,7 @@ export default ({erSykmeldtMedArbeidsgiver,
                     skalViseRegistrert,
                     erPermittert,
                     erPermittertEllerEndret,
-                    POAGruppe}: OwnProps) => {
+                    poaGruppe}: OwnProps) => {
     return (
         <>
             {erMikrofrontend() ? null : (erSykmeldtMedArbeidsgiver ? <Banner type="sykmeldt"/> :
@@ -86,8 +87,12 @@ export default ({erSykmeldtMedArbeidsgiver,
                 {skalViseEgenvurderingLenke ? <Egenvurdering/> : null}
                 {skalViseMotestotteLenke ? <Motestotte erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}/> : null}
                 {erPermittert ? 
-                    <PermittertDialogAktivitetsplan erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver} /> :
-                    <AktivitetDialogMeldekort erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver} />}
+                    <PermittertDialogAktivitetsplan
+                        erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}
+                        poaGruppe={poaGruppe} /> :
+                    <AktivitetDialogMeldekort
+                        erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}
+                        poaGruppe={poaGruppe}/>}
             </Rad>
 
             {erSykmeldtMedArbeidsgiver && (
