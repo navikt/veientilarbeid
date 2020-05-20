@@ -5,8 +5,13 @@ import EmailText from './email-text';
 import { meldekortLenke } from '../../innhold/lenker';
 import { OppfolgingContext } from '../../ducks/oppfolging';
 import { FeaturetoggleContext } from '../../ducks/feature-toggles'
+import { POAGruppe } from '../../utils/get-poa-group';
 
-const Meldekort = (props: any) => {
+interface OwnProps {
+    poaGruppe: POAGruppe;
+}
+
+const Meldekort = (props: OwnProps) => {
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
     const meldekortNyTekst = React.useContext(FeaturetoggleContext).data['veientilarbeid.meldekort.ny-tekst'];
 
@@ -16,7 +21,7 @@ const Meldekort = (props: any) => {
 
     const handleClick = () => {
         gaTilMeldekort(servicegruppe);
-        loggAktivitet({ aktivitet: 'Går til aktivitetsplanen', gruppe: poaGruppe});
+        loggAktivitet({ aktivitet: 'Går til meldekortet', gruppe: poaGruppe});
     };
 
     return (

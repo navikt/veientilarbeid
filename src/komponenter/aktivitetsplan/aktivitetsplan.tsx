@@ -5,8 +5,13 @@ import DesignMug from './design-mug';
 import { gaTilAktivitetsplan, loggAktivitet } from '../../metrics/metrics';
 import { aktivitetsplanLenke } from '../../innhold/lenker';
 import { OppfolgingContext } from '../../ducks/oppfolging';
+import { POAGruppe } from '../../utils/get-poa-group';
 
-const Aktivitetsplan = (props: any) => {
+interface OwnProps {
+    poaGruppe: POAGruppe;
+}
+
+const Aktivitetsplan = (props: OwnProps) => {
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
     const { location } = window
     const nyRegistrering = parse(location.search).nyRegistrering === 'true';
