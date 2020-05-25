@@ -6,6 +6,7 @@ interface Data {
   formidlingsgruppe: string;
   alder: number;
   opprettetRegistreringDato: Date|null;
+  servicegruppe: string;
 }
 
 const erInnenfor16uker = (dato: Date|null) => {
@@ -15,14 +16,24 @@ const erInnenfor16uker = (dato: Date|null) => {
   return (iDag - beregningsDato.getTime()) < maksTid;
 };
 
+const isStandard = (innsatsgruppe: string, servicegruppe: string) => {
+  return servicegruppe === 'IKVAL' || (servicegruppe === 'IVURD' && innsatsgruppe === 'STANDARD_INNSATS')
+};
+
 const getPoaGroup = (data: Data): POAGruppe => {
-  const { dinSituasjon, innsatsgruppe, formidlingsgruppe, alder, opprettetRegistreringDato } = data;
+  const { 
+    dinSituasjon,
+    innsatsgruppe,
+    formidlingsgruppe,
+    alder,
+    opprettetRegistreringDato,
+    servicegruppe } = data;
   const lavesteAlder = 30;
   const hoyesteAlder = 55;
   const kssSituasjoner = ['MISTET_JOBBEN']
   const kriterier = [];
   kriterier.push(kssSituasjoner.includes(dinSituasjon) ? 'kss' : 'boo');
-  kriterier.push(innsatsgruppe === 'STANDARD_INNSATS' ? 'kss' : 'boo');
+  kriterier.push(isStandard(innsatsgruppe, servicegruppe) ? 'kss' : 'boo');
   kriterier.push(formidlingsgruppe === 'ARBS' ? 'kss' : 'boo');
   kriterier.push(alder > lavesteAlder && alder < hoyesteAlder ? 'kss' : 'boo')
   kriterier.push(erInnenfor16uker(opprettetRegistreringDato) ? 'kss': 'boo')

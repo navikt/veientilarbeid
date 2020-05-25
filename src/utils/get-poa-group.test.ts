@@ -2,12 +2,25 @@ import { expect } from 'chai';
 import getPoaGroup from './get-poa-group';
 
 describe('getPoaGroup returnerer forventede verdier', () => {
-  it('returnerer kss for standard, mistet jobben, arbs, rett alder og under 16 uker', () => {
+  it('returnerer kss for standard, IVURD, mistet jobben, arbs, rett alder og under 16 uker', () => {
     const data = {
       dinSituasjon: 'MISTET_JOBBEN',
       innsatsgruppe: 'STANDARD_INNSATS',
       formidlingsgruppe: 'ARBS',
       alder: 32,
+      servicegruppe: 'IVURD',
+      opprettetRegistreringDato: new Date()
+    };
+    expect(getPoaGroup(data)).to.equal('kss');
+  });
+
+  it('returnerer kss for situasjonsbestemt, IKVAL, mistet jobben, arbs, rett alder og under 16 uker', () => {
+    const data = {
+      dinSituasjon: 'MISTET_JOBBEN',
+      innsatsgruppe: 'SITUASJONSBESTEMT_INNSATS',
+      formidlingsgruppe: 'ARBS',
+      alder: 32,
+      servicegruppe: 'IKVAL',
       opprettetRegistreringDato: new Date()
     };
     expect(getPoaGroup(data)).to.equal('kss');
@@ -19,6 +32,7 @@ describe('getPoaGroup returnerer forventede verdier', () => {
       innsatsgruppe: 'STANDARD_INNSATS',
       formidlingsgruppe: 'ARBS',
       alder: 32,
+      servicegruppe: 'IVURD',
       opprettetRegistreringDato: new Date('2020-01-13')
     };
     expect(getPoaGroup(data)).to.equal('boo');
@@ -30,6 +44,7 @@ describe('getPoaGroup returnerer forventede verdier', () => {
       innsatsgruppe: 'STANDARD_INNSATS',
       formidlingsgruppe: 'ARBS',
       alder: 32,
+      servicegruppe: 'IVURD',
       opprettetRegistreringDato: null
     };
     expect(getPoaGroup(data)).to.equal('boo');
@@ -41,6 +56,7 @@ describe('getPoaGroup returnerer forventede verdier', () => {
       innsatsgruppe: 'STANDARD_INNSATS',
       formidlingsgruppe: 'ARBS',
       alder: 29,
+      servicegruppe: 'IVURD',
       opprettetRegistreringDato: new Date()
     };
     expect(getPoaGroup(data)).to.equal('boo');
@@ -52,6 +68,7 @@ describe('getPoaGroup returnerer forventede verdier', () => {
       innsatsgruppe: 'STANDARD_INNSATS',
       formidlingsgruppe: 'ARBS',
       alder: 56,
+      servicegruppe: 'IVURD',
       opprettetRegistreringDato: new Date()
     };
     expect(getPoaGroup(data)).to.equal('boo');
@@ -63,6 +80,7 @@ describe('getPoaGroup returnerer forventede verdier', () => {
       innsatsgruppe: 'STANDARD_INNSATS',
       formidlingsgruppe: 'IARBS',
       alder: 32,
+      servicegruppe: 'IVURD',
       opprettetRegistreringDato: new Date()
     };
     expect(getPoaGroup(data)).to.equal('boo');
