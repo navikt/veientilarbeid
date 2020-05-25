@@ -26,10 +26,10 @@ const okonomiRadDagpenger = (props: OwnProps) => {
       </div>
       <div className="tokol">
         <SjekkKontonummer poaGruppe={poaGruppe} />
-        <TrekkDagpengeSoknad />
+        <TrekkDagpengeSoknad poaGruppe={poaGruppe} />
       </div>
     </Rad>
   )
 }
 
-export default okonomiRadDagpenger
+export default okonomiRadDagpenger;
