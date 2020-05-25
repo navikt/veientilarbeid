@@ -26,10 +26,10 @@ Vi grupperer også brukere i 2 grupper kss (klare seg selv) og boo (bistand og o
 For å bruke HotJar må du benytte "JavaScript trigger" som du finner under punktet "Behavior" og fanen "Pages".
 Innholdet i trigger avgjør hvem som får vist undersøkelsen. Du kan ha flere triggere pr undersøkelse.
 
-`vta-kss` - Veien til arbeid standalone kss bruker
-`vta-boo` - Veien til arbeid standalone boo bruker
-`vta-dittnav-kss` - Veien til arbeid under dittNAV kss bruker
-`vta-dittnav-boo` - Veien til arbeid under dittNAV boo bruker
+- `vta-kss` - Veien til arbeid standalone kss bruker
+- `vta-boo` - Veien til arbeid standalone boo bruker
+- `vta-dittnav-kss` - Veien til arbeid under dittNAV kss bruker
+- `vta-dittnav-boo` - Veien til arbeid under dittNAV boo bruker
 
 # Henvendelser
 
