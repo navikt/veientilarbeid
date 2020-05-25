@@ -21,7 +21,7 @@ const okonomiRadDagpenger = (props: OwnProps) => {
         {tekster['dagpenger-heading-tekst']}
       </Systemtittel>
       <div className="tokol">
-        <Dagpenger/>
+        <Dagpenger poaGruppe={poaGruppe} />
         <AlleSkjema poaGruppe={poaGruppe} />
       </div>
       <div className="tokol">
