@@ -1,16 +1,22 @@
 import React from 'react';
-import { gaTilCV } from '../../metrics/metrics';
+import { gaTilCV, loggAktivitet } from '../../metrics/metrics';
 import CvIkon from './svg/cv';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { cvLenke } from '../../innhold/lenker';
 import { OppfolgingContext } from '../../ducks/oppfolging';
+import { POAGruppe } from '../../utils/get-poa-group';
 
-const CV = () => {
+interface OwnProps {
+    poaGruppe: POAGruppe;
+}
 
+const CV = (props: OwnProps) => {
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
+    const { poaGruppe } = props;
 
     const handleClick = () => {
         gaTilCV(servicegruppe);
+        loggAktivitet({ aktivitet: 'Går til CV', gruppe: poaGruppe});
     };
 
     return (

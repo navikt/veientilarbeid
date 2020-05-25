@@ -22,7 +22,7 @@ const RessurslenkerJobbsok = (props: OwnProps) => {
 
             <div className="tokol">
                 <Stillingsok poaGruppe={poaGruppe} />
-                <CV/>
+                <CV poaGruppe={poaGruppe} />
             </div>
             <div className="tokol">
                 <Jobbsokertips/>
