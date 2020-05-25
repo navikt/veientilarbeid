@@ -25,7 +25,7 @@ const okonomiRadDagpenger = (props: OwnProps) => {
         <AlleSkjema poaGruppe={poaGruppe} />
       </div>
       <div className="tokol">
-        <SjekkKontonummer />
+        <SjekkKontonummer poaGruppe={poaGruppe} />
         <TrekkDagpengeSoknad />
       </div>
     </Rad>
