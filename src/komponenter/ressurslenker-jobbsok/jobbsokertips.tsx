@@ -1,20 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../../reducer';
-import { gaTilJobbsokerkompetanse, gaTilVeiviserarbeidssoker } from '../../metrics/metrics';
+import { gaTilJobbsokerkompetanse, gaTilVeiviserarbeidssoker, loggAktivitet } from '../../metrics/metrics';
 import JobbsokertipsIkon from './svg/jobbsokertips';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { jobbsokerkompetanseLenke, veiviserarbeidssokerLenke } from '../../innhold/lenker';
 import { OppfolgingContext } from '../../ducks/oppfolging';
+import { POAGruppe } from '../../utils/get-poa-group';
+
+interface OwnProps {
+    poaGruppe: POAGruppe;
+}
 
 interface StateProps {
     harJobbbsokerbesvarelse: boolean;
 }
 
-type AllProps = StateProps
+type AllProps = StateProps & OwnProps;
 
 const Ressurslenker = (props: AllProps) => {
-    const { harJobbbsokerbesvarelse } = props;
+    const { harJobbbsokerbesvarelse, poaGruppe } = props;
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
 
     const URL = harJobbbsokerbesvarelse ? jobbsokerkompetanseLenke : veiviserarbeidssokerLenke;
@@ -27,9 +32,13 @@ const Ressurslenker = (props: AllProps) => {
         ? gaTilJobbsokerkompetanse
         : gaTilVeiviserarbeidssoker;
 
+    const aktivitet = harJobbbsokerbesvarelse
+        ? 'Går til jobbsøkerkompetanse'
+        : 'Går til veiviser arbeidssøker';
 
     const handleClick = () => {
         gaTil(servicegruppe);
+        loggAktivitet({ aktivitet: aktivitet, gruppe: poaGruppe});
     };
 
     return (

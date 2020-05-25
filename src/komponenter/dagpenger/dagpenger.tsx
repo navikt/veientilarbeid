@@ -2,18 +2,25 @@ import React from 'react';
 import { Knapp } from 'nav-frontend-knapper';
 import Panel from 'nav-frontend-paneler';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
-import { klikkPaSoknadDagpenger } from '../../metrics/metrics';
+import { klikkPaSoknadDagpenger, loggAktivitet } from '../../metrics/metrics';
 import './dagpenger.less';
 import { dagpengerSoknadLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 import { OppfolgingContext } from '../../ducks/oppfolging';
+import { POAGruppe } from '../../utils/get-poa-group';
 
-const Dagpenger = () => {
+interface OwnProps {
+    poaGruppe: POAGruppe;
+}
+
+const Dagpenger = (props: OwnProps) => {
 
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
+    const { poaGruppe } = props;
 
     const handleButtonClick = () => {
         klikkPaSoknadDagpenger(servicegruppe);
+        loggAktivitet({ aktivitet: 'Går til dagpengesøknad', gruppe: poaGruppe});
         window.location.href = dagpengerSoknadLenke;
     };
   

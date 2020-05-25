@@ -6,23 +6,30 @@ import AlleSkjema from '../alleskjema/alleskjema';
 import SjekkKontonummer from '../paminnelser/sjekk-kontonummer'
 import TrekkDagpengeSoknad from '../meldinger/trekk-dp-soknad'
 import tekster from '../../tekster/tekster';
+import { POAGruppe } from '../../utils/get-poa-group';
 
-const okonomiRadDagpenger = () => {
+interface OwnProps {
+    poaGruppe: POAGruppe;
+}
+
+const okonomiRadDagpenger = (props: OwnProps) => {
+  const { poaGruppe } = props;
+
   return (
     <Rad>
       <Systemtittel tag="h2" className="dagpenger__heading blokk-s">
         {tekster['dagpenger-heading-tekst']}
       </Systemtittel>
       <div className="tokol">
-        <Dagpenger/>
-        <AlleSkjema/>
+        <Dagpenger poaGruppe={poaGruppe} />
+        <AlleSkjema poaGruppe={poaGruppe} />
       </div>
       <div className="tokol">
-        <SjekkKontonummer />
-        <TrekkDagpengeSoknad />
+        <SjekkKontonummer poaGruppe={poaGruppe} />
+        <TrekkDagpengeSoknad poaGruppe={poaGruppe} />
       </div>
     </Rad>
   )
 }
 
-export default okonomiRadDagpenger
+export default okonomiRadDagpenger;
