@@ -55,12 +55,19 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
     const foreslattInnsatsgruppeOrIngenVerdi = foreslattInnsatsgruppe ? foreslattInnsatsgruppe : 'INGEN_VERDI'
     const fremtidigSvarOrIngenVerdi = fremtidigSvar ? fremtidigSvar : 'INGEN_VERDI';
     const formidlingsgruppeOrIngenVerdi = formidlingsgruppe ? formidlingsgruppe : 'INGEN_VERDI';
+    const servicegruppeOrIVURD = servicegruppe ? servicegruppe : 'IVURD';
     const permittertToggle = featureToggleData ? featureToggleData['veientilarbeid.permittert.ny-dialog'] : false;
     const endreSituasjonToggle = featureToggleData ? featureToggleData['veientilarbeid.permittert.situasjon.endre'] : false;
 
     const erPermittert = dinSituasjon === 'ER_PERMITTERT' && permittertToggle === true
     const erPermittertEllerEndret = endreSituasjonToggle && (erPermittert || SituasjonData !== null)
-    const POAGruppe = getPoaGroup({ dinSituasjon, formidlingsgruppe: formidlingsgruppeOrIngenVerdi, innsatsgruppe: foreslattInnsatsgruppeOrIngenVerdi, alder, opprettetRegistreringDato });
+    const POAGruppe = getPoaGroup({
+        dinSituasjon,
+        formidlingsgruppe: formidlingsgruppeOrIngenVerdi,
+        innsatsgruppe: foreslattInnsatsgruppeOrIngenVerdi,
+        alder,
+        servicegruppe: servicegruppeOrIVURD,
+        opprettetRegistreringDato });
 
     React.useEffect(() => {
         seVeientilarbeid(
