@@ -25,7 +25,7 @@ const RessurslenkerJobbsok = (props: OwnProps) => {
                 <CV poaGruppe={poaGruppe} />
             </div>
             <div className="tokol">
-                <Jobbsokertips/>
+                <Jobbsokertips poaGruppe={poaGruppe} />
             </div>
         </section>
     );
