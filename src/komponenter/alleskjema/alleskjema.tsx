@@ -2,17 +2,24 @@ import React from 'react';
 import { Knapp } from 'nav-frontend-knapper';
 import Panel from 'nav-frontend-paneler';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
-import { klikkPaSoknadAlleSkjema } from '../../metrics/metrics';
+import { klikkPaSoknadAlleSkjema, loggAktivitet } from '../../metrics/metrics';
 import './alleskjema.less';
 import { alleSkjemaSoknadLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 import { OppfolgingContext } from '../../ducks/oppfolging';
+import { POAGruppe } from '../../utils/get-poa-group';
 
-const AlleSkjema = () => {
+interface OwnProps {
+    poaGruppe: POAGruppe;
+}
+
+const AlleSkjema = (props: OwnProps) => {
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
+    const { poaGruppe } = props;
 
     const handleButtonClick = () => {
         klikkPaSoknadAlleSkjema(servicegruppe);
+        loggAktivitet({ aktivitet: 'Går til alle skjema', gruppe: poaGruppe});
         window.location.href = alleSkjemaSoknadLenke;
     };
   

@@ -103,7 +103,7 @@ export default ({erSykmeldtMedArbeidsgiver,
                 {visRessurslenker ? <RessurslenkerJobbsok/> : null}
             </Rad>
 
-            { erSykmeldtMedArbeidsgiver ? <Rad><OkonomiRad/></Rad> : <OkonomiRadDagpenger />}
+            { erSykmeldtMedArbeidsgiver ? <Rad><OkonomiRad/></Rad> : <OkonomiRadDagpenger poaGruppe={poaGruppe} />}
         </>
     );
 };
