@@ -11,7 +11,7 @@ interface OwnProps {
     poaGruppe: POAGruppe;
 }
 
-const sjekkKontonummer = (props: OwnProps) => {
+const TrekkDagpengeSoknad = (props: OwnProps) => {
     const { poaGruppe } = props;
 
     const handleClick = () => {
@@ -47,6 +47,6 @@ const sjekkKontonummer = (props: OwnProps) => {
     );
 }
 
-export default sjekkKontonummer;
+export default TrekkDagpengeSoknad;
 
 
