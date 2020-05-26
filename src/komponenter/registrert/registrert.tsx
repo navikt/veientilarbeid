@@ -5,15 +5,21 @@ import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { BrukerregistreringContext } from '../../ducks/brukerregistrering';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { OppfolgingContext } from '../../ducks/oppfolging';
-import { klikkPaDineOpplysninger, seDineOpplysninger } from '../../metrics/metrics';
+import { klikkPaDineOpplysninger, seDineOpplysninger, loggAktivitet } from '../../metrics/metrics';
 import Opplysninger from '../innsyn/registreringsopplysninger';
 import './registrert.less';
+import { POAGruppe } from '../../utils/get-poa-group';
 
-const Registrert = () => {
+interface OwnProps {
+    poaGruppe: POAGruppe;
+}
+
+const Registrert = (props: OwnProps) => {
     const brukerregistreringData = useContext(BrukerregistreringContext).data;
     const brukerinfoData = React.useContext(BrukerInfoContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const [clickedInnsyn, setClickedInnsyn] = useState(false);
+    const { poaGruppe } = props;
     if (!brukerregistreringData) {
         return (
             <div className="blokk-s">
@@ -44,6 +50,7 @@ const Registrert = () => {
     const handleClickOpen = () => {
         if (!clickedInnsyn) {
             klikkPaDineOpplysninger(metrikkData);
+            loggAktivitet({ aktivitet: 'Ser opplysninger fra registreringen', gruppe: poaGruppe})
             setClickedInnsyn(true);
         }
     };
