@@ -31,10 +31,9 @@ const Dialog = (props: AllProps) => {
         loggAktivitet({ aktivitet: 'Går til dialogen', gruppe: poaGruppe})
     };
     
-
     const linkCreator = (props: {}) => {
         // eslint-disable-next-line jsx-a11y/anchor-has-content
-        return <a onClick={() => handleClick} {...props}/>;
+        return <a onClick={handleClick} {...props}/>;
     };
 
     const byggDialogTekst = () => {
