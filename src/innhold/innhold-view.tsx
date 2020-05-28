@@ -54,7 +54,7 @@ const AktivitetDialogMeldekort = ({erSykmeldtMedArbeidsgiver, poaGruppe}: ErSykm
 const PermittertDialogAktivitetsplan = ({erSykmeldtMedArbeidsgiver, poaGruppe}: ErSykmeldtMedArbeidsgiverProps) => {
     return (
         <>
-            <DialogPermittert/>
+            <DialogPermittert poaGruppe={poaGruppe} />
                 <div className="tokol">
                     <Aktivitetsplan poaGruppe={poaGruppe}/>
                     {erSykmeldtMedArbeidsgiver ? <DittSykefravaer/> : <Meldekort poaGruppe={poaGruppe}/>}
