@@ -28,9 +28,10 @@ const DialogPermittert = (props: AllProps) => {
 
     const handleClick = () => {
         gaTilDialogPermittert(antallUleste, servicegruppe);
-        loggAktivitet({ aktivitet: 'Går til dialogen for permitterte', gruppe: poaGruppe })
         if (antallUleste > 0) {
             loggAktivitet({ aktivitet: 'Svarer på dialog for permitterte', gruppe: poaGruppe })
+        } else {
+            loggAktivitet({ aktivitet: 'Innleder dialog for permitterte', gruppe: poaGruppe })
         }
     };
 
