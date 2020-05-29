@@ -28,7 +28,11 @@ const Dialog = (props: AllProps) => {
 
     const handleClick = () => {
         gaTilDialog(antallUleste, servicegruppe);
-        loggAktivitet({ aktivitet: 'Går til dialogen', gruppe: poaGruppe})
+        if (antallUleste > 0) {
+            loggAktivitet({ aktivitet: 'Svarer på dialog', gruppe: poaGruppe })
+        } else {
+            loggAktivitet({ aktivitet: 'Innleder dialog', gruppe: poaGruppe})
+        }
     };
     
     const linkCreator = (props: {}) => {
