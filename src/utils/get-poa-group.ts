@@ -30,7 +30,7 @@ const getPoaGroup = (data: Data): POAGruppe => {
     servicegruppe } = data;
   const lavesteAlder = 30;
   const hoyesteAlder = 55;
-  const kssSituasjoner = ['MISTET_JOBBEN']
+  const kssSituasjoner = ['ER_PERMITTERT', 'HAR_SAGT_OPP', 'MISTET_JOBBEN'];
   const kriterier = [];
   kriterier.push(kssSituasjoner.includes(dinSituasjon) ? 'kss' : 'boo');
   kriterier.push(isStandard(innsatsgruppe, servicegruppe) ? 'kss' : 'boo');

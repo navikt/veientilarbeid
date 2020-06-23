@@ -26,6 +26,30 @@ describe('getPoaGroup returnerer forventede verdier', () => {
     expect(getPoaGroup(data)).to.equal('kss');
   });
 
+  it('returnerer kss for situasjonsbestemt, IKVAL, sagt opp jobben, arbs, rett alder og under 16 uker', () => {
+    const data = {
+      dinSituasjon: 'HAR_SAGT_OPP',
+      innsatsgruppe: 'SITUASJONSBESTEMT_INNSATS',
+      formidlingsgruppe: 'ARBS',
+      alder: 32,
+      servicegruppe: 'IKVAL',
+      opprettetRegistreringDato: new Date()
+    };
+    expect(getPoaGroup(data)).to.equal('kss');
+  });
+
+  it('returnerer kss for situasjonsbestemt, IKVAL, sagt opp jobben, arbs, rett alder og under 16 uker', () => {
+    const data = {
+      dinSituasjon: 'ER_PERMITTERT',
+      innsatsgruppe: 'SITUASJONSBESTEMT_INNSATS',
+      formidlingsgruppe: 'ARBS',
+      alder: 32,
+      servicegruppe: 'IKVAL',
+      opprettetRegistreringDato: new Date()
+    };
+    expect(getPoaGroup(data)).to.equal('kss');
+  });
+
   it('returnerer boo for standard, mistet jobben, arbs, rett alder og over 16 uker', () => {
     const data = {
       dinSituasjon: 'MISTET_JOBBEN',
