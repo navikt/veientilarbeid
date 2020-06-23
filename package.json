@@ -22,7 +22,7 @@
     "babel-polyfill": "6.26.0",
     "classnames": "2.2.6",
     "core-js": "3.6.5",
-    "craco-less": "1.16.0",
+    "craco-less": "1.17.0",
     "gsap": "3.3.0",
     "html-react-parser": "0.10.5",
     "lodash.throttle": "4.1.1",
