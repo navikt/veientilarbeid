@@ -3,7 +3,7 @@ name: Build, push, and deploy
 on:
   push:
     branches:
-      - master
+      - produksjon
 
 env:
   IMAGE_BASE: docker.pkg.github.com/${{github.repository}}/veientilarbeid
