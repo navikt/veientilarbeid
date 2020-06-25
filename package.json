@@ -26,7 +26,7 @@
     "core-js": "3.6.5",
     "craco-less": "1.17.0",
     "gsap": "3.3.0",
-    "html-react-parser": "0.11.0",
+    "html-react-parser": "0.11.1",
     "lodash.throttle": "4.1.1",
     "nav-frontend-alertstriper": "3.0.16",
     "nav-frontend-alertstriper-style": "2.0.14",
