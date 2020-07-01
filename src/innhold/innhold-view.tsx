@@ -2,7 +2,6 @@ import * as React from 'react';
 import Rad from './rad';
 import AapRad from '../komponenter/aap/aap';
 import Dialog from '../komponenter/dialog/dialog';
-import DialogPermittert from '../komponenter/dialog/dialog-permittert';
 import Banner from '../komponenter/banner/banner';
 import Meldekort from '../komponenter/meldekort/meldekort';
 import DittSykefravaer from '../komponenter/ditt-sykefravaer/ditt-sykefravaer';
@@ -51,18 +50,6 @@ const AktivitetDialogMeldekort = ({erSykmeldtMedArbeidsgiver, poaGruppe}: ErSykm
     )
 }
 
-const PermittertDialogAktivitetsplan = ({erSykmeldtMedArbeidsgiver, poaGruppe}: ErSykmeldtMedArbeidsgiverProps) => {
-    return (
-        <>
-            <DialogPermittert poaGruppe={poaGruppe} />
-                <div className="tokol">
-                    <Aktivitetsplan poaGruppe={poaGruppe}/>
-                    {erSykmeldtMedArbeidsgiver ? <DittSykefravaer/> : <Meldekort poaGruppe={poaGruppe}/>}
-                </div>
-        </>
-    )
-}
-
 export default ({erSykmeldtMedArbeidsgiver,
                     skalViseKrrMelding,
                     skalViseEgenvurderingLenke,
@@ -70,7 +57,6 @@ export default ({erSykmeldtMedArbeidsgiver,
                     visRessurslenker,
                     skalViseIARBSPlaster,
                     skalViseRegistrert,
-                    erPermittert,
                     erPermittertEllerEndret,
                     poaGruppe}: OwnProps) => {
     return (
@@ -86,13 +72,7 @@ export default ({erSykmeldtMedArbeidsgiver,
                 {skalViseIARBSPlaster ? <IARBSMelding/> : null}
                 {skalViseEgenvurderingLenke ? <Egenvurdering/> : null}
                 {skalViseMotestotteLenke ? <Motestotte erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}/> : null}
-                {erPermittert ? 
-                    <PermittertDialogAktivitetsplan
-                        erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}
-                        poaGruppe={poaGruppe} /> :
-                    <AktivitetDialogMeldekort
-                        erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}
-                        poaGruppe={poaGruppe}/>}
+                <AktivitetDialogMeldekort erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver} poaGruppe={poaGruppe}/>
             </Rad>
 
             {erSykmeldtMedArbeidsgiver && (
