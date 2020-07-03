@@ -69,6 +69,14 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
         servicegruppe: servicegruppeOrIVURD,
         opprettetRegistreringDato });
 
+    /*
+        Funksjon hvor man bygger opp kriterier for et eksperiment og retunerer true/false
+        ettersom brukeren kommer inn under eksperimentet eller ei
+    */
+    const hotjarEksperiment = () => {
+        return false
+    };
+
     React.useEffect(() => {
         seVeientilarbeid(
             erSykmeldtMedArbeidsgiver,
@@ -82,7 +90,7 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
             fremtidigSvarOrIngenVerdi,
             reservasjonKRRJaNei
     );
-        hotjarTrigger(erMikrofrontend(), POAGruppe);
+        hotjarTrigger(erMikrofrontend(), POAGruppe, hotjarEksperiment());
         seIARBSPlaster(skalViseIARBSPlaster, formidlingsgruppe, servicegruppe, rettighetsgruppe);
         tellPoaGruppe(POAGruppe);
         // eslint-disable-next-line react-hooks/exhaustive-deps

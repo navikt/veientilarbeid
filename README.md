@@ -18,10 +18,12 @@ Dersom testene feiler etter oppdatering av f.eks. Node versjon kan det være lur
 
 For å gå over til demovisning gå til [/demo/index.html](http://localhost:3002/demo/index.html)
 
-# For å benytte HotJar
+# Muligheter med HotJar
 
 Veien til arbeid kan nås på to måter. Som standalone app eller inkludert under dittNAV.
 Vi grupperer også brukere i 2 grupper kss (klare seg selv) og boo (bistand og oppfølging).
+
+Det ligger også en funksjon `hotjarEksperiment` i [innhold-logik-niva4](src/innhold/innhold-logikk-niva4.tsx) hvor du kan sette opp forutsetninger for et eksperiment.
 
 For å bruke HotJar må du benytte "JavaScript trigger" som du finner under punktet "Behavior" og fanen "Pages".
 Innholdet i trigger avgjør hvem som får vist undersøkelsen. Du kan ha flere triggere pr undersøkelse.
@@ -30,6 +32,8 @@ Innholdet i trigger avgjør hvem som får vist undersøkelsen. Du kan ha flere t
 - `vta-boo` - Veien til arbeid standalone boo bruker
 - `vta-dittnav-kss` - Veien til arbeid under dittNAV kss bruker
 - `vta-dittnav-boo` - Veien til arbeid under dittNAV boo bruker
+- `vta-eksperiment` - Veien til arbeid standalone hvor kriteriene satt i `hotjarEksperiment` matcher
+- `vta-dittnavn-eksperiment` - Veien til arbeid under dittNAV hvor kriteriene satt i `hotjarEksperiment` matcher
 
 # Henvendelser
 
