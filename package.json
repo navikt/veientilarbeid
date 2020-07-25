@@ -61,7 +61,7 @@
     "react-redux": "7.2.0",
     "redux": "4.0.5",
     "yet-another-fetch-mock": "3.4.0",
-    "snyk": "1.359.1"
+    "snyk": "1.360.0"
   },
   "devDependencies": {
     "@types/amplitude-js": "5.11.0",
