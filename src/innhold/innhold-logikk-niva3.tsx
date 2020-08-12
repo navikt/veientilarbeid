@@ -21,6 +21,7 @@ const InnholdLogikkNiva3 = () => {
             erPermittert={false}
             erPermittertEllerEndret={false}
             poaGruppe='boo'
+            geografiskTilknytning='INGEN_VERDI'
         />
     );
 };

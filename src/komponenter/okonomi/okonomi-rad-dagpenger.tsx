@@ -10,10 +10,11 @@ import { POAGruppe } from '../../utils/get-poa-group';
 
 interface OwnProps {
     poaGruppe: POAGruppe;
+    geografiskTilknytning: string;
 }
 
 const okonomiRadDagpenger = (props: OwnProps) => {
-  const { poaGruppe } = props;
+  const { poaGruppe, geografiskTilknytning } = props;
 
   return (
     <Rad>
@@ -21,12 +22,12 @@ const okonomiRadDagpenger = (props: OwnProps) => {
         {tekster['dagpenger-heading-tekst']}
       </Systemtittel>
       <div className="tokol">
-        <Dagpenger poaGruppe={poaGruppe} />
-        <AlleSkjema poaGruppe={poaGruppe} />
+        <Dagpenger poaGruppe={poaGruppe} geografiskTilknytning={geografiskTilknytning} />
+        <AlleSkjema poaGruppe={poaGruppe} geografiskTilknytning={geografiskTilknytning} />
       </div>
       <div className="tokol">
-        <SjekkKontonummer poaGruppe={poaGruppe} />
-        <TrekkDagpengeSoknad poaGruppe={poaGruppe} />
+        <SjekkKontonummer poaGruppe={poaGruppe} geografiskTilknytning={geografiskTilknytning} />
+        <TrekkDagpengeSoknad poaGruppe={poaGruppe} geografiskTilknytning={geografiskTilknytning} />
       </div>
     </Rad>
   )

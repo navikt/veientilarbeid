@@ -11,15 +11,16 @@ import { POAGruppe } from '../../utils/get-poa-group';
 
 interface OwnProps {
     poaGruppe: POAGruppe;
+    geografiskTilknytning: string;
 }
 
 const AlleSkjema = (props: OwnProps) => {
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
-    const { poaGruppe } = props;
+    const { poaGruppe, geografiskTilknytning } = props;
 
     const handleButtonClick = () => {
         klikkPaSoknadAlleSkjema(servicegruppe);
-        loggAktivitet({ aktivitet: 'Går til alle skjema', gruppe: poaGruppe});
+        loggAktivitet({ aktivitet: 'Går til alle skjema', gruppe: poaGruppe, geografiskTilknytning});
         window.location.href = alleSkjemaSoknadLenke;
     };
   

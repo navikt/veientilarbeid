@@ -18,20 +18,21 @@ interface StateProps {
 
 interface OwnProps {
     poaGruppe: POAGruppe;
+    geografiskTilknytning: string;
 }
 
 type AllProps = StateProps & OwnProps;
 
 const DialogPermittert = (props: AllProps) => {
-    const { antallUleste, poaGruppe } = props;
+    const { antallUleste, poaGruppe, geografiskTilknytning } = props;
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
 
     const handleClick = () => {
         gaTilDialogPermittert(antallUleste, servicegruppe);
         if (antallUleste > 0) {
-            loggAktivitet({ aktivitet: 'Svarer på dialog for permitterte', gruppe: poaGruppe })
+            loggAktivitet({ aktivitet: 'Svarer på dialog for permitterte', gruppe: poaGruppe, geografiskTilknytning })
         } else {
-            loggAktivitet({ aktivitet: 'Innleder dialog for permitterte', gruppe: poaGruppe })
+            loggAktivitet({ aktivitet: 'Innleder dialog for permitterte', gruppe: poaGruppe, geografiskTilknytning })
         }
     };
 

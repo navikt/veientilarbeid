@@ -9,14 +9,15 @@ import { POAGruppe } from '../../utils/get-poa-group';
 
 interface OwnProps {
     poaGruppe: POAGruppe;
+    geografiskTilknytning: string;
 }
 
 const TrekkDagpengeSoknad = (props: OwnProps) => {
-    const { poaGruppe } = props;
+    const { poaGruppe, geografiskTilknytning } = props;
 
     const handleClick = () => {
         uniLogger('trekk-dp-soknad.click');
-        loggAktivitet({ aktivitet: 'Går til trekk dagpengesøknad', gruppe: poaGruppe});
+        loggAktivitet({ aktivitet: 'Går til trekk dagpengesøknad', gruppe: poaGruppe, geografiskTilknytning});
     }
     
     return (

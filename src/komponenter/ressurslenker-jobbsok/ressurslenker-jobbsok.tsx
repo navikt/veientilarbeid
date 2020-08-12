@@ -9,10 +9,11 @@ import { POAGruppe } from '../../utils/get-poa-group';
 
 interface OwnProps {
     poaGruppe: POAGruppe;
+    geografiskTilknytning: string;
 }
 
 const RessurslenkerJobbsok = (props: OwnProps) => {
-    const { poaGruppe } = props;
+    const { poaGruppe, geografiskTilknytning } = props;
     
     return (
         <section className="ressurslenker">
@@ -21,11 +22,11 @@ const RessurslenkerJobbsok = (props: OwnProps) => {
             </Systemtittel>
 
             <div className="tokol">
-                <Stillingsok poaGruppe={poaGruppe} />
-                <CV poaGruppe={poaGruppe} />
+                <Stillingsok poaGruppe={poaGruppe} geografiskTilknytning={geografiskTilknytning} />
+                <CV poaGruppe={poaGruppe} geografiskTilknytning={geografiskTilknytning} />
             </div>
             <div className="tokol">
-                <Jobbsokertips poaGruppe={poaGruppe} />
+                <Jobbsokertips poaGruppe={poaGruppe} geografiskTilknytning={geografiskTilknytning} />
             </div>
         </section>
     );

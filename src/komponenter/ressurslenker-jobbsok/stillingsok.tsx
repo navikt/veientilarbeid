@@ -8,15 +8,16 @@ import { POAGruppe } from '../../utils/get-poa-group';
 
 interface OwnProps {
     poaGruppe: POAGruppe;
+    geografiskTilknytning: string;
 }
 
 const StillingSok = (props: OwnProps) => {
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
-    const { poaGruppe } = props;
+    const { poaGruppe, geografiskTilknytning } = props;
 
     const handleClick = () => {
         klikkPaSokLedigeStillinger(servicegruppe);
-        loggAktivitet({ aktivitet: 'Går til ledige stillinger', gruppe: poaGruppe});
+        loggAktivitet({ aktivitet: 'Går til ledige stillinger', gruppe: poaGruppe, geografiskTilknytning});
     };
 
     return (

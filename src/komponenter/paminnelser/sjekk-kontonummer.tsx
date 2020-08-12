@@ -9,14 +9,15 @@ import { POAGruppe } from '../../utils/get-poa-group';
 
 interface OwnProps {
     poaGruppe: POAGruppe;
+    geografiskTilknytning: string;
 }
 
 const sjekkKontonummer = (props: OwnProps) => {
-    const { poaGruppe } = props;
+    const { poaGruppe, geografiskTilknytning } = props;
 
     const handleClick = () => {
         uniLogger('sjekkKontonummer.click');
-        loggAktivitet({ aktivitet: 'Går til sjekk kontonummer', gruppe: poaGruppe});
+        loggAktivitet({ aktivitet: 'Går til sjekk kontonummer', gruppe: poaGruppe, geografiskTilknytning});
     }
     return (
         <div className="wrapper">

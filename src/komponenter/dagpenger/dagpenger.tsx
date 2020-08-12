@@ -11,16 +11,17 @@ import { POAGruppe } from '../../utils/get-poa-group';
 
 interface OwnProps {
     poaGruppe: POAGruppe;
+    geografiskTilknytning: string;
 }
 
 const Dagpenger = (props: OwnProps) => {
 
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
-    const { poaGruppe } = props;
+    const { poaGruppe, geografiskTilknytning } = props;
 
     const handleButtonClick = () => {
         klikkPaSoknadDagpenger(servicegruppe);
-        loggAktivitet({ aktivitet: 'Går til dagpengesøknad', gruppe: poaGruppe});
+        loggAktivitet({ aktivitet: 'Går til dagpengesøknad', gruppe: poaGruppe, geografiskTilknytning});
         window.location.href = dagpengerSoknadLenke;
     };
   

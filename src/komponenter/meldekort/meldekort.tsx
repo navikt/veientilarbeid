@@ -9,6 +9,7 @@ import { POAGruppe } from '../../utils/get-poa-group';
 
 interface OwnProps {
     poaGruppe: POAGruppe;
+    geografiskTilknytning: string;
 }
 
 const Meldekort = (props: OwnProps) => {
@@ -17,11 +18,11 @@ const Meldekort = (props: OwnProps) => {
 
     const overskrift = 'meldekort-overskrift';
     const ingress = meldekortNyTekst ? 'meldekort-ingress-ny' : 'meldekort-ingress';
-    const { poaGruppe } = props;
+    const { poaGruppe, geografiskTilknytning } = props;
 
     const handleClick = () => {
         gaTilMeldekort(servicegruppe);
-        loggAktivitet({ aktivitet: 'Går til meldekortet', gruppe: poaGruppe});
+        loggAktivitet({ aktivitet: 'Går til meldekortet', gruppe: poaGruppe, geografiskTilknytning });
     };
 
     return (
