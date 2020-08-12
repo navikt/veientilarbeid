@@ -9,6 +9,7 @@ import { POAGruppe } from '../../utils/get-poa-group';
 
 interface OwnProps {
     poaGruppe: POAGruppe;
+    geografiskTilknytning: string;
 }
 
 const Aktivitetsplan = (props: OwnProps) => {
@@ -17,11 +18,11 @@ const Aktivitetsplan = (props: OwnProps) => {
     const nyRegistrering = parse(location.search).nyRegistrering === 'true';
     const overskrift = 'aktivitetsplan-overskrift-ordinaer';
     const ingress = 'aktivitetsplan-beskrivelse' + (nyRegistrering ? '-ny' : '');
-    const { poaGruppe } = props
+    const { poaGruppe, geografiskTilknytning } = props
 
     const handleClick = () => {
         gaTilAktivitetsplan(servicegruppe);
-        loggAktivitet({ aktivitet: 'Går til aktivitetsplanen', gruppe: poaGruppe})
+        loggAktivitet({ aktivitet: 'Går til aktivitetsplanen', gruppe: poaGruppe, geografiskTilknytning})
     };
 
     return (

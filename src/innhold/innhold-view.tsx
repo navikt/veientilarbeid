@@ -31,20 +31,22 @@ interface OwnProps {
     erPermittert: boolean;
     erPermittertEllerEndret: boolean;
     poaGruppe: POAGruppe;
+    geografiskTilknytning: string;
 }
 
 interface ErSykmeldtMedArbeidsgiverProps {
     erSykmeldtMedArbeidsgiver: boolean;
-    poaGruppe: POAGruppe
+    poaGruppe: POAGruppe;
+    geografiskTilknytning: string;
 }
 
-const AktivitetDialogMeldekort = ({erSykmeldtMedArbeidsgiver, poaGruppe}: ErSykmeldtMedArbeidsgiverProps) => {
+const AktivitetDialogMeldekort = ({erSykmeldtMedArbeidsgiver, poaGruppe, geografiskTilknytning}: ErSykmeldtMedArbeidsgiverProps) => {
     return (
         <>
-            <Aktivitetsplan poaGruppe={poaGruppe}/>
+            <Aktivitetsplan poaGruppe={poaGruppe} geografiskTilknytning={geografiskTilknytning} />
                 <div className="tokol">
-                    <Dialog poaGruppe={poaGruppe}/>
-                    {erSykmeldtMedArbeidsgiver ? <DittSykefravaer/> : <Meldekort poaGruppe={poaGruppe}/>}
+                    <Dialog poaGruppe={poaGruppe} geografiskTilknytning={geografiskTilknytning} />
+                    {erSykmeldtMedArbeidsgiver ? <DittSykefravaer/> : <Meldekort poaGruppe={poaGruppe} geografiskTilknytning={geografiskTilknytning} />}
                 </div>
         </>
     )
@@ -58,7 +60,8 @@ export default ({erSykmeldtMedArbeidsgiver,
                     skalViseIARBSPlaster,
                     skalViseRegistrert,
                     erPermittertEllerEndret,
-                    poaGruppe}: OwnProps) => {
+                    poaGruppe,
+                    geografiskTilknytning}: OwnProps) => {
     return (
         <>
             {erMikrofrontend() ? null : (erSykmeldtMedArbeidsgiver ? <Banner type="sykmeldt"/> :
@@ -68,11 +71,11 @@ export default ({erSykmeldtMedArbeidsgiver,
                 <ReaktiveringMelding/>
                 {skalViseKrrMelding ? <KrrMelding/> : null}
                 {erPermittertEllerEndret && <Situasjon />}
-                {skalViseRegistrert ? <Registrert poaGruppe={poaGruppe}/> : null }
+                {skalViseRegistrert ? <Registrert poaGruppe={poaGruppe} geografiskTilknytning={geografiskTilknytning} /> : null }
                 {skalViseIARBSPlaster ? <IARBSMelding/> : null}
                 {skalViseEgenvurderingLenke ? <Egenvurdering/> : null}
                 {skalViseMotestotteLenke ? <Motestotte erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}/> : null}
-                <AktivitetDialogMeldekort erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver} poaGruppe={poaGruppe}/>
+                <AktivitetDialogMeldekort erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver} poaGruppe={poaGruppe} geografiskTilknytning={geografiskTilknytning} />
             </Rad>
 
             {erSykmeldtMedArbeidsgiver && (
@@ -80,10 +83,10 @@ export default ({erSykmeldtMedArbeidsgiver,
             )}
 
             <Rad>
-                {visRessurslenker ? <RessurslenkerJobbsok poaGruppe={poaGruppe} /> : null}
+                {visRessurslenker ? <RessurslenkerJobbsok poaGruppe={poaGruppe} geografiskTilknytning={geografiskTilknytning} /> : null}
             </Rad>
 
-            { erSykmeldtMedArbeidsgiver ? <Rad><OkonomiRad/></Rad> : <OkonomiRadDagpenger poaGruppe={poaGruppe} />}
+            { erSykmeldtMedArbeidsgiver ? <Rad><OkonomiRad/></Rad> : <OkonomiRadDagpenger poaGruppe={poaGruppe} geografiskTilknytning={geografiskTilknytning} />}
         </>
     );
 };

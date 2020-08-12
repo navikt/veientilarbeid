@@ -49,8 +49,9 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
     const skalViseRegistrert = formidlingsgruppe === Formidlingsgruppe.ARBS;
     
     const brukerinfoData = React.useContext(BrukerInfoContext).data;
-    const { erSykmeldtMedArbeidsgiver, registreringType, rettighetsgruppe, alder } = brukerinfoData;
+    const { erSykmeldtMedArbeidsgiver, registreringType, rettighetsgruppe, alder, geografiskTilknytning } = brukerinfoData;
     const skalViseIARBSPlaster = false // formidlingsgruppe === Formidlingsgruppe.IARBS && registreringType === RegistreringType.ALLEREDE_REGISTRERT && rettighetsgruppe !== 'AAP';
+    const geografiskTilknytningOrIngenVerdi = geografiskTilknytning ? geografiskTilknytning  : 'INGEN_VERDI'
     const registreringTypeOrIngenVerdi = registreringType ? registreringType : 'INGEN_VERDI';
     const foreslattInnsatsgruppeOrIngenVerdi = foreslattInnsatsgruppe ? foreslattInnsatsgruppe : 'INGEN_VERDI'
     const fremtidigSvarOrIngenVerdi = fremtidigSvar ? fremtidigSvar : 'INGEN_VERDI';
@@ -92,7 +93,7 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
     );
         hotjarTrigger(erMikrofrontend(), POAGruppe, hotjarEksperiment());
         seIARBSPlaster(skalViseIARBSPlaster, formidlingsgruppe, servicegruppe, rettighetsgruppe);
-        tellPoaGruppe(POAGruppe);
+        tellPoaGruppe( POAGruppe, geografiskTilknytningOrIngenVerdi);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -154,6 +155,7 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
             erPermittert={erPermittert}
             erPermittertEllerEndret={erPermittertEllerEndret}
             poaGruppe={POAGruppe}
+            geografiskTilknytning={geografiskTilknytningOrIngenVerdi}
         />
     );
 };

@@ -191,13 +191,14 @@ export const klikkPaDifiLenke = (metrikker: KrrMetrikkData) => {
     uniLogger('krr.difi.click', metrikker);
 };
 
-export const tellPoaGruppe = (gruppe: string) => {
-    uniLogger('poagruppe', { gruppe: gruppe });
+export const tellPoaGruppe = (gruppe: string, geografiskTilknytning: string) => {
+    uniLogger('poagruppe', { gruppe, geografiskTilknytning });
 };
 
 export type AktivitetsMetrikkData = {
     aktivitet: string;
     gruppe: POAGruppe;
+    geografiskTilknytning: string;
 };
 
 export const loggAktivitet = (data: AktivitetsMetrikkData) => {
