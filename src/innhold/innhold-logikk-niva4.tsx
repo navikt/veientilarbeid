@@ -13,7 +13,7 @@ import {
     selectOpprettetRegistreringDato,
     selectDinSituasjonSvar
 } from '../ducks/brukerregistrering';
-import { seVeientilarbeid, seIARBSPlaster, tellPoaGruppe } from '../metrics/metrics';
+import { seVeientilarbeid, seIARBSPlaster, tellPoaGruppe, setIdentifyPoaGruppe } from '../metrics/metrics';
 import { hotjarTrigger } from '../hotjar';
 import './innhold.less';
 import InnholdView from './innhold-view';
@@ -93,9 +93,12 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
     );
         hotjarTrigger(erMikrofrontend(), POAGruppe, hotjarEksperiment());
         seIARBSPlaster(skalViseIARBSPlaster, formidlingsgruppe, servicegruppe, rettighetsgruppe);
-        tellPoaGruppe( POAGruppe, geografiskTilknytningOrIngenVerdi);
+        setIdentifyPoaGruppe(POAGruppe);
+        tellPoaGruppe(POAGruppe, geografiskTilknytningOrIngenVerdi);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+
 
     const tilbakeTilSammeArbeidsgiver = (
         fremtidigSvar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER ||

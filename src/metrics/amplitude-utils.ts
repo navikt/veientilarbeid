@@ -25,3 +25,8 @@ export function getDeviceId () {
 export function amplitudeLogger (name: string, values?: object) {
   amplitude.logEvent(name, values);
 }
+
+export function setIdentifyProperty (name: string, value: string) {
+  const identify = new amplitude.Identify().set(name, value);
+  amplitude.getInstance().identify(identify);
+}
