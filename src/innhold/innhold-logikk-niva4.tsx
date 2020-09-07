@@ -13,7 +13,7 @@ import {
     selectOpprettetRegistreringDato,
     selectDinSituasjonSvar
 } from '../ducks/brukerregistrering';
-import { seVeientilarbeid, seIARBSPlaster, tellPoaGruppe, setIdentifyPoaGruppe } from '../metrics/metrics';
+import { seVeientilarbeid, seIARBSPlaster, tellPoaGruppe, setIdentifyPoaGruppe, tellEksperimentDeltager } from '../metrics/metrics';
 import { hotjarTrigger } from '../hotjar';
 import './innhold.less';
 import InnholdView from './innhold-view';
@@ -21,6 +21,7 @@ import { MotestotteContext } from '../ducks/motestotte';
 import { SituasjonContext } from '../ducks/situasjon';
 import { Formidlingsgruppe, OppfolgingContext, Servicegruppe } from '../ducks/oppfolging';
 import getPoaGroup from '../utils/get-poa-group'
+import isKSSEksperiment from '../utils/is-kss-eksperiment'
 // import { RegistreringType } from '../ducks/bruker-info'
 
 const LANSERINGSDATO_EGENVURDERING = new Date(2019, 4, 10);
@@ -69,6 +70,12 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
         alder,
         servicegruppe: servicegruppeOrIVURD,
         opprettetRegistreringDato });
+    const isKSSX = isKSSEksperiment({
+        dinSituasjon,
+        POAGruppe,
+        opprettetRegistreringDato,
+        geografiskTilknytning: geografiskTilknytningOrIngenVerdi
+    })
 
     /*
         Funksjon hvor man bygger opp kriterier for et eksperiment og retunerer true/false
@@ -95,10 +102,11 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
         seIARBSPlaster(skalViseIARBSPlaster, formidlingsgruppe, servicegruppe, rettighetsgruppe);
         setIdentifyPoaGruppe(POAGruppe);
         tellPoaGruppe(POAGruppe, geografiskTilknytningOrIngenVerdi);
+        if (isKSSX) {
+            tellEksperimentDeltager(POAGruppe, geografiskTilknytningOrIngenVerdi);
+        };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-
 
     const tilbakeTilSammeArbeidsgiver = (
         fremtidigSvar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER ||

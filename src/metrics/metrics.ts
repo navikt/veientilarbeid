@@ -195,6 +195,10 @@ export const tellPoaGruppe = (gruppe: string, geografiskTilknytning: string) => 
     uniLogger('poagruppe', { gruppe, geografiskTilknytning });
 };
 
+export const tellEksperimentDeltager = (gruppe: string, geografiskTilknytning: string) => {
+    uniLogger('er eksperimentdeltager', { gruppe, geografiskTilknytning });
+};
+
 export const setIdentifyPoaGruppe = (gruppe: POAGruppe) => {
     setIdentifyProperty('poagruppe', gruppe);
 }
