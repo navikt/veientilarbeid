@@ -65,7 +65,7 @@
   },
   "devDependencies": {
     "@types/amplitude-js": "5.11.0",
-    "@types/chai": "4.2.11",
+    "@types/chai": "4.2.12",
     "@types/classnames": "2.2.10",
     "@types/enzyme": "3.10.5",
     "@types/enzyme-adapter-react-16": "1.0.6",
