@@ -10,14 +10,15 @@ import { POAGruppe } from '../../utils/get-poa-group';
 interface OwnProps {
     poaGruppe: POAGruppe;
     geografiskTilknytning: string;
+    isKSSX: string;
 }
 
 const TrekkDagpengeSoknad = (props: OwnProps) => {
-    const { poaGruppe, geografiskTilknytning } = props;
+    const { poaGruppe, geografiskTilknytning, isKSSX } = props;
 
     const handleClick = () => {
         uniLogger('trekk-dp-soknad.click');
-        loggAktivitet({ aktivitet: 'Går til trekk dagpengesøknad', gruppe: poaGruppe, geografiskTilknytning});
+        loggAktivitet({ aktivitet: 'Går til trekk dagpengesøknad', gruppe: poaGruppe, geografiskTilknytning, isKSSX });
     }
     
     return (

@@ -191,9 +191,8 @@ export const klikkPaDifiLenke = (metrikker: KrrMetrikkData) => {
     uniLogger('krr.difi.click', metrikker);
 };
 
-export const tellPoaGruppe = (gruppe: string, geografiskTilknytning: string, isKSSX: boolean) => {
-    const kssx = isKSSX ? 'ja': 'nei'
-    uniLogger('poagruppe', { gruppe, geografiskTilknytning, kssx });
+export const tellPoaGruppe = (gruppe: string, geografiskTilknytning: string, isKSSX: string) => {
+    uniLogger('poagruppe', { gruppe, geografiskTilknytning, isKSSX });
 };
 
 export const setIdentifyPoaGruppe = (gruppe: POAGruppe) => {
@@ -204,6 +203,7 @@ export type AktivitetsMetrikkData = {
     aktivitet: string;
     gruppe: POAGruppe;
     geografiskTilknytning: string;
+    isKSSX: string;
 };
 
 export const loggAktivitet = (data: AktivitetsMetrikkData) => {

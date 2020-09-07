@@ -10,6 +10,7 @@ import { POAGruppe } from '../../utils/get-poa-group';
 interface OwnProps {
     poaGruppe: POAGruppe;
     geografiskTilknytning: string;
+    isKSSX: string;
 }
 
 const Aktivitetsplan = (props: OwnProps) => {
@@ -18,11 +19,11 @@ const Aktivitetsplan = (props: OwnProps) => {
     const nyRegistrering = parse(location.search).nyRegistrering === 'true';
     const overskrift = 'aktivitetsplan-overskrift-ordinaer';
     const ingress = 'aktivitetsplan-beskrivelse' + (nyRegistrering ? '-ny' : '');
-    const { poaGruppe, geografiskTilknytning } = props
+    const { poaGruppe, geografiskTilknytning, isKSSX } = props
 
     const handleClick = () => {
         gaTilAktivitetsplan(servicegruppe);
-        loggAktivitet({ aktivitet: 'Går til aktivitetsplanen', gruppe: poaGruppe, geografiskTilknytning})
+        loggAktivitet({ aktivitet: 'Går til aktivitetsplanen', gruppe: poaGruppe, geografiskTilknytning, isKSSX})
     };
 
     return (

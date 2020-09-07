@@ -75,7 +75,7 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
         POAGruppe,
         opprettetRegistreringDato,
         geografiskTilknytning: geografiskTilknytningOrIngenVerdi
-    });
+    }) ? 'ja' : 'nei';
 
     /*
         Funksjon hvor man bygger opp kriterier for et eksperiment og retunerer true/false
@@ -164,6 +164,7 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
             erPermittertEllerEndret={erPermittertEllerEndret}
             poaGruppe={POAGruppe}
             geografiskTilknytning={geografiskTilknytningOrIngenVerdi}
+            isKSSX={isKSSX}
         />
     );
 };

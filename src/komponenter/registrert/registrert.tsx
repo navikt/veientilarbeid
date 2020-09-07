@@ -13,6 +13,7 @@ import { POAGruppe } from '../../utils/get-poa-group';
 interface OwnProps {
     poaGruppe: POAGruppe;
     geografiskTilknytning: string;
+    isKSSX: string;
 }
 
 const Registrert = (props: OwnProps) => {
@@ -20,7 +21,7 @@ const Registrert = (props: OwnProps) => {
     const brukerinfoData = React.useContext(BrukerInfoContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const [clickedInnsyn, setClickedInnsyn] = useState(false);
-    const { poaGruppe, geografiskTilknytning } = props;
+    const { poaGruppe, geografiskTilknytning, isKSSX } = props;
     if (!brukerregistreringData) {
         return (
             <div className="blokk-s">
@@ -51,7 +52,7 @@ const Registrert = (props: OwnProps) => {
     const handleClickOpen = () => {
         if (!clickedInnsyn) {
             klikkPaDineOpplysninger(metrikkData);
-            loggAktivitet({ aktivitet: 'Ser opplysninger fra registreringen', gruppe: poaGruppe, geografiskTilknytning})
+            loggAktivitet({ aktivitet: 'Ser opplysninger fra registreringen', gruppe: poaGruppe, geografiskTilknytning, isKSSX})
             setClickedInnsyn(true);
         }
     };

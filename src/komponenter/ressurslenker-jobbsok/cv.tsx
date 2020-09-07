@@ -9,15 +9,16 @@ import { POAGruppe } from '../../utils/get-poa-group';
 interface OwnProps {
     poaGruppe: POAGruppe;
     geografiskTilknytning: string;
+    isKSSX: string;
 }
 
 const CV = (props: OwnProps) => {
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
-    const { poaGruppe, geografiskTilknytning } = props;
+    const { poaGruppe, geografiskTilknytning, isKSSX } = props;
 
     const handleClick = () => {
         gaTilCV(servicegruppe);
-        loggAktivitet({ aktivitet: 'Går til CV', gruppe: poaGruppe, geografiskTilknytning});
+        loggAktivitet({ aktivitet: 'Går til CV', gruppe: poaGruppe, geografiskTilknytning, isKSSX });
     };
 
     return (
