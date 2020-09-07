@@ -11,6 +11,7 @@ import { POAGruppe } from '../../utils/get-poa-group';
 interface OwnProps {
     poaGruppe: POAGruppe;
     geografiskTilknytning: string;
+    isKSSX: string;
 }
 
 interface StateProps {
@@ -20,7 +21,7 @@ interface StateProps {
 type AllProps = StateProps & OwnProps;
 
 const Ressurslenker = (props: AllProps) => {
-    const { harJobbbsokerbesvarelse, poaGruppe, geografiskTilknytning } = props;
+    const { harJobbbsokerbesvarelse, poaGruppe, geografiskTilknytning, isKSSX } = props;
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
 
     const URL = harJobbbsokerbesvarelse ? jobbsokerkompetanseLenke : veiviserarbeidssokerLenke;
@@ -39,7 +40,7 @@ const Ressurslenker = (props: AllProps) => {
 
     const handleClick = () => {
         gaTil(servicegruppe);
-        loggAktivitet({ aktivitet: aktivitet, gruppe: poaGruppe, geografiskTilknytning});
+        loggAktivitet({ aktivitet: aktivitet, gruppe: poaGruppe, geografiskTilknytning, isKSSX });
     };
 
     return (

@@ -12,16 +12,17 @@ import { POAGruppe } from '../../utils/get-poa-group';
 interface OwnProps {
     poaGruppe: POAGruppe;
     geografiskTilknytning: string;
+    isKSSX: string;
 }
 
 const Dagpenger = (props: OwnProps) => {
 
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
-    const { poaGruppe, geografiskTilknytning } = props;
+    const { poaGruppe, geografiskTilknytning, isKSSX } = props;
 
     const handleButtonClick = () => {
         klikkPaSoknadDagpenger(servicegruppe);
-        loggAktivitet({ aktivitet: 'Går til dagpengesøknad', gruppe: poaGruppe, geografiskTilknytning});
+        loggAktivitet({ aktivitet: 'Går til dagpengesøknad', gruppe: poaGruppe, geografiskTilknytning, isKSSX });
         window.location.href = dagpengerSoknadLenke;
     };
   

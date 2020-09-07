@@ -11,10 +11,11 @@ import { POAGruppe } from '../../utils/get-poa-group';
 interface OwnProps {
     poaGruppe: POAGruppe;
     geografiskTilknytning: string;
+    isKSSX: string;
 }
 
 const okonomiRadDagpenger = (props: OwnProps) => {
-  const { poaGruppe, geografiskTilknytning } = props;
+  const { poaGruppe, geografiskTilknytning, isKSSX } = props;
 
   return (
     <Rad>
@@ -22,12 +23,12 @@ const okonomiRadDagpenger = (props: OwnProps) => {
         {tekster['dagpenger-heading-tekst']}
       </Systemtittel>
       <div className="tokol">
-        <Dagpenger poaGruppe={poaGruppe} geografiskTilknytning={geografiskTilknytning} />
-        <AlleSkjema poaGruppe={poaGruppe} geografiskTilknytning={geografiskTilknytning} />
+        <Dagpenger poaGruppe={poaGruppe} geografiskTilknytning={geografiskTilknytning} isKSSX={isKSSX} />
+        <AlleSkjema poaGruppe={poaGruppe} geografiskTilknytning={geografiskTilknytning} isKSSX={isKSSX} />
       </div>
       <div className="tokol">
-        <SjekkKontonummer poaGruppe={poaGruppe} geografiskTilknytning={geografiskTilknytning} />
-        <TrekkDagpengeSoknad poaGruppe={poaGruppe} geografiskTilknytning={geografiskTilknytning} />
+        <SjekkKontonummer poaGruppe={poaGruppe} geografiskTilknytning={geografiskTilknytning} isKSSX={isKSSX} />
+        <TrekkDagpengeSoknad poaGruppe={poaGruppe} geografiskTilknytning={geografiskTilknytning} isKSSX={isKSSX} />
       </div>
     </Rad>
   )
