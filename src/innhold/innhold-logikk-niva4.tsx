@@ -13,7 +13,7 @@ import {
     selectOpprettetRegistreringDato,
     selectDinSituasjonSvar
 } from '../ducks/brukerregistrering';
-import { seVeientilarbeid, seIARBSPlaster, tellPoaGruppe, setIdentifyPoaGruppe, tellEksperimentDeltager } from '../metrics/metrics';
+import { seVeientilarbeid, seIARBSPlaster, tellPoaGruppe, setIdentifyPoaGruppe } from '../metrics/metrics';
 import { hotjarTrigger } from '../hotjar';
 import './innhold.less';
 import InnholdView from './innhold-view';
@@ -75,7 +75,7 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
         POAGruppe,
         opprettetRegistreringDato,
         geografiskTilknytning: geografiskTilknytningOrIngenVerdi
-    })
+    });
 
     /*
         Funksjon hvor man bygger opp kriterier for et eksperiment og retunerer true/false
@@ -101,10 +101,7 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
         hotjarTrigger(erMikrofrontend(), POAGruppe, hotjarEksperiment());
         seIARBSPlaster(skalViseIARBSPlaster, formidlingsgruppe, servicegruppe, rettighetsgruppe);
         setIdentifyPoaGruppe(POAGruppe);
-        tellPoaGruppe(POAGruppe, geografiskTilknytningOrIngenVerdi);
-        if (isKSSX) {
-            tellEksperimentDeltager(POAGruppe, geografiskTilknytningOrIngenVerdi);
-        };
+        tellPoaGruppe(POAGruppe, geografiskTilknytningOrIngenVerdi, isKSSX);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
