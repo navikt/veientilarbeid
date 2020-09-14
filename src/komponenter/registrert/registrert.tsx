@@ -8,20 +8,14 @@ import { OppfolgingContext } from '../../ducks/oppfolging';
 import { klikkPaDineOpplysninger, seDineOpplysninger, loggAktivitet } from '../../metrics/metrics';
 import Opplysninger from '../innsyn/registreringsopplysninger';
 import './registrert.less';
-import { POAGruppe } from '../../utils/get-poa-group';
+import { AmplitudeAktivitetsProps } from '../../metrics/amplitude-utils';
 
-interface OwnProps {
-    poaGruppe: POAGruppe;
-    geografiskTilknytning: string;
-    isKSSX: string;
-}
-
-const Registrert = (props: OwnProps) => {
+const Registrert = (props: AmplitudeAktivitetsProps) => {
     const brukerregistreringData = useContext(BrukerregistreringContext).data;
     const brukerinfoData = React.useContext(BrukerInfoContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const [clickedInnsyn, setClickedInnsyn] = useState(false);
-    const { poaGruppe, geografiskTilknytning, isKSSX } = props;
+    const { amplitudeAktivitetsData } = props;
     if (!brukerregistreringData) {
         return (
             <div className="blokk-s">
@@ -52,7 +46,7 @@ const Registrert = (props: OwnProps) => {
     const handleClickOpen = () => {
         if (!clickedInnsyn) {
             klikkPaDineOpplysninger(metrikkData);
-            loggAktivitet({ aktivitet: 'Ser opplysninger fra registreringen', gruppe: poaGruppe, geografiskTilknytning, isKSSX})
+            loggAktivitet({ aktivitet: 'Ser opplysninger fra registreringen', ...amplitudeAktivitetsData });
             setClickedInnsyn(true);
         }
     };

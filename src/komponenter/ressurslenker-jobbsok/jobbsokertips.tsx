@@ -6,22 +6,16 @@ import JobbsokertipsIkon from './svg/jobbsokertips';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { jobbsokerkompetanseLenke, veiviserarbeidssokerLenke } from '../../innhold/lenker';
 import { OppfolgingContext } from '../../ducks/oppfolging';
-import { POAGruppe } from '../../utils/get-poa-group';
-
-interface OwnProps {
-    poaGruppe: POAGruppe;
-    geografiskTilknytning: string;
-    isKSSX: string;
-}
+import { AmplitudeAktivitetsProps } from '../../metrics/amplitude-utils';
 
 interface StateProps {
     harJobbbsokerbesvarelse: boolean;
 }
 
-type AllProps = StateProps & OwnProps;
+type AllProps = StateProps & AmplitudeAktivitetsProps;
 
 const Ressurslenker = (props: AllProps) => {
-    const { harJobbbsokerbesvarelse, poaGruppe, geografiskTilknytning, isKSSX } = props;
+    const { harJobbbsokerbesvarelse, amplitudeAktivitetsData } = props;
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
 
     const URL = harJobbbsokerbesvarelse ? jobbsokerkompetanseLenke : veiviserarbeidssokerLenke;
@@ -40,7 +34,7 @@ const Ressurslenker = (props: AllProps) => {
 
     const handleClick = () => {
         gaTil(servicegruppe);
-        loggAktivitet({ aktivitet: aktivitet, gruppe: poaGruppe, geografiskTilknytning, isKSSX });
+        loggAktivitet({ aktivitet: aktivitet, ...amplitudeAktivitetsData });
     };
 
     return (

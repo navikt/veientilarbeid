@@ -5,16 +5,10 @@ import CV from './cv';
 import Jobbsokertips from './jobbsokertips';
 import { Systemtittel } from 'nav-frontend-typografi';
 import tekster from '../../tekster/tekster';
-import { POAGruppe } from '../../utils/get-poa-group';
+import { AmplitudeAktivitetsProps } from '../../metrics/amplitude-utils';
 
-interface OwnProps {
-    poaGruppe: POAGruppe;
-    geografiskTilknytning: string;
-    isKSSX: string;
-}
-
-const RessurslenkerJobbsok = (props: OwnProps) => {
-    const { poaGruppe, geografiskTilknytning, isKSSX } = props;
+const RessurslenkerJobbsok = (props: AmplitudeAktivitetsProps) => {
+    const { amplitudeAktivitetsData } = props;
     
     return (
         <section className="ressurslenker">
@@ -23,11 +17,11 @@ const RessurslenkerJobbsok = (props: OwnProps) => {
             </Systemtittel>
 
             <div className="tokol">
-                <Stillingsok poaGruppe={poaGruppe} geografiskTilknytning={geografiskTilknytning} isKSSX={isKSSX} />
-                <CV poaGruppe={poaGruppe} geografiskTilknytning={geografiskTilknytning} isKSSX={isKSSX} />
+                <Stillingsok amplitudeAktivitetsData={amplitudeAktivitetsData} />
+                <CV amplitudeAktivitetsData={amplitudeAktivitetsData} />
             </div>
             <div className="tokol">
-                <Jobbsokertips poaGruppe={poaGruppe} geografiskTilknytning={geografiskTilknytning} isKSSX={isKSSX} />
+                <Jobbsokertips amplitudeAktivitetsData={amplitudeAktivitetsData} />
             </div>
         </section>
     );

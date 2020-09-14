@@ -18,7 +18,7 @@ import IARBSMelding from '../komponenter/iarbs-melding/iarbs-melding';
 import { erMikrofrontend } from '../utils/app-state-utils';
 import Registrert from '../komponenter/registrert/registrert';
 import Situasjon from '../komponenter/din-situasjon/situasjon';
-import { POAGruppe } from '../utils/get-poa-group';
+import { AmplitudeAktivitetsData } from '../metrics/amplitude-utils';
 
 interface OwnProps {
     erSykmeldtMedArbeidsgiver: boolean;
@@ -30,25 +30,21 @@ interface OwnProps {
     skalViseRegistrert: boolean;
     erPermittert: boolean;
     erPermittertEllerEndret: boolean;
-    poaGruppe: POAGruppe;
-    geografiskTilknytning: string;
-    isKSSX: string;
+    amplitudeAktivitetsData: AmplitudeAktivitetsData;
 }
 
 interface ErSykmeldtMedArbeidsgiverProps {
     erSykmeldtMedArbeidsgiver: boolean;
-    poaGruppe: POAGruppe;
-    geografiskTilknytning: string;
-    isKSSX: string;
+    amplitudeAktivitetsData: AmplitudeAktivitetsData;
 }
 
-const AktivitetDialogMeldekort = ({erSykmeldtMedArbeidsgiver, poaGruppe, geografiskTilknytning, isKSSX}: ErSykmeldtMedArbeidsgiverProps) => {
+const AktivitetDialogMeldekort = ({erSykmeldtMedArbeidsgiver, amplitudeAktivitetsData}: ErSykmeldtMedArbeidsgiverProps) => {
     return (
         <>
-            <Aktivitetsplan poaGruppe={poaGruppe} geografiskTilknytning={geografiskTilknytning} isKSSX={isKSSX} />
+            <Aktivitetsplan amplitudeAktivitetsData={amplitudeAktivitetsData} />
                 <div className="tokol">
-                    <Dialog poaGruppe={poaGruppe} geografiskTilknytning={geografiskTilknytning} isKSSX={isKSSX} />
-                    {erSykmeldtMedArbeidsgiver ? <DittSykefravaer/> : <Meldekort poaGruppe={poaGruppe} geografiskTilknytning={geografiskTilknytning} isKSSX={isKSSX} />}
+                    <Dialog amplitudeAktivitetsData={amplitudeAktivitetsData} />
+                    {erSykmeldtMedArbeidsgiver ? <DittSykefravaer/> : <Meldekort amplitudeAktivitetsData={amplitudeAktivitetsData} />}
                 </div>
         </>
     )
@@ -62,9 +58,7 @@ export default ({erSykmeldtMedArbeidsgiver,
                     skalViseIARBSPlaster,
                     skalViseRegistrert,
                     erPermittertEllerEndret,
-                    poaGruppe,
-                    isKSSX,
-                    geografiskTilknytning,}: OwnProps) => {
+                    amplitudeAktivitetsData}: OwnProps) => {
     return (
         <>
             {erMikrofrontend() ? null : (erSykmeldtMedArbeidsgiver ? <Banner type="sykmeldt"/> :
@@ -74,11 +68,11 @@ export default ({erSykmeldtMedArbeidsgiver,
                 <ReaktiveringMelding/>
                 {skalViseKrrMelding ? <KrrMelding/> : null}
                 {erPermittertEllerEndret && <Situasjon />}
-                {skalViseRegistrert ? <Registrert poaGruppe={poaGruppe} geografiskTilknytning={geografiskTilknytning} isKSSX={isKSSX} /> : null }
+                {skalViseRegistrert ? <Registrert amplitudeAktivitetsData={amplitudeAktivitetsData} /> : null }
                 {skalViseIARBSPlaster ? <IARBSMelding/> : null}
                 {skalViseEgenvurderingLenke ? <Egenvurdering/> : null}
                 {skalViseMotestotteLenke ? <Motestotte erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}/> : null}
-                <AktivitetDialogMeldekort erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver} poaGruppe={poaGruppe} geografiskTilknytning={geografiskTilknytning} isKSSX={isKSSX} />
+                <AktivitetDialogMeldekort erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver} amplitudeAktivitetsData={amplitudeAktivitetsData} />
             </Rad>
 
             {erSykmeldtMedArbeidsgiver && (
@@ -86,10 +80,10 @@ export default ({erSykmeldtMedArbeidsgiver,
             )}
 
             <Rad>
-                {visRessurslenker ? <RessurslenkerJobbsok poaGruppe={poaGruppe} geografiskTilknytning={geografiskTilknytning} isKSSX={isKSSX} /> : null}
+                {visRessurslenker ? <RessurslenkerJobbsok amplitudeAktivitetsData={amplitudeAktivitetsData} /> : null}
             </Rad>
 
-            { erSykmeldtMedArbeidsgiver ? <Rad><OkonomiRad/></Rad> : <OkonomiRadDagpenger poaGruppe={poaGruppe} geografiskTilknytning={geografiskTilknytning} isKSSX={isKSSX} />}
+            { erSykmeldtMedArbeidsgiver ? <Rad><OkonomiRad/></Rad> : <OkonomiRadDagpenger amplitudeAktivitetsData={amplitudeAktivitetsData} />}
         </>
     );
 };

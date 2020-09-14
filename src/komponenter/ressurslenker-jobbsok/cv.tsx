@@ -4,21 +4,15 @@ import CvIkon from './svg/cv';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { cvLenke } from '../../innhold/lenker';
 import { OppfolgingContext } from '../../ducks/oppfolging';
-import { POAGruppe } from '../../utils/get-poa-group';
+import { AmplitudeAktivitetsProps } from '../../metrics/amplitude-utils';
 
-interface OwnProps {
-    poaGruppe: POAGruppe;
-    geografiskTilknytning: string;
-    isKSSX: string;
-}
-
-const CV = (props: OwnProps) => {
+const CV = (props: AmplitudeAktivitetsProps) => {
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
-    const { poaGruppe, geografiskTilknytning, isKSSX } = props;
+    const { amplitudeAktivitetsData } = props;
 
     const handleClick = () => {
         gaTilCV(servicegruppe);
-        loggAktivitet({ aktivitet: 'Går til CV', gruppe: poaGruppe, geografiskTilknytning, isKSSX });
+        loggAktivitet({ aktivitet: 'Går til CV', ...amplitudeAktivitetsData });
     };
 
     return (

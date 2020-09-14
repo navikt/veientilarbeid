@@ -10,30 +10,24 @@ import './dialog.less';
 import { dialogLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 import { OppfolgingContext } from '../../ducks/oppfolging';
-import { POAGruppe } from '../../utils/get-poa-group'
+import { AmplitudeAktivitetsProps } from '../../metrics/amplitude-utils';
 
 interface StateProps {
     antallUleste: number;
 }
 
-interface OwnProps {
-    poaGruppe: POAGruppe;
-    geografiskTilknytning: string;
-    isKSSX: string;
-}
-
-type AllProps = StateProps & OwnProps;
+type AllProps = StateProps & AmplitudeAktivitetsProps;
 
 const Dialog = (props: AllProps) => {
-    const { antallUleste, poaGruppe, geografiskTilknytning, isKSSX } = props;
+    const { antallUleste, amplitudeAktivitetsData } = props;
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
 
     const handleClick = () => {
         gaTilDialog(antallUleste, servicegruppe);
         if (antallUleste > 0) {
-            loggAktivitet({ aktivitet: 'Svarer på dialog', gruppe: poaGruppe, geografiskTilknytning, isKSSX })
+            loggAktivitet({ aktivitet: 'Svarer på dialog', ...amplitudeAktivitetsData });
         } else {
-            loggAktivitet({ aktivitet: 'Innleder dialog', gruppe: poaGruppe, geografiskTilknytning, isKSSX})
+            loggAktivitet({ aktivitet: 'Innleder dialog', ...amplitudeAktivitetsData });
         }
     };
     
