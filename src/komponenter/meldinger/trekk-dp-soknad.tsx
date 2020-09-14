@@ -5,20 +5,14 @@ import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { uniLogger } from '../../metrics/uni-logger';
 import { loggAktivitet } from '../../metrics/metrics';
 import './melding.less';
-import { POAGruppe } from '../../utils/get-poa-group';
+import { AmplitudeAktivitetsProps } from '../../metrics/amplitude-utils';
 
-interface OwnProps {
-    poaGruppe: POAGruppe;
-    geografiskTilknytning: string;
-    isKSSX: string;
-}
-
-const TrekkDagpengeSoknad = (props: OwnProps) => {
-    const { poaGruppe, geografiskTilknytning, isKSSX } = props;
+const TrekkDagpengeSoknad = (props: AmplitudeAktivitetsProps) => {
+    const { amplitudeAktivitetsData } = props;
 
     const handleClick = () => {
         uniLogger('trekk-dp-soknad.click');
-        loggAktivitet({ aktivitet: 'Går til trekk dagpengesøknad', gruppe: poaGruppe, geografiskTilknytning, isKSSX });
+        loggAktivitet({ aktivitet: 'Går til trekk dagpengesøknad', ...amplitudeAktivitetsData });
     }
     
     return (

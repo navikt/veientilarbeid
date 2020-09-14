@@ -5,25 +5,19 @@ import DesignMug from './design-mug';
 import { gaTilAktivitetsplan, loggAktivitet } from '../../metrics/metrics';
 import { aktivitetsplanLenke } from '../../innhold/lenker';
 import { OppfolgingContext } from '../../ducks/oppfolging';
-import { POAGruppe } from '../../utils/get-poa-group';
+import { AmplitudeAktivitetsProps } from '../../metrics/amplitude-utils';
 
-interface OwnProps {
-    poaGruppe: POAGruppe;
-    geografiskTilknytning: string;
-    isKSSX: string;
-}
-
-const Aktivitetsplan = (props: OwnProps) => {
+const Aktivitetsplan = (props: AmplitudeAktivitetsProps) => {
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
     const { location } = window
     const nyRegistrering = parse(location.search).nyRegistrering === 'true';
     const overskrift = 'aktivitetsplan-overskrift-ordinaer';
     const ingress = 'aktivitetsplan-beskrivelse' + (nyRegistrering ? '-ny' : '');
-    const { poaGruppe, geografiskTilknytning, isKSSX } = props
+    const { amplitudeAktivitetsData } = props;
 
     const handleClick = () => {
         gaTilAktivitetsplan(servicegruppe);
-        loggAktivitet({ aktivitet: 'Går til aktivitetsplanen', gruppe: poaGruppe, geografiskTilknytning, isKSSX})
+        loggAktivitet({ aktivitet: 'Går til aktivitetsplanen', ...amplitudeAktivitetsData });
     };
 
     return (

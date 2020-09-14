@@ -7,21 +7,15 @@ import './alleskjema.less';
 import { alleSkjemaSoknadLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 import { OppfolgingContext } from '../../ducks/oppfolging';
-import { POAGruppe } from '../../utils/get-poa-group';
+import { AmplitudeAktivitetsProps } from '../../metrics/amplitude-utils';
 
-interface OwnProps {
-    poaGruppe: POAGruppe;
-    geografiskTilknytning: string;
-    isKSSX: string;
-}
-
-const AlleSkjema = (props: OwnProps) => {
+const AlleSkjema = (props: AmplitudeAktivitetsProps) => {
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
-    const { poaGruppe, geografiskTilknytning, isKSSX } = props;
+    const { amplitudeAktivitetsData } = props;
 
     const handleButtonClick = () => {
         klikkPaSoknadAlleSkjema(servicegruppe);
-        loggAktivitet({ aktivitet: 'Går til alle skjema', gruppe: poaGruppe, geografiskTilknytning, isKSSX });
+        loggAktivitet({ aktivitet: 'Går til alle skjema', ...amplitudeAktivitetsData });
         window.location.href = alleSkjemaSoknadLenke;
     };
   

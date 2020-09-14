@@ -7,22 +7,16 @@ import './dagpenger.less';
 import { dagpengerSoknadLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 import { OppfolgingContext } from '../../ducks/oppfolging';
-import { POAGruppe } from '../../utils/get-poa-group';
+import { AmplitudeAktivitetsProps } from '../../metrics/amplitude-utils';
 
-interface OwnProps {
-    poaGruppe: POAGruppe;
-    geografiskTilknytning: string;
-    isKSSX: string;
-}
-
-const Dagpenger = (props: OwnProps) => {
+const Dagpenger = (props: AmplitudeAktivitetsProps) => {
 
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
-    const { poaGruppe, geografiskTilknytning, isKSSX } = props;
+    const { amplitudeAktivitetsData } = props;
 
     const handleButtonClick = () => {
         klikkPaSoknadDagpenger(servicegruppe);
-        loggAktivitet({ aktivitet: 'Går til dagpengesøknad', gruppe: poaGruppe, geografiskTilknytning, isKSSX });
+        loggAktivitet({ aktivitet: 'Går til dagpengesøknad', ...amplitudeAktivitetsData });
         window.location.href = dagpengerSoknadLenke;
     };
   

@@ -23,7 +23,7 @@ import { Formidlingsgruppe, OppfolgingContext, Servicegruppe } from '../ducks/op
 import getPoaGroup from '../utils/get-poa-group'
 import isKSSEksperiment from '../utils/is-kss-eksperiment'
 // import { RegistreringType } from '../ducks/bruker-info'
-
+const ukerFraDato = require('@alheimsins/uker-fra-dato');
 const LANSERINGSDATO_EGENVURDERING = new Date(2019, 4, 10);
 const LANSERINGSDATO_MOTESTOTTE = new Date('2020-03-12');
 
@@ -76,7 +76,14 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
         opprettetRegistreringDato,
         geografiskTilknytning: geografiskTilknytningOrIngenVerdi
     }) ? 'ja' : 'nei';
-
+    const ukerRegistrert = opprettetRegistreringDato ? ukerFraDato(opprettetRegistreringDato) : ukerFraDato(new Date());
+    const amplitudeAktivitetsData = {
+        gruppe: POAGruppe,
+        geografiskTilknytning: geografiskTilknytningOrIngenVerdi,
+        isKSSX,
+        ukerRegistrert
+    };
+    
     /*
         Funksjon hvor man bygger opp kriterier for et eksperiment og retunerer true/false
         ettersom brukeren kommer inn under eksperimentet eller ei
@@ -101,7 +108,7 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
         hotjarTrigger(erMikrofrontend(), POAGruppe, hotjarEksperiment());
         seIARBSPlaster(skalViseIARBSPlaster, formidlingsgruppe, servicegruppe, rettighetsgruppe);
         setIdentifyPoaGruppe(POAGruppe);
-        tellPoaGruppe(POAGruppe, geografiskTilknytningOrIngenVerdi, isKSSX);
+        tellPoaGruppe(amplitudeAktivitetsData);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -162,9 +169,7 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
             skalViseRegistrert={skalViseRegistrert}
             erPermittert={erPermittert}
             erPermittertEllerEndret={erPermittertEllerEndret}
-            poaGruppe={POAGruppe}
-            geografiskTilknytning={geografiskTilknytningOrIngenVerdi}
-            isKSSX={isKSSX}
+            amplitudeAktivitetsData={amplitudeAktivitetsData}
         />
     );
 };

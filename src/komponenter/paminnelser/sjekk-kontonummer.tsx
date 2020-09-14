@@ -5,20 +5,14 @@ import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { uniLogger } from '../../metrics/uni-logger'
 import { loggAktivitet } from '../../metrics/metrics';
 import './paminnelse.less';
-import { POAGruppe } from '../../utils/get-poa-group';
+import { AmplitudeAktivitetsProps } from '../../metrics/amplitude-utils';
 
-interface OwnProps {
-    poaGruppe: POAGruppe;
-    geografiskTilknytning: string;
-    isKSSX: string;
-}
-
-const sjekkKontonummer = (props: OwnProps) => {
-    const { poaGruppe, geografiskTilknytning, isKSSX } = props;
+const sjekkKontonummer = (props: AmplitudeAktivitetsProps) => {
+    const { amplitudeAktivitetsData } = props;
 
     const handleClick = () => {
         uniLogger('sjekkKontonummer.click');
-        loggAktivitet({ aktivitet: 'Går til sjekk kontonummer', gruppe: poaGruppe, geografiskTilknytning, isKSSX });
+        loggAktivitet({ aktivitet: 'Går til sjekk kontonummer', ...amplitudeAktivitetsData });
     }
     return (
         <div className="wrapper">
@@ -40,5 +34,3 @@ const sjekkKontonummer = (props: OwnProps) => {
 }
 
 export default sjekkKontonummer;
-
-
