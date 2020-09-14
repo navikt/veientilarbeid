@@ -206,6 +206,13 @@ export type AktivitetsMetrikkData = {
     isKSSX: string;
 };
 
+export interface AmplitudeAktivitetsProps {
+    poaGruppe: POAGruppe;
+    geografiskTilknytning: string;
+    isKSSX: string;
+    ukerRegistrert: number;
+};
+
 export const loggAktivitet = (data: AktivitetsMetrikkData) => {
     amplitudeLogger(`${domene}.aktivitet`, data);
 };
