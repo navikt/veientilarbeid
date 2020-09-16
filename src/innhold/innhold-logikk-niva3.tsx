@@ -17,6 +17,7 @@ const amplitudeAktivitetsData = {
     gruppe: generertPoaGruppe,
     geografiskTilknytning: 'INGEN_VERDI',
     isKSSX: 'nei',
+    isKSSK: 'nei',
     ukerRegistrert: 0
 }
 
