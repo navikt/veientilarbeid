@@ -22,6 +22,7 @@ import { SituasjonContext } from '../ducks/situasjon';
 import { Formidlingsgruppe, OppfolgingContext, Servicegruppe } from '../ducks/oppfolging';
 import getPoaGroup from '../utils/get-poa-group'
 import isKSSEksperiment from '../utils/is-kss-eksperiment'
+import isKSSKontroll from '../utils/is-kss-kontroll'
 // import { RegistreringType } from '../ducks/bruker-info'
 const ukerFraDato = require('@alheimsins/uker-fra-dato');
 const LANSERINGSDATO_EGENVURDERING = new Date(2019, 4, 10);
@@ -76,11 +77,18 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
         opprettetRegistreringDato,
         geografiskTilknytning: geografiskTilknytningOrIngenVerdi
     }) ? 'ja' : 'nei';
+    const isKSSK = isKSSKontroll({
+        dinSituasjon,
+        POAGruppe,
+        opprettetRegistreringDato,
+        geografiskTilknytning: geografiskTilknytningOrIngenVerdi
+    }) ? 'ja' : 'nei';
     const ukerRegistrert = opprettetRegistreringDato ? ukerFraDato(opprettetRegistreringDato) : ukerFraDato(new Date());
     const amplitudeAktivitetsData = {
         gruppe: POAGruppe,
         geografiskTilknytning: geografiskTilknytningOrIngenVerdi,
         isKSSX,
+        isKSSK,
         ukerRegistrert
     };
     
