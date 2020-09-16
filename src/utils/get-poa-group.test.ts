@@ -38,7 +38,7 @@ describe('getPoaGroup returnerer forventede verdier', () => {
     expect(getPoaGroup(data)).to.equal('kss');
   });
 
-  it('returnerer kss for situasjonsbestemt, IKVAL, sagt opp jobben, arbs, rett alder og under 16 uker', () => {
+  it('returnerer boo for situasjonsbestemt, IKVAL, sagt opp jobben, arbs, rett alder og under 16 uker', () => {
     const data = {
       dinSituasjon: 'ER_PERMITTERT',
       innsatsgruppe: 'SITUASJONSBESTEMT_INNSATS',
@@ -47,7 +47,7 @@ describe('getPoaGroup returnerer forventede verdier', () => {
       servicegruppe: 'IKVAL',
       opprettetRegistreringDato: new Date()
     };
-    expect(getPoaGroup(data)).to.equal('kss');
+    expect(getPoaGroup(data)).to.equal('boo');
   });
 
   it('returnerer boo for standard, mistet jobben, arbs, rett alder og over 16 uker', () => {
