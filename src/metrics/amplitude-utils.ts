@@ -23,6 +23,7 @@ export type AmplitudeAktivitetsData = {
   gruppe: POAGruppe;
   geografiskTilknytning: string;
   isKSSX: string;
+  isKSSK: string;
   ukerRegistrert: number;
 };
 
