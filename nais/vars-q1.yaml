@@ -21,5 +21,6 @@ app_environment_name: q1
 ingresses:
   - https://veientilarbeid.nais.oera-q.local # Kun for tilgang til /internal/selftest
   - https://veientilarbeid-q1.dev-sbs.nais.io
+  - https://veientilarbeid-q1.dev.nav.no
   - https://veientilarbeid-q1.nav.no
   - https://tjenester-q1.nav.no/veientilarbeid
