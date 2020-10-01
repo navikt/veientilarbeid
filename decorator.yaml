@@ -16,6 +16,7 @@ proxy:
 
   - contextPath: /veilarbdialog
     baseUrl: http://veilarbproxy
+    pingRequestPath: /internal/isAlive
 
   - contextPath: /veilarbvedtakinfo
     baseUrl: http://veilarbproxy
