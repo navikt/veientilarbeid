@@ -6,7 +6,7 @@ auth:
 
 proxy:
   - contextPath: /veilarbregistrering
-    baseUrl: http://veilarbproxy.q0.svc.nais.local
+    baseUrl: http://veilarbproxy.q0
 
   - contextPath: /veilarboppfolging
     baseUrl: http://veilarbproxy
