@@ -30,7 +30,7 @@ export const requestConfig: RequestInit = {
     }
 };
 
-const contextpath = erMikrofrontend() ? contextpathDittNav : '';
+export const contextpath = erMikrofrontend() ? contextpathDittNav : '';
 
 export const VEILARBOPPFOLGING_URL = `${contextpath}/veilarboppfolging/api/oppfolging`,
     BRUKERINFO_URL = `${contextpath}/veilarbregistrering/api/startregistrering`,

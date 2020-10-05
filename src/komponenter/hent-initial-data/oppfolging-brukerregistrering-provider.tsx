@@ -21,7 +21,7 @@ import {
     alleFeatureToggles,
 } from '../../ducks/feature-toggles';
 import { fetchData } from '../../ducks/api-utils';
-import { BRUKERREGISTRERING_URL, VEILARBOPPFOLGING_URL, FEATURE_URL } from '../../ducks/api';
+import { BRUKERREGISTRERING_URL, FEATURE_URL, contextpath } from '../../ducks/api';
 import SjekkOppfolging from './sjekk-oppfolging';
 
 interface OwnProps {
@@ -39,7 +39,7 @@ const OppfolgingBrukerregistreringProvider = ({children}: OppfolgingProviderProp
     const featureTogglesUrl = `${FEATURE_URL}/?${parameters}`
 
     React.useEffect(() => {
-        fetchData<OppfolgingState, OppfolgingData>(oppfolgingState, setOppfolgingState, VEILARBOPPFOLGING_URL);
+        fetchData<OppfolgingState, OppfolgingData>(oppfolgingState, setOppfolgingState, `http://veilarbproxy.q0.svc.nais.local${contextpath}/veilarboppfolging/api/oppfolging`);
         fetchData<BrukerregistreringState, BrukerregistreringData>(brukerregistreringState, setBrukerregistreringState, BRUKERREGISTRERING_URL);
         fetchData<FeatureTogglesState, FeatureTogglesData>(featureToggleState, setFeatureToggleState, featureTogglesUrl);
     // eslint-disable-next-line react-hooks/exhaustive-deps
