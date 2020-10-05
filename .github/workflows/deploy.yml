@@ -73,7 +73,6 @@ jobs:
           CLUSTER: dev-sbs
           RESOURCE: nais/nais.yaml
           VARS: nais/vars-q1.yaml
-          DRY_RUN: true
 
   deploy-prod:
     name: Deploy til prod
@@ -96,7 +95,6 @@ jobs:
           CLUSTER: prod-sbs
           RESOURCE: nais/nais.yaml
           VARS: nais/vars-p.yaml
-          DRY_RUN: true
 
   release:
     name: Tag and release
