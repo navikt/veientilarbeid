@@ -9,7 +9,7 @@ proxy:
     baseUrl: http://veilarbproxy
 
   - contextPath: /veilarboppfolging
-    baseUrl: http://veilarbproxy
+    baseUrl: http://veilarbproxy.q0.svc.nais.local
 
   - contextPath: /veilarbjobbsokerkompetanse
     baseUrl: http://veilarbproxy
