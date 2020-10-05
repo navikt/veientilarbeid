@@ -8,6 +8,9 @@ proxy:
   - contextPath: /veilarbregistrering
     baseUrl: http://veilarbproxy
 
+  - contextPath: /veilarboppfolging
+    baseUrl: http://veilarbproxy
+
   - contextPath: /veilarbjobbsokerkompetanse
     baseUrl: http://veilarbproxy
 
