@@ -6,19 +6,19 @@ auth:
 
 proxy:
   - contextPath: /veilarbregistrering
-    baseUrl: http://veilarbproxy
+    baseUrl: http://veilarbproxy.q0.svc.nais.local
 
   - contextPath: /veilarboppfolging
     baseUrl: http://veilarbproxy.q0.svc.nais.local
 
   - contextPath: /veilarbjobbsokerkompetanse
-    baseUrl: http://veilarbproxy
+    baseUrl: http://veilarbproxy.q0.svc.nais.local
 
   - contextPath: /veilarbdialog
-    baseUrl: http://veilarbproxy
+    baseUrl: http://veilarbproxy.q0.svc.nais.local
 
   - contextPath: /veilarbvedtakinfo
-    baseUrl: http://veilarbproxy
+    baseUrl: http://veilarbproxy.q0.svc.nais.local
 
 redirect:
   - from: /veientilarbeid
