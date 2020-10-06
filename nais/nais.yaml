@@ -2,7 +2,7 @@ kind: Application
 apiVersion: nais.io/v1alpha1
 metadata:
   name: veientilarbeid
-  namespace: {{ namespace }}
+  namespace: paw
   labels:
     team: paw
 spec:
