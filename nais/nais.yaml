@@ -13,6 +13,8 @@ spec:
     value: {{ aad_b2c_clientid_username }}
   - name: AAD_B2C_DISCOVERY_URL
     value: {{ aad_b2c_discovery_url }}
+  - name: FRONTENDLOGGER_URL
+    value: http://frontendlogger.q0.svc.nais.local
   - name: LOGINSERVICE_URL
     value: {{ loginservice_url }}
   - name: VEIENTILARBEID_URL
