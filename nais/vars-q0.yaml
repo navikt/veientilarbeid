@@ -21,3 +21,4 @@ app_environment_name: q0
 ingresses:
   - https://veientilarbeid-paw.nais.oera-q.local # Kun for tilgang til /internal/selftest
   - https://veientilarbeid-paw.dev.nav.no/
+  - https://veientilarbeid.dev.nav.no/
