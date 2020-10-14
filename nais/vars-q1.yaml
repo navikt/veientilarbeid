@@ -17,6 +17,8 @@ behovsvurdering_url: https://behovsvurdering-q1.dev-sbs.nais.io
 start_samtale_url: https://www-q1.nav.no/arbeid/start-samtale
 endre_situasjon_url: https://www-q1.nav.no/arbeid/situasjon
 arbeidssokerregistrering_url: https://arbeidssokerregistrering-q1.nav.no
+veilarbproxy_url: http://veilarbproxy.q1.svc.nais.local
+frontendlogger_url: http://frontendlogger.q1.svc.nais.local
 app_environment_name: q1
 ingresses:
   - https://veientilarbeid.nais.oera-q.local # Kun for tilgang til /internal/selftest

@@ -43,6 +43,10 @@ spec:
     value: {{ endre_situasjon_url }}
   - name: ARBEIDSSOKERREGISTRERING_URL
     value: {{ arbeidssokerregistrering_url }}
+  - name: VEILARBPROXY_URL
+    value: {{ veilarbproxy_url }}
+  - name: FRONTENDLOGGER_URL
+    value: {{ frontendlogger_url }}
   - name: FASIT_ENVIRONMENT_NAME
     value: {{ app_environment_name }}
   image: {{image}}
