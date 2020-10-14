@@ -6,19 +6,20 @@ auth:
 
 proxy:
   - contextPath: /veilarbregistrering
-    baseUrl: http://veilarbproxy
+    baseUrl: {{ VEILARBPROXY_URL }}
 
   - contextPath: /veilarboppfolging
-    baseUrl: http://veilarbproxy
+    baseUrl: {{ VEILARBPROXY_URL }}
 
   - contextPath: /veilarbjobbsokerkompetanse
-    baseUrl: http://veilarbproxy
+    baseUrl: {{ VEILARBPROXY_URL }}
 
   - contextPath: /veilarbdialog
-    baseUrl: http://veilarbproxy
+    baseUrl: {{ VEILARBPROXY_URL }}
+    pingRequestPath: /internal/isAlive
 
   - contextPath: /veilarbvedtakinfo
-    baseUrl: http://veilarbproxy
+    baseUrl: {{ VEILARBPROXY_URL }}
 
 redirect:
   - from: /veientilarbeid
