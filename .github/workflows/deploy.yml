@@ -123,9 +123,9 @@ jobs:
     steps:
       - uses: actions/checkout@v1
         name: Checkout
-      - run: now --prod --token ${ZEIT_TOKEN} --confirm
+      - run: vc --token ${VERCEL_TOKEN} --confirm --prod
         env:
-          ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
   
   take-screenshots:
     name: Ta skjermbilder og last opp
@@ -142,7 +142,7 @@ jobs:
       with:
         name: Screenshots
         path: screenshots
-    - run: now screenshots --local-config now-screenshots.json --prod --token ${ZEIT_TOKEN} --confirm
-      name: Legger skjermbilder på ZEIT/Now
+    - run: vc screenshots --local-config now-screenshots.json --token ${VERCEL_TOKEN} --confirm --prod
+      name: Legger skjermbilder på Vercel
       env:
-        ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
+        VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
