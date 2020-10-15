@@ -74,6 +74,28 @@ jobs:
           RESOURCE: nais/nais.yaml
           VARS: nais/vars-q1.yaml
 
+  deploy-dev-paw:
+    name: Deploy til dev-sbs i namespace "paw"
+    needs: test-build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+        name: Checkout
+
+      - name: Lag tag for image
+        run: echo "::set-env name=TAG::$(git log -1 --pretty='%ad_%h' --date=format:'%Y%m%d%H%M%S')"
+
+      - name: Lag full image referanse
+        run: echo "::set-env name=IMAGE::$IMAGE_BASE:$TAG"
+
+      - name: Deploy
+        uses: nais/deploy/actions/deploy@master
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: dev-sbs
+          RESOURCE: nais/nais.yaml
+          VARS: nais/vars-dev-paw.yaml
+
   deploy-prod:
     name: Deploy til prod
     needs: deploy-q0
