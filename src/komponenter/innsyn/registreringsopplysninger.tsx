@@ -3,21 +3,8 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import { klikkPaEndreDineOpplysninger } from '../../metrics/metrics';
 import { dialogLenke } from '../../innhold/lenker';
 import { Besvarelse, Svar } from '../../ducks/brukerregistrering';
+import prettyPrintDato from '../../utils/pretty-print-dato';
 import './registreringsopplysninger.less';
-
-function getMndNavn (mnd:number) {
-  const navn = [
-    'januar', 'februar', 'mars', 'april', 'mai', 'juni', 'juli',
-    'august', 'september', 'oktober', 'november', 'desember'
-  ];
-
-  return navn[mnd];
-}
-
-function formaterDato (datostreng: string) {
-  const dato = new Date(datostreng);
-  return `${dato.getDate()}. ${getMndNavn(dato.getMonth())} ${dato.getFullYear()}`;
-}
 
 const Opplysning = (props: any) => {
   const { sporsmal, svar } = props;
@@ -50,7 +37,7 @@ const opplysninger = (props: any) => {
     <>
       <div className="blokk-s">
           <Normaltekst>
-            {manueltRegistrertAv ? 'NAV': 'Du'} registrerte deg som arbeidssøker {formaterDato(opprettetDato)}.<br/>
+            {manueltRegistrertAv ? 'NAV': 'Du'} registrerte deg som arbeidssøker {prettyPrintDato(opprettetDato)}.<br/>
             Du kan endre opplysningene du ga ved å kontakte NAV.<br/>
             Veilederen din bruker opplysningene for å vurdere hvor mye veiledning du trenger.<br/>
             <a href={dialogLenke} onClick={ handleDialogClick }>Gi beskjed til veilederen din</a> hvis situasjonen din endrer seg.
