@@ -10,9 +10,9 @@ spec:
   - name: APPRES_CMS_URL
     value: {{ appres_cms_url }}
   - name: AAD_B2C_CLIENTID_USERNAME
-    value: {{ LOGINSERVICE_IDPORTEN_AUDIENCE }}
+    value: {{ aad_b2c_clientid_username }}
   - name: AAD_B2C_DISCOVERY_URL
-    value: {{ LOGINSERVICE_IDPORTEN_DISCOVERY_URL }}
+    value: {{ aad_b2c_discovery_url }}
   - name: LOGINSERVICE_URL
     value: {{ loginservice_url }}
   - name: VEIENTILARBEID_URL
@@ -49,8 +49,6 @@ spec:
     value: {{ frontendlogger_url }}
   - name: FASIT_ENVIRONMENT_NAME
     value: {{ app_environment_name }}
-  envFrom:
-    - configMap: loginservice-idporten
   image: {{image}}
   ingresses:
   {{#each ingresses as |url|}}
