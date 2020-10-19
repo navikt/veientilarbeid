@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import isKSSKontroll from './is-kss-kontroll';
 import getPoaGroup from './get-poa-group';
 import { POAGruppe } from './get-poa-group'
@@ -35,7 +34,7 @@ describe('isKSSKontroll returnerer forventede verdier', () => {
       POAGruppe: generateKSS(),
       geografiskTilknytning: '1149'
     };
-    expect(isKSSKontroll(data)).to.equal(true);
+    expect(isKSSKontroll(data)).toBe(true);
   });
 
   it('returnerer false for kss fra gyldig kontor med ugyldig dato med gyldig situasjon', () => {
@@ -45,7 +44,7 @@ describe('isKSSKontroll returnerer forventede verdier', () => {
       POAGruppe: generateKSS(),
       geografiskTilknytning: '1149'
     };
-    expect(isKSSKontroll(data)).to.equal(false);
+    expect(isKSSKontroll(data)).toBe(false);
   });
 
   it('returnerer false for boo fra gyldig kontor registrert i dag', () => {
@@ -55,7 +54,7 @@ describe('isKSSKontroll returnerer forventede verdier', () => {
       POAGruppe: generateBOO(),
       geografiskTilknytning: '1149'
     };
-    expect(isKSSKontroll(data)).to.equal(false);
+    expect(isKSSKontroll(data)).toBe(false);
   });
 
   it('returnerer false for kss fra gyldig kontor registrert i dag med ugyldig situasjon', () => {
@@ -65,7 +64,7 @@ describe('isKSSKontroll returnerer forventede verdier', () => {
       POAGruppe: generateKSS(),
       geografiskTilknytning: '1149'
     };
-    expect(isKSSKontroll(data)).to.equal(false);
+    expect(isKSSKontroll(data)).toBe(false);
   });
 
   it('returnerer false for kss fra ugyldig kontor registrert i dag', () => {
@@ -75,6 +74,6 @@ describe('isKSSKontroll returnerer forventede verdier', () => {
       POAGruppe: generateKSS(),
       geografiskTilknytning: '0807'
     };
-    expect(isKSSKontroll(data)).to.equal(false);
+    expect(isKSSKontroll(data)).toBe(false);
   });
 });

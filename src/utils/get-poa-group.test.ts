@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import getPoaGroup from './get-poa-group';
 
 describe('getPoaGroup returnerer forventede verdier', () => {
@@ -11,7 +10,7 @@ describe('getPoaGroup returnerer forventede verdier', () => {
       servicegruppe: 'IVURD',
       opprettetRegistreringDato: new Date()
     };
-    expect(getPoaGroup(data)).to.equal('kss');
+    expect(getPoaGroup(data)).toBe('kss');
   });
 
   it('returnerer kss for situasjonsbestemt, IKVAL, mistet jobben, arbs, rett alder og under 12 uker', () => {
@@ -23,7 +22,7 @@ describe('getPoaGroup returnerer forventede verdier', () => {
       servicegruppe: 'IKVAL',
       opprettetRegistreringDato: new Date()
     };
-    expect(getPoaGroup(data)).to.equal('kss');
+    expect(getPoaGroup(data)).toBe('kss');
   });
 
   it('returnerer kss for situasjonsbestemt, IKVAL, sagt opp jobben, arbs, rett alder og under 12 uker', () => {
@@ -35,7 +34,7 @@ describe('getPoaGroup returnerer forventede verdier', () => {
       servicegruppe: 'IKVAL',
       opprettetRegistreringDato: new Date()
     };
-    expect(getPoaGroup(data)).to.equal('kss');
+    expect(getPoaGroup(data)).toBe('kss');
   });
 
   it('returnerer boo for situasjonsbestemt, IKVAL, sagt opp jobben, arbs, rett alder og under 12 uker', () => {
@@ -47,7 +46,7 @@ describe('getPoaGroup returnerer forventede verdier', () => {
       servicegruppe: 'IKVAL',
       opprettetRegistreringDato: new Date()
     };
-    expect(getPoaGroup(data)).to.equal('boo');
+    expect(getPoaGroup(data)).toBe('boo');
   });
 
   it('returnerer boo for standard, mistet jobben, arbs, rett alder og over 12 uker', () => {
@@ -59,7 +58,7 @@ describe('getPoaGroup returnerer forventede verdier', () => {
       servicegruppe: 'IVURD',
       opprettetRegistreringDato: new Date('2020-01-13')
     };
-    expect(getPoaGroup(data)).to.equal('boo');
+    expect(getPoaGroup(data)).toBe('boo');
   });
 
   it('returnerer boo for standard, mistet jobben, arbs, rett alder og dato null', () => {
@@ -71,7 +70,7 @@ describe('getPoaGroup returnerer forventede verdier', () => {
       servicegruppe: 'IVURD',
       opprettetRegistreringDato: null
     };
-    expect(getPoaGroup(data)).to.equal('boo');
+    expect(getPoaGroup(data)).toBe('boo');
   });
 
   it('returnerer boo for standard, mistet jobben, arbs, alder under 30 og under 12 uker', () => {
@@ -83,7 +82,7 @@ describe('getPoaGroup returnerer forventede verdier', () => {
       servicegruppe: 'IVURD',
       opprettetRegistreringDato: new Date()
     };
-    expect(getPoaGroup(data)).to.equal('boo');
+    expect(getPoaGroup(data)).toBe('boo');
   });
 
   it('returnerer boo for standard, mistet jobben, arbs, alder over 50 og under 12 uker', () => {
@@ -95,7 +94,7 @@ describe('getPoaGroup returnerer forventede verdier', () => {
       servicegruppe: 'IVURD',
       opprettetRegistreringDato: new Date()
     };
-    expect(getPoaGroup(data)).to.equal('boo');
+    expect(getPoaGroup(data)).toBe('boo');
   });
 
   it('returnerer boo for standard, mistet jobben, iarbs, rett alder og under 12 uker', () => {
@@ -107,6 +106,6 @@ describe('getPoaGroup returnerer forventede verdier', () => {
       servicegruppe: 'IVURD',
       opprettetRegistreringDato: new Date()
     };
-    expect(getPoaGroup(data)).to.equal('boo');
+    expect(getPoaGroup(data)).toBe('boo');
   });
 });
