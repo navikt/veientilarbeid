@@ -7,9 +7,17 @@ interface Data {
   geografiskTilknytning: string;
 }
 
-const isGyldigDato = (dato: Date): boolean => {
-  const startDate = new Date('2020-09-07');
-  return dato > startDate;
+const isGyldigKontorForDato = (geografiskTilknytning: string, dato: Date): boolean => {
+  if ([
+    '030112', '030105', '3413', '3407', '3401', '3807', '3803', '1120', '1121', '110302', '110303'
+  ].includes(geografiskTilknytning)) {
+    return dato >= new Date('2020-09-07');
+
+  } else if (['3808', '110306', '030114', '3418', '3411'].includes(geografiskTilknytning)) {
+    return dato >= new Date('2020-10-26');
+  }
+
+  return false;
 }
 
 const isKSSEksperiment = (data: Data): boolean => {
@@ -19,16 +27,13 @@ const isKSSEksperiment = (data: Data): boolean => {
     opprettetRegistreringDato,
     geografiskTilknytning
   } = data;
-  const beregningsDato = opprettetRegistreringDato !== null ? opprettetRegistreringDato : new Date('2019-05-02');
+  const tilfeldigGyldigDato = new Date('2019-05-02');
+  const beregningsDato = opprettetRegistreringDato !== null ? opprettetRegistreringDato : tilfeldigGyldigDato;
   const gyldigeSituasjoner = ['HAR_SAGT_OPP', 'MISTET_JOBBEN'];
-  const gyldigeKontorer = [
-    '030112', '030105', '3413', '3407', '3401', '3807', '3803', '1120', '1121', '110302', '110303'
-  ];
 
   return POAGruppe === 'kss'
-    && gyldigeKontorer.includes(geografiskTilknytning)
-    && gyldigeSituasjoner.includes(dinSituasjon)
-    && isGyldigDato(beregningsDato)
+      && gyldigeSituasjoner.includes(dinSituasjon)
+      && isGyldigKontorForDato(geografiskTilknytning, beregningsDato)
   ;
 }
 
