@@ -37,6 +37,16 @@ describe('isKSSEksperiment returnerer forventede verdier', () => {
     expect(isKSSEksperiment(data)).toBe(true);
   });
 
+  it('returnerer false for kss fra gyldig kontor registrert før eksperimentets start, men med gyldig situasjon', () => {
+    const data = {
+      dinSituasjon: 'MISTET_JOBBEN',
+      opprettetRegistreringDato: new Date('2020-09-06'),
+      POAGruppe: generateKSS(),
+      geografiskTilknytning: '3401'
+    };
+    expect(isKSSEksperiment(data)).toBe(false);
+  });
+
   it('returnerer false for kss fra gyldig kontor med ugyldig dato med gyldig situasjon', () => {
     const data = {
       dinSituasjon: 'MISTET_JOBBEN',
