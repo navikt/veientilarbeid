@@ -27,12 +27,32 @@ const generateBOO = (): POAGruppe => {
 }
 
 describe('isKSSEksperiment returnerer forventede verdier', () => {
-  it('returnerer true for kss fra gyldig kontor registrert i dag med gyldig situasjon', () => {
+  it('returnerer true for kss fra gyldig kontor registrert etter eksperimentets start med gyldig situasjon', () => {
     const data = {
       dinSituasjon: 'MISTET_JOBBEN',
-      opprettetRegistreringDato: new Date(),
+      opprettetRegistreringDato: new Date('2020-10-27'),
       POAGruppe: generateKSS(),
       geografiskTilknytning: '3401'
+    };
+    expect(isKSSEksperiment(data)).toBe(true);
+  });
+
+  it('returnerer false for kss fra gyldig kontor fra andre runde eksperiment-kontorer mellom første og andre eksperiment-start', () => {
+    const data = {
+      dinSituasjon: 'MISTET_JOBBEN',
+      opprettetRegistreringDato: new Date('2020-10-21'),
+      POAGruppe: generateKSS(),
+      geografiskTilknytning: '3808'
+    };
+    expect(isKSSEksperiment(data)).toBe(false);
+  });
+
+  it('returnerer true for kss fra gyldig kontor fra andre runde eksperiment-kontorer', () => {
+    const data = {
+      dinSituasjon: 'MISTET_JOBBEN',
+      opprettetRegistreringDato: new Date('2020-10-26'),
+      POAGruppe: generateKSS(),
+      geografiskTilknytning: '3808'
     };
     expect(isKSSEksperiment(data)).toBe(true);
   });
