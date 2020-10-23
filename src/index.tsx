@@ -7,6 +7,7 @@ import App from './app';
 import './index.less';
 import { erDemo, erMikrofrontend, erMock } from './utils/app-state-utils';
 import NAVSPA from './NAVSPA';
+import {redirectTilDittNav} from "./komponenter/hent-initial-data/redirect-dittnav-utils";
 
 if ((erMock() && !erDemo())) {
     console.log('==========================');
@@ -21,11 +22,17 @@ if (erDemo()) {
     require('./demo/render-demo');
 }
 
+const brukerReelleData = !(erMock() || erDemo());
+
 if (!erMikrofrontend()) {
-    ReactDOM.render(
-        <App/>,
-        document.getElementById('maincontent') as HTMLElement
-    );
+    if (brukerReelleData) {
+        redirectTilDittNav();
+    } else {
+        ReactDOM.render(
+            <App/>,
+            document.getElementById('maincontent') as HTMLElement
+        );
+    }
 }
 
 if (erMikrofrontend()) {
