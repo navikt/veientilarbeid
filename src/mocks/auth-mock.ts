@@ -1,4 +1,4 @@
-import { InnloggingsNiva } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
+import {InnloggingsNiva} from "../ducks/autentisering";
 
 export default {
     loggedIn: true,

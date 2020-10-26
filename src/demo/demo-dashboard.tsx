@@ -43,8 +43,8 @@ import {
     settForeslattInnsatsgruppe,
     settFremtidigSituasjon, settOpprettetDato
 } from './demo-state-brukerregistrering';
-import { InnloggingsNiva } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
 import tekster from '../tekster/tekster';
+import {InnloggingsNiva} from "../ducks/autentisering";
 
 interface OpprettetRegistreringDato {
     registrertForLanseringEgenvurdering: string;
