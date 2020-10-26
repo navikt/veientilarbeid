@@ -27,6 +27,7 @@ const Egenvurdering = (props: AmplitudeAktivitetsProps) => {
     const opprettetRegistreringDatoString = selectOpprettetRegistreringDato(data);
     const opprettetRegistreringDato = opprettetRegistreringDatoString ? new Date(opprettetRegistreringDatoString) : null;
     const foreslattInnsatsgruppe = selectForeslattInnsatsgruppe(data)!; // Komponent blir rendret kun hvis foreslått innsatsgruppe er satt
+    const timerSidenRegistrering =  antallTimerSidenRegistrering(opprettetRegistreringDato!);
 
     React.useEffect(() => {
         seEgenvurdering(foreslattInnsatsgruppe);
@@ -35,7 +36,7 @@ const Egenvurdering = (props: AmplitudeAktivitetsProps) => {
     }, []);
 
     const handleButtonClick = () => {
-        gaTilEgenvurdering(antallTimerSidenRegistrering(opprettetRegistreringDato!), foreslattInnsatsgruppe);
+        gaTilEgenvurdering(timerSidenRegistrering, foreslattInnsatsgruppe);
         loggAktivitet({ aktivitet: 'Går til egenvurdering', ...amplitudeAktivitetsData })
         window.location.href = behovsvurderingLenke;
     };
