@@ -70,7 +70,7 @@ export default ({erSykmeldtMedArbeidsgiver,
                 {erPermittertEllerEndret && <Situasjon />}
                 {skalViseRegistrert ? <Registrert amplitudeAktivitetsData={amplitudeAktivitetsData} /> : null }
                 {skalViseIARBSPlaster ? <IARBSMelding/> : null}
-                {skalViseEgenvurderingLenke ? <Egenvurdering/> : null}
+                {skalViseEgenvurderingLenke ? <Egenvurdering amplitudeAktivitetsData={amplitudeAktivitetsData} /> : null}
                 {skalViseMotestotteLenke ? <Motestotte erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}/> : null}
                 <AktivitetDialogMeldekort erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver} amplitudeAktivitetsData={amplitudeAktivitetsData} />
             </Rad>
