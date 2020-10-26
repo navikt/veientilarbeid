@@ -13,7 +13,7 @@ const isGyldigKontorForDato = (geografiskTilknytning: string, dato: Date): boole
   ].includes(geografiskTilknytning)) {
     return dato >= new Date('2020-09-07');
 
-  } else if (['3808', '110306', '030114', '3418', '3411'].includes(geografiskTilknytning)) {
+  } else if (['3808', '110306', '110307', '030114', '3418', '3411'].includes(geografiskTilknytning)) {
     return dato >= new Date('2020-10-26');
   }
 
