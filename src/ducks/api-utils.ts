@@ -66,10 +66,10 @@ export function sjekkStatuskode(response: Response): Response {
 }
 
 export function toJson(response: Response) {
-    if (response.status !== 204) { // No content
-        return response.json();
+    if (response.status === 204) { // No content
+        return null;
     }
-    return null;
+    return response.json();
 }
 
 export const fetchData = <S, D>(state: S, setState: Dispatch<SetStateAction<S>>, url: string): Promise<D | void> => {

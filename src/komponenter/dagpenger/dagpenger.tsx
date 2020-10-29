@@ -7,12 +7,12 @@ import './dagpenger.less';
 import { dagpengerSoknadLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 import { OppfolgingContext } from '../../ducks/oppfolging';
-import { AmplitudeAktivitetsProps } from '../../metrics/amplitude-utils';
+import {AmplitudeAktivitetContext} from "../../ducks/amplitude-aktivitet-context";
 
-const Dagpenger = (props: AmplitudeAktivitetsProps) => {
+const Dagpenger = () => {
 
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
-    const { amplitudeAktivitetsData } = props;
+    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
 
     const handleButtonClick = () => {
         klikkPaSoknadDagpenger(servicegruppe);

@@ -33,6 +33,7 @@ import {
 
 import { fetchData } from '../../ducks/api-utils';
 import { MOTESTOTTE_URL, BRUKERINFO_URL, SITUASJON_URL } from '../../ducks/api';
+import {AmplitudeProvider} from "./amplitude-provider";
 
 const skalSjekkeEgenvurderingBesvarelse = (foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null): boolean => {
     return foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.STANDARD_INNSATS ||
@@ -90,6 +91,7 @@ const DataProvider = ({
     if (foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING) {
         ventPa.push(motestotteState)
     }
+
     return (
 
         <Innholdslaster
@@ -101,7 +103,9 @@ const DataProvider = ({
             <BrukerInfoContext.Provider value={ brukerInfoState }>
                 <MotestotteContext.Provider value={motestotteState}>
                     <SituasjonContext.Provider value={situasjonState}>
-                        {children}
+                        <AmplitudeProvider>
+                            {children}
+                        </AmplitudeProvider>
                     </SituasjonContext.Provider>
                 </MotestotteContext.Provider>
             </BrukerInfoContext.Provider>

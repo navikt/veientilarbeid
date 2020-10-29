@@ -17,7 +17,7 @@ const okonomiRadDagpenger = (props: AmplitudeAktivitetsProps) => {
         {tekster['dagpenger-heading-tekst']}
       </Systemtittel>
       <div className="tokol">
-        <Dagpenger amplitudeAktivitetsData={amplitudeAktivitetsData} />
+        <Dagpenger />
         <AlleSkjema amplitudeAktivitetsData={amplitudeAktivitetsData} />
       </div>
       <div className="tokol">
