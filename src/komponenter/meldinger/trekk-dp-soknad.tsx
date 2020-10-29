@@ -5,10 +5,10 @@ import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { uniLogger } from '../../metrics/uni-logger';
 import { loggAktivitet } from '../../metrics/metrics';
 import './melding.less';
-import { AmplitudeAktivitetsProps } from '../../metrics/amplitude-utils';
+import {AmplitudeAktivitetContext} from "../../ducks/amplitude-aktivitet-context";
 
-const TrekkDagpengeSoknad = (props: AmplitudeAktivitetsProps) => {
-    const { amplitudeAktivitetsData } = props;
+const TrekkDagpengeSoknad = () => {
+    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
 
     const handleClick = () => {
         uniLogger('trekk-dp-soknad.click');

@@ -3,7 +3,6 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
 import { seEgenvurdering, gaTilEgenvurdering, loggAktivitet } from '../../metrics/metrics';
-import { AmplitudeAktivitetsProps } from '../../metrics/amplitude-utils';
 import {
     BrukerregistreringContext,
     selectForeslattInnsatsgruppe,
@@ -12,6 +11,7 @@ import {
 import './egenvurdering.less';
 import { behovsvurderingLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
+import {AmplitudeAktivitetContext} from "../../ducks/amplitude-aktivitet-context";
 
 export const antallTimerMellomAOgBRundetOpp = (a: Date, b: Date): number => {
     return Math.ceil((b.getTime() - a.getTime()) / 36e5);
@@ -21,8 +21,8 @@ export const antallTimerSidenRegistrering = (registreringsDato: Date) => {
     return antallTimerMellomAOgBRundetOpp(registreringsDato, new Date());
 };
 
-const Egenvurdering = (props: AmplitudeAktivitetsProps) => {
-    const { amplitudeAktivitetsData } = props;
+const Egenvurdering = () => {
+    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const data = React.useContext(BrukerregistreringContext).data;
     const opprettetRegistreringDatoString = selectOpprettetRegistreringDato(data);
     const opprettetRegistreringDato = opprettetRegistreringDatoString ? new Date(opprettetRegistreringDatoString) : null;

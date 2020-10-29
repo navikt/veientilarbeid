@@ -6,26 +6,21 @@ import AlleSkjema from '../alleskjema/alleskjema';
 import SjekkKontonummer from '../paminnelser/sjekk-kontonummer'
 import TrekkDagpengeSoknad from '../meldinger/trekk-dp-soknad'
 import tekster from '../../tekster/tekster';
-import { AmplitudeAktivitetsProps } from '../../metrics/amplitude-utils';
 
-const okonomiRadDagpenger = (props: AmplitudeAktivitetsProps) => {
-  const { amplitudeAktivitetsData } = props;
-
-  return (
+const OkonomiRadDagpenger = () => (
     <Rad>
       <Systemtittel tag="h2" className="dagpenger__heading blokk-s">
         {tekster['dagpenger-heading-tekst']}
       </Systemtittel>
       <div className="tokol">
         <Dagpenger />
-        <AlleSkjema amplitudeAktivitetsData={amplitudeAktivitetsData} />
+        <AlleSkjema />
       </div>
       <div className="tokol">
-        <SjekkKontonummer amplitudeAktivitetsData={amplitudeAktivitetsData} />
-        <TrekkDagpengeSoknad amplitudeAktivitetsData={amplitudeAktivitetsData} />
+        <SjekkKontonummer />
+        <TrekkDagpengeSoknad />
       </div>
     </Rad>
-  )
-}
+)
 
-export default okonomiRadDagpenger;
+export default OkonomiRadDagpenger;

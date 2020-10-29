@@ -10,18 +10,16 @@ import './dialog.less';
 import { dialogLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 import { OppfolgingContext } from '../../ducks/oppfolging';
-import { AmplitudeAktivitetsProps } from '../../metrics/amplitude-utils';
+import {AmplitudeAktivitetContext} from "../../ducks/amplitude-aktivitet-context";
 
 interface StateProps {
     antallUleste: number;
 }
 
+const DialogPermittert = (props: StateProps) => {
+    const { antallUleste } = props;
 
-
-type AllProps = StateProps & AmplitudeAktivitetsProps;
-
-const DialogPermittert = (props: AllProps) => {
-    const { antallUleste, amplitudeAktivitetsData } = props;
+    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
 
     const handleClick = () => {

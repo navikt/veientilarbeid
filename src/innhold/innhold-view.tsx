@@ -18,7 +18,6 @@ import IARBSMelding from '../komponenter/iarbs-melding/iarbs-melding';
 import { erMikrofrontend } from '../utils/app-state-utils';
 import Registrert from '../komponenter/registrert/registrert';
 import Situasjon from '../komponenter/din-situasjon/situasjon';
-import { AmplitudeAktivitetsData } from '../metrics/amplitude-utils';
 
 interface OwnProps {
     erSykmeldtMedArbeidsgiver: boolean;
@@ -29,21 +28,19 @@ interface OwnProps {
     skalViseIARBSPlaster: boolean;
     erPermittert: boolean;
     erPermittertEllerEndret: boolean;
-    amplitudeAktivitetsData: AmplitudeAktivitetsData;
 }
 
 interface ErSykmeldtMedArbeidsgiverProps {
     erSykmeldtMedArbeidsgiver: boolean;
-    amplitudeAktivitetsData: AmplitudeAktivitetsData;
 }
 
-const AktivitetDialogMeldekort = ({erSykmeldtMedArbeidsgiver, amplitudeAktivitetsData}: ErSykmeldtMedArbeidsgiverProps) => {
+const AktivitetDialogMeldekort = ({erSykmeldtMedArbeidsgiver}: ErSykmeldtMedArbeidsgiverProps) => {
     return (
         <>
-            <Aktivitetsplan amplitudeAktivitetsData={amplitudeAktivitetsData} />
+            <Aktivitetsplan />
                 <div className="tokol">
-                    <Dialog amplitudeAktivitetsData={amplitudeAktivitetsData} />
-                    {erSykmeldtMedArbeidsgiver ? <DittSykefravaer/> : <Meldekort amplitudeAktivitetsData={amplitudeAktivitetsData} />}
+                    <Dialog />
+                    {erSykmeldtMedArbeidsgiver ? <DittSykefravaer/> : <Meldekort />}
                 </div>
         </>
     )
@@ -55,8 +52,7 @@ const InnholdView = ({erSykmeldtMedArbeidsgiver,
                     skalViseMotestotteLenke,
                     visRessurslenker,
                     skalViseIARBSPlaster,
-                    erPermittertEllerEndret,
-                    amplitudeAktivitetsData}: OwnProps) => {
+                    erPermittertEllerEndret}: OwnProps) => {
     return (
         <>
             {erMikrofrontend() ? null : (erSykmeldtMedArbeidsgiver ? <Banner type="sykmeldt"/> :
@@ -66,11 +62,11 @@ const InnholdView = ({erSykmeldtMedArbeidsgiver,
                 <ReaktiveringMelding/>
                 {skalViseKrrMelding ? <KrrMelding/> : null}
                 {erPermittertEllerEndret && <Situasjon />}
-                <Registrert amplitudeAktivitetsData={amplitudeAktivitetsData} />
+                <Registrert />
                 {skalViseIARBSPlaster ? <IARBSMelding/> : null}
-                {skalViseEgenvurderingLenke ? <Egenvurdering amplitudeAktivitetsData={amplitudeAktivitetsData} /> : null}
+                {skalViseEgenvurderingLenke ? <Egenvurdering /> : null}
                 {skalViseMotestotteLenke ? <Motestotte erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}/> : null}
-                <AktivitetDialogMeldekort erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver} amplitudeAktivitetsData={amplitudeAktivitetsData} />
+                <AktivitetDialogMeldekort erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver} />
             </Rad>
 
             {erSykmeldtMedArbeidsgiver && (
@@ -78,10 +74,10 @@ const InnholdView = ({erSykmeldtMedArbeidsgiver,
             )}
 
             <Rad>
-                {visRessurslenker ? <RessurslenkerJobbsok amplitudeAktivitetsData={amplitudeAktivitetsData} /> : null}
+                {visRessurslenker ? <RessurslenkerJobbsok /> : null}
             </Rad>
 
-            { erSykmeldtMedArbeidsgiver ? <Rad><OkonomiRad/></Rad> : <OkonomiRadDagpenger amplitudeAktivitetsData={amplitudeAktivitetsData} />}
+            { erSykmeldtMedArbeidsgiver ? <Rad><OkonomiRad/></Rad> : <OkonomiRadDagpenger />}
         </>
     );
 };

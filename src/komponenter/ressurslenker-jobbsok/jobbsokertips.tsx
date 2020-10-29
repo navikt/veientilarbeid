@@ -6,17 +6,16 @@ import JobbsokertipsIkon from './svg/jobbsokertips';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { jobbsokerkompetanseLenke, veiviserarbeidssokerLenke } from '../../innhold/lenker';
 import { OppfolgingContext } from '../../ducks/oppfolging';
-import { AmplitudeAktivitetsProps } from '../../metrics/amplitude-utils';
+import {AmplitudeAktivitetContext} from "../../ducks/amplitude-aktivitet-context";
 
 interface StateProps {
     harJobbbsokerbesvarelse: boolean;
 }
 
-type AllProps = StateProps & AmplitudeAktivitetsProps;
-
-const Ressurslenker = (props: AllProps) => {
-    const { harJobbbsokerbesvarelse, amplitudeAktivitetsData } = props;
+const Ressurslenker = (props: StateProps) => {
+    const { harJobbbsokerbesvarelse } = props;
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
+    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
 
     const URL = harJobbbsokerbesvarelse ? jobbsokerkompetanseLenke : veiviserarbeidssokerLenke;
 

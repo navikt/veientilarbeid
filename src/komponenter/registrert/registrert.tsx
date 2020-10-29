@@ -8,22 +8,21 @@ import {OppfolgingContext} from '../../ducks/oppfolging';
 import {klikkPaDineOpplysninger, loggAktivitet, seDineOpplysninger} from '../../metrics/metrics';
 import Opplysninger from '../innsyn/registreringsopplysninger';
 import './registrert.less';
-import {AmplitudeAktivitetsProps} from '../../metrics/amplitude-utils';
 import {AutentiseringContext, InnloggingsNiva} from "../../ducks/autentisering";
+import {AmplitudeAktivitetContext} from "../../ducks/amplitude-aktivitet-context";
 
-const Registrert = (props: AmplitudeAktivitetsProps) => {
+const Registrert = () => {
     const brukerregistreringData = useContext(BrukerregistreringContext).data;
     const brukerinfoData = React.useContext(BrukerInfoContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const autentiseringData = React.useContext(AutentiseringContext).data;
+    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const [clickedInnsyn, setClickedInnsyn] = useState(false);
 
     const kanViseKomponent = oppfolgingData.formidlingsgruppe === 'ARBS' && autentiseringData.securityLevel === InnloggingsNiva.LEVEL_4;
     if (!kanViseKomponent) {
         return null;
     }
-
-    const { amplitudeAktivitetsData } = props;
     if (!brukerregistreringData) {
         return (
             <div className="blokk-s">

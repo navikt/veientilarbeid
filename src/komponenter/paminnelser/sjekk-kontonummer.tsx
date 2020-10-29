@@ -5,10 +5,10 @@ import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { uniLogger } from '../../metrics/uni-logger'
 import { loggAktivitet } from '../../metrics/metrics';
 import './paminnelse.less';
-import { AmplitudeAktivitetsProps } from '../../metrics/amplitude-utils';
+import {AmplitudeAktivitetContext} from "../../ducks/amplitude-aktivitet-context";
 
-const sjekkKontonummer = (props: AmplitudeAktivitetsProps) => {
-    const { amplitudeAktivitetsData } = props;
+const SjekkKontonummer = () => {
+    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
 
     const handleClick = () => {
         uniLogger('sjekkKontonummer.click');
@@ -33,4 +33,4 @@ const sjekkKontonummer = (props: AmplitudeAktivitetsProps) => {
     );
 }
 
-export default sjekkKontonummer;
+export default SjekkKontonummer;
