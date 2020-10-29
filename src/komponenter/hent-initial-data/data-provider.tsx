@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-const ukerFraDato = require('@alheimsins/uker-fra-dato');
 import { Dispatch } from '../../dispatch-type';
 import { AppState } from '../../reducer';
 import Innholdslaster from '../innholdslaster/innholdslaster';
@@ -39,6 +38,7 @@ import isKSSEksperiment from '../../utils/is-kss-eksperiment';
 import isKSSKontroll from '../../utils/is-kss-kontroll';
 import { OppfolgingContext } from '../../ducks/oppfolging';
 import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
+const ukerFraDato = require('@alheimsins/uker-fra-dato');
 
 const skalSjekkeEgenvurderingBesvarelse = (foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null): boolean => {
     return foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.STANDARD_INNSATS ||
