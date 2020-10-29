@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+const ukerFraDato = require('@alheimsins/uker-fra-dato');
 import { Dispatch } from '../../dispatch-type';
 import { AppState } from '../../reducer';
 import Innholdslaster from '../innholdslaster/innholdslaster';
@@ -33,6 +34,11 @@ import {
 
 import { fetchData } from '../../ducks/api-utils';
 import { MOTESTOTTE_URL, BRUKERINFO_URL, SITUASJON_URL } from '../../ducks/api';
+import getPoaGroup from '../../utils/get-poa-group';
+import isKSSEksperiment from '../../utils/is-kss-eksperiment';
+import isKSSKontroll from '../../utils/is-kss-kontroll';
+import { OppfolgingContext } from '../../ducks/oppfolging';
+import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
 
 const skalSjekkeEgenvurderingBesvarelse = (foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null): boolean => {
     return foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.STANDARD_INNSATS ||
@@ -67,6 +73,7 @@ const DataProvider = ({
     const [brukerInfoState, setBrukerInfoState] = React.useState<BrukerInfoState>(brukerInfoDataInitialstate);
 
     const data = React.useContext(BrukerregistreringContext).data;
+    const oppfolgingData = React.useContext(OppfolgingContext).data;
     const foreslaattInnsatsgruppe = selectForeslattInnsatsgruppe(data);
 
     React.useEffect(() => {
@@ -90,6 +97,48 @@ const DataProvider = ({
     if (foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING) {
         ventPa.push(motestotteState)
     }
+
+    // Setter opp innhold for amplitude
+    const opprettetRegistreringDatoString = data?.registrering.opprettetDato;
+    const dinSituasjon = data?.registrering.besvarelse.dinSituasjon || 'INGEN_VERDI';
+    const opprettetRegistreringDato = opprettetRegistreringDatoString ? new Date(opprettetRegistreringDatoString) : null;
+    const geografiskTilknytningOrIngenVerdi = brukerInfoState.data.geografiskTilknytning ? brukerInfoState.data.geografiskTilknytning  : 'INGEN_VERDI'
+    const ukerRegistrert = opprettetRegistreringDato ? ukerFraDato(opprettetRegistreringDato) : ukerFraDato(new Date());
+    const { alder } = brukerInfoState.data
+    const servicegruppeOrIVURD = oppfolgingData?.servicegruppe || 'IVURD';
+    const foreslattInnsatsgruppeOrIngenVerdi = data?.registrering.profilering?.innsatsgruppe || 'INGEN_VERDI';
+    const formidlingsgruppeOrIngenVerdi = oppfolgingData?.formidlingsgruppe || 'INGEN_VERDI';
+
+    const POAGruppe = getPoaGroup({
+        dinSituasjon,
+        formidlingsgruppe: formidlingsgruppeOrIngenVerdi,
+        innsatsgruppe: foreslattInnsatsgruppeOrIngenVerdi,
+        alder,
+        servicegruppe: servicegruppeOrIVURD,
+        opprettetRegistreringDato });
+    const isKSSX = isKSSEksperiment({
+        dinSituasjon,
+        POAGruppe,
+        opprettetRegistreringDato,
+        geografiskTilknytning: geografiskTilknytningOrIngenVerdi
+    }) ? 'ja' : 'nei';
+    const isKSSK = isKSSKontroll({
+        dinSituasjon,
+        POAGruppe,
+        opprettetRegistreringDato,
+        geografiskTilknytning: geografiskTilknytningOrIngenVerdi
+    }) ? 'ja' : 'nei';
+
+    
+    const amplitudeAktivitetsData = {
+        gruppe: POAGruppe,
+        geografiskTilknytning: geografiskTilknytningOrIngenVerdi,
+        isKSSX,
+        isKSSK,
+        ukerRegistrert
+    };
+
+
     return (
 
         <Innholdslaster
@@ -101,7 +150,9 @@ const DataProvider = ({
             <BrukerInfoContext.Provider value={ brukerInfoState }>
                 <MotestotteContext.Provider value={motestotteState}>
                     <SituasjonContext.Provider value={situasjonState}>
-                        {children}
+                        <AmplitudeAktivitetContext.Provider value={amplitudeAktivitetsData}>
+                            {children}
+                        </AmplitudeAktivitetContext.Provider>
                     </SituasjonContext.Provider>
                 </MotestotteContext.Provider>
             </BrukerInfoContext.Provider>
