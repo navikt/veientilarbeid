@@ -3,9 +3,9 @@ import { AmplitudeAktivitetsData } from '../metrics/amplitude-utils';
 
 export const initialState: AmplitudeAktivitetsData = {
   gruppe: 'boo',
-  geografiskTilknytning:'',
-  isKSSX: '',
-  isKSSK: '',
+  geografiskTilknytning:'INGEN_VERDI',
+  isKSSX: 'nei',
+  isKSSK: 'nei',
   ukerRegistrert: 0
 }
 
