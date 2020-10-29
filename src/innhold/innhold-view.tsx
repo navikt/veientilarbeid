@@ -27,7 +27,6 @@ interface OwnProps {
     skalViseMotestotteLenke: boolean;
     visRessurslenker: boolean;
     skalViseIARBSPlaster: boolean;
-    skalViseRegistrert: boolean;
     erPermittert: boolean;
     erPermittertEllerEndret: boolean;
     amplitudeAktivitetsData: AmplitudeAktivitetsData;
@@ -50,13 +49,12 @@ const AktivitetDialogMeldekort = ({erSykmeldtMedArbeidsgiver, amplitudeAktivitet
     )
 }
 
-export default ({erSykmeldtMedArbeidsgiver,
+const InnholdView = ({erSykmeldtMedArbeidsgiver,
                     skalViseKrrMelding,
                     skalViseEgenvurderingLenke,
                     skalViseMotestotteLenke,
                     visRessurslenker,
                     skalViseIARBSPlaster,
-                    skalViseRegistrert,
                     erPermittertEllerEndret,
                     amplitudeAktivitetsData}: OwnProps) => {
     return (
@@ -68,7 +66,7 @@ export default ({erSykmeldtMedArbeidsgiver,
                 <ReaktiveringMelding/>
                 {skalViseKrrMelding ? <KrrMelding/> : null}
                 {erPermittertEllerEndret && <Situasjon />}
-                {skalViseRegistrert ? <Registrert amplitudeAktivitetsData={amplitudeAktivitetsData} /> : null }
+                <Registrert amplitudeAktivitetsData={amplitudeAktivitetsData} />
                 {skalViseIARBSPlaster ? <IARBSMelding/> : null}
                 {skalViseEgenvurderingLenke ? <Egenvurdering amplitudeAktivitetsData={amplitudeAktivitetsData} /> : null}
                 {skalViseMotestotteLenke ? <Motestotte erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}/> : null}
@@ -87,3 +85,5 @@ export default ({erSykmeldtMedArbeidsgiver,
         </>
     );
 };
+
+export default InnholdView;

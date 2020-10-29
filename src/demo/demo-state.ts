@@ -1,5 +1,5 @@
 import { JSONObject } from 'yet-another-fetch-mock';
-import { InnloggingsNiva } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
+import {InnloggingsNiva} from "../ducks/autentisering";
 
 export enum DemoData {
     SERVICEGRUPPE = 'servicegruppe',

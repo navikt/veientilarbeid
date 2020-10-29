@@ -35,7 +35,6 @@ const InnholdLogikkNiva3 = () => {
             visRessurslenker={true}
             skalViseMotestotteLenke={false}
             skalViseIARBSPlaster={false}
-            skalViseRegistrert={false}
             erPermittert={false}
             erPermittertEllerEndret={false}
             amplitudeAktivitetsData={amplitudeAktivitetsData}

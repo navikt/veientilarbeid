@@ -19,7 +19,7 @@ import './innhold.less';
 import InnholdView from './innhold-view';
 import { MotestotteContext } from '../ducks/motestotte';
 import { SituasjonContext } from '../ducks/situasjon';
-import { Formidlingsgruppe, OppfolgingContext, Servicegruppe } from '../ducks/oppfolging';
+import { OppfolgingContext, Servicegruppe } from '../ducks/oppfolging';
 import getPoaGroup from '../utils/get-poa-group'
 import isKSSEksperiment from '../utils/is-kss-eksperiment'
 import isKSSKontroll from '../utils/is-kss-kontroll'
@@ -48,8 +48,7 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
     const { formidlingsgruppe, servicegruppe, underOppfolging, reservasjonKRR } = oppfolgingData;
     const underOppfolgingJaNei = underOppfolging ? 'ja' : 'nei';
     const reservasjonKRRJaNei = reservasjonKRR ? 'ja' : 'nei';
-    const skalViseRegistrert = formidlingsgruppe === Formidlingsgruppe.ARBS;
-    
+
     const brukerinfoData = React.useContext(BrukerInfoContext).data;
     const { erSykmeldtMedArbeidsgiver, registreringType, rettighetsgruppe, alder, geografiskTilknytning } = brukerinfoData;
     const skalViseIARBSPlaster = false // formidlingsgruppe === Formidlingsgruppe.IARBS && registreringType === RegistreringType.ALLEREDE_REGISTRERT && rettighetsgruppe !== 'AAP';
@@ -174,7 +173,6 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
             skalViseMotestotteLenke={skalViseMotestotteLenke}
             visRessurslenker={visRessurslenker}
             skalViseIARBSPlaster={skalViseIARBSPlaster}
-            skalViseRegistrert={skalViseRegistrert}
             erPermittert={erPermittert}
             erPermittertEllerEndret={erPermittertEllerEndret}
             amplitudeAktivitetsData={amplitudeAktivitetsData}
