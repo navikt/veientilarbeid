@@ -145,20 +145,6 @@ export const gaTilDittSykefravaer = (servicegruppe: String | null) => {
     amplitudeLogger(`${domene}.sykefravaer.click`, { servicegruppe });
 };
 
-export const gaTilJobbsokerkompetanse = (servicegruppe: String | null) => {
-    logEvent(
-        'gatiljobbsokerkompetanseresultat',
-        { innsatsgruppeField: servicegruppe },
-        { innsatsgruppeTag: servicegruppe }
-    );
-    amplitudeLogger(`${domene}.jobbsokerkompentanseresultat.click`, { servicegruppe });
-};
-
-export const gaTilVeiviserarbeidssoker = (servicegruppe: String | null) => {
-    logEvent('gatilveiviserarbeidssoker', { innsatsgruppeField: servicegruppe }, { innsatsgruppeTag: servicegruppe });
-    amplitudeLogger(`${domene}.veiviserarbeidssoker.click`, { servicegruppe });
-};
-
 export const lesOmOkonomi = (stonad: string, servicegruppe: string | null) => {
     logEvent(
         'lesomokonomi',
