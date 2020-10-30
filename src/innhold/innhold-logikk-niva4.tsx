@@ -13,7 +13,13 @@ import {
     selectOpprettetRegistreringDato,
     selectDinSituasjonSvar,
 } from '../ducks/brukerregistrering';
-import { seVeientilarbeid, seIARBSPlaster, tellPoaGruppe, setIdentifyPoaGruppe, loggAktivitet } from '../metrics/metrics';
+import {
+    seVeientilarbeid,
+    seIARBSPlaster,
+    tellPoaGruppe,
+    setIdentifyPoaGruppe,
+    loggAktivitet,
+} from '../metrics/metrics';
 import { hotjarTrigger } from '../hotjar';
 import './innhold.less';
 import InnholdView from './innhold-view';
@@ -99,7 +105,7 @@ const InnholdLogikkNiva4 = ({ harEgenvurderingbesvarelse, egenvurderingbesvarels
         seIARBSPlaster(skalViseIARBSPlaster, formidlingsgruppe, servicegruppe, rettighetsgruppe);
         setIdentifyPoaGruppe(POAGruppe);
         tellPoaGruppe(amplitudeAktivitetsData);
-        loggAktivitet({ aktivitet: 'Viser veien til arbeid', ...amplitudeAktivitetsData })
+        loggAktivitet({ aktivitet: 'Viser veien til arbeid', ...amplitudeAktivitetsData });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
