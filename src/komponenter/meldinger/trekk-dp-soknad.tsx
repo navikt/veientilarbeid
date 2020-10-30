@@ -2,7 +2,6 @@ import * as React from 'react';
 import Lenke from 'nav-frontend-lenker';
 import Panel from 'nav-frontend-paneler';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
-import { uniLogger } from '../../metrics/uni-logger';
 import { loggAktivitet } from '../../metrics/metrics';
 import './melding.less';
 import {AmplitudeAktivitetContext} from "../../ducks/amplitude-aktivitet-context";
@@ -11,7 +10,6 @@ const TrekkDagpengeSoknad = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
 
     const handleClick = () => {
-        uniLogger('trekk-dp-soknad.click');
         loggAktivitet({ aktivitet: 'Går til trekk dagpengesøknad', ...amplitudeAktivitetsData });
     }
     
@@ -44,5 +42,3 @@ const TrekkDagpengeSoknad = () => {
 }
 
 export default TrekkDagpengeSoknad;
-
-
