@@ -1,4 +1,4 @@
-import { Handling }  from './actions';
+import { Handling } from './actions';
 import { Dispatch as ReduxDispatch } from '../dispatch-type';
 import { requestConfig, STATUS } from './api';
 import { Dispatch, SetStateAction } from 'react';
@@ -18,7 +18,6 @@ export function doThenDispatch<T>(
         try {
             const data = await fetchFunction();
             sendResultatTilDispatch<T>(dispatch, ok)(data);
-
         } catch (e) {
             handterFeil(dispatch, feilet)(e);
         }
@@ -66,21 +65,22 @@ export function sjekkStatuskode(response: Response): Response {
 }
 
 export function toJson(response: Response) {
-    if (response.status === 204) { // No content
+    if (response.status === 204) {
+        // No content
         return null;
     }
     return response.json();
 }
 
 export const fetchData = <S, D>(state: S, setState: Dispatch<SetStateAction<S>>, url: string): Promise<D | void> => {
-    setState({...state, status: STATUS.PENDING});
+    setState({ ...state, status: STATUS.PENDING });
     const fetchAsync = async () => {
         const data = await fetchToJson<D>(url, requestConfig);
-        setState({...state, data: data, status: STATUS.OK});
+        setState({ ...state, data: data, status: STATUS.OK });
         return Promise.resolve(data);
     };
-    return fetchAsync().catch(err => {
-        setState({...state, status: STATUS.ERROR});
+    return fetchAsync().catch((err) => {
+        setState({ ...state, status: STATUS.ERROR });
         return Promise.reject(err);
     });
 };

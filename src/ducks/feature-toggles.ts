@@ -4,7 +4,7 @@ import { DataElement, STATUS } from './api';
 export const alleFeatureToggles = [
     'veientilarbeid.meldekort.ny-tekst',
     'veientilarbeid.permittert.ny-dialog',
-    'veientilarbeid.permittert.situasjon.endre'
+    'veientilarbeid.permittert.situasjon.endre',
 ];
 
 export interface Data {
@@ -21,9 +21,9 @@ export const initialState: State = {
     data: {
         'veientilarbeid.meldekort.ny-tekst': false,
         'veientilarbeid.permittert.ny-dialog': false,
-        'veientilarbeid.permittert.situasjon.endre': false
+        'veientilarbeid.permittert.situasjon.endre': false,
     },
-    status: STATUS.NOT_STARTED
+    status: STATUS.NOT_STARTED,
 };
 
 export const FeaturetoggleContext = React.createContext<State>(initialState);

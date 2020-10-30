@@ -12,7 +12,7 @@ const defaultBesvarelse = {
     sisteStilling: 'Barne- og ungdomsarbeider i skolefritidsordning',
     dinSituasjon: 'MISTET_JOBBEN',
     fremtidigSituasjon: FremtidigSituasjonSvar.NY_ARBEIDSGIVER,
-    tilbakeIArbeid: 'USIKKER'
+    tilbakeIArbeid: 'USIKKER',
 };
 const defaultForeslattInnsatsgruppe = ForeslattInnsatsgruppe.STANDARD_INNSATS;
 const defaultOpprettetDato = opprettetRegistreringDato.registrertEtterLanseringMotestotte;
@@ -20,30 +20,29 @@ const defaultTeksterForBesvarelse = [
     {
         sporsmalId: 'fremtidigSituasjon',
         sporsmal: 'Hva tenker du om din fremtidige situasjon?',
-        svar: 'Jeg trenger ny jobb'
+        svar: 'Jeg trenger ny jobb',
     },
     {
         sporsmalId: 'utdanningBestatt',
         sporsmal: 'Er utdanningen din bestått?',
-        svar: 'Ikke aktuelt'
+        svar: 'Ikke aktuelt',
     },
     {
         sporsmalId: 'utdanningGodkjent',
         sporsmal: 'Er utdanningen din godkjent i Norge?',
-        svar: 'Ikke aktuelt'
+        svar: 'Ikke aktuelt',
     },
     {
         sporsmalId: 'utdanning',
         sporsmal: 'Hva er din høyeste fullførte utdanning?',
-        svar: 'Ingen utdanning'
+        svar: 'Ingen utdanning',
     },
     {
         sporsmalId: 'andreForhold',
         sporsmal: 'Er det noe annet enn helsen din som NAV bør ta hensyn til?',
-        svar: 'Nei'
-    }
+        svar: 'Nei',
+    },
 ];
-
 
 const settRegistrering = (besvarelse?: Besvarelse, profilering?: Profilering, opprettetDato?: string) => {
     const data = {
@@ -51,52 +50,44 @@ const settRegistrering = (besvarelse?: Besvarelse, profilering?: Profilering, op
             opprettetDato: opprettetDato || hentOpprettetDato(),
             manueltRegistrertAv: null,
             besvarelse: besvarelse || defaultBesvarelse,
-            profilering: profilering || {innsatsgruppe: hentForeslattInnsatsgruppe()},
+            profilering: profilering || { innsatsgruppe: hentForeslattInnsatsgruppe() },
             teksterForBesvarelse: defaultTeksterForBesvarelse,
-        }
+        },
     };
 
     settILocalStorage(DemoData.BRUKER_REGISTRERING, JSON.stringify(data));
 };
 
 export const settFremtidigSituasjon = (fremtidigSituasjon: FremtidigSituasjonSvar) => {
-    settRegistrering(
-        Object.assign({}, defaultBesvarelse, { fremtidigSituasjon }),
-        undefined,
-    );
+    settRegistrering(Object.assign({}, defaultBesvarelse, { fremtidigSituasjon }), undefined);
 };
 
 export const settForeslattInnsatsgruppe = (innsatsgruppe: ForeslattInnsatsgruppe) => {
-    settRegistrering(
-        undefined,
-        {
-            innsatsgruppe: innsatsgruppe,
-        }
-    );
+    settRegistrering(undefined, {
+        innsatsgruppe: innsatsgruppe,
+    });
 };
 
 export const settOpprettetDato = (opprettetDato: string) => {
-    settRegistrering(
-        undefined,
-        undefined,
-        opprettetDato,
-    );
+    settRegistrering(undefined, undefined, opprettetDato);
 };
 
 export const hentBrukerRegistreringData = () => {
     const data = hentFraLocalStorage(DemoData.BRUKER_REGISTRERING);
 
-    return data ? JSON.parse(data) : {
-        registrering: {
-            opprettetDato: defaultOpprettetDato,
-            besvarelse: defaultBesvarelse,
-            profilering: {
-                innsatsgruppe: defaultForeslattInnsatsgruppe,
-            },
-            teksterForBesvarelse: defaultTeksterForBesvarelse,
-            manueltRegistrertAv: null,
-        }
-    };
+    return data
+        ? JSON.parse(data)
+        : {
+              registrering: {
+                  opprettetDato: defaultOpprettetDato,
+                  besvarelse: defaultBesvarelse,
+                  profilering: {
+                      innsatsgruppe: defaultForeslattInnsatsgruppe,
+                  },
+                  teksterForBesvarelse: defaultTeksterForBesvarelse,
+                  manueltRegistrertAv: null,
+              },
+          };
 };
 
 export const hentFremtidigSituasjon = (): string => {

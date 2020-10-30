@@ -11,14 +11,14 @@ export enum FremtidigSituasjonSvar {
 
 export interface Besvarelse {
     dinSituasjon: string | null;
-	fremtidigSituasjon: FremtidigSituasjonSvar;
-	sisteStilling: string | null;
-	tilbakeIArbeid: string | null;
-	andreForhold: string | null;
-	helseHinder: string | null;
-	utdanning: string | null;
-	utdanningBestatt: string | null;
-	utdanningGodkjent: string | null;
+    fremtidigSituasjon: FremtidigSituasjonSvar;
+    sisteStilling: string | null;
+    tilbakeIArbeid: string | null;
+    andreForhold: string | null;
+    helseHinder: string | null;
+    utdanning: string | null;
+    utdanningBestatt: string | null;
+    utdanningGodkjent: string | null;
 }
 
 export enum ForeslattInnsatsgruppe {
@@ -59,20 +59,20 @@ export const initialState: State = {
         registrering: {
             opprettetDato: Date.now().toString(),
             manueltRegistrertAv: null,
-            besvarelse: {              
+            besvarelse: {
                 dinSituasjon: null,
                 fremtidigSituasjon: FremtidigSituasjonSvar.USIKKER,
-	            sisteStilling: null,
+                sisteStilling: null,
                 tilbakeIArbeid: null,
-	            andreForhold: null,
-	            helseHinder: null,
-	            utdanning: null,
-	            utdanningBestatt: null,
-	            utdanningGodkjent: null
+                andreForhold: null,
+                helseHinder: null,
+                utdanning: null,
+                utdanningBestatt: null,
+                utdanningGodkjent: null,
             },
-            teksterForBesvarelse: []
-        }
-    }
+            teksterForBesvarelse: [],
+        },
+    },
 };
 
 export const BrukerregistreringContext = React.createContext<State>(initialState);

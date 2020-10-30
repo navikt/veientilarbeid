@@ -1,5 +1,5 @@
-import {DataElement, STATUS} from "./api";
-import React from "react";
+import { DataElement, STATUS } from './api';
+import React from 'react';
 
 export enum InnloggingsNiva {
     LEVEL_1 = 'Level1',
@@ -21,9 +21,9 @@ export interface Data {
 export const initialState: State = {
     data: {
         securityLevel: InnloggingsNiva.UKJENT,
-        loggedIn: false
+        loggedIn: false,
     },
-    status: STATUS.NOT_STARTED
-}
+    status: STATUS.NOT_STARTED,
+};
 
 export const AutentiseringContext = React.createContext<State>(initialState);

@@ -1,5 +1,9 @@
 import {
-    ActionType, Handling, HentUlesteDialogerFEILETAction, HentUlesteDialogerOKAction, HentUlesteDialogerPENDINGAction,
+    ActionType,
+    Handling,
+    HentUlesteDialogerFEILETAction,
+    HentUlesteDialogerOKAction,
+    HentUlesteDialogerPENDINGAction,
 } from './actions';
 import { Dispatch } from '../dispatch-type';
 import { hentUlesteDialogerFetch, DataElement, STATUS } from './api';
@@ -15,9 +19,9 @@ export interface Data {
 
 const initialState: State = {
     data: {
-        antallUleste: 0
+        antallUleste: 0,
     },
-    status: STATUS.NOT_STARTED
+    status: STATUS.NOT_STARTED,
 };
 
 //  Reducer
@@ -25,13 +29,13 @@ export default function reducer(state: State = initialState, action: Handling): 
     switch (action.type) {
         case ActionType.HENT_ULESTE_DIALOGER_PENDING:
             if (state.status === STATUS.OK) {
-                return {...state, status: STATUS.RELOADING};
+                return { ...state, status: STATUS.RELOADING };
             }
-            return {...state, status: STATUS.PENDING};
+            return { ...state, status: STATUS.PENDING };
         case ActionType.HENT_ULESTE_DIALOGER_FEILET:
-            return {...state, status: STATUS.ERROR};
+            return { ...state, status: STATUS.ERROR };
         case ActionType.HENT_ULESTE_DIALOGER_OK: {
-            return {...state, status: STATUS.OK, data: action.data};
+            return { ...state, status: STATUS.OK, data: action.data };
         }
         default:
             return state;
@@ -49,7 +53,7 @@ export function hentUlesteDialoger(): (dispatch: Dispatch) => Promise<void> {
 function hentUlesteDialogerOK(data: Data): HentUlesteDialogerOKAction {
     return {
         type: ActionType.HENT_ULESTE_DIALOGER_OK,
-        data: data
+        data: data,
     };
 }
 

@@ -8,9 +8,5 @@ import { Store } from 'redux';
 export const store = getStore();
 
 export function mountWithStore(children: React.ReactNode, withStore?: Store<AppState>) {
-    return mount(
-        <Provider store={withStore || store}>
-            {children}
-        </Provider>
-    );
+    return mount(<Provider store={withStore || store}>{children}</Provider>);
 }

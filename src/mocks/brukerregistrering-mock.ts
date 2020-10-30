@@ -1,4 +1,3 @@
-
 export default {
     type: 'SYKMELDT',
     registrering: {
@@ -14,7 +13,7 @@ export default {
             sisteStilling: 'Barne- og ungdomsarbeider i skolefritidsordning',
             dinSituasjon: 'MISTET_JOBBEN',
             fremtidigSituasjon: 'NY_ARBEIDSGIVER',
-            tilbakeIArbeid: 'USIKKER'
+            tilbakeIArbeid: 'USIKKER',
         },
         profilering: {
             innsatsgruppe: 'SITUASJONSBESTEMT_INNSATS',
@@ -23,28 +22,28 @@ export default {
             {
                 sporsmalId: 'fremtidigSituasjon',
                 sporsmal: 'Hva tenker du om din fremtidige situasjon?',
-                svar: 'Jeg trenger ny jobb'
+                svar: 'Jeg trenger ny jobb',
             },
             {
                 sporsmalId: 'utdanningBestatt',
                 sporsmal: 'Er utdanningen din bestått?',
-                svar: 'Ikke aktuelt'
+                svar: 'Ikke aktuelt',
             },
             {
                 sporsmalId: 'utdanningGodkjent',
                 sporsmal: 'Er utdanningen din godkjent i Norge?',
-                svar: 'Ikke aktuelt'
+                svar: 'Ikke aktuelt',
             },
             {
                 sporsmalId: 'utdanning',
                 sporsmal: 'Hva er din høyeste fullførte utdanning?',
-                svar: 'Ingen utdanning'
+                svar: 'Ingen utdanning',
             },
             {
                 sporsmalId: 'andreForhold',
                 sporsmal: 'Er det noe annet enn helsen din som NAV bør ta hensyn til?',
-                svar: 'Nei'
-            }
-        ]
-    }
+                svar: 'Nei',
+            },
+        ],
+    },
 };
