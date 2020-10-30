@@ -165,10 +165,6 @@ export const seDineOpplysninger = (metrikker: StandardMetrikkData) => {
     uniLogger('viser.dineopplysninger', metrikker);
 };
 
-export const klikkPaDineOpplysninger = (metrikker: StandardMetrikkData) => {
-    uniLogger('click.dineopplysninger', metrikker);
-};
-
 export const klikkPaEndreDineOpplysninger = (metrikker: StandardMetrikkData) => {
     uniLogger('click.endredineopplysninger', metrikker);
 };

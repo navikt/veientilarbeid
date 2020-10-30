@@ -2,7 +2,6 @@ import * as React from 'react';
 import Lenke from 'nav-frontend-lenker';
 import Panel from 'nav-frontend-paneler';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
-import { uniLogger } from '../../metrics/uni-logger'
 import { loggAktivitet } from '../../metrics/metrics';
 import './paminnelse.less';
 import {AmplitudeAktivitetContext} from "../../ducks/amplitude-aktivitet-context";
@@ -11,7 +10,6 @@ const SjekkKontonummer = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
 
     const handleClick = () => {
-        uniLogger('sjekkKontonummer.click');
         loggAktivitet({ aktivitet: 'Går til sjekk kontonummer', ...amplitudeAktivitetsData });
     }
     return (

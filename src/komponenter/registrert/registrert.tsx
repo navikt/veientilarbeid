@@ -5,7 +5,7 @@ import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import {BrukerregistreringContext} from '../../ducks/brukerregistrering';
 import {BrukerInfoContext} from '../../ducks/bruker-info';
 import {OppfolgingContext} from '../../ducks/oppfolging';
-import {klikkPaDineOpplysninger, loggAktivitet, seDineOpplysninger} from '../../metrics/metrics';
+import {loggAktivitet, seDineOpplysninger} from '../../metrics/metrics';
 import Opplysninger from '../innsyn/registreringsopplysninger';
 import './registrert.less';
 import {AutentiseringContext, InnloggingsNiva} from "../../ducks/autentisering";
@@ -52,7 +52,6 @@ const Registrert = () => {
 
     const handleClickOpen = () => {
         if (!clickedInnsyn) {
-            klikkPaDineOpplysninger(metrikkData);
             loggAktivitet({ aktivitet: 'Ser opplysninger fra registreringen', ...amplitudeAktivitetsData });
             setClickedInnsyn(true);
         }
