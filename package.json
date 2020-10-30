@@ -11,7 +11,7 @@
     "test": "npm run lint && craco test --env=jsdom",
     "test:coverage": "npm test -- --coverage --watchAll=false",
     "deploy": "npm run build && gh-pages -d build",
-    "prettier": "prettier --write --single-quote --tab-width 4 src/**/*.ts src/**/*.tsx src/**/*.less",
+    "prettier": "prettier --write src/**/*.ts src/**/*.tsx src/**/*.less",
     "refresh": "rm -rf node_modules && rm package-lock.json && npm i",
     "now-build": "cross-env REACT_APP_MOCK=true npm run build",
     "snyk-protect": "snyk protect",
@@ -80,6 +80,7 @@
     "file-loader": "6.1.1",
     "less": "3.12.2",
     "npm-run-all": "4.1.5",
+    "prettier": "2.1.2",
     "react-scripts": "3.4.4",
     "snyk": "1.413.2",
     "typescript": "3.9.3"
@@ -90,5 +91,8 @@
     "not ie < 11",
     "not op_mini all"
   ],
+  "prettier": {
+    "printWidth": 120
+  },
   "snyk": true
 }
