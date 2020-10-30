@@ -112,11 +112,6 @@ export const antallUlesteDialoger = (antall: number) => {
     logEvent('antallulestedialoger', {antallField: antall}, {antallTag: antall});
 };
 
-export const gaTilMeldekort = (servicegruppe: String | null) => {
-    logEvent('gatilmeldekort', {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
-    amplitudeLogger(`${domene}.meldekort.click`, { servicegruppe });
-};
-
 export const seEgenvurdering = (foreslaattinnsatsgruppe: ForeslattInnsatsgruppe) => {
     logEvent('seegenvurdering', {}, {foreslaattInnsatsgruppe: foreslaattinnsatsgruppe});
     amplitudeLogger(`${domene}.egenvurdering.visning`, { foreslaattinnsatsgruppe });
