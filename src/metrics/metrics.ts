@@ -152,11 +152,6 @@ export const klikkPaSoknadAlleSkjema = (servicegruppe: string | null) => {
     amplitudeLogger(`${domene}.alleskjema.click`, { servicegruppe });
 };
 
-export const klikkPaSoknadDagpenger = (servicegruppe: string | null) => {
-    logEvent('soknaddagpenger', {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
-    amplitudeLogger(`${domene}.dagpengersoknad.click`, { servicegruppe });
-};
-
 export const lesOmOkonomi = (stonad: string, servicegruppe: string | null) => {
     logEvent('lesomokonomi', {stonadField: stonad, innsatsgruppeField: servicegruppe}, {stonadTag: stonad, innsatsgruppeTag: servicegruppe});
     amplitudeLogger(`${domene}.okonomi.click`, { stonad, servicegruppe });
