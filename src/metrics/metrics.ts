@@ -103,11 +103,6 @@ export const seIARBSPlaster = (
     }
 };
 
-export const klikkPaSokLedigeStillinger = (servicegruppe: String | null) => {
-    logEvent('sokledigestillinger', { innsatsgruppeField: servicegruppe }, { innsatsgruppeTag: servicegruppe });
-    amplitudeLogger(`${domene}.ledigestillinger.click`, { servicegruppe });
-};
-
 export const gaTilDialog = (antall: number, servicegruppe: string | null) => {
     logEvent(
         'gatildialog',

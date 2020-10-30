@@ -1,17 +1,14 @@
 import React from 'react';
-import { klikkPaSokLedigeStillinger, loggAktivitet } from '../../metrics/metrics';
+import { loggAktivitet } from '../../metrics/metrics';
 import StillingsokIkon from './svg/stillingsok';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { stillingLenke } from '../../innhold/lenker';
-import { OppfolgingContext } from '../../ducks/oppfolging';
-import {AmplitudeAktivitetContext} from "../../ducks/amplitude-aktivitet-context";
+import { AmplitudeAktivitetContext } from "../../ducks/amplitude-aktivitet-context";
 
 const StillingSok = () => {
-    const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
 
     const handleClick = () => {
-        klikkPaSokLedigeStillinger(servicegruppe);
         loggAktivitet({ aktivitet: 'Går til ledige stillinger', ...amplitudeAktivitetsData });
     };
 
