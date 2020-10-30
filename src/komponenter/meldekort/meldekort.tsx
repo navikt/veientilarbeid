@@ -5,15 +5,15 @@ import EmailText from './email-text';
 import { meldekortLenke } from '../../innhold/lenker';
 import { OppfolgingContext } from '../../ducks/oppfolging';
 import { FeaturetoggleContext } from '../../ducks/feature-toggles';
-import { AmplitudeAktivitetsProps } from '../../metrics/amplitude-utils';
+import {AmplitudeAktivitetContext} from "../../ducks/amplitude-aktivitet-context";
 
-const Meldekort = (props: AmplitudeAktivitetsProps) => {
+const Meldekort = () => {
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
     const meldekortNyTekst = React.useContext(FeaturetoggleContext).data['veientilarbeid.meldekort.ny-tekst'];
+    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
 
     const overskrift = 'meldekort-overskrift';
     const ingress = meldekortNyTekst ? 'meldekort-ingress-ny' : 'meldekort-ingress';
-    const { amplitudeAktivitetsData } = props;
 
     const handleClick = () => {
         gaTilMeldekort(servicegruppe);

@@ -7,11 +7,11 @@ import './alleskjema.less';
 import { alleSkjemaSoknadLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 import { OppfolgingContext } from '../../ducks/oppfolging';
-import { AmplitudeAktivitetsProps } from '../../metrics/amplitude-utils';
+import {AmplitudeAktivitetContext} from "../../ducks/amplitude-aktivitet-context";
 
-const AlleSkjema = (props: AmplitudeAktivitetsProps) => {
+const AlleSkjema = () => {
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
-    const { amplitudeAktivitetsData } = props;
+    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
 
     const handleButtonClick = () => {
         klikkPaSoknadAlleSkjema(servicegruppe);

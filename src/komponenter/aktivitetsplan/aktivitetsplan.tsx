@@ -5,15 +5,15 @@ import DesignMug from './design-mug';
 import { gaTilAktivitetsplan, loggAktivitet } from '../../metrics/metrics';
 import { aktivitetsplanLenke } from '../../innhold/lenker';
 import { OppfolgingContext } from '../../ducks/oppfolging';
-import { AmplitudeAktivitetsProps } from '../../metrics/amplitude-utils';
+import {AmplitudeAktivitetContext} from "../../ducks/amplitude-aktivitet-context";
 
-const Aktivitetsplan = (props: AmplitudeAktivitetsProps) => {
+const Aktivitetsplan = () => {
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
+    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const { location } = window
     const nyRegistrering = parse(location.search).nyRegistrering === 'true';
     const overskrift = 'aktivitetsplan-overskrift-ordinaer';
     const ingress = 'aktivitetsplan-beskrivelse' + (nyRegistrering ? '-ny' : '');
-    const { amplitudeAktivitetsData } = props;
 
     const handleClick = () => {
         gaTilAktivitetsplan(servicegruppe);

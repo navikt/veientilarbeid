@@ -27,10 +27,6 @@ export type AmplitudeAktivitetsData = {
   ukerRegistrert: number;
 };
 
-export interface AmplitudeAktivitetsProps {
-  amplitudeAktivitetsData: AmplitudeAktivitetsData;
-};
-
 export function getDeviceId () {
   return amplitude.getInstance().options.deviceId;
 }

@@ -5,11 +5,8 @@ import CV from './cv';
 import Jobbsokertips from './jobbsokertips';
 import { Systemtittel } from 'nav-frontend-typografi';
 import tekster from '../../tekster/tekster';
-import { AmplitudeAktivitetsProps } from '../../metrics/amplitude-utils';
 
-const RessurslenkerJobbsok = (props: AmplitudeAktivitetsProps) => {
-    const { amplitudeAktivitetsData } = props;
-    
+const RessurslenkerJobbsok = () => {
     return (
         <section className="ressurslenker">
             <Systemtittel tag="h2" className="ressurslenker__heading blokk-s">
@@ -17,11 +14,11 @@ const RessurslenkerJobbsok = (props: AmplitudeAktivitetsProps) => {
             </Systemtittel>
 
             <div className="tokol">
-                <Stillingsok amplitudeAktivitetsData={amplitudeAktivitetsData} />
-                <CV amplitudeAktivitetsData={amplitudeAktivitetsData} />
+                <Stillingsok />
+                <CV />
             </div>
             <div className="tokol">
-                <Jobbsokertips amplitudeAktivitetsData={amplitudeAktivitetsData} />
+                <Jobbsokertips />
             </div>
         </section>
     );

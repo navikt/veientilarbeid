@@ -4,11 +4,11 @@ import CvIkon from './svg/cv';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { cvLenke } from '../../innhold/lenker';
 import { OppfolgingContext } from '../../ducks/oppfolging';
-import { AmplitudeAktivitetsProps } from '../../metrics/amplitude-utils';
+import {AmplitudeAktivitetContext} from "../../ducks/amplitude-aktivitet-context";
 
-const CV = (props: AmplitudeAktivitetsProps) => {
+const CV = () => {
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
-    const { amplitudeAktivitetsData } = props;
+    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
 
     const handleClick = () => {
         gaTilCV(servicegruppe);

@@ -21,10 +21,7 @@ import { MotestotteContext } from '../ducks/motestotte';
 import { SituasjonContext } from '../ducks/situasjon';
 import { OppfolgingContext, Servicegruppe } from '../ducks/oppfolging';
 import getPoaGroup from '../utils/get-poa-group'
-import isKSSEksperiment from '../utils/is-kss-eksperiment'
-import isKSSKontroll from '../utils/is-kss-kontroll'
-// import { RegistreringType } from '../ducks/bruker-info'
-const ukerFraDato = require('@alheimsins/uker-fra-dato');
+import {AmplitudeAktivitetContext} from "../ducks/amplitude-aktivitet-context";
 const LANSERINGSDATO_EGENVURDERING = new Date(2019, 4, 10);
 const LANSERINGSDATO_MOTESTOTTE = new Date('2020-03-12');
 
@@ -34,7 +31,7 @@ interface StateProps {
 }
 
 const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelseDato}: StateProps) => {
-
+    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
     const featureToggleData = React.useContext(FeaturetoggleContext).data;
     const SituasjonData = React.useContext(SituasjonContext).data;
@@ -50,9 +47,8 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
     const reservasjonKRRJaNei = reservasjonKRR ? 'ja' : 'nei';
 
     const brukerinfoData = React.useContext(BrukerInfoContext).data;
-    const { erSykmeldtMedArbeidsgiver, registreringType, rettighetsgruppe, alder, geografiskTilknytning } = brukerinfoData;
+    const { erSykmeldtMedArbeidsgiver, registreringType, rettighetsgruppe, alder } = brukerinfoData;
     const skalViseIARBSPlaster = false // formidlingsgruppe === Formidlingsgruppe.IARBS && registreringType === RegistreringType.ALLEREDE_REGISTRERT && rettighetsgruppe !== 'AAP';
-    const geografiskTilknytningOrIngenVerdi = geografiskTilknytning ? geografiskTilknytning  : 'INGEN_VERDI'
     const registreringTypeOrIngenVerdi = registreringType ? registreringType : 'INGEN_VERDI';
     const foreslattInnsatsgruppeOrIngenVerdi = foreslattInnsatsgruppe ? foreslattInnsatsgruppe : 'INGEN_VERDI'
     const fremtidigSvarOrIngenVerdi = fremtidigSvar ? fremtidigSvar : 'INGEN_VERDI';
@@ -70,27 +66,7 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
         alder,
         servicegruppe: servicegruppeOrIVURD,
         opprettetRegistreringDato });
-    const isKSSX = isKSSEksperiment({
-        dinSituasjon,
-        POAGruppe,
-        opprettetRegistreringDato,
-        geografiskTilknytning: geografiskTilknytningOrIngenVerdi
-    }) ? 'ja' : 'nei';
-    const isKSSK = isKSSKontroll({
-        dinSituasjon,
-        POAGruppe,
-        opprettetRegistreringDato,
-        geografiskTilknytning: geografiskTilknytningOrIngenVerdi
-    }) ? 'ja' : 'nei';
-    const ukerRegistrert = opprettetRegistreringDato ? ukerFraDato(opprettetRegistreringDato) : ukerFraDato(new Date());
-    const amplitudeAktivitetsData = {
-        gruppe: POAGruppe,
-        geografiskTilknytning: geografiskTilknytningOrIngenVerdi,
-        isKSSX,
-        isKSSK,
-        ukerRegistrert
-    };
-    
+
     /*
         Funksjon hvor man bygger opp kriterier for et eksperiment og retunerer true/false
         ettersom brukeren kommer inn under eksperimentet eller ei
@@ -175,7 +151,6 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
             skalViseIARBSPlaster={skalViseIARBSPlaster}
             erPermittert={erPermittert}
             erPermittertEllerEndret={erPermittertEllerEndret}
-            amplitudeAktivitetsData={amplitudeAktivitetsData}
         />
     );
 };
