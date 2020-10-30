@@ -145,11 +145,6 @@ export const gaTilDittSykefravaer = (servicegruppe: String | null) => {
     amplitudeLogger(`${domene}.sykefravaer.click`, { servicegruppe });
 };
 
-export const gaTilCV = (servicegruppe: String | null) => {
-    logEvent('gatilcv', { innsatsgruppeField: servicegruppe }, { innsatsgruppeTag: servicegruppe });
-    amplitudeLogger(`${domene}.click`, { servicegruppe });
-};
-
 export const gaTilJobbsokerkompetanse = (servicegruppe: String | null) => {
     logEvent(
         'gatiljobbsokerkompetanseresultat',

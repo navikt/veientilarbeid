@@ -4,7 +4,7 @@ import { loggAktivitet } from '../../metrics/metrics';
 import EmailText from './email-text';
 import { meldekortLenke } from '../../innhold/lenker';
 import { FeaturetoggleContext } from '../../ducks/feature-toggles';
-import {AmplitudeAktivitetContext} from "../../ducks/amplitude-aktivitet-context";
+import { AmplitudeAktivitetContext } from "../../ducks/amplitude-aktivitet-context";
 
 const Meldekort = () => {
     const meldekortNyTekst = React.useContext(FeaturetoggleContext).data['veientilarbeid.meldekort.ny-tekst'];
