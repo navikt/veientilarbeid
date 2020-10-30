@@ -34,50 +34,61 @@ interface ErSykmeldtMedArbeidsgiverProps {
     erSykmeldtMedArbeidsgiver: boolean;
 }
 
-const AktivitetDialogMeldekort = ({erSykmeldtMedArbeidsgiver}: ErSykmeldtMedArbeidsgiverProps) => {
+const AktivitetDialogMeldekort = ({ erSykmeldtMedArbeidsgiver }: ErSykmeldtMedArbeidsgiverProps) => {
     return (
         <>
             <Aktivitetsplan />
-                <div className="tokol">
-                    <Dialog />
-                    {erSykmeldtMedArbeidsgiver ? <DittSykefravaer/> : <Meldekort />}
-                </div>
+            <div className="tokol">
+                <Dialog />
+                {erSykmeldtMedArbeidsgiver ? <DittSykefravaer /> : <Meldekort />}
+            </div>
         </>
-    )
-}
+    );
+};
 
-const InnholdView = ({erSykmeldtMedArbeidsgiver,
-                    skalViseKrrMelding,
-                    skalViseEgenvurderingLenke,
-                    skalViseMotestotteLenke,
-                    visRessurslenker,
-                    skalViseIARBSPlaster,
-                    erPermittertEllerEndret}: OwnProps) => {
+const InnholdView = ({
+    erSykmeldtMedArbeidsgiver,
+    skalViseKrrMelding,
+    skalViseEgenvurderingLenke,
+    skalViseMotestotteLenke,
+    visRessurslenker,
+    skalViseIARBSPlaster,
+    erPermittertEllerEndret,
+}: OwnProps) => {
     return (
         <>
-            {erMikrofrontend() ? null : (erSykmeldtMedArbeidsgiver ? <Banner type="sykmeldt"/> :
-                <Banner type="ordinaer"/>)}
+            {erMikrofrontend() ? null : erSykmeldtMedArbeidsgiver ? (
+                <Banner type="sykmeldt" />
+            ) : (
+                <Banner type="ordinaer" />
+            )}
 
             <Rad>
-                <ReaktiveringMelding/>
-                {skalViseKrrMelding ? <KrrMelding/> : null}
+                <ReaktiveringMelding />
+                {skalViseKrrMelding ? <KrrMelding /> : null}
                 {erPermittertEllerEndret && <Situasjon />}
                 <Registrert />
-                {skalViseIARBSPlaster ? <IARBSMelding/> : null}
+                {skalViseIARBSPlaster ? <IARBSMelding /> : null}
                 {skalViseEgenvurderingLenke ? <Egenvurdering /> : null}
-                {skalViseMotestotteLenke ? <Motestotte erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}/> : null}
+                {skalViseMotestotteLenke ? <Motestotte erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver} /> : null}
                 <AktivitetDialogMeldekort erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver} />
             </Rad>
 
             {erSykmeldtMedArbeidsgiver && (
-                <Rad><AapRad/></Rad>
+                <Rad>
+                    <AapRad />
+                </Rad>
             )}
 
-            <Rad>
-                {visRessurslenker ? <RessurslenkerJobbsok /> : null}
-            </Rad>
+            <Rad>{visRessurslenker ? <RessurslenkerJobbsok /> : null}</Rad>
 
-            { erSykmeldtMedArbeidsgiver ? <Rad><OkonomiRad/></Rad> : <OkonomiRadDagpenger />}
+            {erSykmeldtMedArbeidsgiver ? (
+                <Rad>
+                    <OkonomiRad />
+                </Rad>
+            ) : (
+                <OkonomiRadDagpenger />
+            )}
         </>
     );
 };

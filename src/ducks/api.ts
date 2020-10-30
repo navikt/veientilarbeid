@@ -26,8 +26,8 @@ export const requestConfig: RequestInit = {
     credentials: 'same-origin',
     headers: {
         'Content-Type': 'application/json',
-        'NAV_CSRF_PROTECTION': getCookie('NAV_CSRF_PROTECTION'),
-    }
+        NAV_CSRF_PROTECTION: getCookie('NAV_CSRF_PROTECTION'),
+    },
 };
 
 const contextpath = erMikrofrontend() ? contextpathDittNav : '';

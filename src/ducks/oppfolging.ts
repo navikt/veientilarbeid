@@ -10,7 +10,7 @@ export enum Servicegruppe {
     OPPFI = 'OPPFI',
     VARIG = 'VARIG',
     VURDI = 'VURDI',
-    VURDU = 'VURDU'
+    VURDU = 'VURDU',
 }
 
 export enum Formidlingsgruppe {
@@ -41,9 +41,9 @@ export const initialState: State = {
         kanReaktiveres: false,
         reservasjonKRR: false,
         servicegruppe: null,
-        formidlingsgruppe: null
+        formidlingsgruppe: null,
     },
-    status: STATUS.NOT_STARTED
+    status: STATUS.NOT_STARTED,
 };
 
 export const OppfolgingContext = React.createContext<State>(initialState);

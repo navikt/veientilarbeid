@@ -5,12 +5,12 @@ const domene = 'veientilarbeid';
 const deviceId = getDeviceId();
 
 const prefix = {
-  appname: 'veientilarbeid',
-  appversion: '0.1.0'
+    appname: 'veientilarbeid',
+    appversion: '0.1.0',
 };
 
 export function uniLogger(name: string, values?: object) {
-  const data = values || {};
-  amplitudeLogger(`${domene}.${name}`, {...prefix, ...data});
-  frontendLogger(`${domene}.${name}`, { deviceId }, {...prefix, ...data});
+    const data = values || {};
+    amplitudeLogger(`${domene}.${name}`, { ...prefix, ...data });
+    frontendLogger(`${domene}.${name}`, { deviceId }, { ...prefix, ...data });
 }

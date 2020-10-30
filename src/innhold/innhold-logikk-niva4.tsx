@@ -11,7 +11,7 @@ import {
     selectForeslattInnsatsgruppe,
     selectFremtidigSituasjonSvar,
     selectOpprettetRegistreringDato,
-    selectDinSituasjonSvar
+    selectDinSituasjonSvar,
 } from '../ducks/brukerregistrering';
 import { seVeientilarbeid, seIARBSPlaster, tellPoaGruppe, setIdentifyPoaGruppe } from '../metrics/metrics';
 import { hotjarTrigger } from '../hotjar';
@@ -20,9 +20,9 @@ import InnholdView from './innhold-view';
 import { MotestotteContext } from '../ducks/motestotte';
 import { SituasjonContext } from '../ducks/situasjon';
 import { OppfolgingContext, Servicegruppe } from '../ducks/oppfolging';
-import getPoaGroup from '../utils/get-poa-group'
-import {AmplitudeAktivitetContext} from "../ducks/amplitude-aktivitet-context";
-import ukerFraDato from '../utils/uker-fra-dato'
+import getPoaGroup from '../utils/get-poa-group';
+import { AmplitudeAktivitetContext } from '../ducks/amplitude-aktivitet-context';
+import ukerFraDato from '../utils/uker-fra-dato';
 const LANSERINGSDATO_EGENVURDERING = new Date(2019, 4, 10);
 const LANSERINGSDATO_MOTESTOTTE = new Date('2020-03-12');
 
@@ -31,13 +31,15 @@ interface StateProps {
     egenvurderingbesvarelseDato: Date | null;
 }
 
-const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelseDato}: StateProps) => {
+const InnholdLogikkNiva4 = ({ harEgenvurderingbesvarelse, egenvurderingbesvarelseDato }: StateProps) => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
     const featureToggleData = React.useContext(FeaturetoggleContext).data;
     const SituasjonData = React.useContext(SituasjonContext).data;
     const opprettetRegistreringDatoString = selectOpprettetRegistreringDato(brukerregistreringData);
-    const opprettetRegistreringDato = opprettetRegistreringDatoString ? new Date(opprettetRegistreringDatoString) : null;
+    const opprettetRegistreringDato = opprettetRegistreringDatoString
+        ? new Date(opprettetRegistreringDatoString)
+        : null;
     const fremtidigSvar = selectFremtidigSituasjonSvar(brukerregistreringData);
     const foreslattInnsatsgruppe = selectForeslattInnsatsgruppe(brukerregistreringData);
     const dinSituasjon = selectDinSituasjonSvar(brukerregistreringData) || 'INGEN_VERDI';
@@ -49,26 +51,28 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
 
     const brukerinfoData = React.useContext(BrukerInfoContext).data;
     const { erSykmeldtMedArbeidsgiver, registreringType, rettighetsgruppe, alder } = brukerinfoData;
-    const skalViseIARBSPlaster = false // formidlingsgruppe === Formidlingsgruppe.IARBS && registreringType === RegistreringType.ALLEREDE_REGISTRERT && rettighetsgruppe !== 'AAP';
+    const skalViseIARBSPlaster = false; // formidlingsgruppe === Formidlingsgruppe.IARBS && registreringType === RegistreringType.ALLEREDE_REGISTRERT && rettighetsgruppe !== 'AAP';
     const registreringTypeOrIngenVerdi = registreringType ? registreringType : 'INGEN_VERDI';
-    const foreslattInnsatsgruppeOrIngenVerdi = foreslattInnsatsgruppe ? foreslattInnsatsgruppe : 'INGEN_VERDI'
+    const foreslattInnsatsgruppeOrIngenVerdi = foreslattInnsatsgruppe ? foreslattInnsatsgruppe : 'INGEN_VERDI';
     const fremtidigSvarOrIngenVerdi = fremtidigSvar ? fremtidigSvar : 'INGEN_VERDI';
     const formidlingsgruppeOrIngenVerdi = formidlingsgruppe ? formidlingsgruppe : 'INGEN_VERDI';
     const servicegruppeOrIVURD = servicegruppe ? servicegruppe : 'IVURD';
     const permittertToggle = featureToggleData ? featureToggleData['veientilarbeid.permittert.ny-dialog'] : false;
-    const endreSituasjonToggle = featureToggleData ? featureToggleData['veientilarbeid.permittert.situasjon.endre'] : false;
+    const endreSituasjonToggle = featureToggleData
+        ? featureToggleData['veientilarbeid.permittert.situasjon.endre']
+        : false;
 
-    const erPermittert = dinSituasjon === 'ER_PERMITTERT' && permittertToggle === true
-    const erPermittertEllerEndret = endreSituasjonToggle && (erPermittert || SituasjonData !== null)
+    const erPermittert = dinSituasjon === 'ER_PERMITTERT' && permittertToggle === true;
+    const erPermittertEllerEndret = endreSituasjonToggle && (erPermittert || SituasjonData !== null);
     const POAGruppe = getPoaGroup({
         dinSituasjon,
         formidlingsgruppe: formidlingsgruppeOrIngenVerdi,
         innsatsgruppe: foreslattInnsatsgruppeOrIngenVerdi,
         alder,
         servicegruppe: servicegruppeOrIVURD,
-        opprettetRegistreringDato });
+        opprettetRegistreringDato,
+    });
     const ukerRegistrert = opprettetRegistreringDato ? ukerFraDato(opprettetRegistreringDato) : ukerFraDato(new Date());
-
 
     /*
         Funksjon hvor man bygger opp kriterier for et eksperiment og retunerer true/false
@@ -90,7 +94,7 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
             registreringTypeOrIngenVerdi,
             fremtidigSvarOrIngenVerdi,
             reservasjonKRRJaNei
-    );
+        );
         hotjarTrigger(erMikrofrontend(), POAGruppe, hotjarEksperiment());
         seIARBSPlaster(skalViseIARBSPlaster, formidlingsgruppe, servicegruppe, rettighetsgruppe);
         setIdentifyPoaGruppe(POAGruppe);
@@ -98,10 +102,9 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const tilbakeTilSammeArbeidsgiver = (
+    const tilbakeTilSammeArbeidsgiver =
         fremtidigSvar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER ||
-        fremtidigSvar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER_NY_STILLING
-    );
+        fremtidigSvar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER_NY_STILLING;
 
     const visRessurslenker = !(tilbakeTilSammeArbeidsgiver && erSykmeldtMedArbeidsgiver);
 
@@ -113,15 +116,15 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
         return isValid;
     };
 
-    const skalViseEgenvurderingLenke = (
+    const skalViseEgenvurderingLenke =
         dinSituasjon !== 'ER_PERMITTERT' &&
         oppfolgingData.servicegruppe === Servicegruppe.IVURD &&
         (!harEgenvurderingbesvarelse || !egenvurderingsbesvarelseValid()) &&
-        (opprettetRegistreringDato !== null && opprettetRegistreringDato >= LANSERINGSDATO_EGENVURDERING) &&
+        opprettetRegistreringDato !== null &&
+        opprettetRegistreringDato >= LANSERINGSDATO_EGENVURDERING &&
         !oppfolgingData.reservasjonKRR &&
         (foreslattInnsatsgruppe === ForeslattInnsatsgruppe.STANDARD_INNSATS ||
-            foreslattInnsatsgruppe === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS)
-    );
+            foreslattInnsatsgruppe === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS);
 
     const motestotteData = React.useContext(MotestotteContext).data;
     const harMotestottebesvarelse = motestotteData !== null;
@@ -135,14 +138,14 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
         return isValid;
     };
 
-    const skalViseMotestotteLenke = (
+    const skalViseMotestotteLenke =
         dinSituasjon !== 'ER_PERMITTERT' &&
         oppfolgingData.servicegruppe === Servicegruppe.BKART &&
         (!harMotestottebesvarelse || !motestottebesvarelseValid()) &&
-        (opprettetRegistreringDato !== null && opprettetRegistreringDato >= LANSERINGSDATO_MOTESTOTTE) &&
+        opprettetRegistreringDato !== null &&
+        opprettetRegistreringDato >= LANSERINGSDATO_MOTESTOTTE &&
         !oppfolgingData.reservasjonKRR &&
-        (foreslattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING)
-    );
+        foreslattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING;
 
     return (
         <InnholdView
@@ -160,7 +163,9 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
 
 const mapStateToProps = (state: AppState): StateProps => ({
     harEgenvurderingbesvarelse: state.egenvurderingbesvarelse.data !== null,
-    egenvurderingbesvarelseDato: state.egenvurderingbesvarelse.data ? new Date(state.egenvurderingbesvarelse.data.sistOppdatert) : null
+    egenvurderingbesvarelseDato: state.egenvurderingbesvarelse.data
+        ? new Date(state.egenvurderingbesvarelse.data.sistOppdatert)
+        : null,
 });
 
 export default connect(mapStateToProps)(InnholdLogikkNiva4);

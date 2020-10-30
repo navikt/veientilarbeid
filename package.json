@@ -92,7 +92,9 @@
     "not op_mini all"
   ],
   "prettier": {
-    "printWidth": 120
+    "printWidth": 120,
+    "singleQuote": true,
+    "tabWidth": 4
   },
   "snyk": true
 }

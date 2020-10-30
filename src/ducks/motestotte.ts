@@ -11,7 +11,7 @@ export interface State extends DataElement {
 
 export const initialState: State = {
     data: null,
-    status: STATUS.NOT_STARTED
+    status: STATUS.NOT_STARTED,
 };
 
 export const MotestotteContext = React.createContext<State>(initialState);

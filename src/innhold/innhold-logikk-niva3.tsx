@@ -4,7 +4,6 @@ import './innhold.less';
 import InnholdView from './innhold-view';
 
 const InnholdLogikkNiva3 = () => {
-
     React.useEffect(() => {
         seVeientilarbeidNiva3();
     }, []);

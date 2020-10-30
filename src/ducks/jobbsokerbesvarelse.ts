@@ -1,5 +1,9 @@
 import {
-    ActionType, Handling, HentJobbsokerbesvarelseFEILETAction, HentJobbsokerbesvarelseOKAction, HentJobbsokerbesvarelsePENDINGAction
+    ActionType,
+    Handling,
+    HentJobbsokerbesvarelseFEILETAction,
+    HentJobbsokerbesvarelseOKAction,
+    HentJobbsokerbesvarelsePENDINGAction,
 } from './actions';
 import { Dispatch } from '../dispatch-type';
 import { hentJobbsokerbesvarelseFetch, DataElement, STATUS } from './api';
@@ -13,7 +17,7 @@ export interface State extends DataElement {
 const initialState: State = {
     data: {},
     harJobbsokerbesvarelse: false,
-    status: STATUS.NOT_STARTED
+    status: STATUS.NOT_STARTED,
 };
 
 export interface Data {
@@ -32,11 +36,11 @@ export default function reducer(state: State = initialState, action: Handling): 
         }
         case ActionType.HENT_JOBBSOKERBESVARELSE_PENDING:
             if (state.status === STATUS.OK) {
-                return {...state, status: STATUS.RELOADING};
+                return { ...state, status: STATUS.RELOADING };
             }
-            return {...state, status: STATUS.PENDING};
+            return { ...state, status: STATUS.PENDING };
         case ActionType.HENT_JOBBSOKERBESVARELSE_FEILET:
-            return {...state, status: STATUS.ERROR};
+            return { ...state, status: STATUS.ERROR };
         default:
             return state;
     }
@@ -53,7 +57,7 @@ export function hentJobbsokerbesvarelse(): (dispatch: Dispatch) => Promise<void>
 function hentJobbsokerbesvarelseOk(jobbsokerbesvarelseData: Data): HentJobbsokerbesvarelseOKAction {
     return {
         type: ActionType.HENT_JOBBSOKERBESVARELSE_OK,
-        data: jobbsokerbesvarelseData
+        data: jobbsokerbesvarelseData,
     };
 }
 

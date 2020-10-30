@@ -1,22 +1,27 @@
-const w = (window as any);
+const w = window as any;
 
-const logError = w.frontendlogger ? (melding: string, error: Error) => {
-    w.frontendlogger.error({
-        userMessage: melding,
-        message: error.message,
-        name: error.name,
-        stacktrace: error.stack,
-    });
-} : () => { return; };
+const logError = w.frontendlogger
+    ? (melding: string, error: Error) => {
+          w.frontendlogger.error({
+              userMessage: melding,
+              message: error.message,
+              name: error.name,
+              stacktrace: error.stack,
+          });
+      }
+    : () => {
+          return;
+      };
 
 export class CreatedMetrics {
-
     private static readonly STORAGE_KEY = 'createdmetrics';
 
     static getCreatedMetrics(): CreatedMetric[] {
         const metricStore: string | null = sessionStorage.getItem(CreatedMetrics.STORAGE_KEY);
 
-        return metricStore ? JSON.parse(metricStore, (key, value) => key === 'created' ? new Date(value) : value) : [];
+        return metricStore
+            ? JSON.parse(metricStore, (key, value) => (key === 'created' ? new Date(value) : value))
+            : [];
     }
 
     static setCreatedMetrics(metrics: CreatedMetric[]) {
@@ -30,7 +35,7 @@ export class CreatedMetrics {
     }
 
     static lessThenThreeSecondsAgo(metric: CreatedMetric) {
-        return ((new Date().getTime() - metric.created.getTime()) / 1000) < 3;
+        return (new Date().getTime() - metric.created.getTime()) / 1000 < 3;
     }
 
     deleteOutdated(metrics: CreatedMetric[]) {
@@ -54,11 +59,10 @@ export class CreatedMetrics {
     registerCreatedMetric(name: string): void {
         const createdMetrics = this.fetchAndRefreshCreatedMetrics();
 
-        const updatedCreatedMetrics = createdMetrics.concat({created: new Date(), name});
+        const updatedCreatedMetrics = createdMetrics.concat({ created: new Date(), name });
 
         CreatedMetrics.setCreatedMetrics(updatedCreatedMetrics);
     }
-
 }
 
 interface CreatedMetric {

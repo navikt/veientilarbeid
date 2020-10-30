@@ -7,11 +7,12 @@ import {
     MOTESTOTTE_URL,
     BRUKERINFO_URL,
     FEATURE_URL,
-    SITUASJON_URL
+    SITUASJON_URL,
 } from '../ducks/api';
 import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 import {
-    hentJsk, hentReservasjonKRR,
+    hentJsk,
+    hentReservasjonKRR,
     hentServicegruppe,
     hentFormidlingsgruppe,
     hentSykmeldtMedArbeidsgiver,
@@ -23,7 +24,7 @@ import {
     hentRegistreringType,
     hentRettighetsgruppe,
     hentFeatureToggles,
-    hentSituasjon
+    hentSituasjon,
 } from './demo-state';
 import { hentBrukerRegistreringData } from './demo-state-brukerregistrering';
 import { AUTH_API } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
@@ -37,15 +38,15 @@ const fetchMock = FetchMock.configure({
     enableFallback: true,
     middleware: MiddlewareUtils.combine(
         MiddlewareUtils.delayMiddleware(200),
-        MiddlewareUtils.failurerateMiddleware(0.00),
-        loggingMiddleware,
+        MiddlewareUtils.failurerateMiddleware(0.0),
+        loggingMiddleware
     ),
 });
 
 const randomUlesteDialoger = () => {
     const min = 1;
     const max = 99;
-    return Math.floor(min + (Math.random() * (max - min)));
+    return Math.floor(min + Math.random() * (max - min));
 };
 
 fetchMock.get(VEILARBOPPFOLGING_URL, {
@@ -55,20 +56,20 @@ fetchMock.get(VEILARBOPPFOLGING_URL, {
     servicegruppe: hentServicegruppe(),
     formidlingsgruppe: hentFormidlingsgruppe(),
     registreringType: 'INGEN_VERDI',
-    geografiskTilknytning: '010302'
+    geografiskTilknytning: '010302',
 });
 
 fetchMock.get(BRUKERINFO_URL, {
     erSykmeldtMedArbeidsgiver: hentSykmeldtMedArbeidsgiver(),
     geografiskTilknytning: hentGeografiskTilknytning(),
     registreringType: hentRegistreringType(),
-    rettighetsgruppe: hentRettighetsgruppe()
+    rettighetsgruppe: hentRettighetsgruppe(),
 });
 
 fetchMock.get(BRUKERREGISTRERING_URL, hentBrukerRegistreringData());
 
 fetchMock.get(ULESTEDIALOGER_URL, {
-    antallUleste: hentUlesteDialoger() ? randomUlesteDialoger() : 0
+    antallUleste: hentUlesteDialoger() ? randomUlesteDialoger() : 0,
 });
 
 fetchMock.get(JOBBSOKERBESVARELSE_URL, hentJsk());

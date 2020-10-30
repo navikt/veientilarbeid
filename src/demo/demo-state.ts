@@ -1,5 +1,5 @@
 import { JSONObject } from 'yet-another-fetch-mock';
-import {InnloggingsNiva} from "../ducks/autentisering";
+import { InnloggingsNiva } from '../ducks/autentisering';
 
 export enum DemoData {
     SERVICEGRUPPE = 'servicegruppe',
@@ -16,7 +16,7 @@ export enum DemoData {
     REGISTRERING_TYPE = 'registreringType',
     RETTIGHETSGRUPPE = 'rettighetsgruppe',
     FEATURE_TOGGLES = 'featureToggles',
-    SITUASJON = 'situasjon'
+    SITUASJON = 'situasjon',
 }
 
 export const hentFraLocalStorage = (key: string): string | null => {
@@ -95,7 +95,7 @@ export const hentJsk = (): JSONObject | null => {
 };
 
 export const settJsk = () => {
-    settILocalStorage(DemoData.JSK, JSON.stringify({raad: []}));
+    settILocalStorage(DemoData.JSK, JSON.stringify({ raad: [] }));
 };
 
 export const slettJsk = () => {
@@ -108,7 +108,7 @@ export const hentEgenvurdering = (): JSONObject | null => {
 };
 
 export const settEgenvurdering = () => {
-    settILocalStorage(DemoData.EGENVURDERING, JSON.stringify({sistOppdatert: '2019-05-12T09:39:01.635+02:00'}));
+    settILocalStorage(DemoData.EGENVURDERING, JSON.stringify({ sistOppdatert: '2019-05-12T09:39:01.635+02:00' }));
 };
 
 export const slettEgenvurdering = () => {
@@ -121,7 +121,7 @@ export const hentMotestotte = (): JSONObject | null => {
 };
 
 export const settMotestotte = () => {
-    settILocalStorage(DemoData.MOTESTOTTE, JSON.stringify({dato: '2019-06-06T09:39:01.635+02:00'}));
+    settILocalStorage(DemoData.MOTESTOTTE, JSON.stringify({ dato: '2019-06-06T09:39:01.635+02:00' }));
 };
 
 export const slettMotestotte = () => {
@@ -134,11 +134,15 @@ export const hentSituasjon = (): JSONObject | null => {
 };
 
 export const settSituasjon = () => {
-    settILocalStorage(DemoData.SITUASJON, JSON.stringify({
-        oprettet: '2020-04-07T11:53:05.486686+01:00',
-        endretAv: 'string',
-        svarId: 'SKAL_I_JOBB',
-        svarTekst: 'Har fått beskjed fra arbeidsgiver når jeg kan komme tilbake i jobben'}));
+    settILocalStorage(
+        DemoData.SITUASJON,
+        JSON.stringify({
+            oprettet: '2020-04-07T11:53:05.486686+01:00',
+            endretAv: 'string',
+            svarId: 'SKAL_I_JOBB',
+            svarTekst: 'Har fått beskjed fra arbeidsgiver når jeg kan komme tilbake i jobben',
+        })
+    );
 };
 
 export const slettSituasjon = () => {
@@ -148,7 +152,7 @@ export const slettSituasjon = () => {
 const features = (checked: boolean) => ({
     'veientilarbeid.meldekort.ny-tekst': checked,
     'veientilarbeid.permittert.ny-dialog': checked,
-    'veientilarbeid.permittert.situasjon.endre': checked
+    'veientilarbeid.permittert.situasjon.endre': checked,
 });
 
 export const hentFeatureToggles = (): JSONObject => {
@@ -169,18 +173,23 @@ export const hentReservasjonKRR = (): boolean => {
 };
 
 export const settAutentiseringsInfo = () => {
-    settILocalStorage(DemoData.AUTENTISERINGS_INFO, JSON.stringify({
-        securityLevel: InnloggingsNiva.LEVEL_3,
-        loggedIn: true,
-    }));
+    settILocalStorage(
+        DemoData.AUTENTISERINGS_INFO,
+        JSON.stringify({
+            securityLevel: InnloggingsNiva.LEVEL_3,
+            loggedIn: true,
+        })
+    );
 };
 
 export const hentAutentiseringsInfo = (): JSONObject => {
     const verdi = hentFraLocalStorage(DemoData.AUTENTISERINGS_INFO);
-    return verdi ? JSON.parse(verdi) : {
-        securityLevel: InnloggingsNiva.LEVEL_4,
-        loggedIn: true,
-    };
+    return verdi
+        ? JSON.parse(verdi)
+        : {
+              securityLevel: InnloggingsNiva.LEVEL_4,
+              loggedIn: true,
+          };
 };
 
 export const slettAutentiseringsInfo = () => {

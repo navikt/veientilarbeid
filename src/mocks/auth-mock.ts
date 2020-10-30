@@ -1,4 +1,4 @@
-import {InnloggingsNiva} from "../ducks/autentisering";
+import { InnloggingsNiva } from '../ducks/autentisering';
 
 export default {
     loggedIn: true,
