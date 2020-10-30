@@ -7,7 +7,7 @@ import {BrukerregistreringContext} from "../../ducks/brukerregistrering";
 import {OppfolgingContext} from "../../ducks/oppfolging";
 import {BrukerInfoContext} from "../../ducks/bruker-info";
 
-const ukerFraDato = require('@alheimsins/uker-fra-dato');
+import ukerFraDato from '../../utils/uker-fra-dato'
 
 export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const brukerregistreringData = React.useContext(BrukerregistreringContext).data;

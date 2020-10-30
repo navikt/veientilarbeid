@@ -22,6 +22,7 @@ import { SituasjonContext } from '../ducks/situasjon';
 import { OppfolgingContext, Servicegruppe } from '../ducks/oppfolging';
 import getPoaGroup from '../utils/get-poa-group'
 import {AmplitudeAktivitetContext} from "../ducks/amplitude-aktivitet-context";
+import ukerFraDato from '../utils/uker-fra-dato'
 const LANSERINGSDATO_EGENVURDERING = new Date(2019, 4, 10);
 const LANSERINGSDATO_MOTESTOTTE = new Date('2020-03-12');
 
@@ -66,13 +67,15 @@ const InnholdLogikkNiva4 = ({harEgenvurderingbesvarelse, egenvurderingbesvarelse
         alder,
         servicegruppe: servicegruppeOrIVURD,
         opprettetRegistreringDato });
+    const ukerRegistrert = opprettetRegistreringDato ? ukerFraDato(opprettetRegistreringDato) : ukerFraDato(new Date());
+
 
     /*
         Funksjon hvor man bygger opp kriterier for et eksperiment og retunerer true/false
         ettersom brukeren kommer inn under eksperimentet eller ei
     */
     const hotjarEksperiment = () => {
-        return false
+        return POAGruppe === 'kss' && ukerRegistrert < 4;
     };
 
     React.useEffect(() => {
