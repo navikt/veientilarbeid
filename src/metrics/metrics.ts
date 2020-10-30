@@ -93,11 +93,6 @@ export const klikkPaSokLedigeStillinger = (servicegruppe: String | null) => {
     amplitudeLogger(`${domene}.ledigestillinger.click`, { servicegruppe });
 };
 
-export const gaTilAktivitetsplan = (servicegruppe: String | null) => {
-    logEvent('gatilaktivitetsplan', {innsatsgruppeField: servicegruppe}, {innsatsgruppeTag: servicegruppe});
-    amplitudeLogger(`${domene}.aktivitetsplan.click`, { servicegruppe });
-};
-
 export const gaTilDialog = (antall: number, servicegruppe: string | null) => {
     logEvent('gatildialog', {antallField: antall, innsatsgruppeField: servicegruppe}, {antallTag: antall, innsatsgruppeTag: servicegruppe});
     amplitudeLogger(`${domene}.dialog.click`, { antall, servicegruppe });
