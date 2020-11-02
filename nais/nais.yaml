@@ -45,6 +45,8 @@ spec:
     value: {{ frontendlogger_url }}
   - name: FASIT_ENVIRONMENT_NAME
     value: {{ app_environment_name }}
+  - name: UNLEASH_API_URL
+    value: https://unleash.nais.io/api/
   envFrom:
     - configmap: loginservice-idporten
   image: {{image}}
