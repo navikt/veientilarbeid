@@ -11,7 +11,6 @@ import Aktivitetsplan from '../komponenter/aktivitetsplan/aktivitetsplan';
 import RessurslenkerJobbsok from '../komponenter/ressurslenker-jobbsok/ressurslenker-jobbsok';
 import Egenvurdering from '../komponenter/egenvurdering/egenvurdering';
 import Motestotte from '../komponenter/motestotte/motestotte';
-import OkonomiRadDagpenger from '../komponenter/okonomi/okonomi-rad-dagpenger';
 import './innhold.less';
 import KrrMelding from '../komponenter/krr-melding/krr-melding';
 import IARBSMelding from '../komponenter/iarbs-melding/iarbs-melding';
@@ -62,7 +61,6 @@ const InnholdView = ({
             ) : (
                 <Banner type="ordinaer" />
             )}
-
             <Rad>
                 <ReaktiveringMelding />
                 {skalViseKrrMelding ? <KrrMelding /> : null}
@@ -73,22 +71,13 @@ const InnholdView = ({
                 {skalViseMotestotteLenke ? <Motestotte erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver} /> : null}
                 <AktivitetDialogMeldekort erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver} />
             </Rad>
-
             {erSykmeldtMedArbeidsgiver && (
                 <Rad>
                     <AapRad />
                 </Rad>
             )}
-
             <Rad>{visRessurslenker ? <RessurslenkerJobbsok /> : null}</Rad>
-
-            {erSykmeldtMedArbeidsgiver ? (
-                <Rad>
-                    <OkonomiRad />
-                </Rad>
-            ) : (
-                <OkonomiRadDagpenger />
-            )}
+            <OkonomiRad />
         </>
     );
 };
