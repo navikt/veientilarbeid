@@ -23,14 +23,12 @@ import {
 import { hotjarTrigger } from '../hotjar';
 import './innhold.less';
 import InnholdView from './innhold-view';
-import { MotestotteContext } from '../ducks/motestotte';
 import { SituasjonContext } from '../ducks/situasjon';
 import { OppfolgingContext, Servicegruppe } from '../ducks/oppfolging';
 import getPoaGroup from '../utils/get-poa-group';
 import { AmplitudeAktivitetContext } from '../ducks/amplitude-aktivitet-context';
 import ukerFraDato from '../utils/uker-fra-dato';
 const LANSERINGSDATO_EGENVURDERING = new Date(2019, 4, 10);
-const LANSERINGSDATO_MOTESTOTTE = new Date('2020-03-12');
 
 interface StateProps {
     harEgenvurderingbesvarelse: boolean;
@@ -133,32 +131,10 @@ const InnholdLogikkNiva4 = ({ harEgenvurderingbesvarelse, egenvurderingbesvarels
         (foreslattInnsatsgruppe === ForeslattInnsatsgruppe.STANDARD_INNSATS ||
             foreslattInnsatsgruppe === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS);
 
-    const motestotteData = React.useContext(MotestotteContext).data;
-    const harMotestottebesvarelse = motestotteData !== null;
-
-    const motestottebesvarelseValid = (): boolean => {
-        let isValid = false;
-        if (opprettetRegistreringDato && motestotteData) {
-            const motestottebesvarelseDato = new Date(motestotteData.dato);
-            isValid = opprettetRegistreringDato <= motestottebesvarelseDato;
-        }
-        return isValid;
-    };
-
-    const skalViseMotestotteLenke =
-        dinSituasjon !== 'ER_PERMITTERT' &&
-        oppfolgingData.servicegruppe === Servicegruppe.BKART &&
-        (!harMotestottebesvarelse || !motestottebesvarelseValid()) &&
-        opprettetRegistreringDato !== null &&
-        opprettetRegistreringDato >= LANSERINGSDATO_MOTESTOTTE &&
-        !oppfolgingData.reservasjonKRR &&
-        foreslattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING;
-
     return (
         <InnholdView
             erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}
             skalViseEgenvurderingLenke={skalViseEgenvurderingLenke}
-            skalViseMotestotteLenke={skalViseMotestotteLenke}
             visRessurslenker={visRessurslenker}
             skalViseIARBSPlaster={skalViseIARBSPlaster}
             erPermittert={erPermittert}

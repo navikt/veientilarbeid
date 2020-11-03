@@ -13,7 +13,6 @@ const InnholdLogikkNiva3 = () => {
             erSykmeldtMedArbeidsgiver={false}
             skalViseEgenvurderingLenke={false}
             visRessurslenker={true}
-            skalViseMotestotteLenke={false}
             skalViseIARBSPlaster={false}
             erPermittert={false}
             erPermittertEllerEndret={false}
