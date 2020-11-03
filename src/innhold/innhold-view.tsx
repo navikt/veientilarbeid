@@ -71,11 +71,8 @@ const InnholdView = ({
                 {skalViseMotestotteLenke ? <Motestotte erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver} /> : null}
                 <AktivitetDialogMeldekort erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver} />
             </Rad>
-            {erSykmeldtMedArbeidsgiver && (
-                <Rad>
-                    <AapRad />
-                </Rad>
-            )}
+
+            <AapRad />
             <Rad>{visRessurslenker ? <RessurslenkerJobbsok /> : null}</Rad>
             <OkonomiRad />
         </>
