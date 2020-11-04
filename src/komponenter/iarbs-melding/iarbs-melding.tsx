@@ -4,7 +4,13 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import './iarbs-melding.less';
 import tekster from '../../tekster/tekster';
 
-const iarbsMelding = () => {
+export interface Props {
+    visPlaster: boolean;
+}
+
+const iarbsMelding = (props: Props) => {
+    const { visPlaster } = props
+    if (!visPlaster) return null;
     return (
         <AlertStripeAdvarsel className="iarbs-melding blokk-xs">
             <Normaltekst className="blokk-xs">

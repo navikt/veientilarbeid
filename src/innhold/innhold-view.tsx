@@ -66,7 +66,7 @@ const InnholdView = ({
                 {skalViseKrrMelding ? <KrrMelding /> : null}
                 {erPermittertEllerEndret && <Situasjon />}
                 <Registrert />
-                {skalViseIARBSPlaster ? <IARBSMelding /> : null}
+                <IARBSMelding visPlaster={skalViseIARBSPlaster} />
                 {skalViseEgenvurderingLenke ? <Egenvurdering /> : null}
                 {skalViseMotestotteLenke ? <Motestotte erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver} /> : null}
                 <AktivitetDialogMeldekort erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver} />
