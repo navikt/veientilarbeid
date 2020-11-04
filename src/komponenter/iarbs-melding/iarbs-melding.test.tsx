@@ -14,7 +14,6 @@ describe('Test av komponent', () => {
 
   test('Rendrer ikke komponent om den ikke skal vises', () => {
     const { container } = render(<IARBSMelding visPlaster={false} />);
-    const div = container.querySelector('div');
     expect(container).toBeEmptyDOMElement();
   })
 })
