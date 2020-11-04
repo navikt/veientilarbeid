@@ -64,6 +64,7 @@
     "yet-another-fetch-mock": "3.4.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "5.11.5",
     "@testing-library/react": "11.1.0",
     "@types/amplitude-js": "6.0.0",
     "@types/classnames": "2.2.11",
