@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { AppState } from '../reducer';
 import { erMikrofrontend } from '../utils/app-state-utils';
 import { BrukerInfoContext } from '../ducks/bruker-info';
-import { FeaturetoggleContext } from '../ducks/feature-toggles';
 import {
     BrukerregistreringContext,
     ForeslattInnsatsgruppe,
@@ -23,7 +22,6 @@ import {
 import { hotjarTrigger } from '../hotjar';
 import './innhold.less';
 import InnholdView from './innhold-view';
-import { SituasjonContext } from '../ducks/situasjon';
 import { OppfolgingContext, Servicegruppe } from '../ducks/oppfolging';
 import getPoaGroup from '../utils/get-poa-group';
 import { AmplitudeAktivitetContext } from '../ducks/amplitude-aktivitet-context';
@@ -38,8 +36,6 @@ interface StateProps {
 const InnholdLogikkNiva4 = ({ harEgenvurderingbesvarelse, egenvurderingbesvarelseDato }: StateProps) => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
-    const featureToggleData = React.useContext(FeaturetoggleContext).data;
-    const SituasjonData = React.useContext(SituasjonContext).data;
     const opprettetRegistreringDatoString = selectOpprettetRegistreringDato(brukerregistreringData);
     const opprettetRegistreringDato = opprettetRegistreringDatoString
         ? new Date(opprettetRegistreringDatoString)
@@ -61,13 +57,7 @@ const InnholdLogikkNiva4 = ({ harEgenvurderingbesvarelse, egenvurderingbesvarels
     const fremtidigSvarOrIngenVerdi = fremtidigSvar ? fremtidigSvar : 'INGEN_VERDI';
     const formidlingsgruppeOrIngenVerdi = formidlingsgruppe ? formidlingsgruppe : 'INGEN_VERDI';
     const servicegruppeOrIVURD = servicegruppe ? servicegruppe : 'IVURD';
-    const permittertToggle = featureToggleData ? featureToggleData['veientilarbeid.permittert.ny-dialog'] : false;
-    const endreSituasjonToggle = featureToggleData
-        ? featureToggleData['veientilarbeid.permittert.situasjon.endre']
-        : false;
 
-    const erPermittert = dinSituasjon === 'ER_PERMITTERT' && permittertToggle === true;
-    const erPermittertEllerEndret = endreSituasjonToggle && (erPermittert || SituasjonData !== null);
     const POAGruppe = getPoaGroup({
         dinSituasjon,
         formidlingsgruppe: formidlingsgruppeOrIngenVerdi,
@@ -137,8 +127,6 @@ const InnholdLogikkNiva4 = ({ harEgenvurderingbesvarelse, egenvurderingbesvarels
             skalViseEgenvurderingLenke={skalViseEgenvurderingLenke}
             visRessurslenker={visRessurslenker}
             skalViseIARBSPlaster={skalViseIARBSPlaster}
-            erPermittert={erPermittert}
-            erPermittertEllerEndret={erPermittertEllerEndret}
         />
     );
 };

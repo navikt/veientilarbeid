@@ -24,8 +24,6 @@ interface OwnProps {
     skalViseEgenvurderingLenke: boolean;
     visRessurslenker: boolean;
     skalViseIARBSPlaster: boolean;
-    erPermittert: boolean;
-    erPermittertEllerEndret: boolean;
 }
 
 const AktivitetDialogMeldekort = () => {
@@ -46,7 +44,6 @@ const InnholdView = ({
     skalViseEgenvurderingLenke,
     visRessurslenker,
     skalViseIARBSPlaster,
-    erPermittertEllerEndret,
 }: OwnProps) => {
     return (
         <>
@@ -58,7 +55,7 @@ const InnholdView = ({
             <Rad>
                 <ReaktiveringMelding />
                 <KrrMelding />
-                {erPermittertEllerEndret && <Situasjon />}
+                <Situasjon />
                 <Registrert />
                 <IARBSMelding visPlaster={skalViseIARBSPlaster} />
                 {skalViseEgenvurderingLenke ? <Egenvurdering /> : null}

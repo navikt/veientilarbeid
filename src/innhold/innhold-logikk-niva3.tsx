@@ -14,8 +14,6 @@ const InnholdLogikkNiva3 = () => {
             skalViseEgenvurderingLenke={false}
             visRessurslenker={true}
             skalViseIARBSPlaster={false}
-            erPermittert={false}
-            erPermittertEllerEndret={false}
         />
     );
 };

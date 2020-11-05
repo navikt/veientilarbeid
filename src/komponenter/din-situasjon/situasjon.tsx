@@ -9,10 +9,13 @@ import { endresituasjonLenke } from '../../innhold/lenker';
 import { uniLogger } from '../../metrics/uni-logger';
 import Ikon from './person-med-blyant';
 import './situasjon.less';
+import { FeaturetoggleContext } from '../../ducks/feature-toggles';
 
 const Situasjon = () => {
     const brukerregistreringData = useContext(BrukerregistreringContext).data;
     const situasjonData = useContext(SituasjonContext).data;
+    const featureToggleData = React.useContext(FeaturetoggleContext).data;
+
     const { registrering } = brukerregistreringData;
     const { besvarelse, opprettetDato } = registrering;
     const { dinSituasjon } = besvarelse;
@@ -22,15 +25,28 @@ const Situasjon = () => {
     const situasjonsId = situasjonData !== null ? situasjonData.svarId : dinSituasjonOrIngenVerdi;
     const endretDato = situasjonData !== null ? situasjonData.opprettet : opprettetDato;
 
+    const permittertToggle = featureToggleData ? featureToggleData['veientilarbeid.permittert.ny-dialog'] : false;
+    const endreSituasjonToggle = featureToggleData
+        ? featureToggleData['veientilarbeid.permittert.situasjon.endre']
+        : false;
+
+    const erPermittert = dinSituasjon === 'ER_PERMITTERT' && permittertToggle === true;
+    const erPermittertEllerEndret = endreSituasjonToggle && (erPermittert || situasjonData !== null);
+
     const handleClick = () => {
         uniLogger('endresituasjon.gatil', { situasjonsId });
         window.location.href = endresituasjonLenke;
     };
 
     React.useEffect(() => {
-        uniLogger('endresituasjon.visning', { situasjonsId });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+        if (erPermittertEllerEndret) {
+            uniLogger('endresituasjon.visning', { situasjonsId });
+        }
+    }, [situasjonsId, erPermittertEllerEndret]);
+
+    if (!erPermittertEllerEndret) {
+        return null;
+    }
 
     return (
         <LenkepanelBase href={endresituasjonLenke} onClick={handleClick} tittelProps="undertittel" border={true}>
