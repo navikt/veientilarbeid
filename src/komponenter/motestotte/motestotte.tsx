@@ -16,25 +16,25 @@ import './motestotte.less';
 import { OppfolgingContext, Servicegruppe } from '../../ducks/oppfolging';
 import { MotestotteContext } from '../../ducks/motestotte';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
+import tekster from '../../tekster/tekster';
 
 const LANSERINGSDATO_MOTESTOTTE = new Date('2020-03-12');
 
-function hentTekster(erSykmeldtMedArbeidsgiver: boolean) {
-    return erSykmeldtMedArbeidsgiver
-        ? {
-              systemtittel: 'Du kan få mer veiledning',
-              tekster: [
-                  'Du har svart at du trenger mer veiledning nå som retten til sykepenger nærmer seg slutten.',
-                  'Vi ønsker å bli bedre kjent med situasjonen din, slik at du kan få veiledning som passer for deg.',
-              ],
-          }
-        : {
-              systemtittel: 'Du kan få veiledning',
-              tekster: [
-                  'Du har svart at du har utfordringer som hindrer deg i å søke eller være i jobb.',
-                  'Vi ønsker å bli bedre kjent med situasjonen din, slik at du kan få veiledning som passer for deg.',
-              ],
-          };
+interface MotestotteTekster {
+    systemtittel: String;
+    tekster: Array<String>;
+}
+
+function hentTekster(erSykmeldtMedArbeidsgiver: boolean): MotestotteTekster {
+    const sykmeldtStatus = erSykmeldtMedArbeidsgiver ? 'sykmeldt' : 'ikkeSykmeldt';
+    const [tittelNokkel, avsnittNokkel] = [
+        `motestotte-${sykmeldtStatus}-systemtittel`,
+        `motestotte-${sykmeldtStatus}-avsnitt`,
+    ];
+    return {
+        systemtittel: tekster[tittelNokkel],
+        tekster: tekster[avsnittNokkel],
+    };
 }
 
 const lagKnappelytter = (antallTimer = 0, foreslattInnsatsgruppe = 'UKJENT') => () => {
@@ -75,7 +75,7 @@ const Motestotte = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    if (skalViseMotestotteLenke) return null;
+    if (!skalViseMotestotteLenke) return null;
 
     return (
         <Panel border className="ramme blokk-s">
@@ -85,7 +85,9 @@ const Motestotte = () => {
                         {systemtittel}
                     </Systemtittel>
                     {tekster.map((tekst) => (
-                        <Normaltekst className="blokk-m motestotte__tekst">{tekst}</Normaltekst>
+                        <Normaltekst key={tekst as string} className="blokk-m motestotte__tekst">
+                            {tekst}
+                        </Normaltekst>
                     ))}
                     <Hovedknapp onClick={lagKnappelytter(antallTimer, foreslattInnsatsgruppe)}>Start</Hovedknapp>
                 </div>
