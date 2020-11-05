@@ -6,12 +6,12 @@ import { seEgenvurdering, gaTilEgenvurdering, loggAktivitet } from '../../metric
 import {
     BrukerregistreringContext,
     selectForeslattInnsatsgruppe,
-    selectOpprettetRegistreringDato
+    selectOpprettetRegistreringDato,
 } from '../../ducks/brukerregistrering';
 import './egenvurdering.less';
 import { behovsvurderingLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
-import {AmplitudeAktivitetContext} from "../../ducks/amplitude-aktivitet-context";
+import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
 
 export const antallTimerMellomAOgBRundetOpp = (a: Date, b: Date): number => {
     return Math.ceil((b.getTime() - a.getTime()) / 36e5);
@@ -25,9 +25,11 @@ const Egenvurdering = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const data = React.useContext(BrukerregistreringContext).data;
     const opprettetRegistreringDatoString = selectOpprettetRegistreringDato(data);
-    const opprettetRegistreringDato = opprettetRegistreringDatoString ? new Date(opprettetRegistreringDatoString) : null;
+    const opprettetRegistreringDato = opprettetRegistreringDatoString
+        ? new Date(opprettetRegistreringDatoString)
+        : null;
     const foreslattInnsatsgruppe = selectForeslattInnsatsgruppe(data)!; // Komponent blir rendret kun hvis foreslått innsatsgruppe er satt
-    const timerSidenRegistrering =  antallTimerSidenRegistrering(opprettetRegistreringDato!);
+    const timerSidenRegistrering = antallTimerSidenRegistrering(opprettetRegistreringDato!);
 
     React.useEffect(() => {
         seEgenvurdering(foreslattInnsatsgruppe);
@@ -36,7 +38,7 @@ const Egenvurdering = () => {
     }, []);
 
     const handleButtonClick = () => {
-        loggAktivitet({ aktivitet: 'Går til egenvurdering', ...amplitudeAktivitetsData })
+        loggAktivitet({ aktivitet: 'Går til egenvurdering', ...amplitudeAktivitetsData });
         gaTilEgenvurdering(timerSidenRegistrering, foreslattInnsatsgruppe);
         window.location.href = behovsvurderingLenke;
     };
@@ -48,9 +50,7 @@ const Egenvurdering = () => {
                     <Systemtittel tag="h2" className="blokk-xs">
                         {tekster['egenvurdering-tittel']}
                     </Systemtittel>
-                    <Normaltekst className="blokk-s egenvurdering__tekst">
-                        {tekster['egenvurdering-tekst']}
-                    </Normaltekst>
+                    <Normaltekst className="blokk-s egenvurdering__tekst">{tekster['egenvurdering-tekst']}</Normaltekst>
                     <Hovedknapp onClick={handleButtonClick} className="blokk-xs">
                         {tekster['egenvurdering-lenke-tekst']}
                     </Hovedknapp>

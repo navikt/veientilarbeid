@@ -4,15 +4,15 @@ import Panel from 'nav-frontend-paneler';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { loggAktivitet } from '../../metrics/metrics';
 import './melding.less';
-import {AmplitudeAktivitetContext} from "../../ducks/amplitude-aktivitet-context";
+import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
 
 const TrekkDagpengeSoknad = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
 
     const handleClick = () => {
         loggAktivitet({ aktivitet: 'Går til trekk dagpengesøknad', ...amplitudeAktivitetsData });
-    }
-    
+    };
+
     return (
         <div className="wrapper">
             <Panel border className="ramme blokk-s">
@@ -25,7 +25,8 @@ const TrekkDagpengeSoknad = () => {
                             Har det skjedd endringer som gjør at du ønsker å trekke dagpengesøknaden?
                         </Normaltekst>
                         <Normaltekst className="blokk-xs">
-                            Du kan kontakte oss skriftlig og oppgi grunn for at du ønsker å trekke søknaden, så vil vi hjelpe deg.
+                            Du kan kontakte oss skriftlig og oppgi grunn for at du ønsker å trekke søknaden, så vil vi
+                            hjelpe deg.
                         </Normaltekst>
                         <Normaltekst className="blokk-xs">
                             Ønsker du senere likevel å søke dagpenger må du da sende inn en ny søknad.
@@ -33,12 +34,18 @@ const TrekkDagpengeSoknad = () => {
                         <Normaltekst className="blokk-m">
                             Du kan tidligst få utbetalt dagpenger fra den dagen du sender ny søknad.
                         </Normaltekst>
-                        <Lenke href="https://tjenester.nav.no/mininnboks/sporsmal/skriv/ARBD" onClick={handleClick} target='_blank'>Jeg ønsker å trekke søknaden min</Lenke>
+                        <Lenke
+                            href="https://tjenester.nav.no/mininnboks/sporsmal/skriv/ARBD"
+                            onClick={handleClick}
+                            target="_blank"
+                        >
+                            Jeg ønsker å trekke søknaden min
+                        </Lenke>
                     </div>
                 </section>
             </Panel>
         </div>
     );
-}
+};
 
 export default TrekkDagpengeSoknad;

@@ -14,7 +14,7 @@ import { hentUlesteDialoger, State as UlesteDialogerState } from '../../ducks/di
 import {
     BrukerregistreringContext,
     ForeslattInnsatsgruppe,
-    selectForeslattInnsatsgruppe
+    selectForeslattInnsatsgruppe,
 } from '../../ducks/brukerregistrering';
 import { hentJobbsokerbesvarelse, State as JobbsokerbesvarelseState } from '../../ducks/jobbsokerbesvarelse';
 import { hentEgenvurderingbesvarelse, State as EgenvurderingbesvarelseState } from '../../ducks/egenvurdering';
@@ -22,22 +22,26 @@ import {
     Data as MotestotteData,
     initialState as initialStateMotestotte,
     State as MotestotteState,
-    MotestotteContext
+    MotestotteContext,
 } from '../../ducks/motestotte';
 import {
     Data as SituasjonData,
     initialState as initialStateSituasjon,
     State as SituasjonState,
-    SituasjonContext
+    SituasjonContext,
 } from '../../ducks/situasjon';
 
 import { fetchData } from '../../ducks/api-utils';
 import { MOTESTOTTE_URL, BRUKERINFO_URL, SITUASJON_URL } from '../../ducks/api';
-import {AmplitudeProvider} from "./amplitude-provider";
+import { AmplitudeProvider } from './amplitude-provider';
 
-const skalSjekkeEgenvurderingBesvarelse = (foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null): boolean => {
-    return foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.STANDARD_INNSATS ||
-        foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS;
+const skalSjekkeEgenvurderingBesvarelse = (
+    foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null
+): boolean => {
+    return (
+        foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.STANDARD_INNSATS ||
+        foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS
+    );
 };
 
 interface OwnProps {
@@ -59,10 +63,14 @@ interface DispatchProps {
 type Props = StateProps & DispatchProps & OwnProps;
 
 const DataProvider = ({
-                          children, jobbsokerbesvarelse, ulesteDialoger, egenvurderingbesvarelse,
-                          hentJobbsokerbesvarelse, hentUlesteDialoger, hentEgenvurderingbesvarelse
-                      }: Props) => {
-
+    children,
+    jobbsokerbesvarelse,
+    ulesteDialoger,
+    egenvurderingbesvarelse,
+    hentJobbsokerbesvarelse,
+    hentUlesteDialoger,
+    hentEgenvurderingbesvarelse,
+}: Props) => {
     const [motestotteState, setMotestotteState] = React.useState<MotestotteState>(initialStateMotestotte);
     const [situasjonState, setSituasjonState] = React.useState<SituasjonState>(initialStateSituasjon);
     const [brukerInfoState, setBrukerInfoState] = React.useState<BrukerInfoState>(brukerInfoDataInitialstate);
@@ -89,23 +97,20 @@ const DataProvider = ({
         ventPa.push(egenvurderingbesvarelse);
     }
     if (foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING) {
-        ventPa.push(motestotteState)
+        ventPa.push(motestotteState);
     }
 
     return (
-
         <Innholdslaster
-            feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse"/>}
+            feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse" />}
             storrelse="XXL"
             avhengigheter={avhengigheter}
             ventPa={ventPa}
         >
-            <BrukerInfoContext.Provider value={ brukerInfoState }>
+            <BrukerInfoContext.Provider value={brukerInfoState}>
                 <MotestotteContext.Provider value={motestotteState}>
                     <SituasjonContext.Provider value={situasjonState}>
-                        <AmplitudeProvider>
-                            {children}
-                        </AmplitudeProvider>
+                        <AmplitudeProvider>{children}</AmplitudeProvider>
                     </SituasjonContext.Provider>
                 </MotestotteContext.Provider>
             </BrukerInfoContext.Provider>
@@ -116,7 +121,7 @@ const DataProvider = ({
 const mapStateToProps = (state: AppState): StateProps => ({
     jobbsokerbesvarelse: state.jobbsokerbesvarelse,
     ulesteDialoger: state.ulesteDialoger,
-    egenvurderingbesvarelse: state.egenvurderingbesvarelse
+    egenvurderingbesvarelse: state.egenvurderingbesvarelse,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({

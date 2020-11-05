@@ -9,22 +9,20 @@ export interface Props {
 }
 
 const iarbsMelding = (props: Props) => {
-    const { visPlaster } = props
+    const { visPlaster } = props;
     if (!visPlaster) return null;
     return (
         <AlertStripeAdvarsel className="iarbs-melding blokk-xs">
             <Normaltekst className="blokk-xs">
                 <strong>{tekster['iarbs-melding-tittel']}</strong>
             </Normaltekst>
-            <Normaltekst className="blokk-xs">
-                {tekster['iarbs-melding-innhold1']}
-            </Normaltekst>
+            <Normaltekst className="blokk-xs">{tekster['iarbs-melding-innhold1']}</Normaltekst>
             <Normaltekst className="blokk-xs">
                 <strong>{tekster['iarbs-melding-innhold2']}</strong>
             </Normaltekst>
             <Normaltekst className="blokk-xs">{tekster['iarbs-melding-tillegg']}</Normaltekst>
         </AlertStripeAdvarsel>
     );
-}
+};
 
 export default iarbsMelding;

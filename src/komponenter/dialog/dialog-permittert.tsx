@@ -10,7 +10,7 @@ import './dialog.less';
 import { dialogLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 import { OppfolgingContext } from '../../ducks/oppfolging';
-import {AmplitudeAktivitetContext} from "../../ducks/amplitude-aktivitet-context";
+import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
 
 interface StateProps {
     antallUleste: number;
@@ -33,7 +33,7 @@ const DialogPermittert = (props: StateProps) => {
 
     const linkCreator = (props: {}) => {
         // eslint-disable-next-line jsx-a11y/anchor-has-content
-        return <a onClick={handleClick} {...props}/>;
+        return <a onClick={handleClick} {...props} />;
     };
 
     return (
@@ -46,24 +46,20 @@ const DialogPermittert = (props: StateProps) => {
         >
             <div className="lenkepanel__innhold">
                 <div className="lenkepanel__ikon">
-                    {antallUleste > 0 ?
-                        <DialogFill messagesCount={antallUleste}/> :
-                        <DialogLine/>
-                    }
+                    {antallUleste > 0 ? <DialogFill messagesCount={antallUleste} /> : <DialogLine />}
                 </div>
                 <div className="lenkepanel__tekst">
-                    <Undertittel>
-                        {tekster['dialog']}
-                    </Undertittel>
+                    <Undertittel>{tekster['dialog']}</Undertittel>
                     <Normaltekst className="lenkepanel__ingress">
-                        Er du fortsatt permittert?<br />
+                        Er du fortsatt permittert?
+                        <br />
                         Hvis du har begynt å jobbe igjen eller har mistet jobben, gi beskjed til NAV her.
                     </Normaltekst>
                 </div>
             </div>
         </LenkepanelBase>
     );
-}
+};
 
 const mapStateToProps = (state: AppState): StateProps => ({
     antallUleste: state.ulesteDialoger.data.antallUleste,

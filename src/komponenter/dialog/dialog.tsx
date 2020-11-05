@@ -10,7 +10,7 @@ import './dialog.less';
 import { dialogLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 import { OppfolgingContext } from '../../ducks/oppfolging';
-import {AmplitudeAktivitetContext} from "../../ducks/amplitude-aktivitet-context";
+import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
 
 interface StateProps {
     antallUleste: number;
@@ -29,10 +29,10 @@ const Dialog = (props: StateProps) => {
             loggAktivitet({ aktivitet: 'Innleder dialog', ...amplitudeAktivitetsData });
         }
     };
-    
+
     const linkCreator = (props: {}) => {
         // eslint-disable-next-line jsx-a11y/anchor-has-content
-        return <a onClick={handleClick} {...props}/>;
+        return <a onClick={handleClick} {...props} />;
     };
 
     const byggDialogTekst = () => {
@@ -44,7 +44,7 @@ const Dialog = (props: StateProps) => {
             default:
                 return antallUleste.toString() + ' uleste meldinger';
         }
-    }
+    };
 
     return (
         <LenkepanelBase
@@ -56,23 +56,16 @@ const Dialog = (props: StateProps) => {
         >
             <div className="lenkepanel__innhold">
                 <div className="lenkepanel__ikon">
-                    {antallUleste > 0 ?
-                        <DialogFill messagesCount={antallUleste}/> :
-                        <DialogLine/>
-                    }
+                    {antallUleste > 0 ? <DialogFill messagesCount={antallUleste} /> : <DialogLine />}
                 </div>
                 <div className="lenkepanel__tekst">
-                    <Undertittel>
-                        {tekster['dialog']}
-                    </Undertittel>
-                    <Normaltekst className="lenkepanel__ingress">
-                        {byggDialogTekst()}
-                    </Normaltekst>
+                    <Undertittel>{tekster['dialog']}</Undertittel>
+                    <Normaltekst className="lenkepanel__ingress">{byggDialogTekst()}</Normaltekst>
                 </div>
             </div>
         </LenkepanelBase>
     );
-}
+};
 
 const mapStateToProps = (state: AppState): StateProps => ({
     antallUleste: state.ulesteDialoger.data.antallUleste,

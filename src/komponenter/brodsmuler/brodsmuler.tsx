@@ -13,16 +13,12 @@ interface BrodsmulerProps {
 const Brodsmuler: React.FunctionComponent<BrodsmulerProps> = (props: BrodsmulerProps) => {
     return (
         <div className="brodsmuler">
-            <img src={personSvg} alt="person-illustrasjon" className="brodsmuler__illustrasjon"/>
+            <img src={personSvg} alt="person-illustrasjon" className="brodsmuler__illustrasjon" />
             <ol className="brodsmuler__list">
                 <li className="brodsmuler__item typo-normal">
-                    <Lenke href={DITTNAV_PATH}>
-                        Ditt NAV
-                    </Lenke>
+                    <Lenke href={DITTNAV_PATH}>Ditt NAV</Lenke>
                 </li>
-                <li className="brodsmuler__item typo-normal">
-                    {tekster[props.brodsmuleId]}
-                </li>
+                <li className="brodsmuler__item typo-normal">{tekster[props.brodsmuleId]}</li>
             </ol>
         </div>
     );

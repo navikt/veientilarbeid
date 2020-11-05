@@ -4,14 +4,14 @@ import {
     State as OppfolgingState,
     Data as OppfolgingData,
     initialState as oppfolgingInitialState,
-    OppfolgingContext
+    OppfolgingContext,
 } from '../../ducks/oppfolging';
 import Feilmelding from '../feilmeldinger/feilmelding';
 import {
     State as BrukerregistreringState,
     Data as BrukerregistreringData,
     initialState as brukerregistreringInitialState,
-    BrukerregistreringContext
+    BrukerregistreringContext,
 } from '../../ducks/brukerregistrering';
 import {
     Data as FeatureTogglesData,
@@ -30,24 +30,33 @@ interface OwnProps {
 
 type OppfolgingProviderProps = OwnProps;
 
-const OppfolgingBrukerregistreringProvider = ({children}: OppfolgingProviderProps) => {
-
-    const [brukerregistreringState, setBrukerregistreringState] = React.useState<BrukerregistreringState>(brukerregistreringInitialState);
+const OppfolgingBrukerregistreringProvider = ({ children }: OppfolgingProviderProps) => {
+    const [brukerregistreringState, setBrukerregistreringState] = React.useState<BrukerregistreringState>(
+        brukerregistreringInitialState
+    );
     const [oppfolgingState, setOppfolgingState] = React.useState<OppfolgingState>(oppfolgingInitialState);
     const [featureToggleState, setFeatureToggleState] = React.useState<FeatureTogglesState>(featureTogglesInitialState);
-    const parameters = alleFeatureToggles.map(element => 'feature=' + element).join('&');
-    const featureTogglesUrl = `${FEATURE_URL}/?${parameters}`
+    const parameters = alleFeatureToggles.map((element) => 'feature=' + element).join('&');
+    const featureTogglesUrl = `${FEATURE_URL}/?${parameters}`;
 
     React.useEffect(() => {
         fetchData<OppfolgingState, OppfolgingData>(oppfolgingState, setOppfolgingState, VEILARBOPPFOLGING_URL);
-        fetchData<BrukerregistreringState, BrukerregistreringData>(brukerregistreringState, setBrukerregistreringState, BRUKERREGISTRERING_URL);
-        fetchData<FeatureTogglesState, FeatureTogglesData>(featureToggleState, setFeatureToggleState, featureTogglesUrl);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        fetchData<BrukerregistreringState, BrukerregistreringData>(
+            brukerregistreringState,
+            setBrukerregistreringState,
+            BRUKERREGISTRERING_URL
+        );
+        fetchData<FeatureTogglesState, FeatureTogglesData>(
+            featureToggleState,
+            setFeatureToggleState,
+            featureTogglesUrl
+        );
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
         <Innholdslaster
-            feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse"/>}
+            feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse" />}
             storrelse="XXL"
             avhengigheter={[oppfolgingState, brukerregistreringState]}
         >

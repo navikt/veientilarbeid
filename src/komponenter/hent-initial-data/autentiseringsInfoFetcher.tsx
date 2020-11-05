@@ -8,12 +8,17 @@ import InnholdLogikkNiva4 from '../../innhold/innhold-logikk-niva4';
 import InnholdLogikkNiva3 from '../../innhold/innhold-logikk-niva3';
 import OppfolgingBrukerregistreringProvider from './oppfolging-brukerregistrering-provider';
 
-import {Data as AutentiseringData, State as AutentiseringState, initialState, InnloggingsNiva, AutentiseringContext} from '../../ducks/autentisering';
+import {
+    Data as AutentiseringData,
+    State as AutentiseringState,
+    initialState,
+    InnloggingsNiva,
+    AutentiseringContext,
+} from '../../ducks/autentisering';
 
 export const AUTH_API = '/api/auth';
 
 const AutentiseringsInfoFetcher = () => {
-
     const [state, setState] = React.useState<AutentiseringState>(initialState);
 
     const contextpath = erMikrofrontend() ? contextpathDittNav : '';
@@ -25,19 +30,20 @@ const AutentiseringsInfoFetcher = () => {
 
     return (
         <Innholdslaster
-            feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse"/>}
+            feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse" />}
             storrelse="XXL"
             avhengigheter={[state]}
         >
             <AutentiseringContext.Provider value={state}>
-                {state.data.securityLevel === InnloggingsNiva.LEVEL_3
-                    ? <InnholdLogikkNiva3/>
-                    : <OppfolgingBrukerregistreringProvider>
+                {state.data.securityLevel === InnloggingsNiva.LEVEL_3 ? (
+                    <InnholdLogikkNiva3 />
+                ) : (
+                    <OppfolgingBrukerregistreringProvider>
                         <DataProvider>
-                            <InnholdLogikkNiva4/>
+                            <InnholdLogikkNiva4 />
                         </DataProvider>
                     </OppfolgingBrukerregistreringProvider>
-                }
+                )}
             </AutentiseringContext.Provider>
         </Innholdslaster>
     );

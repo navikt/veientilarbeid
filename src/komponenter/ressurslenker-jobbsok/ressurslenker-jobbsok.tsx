@@ -22,6 +22,6 @@ const RessurslenkerJobbsok = () => {
             </div>
         </section>
     );
-}
+};
 
 export default RessurslenkerJobbsok;

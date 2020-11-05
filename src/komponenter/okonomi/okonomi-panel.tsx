@@ -15,7 +15,7 @@ interface OkonomiPanelProps {
 }
 
 const OkonomiPanel = (props: OkonomiPanelProps) => {
-    const {tittelId, lenkeTekstId, lenkeUrl, children} = props;
+    const { tittelId, lenkeTekstId, lenkeUrl, children } = props;
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
 
     const handleClick = () => {
@@ -26,15 +26,11 @@ const OkonomiPanel = (props: OkonomiPanelProps) => {
         <div className="okonomi-panel">
             {children}
 
-            <Systemtittel className="blokk-xs okonomi-panel--tittel">
-                {tekster[tittelId]}
-            </Systemtittel>
+            <Systemtittel className="blokk-xs okonomi-panel--tittel">{tekster[tittelId]}</Systemtittel>
 
             <Lenke href={lenkeUrl} className="okonomi-panel--lenke" onClick={handleClick}>
-                <Normaltekst tag="span">
-                    {tekster[lenkeTekstId]}
-                </Normaltekst>
-                <HoyreChevron/>
+                <Normaltekst tag="span">{tekster[lenkeTekstId]}</Normaltekst>
+                <HoyreChevron />
             </Lenke>
         </div>
     );

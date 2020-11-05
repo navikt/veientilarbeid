@@ -5,16 +5,15 @@ import { DataElement, STATUS } from '../../ducks/api';
 
 const array = (value: {}) => (Array.isArray(value) ? value : [value]);
 
-const harStatus = (...status: string[]) =>
-    (element: {status: string}) => array(status).toString().includes(element.status);
+const harStatus = (...status: string[]) => (element: { status: string }) =>
+    array(status).toString().includes(element.status);
 
 const noenHarFeil = (avhengigheter: DataElement[]) => avhengigheter && avhengigheter.some(harStatus(STATUS.ERROR));
 const alleLastet = (avhengigheter: DataElement[]) => avhengigheter && avhengigheter.every(harStatus(STATUS.OK));
-const alleVentetPa = (ventPa?: DataElement[]) => ventPa ? ventPa.every(harStatus(STATUS.OK, STATUS.ERROR)) : true;
+const alleVentetPa = (ventPa?: DataElement[]) => (ventPa ? ventPa.every(harStatus(STATUS.OK, STATUS.ERROR)) : true);
 
-const alleLastetEllerReloading = (avhengigheter: DataElement[]) => (
-    avhengigheter && avhengigheter.every(harStatus(STATUS.OK, STATUS.RELOADING))
-);
+const alleLastetEllerReloading = (avhengigheter: DataElement[]) =>
+    avhengigheter && avhengigheter.every(harStatus(STATUS.OK, STATUS.RELOADING));
 
 interface InnholdslasterProps {
     avhengigheter: DataElement[];
@@ -46,7 +45,7 @@ class Innholdslaster extends React.Component<InnholdslasterProps, Innholdslaster
         if (!this.timer) {
             this.timer = window.setTimeout(() => {
                 this.setState({ timeout: true });
-            },                             200);
+            }, 200);
         }
     }
 
@@ -72,21 +71,19 @@ class Innholdslaster extends React.Component<InnholdslasterProps, Innholdslaster
     render() {
         const { avhengigheter, ventPa, betingelser, feilmeldingKomponent, storrelse } = this.props;
 
-        const avhengigheterFiltrert = betingelser ? avhengigheter.filter((a, i) => betingelser[i] === true) : avhengigheter;
+        const avhengigheterFiltrert = betingelser
+            ? avhengigheter.filter((a, i) => betingelser[i] === true)
+            : avhengigheter;
 
         if (alleLastet(avhengigheterFiltrert) && alleVentetPa(ventPa)) {
             // Alle avhengigheter lastet inn uten problemer og ventPa er ferdig (enten OK eller FEILET){
             return this.renderChildren();
-
         } else if (!this.state.timeout && alleLastetEllerReloading(avhengigheterFiltrert)) {
             this.setTimer();
             return this.renderChildren();
-
         } else if (noenHarFeil(avhengigheterFiltrert)) {
             this.clearTimer();
-            return (
-                <div className="innholdslaster-feilmelding">{feilmeldingKomponent}</div>
-            );
+            return <div className="innholdslaster-feilmelding">{feilmeldingKomponent}</div>;
         }
         return <Laster className="innholdslaster-laster" storrelse={storrelse} />;
     }

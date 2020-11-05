@@ -9,7 +9,7 @@ describe('finnAntallTimerSidenRegistrering', () => {
 
     it('skal returnere 1 time hvis registreringstidspunkt er for 40 sekunder siden', () => {
         const naaMS = naa.getTime();
-        const registreringstidspunktMs = naaMS - (40 * 1e3);
+        const registreringstidspunktMs = naaMS - 40 * 1e3;
 
         const timerBeregnet = antallTimerMellomAOgBRundetOpp(new Date(registreringstidspunktMs), new Date(naaMS));
 
@@ -18,7 +18,7 @@ describe('finnAntallTimerSidenRegistrering', () => {
 
     it('skal returnere 1 time hvis registreringstidspunkt er for 10 minutter siden', () => {
         const naaMS = naa.getTime();
-        const registreringstidspunktMs = naaMS - (10 * 6e4);
+        const registreringstidspunktMs = naaMS - 10 * 6e4;
 
         const timerBeregnet = antallTimerMellomAOgBRundetOpp(new Date(registreringstidspunktMs), new Date(naaMS));
 
@@ -27,7 +27,7 @@ describe('finnAntallTimerSidenRegistrering', () => {
 
     it('skal returnere 1 time hvis registreringstidspunkt er for 59 minutter siden', () => {
         const naaMS = naa.getTime();
-        const registreringstidspunktMs = naaMS - (59 * 6e4);
+        const registreringstidspunktMs = naaMS - 59 * 6e4;
 
         const timerBeregnet = antallTimerMellomAOgBRundetOpp(new Date(registreringstidspunktMs), new Date(naaMS));
 
@@ -36,7 +36,7 @@ describe('finnAntallTimerSidenRegistrering', () => {
 
     it('skal returnere 2 timer hvis registreringstidspunkt er for 61 minutter siden', () => {
         const naaMS = naa.getTime();
-        const registreringstidspunktMs = naaMS - (61 * 6e4);
+        const registreringstidspunktMs = naaMS - 61 * 6e4;
 
         const timerBeregnet = antallTimerMellomAOgBRundetOpp(new Date(registreringstidspunktMs), new Date(naaMS));
 
