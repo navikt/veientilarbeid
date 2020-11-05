@@ -11,7 +11,6 @@ const InnholdLogikkNiva3 = () => {
     return (
         <InnholdView
             erSykmeldtMedArbeidsgiver={false}
-            skalViseKrrMelding={false}
             skalViseEgenvurderingLenke={false}
             visRessurslenker={true}
             skalViseMotestotteLenke={false}

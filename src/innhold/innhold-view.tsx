@@ -20,7 +20,6 @@ import Situasjon from '../komponenter/din-situasjon/situasjon';
 
 interface OwnProps {
     erSykmeldtMedArbeidsgiver: boolean;
-    skalViseKrrMelding: boolean;
     skalViseEgenvurderingLenke: boolean;
     skalViseMotestotteLenke: boolean;
     visRessurslenker: boolean;
@@ -47,7 +46,6 @@ const AktivitetDialogMeldekort = ({ erSykmeldtMedArbeidsgiver }: ErSykmeldtMedAr
 
 const InnholdView = ({
     erSykmeldtMedArbeidsgiver,
-    skalViseKrrMelding,
     skalViseEgenvurderingLenke,
     skalViseMotestotteLenke,
     visRessurslenker,
@@ -63,7 +61,7 @@ const InnholdView = ({
             )}
             <Rad>
                 <ReaktiveringMelding />
-                {skalViseKrrMelding ? <KrrMelding /> : null}
+                <KrrMelding />
                 {erPermittertEllerEndret && <Situasjon />}
                 <Registrert />
                 <IARBSMelding visPlaster={skalViseIARBSPlaster} />
