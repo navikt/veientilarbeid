@@ -18,13 +18,16 @@ const KrrMelding = () => {
         loggAktivitet({ aktivitet: 'Går til krr-oppsett', ...amplitudeAktivitetsData })
     };
 
-    if (!reservasjonKRR) return null;
-
+    
     React.useEffect(() => {
-        loggAktivitet({ aktivitet: 'Viser krr melding', ...amplitudeAktivitetsData });
+        if (reservasjonKRR) {
+            loggAktivitet({ aktivitet: 'Viser krr melding', ...amplitudeAktivitetsData });
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
+    
+    if (!reservasjonKRR) return null;
+    
     return (
         <AlertStripeAdvarsel className="krr-melding blokk-xs">
             <Normaltekst className="blokk-xs">
