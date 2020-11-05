@@ -17,22 +17,19 @@ import IARBSMelding from '../komponenter/iarbs-melding/iarbs-melding';
 import { erMikrofrontend } from '../utils/app-state-utils';
 import Registrert from '../komponenter/registrert/registrert';
 import Situasjon from '../komponenter/din-situasjon/situasjon';
+import { BrukerInfoContext } from '../ducks/bruker-info';
 
 interface OwnProps {
     erSykmeldtMedArbeidsgiver: boolean;
     skalViseEgenvurderingLenke: boolean;
-    skalViseMotestotteLenke: boolean;
     visRessurslenker: boolean;
     skalViseIARBSPlaster: boolean;
     erPermittert: boolean;
     erPermittertEllerEndret: boolean;
 }
 
-interface ErSykmeldtMedArbeidsgiverProps {
-    erSykmeldtMedArbeidsgiver: boolean;
-}
-
-const AktivitetDialogMeldekort = ({ erSykmeldtMedArbeidsgiver }: ErSykmeldtMedArbeidsgiverProps) => {
+const AktivitetDialogMeldekort = () => {
+    const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
     return (
         <>
             <Aktivitetsplan />
@@ -47,7 +44,6 @@ const AktivitetDialogMeldekort = ({ erSykmeldtMedArbeidsgiver }: ErSykmeldtMedAr
 const InnholdView = ({
     erSykmeldtMedArbeidsgiver,
     skalViseEgenvurderingLenke,
-    skalViseMotestotteLenke,
     visRessurslenker,
     skalViseIARBSPlaster,
     erPermittertEllerEndret,
@@ -66,8 +62,8 @@ const InnholdView = ({
                 <Registrert />
                 <IARBSMelding visPlaster={skalViseIARBSPlaster} />
                 {skalViseEgenvurderingLenke ? <Egenvurdering /> : null}
-                {skalViseMotestotteLenke ? <Motestotte erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver} /> : null}
-                <AktivitetDialogMeldekort erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver} />
+                <Motestotte />
+                <AktivitetDialogMeldekort />
             </Rad>
 
             <AapRad />

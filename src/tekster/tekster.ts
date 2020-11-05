@@ -118,6 +118,16 @@ const tekster = {
     'startside-sykmeldt-banner-tittel': 'Mer veiledning fra NAV',
     'stillingsok-overskrift': 'Finn ledige stillinger',
     registrert: 'Du er registrert som arbeidssøker',
+    'motestotte-sykmeldt-systemtittel': 'Du kan få mer veiledning',
+    'motestotte-sykmeldt-avsnitt': [
+        'Du har svart at du trenger mer veiledning nå som retten til sykepenger nærmer seg slutten.',
+        'Vi ønsker å bli bedre kjent med situasjonen din, slik at du kan få veiledning som passer for deg.',
+    ],
+    'motestotte-ikkeSykmeldt-systemtittel': 'Du kan få veiledning',
+    'motestotte-ikkeSykmeldt-avsnitt': [
+        'Du har svart at du har utfordringer som hindrer deg i å søke eller være i jobb.',
+        'Vi ønsker å bli bedre kjent med situasjonen din, slik at du kan få veiledning som passer for deg.',
+    ],
 };
 
 export default tekster;
