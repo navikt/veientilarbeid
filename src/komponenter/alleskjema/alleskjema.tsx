@@ -13,7 +13,7 @@ const AlleSkjema = () => {
 
     const handleButtonClick = () => {
         loggAktivitet({ aktivitet: 'Går til alle skjema', ...amplitudeAktivitetsData });
-        window.location.href = alleSkjemaSoknadLenke;
+        window.location.assign(alleSkjemaSoknadLenke);
     };
   
     return (
