@@ -11,7 +11,7 @@
     "test": "npm run lint && craco test --env=jsdom",
     "test:coverage": "npm test -- --coverage --watchAll=false",
     "deploy": "npm run build && gh-pages -d build",
-    "prettier": "prettier --write src/**/*.ts src/**/*.tsx src/**/*.less",
+    "prettier": "prettier --write 'src/**/*.ts' 'src/**/*.tsx' 'src/**/*.less'",
     "refresh": "rm -rf node_modules && rm package-lock.json && npm i",
     "now-build": "cross-env REACT_APP_MOCK=true npm run build",
     "snyk-protect": "snyk protect",
