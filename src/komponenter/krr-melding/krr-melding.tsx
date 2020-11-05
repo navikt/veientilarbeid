@@ -22,8 +22,7 @@ const KrrMelding = () => {
         if (reservasjonKRR) {
             loggAktivitet({ aktivitet: 'Viser krr melding', ...amplitudeAktivitetsData });
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [reservasjonKRR, amplitudeAktivitetsData]);
     
     if (!reservasjonKRR) return null;
     
