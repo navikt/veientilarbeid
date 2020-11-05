@@ -13,9 +13,7 @@ describe('Tester alle skjema komponenten', () => {
     });
 
     test('Klikk på knappen trigger funksjonen', () => {
-        const mockHandleButtonClick = jest.fn((e: Event) => {
-            e.stopPropagation();
-        });
+        const mockHandleButtonClick = jest.fn();
         const mockWindowNavigate = jest.fn();
         render(<AlleSkjema />);
         const button = screen.getByText(tekster['alleskjema-lenke-tekst']);
@@ -24,6 +22,6 @@ describe('Tester alle skjema komponenten', () => {
         window.location.assign = mockWindowNavigate;
         userEvent.click(button);
         expect(mockHandleButtonClick).toHaveBeenCalledTimes(1);
-        expect(mockWindowNavigate).toHaveBeenCalledTimes(0);
+        expect(mockWindowNavigate).toHaveBeenCalledTimes(1);
     });
 });
