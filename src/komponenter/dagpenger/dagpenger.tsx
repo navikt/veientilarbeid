@@ -6,17 +6,16 @@ import { loggAktivitet } from '../../metrics/metrics';
 import './dagpenger.less';
 import { dagpengerSoknadLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
-import {AmplitudeAktivitetContext} from "../../ducks/amplitude-aktivitet-context";
+import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
 
 const Dagpenger = () => {
-
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
 
     const handleButtonClick = () => {
         loggAktivitet({ aktivitet: 'Går til dagpengesøknad', ...amplitudeAktivitetsData });
         window.location.href = dagpengerSoknadLenke;
     };
-  
+
     return (
         <div className="dagpenger">
             <Panel border className="dagpenger-ramme blokk-l">
@@ -24,14 +23,12 @@ const Dagpenger = () => {
                     <Systemtittel tag="h1" className="blokk-xs">
                         {tekster['dagpenger-tittel']}
                     </Systemtittel>
-                    <Normaltekst className="blokk-s dagpenger__tekst">
-                        {tekster['dagpenger-tekst']}
-                    </Normaltekst>
+                    <Normaltekst className="blokk-s dagpenger__tekst">{tekster['dagpenger-tekst']}</Normaltekst>
                     <Knapp onClick={handleButtonClick} className="blokk-xs">
                         {tekster['dagpenger-lenke-tekst']}
                     </Knapp>
                 </div>
-        </Panel>
+            </Panel>
         </div>
     );
 };

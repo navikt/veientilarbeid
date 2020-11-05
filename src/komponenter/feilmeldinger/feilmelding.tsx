@@ -9,11 +9,11 @@ interface FeilmeldingProps {
     tekstId: string;
 }
 
-function Feilmelding({tekstId}: FeilmeldingProps) {
+function Feilmelding({ tekstId }: FeilmeldingProps) {
     return (
-            <AlertStripeFeil className="feilmelding-container">
-                <Normaltekst>{tekster[tekstId]}</Normaltekst>
-            </AlertStripeFeil>
+        <AlertStripeFeil className="feilmelding-container">
+            <Normaltekst>{tekster[tekstId]}</Normaltekst>
+        </AlertStripeFeil>
     );
 }
 

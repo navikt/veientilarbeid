@@ -6,9 +6,7 @@ export function create() {
     const useExtension = (window as any).__REDUX_DEVTOOLS_EXTENSION__ !== undefined;
     const composer = useExtension ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : compose;
 
-    const composed = composer(
-        applyMiddleware(metricsMiddleWare)
-    );
+    const composed = composer(applyMiddleware(metricsMiddleWare));
 
     return composed(createStore)(reducer, {});
 }

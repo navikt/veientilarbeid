@@ -24,9 +24,9 @@ const DittSykefravaer = () => {
             overskrift={overskrift}
             ingress={ingress}
         >
-            <Plaster/>
+            <Plaster />
         </LenkepanelMedIkon>
     );
-}
+};
 
 export default DittSykefravaer;

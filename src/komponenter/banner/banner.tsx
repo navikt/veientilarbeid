@@ -12,7 +12,7 @@ const Banner: React.FunctionComponent<BannerProps> = (props: BannerProps) => {
     return (
         <header className="banner">
             <div className="banner--veientilarbeid">
-                <Brodsmuler brodsmuleId={`startside-${props.type}-banner-tittel`}/>
+                <Brodsmuler brodsmuleId={`startside-${props.type}-banner-tittel`} />
                 <Sidetittel className="banner--veientilarbeid__tittel">
                     {tekster[`startside-${props.type}-banner-brodsmule`]}
                 </Sidetittel>

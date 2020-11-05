@@ -16,11 +16,11 @@ interface Props {
 
 class LenkepanelMedIkon extends React.Component<Props> {
     render() {
-        const {href, onClick, className, overskrift, ingress, children} = this.props;
+        const { href, onClick, className, overskrift, ingress, children } = this.props;
 
         const linkCreator = (props: {}) => {
             // eslint-disable-next-line jsx-a11y/anchor-has-content
-            return <a onClick={onClick} {...props}/>;
+            return <a onClick={onClick} {...props} />;
         };
 
         return (
@@ -32,20 +32,10 @@ class LenkepanelMedIkon extends React.Component<Props> {
                 border={true}
             >
                 <div className="lenkepanel__innhold">
-                    <div className="lenkepanel__ikon">
-                        {children}
-                    </div>
+                    <div className="lenkepanel__ikon">{children}</div>
                     <div>
-                        <Undertittel>
-                            {tekster[overskrift]}
-                        </Undertittel>
-                        {(ingress)
-                            ?
-                            <Normaltekst>
-                                {tekster[ingress]}
-                            </Normaltekst>
-                            : ''
-                        }
+                        <Undertittel>{tekster[overskrift]}</Undertittel>
+                        {ingress ? <Normaltekst>{tekster[ingress]}</Normaltekst> : ''}
                     </div>
                 </div>
             </LenkepanelBase>

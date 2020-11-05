@@ -1,15 +1,15 @@
-import React, {useContext, useState} from 'react';
-import {Element} from 'nav-frontend-typografi';
-import {AlertStripeInfo} from 'nav-frontend-alertstriper';
+import React, { useContext, useState } from 'react';
+import { Element } from 'nav-frontend-typografi';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
-import {BrukerregistreringContext} from '../../ducks/brukerregistrering';
-import {BrukerInfoContext} from '../../ducks/bruker-info';
-import {OppfolgingContext} from '../../ducks/oppfolging';
-import {loggAktivitet, seDineOpplysninger} from '../../metrics/metrics';
+import { BrukerregistreringContext } from '../../ducks/brukerregistrering';
+import { BrukerInfoContext } from '../../ducks/bruker-info';
+import { OppfolgingContext } from '../../ducks/oppfolging';
+import { loggAktivitet, seDineOpplysninger } from '../../metrics/metrics';
 import Opplysninger from '../innsyn/registreringsopplysninger';
 import './registrert.less';
-import {AutentiseringContext, InnloggingsNiva} from "../../ducks/autentisering";
-import {AmplitudeAktivitetContext} from "../../ducks/amplitude-aktivitet-context";
+import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
+import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
 
 const Registrert = () => {
     const brukerregistreringData = useContext(BrukerregistreringContext).data;
@@ -19,7 +19,8 @@ const Registrert = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const [clickedInnsyn, setClickedInnsyn] = useState(false);
 
-    const kanViseKomponent = oppfolgingData.formidlingsgruppe === 'ARBS' && autentiseringData.securityLevel === InnloggingsNiva.LEVEL_4;
+    const kanViseKomponent =
+        oppfolgingData.formidlingsgruppe === 'ARBS' && autentiseringData.securityLevel === InnloggingsNiva.LEVEL_4;
     if (!kanViseKomponent) {
         return null;
     }
@@ -47,7 +48,7 @@ const Registrert = () => {
         rettighetsgruppe,
         dinSituasjon: dinSituasjonOrIngenVerdi,
         underOppfolging: underOppfolgingJaNei,
-        registreringType: registreringTypeOrIngenVerdi
+        registreringType: registreringTypeOrIngenVerdi,
     };
 
     const handleClickOpen = () => {
@@ -64,18 +65,22 @@ const Registrert = () => {
             <AlertStripeInfo className={showOpplysninger ? 'registrering-info' : ''}>
                 <Element>Du er registrert som arbeidssøker</Element>
             </AlertStripeInfo>
-            { showOpplysninger ?
-                <Ekspanderbartpanel tittel="Se svarene fra registreringen" border className="registrering-svar" onClick={ handleClickOpen }>
+            {showOpplysninger ? (
+                <Ekspanderbartpanel
+                    tittel="Se svarene fra registreringen"
+                    border
+                    className="registrering-svar"
+                    onClick={handleClickOpen}
+                >
                     <Opplysninger
-                        opprettetDato={ opprettetDato }
-                        manueltRegistrertAv={ manueltRegistrertAv }
-                        besvarelse={ besvarelse }
-                        teksterForBesvarelse={ teksterForBesvarelse }
-                        metrikkData={ metrikkData }
+                        opprettetDato={opprettetDato}
+                        manueltRegistrertAv={manueltRegistrertAv}
+                        besvarelse={besvarelse}
+                        teksterForBesvarelse={teksterForBesvarelse}
+                        metrikkData={metrikkData}
                     />
                 </Ekspanderbartpanel>
-                : null
-            }
+            ) : null}
         </div>
     );
 };
