@@ -157,7 +157,6 @@ const InnholdLogikkNiva4 = ({ harEgenvurderingbesvarelse, egenvurderingbesvarels
     return (
         <InnholdView
             erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}
-            skalViseKrrMelding={oppfolgingData.reservasjonKRR}
             skalViseEgenvurderingLenke={skalViseEgenvurderingLenke}
             skalViseMotestotteLenke={skalViseMotestotteLenke}
             visRessurslenker={visRessurslenker}

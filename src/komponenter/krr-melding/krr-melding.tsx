@@ -5,38 +5,27 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import './krr-melding.less';
 import { difiLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
-import { klikkPaDifiLenke } from '../../metrics/metrics';
-import { useContext } from 'react';
-import { BrukerregistreringContext } from '../../ducks/brukerregistrering';
-import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { OppfolgingContext } from '../../ducks/oppfolging';
+import { loggAktivitet } from '../../metrics/metrics';
+import { AmplitudeAktivitetContext } from "../../ducks/amplitude-aktivitet-context";
 
 const KrrMelding = () => {
-    const brukerregistreringData = useContext(BrukerregistreringContext).data;
-    const brukerinfoData = React.useContext(BrukerInfoContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
-    const {registrering} = brukerregistreringData;
-    const {besvarelse} = registrering;
-    const {dinSituasjon} = besvarelse;
-    const dinSituasjonOrIngenVerdi = dinSituasjon ? dinSituasjon : 'INGEN_VERDI';
-    const {registreringType, rettighetsgruppe} = brukerinfoData;
-    const {formidlingsgruppe, servicegruppe, underOppfolging, reservasjonKRR} = oppfolgingData;
-    const underOppfolgingJaNei = underOppfolging ? 'ja' : 'nei';
-    const reservasjonKRRJaNei = reservasjonKRR ? 'ja' : 'nei';
-    const registreringTypeOrIngenVerdi = registreringType ? registreringType : 'INGEN_VERDI';
+    const { reservasjonKRR } = oppfolgingData;
+    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
 
-    const metrikkData = {
-        servicegruppe,
-        formidlingsgruppe,
-        rettighetsgruppe,
-        dinSituasjon: dinSituasjonOrIngenVerdi,
-        underOppfolging: underOppfolgingJaNei,
-        registreringType: registreringTypeOrIngenVerdi,
-        reservasjonKRR: reservasjonKRRJaNei,
+    const handleLenkeKlikk = () => {
+        loggAktivitet({ aktivitet: 'Går til krr-oppsett', ...amplitudeAktivitetsData })
     };
 
-    const klikkLenkeMetrikk = () => klikkPaDifiLenke(metrikkData);
-
+    React.useEffect(() => {
+        if (reservasjonKRR) {
+            loggAktivitet({ aktivitet: 'Viser krr melding', ...amplitudeAktivitetsData });
+        }
+    }, [reservasjonKRR, amplitudeAktivitetsData]);
+    
+    if (!reservasjonKRR) return null;
+    
     return (
         <AlertStripeAdvarsel className="krr-melding blokk-xs">
             <Normaltekst className="blokk-xs">
@@ -50,7 +39,7 @@ const KrrMelding = () => {
                 <li><Normaltekst>{tekster['krr-melding-kulepunkt2']}</Normaltekst></li>
                 <li><Normaltekst>{tekster['krr-melding-kulepunkt3']}</Normaltekst></li>
             </ul>
-            <Lenke href={difiLenke} onClick={klikkLenkeMetrikk}>
+            <Lenke href={difiLenke} onClick={handleLenkeKlikk}>
                 <Normaltekst>
                     {tekster['krr-melding-lenketekst']}
                 </Normaltekst>
