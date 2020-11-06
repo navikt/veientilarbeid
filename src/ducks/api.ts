@@ -1,7 +1,6 @@
 import { fetchToJson } from './api-utils';
 import { Data as JobbsokerbesvarelseData } from './jobbsokerbesvarelse';
 import { Data as UlesteDialogerData } from './dialog';
-import { Data as EgenvurderingbesvarelseData } from './egenvurdering';
 import { contextpathDittNav, erMikrofrontend } from '../utils/app-state-utils';
 
 export enum STATUS {
@@ -48,8 +47,4 @@ export function hentJobbsokerbesvarelseFetch(): Promise<JobbsokerbesvarelseData>
 
 export function hentUlesteDialogerFetch(): Promise<UlesteDialogerData> {
     return fetchToJson(ULESTEDIALOGER_URL, requestConfig);
-}
-
-export function hentEgenvurderingbesvarelseFetch(): Promise<EgenvurderingbesvarelseData> {
-    return fetchToJson(EGENVURDERINGBESVARELSE_URL, requestConfig);
 }
