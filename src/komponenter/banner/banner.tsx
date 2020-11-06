@@ -3,18 +3,20 @@ import Brodsmuler from '../brodsmuler/brodsmuler';
 import { Sidetittel } from 'nav-frontend-typografi';
 import './banner.less';
 import tekster from '../../tekster/tekster';
+import { erMikrofrontend } from '../../utils/app-state-utils';
+import { PropsWithChildren } from 'react';
+import { BrukerInfoContext } from '../../ducks/bruker-info';
 
-interface BannerProps {
-    type: string;
-}
+const Banner: React.FunctionComponent<PropsWithChildren<{}>> = () => {
+    const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
+    const type = erSykmeldtMedArbeidsgiver ? 'sykmeldt' : 'ordinaer';
 
-const Banner: React.FunctionComponent<BannerProps> = (props: BannerProps) => {
-    return (
+    return erMikrofrontend() ? null : (
         <header className="banner">
             <div className="banner--veientilarbeid">
-                <Brodsmuler brodsmuleId={`startside-${props.type}-banner-tittel`} />
+                <Brodsmuler brodsmuleId={`startside-${type}-banner-tittel`} />
                 <Sidetittel className="banner--veientilarbeid__tittel">
-                    {tekster[`startside-${props.type}-banner-brodsmule`]}
+                    {tekster[`startside-${type}-banner-brodsmule`]}
                 </Sidetittel>
             </div>
         </header>

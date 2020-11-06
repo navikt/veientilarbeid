@@ -121,7 +121,6 @@ const InnholdLogikkNiva4 = () => {
 
     return (
         <InnholdView
-            erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}
             skalViseEgenvurderingLenke={skalViseEgenvurderingLenke}
             visRessurslenker={visRessurslenker}
             skalViseIARBSPlaster={skalViseIARBSPlaster}
