@@ -19,7 +19,6 @@ import Situasjon from '../komponenter/din-situasjon/situasjon';
 import { BrukerInfoContext } from '../ducks/bruker-info';
 
 interface OwnProps {
-    skalViseEgenvurderingLenke: boolean;
     visRessurslenker: boolean;
     skalViseIARBSPlaster: boolean;
 }
@@ -37,11 +36,7 @@ const AktivitetDialogMeldekort = () => {
     );
 };
 
-const InnholdView = ({
-    skalViseEgenvurderingLenke,
-    visRessurslenker,
-    skalViseIARBSPlaster,
-}: OwnProps) => {
+const InnholdView = ({ visRessurslenker, skalViseIARBSPlaster }: OwnProps) => {
     return (
         <>
             <Banner />
@@ -51,7 +46,7 @@ const InnholdView = ({
                 <Situasjon />
                 <Registrert />
                 <IARBSMelding visPlaster={skalViseIARBSPlaster} />
-                {skalViseEgenvurderingLenke ? <Egenvurdering /> : null}
+                <Egenvurdering />
                 <Motestotte />
                 <AktivitetDialogMeldekort />
             </Rad>

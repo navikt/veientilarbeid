@@ -5,6 +5,7 @@ import Panel from 'nav-frontend-paneler';
 import { seEgenvurdering, gaTilEgenvurdering, loggAktivitet } from '../../metrics/metrics';
 import {
     BrukerregistreringContext,
+    ForeslattInnsatsgruppe,
     selectForeslattInnsatsgruppe,
     selectOpprettetRegistreringDato,
 } from '../../ducks/brukerregistrering';
@@ -12,6 +13,10 @@ import './egenvurdering.less';
 import { behovsvurderingLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
+import { OppfolgingContext, Servicegruppe } from '../../ducks/oppfolging';
+import { EgenvurderingContext } from '../../ducks/egenvurdering';
+
+const LANSERINGSDATO_EGENVURDERING = new Date(2019, 4, 10);
 
 export const antallTimerMellomAOgBRundetOpp = (a: Date, b: Date): number => {
     return Math.ceil((b.getTime() - a.getTime()) / 36e5);
@@ -23,25 +28,55 @@ export const antallTimerSidenRegistrering = (registreringsDato: Date) => {
 
 const Egenvurdering = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
-    const data = React.useContext(BrukerregistreringContext).data;
-    const opprettetRegistreringDatoString = selectOpprettetRegistreringDato(data);
+    const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
+    const egenvurderingData = React.useContext(EgenvurderingContext).data;
+    const oppfolgingData = React.useContext(OppfolgingContext).data;
+
+    const opprettetRegistreringDatoString = selectOpprettetRegistreringDato(brukerregistreringData);
     const opprettetRegistreringDato = opprettetRegistreringDatoString
         ? new Date(opprettetRegistreringDatoString)
         : null;
-    const foreslattInnsatsgruppe = selectForeslattInnsatsgruppe(data)!; // Komponent blir rendret kun hvis foreslått innsatsgruppe er satt
+    const foreslattInnsatsgruppe = selectForeslattInnsatsgruppe(brukerregistreringData)!; // Komponent blir rendret kun hvis foreslått innsatsgruppe er satt
     const timerSidenRegistrering = antallTimerSidenRegistrering(opprettetRegistreringDato!);
 
+    const dinSituasjon = brukerregistreringData?.registrering.besvarelse.dinSituasjon || 'INGEN_VERDI';
+
+    const harEgenvurderingbesvarelse = egenvurderingData !== null;
+    const egenvurderingbesvarelseDato = egenvurderingData ? new Date(egenvurderingData.sistOppdatert) : null;
+    const egenvurderingsbesvarelseValid = (): boolean => {
+        let isValid = false;
+        if (opprettetRegistreringDato && egenvurderingbesvarelseDato) {
+            isValid = opprettetRegistreringDato <= egenvurderingbesvarelseDato;
+        }
+        return isValid;
+    };
+
+    const skalViseEgenvurderingLenke =
+        dinSituasjon !== 'ER_PERMITTERT' &&
+        oppfolgingData.servicegruppe === Servicegruppe.IVURD &&
+        (!harEgenvurderingbesvarelse || !egenvurderingsbesvarelseValid()) &&
+        opprettetRegistreringDato !== null &&
+        opprettetRegistreringDato >= LANSERINGSDATO_EGENVURDERING &&
+        !oppfolgingData.reservasjonKRR &&
+        (foreslattInnsatsgruppe === ForeslattInnsatsgruppe.STANDARD_INNSATS ||
+            foreslattInnsatsgruppe === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS);
+
     React.useEffect(() => {
-        seEgenvurdering(foreslattInnsatsgruppe);
-        loggAktivitet({ aktivitet: 'Viser egenvurdering', ...amplitudeAktivitetsData });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+        if (skalViseEgenvurderingLenke) {
+            seEgenvurdering(foreslattInnsatsgruppe);
+            loggAktivitet({ aktivitet: 'Viser egenvurdering', ...amplitudeAktivitetsData });
+        }
+    }, [skalViseEgenvurderingLenke, foreslattInnsatsgruppe, amplitudeAktivitetsData]);
 
     const handleButtonClick = () => {
         loggAktivitet({ aktivitet: 'Går til egenvurdering', ...amplitudeAktivitetsData });
         gaTilEgenvurdering(timerSidenRegistrering, foreslattInnsatsgruppe);
         window.location.href = behovsvurderingLenke;
     };
+
+    if (!skalViseEgenvurderingLenke) {
+        return null;
+    }
 
     return (
         <Panel border className="ramme blokk-s">
