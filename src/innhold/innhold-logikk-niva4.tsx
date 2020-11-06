@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
-import { AppState } from '../reducer';
 import { erMikrofrontend } from '../utils/app-state-utils';
 import { BrukerInfoContext } from '../ducks/bruker-info';
 import {
@@ -26,16 +24,14 @@ import { OppfolgingContext, Servicegruppe } from '../ducks/oppfolging';
 import getPoaGroup from '../utils/get-poa-group';
 import { AmplitudeAktivitetContext } from '../ducks/amplitude-aktivitet-context';
 import ukerFraDato from '../utils/uker-fra-dato';
+import { EgenvurderingContext } from '../ducks/egenvurdering';
 const LANSERINGSDATO_EGENVURDERING = new Date(2019, 4, 10);
 
-interface StateProps {
-    harEgenvurderingbesvarelse: boolean;
-    egenvurderingbesvarelseDato: Date | null;
-}
-
-const InnholdLogikkNiva4 = ({ harEgenvurderingbesvarelse, egenvurderingbesvarelseDato }: StateProps) => {
+const InnholdLogikkNiva4 = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
+    const egenvurderingData = React.useContext(EgenvurderingContext).data;
+
     const opprettetRegistreringDatoString = selectOpprettetRegistreringDato(brukerregistreringData);
     const opprettetRegistreringDato = opprettetRegistreringDatoString
         ? new Date(opprettetRegistreringDatoString)
@@ -103,6 +99,8 @@ const InnholdLogikkNiva4 = ({ harEgenvurderingbesvarelse, egenvurderingbesvarels
 
     const visRessurslenker = !(tilbakeTilSammeArbeidsgiver && erSykmeldtMedArbeidsgiver);
 
+    const harEgenvurderingbesvarelse = egenvurderingData !== null;
+    const egenvurderingbesvarelseDato = egenvurderingData ? new Date(egenvurderingData.sistOppdatert) : null;
     const egenvurderingsbesvarelseValid = (): boolean => {
         let isValid = false;
         if (opprettetRegistreringDato && egenvurderingbesvarelseDato) {
@@ -131,11 +129,4 @@ const InnholdLogikkNiva4 = ({ harEgenvurderingbesvarelse, egenvurderingbesvarels
     );
 };
 
-const mapStateToProps = (state: AppState): StateProps => ({
-    harEgenvurderingbesvarelse: state.egenvurderingbesvarelse.data !== null,
-    egenvurderingbesvarelseDato: state.egenvurderingbesvarelse.data
-        ? new Date(state.egenvurderingbesvarelse.data.sistOppdatert)
-        : null,
-});
-
-export default connect(mapStateToProps)(InnholdLogikkNiva4);
+export default InnholdLogikkNiva4;
