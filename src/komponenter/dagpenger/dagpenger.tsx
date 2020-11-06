@@ -13,7 +13,7 @@ const Dagpenger = () => {
 
     const handleButtonClick = () => {
         loggAktivitet({ aktivitet: 'Går til dagpengesøknad', ...amplitudeAktivitetsData });
-        window.location.href = dagpengerSoknadLenke;
+        window.location.assign(dagpengerSoknadLenke);
     };
 
     return (
