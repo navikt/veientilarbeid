@@ -53,11 +53,12 @@ describe('Tester registreringsopplysninger komponenten', () => {
     test('Rendrer komponenten og tekstene', () => {
         render(<Opplysninger {...registreringsopplysninger} />);
         expect(screen.getByText(/du kan endre opplysningene du ga ved å kontakte nav./i)).toBeTruthy();
-        const { teksterForBesvarelse } = registreringsopplysninger
-        teksterForBesvarelse.forEach(({sporsmal, svar}) => {
-          expect(screen.getByText(sporsmal)).toBeTruthy();
-          expect(screen.getByText(svar)).toBeTruthy();
-        })
+        const { teksterForBesvarelse } = registreringsopplysninger;
+        teksterForBesvarelse.forEach(({ sporsmal, svar }) => {
+            expect(screen.getByText(sporsmal)).toBeTruthy();
+            expect(screen.getByText(svar)).toBeTruthy();
+        });
+        expect(screen.queryAllByAltText(/denne teksten skal ikke være her/i).length).toBe(0);
     });
     test('Klikk på lenken fungerer', () => {
         const mockHandleClick = jest.fn();
