@@ -71,7 +71,7 @@ const Egenvurdering = () => {
     const handleButtonClick = () => {
         loggAktivitet({ aktivitet: 'Går til egenvurdering', ...amplitudeAktivitetsData });
         gaTilEgenvurdering(timerSidenRegistrering, foreslattInnsatsgruppe);
-        window.location.href = behovsvurderingLenke;
+        window.location.assign(behovsvurderingLenke);
     };
 
     if (!skalViseEgenvurderingLenke) {
