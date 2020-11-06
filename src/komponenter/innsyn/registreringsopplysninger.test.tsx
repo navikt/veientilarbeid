@@ -50,9 +50,13 @@ const registreringsopplysninger = {
 };
 
 describe('Tester registreringsopplysninger komponenten', () => {
-    test('Rendrer komponenten dersom den skal vises', () => {
+    test('Rendrer komponenten og tekstene', () => {
         render(<Opplysninger {...registreringsopplysninger} />);
-        expect(screen.getByText(/du kan endre opplysningene du ga ved å kontakte nav./i));
+        expect(screen.getByText(/du kan endre opplysningene du ga ved å kontakte nav./i)).toBeTruthy();
+        const { teksterForBesvarelse } = registreringsopplysninger
+        teksterForBesvarelse.forEach(({sporsmal}) => {
+          expect(screen.getByText(sporsmal)).toBeTruthy();
+        })
     });
     test('Klikk på lenken fungerer', () => {
         const mockHandleClick = jest.fn();
