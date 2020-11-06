@@ -1,63 +1,51 @@
 import { ReactChildren, ReactElement } from 'react';
-import {
-    BrukerregistreringContext,
-    Data as BrukerRegistreringData,
-    initialState as brukerRegistreringInitialState,
-} from '../ducks/brukerregistrering';
 import merge from 'merge-deep';
-import { Data as SituasjonData, initialState as situasjonInitialState, SituasjonContext } from '../ducks/situasjon';
-import {
-    Data as FeatureToggleData,
-    FeaturetoggleContext,
-    initialState as featureToggleInitialState,
-} from '../ducks/feature-toggles';
-import {
-    Data as EgenvurderingData,
-    EgenvurderingContext,
-    initialState as egenvurderingInitialState,
-} from '../ducks/egenvurdering';
-import { Data as OppfolgingData, OppfolgingContext, initialState as oppfolgingInitialState } from '../ducks/oppfolging';
+import * as Brukerregistrering from '../ducks/brukerregistrering';
+import * as Situasjon from '../ducks/situasjon';
+import * as FeatureToggle from '../ducks/feature-toggles';
+import * as Egenvurdering from '../ducks/egenvurdering';
+import * as Oppfolging from '../ducks/oppfolging';
 import * as React from 'react';
 import { DeepPartial } from 'redux';
 
 export type ProviderProps = {
-    brukerregistrering?: DeepPartial<BrukerRegistreringData>;
-    situasjon?: DeepPartial<SituasjonData>;
-    featureToggle?: DeepPartial<FeatureToggleData>;
-    egenvurdering?: DeepPartial<EgenvurderingData>;
-    oppfolging?: DeepPartial<OppfolgingData>;
+    brukerregistrering?: DeepPartial<Brukerregistrering.Data>;
+    situasjon?: DeepPartial<Situasjon.Data>;
+    featureToggle?: DeepPartial<FeatureToggle.Data>;
+    egenvurdering?: DeepPartial<Egenvurdering.Data>;
+    oppfolging?: DeepPartial<Oppfolging.Data>;
 };
 
 export const contextProviders = function (
     props: ProviderProps
 ): ({ children }: { children: ReactChildren }) => ReactElement {
     return ({ children }) => (
-        <BrukerregistreringContext.Provider
+        <Brukerregistrering.BrukerregistreringContext.Provider
             value={merge(
-                brukerRegistreringInitialState,
+                Brukerregistrering.initialState,
                 props.brukerregistrering && { data: props.brukerregistrering }
             )}
         >
-            <SituasjonContext.Provider
-                value={merge(situasjonInitialState, props.situasjon && { data: props.situasjon })}
+            <Situasjon.SituasjonContext.Provider
+                value={merge(Situasjon.initialState, props.situasjon && { data: props.situasjon })}
             >
-                <EgenvurderingContext.Provider
-                    value={merge(egenvurderingInitialState, props.egenvurdering && { data: props.egenvurdering })}
+                <Egenvurdering.EgenvurderingContext.Provider
+                    value={merge(Egenvurdering.initialState, props.egenvurdering && { data: props.egenvurdering })}
                 >
-                    <OppfolgingContext.Provider
-                        value={merge(oppfolgingInitialState, props.oppfolging && { data: props.oppfolging })}
+                    <Oppfolging.OppfolgingContext.Provider
+                        value={merge(Oppfolging.initialState, props.oppfolging && { data: props.oppfolging })}
                     >
-                        <FeaturetoggleContext.Provider
+                        <FeatureToggle.FeaturetoggleContext.Provider
                             value={merge(
-                                featureToggleInitialState,
+                                FeatureToggle.initialState,
                                 props.featureToggle && { data: props.featureToggle }
                             )}
                         >
                             {children}
-                        </FeaturetoggleContext.Provider>
-                    </OppfolgingContext.Provider>
-                </EgenvurderingContext.Provider>
-            </SituasjonContext.Provider>
-        </BrukerregistreringContext.Provider>
+                        </FeatureToggle.FeaturetoggleContext.Provider>
+                    </Oppfolging.OppfolgingContext.Provider>
+                </Egenvurdering.EgenvurderingContext.Provider>
+            </Situasjon.SituasjonContext.Provider>
+        </Brukerregistrering.BrukerregistreringContext.Provider>
     );
 };
