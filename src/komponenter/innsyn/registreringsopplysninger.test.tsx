@@ -29,7 +29,7 @@ const registreringsopplysninger = {
         {
             sporsmalId: 'utdanningBestatt',
             sporsmal: 'Er utdanningen din bestått?',
-            svar: 'Ikke aktuelt',
+            svar: 'Ikke aktuelt svar',
         },
         {
             sporsmalId: 'utdanningGodkjent',
@@ -54,8 +54,9 @@ describe('Tester registreringsopplysninger komponenten', () => {
         render(<Opplysninger {...registreringsopplysninger} />);
         expect(screen.getByText(/du kan endre opplysningene du ga ved å kontakte nav./i)).toBeTruthy();
         const { teksterForBesvarelse } = registreringsopplysninger
-        teksterForBesvarelse.forEach(({sporsmal}) => {
+        teksterForBesvarelse.forEach(({sporsmal, svar}) => {
           expect(screen.getByText(sporsmal)).toBeTruthy();
+          expect(screen.getByText(svar)).toBeTruthy();
         })
     });
     test('Klikk på lenken fungerer', () => {
