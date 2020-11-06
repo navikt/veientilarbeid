@@ -1,51 +1,10 @@
 import * as React from 'react';
 import { render, screen } from '@testing-library/react';
 import Situasjon from './situasjon';
-import { ComponentType, ReactChildren, ReactElement } from 'react';
-import merge from 'merge-deep';
-import { DeepPartial } from 'redux';
+import { ComponentType } from 'react';
 
-import {
-    Data as BrukerRegistreringData,
-    initialState as brukerRegistreringInitialState,
-    BrukerregistreringContext,
-} from '../../ducks/brukerregistrering';
-import { Data as SituasjonData, initialState as situasjonInitialState, SituasjonContext } from '../../ducks/situasjon';
-import {
-    Data as FeatureToggleData,
-    initialState as featureToggleInitialState,
-    FeaturetoggleContext,
-} from '../../ducks/feature-toggles';
 import userEvent from '@testing-library/user-event';
-
-type ProviderProps = {
-    brukerregistrering?: DeepPartial<BrukerRegistreringData>;
-    situasjon?: DeepPartial<SituasjonData>;
-    featureToggle?: DeepPartial<FeatureToggleData>;
-};
-
-const situasjonProviders = function (
-    props: ProviderProps
-): ({ children }: { children: ReactChildren }) => ReactElement {
-    return ({ children }) => (
-        <BrukerregistreringContext.Provider
-            value={merge(
-                brukerRegistreringInitialState,
-                props.brukerregistrering && { data: props.brukerregistrering }
-            )}
-        >
-            <SituasjonContext.Provider
-                value={merge(situasjonInitialState, props.situasjon && { data: props.situasjon })}
-            >
-                <FeaturetoggleContext.Provider
-                    value={merge(featureToggleInitialState, props.featureToggle && { data: props.featureToggle })}
-                >
-                    {children}
-                </FeaturetoggleContext.Provider>
-            </SituasjonContext.Provider>
-        </BrukerregistreringContext.Provider>
-    );
-};
+import { ProviderProps, contextProviders } from '../../test/test-context-providers';
 
 describe('Tester situasjon-komponenten', () => {
     const vanligTekstIKomponent = 'Her kan du oppdatere situasjonen din';
@@ -62,13 +21,13 @@ describe('Tester situasjon-komponenten', () => {
             brukerregistrering: permittertBrukerRegistrering,
             featureToggle: pakrevdeFeatureToggles,
         };
-        render(<Situasjon />, { wrapper: situasjonProviders(providerProps) as ComponentType });
+        render(<Situasjon />, { wrapper: contextProviders(providerProps) as ComponentType });
         expect(screen.getByText(vanligTekstIKomponent)).toBeTruthy();
     });
 
     it('rendres IKKE når default-state er brukt', async () => {
         const providerProps: ProviderProps = {};
-        render(<Situasjon />, { wrapper: situasjonProviders(providerProps) as ComponentType });
+        render(<Situasjon />, { wrapper: contextProviders(providerProps) as ComponentType });
         expect(await screen.queryByText(vanligTekstIKomponent)).toBeFalsy();
     });
 
@@ -76,7 +35,7 @@ describe('Tester situasjon-komponenten', () => {
         const providerProps: ProviderProps = {
             brukerregistrering: permittertBrukerRegistrering,
         };
-        render(<Situasjon />, { wrapper: situasjonProviders(providerProps) as ComponentType });
+        render(<Situasjon />, { wrapper: contextProviders(providerProps) as ComponentType });
         expect(await screen.queryByText(vanligTekstIKomponent)).toBeFalsy();
     });
 
@@ -84,7 +43,7 @@ describe('Tester situasjon-komponenten', () => {
         const providerProps: ProviderProps = {
             featureToggle: pakrevdeFeatureToggles,
         };
-        render(<Situasjon />, { wrapper: situasjonProviders(providerProps) as ComponentType });
+        render(<Situasjon />, { wrapper: contextProviders(providerProps) as ComponentType });
         expect(await screen.queryByText(vanligTekstIKomponent)).toBeFalsy();
     });
 
@@ -94,7 +53,7 @@ describe('Tester situasjon-komponenten', () => {
             featureToggle: pakrevdeFeatureToggles,
             situasjon: { opprettet: '2019-04-07T11:53:05.486686+01:00' },
         };
-        render(<Situasjon />, { wrapper: situasjonProviders(providerProps) as ComponentType });
+        render(<Situasjon />, { wrapper: contextProviders(providerProps) as ComponentType });
         expect(screen.getByText('Sist endret 7. april 2019', { exact: false })).toBeTruthy();
     });
 
@@ -106,7 +65,7 @@ describe('Tester situasjon-komponenten', () => {
             brukerregistrering: permittertBrukerRegistrering,
             featureToggle: pakrevdeFeatureToggles,
         };
-        render(<Situasjon />, { wrapper: situasjonProviders(providerProps) as ComponentType });
+        render(<Situasjon />, { wrapper: contextProviders(providerProps) as ComponentType });
 
         const situasjonKomponent = screen.getByText(vanligTekstIKomponent);
         userEvent.click(situasjonKomponent);
