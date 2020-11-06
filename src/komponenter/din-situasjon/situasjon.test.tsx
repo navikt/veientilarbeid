@@ -16,6 +16,7 @@ import {
     initialState as featureToggleInitialState,
     FeaturetoggleContext,
 } from '../../ducks/feature-toggles';
+import userEvent from '@testing-library/user-event';
 
 type ProviderProps = {
     brukerregistrering?: DeepPartial<BrukerRegistreringData>;
@@ -95,5 +96,21 @@ describe('Tester situasjon-komponenten', () => {
         };
         render(<Situasjon />, { wrapper: situasjonProviders(providerProps) as ComponentType });
         expect(screen.getByText('Sist endret 7. april 2019', { exact: false })).toBeTruthy();
+    });
+
+    it('komponenten fungerer som en lenke', async () => {
+        const mockLocationAssign = jest.fn();
+        window.location.assign = mockLocationAssign;
+
+        const providerProps: ProviderProps = {
+            brukerregistrering: permittertBrukerRegistrering,
+            featureToggle: pakrevdeFeatureToggles,
+        };
+        render(<Situasjon />, { wrapper: situasjonProviders(providerProps) as ComponentType });
+
+        const situasjonKomponent = screen.getByText(vanligTekstIKomponent);
+        userEvent.click(situasjonKomponent);
+
+        expect(mockLocationAssign).toHaveBeenCalledTimes(1);
     });
 });

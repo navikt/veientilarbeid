@@ -35,7 +35,7 @@ const Situasjon = () => {
 
     const handleClick = () => {
         uniLogger('endresituasjon.gatil', { situasjonsId });
-        window.location.href = endresituasjonLenke;
+        window.location.assign(endresituasjonLenke);
     };
 
     React.useEffect(() => {
