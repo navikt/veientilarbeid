@@ -123,7 +123,6 @@ const InnholdLogikkNiva4 = ({ harEgenvurderingbesvarelse, egenvurderingbesvarels
 
     return (
         <InnholdView
-            erSykmeldtMedArbeidsgiver={erSykmeldtMedArbeidsgiver}
             skalViseEgenvurderingLenke={skalViseEgenvurderingLenke}
             visRessurslenker={visRessurslenker}
             skalViseIARBSPlaster={skalViseIARBSPlaster}

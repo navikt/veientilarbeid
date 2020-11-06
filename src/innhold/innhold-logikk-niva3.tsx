@@ -8,14 +8,7 @@ const InnholdLogikkNiva3 = () => {
         seVeientilarbeidNiva3();
     }, []);
 
-    return (
-        <InnholdView
-            erSykmeldtMedArbeidsgiver={false}
-            skalViseEgenvurderingLenke={false}
-            visRessurslenker={true}
-            skalViseIARBSPlaster={false}
-        />
-    );
+    return <InnholdView skalViseEgenvurderingLenke={false} visRessurslenker={true} skalViseIARBSPlaster={false} />;
 };
 
 export default InnholdLogikkNiva3;

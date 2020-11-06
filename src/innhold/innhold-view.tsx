@@ -14,13 +14,11 @@ import Motestotte from '../komponenter/motestotte/motestotte';
 import './innhold.less';
 import KrrMelding from '../komponenter/krr-melding/krr-melding';
 import IARBSMelding from '../komponenter/iarbs-melding/iarbs-melding';
-import { erMikrofrontend } from '../utils/app-state-utils';
 import Registrert from '../komponenter/registrert/registrert';
 import Situasjon from '../komponenter/din-situasjon/situasjon';
 import { BrukerInfoContext } from '../ducks/bruker-info';
 
 interface OwnProps {
-    erSykmeldtMedArbeidsgiver: boolean;
     skalViseEgenvurderingLenke: boolean;
     visRessurslenker: boolean;
     skalViseIARBSPlaster: boolean;
@@ -40,18 +38,13 @@ const AktivitetDialogMeldekort = () => {
 };
 
 const InnholdView = ({
-    erSykmeldtMedArbeidsgiver,
     skalViseEgenvurderingLenke,
     visRessurslenker,
     skalViseIARBSPlaster,
 }: OwnProps) => {
     return (
         <>
-            {erMikrofrontend() ? null : erSykmeldtMedArbeidsgiver ? (
-                <Banner type="sykmeldt" />
-            ) : (
-                <Banner type="ordinaer" />
-            )}
+            <Banner />
             <Rad>
                 <ReaktiveringMelding />
                 <KrrMelding />
