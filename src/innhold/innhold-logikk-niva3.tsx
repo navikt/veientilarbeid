@@ -8,7 +8,7 @@ const InnholdLogikkNiva3 = () => {
         seVeientilarbeidNiva3();
     }, []);
 
-    return <InnholdView skalViseEgenvurderingLenke={false} visRessurslenker={true} skalViseIARBSPlaster={false} />;
+    return <InnholdView visRessurslenker={true} skalViseIARBSPlaster={false} />;
 };
 
 export default InnholdLogikkNiva3;

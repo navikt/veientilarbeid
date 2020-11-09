@@ -3,7 +3,6 @@ import { erMikrofrontend } from '../utils/app-state-utils';
 import { BrukerInfoContext } from '../ducks/bruker-info';
 import {
     BrukerregistreringContext,
-    ForeslattInnsatsgruppe,
     FremtidigSituasjonSvar,
     selectForeslattInnsatsgruppe,
     selectFremtidigSituasjonSvar,
@@ -20,17 +19,14 @@ import {
 import { hotjarTrigger } from '../hotjar';
 import './innhold.less';
 import InnholdView from './innhold-view';
-import { OppfolgingContext, Servicegruppe } from '../ducks/oppfolging';
+import { OppfolgingContext } from '../ducks/oppfolging';
 import getPoaGroup from '../utils/get-poa-group';
 import { AmplitudeAktivitetContext } from '../ducks/amplitude-aktivitet-context';
 import ukerFraDato from '../utils/uker-fra-dato';
-import { EgenvurderingContext } from '../ducks/egenvurdering';
-const LANSERINGSDATO_EGENVURDERING = new Date(2019, 4, 10);
 
 const InnholdLogikkNiva4 = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
-    const egenvurderingData = React.useContext(EgenvurderingContext).data;
 
     const opprettetRegistreringDatoString = selectOpprettetRegistreringDato(brukerregistreringData);
     const opprettetRegistreringDato = opprettetRegistreringDatoString
@@ -99,33 +95,7 @@ const InnholdLogikkNiva4 = () => {
 
     const visRessurslenker = !(tilbakeTilSammeArbeidsgiver && erSykmeldtMedArbeidsgiver);
 
-    const harEgenvurderingbesvarelse = egenvurderingData !== null;
-    const egenvurderingbesvarelseDato = egenvurderingData ? new Date(egenvurderingData.sistOppdatert) : null;
-    const egenvurderingsbesvarelseValid = (): boolean => {
-        let isValid = false;
-        if (opprettetRegistreringDato && egenvurderingbesvarelseDato) {
-            isValid = opprettetRegistreringDato <= egenvurderingbesvarelseDato;
-        }
-        return isValid;
-    };
-
-    const skalViseEgenvurderingLenke =
-        dinSituasjon !== 'ER_PERMITTERT' &&
-        oppfolgingData.servicegruppe === Servicegruppe.IVURD &&
-        (!harEgenvurderingbesvarelse || !egenvurderingsbesvarelseValid()) &&
-        opprettetRegistreringDato !== null &&
-        opprettetRegistreringDato >= LANSERINGSDATO_EGENVURDERING &&
-        !oppfolgingData.reservasjonKRR &&
-        (foreslattInnsatsgruppe === ForeslattInnsatsgruppe.STANDARD_INNSATS ||
-            foreslattInnsatsgruppe === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS);
-
-    return (
-        <InnholdView
-            skalViseEgenvurderingLenke={skalViseEgenvurderingLenke}
-            visRessurslenker={visRessurslenker}
-            skalViseIARBSPlaster={skalViseIARBSPlaster}
-        />
-    );
+    return <InnholdView visRessurslenker={visRessurslenker} skalViseIARBSPlaster={skalViseIARBSPlaster} />;
 };
 
 export default InnholdLogikkNiva4;
