@@ -1,26 +1,13 @@
 import * as React from 'react';
 import { render, screen } from '@testing-library/react';
 import tekster from '../../tekster/tekster';
-import { BrukerInfoContext, State as BrukerinfoState, brukerinfoStarttilstand } from '../../ducks/bruker-info';
-import merge from 'merge-deep';
 import Banner from './banner';
-
-type DeepPartial<T> = {
-    [K in keyof T]?: T[K] extends object ? DeepPartial<T[K]> : T[K];
-};
-
-function BannerProviders(brukerInfoState: DeepPartial<BrukerinfoState>): React.FunctionComponent {
-    return ({ children }) => (
-        <BrukerInfoContext.Provider value={merge(brukerinfoStarttilstand, brukerInfoState)}>
-            {children}
-        </BrukerInfoContext.Provider>
-    );
-}
+import { contextProviders } from '../../test/test-context-providers';
 
 describe('Banner', () => {
     const OLD_ENV = process.env;
-    const sykmeldtState = { data: { erSykmeldtMedArbeidsgiver: true } };
-    const ikkeSykmeldtState = { data: { erSykmeldtMedArbeidsgiver: false } };
+    const sykmeldtState = { erSykmeldtMedArbeidsgiver: true };
+    const ikkeSykmeldtState = { erSykmeldtMedArbeidsgiver: false };
 
     beforeEach(() => {
         jest.resetModules();
@@ -32,18 +19,18 @@ describe('Banner', () => {
     });
 
     it('rendres dersom ikke mikrofrontend', async () => {
-        render(<Banner />, { wrapper: BannerProviders(sykmeldtState) });
+        render(<Banner />, { wrapper: contextProviders({ brukerInfo: sykmeldtState }) });
         expect(await screen.getByText(tekster['startside-sykmeldt-banner-brodsmule'])).toBeTruthy();
     });
 
     it('rendres med riktig tekst dersom ikke sykmeldt', async () => {
-        render(<Banner />, { wrapper: BannerProviders(ikkeSykmeldtState) });
+        render(<Banner />, { wrapper: contextProviders({ brukerInfo: ikkeSykmeldtState }) });
         expect(screen.getAllByText(tekster['startside-ordinaer-banner-brodsmule']).length >= 1).toBeTruthy();
     });
 
     it('rendres IKKE dersom microfrontend', async () => {
         process.env = { ...OLD_ENV, REACT_APP_MICRO: 'true' };
-        const { container } = render(<Banner />, { wrapper: BannerProviders(ikkeSykmeldtState) });
+        const { container } = render(<Banner />, { wrapper: contextProviders({ brukerInfo: ikkeSykmeldtState }) });
         expect((container.firstChild as HTMLElement)?.classList.contains('banner')).toBeFalsy();
     });
 });
