@@ -150,7 +150,6 @@ export const slettSituasjon = () => {
 };
 
 const features = (checked: boolean) => ({
-    'veientilarbeid.meldekort.ny-tekst': checked,
     'veientilarbeid.permittert.ny-dialog': checked,
     'veientilarbeid.permittert.situasjon.endre': checked,
 });
