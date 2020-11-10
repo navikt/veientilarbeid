@@ -16,7 +16,6 @@ export enum DemoData {
     REGISTRERING_TYPE = 'registreringType',
     RETTIGHETSGRUPPE = 'rettighetsgruppe',
     FEATURE_TOGGLES = 'featureToggles',
-    SITUASJON = 'situasjon',
 }
 
 export const hentFraLocalStorage = (key: string): string | null => {
@@ -128,30 +127,8 @@ export const slettMotestotte = () => {
     slettFraLocalStorage(DemoData.MOTESTOTTE);
 };
 
-export const hentSituasjon = (): JSONObject | null => {
-    const verdi = hentFraLocalStorage(DemoData.SITUASJON);
-    return verdi ? JSON.parse(verdi) : null;
-};
-
-export const settSituasjon = () => {
-    settILocalStorage(
-        DemoData.SITUASJON,
-        JSON.stringify({
-            opprettet: '2020-04-07T11:53:05.486686+01:00',
-            endretAv: 'string',
-            svarId: 'SKAL_I_JOBB',
-            svarTekst: 'Har fått beskjed fra arbeidsgiver når jeg kan komme tilbake i jobben',
-        })
-    );
-};
-
-export const slettSituasjon = () => {
-    slettFraLocalStorage(DemoData.SITUASJON);
-};
-
 const features = (checked: boolean) => ({
-    'veientilarbeid.permittert.ny-dialog': checked,
-    'veientilarbeid.permittert.situasjon.endre': checked,
+    // For tiden ingen feature toggles
 });
 
 export const hentFeatureToggles = (): JSONObject => {

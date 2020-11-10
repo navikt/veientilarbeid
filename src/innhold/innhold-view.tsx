@@ -15,7 +15,6 @@ import './innhold.less';
 import KrrMelding from '../komponenter/krr-melding/krr-melding';
 import IARBSMelding from '../komponenter/iarbs-melding/iarbs-melding';
 import Registrert from '../komponenter/registrert/registrert';
-import Situasjon from '../komponenter/din-situasjon/situasjon';
 import { BrukerInfoContext } from '../ducks/bruker-info';
 
 interface OwnProps {
@@ -43,7 +42,6 @@ const InnholdView = ({ visRessurslenker, skalViseIARBSPlaster }: OwnProps) => {
             <Rad>
                 <ReaktiveringMelding />
                 <KrrMelding />
-                <Situasjon />
                 <Registrert />
                 <IARBSMelding visPlaster={skalViseIARBSPlaster} />
                 <Egenvurdering />
