@@ -1,5 +1,6 @@
 import { ReactChildren, ReactElement } from 'react';
 import merge from 'merge-deep';
+import * as Autentisering from '../ducks/autentisering'
 import * as Brukerregistrering from '../ducks/brukerregistrering';
 import * as Situasjon from '../ducks/situasjon';
 import * as FeatureToggle from '../ducks/feature-toggles';
@@ -9,6 +10,7 @@ import * as React from 'react';
 import { DeepPartial } from 'redux';
 
 export type ProviderProps = {
+    autentisering?: DeepPartial<Autentisering.Data>;
     brukerregistrering?: DeepPartial<Brukerregistrering.Data>;
     situasjon?: DeepPartial<Situasjon.Data>;
     featureToggle?: DeepPartial<FeatureToggle.Data>;
@@ -20,6 +22,11 @@ export const contextProviders = function (
     props: ProviderProps
 ): ({ children }: { children: ReactChildren }) => ReactElement {
     return ({ children }) => (
+        <Autentisering.AutentiseringContext.Provider
+            value={merge(
+                Autentisering.initialState,
+                props.autentisering && { data: props.autentisering }
+            )}>
         <Brukerregistrering.BrukerregistreringContext.Provider
             value={merge(
                 Brukerregistrering.initialState,
@@ -47,5 +54,6 @@ export const contextProviders = function (
                 </Egenvurdering.EgenvurderingContext.Provider>
             </Situasjon.SituasjonContext.Provider>
         </Brukerregistrering.BrukerregistreringContext.Provider>
+        </Autentisering.AutentiseringContext.Provider>
     );
 };
