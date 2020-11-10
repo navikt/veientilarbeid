@@ -24,12 +24,6 @@ import {
     MotestotteContext,
 } from '../../ducks/motestotte';
 import {
-    Data as SituasjonData,
-    initialState as initialStateSituasjon,
-    State as SituasjonState,
-    SituasjonContext,
-} from '../../ducks/situasjon';
-import {
     Data as EgenvurderingData,
     initialState as initialStateEgenvurdering,
     State as EgenvurderingState,
@@ -37,7 +31,7 @@ import {
 } from '../../ducks/egenvurdering';
 
 import { fetchData } from '../../ducks/api-utils';
-import { MOTESTOTTE_URL, BRUKERINFO_URL, SITUASJON_URL, EGENVURDERINGBESVARELSE_URL } from '../../ducks/api';
+import { MOTESTOTTE_URL, BRUKERINFO_URL, EGENVURDERINGBESVARELSE_URL } from '../../ducks/api';
 import { AmplitudeProvider } from './amplitude-provider';
 
 const skalSjekkeEgenvurderingBesvarelse = (
@@ -73,7 +67,6 @@ const DataProvider = ({
     hentUlesteDialoger,
 }: Props) => {
     const [motestotteState, setMotestotteState] = React.useState<MotestotteState>(initialStateMotestotte);
-    const [situasjonState, setSituasjonState] = React.useState<SituasjonState>(initialStateSituasjon);
     const [brukerInfoState, setBrukerInfoState] = React.useState<BrukerInfoState>(brukerInfoDataInitialstate);
     const [egenvurderingState, setEgenvurderingState] = React.useState<EgenvurderingState>(initialStateEgenvurdering);
 
@@ -82,7 +75,6 @@ const DataProvider = ({
 
     React.useEffect(() => {
         fetchData<BrukerInfoState, BrukerInfoData>(brukerInfoState, setBrukerInfoState, BRUKERINFO_URL);
-        fetchData<SituasjonState, SituasjonData>(situasjonState, setSituasjonState, SITUASJON_URL);
         hentJobbsokerbesvarelse();
         hentUlesteDialoger();
         if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
@@ -98,7 +90,7 @@ const DataProvider = ({
     }, []);
 
     const avhengigheter: any[] = [brukerInfoState];
-    const ventPa: any[] = [ulesteDialoger, jobbsokerbesvarelse, situasjonState];
+    const ventPa: any[] = [ulesteDialoger, jobbsokerbesvarelse];
     if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
         ventPa.push(egenvurderingState);
     }
@@ -115,11 +107,9 @@ const DataProvider = ({
         >
             <BrukerInfoContext.Provider value={brukerInfoState}>
                 <MotestotteContext.Provider value={motestotteState}>
-                    <SituasjonContext.Provider value={situasjonState}>
-                        <EgenvurderingContext.Provider value={egenvurderingState}>
-                            <AmplitudeProvider>{children}</AmplitudeProvider>
-                        </EgenvurderingContext.Provider>
-                    </SituasjonContext.Provider>
+                    <EgenvurderingContext.Provider value={egenvurderingState}>
+                        <AmplitudeProvider>{children}</AmplitudeProvider>
+                    </EgenvurderingContext.Provider>
                 </MotestotteContext.Provider>
             </BrukerInfoContext.Provider>
         </Innholdslaster>

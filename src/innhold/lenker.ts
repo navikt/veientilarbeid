@@ -23,7 +23,6 @@ export const sosialhjelpLenke = erMikrofrontend()
     : '/veivisersosialhjelp';
 export const behovsvurderingLenke = erMikrofrontend() ? `${contextpathDittNav}/behovsvurdering` : '/behovsvurdering';
 export const motestotteLenke = erMikrofrontend() ? `${contextpathDittNav}/start-samtale` : '/start-samtale';
-export const endresituasjonLenke = erMikrofrontend() ? `${contextpathDittNav}/endre-situasjon` : '/endre-situasjon';
 export const reaktiveringLenke = erMikrofrontend()
     ? `${contextpathDittNav}/arbeidssokerregistrering/start`
     : '/arbeidssokerregistrering/start';
