@@ -1,19 +1,16 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { AppState } from '../../reducer';
 import { loggAktivitet } from '../../metrics/metrics';
 import JobbsokertipsIkon from './svg/jobbsokertips';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { jobbsokerkompetanseLenke, veiviserarbeidssokerLenke } from '../../innhold/lenker';
 import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
+import { JobbsokerbesvarelseContext } from '../../ducks/jobbsokerbesvarelse';
 
-interface StateProps {
-    harJobbbsokerbesvarelse: boolean;
-}
-
-const Ressurslenker = (props: StateProps) => {
-    const { harJobbbsokerbesvarelse } = props;
+const Jobbsokertips = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
+    const jobbsokerbesvarelseData = React.useContext(JobbsokerbesvarelseContext).data;
+
+    const harJobbbsokerbesvarelse = !!jobbsokerbesvarelseData?.raad;
 
     const URL = harJobbbsokerbesvarelse ? jobbsokerkompetanseLenke : veiviserarbeidssokerLenke;
 
@@ -34,8 +31,4 @@ const Ressurslenker = (props: StateProps) => {
     );
 };
 
-const mapStateToProps = (state: AppState): StateProps => ({
-    harJobbbsokerbesvarelse: state.jobbsokerbesvarelse.harJobbsokerbesvarelse,
-});
-
-export default connect(mapStateToProps)(Ressurslenker);
+export default Jobbsokertips;

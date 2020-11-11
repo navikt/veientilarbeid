@@ -1,7 +1,4 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
-import { Dispatch } from '../../dispatch-type';
-import { AppState } from '../../reducer';
 import Innholdslaster from '../innholdslaster/innholdslaster';
 import Feilmelding from '../feilmeldinger/feilmelding';
 import * as BrukerInfo from '../../ducks/bruker-info';
@@ -9,9 +6,15 @@ import * as Brukerregistrering from '../../ducks/brukerregistrering';
 import * as Motestotte from '../../ducks/motestotte';
 import * as Egenvurdering from '../../ducks/egenvurdering';
 import * as UlesteDialoger from '../../ducks/ulestedialoger';
-import { hentJobbsokerbesvarelse, State as JobbsokerbesvarelseState } from '../../ducks/jobbsokerbesvarelse';
+import * as Jobbsokerbesvarelse from '../../ducks/jobbsokerbesvarelse';
 import { fetchData } from '../../ducks/api-utils';
-import { MOTESTOTTE_URL, BRUKERINFO_URL, EGENVURDERINGBESVARELSE_URL, ULESTEDIALOGER_URL } from '../../ducks/api';
+import {
+    MOTESTOTTE_URL,
+    BRUKERINFO_URL,
+    EGENVURDERINGBESVARELSE_URL,
+    ULESTEDIALOGER_URL,
+    JOBBSOKERBESVARELSE_URL,
+} from '../../ducks/api';
 import { AmplitudeProvider } from './amplitude-provider';
 import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe } from '../../ducks/brukerregistrering';
 
@@ -28,22 +31,17 @@ interface OwnProps {
     children: React.ReactNode;
 }
 
-interface StateProps {
-    jobbsokerbesvarelse: JobbsokerbesvarelseState;
-}
+type Props = OwnProps;
 
-interface DispatchProps {
-    hentJobbsokerbesvarelse: () => void;
-}
-
-type Props = StateProps & DispatchProps & OwnProps;
-
-const DataProvider = ({ children, jobbsokerbesvarelse, hentJobbsokerbesvarelse }: Props) => {
+const DataProvider = ({ children }: Props) => {
     const [motestotteState, setMotestotteState] = React.useState<Motestotte.State>(Motestotte.initialState);
     const [brukerInfoState, setBrukerInfoState] = React.useState<BrukerInfo.State>(BrukerInfo.initialState);
     const [egenvurderingState, setEgenvurderingState] = React.useState<Egenvurdering.State>(Egenvurdering.initialState);
     const [ulesteDialogerState, setUlesteDialogerState] = React.useState<UlesteDialoger.State>(
         UlesteDialoger.initialState
+    );
+    const [jobbsokerbesvarelseState, setJobbsokerbesvarelseState] = React.useState<Jobbsokerbesvarelse.State>(
+        Jobbsokerbesvarelse.initialState
     );
 
     const data = React.useContext(Brukerregistrering.BrukerregistreringContext).data;
@@ -56,7 +54,11 @@ const DataProvider = ({ children, jobbsokerbesvarelse, hentJobbsokerbesvarelse }
             setUlesteDialogerState,
             ULESTEDIALOGER_URL
         );
-        hentJobbsokerbesvarelse();
+        fetchData<Jobbsokerbesvarelse.State, Jobbsokerbesvarelse.Data>(
+            jobbsokerbesvarelseState,
+            setJobbsokerbesvarelseState,
+            JOBBSOKERBESVARELSE_URL
+        );
         if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
             fetchData<Egenvurdering.State, Egenvurdering.Data>(
                 egenvurderingState,
@@ -70,7 +72,7 @@ const DataProvider = ({ children, jobbsokerbesvarelse, hentJobbsokerbesvarelse }
     }, []);
 
     const avhengigheter: any[] = [brukerInfoState];
-    const ventPa: any[] = [ulesteDialogerState, jobbsokerbesvarelse];
+    const ventPa: any[] = [ulesteDialogerState, jobbsokerbesvarelseState];
     if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
         ventPa.push(egenvurderingState);
     }
@@ -87,23 +89,17 @@ const DataProvider = ({ children, jobbsokerbesvarelse, hentJobbsokerbesvarelse }
         >
             <BrukerInfo.BrukerInfoContext.Provider value={brukerInfoState}>
                 <UlesteDialoger.UlesteDialogerContext.Provider value={ulesteDialogerState}>
-                    <Egenvurdering.EgenvurderingContext.Provider value={egenvurderingState}>
-                        <Motestotte.MotestotteContext.Provider value={motestotteState}>
-                            <AmplitudeProvider>{children}</AmplitudeProvider>
-                        </Motestotte.MotestotteContext.Provider>
-                    </Egenvurdering.EgenvurderingContext.Provider>
+                    <Jobbsokerbesvarelse.JobbsokerbesvarelseContext.Provider value={jobbsokerbesvarelseState}>
+                        <Egenvurdering.EgenvurderingContext.Provider value={egenvurderingState}>
+                            <Motestotte.MotestotteContext.Provider value={motestotteState}>
+                                <AmplitudeProvider>{children}</AmplitudeProvider>
+                            </Motestotte.MotestotteContext.Provider>
+                        </Egenvurdering.EgenvurderingContext.Provider>
+                    </Jobbsokerbesvarelse.JobbsokerbesvarelseContext.Provider>
                 </UlesteDialoger.UlesteDialogerContext.Provider>
             </BrukerInfo.BrukerInfoContext.Provider>
         </Innholdslaster>
     );
 };
 
-const mapStateToProps = (state: AppState): StateProps => ({
-    jobbsokerbesvarelse: state.jobbsokerbesvarelse,
-});
-
-const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
-    hentJobbsokerbesvarelse: () => hentJobbsokerbesvarelse()(dispatch),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(DataProvider);
+export default DataProvider;
