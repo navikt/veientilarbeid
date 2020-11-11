@@ -13,16 +13,16 @@ const SjekkKontonummer = () => {
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const autentiseringData = React.useContext(AutentiseringContext).data;
 
-    const handleClick = () => {
-        loggAktivitet({ aktivitet: 'Går til sjekk kontonummer', ...amplitudeAktivitetsData });
-    };
-
     const kanViseKomponent =
         oppfolgingData.underOppfolging && autentiseringData.securityLevel === InnloggingsNiva.LEVEL_4;
 
     if (!kanViseKomponent) {
         return null;
     }
+
+    const handleClick = () => {
+        loggAktivitet({ aktivitet: 'Går til sjekk kontonummer', ...amplitudeAktivitetsData });
+    };
 
     return (
         <div className="wrapper">
