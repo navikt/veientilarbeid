@@ -2,9 +2,12 @@ import * as React from 'react';
 import { render, screen } from '@testing-library/react';
 import tekster from '../../tekster/tekster';
 import { BrukerInfoContext, State as BrukerinfoState, brukerinfoStarttilstand } from '../../ducks/bruker-info';
-import { DeepPartial } from 'redux';
 import merge from 'merge-deep';
 import Banner from './banner';
+
+type DeepPartial<T> = {
+    [K in keyof T]?: T[K] extends object ? DeepPartial<T[K]> : T[K];
+};
 
 function BannerProviders(brukerInfoState: DeepPartial<BrukerinfoState>): React.FunctionComponent {
     return ({ children }) => (

@@ -7,7 +7,10 @@ import * as Egenvurdering from '../ducks/egenvurdering';
 import * as Oppfolging from '../ducks/oppfolging';
 import * as UlesteDialoger from '../ducks/ulestedialoger';
 import * as React from 'react';
-import { DeepPartial } from 'redux';
+
+type DeepPartial<T> = {
+    [K in keyof T]?: T[K] extends object ? DeepPartial<T[K]> : T[K];
+};
 
 export type ProviderProps = {
     autentisering?: DeepPartial<Autentisering.Data>;
