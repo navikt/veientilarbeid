@@ -85,15 +85,15 @@ const DataProvider = ({ children, jobbsokerbesvarelse, hentJobbsokerbesvarelse }
             avhengigheter={avhengigheter}
             ventPa={ventPa}
         >
-            <UlesteDialoger.UlesteDialogerContext.Provider value={ulesteDialogerState}>
-                <BrukerInfo.BrukerInfoContext.Provider value={brukerInfoState}>
-                    <Motestotte.MotestotteContext.Provider value={motestotteState}>
-                        <Egenvurdering.EgenvurderingContext.Provider value={egenvurderingState}>
+            <BrukerInfo.BrukerInfoContext.Provider value={brukerInfoState}>
+                <UlesteDialoger.UlesteDialogerContext.Provider value={ulesteDialogerState}>
+                    <Egenvurdering.EgenvurderingContext.Provider value={egenvurderingState}>
+                        <Motestotte.MotestotteContext.Provider value={motestotteState}>
                             <AmplitudeProvider>{children}</AmplitudeProvider>
-                        </Egenvurdering.EgenvurderingContext.Provider>
-                    </Motestotte.MotestotteContext.Provider>
-                </BrukerInfo.BrukerInfoContext.Provider>
-            </UlesteDialoger.UlesteDialogerContext.Provider>
+                        </Motestotte.MotestotteContext.Provider>
+                    </Egenvurdering.EgenvurderingContext.Provider>
+                </UlesteDialoger.UlesteDialogerContext.Provider>
+            </BrukerInfo.BrukerInfoContext.Provider>
         </Innholdslaster>
     );
 };
