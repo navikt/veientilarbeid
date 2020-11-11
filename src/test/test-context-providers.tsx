@@ -1,4 +1,3 @@
-import { ReactChildren, ReactElement } from 'react';
 import merge from 'merge-deep';
 import * as Autentisering from '../ducks/autentisering';
 import * as Brukerregistrering from '../ducks/brukerregistrering';
@@ -7,6 +6,8 @@ import * as Egenvurdering from '../ducks/egenvurdering';
 import * as Oppfolging from '../ducks/oppfolging';
 import * as UlesteDialoger from '../ducks/ulestedialoger';
 import * as Jobbsokerbesvarelse from '../ducks/jobbsokerbesvarelse';
+import * as BrukerInfo from '../ducks/bruker-info';
+import * as Motestotte from '../ducks/motestotte';
 import * as React from 'react';
 
 type DeepPartial<T> = {
@@ -21,52 +22,69 @@ export type ProviderProps = {
     oppfolging?: DeepPartial<Oppfolging.Data>;
     ulesteDialoger?: DeepPartial<UlesteDialoger.Data>;
     jobbsokerbesvarelse?: DeepPartial<Jobbsokerbesvarelse.Data>;
+    brukerInfo?: DeepPartial<BrukerInfo.Data>;
+    motestotte?: DeepPartial<Motestotte.Data>;
 };
 
-export const contextProviders = function (
-    props: ProviderProps
-): ({ children }: { children: ReactChildren }) => ReactElement {
+export const contextProviders = function (props: ProviderProps): React.FunctionComponent {
     return ({ children }) => (
         <Autentisering.AutentiseringContext.Provider
             value={merge(Autentisering.initialState, props.autentisering && { data: props.autentisering })}
         >
-            <Brukerregistrering.BrukerregistreringContext.Provider
-                value={merge(
-                    Brukerregistrering.initialState,
-                    props.brukerregistrering && { data: props.brukerregistrering }
-                )}
+            <BrukerInfo.BrukerInfoContext.Provider
+                value={merge(BrukerInfo.initialState, props.brukerInfo && { data: props.brukerInfo })}
             >
-                <UlesteDialoger.UlesteDialogerContext.Provider
-                    value={merge(UlesteDialoger.initialState, props.ulesteDialoger && { data: props.ulesteDialoger })}
+                <Brukerregistrering.BrukerregistreringContext.Provider
+                    value={merge(
+                        Brukerregistrering.initialState,
+                        props.brukerregistrering && { data: props.brukerregistrering }
+                    )}
                 >
-                    <Jobbsokerbesvarelse.JobbsokerbesvarelseContext.Provider
+                    <UlesteDialoger.UlesteDialogerContext.Provider
                         value={merge(
-                            Jobbsokerbesvarelse.initialState,
-                            props.jobbsokerbesvarelse && { data: props.jobbsokerbesvarelse }
+                            UlesteDialoger.initialState,
+                            props.ulesteDialoger && { data: props.ulesteDialoger }
                         )}
                     >
-                        <Egenvurdering.EgenvurderingContext.Provider
+                        <Jobbsokerbesvarelse.JobbsokerbesvarelseContext.Provider
                             value={merge(
-                                Egenvurdering.initialState,
-                                props.egenvurdering && { data: props.egenvurdering }
+                                Jobbsokerbesvarelse.initialState,
+                                props.jobbsokerbesvarelse && { data: props.jobbsokerbesvarelse }
                             )}
                         >
-                            <Oppfolging.OppfolgingContext.Provider
-                                value={merge(Oppfolging.initialState, props.oppfolging && { data: props.oppfolging })}
+                            <Egenvurdering.EgenvurderingContext.Provider
+                                value={merge(
+                                    Egenvurdering.initialState,
+                                    props.egenvurdering && { data: props.egenvurdering }
+                                )}
                             >
-                                <FeatureToggle.FeaturetoggleContext.Provider
+                                <Oppfolging.OppfolgingContext.Provider
                                     value={merge(
-                                        FeatureToggle.initialState,
-                                        props.featureToggle && { data: props.featureToggle }
+                                        Oppfolging.initialState,
+                                        props.oppfolging && { data: props.oppfolging }
                                     )}
                                 >
-                                    {children}
-                                </FeatureToggle.FeaturetoggleContext.Provider>
-                            </Oppfolging.OppfolgingContext.Provider>
-                        </Egenvurdering.EgenvurderingContext.Provider>
-                    </Jobbsokerbesvarelse.JobbsokerbesvarelseContext.Provider>
-                </UlesteDialoger.UlesteDialogerContext.Provider>
-            </Brukerregistrering.BrukerregistreringContext.Provider>
+                                    <Motestotte.MotestotteContext.Provider
+                                        value={merge(
+                                            Motestotte.initialState,
+                                            props.motestotte && { data: props.motestotte }
+                                        )}
+                                    >
+                                        <FeatureToggle.FeaturetoggleContext.Provider
+                                            value={merge(
+                                                FeatureToggle.initialState,
+                                                props.featureToggle && { data: props.featureToggle }
+                                            )}
+                                        >
+                                            {children}
+                                        </FeatureToggle.FeaturetoggleContext.Provider>
+                                    </Motestotte.MotestotteContext.Provider>
+                                </Oppfolging.OppfolgingContext.Provider>
+                            </Egenvurdering.EgenvurderingContext.Provider>
+                        </Jobbsokerbesvarelse.JobbsokerbesvarelseContext.Provider>
+                    </UlesteDialoger.UlesteDialogerContext.Provider>
+                </Brukerregistrering.BrukerregistreringContext.Provider>
+            </BrukerInfo.BrukerInfoContext.Provider>
         </Autentisering.AutentiseringContext.Provider>
     );
 };
