@@ -2,23 +2,15 @@ import * as React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import KrrMelding from './krr-melding';
-import { OppfolgingContext } from '../../ducks/oppfolging';
 import tekster from '../../tekster/tekster';
-
-const KRRProviders = function ({
-    oppfolgingContextProviderProps,
-}): ({ children }: { children: React.ReactChildren }) => React.ReactElement {
-    return ({ children }) => (
-        <OppfolgingContext.Provider value={oppfolgingContextProviderProps}>{children}</OppfolgingContext.Provider>
-    );
-};
+import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 
 describe('Test av komponent', () => {
     test('Rendrer komponent hvis reservasjon hos krr', async () => {
-        const providerProps = {
-            oppfolgingContextProviderProps: { data: { reservasjonKRR: true } },
+        const props: ProviderProps = {
+            oppfolging: { reservasjonKRR: true },
         };
-        render(<KrrMelding />, { wrapper: KRRProviders(providerProps) });
+        render(<KrrMelding />, { wrapper: contextProviders(props) });
         expect(screen.getByText(tekster['krr-melding-ingress'])).toBeTruthy();
         expect(screen.getByText(tekster['krr-melding-kulepunkt-ingress'])).toBeTruthy();
         expect(screen.getByText(tekster['krr-melding-kulepunkt1'])).toBeTruthy();
@@ -29,10 +21,10 @@ describe('Test av komponent', () => {
     });
 
     test('Rendrer IKKE komponent hvis IKKE reservasjon hos krr', async () => {
-        const providerProps = {
-            oppfolgingContextProviderProps: { data: { reservasjonKRR: false } },
+        const props: ProviderProps = {
+            oppfolging: { reservasjonKRR: false },
         };
-        const { container } = render(<KrrMelding />, { wrapper: KRRProviders(providerProps) });
+        const { container } = render(<KrrMelding />, { wrapper: contextProviders(props) });
         expect(container).toBeEmptyDOMElement();
     });
 });
