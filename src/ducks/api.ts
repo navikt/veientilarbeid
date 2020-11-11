@@ -1,6 +1,5 @@
 import { fetchToJson } from './api-utils';
 import { Data as JobbsokerbesvarelseData } from './jobbsokerbesvarelse';
-import { Data as UlesteDialogerData } from './dialog';
 import { contextpathDittNav, erMikrofrontend } from '../utils/app-state-utils';
 
 export enum STATUS {
@@ -42,8 +41,4 @@ export const VEILARBOPPFOLGING_URL = `${contextpath}/veilarboppfolging/api/oppfo
 
 export function hentJobbsokerbesvarelseFetch(): Promise<JobbsokerbesvarelseData> {
     return fetchToJson(JOBBSOKERBESVARELSE_URL, requestConfig);
-}
-
-export function hentUlesteDialogerFetch(): Promise<UlesteDialogerData> {
-    return fetchToJson(ULESTEDIALOGER_URL, requestConfig);
 }
