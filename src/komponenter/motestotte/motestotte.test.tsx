@@ -8,7 +8,7 @@ import { Servicegruppe } from '../../ducks/oppfolging';
 
 describe('Motestotte', () => {
     const brukerInfo = { erSykmeldtMedArbeidsgiver: true };
-    const motestotte = null;
+    const motestotte = undefined;
     const brukerregistrering = {
         registrering: {
             opprettetDato: '2020-11-02',
