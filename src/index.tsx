@@ -14,6 +14,8 @@ if (erMock() && !erDemo()) {
     console.log('======= DEVELOPMENT ======');
     console.log('==========================');
     require('./mocks');
+    const { worker } = require('./mocks/browser')
+    worker.start()
 } else if (erDemo()) {
     require('./demo/setup-demo-mock');
 }

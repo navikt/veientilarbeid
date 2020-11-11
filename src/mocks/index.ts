@@ -14,13 +14,13 @@ import jobbsokerbesvarelseResponse from './jobbsokerbesvarelse-mock';
 import ulesteDialogerResponse from './ulestedialoger-mock';
 import egenvurderingbesvarelseResponse from './egenvurderingbesvarelse-mock';
 import brukerRegistreringResponse from './brukerregistrering-mock';
-import authResponse from './auth-mock';
+//import authResponse from './auth-mock';
 import featureTogglesResponse from './feature-toggles-mock';
 import motestotteResponse from './motestotte-mock';
 
 import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 //import FetchMock, { Middleware, MiddlewareUtils, ResponseUtils } from 'yet-another-fetch-mock';
-import { AUTH_API } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
+//import { AUTH_API } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
 
 const loggingMiddleware: Middleware = (request, response) => {
     console.log(request.url, request.method, response);
@@ -58,4 +58,4 @@ fetchMock.get(FEATURE_URL, featureTogglesResponse);
 fetchMock.get(MOTESTOTTE_URL, motestotteResponse);
 // fetchMock.get(MOTESTOTTE_URL, ResponseUtils.statusCode(204));
 
-fetchMock.get(AUTH_API, authResponse);
+//fetchMock.get(AUTH_API, authResponse);
