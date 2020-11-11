@@ -7,24 +7,18 @@ import DataProvider from './data-provider';
 import InnholdLogikkNiva4 from '../../innhold/innhold-logikk-niva4';
 import InnholdLogikkNiva3 from '../../innhold/innhold-logikk-niva3';
 import OppfolgingBrukerregistreringProvider from './oppfolging-brukerregistrering-provider';
-
-import {
-    Data as AutentiseringData,
-    State as AutentiseringState,
-    initialState,
-    InnloggingsNiva,
-    AutentiseringContext,
-} from '../../ducks/autentisering';
+import * as Autentisering from '../../ducks/autentisering';
+import { InnloggingsNiva } from '../../ducks/autentisering';
 
 export const AUTH_API = '/api/auth';
 
 const AutentiseringsInfoFetcher = () => {
-    const [state, setState] = React.useState<AutentiseringState>(initialState);
+    const [state, setState] = React.useState<Autentisering.State>(Autentisering.initialState);
 
     const contextpath = erMikrofrontend() ? contextpathDittNav : '';
 
     React.useEffect(() => {
-        fetchData<AutentiseringState, AutentiseringData>(state, setState, `${contextpath}${AUTH_API}`);
+        fetchData<Autentisering.State, Autentisering.Data>(state, setState, `${contextpath}${AUTH_API}`);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -34,7 +28,7 @@ const AutentiseringsInfoFetcher = () => {
             storrelse="XXL"
             avhengigheter={[state]}
         >
-            <AutentiseringContext.Provider value={state}>
+            <Autentisering.AutentiseringContext.Provider value={state}>
                 {state.data.securityLevel === InnloggingsNiva.LEVEL_3 ? (
                     <InnholdLogikkNiva3 />
                 ) : (
@@ -44,7 +38,7 @@ const AutentiseringsInfoFetcher = () => {
                         </DataProvider>
                     </OppfolgingBrukerregistreringProvider>
                 )}
-            </AutentiseringContext.Provider>
+            </Autentisering.AutentiseringContext.Provider>
         </Innholdslaster>
     );
 };
