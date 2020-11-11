@@ -1,8 +1,6 @@
 import React from 'react';
 import LenkepanelBase from 'nav-frontend-lenkepanel';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
-import { connect } from 'react-redux';
-import { AppState } from '../../reducer';
 import { gaTilDialog, loggAktivitet } from '../../metrics/metrics';
 import DialogFill from './dialog-fill';
 import DialogLine from './dialog-line';
@@ -11,15 +9,14 @@ import { dialogLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 import { OppfolgingContext } from '../../ducks/oppfolging';
 import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
+import { UlesteDialogerContext } from '../../ducks/ulestedialoger';
 
-interface StateProps {
-    antallUleste: number;
-}
-
-const Dialog = (props: StateProps) => {
-    const { antallUleste } = props;
+const Dialog = () => {
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
+    const ulesteDialoger = React.useContext(UlesteDialogerContext).data;
+
+    const { antallUleste } = ulesteDialoger;
 
     const handleClick = () => {
         gaTilDialog(antallUleste, servicegruppe);
@@ -67,8 +64,4 @@ const Dialog = (props: StateProps) => {
     );
 };
 
-const mapStateToProps = (state: AppState): StateProps => ({
-    antallUleste: state.ulesteDialoger.data.antallUleste,
-});
-
-export default connect(mapStateToProps)(Dialog);
+export default Dialog;

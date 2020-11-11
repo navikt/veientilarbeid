@@ -5,6 +5,7 @@ import * as Brukerregistrering from '../ducks/brukerregistrering';
 import * as FeatureToggle from '../ducks/feature-toggles';
 import * as Egenvurdering from '../ducks/egenvurdering';
 import * as Oppfolging from '../ducks/oppfolging';
+import * as UlesteDialoger from '../ducks/ulestedialoger';
 import * as React from 'react';
 import { DeepPartial } from 'redux';
 
@@ -14,6 +15,7 @@ export type ProviderProps = {
     featureToggle?: DeepPartial<FeatureToggle.Data>;
     egenvurdering?: DeepPartial<Egenvurdering.Data>;
     oppfolging?: DeepPartial<Oppfolging.Data>;
+    ulesteDialoger?: DeepPartial<UlesteDialoger.Data>;
 };
 
 export const contextProviders = function (
@@ -29,22 +31,26 @@ export const contextProviders = function (
                     props.brukerregistrering && { data: props.brukerregistrering }
                 )}
             >
-                <Egenvurdering.EgenvurderingContext.Provider
-                    value={merge(Egenvurdering.initialState, props.egenvurdering && { data: props.egenvurdering })}
+                <UlesteDialoger.UlesteDialogerContext.Provider
+                    value={merge(UlesteDialoger.initialState, props.ulesteDialoger && { data: props.ulesteDialoger })}
                 >
-                    <Oppfolging.OppfolgingContext.Provider
-                        value={merge(Oppfolging.initialState, props.oppfolging && { data: props.oppfolging })}
+                    <Egenvurdering.EgenvurderingContext.Provider
+                        value={merge(Egenvurdering.initialState, props.egenvurdering && { data: props.egenvurdering })}
                     >
-                        <FeatureToggle.FeaturetoggleContext.Provider
-                            value={merge(
-                                FeatureToggle.initialState,
-                                props.featureToggle && { data: props.featureToggle }
-                            )}
+                        <Oppfolging.OppfolgingContext.Provider
+                            value={merge(Oppfolging.initialState, props.oppfolging && { data: props.oppfolging })}
                         >
-                            {children}
-                        </FeatureToggle.FeaturetoggleContext.Provider>
-                    </Oppfolging.OppfolgingContext.Provider>
-                </Egenvurdering.EgenvurderingContext.Provider>
+                            <FeatureToggle.FeaturetoggleContext.Provider
+                                value={merge(
+                                    FeatureToggle.initialState,
+                                    props.featureToggle && { data: props.featureToggle }
+                                )}
+                            >
+                                {children}
+                            </FeatureToggle.FeaturetoggleContext.Provider>
+                        </Oppfolging.OppfolgingContext.Provider>
+                    </Egenvurdering.EgenvurderingContext.Provider>
+                </UlesteDialoger.UlesteDialogerContext.Provider>
             </Brukerregistrering.BrukerregistreringContext.Provider>
         </Autentisering.AutentiseringContext.Provider>
     );

@@ -9,11 +9,6 @@ export const metricsMiddleWare = (store: any) => (next: any) => (action: any) =>
             eventnavn: 'veientilarbeid.feil.jobbsokerbesvarelse',
             apikall: 'GET /jobbsokerbesvarelse',
         },
-        {
-            type: ActionType.HENT_ULESTE_DIALOGER_FEILET,
-            eventnavn: 'veientilarbeid.feil.ulestedialoger',
-            apikall: 'GET /veilarbdialog/api/dialog/antallUleste',
-        },
     ];
 
     /* Feil logging */
