@@ -8,7 +8,6 @@ import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-conte
 import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
 import { OppfolgingContext } from '../../ducks/oppfolging';
 
-
 const SjekkKontonummer = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const oppfolgingData = React.useContext(OppfolgingContext).data;
