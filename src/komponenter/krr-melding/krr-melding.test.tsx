@@ -2,22 +2,15 @@ import * as React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import KrrMelding from './krr-melding';
-import { initialState, OppfolgingContext, State } from '../../ducks/oppfolging';
 import tekster from '../../tekster/tekster';
-import { DeepPartial } from 'redux';
-import merge from 'merge-deep';
-
-const KRRProviders = function (oppfolgingPartialState: DeepPartial<State>): React.FunctionComponent {
-    return ({ children }) => (
-        <OppfolgingContext.Provider value={merge(initialState, oppfolgingPartialState)}>
-            {children}
-        </OppfolgingContext.Provider>
-    );
-};
+import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 
 describe('Test av komponent', () => {
     test('Rendrer komponent hvis reservasjon hos krr', async () => {
-        render(<KrrMelding />, { wrapper: KRRProviders({ data: { reservasjonKRR: true } }) });
+        const props: ProviderProps = {
+            oppfolging: { reservasjonKRR: true },
+        };
+        render(<KrrMelding />, { wrapper: contextProviders(props) });
         expect(screen.getByText(tekster['krr-melding-ingress'])).toBeTruthy();
         expect(screen.getByText(tekster['krr-melding-kulepunkt-ingress'])).toBeTruthy();
         expect(screen.getByText(tekster['krr-melding-kulepunkt1'])).toBeTruthy();
@@ -28,7 +21,10 @@ describe('Test av komponent', () => {
     });
 
     test('Rendrer IKKE komponent hvis IKKE reservasjon hos krr', async () => {
-        const { container } = render(<KrrMelding />, { wrapper: KRRProviders({ data: { reservasjonKRR: false } }) });
+        const props: ProviderProps = {
+            oppfolging: { reservasjonKRR: false },
+        };
+        const { container } = render(<KrrMelding />, { wrapper: contextProviders(props) });
         expect(container).toBeEmptyDOMElement();
     });
 });
