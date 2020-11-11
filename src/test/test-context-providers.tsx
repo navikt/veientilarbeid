@@ -1,6 +1,6 @@
 import { ReactChildren, ReactElement } from 'react';
 import merge from 'merge-deep';
-import * as Autentisering from '../ducks/autentisering'
+import * as Autentisering from '../ducks/autentisering';
 import * as Brukerregistrering from '../ducks/brukerregistrering';
 import * as FeatureToggle from '../ducks/feature-toggles';
 import * as Egenvurdering from '../ducks/egenvurdering';
@@ -21,30 +21,31 @@ export const contextProviders = function (
 ): ({ children }: { children: ReactChildren }) => ReactElement {
     return ({ children }) => (
         <Autentisering.AutentiseringContext.Provider
-            value={merge(
-                Autentisering.initialState,
-                props.autentisering && { data: props.autentisering }
-            )}>
-        <Brukerregistrering.BrukerregistreringContext.Provider
-            value={merge(
-                Brukerregistrering.initialState,
-                props.brukerregistrering && { data: props.brukerregistrering }
-            )}
+            value={merge(Autentisering.initialState, props.autentisering && { data: props.autentisering })}
         >
-            <Egenvurdering.EgenvurderingContext.Provider
-                value={merge(Egenvurdering.initialState, props.egenvurdering && { data: props.egenvurdering })}
+            <Brukerregistrering.BrukerregistreringContext.Provider
+                value={merge(
+                    Brukerregistrering.initialState,
+                    props.brukerregistrering && { data: props.brukerregistrering }
+                )}
             >
-                <Oppfolging.OppfolgingContext.Provider
-                    value={merge(Oppfolging.initialState, props.oppfolging && { data: props.oppfolging })}
+                <Egenvurdering.EgenvurderingContext.Provider
+                    value={merge(Egenvurdering.initialState, props.egenvurdering && { data: props.egenvurdering })}
                 >
-                    <FeatureToggle.FeaturetoggleContext.Provider
-                        value={merge(FeatureToggle.initialState, props.featureToggle && { data: props.featureToggle })}
+                    <Oppfolging.OppfolgingContext.Provider
+                        value={merge(Oppfolging.initialState, props.oppfolging && { data: props.oppfolging })}
                     >
-                        {children}
-                    </FeatureToggle.FeaturetoggleContext.Provider>
-                </Oppfolging.OppfolgingContext.Provider>
-            </Egenvurdering.EgenvurderingContext.Provider>
-        </Brukerregistrering.BrukerregistreringContext.Provider>
+                        <FeatureToggle.FeaturetoggleContext.Provider
+                            value={merge(
+                                FeatureToggle.initialState,
+                                props.featureToggle && { data: props.featureToggle }
+                            )}
+                        >
+                            {children}
+                        </FeatureToggle.FeaturetoggleContext.Provider>
+                    </Oppfolging.OppfolgingContext.Provider>
+                </Egenvurdering.EgenvurderingContext.Provider>
+            </Brukerregistrering.BrukerregistreringContext.Provider>
         </Autentisering.AutentiseringContext.Provider>
     );
 };
