@@ -6,6 +6,7 @@ import * as FeatureToggle from '../ducks/feature-toggles';
 import * as Egenvurdering from '../ducks/egenvurdering';
 import * as Oppfolging from '../ducks/oppfolging';
 import * as UlesteDialoger from '../ducks/ulestedialoger';
+import * as Jobbsokerbesvarelse from '../ducks/jobbsokerbesvarelse';
 import * as React from 'react';
 
 type DeepPartial<T> = {
@@ -19,6 +20,7 @@ export type ProviderProps = {
     egenvurdering?: DeepPartial<Egenvurdering.Data>;
     oppfolging?: DeepPartial<Oppfolging.Data>;
     ulesteDialoger?: DeepPartial<UlesteDialoger.Data>;
+    jobbsokerbesvarelse?: DeepPartial<Jobbsokerbesvarelse.Data>;
 };
 
 export const contextProviders = function (
@@ -37,22 +39,32 @@ export const contextProviders = function (
                 <UlesteDialoger.UlesteDialogerContext.Provider
                     value={merge(UlesteDialoger.initialState, props.ulesteDialoger && { data: props.ulesteDialoger })}
                 >
-                    <Egenvurdering.EgenvurderingContext.Provider
-                        value={merge(Egenvurdering.initialState, props.egenvurdering && { data: props.egenvurdering })}
+                    <Jobbsokerbesvarelse.JobbsokerbesvarelseContext.Provider
+                        value={merge(
+                            Jobbsokerbesvarelse.initialState,
+                            props.jobbsokerbesvarelse && { data: props.jobbsokerbesvarelse }
+                        )}
                     >
-                        <Oppfolging.OppfolgingContext.Provider
-                            value={merge(Oppfolging.initialState, props.oppfolging && { data: props.oppfolging })}
+                        <Egenvurdering.EgenvurderingContext.Provider
+                            value={merge(
+                                Egenvurdering.initialState,
+                                props.egenvurdering && { data: props.egenvurdering }
+                            )}
                         >
-                            <FeatureToggle.FeaturetoggleContext.Provider
-                                value={merge(
-                                    FeatureToggle.initialState,
-                                    props.featureToggle && { data: props.featureToggle }
-                                )}
+                            <Oppfolging.OppfolgingContext.Provider
+                                value={merge(Oppfolging.initialState, props.oppfolging && { data: props.oppfolging })}
                             >
-                                {children}
-                            </FeatureToggle.FeaturetoggleContext.Provider>
-                        </Oppfolging.OppfolgingContext.Provider>
-                    </Egenvurdering.EgenvurderingContext.Provider>
+                                <FeatureToggle.FeaturetoggleContext.Provider
+                                    value={merge(
+                                        FeatureToggle.initialState,
+                                        props.featureToggle && { data: props.featureToggle }
+                                    )}
+                                >
+                                    {children}
+                                </FeatureToggle.FeaturetoggleContext.Provider>
+                            </Oppfolging.OppfolgingContext.Provider>
+                        </Egenvurdering.EgenvurderingContext.Provider>
+                    </Jobbsokerbesvarelse.JobbsokerbesvarelseContext.Provider>
                 </UlesteDialoger.UlesteDialogerContext.Provider>
             </Brukerregistrering.BrukerregistreringContext.Provider>
         </Autentisering.AutentiseringContext.Provider>
