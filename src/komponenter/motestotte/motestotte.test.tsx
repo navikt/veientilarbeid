@@ -2,7 +2,7 @@ import * as React from 'react';
 import { render, screen } from '@testing-library/react';
 import Motestotte from './motestotte';
 import tekster from '../../tekster/tekster';
-import { contextProviders } from '../../test/test-context-providers';
+import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import { ForeslattInnsatsgruppe } from '../../ducks/brukerregistrering';
 import { Servicegruppe } from '../../ducks/oppfolging';
 
@@ -23,7 +23,7 @@ describe('Motestotte', () => {
     const oppfolging = { servicegruppe: Servicegruppe.BKART };
 
     it('rendres når alle betingelser er oppfylt', async () => {
-        const providerProps = {
+        const providerProps: ProviderProps = {
             brukerInfo,
             brukerregistrering,
             motestotte,
@@ -34,7 +34,7 @@ describe('Motestotte', () => {
     });
 
     it('rendre med alternativ tekst dersom ikke sykmeldt', async () => {
-        const providerProps = {
+        const providerProps: ProviderProps = {
             brukerInfo: {
                 erSykmeldtMedArbeidsgiver: false,
             },
@@ -48,7 +48,7 @@ describe('Motestotte', () => {
     });
 
     it('rendres IKKE dersom annen servicegruppe en BKART', async () => {
-        const providerProps = {
+        const providerProps: ProviderProps = {
             brukerInfo,
             brukerregistrering,
             motestotte,
@@ -62,7 +62,7 @@ describe('Motestotte', () => {
     });
 
     it('rendres IKKE dersom permittert', async () => {
-        const providerProps = {
+        const providerProps: ProviderProps = {
             brukerInfo,
             brukerregistrering: {
                 registrering: {
@@ -80,7 +80,7 @@ describe('Motestotte', () => {
     });
 
     it('rendres IKKE dersom gyldig møtestøttebesvarelse', async () => {
-        const providerProps = {
+        const providerProps: ProviderProps = {
             brukerInfo,
             brukerregistrering,
             motestotte: { dato: '2020-11-04' },
@@ -91,7 +91,7 @@ describe('Motestotte', () => {
     });
 
     it('rendres IKKE dersom reservasjonKrr', async () => {
-        const providerProps = {
+        const providerProps: ProviderProps = {
             brukerInfo,
             brukerregistrering,
             motestotte,
@@ -105,7 +105,7 @@ describe('Motestotte', () => {
     });
 
     it('rendres IKKE dersom annen foreslått innsatsgruppe', async () => {
-        const providerProps = {
+        const providerProps: ProviderProps = {
             brukerInfo,
             brukerregistrering: {
                 registrering: {
