@@ -11,7 +11,7 @@ export const initialState: State = {
 };
 
 export interface Data {
-    raad?: [];
+    raad?: any[];
 }
 
 export const JobbsokerbesvarelseContext = React.createContext<State>(initialState);
