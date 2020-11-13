@@ -16,6 +16,10 @@ const Dialog = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const ulesteDialoger = React.useContext(UlesteDialogerContext).data;
 
+    React.useEffect(() => {
+        loggAktivitet({ aktivitet: 'Viser dialog', ...amplitudeAktivitetsData });
+    }, []);
+
     const { antallUleste } = ulesteDialoger;
 
     const handleClick = () => {
