@@ -11,6 +11,10 @@ import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-conte
 const AlleSkjema = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
 
+    React.useEffect(() => {
+        loggAktivitet({ aktivitet: 'Viser alle skjema', ...amplitudeAktivitetsData });
+    }, []);
+
     const handleButtonClick = () => {
         loggAktivitet({ aktivitet: 'Går til alle skjema', ...amplitudeAktivitetsData });
         window.location.assign(alleSkjemaSoknadLenke);
