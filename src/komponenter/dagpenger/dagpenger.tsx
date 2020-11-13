@@ -11,6 +11,10 @@ import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-conte
 const Dagpenger = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
 
+    React.useEffect(() => {
+        loggAktivitet({ aktivitet: 'Viser dagpengesøknad', ...amplitudeAktivitetsData });
+    }, []);
+
     const handleButtonClick = () => {
         loggAktivitet({ aktivitet: 'Går til dagpengesøknad', ...amplitudeAktivitetsData });
         window.location.assign(dagpengerSoknadLenke);
