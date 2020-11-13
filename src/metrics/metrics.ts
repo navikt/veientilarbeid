@@ -157,10 +157,6 @@ export const seDineOpplysninger = (metrikker: StandardMetrikkData) => {
     uniLogger('viser.dineopplysninger', metrikker);
 };
 
-export const klikkPaEndreDineOpplysninger = (metrikker: StandardMetrikkData) => {
-    uniLogger('click.endredineopplysninger', metrikker);
-};
-
 interface KrrMetrikkData extends StandardMetrikkData {
     reservasjonKRR: string;
 }
