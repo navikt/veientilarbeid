@@ -77,7 +77,6 @@ const Registrert = () => {
                         manueltRegistrertAv={manueltRegistrertAv}
                         besvarelse={besvarelse}
                         teksterForBesvarelse={teksterForBesvarelse}
-                        metrikkData={metrikkData}
                     />
                 </Ekspanderbartpanel>
             ) : null}

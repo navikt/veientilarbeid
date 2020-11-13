@@ -1,6 +1,7 @@
 import React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { klikkPaEndreDineOpplysninger } from '../../metrics/metrics';
+import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
+import { loggAktivitet } from '../../metrics/metrics';
 import { dialogLenke } from '../../innhold/lenker';
 import { Besvarelse, Svar } from '../../ducks/brukerregistrering';
 import prettyPrintDato from '../../utils/pretty-print-dato';
@@ -28,10 +29,11 @@ const repackBesvarelser = (besvarelse: Besvarelse, teksterForBesvarelse: Array<S
 };
 
 const opplysninger = (props: any) => {
-    const { opprettetDato, manueltRegistrertAv, besvarelse, metrikkData, teksterForBesvarelse } = props;
+    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
+    const { opprettetDato, manueltRegistrertAv, besvarelse, teksterForBesvarelse } = props;
     const besvarelser = repackBesvarelser(besvarelse, teksterForBesvarelse);
     const handleDialogClick = () => {
-        klikkPaEndreDineOpplysninger(metrikkData);
+        loggAktivitet({ aktivitet: 'Går til endre registreringsopplysninger', ...amplitudeAktivitetsData });
     };
 
     return (
