@@ -13,6 +13,10 @@ const Aktivitetsplan = () => {
     const overskrift = 'aktivitetsplan-overskrift-ordinaer';
     const ingress = 'aktivitetsplan-beskrivelse' + (nyRegistrering ? '-ny' : '');
 
+    React.useEffect(() => {
+        loggAktivitet({ aktivitet: 'Viser aktivitetsplanen', ...amplitudeAktivitetsData });
+    }, []);
+
     const handleClick = () => {
         loggAktivitet({ aktivitet: 'Går til aktivitetsplanen', ...amplitudeAktivitetsData });
     };
