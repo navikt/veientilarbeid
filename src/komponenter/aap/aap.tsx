@@ -10,8 +10,10 @@ import { Normaltekst, Systemtittel, Undertittel } from 'nav-frontend-typografi';
 import './aap.less';
 import { aapSoknadLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
+import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { useEffect, useRef, useState } from 'react';
+import { loggAktivitet } from '../../metrics/metrics';
 import Rad from '../../innhold/rad';
 
 const handleButtonClick = () => {
@@ -19,6 +21,7 @@ const handleButtonClick = () => {
 };
 
 const Aap = () => {
+    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
     const [visAap] = useState(queryString.parse(window.location.search).visAap === 'true');
     const aapRef = useRef<HTMLDivElement>(null);
@@ -29,6 +32,12 @@ const Aap = () => {
             behavior: 'smooth',
         });
     }, [aapRef]);
+
+    React.useEffect(() => {
+        if (erSykmeldtMedArbeidsgiver) {
+            loggAktivitet({ aktivitet: 'Viser aap', ...amplitudeAktivitetsData });
+        }
+    }, []);
 
     return !erSykmeldtMedArbeidsgiver ? null : (
         <Rad>

@@ -20,7 +20,7 @@ const SjekkKontonummer = () => {
         if (kanViseKomponent) {
             loggAktivitet({ aktivitet: 'Viser sjekk kontonummer', ...amplitudeAktivitetsData });
         }
-    }, [])
+    }, []);
 
     if (!kanViseKomponent) {
         return null;
