@@ -16,6 +16,12 @@ const SjekkKontonummer = () => {
     const kanViseKomponent =
         oppfolgingData.underOppfolging && autentiseringData.securityLevel === InnloggingsNiva.LEVEL_4;
 
+    React.useEffect(() => {
+        if (kanViseKomponent) {
+            loggAktivitet({ aktivitet: 'Viser sjekk kontonummer', ...amplitudeAktivitetsData });
+        }
+    }, [])
+
     if (!kanViseKomponent) {
         return null;
     }
