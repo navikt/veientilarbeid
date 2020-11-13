@@ -135,11 +135,6 @@ export const gaTilEgenvurdering = (antallTimer: number, foreslaattinnsatsgruppe:
     amplitudeLogger(`${domene}.egenvurdering.click`, { antallTimer, foreslaattinnsatsgruppe });
 };
 
-export const gaTilDittSykefravaer = (servicegruppe: String | null) => {
-    logEvent('gatildittsykefravaer', { innsatsgruppeField: servicegruppe }, { innsatsgruppeTag: servicegruppe });
-    amplitudeLogger(`${domene}.sykefravaer.click`, { servicegruppe });
-};
-
 export const lesOmOkonomi = (stonad: string, servicegruppe: string | null) => {
     logEvent(
         'lesomokonomi',
