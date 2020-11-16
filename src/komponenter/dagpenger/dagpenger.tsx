@@ -13,7 +13,7 @@ const Dagpenger = () => {
 
     React.useEffect(() => {
         loggAktivitet({ aktivitet: 'Viser dagpengesøknad', ...amplitudeAktivitetsData });
-    }, []);
+    }, [amplitudeAktivitetsData]);
 
     const handleButtonClick = () => {
         loggAktivitet({ aktivitet: 'Går til dagpengesøknad', ...amplitudeAktivitetsData });

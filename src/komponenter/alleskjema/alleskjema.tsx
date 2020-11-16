@@ -13,7 +13,7 @@ const AlleSkjema = () => {
 
     React.useEffect(() => {
         loggAktivitet({ aktivitet: 'Viser alle skjema', ...amplitudeAktivitetsData });
-    }, []);
+    }, [amplitudeAktivitetsData]);
 
     const handleButtonClick = () => {
         loggAktivitet({ aktivitet: 'Går til alle skjema', ...amplitudeAktivitetsData });

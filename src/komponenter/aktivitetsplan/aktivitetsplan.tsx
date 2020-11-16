@@ -15,7 +15,7 @@ const Aktivitetsplan = () => {
 
     React.useEffect(() => {
         loggAktivitet({ aktivitet: 'Viser aktivitetsplanen', ...amplitudeAktivitetsData });
-    }, []);
+    }, [amplitudeAktivitetsData]);
 
     const handleClick = () => {
         loggAktivitet({ aktivitet: 'Går til aktivitetsplanen', ...amplitudeAktivitetsData });

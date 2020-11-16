@@ -37,7 +37,7 @@ const Aap = () => {
         if (erSykmeldtMedArbeidsgiver) {
             loggAktivitet({ aktivitet: 'Viser aap', ...amplitudeAktivitetsData });
         }
-    }, []);
+    }, [amplitudeAktivitetsData, erSykmeldtMedArbeidsgiver]);
 
     return !erSykmeldtMedArbeidsgiver ? null : (
         <Rad>

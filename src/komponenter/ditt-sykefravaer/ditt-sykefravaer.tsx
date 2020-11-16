@@ -16,7 +16,7 @@ const DittSykefravaer = () => {
         if (kanViseKomponent) {
             loggAktivitet({ aktivitet: 'Viser ditt sykefravær', ...amplitudeAktivitetsData });
         }
-    }, []);
+    }, [amplitudeAktivitetsData, kanViseKomponent]);
 
     if (!kanViseKomponent) {
         return null;

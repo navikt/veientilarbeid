@@ -18,7 +18,7 @@ const Dialog = () => {
 
     React.useEffect(() => {
         loggAktivitet({ aktivitet: 'Viser dialog', ...amplitudeAktivitetsData });
-    }, []);
+    }, [amplitudeAktivitetsData]);
 
     const { antallUleste } = ulesteDialoger;
 
