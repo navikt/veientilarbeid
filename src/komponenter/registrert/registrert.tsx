@@ -21,6 +21,13 @@ const Registrert = () => {
 
     const kanViseKomponent =
         oppfolgingData.formidlingsgruppe === 'ARBS' && autentiseringData.securityLevel === InnloggingsNiva.LEVEL_4;
+    
+    React.useEffect(() => {
+        if  (kanViseKomponent) {
+            loggAktivitet({ aktivitet: 'Viser du er registrert', ...amplitudeAktivitetsData });
+        }
+    }, [kanViseKomponent, amplitudeAktivitetsData])
+
     if (!kanViseKomponent) {
         return null;
     }
