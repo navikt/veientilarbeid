@@ -17,10 +17,10 @@ const TrekkDagpengeSoknad = () => {
         oppfolgingData.underOppfolging && autentiseringData.securityLevel === InnloggingsNiva.LEVEL_4;
 
     React.useEffect(() => {
-        if  (kanViseKomponent) {
+        if (kanViseKomponent) {
             loggAktivitet({ aktivitet: 'Viser trekk dagpengesøknad', ...amplitudeAktivitetsData });
         }
-    }, [kanViseKomponent, amplitudeAktivitetsData])
+    }, [kanViseKomponent, amplitudeAktivitetsData]);
 
     if (!kanViseKomponent) {
         return null;

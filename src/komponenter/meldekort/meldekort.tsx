@@ -15,10 +15,10 @@ const Meldekort = () => {
     const kanViseKomponent = !erSykmeldtMedArbeidsgiver && underOppfolging;
 
     React.useEffect(() => {
-        if  (kanViseKomponent) {
+        if (kanViseKomponent) {
             loggAktivitet({ aktivitet: 'Viser til meldekortet', ...amplitudeAktivitetsData });
         }
-    }, [kanViseKomponent, amplitudeAktivitetsData])
+    }, [kanViseKomponent, amplitudeAktivitetsData]);
 
     if (!kanViseKomponent) {
         return null;

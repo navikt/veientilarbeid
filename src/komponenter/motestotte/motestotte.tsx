@@ -72,14 +72,14 @@ const Motestotte = () => {
         opprettetRegistreringDato >= LANSERINGSDATO_MOTESTOTTE &&
         !oppfolgingData.reservasjonKRR &&
         foreslattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING;
-    
+
     React.useEffect(() => {
-        if  (kanViseKomponent) {
+        if (kanViseKomponent) {
             loggAktivitet({ aktivitet: 'Viser møtestøtte', ...amplitudeAktivitetsData });
             uniLogger('motestotte.visning', { antallTimer, foreslattInnsatsgruppe });
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [kanViseKomponent, amplitudeAktivitetsData])
+    }, [kanViseKomponent, amplitudeAktivitetsData]);
 
     if (!kanViseKomponent) return null;
 
