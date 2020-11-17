@@ -13,7 +13,6 @@ if (erMock() && !erDemo()) {
     console.log('==========================');
     console.log('======= DEVELOPMENT ======');
     console.log('==========================');
-    require('./mocks');
     const { worker } = require('./mocks/browser')
     worker.start()
 } else if (erDemo()) {
