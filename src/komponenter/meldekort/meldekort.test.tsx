@@ -6,17 +6,14 @@ import tekster from '../../tekster/tekster';
 import Meldekort from './meldekort';
 
 describe('tester at komponenten rendrer som forventet', () => {
-    test('Komponenten vises IKKE by default', () => {
+    test('Komponenten VISES by default', () => {
         const providerProps: ProviderProps = {};
         const { container } = render(<Meldekort />, { wrapper: contextProviders(providerProps) });
-        expect(container).toBeEmptyDOMElement();
+        expect(container).not.toBeEmptyDOMElement();
     });
 
-    test('Komponenten vises IKKE om man er under oppfølging og er sykmeldt med arbeidsgiver', () => {
+    test('Komponenten vises IKKE om man er sykmeldt med arbeidsgiver', () => {
         const providerProps: ProviderProps = {
-            oppfolging: {
-                underOppfolging: true,
-            },
             brukerInfo: {
                 erSykmeldtMedArbeidsgiver: true,
             },
@@ -25,11 +22,8 @@ describe('tester at komponenten rendrer som forventet', () => {
         expect(container).toBeEmptyDOMElement();
     });
 
-    test('Komponenten VISES om man er under oppfølging og IKKE er sykmeldt med arbeidsgiver', async () => {
+    test('Komponenten VISES om man IKKE er sykmeldt med arbeidsgiver', async () => {
         const providerProps: ProviderProps = {
-            oppfolging: {
-                underOppfolging: true,
-            },
             brukerInfo: {
                 erSykmeldtMedArbeidsgiver: false,
             },
