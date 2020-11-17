@@ -10,7 +10,7 @@ const Meldekort = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
 
-    const kanViseKomponent = !erSykmeldtMedArbeidsgiver
+    const kanViseKomponent = !erSykmeldtMedArbeidsgiver;
 
     if (!kanViseKomponent) {
         return null;
