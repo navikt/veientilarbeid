@@ -10,7 +10,9 @@ export interface Props {
 
 const iarbsMelding = (props: Props) => {
     const { visPlaster } = props;
+
     if (!visPlaster) return null;
+
     return (
         <AlertStripeAdvarsel className="iarbs-melding blokk-xs">
             <Normaltekst className="blokk-xs">

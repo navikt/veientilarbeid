@@ -1,16 +1,23 @@
 import React from 'react';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
-import { gaTilDittSykefravaer } from '../../metrics/metrics';
+import { loggAktivitet } from '../../metrics/metrics';
 import Plaster from './plaster';
 import { sykefravaerLenke } from '../../innhold/lenker';
+import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
-import { OppfolgingContext } from '../../ducks/oppfolging';
 
 const DittSykefravaer = () => {
+    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
-    const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
 
     const kanViseKomponent = erSykmeldtMedArbeidsgiver;
+
+    React.useEffect(() => {
+        if (kanViseKomponent) {
+            loggAktivitet({ aktivitet: 'Viser ditt sykefravær', ...amplitudeAktivitetsData });
+        }
+    }, [amplitudeAktivitetsData, kanViseKomponent]);
+
     if (!kanViseKomponent) {
         return null;
     }
@@ -19,7 +26,7 @@ const DittSykefravaer = () => {
     const ingress = 'ditt-sykefravaer-ingress';
 
     const handleClick = () => {
-        gaTilDittSykefravaer(servicegruppe);
+        loggAktivitet({ aktivitet: 'Går til ditt sykefravær', ...amplitudeAktivitetsData });
     };
 
     return (

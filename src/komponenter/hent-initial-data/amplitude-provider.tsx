@@ -2,6 +2,7 @@ import getPoaGroup from '../../utils/get-poa-group';
 import isKSSEksperiment from '../../utils/is-kss-eksperiment';
 import isKSSKontroll from '../../utils/is-kss-kontroll';
 import React from 'react';
+import { AutentiseringContext } from '../../ducks/autentisering';
 import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
 import { BrukerregistreringContext } from '../../ducks/brukerregistrering';
 import { OppfolgingContext } from '../../ducks/oppfolging';
@@ -13,6 +14,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const brukerInfoData = React.useContext(BrukerInfoContext).data;
+    const { securityLevel: nivaa } = React.useContext(AutentiseringContext).data;
 
     const { alder, geografiskTilknytning } = brukerInfoData;
     const { servicegruppe, formidlingsgruppe } = oppfolgingData;
@@ -59,6 +61,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         isKSSX,
         isKSSK,
         ukerRegistrert,
+        nivaa,
     };
 
     return (

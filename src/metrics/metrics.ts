@@ -135,11 +135,6 @@ export const gaTilEgenvurdering = (antallTimer: number, foreslaattinnsatsgruppe:
     amplitudeLogger(`${domene}.egenvurdering.click`, { antallTimer, foreslaattinnsatsgruppe });
 };
 
-export const gaTilDittSykefravaer = (servicegruppe: String | null) => {
-    logEvent('gatildittsykefravaer', { innsatsgruppeField: servicegruppe }, { innsatsgruppeTag: servicegruppe });
-    amplitudeLogger(`${domene}.sykefravaer.click`, { servicegruppe });
-};
-
 export const lesOmOkonomi = (stonad: string, servicegruppe: string | null) => {
     logEvent(
         'lesomokonomi',
@@ -160,10 +155,6 @@ type StandardMetrikkData = {
 
 export const seDineOpplysninger = (metrikker: StandardMetrikkData) => {
     uniLogger('viser.dineopplysninger', metrikker);
-};
-
-export const klikkPaEndreDineOpplysninger = (metrikker: StandardMetrikkData) => {
-    uniLogger('click.endredineopplysninger', metrikker);
 };
 
 interface KrrMetrikkData extends StandardMetrikkData {
