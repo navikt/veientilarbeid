@@ -1,5 +1,5 @@
 import * as React from 'react';
-import InnholdLogikkNiva3 from '../../innhold/innhold-logikk-niva3';
+import InnholdView from '../../innhold/innhold-view';
 
 interface OwnProps {
     underOppfolging: boolean;
@@ -8,7 +8,7 @@ interface OwnProps {
 
 const SjekkOppfolging = ({ underOppfolging, children }: OwnProps) => {
     if (!underOppfolging) {
-        return <InnholdLogikkNiva3 />;
+        return <InnholdView />;
     }
 
     return children;

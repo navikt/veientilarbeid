@@ -5,9 +5,26 @@ import CV from './cv';
 import Jobbsokertips from './jobbsokertips';
 import { Systemtittel } from 'nav-frontend-typografi';
 import tekster from '../../tekster/tekster';
+import {
+    BrukerregistreringContext,
+    FremtidigSituasjonSvar,
+    selectFremtidigSituasjonSvar,
+} from '../../ducks/brukerregistrering';
+import { BrukerInfoContext } from '../../ducks/bruker-info';
 
 const RessurslenkerJobbsok = () => {
-    return (
+    const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
+    const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
+
+    const fremtidigSvar = selectFremtidigSituasjonSvar(brukerregistreringData);
+
+    const tilbakeTilSammeArbeidsgiver =
+        fremtidigSvar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER ||
+        fremtidigSvar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER_NY_STILLING;
+
+    const visRessurslenker = !(tilbakeTilSammeArbeidsgiver && erSykmeldtMedArbeidsgiver);
+
+    return visRessurslenker ? (
         <section className="ressurslenker">
             <Systemtittel tag="h2" className="ressurslenker__heading blokk-s">
                 {tekster['ressurslenker-jobbsok-overskrift']}
@@ -21,7 +38,7 @@ const RessurslenkerJobbsok = () => {
                 <Jobbsokertips />
             </div>
         </section>
-    );
+    ) : null;
 };
 
 export default RessurslenkerJobbsok;
