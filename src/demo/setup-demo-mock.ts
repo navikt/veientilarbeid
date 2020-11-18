@@ -8,7 +8,7 @@ import {
     BRUKERINFO_URL,
     FEATURE_URL,
 } from '../ducks/api';
-import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
+
 import {
     hentJsk,
     hentReservasjonKRR,
@@ -24,58 +24,64 @@ import {
     hentRettighetsgruppe,
     hentFeatureToggles,
 } from './demo-state';
-import { hentBrukerRegistreringData } from './demo-state-brukerregistrering';
-import { AUTH_API } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
 
-const loggingMiddleware: Middleware = (request, response) => {
-    console.log(request.url, request.method, response);
-    return response;
-};
+import {hentBrukerRegistreringData} from './demo-state-brukerregistrering';
+import {AUTH_API} from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
+import {rest} from "msw";
 
-const fetchMock = FetchMock.configure({
-    enableFallback: true,
-    middleware: MiddlewareUtils.combine(
-        MiddlewareUtils.delayMiddleware(200),
-        MiddlewareUtils.failurerateMiddleware(0.0),
-        loggingMiddleware
-    ),
-});
+function getter(endpoint: string, response: Object | null, statusCode: number = 200): any {
+    return rest.get(endpoint, (req, res, ctx) => {
+        return res(
+            ctx.status(statusCode),
+            ctx.json(response ? response : {})
+        )
+    })
+}
 
 const randomUlesteDialoger = () => {
     const min = 1;
     const max = 99;
     return Math.floor(min + Math.random() * (max - min));
 };
+export const demo_handlers = [
+    getter(VEILARBOPPFOLGING_URL, {
+        underOppfolging: true,
+        kanReaktiveres: false,
+        reservasjonKRR: hentReservasjonKRR(),
+        servicegruppe: hentServicegruppe(),
+        formidlingsgruppe: hentFormidlingsgruppe(),
+        registreringType: 'INGEN_VERDI',
+        geografiskTilknytning: '010302',
+    }),
 
-fetchMock.get(VEILARBOPPFOLGING_URL, {
-    underOppfolging: true,
-    kanReaktiveres: false,
-    reservasjonKRR: hentReservasjonKRR(),
-    servicegruppe: hentServicegruppe(),
-    formidlingsgruppe: hentFormidlingsgruppe(),
-    registreringType: 'INGEN_VERDI',
-    geografiskTilknytning: '010302',
-});
+    getter(BRUKERINFO_URL, {
+        erSykmeldtMedArbeidsgiver: hentSykmeldtMedArbeidsgiver(),
+        geografiskTilknytning: hentGeografiskTilknytning(),
+        registreringType: hentRegistreringType(),
+        rettighetsgruppe: hentRettighetsgruppe(),
+    }),
 
-fetchMock.get(BRUKERINFO_URL, {
-    erSykmeldtMedArbeidsgiver: hentSykmeldtMedArbeidsgiver(),
-    geografiskTilknytning: hentGeografiskTilknytning(),
-    registreringType: hentRegistreringType(),
-    rettighetsgruppe: hentRettighetsgruppe(),
-});
 
-fetchMock.get(BRUKERREGISTRERING_URL, hentBrukerRegistreringData());
+    getter(BRUKERINFO_URL, {
+        erSykmeldtMedArbeidsgiver: hentSykmeldtMedArbeidsgiver(),
+        geografiskTilknytning: hentGeografiskTilknytning(),
+        registreringType: hentRegistreringType(),
+        rettighetsgruppe: hentRettighetsgruppe(),
+    }),
 
-fetchMock.get(ULESTEDIALOGER_URL, {
-    antallUleste: hentUlesteDialoger() ? randomUlesteDialoger() : 0,
-});
+    getter(BRUKERREGISTRERING_URL, hentBrukerRegistreringData()),
 
-fetchMock.get(JOBBSOKERBESVARELSE_URL, hentJsk());
+    getter(ULESTEDIALOGER_URL, {
+        antallUleste: hentUlesteDialoger() ? randomUlesteDialoger() : 0,
+    }),
 
-fetchMock.get(EGENVURDERINGBESVARELSE_URL, hentEgenvurdering());
+    getter(JOBBSOKERBESVARELSE_URL, hentJsk()),
 
-fetchMock.get(MOTESTOTTE_URL, hentMotestotte());
+    getter(EGENVURDERINGBESVARELSE_URL, hentEgenvurdering()),
 
-fetchMock.get(FEATURE_URL, hentFeatureToggles());
+    getter(MOTESTOTTE_URL, hentMotestotte()),
 
-fetchMock.get(AUTH_API, hentAutentiseringsInfo());
+    getter(FEATURE_URL, hentFeatureToggles()),
+
+    getter(AUTH_API, hentAutentiseringsInfo()),
+]
