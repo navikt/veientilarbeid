@@ -1,42 +1,34 @@
 import {
-    JOBBSOKERBESVARELSE_URL,
-    BRUKERREGISTRERING_URL,
-    VEILARBOPPFOLGING_URL,
-    ULESTEDIALOGER_URL,
-    EGENVURDERINGBESVARELSE_URL,
-    MOTESTOTTE_URL,
     BRUKERINFO_URL,
+    BRUKERREGISTRERING_URL,
+    EGENVURDERINGBESVARELSE_URL,
     FEATURE_URL,
+    JOBBSOKERBESVARELSE_URL,
+    MOTESTOTTE_URL,
+    ULESTEDIALOGER_URL,
+    VEILARBOPPFOLGING_URL,
 } from '../ducks/api';
 
 import {
-    hentJsk,
-    hentReservasjonKRR,
-    hentServicegruppe,
+    hentAutentiseringsInfo,
+    hentEgenvurdering,
+    hentFeatureToggles,
     hentFormidlingsgruppe,
+    hentGeografiskTilknytning,
+    hentJsk,
+    hentMotestotte,
+    hentRegistreringType,
+    hentReservasjonKRR,
+    hentRettighetsgruppe,
+    hentServicegruppe,
     hentSykmeldtMedArbeidsgiver,
     hentUlesteDialoger,
-    hentEgenvurdering,
-    hentAutentiseringsInfo,
-    hentMotestotte,
-    hentGeografiskTilknytning,
-    hentRegistreringType,
-    hentRettighetsgruppe,
-    hentFeatureToggles,
 } from './demo-state';
 
 import {hentBrukerRegistreringData} from './demo-state-brukerregistrering';
 import {AUTH_API} from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
-import {rest} from "msw";
+import msw_get from "../mocks/msw-utils";
 
-function getter(endpoint: string, response: Object | null, statusCode: number = 200): any {
-    return rest.get(endpoint, (req, res, ctx) => {
-        return res(
-            ctx.status(statusCode),
-            ctx.json(response ? response : {})
-        )
-    })
-}
 
 const randomUlesteDialoger = () => {
     const min = 1;
@@ -44,7 +36,7 @@ const randomUlesteDialoger = () => {
     return Math.floor(min + Math.random() * (max - min));
 };
 export const demo_handlers = [
-    getter(VEILARBOPPFOLGING_URL, {
+    msw_get(VEILARBOPPFOLGING_URL, {
         underOppfolging: true,
         kanReaktiveres: false,
         reservasjonKRR: hentReservasjonKRR(),
@@ -54,7 +46,7 @@ export const demo_handlers = [
         geografiskTilknytning: '010302',
     }),
 
-    getter(BRUKERINFO_URL, {
+    msw_get(BRUKERINFO_URL, {
         erSykmeldtMedArbeidsgiver: hentSykmeldtMedArbeidsgiver(),
         geografiskTilknytning: hentGeografiskTilknytning(),
         registreringType: hentRegistreringType(),
@@ -62,26 +54,26 @@ export const demo_handlers = [
     }),
 
 
-    getter(BRUKERINFO_URL, {
+    msw_get(BRUKERINFO_URL, {
         erSykmeldtMedArbeidsgiver: hentSykmeldtMedArbeidsgiver(),
         geografiskTilknytning: hentGeografiskTilknytning(),
         registreringType: hentRegistreringType(),
         rettighetsgruppe: hentRettighetsgruppe(),
     }),
 
-    getter(BRUKERREGISTRERING_URL, hentBrukerRegistreringData()),
+    msw_get(BRUKERREGISTRERING_URL, hentBrukerRegistreringData()),
 
-    getter(ULESTEDIALOGER_URL, {
+    msw_get(ULESTEDIALOGER_URL, {
         antallUleste: hentUlesteDialoger() ? randomUlesteDialoger() : 0,
     }),
 
-    getter(JOBBSOKERBESVARELSE_URL, hentJsk()),
+    msw_get(JOBBSOKERBESVARELSE_URL, hentJsk()),
 
-    getter(EGENVURDERINGBESVARELSE_URL, hentEgenvurdering()),
+    msw_get(EGENVURDERINGBESVARELSE_URL, hentEgenvurdering()),
 
-    getter(MOTESTOTTE_URL, hentMotestotte()),
+    msw_get(MOTESTOTTE_URL, hentMotestotte()),
 
-    getter(FEATURE_URL, hentFeatureToggles()),
+    msw_get(FEATURE_URL, hentFeatureToggles()),
 
-    getter(AUTH_API, hentAutentiseringsInfo()),
+    msw_get(AUTH_API, hentAutentiseringsInfo()),
 ]
