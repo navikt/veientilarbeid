@@ -14,9 +14,7 @@ export const jobbsokerkompetanseLenke = erMikrofrontend()
     ? `${contextpathDittNav}/jobbsokerkompetanse/resultatside`
     : '/jobbsokerkompetanse/resultatside';
 export const sykefravaerLenke = erMikrofrontend() ? `${contextpathDittNav}/sykefravaer` : '/sykefravaer';
-export const dagpengerLesmerLenke = erMikrofrontend()
-    ? `${contextpathDittNav}/veiledearbeidssoker/mistet-jobben/dagpenger?sprak=nb`
-    : '/veiledearbeidssoker/mistet-jobben/dagpenger?sprak=nb';
+export const dagpengerLesmerLenke = 'https://www.nav.no/arbeid/no/arbeidsledig/';
 export const dagpengerSoknadLenke = 'https://www.nav.no/soknader/nb/person/arbeid/dagpenger';
 export const sosialhjelpLenke = erMikrofrontend()
     ? `${contextpathDittNav}/veivisersosialhjelp`
