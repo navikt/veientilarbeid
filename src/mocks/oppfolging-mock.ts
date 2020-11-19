@@ -1,5 +1,5 @@
 export default {
-    underOppfolging: true,
+    underOppfolging: false,
     kanReaktiveres: false,
     reservasjonKRR: false,
     servicegruppe: 'IVURD',

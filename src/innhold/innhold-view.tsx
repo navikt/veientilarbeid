@@ -15,6 +15,7 @@ import './innhold.less';
 import KrrMelding from '../komponenter/krr-melding/krr-melding';
 import IARBSMelding from '../komponenter/iarbs-melding/iarbs-melding';
 import Registrert from '../komponenter/registrert/registrert';
+import GenerelleFliser from '../komponenter/dittnav/generelle-fliser';
 import { BrukerInfoContext } from '../ducks/bruker-info';
 
 interface OwnProps {
@@ -52,6 +53,7 @@ const InnholdView = ({ visRessurslenker, skalViseIARBSPlaster }: OwnProps) => {
             <AapRad />
             <Rad>{visRessurslenker ? <RessurslenkerJobbsok /> : null}</Rad>
             <OkonomiRad />
+            <GenerelleFliser />
         </>
     );
 };
