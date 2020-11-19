@@ -3,15 +3,18 @@ import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
 import './iarbs-melding.less';
 import tekster from '../../tekster/tekster';
+import { seIARBSPlaster } from '../../metrics/metrics';
+import { OppfolgingContext } from '../../ducks/oppfolging';
+import { BrukerInfoContext } from '../../ducks/bruker-info';
 
-export interface Props {
-    visPlaster: boolean;
-}
-
-const iarbsMelding = (props: Props) => {
-    const { visPlaster } = props;
+const IarbsMelding = () => {
+    const visPlaster = false; // formidlingsgruppe === Formidlingsgruppe.IARBS && registreringType === RegistreringType.ALLEREDE_REGISTRERT && rettighetsgruppe !== 'AAP';
+    const { formidlingsgruppe, servicegruppe } = React.useContext(OppfolgingContext).data;
+    const { rettighetsgruppe } = React.useContext(BrukerInfoContext).data;
 
     if (!visPlaster) return null;
+
+    seIARBSPlaster(formidlingsgruppe, servicegruppe, rettighetsgruppe);
 
     return (
         <AlertStripeAdvarsel className="iarbs-melding blokk-xs">
@@ -27,4 +30,4 @@ const iarbsMelding = (props: Props) => {
     );
 };
 
-export default iarbsMelding;
+export default IarbsMelding;
