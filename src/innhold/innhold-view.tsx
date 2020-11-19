@@ -14,7 +14,7 @@ import IARBSMelding from '../komponenter/iarbs-melding/iarbs-melding';
 import Registrert from '../komponenter/registrert/registrert';
 import AktivitetDialogMeldekort from './aktivitet-dialog-meldekort';
 import InnholdMetrics from './innhold-metrics';
-import GenerelleFliser from '../komponenter/dittnav/generelle-fliser'
+import GenerelleFliser from '../komponenter/dittnav/generelle-fliser';
 
 const InnholdView = () => {
     return (

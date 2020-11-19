@@ -1,4 +1,4 @@
-import {InnloggingsNiva} from '../ducks/autentisering';
+import { InnloggingsNiva } from '../ducks/autentisering';
 
 type JSONValue = null | string | number | boolean | JSONObject | JSONArray;
 interface JSONArray extends Array<JSONValue> {}
