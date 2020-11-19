@@ -11,8 +11,7 @@ const SjekkKontonummer = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const oppfolgingData = React.useContext(OppfolgingContext).data;
 
-    const kanViseKomponent =
-        oppfolgingData.underOppfolging;
+    const kanViseKomponent = oppfolgingData.underOppfolging;
 
     React.useEffect(() => {
         if (kanViseKomponent) {
