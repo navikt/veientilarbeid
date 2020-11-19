@@ -3,15 +3,15 @@ import InnholdView from '../../innhold/innhold-view';
 
 interface OwnProps {
     underOppfolging: boolean;
-    children: React.ReactElement<any>;
+    children: React.ReactNode;
 }
 
-const SjekkOppfolging = ({ underOppfolging, children }: OwnProps) => {
+const SjekkOppfolging = ({ underOppfolging, children }: OwnProps): JSX.Element => {
     if (!underOppfolging) {
         return <InnholdView />;
     }
 
-    return children;
+    return <>{children}</>;
 };
 
 export default SjekkOppfolging;
