@@ -114,6 +114,7 @@ jobs:
         uses: nais/deploy/actions/deploy@master
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          DRY_RUN: true
           CLUSTER: prod-sbs
           RESOURCE: nais/nais.yaml
           VARS: nais/vars-p.yaml
