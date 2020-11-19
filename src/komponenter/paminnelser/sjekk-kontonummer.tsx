@@ -5,16 +5,14 @@ import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { loggAktivitet } from '../../metrics/metrics';
 import './paminnelse.less';
 import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
-import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
 import { OppfolgingContext } from '../../ducks/oppfolging';
 
 const SjekkKontonummer = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const oppfolgingData = React.useContext(OppfolgingContext).data;
-    const autentiseringData = React.useContext(AutentiseringContext).data;
 
     const kanViseKomponent =
-        oppfolgingData.underOppfolging && autentiseringData.securityLevel === InnloggingsNiva.LEVEL_4;
+        oppfolgingData.underOppfolging;
 
     React.useEffect(() => {
         if (kanViseKomponent) {
