@@ -1,5 +1,8 @@
-import { JSONObject } from 'yet-another-fetch-mock';
-import { InnloggingsNiva } from '../ducks/autentisering';
+import {InnloggingsNiva} from '../ducks/autentisering';
+
+type JSONValue = null | string | number | boolean | JSONObject | JSONArray;
+interface JSONArray extends Array<JSONValue> {}
+type JSONObject = { [member: string]: JSONValue };
 
 export enum DemoData {
     SERVICEGRUPPE = 'servicegruppe',
