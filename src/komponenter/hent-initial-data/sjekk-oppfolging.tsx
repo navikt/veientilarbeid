@@ -1,17 +1,17 @@
 import * as React from 'react';
-import InnholdView from '../../innhold/innhold-view';
+import InnholdLogikkNiva3 from '../../innhold/innhold-logikk-niva3';
 
 interface OwnProps {
     underOppfolging: boolean;
-    children: React.ReactNode;
+    children: React.ReactElement<any>;
 }
 
-const SjekkOppfolging = ({ underOppfolging, children }: OwnProps): JSX.Element => {
+const SjekkOppfolging = ({ underOppfolging, children }: OwnProps) => {
     if (!underOppfolging) {
-        return <InnholdView />;
+        return <InnholdLogikkNiva3 />;
     }
 
-    return <>{children}</>;
+    return children;
 };
 
 export default SjekkOppfolging;

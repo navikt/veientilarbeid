@@ -88,16 +88,19 @@ export const seVeientilarbeidNiva3 = () => {
 };
 
 export const seIARBSPlaster = (
+    skalViseIARBSPlaster: boolean,
     formidlingsgruppe: String | null,
     servicegruppe: String | null,
     rettighetsgruppe: String
 ) => {
-    logEvent(
-        'viseriarbsplaster',
-        {},
-        { formidlingsgruppeTag: formidlingsgruppe, servicegruppeTag: servicegruppe, rettighetsgruppe }
-    );
-    amplitudeLogger(`${domene}.iarbsplaster.`, { formidlingsgruppe, servicegruppe, rettighetsgruppe });
+    if (skalViseIARBSPlaster) {
+        logEvent(
+            'viseriarbsplaster',
+            {},
+            { formidlingsgruppeTag: formidlingsgruppe, servicegruppeTag: servicegruppe, rettighetsgruppe }
+        );
+        amplitudeLogger(`${domene}.iarbsplaster.`, { formidlingsgruppe, servicegruppe, rettighetsgruppe });
+    }
 };
 
 export const gaTilDialog = (antall: number, servicegruppe: string | null) => {
