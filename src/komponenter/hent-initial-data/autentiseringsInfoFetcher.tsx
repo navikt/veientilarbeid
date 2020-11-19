@@ -4,11 +4,10 @@ import Feilmelding from '../feilmeldinger/feilmelding';
 import { fetchData } from '../../ducks/api-utils';
 import { contextpathDittNav, erMikrofrontend } from '../../utils/app-state-utils';
 import DataProvider from './data-provider';
-import InnholdLogikkNiva4 from '../../innhold/innhold-logikk-niva4';
-import InnholdLogikkNiva3 from '../../innhold/innhold-logikk-niva3';
 import OppfolgingBrukerregistreringProvider from './oppfolging-brukerregistrering-provider';
 import * as Autentisering from '../../ducks/autentisering';
-import { InnloggingsNiva } from '../../ducks/autentisering';
+import InnholdView from '../../innhold/innhold-view';
+import SjekkInnlogging from './sjekk-innlogging';
 
 export const AUTH_API = '/api/auth';
 
@@ -29,15 +28,13 @@ const AutentiseringsInfoFetcher = () => {
             avhengigheter={[state]}
         >
             <Autentisering.AutentiseringContext.Provider value={state}>
-                {state.data.securityLevel === InnloggingsNiva.LEVEL_3 ? (
-                    <InnholdLogikkNiva3 />
-                ) : (
+                <SjekkInnlogging bypassComponent={<InnholdView />}>
                     <OppfolgingBrukerregistreringProvider>
                         <DataProvider>
-                            <InnholdLogikkNiva4 />
+                            <InnholdView />
                         </DataProvider>
                     </OppfolgingBrukerregistreringProvider>
-                )}
+                </SjekkInnlogging>
             </Autentisering.AutentiseringContext.Provider>
         </Innholdslaster>
     );
