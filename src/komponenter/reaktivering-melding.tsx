@@ -3,12 +3,21 @@ import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { reaktiveringLenke } from '../innhold/lenker';
 import tekster from '../tekster/tekster';
+import { loggAktivitet } from '../metrics/metrics';
+import { AmplitudeAktivitetContext } from '../ducks/amplitude-aktivitet-context';
 import { OppfolgingContext } from '../ducks/oppfolging';
 
 const ReaktiveringMelding = () => {
-    const kanReaktiveres = React.useContext(OppfolgingContext).data.kanReaktiveres;
+    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
+    const kanViseKomponent = React.useContext(OppfolgingContext).data.kanReaktiveres;
 
-    if (!kanReaktiveres) {
+    React.useEffect(() => {
+        if (kanViseKomponent) {
+            loggAktivitet({ aktivitet: 'Viser reaktiveringsmelding', ...amplitudeAktivitetsData });
+        }
+    }, [kanViseKomponent, amplitudeAktivitetsData]);
+
+    if (!kanViseKomponent) {
         return null;
     }
     return (

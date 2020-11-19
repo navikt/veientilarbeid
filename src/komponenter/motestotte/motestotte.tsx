@@ -12,10 +12,12 @@ import {
 import { antallTimerSidenRegistrering } from '../egenvurdering/egenvurdering';
 import { motestotteLenke } from '../../innhold/lenker';
 import { uniLogger } from '../../metrics/uni-logger';
+import { loggAktivitet } from '../../metrics/metrics';
 import './motestotte.less';
 import { OppfolgingContext, Servicegruppe } from '../../ducks/oppfolging';
 import { MotestotteContext } from '../../ducks/motestotte';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
+import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
 import tekster from '../../tekster/tekster';
 
 const LANSERINGSDATO_MOTESTOTTE = new Date('2020-03-12');
@@ -43,6 +45,7 @@ const lagKnappelytter = (antallTimer = 0, foreslattInnsatsgruppe = 'UKJENT') => 
 };
 
 const Motestotte = () => {
+    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const data = React.useContext(BrukerregistreringContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const motestotteData = React.useContext(MotestotteContext).data;
@@ -61,7 +64,7 @@ const Motestotte = () => {
         return opprettetRegistreringDato <= new Date(motestotteData.dato);
     };
 
-    const skalViseMotestotteLenke =
+    const kanViseKomponent =
         dinSituasjon !== 'ER_PERMITTERT' &&
         oppfolgingData.servicegruppe === Servicegruppe.BKART &&
         !harGyldigMotestottebesvarelse() &&
@@ -71,11 +74,14 @@ const Motestotte = () => {
         foreslattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING;
 
     React.useEffect(() => {
-        uniLogger('motestotte.visning', { antallTimer, foreslattInnsatsgruppe });
+        if (kanViseKomponent) {
+            loggAktivitet({ aktivitet: 'Viser møtestøtte', ...amplitudeAktivitetsData });
+            uniLogger('motestotte.visning', { antallTimer, foreslattInnsatsgruppe });
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [kanViseKomponent, amplitudeAktivitetsData]);
 
-    if (!skalViseMotestotteLenke) return null;
+    if (!kanViseKomponent) return null;
 
     return (
         <Panel border className="ramme blokk-s">
