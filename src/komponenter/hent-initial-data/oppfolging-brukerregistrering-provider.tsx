@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Innholdslaster from '../innholdslaster/innholdslaster';
 import * as Oppfolging from '../../ducks/oppfolging';
-import * as UnderOppfolging from '../../ducks/under-oppfolging'
+import * as UnderOppfolging from '../../ducks/under-oppfolging';
 import Feilmelding from '../feilmeldinger/feilmelding';
 import * as Brukerregistrering from '../../ducks/brukerregistrering';
 import * as FeatureToggle from '../../ducks/feature-toggles';
@@ -20,14 +20,20 @@ const OppfolgingBrukerregistreringProvider = ({ children }: OppfolgingProviderPr
         Brukerregistrering.initialState
     );
     const [oppfolgingState, setOppfolgingState] = React.useState<Oppfolging.State>(Oppfolging.initialState);
-    const [underOppfolgingState, setUnderOppfolgingState] = React.useState<UnderOppfolging.State>(UnderOppfolging.initialState);
+    const [underOppfolgingState, setUnderOppfolgingState] = React.useState<UnderOppfolging.State>(
+        UnderOppfolging.initialState
+    );
     const [featureToggleState, setFeatureToggleState] = React.useState<FeatureToggle.State>(FeatureToggle.initialState);
     const parameters = FeatureToggle.alleFeatureToggles.map((element) => 'feature=' + element).join('&');
     const featureTogglesUrl = `${FEATURE_URL}/?${parameters}`;
 
     React.useEffect(() => {
         fetchData<Oppfolging.State, Oppfolging.Data>(oppfolgingState, setOppfolgingState, VEILARBOPPFOLGING_URL);
-        fetchData<UnderOppfolging.State, UnderOppfolging.Data>(underOppfolgingState, setUnderOppfolgingState, UNDER_OPPFOLGING_URL);
+        fetchData<UnderOppfolging.State, UnderOppfolging.Data>(
+            underOppfolgingState,
+            setUnderOppfolgingState,
+            UNDER_OPPFOLGING_URL
+        );
         fetchData<Brukerregistrering.State, Brukerregistrering.Data>(
             brukerregistreringState,
             setBrukerregistreringState,

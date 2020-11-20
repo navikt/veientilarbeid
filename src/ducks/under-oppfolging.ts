@@ -11,7 +11,7 @@ export interface Data {
 
 export const initialState: State = {
     data: {
-        erUnderOppfolging: false
+        erUnderOppfolging: false,
     },
     status: STATUS.NOT_STARTED,
 };
