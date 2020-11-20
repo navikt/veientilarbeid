@@ -1,14 +1,14 @@
-import {AUTH_API} from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
-import AuthResponse from './auth-mock'
+import { AUTH_API } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
+import AuthResponse from './auth-mock';
 import ulesteDialogerResponse from './ulestedialoger-mock';
 import egenvurderingbesvarelseResponse from './egenvurderingbesvarelse-mock';
 import brukerRegistreringResponse from './brukerregistrering-mock';
 import motestotteResponse from './motestotte-mock';
 import featureTogglesResponse from './feature-toggles-mock';
-import jobbsokerbesvarelseResponse from "./jobbsokerbesvarelse-mock";
-import brukerInfoResponse from "./bruker-info-mock";
-import oppfolgingResponse from "./oppfolging-mock";
-import msw_get from "./msw-utils";
+import jobbsokerbesvarelseResponse from './jobbsokerbesvarelse-mock';
+import brukerInfoResponse from './bruker-info-mock';
+import oppfolgingResponse from './oppfolging-mock';
+import msw_get from './msw-utils';
 import {
     BRUKERINFO_URL,
     BRUKERREGISTRERING_URL,
@@ -30,4 +30,4 @@ export const handlers = [
     msw_get(JOBBSOKERBESVARELSE_URL, jobbsokerbesvarelseResponse),
     msw_get(BRUKERINFO_URL, brukerInfoResponse),
     msw_get(VEILARBOPPFOLGING_URL, oppfolgingResponse),
-]
+];

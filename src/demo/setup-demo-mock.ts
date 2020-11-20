@@ -25,10 +25,9 @@ import {
     hentUlesteDialoger,
 } from './demo-state';
 
-import {hentBrukerRegistreringData} from './demo-state-brukerregistrering';
-import {AUTH_API} from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
-import msw_get from "../mocks/msw-utils";
-
+import { hentBrukerRegistreringData } from './demo-state-brukerregistrering';
+import { AUTH_API } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
+import msw_get from '../mocks/msw-utils';
 
 const randomUlesteDialoger = () => {
     const min = 1;
@@ -53,7 +52,6 @@ export const demo_handlers = [
         rettighetsgruppe: hentRettighetsgruppe(),
     }),
 
-
     msw_get(BRUKERINFO_URL, {
         erSykmeldtMedArbeidsgiver: hentSykmeldtMedArbeidsgiver(),
         geografiskTilknytning: hentGeografiskTilknytning(),
@@ -76,4 +74,4 @@ export const demo_handlers = [
     msw_get(FEATURE_URL, hentFeatureToggles()),
 
     msw_get(AUTH_API, hentAutentiseringsInfo()),
-]
+];
