@@ -1,4 +1,5 @@
 import * as React from 'react';
+import '@testing-library/jest-dom/extend-expect'
 import { render, screen } from '@testing-library/react';
 import Aap from './aap';
 import tekster from '../../tekster/tekster';
@@ -9,17 +10,33 @@ describe('Aap', () => {
         window.HTMLElement.prototype.scrollIntoView = () => {};
     });
 
-    it('rendres når bruker er sykemeldt med arbeidsgiver', async () => {
-        const sykmeldt: ProviderProps = { brukerInfo: { erSykmeldtMedArbeidsgiver: true } };
+    it('rendres når bruker er sykemeldt med arbeidsgiver og under oppfølging', async () => {
+        const props: ProviderProps = { 
+            brukerInfo: { erSykmeldtMedArbeidsgiver: true },
+            underOppfolging: { erBrukerUnderOppfolging: true }
+        };
 
-        render(<Aap />, { wrapper: contextProviders(sykmeldt) });
+        render(<Aap />, { wrapper: contextProviders(props) });
         expect(await screen.getByText(tekster['aap-rad-tittel'])).toBeTruthy();
     });
 
-    it('rendres IKKE når bruker ikke er sykmeldt', async () => {
-        const ikkeSykmeldt: ProviderProps = { brukerInfo: { erSykmeldtMedArbeidsgiver: false } };
+    it('rendres IKKE når bruker IKKE er sykmeldt og under oppfolging', async () => {
+        const props: ProviderProps = { 
+            brukerInfo: { erSykmeldtMedArbeidsgiver: false },
+            underOppfolging: { erBrukerUnderOppfolging: true }
+        };
 
-        render(<Aap />, { wrapper: contextProviders(ikkeSykmeldt) });
-        expect(await screen.queryByText(tekster['aap-rad-tittel'])).toBeFalsy();
+        const { container } = render(<Aap />, { wrapper: contextProviders(props) });
+        expect(container).toBeEmptyDOMElement();
+    });
+
+    it('rendres IKKE når bruker er sykmeldt og IKKE under oppfolging', async () => {
+        const props: ProviderProps = { 
+            brukerInfo: { erSykmeldtMedArbeidsgiver: true },
+            underOppfolging: { erBrukerUnderOppfolging: false }
+        };
+
+        const { container } = render(<Aap />, { wrapper: contextProviders(props) });
+        expect(container).toBeEmptyDOMElement();
     });
 });
