@@ -8,6 +8,7 @@ import featureTogglesResponse from './feature-toggles-mock';
 import jobbsokerbesvarelseResponse from './jobbsokerbesvarelse-mock';
 import brukerInfoResponse from './bruker-info-mock';
 import oppfolgingResponse from './oppfolging-mock';
+import underOppfolgingResponse from './under-oppfolging-mock';
 import msw_get from './msw-utils';
 import {
     BRUKERINFO_URL,
@@ -18,6 +19,7 @@ import {
     MOTESTOTTE_URL,
     ULESTEDIALOGER_URL,
     VEILARBOPPFOLGING_URL,
+    UNDER_OPPFOLGING_URL
 } from '../ducks/api';
 
 export const handlers = [
@@ -30,4 +32,5 @@ export const handlers = [
     msw_get(JOBBSOKERBESVARELSE_URL, jobbsokerbesvarelseResponse),
     msw_get(BRUKERINFO_URL, brukerInfoResponse),
     msw_get(VEILARBOPPFOLGING_URL, oppfolgingResponse),
+    msw_get(UNDER_OPPFOLGING_URL, underOppfolgingResponse),
 ];
