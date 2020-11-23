@@ -1,4 +1,5 @@
 import * as React from 'react';
+import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
 import Motestotte from './motestotte';
 import tekster from '../../tekster/tekster';
@@ -28,9 +29,26 @@ describe('Motestotte', () => {
             brukerregistrering,
             motestotte,
             oppfolging,
+            underOppfolging: {
+                erBrukerUnderOppfolging: true,
+            },
         };
         render(<Motestotte />, { wrapper: contextProviders(providerProps) });
         expect(await screen.getByText(tekster['motestotte-sykmeldt-systemtittel'])).toBeTruthy();
+    });
+
+    it('rendres IKKE når men IKKE er under oppfølging', async () => {
+        const providerProps: ProviderProps = {
+            brukerInfo,
+            brukerregistrering,
+            motestotte,
+            oppfolging,
+            underOppfolging: {
+                erBrukerUnderOppfolging: false,
+            },
+        };
+        const { container } = render(<Motestotte />, { wrapper: contextProviders(providerProps) });
+        expect(container).toBeEmptyDOMElement();
     });
 
     it('rendre med alternativ tekst dersom ikke sykmeldt', async () => {
@@ -41,6 +59,9 @@ describe('Motestotte', () => {
             brukerregistrering,
             motestotte,
             oppfolging,
+            underOppfolging: {
+                erBrukerUnderOppfolging: true,
+            },
         };
         render(<Motestotte />, { wrapper: contextProviders(providerProps) });
         expect(await screen.queryByText(tekster['motestotte-sykmeldt-systemtittel'])).toBeFalsy();
