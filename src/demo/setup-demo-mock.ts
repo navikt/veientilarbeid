@@ -7,6 +7,7 @@ import {
     MOTESTOTTE_URL,
     ULESTEDIALOGER_URL,
     VEILARBOPPFOLGING_URL,
+    UNDER_OPPFOLGING_URL
 } from '../ducks/api';
 
 import {
@@ -23,6 +24,7 @@ import {
     hentServicegruppe,
     hentSykmeldtMedArbeidsgiver,
     hentUlesteDialoger,
+    hentUnderOppfolging
 } from './demo-state';
 
 import { hentBrukerRegistreringData } from './demo-state-brukerregistrering';
@@ -74,4 +76,6 @@ export const demo_handlers = [
     msw_get(FEATURE_URL, hentFeatureToggles()),
 
     msw_get(AUTH_API, hentAutentiseringsInfo()),
+
+    msw_get(UNDER_OPPFOLGING_URL, hentUnderOppfolging())
 ];

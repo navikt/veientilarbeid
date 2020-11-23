@@ -19,6 +19,7 @@ export enum DemoData {
     REGISTRERING_TYPE = 'registreringType',
     RETTIGHETSGRUPPE = 'rettighetsgruppe',
     FEATURE_TOGGLES = 'featureToggles',
+    UNDER_OPPFOLGING = 'underOppfolging'
 }
 
 export const hentFraLocalStorage = (key: string): string | null => {
@@ -173,4 +174,17 @@ export const hentAutentiseringsInfo = (): JSONObject => {
 
 export const slettAutentiseringsInfo = () => {
     slettFraLocalStorage(DemoData.AUTENTISERINGS_INFO);
+};
+
+export const hentUnderOppfolging = (): JSONObject => {
+    const verdi = hentFraLocalStorage(DemoData.UNDER_OPPFOLGING);
+    return verdi ? JSON.parse(verdi) : { erBrukerUnderOppfolging: false };
+};
+
+export const settUnderOppfolging = () => {
+    settILocalStorage(DemoData.UNDER_OPPFOLGING, JSON.stringify({ erBrukerUnderOppfolging: true }));
+};
+
+export const slettUnderOppfolging = () => {
+    slettFraLocalStorage(DemoData.UNDER_OPPFOLGING);
 };
