@@ -35,7 +35,7 @@ import {
     settFeatureToggles,
     hentUnderOppfolging,
     slettUnderOppfolging,
-    settUnderOppfolging,
+    settUnderOppfolging
 } from './demo-state';
 
 import './demo-dashboard.less';
@@ -75,7 +75,7 @@ class DemoDashboard extends React.Component<{}> {
         const RESERVASJON_KRR = DemoData.RESERVASJON_KRR;
         const AUTENTISERINGS_INFO = DemoData.AUTENTISERINGS_INFO;
         const FEATURES = DemoData.FEATURE_TOGGLES;
-        const UNDER_OPPFOLGING = DemoData.UNDER_OPPFOLGING;
+        const UNDER_OPPFOLGING = DemoData.UNDER_OPPFOLGING
 
         const handleChangeServicegruppe = (e: React.ChangeEvent<HTMLSelectElement>) => {
             settServicegruppe(e.target.value);
@@ -155,7 +155,7 @@ class DemoDashboard extends React.Component<{}> {
                 } else {
                     slettAutentiseringsInfo();
                 }
-            } else if (element.id === UNDER_OPPFOLGING) {
+            } else if (element.id ===  UNDER_OPPFOLGING) {
                 if (element.checked) {
                     settUnderOppfolging();
                 } else {
@@ -372,7 +372,7 @@ class DemoDashboard extends React.Component<{}> {
                             label: 'Under oppfølging',
                             checked: hentUnderOppfolging().erBrukerUnderOppfolging === true,
                             id: UNDER_OPPFOLGING,
-                        },
+                        }
                     ]}
                 />
             </section>
