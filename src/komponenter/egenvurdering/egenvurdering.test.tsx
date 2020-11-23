@@ -1,12 +1,13 @@
 import * as React from 'react';
-import { render, screen } from '@testing-library/react';
+import {ComponentType} from 'react';
+import {render, screen} from '@testing-library/react';
 import Egenvurdering from './egenvurdering';
 import tekster from '../../tekster/tekster';
-import { ComponentType } from 'react';
-import { contextProviders, ProviderProps } from '../../test/test-context-providers';
-import { Servicegruppe } from '../../ducks/oppfolging';
-import { ForeslattInnsatsgruppe } from '../../ducks/brukerregistrering';
+import {contextProviders, ProviderProps} from '../../test/test-context-providers';
+import {Servicegruppe} from '../../ducks/oppfolging';
+import {ForeslattInnsatsgruppe} from '../../ducks/brukerregistrering';
 import userEvent from '@testing-library/user-event';
+import '@testing-library/jest-dom/extend-expect';
 
 describe('Tester egenvurdering-komponenten', () => {
     let standardInnsatsBrukerregistrering = {
@@ -17,6 +18,7 @@ describe('Tester egenvurdering-komponenten', () => {
     };
     it('renderes når den skal', async () => {
         const props: ProviderProps = {
+            underOppfolging: { erBrukerUnderOppfolging: true },
             oppfolging: { servicegruppe: Servicegruppe.IVURD },
             brukerregistrering: standardInnsatsBrukerregistrering,
         };
@@ -24,8 +26,19 @@ describe('Tester egenvurdering-komponenten', () => {
         expect(screen.getByText(tekster['egenvurdering-tittel'])).toBeTruthy();
     });
 
+    test('Komponenten rendres IKKE når bruker IKKE er under oppfølging', () => {
+        const props: ProviderProps = {
+            underOppfolging: { erBrukerUnderOppfolging: false },
+            oppfolging: { servicegruppe: Servicegruppe.IVURD },
+            brukerregistrering: standardInnsatsBrukerregistrering,
+        };
+        const { container } = render(<Egenvurdering />, { wrapper: contextProviders(props) });
+        expect(container).toBeEmptyDOMElement();
+    });
+
     it('rendres ikke med gyldig levert egenvurdering', async () => {
         const props: ProviderProps = {
+            underOppfolging: { erBrukerUnderOppfolging: true },
             oppfolging: { servicegruppe: Servicegruppe.IVURD },
             brukerregistrering: standardInnsatsBrukerregistrering,
             egenvurdering: { sistOppdatert: '2020-02-01' },
@@ -35,13 +48,17 @@ describe('Tester egenvurdering-komponenten', () => {
     });
 
     it('renderes ikke som standard-oppførsel', async () => {
-        const props: ProviderProps = {};
+        const props: ProviderProps = {
+            underOppfolging: { erBrukerUnderOppfolging: true },
+        };
+
         render(<Egenvurdering />, { wrapper: contextProviders(props) as ComponentType });
         expect(await screen.queryByText(tekster['egenvurdering-tittel'])).toBeFalsy();
     });
 
     it('knapp fungerer som forventet', async () => {
         const props: ProviderProps = {
+            underOppfolging: { erBrukerUnderOppfolging: true },
             oppfolging: { servicegruppe: Servicegruppe.IVURD },
             brukerregistrering: standardInnsatsBrukerregistrering,
         };
