@@ -1,13 +1,14 @@
 import * as React from 'react';
 import '@testing-library/jest-dom/extend-expect';
-import { screen, render } from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 import GenerelleFliser from './generelle-fliser';
 import tekster from './utils/tekster.json';
-import { contextProviders, ProviderProps } from '../../test/test-context-providers';
+import {contextProviders, ProviderProps} from '../../test/test-context-providers';
 
 describe('Tester komponenten', () => {
     test('Komponenten rendres IKKE som om man er under oppfølging', () => {
         const props: ProviderProps = {
+            underOppfolging: { erBrukerUnderOppfolging: true },
             oppfolging: {
                 underOppfolging: true,
             },
@@ -18,6 +19,7 @@ describe('Tester komponenten', () => {
 
     test('Komponenten VISES om man er under oppfølging', () => {
         const props: ProviderProps = {
+            underOppfolging: { erBrukerUnderOppfolging: false },
             oppfolging: {
                 underOppfolging: false,
             },
