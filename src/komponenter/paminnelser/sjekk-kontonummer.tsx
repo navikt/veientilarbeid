@@ -5,13 +5,13 @@ import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { loggAktivitet } from '../../metrics/metrics';
 import './paminnelse.less';
 import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
-import { OppfolgingContext } from '../../ducks/oppfolging';
+import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
 const SjekkKontonummer = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
-    const oppfolgingData = React.useContext(OppfolgingContext).data;
+    const { erBrukerUnderOppfolging } = React.useContext(UnderOppfolgingContext).data;
 
-    const kanViseKomponent = oppfolgingData.underOppfolging;
+    const kanViseKomponent = erBrukerUnderOppfolging;
 
     React.useEffect(() => {
         if (kanViseKomponent) {

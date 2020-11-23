@@ -17,8 +17,8 @@ describe('tester at komponenten oppfører seg som forventet', () => {
             autentisering: {
                 securityLevel: InnloggingsNiva.LEVEL_4,
             },
-            oppfolging: {
-                underOppfolging: false,
+            underOppfolging: {
+                erBrukerUnderOppfolging: false,
             },
         };
         const { container } = render(<SjekkKtnr />, { wrapper: contextProviders(providerProps) });
@@ -30,8 +30,8 @@ describe('tester at komponenten oppfører seg som forventet', () => {
             autentisering: {
                 securityLevel: InnloggingsNiva.LEVEL_3,
             },
-            oppfolging: {
-                underOppfolging: false,
+            underOppfolging: {
+                erBrukerUnderOppfolging: false,
             },
         };
         const { container } = render(<SjekkKtnr />, { wrapper: contextProviders(providerProps) });
@@ -43,8 +43,8 @@ describe('tester at komponenten oppfører seg som forventet', () => {
             autentisering: {
                 securityLevel: InnloggingsNiva.LEVEL_4,
             },
-            oppfolging: {
-                underOppfolging: true,
+            underOppfolging: {
+                erBrukerUnderOppfolging: true,
             },
         };
         render(<SjekkKtnr />, { wrapper: contextProviders(providerProps) });
@@ -57,8 +57,8 @@ describe('tester at komponenten oppfører seg som forventet', () => {
             autentisering: {
                 securityLevel: InnloggingsNiva.LEVEL_3,
             },
-            oppfolging: {
-                underOppfolging: true,
+            underOppfolging: {
+                erBrukerUnderOppfolging: true,
             },
         };
         render(<SjekkKtnr />, { wrapper: contextProviders(providerProps) });
