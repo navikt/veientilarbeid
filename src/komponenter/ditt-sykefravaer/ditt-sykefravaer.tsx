@@ -5,7 +5,7 @@ import Plaster from './plaster';
 import {sykefravaerLenke} from '../../innhold/lenker';
 import {AmplitudeAktivitetContext} from '../../ducks/amplitude-aktivitet-context';
 import {BrukerInfoContext} from '../../ducks/bruker-info';
-import {UnderOppfolgingContext} from "../../ducks/under-oppfolging";
+import {UnderOppfolgingContext} from '../../ducks/under-oppfolging';
 
 const DittSykefravaer = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);

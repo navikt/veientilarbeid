@@ -6,13 +6,12 @@ import {loggAktivitet} from '../../metrics/metrics';
 import './melding.less';
 import {AmplitudeAktivitetContext} from '../../ducks/amplitude-aktivitet-context';
 import {OppfolgingContext} from '../../ducks/oppfolging';
-import {UnderOppfolgingContext} from "../../ducks/under-oppfolging";
+import {UnderOppfolgingContext} from '../../ducks/under-oppfolging';
 
 const TrekkDagpengeSoknad = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const { erBrukerUnderOppfolging } = React.useContext(UnderOppfolgingContext).data;
-
 
     const kanViseKomponent = oppfolgingData.underOppfolging && erBrukerUnderOppfolging;
 

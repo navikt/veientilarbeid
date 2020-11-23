@@ -7,7 +7,7 @@ import './dagpenger.less';
 import {dagpengerSoknadLenke} from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 import {AmplitudeAktivitetContext} from '../../ducks/amplitude-aktivitet-context';
-import {UnderOppfolgingContext} from "../../ducks/under-oppfolging";
+import {UnderOppfolgingContext} from '../../ducks/under-oppfolging';
 
 const Dagpenger = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);

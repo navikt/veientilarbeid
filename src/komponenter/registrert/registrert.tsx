@@ -10,7 +10,7 @@ import Opplysninger from '../innsyn/registreringsopplysninger';
 import './registrert.less';
 import {AutentiseringContext, InnloggingsNiva} from '../../ducks/autentisering';
 import {AmplitudeAktivitetContext} from '../../ducks/amplitude-aktivitet-context';
-import {UnderOppfolgingContext} from "../../ducks/under-oppfolging";
+import {UnderOppfolgingContext} from '../../ducks/under-oppfolging';
 
 const Registrert = () => {
     const brukerregistreringData = useContext(BrukerregistreringContext).data;

@@ -5,13 +5,12 @@ import EmailText from './email-text';
 import {meldekortLenke} from '../../innhold/lenker';
 import {AmplitudeAktivitetContext} from '../../ducks/amplitude-aktivitet-context';
 import {BrukerInfoContext} from '../../ducks/bruker-info';
-import {UnderOppfolgingContext} from "../../ducks/under-oppfolging";
+import {UnderOppfolgingContext} from '../../ducks/under-oppfolging';
 
 const Meldekort = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
     const { erBrukerUnderOppfolging } = React.useContext(UnderOppfolgingContext).data;
-
 
     const kanViseKomponent = !erSykmeldtMedArbeidsgiver && erBrukerUnderOppfolging;
 

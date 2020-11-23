@@ -5,7 +5,7 @@ import {dialogLenke} from '../../innhold/lenker';
 import {Besvarelse, Svar} from '../../ducks/brukerregistrering';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import './registreringsopplysninger.less';
-import {UnderOppfolgingContext} from "../../ducks/under-oppfolging";
+import {UnderOppfolgingContext} from '../../ducks/under-oppfolging';
 
 const Opplysning = (props: any) => {
     const { sporsmal, svar } = props;
@@ -38,8 +38,7 @@ const Opplysninger = (props: any) => {
         loggAktivitet({ aktivitet: 'Går til endre registreringsopplysninger', ...amplitudeAktivitetsData });
     };
 
-
-    return !kanViseKomponent ? null :(
+    return !kanViseKomponent ? null : (
         <>
             <div className="blokk-s">
                 <Normaltekst>

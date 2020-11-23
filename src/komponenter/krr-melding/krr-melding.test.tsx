@@ -38,5 +38,4 @@ describe('Test av komponent', () => {
         const { container } = render(<KrrMelding />, { wrapper: contextProviders(props) });
         expect(container).toBeEmptyDOMElement();
     });
-
 });

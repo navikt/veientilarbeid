@@ -30,7 +30,6 @@ describe('Test av registreringskomponenten', () => {
         expect(screen.getByText(/du er registrert som arbeidssøker/i)).toBeInTheDocument();
     });
 
-
     test('Komponenten rendres IKKE når bruker IKKE er under oppfølging', () => {
         const props: ProviderProps = {
             underOppfolging: { erBrukerUnderOppfolging: false },
@@ -44,8 +43,6 @@ describe('Test av registreringskomponenten', () => {
         const { container } = render(<Registrert />, { wrapper: contextProviders(props) });
         expect(container).toBeEmptyDOMElement();
     });
-
-
 
     test('Komponenten viser innsynskomponent dersom man har ARBS, er logget inn på nivå 4 og har besvarelse', () => {
         const providerProps: ProviderProps = {

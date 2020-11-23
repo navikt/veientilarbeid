@@ -15,7 +15,7 @@ import tekster from '../../tekster/tekster';
 import {AmplitudeAktivitetContext} from '../../ducks/amplitude-aktivitet-context';
 import {OppfolgingContext, Servicegruppe} from '../../ducks/oppfolging';
 import {EgenvurderingContext} from '../../ducks/egenvurdering';
-import {UnderOppfolgingContext} from "../../ducks/under-oppfolging";
+import {UnderOppfolgingContext} from '../../ducks/under-oppfolging';
 
 const LANSERINGSDATO_EGENVURDERING = new Date(2019, 4, 10);
 

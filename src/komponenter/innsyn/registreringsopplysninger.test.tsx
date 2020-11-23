@@ -2,7 +2,7 @@ import * as React from 'react';
 import {render, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Opplysninger from './registreringsopplysninger';
-import {contextProviders, ProviderProps} from "../../test/test-context-providers";
+import {contextProviders, ProviderProps} from '../../test/test-context-providers';
 import '@testing-library/jest-dom/extend-expect';
 
 const registreringsopplysninger = {
@@ -84,8 +84,9 @@ describe('Tester registreringsopplysninger komponenten', () => {
         const props: ProviderProps = {
             underOppfolging: { erBrukerUnderOppfolging: false },
         };
-        const { container } = render(<Opplysninger {...registreringsopplysninger} />, { wrapper: contextProviders(props) });
+        const { container } = render(<Opplysninger {...registreringsopplysninger} />, {
+            wrapper: contextProviders(props),
+        });
         expect(container).toBeEmptyDOMElement();
     });
-
 });

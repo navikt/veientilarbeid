@@ -7,7 +7,7 @@ import DittSykefravaer from './ditt-sykefravaer';
 
 describe('Tester at komponenten rendres som den skal', () => {
     test('Komponenten vises IKKE dersom ikke sykefravær', () => {
-        const providerProps: ProviderProps = {underOppfolging: { erBrukerUnderOppfolging: true }};
+        const providerProps: ProviderProps = { underOppfolging: { erBrukerUnderOppfolging: true } };
         const { container } = render(<DittSykefravaer />, { wrapper: contextProviders(providerProps) });
         expect(container).toBeEmptyDOMElement();
     });
@@ -18,7 +18,6 @@ describe('Tester at komponenten rendres som den skal', () => {
                 erSykmeldtMedArbeidsgiver: true,
             },
             underOppfolging: { erBrukerUnderOppfolging: true },
-
         };
         render(<DittSykefravaer />, { wrapper: contextProviders(providerProps) });
         expect(screen.getByText(tekster['ditt-sykefravaer-overskrift'])).toBeInTheDocument();

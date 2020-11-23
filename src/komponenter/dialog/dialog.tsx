@@ -10,7 +10,7 @@ import tekster from '../../tekster/tekster';
 import {OppfolgingContext} from '../../ducks/oppfolging';
 import {AmplitudeAktivitetContext} from '../../ducks/amplitude-aktivitet-context';
 import {UlesteDialogerContext} from '../../ducks/ulestedialoger';
-import {UnderOppfolgingContext} from "../../ducks/under-oppfolging";
+import {UnderOppfolgingContext} from '../../ducks/under-oppfolging';
 
 const Dialog = () => {
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
@@ -18,7 +18,6 @@ const Dialog = () => {
     const ulesteDialoger = React.useContext(UlesteDialogerContext).data;
     const { erBrukerUnderOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const kanViseKomponent = erBrukerUnderOppfolging;
-
 
     React.useEffect(() => {
         loggAktivitet({ aktivitet: 'Viser dialog', ...amplitudeAktivitetsData });
