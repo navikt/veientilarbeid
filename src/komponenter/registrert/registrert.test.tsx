@@ -1,22 +1,24 @@
 import * as React from 'react';
 import '@testing-library/jest-dom/extend-expect';
-import { render, screen } from '@testing-library/react';
-import { InnloggingsNiva } from '../../ducks/autentisering';
-import { contextProviders, ProviderProps } from '../../test/test-context-providers';
-
+import {render, screen} from '@testing-library/react';
+import {InnloggingsNiva} from '../../ducks/autentisering';
+import {contextProviders, ProviderProps} from '../../test/test-context-providers';
 import Registrert from './registrert';
-import { Formidlingsgruppe } from '../../ducks/oppfolging';
-import { ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../../ducks/brukerregistrering';
+import {Formidlingsgruppe} from '../../ducks/oppfolging';
+import {ForeslattInnsatsgruppe, FremtidigSituasjonSvar} from '../../ducks/brukerregistrering';
 
 describe('Test av registreringskomponenten', () => {
     test('Komponenten vises IKKE dersom man ikke har ARBS og nivå 4', () => {
-        const providerProps: ProviderProps = {};
+        const providerProps: ProviderProps = {
+            underOppfolging: { erBrukerUnderOppfolging: true },
+        };
         const { container } = render(<Registrert />, { wrapper: contextProviders(providerProps) });
         expect(container).toBeEmptyDOMElement();
     });
 
-    test('Komponenten VISES dersom man har ARBS og er logget inn på nivå 4', () => {
+    test('Komponenten VISES dersom man har ARBS, er underOppfolging og er logget inn på nivå 4', () => {
         const providerProps: ProviderProps = {
+            underOppfolging: { erBrukerUnderOppfolging: true },
             autentisering: {
                 securityLevel: InnloggingsNiva.LEVEL_4,
             },
@@ -28,8 +30,26 @@ describe('Test av registreringskomponenten', () => {
         expect(screen.getByText(/du er registrert som arbeidssøker/i)).toBeInTheDocument();
     });
 
+
+    test('Komponenten rendres IKKE når bruker IKKE er under oppfølging', () => {
+        const props: ProviderProps = {
+            underOppfolging: { erBrukerUnderOppfolging: false },
+            autentisering: {
+                securityLevel: InnloggingsNiva.LEVEL_4,
+            },
+            oppfolging: {
+                formidlingsgruppe: Formidlingsgruppe.ARBS,
+            },
+        };
+        const { container } = render(<Registrert />, { wrapper: contextProviders(props) });
+        expect(container).toBeEmptyDOMElement();
+    });
+
+
+
     test('Komponenten viser innsynskomponent dersom man har ARBS, er logget inn på nivå 4 og har besvarelse', () => {
         const providerProps: ProviderProps = {
+            underOppfolging: { erBrukerUnderOppfolging: true },
             autentisering: {
                 securityLevel: InnloggingsNiva.LEVEL_4,
             },
