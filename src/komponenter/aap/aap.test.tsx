@@ -1,5 +1,5 @@
 import * as React from 'react';
-import '@testing-library/jest-dom/extend-expect'
+import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
 import Aap from './aap';
 import tekster from '../../tekster/tekster';
@@ -11,9 +11,9 @@ describe('Aap', () => {
     });
 
     it('rendres når bruker er sykemeldt med arbeidsgiver og under oppfølging', async () => {
-        const props: ProviderProps = { 
+        const props: ProviderProps = {
             brukerInfo: { erSykmeldtMedArbeidsgiver: true },
-            underOppfolging: { erBrukerUnderOppfolging: true }
+            underOppfolging: { erBrukerUnderOppfolging: true },
         };
 
         render(<Aap />, { wrapper: contextProviders(props) });
@@ -21,9 +21,9 @@ describe('Aap', () => {
     });
 
     it('rendres IKKE når bruker IKKE er sykmeldt og under oppfolging', async () => {
-        const props: ProviderProps = { 
+        const props: ProviderProps = {
             brukerInfo: { erSykmeldtMedArbeidsgiver: false },
-            underOppfolging: { erBrukerUnderOppfolging: true }
+            underOppfolging: { erBrukerUnderOppfolging: true },
         };
 
         const { container } = render(<Aap />, { wrapper: contextProviders(props) });
@@ -31,9 +31,9 @@ describe('Aap', () => {
     });
 
     it('rendres IKKE når bruker er sykmeldt og IKKE under oppfolging', async () => {
-        const props: ProviderProps = { 
+        const props: ProviderProps = {
             brukerInfo: { erSykmeldtMedArbeidsgiver: true },
-            underOppfolging: { erBrukerUnderOppfolging: false }
+            underOppfolging: { erBrukerUnderOppfolging: false },
         };
 
         const { container } = render(<Aap />, { wrapper: contextProviders(props) });

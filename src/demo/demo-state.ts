@@ -19,7 +19,7 @@ export enum DemoData {
     REGISTRERING_TYPE = 'registreringType',
     RETTIGHETSGRUPPE = 'rettighetsgruppe',
     FEATURE_TOGGLES = 'featureToggles',
-    UNDER_OPPFOLGING = 'underOppfolging'
+    UNDER_OPPFOLGING = 'underOppfolging',
 }
 
 export const hentFraLocalStorage = (key: string): string | null => {

@@ -19,7 +19,7 @@ import {
     MOTESTOTTE_URL,
     ULESTEDIALOGER_URL,
     VEILARBOPPFOLGING_URL,
-    UNDER_OPPFOLGING_URL
+    UNDER_OPPFOLGING_URL,
 } from '../ducks/api';
 
 export const handlers = [

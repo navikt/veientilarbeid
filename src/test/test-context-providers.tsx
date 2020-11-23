@@ -66,28 +66,28 @@ export const contextProviders = function (props: ProviderProps): React.FunctionC
                                         props.underOppfolging && { data: props.underOppfolging }
                                     )}
                                 >
-                                <Oppfolging.OppfolgingContext.Provider
-                                    value={merge(
-                                        Oppfolging.initialState,
-                                        props.oppfolging && { data: props.oppfolging }
-                                    )}
-                                >
-                                    <Motestotte.MotestotteContext.Provider
+                                    <Oppfolging.OppfolgingContext.Provider
                                         value={merge(
-                                            Motestotte.initialState,
-                                            props.motestotte && { data: props.motestotte }
+                                            Oppfolging.initialState,
+                                            props.oppfolging && { data: props.oppfolging }
                                         )}
                                     >
-                                        <FeatureToggle.FeaturetoggleContext.Provider
+                                        <Motestotte.MotestotteContext.Provider
                                             value={merge(
-                                                FeatureToggle.initialState,
-                                                props.featureToggle && { data: props.featureToggle }
+                                                Motestotte.initialState,
+                                                props.motestotte && { data: props.motestotte }
                                             )}
                                         >
-                                            {children}
-                                        </FeatureToggle.FeaturetoggleContext.Provider>
-                                    </Motestotte.MotestotteContext.Provider>
-                                </Oppfolging.OppfolgingContext.Provider>
+                                            <FeatureToggle.FeaturetoggleContext.Provider
+                                                value={merge(
+                                                    FeatureToggle.initialState,
+                                                    props.featureToggle && { data: props.featureToggle }
+                                                )}
+                                            >
+                                                {children}
+                                            </FeatureToggle.FeaturetoggleContext.Provider>
+                                        </Motestotte.MotestotteContext.Provider>
+                                    </Oppfolging.OppfolgingContext.Provider>
                                 </UnderOppfolging.UnderOppfolgingContext.Provider>
                             </Egenvurdering.EgenvurderingContext.Provider>
                         </Jobbsokerbesvarelse.JobbsokerbesvarelseContext.Provider>
