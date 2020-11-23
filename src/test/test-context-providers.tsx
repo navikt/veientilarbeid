@@ -8,6 +8,7 @@ import * as UlesteDialoger from '../ducks/ulestedialoger';
 import * as Jobbsokerbesvarelse from '../ducks/jobbsokerbesvarelse';
 import * as BrukerInfo from '../ducks/bruker-info';
 import * as Motestotte from '../ducks/motestotte';
+import * as UnderOppfolging from '../ducks/under-oppfolging';
 import * as React from 'react';
 
 type DeepPartial<T> = {
@@ -24,6 +25,7 @@ export type ProviderProps = {
     jobbsokerbesvarelse?: DeepPartial<Jobbsokerbesvarelse.Data>;
     brukerInfo?: DeepPartial<BrukerInfo.Data>;
     motestotte?: DeepPartial<Motestotte.Data>;
+    underOppfolging?: DeepPartial<UnderOppfolging.Data>;
 };
 
 export const contextProviders = function (props: ProviderProps): React.FunctionComponent {
@@ -58,6 +60,12 @@ export const contextProviders = function (props: ProviderProps): React.FunctionC
                                     props.egenvurdering && { data: props.egenvurdering }
                                 )}
                             >
+                                <UnderOppfolging.UnderOppfolgingContext.Provider
+                                    value={merge(
+                                        UnderOppfolging.initialState,
+                                        props.underOppfolging && { data: props.underOppfolging }
+                                    )}
+                                >
                                 <Oppfolging.OppfolgingContext.Provider
                                     value={merge(
                                         Oppfolging.initialState,
@@ -80,6 +88,7 @@ export const contextProviders = function (props: ProviderProps): React.FunctionC
                                         </FeatureToggle.FeaturetoggleContext.Provider>
                                     </Motestotte.MotestotteContext.Provider>
                                 </Oppfolging.OppfolgingContext.Provider>
+                                </UnderOppfolging.UnderOppfolgingContext.Provider>
                             </Egenvurdering.EgenvurderingContext.Provider>
                         </Jobbsokerbesvarelse.JobbsokerbesvarelseContext.Provider>
                     </UlesteDialoger.UlesteDialogerContext.Provider>
