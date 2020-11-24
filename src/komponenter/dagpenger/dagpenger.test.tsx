@@ -1,10 +1,10 @@
 import * as React from 'react';
 import '@testing-library/jest-dom/extend-expect';
-import {render, screen} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Dagpenger from './dagpenger';
 import tekster from '../../tekster/tekster';
-import {contextProviders, ProviderProps} from '../../test/test-context-providers';
+import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 
 describe('Tester dagpengerkomponenten', () => {
     test('Komponenten rendres når bruker er under oppfølging', () => {

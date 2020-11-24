@@ -1,7 +1,7 @@
 import * as React from 'react';
 import '@testing-library/jest-dom/extend-expect';
-import {render, screen} from '@testing-library/react';
-import {contextProviders, ProviderProps} from '../../test/test-context-providers';
+import { render, screen } from '@testing-library/react';
+import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import tekster from '../../tekster/tekster';
 import DittSykefravaer from './ditt-sykefravaer';
 

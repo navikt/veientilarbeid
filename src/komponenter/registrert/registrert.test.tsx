@@ -1,11 +1,11 @@
 import * as React from 'react';
 import '@testing-library/jest-dom/extend-expect';
-import {render, screen} from '@testing-library/react';
-import {InnloggingsNiva} from '../../ducks/autentisering';
-import {contextProviders, ProviderProps} from '../../test/test-context-providers';
+import { render, screen } from '@testing-library/react';
+import { InnloggingsNiva } from '../../ducks/autentisering';
+import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import Registrert from './registrert';
-import {Formidlingsgruppe} from '../../ducks/oppfolging';
-import {ForeslattInnsatsgruppe, FremtidigSituasjonSvar} from '../../ducks/brukerregistrering';
+import { Formidlingsgruppe } from '../../ducks/oppfolging';
+import { ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../../ducks/brukerregistrering';
 
 describe('Test av registreringskomponenten', () => {
     test('Komponenten vises IKKE dersom man ikke har ARBS og nivå 4', () => {

@@ -1,9 +1,9 @@
 import * as React from 'react';
-import {render, screen} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import KrrMelding from './krr-melding';
 import tekster from '../../tekster/tekster';
-import {contextProviders, ProviderProps} from '../../test/test-context-providers';
+import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 
 describe('Test av komponent', () => {
     test('Rendrer komponent hvis reservasjon hos krr og underOppfolging', async () => {

@@ -1,11 +1,11 @@
 import * as React from 'react';
-import {Normaltekst} from 'nav-frontend-typografi';
-import {loggAktivitet} from '../../metrics/metrics';
-import {dialogLenke} from '../../innhold/lenker';
-import {Besvarelse, Svar} from '../../ducks/brukerregistrering';
+import { Normaltekst } from 'nav-frontend-typografi';
+import { loggAktivitet } from '../../metrics/metrics';
+import { dialogLenke } from '../../innhold/lenker';
+import { Besvarelse, Svar } from '../../ducks/brukerregistrering';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import './registreringsopplysninger.less';
-import {UnderOppfolgingContext} from '../../ducks/under-oppfolging';
+import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
 const Opplysning = (props: any) => {
     const { sporsmal, svar } = props;
