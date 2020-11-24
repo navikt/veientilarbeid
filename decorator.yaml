@@ -2,6 +2,7 @@ contextPath: /
 
 auth:
   enforce: true
+  minSecurityLevel: 3
   loginUrl: {{ LOGINSERVICE_URL }}
 
 proxy:
