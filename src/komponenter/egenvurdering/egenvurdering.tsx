@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {Hovedknapp} from 'nav-frontend-knapper';
-import {Normaltekst, Systemtittel} from 'nav-frontend-typografi';
+import { Hovedknapp } from 'nav-frontend-knapper';
+import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
-import {gaTilEgenvurdering, loggAktivitet, seEgenvurdering} from '../../metrics/metrics';
+import { gaTilEgenvurdering, loggAktivitet, seEgenvurdering } from '../../metrics/metrics';
 import {
     BrukerregistreringContext,
     ForeslattInnsatsgruppe,
@@ -10,12 +10,12 @@ import {
     selectOpprettetRegistreringDato,
 } from '../../ducks/brukerregistrering';
 import './egenvurdering.less';
-import {behovsvurderingLenke} from '../../innhold/lenker';
+import { behovsvurderingLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
-import {AmplitudeAktivitetContext} from '../../ducks/amplitude-aktivitet-context';
-import {OppfolgingContext, Servicegruppe} from '../../ducks/oppfolging';
-import {EgenvurderingContext} from '../../ducks/egenvurdering';
-import {UnderOppfolgingContext} from '../../ducks/under-oppfolging';
+import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
+import { OppfolgingContext, Servicegruppe } from '../../ducks/oppfolging';
+import { EgenvurderingContext } from '../../ducks/egenvurdering';
+import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
 const LANSERINGSDATO_EGENVURDERING = new Date(2019, 4, 10);
 

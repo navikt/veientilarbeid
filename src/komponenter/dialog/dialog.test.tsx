@@ -1,7 +1,7 @@
 import Dialog from './dialog';
-import {contextProviders, ProviderProps} from '../../test/test-context-providers';
-import React, {ComponentType} from 'react';
-import {render, screen} from '@testing-library/react';
+import { contextProviders, ProviderProps } from '../../test/test-context-providers';
+import React, { ComponentType } from 'react';
+import { render, screen } from '@testing-library/react';
 import tekster from '../../tekster/tekster';
 import '@testing-library/jest-dom/extend-expect';
 

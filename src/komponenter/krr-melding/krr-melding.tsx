@@ -1,14 +1,14 @@
 import * as React from 'react';
-import {AlertStripeAdvarsel} from 'nav-frontend-alertstriper';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import Lenke from 'nav-frontend-lenker';
-import {Normaltekst} from 'nav-frontend-typografi';
+import { Normaltekst } from 'nav-frontend-typografi';
 import './krr-melding.less';
-import {difiLenke} from '../../innhold/lenker';
+import { difiLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
-import {OppfolgingContext} from '../../ducks/oppfolging';
-import {loggAktivitet} from '../../metrics/metrics';
-import {AmplitudeAktivitetContext} from '../../ducks/amplitude-aktivitet-context';
-import {UnderOppfolgingContext} from '../../ducks/under-oppfolging';
+import { OppfolgingContext } from '../../ducks/oppfolging';
+import { loggAktivitet } from '../../metrics/metrics';
+import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
+import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
 const KrrMelding = () => {
     const oppfolgingData = React.useContext(OppfolgingContext).data;
