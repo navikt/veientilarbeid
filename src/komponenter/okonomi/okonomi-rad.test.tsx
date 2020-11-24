@@ -14,7 +14,7 @@ describe('Tester at komponenten rendres som forventet', () => {
     test('Komponenten rendres om man er under oppfølging', () => {
         const props: ProviderProps = {
             underOppfolging: {
-                erBrukerUnderOppfolging: true,
+                underOppfolging: true,
             },
         };
         const { container } = render(<OkonomiRad />, { wrapper: contextProviders(props) });

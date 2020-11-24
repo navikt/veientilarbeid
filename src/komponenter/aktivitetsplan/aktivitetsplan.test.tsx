@@ -14,7 +14,7 @@ describe('Tester komponenten Aktivitetsplan', () => {
     test('Komponenten VISES om man er under oppfølging', async () => {
         const props: ProviderProps = {
             underOppfolging: {
-                erBrukerUnderOppfolging: true,
+                underOppfolging: true,
             },
         };
         render(<Aktivitetsplan />, { wrapper: contextProviders(props) });
@@ -24,7 +24,7 @@ describe('Tester komponenten Aktivitetsplan', () => {
     test('Komponenten vises IKKE om man IKKE er under oppfølging', async () => {
         const props: ProviderProps = {
             underOppfolging: {
-                erBrukerUnderOppfolging: false,
+                underOppfolging: false,
             },
         };
         const { container } = render(<Aktivitetsplan />, { wrapper: contextProviders(props) });
@@ -34,7 +34,7 @@ describe('Tester komponenten Aktivitetsplan', () => {
     test('Komponenten skal vise vanlig melding uten query-parameter nyRegistrering om man er under oppfølging', async () => {
         const props: ProviderProps = {
             underOppfolging: {
-                erBrukerUnderOppfolging: true,
+                underOppfolging: true,
             },
         };
 
@@ -48,7 +48,7 @@ describe('Tester komponenten Aktivitetsplan', () => {
     test('Komponenten skal vise tilpasset melding med query-parameter nyRegistrering=true ', async () => {
         const props: ProviderProps = {
             underOppfolging: {
-                erBrukerUnderOppfolging: true,
+                underOppfolging: true,
             },
         };
 

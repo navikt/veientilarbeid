@@ -57,7 +57,7 @@ export const initialState: State = {
     status: STATUS.NOT_STARTED,
     data: {
         registrering: {
-            opprettetDato: Date.now().toString(),
+            opprettetDato: new Date().toISOString(),
             manueltRegistrertAv: null,
             besvarelse: {
                 dinSituasjon: null,

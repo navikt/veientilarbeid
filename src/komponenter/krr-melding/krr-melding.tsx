@@ -14,8 +14,8 @@ const KrrMelding = () => {
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const { reservasjonKRR } = oppfolgingData;
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
-    const { erBrukerUnderOppfolging } = React.useContext(UnderOppfolgingContext).data;
-    const kanViseKomponent = erBrukerUnderOppfolging;
+    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
+    const kanViseKomponent = underOppfolging;
 
     const handleLenkeKlikk = () => {
         loggAktivitet({ aktivitet: 'Går til krr-oppsett', ...amplitudeAktivitetsData });

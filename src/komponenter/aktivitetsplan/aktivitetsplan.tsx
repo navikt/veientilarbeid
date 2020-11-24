@@ -9,12 +9,12 @@ import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
 const Aktivitetsplan = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
-    const { erBrukerUnderOppfolging } = React.useContext(UnderOppfolgingContext).data;
+    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const { location } = window;
     const nyRegistrering = parse(location.search).nyRegistrering === 'true';
     const overskrift = 'aktivitetsplan-overskrift-ordinaer';
     const ingress = 'aktivitetsplan-beskrivelse' + (nyRegistrering ? '-ny' : '');
-    const kanViseKomponent = erBrukerUnderOppfolging;
+    const kanViseKomponent = underOppfolging;
 
     React.useEffect(() => {
         if (kanViseKomponent) {

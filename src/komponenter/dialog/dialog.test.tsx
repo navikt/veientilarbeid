@@ -8,7 +8,7 @@ import '@testing-library/jest-dom/extend-expect';
 describe('Tester dialog-komponent', () => {
     test('Komponenten renderes uten detaljert info som standard-oppførsel', async () => {
         const providerProps: ProviderProps = {
-            underOppfolging: { erBrukerUnderOppfolging: true },
+            underOppfolging: { underOppfolging: true },
         };
         render(<Dialog />, { wrapper: contextProviders(providerProps) as ComponentType });
         expect(screen.getByText(/dialog med veilederen din/i)).toBeTruthy();
@@ -17,7 +17,7 @@ describe('Tester dialog-komponent', () => {
 
     test('Komponenten viser IKKE antall uleste dialogmeldinger med antall = 0', async () => {
         const providerProps: ProviderProps = {
-            underOppfolging: { erBrukerUnderOppfolging: true },
+            underOppfolging: { underOppfolging: true },
             ulesteDialoger: { antallUleste: 0 },
         };
         render(<Dialog />, { wrapper: contextProviders(providerProps) as ComponentType });
@@ -26,7 +26,7 @@ describe('Tester dialog-komponent', () => {
 
     test('Komponenten viser antall uleste dialogmeldinger med antall = 1', async () => {
         const providerProps: ProviderProps = {
-            underOppfolging: { erBrukerUnderOppfolging: true },
+            underOppfolging: { underOppfolging: true },
             ulesteDialoger: { antallUleste: 1 },
         };
         render(<Dialog />, { wrapper: contextProviders(providerProps) as ComponentType });
@@ -35,7 +35,7 @@ describe('Tester dialog-komponent', () => {
 
     test('Komponenten viser antall uleste dialogmeldinger med antall > 1', async () => {
         const providerProps: ProviderProps = {
-            underOppfolging: { erBrukerUnderOppfolging: true },
+            underOppfolging: { underOppfolging: true },
             ulesteDialoger: { antallUleste: 42 },
         };
         render(<Dialog />, { wrapper: contextProviders(providerProps) as ComponentType });
@@ -44,7 +44,7 @@ describe('Tester dialog-komponent', () => {
 
     test('Komponenten rendres når bruker er under oppfølging', () => {
         const props: ProviderProps = {
-            underOppfolging: { erBrukerUnderOppfolging: true },
+            underOppfolging: { underOppfolging: true },
         };
         render(<Dialog />, { wrapper: contextProviders(props) });
         expect(screen.getByText(tekster['dialog'])).toBeTruthy();
@@ -52,7 +52,7 @@ describe('Tester dialog-komponent', () => {
 
     test('Komponenten rendres IKKE når bruker IKKE er under oppfølging', () => {
         const props: ProviderProps = {
-            underOppfolging: { erBrukerUnderOppfolging: false },
+            underOppfolging: { underOppfolging: false },
         };
         const { container } = render(<Dialog />, { wrapper: contextProviders(props) });
         expect(container).toBeEmptyDOMElement();

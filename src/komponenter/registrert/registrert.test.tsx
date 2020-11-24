@@ -10,7 +10,7 @@ import { ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../../ducks/bruk
 describe('Test av registreringskomponenten', () => {
     test('Komponenten vises IKKE dersom man ikke har ARBS og nivå 4', () => {
         const providerProps: ProviderProps = {
-            underOppfolging: { erBrukerUnderOppfolging: true },
+            underOppfolging: { underOppfolging: true },
         };
         const { container } = render(<Registrert />, { wrapper: contextProviders(providerProps) });
         expect(container).toBeEmptyDOMElement();
@@ -18,7 +18,7 @@ describe('Test av registreringskomponenten', () => {
 
     test('Komponenten VISES dersom man har ARBS, er underOppfolging og er logget inn på nivå 4', () => {
         const providerProps: ProviderProps = {
-            underOppfolging: { erBrukerUnderOppfolging: true },
+            underOppfolging: { underOppfolging: true },
             autentisering: {
                 securityLevel: InnloggingsNiva.LEVEL_4,
             },
@@ -32,7 +32,7 @@ describe('Test av registreringskomponenten', () => {
 
     test('Komponenten rendres IKKE når bruker IKKE er under oppfølging', () => {
         const props: ProviderProps = {
-            underOppfolging: { erBrukerUnderOppfolging: false },
+            underOppfolging: { underOppfolging: false },
             autentisering: {
                 securityLevel: InnloggingsNiva.LEVEL_4,
             },
@@ -46,7 +46,7 @@ describe('Test av registreringskomponenten', () => {
 
     test('Komponenten viser innsynskomponent dersom man har ARBS, er logget inn på nivå 4 og har besvarelse', () => {
         const providerProps: ProviderProps = {
-            underOppfolging: { erBrukerUnderOppfolging: true },
+            underOppfolging: { underOppfolging: true },
             autentisering: {
                 securityLevel: InnloggingsNiva.LEVEL_4,
             },

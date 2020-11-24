@@ -8,7 +8,7 @@ import { contextProviders, ProviderProps } from '../../test/test-context-provide
 describe('Tester komponenten', () => {
     test('Komponenten rendres IKKE som om man er under oppfølging', () => {
         const props: ProviderProps = {
-            underOppfolging: { erBrukerUnderOppfolging: true },
+            underOppfolging: { underOppfolging: true },
         };
         const { container } = render(<GenerelleFliser />, { wrapper: contextProviders(props) });
         expect(container).toBeEmptyDOMElement();
@@ -16,7 +16,7 @@ describe('Tester komponenten', () => {
 
     test('Komponenten VISES om man er under oppfølging', () => {
         const props: ProviderProps = {
-            underOppfolging: { erBrukerUnderOppfolging: false },
+            underOppfolging: { underOppfolging: false },
         };
         render(<GenerelleFliser />, { wrapper: contextProviders(props) });
         expect(screen.getByText(tekster['fliser.din.pensjon'])).toBeInTheDocument();

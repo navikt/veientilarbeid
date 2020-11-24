@@ -59,7 +59,7 @@ const Motestotte = () => {
     const foreslattInnsatsgruppe = selectForeslattInnsatsgruppe(data)!; // Komponent blir rendret kun hvis foreslått innsatsgruppe er satt
     const antallTimer = antallTimerSidenRegistrering(opprettetRegistreringDato!);
     const dinSituasjon = selectDinSituasjonSvar(data) || 'INGEN_VERDI';
-    const { erBrukerUnderOppfolging } = React.useContext(UnderOppfolgingContext).data;
+    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
 
     const harGyldigMotestottebesvarelse = (): boolean => {
         if (!opprettetRegistreringDato || !motestotteData) return false;
@@ -74,7 +74,7 @@ const Motestotte = () => {
         opprettetRegistreringDato >= LANSERINGSDATO_MOTESTOTTE &&
         !oppfolgingData.reservasjonKRR &&
         foreslattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING &&
-        erBrukerUnderOppfolging;
+        underOppfolging;
 
     React.useEffect(() => {
         if (kanViseKomponent) {

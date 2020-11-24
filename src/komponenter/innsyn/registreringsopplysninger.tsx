@@ -31,8 +31,8 @@ const repackBesvarelser = (besvarelse: Besvarelse, teksterForBesvarelse: Array<S
 const Opplysninger = (props: any) => {
     const { opprettetDato, manueltRegistrertAv, besvarelse, teksterForBesvarelse, amplitudeAktivitetsData } = props;
     const besvarelser = repackBesvarelser(besvarelse, teksterForBesvarelse);
-    const { erBrukerUnderOppfolging } = React.useContext(UnderOppfolgingContext).data;
-    const kanViseKomponent = erBrukerUnderOppfolging;
+    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
+    const kanViseKomponent = underOppfolging;
 
     const handleDialogClick = () => {
         loggAktivitet({ aktivitet: 'Går til endre registreringsopplysninger', ...amplitudeAktivitetsData });

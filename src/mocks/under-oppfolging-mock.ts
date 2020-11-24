@@ -1,3 +1,3 @@
 export default {
-    erBrukerUnderOppfolging: true,
+    underOppfolging: true,
 };

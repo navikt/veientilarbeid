@@ -23,11 +23,11 @@ const handleButtonClick = () => {
 
 const Aap = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
-    const { erBrukerUnderOppfolging } = React.useContext(UnderOppfolgingContext).data;
+    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
     const [visAap] = useState(queryString.parse(window.location.search).visAap === 'true');
     const aapRef = useRef<HTMLDivElement>(null);
-    const kanViseKomponent = erSykmeldtMedArbeidsgiver && erBrukerUnderOppfolging;
+    const kanViseKomponent = erSykmeldtMedArbeidsgiver && underOppfolging;
 
     useEffect(() => {
         aapRef?.current?.scrollIntoView({
