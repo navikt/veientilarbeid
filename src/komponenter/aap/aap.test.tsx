@@ -13,7 +13,7 @@ describe('Aap', () => {
     it('rendres når bruker er sykemeldt med arbeidsgiver og under oppfølging', async () => {
         const props: ProviderProps = {
             brukerInfo: { erSykmeldtMedArbeidsgiver: true },
-            underOppfolging: { erBrukerUnderOppfolging: true },
+            underOppfolging: { underOppfolging: true },
         };
 
         render(<Aap />, { wrapper: contextProviders(props) });
@@ -23,7 +23,7 @@ describe('Aap', () => {
     it('rendres IKKE når bruker IKKE er sykmeldt og under oppfolging', async () => {
         const props: ProviderProps = {
             brukerInfo: { erSykmeldtMedArbeidsgiver: false },
-            underOppfolging: { erBrukerUnderOppfolging: true },
+            underOppfolging: { underOppfolging: true },
         };
 
         const { container } = render(<Aap />, { wrapper: contextProviders(props) });
@@ -33,7 +33,7 @@ describe('Aap', () => {
     it('rendres IKKE når bruker er sykmeldt og IKKE under oppfolging', async () => {
         const props: ProviderProps = {
             brukerInfo: { erSykmeldtMedArbeidsgiver: true },
-            underOppfolging: { erBrukerUnderOppfolging: false },
+            underOppfolging: { underOppfolging: false },
         };
 
         const { container } = render(<Aap />, { wrapper: contextProviders(props) });

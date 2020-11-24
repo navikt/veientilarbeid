@@ -15,7 +15,7 @@ describe('Tester at komponenten rendres som forventet', () => {
     test('Komponeneten vises om man er under oppfølging', () => {
         const props: ProviderProps = {
             underOppfolging: {
-                erBrukerUnderOppfolging: true,
+                underOppfolging: true,
             },
         };
         const { container } = render(<Ressurslenker />, { wrapper: contextProviders(props) });
@@ -35,7 +35,7 @@ describe('Tester at komponenten rendres som forventet', () => {
                 erSykmeldtMedArbeidsgiver: true,
             },
             underOppfolging: {
-                erBrukerUnderOppfolging: true,
+                underOppfolging: true,
             },
         };
         const { container } = render(<Ressurslenker />, { wrapper: contextProviders(props) });
@@ -55,7 +55,7 @@ describe('Tester at komponenten rendres som forventet', () => {
                 erSykmeldtMedArbeidsgiver: true,
             },
             underOppfolging: {
-                erBrukerUnderOppfolging: true,
+                underOppfolging: true,
             },
         };
         const { container } = render(<Ressurslenker />, { wrapper: contextProviders(props) });

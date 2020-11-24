@@ -9,9 +9,9 @@ import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
 const SjekkKontonummer = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
-    const { erBrukerUnderOppfolging } = React.useContext(UnderOppfolgingContext).data;
+    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
 
-    const kanViseKomponent = erBrukerUnderOppfolging;
+    const kanViseKomponent = underOppfolging;
 
     React.useEffect(() => {
         if (kanViseKomponent) {

@@ -11,8 +11,8 @@ import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import OkonomiRadDagpenger from './okonomi-rad-dagpenger';
 
 const OkonomiRad = () => {
-    const { erBrukerUnderOppfolging } = React.useContext(UnderOppfolgingContext).data;
-    const kanViseKomponent = erBrukerUnderOppfolging;
+    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
+    const kanViseKomponent = underOppfolging;
     return !kanViseKomponent ? null : (
         <div className="okonomi-rad">
             <OkonomiPanel

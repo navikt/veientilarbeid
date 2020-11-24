@@ -16,8 +16,8 @@ const Dialog = () => {
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const ulesteDialoger = React.useContext(UlesteDialogerContext).data;
-    const { erBrukerUnderOppfolging } = React.useContext(UnderOppfolgingContext).data;
-    const kanViseKomponent = erBrukerUnderOppfolging;
+    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
+    const kanViseKomponent = underOppfolging;
 
     React.useEffect(() => {
         loggAktivitet({ aktivitet: 'Viser dialog', ...amplitudeAktivitetsData });

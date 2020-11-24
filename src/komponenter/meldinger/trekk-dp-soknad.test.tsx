@@ -8,7 +8,7 @@ import { contextProviders, ProviderProps } from '../../test/test-context-provide
 describe('Tester at komponenten rendrer som forventet', () => {
     test('Rendrer IKKE komponenten dersom ikke oppfølging', () => {
         const providerProps: ProviderProps = {
-            underOppfolging: { erBrukerUnderOppfolging: false },
+            underOppfolging: { underOppfolging: false },
         };
         const { container } = render(<TrekkDPSoknad />, { wrapper: contextProviders(providerProps) });
         expect(container).toBeEmptyDOMElement();
@@ -16,7 +16,7 @@ describe('Tester at komponenten rendrer som forventet', () => {
 
     test('Komponentet vises IKKE dersom ikke under oppfølging og nivå 4', () => {
         const providerProps: ProviderProps = {
-            underOppfolging: { erBrukerUnderOppfolging: false },
+            underOppfolging: { underOppfolging: false },
             autentisering: {
                 securityLevel: InnloggingsNiva.LEVEL_4,
             },
@@ -27,7 +27,7 @@ describe('Tester at komponenten rendrer som forventet', () => {
 
     test('Komponentet vises IKKE dersom ikke under oppfølging og nivå 3', () => {
         const providerProps: ProviderProps = {
-            underOppfolging: { erBrukerUnderOppfolging: false },
+            underOppfolging: { underOppfolging: false },
             autentisering: {
                 securityLevel: InnloggingsNiva.LEVEL_3,
             },
@@ -38,7 +38,7 @@ describe('Tester at komponenten rendrer som forventet', () => {
 
     test('Komponentet VISES hvis under oppfølging og nivå 4', async () => {
         const providerProps: ProviderProps = {
-            underOppfolging: { erBrukerUnderOppfolging: true },
+            underOppfolging: { underOppfolging: true },
             autentisering: {
                 securityLevel: InnloggingsNiva.LEVEL_4,
             },
@@ -50,7 +50,7 @@ describe('Tester at komponenten rendrer som forventet', () => {
 
     test('Komponentet VISES hvis under oppfølging og nivå 3', async () => {
         const providerProps: ProviderProps = {
-            underOppfolging: { erBrukerUnderOppfolging: true },
+            underOppfolging: { underOppfolging: true },
             autentisering: {
                 securityLevel: InnloggingsNiva.LEVEL_3,
             },

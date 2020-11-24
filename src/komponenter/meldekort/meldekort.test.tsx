@@ -11,7 +11,7 @@ describe('tester at komponenten rendrer som forventet', () => {
             brukerInfo: {
                 erSykmeldtMedArbeidsgiver: false,
             },
-            underOppfolging: { erBrukerUnderOppfolging: true },
+            underOppfolging: { underOppfolging: true },
         };
         const { container } = render(<Meldekort />, { wrapper: contextProviders(props) });
         expect(container).not.toBeEmptyDOMElement();
@@ -24,7 +24,7 @@ describe('tester at komponenten rendrer som forventet', () => {
             brukerInfo: {
                 erSykmeldtMedArbeidsgiver: false,
             },
-            underOppfolging: { erBrukerUnderOppfolging: false },
+            underOppfolging: { underOppfolging: false },
         };
         const { container } = render(<Meldekort />, { wrapper: contextProviders(props) });
         expect(container).toBeEmptyDOMElement();
@@ -45,7 +45,7 @@ describe('tester at komponenten rendrer som forventet', () => {
             brukerInfo: {
                 erSykmeldtMedArbeidsgiver: false,
             },
-            underOppfolging: { erBrukerUnderOppfolging: true },
+            underOppfolging: { underOppfolging: true },
         };
         const { container } = render(<Meldekort />, { wrapper: contextProviders(providerProps) });
         expect(container).not.toBeEmptyDOMElement();

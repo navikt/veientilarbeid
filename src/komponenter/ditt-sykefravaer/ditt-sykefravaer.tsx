@@ -10,8 +10,8 @@ import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 const DittSykefravaer = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
-    const { erBrukerUnderOppfolging } = React.useContext(UnderOppfolgingContext).data;
-    const kanViseKomponent = erSykmeldtMedArbeidsgiver && erBrukerUnderOppfolging;
+    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
+    const kanViseKomponent = erSykmeldtMedArbeidsgiver && underOppfolging;
 
     React.useEffect(() => {
         if (kanViseKomponent) {

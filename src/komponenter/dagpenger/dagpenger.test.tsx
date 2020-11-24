@@ -9,7 +9,7 @@ import { contextProviders, ProviderProps } from '../../test/test-context-provide
 describe('Tester dagpengerkomponenten', () => {
     test('Komponenten rendres når bruker er under oppfølging', () => {
         const props: ProviderProps = {
-            underOppfolging: { erBrukerUnderOppfolging: true },
+            underOppfolging: { underOppfolging: true },
         };
         render(<Dagpenger />, { wrapper: contextProviders(props) });
         expect(screen.getByText(tekster['dagpenger-tittel'])).toBeTruthy();
@@ -22,7 +22,7 @@ describe('Tester dagpengerkomponenten', () => {
         const mockLocationAssign = jest.fn();
 
         const props: ProviderProps = {
-            underOppfolging: { erBrukerUnderOppfolging: true },
+            underOppfolging: { underOppfolging: true },
         };
         render(<Dagpenger />, { wrapper: contextProviders(props) });
 
@@ -37,7 +37,7 @@ describe('Tester dagpengerkomponenten', () => {
 
     test('Komponenten rendres IKKE når bruker IKKE er under oppfølging', () => {
         const props: ProviderProps = {
-            underOppfolging: { erBrukerUnderOppfolging: false },
+            underOppfolging: { underOppfolging: false },
         };
         const { container } = render(<Dagpenger />, { wrapper: contextProviders(props) });
         expect(container).toBeEmptyDOMElement();

@@ -19,12 +19,12 @@ const Registrert = () => {
     const autentiseringData = React.useContext(AutentiseringContext).data;
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const [clickedInnsyn, setClickedInnsyn] = useState(false);
-    const { erBrukerUnderOppfolging } = React.useContext(UnderOppfolgingContext).data;
+    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
 
     const kanViseKomponent =
         oppfolgingData.formidlingsgruppe === 'ARBS' &&
         autentiseringData.securityLevel === InnloggingsNiva.LEVEL_4 &&
-        erBrukerUnderOppfolging;
+        underOppfolging;
 
     React.useEffect(() => {
         if (kanViseKomponent) {
@@ -49,7 +49,7 @@ const Registrert = () => {
     const { dinSituasjon } = besvarelse;
     const dinSituasjonOrIngenVerdi = dinSituasjon ? dinSituasjon : 'INGEN_VERDI';
     const { registreringType, rettighetsgruppe } = brukerinfoData;
-    const { formidlingsgruppe, servicegruppe, underOppfolging } = oppfolgingData;
+    const { formidlingsgruppe, servicegruppe } = oppfolgingData;
     const underOppfolgingJaNei = underOppfolging ? 'ja' : 'nei';
     const registreringTypeOrIngenVerdi = registreringType ? registreringType : 'INGEN_VERDI';
     const showOpplysninger = opprettetDato && besvarelse && teksterForBesvarelse;

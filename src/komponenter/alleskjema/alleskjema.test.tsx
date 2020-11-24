@@ -9,7 +9,7 @@ import tekster from '../../tekster/tekster';
 describe('Tester alle skjema komponenten', () => {
     test('Komponenten rendres når bruker er under oppfølging', () => {
         const props: ProviderProps = {
-            underOppfolging: { erBrukerUnderOppfolging: true },
+            underOppfolging: { underOppfolging: true },
         };
         render(<AlleSkjema />, { wrapper: contextProviders(props) });
         expect(screen.getByText(tekster['alleskjema-tittel'])).toBeTruthy();
@@ -19,7 +19,7 @@ describe('Tester alle skjema komponenten', () => {
 
     test('Komponenten rendres IKKE når bruker IKKE er under oppfølging', () => {
         const props: ProviderProps = {
-            underOppfolging: { erBrukerUnderOppfolging: false },
+            underOppfolging: { underOppfolging: false },
         };
         const { container } = render(<AlleSkjema />, { wrapper: contextProviders(props) });
         expect(container).toBeEmptyDOMElement();
@@ -29,7 +29,7 @@ describe('Tester alle skjema komponenten', () => {
         const mockHandleButtonClick = jest.fn();
         const mockWindowNavigate = jest.fn();
         const props: ProviderProps = {
-            underOppfolging: { erBrukerUnderOppfolging: true },
+            underOppfolging: { underOppfolging: true },
         };
         render(<AlleSkjema />, { wrapper: contextProviders(props) });
         const button = screen.getByText(tekster['alleskjema-lenke-tekst']);

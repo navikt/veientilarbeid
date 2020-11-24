@@ -7,7 +7,7 @@ import DittSykefravaer from './ditt-sykefravaer';
 
 describe('Tester at komponenten rendres som den skal', () => {
     test('Komponenten vises IKKE dersom ikke sykefravær', () => {
-        const providerProps: ProviderProps = { underOppfolging: { erBrukerUnderOppfolging: true } };
+        const providerProps: ProviderProps = { underOppfolging: { underOppfolging: true } };
         const { container } = render(<DittSykefravaer />, { wrapper: contextProviders(providerProps) });
         expect(container).toBeEmptyDOMElement();
     });
@@ -17,7 +17,7 @@ describe('Tester at komponenten rendres som den skal', () => {
             brukerInfo: {
                 erSykmeldtMedArbeidsgiver: true,
             },
-            underOppfolging: { erBrukerUnderOppfolging: true },
+            underOppfolging: { underOppfolging: true },
         };
         render(<DittSykefravaer />, { wrapper: contextProviders(providerProps) });
         expect(screen.getByText(tekster['ditt-sykefravaer-overskrift'])).toBeInTheDocument();
@@ -27,7 +27,7 @@ describe('Tester at komponenten rendres som den skal', () => {
 
     test('Komponenten rendres IKKE når bruker IKKE er under oppfølging', () => {
         const props: ProviderProps = {
-            underOppfolging: { erBrukerUnderOppfolging: false },
+            underOppfolging: { underOppfolging: false },
             brukerInfo: {
                 erSykmeldtMedArbeidsgiver: true,
             },

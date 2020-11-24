@@ -11,8 +11,8 @@ import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
 const AlleSkjema = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
-    const { erBrukerUnderOppfolging } = React.useContext(UnderOppfolgingContext).data;
-    const kanViseKomponent = erBrukerUnderOppfolging;
+    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
+    const kanViseKomponent = underOppfolging;
 
     React.useEffect(() => {
         if (kanViseKomponent) {

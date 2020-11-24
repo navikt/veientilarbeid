@@ -178,11 +178,11 @@ export const slettAutentiseringsInfo = () => {
 
 export const hentUnderOppfolging = (): JSONObject => {
     const verdi = hentFraLocalStorage(DemoData.UNDER_OPPFOLGING);
-    return verdi ? JSON.parse(verdi) : { erBrukerUnderOppfolging: false };
+    return verdi ? JSON.parse(verdi) : { underOppfolging: false };
 };
 
 export const settUnderOppfolging = () => {
-    settILocalStorage(DemoData.UNDER_OPPFOLGING, JSON.stringify({ erBrukerUnderOppfolging: true }));
+    settILocalStorage(DemoData.UNDER_OPPFOLGING, JSON.stringify({ underOppfolging: true }));
 };
 
 export const slettUnderOppfolging = () => {

@@ -54,7 +54,7 @@ const registreringsopplysninger = {
 describe('Tester registreringsopplysninger komponenten', () => {
     test('Rendrer komponenten og tekstene', () => {
         const props: ProviderProps = {
-            underOppfolging: { erBrukerUnderOppfolging: true },
+            underOppfolging: { underOppfolging: true },
         };
         render(<Opplysninger {...registreringsopplysninger} />, { wrapper: contextProviders(props) });
         expect(screen.getByText(/du kan endre opplysningene du ga ved å kontakte nav./i)).toBeTruthy();
@@ -67,7 +67,7 @@ describe('Tester registreringsopplysninger komponenten', () => {
     });
     test('Klikk på lenken fungerer', () => {
         const props: ProviderProps = {
-            underOppfolging: { erBrukerUnderOppfolging: true },
+            underOppfolging: { underOppfolging: true },
         };
         const mockHandleClick = jest.fn();
         render(<Opplysninger {...registreringsopplysninger} />, { wrapper: contextProviders(props) });
@@ -82,7 +82,7 @@ describe('Tester registreringsopplysninger komponenten', () => {
 
     test('Komponenten rendres IKKE når bruker IKKE er under oppfølging', () => {
         const props: ProviderProps = {
-            underOppfolging: { erBrukerUnderOppfolging: false },
+            underOppfolging: { underOppfolging: false },
         };
         const { container } = render(<Opplysninger {...registreringsopplysninger} />, {
             wrapper: contextProviders(props),

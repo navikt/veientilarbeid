@@ -30,7 +30,7 @@ describe('Motestotte', () => {
             motestotte,
             oppfolging,
             underOppfolging: {
-                erBrukerUnderOppfolging: true,
+                underOppfolging: true,
             },
         };
         render(<Motestotte />, { wrapper: contextProviders(providerProps) });
@@ -44,7 +44,7 @@ describe('Motestotte', () => {
             motestotte,
             oppfolging,
             underOppfolging: {
-                erBrukerUnderOppfolging: false,
+                underOppfolging: false,
             },
         };
         const { container } = render(<Motestotte />, { wrapper: contextProviders(providerProps) });
@@ -60,7 +60,7 @@ describe('Motestotte', () => {
             motestotte,
             oppfolging,
             underOppfolging: {
-                erBrukerUnderOppfolging: true,
+                underOppfolging: true,
             },
         };
         render(<Motestotte />, { wrapper: contextProviders(providerProps) });
