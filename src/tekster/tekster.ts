@@ -82,11 +82,6 @@ const tekster = {
     'egenvurdering-tittel': 'Hva trenger du for å komme i jobb?',
     'feil-i-systemene-beskrivelse':
         'På grunn av en feil er ikke tjenesten tilgjengelig akkurat nå. Vennligst prøv igjen senere',
-    'iarbs-melding-tittel': 'Ønsker du å søke dagpenger?',
-    'iarbs-melding-innhold1': 'Hvis du har søkt eller ønsker å søke dagpenger må du ta kontakt med oss.',
-    'iarbs-melding-innhold2': 'Ring 55 55 33 33 med tastevalg 2.',
-    'iarbs-melding-tillegg':
-        'Hvis det ikke er aktuelt å søke dagpenger nå, eller du har AAP kan du se bort fra denne meldingen.',
     'jobbsokertips-overskrift-har-besvarelse': 'Dine jobbsøkertips',
     'jobbsokertips-overskrift-har-ikke-besvarelse': 'Få jobbsøkertips',
     'krr-melding-ingress': 'Du er reservert mot digital kommunikasjon med det offentlige.',
