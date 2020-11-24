@@ -7,7 +7,6 @@ import DataProvider from './data-provider';
 import OppfolgingBrukerregistreringProvider from './oppfolging-brukerregistrering-provider';
 import * as Autentisering from '../../ducks/autentisering';
 import InnholdView from '../../innhold/innhold-view';
-import SjekkInnlogging from './sjekk-innlogging';
 
 export const AUTH_API = '/api/auth';
 
@@ -28,13 +27,11 @@ const AutentiseringsInfoFetcher = () => {
             avhengigheter={[state]}
         >
             <Autentisering.AutentiseringContext.Provider value={state}>
-                <SjekkInnlogging bypassComponent={<InnholdView />}>
-                    <OppfolgingBrukerregistreringProvider>
-                        <DataProvider>
-                            <InnholdView />
-                        </DataProvider>
-                    </OppfolgingBrukerregistreringProvider>
-                </SjekkInnlogging>
+                <OppfolgingBrukerregistreringProvider>
+                    <DataProvider>
+                        <InnholdView />
+                    </DataProvider>
+                </OppfolgingBrukerregistreringProvider>
             </Autentisering.AutentiseringContext.Provider>
         </Innholdslaster>
     );

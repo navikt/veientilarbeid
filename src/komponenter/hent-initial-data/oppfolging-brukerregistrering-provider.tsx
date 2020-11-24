@@ -8,6 +8,7 @@ import * as FeatureToggle from '../../ducks/feature-toggles';
 import { fetchData } from '../../ducks/api-utils';
 import { BRUKERREGISTRERING_URL, VEILARBOPPFOLGING_URL, FEATURE_URL, UNDER_OPPFOLGING_URL } from '../../ducks/api';
 import SjekkOppfolging from './sjekk-oppfolging';
+import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
 
 interface OwnProps {
     children: React.ReactElement<any>;
@@ -16,6 +17,8 @@ interface OwnProps {
 type OppfolgingProviderProps = OwnProps;
 
 const OppfolgingBrukerregistreringProvider = ({ children }: OppfolgingProviderProps) => {
+    const { securityLevel } = React.useContext(AutentiseringContext).data;
+
     const [brukerregistreringState, setBrukerregistreringState] = React.useState<Brukerregistrering.State>(
         Brukerregistrering.initialState
     );
@@ -28,30 +31,37 @@ const OppfolgingBrukerregistreringProvider = ({ children }: OppfolgingProviderPr
     const featureTogglesUrl = `${FEATURE_URL}/?${parameters}`;
 
     React.useEffect(() => {
-        fetchData<Oppfolging.State, Oppfolging.Data>(oppfolgingState, setOppfolgingState, VEILARBOPPFOLGING_URL);
         fetchData<UnderOppfolging.State, UnderOppfolging.Data>(
             underOppfolgingState,
             setUnderOppfolgingState,
             UNDER_OPPFOLGING_URL
         );
-        fetchData<Brukerregistrering.State, Brukerregistrering.Data>(
-            brukerregistreringState,
-            setBrukerregistreringState,
-            BRUKERREGISTRERING_URL
-        );
-        fetchData<FeatureToggle.State, FeatureToggle.Data>(
-            featureToggleState,
-            setFeatureToggleState,
-            featureTogglesUrl
-        );
+        if (securityLevel === InnloggingsNiva.LEVEL_4) {
+            fetchData<Oppfolging.State, Oppfolging.Data>(oppfolgingState, setOppfolgingState, VEILARBOPPFOLGING_URL);
+            fetchData<Brukerregistrering.State, Brukerregistrering.Data>(
+                brukerregistreringState,
+                setBrukerregistreringState,
+                BRUKERREGISTRERING_URL
+            );
+            fetchData<FeatureToggle.State, FeatureToggle.Data>(
+                featureToggleState,
+                setFeatureToggleState,
+                featureTogglesUrl
+            );
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [securityLevel]);
+
+    const avhengigheter: any[] = [underOppfolgingState];
+    if (securityLevel === InnloggingsNiva.LEVEL_4) {
+        avhengigheter.push(oppfolgingState, brukerregistreringState);
+    }
 
     return (
         <Innholdslaster
             feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse" />}
             storrelse="XXL"
-            avhengigheter={[oppfolgingState, brukerregistreringState, underOppfolgingState]}
+            avhengigheter={avhengigheter}
         >
             <Oppfolging.OppfolgingContext.Provider value={oppfolgingState}>
                 <UnderOppfolging.UnderOppfolgingContext.Provider value={underOppfolgingState}>

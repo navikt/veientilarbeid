@@ -17,6 +17,7 @@ import {
 } from '../../ducks/api';
 import { AmplitudeProvider } from './amplitude-provider';
 import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe } from '../../ducks/brukerregistrering';
+import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
 
 const skalSjekkeEgenvurderingBesvarelse = (
     foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null
@@ -34,6 +35,8 @@ interface OwnProps {
 type Props = OwnProps;
 
 const DataProvider = ({ children }: Props) => {
+    const { securityLevel } = React.useContext(AutentiseringContext).data;
+
     const [motestotteState, setMotestotteState] = React.useState<Motestotte.State>(Motestotte.initialState);
     const [brukerInfoState, setBrukerInfoState] = React.useState<BrukerInfo.State>(BrukerInfo.initialState);
     const [egenvurderingState, setEgenvurderingState] = React.useState<Egenvurdering.State>(Egenvurdering.initialState);
@@ -48,6 +51,10 @@ const DataProvider = ({ children }: Props) => {
     const foreslaattInnsatsgruppe = selectForeslattInnsatsgruppe(data);
 
     React.useEffect(() => {
+        if (securityLevel !== InnloggingsNiva.LEVEL_4) {
+            return;
+        }
+
         fetchData<BrukerInfo.State, BrukerInfo.Data>(brukerInfoState, setBrukerInfoState, BRUKERINFO_URL);
         fetchData<UlesteDialoger.State, UlesteDialoger.Data>(
             ulesteDialogerState,
@@ -69,15 +76,21 @@ const DataProvider = ({ children }: Props) => {
             fetchData<Motestotte.State, Motestotte.Data>(motestotteState, setMotestotteState, MOTESTOTTE_URL);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [securityLevel]);
 
-    const avhengigheter: any[] = [brukerInfoState];
-    const ventPa: any[] = [ulesteDialogerState, jobbsokerbesvarelseState];
-    if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
-        ventPa.push(egenvurderingState);
-    }
-    if (foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING) {
-        ventPa.push(motestotteState);
+    const avhengigheter: any[] = [];
+    const ventPa: any[] = [];
+
+    if (securityLevel === InnloggingsNiva.LEVEL_4) {
+        avhengigheter.push(brukerInfoState);
+        ventPa.push(ulesteDialogerState, jobbsokerbesvarelseState);
+
+        if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
+            ventPa.push(egenvurderingState);
+        }
+        if (foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING) {
+            ventPa.push(motestotteState);
+        }
     }
 
     return (
