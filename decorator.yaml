@@ -11,6 +11,7 @@ proxy:
 
   - contextPath: /veilarboppfolging
     baseUrl: {{ VEILARBPROXY_URL }}
+    minSecurityLevel: 3
 
   - contextPath: /veilarbjobbsokerkompetanse
     baseUrl: {{ VEILARBPROXY_URL }}
