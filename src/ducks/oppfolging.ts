@@ -28,7 +28,6 @@ export interface State extends DataElement {
 }
 
 export interface Data {
-    underOppfolging: boolean;
     kanReaktiveres: boolean;
     reservasjonKRR: boolean;
     servicegruppe: ServicegruppeOrNull;
@@ -37,7 +36,6 @@ export interface Data {
 
 export const initialState: State = {
     data: {
-        underOppfolging: false,
         kanReaktiveres: false,
         reservasjonKRR: false,
         servicegruppe: null,

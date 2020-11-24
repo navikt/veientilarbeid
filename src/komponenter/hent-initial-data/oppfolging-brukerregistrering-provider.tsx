@@ -7,7 +7,6 @@ import * as Brukerregistrering from '../../ducks/brukerregistrering';
 import * as FeatureToggle from '../../ducks/feature-toggles';
 import { fetchData } from '../../ducks/api-utils';
 import { BRUKERREGISTRERING_URL, VEILARBOPPFOLGING_URL, FEATURE_URL, UNDER_OPPFOLGING_URL } from '../../ducks/api';
-import SjekkOppfolging from './sjekk-oppfolging';
 import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
 
 interface OwnProps {
@@ -65,13 +64,11 @@ const OppfolgingBrukerregistreringProvider = ({ children }: OppfolgingProviderPr
         >
             <Oppfolging.OppfolgingContext.Provider value={oppfolgingState}>
                 <UnderOppfolging.UnderOppfolgingContext.Provider value={underOppfolgingState}>
-                    <SjekkOppfolging underOppfolging={oppfolgingState.data.underOppfolging}>
-                        <Brukerregistrering.BrukerregistreringContext.Provider value={brukerregistreringState}>
-                            <FeatureToggle.FeaturetoggleContext.Provider value={featureToggleState}>
-                                {children}
-                            </FeatureToggle.FeaturetoggleContext.Provider>
-                        </Brukerregistrering.BrukerregistreringContext.Provider>
-                    </SjekkOppfolging>
+                    <Brukerregistrering.BrukerregistreringContext.Provider value={brukerregistreringState}>
+                        <FeatureToggle.FeaturetoggleContext.Provider value={featureToggleState}>
+                            {children}
+                        </FeatureToggle.FeaturetoggleContext.Provider>
+                    </Brukerregistrering.BrukerregistreringContext.Provider>
                 </UnderOppfolging.UnderOppfolgingContext.Provider>
             </Oppfolging.OppfolgingContext.Provider>
         </Innholdslaster>

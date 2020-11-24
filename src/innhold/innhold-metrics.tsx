@@ -15,10 +15,11 @@ import { loggAktivitet, setIdentifyPoaGruppe, seVeientilarbeid, tellPoaGruppe } 
 import { erMikrofrontend } from '../utils/app-state-utils';
 import { hotjarTrigger } from '../hotjar';
 import { AutentiseringContext, InnloggingsNiva } from '../ducks/autentisering';
+import { UnderOppfolgingContext } from '../ducks/under-oppfolging';
 
 export default function InnholdMetrics() {
     const { securityLevel } = React.useContext(AutentiseringContext).data;
-    const { underOppfolging } = React.useContext(OppfolgingContext).data;
+    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
 
     if (!underOppfolging || securityLevel === InnloggingsNiva.LEVEL_3) return null;
 
@@ -26,9 +27,8 @@ export default function InnholdMetrics() {
 }
 
 function Metrics() {
-    const { formidlingsgruppe, servicegruppe, underOppfolging, reservasjonKRR } = React.useContext(
-        OppfolgingContext
-    ).data;
+    const { formidlingsgruppe, servicegruppe, reservasjonKRR } = React.useContext(OppfolgingContext).data;
+    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
     const { erSykmeldtMedArbeidsgiver, registreringType, rettighetsgruppe, alder } = React.useContext(
