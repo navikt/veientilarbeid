@@ -6,12 +6,12 @@ export interface State extends DataElement {
 }
 
 export interface Data {
-    erBrukerUnderOppfolging: boolean;
+    underOppfolging: boolean;
 }
 
 export const initialState: State = {
     data: {
-        erBrukerUnderOppfolging: false,
+        underOppfolging: false,
     },
     status: STATUS.NOT_STARTED,
 };

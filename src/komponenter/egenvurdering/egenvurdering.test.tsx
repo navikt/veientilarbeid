@@ -18,7 +18,7 @@ describe('Tester egenvurdering-komponenten', () => {
     };
     it('renderes når den skal', async () => {
         const props: ProviderProps = {
-            underOppfolging: { erBrukerUnderOppfolging: true },
+            underOppfolging: { underOppfolging: true },
             oppfolging: { servicegruppe: Servicegruppe.IVURD },
             brukerregistrering: standardInnsatsBrukerregistrering,
         };
@@ -28,7 +28,7 @@ describe('Tester egenvurdering-komponenten', () => {
 
     test('Komponenten rendres IKKE når bruker IKKE er under oppfølging', () => {
         const props: ProviderProps = {
-            underOppfolging: { erBrukerUnderOppfolging: false },
+            underOppfolging: { underOppfolging: false },
             oppfolging: { servicegruppe: Servicegruppe.IVURD },
             brukerregistrering: standardInnsatsBrukerregistrering,
         };
@@ -38,7 +38,7 @@ describe('Tester egenvurdering-komponenten', () => {
 
     it('rendres ikke med gyldig levert egenvurdering', async () => {
         const props: ProviderProps = {
-            underOppfolging: { erBrukerUnderOppfolging: true },
+            underOppfolging: { underOppfolging: true },
             oppfolging: { servicegruppe: Servicegruppe.IVURD },
             brukerregistrering: standardInnsatsBrukerregistrering,
             egenvurdering: { sistOppdatert: '2020-02-01' },
@@ -49,7 +49,7 @@ describe('Tester egenvurdering-komponenten', () => {
 
     it('renderes ikke som standard-oppførsel', async () => {
         const props: ProviderProps = {
-            underOppfolging: { erBrukerUnderOppfolging: true },
+            underOppfolging: { underOppfolging: true },
         };
 
         render(<Egenvurdering />, { wrapper: contextProviders(props) as ComponentType });
@@ -58,7 +58,7 @@ describe('Tester egenvurdering-komponenten', () => {
 
     it('knapp fungerer som forventet', async () => {
         const props: ProviderProps = {
-            underOppfolging: { erBrukerUnderOppfolging: true },
+            underOppfolging: { underOppfolging: true },
             oppfolging: { servicegruppe: Servicegruppe.IVURD },
             brukerregistrering: standardInnsatsBrukerregistrering,
         };

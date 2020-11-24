@@ -32,7 +32,7 @@ const Egenvurdering = () => {
     const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
     const egenvurderingData = React.useContext(EgenvurderingContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
-    const { erBrukerUnderOppfolging } = React.useContext(UnderOppfolgingContext).data;
+    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
 
     const opprettetRegistreringDatoString = selectOpprettetRegistreringDato(brukerregistreringData);
     const opprettetRegistreringDato = opprettetRegistreringDatoString
@@ -54,7 +54,7 @@ const Egenvurdering = () => {
     };
 
     const skalViseEgenvurderingLenke =
-        erBrukerUnderOppfolging &&
+        underOppfolging &&
         dinSituasjon !== 'ER_PERMITTERT' &&
         oppfolgingData.servicegruppe === Servicegruppe.IVURD &&
         (!harEgenvurderingbesvarelse || !egenvurderingsbesvarelseValid()) &&

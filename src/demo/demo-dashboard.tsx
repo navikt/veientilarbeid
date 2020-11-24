@@ -370,7 +370,7 @@ class DemoDashboard extends React.Component<{}> {
                         },
                         {
                             label: 'Under oppfølging',
-                            checked: hentUnderOppfolging().erBrukerUnderOppfolging === true,
+                            checked: hentUnderOppfolging().underOppfolging === true,
                             id: UNDER_OPPFOLGING,
                         },
                     ]}

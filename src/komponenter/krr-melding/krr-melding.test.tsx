@@ -9,7 +9,7 @@ describe('Test av komponent', () => {
     test('Rendrer komponent hvis reservasjon hos krr og underOppfolging', async () => {
         const props: ProviderProps = {
             oppfolging: { reservasjonKRR: true },
-            underOppfolging: { erBrukerUnderOppfolging: true },
+            underOppfolging: { underOppfolging: true },
         };
         render(<KrrMelding />, { wrapper: contextProviders(props) });
         expect(screen.getByText(tekster['krr-melding-ingress'])).toBeTruthy();
@@ -24,7 +24,7 @@ describe('Test av komponent', () => {
     test('Rendrer IKKE komponent hvis IKKE reservasjon hos krr', async () => {
         const props: ProviderProps = {
             oppfolging: { reservasjonKRR: false },
-            underOppfolging: { erBrukerUnderOppfolging: true },
+            underOppfolging: { underOppfolging: true },
         };
         const { container } = render(<KrrMelding />, { wrapper: contextProviders(props) });
         expect(container).toBeEmptyDOMElement();
@@ -33,7 +33,7 @@ describe('Test av komponent', () => {
     test('Komponenten rendres IKKE når bruker IKKE er under oppfølging', () => {
         const props: ProviderProps = {
             oppfolging: { reservasjonKRR: true },
-            underOppfolging: { erBrukerUnderOppfolging: false },
+            underOppfolging: { underOppfolging: false },
         };
         const { container } = render(<KrrMelding />, { wrapper: contextProviders(props) });
         expect(container).toBeEmptyDOMElement();

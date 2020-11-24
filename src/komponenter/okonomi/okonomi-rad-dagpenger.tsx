@@ -9,8 +9,8 @@ import TrekkDagpengeSoknad from '../meldinger/trekk-dp-soknad';
 import tekster from '../../tekster/tekster';
 
 const OkonomiRadDagpenger = () => {
-    const { erBrukerUnderOppfolging } = React.useContext(UnderOppfolgingContext).data;
-    const kanViseKomponent = erBrukerUnderOppfolging;
+    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
+    const kanViseKomponent = underOppfolging;
 
     return !kanViseKomponent ? null : (
         <Rad>
