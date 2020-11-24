@@ -32,7 +32,7 @@ jobs:
 
   deploy-q0:
     name: Deploy til Q0
-    needs: test-build-and-push
+    needs: deploy-prod
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
