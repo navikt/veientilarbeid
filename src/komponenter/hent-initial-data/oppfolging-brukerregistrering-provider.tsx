@@ -36,17 +36,17 @@ const OppfolgingBrukerregistreringProvider = ({ children }: OppfolgingProviderPr
             setUnderOppfolgingState,
             UNDER_OPPFOLGING_URL
         );
+        fetchData<FeatureToggle.State, FeatureToggle.Data>(
+            featureToggleState,
+            setFeatureToggleState,
+            featureTogglesUrl
+        );
         if (securityLevel === InnloggingsNiva.LEVEL_4) {
             fetchData<Oppfolging.State, Oppfolging.Data>(oppfolgingState, setOppfolgingState, VEILARBOPPFOLGING_URL);
             fetchData<Brukerregistrering.State, Brukerregistrering.Data>(
                 brukerregistreringState,
                 setBrukerregistreringState,
                 BRUKERREGISTRERING_URL
-            );
-            fetchData<FeatureToggle.State, FeatureToggle.Data>(
-                featureToggleState,
-                setFeatureToggleState,
-                featureTogglesUrl
             );
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
