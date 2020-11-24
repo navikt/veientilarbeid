@@ -1,11 +1,11 @@
-import { ForeslattInnsatsgruppe } from '../ducks/brukerregistrering';
-import { erDemo } from '../utils/app-state-utils';
-import { FormidlingsgruppeOrNull, ServicegruppeOrNull } from '../ducks/oppfolging';
-import { RegistreringTypeOrIngenVerdi } from '../ducks/bruker-info';
-import { CreatedMetrics } from './created-metrics';
-import { amplitudeLogger, setIdentifyProperty, AmplitudeAktivitetsData } from './amplitude-utils';
-import { uniLogger } from './uni-logger';
-import { POAGruppe } from '../utils/get-poa-group';
+import {ForeslattInnsatsgruppe} from '../ducks/brukerregistrering';
+import {erDemo} from '../utils/app-state-utils';
+import {FormidlingsgruppeOrNull, ServicegruppeOrNull} from '../ducks/oppfolging';
+import {RegistreringTypeOrIngenVerdi} from '../ducks/bruker-info';
+import {CreatedMetrics} from './created-metrics';
+import {AmplitudeAktivitetsData, amplitudeLogger, setIdentifyProperty} from './amplitude-utils';
+import {uniLogger} from './uni-logger';
+import {POAGruppe} from '../utils/get-poa-group';
 
 const createdMetrics = new CreatedMetrics();
 
@@ -85,19 +85,6 @@ export const seVeientilarbeid = (
 export const seVeientilarbeidNiva3 = () => {
     logEvent('seveientilarbeidniva3', {}, {});
     amplitudeLogger(`${domene}.nivaa3.visning`);
-};
-
-export const seIARBSPlaster = (
-    formidlingsgruppe: String | null,
-    servicegruppe: String | null,
-    rettighetsgruppe: String
-) => {
-    logEvent(
-        'viseriarbsplaster',
-        {},
-        { formidlingsgruppeTag: formidlingsgruppe, servicegruppeTag: servicegruppe, rettighetsgruppe }
-    );
-    amplitudeLogger(`${domene}.iarbsplaster.`, { formidlingsgruppe, servicegruppe, rettighetsgruppe });
 };
 
 export const gaTilDialog = (antall: number, servicegruppe: string | null) => {
