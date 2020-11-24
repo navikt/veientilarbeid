@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { render, screen } from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Opplysninger from './registreringsopplysninger';
+import {contextProviders, ProviderProps} from '../../test/test-context-providers';
+import '@testing-library/jest-dom/extend-expect';
 
 const registreringsopplysninger = {
     manueltRegistrertAv: null,
@@ -51,7 +53,10 @@ const registreringsopplysninger = {
 
 describe('Tester registreringsopplysninger komponenten', () => {
     test('Rendrer komponenten og tekstene', () => {
-        render(<Opplysninger {...registreringsopplysninger} />);
+        const props: ProviderProps = {
+            underOppfolging: { erBrukerUnderOppfolging: true },
+        };
+        render(<Opplysninger {...registreringsopplysninger} />, { wrapper: contextProviders(props) });
         expect(screen.getByText(/du kan endre opplysningene du ga ved å kontakte nav./i)).toBeTruthy();
         const { teksterForBesvarelse } = registreringsopplysninger;
         teksterForBesvarelse.forEach(({ sporsmal, svar }) => {
@@ -61,8 +66,11 @@ describe('Tester registreringsopplysninger komponenten', () => {
         expect(screen.queryAllByAltText(/denne teksten skal ikke være her/i).length).toBe(0);
     });
     test('Klikk på lenken fungerer', () => {
+        const props: ProviderProps = {
+            underOppfolging: { erBrukerUnderOppfolging: true },
+        };
         const mockHandleClick = jest.fn();
-        render(<Opplysninger {...registreringsopplysninger} />);
+        render(<Opplysninger {...registreringsopplysninger} />, { wrapper: contextProviders(props) });
         const knapp = screen.getByText(/gi beskjed til veilederen din/i);
         knapp.onclick = (event) => {
             event.preventDefault();
@@ -70,5 +78,15 @@ describe('Tester registreringsopplysninger komponenten', () => {
         };
         userEvent.click(knapp);
         expect(mockHandleClick).toHaveBeenCalledTimes(1);
+    });
+
+    test('Komponenten rendres IKKE når bruker IKKE er under oppfølging', () => {
+        const props: ProviderProps = {
+            underOppfolging: { erBrukerUnderOppfolging: false },
+        };
+        const { container } = render(<Opplysninger {...registreringsopplysninger} />, {
+            wrapper: contextProviders(props),
+        });
+        expect(container).toBeEmptyDOMElement();
     });
 });

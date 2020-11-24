@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { Normaltekst } from 'nav-frontend-typografi';
-import { loggAktivitet } from '../../metrics/metrics';
-import { dialogLenke } from '../../innhold/lenker';
-import { Besvarelse, Svar } from '../../ducks/brukerregistrering';
+import {Normaltekst} from 'nav-frontend-typografi';
+import {loggAktivitet} from '../../metrics/metrics';
+import {dialogLenke} from '../../innhold/lenker';
+import {Besvarelse, Svar} from '../../ducks/brukerregistrering';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import './registreringsopplysninger.less';
+import {UnderOppfolgingContext} from '../../ducks/under-oppfolging';
 
 const Opplysning = (props: any) => {
     const { sporsmal, svar } = props;
@@ -27,14 +28,17 @@ const repackBesvarelser = (besvarelse: Besvarelse, teksterForBesvarelse: Array<S
     return svarMedInnhold;
 };
 
-const opplysninger = (props: any) => {
+const Opplysninger = (props: any) => {
     const { opprettetDato, manueltRegistrertAv, besvarelse, teksterForBesvarelse, amplitudeAktivitetsData } = props;
     const besvarelser = repackBesvarelser(besvarelse, teksterForBesvarelse);
+    const { erBrukerUnderOppfolging } = React.useContext(UnderOppfolgingContext).data;
+    const kanViseKomponent = erBrukerUnderOppfolging;
+
     const handleDialogClick = () => {
         loggAktivitet({ aktivitet: 'Går til endre registreringsopplysninger', ...amplitudeAktivitetsData });
     };
 
-    return (
+    return !kanViseKomponent ? null : (
         <>
             <div className="blokk-s">
                 <Normaltekst>
@@ -57,4 +61,4 @@ const opplysninger = (props: any) => {
     );
 };
 
-export default opplysninger;
+export default Opplysninger;

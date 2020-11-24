@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Hovedknapp } from 'nav-frontend-knapper';
-import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
+import {Hovedknapp} from 'nav-frontend-knapper';
+import {Normaltekst, Systemtittel} from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
-import { seEgenvurdering, gaTilEgenvurdering, loggAktivitet } from '../../metrics/metrics';
+import {gaTilEgenvurdering, loggAktivitet, seEgenvurdering} from '../../metrics/metrics';
 import {
     BrukerregistreringContext,
     ForeslattInnsatsgruppe,
@@ -10,11 +10,12 @@ import {
     selectOpprettetRegistreringDato,
 } from '../../ducks/brukerregistrering';
 import './egenvurdering.less';
-import { behovsvurderingLenke } from '../../innhold/lenker';
+import {behovsvurderingLenke} from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
-import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
-import { OppfolgingContext, Servicegruppe } from '../../ducks/oppfolging';
-import { EgenvurderingContext } from '../../ducks/egenvurdering';
+import {AmplitudeAktivitetContext} from '../../ducks/amplitude-aktivitet-context';
+import {OppfolgingContext, Servicegruppe} from '../../ducks/oppfolging';
+import {EgenvurderingContext} from '../../ducks/egenvurdering';
+import {UnderOppfolgingContext} from '../../ducks/under-oppfolging';
 
 const LANSERINGSDATO_EGENVURDERING = new Date(2019, 4, 10);
 
@@ -31,6 +32,7 @@ const Egenvurdering = () => {
     const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
     const egenvurderingData = React.useContext(EgenvurderingContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
+    const { erBrukerUnderOppfolging } = React.useContext(UnderOppfolgingContext).data;
 
     const opprettetRegistreringDatoString = selectOpprettetRegistreringDato(brukerregistreringData);
     const opprettetRegistreringDato = opprettetRegistreringDatoString
@@ -52,6 +54,7 @@ const Egenvurdering = () => {
     };
 
     const skalViseEgenvurderingLenke =
+        erBrukerUnderOppfolging &&
         dinSituasjon !== 'ER_PERMITTERT' &&
         oppfolgingData.servicegruppe === Servicegruppe.IVURD &&
         (!harEgenvurderingbesvarelse || !egenvurderingsbesvarelseValid()) &&

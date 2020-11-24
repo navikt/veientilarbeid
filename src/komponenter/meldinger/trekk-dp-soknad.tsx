@@ -1,17 +1,19 @@
 import * as React from 'react';
 import Lenke from 'nav-frontend-lenker';
 import Panel from 'nav-frontend-paneler';
-import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
-import { loggAktivitet } from '../../metrics/metrics';
+import {Normaltekst, Systemtittel} from 'nav-frontend-typografi';
+import {loggAktivitet} from '../../metrics/metrics';
 import './melding.less';
-import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
-import { OppfolgingContext } from '../../ducks/oppfolging';
+import {AmplitudeAktivitetContext} from '../../ducks/amplitude-aktivitet-context';
+import {OppfolgingContext} from '../../ducks/oppfolging';
+import {UnderOppfolgingContext} from '../../ducks/under-oppfolging';
 
 const TrekkDagpengeSoknad = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const oppfolgingData = React.useContext(OppfolgingContext).data;
+    const { erBrukerUnderOppfolging } = React.useContext(UnderOppfolgingContext).data;
 
-    const kanViseKomponent = oppfolgingData.underOppfolging;
+    const kanViseKomponent = oppfolgingData.underOppfolging && erBrukerUnderOppfolging;
 
     React.useEffect(() => {
         if (kanViseKomponent) {

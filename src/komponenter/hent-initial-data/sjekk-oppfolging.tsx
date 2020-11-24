@@ -6,6 +6,7 @@ interface OwnProps {
     children: React.ReactNode;
 }
 
+//TODO: denne må endres når VTA skal vises for alle
 const SjekkOppfolging = ({ underOppfolging, children }: OwnProps): JSX.Element => {
     if (!underOppfolging) {
         return <InnholdView />;

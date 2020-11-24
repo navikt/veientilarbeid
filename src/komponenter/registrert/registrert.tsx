@@ -1,15 +1,16 @@
-import React, { useContext, useState } from 'react';
-import { Element } from 'nav-frontend-typografi';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import React, {useContext, useState} from 'react';
+import {Element} from 'nav-frontend-typografi';
+import {AlertStripeInfo} from 'nav-frontend-alertstriper';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
-import { BrukerregistreringContext } from '../../ducks/brukerregistrering';
-import { BrukerInfoContext } from '../../ducks/bruker-info';
-import { OppfolgingContext } from '../../ducks/oppfolging';
-import { loggAktivitet, seDineOpplysninger } from '../../metrics/metrics';
+import {BrukerregistreringContext} from '../../ducks/brukerregistrering';
+import {BrukerInfoContext} from '../../ducks/bruker-info';
+import {OppfolgingContext} from '../../ducks/oppfolging';
+import {loggAktivitet, seDineOpplysninger} from '../../metrics/metrics';
 import Opplysninger from '../innsyn/registreringsopplysninger';
 import './registrert.less';
-import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
-import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
+import {AutentiseringContext, InnloggingsNiva} from '../../ducks/autentisering';
+import {AmplitudeAktivitetContext} from '../../ducks/amplitude-aktivitet-context';
+import {UnderOppfolgingContext} from '../../ducks/under-oppfolging';
 
 const Registrert = () => {
     const brukerregistreringData = useContext(BrukerregistreringContext).data;
@@ -18,9 +19,12 @@ const Registrert = () => {
     const autentiseringData = React.useContext(AutentiseringContext).data;
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const [clickedInnsyn, setClickedInnsyn] = useState(false);
+    const { erBrukerUnderOppfolging } = React.useContext(UnderOppfolgingContext).data;
 
     const kanViseKomponent =
-        oppfolgingData.formidlingsgruppe === 'ARBS' && autentiseringData.securityLevel === InnloggingsNiva.LEVEL_4;
+        oppfolgingData.formidlingsgruppe === 'ARBS' &&
+        autentiseringData.securityLevel === InnloggingsNiva.LEVEL_4 &&
+        erBrukerUnderOppfolging;
 
     React.useEffect(() => {
         if (kanViseKomponent) {

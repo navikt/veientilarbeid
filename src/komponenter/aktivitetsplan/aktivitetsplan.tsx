@@ -5,23 +5,28 @@ import DesignMug from './design-mug';
 import { loggAktivitet } from '../../metrics/metrics';
 import { aktivitetsplanLenke } from '../../innhold/lenker';
 import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
+import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
 const Aktivitetsplan = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
+    const { erBrukerUnderOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const { location } = window;
     const nyRegistrering = parse(location.search).nyRegistrering === 'true';
     const overskrift = 'aktivitetsplan-overskrift-ordinaer';
     const ingress = 'aktivitetsplan-beskrivelse' + (nyRegistrering ? '-ny' : '');
+    const kanViseKomponent = erBrukerUnderOppfolging;
 
     React.useEffect(() => {
-        loggAktivitet({ aktivitet: 'Viser aktivitetsplanen', ...amplitudeAktivitetsData });
-    }, [amplitudeAktivitetsData]);
+        if (kanViseKomponent) {
+            loggAktivitet({ aktivitet: 'Viser aktivitetsplanen', ...amplitudeAktivitetsData });
+        }
+    }, [amplitudeAktivitetsData, kanViseKomponent]);
 
     const handleClick = () => {
         loggAktivitet({ aktivitet: 'Går til aktivitetsplanen', ...amplitudeAktivitetsData });
     };
 
-    return (
+    return !kanViseKomponent ? null : (
         <LenkepanelMedIkon
             href={aktivitetsplanLenke}
             alt=""

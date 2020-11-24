@@ -18,6 +18,7 @@ import { OppfolgingContext, Servicegruppe } from '../../ducks/oppfolging';
 import { MotestotteContext } from '../../ducks/motestotte';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
+import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import tekster from '../../tekster/tekster';
 
 const LANSERINGSDATO_MOTESTOTTE = new Date('2020-03-12');
@@ -58,6 +59,7 @@ const Motestotte = () => {
     const foreslattInnsatsgruppe = selectForeslattInnsatsgruppe(data)!; // Komponent blir rendret kun hvis foreslått innsatsgruppe er satt
     const antallTimer = antallTimerSidenRegistrering(opprettetRegistreringDato!);
     const dinSituasjon = selectDinSituasjonSvar(data) || 'INGEN_VERDI';
+    const { erBrukerUnderOppfolging } = React.useContext(UnderOppfolgingContext).data;
 
     const harGyldigMotestottebesvarelse = (): boolean => {
         if (!opprettetRegistreringDato || !motestotteData) return false;
@@ -71,7 +73,8 @@ const Motestotte = () => {
         opprettetRegistreringDato !== null &&
         opprettetRegistreringDato >= LANSERINGSDATO_MOTESTOTTE &&
         !oppfolgingData.reservasjonKRR &&
-        foreslattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING;
+        foreslattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING &&
+        erBrukerUnderOppfolging;
 
     React.useEffect(() => {
         if (kanViseKomponent) {

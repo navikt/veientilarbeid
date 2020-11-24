@@ -8,6 +8,7 @@ import * as UlesteDialoger from '../ducks/ulestedialoger';
 import * as Jobbsokerbesvarelse from '../ducks/jobbsokerbesvarelse';
 import * as BrukerInfo from '../ducks/bruker-info';
 import * as Motestotte from '../ducks/motestotte';
+import * as UnderOppfolging from '../ducks/under-oppfolging';
 import * as React from 'react';
 
 type DeepPartial<T> = {
@@ -24,6 +25,7 @@ export type ProviderProps = {
     jobbsokerbesvarelse?: DeepPartial<Jobbsokerbesvarelse.Data>;
     brukerInfo?: DeepPartial<BrukerInfo.Data>;
     motestotte?: DeepPartial<Motestotte.Data>;
+    underOppfolging?: DeepPartial<UnderOppfolging.Data>;
 };
 
 export const contextProviders = function (props: ProviderProps): React.FunctionComponent {
@@ -58,28 +60,35 @@ export const contextProviders = function (props: ProviderProps): React.FunctionC
                                     props.egenvurdering && { data: props.egenvurdering }
                                 )}
                             >
-                                <Oppfolging.OppfolgingContext.Provider
+                                <UnderOppfolging.UnderOppfolgingContext.Provider
                                     value={merge(
-                                        Oppfolging.initialState,
-                                        props.oppfolging && { data: props.oppfolging }
+                                        UnderOppfolging.initialState,
+                                        props.underOppfolging && { data: props.underOppfolging }
                                     )}
                                 >
-                                    <Motestotte.MotestotteContext.Provider
+                                    <Oppfolging.OppfolgingContext.Provider
                                         value={merge(
-                                            Motestotte.initialState,
-                                            props.motestotte && { data: props.motestotte }
+                                            Oppfolging.initialState,
+                                            props.oppfolging && { data: props.oppfolging }
                                         )}
                                     >
-                                        <FeatureToggle.FeaturetoggleContext.Provider
+                                        <Motestotte.MotestotteContext.Provider
                                             value={merge(
-                                                FeatureToggle.initialState,
-                                                props.featureToggle && { data: props.featureToggle }
+                                                Motestotte.initialState,
+                                                props.motestotte && { data: props.motestotte }
                                             )}
                                         >
-                                            {children}
-                                        </FeatureToggle.FeaturetoggleContext.Provider>
-                                    </Motestotte.MotestotteContext.Provider>
-                                </Oppfolging.OppfolgingContext.Provider>
+                                            <FeatureToggle.FeaturetoggleContext.Provider
+                                                value={merge(
+                                                    FeatureToggle.initialState,
+                                                    props.featureToggle && { data: props.featureToggle }
+                                                )}
+                                            >
+                                                {children}
+                                            </FeatureToggle.FeaturetoggleContext.Provider>
+                                        </Motestotte.MotestotteContext.Provider>
+                                    </Oppfolging.OppfolgingContext.Provider>
+                                </UnderOppfolging.UnderOppfolgingContext.Provider>
                             </Egenvurdering.EgenvurderingContext.Provider>
                         </Jobbsokerbesvarelse.JobbsokerbesvarelseContext.Provider>
                     </UlesteDialoger.UlesteDialogerContext.Provider>

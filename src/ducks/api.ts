@@ -29,6 +29,7 @@ export const requestConfig: RequestInit = {
 const contextpath = erMikrofrontend() ? contextpathDittNav : '';
 
 export const VEILARBOPPFOLGING_URL = `${contextpath}/veilarboppfolging/api/oppfolging`,
+    UNDER_OPPFOLGING_URL = `${contextpath}/veilarboppfolging/api/niva3/underoppfolging`,
     BRUKERINFO_URL = `${contextpath}/veilarbregistrering/api/startregistrering`,
     BRUKERREGISTRERING_URL = `${contextpath}/veilarbregistrering/api/registrering`,
     JOBBSOKERBESVARELSE_URL = `${contextpath}/veilarbjobbsokerkompetanse/api/hent`,

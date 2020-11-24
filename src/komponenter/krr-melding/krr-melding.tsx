@@ -1,18 +1,21 @@
 import * as React from 'react';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import {AlertStripeAdvarsel} from 'nav-frontend-alertstriper';
 import Lenke from 'nav-frontend-lenker';
-import { Normaltekst } from 'nav-frontend-typografi';
+import {Normaltekst} from 'nav-frontend-typografi';
 import './krr-melding.less';
-import { difiLenke } from '../../innhold/lenker';
+import {difiLenke} from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
-import { OppfolgingContext } from '../../ducks/oppfolging';
-import { loggAktivitet } from '../../metrics/metrics';
-import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
+import {OppfolgingContext} from '../../ducks/oppfolging';
+import {loggAktivitet} from '../../metrics/metrics';
+import {AmplitudeAktivitetContext} from '../../ducks/amplitude-aktivitet-context';
+import {UnderOppfolgingContext} from '../../ducks/under-oppfolging';
 
 const KrrMelding = () => {
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const { reservasjonKRR } = oppfolgingData;
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
+    const { erBrukerUnderOppfolging } = React.useContext(UnderOppfolgingContext).data;
+    const kanViseKomponent = erBrukerUnderOppfolging;
 
     const handleLenkeKlikk = () => {
         loggAktivitet({ aktivitet: 'Går til krr-oppsett', ...amplitudeAktivitetsData });
@@ -24,7 +27,7 @@ const KrrMelding = () => {
         }
     }, [reservasjonKRR, amplitudeAktivitetsData]);
 
-    if (!reservasjonKRR) return null;
+    if (!reservasjonKRR || !kanViseKomponent) return null;
 
     return (
         <AlertStripeAdvarsel className="krr-melding blokk-xs">

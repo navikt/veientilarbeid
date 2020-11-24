@@ -1,19 +1,22 @@
 import * as React from 'react';
 import '@testing-library/jest-dom/extend-expect';
-import { render, screen } from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 import TrekkDPSoknad from './trekk-dp-soknad';
-import { InnloggingsNiva } from '../../ducks/autentisering';
-import { contextProviders, ProviderProps } from '../../test/test-context-providers';
+import {InnloggingsNiva} from '../../ducks/autentisering';
+import {contextProviders, ProviderProps} from '../../test/test-context-providers';
 
 describe('Tester at komponenten rendrer som forventet', () => {
     test('Rendrer IKKE komponenten dersom ikke oppfølging', () => {
-        const providerProps: ProviderProps = {};
+        const providerProps: ProviderProps = {
+            underOppfolging: { erBrukerUnderOppfolging: true },
+        };
         const { container } = render(<TrekkDPSoknad />, { wrapper: contextProviders(providerProps) });
         expect(container).toBeEmptyDOMElement();
     });
 
     test('Komponentet vises IKKE dersom ikke under oppfølging og nivå 4', () => {
         const providerProps: ProviderProps = {
+            underOppfolging: { erBrukerUnderOppfolging: true },
             autentisering: {
                 securityLevel: InnloggingsNiva.LEVEL_4,
             },
@@ -27,6 +30,7 @@ describe('Tester at komponenten rendrer som forventet', () => {
 
     test('Komponentet vises IKKE dersom ikke under oppfølging og nivå 3', () => {
         const providerProps: ProviderProps = {
+            underOppfolging: { erBrukerUnderOppfolging: true },
             autentisering: {
                 securityLevel: InnloggingsNiva.LEVEL_3,
             },
@@ -40,6 +44,7 @@ describe('Tester at komponenten rendrer som forventet', () => {
 
     test('Komponentet VISES hvis under oppfølging og nivå 4', async () => {
         const providerProps: ProviderProps = {
+            underOppfolging: { erBrukerUnderOppfolging: true },
             autentisering: {
                 securityLevel: InnloggingsNiva.LEVEL_4,
             },
@@ -54,6 +59,7 @@ describe('Tester at komponenten rendrer som forventet', () => {
 
     test('Komponentet VISES hvis under oppfølging og nivå 3', async () => {
         const providerProps: ProviderProps = {
+            underOppfolging: { erBrukerUnderOppfolging: true },
             autentisering: {
                 securityLevel: InnloggingsNiva.LEVEL_3,
             },
