@@ -38,7 +38,6 @@ import {
     settUnderOppfolging,
     hentKanReaktiveres,
     settKanReaktiveres,
-    slettKanReaktiveres,
 } from './demo-state';
 
 import './demo-dashboard.less';
@@ -166,11 +165,7 @@ class DemoDashboard extends React.Component<{}> {
                     slettUnderOppfolging();
                 }
             } else if (element.id === KAN_REAKTIVERES) {
-                if (element.checked) {
-                    settKanReaktiveres();
-                } else {
-                    slettKanReaktiveres();
-                }
+                settKanReaktiveres(element.checked.toString());
             }
             window.location.reload();
         };
@@ -385,7 +380,7 @@ class DemoDashboard extends React.Component<{}> {
                         },
                         {
                             label: 'Kan reaktiveres',
-                            checked: hentKanReaktiveres().kanReaktiveres === true,
+                            checked: hentKanReaktiveres(),
                             id: KAN_REAKTIVERES,
                         },
                     ]}

@@ -9,7 +9,8 @@ import { OppfolgingContext } from '../ducks/oppfolging';
 
 const ReaktiveringMelding = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
-    const kanViseKomponent = React.useContext(OppfolgingContext).data.kanReaktiveres;
+    const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
+    const kanViseKomponent = kanReaktiveres;
 
     React.useEffect(() => {
         if (kanViseKomponent) {
