@@ -6,11 +6,13 @@ import tekster from '../tekster/tekster';
 import { loggAktivitet } from '../metrics/metrics';
 import { AmplitudeAktivitetContext } from '../ducks/amplitude-aktivitet-context';
 import { OppfolgingContext } from '../ducks/oppfolging';
+import { UnderOppfolgingContext } from '../ducks/under-oppfolging';
 
 const ReaktiveringMelding = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
+    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
-    const kanViseKomponent = kanReaktiveres;
+    const kanViseKomponent = kanReaktiveres && !underOppfolging;
 
     React.useEffect(() => {
         if (kanViseKomponent) {
