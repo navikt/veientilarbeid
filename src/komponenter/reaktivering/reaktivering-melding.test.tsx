@@ -15,8 +15,8 @@ describe('Tester at komponenten rendres slik den skal', () => {
     test('Komponenten rendres IKKE dersom man er under oppfølging', () => {
         const providerProps: ProviderProps = {
             underOppfolging: {
-                underOppfolging: true
-            }
+                underOppfolging: true,
+            },
         };
         const { container } = render(<Reaktivering />, { wrapper: contextProviders(providerProps) });
         expect(container).toBeEmptyDOMElement();
