@@ -10,6 +10,7 @@ import * as BrukerInfo from '../ducks/bruker-info';
 import * as Motestotte from '../ducks/motestotte';
 import * as UnderOppfolging from '../ducks/under-oppfolging';
 import * as React from 'react';
+import {STATUS} from '../ducks/api';
 
 type DeepPartial<T> = {
     [K in keyof T]?: T[K] extends object ? DeepPartial<T[K]> : T[K];
@@ -17,7 +18,7 @@ type DeepPartial<T> = {
 
 export type ProviderProps = {
     autentisering?: DeepPartial<Autentisering.Data>;
-    brukerregistrering?: DeepPartial<Brukerregistrering.Data>;
+    brukerregistrering?: DeepPartial<Brukerregistrering.Data> | null;
     featureToggle?: DeepPartial<FeatureToggle.Data>;
     egenvurdering?: DeepPartial<Egenvurdering.Data>;
     oppfolging?: DeepPartial<Oppfolging.Data>;
@@ -37,10 +38,14 @@ export const contextProviders = function (props: ProviderProps): React.FunctionC
                 value={merge(BrukerInfo.initialState, props.brukerInfo && { data: props.brukerInfo })}
             >
                 <Brukerregistrering.BrukerregistreringContext.Provider
-                    value={merge(
-                        Brukerregistrering.initialState,
-                        props.brukerregistrering && { data: props.brukerregistrering }
-                    )}
+                    value={
+                        props.brukerregistrering === null
+                            ? { data: null, status: STATUS.OK }
+                            : merge(
+                                  Brukerregistrering.initialState,
+                                  props.brukerregistrering && { data: props.brukerregistrering }
+                              )
+                    }
                 >
                     <UlesteDialoger.UlesteDialogerContext.Provider
                         value={merge(
