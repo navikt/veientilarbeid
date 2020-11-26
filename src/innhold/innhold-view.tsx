@@ -4,7 +4,7 @@ import Rad from './rad';
 import AapRad from '../komponenter/aap/aap';
 import Banner from '../komponenter/banner/banner';
 import OkonomiRad from '../komponenter/okonomi/okonomi-rad';
-import ReaktiveringMelding from '../komponenter/reaktivering-melding';
+import ReaktiveringMelding from '../komponenter/reaktivering/reaktivering-melding';
 import RessurslenkerJobbsok from '../komponenter/ressurslenker-jobbsok/ressurslenker-jobbsok';
 import Egenvurdering from '../komponenter/egenvurdering/egenvurdering';
 import Motestotte from '../komponenter/motestotte/motestotte';

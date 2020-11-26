@@ -1,9 +1,9 @@
 import * as React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
-import { contextProviders, ProviderProps } from '../test/test-context-providers';
+import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import Reaktivering from './reaktivering-melding';
-import tekster from '../tekster/tekster';
+import tekster from '../../tekster/tekster';
 
 describe('Tester at komponenten rendres slik den skal', () => {
     test('Komponenten rendres IKKE som default', () => {

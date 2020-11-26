@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { reaktiveringLenke } from '../innhold/lenker';
-import tekster from '../tekster/tekster';
-import { loggAktivitet } from '../metrics/metrics';
-import { AmplitudeAktivitetContext } from '../ducks/amplitude-aktivitet-context';
-import { OppfolgingContext } from '../ducks/oppfolging';
-import { UnderOppfolgingContext } from '../ducks/under-oppfolging';
+import { reaktiveringLenke } from '../../innhold/lenker';
+import tekster from '../../tekster/tekster';
+import { loggAktivitet } from '../../metrics/metrics';
+import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
+import { OppfolgingContext } from '../../ducks/oppfolging';
+import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
 const ReaktiveringMelding = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
