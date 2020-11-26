@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { ComponentType } from 'react';
-import { render, screen } from '@testing-library/react';
+import {ComponentType} from 'react';
+import {render, screen} from '@testing-library/react';
 import Egenvurdering from './egenvurdering';
 import tekster from '../../tekster/tekster';
-import { contextProviders, ProviderProps } from '../../test/test-context-providers';
-import { Servicegruppe } from '../../ducks/oppfolging';
-import { ForeslattInnsatsgruppe } from '../../ducks/brukerregistrering';
+import {contextProviders, ProviderProps} from '../../test/test-context-providers';
+import {Servicegruppe} from '../../ducks/oppfolging';
+import {ForeslattInnsatsgruppe} from '../../ducks/brukerregistrering';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/extend-expect';
 
@@ -16,6 +16,17 @@ describe('Tester egenvurdering-komponenten', () => {
             profilering: { innsatsgruppe: ForeslattInnsatsgruppe.STANDARD_INNSATS },
         },
     };
+
+    it('vises ikke når brukerregistrering ikke finnes', async () => {
+        const props: ProviderProps = {
+            underOppfolging: { underOppfolging: false },
+            oppfolging: { servicegruppe: Servicegruppe.IVURD },
+            brukerregistrering: null,
+        };
+        const { container } = render(<Egenvurdering />, { wrapper: contextProviders(props) as ComponentType });
+        expect(container).toBeEmptyDOMElement();
+    });
+
     it('renderes når den skal', async () => {
         const props: ProviderProps = {
             underOppfolging: { underOppfolging: true },
