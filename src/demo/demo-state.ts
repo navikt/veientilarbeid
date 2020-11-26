@@ -20,7 +20,7 @@ export enum DemoData {
     RETTIGHETSGRUPPE = 'rettighetsgruppe',
     FEATURE_TOGGLES = 'featureToggles',
     UNDER_OPPFOLGING = 'underOppfolging',
-    KAN_REAKTIVERES = 'kanReaktiveres'
+    KAN_REAKTIVERES = 'kanReaktiveres',
 }
 
 export const hentFraLocalStorage = (key: string): string | null => {

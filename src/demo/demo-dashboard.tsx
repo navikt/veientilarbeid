@@ -36,6 +36,9 @@ import {
     hentUnderOppfolging,
     slettUnderOppfolging,
     settUnderOppfolging,
+    hentKanReaktiveres,
+    settKanReaktiveres,
+    slettKanReaktiveres,
 } from './demo-state';
 
 import './demo-dashboard.less';
@@ -76,6 +79,7 @@ class DemoDashboard extends React.Component<{}> {
         const AUTENTISERINGS_INFO = DemoData.AUTENTISERINGS_INFO;
         const FEATURES = DemoData.FEATURE_TOGGLES;
         const UNDER_OPPFOLGING = DemoData.UNDER_OPPFOLGING;
+        const KAN_REAKTIVERES = DemoData.KAN_REAKTIVERES;
 
         const handleChangeServicegruppe = (e: React.ChangeEvent<HTMLSelectElement>) => {
             settServicegruppe(e.target.value);
@@ -160,6 +164,12 @@ class DemoDashboard extends React.Component<{}> {
                     settUnderOppfolging();
                 } else {
                     slettUnderOppfolging();
+                }
+            } else if (element.id === KAN_REAKTIVERES) {
+                if (element.checked) {
+                    settKanReaktiveres();
+                } else {
+                    slettKanReaktiveres();
                 }
             }
             window.location.reload();
@@ -372,6 +382,11 @@ class DemoDashboard extends React.Component<{}> {
                             label: 'Under oppfølging',
                             checked: hentUnderOppfolging().underOppfolging === true,
                             id: UNDER_OPPFOLGING,
+                        },
+                        {
+                            label: 'Kan reaktiveres',
+                            checked: hentKanReaktiveres().kanReaktiveres === true,
+                            id: KAN_REAKTIVERES,
                         },
                     ]}
                 />

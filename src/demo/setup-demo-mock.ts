@@ -25,7 +25,7 @@ import {
     hentSykmeldtMedArbeidsgiver,
     hentUlesteDialoger,
     hentUnderOppfolging,
-    hentKanReaktiveres
+    hentKanReaktiveres,
 } from './demo-state';
 
 import { hentBrukerRegistreringData } from './demo-state-brukerregistrering';

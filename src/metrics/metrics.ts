@@ -1,11 +1,11 @@
-import {ForeslattInnsatsgruppe} from '../ducks/brukerregistrering';
-import {erDemo} from '../utils/app-state-utils';
-import {FormidlingsgruppeOrNull, ServicegruppeOrNull} from '../ducks/oppfolging';
-import {RegistreringTypeOrIngenVerdi} from '../ducks/bruker-info';
-import {CreatedMetrics} from './created-metrics';
-import {AmplitudeAktivitetsData, amplitudeLogger, setIdentifyProperty} from './amplitude-utils';
-import {uniLogger} from './uni-logger';
-import {POAGruppe} from '../utils/get-poa-group';
+import { ForeslattInnsatsgruppe } from '../ducks/brukerregistrering';
+import { erDemo } from '../utils/app-state-utils';
+import { FormidlingsgruppeOrNull, ServicegruppeOrNull } from '../ducks/oppfolging';
+import { RegistreringTypeOrIngenVerdi } from '../ducks/bruker-info';
+import { CreatedMetrics } from './created-metrics';
+import { AmplitudeAktivitetsData, amplitudeLogger, setIdentifyProperty } from './amplitude-utils';
+import { uniLogger } from './uni-logger';
+import { POAGruppe } from '../utils/get-poa-group';
 
 const createdMetrics = new CreatedMetrics();
 
