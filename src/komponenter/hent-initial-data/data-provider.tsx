@@ -3,21 +3,22 @@ import Innholdslaster from '../innholdslaster/innholdslaster';
 import Feilmelding from '../feilmeldinger/feilmelding';
 import * as BrukerInfo from '../../ducks/bruker-info';
 import * as Brukerregistrering from '../../ducks/brukerregistrering';
+import {ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe} from '../../ducks/brukerregistrering';
 import * as Motestotte from '../../ducks/motestotte';
 import * as Egenvurdering from '../../ducks/egenvurdering';
 import * as UlesteDialoger from '../../ducks/ulestedialoger';
 import * as Jobbsokerbesvarelse from '../../ducks/jobbsokerbesvarelse';
-import { fetchData } from '../../ducks/api-utils';
+import {fetchData} from '../../ducks/api-utils';
 import {
-    MOTESTOTTE_URL,
     BRUKERINFO_URL,
     EGENVURDERINGBESVARELSE_URL,
-    ULESTEDIALOGER_URL,
     JOBBSOKERBESVARELSE_URL,
+    MOTESTOTTE_URL,
+    ULESTEDIALOGER_URL,
 } from '../../ducks/api';
-import { AmplitudeProvider } from './amplitude-provider';
-import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe } from '../../ducks/brukerregistrering';
-import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
+import {AmplitudeProvider} from './amplitude-provider';
+import {AutentiseringContext, InnloggingsNiva} from '../../ducks/autentisering';
+import {UnderOppfolgingContext} from "../../ducks/under-oppfolging";
 
 const skalSjekkeEgenvurderingBesvarelse = (
     foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null
@@ -36,6 +37,8 @@ type Props = OwnProps;
 
 const DataProvider = ({ children }: Props) => {
     const { securityLevel } = React.useContext(AutentiseringContext).data;
+    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
+
 
     const [motestotteState, setMotestotteState] = React.useState<Motestotte.State>(Motestotte.initialState);
     const [brukerInfoState, setBrukerInfoState] = React.useState<BrukerInfo.State>(BrukerInfo.initialState);
@@ -61,11 +64,15 @@ const DataProvider = ({ children }: Props) => {
             setUlesteDialogerState,
             ULESTEDIALOGER_URL
         );
-        fetchData<Jobbsokerbesvarelse.State, Jobbsokerbesvarelse.Data>(
-            jobbsokerbesvarelseState,
-            setJobbsokerbesvarelseState,
-            JOBBSOKERBESVARELSE_URL
-        );
+
+        if (underOppfolging) {
+            fetchData<Jobbsokerbesvarelse.State, Jobbsokerbesvarelse.Data>(
+                jobbsokerbesvarelseState,
+                setJobbsokerbesvarelseState,
+                JOBBSOKERBESVARELSE_URL
+            );
+        }
+
         if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
             fetchData<Egenvurdering.State, Egenvurdering.Data>(
                 egenvurderingState,
@@ -83,7 +90,11 @@ const DataProvider = ({ children }: Props) => {
 
     if (securityLevel === InnloggingsNiva.LEVEL_4) {
         avhengigheter.push(brukerInfoState);
-        ventPa.push(ulesteDialogerState, jobbsokerbesvarelseState);
+        ventPa.push(ulesteDialogerState);
+
+        if (underOppfolging) {
+            ventPa.push(jobbsokerbesvarelseState);
+        }
 
         if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
             ventPa.push(egenvurderingState);
