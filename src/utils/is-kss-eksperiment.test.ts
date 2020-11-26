@@ -37,6 +37,16 @@ describe('isKSSEksperiment returnerer forventede verdier', () => {
         expect(isKSSEksperiment(data)).toBe(true);
     });
 
+    it('returnerer false for kss fra gyldig kontor registrert etter eksperimentets slutt med gyldig situasjon', () => {
+        const data = {
+            dinSituasjon: 'MISTET_JOBBEN',
+            opprettetRegistreringDato: new Date('2020-12-01'),
+            POAGruppe: generateKSS(),
+            geografiskTilknytning: '3401',
+        };
+        expect(isKSSEksperiment(data)).toBe(false);
+    });
+
     it('returnerer false for kss fra gyldig kontor fra andre runde eksperiment-kontorer mellom første og andre eksperiment-start', () => {
         const data = {
             dinSituasjon: 'MISTET_JOBBEN',
@@ -55,6 +65,16 @@ describe('isKSSEksperiment returnerer forventede verdier', () => {
             geografiskTilknytning: '3808',
         };
         expect(isKSSEksperiment(data)).toBe(true);
+    });
+
+    it('returnerer false for kss fra gyldig kontor fra andre runde eksperiment-kontorer etter slutt', () => {
+        const data = {
+            dinSituasjon: 'MISTET_JOBBEN',
+            opprettetRegistreringDato: new Date('2020-12-01'),
+            POAGruppe: generateKSS(),
+            geografiskTilknytning: '3808',
+        };
+        expect(isKSSEksperiment(data)).toBe(false);
     });
 
     it('returnerer false for kss fra gyldig kontor registrert før eksperimentets start, men med gyldig situasjon', () => {
