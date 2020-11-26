@@ -1,12 +1,12 @@
 import * as React from 'react';
 import '@testing-library/jest-dom/extend-expect';
-import { render, screen } from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 import GenerelleFliser from './generelle-fliser';
 import tekster from './utils/tekster.json';
-import { contextProviders, ProviderProps } from '../../test/test-context-providers';
+import {contextProviders, ProviderProps} from '../../test/test-context-providers';
 
 describe('Tester komponenten', () => {
-    test('Komponenten rendres IKKE som om man er under oppfølging', () => {
+    test('Komponenten rendres om man er under oppfølging', () => {
         const props: ProviderProps = {
             underOppfolging: { underOppfolging: true },
         };
@@ -14,7 +14,7 @@ describe('Tester komponenten', () => {
         expect(container).toBeEmptyDOMElement();
     });
 
-    test('Komponenten VISES om man er under oppfølging', () => {
+    test('Komponenten VISES ikke om man er under oppfølging', () => {
         const props: ProviderProps = {
             underOppfolging: { underOppfolging: false },
         };
