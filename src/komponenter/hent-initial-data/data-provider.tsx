@@ -18,7 +18,7 @@ import {
 } from '../../ducks/api';
 import {AmplitudeProvider} from './amplitude-provider';
 import {AutentiseringContext, InnloggingsNiva} from '../../ducks/autentisering';
-import {UnderOppfolgingContext} from "../../ducks/under-oppfolging";
+import {UnderOppfolgingContext} from '../../ducks/under-oppfolging';
 
 const skalSjekkeEgenvurderingBesvarelse = (
     foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null
@@ -38,7 +38,6 @@ type Props = OwnProps;
 const DataProvider = ({ children }: Props) => {
     const { securityLevel } = React.useContext(AutentiseringContext).data;
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
-
 
     const [motestotteState, setMotestotteState] = React.useState<Motestotte.State>(Motestotte.initialState);
     const [brukerInfoState, setBrukerInfoState] = React.useState<BrukerInfo.State>(BrukerInfo.initialState);
@@ -71,19 +70,18 @@ const DataProvider = ({ children }: Props) => {
                 setJobbsokerbesvarelseState,
                 JOBBSOKERBESVARELSE_URL
             );
-        }
-
-        if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
-            fetchData<Egenvurdering.State, Egenvurdering.Data>(
-                egenvurderingState,
-                setEgenvurderingState,
-                EGENVURDERINGBESVARELSE_URL
-            );
-        } else if (foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING) {
-            fetchData<Motestotte.State, Motestotte.Data>(motestotteState, setMotestotteState, MOTESTOTTE_URL);
+            if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
+                fetchData<Egenvurdering.State, Egenvurdering.Data>(
+                    egenvurderingState,
+                    setEgenvurderingState,
+                    EGENVURDERINGBESVARELSE_URL
+                );
+            } else if (foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING) {
+                fetchData<Motestotte.State, Motestotte.Data>(motestotteState, setMotestotteState, MOTESTOTTE_URL);
+            }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [securityLevel]);
+    }, [securityLevel, underOppfolging]);
 
     const avhengigheter: any[] = [];
     const ventPa: any[] = [];
@@ -94,13 +92,14 @@ const DataProvider = ({ children }: Props) => {
 
         if (underOppfolging) {
             ventPa.push(jobbsokerbesvarelseState);
-        }
 
-        if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
-            ventPa.push(egenvurderingState);
-        }
-        if (foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING) {
-            ventPa.push(motestotteState);
+            if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
+                ventPa.push(egenvurderingState);
+            }
+
+            if (foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING) {
+                ventPa.push(motestotteState);
+            }
         }
     }
 
