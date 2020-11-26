@@ -17,9 +17,9 @@ describe('Tester komponenten', () => {
     test('Komponenten VISES om man ikke er under oppfølging og aldri har vært det', () => {
         const props: ProviderProps = {
             underOppfolging: { underOppfolging: false },
-            brukerregistrering: null
+            brukerregistrering: null,
         };
-        const {container} = render(<GenerelleFliser />, { wrapper: contextProviders(props) });
+        const { container } = render(<GenerelleFliser />, { wrapper: contextProviders(props) });
         expect(container).not.toBeEmptyDOMElement();
     });
 
@@ -37,6 +37,4 @@ describe('Tester komponenten', () => {
         expect(screen.getByText(tekster['fliser.ditt.sykevravaer'])).toBeInTheDocument();
         expect(screen.getByText(tekster['fliser.ditt.sykevravaer.ingress'])).toBeInTheDocument();
     });
-
-
 });
