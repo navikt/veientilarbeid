@@ -6,7 +6,7 @@ import tekster from './utils/tekster.json';
 import {contextProviders, ProviderProps} from '../../test/test-context-providers';
 
 describe('Tester komponenten', () => {
-    test('Komponenten rendres om man er under oppfølging', () => {
+    test('Komponenten VISES ikke om man er under oppfølging', () => {
         const props: ProviderProps = {
             underOppfolging: { underOppfolging: true },
         };
@@ -14,7 +14,16 @@ describe('Tester komponenten', () => {
         expect(container).toBeEmptyDOMElement();
     });
 
-    test('Komponenten VISES ikke om man er under oppfølging', () => {
+    test('Komponenten VISES om man ikke er under oppfølging og aldri har vært det', () => {
+        const props: ProviderProps = {
+            underOppfolging: { underOppfolging: false },
+            brukerregistrering: null
+        };
+        const {container} = render(<GenerelleFliser />, { wrapper: contextProviders(props) });
+        expect(container).not.toBeEmptyDOMElement();
+    });
+
+    test('Komponenten VISES om man ikke er under oppfølging', () => {
         const props: ProviderProps = {
             underOppfolging: { underOppfolging: false },
         };
@@ -28,4 +37,6 @@ describe('Tester komponenten', () => {
         expect(screen.getByText(tekster['fliser.ditt.sykevravaer'])).toBeInTheDocument();
         expect(screen.getByText(tekster['fliser.ditt.sykevravaer.ingress'])).toBeInTheDocument();
     });
+
+
 });
