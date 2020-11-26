@@ -25,6 +25,7 @@ import {
     hentSykmeldtMedArbeidsgiver,
     hentUlesteDialoger,
     hentUnderOppfolging,
+    hentKanReaktiveres,
 } from './demo-state';
 
 import { hentBrukerRegistreringData } from './demo-state-brukerregistrering';
@@ -39,7 +40,7 @@ const randomUlesteDialoger = () => {
 export const demo_handlers = [
     msw_get(VEILARBOPPFOLGING_URL, {
         underOppfolging: true,
-        kanReaktiveres: false,
+        kanReaktiveres: hentKanReaktiveres(),
         reservasjonKRR: hentReservasjonKRR(),
         servicegruppe: hentServicegruppe(),
         formidlingsgruppe: hentFormidlingsgruppe(),

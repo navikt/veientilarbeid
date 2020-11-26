@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {AmplitudeAktivitetContext} from '../ducks/amplitude-aktivitet-context';
+import { AmplitudeAktivitetContext } from '../ducks/amplitude-aktivitet-context';
 import {
     BrukerregistreringContext,
     selectDinSituasjonSvar,
@@ -7,8 +7,8 @@ import {
     selectFremtidigSituasjonSvar,
     selectOpprettetRegistreringDato,
 } from '../ducks/brukerregistrering';
-import {OppfolgingContext} from '../ducks/oppfolging';
-import {BrukerInfoContext} from '../ducks/bruker-info';
+import { OppfolgingContext } from '../ducks/oppfolging';
+import { BrukerInfoContext } from '../ducks/bruker-info';
 import ukerFraDato from '../utils/uker-fra-dato';
 import getPoaGroup from '../utils/get-poa-group';
 import { loggAktivitet, setIdentifyPoaGruppe, seVeientilarbeid, tellPoaGruppe } from '../metrics/metrics';
@@ -65,7 +65,7 @@ function Metrics() {
     });
 
     const hotjarEksperiment = () => {
-        return POAGruppe === 'kss' && (ukerRegistrert >= 4 && ukerRegistrert < 12);
+        return POAGruppe === 'kss' && ukerRegistrert >= 4 && ukerRegistrert < 12;
     };
 
     React.useEffect(() => {
