@@ -20,6 +20,7 @@ export enum DemoData {
     RETTIGHETSGRUPPE = 'rettighetsgruppe',
     FEATURE_TOGGLES = 'featureToggles',
     UNDER_OPPFOLGING = 'underOppfolging',
+    KAN_REAKTIVERES = 'kanReaktiveres'
 }
 
 export const hentFraLocalStorage = (key: string): string | null => {
@@ -187,4 +188,17 @@ export const settUnderOppfolging = () => {
 
 export const slettUnderOppfolging = () => {
     slettFraLocalStorage(DemoData.UNDER_OPPFOLGING);
+};
+
+export const hentKanReaktiveres = (): JSONObject => {
+    const verdi = hentFraLocalStorage(DemoData.KAN_REAKTIVERES);
+    return verdi ? JSON.parse(verdi) : { kanReaktiveres: false };
+};
+
+export const settKanReaktiveres = () => {
+    settILocalStorage(DemoData.KAN_REAKTIVERES, JSON.stringify({ kanReaktiveres: true }));
+};
+
+export const slettKanReaktiveres = () => {
+    slettFraLocalStorage(DemoData.KAN_REAKTIVERES);
 };
