@@ -26,6 +26,7 @@ const InnholdView = () => {
                 <Egenvurdering />
                 <Motestotte />
                 <AktivitetDialogMeldekort />
+                <GenerelleFliser />
             </Rad>
 
             <AapRad />
@@ -33,7 +34,6 @@ const InnholdView = () => {
                 <RessurslenkerJobbsok />
             </Rad>
             <OkonomiRad />
-            <GenerelleFliser />
         </>
     );
 };
