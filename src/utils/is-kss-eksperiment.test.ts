@@ -40,7 +40,7 @@ describe('isKSSEksperiment returnerer forventede verdier', () => {
     it('returnerer false for kss fra gyldig kontor registrert etter eksperimentets slutt med gyldig situasjon', () => {
         const data = {
             dinSituasjon: 'MISTET_JOBBEN',
-            opprettetRegistreringDato: new Date('2020-12-01'),
+            opprettetRegistreringDato: new Date('2020-11-30'),
             POAGruppe: generateKSS(),
             geografiskTilknytning: '3401',
         };
@@ -70,7 +70,7 @@ describe('isKSSEksperiment returnerer forventede verdier', () => {
     it('returnerer false for kss fra gyldig kontor fra andre runde eksperiment-kontorer etter slutt', () => {
         const data = {
             dinSituasjon: 'MISTET_JOBBEN',
-            opprettetRegistreringDato: new Date('2020-12-01'),
+            opprettetRegistreringDato: new Date('2020-11-30'),
             POAGruppe: generateKSS(),
             geografiskTilknytning: '3808',
         };
