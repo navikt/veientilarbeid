@@ -1,4 +1,4 @@
-import { DataElement, STATUS } from './api';
+import {DataElement, STATUS} from './api';
 import * as React from 'react';
 
 export enum FremtidigSituasjonSvar {
@@ -50,7 +50,7 @@ export interface Data {
 }
 
 export interface State extends DataElement {
-    data: Data;
+    data: Data | null;
 }
 
 export const initialState: State = {
@@ -77,20 +77,20 @@ export const initialState: State = {
 
 export const BrukerregistreringContext = React.createContext<State>(initialState);
 
-export function selectFremtidigSituasjonSvar(data: Data): FremtidigSituasjonSvar | null {
+export function selectFremtidigSituasjonSvar(data: Data | null): FremtidigSituasjonSvar | null {
     return data ? data.registrering.besvarelse.fremtidigSituasjon : null;
 }
 
-export function selectDinSituasjonSvar(data: Data): string | null {
+export function selectDinSituasjonSvar(data: Data | null): string | null {
     return data ? data.registrering.besvarelse.dinSituasjon : 'INGEN_VERDI';
 }
 
-export function selectForeslattInnsatsgruppe(data: Data): ForeslattInnsatsgruppe | undefined | null {
+export function selectForeslattInnsatsgruppe(data: Data | null): ForeslattInnsatsgruppe | undefined | null {
     const profilering = data ? data.registrering.profilering : null;
 
     return profilering ? profilering.innsatsgruppe : undefined;
 }
 
-export const selectOpprettetRegistreringDato = (data: Data): string | null => {
+export const selectOpprettetRegistreringDato = (data: Data | null): string | null => {
     return data ? data.registrering.opprettetDato : null;
 };
