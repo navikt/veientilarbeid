@@ -10,7 +10,7 @@ import * as BrukerInfo from '../ducks/bruker-info';
 import * as Motestotte from '../ducks/motestotte';
 import * as UnderOppfolging from '../ducks/under-oppfolging';
 import * as React from 'react';
-import {STATUS} from '../ducks/api';
+import { STATUS } from '../ducks/api';
 
 type DeepPartial<T> = {
     [K in keyof T]?: T[K] extends object ? DeepPartial<T[K]> : T[K];
