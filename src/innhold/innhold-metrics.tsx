@@ -65,7 +65,7 @@ function Metrics() {
     });
 
     const hotjarEksperiment = () => {
-        return POAGruppe === 'kss' && ukerRegistrert >= 4 && ukerRegistrert < 12;
+        return POAGruppe === 'kss' && ukerRegistrert >= 8 && ukerRegistrert < 12;
     };
 
     React.useEffect(() => {
