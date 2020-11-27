@@ -1,4 +1,4 @@
-import {DataElement, STATUS} from './api';
+import { DataElement, STATUS } from './api';
 import * as React from 'react';
 
 export enum FremtidigSituasjonSvar {
