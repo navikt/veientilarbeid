@@ -3,12 +3,12 @@ import Innholdslaster from '../innholdslaster/innholdslaster';
 import Feilmelding from '../feilmeldinger/feilmelding';
 import * as BrukerInfo from '../../ducks/bruker-info';
 import * as Brukerregistrering from '../../ducks/brukerregistrering';
-import {ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe} from '../../ducks/brukerregistrering';
+import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe } from '../../ducks/brukerregistrering';
 import * as Motestotte from '../../ducks/motestotte';
 import * as Egenvurdering from '../../ducks/egenvurdering';
 import * as UlesteDialoger from '../../ducks/ulestedialoger';
 import * as Jobbsokerbesvarelse from '../../ducks/jobbsokerbesvarelse';
-import {fetchData} from '../../ducks/api-utils';
+import { fetchData } from '../../ducks/api-utils';
 import {
     BRUKERINFO_URL,
     EGENVURDERINGBESVARELSE_URL,
@@ -16,9 +16,9 @@ import {
     MOTESTOTTE_URL,
     ULESTEDIALOGER_URL,
 } from '../../ducks/api';
-import {AmplitudeProvider} from './amplitude-provider';
-import {AutentiseringContext, InnloggingsNiva} from '../../ducks/autentisering';
-import {UnderOppfolgingContext} from '../../ducks/under-oppfolging';
+import { AmplitudeProvider } from './amplitude-provider';
+import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
+import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
 const skalSjekkeEgenvurderingBesvarelse = (
     foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null

@@ -11,6 +11,7 @@ import './aap.less';
 import { aapSoknadLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
+import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import { useEffect, useRef, useState } from 'react';
@@ -23,11 +24,13 @@ const handleButtonClick = () => {
 
 const Aap = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
+    const { securityLevel } = React.useContext(AutentiseringContext).data;
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
     const [visAap] = useState(queryString.parse(window.location.search).visAap === 'true');
     const aapRef = useRef<HTMLDivElement>(null);
-    const kanViseKomponent = erSykmeldtMedArbeidsgiver && underOppfolging;
+    const isLevel4 = securityLevel === InnloggingsNiva.LEVEL_4;
+    const kanViseKomponent = erSykmeldtMedArbeidsgiver && underOppfolging && isLevel4;
 
     useEffect(() => {
         aapRef?.current?.scrollIntoView({

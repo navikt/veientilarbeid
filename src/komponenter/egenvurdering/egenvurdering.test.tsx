@@ -1,11 +1,11 @@
 import * as React from 'react';
-import {ComponentType} from 'react';
-import {render, screen} from '@testing-library/react';
+import { ComponentType } from 'react';
+import { render, screen } from '@testing-library/react';
 import Egenvurdering from './egenvurdering';
 import tekster from '../../tekster/tekster';
-import {contextProviders, ProviderProps} from '../../test/test-context-providers';
-import {Servicegruppe} from '../../ducks/oppfolging';
-import {ForeslattInnsatsgruppe} from '../../ducks/brukerregistrering';
+import { contextProviders, ProviderProps } from '../../test/test-context-providers';
+import { Servicegruppe } from '../../ducks/oppfolging';
+import { ForeslattInnsatsgruppe } from '../../ducks/brukerregistrering';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/extend-expect';
 
