@@ -12,6 +12,7 @@ import './egenvurdering.less';
 import { behovsvurderingLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
+import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
 import { OppfolgingContext, Servicegruppe } from '../../ducks/oppfolging';
 import { EgenvurderingContext } from '../../ducks/egenvurdering';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
@@ -34,7 +35,9 @@ const Egenvurdering = () => {
     const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
     const egenvurderingData = React.useContext(EgenvurderingContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
+    const { securityLevel } = React.useContext(AutentiseringContext).data;
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
+    const isLevel4 = securityLevel === InnloggingsNiva.LEVEL_4;
 
     const opprettetRegistreringDatoString = brukerregistreringData?.registrering.opprettetDato;
     const opprettetRegistreringDato = opprettetRegistreringDatoString
@@ -57,6 +60,7 @@ const Egenvurdering = () => {
 
     const skalViseEgenvurderingLenke =
         underOppfolging &&
+        isLevel4 &&
         dinSituasjon !== 'ER_PERMITTERT' &&
         oppfolgingData.servicegruppe === Servicegruppe.IVURD &&
         (!harEgenvurderingbesvarelse || !egenvurderingsbesvarelseValid()) &&

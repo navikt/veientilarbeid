@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { ComponentType } from 'react';
+import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Egenvurdering from './egenvurdering';
 import tekster from '../../tekster/tekster';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import { Servicegruppe } from '../../ducks/oppfolging';
 import { ForeslattInnsatsgruppe } from '../../ducks/brukerregistrering';
-import userEvent from '@testing-library/user-event';
-import '@testing-library/jest-dom/extend-expect';
+import { InnloggingsNiva } from '../../ducks/autentisering';
 
 describe('Tester egenvurdering-komponenten', () => {
     let standardInnsatsBrukerregistrering = {
@@ -32,6 +33,9 @@ describe('Tester egenvurdering-komponenten', () => {
             underOppfolging: { underOppfolging: true },
             oppfolging: { servicegruppe: Servicegruppe.IVURD },
             brukerregistrering: standardInnsatsBrukerregistrering,
+            autentisering: {
+                securityLevel: InnloggingsNiva.LEVEL_4,
+            },
         };
         render(<Egenvurdering />, { wrapper: contextProviders(props) as ComponentType });
         expect(screen.getByText(tekster['egenvurdering-tittel'])).toBeTruthy();
@@ -72,6 +76,9 @@ describe('Tester egenvurdering-komponenten', () => {
             underOppfolging: { underOppfolging: true },
             oppfolging: { servicegruppe: Servicegruppe.IVURD },
             brukerregistrering: standardInnsatsBrukerregistrering,
+            autentisering: {
+                securityLevel: InnloggingsNiva.LEVEL_4,
+            },
         };
         render(<Egenvurdering />, { wrapper: contextProviders(props) as ComponentType });
 
