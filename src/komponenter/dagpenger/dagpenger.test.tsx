@@ -17,6 +17,17 @@ describe('Tester dagpengerkomponenten', () => {
         expect(screen.getByText(tekster['dagpenger-lenke-tekst'])).toBeTruthy();
     });
 
+    test('Komponenten rendres IKKE når bruker er under oppfølging og sykmeldt med arbiedsgiver', () => {
+        const props: ProviderProps = {
+            underOppfolging: { underOppfolging: true },
+            brukerInfo: {
+                erSykmeldtMedArbeidsgiver: true,
+            },
+        };
+        const { container } = render(<Dagpenger />, { wrapper: contextProviders(props) });
+        expect(container).toBeEmptyDOMElement();
+    });
+
     test('Knappen fungerer som den skal', () => {
         const mockHandleClick = jest.fn();
         const mockLocationAssign = jest.fn();

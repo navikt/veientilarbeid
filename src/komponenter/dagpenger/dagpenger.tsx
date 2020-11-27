@@ -7,12 +7,14 @@ import './dagpenger.less';
 import { dagpengerSoknadLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
+import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
 const Dagpenger = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
-    const kanViseKomponent = underOppfolging;
+    const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
+    const kanViseKomponent = underOppfolging && !erSykmeldtMedArbeidsgiver;
 
     React.useEffect(() => {
         loggAktivitet({ aktivitet: 'Viser dagpengesøknad', ...amplitudeAktivitetsData });
