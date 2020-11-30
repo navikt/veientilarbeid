@@ -5,6 +5,7 @@ import { reaktiveringLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 import { loggAktivitet } from '../../metrics/metrics';
 import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
+import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
 import { OppfolgingContext } from '../../ducks/oppfolging';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
@@ -12,7 +13,9 @@ const ReaktiveringMelding = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
-    const kanViseKomponent = kanReaktiveres && !underOppfolging;
+    const { securityLevel } = React.useContext(AutentiseringContext).data;
+    const isLevel4 = securityLevel === InnloggingsNiva.LEVEL_4;
+    const kanViseKomponent = isLevel4 && kanReaktiveres && !underOppfolging;
 
     React.useEffect(() => {
         if (kanViseKomponent) {
