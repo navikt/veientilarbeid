@@ -1,6 +1,7 @@
 import * as React from 'react';
 import '@testing-library/jest-dom/extend-expect';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import { InnloggingsNiva } from '../../ducks/autentisering';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import OkonomiRad from './okonomi-rad';
 
@@ -11,8 +12,30 @@ describe('Tester at komponenten rendres som forventet', () => {
         expect(container).toBeEmptyDOMElement();
     });
 
-    test('Komponenten rendres om man er under oppfølging', () => {
+    test('Komponenten rendres IKKE om man IKKE er sykmeldt med arbeidsgiver', () => {
         const props: ProviderProps = {
+            autentisering: {
+                securityLevel: InnloggingsNiva.LEVEL_4,
+            },
+            brukerInfo: {
+                erSykmeldtMedArbeidsgiver: false,
+            },
+            underOppfolging: {
+                underOppfolging: true,
+            },
+        };
+        render(<OkonomiRad />, { wrapper: contextProviders(props) });
+        expect(screen.getByText(/trekk dagpengesøknaden/i)).toBeInTheDocument();
+    });
+
+    test('Komponenten VISES om man er under oppfølging OG sykmeldt med arbeidsgiver', () => {
+        const props: ProviderProps = {
+            autentisering: {
+                securityLevel: InnloggingsNiva.LEVEL_4,
+            },
+            brukerInfo: {
+                erSykmeldtMedArbeidsgiver: true,
+            },
             underOppfolging: {
                 underOppfolging: true,
             },

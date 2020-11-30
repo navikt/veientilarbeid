@@ -12,6 +12,19 @@ describe('Tester rendring av komponenten', () => {
         expect(container).toBeEmptyDOMElement();
     });
 
+    test('Komponenten rendres IKKE om man er sykmeldt med arbeidsgiver', () => {
+        const props: ProviderProps = {
+            brukerInfo: {
+                erSykmeldtMedArbeidsgiver: true,
+            },
+            underOppfolging: {
+                underOppfolging: true,
+            },
+        };
+        const { container } = render(<OkonomiRad />, { wrapper: contextProviders(props) });
+        expect(container).toBeEmptyDOMElement();
+    });
+
     test('Komponenten rendres når man er under oppfølging', () => {
         const props: ProviderProps = {
             underOppfolging: {
