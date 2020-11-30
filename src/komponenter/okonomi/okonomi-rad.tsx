@@ -6,13 +6,17 @@ import DagpengerBilde from './dagpenger';
 import NyRettTilSykepengerBilde from './ny-rett-til-sykepenger';
 import OkonomiskSosialhjelpBilde from './okonomisk-sosialhjelp';
 import { dagpengerLesmerLenke, sosialhjelpLenke, sykepengerLenke } from '../../innhold/lenker';
+import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import OkonomiRadDagpenger from './okonomi-rad-dagpenger';
 
 const OkonomiRad = () => {
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
-    const kanViseKomponent = underOppfolging;
+    const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
+    const { securityLevel } = React.useContext(AutentiseringContext).data;
+    const isLevel4 = securityLevel === InnloggingsNiva.LEVEL_4;
+    const kanViseKomponent = isLevel4 && underOppfolging && erSykmeldtMedArbeidsgiver;
     return !kanViseKomponent ? null : (
         <div className="okonomi-rad">
             <OkonomiPanel
