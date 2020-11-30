@@ -23,6 +23,12 @@ const ReaktiveringMelding = () => {
         }
     }, [kanViseKomponent, amplitudeAktivitetsData]);
 
+    const handleReaktivering = (event: React.SyntheticEvent) => {
+        event.preventDefault();
+        loggAktivitet({ aktivitet: 'Går til reaktivering', ...amplitudeAktivitetsData });
+        window.location.assign(reaktiveringLenke);
+    };
+
     if (!kanViseKomponent) {
         return null;
     }
@@ -31,7 +37,7 @@ const ReaktiveringMelding = () => {
             <AlertStripeAdvarsel>
                 <Normaltekst>
                     {tekster['reaktivering-melding-tekst']}&ensp;
-                    <a href={reaktiveringLenke} className="lenke">
+                    <a href={reaktiveringLenke} className="lenke" onClick={handleReaktivering}>
                         {tekster['reaktivering-melding-lenke-tekst']}
                     </a>
                 </Normaltekst>

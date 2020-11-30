@@ -18,7 +18,7 @@ const OkonomiRad = () => {
     const isLevel4 = securityLevel === InnloggingsNiva.LEVEL_4;
     const kanViseKomponent = isLevel4 && underOppfolging && erSykmeldtMedArbeidsgiver;
     return !kanViseKomponent ? null : (
-        <div className="okonomi-rad">
+        <div className="okonomi-rad blokk-l">
             <OkonomiPanel
                 tittelId="okonomi-rad-stotte-arbeidsledig-tittel"
                 lenkeTekstId="okonomi-rad-stotte-arbeidsledig-lenke-tekst"
