@@ -36,7 +36,7 @@ const TrekkDagpengeSoknad = () => {
                             Trekk dagpengesøknaden
                         </Systemtittel>
                         <Normaltekst className="blokk-xs">
-                            Har det skjedd endringer som gjør at du ønsker å trekke dagpengesøknaden?
+                            Har du søkt dagpenger og det har skjedd endringer som gjør at du ønsker å trekke dagpengesøknaden?
                         </Normaltekst>
                         <Normaltekst className="blokk-xs">
                             Du kan kontakte oss skriftlig og oppgi grunn for at du ønsker å trekke søknaden, så vil vi
