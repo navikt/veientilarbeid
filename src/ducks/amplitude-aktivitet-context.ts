@@ -9,6 +9,7 @@ export const initialState: AmplitudeAktivitetsData = {
     isKSSK: 'nei',
     ukerRegistrert: 0,
     nivaa: InnloggingsNiva.LEVEL_3,
+    kanReaktiveres: 'nei',
 };
 
 export const AmplitudeAktivitetContext = React.createContext<AmplitudeAktivitetsData>(initialState);

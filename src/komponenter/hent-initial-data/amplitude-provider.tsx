@@ -17,7 +17,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const { securityLevel: nivaa } = React.useContext(AutentiseringContext).data;
 
     const { alder, geografiskTilknytning } = brukerInfoData;
-    const { servicegruppe, formidlingsgruppe } = oppfolgingData;
+    const { servicegruppe, formidlingsgruppe, kanReaktiveres } = oppfolgingData;
     const opprettetRegistreringDatoString = brukerregistreringData?.registrering.opprettetDato;
     const dinSituasjon = brukerregistreringData?.registrering.besvarelse.dinSituasjon || 'INGEN_VERDI';
     const opprettetRegistreringDato = opprettetRegistreringDatoString
@@ -62,6 +62,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         isKSSK,
         ukerRegistrert,
         nivaa,
+        kanReaktiveres: kanReaktiveres ? 'ja' : 'nei',
     };
 
     return (
