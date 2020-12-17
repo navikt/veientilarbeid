@@ -9,7 +9,7 @@ import {
 } from '../ducks/brukerregistrering';
 import { OppfolgingContext } from '../ducks/oppfolging';
 import { BrukerInfoContext } from '../ducks/bruker-info';
-import ukerFraDato from '../utils/uker-fra-dato';
+// import ukerFraDato from '../utils/uker-fra-dato';
 import getPoaGroup from '../utils/get-poa-group';
 import { loggAktivitet, setIdentifyPoaGruppe, seVeientilarbeid, tellPoaGruppe } from '../metrics/metrics';
 import { erMikrofrontend } from '../utils/app-state-utils';
@@ -27,7 +27,9 @@ export default function InnholdMetrics() {
 }
 
 function Metrics() {
-    const { formidlingsgruppe, servicegruppe, reservasjonKRR } = React.useContext(OppfolgingContext).data;
+    const { formidlingsgruppe, servicegruppe, reservasjonKRR, kanReaktiveres } = React.useContext(
+        OppfolgingContext
+    ).data;
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
@@ -49,7 +51,7 @@ function Metrics() {
     const formidlingsgruppeOrIngenVerdi = formidlingsgruppe ? formidlingsgruppe : 'INGEN_VERDI';
     const servicegruppeOrIVURD = servicegruppe ? servicegruppe : 'IVURD';
 
-    const ukerRegistrert = opprettetRegistreringDato ? ukerFraDato(opprettetRegistreringDato) : ukerFraDato(new Date());
+    // const ukerRegistrert = opprettetRegistreringDato ? ukerFraDato(opprettetRegistreringDato) : ukerFraDato(new Date());
 
     const dinSituasjon = selectDinSituasjonSvar(brukerregistreringData) || 'INGEN_VERDI';
     const underOppfolgingJaNei = underOppfolging ? 'ja' : 'nei';
@@ -65,7 +67,7 @@ function Metrics() {
     });
 
     const hotjarEksperiment = () => {
-        return POAGruppe === 'kss' && ukerRegistrert >= 8 && ukerRegistrert < 12;
+        return kanReaktiveres;
     };
 
     React.useEffect(() => {
