@@ -27,7 +27,9 @@ export default function InnholdMetrics() {
 }
 
 function Metrics() {
-    const { formidlingsgruppe, servicegruppe, reservasjonKRR, kanReaktiveres } = React.useContext(OppfolgingContext).data;
+    const { formidlingsgruppe, servicegruppe, reservasjonKRR, kanReaktiveres } = React.useContext(
+        OppfolgingContext
+    ).data;
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
