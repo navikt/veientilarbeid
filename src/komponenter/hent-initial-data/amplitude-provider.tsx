@@ -63,7 +63,9 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         ukerRegistrert,
         nivaa,
         kanReaktiveres: kanReaktiveres ? 'ja' : 'nei',
-        formidlingsgruppe: formidlingsgruppeOrIngenVerdi
+        formidlingsgruppe: formidlingsgruppeOrIngenVerdi,
+        servicegruppe: servicegruppeOrIVURD,
+
     };
 
     return (
