@@ -36,7 +36,7 @@ const ReaktiveringMelding = () => {
                     Du er ikke lenger registrert som arbeidssøker hos NAV.
                 </Normaltekst>
                 <Normaltekst className="blokk-xs">
-                Har du mottat dagpenger vil utbetalingene nå være stoppet. Du må registrere deg på nytt og sende inn ny dagpengesøknad.
+                    Har du mottat dagpenger vil utbetalingene nå være stoppet. Du må registrere deg på nytt og sende inn ny søknad om dagpenger.
                 </Normaltekst>
                 <Normaltekst className="blokk-xs">
                     Dersom du ønsker arbeidsrettet oppfølging fra NAV, må du være registrert som arbeidssøker.

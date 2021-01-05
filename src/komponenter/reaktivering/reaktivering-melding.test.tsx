@@ -23,6 +23,9 @@ describe('Tester at komponenten rendres slik den skal', () => {
         };
         render(<Reaktivering />, { wrapper: contextProviders(providerProps) });
         expect(screen.getByText(/du er ikke lenger registrert som arbeidssøker hos nav/i)).toBeInTheDocument();
+        expect(screen.getByText(/har du mottat dagpenger vil utbetalingene nå være stoppet\. du må registrere deg på nytt og sende inn ny søknad om dagpenger\./i)).toBeInTheDocument();
+        expect(screen.getByText(/dersom du ønsker arbeidsrettet oppfølging fra NAV, må du være registrert som arbeidssøker\./i)).toBeInTheDocument();
+        expect(screen.getByText(/dersom du har søkt eller ønsker å søke om dagpenger må du være registrert som arbeidssøker\./i)).toBeInTheDocument();
         expect(screen.getByText(/registrer deg som arbeidssøker/i)).toBeInTheDocument();
         expect(await screen.queryByText(/denne teksten finnes ikke/i)).not.toBeInTheDocument();
     });
