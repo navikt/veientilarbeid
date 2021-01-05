@@ -2,7 +2,6 @@ import * as React from 'react';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { reaktiveringLenke } from '../../innhold/lenker';
-import tekster from '../../tekster/tekster';
 import { loggAktivitet } from '../../metrics/metrics';
 import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
 import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
@@ -33,10 +32,21 @@ const ReaktiveringMelding = () => {
     return (
         <section className="reaktivering-melding blokk-m">
             <AlertStripeAdvarsel>
-                <Normaltekst>
-                    {tekster['reaktivering-melding-tekst']}&ensp;
+                <Normaltekst className="blokk-xs">
+                    Du er ikke lenger registrert som arbeidssøker hos NAV.
+                </Normaltekst>
+                <Normaltekst className="blokk-xs">
+                Har du mottat dagpenger vil utbetalingene nå være stoppet. Du må registrere deg på nytt og sende inn ny dagpengesøknad.
+                </Normaltekst>
+                <Normaltekst className="blokk-xs">
+                    Dersom du ønsker arbeidsrettet oppfølging fra NAV, må du være registrert som arbeidssøker.
+                </Normaltekst>
+                <Normaltekst className="blokk-xs">
+                    Dersom du har søkt eller ønsker å søke om dagpenger må du være registrert som arbeidssøker.
+                </Normaltekst>
+                <Normaltekst className="blokk-s">
                     <a href={reaktiveringLenke} className="lenke" onClick={handleReaktivering}>
-                        {tekster['reaktivering-melding-lenke-tekst']}
+                        Registrer deg som arbeidssøker
                     </a>
                 </Normaltekst>
             </AlertStripeAdvarsel>
