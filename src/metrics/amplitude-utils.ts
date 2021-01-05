@@ -30,6 +30,7 @@ export type AmplitudeAktivitetsData = {
     nivaa: InnloggingsNiva;
     kanReaktiveres: string;
     formidlingsgruppe: string;
+    servicegruppe: string;
 };
 
 export function getDeviceId() {
