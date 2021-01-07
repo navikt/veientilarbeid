@@ -65,7 +65,7 @@ const ReaktiveringMelding = () => {
                     <Lenke
                         href={dialogLenke}
                         onClick={handleDialog}>
-                        Ta kontakt via dialogen
+                        Ta kontakt med veilederen din i dialogtjenesten
                     </Lenke>
                 </Normaltekst>
             </AlertStripeAdvarsel>
