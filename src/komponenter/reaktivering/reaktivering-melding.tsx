@@ -8,6 +8,7 @@ import { loggAktivitet } from '../../metrics/metrics';
 import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
 import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
 import { OppfolgingContext } from '../../ducks/oppfolging';
+import './reaktivering-melding.less'
 
 const ReaktiveringMelding = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
