@@ -27,7 +27,7 @@ describe('Tester at komponenten rendres slik den skal', () => {
         expect(screen.getByText(/dersom du ønsker arbeidsrettet oppfølging fra NAV, må du være registrert som arbeidssøker\./i)).toBeInTheDocument();
         expect(screen.getByText(/dersom du har søkt eller ønsker å søke om dagpenger må du være registrert som arbeidssøker\./i)).toBeInTheDocument();
         expect(screen.getByText(/registrer deg som arbeidssøker/i)).toBeInTheDocument();
-        expect(screen.getByText(/er du usikker på om din situasjon betyr at du bør være registrert/i)).toBeInTheDocument();
+        expect(screen.getByText(/Er du usikker på om din situasjon betyr at du bør være registrert som arbeidssøker/i)).toBeInTheDocument();
         expect(screen.getByText(/ta kontakt med veilederen din i dialogtjenesten/i)).toBeInTheDocument();
         expect(await screen.queryByText(/denne teksten finnes ikke/i)).not.toBeInTheDocument();
     });

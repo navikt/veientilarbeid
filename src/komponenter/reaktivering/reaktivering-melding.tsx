@@ -59,7 +59,7 @@ const ReaktiveringMelding = () => {
                     </Knapp>
                 </Normaltekst>
                 <Normaltekst>
-                    Er du usikker på om din situasjon betyr at du bør være registrert?
+                    Er du usikker på om din situasjon betyr at du bør være registrert som arbeidssøker?
                 </Normaltekst>
                 <Normaltekst className="blokk-xs">
                     <Lenke

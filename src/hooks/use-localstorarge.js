@@ -23,4 +23,4 @@ function useLocalStorage (key, defaultValue, { serialize = JSON.stringify, deser
   return [state, setState]
 }
 
-export { useSessionStorage }
+export { useLocalStorage }
