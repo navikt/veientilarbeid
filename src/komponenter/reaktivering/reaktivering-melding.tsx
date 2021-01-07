@@ -10,10 +10,15 @@ import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering
 import { OppfolgingContext } from '../../ducks/oppfolging';
 import './reaktivering-melding.less'
 
-const ReaktiveringMelding = () => {
+interface Props {
+    setReaktivering: Function;
+}
+
+const ReaktiveringMelding = (props: Props) => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
     const { securityLevel } = React.useContext(AutentiseringContext).data;
+    const { setReaktivering } = props;
     const isLevel4 = securityLevel === InnloggingsNiva.LEVEL_4;
     const kanViseKomponent = isLevel4 && kanReaktiveres;
 
@@ -33,6 +38,12 @@ const ReaktiveringMelding = () => {
         event.preventDefault();
         loggAktivitet({ aktivitet: 'Går til dialog fra reaktiveringskortet', ...amplitudeAktivitetsData });
         window.location.assign(dialogLenke);
+    };
+
+    const handleIkkeReaktivering = (event: React.SyntheticEvent) => {
+        event.preventDefault();
+        loggAktivitet({ aktivitet: 'Velger ikke vis reaktivering', ...amplitudeAktivitetsData });
+        setReaktivering(false)
     };
 
     if (!kanViseKomponent) {
@@ -66,6 +77,13 @@ const ReaktiveringMelding = () => {
                         href={dialogLenke}
                         onClick={handleDialog}>
                         Ta kontakt med veilederen din i dialogtjenesten
+                    </Lenke>
+                </Normaltekst>
+                <Normaltekst className="blokk-xs">
+                    <Lenke
+                        href={dialogLenke}
+                        onClick={handleIkkeReaktivering}>
+                        Jeg har ikke lenger behov for å være registrert som arbeidssøker hos NAV
                     </Lenke>
                 </Normaltekst>
             </AlertStripeAdvarsel>

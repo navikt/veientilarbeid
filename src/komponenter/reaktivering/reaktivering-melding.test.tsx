@@ -7,12 +7,14 @@ import Reaktivering from './reaktivering-melding';
 
 describe('Tester at komponenten rendres slik den skal', () => {
     test('Komponenten rendres IKKE som default', () => {
+        const mockSetReaktivering = jest.fn()
         const providerProps: ProviderProps = {};
-        const { container } = render(<Reaktivering />, { wrapper: contextProviders(providerProps) });
+        const { container } = render(<Reaktivering setReaktivering={mockSetReaktivering} />, { wrapper: contextProviders(providerProps) });
         expect(container).toBeEmptyDOMElement();
     });
 
     test('Komponenten rendres dersom brukeren KAN reaktiveres og er nivå 4', async () => {
+        const mockSetReaktivering = jest.fn()
         const providerProps: ProviderProps = {
             autentisering: {
                 securityLevel: InnloggingsNiva.LEVEL_4,
@@ -21,7 +23,7 @@ describe('Tester at komponenten rendres slik den skal', () => {
                 kanReaktiveres: true,
             },
         };
-        render(<Reaktivering />, { wrapper: contextProviders(providerProps) });
+        render(<Reaktivering setReaktivering={mockSetReaktivering} />, { wrapper: contextProviders(providerProps) });
         expect(screen.getByText(/du er ikke lenger registrert som arbeidssøker hos nav/i)).toBeInTheDocument();
         expect(screen.getByText(/har du mottat dagpenger vil utbetalingene nå være stoppet\. du må registrere deg på nytt og sende inn ny søknad om dagpenger\./i)).toBeInTheDocument();
         expect(screen.getByText(/dersom du ønsker arbeidsrettet oppfølging fra NAV, må du være registrert som arbeidssøker\./i)).toBeInTheDocument();
@@ -29,6 +31,7 @@ describe('Tester at komponenten rendres slik den skal', () => {
         expect(screen.getByText(/registrer deg som arbeidssøker/i)).toBeInTheDocument();
         expect(screen.getByText(/Er du usikker på om din situasjon betyr at du bør være registrert som arbeidssøker/i)).toBeInTheDocument();
         expect(screen.getByText(/ta kontakt med veilederen din i dialogtjenesten/i)).toBeInTheDocument();
+        expect(screen.getByText(/jeg har ikke lenger behov for å være registrert som arbeidssøker hos nav/i)).toBeInTheDocument();
         expect(await screen.queryByText(/denne teksten finnes ikke/i)).not.toBeInTheDocument();
     });
 });
