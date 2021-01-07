@@ -5,6 +5,7 @@ import ReaktiveringIkkeAktueltMelding from './reaktivering-ikke-aktuelt-melding'
 
 const ReaktiveringKort = () => {
   const [ reaktivering, setReaktivering ] = useLocalStorage('vta-kan-reaktiveres-visning', true)
+
   return reaktivering ? <ReaktiveringMelding setReaktivering={setReaktivering} /> : <ReaktiveringIkkeAktueltMelding /> 
 };
 
