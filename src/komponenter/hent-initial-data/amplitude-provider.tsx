@@ -6,6 +6,7 @@ import { AutentiseringContext } from '../../ducks/autentisering';
 import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
 import { BrukerregistreringContext } from '../../ducks/brukerregistrering';
 import { OppfolgingContext } from '../../ducks/oppfolging';
+import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
 
 import ukerFraDato from '../../utils/uker-fra-dato';
@@ -15,6 +16,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const brukerInfoData = React.useContext(BrukerInfoContext).data;
     const { securityLevel: nivaa } = React.useContext(AutentiseringContext).data;
+    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
 
     const { alder, geografiskTilknytning } = brukerInfoData;
     const { servicegruppe, formidlingsgruppe, kanReaktiveres } = oppfolgingData;
@@ -65,7 +67,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         kanReaktiveres: kanReaktiveres ? 'ja' : 'nei',
         formidlingsgruppe: formidlingsgruppeOrIngenVerdi,
         servicegruppe: servicegruppeOrIVURD,
-
+        underOppfolging: underOppfolging ? 'ja' : 'nei'
     };
 
     return (

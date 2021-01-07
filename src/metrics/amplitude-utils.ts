@@ -31,6 +31,7 @@ export type AmplitudeAktivitetsData = {
     kanReaktiveres: string;
     formidlingsgruppe: string;
     servicegruppe: string;
+    underOppfolging: string;
 };
 
 export function getDeviceId() {

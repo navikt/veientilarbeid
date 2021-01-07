@@ -11,7 +11,8 @@ export const initialState: AmplitudeAktivitetsData = {
     nivaa: InnloggingsNiva.LEVEL_3,
     kanReaktiveres: 'nei',
     formidlingsgruppe: 'INGEN_VERDI',
-    servicegruppe: 'IVURD'
+    servicegruppe: 'IVURD',
+    underOppfolging: 'nei'
 };
 
 export const AmplitudeAktivitetContext = React.createContext<AmplitudeAktivitetsData>(initialState);
