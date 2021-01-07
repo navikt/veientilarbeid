@@ -31,7 +31,7 @@ const ReaktiveringMelding = () => {
 
     const handleDialog = (event: React.SyntheticEvent) => {
         event.preventDefault();
-        loggAktivitet({ aktivitet: 'Er usikker på reaktivering', ...amplitudeAktivitetsData });
+        loggAktivitet({ aktivitet: 'Går til dialog fra reaktiveringskortet', ...amplitudeAktivitetsData });
         window.location.assign(dialogLenke);
     };
 
