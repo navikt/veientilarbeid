@@ -1,12 +1,14 @@
 import * as React from 'react';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import { Knapp } from 'nav-frontend-knapper';
+import Lenke from 'nav-frontend-lenker';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { reaktiveringLenke } from '../../innhold/lenker';
-import tekster from '../../tekster/tekster';
+import { reaktiveringLenke, dialogLenke } from '../../innhold/lenker';
 import { loggAktivitet } from '../../metrics/metrics';
 import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
 import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
 import { OppfolgingContext } from '../../ducks/oppfolging';
+import './reaktivering-melding.less'
 
 const ReaktiveringMelding = () => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
@@ -27,17 +29,44 @@ const ReaktiveringMelding = () => {
         window.location.assign(reaktiveringLenke);
     };
 
+    const handleDialog = (event: React.SyntheticEvent) => {
+        event.preventDefault();
+        loggAktivitet({ aktivitet: 'Går til dialog fra reaktiveringskortet', ...amplitudeAktivitetsData });
+        window.location.assign(dialogLenke);
+    };
+
     if (!kanViseKomponent) {
         return null;
     }
     return (
         <section className="reaktivering-melding blokk-m">
             <AlertStripeAdvarsel>
+                <Normaltekst className="blokk-xs">
+                    Du er ikke lenger registrert som arbeidssøker hos NAV.
+                </Normaltekst>
+                <Normaltekst className="blokk-xs">
+                    Har du mottat dagpenger vil utbetalingene nå være stoppet. Du må registrere deg på nytt og sende inn ny søknad om dagpenger.
+                </Normaltekst>
+                <Normaltekst className="blokk-xs">
+                    Dersom du har søkt eller ønsker å søke om dagpenger må du være registrert som arbeidssøker.
+                </Normaltekst>
+                <Normaltekst className="blokk-xs">
+                    Dersom du ønsker arbeidsrettet oppfølging fra NAV, må du være registrert som arbeidssøker.
+                </Normaltekst>
+                <Normaltekst className="blokk-s">
+                    <Knapp onClick={handleReaktivering}>
+                        Registrer deg som arbeidssøker
+                    </Knapp>
+                </Normaltekst>
                 <Normaltekst>
-                    {tekster['reaktivering-melding-tekst']}&ensp;
-                    <a href={reaktiveringLenke} className="lenke" onClick={handleReaktivering}>
-                        {tekster['reaktivering-melding-lenke-tekst']}
-                    </a>
+                    Er du usikker på om din situasjon betyr at du bør være registrert?
+                </Normaltekst>
+                <Normaltekst className="blokk-xs">
+                    <Lenke
+                        href={dialogLenke}
+                        onClick={handleDialog}>
+                        Ta kontakt med veilederen din i dialogtjenesten
+                    </Lenke>
                 </Normaltekst>
             </AlertStripeAdvarsel>
         </section>
