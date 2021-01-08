@@ -51,7 +51,7 @@ const ReaktiveringMelding = (props: Props) => {
     }
     return (
         <section className="reaktivering-melding blokk-m">
-            <AlertStripeAdvarsel>
+            <AlertStripeAdvarsel className="alert-med-tillegg">
                 <Normaltekst className="blokk-xs">
                     Du er ikke lenger registrert som arbeidssøker hos NAV.
                 </Normaltekst>
@@ -79,6 +79,8 @@ const ReaktiveringMelding = (props: Props) => {
                         Ta kontakt med veilederen din i dialogtjenesten
                     </Lenke>
                 </Normaltekst>
+            </AlertStripeAdvarsel>
+            <div className="alert-skille">
                 <Normaltekst className="blokk-xs">
                     <Lenke
                         href={dialogLenke}
@@ -86,7 +88,7 @@ const ReaktiveringMelding = (props: Props) => {
                         Jeg har ikke lenger behov for å være registrert som arbeidssøker hos NAV
                     </Lenke>
                 </Normaltekst>
-            </AlertStripeAdvarsel>
+            </div>
         </section>
     );
 };
