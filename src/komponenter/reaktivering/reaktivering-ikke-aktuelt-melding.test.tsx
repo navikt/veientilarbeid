@@ -1,6 +1,7 @@
 import * as React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event'
 import { InnloggingsNiva } from '../../ducks/autentisering';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import Reaktivering from './reaktivering-ikke-aktuelt-melding';
@@ -23,6 +24,8 @@ describe('Tester at komponenten rendres slik den skal', () => {
         };
         render(<Reaktivering />, { wrapper: contextProviders(providerProps) });
         expect(screen.getByText(/du er ikke registrert som arbeidssøker hos nav/i)).toBeInTheDocument();
+        const chevron = screen.getByText(/du er ikke registrert som arbeidssøker hos nav/i);
+        userEvent.click(chevron)
         expect(screen.getByText(/registrer deg som arbeidssøker/i)).toBeInTheDocument();
         expect(screen.getByText(/er du usikker på om din situasjon betyr at du bør være registrert som arbeidssøker/i)).toBeInTheDocument();
         expect(screen.getByText(/ta kontakt med veilederen din i dialogtjenesten/i)).toBeInTheDocument();
