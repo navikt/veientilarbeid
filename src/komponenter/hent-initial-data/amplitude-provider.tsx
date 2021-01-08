@@ -8,6 +8,7 @@ import { BrukerregistreringContext } from '../../ducks/brukerregistrering';
 import { OppfolgingContext } from '../../ducks/oppfolging';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
+import grupperGeografiskTilknytning from '../../utils/grupper-geografisk-tilknytning'
 
 import ukerFraDato from '../../utils/uker-fra-dato';
 
@@ -59,7 +60,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
 
     const amplitudeAktivitetsData = {
         gruppe: POAGruppe,
-        geografiskTilknytning: geografiskTilknytningOrIngenVerdi,
+        geografiskTilknytning: grupperGeografiskTilknytning(geografiskTilknytningOrIngenVerdi),
         isKSSX,
         isKSSK,
         ukerRegistrert,
