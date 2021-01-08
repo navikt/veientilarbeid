@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import AlertStripe from 'nav-frontend-alertstriper';
 import { Knapp } from 'nav-frontend-knapper';
+import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import Lenke from 'nav-frontend-lenker';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { reaktiveringLenke, dialogLenke } from '../../innhold/lenker';
@@ -25,7 +26,7 @@ const ReaktiveringIkkeAktueltMelding = () => {
 
     const handleReaktivering = (event: React.SyntheticEvent) => {
         event.preventDefault();
-        loggAktivitet({ aktivitet: 'Går til registrering fra reaktivering ikke aktuelt', ...amplitudeAktivitetsData });
+        loggAktivitet({ aktivitet: 'Går til reaktivering fra reaktivering ikke aktuelt', ...amplitudeAktivitetsData });
         window.location.assign(reaktiveringLenke);
     };
 
@@ -39,27 +40,25 @@ const ReaktiveringIkkeAktueltMelding = () => {
         return null;
     }
     return (
-        <section className="reaktivering-melding blokk-m">
-            <AlertStripeInfo>
-                <Normaltekst className="blokk-xs">
-                    Du er ikke registrert som arbeidssøker hos NAV.
-                </Normaltekst>
-                <Normaltekst className="blokk-s">
-                    <Knapp onClick={handleReaktivering}>
-                        Registrer deg som arbeidssøker
-                    </Knapp>
-                </Normaltekst>
-                <Normaltekst>
-                    Er du usikker på om din situasjon betyr at du bør være registrert som arbeidssøker?
-                </Normaltekst>
-                <Normaltekst className="blokk-xs">
-                    <Lenke
-                        href={dialogLenke}
-                        onClick={handleDialog}>
-                        Ta kontakt med veilederen din i dialogtjenesten
-                    </Lenke>
-                </Normaltekst>
-            </AlertStripeInfo>
+        <section className="reaktivering-melding blokk-s">
+          <Ekspanderbartpanel
+            tittel={<AlertStripe type="info" form="inline">Du er ikke registrert som arbeidssøker hos NAV.</AlertStripe>}>
+            <Normaltekst className="blokk-s">
+              <Knapp onClick={handleReaktivering}>
+                  Registrer deg som arbeidssøker
+              </Knapp>
+            </Normaltekst>
+            <Normaltekst>
+                Er du usikker på om din situasjon betyr at du bør være registrert som arbeidssøker?
+            </Normaltekst>
+            <Normaltekst className="blokk-xs">
+                <Lenke
+                    href={dialogLenke}
+                    onClick={handleDialog}>
+                    Ta kontakt med veilederen din i dialogtjenesten
+                </Lenke>
+            </Normaltekst>
+          </Ekspanderbartpanel>
         </section>
     );
 };
