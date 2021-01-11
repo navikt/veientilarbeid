@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Collapse } from 'react-collapse'
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { Knapp } from 'nav-frontend-knapper';
 import Lenke from 'nav-frontend-lenker';
@@ -15,6 +16,7 @@ interface Props {
 }
 
 const ReaktiveringMelding = (props: Props) => {
+    const [isOpened, setIsOpened] = React.useState(true)
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
     const { securityLevel } = React.useContext(AutentiseringContext).data;
@@ -43,7 +45,10 @@ const ReaktiveringMelding = (props: Props) => {
     const handleIkkeReaktivering = (event: React.SyntheticEvent) => {
         event.preventDefault();
         loggAktivitet({ aktivitet: 'Velger ikke vis reaktivering', ...amplitudeAktivitetsData });
-        setReaktivering(false)
+        setIsOpened(false)
+        setTimeout(() => {
+            setReaktivering(false)
+        }, 750)
     };
 
     if (!kanViseKomponent) {
@@ -51,6 +56,7 @@ const ReaktiveringMelding = (props: Props) => {
     }
     return (
         <section className="reaktivering-melding blokk-m">
+            <Collapse isOpened={isOpened}>
             <AlertStripeAdvarsel className="alert-med-tillegg">
                 <Normaltekst className="blokk-xs">
                     Du er ikke lenger registrert som arbeidssøker hos NAV.
@@ -89,6 +95,7 @@ const ReaktiveringMelding = (props: Props) => {
                     </Lenke>
                 </Normaltekst>
             </div>
+            </Collapse>
         </section>
     );
 };
