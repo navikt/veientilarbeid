@@ -48,7 +48,7 @@ const ReaktiveringMelding = (props: Props) => {
         setIsOpened(false)
         setTimeout(() => {
             setReaktivering(false)
-        }, 700)
+        }, 725)
     };
 
     if (!kanViseKomponent) {
