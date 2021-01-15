@@ -1,4 +1,6 @@
 import * as React from 'react';
+import AlertStripe from 'nav-frontend-alertstriper';
+import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { useLocalStorage } from '../../hooks/use-localstorarge'
 import ReaktiveringMelding from './reaktivering-melding'
 import ReaktiveringIkkeAktueltMelding from './reaktivering-ikke-aktuelt-melding'
@@ -22,6 +24,19 @@ function getReaktiveringsState (variant: Variant): boolean {
   return dagerMellom >= 28 ? true : state
 }
 
+interface TittelProps {
+  state: boolean;
+}
+
+function Tittel (props: TittelProps) {
+  const { state } = props
+  return (
+    <AlertStripe type={state ? 'advarsel' : 'info'} form='inline'>
+      Du er ikke lenger registrert som arbeidssøker hos NAV
+    </AlertStripe>
+  )
+}
+
 const ReaktiveringKort = () => {
   const [ reaktiveringsState, setReaktiveringsstate ] = React.useState(true)
   const [ reaktiveringVariant, setReaktiveringVariant ] = useLocalStorage('vta-kan-reaktiveres-visning', {
@@ -33,7 +48,15 @@ const ReaktiveringKort = () => {
     setReaktiveringsstate(getReaktiveringsState(reaktiveringVariant))
   }, [reaktiveringVariant])
 
-  return reaktiveringsState ? <ReaktiveringMelding setReaktivering={setReaktiveringVariant} /> : <ReaktiveringIkkeAktueltMelding /> 
+  return (
+    <section className="reaktivering-melding blokk-m">
+      <Ekspanderbartpanel
+        tittel={<Tittel state={reaktiveringsState} />}
+        apen={reaktiveringsState}>
+        {reaktiveringsState ? <ReaktiveringMelding setReaktivering={setReaktiveringVariant} /> : <ReaktiveringIkkeAktueltMelding /> }
+      </Ekspanderbartpanel>
+    </section>
+  )
 };
 
 export default ReaktiveringKort;

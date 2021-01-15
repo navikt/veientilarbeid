@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { Collapse } from 'react-collapse'
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { Knapp } from 'nav-frontend-knapper';
 import Lenke from 'nav-frontend-lenker';
 import { Normaltekst } from 'nav-frontend-typografi';
@@ -16,7 +14,6 @@ interface Props {
 }
 
 const ReaktiveringMelding = (props: Props) => {
-    const [isOpened, setIsOpened] = React.useState(true)
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
     const { securityLevel } = React.useContext(AutentiseringContext).data;
@@ -45,50 +42,41 @@ const ReaktiveringMelding = (props: Props) => {
     const handleIkkeReaktivering = (event: React.SyntheticEvent) => {
         event.preventDefault();
         loggAktivitet({ aktivitet: 'Velger ikke vis reaktivering', ...amplitudeAktivitetsData });
-        setIsOpened(false)
-        setTimeout(() => {
-            setReaktivering({
-                updated: new Date(),
-                state: false
-            })
-        }, 725)
+        setReaktivering({
+            updated: new Date(),
+            state: false
+        })
     };
 
     if (!kanViseKomponent) {
         return null;
     }
     return (
-        <section className="reaktivering-melding blokk-m">
-            <Collapse isOpened={isOpened}>
-            <AlertStripeAdvarsel className="alert-med-tillegg">
-                <Normaltekst className="blokk-xs">
-                    Du er ikke lenger registrert som arbeidssøker hos NAV.
-                </Normaltekst>
-                <Normaltekst className="blokk-xs">
-                    Har du mottatt dagpenger vil utbetalingene nå være stoppet. Du må registrere deg på nytt og sende inn ny søknad om dagpenger.
-                </Normaltekst>
-                <Normaltekst className="blokk-xs">
-                    Dersom du har søkt eller ønsker å søke om dagpenger må du være registrert som arbeidssøker.
-                </Normaltekst>
-                <Normaltekst className="blokk-xs">
-                    Dersom du ønsker arbeidsrettet oppfølging fra NAV, må du være registrert som arbeidssøker.
-                </Normaltekst>
-                <Normaltekst className="blokk-s">
-                    <Knapp onClick={handleReaktivering}>
-                        Registrer deg som arbeidssøker
-                    </Knapp>
-                </Normaltekst>
-                <Normaltekst>
-                    Er du usikker på om din situasjon betyr at du bør være registrert som arbeidssøker?
-                </Normaltekst>
-                <Normaltekst className="blokk-xs">
-                    <Lenke
-                        href={dialogLenke}
-                        onClick={handleDialog}>
-                        Ta kontakt med veilederen din i dialogtjenesten
-                    </Lenke>
-                </Normaltekst>
-            </AlertStripeAdvarsel>
+        <div>
+            <Normaltekst className="blokk-xs">
+                Har du mottatt dagpenger vil utbetalingene nå være stoppet. Du må registrere deg på nytt og sende inn ny søknad om dagpenger.
+            </Normaltekst>
+            <Normaltekst className="blokk-xs">
+                Dersom du har søkt eller ønsker å søke om dagpenger må du være registrert som arbeidssøker.
+            </Normaltekst>
+            <Normaltekst className="blokk-xs">
+                Dersom du ønsker arbeidsrettet oppfølging fra NAV, må du være registrert som arbeidssøker.
+            </Normaltekst>
+            <Normaltekst className="blokk-s">
+                <Knapp onClick={handleReaktivering}>
+                    Registrer deg som arbeidssøker
+                </Knapp>
+            </Normaltekst>
+            <Normaltekst>
+                Er du usikker på om din situasjon betyr at du bør være registrert som arbeidssøker?
+            </Normaltekst>
+            <Normaltekst className="blokk-xs">
+                <Lenke
+                    href={dialogLenke}
+                    onClick={handleDialog}>
+                    Ta kontakt med veilederen din i dialogtjenesten
+                </Lenke>
+            </Normaltekst>
             <div className="alert-skille">
                 <Normaltekst className="blokk-xs">
                     <Lenke
@@ -98,8 +86,7 @@ const ReaktiveringMelding = (props: Props) => {
                     </Lenke>
                 </Normaltekst>
             </div>
-            </Collapse>
-        </section>
+        </div>
     );
 };
 
