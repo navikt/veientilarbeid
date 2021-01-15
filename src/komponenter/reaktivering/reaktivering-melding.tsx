@@ -11,13 +11,14 @@ import './reaktivering-melding.less'
 
 interface Props {
     setReaktivering: Function;
+    setApen: Function;
 }
 
 const ReaktiveringMelding = (props: Props) => {
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
     const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
     const { securityLevel } = React.useContext(AutentiseringContext).data;
-    const { setReaktivering } = props;
+    const { setReaktivering, setApen } = props;
     const isLevel4 = securityLevel === InnloggingsNiva.LEVEL_4;
     const kanViseKomponent = isLevel4 && kanReaktiveres;
 
@@ -42,10 +43,13 @@ const ReaktiveringMelding = (props: Props) => {
     const handleIkkeReaktivering = (event: React.SyntheticEvent) => {
         event.preventDefault();
         loggAktivitet({ aktivitet: 'Velger ikke vis reaktivering', ...amplitudeAktivitetsData });
-        setReaktivering({
-            updated: new Date(),
-            state: false
-        })
+        setApen(false)
+        setTimeout(() => {
+            setReaktivering({
+                updated: new Date(),
+                state: false
+            })
+        }, 500)        
     };
 
     if (!kanViseKomponent) {

@@ -1,7 +1,5 @@
 import * as React from 'react';
-import AlertStripe from 'nav-frontend-alertstriper';
 import { Knapp } from 'nav-frontend-knapper';
-import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import Lenke from 'nav-frontend-lenker';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { reaktiveringLenke, dialogLenke } from '../../innhold/lenker';
@@ -40,9 +38,7 @@ const ReaktiveringIkkeAktueltMelding = () => {
         return null;
     }
     return (
-        <section className="reaktivering-melding blokk-s">
-          <Ekspanderbartpanel
-            tittel={<AlertStripe type="info" form="inline">Du er ikke registrert som arbeidssøker hos NAV.</AlertStripe>}>
+        <div> 
             <Normaltekst className="blokk-s">
               <Knapp onClick={handleReaktivering}>
                   Registrer deg som arbeidssøker
@@ -58,8 +54,7 @@ const ReaktiveringIkkeAktueltMelding = () => {
                     Ta kontakt med veilederen din i dialogtjenesten
                 </Lenke>
             </Normaltekst>
-          </Ekspanderbartpanel>
-        </section>
+        </div>
     );
 };
 

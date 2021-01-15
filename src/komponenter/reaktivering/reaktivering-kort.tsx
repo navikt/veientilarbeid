@@ -1,6 +1,6 @@
 import * as React from 'react';
 import AlertStripe from 'nav-frontend-alertstriper';
-import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
+import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 import { useLocalStorage } from '../../hooks/use-localstorarge'
 import ReaktiveringMelding from './reaktivering-melding'
 import ReaktiveringIkkeAktueltMelding from './reaktivering-ikke-aktuelt-melding'
@@ -39,22 +39,29 @@ function Tittel (props: TittelProps) {
 
 const ReaktiveringKort = () => {
   const [ reaktiveringsState, setReaktiveringsstate ] = React.useState(true)
+  const [ apen, setApen ] = React.useState(true)
   const [ reaktiveringVariant, setReaktiveringVariant ] = useLocalStorage('vta-kan-reaktiveres-visning', {
     updated: new Date(),
     state: true
   })
 
   React.useEffect(() => {
-    setReaktiveringsstate(getReaktiveringsState(reaktiveringVariant))
+    const status = getReaktiveringsState(reaktiveringVariant)
+    setReaktiveringsstate(status)
   }, [reaktiveringVariant])
+
+  const handleClick = () => {
+    setApen(!apen)
+  }
 
   return (
     <section className="reaktivering-melding blokk-m">
-      <Ekspanderbartpanel
+      <EkspanderbartpanelBase
         tittel={<Tittel state={reaktiveringsState} />}
-        apen={reaktiveringsState}>
-        {reaktiveringsState ? <ReaktiveringMelding setReaktivering={setReaktiveringVariant} /> : <ReaktiveringIkkeAktueltMelding /> }
-      </Ekspanderbartpanel>
+        apen={apen}
+        onClick={handleClick}>
+        {reaktiveringsState ? <ReaktiveringMelding setReaktivering={setReaktiveringVariant} setApen={setApen} /> : <ReaktiveringIkkeAktueltMelding /> }
+      </EkspanderbartpanelBase>
     </section>
   )
 };

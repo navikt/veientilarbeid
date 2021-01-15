@@ -8,13 +8,15 @@ import Reaktivering from './reaktivering-melding';
 describe('Tester at komponenten rendres slik den skal', () => {
     test('Komponenten rendres IKKE som default', () => {
         const mockSetReaktivering = jest.fn()
+        const mockSetApen = jest.fn()
         const providerProps: ProviderProps = {};
-        const { container } = render(<Reaktivering setReaktivering={mockSetReaktivering} />, { wrapper: contextProviders(providerProps) });
+        const { container } = render(<Reaktivering setReaktivering={mockSetReaktivering} setApen={mockSetApen} />, { wrapper: contextProviders(providerProps) });
         expect(container).toBeEmptyDOMElement();
     });
 
     test('Komponenten rendres dersom brukeren KAN reaktiveres og er nivå 4', async () => {
         const mockSetReaktivering = jest.fn()
+        const mockSetApen = jest.fn()
         const providerProps: ProviderProps = {
             autentisering: {
                 securityLevel: InnloggingsNiva.LEVEL_4,
@@ -23,7 +25,7 @@ describe('Tester at komponenten rendres slik den skal', () => {
                 kanReaktiveres: true,
             },
         };
-        render(<Reaktivering setReaktivering={mockSetReaktivering} />, { wrapper: contextProviders(providerProps) });
+        render(<Reaktivering setReaktivering={mockSetReaktivering} setApen={mockSetApen} />, { wrapper: contextProviders(providerProps) });
         expect(screen.getByText(/har du mottatt dagpenger vil utbetalingene nå være stoppet\. du må registrere deg på nytt og sende inn ny søknad om dagpenger\./i)).toBeInTheDocument();
         expect(screen.getByText(/dersom du ønsker arbeidsrettet oppfølging fra NAV, må du være registrert som arbeidssøker\./i)).toBeInTheDocument();
         expect(screen.getByText(/dersom du har søkt eller ønsker å søke om dagpenger må du være registrert som arbeidssøker\./i)).toBeInTheDocument();
