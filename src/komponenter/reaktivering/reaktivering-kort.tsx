@@ -39,7 +39,7 @@ function Tittel (props: TittelProps) {
 
 const ReaktiveringKort = () => {
   const [ reaktiveringsState, setReaktiveringsstate ] = React.useState(true)
-  const [ apen, setApen ] = React.useState(true)
+  const [ apen, setApen ] = React.useState(false)
   const [ reaktiveringVariant, setReaktiveringVariant ] = useLocalStorage('vta-kan-reaktiveres-visning', {
     updated: new Date(),
     state: true
@@ -48,6 +48,7 @@ const ReaktiveringKort = () => {
   React.useEffect(() => {
     const status = getReaktiveringsState(reaktiveringVariant)
     setReaktiveringsstate(status)
+    setApen(status)
   }, [reaktiveringVariant])
 
   const handleClick = () => {
