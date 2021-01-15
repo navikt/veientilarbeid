@@ -60,7 +60,8 @@ const ReaktiveringKort = () => {
       <EkspanderbartpanelBase
         tittel={<Tittel state={reaktiveringsState} />}
         apen={apen}
-        onClick={handleClick}>
+        onClick={handleClick}
+        className={`alert ${reaktiveringsState}`}>
         {reaktiveringsState ? <ReaktiveringMelding setReaktivering={setReaktiveringVariant} setApen={setApen} /> : <ReaktiveringIkkeAktueltMelding /> }
       </EkspanderbartpanelBase>
     </section>

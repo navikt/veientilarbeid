@@ -81,15 +81,13 @@ const ReaktiveringMelding = (props: Props) => {
                     Ta kontakt med veilederen din i dialogtjenesten
                 </Lenke>
             </Normaltekst>
-            <div className="alert-skille">
-                <Normaltekst className="blokk-xs">
-                    <Lenke
-                        href={dialogLenke}
-                        onClick={handleIkkeReaktivering}>
-                        Jeg har ikke lenger behov for å være registrert som arbeidssøker hos NAV
-                    </Lenke>
-                </Normaltekst>
-            </div>
+            <Normaltekst className="blokk-xs">
+                <Lenke
+                    href={dialogLenke}
+                    onClick={handleIkkeReaktivering}>
+                    Jeg har ikke lenger behov for å være registrert som arbeidssøker hos NAV
+                </Lenke>
+            </Normaltekst>
         </div>
     );
 };
