@@ -47,7 +47,10 @@ const ReaktiveringMelding = (props: Props) => {
         loggAktivitet({ aktivitet: 'Velger ikke vis reaktivering', ...amplitudeAktivitetsData });
         setIsOpened(false)
         setTimeout(() => {
-            setReaktivering(false)
+            setReaktivering({
+                updated: new Date(),
+                state: false
+            })
         }, 725)
     };
 
