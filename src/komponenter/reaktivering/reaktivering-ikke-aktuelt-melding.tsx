@@ -37,6 +37,7 @@ const ReaktiveringIkkeAktueltMelding = () => {
     if (!kanViseKomponent) {
         return null;
     }
+
     return (
         <div> 
             <Normaltekst className="blokk-s">
