@@ -1,6 +1,8 @@
 import * as React from 'react';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
+import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
+import { OppfolgingContext } from '../../ducks/oppfolging';
 import { useLocalStorage } from '../../hooks/use-localstorarge'
 import ReaktiveringMelding from './reaktivering-melding'
 import ReaktiveringIkkeAktueltMelding from './reaktivering-ikke-aktuelt-melding'
@@ -44,6 +46,10 @@ const ReaktiveringKort = () => {
     updated: new Date(),
     state: true
   })
+  const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
+  const { securityLevel } = React.useContext(AutentiseringContext).data;
+  const isLevel4 = securityLevel === InnloggingsNiva.LEVEL_4;
+  const kanViseKomponent = isLevel4 && kanReaktiveres;
 
   React.useEffect(() => {
     const status = getReaktiveringsState(reaktiveringVariant)
@@ -53,6 +59,10 @@ const ReaktiveringKort = () => {
 
   const handleClick = () => {
     setApen(!apen)
+  }
+
+  if (!kanViseKomponent) {
+    return null;
   }
 
   return (
