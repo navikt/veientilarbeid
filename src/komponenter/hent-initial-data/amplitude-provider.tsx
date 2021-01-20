@@ -40,7 +40,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const erMeldekortBruker = React.useContext(MeldekortContext).status !== STATUS.NOT_STARTED
     if (erMeldekortBruker){
         const sjekkDagerFraPeriodeslutt = dagerFraPeriodeSlutt(meldekortData.data)
-        antallDagerFraPeriodeslutt = sjekkDagerFraPeriodeslutt ? sjekkDagerFraPeriodeslutt.toString() : "bruker har ingen meldekort"
+        antallDagerFraPeriodeslutt = sjekkDagerFraPeriodeslutt !== null ? sjekkDagerFraPeriodeslutt.toString() : "bruker har ingen meldekort"
     }
 
     const POAGruppe = getPoaGroup({

@@ -42,11 +42,13 @@ type Props = OwnProps;
 const DataProvider = ({children}: Props) => {
     const {securityLevel} = React.useContext(AutentiseringContext).data;
     const {underOppfolging} = React.useContext(UnderOppfolgingContext).data;
-    const {meldekort,
+    const {
+        meldekort,
         etterregistrerteMeldekort,
         antallGjenstaaendeFeriedager,
         nesteMeldekort,
-        nesteInnsendingAvMeldekort} = React.useContext(MeldekortstatusContext).data;
+        nesteInnsendingAvMeldekort
+    } = React.useContext(MeldekortstatusContext).data;
 
     const [motestotteState, setMotestotteState] = React.useState<Motestotte.State>(Motestotte.initialState);
     const [meldekortState, setMeldekortState] = React.useState<Meldekort.State>(Meldekort.initialState);
@@ -61,14 +63,21 @@ const DataProvider = ({children}: Props) => {
 
     const data = React.useContext(Brukerregistrering.BrukerregistreringContext).data;
     const foreslaattInnsatsgruppe = selectForeslattInnsatsgruppe(data);
+    const erMeldekortbruker = isMeldekortbruker(nesteMeldekort, nesteInnsendingAvMeldekort, antallGjenstaaendeFeriedager, etterregistrerteMeldekort, meldekort)
 
     React.useEffect(() => {
         if (securityLevel !== InnloggingsNiva.LEVEL_4) {
             return;
+
         }
-        const erMeldekortbruker = isMeldekortbruker(nesteMeldekort, nesteInnsendingAvMeldekort, antallGjenstaaendeFeriedager, etterregistrerteMeldekort, meldekort)
         if (erMeldekortbruker) {
             fetchData<Meldekort.State, Meldekort.Data>(meldekortState, setMeldekortState, NESTE_MELDEKORT_URL);
+        }
+    }, [erMeldekortbruker, securityLevel])
+
+    React.useEffect(() => {
+        if (securityLevel !== InnloggingsNiva.LEVEL_4) {
+            return;
         }
 
         fetchData<BrukerInfo.State, BrukerInfo.Data>(brukerInfoState, setBrukerInfoState, BRUKERINFO_URL);
