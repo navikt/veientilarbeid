@@ -5,9 +5,16 @@ import * as UnderOppfolging from '../../ducks/under-oppfolging';
 import Feilmelding from '../feilmeldinger/feilmelding';
 import * as Brukerregistrering from '../../ducks/brukerregistrering';
 import * as FeatureToggle from '../../ducks/feature-toggles';
-import { fetchData } from '../../ducks/api-utils';
-import { BRUKERREGISTRERING_URL, VEILARBOPPFOLGING_URL, FEATURE_URL, UNDER_OPPFOLGING_URL } from '../../ducks/api';
-import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
+import * as Meldekortstatus from '../../ducks/meldekortstatus';
+import {fetchData} from '../../ducks/api-utils';
+import {
+    BRUKERREGISTRERING_URL,
+    FEATURE_URL,
+    MELDEKORTSTATUS_URL,
+    UNDER_OPPFOLGING_URL,
+    VEILARBOPPFOLGING_URL
+} from '../../ducks/api';
+import {AutentiseringContext, InnloggingsNiva} from '../../ducks/autentisering';
 
 interface OwnProps {
     children: React.ReactElement<any>;
@@ -15,9 +22,10 @@ interface OwnProps {
 
 type OppfolgingProviderProps = OwnProps;
 
-const OppfolgingBrukerregistreringProvider = ({ children }: OppfolgingProviderProps) => {
-    const { securityLevel } = React.useContext(AutentiseringContext).data;
+const OppfolgingBrukerregistreringProvider = ({children}: OppfolgingProviderProps) => {
+    const {securityLevel} = React.useContext(AutentiseringContext).data;
 
+    const [meldekortstatusState, setMeldekortstatusState] = React.useState<Meldekortstatus.State>(Meldekortstatus.initialState);
     const [brukerregistreringState, setBrukerregistreringState] = React.useState<Brukerregistrering.State>(
         Brukerregistrering.initialState
     );
@@ -30,6 +38,11 @@ const OppfolgingBrukerregistreringProvider = ({ children }: OppfolgingProviderPr
     const featureTogglesUrl = `${FEATURE_URL}/?${parameters}`;
 
     React.useEffect(() => {
+        fetchData<Meldekortstatus.State, Meldekortstatus.Data>(
+            meldekortstatusState,
+            setMeldekortstatusState,
+            MELDEKORTSTATUS_URL
+        )
         fetchData<UnderOppfolging.State, UnderOppfolging.Data>(
             underOppfolgingState,
             setUnderOppfolgingState,
@@ -58,18 +71,20 @@ const OppfolgingBrukerregistreringProvider = ({ children }: OppfolgingProviderPr
 
     return (
         <Innholdslaster
-            feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse" />}
+            feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse"/>}
             storrelse="XXL"
             avhengigheter={avhengigheter}
         >
             <Oppfolging.OppfolgingContext.Provider value={oppfolgingState}>
-                <UnderOppfolging.UnderOppfolgingContext.Provider value={underOppfolgingState}>
-                    <Brukerregistrering.BrukerregistreringContext.Provider value={brukerregistreringState}>
-                        <FeatureToggle.FeaturetoggleContext.Provider value={featureToggleState}>
-                            {children}
-                        </FeatureToggle.FeaturetoggleContext.Provider>
-                    </Brukerregistrering.BrukerregistreringContext.Provider>
-                </UnderOppfolging.UnderOppfolgingContext.Provider>
+                <Meldekortstatus.MeldekortstatusContext.Provider value={meldekortstatusState}>
+                    <UnderOppfolging.UnderOppfolgingContext.Provider value={underOppfolgingState}>
+                        <Brukerregistrering.BrukerregistreringContext.Provider value={brukerregistreringState}>
+                            <FeatureToggle.FeaturetoggleContext.Provider value={featureToggleState}>
+                                {children}
+                            </FeatureToggle.FeaturetoggleContext.Provider>
+                        </Brukerregistrering.BrukerregistreringContext.Provider>
+                    </UnderOppfolging.UnderOppfolgingContext.Provider>
+                </Meldekortstatus.MeldekortstatusContext.Provider>
             </Oppfolging.OppfolgingContext.Provider>
         </Innholdslaster>
     );

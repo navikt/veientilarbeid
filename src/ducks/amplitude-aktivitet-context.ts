@@ -1,6 +1,6 @@
 import React from 'react';
-import { AmplitudeAktivitetsData } from '../metrics/amplitude-utils';
-import { InnloggingsNiva } from '../ducks/autentisering';
+import {AmplitudeAktivitetsData} from '../metrics/amplitude-utils';
+import {InnloggingsNiva} from '../ducks/autentisering';
 
 export const initialState: AmplitudeAktivitetsData = {
     gruppe: 'boo',
@@ -12,7 +12,8 @@ export const initialState: AmplitudeAktivitetsData = {
     kanReaktiveres: 'nei',
     formidlingsgruppe: 'INGEN_VERDI',
     servicegruppe: 'IVURD',
-    underOppfolging: 'nei'
+    underOppfolging: 'nei',
+    antallDagerFraPeriodeslutt: "ikke meldekortbruker",
 };
 
 export const AmplitudeAktivitetContext = React.createContext<AmplitudeAktivitetsData>(initialState);

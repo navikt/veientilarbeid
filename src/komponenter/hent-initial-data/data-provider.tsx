@@ -3,22 +3,26 @@ import Innholdslaster from '../innholdslaster/innholdslaster';
 import Feilmelding from '../feilmeldinger/feilmelding';
 import * as BrukerInfo from '../../ducks/bruker-info';
 import * as Brukerregistrering from '../../ducks/brukerregistrering';
-import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe } from '../../ducks/brukerregistrering';
+import {ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe} from '../../ducks/brukerregistrering';
 import * as Motestotte from '../../ducks/motestotte';
+import * as Meldekort from '../../ducks/meldekort';
 import * as Egenvurdering from '../../ducks/egenvurdering';
 import * as UlesteDialoger from '../../ducks/ulestedialoger';
 import * as Jobbsokerbesvarelse from '../../ducks/jobbsokerbesvarelse';
-import { fetchData } from '../../ducks/api-utils';
+import {fetchData} from '../../ducks/api-utils';
 import {
     BRUKERINFO_URL,
     EGENVURDERINGBESVARELSE_URL,
     JOBBSOKERBESVARELSE_URL,
     MOTESTOTTE_URL,
+    NESTE_MELDEKORT_URL,
     ULESTEDIALOGER_URL,
 } from '../../ducks/api';
-import { AmplitudeProvider } from './amplitude-provider';
-import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
-import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
+import {AmplitudeProvider} from './amplitude-provider';
+import {AutentiseringContext, InnloggingsNiva} from '../../ducks/autentisering';
+import {UnderOppfolgingContext} from '../../ducks/under-oppfolging';
+import {MeldekortstatusContext} from "../../ducks/meldekortstatus";
+import isMeldekortbruker from "../../utils/er-meldekortbruker";
 
 const skalSjekkeEgenvurderingBesvarelse = (
     foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null
@@ -35,11 +39,17 @@ interface OwnProps {
 
 type Props = OwnProps;
 
-const DataProvider = ({ children }: Props) => {
-    const { securityLevel } = React.useContext(AutentiseringContext).data;
-    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
+const DataProvider = ({children}: Props) => {
+    const {securityLevel} = React.useContext(AutentiseringContext).data;
+    const {underOppfolging} = React.useContext(UnderOppfolgingContext).data;
+    const {meldekort,
+        etterregistrerteMeldekort,
+        antallGjenstaaendeFeriedager,
+        nesteMeldekort,
+        nesteInnsendingAvMeldekort} = React.useContext(MeldekortstatusContext).data;
 
     const [motestotteState, setMotestotteState] = React.useState<Motestotte.State>(Motestotte.initialState);
+    const [meldekortState, setMeldekortState] = React.useState<Meldekort.State>(Meldekort.initialState);
     const [brukerInfoState, setBrukerInfoState] = React.useState<BrukerInfo.State>(BrukerInfo.initialState);
     const [egenvurderingState, setEgenvurderingState] = React.useState<Egenvurdering.State>(Egenvurdering.initialState);
     const [ulesteDialogerState, setUlesteDialogerState] = React.useState<UlesteDialoger.State>(
@@ -55,6 +65,10 @@ const DataProvider = ({ children }: Props) => {
     React.useEffect(() => {
         if (securityLevel !== InnloggingsNiva.LEVEL_4) {
             return;
+        }
+        const erMeldekortbruker = isMeldekortbruker(nesteMeldekort, nesteInnsendingAvMeldekort, antallGjenstaaendeFeriedager, etterregistrerteMeldekort, meldekort)
+        if (erMeldekortbruker) {
+            fetchData<Meldekort.State, Meldekort.Data>(meldekortState, setMeldekortState, NESTE_MELDEKORT_URL);
         }
 
         fetchData<BrukerInfo.State, BrukerInfo.Data>(brukerInfoState, setBrukerInfoState, BRUKERINFO_URL);
@@ -105,22 +119,24 @@ const DataProvider = ({ children }: Props) => {
 
     return (
         <Innholdslaster
-            feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse" />}
+            feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse"/>}
             storrelse="XXL"
             avhengigheter={avhengigheter}
             ventPa={ventPa}
         >
-            <BrukerInfo.BrukerInfoContext.Provider value={brukerInfoState}>
-                <UlesteDialoger.UlesteDialogerContext.Provider value={ulesteDialogerState}>
-                    <Jobbsokerbesvarelse.JobbsokerbesvarelseContext.Provider value={jobbsokerbesvarelseState}>
-                        <Egenvurdering.EgenvurderingContext.Provider value={egenvurderingState}>
-                            <Motestotte.MotestotteContext.Provider value={motestotteState}>
-                                <AmplitudeProvider>{children}</AmplitudeProvider>
-                            </Motestotte.MotestotteContext.Provider>
-                        </Egenvurdering.EgenvurderingContext.Provider>
-                    </Jobbsokerbesvarelse.JobbsokerbesvarelseContext.Provider>
-                </UlesteDialoger.UlesteDialogerContext.Provider>
-            </BrukerInfo.BrukerInfoContext.Provider>
+            <Meldekort.MeldekortContext.Provider value={meldekortState}>
+                <BrukerInfo.BrukerInfoContext.Provider value={brukerInfoState}>
+                    <UlesteDialoger.UlesteDialogerContext.Provider value={ulesteDialogerState}>
+                        <Jobbsokerbesvarelse.JobbsokerbesvarelseContext.Provider value={jobbsokerbesvarelseState}>
+                            <Egenvurdering.EgenvurderingContext.Provider value={egenvurderingState}>
+                                <Motestotte.MotestotteContext.Provider value={motestotteState}>
+                                    <AmplitudeProvider>{children}</AmplitudeProvider>
+                                </Motestotte.MotestotteContext.Provider>
+                            </Egenvurdering.EgenvurderingContext.Provider>
+                        </Jobbsokerbesvarelse.JobbsokerbesvarelseContext.Provider>
+                    </UlesteDialoger.UlesteDialogerContext.Provider>
+                </BrukerInfo.BrukerInfoContext.Provider>
+            </Meldekort.MeldekortContext.Provider>
         </Innholdslaster>
     );
 };
