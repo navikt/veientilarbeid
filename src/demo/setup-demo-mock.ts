@@ -5,9 +5,10 @@ import {
     FEATURE_URL,
     JOBBSOKERBESVARELSE_URL,
     MOTESTOTTE_URL,
+    NESTE_MELDEKORT_URL,
     ULESTEDIALOGER_URL,
-    VEILARBOPPFOLGING_URL,
     UNDER_OPPFOLGING_URL,
+    VEILARBOPPFOLGING_URL,
 } from '../ducks/api';
 
 import {
@@ -17,6 +18,7 @@ import {
     hentFormidlingsgruppe,
     hentGeografiskTilknytning,
     hentJsk,
+    hentKanReaktiveres,
     hentMotestotte,
     hentRegistreringType,
     hentReservasjonKRR,
@@ -25,11 +27,10 @@ import {
     hentSykmeldtMedArbeidsgiver,
     hentUlesteDialoger,
     hentUnderOppfolging,
-    hentKanReaktiveres,
 } from './demo-state';
 
-import { hentBrukerRegistreringData } from './demo-state-brukerregistrering';
-import { AUTH_API } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
+import {hentBrukerRegistreringData} from './demo-state-brukerregistrering';
+import {AUTH_API} from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
 import msw_get from '../mocks/msw-utils';
 
 const randomUlesteDialoger = () => {
@@ -79,4 +80,31 @@ export const demo_handlers = [
     msw_get(AUTH_API, hentAutentiseringsInfo()),
 
     msw_get(UNDER_OPPFOLGING_URL, hentUnderOppfolging()),
+
+    msw_get(NESTE_MELDEKORT_URL, {
+            "maalformkode": "NO",
+            "meldeform": "EMELD",
+            "meldekort": [
+                {
+                    "meldekortId": 1526772064,
+                    "kortType": "ELEKTRONISK",
+                    "meldeperiode": {
+                        "fra": "2021-01-18T12:00:00+01:00",
+                        "til": "2021-01-31T12:00:00+01:00",
+                        "kortKanSendesFra": "2021-01-30T12:00:00+01:00",
+                        "kanKortSendes": false,
+                        "periodeKode": "202103"
+                    },
+                    "meldegruppe": "ARBS",
+                    "kortStatus": "OPPRE",
+                    "bruttoBelop": 0.0,
+                    "erForskuddsPeriode": false,
+                    "korrigerbart": true
+                }
+            ],
+            "etterregistrerteMeldekort": [],
+            "id": "1",
+            "antallGjenstaaendeFeriedager": 0
+        }
+    )
 ];
