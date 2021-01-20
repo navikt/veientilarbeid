@@ -27,7 +27,7 @@ export const requestConfig: RequestInit = {
 };
 
 const contextpath = erMikrofrontend() ? contextpathDittNav : '';
-const MELDEKORT_URL = `/meldekort/meldekort-api`;
+const MELDEKORT_URL = `/meldekort/meldekort-api/api`;
 export const VEILARBOPPFOLGING_URL = `${contextpath}/veilarboppfolging/api/oppfolging`,
     UNDER_OPPFOLGING_URL = `${contextpath}/veilarboppfolging/api/niva3/underoppfolging`,
     BRUKERINFO_URL = `${contextpath}/veilarbregistrering/api/startregistrering`,
