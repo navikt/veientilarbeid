@@ -19,7 +19,7 @@ function getSisteFrist(datoStreng) {
 }
 
 function dagerFraPeriodeSlutt(meldekortHistorie) {
-  const iDag = new Date(new Date("2021-02-08").toISOString().substr(0, 10));
+  const iDag = new Date(new Date().toISOString().substr(0, 10));
   let dager = null;
   if (meldekortHistorie) {
     const muligeMeldekort = arrify(meldekortHistorie.meldekort)
