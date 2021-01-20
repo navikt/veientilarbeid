@@ -73,6 +73,7 @@ const DataProvider = ({children}: Props) => {
         if (erMeldekortbruker) {
             fetchData<Meldekort.State, Meldekort.Data>(meldekortState, setMeldekortState, NESTE_MELDEKORT_URL);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [erMeldekortbruker, securityLevel])
 
     React.useEffect(() => {
