@@ -1,4 +1,4 @@
-import { contextpathDittNav, erMikrofrontend } from '../utils/app-state-utils';
+import {contextpathDittNav, erMikrofrontend} from '../utils/app-state-utils';
 
 export enum STATUS {
     OK = 'OK',
@@ -27,7 +27,7 @@ export const requestConfig: RequestInit = {
 };
 
 const contextpath = erMikrofrontend() ? contextpathDittNav : '';
-
+const MELDEKORT_URL = `/meldekort/meldekort-api`;
 export const VEILARBOPPFOLGING_URL = `${contextpath}/veilarboppfolging/api/oppfolging`,
     UNDER_OPPFOLGING_URL = `${contextpath}/veilarboppfolging/api/niva3/underoppfolging`,
     BRUKERINFO_URL = `${contextpath}/veilarbregistrering/api/startregistrering`,
@@ -36,4 +36,6 @@ export const VEILARBOPPFOLGING_URL = `${contextpath}/veilarboppfolging/api/oppfo
     ULESTEDIALOGER_URL = `${contextpath}/veilarbdialog/api/dialog/antallUleste`,
     EGENVURDERINGBESVARELSE_URL = `${contextpath}/veilarbvedtakinfo/api/behovsvurdering/besvarelse`,
     FEATURE_URL = `${contextpath}/api/feature`,
-    MOTESTOTTE_URL = `${contextpath}/veilarbvedtakinfo/api/motestotte`;
+    MOTESTOTTE_URL = `${contextpath}/veilarbvedtakinfo/api/motestotte`,
+    NESTE_MELDEKORT_URL = `${MELDEKORT_URL}/person/meldekort`,
+    MELDEKORTSTATUS_URL = `${MELDEKORT_URL}/person/meldekortstatus`;
