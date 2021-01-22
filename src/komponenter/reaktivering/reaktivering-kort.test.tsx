@@ -4,8 +4,13 @@ import { render, screen } from '@testing-library/react';
 import { InnloggingsNiva } from '../../ducks/autentisering';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import Reaktivering from './reaktivering-kort';
+import { mockIntersectionObserver } from '../../mocks/intersection-observer-mock';
 
 describe('Tester at komponenten rendres slik den skal', () => {
+    beforeEach(() => {
+        mockIntersectionObserver();
+    });
+
     test('Komponenten rendres IKKE som default', () => {
         const providerProps: ProviderProps = {};
         const { container } = render(<Reaktivering />, { wrapper: contextProviders(providerProps) });

@@ -59,6 +59,7 @@
         "react-collapse": "5.1.0",
         "react-dom": "16.14.0",
         "react-ga": "3.3.0",
+        "react-in-viewport": "1.0.0-alpha.16",
         "react-motion": "0.5.2"
     },
     "devDependencies": {
