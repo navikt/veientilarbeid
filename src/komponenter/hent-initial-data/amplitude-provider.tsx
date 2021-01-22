@@ -2,18 +2,19 @@ import getPoaGroup from '../../utils/get-poa-group';
 import isKSSEksperiment from '../../utils/is-kss-eksperiment';
 import isKSSKontroll from '../../utils/is-kss-kontroll';
 import React from 'react';
-import {AutentiseringContext} from '../../ducks/autentisering';
-import {AmplitudeAktivitetContext} from '../../ducks/amplitude-aktivitet-context';
-import {BrukerregistreringContext} from '../../ducks/brukerregistrering';
-import {OppfolgingContext} from '../../ducks/oppfolging';
-import {UnderOppfolgingContext} from '../../ducks/under-oppfolging';
-import {BrukerInfoContext} from '../../ducks/bruker-info';
-import grupperGeografiskTilknytning from '../../utils/grupper-geografisk-tilknytning'
+import { AutentiseringContext } from '../../ducks/autentisering';
+import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
+import { BrukerregistreringContext } from '../../ducks/brukerregistrering';
+import { OppfolgingContext } from '../../ducks/oppfolging';
+import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
+import { BrukerInfoContext } from '../../ducks/bruker-info';
+import grupperGeografiskTilknytning from '../../utils/grupper-geografisk-tilknytning';
 
 import ukerFraDato from '../../utils/uker-fra-dato';
-import dagerFraPeriodeSlutt from "../../utils/meldekort-dager-til-siste-frist";
-import {MeldekortContext} from "../../ducks/meldekort";
-import {STATUS} from "../../ducks/api";
+import dagerFraPeriodeSlutt from '../../utils/meldekort-dager-til-siste-frist';
+import { MeldekortContext } from '../../ducks/meldekort';
+import { STATUS } from '../../ducks/api';
+import { AmplitudeAktivitetsData } from '../../metrics/amplitude-utils';
 
 export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
@@ -36,11 +37,12 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         brukerregistreringData?.registrering.profilering?.innsatsgruppe || 'INGEN_VERDI';
     const formidlingsgruppeOrIngenVerdi = formidlingsgruppe || 'INGEN_VERDI';
 
-    let antallDagerFraPeriodeslutt = "ikke meldekortbruker"
-    const erMeldekortBruker = React.useContext(MeldekortContext).status !== STATUS.NOT_STARTED
-    if (erMeldekortBruker){
-        const sjekkDagerFraPeriodeslutt = dagerFraPeriodeSlutt(meldekortData.data)
-        antallDagerFraPeriodeslutt = sjekkDagerFraPeriodeslutt !== null ? sjekkDagerFraPeriodeslutt.toString() : "bruker har ingen meldekort"
+    let antallDagerFraPeriodeslutt = 'ikke meldekortbruker';
+    const erMeldekortBruker = React.useContext(MeldekortContext).status !== STATUS.NOT_STARTED;
+    if (erMeldekortBruker) {
+        const sjekkDagerFraPeriodeslutt = dagerFraPeriodeSlutt(meldekortData.data);
+        antallDagerFraPeriodeslutt =
+            sjekkDagerFraPeriodeslutt !== null ? sjekkDagerFraPeriodeslutt.toString() : 'bruker har ingen meldekort';
     }
 
     const POAGruppe = getPoaGroup({
@@ -68,7 +70,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         ? 'ja'
         : 'nei';
 
-    const amplitudeAktivitetsData = {
+    const amplitudeAktivitetsData: AmplitudeAktivitetsData = {
         gruppe: POAGruppe,
         geografiskTilknytning: grupperGeografiskTilknytning(geografiskTilknytningOrIngenVerdi),
         isKSSX,
@@ -79,7 +81,8 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         formidlingsgruppe: formidlingsgruppeOrIngenVerdi,
         servicegruppe: servicegruppeOrIVURD,
         underOppfolging: underOppfolging ? 'ja' : 'nei',
-        antallDagerFraPeriodeslutt: antallDagerFraPeriodeslutt
+        antallDagerFraPeriodeslutt: antallDagerFraPeriodeslutt,
+        gitVersion: process.env.REACT_APP_VERSION_HASH || 'INGEN_VERDI',
     };
 
     return (

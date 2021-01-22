@@ -8,10 +8,14 @@ WORKDIR /source
 
 RUN npm ci
 
+ARG VERSION_HASH
+ENV REACT_APP_VERSION_HASH=$VERSION_HASH
+
 RUN npm run build:micro
 RUN cp -r /source/build /micro
 
 RUN npm run build
+
 
 FROM docker.pkg.github.com/navikt/pus-decorator/pus-decorator
 ENV APPLICATION_NAME=veientilarbeid

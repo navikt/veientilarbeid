@@ -27,7 +27,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo ${GITHUB_TOKEN} | docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} --password-stdin
-          docker build --tag ${IMAGE} .
+          docker build --tag ${IMAGE} . \
+            --build-arg VERSION_HASH=${{ github.sha }}
           docker push ${IMAGE}
 
   deploy-q0:
