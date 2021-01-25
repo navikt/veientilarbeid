@@ -105,7 +105,7 @@ function Metrics(props: Props & ViewportProps) {
     React.useEffect(() => {
         if (harVistTilBruker) {
             console.log('Du ser mæ!!!!!');
-            loggAktivitet({ aktivitet: 'Kan se veien til arbeid', ...amplitudeAktivitetsData });
+            loggAktivitet({ aktivitet: 'Veien til arbeid i viewport', ...amplitudeAktivitetsData });
         }
     }, [amplitudeAktivitetsData, harVistTilBruker]);
 
