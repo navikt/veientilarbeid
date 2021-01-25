@@ -40,7 +40,8 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     let antallDagerFraPeriodeslutt = 'ikke meldekortbruker';
     const erMeldekortBruker = React.useContext(MeldekortContext).status !== STATUS.NOT_STARTED;
     if (erMeldekortBruker) {
-        const sjekkDagerFraPeriodeslutt = dagerFraPeriodeSlutt(meldekortData.data);
+        const iDag = new Date(new Date().toISOString().substr(0, 10)); 
+        const sjekkDagerFraPeriodeslutt = dagerFraPeriodeSlutt(iDag, meldekortData.data);
         antallDagerFraPeriodeslutt =
             sjekkDagerFraPeriodeslutt !== null ? sjekkDagerFraPeriodeslutt.toString() : 'bruker har ingen meldekort';
     }

@@ -18,8 +18,7 @@ function getSisteFrist(datoStreng) {
   return dato.setDate(dato.getDate() + 8);
 }
 
-function dagerFraPeriodeSlutt(meldekortHistorie) {
-  const iDag = new Date(new Date().toISOString().substr(0, 10));
+function dagerFraPeriodeSlutt(iDag, meldekortHistorie) {
   let dager = null;
   if (meldekortHistorie) {
     const muligeMeldekort = arrify(meldekortHistorie.meldekort)
