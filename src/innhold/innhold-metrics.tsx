@@ -1,4 +1,5 @@
 import * as React from 'react';
+import handleViewport from 'react-in-viewport';
 import { AmplitudeAktivitetContext } from '../ducks/amplitude-aktivitet-context';
 import {
     BrukerregistreringContext,
@@ -9,7 +10,6 @@ import {
 } from '../ducks/brukerregistrering';
 import { OppfolgingContext } from '../ducks/oppfolging';
 import { BrukerInfoContext } from '../ducks/bruker-info';
-// import ukerFraDato from '../utils/uker-fra-dato';
 import getPoaGroup from '../utils/get-poa-group';
 import { loggAktivitet, setIdentifyPoaGruppe, seVeientilarbeid, tellPoaGruppe } from '../metrics/metrics';
 import { erMikrofrontend } from '../utils/app-state-utils';
@@ -17,16 +17,26 @@ import { hotjarTrigger } from '../hotjar';
 import { AutentiseringContext, InnloggingsNiva } from '../ducks/autentisering';
 import { UnderOppfolgingContext } from '../ducks/under-oppfolging';
 
+interface ViewportProps {
+    inViewport: boolean;
+    forwardedRef: React.ForwardedRef<any>;
+}
+
+type Props = {};
+
+const WrappedMetrics: React.ComponentType<Props> = handleViewport(Metrics);
+
 export default function InnholdMetrics() {
     const { securityLevel } = React.useContext(AutentiseringContext).data;
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
 
     if (!underOppfolging || securityLevel === InnloggingsNiva.LEVEL_3) return null;
 
-    return <Metrics />;
+    return <WrappedMetrics />;
 }
 
-function Metrics() {
+function Metrics(props: Props & ViewportProps) {
+    const [harVistTilBruker, setHarVistTilBruker] = React.useState<boolean>(false);
     const { formidlingsgruppe, servicegruppe, reservasjonKRR, kanReaktiveres } = React.useContext(
         OppfolgingContext
     ).data;
@@ -51,8 +61,6 @@ function Metrics() {
     const formidlingsgruppeOrIngenVerdi = formidlingsgruppe ? formidlingsgruppe : 'INGEN_VERDI';
     const servicegruppeOrIVURD = servicegruppe ? servicegruppe : 'IVURD';
 
-    // const ukerRegistrert = opprettetRegistreringDato ? ukerFraDato(opprettetRegistreringDato) : ukerFraDato(new Date());
-
     const dinSituasjon = selectDinSituasjonSvar(brukerregistreringData) || 'INGEN_VERDI';
     const underOppfolgingJaNei = underOppfolging ? 'ja' : 'nei';
     const reservasjonKRRJaNei = reservasjonKRR ? 'ja' : 'nei';
@@ -69,6 +77,10 @@ function Metrics() {
     const hotjarEksperiment = () => {
         return kanReaktiveres;
     };
+
+    if (props.inViewport && !harVistTilBruker) {
+        setHarVistTilBruker(true);
+    }
 
     React.useEffect(() => {
         seVeientilarbeid(
@@ -90,5 +102,11 @@ function Metrics() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    return null;
+    React.useEffect(() => {
+        if (harVistTilBruker) {
+            loggAktivitet({ aktivitet: 'Veien til arbeid i viewport', ...amplitudeAktivitetsData });
+        }
+    }, [amplitudeAktivitetsData, harVistTilBruker]);
+
+    return <span ref={props.forwardedRef}></span>;
 }
