@@ -28,7 +28,8 @@ jobs:
         run: |
           echo ${GITHUB_TOKEN} | docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} --password-stdin
           docker build --tag ${IMAGE} . \
-            --build-arg REACT_APP_VERSION_HASH=${{ github.sha }}
+            --build-arg REACT_APP_VERSION_HASH=${{ github.sha }} \
+            --build-arg REACT_APP_BUILD_TIMESTAMP=$(date +'%Y-%m-%dT%H:%M:%S')
           docker push ${IMAGE}
 
   deploy-q0:
