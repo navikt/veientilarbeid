@@ -3,35 +3,40 @@
  * Argumentet er at inaktiveringsbatchen kjøres 02:00 dagen etter siste frist (14 timer etter 12)
  */
 
-const dagIms = 1000 * 3600 * 24;
-
-function arrify(input) {
-  if (!input) {
-    return [];
-  } else {
-    return Array.isArray(input) ? input : [input];
-  }
-}
+const dagIms = 1000 * 60 * 60 * 24;
 
 function getSisteFrist(datoStreng) {
-  const dato = new Date(datoStreng);
-  return dato.setDate(dato.getDate() + 8);
+    const fristDato = datoUtenTid(datoStreng);
+    fristDato.setDate(fristDato.getDate() + 8);
+    return fristDato;
+}
+
+function datoUtenTid(dato) {
+    return new Date(dato.substr(0, 10));
+}
+
+function antallDagerOverFrist(iDag, meldekort) {
+    const periodeSlutt = datoUtenTid(meldekort.meldeperiode.til);
+    const dager = Math.floor((iDag - periodeSlutt) / dagIms);
+    return dager;
 }
 
 function dagerFraPeriodeSlutt(iDag, meldekortHistorie) {
-  let dager = null;
-  if (meldekortHistorie) {
-    const muligeMeldekort = arrify(meldekortHistorie.meldekort)
-      .filter((meldekort) => !meldekort.mottattDato)
-      .filter((meldekort) => new Date(meldekort.meldeperiode.kortKanSendesFra.substr(0, 10)) <= iDag)
-      .filter((meldekort) => getSisteFrist(meldekort.meldeperiode.til.substr(0, 10)) >= iDag);
-    if (muligeMeldekort.length === 1) {
-      const meldekort = muligeMeldekort[0];
-      const periodeSlutt = new Date(meldekort.meldeperiode.til.substr(0, 10));
-      dager = Math.floor((iDag - periodeSlutt) / dagIms);
+    if (!meldekortHistorie) {
+        return null;
     }
-  }
-  return dager;
+
+    const dagerOverFristPerMeldekort = meldekortHistorie.meldekort
+        .filter((meldekort) => !meldekort.mottattDato)
+        .filter((meldekort) => datoUtenTid(meldekort.meldeperiode.kortKanSendesFra) <= iDag)
+        .filter((meldekort) => getSisteFrist(meldekort.meldeperiode.til) >= iDag)
+        .map((meldekort) => antallDagerOverFrist(iDag, meldekort));
+
+    if (dagerOverFristPerMeldekort.length === 0) {
+        return null;
+    }
+    const flestDagerOverFrist = dagerOverFristPerMeldekort.reduce((a, b) => Math.max(a, b));
+    return flestDagerOverFrist;
 }
 
 export default dagerFraPeriodeSlutt;
