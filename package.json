@@ -18,7 +18,7 @@
         "prepare": "npm run snyk-protect"
     },
     "dependencies": {
-        "@alheimsins/uker-fra-dato": "1.0.2",
+        "@alheimsins/uker-fra-dato": "1.0.3",
         "@craco/craco": "5.9.0",
         "@navikt/fnrvalidator": "1.1.3",
         "amplitude-js": "7.3.3",
