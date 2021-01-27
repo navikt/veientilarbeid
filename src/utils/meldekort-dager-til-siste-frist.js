@@ -7,7 +7,7 @@ const dagIms = 1000 * 60 * 60 * 24;
 
 function getSisteFrist(datoStreng) {
     const fristDato = datoUtenTid(datoStreng);
-    fristDato.setDate(fristDato.getDate() + 8);
+    fristDato.setDate(fristDato.getDate() + 12);
     return fristDato;
 }
 
