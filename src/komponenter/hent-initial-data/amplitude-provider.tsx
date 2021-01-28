@@ -11,7 +11,7 @@ import { BrukerInfoContext } from '../../ducks/bruker-info';
 import grupperGeografiskTilknytning from '../../utils/grupper-geografisk-tilknytning';
 
 import ukerFraDato from '../../utils/uker-fra-dato';
-import dagerFraPeriodeSlutt from '../../utils/meldekort-dager-til-siste-frist';
+import dagerEtterFastsattMeldedag from '../../utils/meldekort-dager-etter-meldedag';
 import { MeldekortContext } from '../../ducks/meldekort';
 import { STATUS } from '../../ducks/api';
 import { AmplitudeAktivitetsData } from '../../metrics/amplitude-utils';
@@ -41,7 +41,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const erMeldekortBruker = React.useContext(MeldekortContext).status !== STATUS.NOT_STARTED;
     if (erMeldekortBruker) {
         const iDag = new Date(new Date().toISOString().substr(0, 10));
-        const sjekkDagerFraPeriodeslutt = dagerFraPeriodeSlutt(iDag, meldekortData.data);
+        const sjekkDagerFraPeriodeslutt = dagerEtterFastsattMeldedag(iDag, meldekortData.data);
         antallDagerFraPeriodeslutt =
             sjekkDagerFraPeriodeslutt !== null ? sjekkDagerFraPeriodeslutt.toString() : 'bruker har ingen meldekort';
     }
