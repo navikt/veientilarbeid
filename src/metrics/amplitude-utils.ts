@@ -35,6 +35,7 @@ export type AmplitudeAktivitetsData = {
     antallDagerFraPeriodeslutt: string;
     gitVersion: string;
     buildTimestamp: string;
+    antallSynligeInfomeldinger: number;
 };
 
 export function getDeviceId() {

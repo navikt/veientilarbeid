@@ -16,6 +16,7 @@ export const initialState: AmplitudeAktivitetsData = {
     antallDagerFraPeriodeslutt: 'ikke meldekortbruker',
     gitVersion: 'INGEN_VERDI',
     buildTimestamp: new Date().toISOString(),
+    antallSynligeInfomeldinger: 0,
 };
 
 export const AmplitudeAktivitetContext = React.createContext<AmplitudeAktivitetsData>(initialState);
