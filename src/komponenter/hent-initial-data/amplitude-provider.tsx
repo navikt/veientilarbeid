@@ -15,6 +15,7 @@ import dagerEtterFastsattMeldedag from '../../utils/meldekort-dager-etter-melded
 import { MeldekortContext } from '../../ducks/meldekort';
 import { STATUS } from '../../ducks/api';
 import { AmplitudeAktivitetsData } from '../../metrics/amplitude-utils';
+import antallSynligeInfomeldinger from '../../utils/infomeldinger';
 
 export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
@@ -85,6 +86,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         antallDagerFraPeriodeslutt: antallDagerFraPeriodeslutt,
         gitVersion: process.env.REACT_APP_VERSION_HASH || 'INGEN_VERDI',
         buildTimestamp: process.env.REACT_APP_BUILD_TIMESTAMP || new Date().toISOString(),
+        antallSynligeInfomeldinger: antallSynligeInfomeldinger(),
     };
 
     return (
