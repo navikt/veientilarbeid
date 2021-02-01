@@ -3,12 +3,10 @@
  * Argumentet er at inaktiveringsbatchen kjøres 02:00 dagen etter siste frist (14 timer etter 12)
  */
 
+import { datoUtenTid } from './date-utils';
+
 const dagIms = 1000 * 60 * 60 * 24;
 const dagerIMeldeperiode = 14;
-
-function datoUtenTid(dato) {
-    return new Date(dato.substr(0, 10));
-}
 
 function plussDager(dato, antallDager) {
     const kopi = new Date(dato);

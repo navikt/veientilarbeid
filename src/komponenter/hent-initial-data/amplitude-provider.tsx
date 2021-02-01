@@ -12,10 +12,33 @@ import grupperGeografiskTilknytning from '../../utils/grupper-geografisk-tilknyt
 
 import ukerFraDato from '../../utils/uker-fra-dato';
 import dagerEtterFastsattMeldedag from '../../utils/meldekort-dager-etter-meldedag';
-import { MeldekortContext } from '../../ducks/meldekort';
+import * as Meldekort from '../../ducks/meldekort';
 import { STATUS } from '../../ducks/api';
 import { AmplitudeAktivitetsData } from '../../metrics/amplitude-utils';
 import antallSynligeInfomeldinger from '../../utils/infomeldinger';
+import * as Meldekortstatus from '../../ducks/meldekortstatus';
+import isMeldekortbruker from '../../utils/er-meldekortbruker';
+import { datoUtenTid } from '../../utils/date-utils';
+
+function hentDagerEtterFastsattMeldedag(
+    meldekortstatusContext: Meldekortstatus.State,
+    meldekortContext: Meldekort.State
+): string {
+    const erMeldekortbruker = isMeldekortbruker(meldekortstatusContext.data);
+    if (!erMeldekortbruker) {
+        return 'ikke meldekortbruker';
+    }
+    const harHentetMeldekort = meldekortContext.status !== STATUS.NOT_STARTED;
+    if (!harHentetMeldekort) {
+        return 'ukjent';
+    }
+    const iDag = datoUtenTid(new Date().toISOString());
+    const antallDager = dagerEtterFastsattMeldedag(iDag, meldekortContext.data);
+    if (antallDager === null) {
+        return 'bruker har ingen meldekort';
+    }
+    return antallDager.toString();
+}
 
 export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
@@ -23,7 +46,9 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const brukerInfoData = React.useContext(BrukerInfoContext).data;
     const { securityLevel: nivaa } = React.useContext(AutentiseringContext).data;
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
-    const meldekortData = React.useContext(MeldekortContext);
+    const meldekortContext = React.useContext(Meldekort.MeldekortContext);
+    const meldekortStatusContext = React.useContext(Meldekortstatus.MeldekortstatusContext);
+
     const { alder, geografiskTilknytning } = brukerInfoData;
     const { servicegruppe, formidlingsgruppe, kanReaktiveres } = oppfolgingData;
     const opprettetRegistreringDatoString = brukerregistreringData?.registrering.opprettetDato;
@@ -37,15 +62,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const foreslattInnsatsgruppeOrIngenVerdi =
         brukerregistreringData?.registrering.profilering?.innsatsgruppe || 'INGEN_VERDI';
     const formidlingsgruppeOrIngenVerdi = formidlingsgruppe || 'INGEN_VERDI';
-
-    let antallDagerFraPeriodeslutt = 'ikke meldekortbruker';
-    const erMeldekortBruker = React.useContext(MeldekortContext).status !== STATUS.NOT_STARTED;
-    if (erMeldekortBruker) {
-        const iDag = new Date(new Date().toISOString().substr(0, 10));
-        const sjekkDagerFraPeriodeslutt = dagerEtterFastsattMeldedag(iDag, meldekortData.data);
-        antallDagerFraPeriodeslutt =
-            sjekkDagerFraPeriodeslutt !== null ? sjekkDagerFraPeriodeslutt.toString() : 'bruker har ingen meldekort';
-    }
+    const antallDagerFraPeriodeslutt = hentDagerEtterFastsattMeldedag(meldekortStatusContext, meldekortContext);
 
     const POAGruppe = getPoaGroup({
         dinSituasjon,

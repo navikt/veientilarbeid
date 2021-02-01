@@ -3,13 +3,13 @@ import Innholdslaster from '../innholdslaster/innholdslaster';
 import Feilmelding from '../feilmeldinger/feilmelding';
 import * as BrukerInfo from '../../ducks/bruker-info';
 import * as Brukerregistrering from '../../ducks/brukerregistrering';
-import {ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe} from '../../ducks/brukerregistrering';
+import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe } from '../../ducks/brukerregistrering';
 import * as Motestotte from '../../ducks/motestotte';
 import * as Meldekort from '../../ducks/meldekort';
 import * as Egenvurdering from '../../ducks/egenvurdering';
 import * as UlesteDialoger from '../../ducks/ulestedialoger';
 import * as Jobbsokerbesvarelse from '../../ducks/jobbsokerbesvarelse';
-import {fetchData} from '../../ducks/api-utils';
+import { fetchData } from '../../ducks/api-utils';
 import {
     BRUKERINFO_URL,
     EGENVURDERINGBESVARELSE_URL,
@@ -18,11 +18,9 @@ import {
     NESTE_MELDEKORT_URL,
     ULESTEDIALOGER_URL,
 } from '../../ducks/api';
-import {AmplitudeProvider} from './amplitude-provider';
-import {AutentiseringContext, InnloggingsNiva} from '../../ducks/autentisering';
-import {UnderOppfolgingContext} from '../../ducks/under-oppfolging';
-import {MeldekortstatusContext} from "../../ducks/meldekortstatus";
-import isMeldekortbruker from "../../utils/er-meldekortbruker";
+import { AmplitudeProvider } from './amplitude-provider';
+import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
+import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
 const skalSjekkeEgenvurderingBesvarelse = (
     foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null
@@ -39,17 +37,9 @@ interface OwnProps {
 
 type Props = OwnProps;
 
-const DataProvider = ({children}: Props) => {
-    const {securityLevel} = React.useContext(AutentiseringContext).data;
-    const {underOppfolging} = React.useContext(UnderOppfolgingContext).data;
-    const {
-        meldekort,
-        etterregistrerteMeldekort,
-        antallGjenstaaendeFeriedager,
-        nesteMeldekort,
-        nesteInnsendingAvMeldekort
-    } = React.useContext(MeldekortstatusContext).data;
-
+const DataProvider = ({ children }: Props) => {
+    const { securityLevel } = React.useContext(AutentiseringContext).data;
+    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const [motestotteState, setMotestotteState] = React.useState<Motestotte.State>(Motestotte.initialState);
     const [meldekortState, setMeldekortState] = React.useState<Meldekort.State>(Meldekort.initialState);
     const [brukerInfoState, setBrukerInfoState] = React.useState<BrukerInfo.State>(BrukerInfo.initialState);
@@ -63,18 +53,14 @@ const DataProvider = ({children}: Props) => {
 
     const data = React.useContext(Brukerregistrering.BrukerregistreringContext).data;
     const foreslaattInnsatsgruppe = selectForeslattInnsatsgruppe(data);
-    const erMeldekortbruker = isMeldekortbruker(nesteMeldekort, nesteInnsendingAvMeldekort, antallGjenstaaendeFeriedager, etterregistrerteMeldekort, meldekort)
 
     React.useEffect(() => {
         if (securityLevel !== InnloggingsNiva.LEVEL_4) {
             return;
-
         }
-        if (erMeldekortbruker) {
-            fetchData<Meldekort.State, Meldekort.Data>(meldekortState, setMeldekortState, NESTE_MELDEKORT_URL);
-        }
+        fetchData<Meldekort.State, Meldekort.Data>(meldekortState, setMeldekortState, NESTE_MELDEKORT_URL);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [erMeldekortbruker, securityLevel])
+    }, [securityLevel]);
 
     React.useEffect(() => {
         if (securityLevel !== InnloggingsNiva.LEVEL_4) {
@@ -129,7 +115,7 @@ const DataProvider = ({children}: Props) => {
 
     return (
         <Innholdslaster
-            feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse"/>}
+            feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse" />}
             storrelse="XXL"
             avhengigheter={avhengigheter}
             ventPa={ventPa}

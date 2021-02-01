@@ -1,21 +1,21 @@
-import {DataElement, STATUS} from './api';
+import { DataElement, STATUS } from './api';
 import React from 'react';
 
 export interface State extends DataElement {
-    data: Data;
+    data: Data | null;
 }
 
 interface MeldeperiodeInn {
-    fra?: string
-    til?: string
-    kortKanSendesFra?: string
-    kanKortSendes?: boolean
-    periodeKode?: string
+    fra?: string;
+    til?: string;
+    kortKanSendesFra?: string;
+    kanKortSendes?: boolean;
+    periodeKode?: string;
 }
 
 interface Meldekort {
-    mottattDato?: string | null
-    meldeperiode?: MeldeperiodeInn | null
+    mottattDato?: string | null;
+    meldeperiode?: MeldeperiodeInn | null;
 }
 
 export interface Data {
@@ -23,7 +23,7 @@ export interface Data {
 }
 
 export const initialState: State = {
-    data:{},
+    data: {},
     status: STATUS.NOT_STARTED,
 };
 
