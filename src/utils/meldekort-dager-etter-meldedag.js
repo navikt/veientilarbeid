@@ -56,7 +56,7 @@ function harBrukerLevertMeldekort(meldekort) {
     return !!meldekort.mottattDato;
 }
 
-function dagerEtterFastsattMeldedag(iDag, meldekortHistorie) {
+function beregnDagerEtterFastsattMeldedag(iDag, meldekortHistorie) {
     if (!meldekortHistorie) {
         return null;
     }
@@ -74,4 +74,4 @@ function dagerEtterFastsattMeldedag(iDag, meldekortHistorie) {
     return flestAntallDager;
 }
 
-export default dagerEtterFastsattMeldedag;
+export default beregnDagerEtterFastsattMeldedag;

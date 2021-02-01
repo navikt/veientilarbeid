@@ -11,6 +11,7 @@ import './registrert.less';
 import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
 import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
+import Meldekortstatus from '../meldekort-advarsel/meldekortstatus';
 
 const Registrert = () => {
     const brukerregistreringData = useContext(BrukerregistreringContext).data;
@@ -76,6 +77,7 @@ const Registrert = () => {
             <AlertStripeInfo className={showOpplysninger ? 'registrering-info' : ''}>
                 <Element>Du er registrert som arbeidssøker</Element>
             </AlertStripeInfo>
+            <Meldekortstatus />
             {showOpplysninger ? (
                 <Ekspanderbartpanel
                     tittel="Se svarene fra registreringen"
