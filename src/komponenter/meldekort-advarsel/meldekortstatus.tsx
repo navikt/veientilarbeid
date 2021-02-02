@@ -34,7 +34,7 @@ function Meldekortstatus() {
         <div className={'meldekortvarsel-container'}>
             <MeldekortAdvarsel frister={dagerEtterFastsattMeldedag} />
             <Normaltekst>
-                Det er innsending av meldekortet som opprettholder både statusen som arbeidssøker.
+                Det er innsending av meldekortet som opprettholder din status som arbeidssøker hos NAV.
             </Normaltekst>
             <Normaltekst>
                 Opplysningene du oppgir i meldekortet brukes også til å beregne utbetalingen av dagpenger.
