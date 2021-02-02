@@ -10,14 +10,15 @@ import React from 'react';
 import MeldekortAdvarsel from './meldekort-advarsel';
 import { Normaltekst } from 'nav-frontend-typografi';
 import * as Meldekort from '../../ducks/meldekort';
-import { datoUtenTid } from '../../utils/date-utils';
 import beregnDagerEtterFastsattMeldedag from '../../utils/meldekort-dager-etter-meldedag';
 import { OppfolgingContext } from '../../ducks/oppfolging';
 import './meldekortstatus.less';
+import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
 
 function Meldekortstatus() {
     const { data: meldekortData } = React.useContext(Meldekort.MeldekortContext);
     const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
+    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
 
     if (!meldekortData || kanReaktiveres) return null;
 
@@ -32,7 +33,10 @@ function Meldekortstatus() {
 
     return (
         <div className={'meldekortvarsel-container'}>
-            <MeldekortAdvarsel frister={dagerEtterFastsattMeldedag} />
+            <MeldekortAdvarsel
+                dagerEtterFastsattMeldedag={dagerEtterFastsattMeldedag}
+                amplitudeAktivitetsData={amplitudeAktivitetsData}
+            />
             <Normaltekst>
                 Det er innsending av meldekortet som opprettholder din status som arbeidssøker hos NAV.
             </Normaltekst>

@@ -1,13 +1,25 @@
 import React from 'react';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { Knapp } from 'nav-frontend-knapper';
+import { AmplitudeAktivitetsData } from '../../metrics/amplitude-utils';
+import { loggAktivitet } from '../../metrics/metrics';
 
-function MeldekortAdvarsel({ frister: dagerEtterFastsattMeldedag }: { frister: number }) {
+function MeldekortAdvarsel({
+    dagerEtterFastsattMeldedag,
+    amplitudeAktivitetsData,
+}: {
+    dagerEtterFastsattMeldedag: number;
+    amplitudeAktivitetsData: AmplitudeAktivitetsData;
+}) {
     if (dagerEtterFastsattMeldedag === null) return null;
     const dagerTilInaktivering = beregnDagerTilInaktivering(dagerEtterFastsattMeldedag);
 
     // Viser strenger melding fra dag 3 (torsdag)
     const tillegg = dagerEtterFastsattMeldedag > 2 ? <LittStrengereVarsel /> : null;
+
+    const meldekortknappKlikk = () => {
+        loggAktivitet({ aktivitet: 'Går til meldekort fra advarsel', ...amplitudeAktivitetsData });
+    };
 
     return (
         <>
@@ -24,7 +36,7 @@ function MeldekortAdvarsel({ frister: dagerEtterFastsattMeldedag }: { frister: n
                 </Normaltekst>
             )}
             {tillegg}
-            <Knapp>Gå til meldekortet</Knapp>
+            <Knapp onClick={meldekortknappKlikk}>Gå til meldekortet</Knapp>
         </>
     );
 }
