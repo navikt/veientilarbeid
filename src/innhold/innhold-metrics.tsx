@@ -37,11 +37,10 @@ export default function InnholdMetrics() {
 
 function Metrics(props: Props & ViewportProps) {
     const [harVistTilBruker, setHarVistTilBruker] = React.useState<boolean>(false);
-    const { formidlingsgruppe, servicegruppe, reservasjonKRR, kanReaktiveres } = React.useContext(
-        OppfolgingContext
-    ).data;
+    const { formidlingsgruppe, servicegruppe, reservasjonKRR } = React.useContext(OppfolgingContext).data;
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
+    const { antallDagerFraPeriodeslutt } = amplitudeAktivitetsData;
     const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
     const { erSykmeldtMedArbeidsgiver, registreringType, rettighetsgruppe, alder } = React.useContext(
         BrukerInfoContext
@@ -75,7 +74,8 @@ function Metrics(props: Props & ViewportProps) {
     });
 
     const hotjarEksperiment = () => {
-        return kanReaktiveres;
+        // Henter data fra amplitude, antallDagerFraPeriodeslutt er egentlig antallDagerEtterFastsattMeldedag (mandag = 0)
+        return parseInt(antallDagerFraPeriodeslutt, 10) >= 1;
     };
 
     if (props.inViewport && !harVistTilBruker) {
