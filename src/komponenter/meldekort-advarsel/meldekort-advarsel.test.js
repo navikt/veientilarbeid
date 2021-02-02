@@ -1,5 +1,14 @@
+import '@testing-library/jest-dom/extend-expect';
 import { render } from '@testing-library/react';
+import React from 'react';
 import MeldekortAdvarsel from './meldekort-advarsel';
+
+/*
+- Ikke vises før tiden
+- Vises ved dag 1 (mandag), første dag
+- Vises ved dag 7 (mandag), siste dag
+- Vises ikke ved dag 8,
+ */
 
 describe('Tester komponenten MeldekortAdvarsel', () => {
     test('Komponenten vises IKKE om man ikke har meldekort', () => {
@@ -7,17 +16,13 @@ describe('Tester komponenten MeldekortAdvarsel', () => {
         expect(container).toBeEmptyDOMElement();
     });
 
-    test('Komponenten vises IKKE om dager til frist ikke finnes', () => {
-        const frister = null;
-        const { container } = render(<MeldekortAdvarsel frister={frister} />);
+    test('Komponenten vises IKKE om ', () => {
+        const { container } = render(<MeldekortAdvarsel dagerEtterFastsattMeldedag={null} />);
         expect(container).toBeEmptyDOMElement();
     });
 
-    test('Komponenten vises IKKE om dagerTilFrist er under 0', () => {
-        const frister = {
-            dagerTilInaktivering: -1,
-        };
-        const { container } = render(<MeldekortAdvarsel frister={frister} />);
+    test('Komponenten vises IKKE på dag 8', () => {
+        const { container } = render(<MeldekortAdvarsel dagerEtterFastsattMeldedag={8} />);
         expect(container).toBeEmptyDOMElement();
     });
 
@@ -41,7 +46,7 @@ describe('Tester komponenten MeldekortAdvarsel', () => {
                 korrigerbart: true,
             },
         };
-        const { container } = render(<MeldekortAdvarsel frister={frister} />);
+        const { container } = render(<MeldekortAdvarsel dagerEtterFastsattMeldedag={frister} />);
         expect(container).not.toBeEmptyDOMElement();
     });
 });

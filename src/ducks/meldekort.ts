@@ -23,7 +23,7 @@ export interface Data {
 }
 
 export const initialState: State = {
-    data: {},
+    data: null,
     status: STATUS.NOT_STARTED,
 };
 

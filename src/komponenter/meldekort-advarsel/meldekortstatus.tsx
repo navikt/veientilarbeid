@@ -15,14 +15,13 @@ import { OppfolgingContext } from '../../ducks/oppfolging';
 import './meldekortstatus.less';
 import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
 
-function Meldekortstatus() {
+function Meldekortstatus({ iDag }: { iDag: Date }) {
     const { data: meldekortData } = React.useContext(Meldekort.MeldekortContext);
     const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
     const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
 
     if (!meldekortData || kanReaktiveres) return null;
 
-    const iDag = datoUtenTid(new Date().toISOString());
     const dagerEtterFastsattMeldedag = beregnDagerEtterFastsattMeldedag(iDag, meldekortData);
 
     console.log(dagerEtterFastsattMeldedag);

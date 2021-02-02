@@ -12,6 +12,7 @@ import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering
 import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import Meldekortstatus from '../meldekort-advarsel/meldekortstatus';
+import { datoUtenTid } from '../../utils/date-utils';
 
 const Registrert = () => {
     const brukerregistreringData = useContext(BrukerregistreringContext).data;
@@ -71,13 +72,14 @@ const Registrert = () => {
     };
 
     seDineOpplysninger(metrikkData);
+    const iDag = datoUtenTid(new Date().toISOString());
 
     return (
         <div className="blokk-s">
             <AlertStripeInfo className={showOpplysninger ? 'registrering-info' : ''}>
                 <Element>Du er registrert som arbeidssøker</Element>
             </AlertStripeInfo>
-            <Meldekortstatus />
+            <Meldekortstatus iDag={iDag} />
             {showOpplysninger ? (
                 <Ekspanderbartpanel
                     tittel="Se svarene fra registreringen"
