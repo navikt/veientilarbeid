@@ -11,7 +11,7 @@ import './registrert.less';
 import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
 import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
-import Meldekortstatus from '../meldekort-advarsel/meldekortstatus';
+import Meldekortstatus from '../meldekortstatus/meldekortstatus';
 import { datoUtenTid } from '../../utils/date-utils';
 
 const Registrert = () => {

@@ -24,8 +24,6 @@ function Meldekortstatus({ iDag }: { iDag: Date }) {
 
     const dagerEtterFastsattMeldedag = beregnDagerEtterFastsattMeldedag(iDag, meldekortData);
 
-    console.log(dagerEtterFastsattMeldedag);
-
     // Bare vis melding fra dag 1 (tirsdag) til dag 7 (mandag)
     if (dagerEtterFastsattMeldedag === null || dagerEtterFastsattMeldedag > 7 || dagerEtterFastsattMeldedag <= 0)
         return null;
