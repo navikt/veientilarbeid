@@ -3,6 +3,7 @@ import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { Knapp } from 'nav-frontend-knapper';
 import { AmplitudeAktivitetsData } from '../../metrics/amplitude-utils';
 import { loggAktivitet } from '../../metrics/metrics';
+import { meldekortLenke } from '../../innhold/lenker';
 
 function MeldekortAdvarsel({
     dagerEtterFastsattMeldedag,
@@ -19,6 +20,7 @@ function MeldekortAdvarsel({
 
     const meldekortknappKlikk = () => {
         loggAktivitet({ aktivitet: 'Går til meldekort fra advarsel', ...amplitudeAktivitetsData });
+        window.location.assign(meldekortLenke);
     };
 
     return (
