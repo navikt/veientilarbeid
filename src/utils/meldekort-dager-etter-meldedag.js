@@ -50,7 +50,7 @@ function harBrukerLevertMeldekort(meldekort) {
     return !!meldekort.mottattDato;
 }
 
-function beregnDagerEtterFastsattMeldedag(iDag, meldekortHistorie) {
+export function beregnDagerEtterFastsattMeldedag(iDag, meldekortHistorie) {
     if (!meldekortHistorie) {
         return null;
     }
@@ -67,5 +67,3 @@ function beregnDagerEtterFastsattMeldedag(iDag, meldekortHistorie) {
     const flestAntallDager = antallDagerEtterFastsattMeldedagPerMeldekort.reduce((a, b) => Math.max(a, b));
     return flestAntallDager;
 }
-
-export default beregnDagerEtterFastsattMeldedag;

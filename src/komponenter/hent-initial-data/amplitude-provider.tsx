@@ -11,7 +11,7 @@ import { BrukerInfoContext } from '../../ducks/bruker-info';
 import grupperGeografiskTilknytning from '../../utils/grupper-geografisk-tilknytning';
 
 import ukerFraDato from '../../utils/uker-fra-dato';
-import beregnDagerEtterFastsattMeldedag from '../../utils/meldekort-dager-etter-meldedag';
+import { beregnDagerEtterFastsattMeldedag } from '../../utils/meldekort-dager-etter-meldedag';
 import * as Meldekort from '../../ducks/meldekort';
 import { STATUS } from '../../ducks/api';
 import { AmplitudeAktivitetsData } from '../../metrics/amplitude-utils';
