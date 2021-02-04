@@ -126,6 +126,6 @@ describe('Test av registreringskomponenten', () => {
         };
         render(<Registrert />, { wrapper: contextProviders(providerProps) });
         expect(screen.getByText(/du er registrert som arbeidssøker/i)).toBeInTheDocument();
-        expect(screen.getByText(/se svarene fra registreringen/i)).toBeInTheDocument();
+        expect(screen.getByText(/se svarene dine fra registreringen/i)).toBeInTheDocument();
     });
 });
