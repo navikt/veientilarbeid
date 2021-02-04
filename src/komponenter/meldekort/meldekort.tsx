@@ -2,7 +2,7 @@ import React from 'react';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { loggAktivitet } from '../../metrics/metrics';
 import EmailText from './email-text';
-import { meldekortLenke } from '../../innhold/lenker';
+import { omMeldekortLenke } from '../../innhold/lenker';
 import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
@@ -33,7 +33,7 @@ const Meldekort = () => {
 
     return (
         <LenkepanelMedIkon
-            href={meldekortLenke}
+            href={omMeldekortLenke}
             className="meldekort"
             alt=""
             onClick={handleClick}
