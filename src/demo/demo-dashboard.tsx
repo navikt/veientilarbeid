@@ -1,47 +1,49 @@
 import * as React from 'react';
 import { Innholdstittel } from 'nav-frontend-typografi';
-import { Select as SelectKomponent, CheckboksPanelGruppe } from 'nav-frontend-skjema';
+import { CheckboksPanelGruppe, Select as SelectKomponent } from 'nav-frontend-skjema';
 import {
     DemoData,
-    hentJsk,
-    settJsk,
-    slettJsk,
-    hentEgenvurdering,
-    settEgenvurdering,
-    slettEgenvurdering,
-    hentSykmeldtMedArbeidsgiver,
-    settSykmeldtMedArbeidsgiver,
-    hentUlesteDialoger,
-    settUlesteDialoger,
-    hentServicegruppe,
-    settServicegruppe,
-    hentFormidlingsgruppe,
-    settFormidlingsgruppe,
-    settReservasjonKRR,
-    hentReservasjonKRR,
-    settAutentiseringsInfo,
-    slettAutentiseringsInfo,
     hentAutentiseringsInfo,
-    hentMotestotte,
-    settMotestotte,
-    slettMotestotte,
-    hentRegistreringType,
-    settRegistreringType,
-    hentGeografiskTilknytning,
-    settGeografiskTilknytning,
-    hentRettighetsgruppe,
-    settRettighetsgruppe,
+    hentEgenvurdering,
     hentFeatureToggles,
-    settFeatureToggles,
-    hentUnderOppfolging,
-    slettUnderOppfolging,
-    settUnderOppfolging,
+    hentFormidlingsgruppe,
+    hentGeografiskTilknytning,
+    hentJsk,
     hentKanReaktiveres,
+    hentMeldekort,
+    hentMotestotte,
+    hentRegistreringType,
+    hentReservasjonKRR,
+    hentRettighetsgruppe,
+    hentServicegruppe,
+    hentSykmeldtMedArbeidsgiver,
+    hentUlesteDialoger,
+    hentUnderOppfolging,
+    settAutentiseringsInfo,
+    settEgenvurdering,
+    settFeatureToggles,
+    settFormidlingsgruppe,
+    settGeografiskTilknytning,
+    settJsk,
     settKanReaktiveres,
+    settMeldekort,
+    settMotestotte,
+    settRegistreringType,
+    settReservasjonKRR,
+    settRettighetsgruppe,
+    settServicegruppe,
+    settSykmeldtMedArbeidsgiver,
+    settUlesteDialoger,
+    settUnderOppfolging,
+    slettAutentiseringsInfo,
+    slettEgenvurdering,
+    slettJsk,
+    slettMotestotte,
+    slettUnderOppfolging,
 } from './demo-state';
 
 import './demo-dashboard.less';
-import { FremtidigSituasjonSvar, ForeslattInnsatsgruppe } from '../ducks/brukerregistrering';
+import { ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../ducks/brukerregistrering';
 import {
     hentForeslattInnsatsgruppe,
     hentFremtidigSituasjon,
@@ -117,6 +119,11 @@ class DemoDashboard extends React.Component<{}> {
 
         const handleChangeOpprettetRegistreringDato = (e: React.ChangeEvent<HTMLSelectElement>) => {
             settOpprettetDato(e.target.value);
+            window.location.reload();
+        };
+
+        const handleChangeMeldekortdager = (e: React.ChangeEvent<HTMLSelectElement>) => {
+            settMeldekort(e.target.value);
             window.location.reload();
         };
 
@@ -226,6 +233,17 @@ class DemoDashboard extends React.Component<{}> {
             registrertNaa: 'Registrert nå',
         };
 
+        const antallDagerEtterFastsattMeldedag = {
+            '0': '0',
+            '1': '1',
+            '2': '2',
+            '3': '3',
+            '4': '4',
+            '5': '5',
+            '6': '6',
+            '7': '7',
+        };
+
         return (
             <section className="demodashboard">
                 <Innholdstittel className="blokk-s">{tekster['demo-tittel']}</Innholdstittel>
@@ -287,6 +305,18 @@ class DemoDashboard extends React.Component<{}> {
                         {Object.keys(formidlingsgrupper).map((gruppe: string) => (
                             <option key={gruppe} value={gruppe}>
                                 {formidlingsgrupper[gruppe]}
+                            </option>
+                        ))}
+                    </SelectKomponent>
+                    <SelectKomponent
+                        label={'Dager etter fastsatt meldedag'}
+                        onChange={handleChangeMeldekortdager}
+                        id="velg-meldekortdager"
+                        defaultValue={hentMeldekort()?.toString()}
+                    >
+                        {Object.keys(antallDagerEtterFastsattMeldedag).map((dag: string) => (
+                            <option key={dag} value={dag}>
+                                {antallDagerEtterFastsattMeldedag[dag]}
                             </option>
                         ))}
                     </SelectKomponent>
