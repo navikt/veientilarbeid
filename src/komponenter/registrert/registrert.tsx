@@ -75,14 +75,13 @@ const Registrert = () => {
     const iDag = datoUtenTid(new Date().toISOString());
 
     return (
-        <div className="blokk-s">
+        <div className="blokk-s registrerings-container">
             <AlertStripeInfo className={showOpplysninger ? 'registrering-info' : ''}>
                 <Element>Du er registrert som arbeidssøker</Element>
             </AlertStripeInfo>
-            <Meldekortstatus iDag={iDag} />
             {showOpplysninger ? (
                 <Ekspanderbartpanel
-                    tittel="Se svarene fra registreringen"
+                    tittel="Se svarene dine fra registreringen"
                     border
                     className="registrering-svar"
                     onClick={handleClickOpen}
@@ -96,6 +95,7 @@ const Registrert = () => {
                     />
                 </Ekspanderbartpanel>
             ) : null}
+            <Meldekortstatus iDag={iDag} />
         </div>
     );
 };

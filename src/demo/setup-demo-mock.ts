@@ -19,6 +19,7 @@ import {
     hentGeografiskTilknytning,
     hentJsk,
     hentKanReaktiveres,
+    hentMeldekort,
     hentMotestotte,
     hentRegistreringType,
     hentReservasjonKRR,
@@ -29,15 +30,47 @@ import {
     hentUnderOppfolging,
 } from './demo-state';
 
-import {hentBrukerRegistreringData} from './demo-state-brukerregistrering';
-import {AUTH_API} from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
+import { hentBrukerRegistreringData } from './demo-state-brukerregistrering';
+import { AUTH_API } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
 import msw_get from '../mocks/msw-utils';
+import { plussDager } from '../utils/date-utils';
 
 const randomUlesteDialoger = () => {
     const min = 1;
     const max = 99;
     return Math.floor(min + Math.random() * (max - min));
 };
+
+const iDag = new Date();
+
+function lagMeldekortData(antallDagerEtterFastsattMeldedag: number) {
+    return {
+        maalformkode: 'NO',
+        meldeform: 'EMELD',
+        meldekort: [
+            {
+                meldekortId: 1526772064,
+                kortType: 'ELEKTRONISK',
+                meldeperiode: {
+                    fra: plussDager(iDag, -(14 + antallDagerEtterFastsattMeldedag)).toISOString(),
+                    til: plussDager(iDag, -(1 + antallDagerEtterFastsattMeldedag)).toISOString(),
+                    kortKanSendesFra: plussDager(iDag, -(2 + antallDagerEtterFastsattMeldedag)).toISOString(),
+                    kanKortSendes: false,
+                    periodeKode: '202103',
+                },
+                meldegruppe: 'ARBS',
+                kortStatus: 'OPPRE',
+                bruttoBelop: 0.0,
+                erForskuddsPeriode: false,
+                korrigerbart: true,
+            },
+        ],
+        etterregistrerteMeldekort: [],
+        id: '1',
+        antallGjenstaaendeFeriedager: 0,
+    };
+}
+
 export const demo_handlers = [
     msw_get(VEILARBOPPFOLGING_URL, {
         underOppfolging: true,
@@ -81,30 +114,5 @@ export const demo_handlers = [
 
     msw_get(UNDER_OPPFOLGING_URL, hentUnderOppfolging()),
 
-    msw_get(NESTE_MELDEKORT_URL, {
-            "maalformkode": "NO",
-            "meldeform": "EMELD",
-            "meldekort": [
-                {
-                    "meldekortId": 1526772064,
-                    "kortType": "ELEKTRONISK",
-                    "meldeperiode": {
-                        "fra": "2021-01-18T12:00:00+01:00",
-                        "til": "2021-01-31T12:00:00+01:00",
-                        "kortKanSendesFra": "2021-01-30T12:00:00+01:00",
-                        "kanKortSendes": false,
-                        "periodeKode": "202103"
-                    },
-                    "meldegruppe": "ARBS",
-                    "kortStatus": "OPPRE",
-                    "bruttoBelop": 0.0,
-                    "erForskuddsPeriode": false,
-                    "korrigerbart": true
-                }
-            ],
-            "etterregistrerteMeldekort": [],
-            "id": "1",
-            "antallGjenstaaendeFeriedager": 0
-        }
-    )
+    msw_get(NESTE_MELDEKORT_URL, lagMeldekortData(hentMeldekort())),
 ];

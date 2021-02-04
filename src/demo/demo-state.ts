@@ -14,6 +14,7 @@ export enum DemoData {
     RESERVASJON_KRR = 'reservasjonKRR',
     EGENVURDERING = 'egenvurdering',
     AUTENTISERINGS_INFO = 'autentiseringsInfo',
+    MELDEKORT = 'meldekort',
     MOTESTOTTE = 'motestotte',
     GEOGRAFISK_TILKNYTNING = 'geografiskTilknytning',
     REGISTRERING_TYPE = 'registreringType',
@@ -130,6 +131,15 @@ export const settMotestotte = () => {
 
 export const slettMotestotte = () => {
     slettFraLocalStorage(DemoData.MOTESTOTTE);
+};
+
+export const hentMeldekort = (): number => {
+    const verdi = hentFraLocalStorage(DemoData.MELDEKORT);
+    return verdi ? parseInt(verdi) : 0;
+};
+
+export const settMeldekort = (dag: string) => {
+    settILocalStorage(DemoData.MELDEKORT, dag);
 };
 
 const features = (checked: boolean) => ({
