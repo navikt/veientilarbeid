@@ -31,6 +31,8 @@ export type AmplitudeData = {
     kanReaktiveres: string;
     formidlingsgruppe: string;
     servicegruppe: string;
+    rettighetsgruppe: string;
+    registreringType: string;
     underOppfolging: string;
     antallDagerFraPeriodeslutt: string;
     gitVersion: string;

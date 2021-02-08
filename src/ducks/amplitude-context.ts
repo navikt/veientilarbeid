@@ -12,6 +12,8 @@ export const initialState: AmplitudeData = {
     kanReaktiveres: 'nei',
     formidlingsgruppe: 'INGEN_VERDI',
     servicegruppe: 'IVURD',
+    rettighetsgruppe: 'INGEN_VERDI',
+    registreringType: 'INGEN_VERDI',
     underOppfolging: 'nei',
     antallDagerFraPeriodeslutt: 'ikke meldekortbruker',
     gitVersion: 'INGEN_VERDI',
