@@ -3,7 +3,7 @@ import { erDemo } from '../utils/app-state-utils';
 import { FormidlingsgruppeOrNull, ServicegruppeOrNull } from '../ducks/oppfolging';
 import { RegistreringTypeOrIngenVerdi } from '../ducks/bruker-info';
 import { CreatedMetrics } from './created-metrics';
-import { AmplitudeAktivitetsData, amplitudeLogger, setIdentifyProperty } from './amplitude-utils';
+import { AmplitudeData, amplitudeLogger, setIdentifyProperty } from './amplitude-utils';
 import { uniLogger } from './uni-logger';
 import { POAGruppe } from '../utils/get-poa-group';
 
@@ -149,7 +149,7 @@ export const klikkPaDifiLenke = (metrikker: KrrMetrikkData) => {
     uniLogger('krr.difi.click', metrikker);
 };
 
-export const tellPoaGruppe = (amplitudeAktivitetsData: AmplitudeAktivitetsData) => {
+export const tellPoaGruppe = (amplitudeAktivitetsData: AmplitudeData) => {
     uniLogger('poagruppe', amplitudeAktivitetsData);
 };
 

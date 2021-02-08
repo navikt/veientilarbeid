@@ -3,12 +3,12 @@ import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { loggAktivitet } from '../../metrics/metrics';
 import EmailText from './email-text';
 import { omMeldekortLenke } from '../../innhold/lenker';
-import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
+import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
 const Meldekort = () => {
-    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
+    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
     const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
 

@@ -3,7 +3,7 @@ import isKSSEksperiment from '../../utils/is-kss-eksperiment';
 import isKSSKontroll from '../../utils/is-kss-kontroll';
 import React from 'react';
 import { AutentiseringContext } from '../../ducks/autentisering';
-import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
+import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { BrukerregistreringContext } from '../../ducks/brukerregistrering';
 import { OppfolgingContext } from '../../ducks/oppfolging';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
@@ -14,7 +14,7 @@ import ukerFraDato from '../../utils/uker-fra-dato';
 import { beregnDagerEtterFastsattMeldedag } from '../../utils/meldekort-dager-etter-meldedag';
 import * as Meldekort from '../../ducks/meldekort';
 import { STATUS } from '../../ducks/api';
-import { AmplitudeAktivitetsData } from '../../metrics/amplitude-utils';
+import { AmplitudeData } from '../../metrics/amplitude-utils';
 import antallSynligeInfomeldinger from '../../utils/infomeldinger';
 import * as Meldekortstatus from '../../ducks/meldekortstatus';
 import isMeldekortbruker from '../../utils/er-meldekortbruker';
@@ -89,7 +89,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         ? 'ja'
         : 'nei';
 
-    const amplitudeAktivitetsData: AmplitudeAktivitetsData = {
+    const amplitudeAktivitetsData: AmplitudeData = {
         gruppe: POAGruppe,
         geografiskTilknytning: grupperGeografiskTilknytning(geografiskTilknytningOrIngenVerdi),
         isKSSX,
@@ -106,9 +106,5 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         antallSynligeInfomeldinger: antallSynligeInfomeldinger(),
     };
 
-    return (
-        <AmplitudeAktivitetContext.Provider value={amplitudeAktivitetsData}>
-            {props.children}
-        </AmplitudeAktivitetContext.Provider>
-    );
+    return <AmplitudeContext.Provider value={amplitudeAktivitetsData}>{props.children}</AmplitudeContext.Provider>;
 };

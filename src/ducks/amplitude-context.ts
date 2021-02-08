@@ -1,8 +1,8 @@
 import React from 'react';
-import { AmplitudeAktivitetsData } from '../metrics/amplitude-utils';
+import { AmplitudeData } from '../metrics/amplitude-utils';
 import { InnloggingsNiva } from '../ducks/autentisering';
 
-export const initialState: AmplitudeAktivitetsData = {
+export const initialState: AmplitudeData = {
     gruppe: 'boo',
     geografiskTilknytning: 'INGEN_VERDI',
     isKSSX: 'nei',
@@ -19,4 +19,4 @@ export const initialState: AmplitudeAktivitetsData = {
     antallSynligeInfomeldinger: 0,
 };
 
-export const AmplitudeAktivitetContext = React.createContext<AmplitudeAktivitetsData>(initialState);
+export const AmplitudeContext = React.createContext<AmplitudeData>(initialState);

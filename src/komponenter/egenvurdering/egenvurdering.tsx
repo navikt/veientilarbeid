@@ -11,7 +11,7 @@ import {
 import './egenvurdering.less';
 import { behovsvurderingLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
-import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
+import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
 import { OppfolgingContext, Servicegruppe } from '../../ducks/oppfolging';
 import { EgenvurderingContext } from '../../ducks/egenvurdering';
@@ -31,7 +31,7 @@ export const antallTimerSidenRegistrering = (registreringsDato: Date) => {
 };
 
 const Egenvurdering = () => {
-    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
+    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
     const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
     const egenvurderingData = React.useContext(EgenvurderingContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;

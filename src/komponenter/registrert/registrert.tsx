@@ -9,7 +9,7 @@ import { loggAktivitet, seDineOpplysninger } from '../../metrics/metrics';
 import Opplysninger from '../innsyn/registreringsopplysninger';
 import './registrert.less';
 import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
-import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
+import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import Meldekortstatus from '../meldekortstatus/meldekortstatus';
 import { datoUtenTid } from '../../utils/date-utils';
@@ -19,7 +19,7 @@ const Registrert = () => {
     const brukerinfoData = React.useContext(BrukerInfoContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const autentiseringData = React.useContext(AutentiseringContext).data;
-    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
+    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
     const [clickedInnsyn, setClickedInnsyn] = useState(false);
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { Knapp } from 'nav-frontend-knapper';
-import { AmplitudeAktivitetsData } from '../../metrics/amplitude-utils';
+import { AmplitudeData } from '../../metrics/amplitude-utils';
 import { loggAktivitet } from '../../metrics/metrics';
 import { meldekortLenke } from '../../innhold/lenker';
 
@@ -10,7 +10,7 @@ function MeldekortAdvarsel({
     amplitudeAktivitetsData,
 }: {
     dagerEtterFastsattMeldedag: number;
-    amplitudeAktivitetsData: AmplitudeAktivitetsData;
+    amplitudeAktivitetsData: AmplitudeData;
 }) {
     if (dagerEtterFastsattMeldedag === null) return null;
     const dagerTilInaktivering = beregnDagerTilInaktivering(dagerEtterFastsattMeldedag);

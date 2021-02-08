@@ -8,13 +8,13 @@ import './dialog.less';
 import { dialogLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 import { OppfolgingContext } from '../../ducks/oppfolging';
-import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
+import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { UlesteDialogerContext } from '../../ducks/ulestedialoger';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
 const Dialog = () => {
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
-    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
+    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
     const ulesteDialoger = React.useContext(UlesteDialogerContext).data;
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const kanViseKomponent = underOppfolging;

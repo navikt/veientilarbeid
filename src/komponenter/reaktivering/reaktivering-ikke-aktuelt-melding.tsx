@@ -4,13 +4,13 @@ import Lenke from 'nav-frontend-lenker';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { reaktiveringLenke, dialogLenke } from '../../innhold/lenker';
 import { loggAktivitet } from '../../metrics/metrics';
-import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
+import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
 import { OppfolgingContext } from '../../ducks/oppfolging';
-import './reaktivering-melding.less'
+import './reaktivering-melding.less';
 
 const ReaktiveringIkkeAktueltMelding = () => {
-    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
+    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
     const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
     const { securityLevel } = React.useContext(AutentiseringContext).data;
     const isLevel4 = securityLevel === InnloggingsNiva.LEVEL_4;
@@ -39,19 +39,15 @@ const ReaktiveringIkkeAktueltMelding = () => {
     }
 
     return (
-        <div> 
+        <div>
             <Normaltekst className="blokk-s">
-              <Knapp onClick={handleReaktivering}>
-                  Registrer deg som arbeidssøker
-              </Knapp>
+                <Knapp onClick={handleReaktivering}>Registrer deg som arbeidssøker</Knapp>
             </Normaltekst>
             <Normaltekst>
                 Er du usikker på om din situasjon betyr at du bør være registrert som arbeidssøker?
             </Normaltekst>
             <Normaltekst className="blokk-xs">
-                <Lenke
-                    href={dialogLenke}
-                    onClick={handleDialog}>
+                <Lenke href={dialogLenke} onClick={handleDialog}>
                     Ta kontakt med veilederen din i dialogtjenesten
                 </Lenke>
             </Normaltekst>

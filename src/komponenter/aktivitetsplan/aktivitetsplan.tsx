@@ -4,11 +4,11 @@ import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import DesignMug from './design-mug';
 import { loggAktivitet } from '../../metrics/metrics';
 import { aktivitetsplanLenke } from '../../innhold/lenker';
-import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
+import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
 const Aktivitetsplan = () => {
-    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
+    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const { location } = window;
     const nyRegistrering = parse(location.search).nyRegistrering === 'true';

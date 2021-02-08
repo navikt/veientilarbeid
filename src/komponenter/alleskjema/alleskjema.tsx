@@ -6,11 +6,11 @@ import { loggAktivitet } from '../../metrics/metrics';
 import './alleskjema.less';
 import { alleSkjemaSoknadLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
-import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
+import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
 const AlleSkjema = () => {
-    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
+    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const kanViseKomponent = underOppfolging;
 

@@ -10,7 +10,7 @@ import { Normaltekst, Systemtittel, Undertittel } from 'nav-frontend-typografi';
 import './aap.less';
 import { aapSoknadLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
-import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
+import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
@@ -23,7 +23,7 @@ const handleButtonClick = () => {
 };
 
 const Aap = () => {
-    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
+    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
     const { securityLevel } = React.useContext(AutentiseringContext).data;
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import handleViewport from 'react-in-viewport';
-import { AmplitudeAktivitetContext } from '../ducks/amplitude-aktivitet-context';
+import { AmplitudeContext } from '../ducks/amplitude-context';
 import {
     BrukerregistreringContext,
     selectDinSituasjonSvar,
@@ -39,7 +39,7 @@ function Metrics(props: Props & ViewportProps) {
     const [harVistTilBruker, setHarVistTilBruker] = React.useState<boolean>(false);
     const { formidlingsgruppe, servicegruppe, reservasjonKRR } = React.useContext(OppfolgingContext).data;
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
-    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
+    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
     const { antallDagerFraPeriodeslutt } = amplitudeAktivitetsData;
     const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
     const { erSykmeldtMedArbeidsgiver, registreringType, rettighetsgruppe, alder } = React.useContext(

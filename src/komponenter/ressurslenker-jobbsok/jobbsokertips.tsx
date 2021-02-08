@@ -3,11 +3,11 @@ import { loggAktivitet } from '../../metrics/metrics';
 import JobbsokertipsIkon from './svg/jobbsokertips';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { jobbsokerkompetanseLenke, veiviserarbeidssokerLenke } from '../../innhold/lenker';
-import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
+import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { JobbsokerbesvarelseContext } from '../../ducks/jobbsokerbesvarelse';
 
 const Jobbsokertips = () => {
-    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
+    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
     const jobbsokerbesvarelseData = React.useContext(JobbsokerbesvarelseContext).data;
 
     const harJobbbsokerbesvarelse = !!jobbsokerbesvarelseData?.raad;

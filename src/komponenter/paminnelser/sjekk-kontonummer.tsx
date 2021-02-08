@@ -4,11 +4,11 @@ import Panel from 'nav-frontend-paneler';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { loggAktivitet } from '../../metrics/metrics';
 import './paminnelse.less';
-import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
+import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
 const SjekkKontonummer = () => {
-    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
+    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
 
     const kanViseKomponent = underOppfolging;

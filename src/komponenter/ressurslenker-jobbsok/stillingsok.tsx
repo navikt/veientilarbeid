@@ -3,10 +3,10 @@ import { loggAktivitet } from '../../metrics/metrics';
 import StillingsokIkon from './svg/stillingsok';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { stillingLenke } from '../../innhold/lenker';
-import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
+import { AmplitudeContext } from '../../ducks/amplitude-context';
 
 const StillingSok = () => {
-    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
+    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
 
     const handleClick = () => {
         loggAktivitet({ aktivitet: 'Går til ledige stillinger', ...amplitudeAktivitetsData });

@@ -3,10 +3,10 @@ import { loggAktivitet } from '../../metrics/metrics';
 import CvIkon from './svg/cv';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { cvLenke } from '../../innhold/lenker';
-import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
+import { AmplitudeContext } from '../../ducks/amplitude-context';
 
 const CV = () => {
-    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
+    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
 
     const handleClick = () => {
         loggAktivitet({ aktivitet: 'Går til CV', ...amplitudeAktivitetsData });

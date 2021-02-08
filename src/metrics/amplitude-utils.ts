@@ -21,7 +21,7 @@ amplitude.getInstance().init(apiKey, undefined, config);
 
 export type AmplitudeLogger = (name: string, values?: object) => void;
 
-export type AmplitudeAktivitetsData = {
+export type AmplitudeData = {
     gruppe: POAGruppe;
     geografiskTilknytning: string;
     isKSSX: string;

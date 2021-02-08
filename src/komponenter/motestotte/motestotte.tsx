@@ -17,7 +17,7 @@ import './motestotte.less';
 import { OppfolgingContext, Servicegruppe } from '../../ducks/oppfolging';
 import { MotestotteContext } from '../../ducks/motestotte';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
-import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
+import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import tekster from '../../tekster/tekster';
 
@@ -46,7 +46,7 @@ const lagKnappelytter = (antallTimer = 0, foreslattInnsatsgruppe = 'UKJENT') => 
 };
 
 const Motestotte = () => {
-    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
+    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
     const data = React.useContext(BrukerregistreringContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const motestotteData = React.useContext(MotestotteContext).data;

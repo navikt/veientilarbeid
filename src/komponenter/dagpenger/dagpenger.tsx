@@ -6,12 +6,12 @@ import { loggAktivitet } from '../../metrics/metrics';
 import './dagpenger.less';
 import { dagpengerSoknadLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
-import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
+import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
 const Dagpenger = () => {
-    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
+    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
     const kanViseKomponent = underOppfolging && !erSykmeldtMedArbeidsgiver;

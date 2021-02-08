@@ -5,7 +5,7 @@ import Lenke from 'nav-frontend-lenker';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { reaktiveringLenke, dialogLenke } from '../../innhold/lenker';
 import { loggAktivitet } from '../../metrics/metrics';
-import { AmplitudeAktivitetContext } from '../../ducks/amplitude-aktivitet-context';
+import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
 import { OppfolgingContext } from '../../ducks/oppfolging';
 import './reaktivering-melding.less';
@@ -21,7 +21,7 @@ type Props = {
 };
 
 const ReaktiveringMelding = (props: Props & ViewportProps) => {
-    const amplitudeAktivitetsData = React.useContext(AmplitudeAktivitetContext);
+    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
     const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
     const { securityLevel } = React.useContext(AutentiseringContext).data;
 
