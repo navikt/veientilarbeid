@@ -46,7 +46,7 @@ const lagKnappelytter = (antallTimer = 0, foreslattInnsatsgruppe = 'UKJENT') => 
 };
 
 const Motestotte = () => {
-    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
+    const amplitudeData = React.useContext(AmplitudeContext);
     const data = React.useContext(BrukerregistreringContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const motestotteData = React.useContext(MotestotteContext).data;
@@ -78,11 +78,11 @@ const Motestotte = () => {
 
     React.useEffect(() => {
         if (kanViseKomponent) {
-            loggAktivitet({ aktivitet: 'Viser møtestøtte', ...amplitudeAktivitetsData });
+            loggAktivitet({ aktivitet: 'Viser møtestøtte', ...amplitudeData });
             uniLogger('motestotte.visning', { antallTimer, foreslattInnsatsgruppe });
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [kanViseKomponent, amplitudeAktivitetsData]);
+    }, [kanViseKomponent, amplitudeData]);
 
     if (!kanViseKomponent) return null;
 

@@ -29,13 +29,13 @@ const repackBesvarelser = (besvarelse: Besvarelse, teksterForBesvarelse: Array<S
 };
 
 const Opplysninger = (props: any) => {
-    const { opprettetDato, manueltRegistrertAv, besvarelse, teksterForBesvarelse, amplitudeAktivitetsData } = props;
+    const { opprettetDato, manueltRegistrertAv, besvarelse, teksterForBesvarelse, amplitudeData } = props;
     const besvarelser = repackBesvarelser(besvarelse, teksterForBesvarelse);
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const kanViseKomponent = underOppfolging;
 
     const handleDialogClick = () => {
-        loggAktivitet({ aktivitet: 'Går til endre registreringsopplysninger', ...amplitudeAktivitetsData });
+        loggAktivitet({ aktivitet: 'Går til endre registreringsopplysninger', ...amplitudeData });
     };
 
     return !kanViseKomponent ? null : (

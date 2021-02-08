@@ -8,23 +8,23 @@ import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
 const SjekkKontonummer = () => {
-    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
+    const amplitudeData = React.useContext(AmplitudeContext);
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
 
     const kanViseKomponent = underOppfolging;
 
     React.useEffect(() => {
         if (kanViseKomponent) {
-            loggAktivitet({ aktivitet: 'Viser sjekk kontonummer', ...amplitudeAktivitetsData });
+            loggAktivitet({ aktivitet: 'Viser sjekk kontonummer', ...amplitudeData });
         }
-    }, [amplitudeAktivitetsData, kanViseKomponent]);
+    }, [amplitudeData, kanViseKomponent]);
 
     if (!kanViseKomponent) {
         return null;
     }
 
     const handleClick = () => {
-        loggAktivitet({ aktivitet: 'Går til sjekk kontonummer', ...amplitudeAktivitetsData });
+        loggAktivitet({ aktivitet: 'Går til sjekk kontonummer', ...amplitudeData });
     };
 
     return (

@@ -7,10 +7,10 @@ import { meldekortLenke } from '../../innhold/lenker';
 
 function MeldekortAdvarsel({
     dagerEtterFastsattMeldedag,
-    amplitudeAktivitetsData,
+    amplitudeData,
 }: {
     dagerEtterFastsattMeldedag: number;
-    amplitudeAktivitetsData: AmplitudeData;
+    amplitudeData: AmplitudeData;
 }) {
     if (dagerEtterFastsattMeldedag === null) return null;
     const dagerTilInaktivering = beregnDagerTilInaktivering(dagerEtterFastsattMeldedag);
@@ -19,7 +19,7 @@ function MeldekortAdvarsel({
     const tillegg = dagerEtterFastsattMeldedag > 2 ? <LittStrengereVarsel /> : null;
 
     const meldekortknappKlikk = () => {
-        loggAktivitet({ aktivitet: 'Går til meldekort fra advarsel', ...amplitudeAktivitetsData });
+        loggAktivitet({ aktivitet: 'Går til meldekort fra advarsel', ...amplitudeData });
         window.location.assign(meldekortLenke);
     };
 

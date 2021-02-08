@@ -14,23 +14,23 @@ import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
 const Dialog = () => {
     const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
-    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
+    const amplitudeData = React.useContext(AmplitudeContext);
     const ulesteDialoger = React.useContext(UlesteDialogerContext).data;
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const kanViseKomponent = underOppfolging;
 
     React.useEffect(() => {
-        loggAktivitet({ aktivitet: 'Viser dialog', ...amplitudeAktivitetsData });
-    }, [amplitudeAktivitetsData]);
+        loggAktivitet({ aktivitet: 'Viser dialog', ...amplitudeData });
+    }, [amplitudeData]);
 
     const { antallUleste } = ulesteDialoger;
 
     const handleClick = () => {
         gaTilDialog(antallUleste, servicegruppe);
         if (antallUleste > 0) {
-            loggAktivitet({ aktivitet: 'Svarer på dialog', ...amplitudeAktivitetsData });
+            loggAktivitet({ aktivitet: 'Svarer på dialog', ...amplitudeData });
         } else {
-            loggAktivitet({ aktivitet: 'Innleder dialog', ...amplitudeAktivitetsData });
+            loggAktivitet({ aktivitet: 'Innleder dialog', ...amplitudeData });
         }
     };
 

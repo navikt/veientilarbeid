@@ -10,18 +10,18 @@ import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
 const AlleSkjema = () => {
-    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
+    const amplitudeData = React.useContext(AmplitudeContext);
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const kanViseKomponent = underOppfolging;
 
     React.useEffect(() => {
         if (kanViseKomponent) {
-            loggAktivitet({ aktivitet: 'Viser alle skjema', ...amplitudeAktivitetsData });
+            loggAktivitet({ aktivitet: 'Viser alle skjema', ...amplitudeData });
         }
-    }, [amplitudeAktivitetsData, kanViseKomponent]);
+    }, [amplitudeData, kanViseKomponent]);
 
     const handleButtonClick = () => {
-        loggAktivitet({ aktivitet: 'Går til alle skjema', ...amplitudeAktivitetsData });
+        loggAktivitet({ aktivitet: 'Går til alle skjema', ...amplitudeData });
         window.location.assign(alleSkjemaSoknadLenke);
     };
 

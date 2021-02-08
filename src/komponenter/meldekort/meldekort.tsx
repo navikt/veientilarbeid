@@ -8,7 +8,7 @@ import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
 const Meldekort = () => {
-    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
+    const amplitudeData = React.useContext(AmplitudeContext);
     const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
 
@@ -16,9 +16,9 @@ const Meldekort = () => {
 
     React.useEffect(() => {
         if (kanViseKomponent) {
-            loggAktivitet({ aktivitet: 'Viser til meldekortet', ...amplitudeAktivitetsData });
+            loggAktivitet({ aktivitet: 'Viser til meldekortet', ...amplitudeData });
         }
-    }, [kanViseKomponent, amplitudeAktivitetsData]);
+    }, [kanViseKomponent, amplitudeData]);
 
     if (!kanViseKomponent) {
         return null;
@@ -28,7 +28,7 @@ const Meldekort = () => {
     const ingress = 'meldekort-ingress';
 
     const handleClick = () => {
-        loggAktivitet({ aktivitet: 'Går til meldekortet', ...amplitudeAktivitetsData });
+        loggAktivitet({ aktivitet: 'Går til meldekortet', ...amplitudeData });
     };
 
     return (

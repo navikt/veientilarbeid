@@ -13,19 +13,19 @@ import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 const KrrMelding = () => {
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const { reservasjonKRR } = oppfolgingData;
-    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
+    const amplitudeData = React.useContext(AmplitudeContext);
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const kanViseKomponent = underOppfolging;
 
     const handleLenkeKlikk = () => {
-        loggAktivitet({ aktivitet: 'Går til krr-oppsett', ...amplitudeAktivitetsData });
+        loggAktivitet({ aktivitet: 'Går til krr-oppsett', ...amplitudeData });
     };
 
     React.useEffect(() => {
         if (reservasjonKRR) {
-            loggAktivitet({ aktivitet: 'Viser krr melding', ...amplitudeAktivitetsData });
+            loggAktivitet({ aktivitet: 'Viser krr melding', ...amplitudeData });
         }
-    }, [reservasjonKRR, amplitudeAktivitetsData]);
+    }, [reservasjonKRR, amplitudeData]);
 
     if (!reservasjonKRR || !kanViseKomponent) return null;
 

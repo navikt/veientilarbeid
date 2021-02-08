@@ -7,7 +7,7 @@ import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { JobbsokerbesvarelseContext } from '../../ducks/jobbsokerbesvarelse';
 
 const Jobbsokertips = () => {
-    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
+    const amplitudeData = React.useContext(AmplitudeContext);
     const jobbsokerbesvarelseData = React.useContext(JobbsokerbesvarelseContext).data;
 
     const harJobbbsokerbesvarelse = !!jobbsokerbesvarelseData?.raad;
@@ -21,7 +21,7 @@ const Jobbsokertips = () => {
     const aktivitet = harJobbbsokerbesvarelse ? 'Går til jobbsøkerkompetanse' : 'Går til veiviser arbeidssøker';
 
     const handleClick = () => {
-        loggAktivitet({ aktivitet: aktivitet, ...amplitudeAktivitetsData });
+        loggAktivitet({ aktivitet: aktivitet, ...amplitudeData });
     };
 
     return (

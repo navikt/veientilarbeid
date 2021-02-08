@@ -39,8 +39,8 @@ function Metrics(props: Props & ViewportProps) {
     const [harVistTilBruker, setHarVistTilBruker] = React.useState<boolean>(false);
     const { formidlingsgruppe, servicegruppe, reservasjonKRR } = React.useContext(OppfolgingContext).data;
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
-    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
-    const { antallDagerFraPeriodeslutt } = amplitudeAktivitetsData;
+    const amplitudeData = React.useContext(AmplitudeContext);
+    const { antallDagerFraPeriodeslutt } = amplitudeData;
     const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
     const { erSykmeldtMedArbeidsgiver, registreringType, rettighetsgruppe, alder } = React.useContext(
         BrukerInfoContext
@@ -97,16 +97,16 @@ function Metrics(props: Props & ViewportProps) {
         );
         hotjarTrigger(erMikrofrontend(), POAGruppe, hotjarEksperiment());
         setIdentifyPoaGruppe(POAGruppe);
-        tellPoaGruppe(amplitudeAktivitetsData);
-        loggAktivitet({ aktivitet: 'Viser veien til arbeid', ...amplitudeAktivitetsData });
+        tellPoaGruppe(amplitudeData);
+        loggAktivitet({ aktivitet: 'Viser veien til arbeid', ...amplitudeData });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     React.useEffect(() => {
         if (harVistTilBruker) {
-            loggAktivitet({ aktivitet: 'Veien til arbeid i viewport', ...amplitudeAktivitetsData });
+            loggAktivitet({ aktivitet: 'Veien til arbeid i viewport', ...amplitudeData });
         }
-    }, [amplitudeAktivitetsData, harVistTilBruker]);
+    }, [amplitudeData, harVistTilBruker]);
 
     return <span ref={props.forwardedRef}></span>;
 }

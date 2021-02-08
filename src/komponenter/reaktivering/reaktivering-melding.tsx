@@ -21,7 +21,7 @@ type Props = {
 };
 
 const ReaktiveringMelding = (props: Props & ViewportProps) => {
-    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
+    const amplitudeData = React.useContext(AmplitudeContext);
     const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
     const { securityLevel } = React.useContext(AutentiseringContext).data;
 
@@ -37,25 +37,25 @@ const ReaktiveringMelding = (props: Props & ViewportProps) => {
 
     React.useEffect(() => {
         if (kanViseKomponent && harVistTilBruker) {
-            loggAktivitet({ aktivitet: 'Viser reaktiveringsmelding', ...amplitudeAktivitetsData });
+            loggAktivitet({ aktivitet: 'Viser reaktiveringsmelding', ...amplitudeData });
         }
-    }, [kanViseKomponent, amplitudeAktivitetsData, harVistTilBruker]);
+    }, [kanViseKomponent, amplitudeData, harVistTilBruker]);
 
     const handleReaktivering = (event: React.SyntheticEvent) => {
         event.preventDefault();
-        loggAktivitet({ aktivitet: 'Går til reaktivering', ...amplitudeAktivitetsData });
+        loggAktivitet({ aktivitet: 'Går til reaktivering', ...amplitudeData });
         window.location.assign(reaktiveringLenke);
     };
 
     const handleDialog = (event: React.SyntheticEvent) => {
         event.preventDefault();
-        loggAktivitet({ aktivitet: 'Går til dialog fra reaktiveringskortet', ...amplitudeAktivitetsData });
+        loggAktivitet({ aktivitet: 'Går til dialog fra reaktiveringskortet', ...amplitudeData });
         window.location.assign(dialogLenke);
     };
 
     const handleIkkeReaktivering = (event: React.SyntheticEvent) => {
         event.preventDefault();
-        loggAktivitet({ aktivitet: 'Velger ikke vis reaktivering', ...amplitudeAktivitetsData });
+        loggAktivitet({ aktivitet: 'Velger ikke vis reaktivering', ...amplitudeData });
         setApen(false);
         setTimeout(() => {
             setReaktivering({

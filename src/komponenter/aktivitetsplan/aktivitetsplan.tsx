@@ -8,7 +8,7 @@ import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
 const Aktivitetsplan = () => {
-    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
+    const amplitudeData = React.useContext(AmplitudeContext);
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const { location } = window;
     const nyRegistrering = parse(location.search).nyRegistrering === 'true';
@@ -18,12 +18,12 @@ const Aktivitetsplan = () => {
 
     React.useEffect(() => {
         if (kanViseKomponent) {
-            loggAktivitet({ aktivitet: 'Viser aktivitetsplanen', ...amplitudeAktivitetsData });
+            loggAktivitet({ aktivitet: 'Viser aktivitetsplanen', ...amplitudeData });
         }
-    }, [amplitudeAktivitetsData, kanViseKomponent]);
+    }, [amplitudeData, kanViseKomponent]);
 
     const handleClick = () => {
-        loggAktivitet({ aktivitet: 'Går til aktivitetsplanen', ...amplitudeAktivitetsData });
+        loggAktivitet({ aktivitet: 'Går til aktivitetsplanen', ...amplitudeData });
     };
 
     return !kanViseKomponent ? null : (

@@ -149,8 +149,8 @@ export const klikkPaDifiLenke = (metrikker: KrrMetrikkData) => {
     uniLogger('krr.difi.click', metrikker);
 };
 
-export const tellPoaGruppe = (amplitudeAktivitetsData: AmplitudeData) => {
-    uniLogger('poagruppe', amplitudeAktivitetsData);
+export const tellPoaGruppe = (amplitudeData: AmplitudeData) => {
+    uniLogger('poagruppe', amplitudeData);
 };
 
 export const setIdentifyPoaGruppe = (gruppe: POAGruppe) => {

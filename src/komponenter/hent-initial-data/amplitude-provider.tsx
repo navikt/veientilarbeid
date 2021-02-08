@@ -89,7 +89,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         ? 'ja'
         : 'nei';
 
-    const amplitudeAktivitetsData: AmplitudeData = {
+    const amplitudeData: AmplitudeData = {
         gruppe: POAGruppe,
         geografiskTilknytning: grupperGeografiskTilknytning(geografiskTilknytningOrIngenVerdi),
         isKSSX,
@@ -106,5 +106,5 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         antallSynligeInfomeldinger: antallSynligeInfomeldinger(),
     };
 
-    return <AmplitudeContext.Provider value={amplitudeAktivitetsData}>{props.children}</AmplitudeContext.Provider>;
+    return <AmplitudeContext.Provider value={amplitudeData}>{props.children}</AmplitudeContext.Provider>;
 };

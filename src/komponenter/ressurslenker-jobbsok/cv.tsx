@@ -6,10 +6,10 @@ import { cvLenke } from '../../innhold/lenker';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 
 const CV = () => {
-    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
+    const amplitudeData = React.useContext(AmplitudeContext);
 
     const handleClick = () => {
-        loggAktivitet({ aktivitet: 'Går til CV', ...amplitudeAktivitetsData });
+        loggAktivitet({ aktivitet: 'Går til CV', ...amplitudeData });
     };
 
     return (

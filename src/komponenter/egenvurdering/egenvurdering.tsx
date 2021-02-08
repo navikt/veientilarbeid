@@ -31,7 +31,7 @@ export const antallTimerSidenRegistrering = (registreringsDato: Date) => {
 };
 
 const Egenvurdering = () => {
-    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
+    const amplitudeData = React.useContext(AmplitudeContext);
     const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
     const egenvurderingData = React.useContext(EgenvurderingContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
@@ -73,12 +73,12 @@ const Egenvurdering = () => {
     React.useEffect(() => {
         if (skalViseEgenvurderingLenke) {
             seEgenvurdering(foreslattInnsatsgruppe);
-            loggAktivitet({ aktivitet: 'Viser egenvurdering', ...amplitudeAktivitetsData });
+            loggAktivitet({ aktivitet: 'Viser egenvurdering', ...amplitudeData });
         }
-    }, [skalViseEgenvurderingLenke, foreslattInnsatsgruppe, amplitudeAktivitetsData]);
+    }, [skalViseEgenvurderingLenke, foreslattInnsatsgruppe, amplitudeData]);
 
     const handleButtonClick = () => {
-        loggAktivitet({ aktivitet: 'Går til egenvurdering', ...amplitudeAktivitetsData });
+        loggAktivitet({ aktivitet: 'Går til egenvurdering', ...amplitudeData });
         gaTilEgenvurdering(timerSidenRegistrering, foreslattInnsatsgruppe);
         window.location.assign(behovsvurderingLenke);
     };

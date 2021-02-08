@@ -10,7 +10,7 @@ import { OppfolgingContext } from '../../ducks/oppfolging';
 import './reaktivering-melding.less';
 
 const ReaktiveringIkkeAktueltMelding = () => {
-    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
+    const amplitudeData = React.useContext(AmplitudeContext);
     const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
     const { securityLevel } = React.useContext(AutentiseringContext).data;
     const isLevel4 = securityLevel === InnloggingsNiva.LEVEL_4;
@@ -18,19 +18,19 @@ const ReaktiveringIkkeAktueltMelding = () => {
 
     React.useEffect(() => {
         if (kanViseKomponent) {
-            loggAktivitet({ aktivitet: 'Viser reaktivering ikke aktuelt', ...amplitudeAktivitetsData });
+            loggAktivitet({ aktivitet: 'Viser reaktivering ikke aktuelt', ...amplitudeData });
         }
-    }, [kanViseKomponent, amplitudeAktivitetsData]);
+    }, [kanViseKomponent, amplitudeData]);
 
     const handleReaktivering = (event: React.SyntheticEvent) => {
         event.preventDefault();
-        loggAktivitet({ aktivitet: 'Går til reaktivering fra reaktivering ikke aktuelt', ...amplitudeAktivitetsData });
+        loggAktivitet({ aktivitet: 'Går til reaktivering fra reaktivering ikke aktuelt', ...amplitudeData });
         window.location.assign(reaktiveringLenke);
     };
 
     const handleDialog = (event: React.SyntheticEvent) => {
         event.preventDefault();
-        loggAktivitet({ aktivitet: 'Går til dialog fra reaktivering ikke aktuelt', ...amplitudeAktivitetsData });
+        loggAktivitet({ aktivitet: 'Går til dialog fra reaktivering ikke aktuelt', ...amplitudeData });
         window.location.assign(dialogLenke);
     };
 

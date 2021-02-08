@@ -19,7 +19,7 @@ const Registrert = () => {
     const brukerinfoData = React.useContext(BrukerInfoContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const autentiseringData = React.useContext(AutentiseringContext).data;
-    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
+    const amplitudeData = React.useContext(AmplitudeContext);
     const [clickedInnsyn, setClickedInnsyn] = useState(false);
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
 
@@ -30,9 +30,9 @@ const Registrert = () => {
 
     React.useEffect(() => {
         if (kanViseKomponent) {
-            loggAktivitet({ aktivitet: 'Viser du er registrert', ...amplitudeAktivitetsData });
+            loggAktivitet({ aktivitet: 'Viser du er registrert', ...amplitudeData });
         }
-    }, [kanViseKomponent, amplitudeAktivitetsData]);
+    }, [kanViseKomponent, amplitudeData]);
 
     if (!kanViseKomponent) {
         return null;
@@ -66,7 +66,7 @@ const Registrert = () => {
 
     const handleClickOpen = () => {
         if (!clickedInnsyn) {
-            loggAktivitet({ aktivitet: 'Ser opplysninger fra registreringen', ...amplitudeAktivitetsData });
+            loggAktivitet({ aktivitet: 'Ser opplysninger fra registreringen', ...amplitudeData });
             setClickedInnsyn(true);
         }
     };
@@ -91,7 +91,7 @@ const Registrert = () => {
                         manueltRegistrertAv={manueltRegistrertAv}
                         besvarelse={besvarelse}
                         teksterForBesvarelse={teksterForBesvarelse}
-                        amplitudeAktivitetsData={amplitudeAktivitetsData}
+                        amplitudeData={amplitudeData}
                     />
                 </Ekspanderbartpanel>
             ) : null}

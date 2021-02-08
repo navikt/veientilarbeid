@@ -18,7 +18,7 @@ import { AmplitudeContext } from '../../ducks/amplitude-context';
 function Meldekortstatus({ iDag }: { iDag: Date }) {
     const { data: meldekortData } = React.useContext(Meldekort.MeldekortContext);
     const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
-    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
+    const amplitudeData = React.useContext(AmplitudeContext);
 
     if (!meldekortData || kanReaktiveres) return null;
 
@@ -30,10 +30,7 @@ function Meldekortstatus({ iDag }: { iDag: Date }) {
 
     return (
         <div className={'meldekortvarsel-container'}>
-            <MeldekortAdvarsel
-                dagerEtterFastsattMeldedag={dagerEtterFastsattMeldedag}
-                amplitudeAktivitetsData={amplitudeAktivitetsData}
-            />
+            <MeldekortAdvarsel dagerEtterFastsattMeldedag={dagerEtterFastsattMeldedag} amplitudeData={amplitudeData} />
             <Normaltekst>
                 Det er innsending av meldekortet som opprettholder din status som arbeidssøker hos NAV.
             </Normaltekst>

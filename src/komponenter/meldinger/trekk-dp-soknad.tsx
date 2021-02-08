@@ -8,23 +8,23 @@ import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
 const TrekkDagpengeSoknad = () => {
-    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
+    const amplitudeData = React.useContext(AmplitudeContext);
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
 
     const kanViseKomponent = underOppfolging;
 
     React.useEffect(() => {
         if (kanViseKomponent) {
-            loggAktivitet({ aktivitet: 'Viser trekk dagpengesøknad', ...amplitudeAktivitetsData });
+            loggAktivitet({ aktivitet: 'Viser trekk dagpengesøknad', ...amplitudeData });
         }
-    }, [kanViseKomponent, amplitudeAktivitetsData]);
+    }, [kanViseKomponent, amplitudeData]);
 
     if (!kanViseKomponent) {
         return null;
     }
 
     const handleClick = () => {
-        loggAktivitet({ aktivitet: 'Går til trekk dagpengesøknad', ...amplitudeAktivitetsData });
+        loggAktivitet({ aktivitet: 'Går til trekk dagpengesøknad', ...amplitudeData });
     };
 
     return (

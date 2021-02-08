@@ -8,16 +8,16 @@ import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
 const DittSykefravaer = () => {
-    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
+    const amplitudeData = React.useContext(AmplitudeContext);
     const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const kanViseKomponent = erSykmeldtMedArbeidsgiver && underOppfolging;
 
     React.useEffect(() => {
         if (kanViseKomponent) {
-            loggAktivitet({ aktivitet: 'Viser ditt sykefravær', ...amplitudeAktivitetsData });
+            loggAktivitet({ aktivitet: 'Viser ditt sykefravær', ...amplitudeData });
         }
-    }, [amplitudeAktivitetsData, kanViseKomponent]);
+    }, [amplitudeData, kanViseKomponent]);
 
     if (!kanViseKomponent) {
         return null;
@@ -27,7 +27,7 @@ const DittSykefravaer = () => {
     const ingress = 'ditt-sykefravaer-ingress';
 
     const handleClick = () => {
-        loggAktivitet({ aktivitet: 'Går til ditt sykefravær', ...amplitudeAktivitetsData });
+        loggAktivitet({ aktivitet: 'Går til ditt sykefravær', ...amplitudeData });
     };
 
     return (

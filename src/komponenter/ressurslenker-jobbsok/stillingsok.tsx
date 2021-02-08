@@ -6,10 +6,10 @@ import { stillingLenke } from '../../innhold/lenker';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 
 const StillingSok = () => {
-    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
+    const amplitudeData = React.useContext(AmplitudeContext);
 
     const handleClick = () => {
-        loggAktivitet({ aktivitet: 'Går til ledige stillinger', ...amplitudeAktivitetsData });
+        loggAktivitet({ aktivitet: 'Går til ledige stillinger', ...amplitudeData });
     };
 
     return (

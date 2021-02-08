@@ -23,7 +23,7 @@ const handleButtonClick = () => {
 };
 
 const Aap = () => {
-    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
+    const amplitudeData = React.useContext(AmplitudeContext);
     const { securityLevel } = React.useContext(AutentiseringContext).data;
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
@@ -41,9 +41,9 @@ const Aap = () => {
 
     React.useEffect(() => {
         if (erSykmeldtMedArbeidsgiver) {
-            loggAktivitet({ aktivitet: 'Viser aap', ...amplitudeAktivitetsData });
+            loggAktivitet({ aktivitet: 'Viser aap', ...amplitudeData });
         }
-    }, [amplitudeAktivitetsData, erSykmeldtMedArbeidsgiver]);
+    }, [amplitudeData, erSykmeldtMedArbeidsgiver]);
 
     return !kanViseKomponent ? null : (
         <Rad>

@@ -11,17 +11,17 @@ import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
 const Dagpenger = () => {
-    const amplitudeAktivitetsData = React.useContext(AmplitudeContext);
+    const amplitudeData = React.useContext(AmplitudeContext);
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
     const kanViseKomponent = underOppfolging && !erSykmeldtMedArbeidsgiver;
 
     React.useEffect(() => {
-        loggAktivitet({ aktivitet: 'Viser dagpengesøknad', ...amplitudeAktivitetsData });
-    }, [amplitudeAktivitetsData]);
+        loggAktivitet({ aktivitet: 'Viser dagpengesøknad', ...amplitudeData });
+    }, [amplitudeData]);
 
     const handleButtonClick = () => {
-        loggAktivitet({ aktivitet: 'Går til dagpengesøknad', ...amplitudeAktivitetsData });
+        loggAktivitet({ aktivitet: 'Går til dagpengesøknad', ...amplitudeData });
         window.location.assign(dagpengerSoknadLenke);
     };
 
