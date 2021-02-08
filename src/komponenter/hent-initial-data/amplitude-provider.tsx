@@ -49,7 +49,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const meldekortContext = React.useContext(Meldekort.MeldekortContext);
     const meldekortStatusContext = React.useContext(Meldekortstatus.MeldekortstatusContext);
 
-    const { alder, geografiskTilknytning } = brukerInfoData;
+    const { alder, geografiskTilknytning, registreringType, rettighetsgruppe } = brukerInfoData;
     const { servicegruppe, formidlingsgruppe, kanReaktiveres } = oppfolgingData;
     const opprettetRegistreringDatoString = brukerregistreringData?.registrering.opprettetDato;
     const dinSituasjon = brukerregistreringData?.registrering.besvarelse.dinSituasjon || 'INGEN_VERDI';
@@ -100,6 +100,8 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         formidlingsgruppe: formidlingsgruppeOrIngenVerdi,
         servicegruppe: servicegruppeOrIVURD,
         underOppfolging: underOppfolging ? 'ja' : 'nei',
+        rettighetsgruppe: rettighetsgruppe || 'INGEN_VERDI',
+        registreringType: registreringType || 'INGEN_VERDI',
         antallDagerFraPeriodeslutt: antallDagerFraPeriodeslutt,
         gitVersion: process.env.REACT_APP_VERSION_HASH || 'INGEN_VERDI',
         buildTimestamp: process.env.REACT_APP_BUILD_TIMESTAMP || new Date().toISOString(),
