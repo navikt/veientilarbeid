@@ -2,6 +2,7 @@ import 'core-js';
 import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import * as Sentry from '@sentry/browser';
 import App from './app';
 
 import './index.less';
@@ -30,10 +31,12 @@ if (!erMikrofrontend()) {
     if (brukerReelleData) {
         redirectTilDittNav();
     } else {
+        Sentry.init({
+            dsn: 'https://c24577bb13734aaeb8968748ec67a24f@sentry.gc.nav.no/59',
+        });
         ReactDOM.render(<App />, document.getElementById('maincontent') as HTMLElement);
     }
 }
-
 if (erMikrofrontend()) {
     NAVSPA.eksporter('vta', App);
 }
