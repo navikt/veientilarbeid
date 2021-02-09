@@ -1,40 +1,11 @@
 import { ForeslattInnsatsgruppe } from '../ducks/brukerregistrering';
-import { erDemo } from '../utils/app-state-utils';
 import { FormidlingsgruppeOrNull, ServicegruppeOrNull } from '../ducks/oppfolging';
 import { RegistreringTypeOrIngenVerdi } from '../ducks/bruker-info';
-import { CreatedMetrics } from './created-metrics';
 import { AmplitudeData, amplitudeLogger, setIdentifyProperty } from './amplitude-utils';
 import { uniLogger } from './uni-logger';
 import { POAGruppe } from '../utils/get-poa-group';
 
-const createdMetrics = new CreatedMetrics();
-
-const w = window as any;
-
 const domene = 'veientilarbeid';
-
-const logEvent = w.frontendlogger
-    ? (navn: string, fields: object, tags: object) => {
-          if (erDemo()) {
-              return;
-          }
-
-          const metrikkId = `${domene}.${navn}`;
-
-          const metrikkAlleredeOpprettet = createdMetrics.alreadyCreated(metrikkId);
-
-          if (metrikkAlleredeOpprettet) {
-              w.frontendlogger.event(`${domene}.duplikat`, {}, { metrikk: metrikkId });
-          }
-
-          if (!metrikkAlleredeOpprettet) {
-              w.frontendlogger.event(metrikkId, fields, tags);
-              createdMetrics.registerCreatedMetric(metrikkId);
-          }
-      }
-    : () => {
-          return;
-      };
 
 export const seVeientilarbeid = (
     erSykmeldtMedArbeidsgiver: boolean,
@@ -48,26 +19,6 @@ export const seVeientilarbeid = (
     fremtidigSituasjon: String,
     reservasjonKRR: string
 ) => {
-    logEvent(
-        'seveientilarbeid',
-        {
-            erSykmeldtMedArbeidsgiverField: erSykmeldtMedArbeidsgiver,
-            servicegruppeField: servicegruppe,
-            microfrontendField: microfrontend,
-        },
-        {
-            erSykmeldtMedArbeidsgiver,
-            servicegruppeTag: servicegruppe,
-            microfrontendTag: microfrontend,
-            formidlingsgruppe,
-            rettighetsgruppe,
-            dinSituasjon,
-            underOppfolging,
-            registreringType,
-            fremtidigSituasjon,
-            reservasjonKRR,
-        }
-    );
     amplitudeLogger(`${domene}.visning`, {
         erSykmeldtMedArbeidsgiver,
         servicegruppe,
@@ -83,48 +34,26 @@ export const seVeientilarbeid = (
 };
 
 export const seVeientilarbeidNiva3 = () => {
-    logEvent('seveientilarbeidniva3', {}, {});
     amplitudeLogger(`${domene}.nivaa3.visning`);
 };
 
 export const gaTilDialog = (antall: number, servicegruppe: string | null) => {
-    logEvent(
-        'gatildialog',
-        { antallField: antall, innsatsgruppeField: servicegruppe },
-        { antallTag: antall, innsatsgruppeTag: servicegruppe }
-    );
     amplitudeLogger(`${domene}.dialog.click`, { antall, servicegruppe });
 };
 
 export const gaTilDialogPermittert = (antall: number, servicegruppe: string | null) => {
-    logEvent(
-        'gatildialogpermittert',
-        { antallField: antall, innsatsgruppeField: servicegruppe },
-        { antallTag: antall, innsatsgruppeTag: servicegruppe }
-    );
     amplitudeLogger(`${domene}.dialog.permittert.click`, { antall, servicegruppe });
 };
 
-export const antallUlesteDialoger = (antall: number) => {
-    logEvent('antallulestedialoger', { antallField: antall }, { antallTag: antall });
-};
-
 export const seEgenvurdering = (foreslaattinnsatsgruppe: ForeslattInnsatsgruppe) => {
-    logEvent('seegenvurdering', {}, { foreslaattInnsatsgruppe: foreslaattinnsatsgruppe });
     amplitudeLogger(`${domene}.egenvurdering.visning`, { foreslaattinnsatsgruppe });
 };
 
 export const gaTilEgenvurdering = (antallTimer: number, foreslaattinnsatsgruppe: ForeslattInnsatsgruppe) => {
-    logEvent('gatilegenvurdering', { antallTimer: antallTimer }, { foreslaattInnsatsgruppe: foreslaattinnsatsgruppe });
     amplitudeLogger(`${domene}.egenvurdering.click`, { antallTimer, foreslaattinnsatsgruppe });
 };
 
 export const lesOmOkonomi = (stonad: string, servicegruppe: string | null) => {
-    logEvent(
-        'lesomokonomi',
-        { stonadField: stonad, innsatsgruppeField: servicegruppe },
-        { stonadTag: stonad, innsatsgruppeTag: servicegruppe }
-    );
     amplitudeLogger(`${domene}.okonomi.click`, { stonad, servicegruppe });
 };
 

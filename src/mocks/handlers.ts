@@ -1,4 +1,4 @@
-import {AUTH_API} from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
+import { AUTH_API } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
 import AuthResponse from './auth-mock';
 import ulesteDialogerResponse from './ulestedialoger-mock';
 import egenvurderingbesvarelseResponse from './egenvurderingbesvarelse-mock';
@@ -23,7 +23,7 @@ import {
     NESTE_MELDEKORT_URL,
     ULESTEDIALOGER_URL,
     UNDER_OPPFOLGING_URL,
-    VEILARBOPPFOLGING_URL
+    VEILARBOPPFOLGING_URL,
 } from '../ducks/api';
 
 export const handlers = [

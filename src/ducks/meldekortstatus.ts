@@ -1,4 +1,4 @@
-import {DataElement, STATUS} from './api';
+import { DataElement, STATUS } from './api';
 import React from 'react';
 
 export interface State extends DataElement {
@@ -6,22 +6,22 @@ export interface State extends DataElement {
 }
 
 interface NesteMeldekort {
-    uke: string
-    kanSendesFra: string
-    til: string
-    fra: string
+    uke: string;
+    kanSendesFra: string;
+    til: string;
+    fra: string;
 }
 
 export interface Data {
-    meldekort?: number
-    etterregistrerteMeldekort?: number
-    antallGjenstaaendeFeriedager?: number
-    nesteMeldekort?: NesteMeldekort
-    nesteInnsendingAvMeldekort?: string
+    meldekort?: number;
+    etterregistrerteMeldekort?: number;
+    antallGjenstaaendeFeriedager?: number;
+    nesteMeldekort?: NesteMeldekort;
+    nesteInnsendingAvMeldekort?: string;
 }
 
 export const initialState: State = {
-    data:{},
+    data: {},
     status: STATUS.NOT_STARTED,
 };
 

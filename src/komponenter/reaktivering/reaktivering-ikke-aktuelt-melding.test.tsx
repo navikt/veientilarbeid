@@ -23,7 +23,9 @@ describe('Tester at komponenten rendres slik den skal', () => {
         };
         render(<Reaktivering />, { wrapper: contextProviders(providerProps) });
         expect(screen.getByText(/registrer deg som arbeidssøker/i)).toBeInTheDocument();
-        expect(screen.getByText(/er du usikker på om din situasjon betyr at du bør være registrert som arbeidssøker/i)).toBeInTheDocument();
+        expect(
+            screen.getByText(/er du usikker på om din situasjon betyr at du bør være registrert som arbeidssøker/i)
+        ).toBeInTheDocument();
         expect(screen.getByText(/ta kontakt med veilederen din i dialogtjenesten/i)).toBeInTheDocument();
         expect(await screen.queryByText(/denne teksten finnes ikke/i)).not.toBeInTheDocument();
     });
