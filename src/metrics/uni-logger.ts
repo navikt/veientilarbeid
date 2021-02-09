@@ -1,8 +1,6 @@
-import { amplitudeLogger, getDeviceId } from './amplitude-utils';
-import { frontendLogger } from './metrics-utils';
+import { amplitudeLogger } from './amplitude-utils';
 
 const domene = 'veientilarbeid';
-const deviceId = getDeviceId();
 
 const prefix = {
     appname: 'veientilarbeid',
@@ -12,5 +10,4 @@ const prefix = {
 export function uniLogger(name: string, values?: object) {
     const data = values || {};
     amplitudeLogger(`${domene}.${name}`, { ...prefix, ...data });
-    frontendLogger(`${domene}.${name}`, { deviceId }, { ...prefix, ...data });
 }

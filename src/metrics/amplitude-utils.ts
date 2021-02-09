@@ -40,10 +40,6 @@ export type AmplitudeData = {
     antallSynligeInfomeldinger: number;
 };
 
-export function getDeviceId() {
-    return amplitude.getInstance().options.deviceId;
-}
-
 export function amplitudeLogger(name: string, values?: object) {
     amplitude.getInstance().logEvent(name, values);
 }
