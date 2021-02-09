@@ -31,12 +31,12 @@ if (!erMikrofrontend()) {
     if (brukerReelleData) {
         redirectTilDittNav();
     } else {
-        Sentry.init({
-            dsn: 'https://c24577bb13734aaeb8968748ec67a24f@sentry.gc.nav.no/59',
-        });
         ReactDOM.render(<App />, document.getElementById('maincontent') as HTMLElement);
     }
 }
 if (erMikrofrontend()) {
     NAVSPA.eksporter('vta', App);
+    Sentry.init({
+        dsn: 'https://c24577bb13734aaeb8968748ec67a24f@sentry.gc.nav.no/59',
+    });
 }
