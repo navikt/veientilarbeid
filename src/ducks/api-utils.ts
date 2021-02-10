@@ -4,7 +4,7 @@ import { Dispatch, SetStateAction } from 'react';
 async function fetchToJson<T>(url: string, config: RequestInit): Promise<T> {
     const respons = await fetch(url, config);
     const gyldigRespons = sjekkStatuskode(respons);
-    return await toJson(gyldigRespons);
+    return toJson(gyldigRespons);
 }
 
 class FetchError extends Error {
