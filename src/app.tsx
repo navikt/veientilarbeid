@@ -1,13 +1,13 @@
 import * as React from 'react';
+import * as Sentry from '@sentry/react';
 import AutentiseringsInfoFetcher from './komponenter/hent-initial-data/autentiseringsInfoFetcher';
-import ErrorBoundary from './error-boundary';
 
 class App extends React.Component {
     render() {
         return (
-            <ErrorBoundary>
+            <Sentry.ErrorBoundary>
                 <AutentiseringsInfoFetcher />
-            </ErrorBoundary>
+            </Sentry.ErrorBoundary>
         );
     }
 }
