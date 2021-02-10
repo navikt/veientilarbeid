@@ -31,15 +31,14 @@ function toJson(response: Response) {
     return response.json();
 }
 
-export const fetchData = <S, D>(state: S, setState: Dispatch<SetStateAction<S>>, url: string): Promise<D | void> => {
+export const fetchData = <S, D>(state: S, setState: Dispatch<SetStateAction<S>>, url: string) => {
     setState({ ...state, status: STATUS.PENDING });
-    const fetchAsync = async () => {
-        const data = await fetchToJson<D>(url, requestConfig);
-        setState({ ...state, data: data, status: STATUS.OK });
-        return Promise.resolve(data);
-    };
-    return fetchAsync().catch((err) => {
-        setState({ ...state, status: STATUS.ERROR });
-        return Promise.reject(err);
-    });
+
+    fetchToJson<D>(url, requestConfig)
+        .then((data) => {
+            setState({ ...state, data: data, status: STATUS.OK });
+        })
+        .catch((err) => {
+            setState({ ...state, status: STATUS.ERROR });
+        });
 };
