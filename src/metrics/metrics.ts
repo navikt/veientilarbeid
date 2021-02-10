@@ -1,4 +1,3 @@
-import { ForeslattInnsatsgruppe } from '../ducks/brukerregistrering';
 import { FormidlingsgruppeOrNull, ServicegruppeOrNull } from '../ducks/oppfolging';
 import { RegistreringTypeOrIngenVerdi } from '../ducks/bruker-info';
 import { AmplitudeData, amplitudeLogger, setIdentifyProperty } from './amplitude-utils';
@@ -6,18 +5,6 @@ import { uniLogger } from './uni-logger';
 import { POAGruppe } from '../utils/get-poa-group';
 
 const domene = 'veientilarbeid';
-
-export const gaTilDialogPermittert = (antall: number, servicegruppe: string | null) => {
-    amplitudeLogger(`${domene}.dialog.permittert.click`, { antall, servicegruppe });
-};
-
-export const seEgenvurdering = (foreslaattinnsatsgruppe: ForeslattInnsatsgruppe) => {
-    amplitudeLogger(`${domene}.egenvurdering.visning`, { foreslaattinnsatsgruppe });
-};
-
-export const gaTilEgenvurdering = (antallTimer: number, foreslaattinnsatsgruppe: ForeslattInnsatsgruppe) => {
-    amplitudeLogger(`${domene}.egenvurdering.click`, { antallTimer, foreslaattinnsatsgruppe });
-};
 
 export const lesOmOkonomi = (stonad: string, servicegruppe: string | null) => {
     amplitudeLogger(`${domene}.okonomi.click`, { stonad, servicegruppe });
@@ -30,10 +17,6 @@ type StandardMetrikkData = {
     dinSituasjon: string;
     underOppfolging: string;
     registreringType: RegistreringTypeOrIngenVerdi;
-};
-
-export const seDineOpplysninger = (metrikker: StandardMetrikkData) => {
-    uniLogger('viser.dineopplysninger', metrikker);
 };
 
 interface KrrMetrikkData extends StandardMetrikkData {

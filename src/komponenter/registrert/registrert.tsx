@@ -3,9 +3,8 @@ import { Element } from 'nav-frontend-typografi';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { BrukerregistreringContext } from '../../ducks/brukerregistrering';
-import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { OppfolgingContext } from '../../ducks/oppfolging';
-import { loggAktivitet, seDineOpplysninger } from '../../metrics/metrics';
+import { loggAktivitet } from '../../metrics/metrics';
 import Opplysninger from '../innsyn/registreringsopplysninger';
 import './registrert.less';
 import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
@@ -16,7 +15,6 @@ import { datoUtenTid } from '../../utils/date-utils';
 
 const Registrert = () => {
     const brukerregistreringData = useContext(BrukerregistreringContext).data;
-    const brukerinfoData = React.useContext(BrukerInfoContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const autentiseringData = React.useContext(AutentiseringContext).data;
     const amplitudeData = React.useContext(AmplitudeContext);
@@ -27,12 +25,6 @@ const Registrert = () => {
         oppfolgingData.formidlingsgruppe === 'ARBS' &&
         autentiseringData.securityLevel === InnloggingsNiva.LEVEL_4 &&
         underOppfolging;
-
-    React.useEffect(() => {
-        if (kanViseKomponent) {
-            loggAktivitet({ aktivitet: 'Viser du er registrert', ...amplitudeData });
-        }
-    }, [kanViseKomponent, amplitudeData]);
 
     if (!kanViseKomponent) {
         return null;
@@ -48,21 +40,7 @@ const Registrert = () => {
     }
     const { registrering } = brukerregistreringData;
     const { opprettetDato, manueltRegistrertAv, besvarelse, teksterForBesvarelse } = registrering;
-    const { dinSituasjon } = besvarelse;
-    const dinSituasjonOrIngenVerdi = dinSituasjon ? dinSituasjon : 'INGEN_VERDI';
-    const { registreringType, rettighetsgruppe } = brukerinfoData;
-    const { formidlingsgruppe, servicegruppe } = oppfolgingData;
-    const underOppfolgingJaNei = underOppfolging ? 'ja' : 'nei';
-    const registreringTypeOrIngenVerdi = registreringType ? registreringType : 'INGEN_VERDI';
     const showOpplysninger = opprettetDato && besvarelse && teksterForBesvarelse;
-    const metrikkData = {
-        servicegruppe,
-        formidlingsgruppe,
-        rettighetsgruppe,
-        dinSituasjon: dinSituasjonOrIngenVerdi,
-        underOppfolging: underOppfolgingJaNei,
-        registreringType: registreringTypeOrIngenVerdi,
-    };
 
     const handleClickOpen = () => {
         if (!clickedInnsyn) {
@@ -71,7 +49,6 @@ const Registrert = () => {
         }
     };
 
-    seDineOpplysninger(metrikkData);
     const iDag = datoUtenTid(new Date().toISOString());
 
     return (
