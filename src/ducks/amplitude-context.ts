@@ -19,6 +19,9 @@ export const initialState: AmplitudeData = {
     gitVersion: 'INGEN_VERDI',
     buildTimestamp: new Date().toISOString(),
     antallSynligeInfomeldinger: 0,
+    erSykmeldtMedArbeidsgiver: 'ukjent',
+    dinSituasjon: 'ukjent',
+    reservasjonKRR: 'ukjent',
 };
 
 export const AmplitudeContext = React.createContext<AmplitudeData>(initialState);
