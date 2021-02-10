@@ -1,19 +1,17 @@
 import React from 'react';
 import LenkepanelBase from 'nav-frontend-lenkepanel';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
-import { gaTilDialog, loggAktivitet } from '../../metrics/metrics';
+import { loggAktivitet } from '../../metrics/metrics';
 import DialogFill from './dialog-fill';
 import DialogLine from './dialog-line';
 import './dialog.less';
 import { dialogLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
-import { OppfolgingContext } from '../../ducks/oppfolging';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { UlesteDialogerContext } from '../../ducks/ulestedialoger';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
 const Dialog = () => {
-    const servicegruppe = React.useContext(OppfolgingContext).data.servicegruppe;
     const amplitudeData = React.useContext(AmplitudeContext);
     const ulesteDialoger = React.useContext(UlesteDialogerContext).data;
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
@@ -22,7 +20,6 @@ const Dialog = () => {
     const { antallUleste } = ulesteDialoger;
 
     const handleClick = () => {
-        gaTilDialog(antallUleste, servicegruppe);
         if (antallUleste > 0) {
             loggAktivitet({ aktivitet: 'Svarer på dialog', ...amplitudeData });
         } else {
