@@ -88,12 +88,10 @@ export const setIdentifyPoaGruppe = (gruppe: POAGruppe) => {
 
 export type AktivitetsMetrikkData = {
     aktivitet: string;
-    gruppe: POAGruppe;
-    geografiskTilknytning: string;
-    isKSSX: string;
-    ukerRegistrert: number;
 };
 
-export const loggAktivitet = (data: AktivitetsMetrikkData) => {
+export type AmplitudeStandardData = AktivitetsMetrikkData & AmplitudeData;
+
+export const loggAktivitet = (data: AmplitudeStandardData) => {
     amplitudeLogger(`${domene}.aktivitet`, data);
 };
