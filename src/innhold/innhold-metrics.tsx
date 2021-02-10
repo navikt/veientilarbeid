@@ -11,7 +11,7 @@ import {
 import { OppfolgingContext } from '../ducks/oppfolging';
 import { BrukerInfoContext } from '../ducks/bruker-info';
 import getPoaGroup from '../utils/get-poa-group';
-import { loggAktivitet, setIdentifyPoaGruppe, seVeientilarbeid, tellPoaGruppe } from '../metrics/metrics';
+import { loggVisning, setIdentifyPoaGruppe, seVeientilarbeid, tellPoaGruppe } from '../metrics/metrics';
 import { erMikrofrontend } from '../utils/app-state-utils';
 import { hotjarTrigger } from '../hotjar';
 import { AutentiseringContext, InnloggingsNiva } from '../ducks/autentisering';
@@ -98,13 +98,13 @@ function Metrics(props: Props & ViewportProps) {
         hotjarTrigger(erMikrofrontend(), POAGruppe, hotjarEksperiment());
         setIdentifyPoaGruppe(POAGruppe);
         tellPoaGruppe(amplitudeData);
-        loggAktivitet({ aktivitet: 'Viser veien til arbeid', ...amplitudeData });
+        loggVisning({ viser: 'Viser veien til arbeid', ...amplitudeData });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     React.useEffect(() => {
         if (harVistTilBruker) {
-            loggAktivitet({ aktivitet: 'Veien til arbeid i viewport', ...amplitudeData });
+            loggVisning({ viser: 'Veien til arbeid i viewport', ...amplitudeData });
         }
     }, [amplitudeData, harVistTilBruker]);
 

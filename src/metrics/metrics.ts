@@ -90,8 +90,18 @@ export type AktivitetsMetrikkData = {
     aktivitet: string;
 };
 
-export type AmplitudeStandardData = AktivitetsMetrikkData & AmplitudeData;
+export type AmplitudeStandardAktivitetsData = AktivitetsMetrikkData & AmplitudeData;
 
-export const loggAktivitet = (data: AmplitudeStandardData) => {
+export const loggAktivitet = (data: AmplitudeStandardAktivitetsData) => {
     amplitudeLogger(`${domene}.aktivitet`, data);
+};
+
+export type VisningsMetrikkData = {
+    viser: string;
+};
+
+export type AmplitudeStandardVisningsData = VisningsMetrikkData & AmplitudeData;
+
+export const loggVisning = (data: AmplitudeStandardVisningsData) => {
+    amplitudeLogger(`${domene}.visning`, data);
 };
