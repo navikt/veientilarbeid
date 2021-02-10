@@ -16,12 +16,6 @@ const Aktivitetsplan = () => {
     const ingress = 'aktivitetsplan-beskrivelse' + (nyRegistrering ? '-ny' : '');
     const kanViseKomponent = underOppfolging;
 
-    React.useEffect(() => {
-        if (kanViseKomponent) {
-            loggAktivitet({ aktivitet: 'Viser aktivitetsplanen', ...amplitudeData });
-        }
-    }, [amplitudeData, kanViseKomponent]);
-
     const handleClick = () => {
         loggAktivitet({ aktivitet: 'Går til aktivitetsplanen', ...amplitudeData });
     };
