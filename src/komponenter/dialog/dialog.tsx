@@ -19,10 +19,6 @@ const Dialog = () => {
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const kanViseKomponent = underOppfolging;
 
-    React.useEffect(() => {
-        loggAktivitet({ aktivitet: 'Viser dialog', ...amplitudeData });
-    }, [amplitudeData]);
-
     const { antallUleste } = ulesteDialoger;
 
     const handleClick = () => {

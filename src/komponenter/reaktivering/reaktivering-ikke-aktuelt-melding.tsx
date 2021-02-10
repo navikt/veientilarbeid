@@ -3,7 +3,7 @@ import { Knapp } from 'nav-frontend-knapper';
 import Lenke from 'nav-frontend-lenker';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { reaktiveringLenke, dialogLenke } from '../../innhold/lenker';
-import { loggAktivitet } from '../../metrics/metrics';
+import { loggAktivitet, loggVisning } from '../../metrics/metrics';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
 import { OppfolgingContext } from '../../ducks/oppfolging';
@@ -18,7 +18,7 @@ const ReaktiveringIkkeAktueltMelding = () => {
 
     React.useEffect(() => {
         if (kanViseKomponent) {
-            loggAktivitet({ aktivitet: 'Viser reaktivering ikke aktuelt', ...amplitudeData });
+            loggVisning({ viser: 'Reaktivering ikke aktuelt', ...amplitudeData });
         }
     }, [kanViseKomponent, amplitudeData]);
 

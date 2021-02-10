@@ -16,10 +16,6 @@ const Dagpenger = () => {
     const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
     const kanViseKomponent = underOppfolging && !erSykmeldtMedArbeidsgiver;
 
-    React.useEffect(() => {
-        loggAktivitet({ aktivitet: 'Viser dagpengesøknad', ...amplitudeData });
-    }, [amplitudeData]);
-
     const handleButtonClick = () => {
         loggAktivitet({ aktivitet: 'Går til dagpengesøknad', ...amplitudeData });
         window.location.assign(dagpengerSoknadLenke);

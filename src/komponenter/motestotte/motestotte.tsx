@@ -9,9 +9,7 @@ import {
     selectForeslattInnsatsgruppe,
     selectOpprettetRegistreringDato,
 } from '../../ducks/brukerregistrering';
-import { antallTimerSidenRegistrering } from '../egenvurdering/egenvurdering';
 import { motestotteLenke } from '../../innhold/lenker';
-import { uniLogger } from '../../metrics/uni-logger';
 import { loggAktivitet } from '../../metrics/metrics';
 import './motestotte.less';
 import { OppfolgingContext, Servicegruppe } from '../../ducks/oppfolging';
@@ -40,11 +38,6 @@ function hentTekster(erSykmeldtMedArbeidsgiver: boolean): MotestotteTekster {
     };
 }
 
-const lagKnappelytter = (antallTimer = 0, foreslattInnsatsgruppe = 'UKJENT') => () => {
-    uniLogger('motestotte.gatil', { antallTimer, foreslattInnsatsgruppe });
-    window.location.href = motestotteLenke;
-};
-
 const Motestotte = () => {
     const amplitudeData = React.useContext(AmplitudeContext);
     const data = React.useContext(BrukerregistreringContext).data;
@@ -57,7 +50,6 @@ const Motestotte = () => {
         ? new Date(opprettetRegistreringDatoString)
         : null;
     const foreslattInnsatsgruppe = selectForeslattInnsatsgruppe(data)!; // Komponent blir rendret kun hvis foreslått innsatsgruppe er satt
-    const antallTimer = antallTimerSidenRegistrering(opprettetRegistreringDato!);
     const dinSituasjon = selectDinSituasjonSvar(data) || 'INGEN_VERDI';
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
 
@@ -76,13 +68,10 @@ const Motestotte = () => {
         foreslattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING &&
         underOppfolging;
 
-    React.useEffect(() => {
-        if (kanViseKomponent) {
-            loggAktivitet({ aktivitet: 'Viser møtestøtte', ...amplitudeData });
-            uniLogger('motestotte.visning', { antallTimer, foreslattInnsatsgruppe });
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [kanViseKomponent, amplitudeData]);
+    const handleClick = () => {
+        loggAktivitet({ aktivitet: 'Går til møtestøtte', ...amplitudeData });
+        window.location.assign(motestotteLenke);
+    };
 
     if (!kanViseKomponent) return null;
 
@@ -98,7 +87,7 @@ const Motestotte = () => {
                             {tekst}
                         </Normaltekst>
                     ))}
-                    <Hovedknapp onClick={lagKnappelytter(antallTimer, foreslattInnsatsgruppe)}>Start</Hovedknapp>
+                    <Hovedknapp onClick={handleClick}>Start</Hovedknapp>
                 </div>
             </section>
         </Panel>
