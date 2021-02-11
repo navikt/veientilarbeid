@@ -13,12 +13,6 @@ const SjekkKontonummer = () => {
 
     const kanViseKomponent = underOppfolging;
 
-    React.useEffect(() => {
-        if (kanViseKomponent) {
-            loggAktivitet({ aktivitet: 'Viser sjekk kontonummer', ...amplitudeData });
-        }
-    }, [amplitudeData, kanViseKomponent]);
-
     if (!kanViseKomponent) {
         return null;
     }

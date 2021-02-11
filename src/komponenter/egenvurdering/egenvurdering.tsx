@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
-import { gaTilEgenvurdering, loggAktivitet, seEgenvurdering } from '../../metrics/metrics';
+import { loggAktivitet } from '../../metrics/metrics';
 import {
     BrukerregistreringContext,
     ForeslattInnsatsgruppe,
@@ -44,7 +44,6 @@ const Egenvurdering = () => {
         ? new Date(opprettetRegistreringDatoString)
         : null;
     const foreslattInnsatsgruppe = selectForeslattInnsatsgruppe(brukerregistreringData)!; // Komponent blir rendret kun hvis foreslått innsatsgruppe er satt
-    const timerSidenRegistrering = antallTimerSidenRegistrering(opprettetRegistreringDato!);
 
     const dinSituasjon = brukerregistreringData?.registrering.besvarelse.dinSituasjon || 'INGEN_VERDI';
 
@@ -70,16 +69,8 @@ const Egenvurdering = () => {
         (foreslattInnsatsgruppe === ForeslattInnsatsgruppe.STANDARD_INNSATS ||
             foreslattInnsatsgruppe === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS);
 
-    React.useEffect(() => {
-        if (skalViseEgenvurderingLenke) {
-            seEgenvurdering(foreslattInnsatsgruppe);
-            loggAktivitet({ aktivitet: 'Viser egenvurdering', ...amplitudeData });
-        }
-    }, [skalViseEgenvurderingLenke, foreslattInnsatsgruppe, amplitudeData]);
-
     const handleButtonClick = () => {
         loggAktivitet({ aktivitet: 'Går til egenvurdering', ...amplitudeData });
-        gaTilEgenvurdering(timerSidenRegistrering, foreslattInnsatsgruppe);
         window.location.assign(behovsvurderingLenke);
     };
 

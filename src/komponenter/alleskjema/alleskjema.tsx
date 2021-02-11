@@ -14,12 +14,6 @@ const AlleSkjema = () => {
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const kanViseKomponent = underOppfolging;
 
-    React.useEffect(() => {
-        if (kanViseKomponent) {
-            loggAktivitet({ aktivitet: 'Viser alle skjema', ...amplitudeData });
-        }
-    }, [amplitudeData, kanViseKomponent]);
-
     const handleButtonClick = () => {
         loggAktivitet({ aktivitet: 'Går til alle skjema', ...amplitudeData });
         window.location.assign(alleSkjemaSoknadLenke);

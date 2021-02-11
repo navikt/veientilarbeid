@@ -10,12 +10,10 @@ import { Normaltekst, Systemtittel, Undertittel } from 'nav-frontend-typografi';
 import './aap.less';
 import { aapSoknadLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
-import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import { useEffect, useRef, useState } from 'react';
-import { loggAktivitet } from '../../metrics/metrics';
 import Rad from '../../innhold/rad';
 
 const handleButtonClick = () => {
@@ -23,7 +21,6 @@ const handleButtonClick = () => {
 };
 
 const Aap = () => {
-    const amplitudeData = React.useContext(AmplitudeContext);
     const { securityLevel } = React.useContext(AutentiseringContext).data;
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
@@ -38,12 +35,6 @@ const Aap = () => {
             behavior: 'smooth',
         });
     }, [aapRef]);
-
-    React.useEffect(() => {
-        if (erSykmeldtMedArbeidsgiver) {
-            loggAktivitet({ aktivitet: 'Viser aap', ...amplitudeData });
-        }
-    }, [amplitudeData, erSykmeldtMedArbeidsgiver]);
 
     return !kanViseKomponent ? null : (
         <Rad>

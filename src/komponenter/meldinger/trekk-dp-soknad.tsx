@@ -13,12 +13,6 @@ const TrekkDagpengeSoknad = () => {
 
     const kanViseKomponent = underOppfolging;
 
-    React.useEffect(() => {
-        if (kanViseKomponent) {
-            loggAktivitet({ aktivitet: 'Viser trekk dagpengesøknad', ...amplitudeData });
-        }
-    }, [kanViseKomponent, amplitudeData]);
-
     if (!kanViseKomponent) {
         return null;
     }

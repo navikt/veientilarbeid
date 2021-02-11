@@ -21,12 +21,6 @@ const KrrMelding = () => {
         loggAktivitet({ aktivitet: 'Går til krr-oppsett', ...amplitudeData });
     };
 
-    React.useEffect(() => {
-        if (reservasjonKRR) {
-            loggAktivitet({ aktivitet: 'Viser krr melding', ...amplitudeData });
-        }
-    }, [reservasjonKRR, amplitudeData]);
-
     if (!reservasjonKRR || !kanViseKomponent) return null;
 
     return (

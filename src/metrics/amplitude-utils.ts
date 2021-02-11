@@ -38,6 +38,9 @@ export type AmplitudeData = {
     gitVersion: string;
     buildTimestamp: string;
     antallSynligeInfomeldinger: number;
+    erSykmeldtMedArbeidsgiver: string;
+    dinSituasjon: String;
+    reservasjonKRR: string;
 };
 
 export function amplitudeLogger(name: string, values?: object) {

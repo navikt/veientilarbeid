@@ -35,12 +35,6 @@ const ReaktiveringMelding = (props: Props & ViewportProps) => {
         setHarVistTilBruker(true);
     }
 
-    React.useEffect(() => {
-        if (kanViseKomponent && harVistTilBruker) {
-            loggAktivitet({ aktivitet: 'Viser reaktiveringsmelding', ...amplitudeData });
-        }
-    }, [kanViseKomponent, amplitudeData, harVistTilBruker]);
-
     const handleReaktivering = (event: React.SyntheticEvent) => {
         event.preventDefault();
         loggAktivitet({ aktivitet: 'Går til reaktivering', ...amplitudeData });

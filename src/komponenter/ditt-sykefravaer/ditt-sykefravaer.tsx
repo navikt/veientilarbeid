@@ -13,12 +13,6 @@ const DittSykefravaer = () => {
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const kanViseKomponent = erSykmeldtMedArbeidsgiver && underOppfolging;
 
-    React.useEffect(() => {
-        if (kanViseKomponent) {
-            loggAktivitet({ aktivitet: 'Viser ditt sykefravær', ...amplitudeData });
-        }
-    }, [amplitudeData, kanViseKomponent]);
-
     if (!kanViseKomponent) {
         return null;
     }
