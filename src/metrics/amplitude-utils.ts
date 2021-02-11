@@ -34,7 +34,7 @@ export type AmplitudeData = {
     rettighetsgruppe: string;
     registreringType: string;
     underOppfolging: string;
-    antallDagerFraPeriodeslutt: string;
+    antallDagerEtterFastsattMeldingsdag: string;
     gitVersion: string;
     buildTimestamp: string;
     antallSynligeInfomeldinger: number;

@@ -15,7 +15,7 @@ export const initialState: AmplitudeData = {
     rettighetsgruppe: 'INGEN_VERDI',
     registreringType: 'INGEN_VERDI',
     underOppfolging: 'nei',
-    antallDagerFraPeriodeslutt: 'ikke meldekortbruker',
+    antallDagerEtterFastsattMeldingsdag: 'ikke meldekortbruker',
     gitVersion: 'INGEN_VERDI',
     buildTimestamp: new Date().toISOString(),
     antallSynligeInfomeldinger: 0,

@@ -38,7 +38,7 @@ function Metrics(props: Props & ViewportProps) {
     const [harVistTilBruker, setHarVistTilBruker] = React.useState<boolean>(false);
     const { formidlingsgruppe, servicegruppe } = React.useContext(OppfolgingContext).data;
     const amplitudeData = React.useContext(AmplitudeContext);
-    const { antallDagerFraPeriodeslutt } = amplitudeData;
+    const { antallDagerEtterFastsattMeldingsdag } = amplitudeData;
     const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
     const { alder } = React.useContext(BrukerInfoContext).data;
 
@@ -65,8 +65,8 @@ function Metrics(props: Props & ViewportProps) {
     });
 
     const hotjarEksperiment = () => {
-        // Henter data fra amplitude, antallDagerFraPeriodeslutt er egentlig antallDagerEtterFastsattMeldedag (mandag = 0)
-        return parseInt(antallDagerFraPeriodeslutt, 10) >= 1;
+        // Henter data fra amplitude, antallDagerEtterFastsattMeldingsdag (mandag = 0)
+        return parseInt(antallDagerEtterFastsattMeldingsdag, 10) >= 1;
     };
 
     if (props.inViewport && !harVistTilBruker) {

@@ -68,7 +68,10 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const foreslattInnsatsgruppeOrIngenVerdi =
         brukerregistreringData?.registrering.profilering?.innsatsgruppe || 'INGEN_VERDI';
     const formidlingsgruppeOrIngenVerdi = formidlingsgruppe || 'INGEN_VERDI';
-    const antallDagerFraPeriodeslutt = hentDagerEtterFastsattMeldedag(meldekortStatusContext, meldekortContext);
+    const antallDagerEtterFastsattMeldingsdag = hentDagerEtterFastsattMeldedag(
+        meldekortStatusContext,
+        meldekortContext
+    );
 
     const POAGruppe = getPoaGroup({
         dinSituasjon,
@@ -108,7 +111,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         underOppfolging: underOppfolging ? 'ja' : 'nei',
         rettighetsgruppe: rettighetsgruppe || 'INGEN_VERDI',
         registreringType: registreringType || 'INGEN_VERDI',
-        antallDagerFraPeriodeslutt: antallDagerFraPeriodeslutt,
+        antallDagerEtterFastsattMeldingsdag,
         gitVersion: process.env.REACT_APP_VERSION_HASH || 'INGEN_VERDI',
         buildTimestamp: process.env.REACT_APP_BUILD_TIMESTAMP || new Date().toISOString(),
         antallSynligeInfomeldinger: antallSynligeInfomeldinger(),
