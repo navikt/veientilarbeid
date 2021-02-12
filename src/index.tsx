@@ -36,9 +36,9 @@ if (!erMikrofrontend()) {
 }
 
 if (erMikrofrontend()) {
-    NAVSPA.eksporter('vta', App);
     Sentry.init({
         dsn: 'https://c24577bb13734aaeb8968748ec67a24f@sentry.gc.nav.no/59',
         environment: erProduksjon() ? 'production' : 'test',
     });
+    NAVSPA.eksporter('vta', App);
 }
