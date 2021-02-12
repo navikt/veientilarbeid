@@ -14,19 +14,21 @@ import { beregnDagerEtterFastsattMeldedag } from '../../utils/meldekort-dager-et
 import { OppfolgingContext } from '../../ducks/oppfolging';
 import './meldekortstatus.less';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
+import { BrukerInfoContext } from '../../ducks/bruker-info';
 
 function Meldekortstatus({ iDag }: { iDag: Date }) {
     const { data: meldekortData } = React.useContext(Meldekort.MeldekortContext);
     const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
+    const { rettighetsgruppe } = React.useContext(BrukerInfoContext).data;
     const amplitudeData = React.useContext(AmplitudeContext);
 
     if (!meldekortData || kanReaktiveres) return null;
 
     const dagerEtterFastsattMeldedag = beregnDagerEtterFastsattMeldedag(iDag, meldekortData);
 
-    // Bare vis melding fra dag 1 (tirsdag) til dag 7 (mandag)
-    if (dagerEtterFastsattMeldedag === null || dagerEtterFastsattMeldedag > 7 || dagerEtterFastsattMeldedag <= 0)
-        return null;
+    const ingenMeldekort = dagerEtterFastsattMeldedag === null;
+    const erIkkeMellomDag1Til7 = dagerEtterFastsattMeldedag > 7 || dagerEtterFastsattMeldedag <= 0; // Bare vis melding fra dag 1 (tirsdag) til dag 7 (mandag)
+    if (rettighetsgruppe !== 'DAGP' || ingenMeldekort || erIkkeMellomDag1Til7) return null;
 
     return (
         <div className={'meldekortvarsel-container'}>
