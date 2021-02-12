@@ -51,7 +51,7 @@ function regexMatcher(innhold: RegExp): Matcher {
     };
 }
 
-describe('tester Meldekort komponenten', () => {
+describe('tester Meldekortstatus komponenten', () => {
     test('Komponenten vises på dag 1, og har rett varselestekst', () => {
         const dag1 = plussDager(dag0, 1);
         render(<Meldekortstatus iDag={dag1} />, { wrapper: contextProviders(providerProps) });
@@ -133,6 +133,18 @@ describe('tester Meldekort komponenten', () => {
         const dag1 = plussDager(dag0, 1);
         render(<Meldekortstatus iDag={dag1} />, {
             wrapper: contextProviders({ ...providerProps, brukerInfo: { rettighetsgruppe: 'AAP' } }),
+        });
+        expect(
+            screen.queryByText(
+                /Opplysningene du oppgir i meldekortet brukes også til å beregne utbetalingen av dagpenger./i
+            )
+        ).toBeFalsy();
+    });
+
+    test('Setning om at opplysningene er med på å beregne dagpenger vises IKKE for ugyldig rettighetsgruppe', () => {
+        const dag1 = plussDager(dag0, 1);
+        render(<Meldekortstatus iDag={dag1} />, {
+            wrapper: contextProviders({ ...providerProps, brukerInfo: { rettighetsgruppe: 'TEST' } }),
         });
         expect(
             screen.queryByText(
