@@ -1,5 +1,6 @@
 import 'core-js';
 import 'react-app-polyfill/ie11';
+import 'intersection-observer';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as Sentry from '@sentry/browser';
