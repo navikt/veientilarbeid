@@ -6,7 +6,7 @@ import * as Sentry from '@sentry/browser';
 import App from './app';
 
 import './index.less';
-import { erDemo, erMikrofrontend, erMock } from './utils/app-state-utils';
+import { erDemo, erMikrofrontend, erMock, erProduksjon } from './utils/app-state-utils';
 import NAVSPA from './NAVSPA';
 import { redirectTilDittNav } from './komponenter/hent-initial-data/redirect-dittnav-utils';
 
@@ -34,9 +34,11 @@ if (!erMikrofrontend()) {
         ReactDOM.render(<App />, document.getElementById('maincontent') as HTMLElement);
     }
 }
+
 if (erMikrofrontend()) {
     NAVSPA.eksporter('vta', App);
     Sentry.init({
         dsn: 'https://c24577bb13734aaeb8968748ec67a24f@sentry.gc.nav.no/59',
+        environment: erProduksjon() ? 'production' : 'test',
     });
 }
