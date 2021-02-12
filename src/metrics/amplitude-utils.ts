@@ -2,7 +2,7 @@
 import amplitude from 'amplitude-js';
 import { AMPLITUDE_API_KEY_PROD, AMPLITUDE_API_KEY_TEST, AMPLITUDE_ENDPOINT } from '../utils/konstanter';
 import { InnloggingsNiva } from '../ducks/autentisering';
-import { erProduksjon } from '../utils/url-utils';
+import { erProduksjon } from '../utils/app-state-utils';
 import { POAGruppe } from '../utils/get-poa-group';
 
 const apiKey = erProduksjon() ? AMPLITUDE_API_KEY_PROD : AMPLITUDE_API_KEY_TEST;
