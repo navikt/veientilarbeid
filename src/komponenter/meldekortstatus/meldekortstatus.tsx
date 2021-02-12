@@ -26,9 +26,12 @@ function Meldekortstatus({ iDag }: { iDag: Date }) {
 
     const dagerEtterFastsattMeldedag = beregnDagerEtterFastsattMeldedag(iDag, meldekortData);
 
-    const ingenMeldekort = dagerEtterFastsattMeldedag === null;
-    const erIkkeMellomDag1Til7 = dagerEtterFastsattMeldedag > 7 || dagerEtterFastsattMeldedag <= 0; // Bare vis melding fra dag 1 (tirsdag) til dag 7 (mandag)
-    if (rettighetsgruppe !== 'DAGP' || ingenMeldekort || erIkkeMellomDag1Til7) return null;
+    const minstEttMeldekort = dagerEtterFastsattMeldedag !== null;
+    const erDagpengerMottaker = rettighetsgruppe === 'DAGP';
+    const mellomDag1Til7 = dagerEtterFastsattMeldedag > 0 && dagerEtterFastsattMeldedag <= 7; // Bare vis melding fra dag 1 (tirsdag) til dag 7 (mandag)
+    const kanViseMeldekortstatus = minstEttMeldekort && erDagpengerMottaker && mellomDag1Til7;
+
+    if (!kanViseMeldekortstatus) return null;
 
     return (
         <div className={'meldekortvarsel-container'}>
