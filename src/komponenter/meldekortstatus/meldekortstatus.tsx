@@ -10,7 +10,7 @@ import React from 'react';
 import MeldekortAdvarsel from './meldekort-advarsel';
 import { Normaltekst } from 'nav-frontend-typografi';
 import * as Meldekort from '../../ducks/meldekort';
-import { beregnDagerEtterFastsattMeldedag } from '../../utils/meldekort-dager-etter-meldedag';
+import { beregnDagerEtterFastsattMeldedag } from '../../utils/meldekort-utils';
 import { OppfolgingContext } from '../../ducks/oppfolging';
 import './meldekortstatus.less';
 import { AmplitudeContext } from '../../ducks/amplitude-context';

@@ -13,6 +13,7 @@ export const initialState: AmplitudeData = {
     formidlingsgruppe: 'INGEN_VERDI',
     servicegruppe: 'IVURD',
     rettighetsgruppe: 'INGEN_VERDI',
+    meldegruppe: 'INGEN_VERDI',
     registreringType: 'INGEN_VERDI',
     underOppfolging: 'nei',
     antallDagerEtterFastsattMeldingsdag: 'ikke meldekortbruker',

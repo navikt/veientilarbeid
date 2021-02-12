@@ -11,7 +11,7 @@ import { BrukerInfoContext } from '../../ducks/bruker-info';
 import grupperGeografiskTilknytning from '../../utils/grupper-geografisk-tilknytning';
 
 import ukerFraDato from '../../utils/uker-fra-dato';
-import { beregnDagerEtterFastsattMeldedag } from '../../utils/meldekort-dager-etter-meldedag';
+import { beregnDagerEtterFastsattMeldedag, hentMeldegruppeForNesteMeldekort } from '../../utils/meldekort-utils';
 import * as Meldekort from '../../ducks/meldekort';
 import { STATUS } from '../../ducks/api';
 import { AmplitudeData } from '../../metrics/amplitude-utils';
@@ -73,6 +73,8 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         meldekortContext
     );
 
+    const meldegruppe = hentMeldegruppeForNesteMeldekort(meldekortContext.data);
+
     const POAGruppe = getPoaGroup({
         dinSituasjon,
         formidlingsgruppe: formidlingsgruppeOrIngenVerdi,
@@ -110,6 +112,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         servicegruppe: servicegruppeOrIVURD,
         underOppfolging: underOppfolging ? 'ja' : 'nei',
         rettighetsgruppe: rettighetsgruppe || 'INGEN_VERDI',
+        meldegruppe: meldegruppe || 'INGEN_VERDI',
         registreringType: registreringType || 'INGEN_VERDI',
         antallDagerEtterFastsattMeldingsdag,
         gitVersion: process.env.REACT_APP_VERSION_HASH || 'INGEN_VERDI',
