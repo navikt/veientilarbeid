@@ -35,6 +35,9 @@ const dag0 = datoUtenTid(new Date('2021-02-01T12:00:00+01:00').toISOString());
 
 const providerProps: ProviderProps = {
     meldekort: meldekort,
+    brukerInfo: {
+        rettighetsgruppe: 'DAGP',
+    },
 };
 
 function regexMatcher(innhold: RegExp): Matcher {
@@ -61,8 +64,8 @@ describe('tester Meldekort komponenten', () => {
     });
 
     test('Komponenten vises på dag 3, og har rett varselestekst', () => {
-        const dag1 = plussDager(dag0, 3);
-        render(<Meldekortstatus iDag={dag1} />, { wrapper: contextProviders(providerProps) });
+        const dag3 = plussDager(dag0, 3);
+        render(<Meldekortstatus iDag={dag3} />, { wrapper: contextProviders(providerProps) });
         expect(
             screen.queryByText(
                 /Det er innsending av meldekortet som opprettholder din status som arbeidssøker hos NAV/i
@@ -102,5 +105,53 @@ describe('tester Meldekort komponenten', () => {
         };
         const { container } = render(<Meldekortstatus iDag={dag0} />, { wrapper: contextProviders(providerProps) });
         expect(container).toBeEmptyDOMElement();
+    });
+
+    test('Setning om at opplysningene er med på å beregne dagpenger vises for rettighetsgruppe DAGP', () => {
+        const dag1 = plussDager(dag0, 1);
+        render(<Meldekortstatus iDag={dag1} />, { wrapper: contextProviders(providerProps) });
+        expect(
+            screen.getByText(
+                /Opplysningene du oppgir i meldekortet brukes også til å beregne utbetalingen av dagpenger./i
+            )
+        ).toBeInTheDocument();
+    });
+
+    test('Setning om at opplysningene er med på å beregne dagpenger vises for rettighetsgruppe IYT', () => {
+        const dag1 = plussDager(dag0, 1);
+        render(<Meldekortstatus iDag={dag1} />, {
+            wrapper: contextProviders({ ...providerProps, brukerInfo: { rettighetsgruppe: 'IYT' } }),
+        });
+        expect(
+            screen.getByText(
+                /Opplysningene du oppgir i meldekortet brukes også til å beregne utbetalingen av dagpenger./i
+            )
+        ).toBeInTheDocument();
+    });
+
+    test('Setning om at opplysningene er med på å beregne dagpenger vises IKKE for rettighetsgruppe AAP', () => {
+        const dag1 = plussDager(dag0, 1);
+        render(<Meldekortstatus iDag={dag1} />, {
+            wrapper: contextProviders({ ...providerProps, brukerInfo: { rettighetsgruppe: 'AAP' } }),
+        });
+        expect(
+            screen.queryByText(
+                /Opplysningene du oppgir i meldekortet brukes også til å beregne utbetalingen av dagpenger./i
+            )
+        ).toBeFalsy();
+    });
+
+    test('Setning om at dagpenger stoppes ved ikke innsendt meldekort vises for rettighetsgruppe DAGP fra dag 3 og utover', () => {
+        const dag3 = plussDager(dag0, 3);
+        render(<Meldekortstatus iDag={dag3} />, { wrapper: contextProviders(providerProps) });
+        expect(screen.queryByText(/dagpengeutbetalingene dine stoppes/i)).toBeInTheDocument();
+    });
+
+    test('Setning om at dagpengersøknad kan bli avslått vises for rettighetsgruppe IYT fra dag 3 og utover', () => {
+        const dag3 = plussDager(dag0, 3);
+        render(<Meldekortstatus iDag={dag3} />, {
+            wrapper: contextProviders({ ...providerProps, brukerInfo: { rettighetsgruppe: 'IYT' } }),
+        });
+        expect(screen.queryByText(/en eventuell søknad om dagpenger kunne bli avslått/i)).toBeInTheDocument();
     });
 });
