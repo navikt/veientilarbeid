@@ -4,6 +4,7 @@ import { Knapp } from 'nav-frontend-knapper';
 import { AmplitudeData } from '../../metrics/amplitude-utils';
 import { loggAktivitet } from '../../metrics/metrics';
 import { meldekortLenke } from '../../innhold/lenker';
+import { BrukerInfoContext } from '../../ducks/bruker-info';
 
 function MeldekortAdvarsel({
     dagerEtterFastsattMeldedag,
@@ -12,11 +13,12 @@ function MeldekortAdvarsel({
     dagerEtterFastsattMeldedag: number;
     amplitudeData: AmplitudeData;
 }) {
+    const { rettighetsgruppe } = React.useContext(BrukerInfoContext).data;
     if (dagerEtterFastsattMeldedag === null) return null;
-    const dagerTilInaktivering = beregnDagerTilInaktivering(dagerEtterFastsattMeldedag);
 
+    const dagerTilInaktivering = beregnDagerTilInaktivering(dagerEtterFastsattMeldedag);
     // Viser strenger melding fra dag 3 (torsdag)
-    const tillegg = dagerEtterFastsattMeldedag > 2 ? <LittStrengereVarsel /> : null;
+    const tillegg = dagerEtterFastsattMeldedag > 2 ? <LittStrengereVarsel rettighetsgruppe={rettighetsgruppe} /> : null;
 
     const meldekortknappKlikk = () => {
         loggAktivitet({ aktivitet: 'Går til meldekort fra advarsel', ...amplitudeData });
@@ -38,12 +40,26 @@ function MeldekortAdvarsel({
                 </Normaltekst>
             )}
             {tillegg}
+            <br />
+            <Normaltekst>
+                Det er innsending av meldekortet som opprettholder din status som arbeidssøker hos NAV.
+            </Normaltekst>
+            {['DAGP', 'IYT'].includes(rettighetsgruppe) ? (
+                <Normaltekst>
+                    Opplysningene du oppgir i meldekortet brukes også til å beregne utbetalingen av dagpenger.
+                </Normaltekst>
+            ) : null}
             <Knapp onClick={meldekortknappKlikk}>Gå til meldekortet</Knapp>
         </>
     );
 }
 
-const LittStrengereVarsel = () => {
+const LittStrengereVarsel = ({ rettighetsgruppe }: { rettighetsgruppe: string }) => {
+    const dagpengerKonsekvensMelding = {
+        DAGP: 'dagpengeutbetalingene dine stoppes',
+        IYT: 'en eventuell søknad om dagpenger kunne bli avslått',
+    };
+
     return (
         <div className={'strenger-varsel'}>
             <Element>Dersom du ikke sender inn meldekort vil</Element>
@@ -52,9 +68,11 @@ const LittStrengereVarsel = () => {
                 <li>
                     <Normaltekst>du ikke lenger være registrert som arbeidssøker</Normaltekst>
                 </li>
-                <li>
-                    <Normaltekst>dagpengeutbetalingene dine stoppes</Normaltekst>
-                </li>
+                {['DAGP', 'IYT'].includes(rettighetsgruppe) ? (
+                    <li>
+                        <Normaltekst>{dagpengerKonsekvensMelding[rettighetsgruppe]}</Normaltekst>
+                    </li>
+                ) : null}
             </ul>
         </div>
     );
