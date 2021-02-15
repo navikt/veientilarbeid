@@ -21,6 +21,7 @@ import isMeldekortbruker from '../../utils/er-meldekortbruker';
 import { datoUtenTid } from '../../utils/date-utils';
 
 function hentDagerEtterFastsattMeldedag(
+    iDag: Date,
     meldekortstatusContext: Meldekortstatus.State,
     meldekortContext: Meldekort.State
 ): string {
@@ -32,7 +33,6 @@ function hentDagerEtterFastsattMeldedag(
     if (!harHentetMeldekort) {
         return 'ukjent';
     }
-    const iDag = datoUtenTid(new Date().toISOString());
     const antallDager = beregnDagerEtterFastsattMeldedag(iDag, meldekortContext.data);
     if (antallDager === null) {
         return 'bruker har ingen meldekort';
@@ -68,12 +68,15 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const foreslattInnsatsgruppeOrIngenVerdi =
         brukerregistreringData?.registrering.profilering?.innsatsgruppe || 'INGEN_VERDI';
     const formidlingsgruppeOrIngenVerdi = formidlingsgruppe || 'INGEN_VERDI';
+
+    const iDag = datoUtenTid(new Date().toISOString());
     const antallDagerEtterFastsattMeldingsdag = hentDagerEtterFastsattMeldedag(
+        iDag,
         meldekortStatusContext,
         meldekortContext
     );
 
-    const meldegruppe = hentMeldegruppeForNesteMeldekort(meldekortContext.data);
+    const meldegruppe = hentMeldegruppeForNesteMeldekort(iDag, meldekortContext.data);
 
     const POAGruppe = getPoaGroup({
         dinSituasjon,
