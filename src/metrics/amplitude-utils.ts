@@ -32,6 +32,7 @@ export type AmplitudeData = {
     formidlingsgruppe: string;
     servicegruppe: string;
     rettighetsgruppe: string;
+    meldegruppe: string;
     registreringType: string;
     underOppfolging: string;
     antallDagerEtterFastsattMeldingsdag: string;

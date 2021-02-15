@@ -16,6 +16,7 @@ interface MeldeperiodeInn {
 interface Meldekort {
     mottattDato?: string | null;
     meldeperiode?: MeldeperiodeInn | null;
+    meldegruppe?: string | null;
 }
 
 export interface Data {
