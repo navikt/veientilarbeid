@@ -16,7 +16,7 @@
         "now-build": "cross-env REACT_APP_MOCK=true npm run build",
         "snyk-protect": "snyk protect",
         "prepare": "npm run snyk-protect",
-        "sentry-release": "(export SENTRY_RELEASE=$(sentry-cli releases propose-version); node scripts/sentry-release)"
+        "sentry-release": "SENTRY_RELEASE=$(sentry-cli releases propose-version) node scripts/sentry-release"
     },
     "dependencies": {
         "@alheimsins/uker-fra-dato": "1.0.3",
