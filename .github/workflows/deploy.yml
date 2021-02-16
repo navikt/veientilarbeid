@@ -179,7 +179,7 @@ jobs:
       - name: Create Sentry release
         run: |
           ./node_modules/@sentry/cli/bin/sentry-cli releases new "$SENTRY_VERSION"
-          ./node_modules/@sentry/cli/bin/sentry-cli releases set-commits --local "$SENTRY_VERSION"
+          ./node_modules/@sentry/cli/bin/sentry-cli releases set-commits --local --initial-depth 1 "$SENTRY_VERSION"
           ./node_modules/@sentry/cli/bin/sentry-cli releases finalize "$SENTRY_VERSION"
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
