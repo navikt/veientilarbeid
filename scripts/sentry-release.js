@@ -18,6 +18,9 @@ async function opprettReleaseTilSentry() {
         console.log('Oppretter Sentry-release ' + release);
         await cli.releases.new(release);
 
+        console.log('Setter commits');
+        await cli.releases.setCommits(release, { auto: true });
+
         console.log('Laster opp source maps');
         await cli.releases.uploadSourceMaps(release, {
             include: ['build/static/js'],
