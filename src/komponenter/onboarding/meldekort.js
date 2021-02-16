@@ -1,60 +1,101 @@
-import React, { useState } from 'react'
-import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
+import React, {useState} from 'react'
+import {Normaltekst, Systemtittel} from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
-import { Tilbakeknapp, Nesteknapp } from 'nav-frontend-ikonknapper';
+import {Nesteknapp, Tilbakeknapp} from 'nav-frontend-ikonknapper';
+import './meldekort.less'
 
-function Kort1 () {
-  return (
-    <div>Kort 1</div>
-  )
+function Kort1() {
+    return (
+        <div>
+            <Systemtittel className={"blokk-xs"}>Hvordan fungerer meldekort i NAV?</Systemtittel>
+
+            <Normaltekst className={"blokk-xs"}>
+                Som registrert arbeidssøker hos NAV, må du sende inn et meldekort hver 14 dag.
+            </Normaltekst>
+
+            <Normaltekst className={"blokk-xs"}>
+                Selv om du venter på svar på søknaden om dagpenger, må du sende inn meldekortene innen fristen.
+            </Normaltekst>
+
+            <Normaltekst className={"blokk-xs"}>
+                Det er også viktig at du sender inn melkort til riktig tid.
+            </Normaltekst>
+        </div>
+    )
 }
 
-function Kort2 () {
-  return (
-    <div>Kort 2</div>
-  )
+function Kort2() {
+    return (
+        <div>
+            <Systemtittel className={"blokk-xs"}>Hvordan fungerer meldekort i NAV?</Systemtittel>
+            <Normaltekst className={"blokk-xs"}>
+                Utbetalinger av dagpenger regnes ut basert på opplysningene fra meldekortene du sender inn.
+            </Normaltekst>
+
+            <Normaltekst className={"blokk-xs"}>
+                Om du sender meldekortet for sent du vil få mindre utbetalt.
+            </Normaltekst>
+        </div>
+    )
 }
 
-function Kort3 () {
-  return (
-    <div>Kort 3</div>
-  )
+function Kort3() {
+    return (
+        <div>
+            <Systemtittel className={"blokk-xs"}>Hvordan fungerer meldekort i NAV?</Systemtittel>
+            <Normaltekst className={"blokk-xs"}>
+                Om du ikke sender meldekort, vil vi tolke det som at du ikke ønsker å være registrert som arbeidssøker
+                og at du ikke har behov for dagpenger eller annen hjelp.
+            </Normaltekst>
+
+            <Normaltekst className={"blokk-xs"}>
+                Om du ikke har sendt inn et meldekort tidligere, kan du se et eksempel på hvordan det fylles ut her.
+            </Normaltekst>
+
+        </div>
+
+    )
 }
 
-function EndState () {
-  return (
-    <div>EndState</div>
-  )
+function EndState() {
+    return (
+        <div>
+            <Systemtittel className={"blokk-xs"}>Hvordan fungerer meldekort i NAV?</Systemtittel>
+        </div>
+    )
 }
 
 const cards = [
-  <Kort1 />,
-  <Kort2 />,
-  <Kort3 />,
-  <EndState />
+    <Kort1/>,
+    <Kort2/>,
+    <Kort3/>,
+    <EndState/>
 ]
 
-function Meldekort () {
-  const [cardNumber, setCardNumber] = useState(0)
-  const increment = () => {
-    if (cardNumber < cards.length - 1) {
-      setCardNumber(cardNumber + 1)
+function Meldekort() {
+    const [cardNumber, setCardNumber] = useState(0)
+    const increment = () => {
+        if (cardNumber < cards.length - 1) {
+            setCardNumber(cardNumber + 1)
+        }
     }
-  }
-  const decrement = () => {
-    if (cardNumber > 0) {
-      setCardNumber(cardNumber - 1)
+    const decrement = () => {
+        if (cardNumber > 0) {
+            setCardNumber(cardNumber - 1)
+        }
     }
-  }
-  return(
-    <Panel className="blokk-s" border>
-      <Normaltekst>Kort {cardNumber + 1} av {cards.length}</Normaltekst>
-      <div>cardNumber: {cardNumber}</div>
-      {cards[cardNumber]}
-      <Tilbakeknapp onClick={decrement} />
-      <Nesteknapp onClick={increment} />
-    </Panel>
-  )
+    return (
+        <Panel className="blokk-s" border>
+            <div className={"kortwrapper"}>
+                {cards[cardNumber]}
+                <Normaltekst>{cardNumber + 1} av {cards.length}</Normaltekst>
+            </div>
+            <div className={"knapper"}>
+                <Tilbakeknapp onClick={decrement}/>
+                <Nesteknapp onClick={increment}/>
+            </div>
+        </Panel>
+    )
 }
 
 export default Meldekort
