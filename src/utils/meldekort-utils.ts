@@ -4,27 +4,28 @@
  */
 
 import { datoUtenTid, plussDager } from './date-utils';
+import * as Meldekort from '../ducks/meldekort';
 
 const dagIms = 1000 * 60 * 60 * 24;
 const dagerIMeldeperiode = 14;
 
-function antallDagerMellom(startDato, sluttDato) {
+function antallDagerMellom(startDato: Date, sluttDato: Date) {
     const ms = Math.abs(sluttDato.getTime() - startDato.getTime());
     return Math.round(ms / dagIms); // Avrunding for å ta hensyn til sommer/vintertid
 }
 
-function fastsattMeldedagForMeldekort(meldekort) {
+function fastsattMeldedagForMeldekort(meldekort: Meldekort.Meldekort) {
     // Fastsatt meldedag er mandag, og siste dag i perioden er søndag
-    const sisteDagIPeriode = datoUtenTid(meldekort.meldeperiode.til);
+    const sisteDagIPeriode = datoUtenTid(meldekort.meldeperiode?.til!!);
     return plussDager(sisteDagIPeriode, 1);
 }
 
-function foersteSendedagForMeldekort(meldekort) {
+function foersteSendedagForMeldekort(meldekort: Meldekort.Meldekort) {
     // Meldekort kan sendes fra lørdag, to dager før fastsatt meldedag (mandag)
-    return datoUtenTid(meldekort.meldeperiode.kortKanSendesFra);
+    return datoUtenTid(meldekort.meldeperiode?.kortKanSendesFra!!);
 }
 
-function sisteDagFoerNesteMeldekortsFoersteSendedag(meldekort) {
+function sisteDagFoerNesteMeldekortsFoersteSendedag(meldekort: Meldekort.Meldekort) {
     const foersteSendedag = foersteSendedagForMeldekort(meldekort); // Lørdag (dag -2)
     const fastsattMeldedag = fastsattMeldedagForMeldekort(meldekort); // Mandag (dag 0)
 
@@ -36,7 +37,7 @@ function sisteDagFoerNesteMeldekortsFoersteSendedag(meldekort) {
     return sisteDag;
 }
 
-function antallDagerEtterFastsattMeldedag(iDag, meldekort) {
+function antallDagerEtterFastsattMeldedag(iDag: Date, meldekort: Meldekort.Meldekort) {
     const fastsattMeldedag = fastsattMeldedagForMeldekort(meldekort);
     const antallDager = antallDagerMellom(iDag, fastsattMeldedag);
 
@@ -46,12 +47,12 @@ function antallDagerEtterFastsattMeldedag(iDag, meldekort) {
     return antallDager;
 }
 
-function harBrukerLevertMeldekort(meldekort) {
+function harBrukerLevertMeldekort(meldekort: Meldekort.Meldekort) {
     return !!meldekort.mottattDato;
 }
 
-function hentMeldekortForLevering(iDag, meldekortHistorie) {
-    if (!meldekortHistorie) {
+function hentMeldekortForLevering(iDag: Date, meldekortHistorie: Meldekort.Data | null) {
+    if (!meldekortHistorie || !meldekortHistorie.meldekort) {
         return [];
     }
 
@@ -62,7 +63,7 @@ function hentMeldekortForLevering(iDag, meldekortHistorie) {
     return meldekortForLevering;
 }
 
-export function beregnDagerEtterFastsattMeldedag(iDag, meldekortHistorie) {
+export function beregnDagerEtterFastsattMeldedag(iDag: Date, meldekortHistorie: Meldekort.Data | null) {
     const antallDagerEtterFastsattMeldedagPerMeldekort = hentMeldekortForLevering(
         iDag,
         meldekortHistorie
@@ -75,7 +76,7 @@ export function beregnDagerEtterFastsattMeldedag(iDag, meldekortHistorie) {
     return flestAntallDager;
 }
 
-export function hentMeldegruppeForNesteMeldekort(iDag, meldekortHistorie) {
+export function hentMeldegruppeForNesteMeldekort(iDag: Date, meldekortHistorie: Meldekort.Data | null) {
     const meldegruppePerMeldekort = hentMeldekortForLevering(iDag, meldekortHistorie).map(
         (meldekort) => meldekort.meldegruppe
     );

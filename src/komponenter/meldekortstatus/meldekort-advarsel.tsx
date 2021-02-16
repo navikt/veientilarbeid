@@ -10,7 +10,7 @@ function MeldekortAdvarsel({
     dagerEtterFastsattMeldedag,
     amplitudeData,
 }: {
-    dagerEtterFastsattMeldedag: number;
+    dagerEtterFastsattMeldedag: number | null;
     amplitudeData: AmplitudeData;
 }) {
     const { rettighetsgruppe } = React.useContext(BrukerInfoContext).data;

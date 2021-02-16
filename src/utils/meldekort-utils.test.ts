@@ -4,7 +4,7 @@ import { beregnDagerEtterFastsattMeldedag, hentMeldegruppeForNesteMeldekort } fr
 describe('tester beregning av antall dager etter fastsatt meldingsdag', () => {
     test('den returnerer null uten meldekortHistorie', () => {
         const iDag = new Date(new Date().toISOString().substr(0, 10));
-        const dager = beregnDagerEtterFastsattMeldedag(iDag);
+        const dager = beregnDagerEtterFastsattMeldedag(iDag, null);
         expect(dager).toBe(null);
     });
 

@@ -13,7 +13,7 @@ interface MeldeperiodeInn {
     periodeKode?: string;
 }
 
-interface Meldekort {
+export interface Meldekort {
     mottattDato?: string | null;
     meldeperiode?: MeldeperiodeInn | null;
     meldegruppe?: string | null;

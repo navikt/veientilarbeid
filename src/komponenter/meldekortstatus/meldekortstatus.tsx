@@ -23,8 +23,10 @@ function Meldekortstatus({ iDag }: { iDag: Date }) {
 
     const dagerEtterFastsattMeldedag = beregnDagerEtterFastsattMeldedag(iDag, meldekortData);
 
+    // Bare vis melding fra dag 1 (tirsdag) til dag 7 (mandag)
+    const mellomDag1Til7 =
+        dagerEtterFastsattMeldedag !== null && dagerEtterFastsattMeldedag > 0 && dagerEtterFastsattMeldedag <= 7;
     const minstEttMeldekort = dagerEtterFastsattMeldedag !== null;
-    const mellomDag1Til7 = dagerEtterFastsattMeldedag > 0 && dagerEtterFastsattMeldedag <= 7; // Bare vis melding fra dag 1 (tirsdag) til dag 7 (mandag)
     const kanViseMeldekortstatus = minstEttMeldekort && mellomDag1Til7;
 
     if (!kanViseMeldekortstatus) return null;
