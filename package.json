@@ -5,7 +5,7 @@
     "scripts": {
         "start": "cross-env REACT_APP_MOCK=true craco start",
         "build:micro": "cross-env REACT_APP_MICRO=true npm run build",
-        "build": "REACT_APP_SENTRY_RELEASE=$(git log --format=%as.%h -n 1 HEAD) craco build",
+        "build": "REACT_APP_SENTRY_RELEASE=$(git log --format='%ad_%h' --date=format:'%Y-%m-%d' -n 1 HEAD) craco build",
         "lint": "eslint --ext=jsx,js,ts,tsx ./src",
         "lint:fix": "eslint --ext=jsx,js,ts,tsx ./src --fix",
         "test": "npm run lint && craco test --env=jsdom",
@@ -16,7 +16,7 @@
         "now-build": "cross-env REACT_APP_MOCK=true npm run build",
         "snyk-protect": "snyk protect",
         "prepare": "npm run snyk-protect",
-        "sentry-release": "(export SENTRY_RELEASE=$(git log --format=%as.%h -n 1 HEAD); node scripts/sentry-release)"
+        "sentry-release": "(export SENTRY_RELEASE=$(git log --format='%ad_%h' --date=format:'%Y-%m-%d' -n 1 HEAD); node scripts/sentry-release)"
     },
     "dependencies": {
         "@alheimsins/uker-fra-dato": "1.0.3",
