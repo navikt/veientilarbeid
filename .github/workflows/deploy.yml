@@ -140,6 +140,40 @@ jobs:
           tag_name: release/prod@${{ env.TAG }}
           release_name: Release ${{ env.TAG }} to prod
           prerelease: false
+
+  create-release-sentry:
+    name: Create Sentry release
+    runs-on: ubuntu-latest
+    needs: [ deploy-q1 ]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: |
+            ~/.npm
+            node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Create Sentry release
+        run: |
+          npm install --no-save --no-audit
+          npm run sentry-release
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+
   
   deploy-demo:
     name: Deploy demo
