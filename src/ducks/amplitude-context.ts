@@ -17,6 +17,7 @@ export const initialState: AmplitudeData = {
     registreringType: 'INGEN_VERDI',
     underOppfolging: 'nei',
     antallDagerEtterFastsattMeldingsdag: 'ikke meldekortbruker',
+    antallMeldekortKlareForLevering: 0,
     gitVersion: 'INGEN_VERDI',
     buildTimestamp: new Date().toISOString(),
     antallSynligeInfomeldinger: 0,
