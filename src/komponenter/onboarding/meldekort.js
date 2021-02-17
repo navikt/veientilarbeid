@@ -93,7 +93,11 @@ function Meldekort() {
         if (forrigeKortRef.current !== cardNumber) {
             const handling = `Går fra ${forrigeKortRef.current + 1} til kort ${cardNumber + 1}`
             console.log(handling)
-            amplitudeLogger('vta.onboarding.meldekort', { handling, ...amplitudeData })
+            amplitudeLogger('veientilarbeid.onboarding', {
+                onboarding: 'meldekort',
+                handling,
+                ...amplitudeData
+            })
             forrigeKortRef.current = cardNumber
         }
     }, [cardNumber, amplitudeData])
