@@ -58,13 +58,19 @@ function hentMeldekortForLevering(iDag: Date, meldekortHistorie: Meldekort.Data 
 
     const meldekortForLevering = meldekortHistorie.meldekort
         .filter((meldekort) => !harBrukerLevertMeldekort(meldekort))
-        .filter((meldekort) => foersteSendedagForMeldekort(meldekort) <= iDag)
-        .filter((meldekort) => sisteDagFoerNesteMeldekortsFoersteSendedag(meldekort) >= iDag);
+        .filter((meldekort) => foersteSendedagForMeldekort(meldekort) <= iDag);
     return meldekortForLevering;
 }
 
+function hentFoerstkommendeMeldekortForLevering(iDag: Date, meldekortHistorie: Meldekort.Data | null) {
+    const foerstkommendeMeldekortForLevering = hentMeldekortForLevering(iDag, meldekortHistorie).filter(
+        (meldekort) => sisteDagFoerNesteMeldekortsFoersteSendedag(meldekort) >= iDag
+    );
+    return foerstkommendeMeldekortForLevering;
+}
+
 export function beregnDagerEtterFastsattMeldedag(iDag: Date, meldekortHistorie: Meldekort.Data | null) {
-    const antallDagerEtterFastsattMeldedagPerMeldekort = hentMeldekortForLevering(
+    const antallDagerEtterFastsattMeldedagPerMeldekort = hentFoerstkommendeMeldekortForLevering(
         iDag,
         meldekortHistorie
     ).map((meldekort) => antallDagerEtterFastsattMeldedag(iDag, meldekort));
@@ -77,7 +83,7 @@ export function beregnDagerEtterFastsattMeldedag(iDag: Date, meldekortHistorie: 
 }
 
 export function hentMeldegruppeForNesteMeldekort(iDag: Date, meldekortHistorie: Meldekort.Data | null) {
-    const meldegruppePerMeldekort = hentMeldekortForLevering(iDag, meldekortHistorie).map(
+    const meldegruppePerMeldekort = hentFoerstkommendeMeldekortForLevering(iDag, meldekortHistorie).map(
         (meldekort) => meldekort.meldegruppe
     );
 
