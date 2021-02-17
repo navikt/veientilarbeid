@@ -1,7 +1,9 @@
-import React, {useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import {Normaltekst, Systemtittel} from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
 import {Nesteknapp, Tilbakeknapp} from 'nav-frontend-ikonknapper';
+import { AmplitudeContext } from '../../ducks/amplitude-context';
+import { amplitudeLogger } from '../../metrics/amplitude-utils'
 import './meldekort.less'
 
 function Kort1() {
@@ -73,6 +75,7 @@ const cards = [
 ]
 
 function Meldekort() {
+    const amplitudeData = React.useContext(AmplitudeContext);
     const [cardNumber, setCardNumber] = useState(0)
     const nesteKort = () => {
         if (cardNumber < cards.length - 1) {
@@ -84,6 +87,13 @@ function Meldekort() {
             setCardNumber(cardNumber - 1)
         }
     }
+
+    useEffect(() => {
+        const handling = `Går til kort ${cardNumber + 1}`
+        console.log(handling)
+        amplitudeLogger('vta.onboarding.meldekort', { handling, ...amplitudeData })
+    }, [cardNumber, amplitudeData])
+
     return (
         <Panel className="blokk-s" border>
             <div className={"kortwrapper"}>
