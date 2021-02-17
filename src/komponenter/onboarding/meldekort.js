@@ -76,7 +76,8 @@ const cards = [
 
 function Meldekort() {
     const amplitudeData = React.useContext(AmplitudeContext);
-    const startKort = parseInt(amplitudeData.ukerRegistrert, 10) > 0 ? 3 : 0
+    const sisteKortiListen = cards.length - 1
+    const startKort = parseInt(amplitudeData.ukerRegistrert, 10) > 0 ? sisteKortiListen : 0
     const [cardNumber, setCardNumber] = useState(startKort)
     const forrigeKortRef = useRef(startKort)
     const nesteKort = () => {
