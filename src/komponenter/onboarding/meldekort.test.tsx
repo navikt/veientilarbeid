@@ -7,17 +7,17 @@ import Meldekort from './meldekort';
 
 describe('tester onboarding komponenten for meldekort', () => {
     test('komponenten rendres', () => {
-        const props = {};
+        const props: ProviderProps = {};
         const { container } = render(<Meldekort />, { wrapper: contextProviders(props) });
         expect(container).not.toBeEmptyDOMElement();
         expect(screen.getByText(/Hvordan fungerer meldekort i NAV/i)).toBeInTheDocument();
     });
 
     test('funksjonen for neste og forrige kort fungerer for nyregistrerte', () => {
-        const props = { amplitude: { ukerRegistrert: 0 } };
-        const { container } = render(<Meldekort />, { wrapper: contextProviders(props) });
-        const nesteknapp = screen.getByText(/neste/i).parentElement;
-        const tilbakeknapp = screen.getByText(/tilbake/i).parentElement;
+        const props: ProviderProps = { amplitude: { ukerRegistrert: 0 } };
+        render(<Meldekort />, { wrapper: contextProviders(props) });
+        const nesteknapp = screen.getByText(/neste/i).parentElement!!;
+        const tilbakeknapp = screen.getByText(/tilbake/i).parentElement!!;
 
         expect(screen.getByText(/1 av 4/i)).toBeInTheDocument();
         expect(nesteknapp).toBeEnabled();
@@ -46,12 +46,8 @@ describe('tester onboarding komponenten for meldekort', () => {
         expect(tilbakeknapp).toBeEnabled();
     });
 
-    test('man starter på endstate om man har vært registrert over 0 uker', () => {
-        const props = {
-            amplitude: {
-                ukerRegistrert: 1,
-            },
-        };
+    test('man starter på endstate om man har vært registrert i minst én uke', () => {
+        const props: ProviderProps = { amplitude: { ukerRegistrert: 1 } };
         const { container } = render(<Meldekort />, { wrapper: contextProviders(props) });
         expect(container).not.toBeEmptyDOMElement();
         expect(screen.queryByText(/Neste/)).not.toBeInTheDocument();
