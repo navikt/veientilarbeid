@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import {Normaltekst, Systemtittel} from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
 import {Nesteknapp, Tilbakeknapp} from 'nav-frontend-ikonknapper';
@@ -77,6 +77,7 @@ const cards = [
 function Meldekort() {
     const amplitudeData = React.useContext(AmplitudeContext);
     const [cardNumber, setCardNumber] = useState(0)
+    const forrigeKortRef = useRef(0)
     const nesteKort = () => {
         if (cardNumber < cards.length - 1) {
             setCardNumber(cardNumber + 1)
@@ -89,9 +90,12 @@ function Meldekort() {
     }
 
     useEffect(() => {
-        const handling = `Går til kort ${cardNumber + 1}`
-        console.log(handling)
-        amplitudeLogger('vta.onboarding.meldekort', { handling, ...amplitudeData })
+        if (forrigeKortRef.current !== cardNumber) {
+            const handling = `Går fra ${forrigeKortRef.current + 1} til kort ${cardNumber + 1}`
+            console.log(handling)
+            amplitudeLogger('vta.onboarding.meldekort', { handling, ...amplitudeData })
+            forrigeKortRef.current = cardNumber
+        }
     }, [cardNumber, amplitudeData])
 
     return (
