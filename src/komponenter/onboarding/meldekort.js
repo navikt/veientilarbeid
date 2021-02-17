@@ -20,7 +20,7 @@ function Kort1() {
             </Normaltekst>
 
             <Normaltekst className={"blokk-xs"}>
-                Det er også viktig at du sender inn melkort til riktig tid.
+                Det er også viktig at du sender inn meldekort til riktig tid.
             </Normaltekst>
         </div>
     )
@@ -92,7 +92,6 @@ function Meldekort() {
     useEffect(() => {
         if (forrigeKortRef.current !== cardNumber) {
             const handling = `Går fra ${forrigeKortRef.current + 1} til kort ${cardNumber + 1}`
-            console.log(handling)
             amplitudeLogger('veientilarbeid.onboarding', {
                 onboarding: 'meldekort',
                 handling,
