@@ -58,7 +58,7 @@ function Kort3() {
     );
 }
 
-function EndState(fra, til) {
+function EndState() {
     return (
         <div>
             <Systemtittel className={'blokk-xs'}>Innsending av meldekort</Systemtittel>
