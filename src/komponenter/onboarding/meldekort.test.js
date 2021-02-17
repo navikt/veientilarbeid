@@ -44,4 +44,15 @@ describe('tester onboarding komponenten for meldekort', () => {
     userEvent.click(tilbakeknapp)
     expect(screen.getByText(/1 av 4/i)).toBeInTheDocument();
   })
+
+  test('man starter på endstate om man har vært registrert over 0 uker', () => {
+    const props = {
+      amplitude: {
+        ukerRegistrert: 1
+      }
+    }
+    const { container } = render(<Meldekort />, { wrapper: contextProviders(props) });
+    expect(container).not.toBeEmptyDOMElement();
+    expect(screen.getByText(/4 av 4/i)).toBeInTheDocument();
+  })
 })
