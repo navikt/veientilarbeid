@@ -51,7 +51,7 @@ function harBrukerLevertMeldekort(meldekort: Meldekort.Meldekort) {
     return !!meldekort.mottattDato;
 }
 
-function hentMeldekortForLevering(iDag: Date, meldekortHistorie: Meldekort.Data | null) {
+export function hentMeldekortForLevering(iDag: Date, meldekortHistorie: Meldekort.Data | null) {
     if (!meldekortHistorie || !meldekortHistorie.meldekort) {
         return [];
     }
