@@ -74,12 +74,12 @@ const cards = [
 
 function Meldekort() {
     const [cardNumber, setCardNumber] = useState(0)
-    const increment = () => {
+    const nesteKort = () => {
         if (cardNumber < cards.length - 1) {
             setCardNumber(cardNumber + 1)
         }
     }
-    const decrement = () => {
+    const forrigeKort = () => {
         if (cardNumber > 0) {
             setCardNumber(cardNumber - 1)
         }
@@ -91,8 +91,8 @@ function Meldekort() {
                 <Normaltekst>{cardNumber + 1} av {cards.length}</Normaltekst>
             </div>
             <div className={"knapper"}>
-                <Tilbakeknapp onClick={decrement}/>
-                <Nesteknapp onClick={increment}/>
+                <Tilbakeknapp onClick={forrigeKort}/>
+                <Nesteknapp onClick={nesteKort}/>
             </div>
         </Panel>
     )
