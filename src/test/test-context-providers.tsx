@@ -1,4 +1,6 @@
 import merge from 'merge-deep';
+import * as Amplitude from '../ducks/amplitude-context'
+import { AmplitudeData } from '../metrics/amplitude-utils';
 import * as Autentisering from '../ducks/autentisering';
 import * as Brukerregistrering from '../ducks/brukerregistrering';
 import * as FeatureToggle from '../ducks/feature-toggles';
@@ -19,6 +21,7 @@ type DeepPartial<T> = {
 
 export type ProviderProps = {
     autentisering?: DeepPartial<Autentisering.Data>;
+    amplitude?: DeepPartial<AmplitudeData>;
     brukerregistrering?: DeepPartial<Brukerregistrering.Data> | null;
     featureToggle?: DeepPartial<FeatureToggle.Data>;
     egenvurdering?: DeepPartial<Egenvurdering.Data>;
@@ -88,6 +91,12 @@ export const contextProviders = function (props: ProviderProps): React.FunctionC
                                                     props.motestotte && { data: props.motestotte }
                                                 )}
                                             >
+                                                <Amplitude.AmplitudeContext.Provider
+                                                value={merge(
+                                                    Amplitude.initialState,
+                                                    props.amplitude
+                                                )}
+                                            >
                                                 <FeatureToggle.FeaturetoggleContext.Provider
                                                     value={merge(
                                                         FeatureToggle.initialState,
@@ -96,6 +105,8 @@ export const contextProviders = function (props: ProviderProps): React.FunctionC
                                                 >
                                                     {children}
                                                 </FeatureToggle.FeaturetoggleContext.Provider>
+                                                </Amplitude.AmplitudeContext.Provider>
+
                                             </Motestotte.MotestotteContext.Provider>
                                         </Oppfolging.OppfolgingContext.Provider>
                                     </UnderOppfolging.UnderOppfolgingContext.Provider>
