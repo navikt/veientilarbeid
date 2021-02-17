@@ -46,10 +46,12 @@ describe('tester onboarding komponenten for meldekort', () => {
         expect(tilbakeknapp).toBeEnabled();
     });
 
-    test('man starter på endstate om man har vært registrert i minst én uke', () => {
+    test('man starter på endstate uten navigeringsvalg om man har vært registrert i minst én uke', () => {
         const props: ProviderProps = { amplitude: { ukerRegistrert: 1 } };
         const { container } = render(<Meldekort />, { wrapper: contextProviders(props) });
         expect(container).not.toBeEmptyDOMElement();
-        expect(screen.queryByText(/Neste/)).not.toBeInTheDocument();
+        expect(screen.queryByText(/neste/i)).not.toBeInTheDocument();
+        expect(screen.queryByText(/tilbake/i)).not.toBeInTheDocument();
+        expect(screen.queryByText(/av 4/i)).not.toBeInTheDocument();
     });
 });
