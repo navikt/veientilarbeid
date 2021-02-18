@@ -90,7 +90,7 @@ function EndState() {
 
 const onboardingKort = [<Kort1 />, <Kort2 />, <Kort3 />, <EndState />];
 
-function Meldekort() {
+function OnboardingMeldekort() {
     const amplitudeData = React.useContext(AmplitudeContext);
     const sisteKortiListen = onboardingKort.length - 1;
     const erNyregistrert = amplitudeData.ukerRegistrert === 0;
@@ -146,4 +146,4 @@ function Meldekort() {
     );
 }
 
-export default Meldekort;
+export default OnboardingMeldekort;
