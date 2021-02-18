@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Normaltekst, Systemtittel, Undertekst } from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
+import Lenke from 'nav-frontend-lenker';
 import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
+import { MeldekortContext, Data as MeldekortData } from '../../ducks/meldekort';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import './meldekort.less';
-import Lenke from 'nav-frontend-lenker';
 
 function Kort1() {
     return (
@@ -58,7 +59,12 @@ function Kort3() {
     );
 }
 
-function EndState() {
+interface EndStateProps {
+    meldekortData: MeldekortData | null;
+}
+function EndState(props: EndStateProps) {
+    const { meldekortData } = props
+    console.log(meldekortData)
     return (
         <div>
             <Systemtittel className={'blokk-xs'}>Innsending av meldekort</Systemtittel>
@@ -88,10 +94,10 @@ function EndState() {
     );
 }
 
-const onboardingKort = [<Kort1 />, <Kort2 />, <Kort3 />, <EndState />];
-
 function OnboardingMeldekort() {
     const amplitudeData = React.useContext(AmplitudeContext);
+    const { data: meldekortData } = React.useContext(MeldekortContext);
+    const onboardingKort = [<Kort1 />, <Kort2 />, <Kort3 />, <EndState meldekortData={meldekortData} />];
     const sisteKortiListen = onboardingKort.length - 1;
     const erNyregistrert = amplitudeData.ukerRegistrert === 0;
     const startKort = erNyregistrert ? 0 : sisteKortiListen;
@@ -138,7 +144,7 @@ function OnboardingMeldekort() {
             ) : (
                 <div className={'kortwrapper'}>
                     <div className={'kortinnhold'}>
-                        <EndState />
+                        <EndState meldekortData={meldekortData} />
                     </div>
                 </div>
             )}
