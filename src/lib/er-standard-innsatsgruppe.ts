@@ -1,14 +1,14 @@
-import { Data as BrukerregistreringsData, selectForeslattInnsatsgruppe } from '../ducks/brukerregistrering'
+import { Brukerregistrering } from '../ducks/brukerregistrering'
 import { Data as OppfolgingsData } from '../ducks/oppfolging'
 
 interface DataGrunnlag {
-  registrering: BrukerregistreringsData;
+  registrering: Brukerregistrering | null;
   oppfolging: OppfolgingsData
 }
 
 function erStandardInnsatsgruppe ( data: DataGrunnlag): boolean {
   const { registrering, oppfolging } = data
-  const foreslattInnsatsgruppe = selectForeslattInnsatsgruppe(registrering)
+  const foreslattInnsatsgruppe = registrering?.profilering?.innsatsgruppe
   const { servicegruppe, formidlingsgruppe } = oppfolging 
   let erStandard = false
   if (servicegruppe === 'IVURD' && formidlingsgruppe === 'ARBS' && foreslattInnsatsgruppe === 'STANDARD_INNSATS') {
@@ -17,6 +17,7 @@ function erStandardInnsatsgruppe ( data: DataGrunnlag): boolean {
   if (servicegruppe === 'IKVAL' && formidlingsgruppe === 'ARBS') {
     erStandard = true
   }
+
   return erStandard
 }
 
