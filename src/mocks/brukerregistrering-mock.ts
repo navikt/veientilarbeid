@@ -16,7 +16,7 @@ export default {
             tilbakeIArbeid: 'USIKKER',
         },
         profilering: {
-            innsatsgruppe: 'SITUASJONSBESTEMT_INNSATS',
+            innsatsgruppe: 'STANDARD_INNSATS',
         },
         teksterForBesvarelse: [
             {
