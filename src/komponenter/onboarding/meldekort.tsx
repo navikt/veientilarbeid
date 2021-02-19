@@ -100,9 +100,10 @@ function EndState(props: EndStateProps) {
 
 function OnboardingMeldekort() {
     const amplitudeData = React.useContext(AmplitudeContext);
-    const { data: brukerregistreringData } = React.useContext(BrukerregistreringContext)
+    const { data: registreringData } = React.useContext(BrukerregistreringContext)
     const { data: oppfolgingData } = React.useContext(OppfolgingContext)
     const { data: meldekortData } = React.useContext(MeldekortContext);
+    const brukerregistreringData = registreringData ? registreringData.registrering : null
     const onboardingKort = [<Kort1 />, <Kort2 />, <Kort3 />, <EndState meldekortData={meldekortData} />];
     const sisteKortiListen = onboardingKort.length - 1;
     const erNyregistrert = amplitudeData.ukerRegistrert === 0;
