@@ -152,7 +152,10 @@ function OnboardingMeldekort() {
         }
     }, [gjeldendeKortIndex, amplitudeData]);
 
-    const kanViseKomponent = meldekortData && erStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData })
+    const harMeldekort = meldekortData && meldekortData.meldekort && meldekortData.meldekort.length > 0
+    const meldegrupper = harMeldekort ? meldekortData?.meldekort?.map(kort => kort.meldegruppe): []
+    const harDagpengerEllerArbeidssokerMeldekort = harMeldekort && (meldegrupper?.includes('DAGP') || meldegrupper?.includes('ARBS'))
+    const kanViseKomponent = harDagpengerEllerArbeidssokerMeldekort && erStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData })
 
     if (!kanViseKomponent) return null
 
