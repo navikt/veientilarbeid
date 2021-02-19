@@ -170,7 +170,9 @@ function OnboardingMeldekort() {
                         </Normaltekst>
                     </div>
                     <div className={'knapper'}>
-                        <Tilbakeknapp mini disabled={gjeldendeKortIndex === 0} onClick={forrigeKort} />
+                        <Tilbakeknapp mini disabled={gjeldendeKortIndex === 0} onClick={forrigeKort}>
+                            Forrige
+                        </Tilbakeknapp>
                         <Nesteknapp mini disabled={gjeldendeKortIndex === sisteKortiListen} onClick={nesteKort} />
                     </div>
                 </>
