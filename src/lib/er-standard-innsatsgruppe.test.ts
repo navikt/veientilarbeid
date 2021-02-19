@@ -3,7 +3,7 @@ import { Servicegruppe, Formidlingsgruppe } from '../ducks/oppfolging'
 import erStandardInnsatsgruppe from './er-standard-innsatsgruppe'
 
 const grunnData = {
-  registrering: {
+  brukerregistreringData: {
     opprettetDato: new Date().toISOString(),
     manueltRegistrertAv: null,
     besvarelse: {
@@ -20,7 +20,7 @@ const grunnData = {
     },
     teksterForBesvarelse: null
   },
-  oppfolging: {
+  oppfolgingData: {
     kanReaktiveres: false,
     reservasjonKRR: false,
     servicegruppe: Servicegruppe.IKVAL,
@@ -37,7 +37,7 @@ describe('tester funksjonaliteten for erStandardInnsatsgruppe', () => {
 
   test('returnerer true for ARBS + IVURD og profilering lik STANDARD_INNSATS', () => {
     const lokaleData = {
-      registrering: {
+      brukerregistreringData: {
         opprettetDato: new Date().toISOString(),
         manueltRegistrertAv: null,
         besvarelse: {
@@ -57,7 +57,7 @@ describe('tester funksjonaliteten for erStandardInnsatsgruppe', () => {
           innsatsgruppe: ForeslattInnsatsgruppe.STANDARD_INNSATS
         }
       },
-      oppfolging: {
+      oppfolgingData: {
         kanReaktiveres: false,
         reservasjonKRR: false,
         servicegruppe: Servicegruppe.IVURD,
@@ -70,7 +70,7 @@ describe('tester funksjonaliteten for erStandardInnsatsgruppe', () => {
 
   test('returnerer false for ARBS + IVURD og profilering lik BEHOV_FOR_ARBEIDSEVNEVURDERING', () => {
     const lokaleData = {
-      registrering: {
+      brukerregistreringData: {
         opprettetDato: new Date().toISOString(),
         manueltRegistrertAv: null,
         besvarelse: {
@@ -90,7 +90,7 @@ describe('tester funksjonaliteten for erStandardInnsatsgruppe', () => {
           innsatsgruppe: ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING
         }
       },
-      oppfolging: {
+      oppfolgingData: {
         kanReaktiveres: false,
         reservasjonKRR: false,
         servicegruppe: Servicegruppe.IVURD,
@@ -103,7 +103,7 @@ describe('tester funksjonaliteten for erStandardInnsatsgruppe', () => {
 
   test('returnerer false for ARBS + IVURD og ingen profilering', () => {
     const lokaleData = {
-      oppfolging: {
+      oppfolgingData: {
         kanReaktiveres: false,
         reservasjonKRR: false,
         servicegruppe: Servicegruppe.IVURD,

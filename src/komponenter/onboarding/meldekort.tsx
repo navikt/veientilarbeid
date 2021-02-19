@@ -4,7 +4,10 @@ import Panel from 'nav-frontend-paneler';
 import Lenke from 'nav-frontend-lenker';
 import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
+import { BrukerregistreringContext } from '../../ducks/brukerregistrering'
 import { MeldekortContext, Data as MeldekortData } from '../../ducks/meldekort';
+import { OppfolgingContext } from '../../ducks/oppfolging'
+import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe'
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import './meldekort.less';
 
@@ -62,6 +65,7 @@ function Kort3() {
 interface EndStateProps {
     meldekortData: MeldekortData | null;
 }
+
 function EndState(props: EndStateProps) {
     const { meldekortData } = props
     console.log(meldekortData)
@@ -96,6 +100,8 @@ function EndState(props: EndStateProps) {
 
 function OnboardingMeldekort() {
     const amplitudeData = React.useContext(AmplitudeContext);
+    const { data: brukerregistreringData } = React.useContext(BrukerregistreringContext)
+    const { data: oppfolgingData } = React.useContext(OppfolgingContext)
     const { data: meldekortData } = React.useContext(MeldekortContext);
     const onboardingKort = [<Kort1 />, <Kort2 />, <Kort3 />, <EndState meldekortData={meldekortData} />];
     const sisteKortiListen = onboardingKort.length - 1;
@@ -125,6 +131,10 @@ function OnboardingMeldekort() {
             forrigeKortRef.current = gjeldendeKortIndex;
         }
     }, [gjeldendeKortIndex, amplitudeData]);
+
+    const kanViseKomponent = meldekortData && erStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData })
+
+    if (!kanViseKomponent) return null
 
     return (
         <Panel className="blokk-s meldekort-onboarding" border>
