@@ -11,21 +11,15 @@ import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import Meldekortstatus from '../meldekortstatus/meldekortstatus';
-import MeldekortOnboarding from '../onboarding/meldekort'
 import { datoUtenTid } from '../../utils/date-utils';
-import { BrukerInfoContext } from '../../ducks/bruker-info';
 
 const Registrert = () => {
     const brukerregistreringData = useContext(BrukerregistreringContext).data;
-    const brukerInfoData =  useContext(BrukerInfoContext).data
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const autentiseringData = React.useContext(AutentiseringContext).data;
     const amplitudeData = React.useContext(AmplitudeContext);
     const [clickedInnsyn, setClickedInnsyn] = useState(false);
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
-    const { geografiskTilknytning } = brukerInfoData
-    const geografiskTilknytningEllerTomStreng = geografiskTilknytning ? geografiskTilknytning  : ''
-    const visOnboarding  = ['0807'].includes(geografiskTilknytningEllerTomStreng)
 
     const kanViseKomponent =
         oppfolgingData.formidlingsgruppe === 'ARBS' &&
@@ -78,7 +72,7 @@ const Registrert = () => {
                     />
                 </Ekspanderbartpanel>
             ) : null}
-            {visOnboarding ? <MeldekortOnboarding />  : <Meldekortstatus iDag={iDag} />}
+            <Meldekortstatus iDag={iDag} />
         </div>
     );
 };
