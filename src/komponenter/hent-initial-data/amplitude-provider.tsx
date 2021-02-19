@@ -11,7 +11,11 @@ import { BrukerInfoContext } from '../../ducks/bruker-info';
 import grupperGeografiskTilknytning from '../../utils/grupper-geografisk-tilknytning';
 
 import ukerFraDato from '../../utils/uker-fra-dato';
-import { beregnDagerEtterFastsattMeldedag, hentMeldegruppeForNesteMeldekort } from '../../utils/meldekort-utils';
+import {
+    beregnDagerEtterFastsattMeldedag,
+    hentMeldegruppeForNesteMeldekort,
+    hentMeldekortForLevering,
+} from '../../utils/meldekort-utils';
 import * as Meldekort from '../../ducks/meldekort';
 import { STATUS } from '../../ducks/api';
 import { AmplitudeData } from '../../metrics/amplitude-utils';
@@ -75,6 +79,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         meldekortStatusContext,
         meldekortContext
     );
+    const antallMeldekortKlareForLevering = hentMeldekortForLevering(iDag, meldekortContext.data).length;
 
     const meldegruppe = hentMeldegruppeForNesteMeldekort(iDag, meldekortContext.data);
 
@@ -118,6 +123,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         meldegruppe: meldegruppe || 'INGEN_VERDI',
         registreringType: registreringType || 'INGEN_VERDI',
         antallDagerEtterFastsattMeldingsdag,
+        antallMeldekortKlareForLevering,
         gitVersion: process.env.REACT_APP_VERSION_HASH || 'INGEN_VERDI',
         buildTimestamp: process.env.REACT_APP_BUILD_TIMESTAMP || new Date().toISOString(),
         antallSynligeInfomeldinger: antallSynligeInfomeldinger(),
