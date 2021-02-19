@@ -16,7 +16,8 @@
         "now-build": "cross-env REACT_APP_MOCK=true npm run build",
         "snyk-protect": "snyk protect",
         "prepare": "npm run snyk-protect",
-        "sentry-release": "SENTRY_RELEASE=$(sentry-cli releases propose-version) node scripts/sentry-release"
+        "sentry-release": "SENTRY_RELEASE=$(sentry-cli releases propose-version) node scripts/sentry-release",
+        "postinstall": "husky install"
     },
     "dependencies": {
         "@alheimsins/uker-fra-dato": "1.0.3",
@@ -106,12 +107,6 @@
         "printWidth": 120,
         "singleQuote": true,
         "tabWidth": 4
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged",
-            "pre-push": "tsc"
-        }
     },
     "lint-staged": {
         "*.{js,jsx,json,md,ts,tsx}": "prettier --write"
