@@ -4,10 +4,10 @@ import Panel from 'nav-frontend-paneler';
 import Lenke from 'nav-frontend-lenker';
 import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
-import { BrukerregistreringContext } from '../../ducks/brukerregistrering'
+import { BrukerregistreringContext } from '../../ducks/brukerregistrering';
 import { MeldekortContext, Data as MeldekortData } from '../../ducks/meldekort';
-import { OppfolgingContext } from '../../ducks/oppfolging'
-import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe'
+import { OppfolgingContext } from '../../ducks/oppfolging';
+import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
 import './meldekort.less';
 
@@ -64,12 +64,12 @@ function Kort3() {
 
 interface EndStateProps {
     meldekortData: MeldekortData | null;
-    amplitudeData: AmplitudeData
+    amplitudeData: AmplitudeData;
 }
 
 function EndState(props: EndStateProps) {
-    const { meldekortData, amplitudeData } = props
-    console.log(meldekortData)
+    const { meldekortData, amplitudeData } = props;
+    console.log(meldekortData);
 
     const handleClickInnsending = () => {
         amplitudeLogger('veientilarbeid.onboarding', {
@@ -77,14 +77,14 @@ function EndState(props: EndStateProps) {
             handling: 'Går til innsending av meldekort',
             ...amplitudeData,
         });
-    }
+    };
     const handleClickLesMer = () => {
         amplitudeLogger('veientilarbeid.onboarding', {
             onboarding: 'meldekort',
             handling: 'Går til les mer om meldekort',
             ...amplitudeData,
         });
-    }
+    };
 
     return (
         <div>
@@ -119,11 +119,16 @@ function EndState(props: EndStateProps) {
 
 function OnboardingMeldekort() {
     const amplitudeData = React.useContext(AmplitudeContext);
-    const { data: registreringData } = React.useContext(BrukerregistreringContext)
-    const { data: oppfolgingData } = React.useContext(OppfolgingContext)
+    const { data: registreringData } = React.useContext(BrukerregistreringContext);
+    const { data: oppfolgingData } = React.useContext(OppfolgingContext);
     const { data: meldekortData } = React.useContext(MeldekortContext);
-    const brukerregistreringData = registreringData ? registreringData.registrering : null
-    const onboardingKort = [<Kort1 />, <Kort2 />, <Kort3 />, <EndState meldekortData={meldekortData} amplitudeData={amplitudeData} />];
+    const brukerregistreringData = registreringData ? registreringData.registrering : null;
+    const onboardingKort = [
+        <Kort1 />,
+        <Kort2 />,
+        <Kort3 />,
+        <EndState meldekortData={meldekortData} amplitudeData={amplitudeData} />,
+    ];
     const sisteKortiListen = onboardingKort.length - 1;
     const erNyregistrert = amplitudeData.ukerRegistrert === 0;
     const startKort = erNyregistrert ? 0 : sisteKortiListen;
@@ -152,12 +157,14 @@ function OnboardingMeldekort() {
         }
     }, [gjeldendeKortIndex, amplitudeData]);
 
-    const harMeldekort = meldekortData && meldekortData.meldekort && meldekortData.meldekort.length > 0
-    const meldegrupper = harMeldekort ? meldekortData?.meldekort?.map(kort => kort.meldegruppe): []
-    const harDagpengerEllerArbeidssokerMeldekort = harMeldekort && (meldegrupper?.includes('DAGP') || meldegrupper?.includes('ARBS'))
-    const kanViseKomponent = harDagpengerEllerArbeidssokerMeldekort && erStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData })
+    const harMeldekort = meldekortData && meldekortData.meldekort && meldekortData.meldekort.length > 0;
+    const meldegrupper = harMeldekort ? meldekortData?.meldekort?.map((kort) => kort.meldegruppe) : [];
+    const harDagpengerEllerArbeidssokerMeldekort =
+        harMeldekort && (meldegrupper?.includes('DAGP') || meldegrupper?.includes('ARBS'));
+    const kanViseKomponent =
+        harDagpengerEllerArbeidssokerMeldekort && erStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData });
 
-    if (!kanViseKomponent) return null
+    if (!kanViseKomponent) return null;
 
     return (
         <Panel className="blokk-s meldekort-onboarding" border>
@@ -179,7 +186,7 @@ function OnboardingMeldekort() {
             ) : (
                 <div className={'kortwrapper'}>
                     <div className={'kortinnhold'}>
-                        <EndState meldekortData={meldekortData} amplitudeData={amplitudeData} />
+                        <EndState meldekortData={meldekortData} amplitudeData={amplitudeData} />
                     </div>
                 </div>
             )}
