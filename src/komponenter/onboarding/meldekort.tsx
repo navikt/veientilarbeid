@@ -8,7 +8,7 @@ import { BrukerregistreringContext } from '../../ducks/brukerregistrering'
 import { MeldekortContext, Data as MeldekortData } from '../../ducks/meldekort';
 import { OppfolgingContext } from '../../ducks/oppfolging'
 import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe'
-import { amplitudeLogger } from '../../metrics/amplitude-utils';
+import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
 import './meldekort.less';
 
 function Kort1() {
@@ -64,11 +64,28 @@ function Kort3() {
 
 interface EndStateProps {
     meldekortData: MeldekortData | null;
+    amplitudeData: AmplitudeData
 }
 
 function EndState(props: EndStateProps) {
-    const { meldekortData } = props
+    const { meldekortData, amplitudeData } = props
     console.log(meldekortData)
+
+    const handleClickInnsending = () => {
+        amplitudeLogger('veientilarbeid.onboarding', {
+            onboarding: 'meldekort',
+            handling: 'Går til innsending av meldekort',
+            ...amplitudeData,
+        });
+    }
+    const handleClickLesMer = () => {
+        amplitudeLogger('veientilarbeid.onboarding', {
+            onboarding: 'meldekort',
+            handling: 'Går til les mer om meldekort',
+            ...amplitudeData,
+        });
+    }
+
     return (
         <div>
             <Systemtittel className={'blokk-xs'}>Innsending av meldekort</Systemtittel>
@@ -83,6 +100,7 @@ function EndState(props: EndStateProps) {
                 </Undertekst>
                 <Lenke
                     href="https://www.nav.no/no/person/arbeid/dagpenger-ved-arbeidsloshet-og-permittering/meldekort-hvordan-gjor-du-det"
+                    onClick={handleClickInnsending}
                     target="_blank"
                 >
                     Gå til innsending
@@ -90,6 +108,7 @@ function EndState(props: EndStateProps) {
             </div>
             <Lenke
                 href="https://www.nav.no/no/person/arbeid/dagpenger-ved-arbeidsloshet-og-permittering/meldekort-hvordan-gjor-du-det"
+                onClick={handleClickLesMer}
                 target="_blank"
             >
                 Les mer om meldekort
@@ -104,7 +123,7 @@ function OnboardingMeldekort() {
     const { data: oppfolgingData } = React.useContext(OppfolgingContext)
     const { data: meldekortData } = React.useContext(MeldekortContext);
     const brukerregistreringData = registreringData ? registreringData.registrering : null
-    const onboardingKort = [<Kort1 />, <Kort2 />, <Kort3 />, <EndState meldekortData={meldekortData} />];
+    const onboardingKort = [<Kort1 />, <Kort2 />, <Kort3 />, <EndState meldekortData={meldekortData} amplitudeData={amplitudeData} />];
     const sisteKortiListen = onboardingKort.length - 1;
     const erNyregistrert = amplitudeData.ukerRegistrert === 0;
     const startKort = erNyregistrert ? 0 : sisteKortiListen;
@@ -155,7 +174,7 @@ function OnboardingMeldekort() {
             ) : (
                 <div className={'kortwrapper'}>
                     <div className={'kortinnhold'}>
-                        <EndState meldekortData={meldekortData} />
+                        <EndState meldekortData={meldekortData} amplitudeData={amplitudeData} />
                     </div>
                 </div>
             )}
