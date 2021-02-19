@@ -10,6 +10,8 @@ import { OppfolgingContext } from '../../ducks/oppfolging';
 import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
 import './meldekort.less';
+import { hentISOUke } from '../../utils/date-utils';
+import { hentMeldekortForLevering } from '../../utils/meldekort-utils';
 
 function Kort1() {
     return (
@@ -69,8 +71,7 @@ interface EndStateProps {
 
 function EndState(props: EndStateProps) {
     const { meldekortData, amplitudeData } = props;
-    console.log(meldekortData);
-
+    const meldekortForLevering = hentMeldekortForLevering(new Date(), meldekortData);
     const handleClickInnsending = () => {
         amplitudeLogger('veientilarbeid.onboarding', {
             onboarding: 'meldekort',
@@ -86,6 +87,14 @@ function EndState(props: EndStateProps) {
         });
     };
 
+    if (meldekortForLevering.length === 0) {
+        return null;
+    }
+    if (meldekortForLevering.length > 1) {
+        return <div>Vent litt, så får du en lenke av meg</div>;
+    }
+    const foerstkommendeMeldekort = meldekortForLevering[0];
+
     return (
         <div>
             <Systemtittel className={'blokk-xs'}>Innsending av meldekort</Systemtittel>
@@ -96,7 +105,8 @@ function EndState(props: EndStateProps) {
             <Normaltekst>Gjeldende meldekort</Normaltekst>
             <div className={'meldekortinfo'}>
                 <Undertekst>
-                    Periode: {'01-01-1970'} - {'01-01-1970'}
+                    Periode: {hentISOUke(foerstkommendeMeldekort.meldeperiode?.fra!!)}–
+                    {hentISOUke(foerstkommendeMeldekort.meldeperiode?.til!!)}
                 </Undertekst>
                 <Lenke
                     href="https://www.nav.no/no/person/arbeid/dagpenger-ved-arbeidsloshet-og-permittering/meldekort-hvordan-gjor-du-det"
