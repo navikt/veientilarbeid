@@ -1,17 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Normaltekst, Systemtittel, Undertekst } from 'nav-frontend-typografi';
+import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
 import Lenke from 'nav-frontend-lenker';
 import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { BrukerregistreringContext } from '../../ducks/brukerregistrering';
-import { MeldekortContext, Data as MeldekortData } from '../../ducks/meldekort';
+import { Data as MeldekortData, MeldekortContext } from '../../ducks/meldekort';
 import { OppfolgingContext } from '../../ducks/oppfolging';
 import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
 import './meldekort.less';
-import { hentISOUke } from '../../utils/date-utils';
+import { datoUtenTid, hentISOUke } from '../../utils/date-utils';
 import { hentMeldekortForLevering } from '../../utils/meldekort-utils';
+import Meldekortstatus from './meldekortstatus';
+import { erDemo } from '../../utils/app-state-utils';
+import { hentDagRelativTilFastsattMeldedag } from '../../demo/demo-state';
 
 function Kort1() {
     return (
@@ -71,7 +74,8 @@ interface EndStateProps {
 
 function EndState(props: EndStateProps) {
     const { meldekortData, amplitudeData } = props;
-    const meldekortForLevering = hentMeldekortForLevering(new Date(), meldekortData);
+    const dato = erDemo() ? hentDagRelativTilFastsattMeldedag() : datoUtenTid(new Date().toISOString());
+    const meldekortForLevering = hentMeldekortForLevering(dato, meldekortData);
     const handleClickInnsending = () => {
         amplitudeLogger('veientilarbeid.onboarding', {
             onboarding: 'meldekort',
@@ -86,7 +90,6 @@ function EndState(props: EndStateProps) {
             ...amplitudeData,
         });
     };
-
     if (meldekortForLevering.length === 0) {
         return null;
     }
@@ -94,20 +97,23 @@ function EndState(props: EndStateProps) {
         return <div>Vent litt, så får du en lenke av meg</div>;
     }
     const foerstkommendeMeldekort = meldekortForLevering[0];
+    console.log(dato);
 
     return (
         <div>
             <Systemtittel className={'blokk-xs'}>Innsending av meldekort</Systemtittel>
-            <Normaltekst className={'blokk-xs'}>Du kan nå sende inn meldekortet.</Normaltekst>
-            <Normaltekst className={'blokk-xs'}>
-                Sender du inn for sent vil du ikke lenger stå registrert som arbeidssøker og dagpengene vil stoppes.
-            </Normaltekst>
-            <Normaltekst>Gjeldende meldekort</Normaltekst>
+
+            <Meldekortstatus iDag={datoUtenTid(dato.toISOString())} />
+
             <div className={'meldekortinfo'}>
-                <Undertekst>
-                    Periode: {hentISOUke(foerstkommendeMeldekort.meldeperiode?.fra!!)}–
+                <Normaltekst blokk-s>
+                    {' '}
+                    <b>Meldekort</b>
+                </Normaltekst>
+                <Normaltekst>
+                    for uke {hentISOUke(foerstkommendeMeldekort.meldeperiode?.fra!!)} og{' '}
                     {hentISOUke(foerstkommendeMeldekort.meldeperiode?.til!!)}
-                </Undertekst>
+                </Normaltekst>
                 <Lenke
                     href="https://www.nav.no/no/person/arbeid/dagpenger-ved-arbeidsloshet-og-permittering/meldekort-hvordan-gjor-du-det"
                     onClick={handleClickInnsending}
@@ -116,6 +122,7 @@ function EndState(props: EndStateProps) {
                     Gå til innsending
                 </Lenke>
             </div>
+            <hr className={'skillelinje'} />
             <Lenke
                 href="https://www.nav.no/no/person/arbeid/dagpenger-ved-arbeidsloshet-og-permittering/meldekort-hvordan-gjor-du-det"
                 onClick={handleClickLesMer}
@@ -132,6 +139,7 @@ function OnboardingMeldekort() {
     const { data: registreringData } = React.useContext(BrukerregistreringContext);
     const { data: oppfolgingData } = React.useContext(OppfolgingContext);
     const { data: meldekortData } = React.useContext(MeldekortContext);
+    const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
     const brukerregistreringData = registreringData ? registreringData.registrering : null;
     const onboardingKort = [
         <Kort1 />,
@@ -167,12 +175,18 @@ function OnboardingMeldekort() {
         }
     }, [gjeldendeKortIndex, amplitudeData]);
 
-    const harMeldekort = meldekortData && meldekortData.meldekort && meldekortData.meldekort.length > 0;
-    const meldegrupper = harMeldekort ? meldekortData?.meldekort?.map((kort) => kort.meldegruppe) : [];
-    const harDagpengerEllerArbeidssokerMeldekort =
-        harMeldekort && (meldegrupper?.includes('DAGP') || meldegrupper?.includes('ARBS'));
+    const meldekortliste = meldekortData?.meldekort ?? [];
+    const harMeldekort = meldekortliste.length > 0;
+    if (!harMeldekort) return null;
+
+    const harDagpengerEllerArbeidssokerMeldekort = meldekortliste.filter((meldekort) =>
+        ['DAGP', 'ARBS'].includes(meldekort.meldegruppe ?? 'NULL')
+    );
+
     const kanViseKomponent =
-        harDagpengerEllerArbeidssokerMeldekort && erStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData });
+        harDagpengerEllerArbeidssokerMeldekort &&
+        erStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData }) &&
+        !kanReaktiveres;
 
     if (!kanViseKomponent) return null;
 

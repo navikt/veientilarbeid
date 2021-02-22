@@ -10,16 +10,13 @@ import React from 'react';
 import MeldekortAdvarsel from './meldekort-advarsel';
 import * as Meldekort from '../../ducks/meldekort';
 import { beregnDagerEtterFastsattMeldedag } from '../../utils/meldekort-utils';
-import { OppfolgingContext } from '../../ducks/oppfolging';
 import './meldekortstatus.less';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 
 function Meldekortstatus({ iDag }: { iDag: Date }) {
     const { data: meldekortData } = React.useContext(Meldekort.MeldekortContext);
-    const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
-    const amplitudeData = React.useContext(AmplitudeContext);
 
-    if (!meldekortData || kanReaktiveres) return null;
+    const amplitudeData = React.useContext(AmplitudeContext);
 
     const dagerEtterFastsattMeldedag = beregnDagerEtterFastsattMeldedag(iDag, meldekortData);
 

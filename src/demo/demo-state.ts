@@ -1,4 +1,5 @@
 import { InnloggingsNiva } from '../ducks/autentisering';
+import { foerstkommendeMandag, plussDager } from '../utils/date-utils';
 
 type JSONValue = null | string | number | boolean | JSONObject | JSONArray;
 interface JSONArray extends Array<JSONValue> {}
@@ -207,3 +208,44 @@ export const hentKanReaktiveres = (): boolean => {
 export const settKanReaktiveres = (value: string) => {
     settILocalStorage(DemoData.KAN_REAKTIVERES, value);
 };
+
+export const randomUlesteDialoger = () => {
+    const min = 1;
+    const max = 99;
+    return Math.floor(min + Math.random() * (max - min));
+};
+
+const fastsattMeldedag = foerstkommendeMandag(new Date());
+
+export function lagMeldekortData() {
+    return {
+        maalformkode: 'NO',
+        meldeform: 'EMELD',
+        meldekort: [
+            {
+                meldekortId: 1526772064,
+                kortType: 'ELEKTRONISK',
+                meldeperiode: {
+                    fra: plussDager(fastsattMeldedag, -14).toISOString(),
+                    til: plussDager(fastsattMeldedag, -1).toISOString(),
+                    kortKanSendesFra: plussDager(fastsattMeldedag, -2).toISOString(),
+                    kanKortSendes: true,
+                    periodeKode: '202103',
+                },
+                meldegruppe: 'ARBS',
+                kortStatus: 'OPPRE',
+                bruttoBelop: 0.0,
+                erForskuddsPeriode: false,
+                korrigerbart: true,
+            },
+        ],
+        etterregistrerteMeldekort: [],
+        id: '1',
+        antallGjenstaaendeFeriedager: 0,
+    };
+}
+
+export function hentDagRelativTilFastsattMeldedag(): Date {
+    const dagerEtterFastsattMeldedag = hentMeldekort();
+    return plussDager(fastsattMeldedag, dagerEtterFastsattMeldedag);
+}

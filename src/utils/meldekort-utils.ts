@@ -55,10 +55,12 @@ export function hentMeldekortForLevering(iDag: Date, meldekortHistorie: Meldekor
     if (!meldekortHistorie || !meldekortHistorie.meldekort) {
         return [];
     }
+    console.log(meldekortHistorie);
 
     const meldekortForLevering = meldekortHistorie.meldekort
         .filter((meldekort) => !harBrukerLevertMeldekort(meldekort))
-        .filter((meldekort) => foersteSendedagForMeldekort(meldekort) <= iDag);
+        .filter((meldekort) => foersteSendedagForMeldekort(meldekort) <= iDag)
+        .filter((meldekort) => meldekort.meldeperiode?.kanKortSendes);
     return meldekortForLevering;
 }
 
