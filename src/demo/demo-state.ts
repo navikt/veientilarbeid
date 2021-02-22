@@ -144,7 +144,7 @@ export const settMeldekort = (dag: string) => {
 };
 
 const features = (checked: boolean) => ({
-    // For tiden ingen feature toggles
+    'veientilarbeid.meldekortonboarding': checked,
 });
 
 export const hentFeatureToggles = (): JSONObject => {

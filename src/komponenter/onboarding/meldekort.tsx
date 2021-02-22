@@ -15,6 +15,7 @@ import { hentMeldekortForLevering } from '../../utils/meldekort-utils';
 import Meldekortstatus from './meldekortstatus';
 import { erDemo } from '../../utils/app-state-utils';
 import { hentDagRelativTilFastsattMeldedag } from '../../demo/demo-state';
+import { FeaturetoggleContext } from '../../ducks/feature-toggles';
 
 function Kort1() {
     return (
@@ -138,7 +139,9 @@ function OnboardingMeldekort() {
     const { data: registreringData } = React.useContext(BrukerregistreringContext);
     const { data: oppfolgingData } = React.useContext(OppfolgingContext);
     const { data: meldekortData } = React.useContext(MeldekortContext);
+    const { data: featuretoggledata } = React.useContext(FeaturetoggleContext);
     const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
+
     const brukerregistreringData = registreringData ? registreringData.registrering : null;
     const onboardingKort = [
         <Kort1 />,
@@ -173,6 +176,8 @@ function OnboardingMeldekort() {
             forrigeKortRef.current = gjeldendeKortIndex;
         }
     }, [gjeldendeKortIndex, amplitudeData]);
+
+    if (!featuretoggledata['veientilarbeid.meldekortonboarding']) return null;
 
     const meldekortliste = meldekortData?.meldekort ?? [];
     const harMeldekort = meldekortliste.length > 0;

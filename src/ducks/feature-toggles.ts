@@ -1,18 +1,20 @@
 import * as React from 'react';
 import { DataElement, STATUS } from './api';
 
-export const alleFeatureToggles = [
-    /* For tiden ingen feature toggles */
-];
+export const alleFeatureToggles = ['veientilarbeid.meldekortonboarding'];
 
-export interface Data {}
+export interface Data {
+    'veientilarbeid.meldekortonboarding': boolean;
+}
 
 export interface State extends DataElement {
     data: Data;
 }
 
 export const initialState: State = {
-    data: {},
+    data: {
+        'veientilarbeid.meldekortonboarding': false,
+    },
     status: STATUS.NOT_STARTED,
 };
 
