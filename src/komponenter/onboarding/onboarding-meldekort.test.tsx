@@ -3,7 +3,7 @@ import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
-import OnboardingMeldekort from './meldekort';
+import OnboardingMeldekort from './onboarding-meldekort';
 import { Formidlingsgruppe, Servicegruppe } from '../../ducks/oppfolging';
 
 const meldekort = {

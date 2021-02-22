@@ -10,7 +10,7 @@ import './registrert.less';
 import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
-import Meldekortstatus from '../onboarding/meldekortstatus';
+import Meldekortstatus from './meldekortstatus';
 import { erDemo } from '../../utils/app-state-utils';
 import { hentDagRelativTilFastsattMeldedag } from '../../demo/demo-state';
 import { datoUtenTid } from '../../utils/date-utils';

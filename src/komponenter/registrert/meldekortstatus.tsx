@@ -32,7 +32,7 @@ function Meldekortstatus({ iDag }: { iDag: Date }) {
     if (!kanViseMeldekortstatus) return null;
 
     return (
-        <div className={'onboarding-meldekortvarsel-container'}>
+        <div className={'meldekortvarsel-container'}>
             <MeldekortAdvarsel dagerEtterFastsattMeldedag={dagerEtterFastsattMeldedag} amplitudeData={amplitudeData} />
         </div>
     );

@@ -9,7 +9,7 @@ import { Data as MeldekortData, MeldekortContext } from '../../ducks/meldekort';
 import { OppfolgingContext } from '../../ducks/oppfolging';
 import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
-import './meldekort.less';
+import './onboarding-meldekort.less';
 import { datoUtenTid, hentISOUke } from '../../utils/date-utils';
 import { hentMeldekortForLevering } from '../../utils/meldekort-utils';
 import Meldekortstatus from './meldekortstatus';

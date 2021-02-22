@@ -2,6 +2,9 @@ import React from 'react';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { AmplitudeData } from '../../metrics/amplitude-utils';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
+import { loggAktivitet } from '../../metrics/metrics';
+import { meldekortLenke } from '../../innhold/lenker';
+import { Knapp } from 'nav-frontend-knapper';
 
 function MeldekortAdvarsel({
     dagerEtterFastsattMeldedag,
@@ -16,6 +19,11 @@ function MeldekortAdvarsel({
     const dagerTilInaktivering = beregnDagerTilInaktivering(dagerEtterFastsattMeldedag);
     // Viser strenger melding fra dag 3 (torsdag)
     const tillegg = dagerEtterFastsattMeldedag > 2 ? <LittStrengereVarsel rettighetsgruppe={rettighetsgruppe} /> : null;
+
+    const meldekortknappKlikk = () => {
+        loggAktivitet({ aktivitet: 'Går til meldekort fra advarsel', ...amplitudeData });
+        window.location.assign(meldekortLenke);
+    };
 
     return (
         <>
@@ -32,6 +40,16 @@ function MeldekortAdvarsel({
                 </Normaltekst>
             )}
             {tillegg}
+            <br />
+            <Normaltekst>
+                Det er innsending av meldekortet som opprettholder din status som arbeidssøker hos NAV.
+            </Normaltekst>
+            {['DAGP', 'IYT'].includes(rettighetsgruppe) ? (
+                <Normaltekst>
+                    Opplysningene du oppgir i meldekortet brukes også til å beregne utbetalingen av dagpenger.
+                </Normaltekst>
+            ) : null}
+            <Knapp onClick={meldekortknappKlikk}>Gå til meldekortet</Knapp>
         </>
     );
 }
