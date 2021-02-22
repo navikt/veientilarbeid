@@ -1,24 +1,24 @@
-import { Brukerregistrering } from '../ducks/brukerregistrering'
-import { Data as OppfolgingData } from '../ducks/oppfolging'
+import { Brukerregistrering } from '../ducks/brukerregistrering';
+import { Data as OppfolgingData } from '../ducks/oppfolging';
 
 interface DataGrunnlag {
-  brukerregistreringData: Brukerregistrering | null;
-  oppfolgingData: OppfolgingData
+    brukerregistreringData: Brukerregistrering | null;
+    oppfolgingData: OppfolgingData;
 }
 
-function erStandardInnsatsgruppe ( data: DataGrunnlag): boolean {
-  const { brukerregistreringData, oppfolgingData } = data
-  const foreslattInnsatsgruppe = brukerregistreringData?.profilering?.innsatsgruppe
-  const { servicegruppe, formidlingsgruppe } = oppfolgingData 
-  let erStandard = false
-  if (servicegruppe === 'IVURD' && formidlingsgruppe === 'ARBS' && foreslattInnsatsgruppe === 'STANDARD_INNSATS') {
-    erStandard = true
-  }
-  if (servicegruppe === 'IKVAL' && formidlingsgruppe === 'ARBS') {
-    erStandard = true
-  }
+function erStandardInnsatsgruppe(data: DataGrunnlag): boolean {
+    const { brukerregistreringData, oppfolgingData } = data;
+    const foreslattInnsatsgruppe = brukerregistreringData?.profilering?.innsatsgruppe;
+    const { servicegruppe, formidlingsgruppe } = oppfolgingData;
 
-  return erStandard
+    if (servicegruppe === 'IVURD' && formidlingsgruppe === 'ARBS' && foreslattInnsatsgruppe === 'STANDARD_INNSATS') {
+        return true;
+    }
+    if (servicegruppe === 'IKVAL' && formidlingsgruppe === 'ARBS') {
+        return true;
+    }
+
+    return false;
 }
 
-export default erStandardInnsatsgruppe
+export default erStandardInnsatsgruppe;
