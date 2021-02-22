@@ -105,7 +105,7 @@ function EndState(props: EndStateProps) {
             <Meldekortstatus iDag={datoUtenTid(dato.toISOString())} />
 
             <div className={'meldekortinfo'}>
-                <Normaltekst blokk-s>
+                <Normaltekst className={'blokk-s'}>
                     {' '}
                     <b>Meldekort</b>
                 </Normaltekst>
@@ -177,10 +177,8 @@ function OnboardingMeldekort() {
     const meldekortliste = meldekortData?.meldekort ?? [];
     const harMeldekort = meldekortliste.length > 0;
     if (!harMeldekort) return null;
-
-    const harDagpengerEllerArbeidssokerMeldekort = meldekortliste.filter((meldekort) =>
-        ['DAGP', 'ARBS'].includes(meldekort.meldegruppe ?? 'NULL')
-    );
+    const harDagpengerEllerArbeidssokerMeldekort =
+        meldekortliste.filter((meldekort) => ['DAGP', 'ARBS'].includes(meldekort.meldegruppe ?? 'NULL')).length > 0;
 
     const kanViseKomponent =
         harDagpengerEllerArbeidssokerMeldekort &&
@@ -203,7 +201,9 @@ function OnboardingMeldekort() {
                         <Tilbakeknapp mini disabled={gjeldendeKortIndex === 0} onClick={forrigeKort}>
                             Forrige
                         </Tilbakeknapp>
-                        <Nesteknapp mini disabled={gjeldendeKortIndex === sisteKortiListen} onClick={nesteKort} />
+                        <Nesteknapp mini disabled={gjeldendeKortIndex === sisteKortiListen} onClick={nesteKort}>
+                            Neste
+                        </Nesteknapp>
                     </div>
                 </>
             ) : (

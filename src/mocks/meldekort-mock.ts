@@ -57,7 +57,7 @@ export default {
                 fra: '2021-01-18T12:00:00+01:00',
                 til: '2021-01-31T12:00:00+01:00',
                 kortKanSendesFra: '2021-01-30T12:00:00+01:00',
-                kanKortSendes: false,
+                kanKortSendes: true,
                 periodeKode: '202103',
             },
             meldegruppe: 'ARBS',
