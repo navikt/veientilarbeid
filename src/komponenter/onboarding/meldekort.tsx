@@ -97,7 +97,6 @@ function EndState(props: EndStateProps) {
         return <div>Vent litt, så får du en lenke av meg</div>;
     }
     const foerstkommendeMeldekort = meldekortForLevering[0];
-    console.log(dato);
 
     return (
         <div>

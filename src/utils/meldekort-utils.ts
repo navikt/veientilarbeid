@@ -55,7 +55,6 @@ export function hentMeldekortForLevering(iDag: Date, meldekortHistorie: Meldekor
     if (!meldekortHistorie || !meldekortHistorie.meldekort) {
         return [];
     }
-    console.log(meldekortHistorie);
 
     const meldekortForLevering = meldekortHistorie.meldekort
         .filter((meldekort) => !harBrukerLevertMeldekort(meldekort))
