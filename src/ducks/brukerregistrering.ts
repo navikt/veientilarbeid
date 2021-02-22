@@ -37,7 +37,7 @@ export interface Svar {
     svar: string;
 }
 
-interface Brukerregistrering {
+export interface Brukerregistrering {
     opprettetDato: string;
     manueltRegistrertAv: object | null;
     besvarelse: Besvarelse;

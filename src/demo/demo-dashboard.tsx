@@ -234,14 +234,15 @@ class DemoDashboard extends React.Component<{}> {
         };
 
         const antallDagerEtterFastsattMeldedag = {
-            '0': '0',
-            '1': '1',
-            '2': '2',
-            '3': '3',
-            '4': '4',
-            '5': '5',
-            '6': '6',
-            '7': '7',
+            '0': 'Fastsatt meldedag',
+            '1': '1 (tirsdag)',
+            '2': '2 (onsdag)',
+            '3': '3 (torsdag)',
+            '4': '4 (fredag)',
+            '5': '5 (lørdag)',
+            '6': '6 (søndag)',
+            '7': '7 (mandag)',
+            '8': '8 (tirsdag)',
         };
 
         return (
@@ -399,7 +400,7 @@ class DemoDashboard extends React.Component<{}> {
                             id: AUTENTISERINGS_INFO,
                         },
                         {
-                            label: 'Aktiver features',
+                            label: 'Ekspermimentelle funksjoner',
                             checked: !!hentFeatureToggles()[Object.keys(hentFeatureToggles())[0]],
                             id: FEATURES,
                         },

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import { Knapp } from 'nav-frontend-knapper';
 import { AmplitudeData } from '../../metrics/amplitude-utils';
+import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { loggAktivitet } from '../../metrics/metrics';
 import { meldekortLenke } from '../../innhold/lenker';
-import { BrukerInfoContext } from '../../ducks/bruker-info';
+import { Knapp } from 'nav-frontend-knapper';
 
 function MeldekortAdvarsel({
     dagerEtterFastsattMeldedag,

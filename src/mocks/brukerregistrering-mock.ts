@@ -3,7 +3,7 @@ export default {
     registrering: {
         manueltRegistrertAv: null,
         id: 103,
-        opprettetDato: '2020-01-03T11:53:05.486686+01:00',
+        opprettetDato: new Date().toISOString(),
         besvarelse: {
             utdanning: 'INGEN_UTDANNING',
             utdanningBestatt: 'INGEN_SVAR',
@@ -16,7 +16,7 @@ export default {
             tilbakeIArbeid: 'USIKKER',
         },
         profilering: {
-            innsatsgruppe: 'SITUASJONSBESTEMT_INNSATS',
+            innsatsgruppe: 'STANDARD_INNSATS',
         },
         teksterForBesvarelse: [
             {
