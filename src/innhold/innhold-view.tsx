@@ -13,7 +13,8 @@ import Registrert from '../komponenter/registrert/registrert';
 import AktivitetDialogMeldekort from './aktivitet-dialog-meldekort';
 import InnholdMetrics from './innhold-metrics';
 import GenerelleFliser from '../komponenter/dittnav/generelle-fliser';
-import OnboardingMeldekort from '../komponenter/onboarding/meldekort'
+import OnboardingMeldekort from '../komponenter/onboarding/meldekort';
+import { erDemo } from '../utils/app-state-utils';
 
 const InnholdView = () => {
     return (
@@ -24,7 +25,7 @@ const InnholdView = () => {
                 <ReaktiveringKort />
                 <KrrMelding />
                 <Registrert />
-                <OnboardingMeldekort />
+                {erDemo() && <OnboardingMeldekort />}
                 <Egenvurdering />
                 <Motestotte />
                 <AktivitetDialogMeldekort />
