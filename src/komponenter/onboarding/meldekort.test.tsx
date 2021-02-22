@@ -41,10 +41,22 @@ const providerProps: ProviderProps = {
         formidlingsgruppe: Formidlingsgruppe.ARBS,
         servicegruppe: Servicegruppe.IKVAL,
     },
+    featureToggle: {
+        'veientilarbeid.meldekortonboarding': true,
+    },
 };
 
 describe('tester onboarding komponenten for meldekort', () => {
-    test('komponenten rendres', () => {
+    test('komponenten rendres IKKE når featuretoggle ikke er satt', () => {
+        const props: ProviderProps = {
+            ...providerProps,
+            featureToggle: { 'veientilarbeid.meldekortonboarding': false },
+        };
+        const { container } = render(<OnboardingMeldekort />, { wrapper: contextProviders(props) });
+        expect(container).toBeEmptyDOMElement();
+    });
+
+    test('komponenten rendres når featuretoggle er satt', () => {
         const props: ProviderProps = providerProps;
         const { container } = render(<OnboardingMeldekort />, { wrapper: contextProviders(props) });
         expect(container).not.toBeEmptyDOMElement();
