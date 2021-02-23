@@ -3,7 +3,7 @@ import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
-import OnboardingMeldekort from './onboarding-meldekort';
+import OnboardingMeldekort from './meldekort-intro';
 import { Formidlingsgruppe, Servicegruppe } from '../../ducks/oppfolging';
 
 const meldekort = {
@@ -69,31 +69,31 @@ describe('tester onboarding komponenten for meldekort', () => {
         const nesteknapp = screen.getByText(/neste/i);
         const forrigeknapp = screen.getByText(/forrige/i);
 
-        expect(screen.getByText(/1 av 4/i)).toBeInTheDocument();
+        expect(screen.getByText(/1 av 3/i)).toBeInTheDocument();
         expect(nesteknapp).toBeEnabled();
         expect(forrigeknapp).toBeDisabled();
 
         // Navigerer seg gjennom kortene - fremover
         userEvent.click(nesteknapp);
-        expect(screen.getByText(/2 av 4/i)).toBeInTheDocument();
+        expect(screen.getByText(/2 av 3/i)).toBeInTheDocument();
         userEvent.click(nesteknapp);
-        expect(screen.getByText(/3 av 4/i)).toBeInTheDocument();
-        expect(nesteknapp).toBeEnabled();
+        expect(screen.getByText(/3 av 3/i)).toBeInTheDocument();
+        expect(screen.getByText(/fullfør/i)).toBeEnabled();
 
         // Kan gå tilbake til side 1
         userEvent.click(forrigeknapp);
-        expect(screen.getByText(/2 av 4/i)).toBeInTheDocument();
+        expect(screen.getByText(/2 av 3/i)).toBeInTheDocument();
         userEvent.click(forrigeknapp);
-        expect(screen.getByText(/1 av 4/i)).toBeInTheDocument();
+        expect(screen.getByText(/1 av 3/i)).toBeInTheDocument();
         expect(forrigeknapp).toBeDisabled();
 
         // Gå helt til siste side
         userEvent.click(nesteknapp);
         userEvent.click(nesteknapp);
-        userEvent.click(nesteknapp);
+        userEvent.click(screen.getByText(/fullfør/i));
         expect(screen.getByText(/Innsending av meldekort/i)).toBeInTheDocument();
-        expect(nesteknapp).toBeDisabled();
-        expect(forrigeknapp).toBeEnabled();
+        //  expect(nesteknapp).toBeDisabled();
+        //expect(forrigeknapp).toBeEnabled();
     });
 
     test('man starter på endstate uten navigeringsvalg om man har vært registrert i minst én uke', () => {

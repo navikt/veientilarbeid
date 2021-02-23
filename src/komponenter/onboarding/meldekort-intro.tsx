@@ -9,13 +9,17 @@ import { Data as MeldekortData, MeldekortContext } from '../../ducks/meldekort';
 import { OppfolgingContext } from '../../ducks/oppfolging';
 import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
-import './onboarding-meldekort.less';
+import './meldekort-intro.less';
 import { datoUtenTid, hentISOUke } from '../../utils/date-utils';
 import { hentMeldekortForLevering } from '../../utils/meldekort-utils';
 import Meldekortstatus from './meldekortstatus';
 import { erDemo } from '../../utils/app-state-utils';
-import { hentDagRelativTilFastsattMeldedag } from '../../demo/demo-state';
+import { hentDagRelativTilFastsattMeldedag, hentFraLocalStorage, settILocalStorage } from '../../demo/demo-state';
 import { FeaturetoggleContext } from '../../ducks/feature-toggles';
+import { EtikettInfo } from 'nav-frontend-etiketter';
+import LenkepanelMeldekort from './lenkepanel-Meldekort';
+
+const MELDEKORT_INTRO_KEY = 'meldekortintro';
 
 function Kort1() {
     return (
@@ -71,23 +75,23 @@ function Kort3() {
 interface EndStateProps {
     meldekortData: MeldekortData | null;
     amplitudeData: AmplitudeData;
+    lesIntroPaaNyttCB: () => void;
 }
 
-function EndState(props: EndStateProps) {
+interface MeldekortIntroProps {
+    amplitudeData: AmplitudeData;
+    ferdigMedIntroCB: () => void;
+}
+
+function Sluttkort(props: EndStateProps) {
     const { meldekortData, amplitudeData } = props;
     const dato = erDemo() ? hentDagRelativTilFastsattMeldedag() : datoUtenTid(new Date().toISOString());
     const meldekortForLevering = hentMeldekortForLevering(dato, meldekortData);
-    const handleClickInnsending = () => {
-        amplitudeLogger('veientilarbeid.onboarding', {
-            onboarding: 'meldekort',
-            handling: 'Går til innsending av meldekort',
-            ...amplitudeData,
-        });
-    };
-    const handleClickLesMer = () => {
-        amplitudeLogger('veientilarbeid.onboarding', {
-            onboarding: 'meldekort',
-            handling: 'Går til les mer om meldekort',
+
+    const handleKlikkLesIntro = () => {
+        amplitudeLogger('veientilarbeid.intro', {
+            intro: 'meldekort',
+            handling: 'Leser introduksjonen på nytt',
             ...amplitudeData,
         });
     };
@@ -99,63 +103,46 @@ function EndState(props: EndStateProps) {
     }
     const foerstkommendeMeldekort = meldekortForLevering[0];
 
+    const handleLesIntroPaaNytt = (event: React.MouseEvent<HTMLAnchorElement>) => {
+        event.preventDefault();
+        event.stopPropagation();
+        handleKlikkLesIntro();
+        props.lesIntroPaaNyttCB();
+    };
+
     return (
         <div>
             <Systemtittel className={'blokk-xs'}>Innsending av meldekort</Systemtittel>
 
             <Meldekortstatus iDag={datoUtenTid(dato.toISOString())} />
 
-            <div className={'meldekortinfo'}>
-                <Normaltekst className={'blokk-s'}>
-                    {' '}
-                    <b>Meldekort</b>
-                </Normaltekst>
-                <Normaltekst>
-                    for uke {hentISOUke(foerstkommendeMeldekort.meldeperiode?.fra!!)} og{' '}
-                    {hentISOUke(foerstkommendeMeldekort.meldeperiode?.til!!)}
-                </Normaltekst>
-                <Lenke
-                    href="https://www.nav.no/no/person/arbeid/dagpenger-ved-arbeidsloshet-og-permittering/meldekort-hvordan-gjor-du-det"
-                    onClick={handleClickInnsending}
-                    target="_blank"
+            <div>
+                <LenkepanelMeldekort
+                    amplitudeData={amplitudeData}
+                    href={
+                        'https://www.nav.no/no/person/arbeid/dagpenger-ved-arbeidsloshet-og-permittering/meldekort-hvordan-gjor-du-det'
+                    }
                 >
-                    Gå til innsending
-                </Lenke>
+                    {`Send inn for uke 
+                    ${hentISOUke(foerstkommendeMeldekort.meldeperiode?.fra!!)} og ${hentISOUke(
+                        foerstkommendeMeldekort.meldeperiode?.til!!
+                    )}`}
+                </LenkepanelMeldekort>
             </div>
-            <hr className={'skillelinje'} />
-            <Lenke
-                href="https://www.nav.no/no/person/arbeid/dagpenger-ved-arbeidsloshet-og-permittering/meldekort-hvordan-gjor-du-det"
-                onClick={handleClickLesMer}
-                target="_blank"
-            >
-                Les mer om meldekort
+            <Lenke className={'lesIgjenLenke'} href="" onClick={handleLesIntroPaaNytt}>
+                Les kort beskrivelse til meldekort
             </Lenke>
         </div>
     );
 }
 
-function OnboardingMeldekort() {
-    const amplitudeData = React.useContext(AmplitudeContext);
-    const { data: registreringData } = React.useContext(BrukerregistreringContext);
-    const { data: oppfolgingData } = React.useContext(OppfolgingContext);
-    const { data: meldekortData } = React.useContext(MeldekortContext);
-    const { data: featuretoggledata } = React.useContext(FeaturetoggleContext);
-    const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
+function MeldekortIntro(props: MeldekortIntroProps) {
+    const introKort = [<Kort1 />, <Kort2 />, <Kort3 />];
 
-    const brukerregistreringData = registreringData ? registreringData.registrering : null;
-    const onboardingKort = [
-        <Kort1 />,
-        <Kort2 />,
-        <Kort3 />,
-        <EndState meldekortData={meldekortData} amplitudeData={amplitudeData} />,
-    ];
-    const sisteKortiListen = onboardingKort.length - 1;
-    const erNyregistrert = amplitudeData.ukerRegistrert === 0;
-    const startKort = erNyregistrert ? 0 : sisteKortiListen;
-    const [gjeldendeKortIndex, setGjeldendeKortIndex] = useState(startKort);
-    const forrigeKortRef = useRef(startKort);
+    const [gjeldendeKortIndex, setGjeldendeKortIndex] = useState(0);
+    const forrigeKortRef = useRef(gjeldendeKortIndex);
     const nesteKort = () => {
-        if (gjeldendeKortIndex < onboardingKort.length - 1) {
+        if (gjeldendeKortIndex < introKort.length - 1) {
             setGjeldendeKortIndex(gjeldendeKortIndex + 1);
         }
     };
@@ -168,14 +155,56 @@ function OnboardingMeldekort() {
     useEffect(() => {
         if (forrigeKortRef.current !== gjeldendeKortIndex) {
             const handling = `Går fra ${forrigeKortRef.current + 1} til kort ${gjeldendeKortIndex + 1}`;
-            amplitudeLogger('veientilarbeid.onboarding', {
-                onboarding: 'meldekort',
+            amplitudeLogger('veientilarbeid.intro', {
+                intro: 'meldekort',
                 handling,
-                ...amplitudeData,
+                ...props.amplitudeData,
             });
             forrigeKortRef.current = gjeldendeKortIndex;
         }
-    }, [gjeldendeKortIndex, amplitudeData]);
+    }, [gjeldendeKortIndex, props.amplitudeData]);
+
+    return (
+        <>
+            <div className={'kortwrapper'}>
+                <Normaltekst>
+                    <EtikettInfo>
+                        {gjeldendeKortIndex + 1} av {introKort.length}
+                    </EtikettInfo>
+                </Normaltekst>
+                <div className={'kortinnhold'}>{introKort[gjeldendeKortIndex]}</div>
+                <br />
+            </div>
+            <div className={'knapper'}>
+                <Tilbakeknapp mini disabled={gjeldendeKortIndex === 0} onClick={forrigeKort}>
+                    Forrige
+                </Tilbakeknapp>
+                {gjeldendeKortIndex !== introKort.length - 1 ? (
+                    <Nesteknapp mini onClick={nesteKort}>
+                        {' '}
+                        Neste{' '}
+                    </Nesteknapp>
+                ) : (
+                    <Nesteknapp mini onClick={props.ferdigMedIntroCB}>
+                        {' '}
+                        Fullfør{' '}
+                    </Nesteknapp>
+                )}
+            </div>
+        </>
+    );
+}
+
+function Onboardingwrapper() {
+    const amplitudeData = React.useContext(AmplitudeContext);
+    const { data: meldekortData } = React.useContext(MeldekortContext);
+    const { data: registreringData } = React.useContext(BrukerregistreringContext);
+    const { data: oppfolgingData } = React.useContext(OppfolgingContext);
+    const { data: featuretoggledata } = React.useContext(FeaturetoggleContext);
+    const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
+    const [erFerdigMedIntro, setErFerdigMedIntro] = React.useState(hentFraLocalStorage(MELDEKORT_INTRO_KEY) || false);
+    const brukerregistreringData = registreringData ? registreringData.registrering : null;
+    const erNyregistrert = amplitudeData.ukerRegistrert === 0;
 
     if (!featuretoggledata['veientilarbeid.meldekortonboarding']) return null;
 
@@ -192,34 +221,29 @@ function OnboardingMeldekort() {
 
     if (!kanViseKomponent) return null;
 
+    const ferdiMedIntroCB = () => {
+        setErFerdigMedIntro(true);
+        settILocalStorage(MELDEKORT_INTRO_KEY, 'meldekort_intro');
+    };
+    const lesIntroPaaNyttCB = () => {
+        setErFerdigMedIntro(false);
+    };
+
     return (
         <Panel className="blokk-s meldekort-onboarding" border>
-            {erNyregistrert ? (
-                <>
-                    <div className={'kortwrapper'}>
-                        <div className={'kortinnhold'}>{onboardingKort[gjeldendeKortIndex]}</div>
-                        <Normaltekst>
-                            {gjeldendeKortIndex + 1} av {onboardingKort.length}
-                        </Normaltekst>
-                    </div>
-                    <div className={'knapper'}>
-                        <Tilbakeknapp mini disabled={gjeldendeKortIndex === 0} onClick={forrigeKort}>
-                            Forrige
-                        </Tilbakeknapp>
-                        <Nesteknapp mini disabled={gjeldendeKortIndex === sisteKortiListen} onClick={nesteKort}>
-                            Neste
-                        </Nesteknapp>
-                    </div>
-                </>
-            ) : (
-                <div className={'kortwrapper'}>
-                    <div className={'kortinnhold'}>
-                        <EndState meldekortData={meldekortData} amplitudeData={amplitudeData} />
-                    </div>
-                </div>
-            )}
+            <div className={'overall-wrapper'}>
+                {!erFerdigMedIntro && erNyregistrert ? (
+                    <MeldekortIntro ferdigMedIntroCB={ferdiMedIntroCB} amplitudeData={amplitudeData} />
+                ) : (
+                    <Sluttkort
+                        amplitudeData={amplitudeData}
+                        meldekortData={meldekortData}
+                        lesIntroPaaNyttCB={lesIntroPaaNyttCB}
+                    />
+                )}
+            </div>
         </Panel>
     );
 }
 
-export default OnboardingMeldekort;
+export default Onboardingwrapper;
