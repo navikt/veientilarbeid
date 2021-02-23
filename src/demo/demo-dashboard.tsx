@@ -400,7 +400,7 @@ class DemoDashboard extends React.Component<{}> {
                             id: AUTENTISERINGS_INFO,
                         },
                         {
-                            label: 'Ekspermimentelle funksjoner',
+                            label: 'Eksperimentelle funksjoner',
                             checked: !!hentFeatureToggles()[Object.keys(hentFeatureToggles())[0]],
                             id: FEATURES,
                         },
