@@ -13,6 +13,7 @@ import { beregnDagerEtterFastsattMeldedag } from '../../utils/meldekort-utils';
 import './meldekortstatus.less';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { OppfolgingContext } from '../../ducks/oppfolging';
+import { Normaltekst } from 'nav-frontend-typografi';
 
 function Meldekortstatus({ iDag }: { iDag: Date }) {
     const { data: meldekortData } = React.useContext(Meldekort.MeldekortContext);
@@ -27,13 +28,23 @@ function Meldekortstatus({ iDag }: { iDag: Date }) {
     const mellomDag1Til7 =
         dagerEtterFastsattMeldedag !== null && dagerEtterFastsattMeldedag > 0 && dagerEtterFastsattMeldedag <= 7;
     const minstEttMeldekort = dagerEtterFastsattMeldedag !== null;
-    const kanViseMeldekortstatus = minstEttMeldekort && mellomDag1Til7;
+    const kanViseMeldekortstatus = minstEttMeldekort;
 
     if (!kanViseMeldekortstatus) return null;
 
     return (
         <div className={'onboarding-meldekortvarsel-container'}>
-            <MeldekortAdvarsel dagerEtterFastsattMeldedag={dagerEtterFastsattMeldedag} amplitudeData={amplitudeData} />
+            {mellomDag1Til7 ? (
+                <MeldekortAdvarsel
+                    dagerEtterFastsattMeldedag={dagerEtterFastsattMeldedag}
+                    amplitudeData={amplitudeData}
+                />
+            ) : (
+                <>
+                    <Normaltekst>Du kan nå sende inn meldekort.</Normaltekst>
+                    <Normaltekst>{`Fristen er mandag, 1. mars, klokken 23:00.`}</Normaltekst>
+                </>
+            )}
         </div>
     );
 }

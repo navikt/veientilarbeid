@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
-import Lenke from 'nav-frontend-lenker';
 import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { BrukerregistreringContext } from '../../ducks/brukerregistrering';
@@ -10,14 +9,19 @@ import { OppfolgingContext } from '../../ducks/oppfolging';
 import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
 import './meldekort-intro.less';
-import { datoUtenTid, hentISOUke } from '../../utils/date-utils';
-import { hentMeldekortForLevering } from '../../utils/meldekort-utils';
+import { datoUtenTid, hentISOUke, prettyPrintDato } from '../../utils/date-utils';
+import {
+    foersteSendedagForMeldekort,
+    hentFoerstkommendeMeldekortIkkeKlarForLevering,
+    hentMeldekortForLevering,
+} from '../../utils/meldekort-utils';
 import Meldekortstatus from './meldekortstatus';
 import { erDemo } from '../../utils/app-state-utils';
 import { hentDagRelativTilFastsattMeldedag, hentFraLocalStorage, settILocalStorage } from '../../demo/demo-state';
 import { FeaturetoggleContext } from '../../ducks/feature-toggles';
 import { EtikettInfo } from 'nav-frontend-etiketter';
 import LenkepanelMeldekort from './lenkepanel-Meldekort';
+import { BrukerInfoContext } from '../../ducks/bruker-info';
 
 const MELDEKORT_INTRO_KEY = 'meldekortintro';
 
@@ -31,11 +35,12 @@ function Kort1() {
             </Normaltekst>
 
             <Normaltekst className={'blokk-xs'}>
-                Selv om du venter på svar på søknaden om dagpenger, må du sende inn meldekortene innen fristen.
+                Dersom du har søkt om dagpenger må du sende inn meldekort. Det må du gjøre selv om du ikke har fått svar
+                på søknaden.
             </Normaltekst>
 
             <Normaltekst className={'blokk-xs'}>
-                Det er også viktig at du sender inn meldekort til riktig tid.
+                Det er innsending av meldekort som gjør at du opprettholder status som registrert arbeidssøker.
             </Normaltekst>
         </div>
     );
@@ -46,11 +51,13 @@ function Kort2() {
         <div>
             <Systemtittel className={'blokk-xs'}>Hvordan fungerer meldekort i NAV?</Systemtittel>
             <Normaltekst className={'blokk-xs'}>
-                Utbetalinger av dagpenger regnes ut basert på opplysningene fra meldekortene du sender inn.
+                Utbetalinger av dagpenger regnes ut basert på opplysningene fra meldekortene.
             </Normaltekst>
-
             <Normaltekst className={'blokk-xs'}>
-                Om du sender meldekortet for sent du vil få mindre utbetalt.
+                Sender du meldekortet etter fristen kan det føre til at du får mindre utbetalt.
+            </Normaltekst>
+            <Normaltekst className={'blokk-xs'}>
+                Det er derfor viktig å send inn meldekortet før fristen går ut.
             </Normaltekst>
         </div>
     );
@@ -61,12 +68,13 @@ function Kort3() {
         <div>
             <Systemtittel className={'blokk-xs'}>Hvordan fungerer meldekort i NAV?</Systemtittel>
             <Normaltekst className={'blokk-xs'}>
-                Om du ikke sender meldekort, vil vi tolke det som at du ikke ønsker å være registrert som arbeidssøker
-                og at du ikke har behov for dagpenger eller annen hjelp.
+                Dersom du lar være å sender inn et meldekort, tolker NAV det som at du ikke ønsker å være registrert som
+                arbeidssøker.
             </Normaltekst>
 
             <Normaltekst className={'blokk-xs'}>
-                Om du ikke har sendt inn et meldekort tidligere, kan du se et eksempel på hvordan det fylles ut her.
+                Ved å sende inn meldekortet for sent vil dagpenger stoppes og du mister retten på arbeidsrettet
+                veiledning.
             </Normaltekst>
         </div>
     );
@@ -95,20 +103,49 @@ function Sluttkort(props: EndStateProps) {
             ...amplitudeData,
         });
     };
-    if (meldekortForLevering.length === 0) {
-        return null;
-    }
-    if (meldekortForLevering.length > 1) {
-        return <div>Vent litt, så får du en lenke av meg</div>;
-    }
-    const foerstkommendeMeldekort = meldekortForLevering[0];
 
-    const handleLesIntroPaaNytt = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    const handleLesIntroPaaNytt = (event: React.MouseEvent) => {
         event.preventDefault();
         event.stopPropagation();
         handleKlikkLesIntro();
         props.lesIntroPaaNyttCB();
     };
+
+    if (meldekortForLevering.length > 1) {
+        return <div>Vent litt, så får du en lenke av meg</div>;
+    }
+    if (meldekortForLevering.length === 0) {
+        const meldekortIkkeKlarForLevering = hentFoerstkommendeMeldekortIkkeKlarForLevering(dato, meldekortData);
+        if (!meldekortIkkeKlarForLevering) return null;
+
+        return (
+            <div>
+                <Systemtittel className={'blokk-xs'}>Innsending av meldekort</Systemtittel>
+                <Normaltekst className={'blokk-xs'}>
+                    {`Meldekort for uke 
+                    ${hentISOUke(meldekortIkkeKlarForLevering.meldeperiode?.fra!!)} og ${hentISOUke(
+                        meldekortIkkeKlarForLevering.meldeperiode?.til!!
+                    )} blir tilgjengelig for innsending fra ${prettyPrintDato(
+                        foersteSendedagForMeldekort(meldekortIkkeKlarForLevering)
+                    )}`}
+                </Normaltekst>
+                <div>
+                    <LenkepanelMeldekort
+                        amplitudeData={amplitudeData}
+                        href={
+                            'https://www.nav.no/no/person/arbeid/dagpenger-ved-arbeidsloshet-og-permittering/meldekort-hvordan-gjor-du-det'
+                        }
+                    >
+                        Les om meldekort
+                    </LenkepanelMeldekort>
+                </div>
+                <Tilbakeknapp mini onClick={handleLesIntroPaaNytt}>
+                    Les kort beskrivelse til meldekort
+                </Tilbakeknapp>
+            </div>
+        );
+    }
+    const foerstkommendeMeldekort = meldekortForLevering[0];
 
     return (
         <div>
@@ -129,9 +166,9 @@ function Sluttkort(props: EndStateProps) {
                     )}`}
                 </LenkepanelMeldekort>
             </div>
-            <Lenke className={'lesIgjenLenke'} href="" onClick={handleLesIntroPaaNytt}>
+            <Tilbakeknapp mini onClick={handleLesIntroPaaNytt}>
                 Les kort beskrivelse til meldekort
-            </Lenke>
+            </Tilbakeknapp>
         </div>
     );
 }
@@ -201,6 +238,7 @@ function Onboardingwrapper() {
     const { data: registreringData } = React.useContext(BrukerregistreringContext);
     const { data: oppfolgingData } = React.useContext(OppfolgingContext);
     const { data: featuretoggledata } = React.useContext(FeaturetoggleContext);
+    const { rettighetsgruppe } = React.useContext(BrukerInfoContext).data;
     const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
     const [erFerdigMedIntro, setErFerdigMedIntro] = React.useState(hentFraLocalStorage(MELDEKORT_INTRO_KEY) || false);
     const brukerregistreringData = registreringData ? registreringData.registrering : null;
@@ -211,10 +249,13 @@ function Onboardingwrapper() {
     const meldekortliste = meldekortData?.meldekort ?? [];
     const harMeldekort = meldekortliste.length > 0;
     if (!harMeldekort) return null;
+
+    const erAAP = rettighetsgruppe === 'AAP';
     const harDagpengerEllerArbeidssokerMeldekort =
         meldekortliste.filter((meldekort) => ['DAGP', 'ARBS'].includes(meldekort.meldegruppe ?? 'NULL')).length > 0;
 
     const kanViseKomponent =
+        !erAAP &&
         harDagpengerEllerArbeidssokerMeldekort &&
         erStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData }) &&
         !kanReaktiveres;

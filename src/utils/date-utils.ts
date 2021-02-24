@@ -26,3 +26,24 @@ export function hentISOUke(datoMedTid: string) {
     const foersteDatoIAaret = new Date(Date.UTC(dato.getUTCFullYear(), 0, 1));
     return Math.ceil(((dato.getTime() - foersteDatoIAaret.getTime()) / msPerDoegn + 1) / 7);
 }
+
+export function prettyPrintDato(dato: Date) {
+    const dager = ['søndag', 'mandag', 'tirdag', 'onsdag', 'torsdag', 'fredag', 'lørdag'];
+
+    const maneder = [
+        'januar',
+        'februar',
+        'mars',
+        'april',
+        'mai',
+        'juni',
+        'juli',
+        'august',
+        'september',
+        'oktober',
+        'november',
+        'desember',
+    ];
+
+    return `${dager[dato.getDay()]} den ${dato.getDate()}. ${maneder[dato.getMonth()]}`;
+}

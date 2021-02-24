@@ -20,7 +20,7 @@ function fastsattMeldedagForMeldekort(meldekort: Meldekort.Meldekort) {
     return plussDager(sisteDagIPeriode, 1);
 }
 
-function foersteSendedagForMeldekort(meldekort: Meldekort.Meldekort) {
+export function foersteSendedagForMeldekort(meldekort: Meldekort.Meldekort) {
     // Meldekort kan sendes fra lørdag, to dager før fastsatt meldedag (mandag)
     return datoUtenTid(meldekort.meldeperiode?.kortKanSendesFra!!);
 }
@@ -63,7 +63,23 @@ export function hentMeldekortForLevering(iDag: Date, meldekortHistorie: Meldekor
     return meldekortForLevering;
 }
 
-function hentFoerstkommendeMeldekortForLevering(iDag: Date, meldekortHistorie: Meldekort.Data | null) {
+export function hentFoerstkommendeMeldekortIkkeKlarForLevering(
+    iDag: Date,
+    meldekort: Meldekort.Data | null
+): Meldekort.Meldekort | null {
+    if (!meldekort || !meldekort.meldekort) {
+        return null;
+    }
+    const meldekortIkkeKlarForLevering = meldekort.meldekort
+        .filter((meldekort) => !harBrukerLevertMeldekort(meldekort))
+        .filter((meldekort) => foersteSendedagForMeldekort(meldekort) > iDag)
+        //.filter((meldekort) => !meldekort.meldeperiode?.kanKortSendes)
+        .sort((m1, m2) => foersteSendedagForMeldekort(m1).getTime() - foersteSendedagForMeldekort(m2).getTime());
+
+    return meldekortIkkeKlarForLevering[0];
+}
+
+function hentFoerstkommendeMeldekortKlarForLevering(iDag: Date, meldekortHistorie: Meldekort.Data | null) {
     const foerstkommendeMeldekortForLevering = hentMeldekortForLevering(iDag, meldekortHistorie).filter(
         (meldekort) => sisteDagFoerNesteMeldekortsFoersteSendedag(meldekort) >= iDag
     );
@@ -71,7 +87,7 @@ function hentFoerstkommendeMeldekortForLevering(iDag: Date, meldekortHistorie: M
 }
 
 export function beregnDagerEtterFastsattMeldedag(iDag: Date, meldekortHistorie: Meldekort.Data | null) {
-    const antallDagerEtterFastsattMeldedagPerMeldekort = hentFoerstkommendeMeldekortForLevering(
+    const antallDagerEtterFastsattMeldedagPerMeldekort = hentFoerstkommendeMeldekortKlarForLevering(
         iDag,
         meldekortHistorie
     ).map((meldekort) => antallDagerEtterFastsattMeldedag(iDag, meldekort));
@@ -84,7 +100,7 @@ export function beregnDagerEtterFastsattMeldedag(iDag: Date, meldekortHistorie: 
 }
 
 export function hentMeldegruppeForNesteMeldekort(iDag: Date, meldekortHistorie: Meldekort.Data | null) {
-    const meldegruppePerMeldekort = hentFoerstkommendeMeldekortForLevering(iDag, meldekortHistorie).map(
+    const meldegruppePerMeldekort = hentFoerstkommendeMeldekortKlarForLevering(iDag, meldekortHistorie).map(
         (meldekort) => meldekort.meldegruppe
     );
 
