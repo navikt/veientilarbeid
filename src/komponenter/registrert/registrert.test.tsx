@@ -33,7 +33,7 @@ const providerProps: ProviderProps = {
     meldekort: meldekort,
     brukerInfo: {
         rettighetsgruppe: 'DAGP',
-        geografiskTilknytning: '0417',
+        geografiskTilknytning: '3413',
     },
     underOppfolging: { underOppfolging: true },
     oppfolging: {
