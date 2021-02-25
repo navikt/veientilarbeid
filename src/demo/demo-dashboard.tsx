@@ -203,7 +203,7 @@ class DemoDashboard extends React.Component<{}> {
         };
 
         const geografiskeTilknytninger = {
-            '0807': 'Notodden',
+            '3808': 'Notodden',
             '010302': 'Grünerløkka',
         };
 

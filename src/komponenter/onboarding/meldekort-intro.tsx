@@ -30,7 +30,7 @@ function Kort1() {
             <Systemtittel className={'blokk-xs'}>Introduksjon til meldekort</Systemtittel>
 
             <Normaltekst className={'blokk-xs'}>
-                Som registrert arbeidssøker hos NAV, må du sende inn et meldekort hver 14 dag.
+                Når du er registrert som arbeidssøker, må du sende inn et meldekort hver 14 dag.
             </Normaltekst>
 
             <Normaltekst className={'blokk-xs'}>
@@ -50,13 +50,14 @@ function Kort2() {
         <div>
             <Systemtittel className={'blokk-xs'}>Introduksjon til meldekort</Systemtittel>
             <Normaltekst className={'blokk-xs'}>
-                Utbetalinger av dagpenger regnes ut basert på opplysningene fra meldekortene.
+                Utbetaling av dagpenger beregnes ut fra opplysninger du har lagt inn på meldekortet.
             </Normaltekst>
             <Normaltekst className={'blokk-xs'}>
-                Sender du meldekortet etter fristen kan det føre til at du får mindre utbetalt.
+                Sender du inn meldekortet etter fristen, kan det føre til at du får mindre utbetalt.
             </Normaltekst>
             <Normaltekst className={'blokk-xs'}>
-                Det er derfor viktig å send inn meldekortet før fristen går ut.
+                Lar du være å sende inn meldekort, tolker NAV det som at du ikke ønsker å stå registrert som
+                arbeidssøker.
             </Normaltekst>
         </div>
     );
@@ -67,13 +68,12 @@ function Kort3() {
         <div>
             <Systemtittel className={'blokk-xs'}>Introduksjon til meldekort</Systemtittel>
             <Normaltekst className={'blokk-xs'}>
-                Dersom du lar være å sender inn et meldekort, tolker NAV det som at du ikke ønsker å være registrert som
-                arbeidssøker.
+                Dersom du sender inn meldekortet for sent vil dagpengene kunne stanses, og du risikerer at
+                arbeidsoppfølging fra NAV avsluttes.
             </Normaltekst>
 
             <Normaltekst className={'blokk-xs'}>
-                Ved å sende inn meldekortet for sent vil dagpenger stoppes og du mister retten på arbeidsrettet
-                veiledning.
+                Det er derfor viktig at du sender meldekortene inn før fristen går ut.
             </Normaltekst>
         </div>
     );
@@ -268,7 +268,7 @@ function Onboardingwrapper() {
     };
 
     return (
-        <Panel border>
+        <Panel className={'meldekort-onboarding'} border>
             <div className={'overall-wrapper'}>
                 {!erFerdigMedIntro && erNyregistrert ? (
                     <MeldekortIntro ferdigMedIntroCB={ferdiMedIntroCB} amplitudeData={amplitudeData} />

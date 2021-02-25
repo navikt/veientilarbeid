@@ -62,7 +62,7 @@ describe('tester onboarding komponenten for meldekort', () => {
         expect(screen.getByText(/2 av 3/i)).toBeInTheDocument();
         userEvent.click(nesteknapp);
         expect(screen.getByText(/3 av 3/i)).toBeInTheDocument();
-        expect(screen.getByText(/avslutt/i)).toBeEnabled();
+        expect(screen.getByText(/avslutt introduksjon/i)).toBeEnabled();
 
         // Kan gå tilbake til side 1
         userEvent.click(forrigeknapp);
@@ -74,7 +74,7 @@ describe('tester onboarding komponenten for meldekort', () => {
         // Gå helt til siste side
         userEvent.click(nesteknapp);
         userEvent.click(nesteknapp);
-        userEvent.click(screen.getByText(/avslutt/i));
+        userEvent.click(screen.getByText(/avslutt introduksjon/i));
         expect(screen.getByText(/Innsending av meldekort/i)).toBeInTheDocument();
         //  expect(nesteknapp).toBeDisabled();
         //expect(forrigeknapp).toBeEnabled();
