@@ -18,7 +18,6 @@ import {
 import Meldekortstatus from './meldekortstatus';
 import { erDemo } from '../../utils/app-state-utils';
 import { hentDagRelativTilFastsattMeldedag, hentFraLocalStorage, settILocalStorage } from '../../demo/demo-state';
-import { FeaturetoggleContext } from '../../ducks/feature-toggles';
 import { EtikettInfo } from 'nav-frontend-etiketter';
 import LenkepanelMeldekort from './lenkepanel-Meldekort';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
@@ -28,7 +27,7 @@ const MELDEKORT_INTRO_KEY = 'meldekortintro';
 function Kort1() {
     return (
         <div>
-            <Systemtittel className={'blokk-xs'}>Hvordan fungerer meldekort i NAV?</Systemtittel>
+            <Systemtittel className={'blokk-xs'}>Introduksjon til meldekort</Systemtittel>
 
             <Normaltekst className={'blokk-xs'}>
                 Som registrert arbeidssøker hos NAV, må du sende inn et meldekort hver 14 dag.
@@ -49,7 +48,7 @@ function Kort1() {
 function Kort2() {
     return (
         <div>
-            <Systemtittel className={'blokk-xs'}>Hvordan fungerer meldekort i NAV?</Systemtittel>
+            <Systemtittel className={'blokk-xs'}>Introduksjon til meldekort</Systemtittel>
             <Normaltekst className={'blokk-xs'}>
                 Utbetalinger av dagpenger regnes ut basert på opplysningene fra meldekortene.
             </Normaltekst>
@@ -66,7 +65,7 @@ function Kort2() {
 function Kort3() {
     return (
         <div>
-            <Systemtittel className={'blokk-xs'}>Hvordan fungerer meldekort i NAV?</Systemtittel>
+            <Systemtittel className={'blokk-xs'}>Introduksjon til meldekort</Systemtittel>
             <Normaltekst className={'blokk-xs'}>
                 Dersom du lar være å sender inn et meldekort, tolker NAV det som at du ikke ønsker å være registrert som
                 arbeidssøker.
@@ -114,6 +113,7 @@ function Sluttkort(props: EndStateProps) {
     if (meldekortForLevering.length > 1) {
         return <div>Vent litt, så får du en lenke av meg</div>;
     }
+
     if (meldekortForLevering.length === 0) {
         const meldekortIkkeKlarForLevering = hentFoerstkommendeMeldekortIkkeKlarForLevering(dato, meldekortData);
         if (!meldekortIkkeKlarForLevering) return null;
@@ -140,7 +140,7 @@ function Sluttkort(props: EndStateProps) {
                     </LenkepanelMeldekort>
                 </div>
                 <Tilbakeknapp mini onClick={handleLesIntroPaaNytt}>
-                    Les kort beskrivelse til meldekort
+                    Vis introduksjon til meldekort
                 </Tilbakeknapp>
             </div>
         );
@@ -167,7 +167,7 @@ function Sluttkort(props: EndStateProps) {
                 </LenkepanelMeldekort>
             </div>
             <Tilbakeknapp mini onClick={handleLesIntroPaaNytt}>
-                Les kort beskrivelse til meldekort
+                Vis introduksjon til meldekort
             </Tilbakeknapp>
         </div>
     );
@@ -205,7 +205,7 @@ function MeldekortIntro(props: MeldekortIntroProps) {
         <>
             <div className={'kortwrapper'}>
                 <Normaltekst>
-                    <EtikettInfo>
+                    <EtikettInfo mini>
                         {gjeldendeKortIndex + 1} av {introKort.length}
                     </EtikettInfo>
                 </Normaltekst>
@@ -224,7 +224,7 @@ function MeldekortIntro(props: MeldekortIntroProps) {
                 ) : (
                     <Nesteknapp mini onClick={props.ferdigMedIntroCB}>
                         {' '}
-                        Fullfør{' '}
+                        Avslutt introduksjonen{' '}
                     </Nesteknapp>
                 )}
             </div>
@@ -237,14 +237,11 @@ function Onboardingwrapper() {
     const { data: meldekortData } = React.useContext(MeldekortContext);
     const { data: registreringData } = React.useContext(BrukerregistreringContext);
     const { data: oppfolgingData } = React.useContext(OppfolgingContext);
-    const { data: featuretoggledata } = React.useContext(FeaturetoggleContext);
     const { rettighetsgruppe } = React.useContext(BrukerInfoContext).data;
     const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
     const [erFerdigMedIntro, setErFerdigMedIntro] = React.useState(hentFraLocalStorage(MELDEKORT_INTRO_KEY) || false);
     const brukerregistreringData = registreringData ? registreringData.registrering : null;
     const erNyregistrert = amplitudeData.ukerRegistrert === 0;
-
-    if (!featuretoggledata['veientilarbeid.meldekortonboarding']) return null;
 
     const meldekortliste = meldekortData?.meldekort ?? [];
     const harMeldekort = meldekortliste.length > 0;
@@ -271,7 +268,7 @@ function Onboardingwrapper() {
     };
 
     return (
-        <Panel className="blokk-s meldekort-onboarding" border>
+        <Panel border>
             <div className={'overall-wrapper'}>
                 {!erFerdigMedIntro && erNyregistrert ? (
                     <MeldekortIntro ferdigMedIntroCB={ferdiMedIntroCB} amplitudeData={amplitudeData} />

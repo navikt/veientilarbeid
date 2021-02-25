@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 import { InnloggingsNiva } from '../../ducks/autentisering';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import Registrert from './registrert';
-import { Formidlingsgruppe } from '../../ducks/oppfolging';
+import { Formidlingsgruppe, Servicegruppe } from '../../ducks/oppfolging';
 import { ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../../ducks/brukerregistrering';
 
 const meldekort = {
@@ -16,7 +16,7 @@ const meldekort = {
                 fra: '2021-01-10T12:00:00+01:00',
                 til: '2021-01-24T12:00:00+01:00',
                 kortKanSendesFra: '2021-01-23T12:00:00+01:00',
-                kanKortSendes: false,
+                kanKortSendes: true,
                 periodeKode: '202103',
             },
             meldegruppe: 'DAGP',
@@ -28,7 +28,43 @@ const meldekort = {
     ],
 };
 
+const providerProps: ProviderProps = {
+    autentisering: { securityLevel: InnloggingsNiva.LEVEL_4 },
+    meldekort: meldekort,
+    brukerInfo: {
+        rettighetsgruppe: 'DAGP',
+        geografiskTilknytning: '0417',
+    },
+    underOppfolging: { underOppfolging: true },
+    oppfolging: {
+        formidlingsgruppe: Formidlingsgruppe.ARBS,
+        servicegruppe: Servicegruppe.IKVAL,
+    },
+    featureToggle: {
+        'veientilarbeid.meldekortonboarding': true,
+    },
+    amplitude: { ukerRegistrert: 0 },
+    iDag: new Date('2021-01-26T12:00:00+01:00'),
+};
+
 describe('Test av registreringskomponenten', () => {
+    test('Meldekortstatus-komponenten rendres når featuretoggle ikke er satt', () => {
+        const props: ProviderProps = {
+            ...providerProps,
+            featureToggle: { 'veientilarbeid.meldekortonboarding': false },
+        };
+        const { container } = render(<Registrert />, { wrapper: contextProviders(props) });
+        expect(container).not.toBeEmptyDOMElement();
+        expect(screen.getByText(/gå til meldekort/i)).toBeInTheDocument();
+    });
+
+    test('Meldekort-intro-komponenten rendres når featuretoggle er satt og hører til eksperimentkontor', () => {
+        const props: ProviderProps = providerProps;
+        const { container } = render(<Registrert />, { wrapper: contextProviders({ ...props }) });
+        expect(container).not.toBeEmptyDOMElement();
+        expect(screen.getByText(/Introduksjon til meldekort/i)).toBeInTheDocument();
+    });
+
     test('Komponenten vises IKKE dersom man ikke har ARBS og nivå 4', () => {
         const providerProps: ProviderProps = {
             underOppfolging: { underOppfolging: true },

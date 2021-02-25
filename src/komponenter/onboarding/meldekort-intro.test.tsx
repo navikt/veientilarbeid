@@ -47,22 +47,6 @@ const providerProps: ProviderProps = {
 };
 
 describe('tester onboarding komponenten for meldekort', () => {
-    test('komponenten rendres IKKE når featuretoggle ikke er satt', () => {
-        const props: ProviderProps = {
-            ...providerProps,
-            featureToggle: { 'veientilarbeid.meldekortonboarding': false },
-        };
-        const { container } = render(<OnboardingMeldekort />, { wrapper: contextProviders(props) });
-        expect(container).toBeEmptyDOMElement();
-    });
-
-    test('komponenten rendres når featuretoggle er satt', () => {
-        const props: ProviderProps = providerProps;
-        const { container } = render(<OnboardingMeldekort />, { wrapper: contextProviders(props) });
-        expect(container).not.toBeEmptyDOMElement();
-        expect(screen.getByText(/Hvordan fungerer meldekort i NAV/i)).toBeInTheDocument();
-    });
-
     test('funksjonen for neste og forrige kort fungerer for nyregistrerte', () => {
         const props: ProviderProps = { ...providerProps, amplitude: { ukerRegistrert: 0 } };
         render(<OnboardingMeldekort />, { wrapper: contextProviders(props) });
@@ -78,7 +62,7 @@ describe('tester onboarding komponenten for meldekort', () => {
         expect(screen.getByText(/2 av 3/i)).toBeInTheDocument();
         userEvent.click(nesteknapp);
         expect(screen.getByText(/3 av 3/i)).toBeInTheDocument();
-        expect(screen.getByText(/fullfør/i)).toBeEnabled();
+        expect(screen.getByText(/avslutt/i)).toBeEnabled();
 
         // Kan gå tilbake til side 1
         userEvent.click(forrigeknapp);
@@ -90,7 +74,7 @@ describe('tester onboarding komponenten for meldekort', () => {
         // Gå helt til siste side
         userEvent.click(nesteknapp);
         userEvent.click(nesteknapp);
-        userEvent.click(screen.getByText(/fullfør/i));
+        userEvent.click(screen.getByText(/avslutt/i));
         expect(screen.getByText(/Innsending av meldekort/i)).toBeInTheDocument();
         //  expect(nesteknapp).toBeDisabled();
         //expect(forrigeknapp).toBeEnabled();
