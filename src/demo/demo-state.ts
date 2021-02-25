@@ -134,12 +134,12 @@ export const slettMotestotte = () => {
     slettFraLocalStorage(DemoData.MOTESTOTTE);
 };
 
-export const hentMeldekort = (): number => {
+export const hentDagerEtterFastsattMeldedag = (): number => {
     const verdi = hentFraLocalStorage(DemoData.MELDEKORT);
     return verdi ? parseInt(verdi) : 0;
 };
 
-export const settMeldekort = (dag: string) => {
+export const settAntallDagerEtterFastsattMeldedag = (dag: string) => {
     settILocalStorage(DemoData.MELDEKORT, dag);
 };
 
@@ -246,6 +246,6 @@ export function lagMeldekortData() {
 }
 
 export function hentDagRelativTilFastsattMeldedag(): Date {
-    const dagerEtterFastsattMeldedag = hentMeldekort();
+    const dagerEtterFastsattMeldedag = hentDagerEtterFastsattMeldedag();
     return plussDager(fastsattMeldedag, dagerEtterFastsattMeldedag);
 }

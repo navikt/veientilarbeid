@@ -13,14 +13,17 @@ import { beregnDagerEtterFastsattMeldedag } from '../../utils/meldekort-utils';
 import './meldekortstatus.less';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { OppfolgingContext } from '../../ducks/oppfolging';
+import { hentIDag } from '../../utils/chrono';
+import { datoUtenTid } from '../../utils/date-utils';
 
-function Meldekortstatus({ iDag }: { iDag: Date }) {
+function Meldekortstatus() {
     const { data: meldekortData } = React.useContext(Meldekort.MeldekortContext);
     const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
 
     const amplitudeData = React.useContext(AmplitudeContext);
     if (!meldekortData || kanReaktiveres) return null;
 
+    const iDag = datoUtenTid(hentIDag().toISOString());
     const dagerEtterFastsattMeldedag = beregnDagerEtterFastsattMeldedag(iDag, meldekortData);
 
     // Bare vis melding fra dag 1 (tirsdag) til dag 7 (mandag)

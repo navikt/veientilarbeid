@@ -151,7 +151,7 @@ function Sluttkort(props: EndStateProps) {
         <div>
             <Systemtittel className={'blokk-xs'}>Innsending av meldekort</Systemtittel>
 
-            <Meldekortstatus iDag={datoUtenTid(dato.toISOString())} />
+            <Meldekortstatus />
 
             <div>
                 <LenkepanelMeldekort

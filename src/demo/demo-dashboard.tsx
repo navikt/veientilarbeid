@@ -4,13 +4,14 @@ import { CheckboksPanelGruppe, Select as SelectKomponent } from 'nav-frontend-sk
 import {
     DemoData,
     hentAutentiseringsInfo,
+    hentDagerEtterFastsattMeldedag,
+    hentDagRelativTilFastsattMeldedag,
     hentEgenvurdering,
     hentFeatureToggles,
     hentFormidlingsgruppe,
     hentGeografiskTilknytning,
     hentJsk,
     hentKanReaktiveres,
-    hentMeldekort,
     hentMotestotte,
     hentRegistreringType,
     hentReservasjonKRR,
@@ -19,6 +20,7 @@ import {
     hentSykmeldtMedArbeidsgiver,
     hentUlesteDialoger,
     hentUnderOppfolging,
+    settAntallDagerEtterFastsattMeldedag,
     settAutentiseringsInfo,
     settEgenvurdering,
     settFeatureToggles,
@@ -26,7 +28,6 @@ import {
     settGeografiskTilknytning,
     settJsk,
     settKanReaktiveres,
-    settMeldekort,
     settMotestotte,
     settRegistreringType,
     settReservasjonKRR,
@@ -54,6 +55,7 @@ import {
 } from './demo-state-brukerregistrering';
 import tekster from '../tekster/tekster';
 import { InnloggingsNiva } from '../ducks/autentisering';
+import { setFastTidspunktForIDag } from '../utils/chrono';
 
 interface OpprettetRegistreringDato {
     registrertForLanseringEgenvurdering: string;
@@ -123,7 +125,7 @@ class DemoDashboard extends React.Component<{}> {
         };
 
         const handleChangeMeldekortdager = (e: React.ChangeEvent<HTMLSelectElement>) => {
-            settMeldekort(e.target.value);
+            settAntallDagerEtterFastsattMeldedag(e.target.value);
             window.location.reload();
         };
 
@@ -248,6 +250,8 @@ class DemoDashboard extends React.Component<{}> {
             '8': '+8 (tirsdag)',
         };
 
+        setFastTidspunktForIDag(hentDagRelativTilFastsattMeldedag());
+
         return (
             <section className="demodashboard">
                 <Innholdstittel className="blokk-s">{tekster['demo-tittel']}</Innholdstittel>
@@ -316,7 +320,7 @@ class DemoDashboard extends React.Component<{}> {
                         label={'Dager etter fastsatt meldedag'}
                         onChange={handleChangeMeldekortdager}
                         id="velg-meldekortdager"
-                        defaultValue={hentMeldekort()?.toString()}
+                        defaultValue={hentDagerEtterFastsattMeldedag()?.toString()}
                     >
                         {Object.keys(antallDagerEtterFastsattMeldedag).map((dag: string) => (
                             <option key={dag} value={dag}>

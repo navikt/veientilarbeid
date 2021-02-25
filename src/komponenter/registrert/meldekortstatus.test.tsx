@@ -54,7 +54,8 @@ function regexMatcher(innhold: RegExp): Matcher {
 describe('tester Meldekortstatus komponenten', () => {
     test('Komponenten vises på dag 1, og har rett varselestekst', () => {
         const dag1 = plussDager(dag0, 1);
-        render(<Meldekortstatus iDag={dag1} />, { wrapper: contextProviders(providerProps) });
+
+        render(<Meldekortstatus />, { wrapper: contextProviders({ ...providerProps, iDag: dag1 }) });
         expect(
             screen.queryByText(
                 /Det er innsending av meldekortet som opprettholder din status som arbeidssøker hos NAV/i
@@ -65,7 +66,8 @@ describe('tester Meldekortstatus komponenten', () => {
 
     test('Komponenten vises på dag 3, og har rett varselestekst', () => {
         const dag3 = plussDager(dag0, 3);
-        render(<Meldekortstatus iDag={dag3} />, { wrapper: contextProviders(providerProps) });
+
+        render(<Meldekortstatus />, { wrapper: contextProviders({ ...providerProps, iDag: dag3 }) });
         expect(
             screen.queryByText(
                 /Det er innsending av meldekortet som opprettholder din status som arbeidssøker hos NAV/i
@@ -77,7 +79,8 @@ describe('tester Meldekortstatus komponenten', () => {
 
     test('Komponenten vises på dag 7, og har rett varselestekst', () => {
         const dag7 = plussDager(dag0, 7);
-        render(<Meldekortstatus iDag={dag7} />, { wrapper: contextProviders(providerProps) });
+
+        render(<Meldekortstatus />, { wrapper: contextProviders({ ...providerProps, iDag: dag7 }) });
         expect(
             screen.queryByText(
                 /Det er innsending av meldekortet som opprettholder din status som arbeidssøker hos NAV/i
@@ -89,13 +92,16 @@ describe('tester Meldekortstatus komponenten', () => {
     });
 
     test('Komponenten vises IKKE ved dag 0', () => {
-        const { container } = render(<Meldekortstatus iDag={dag0} />, { wrapper: contextProviders(providerProps) });
+        const { container } = render(<Meldekortstatus />, { wrapper: contextProviders({ ...providerProps }) });
         expect(container).toBeEmptyDOMElement();
     });
 
     test('Komponenten vises IKKE på dag 8', () => {
         const dag8 = plussDager(dag0, 8);
-        const { container } = render(<Meldekortstatus iDag={dag8} />, { wrapper: contextProviders(providerProps) });
+
+        const { container } = render(<Meldekortstatus />, {
+            wrapper: contextProviders({ ...providerProps, iDag: dag8 }),
+        });
         expect(container).toBeEmptyDOMElement();
     });
 
@@ -103,13 +109,15 @@ describe('tester Meldekortstatus komponenten', () => {
         const providerProps: ProviderProps = {
             meldekort: { ...meldekort, meldekort: [] },
         };
-        const { container } = render(<Meldekortstatus iDag={dag0} />, { wrapper: contextProviders(providerProps) });
+
+        const { container } = render(<Meldekortstatus />, { wrapper: contextProviders({ ...providerProps }) });
         expect(container).toBeEmptyDOMElement();
     });
 
     test('Setning om at opplysningene er med på å beregne dagpenger vises for rettighetsgruppe DAGP', () => {
         const dag1 = plussDager(dag0, 1);
-        render(<Meldekortstatus iDag={dag1} />, { wrapper: contextProviders(providerProps) });
+
+        render(<Meldekortstatus />, { wrapper: contextProviders({ ...providerProps, iDag: dag1 }) });
         expect(
             screen.getByText(
                 /Opplysningene du oppgir i meldekortet brukes også til å beregne utbetalingen av dagpenger./i
@@ -119,8 +127,9 @@ describe('tester Meldekortstatus komponenten', () => {
 
     test('Setning om at opplysningene er med på å beregne dagpenger vises for rettighetsgruppe IYT', () => {
         const dag1 = plussDager(dag0, 1);
-        render(<Meldekortstatus iDag={dag1} />, {
-            wrapper: contextProviders({ ...providerProps, brukerInfo: { rettighetsgruppe: 'IYT' } }),
+
+        render(<Meldekortstatus />, {
+            wrapper: contextProviders({ ...providerProps, iDag: dag1, brukerInfo: { rettighetsgruppe: 'IYT' } }),
         });
         expect(
             screen.getByText(
@@ -131,8 +140,9 @@ describe('tester Meldekortstatus komponenten', () => {
 
     test('Setning om at opplysningene er med på å beregne dagpenger vises IKKE for rettighetsgruppe AAP', () => {
         const dag1 = plussDager(dag0, 1);
-        render(<Meldekortstatus iDag={dag1} />, {
-            wrapper: contextProviders({ ...providerProps, brukerInfo: { rettighetsgruppe: 'AAP' } }),
+
+        render(<Meldekortstatus />, {
+            wrapper: contextProviders({ ...providerProps, iDag: dag1, brukerInfo: { rettighetsgruppe: 'AAP' } }),
         });
         expect(
             screen.queryByText(
@@ -143,8 +153,9 @@ describe('tester Meldekortstatus komponenten', () => {
 
     test('Setning om at opplysningene er med på å beregne dagpenger vises IKKE for ugyldig rettighetsgruppe', () => {
         const dag1 = plussDager(dag0, 1);
-        render(<Meldekortstatus iDag={dag1} />, {
-            wrapper: contextProviders({ ...providerProps, brukerInfo: { rettighetsgruppe: 'TEST' } }),
+
+        render(<Meldekortstatus />, {
+            wrapper: contextProviders({ ...providerProps, iDag: dag1, brukerInfo: { rettighetsgruppe: 'TEST' } }),
         });
         expect(
             screen.queryByText(
@@ -155,14 +166,16 @@ describe('tester Meldekortstatus komponenten', () => {
 
     test('Setning om at dagpenger stoppes ved ikke innsendt meldekort vises for rettighetsgruppe DAGP fra dag 3 og utover', () => {
         const dag3 = plussDager(dag0, 3);
-        render(<Meldekortstatus iDag={dag3} />, { wrapper: contextProviders(providerProps) });
+
+        render(<Meldekortstatus />, { wrapper: contextProviders({ ...providerProps, iDag: dag3 }) });
         expect(screen.queryByText(/dagpengeutbetalingene dine stoppes/i)).toBeInTheDocument();
     });
 
     test('Setning om at dagpengersøknad kan bli avslått vises for rettighetsgruppe IYT fra dag 3 og utover', () => {
         const dag3 = plussDager(dag0, 3);
-        render(<Meldekortstatus iDag={dag3} />, {
-            wrapper: contextProviders({ ...providerProps, brukerInfo: { rettighetsgruppe: 'IYT' } }),
+
+        render(<Meldekortstatus />, {
+            wrapper: contextProviders({ ...providerProps, iDag: dag3, brukerInfo: { rettighetsgruppe: 'IYT' } }),
         });
         expect(screen.queryByText(/en eventuell søknad om dagpenger kunne bli avslått/i)).toBeInTheDocument();
     });

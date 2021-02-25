@@ -11,9 +11,6 @@ import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import Meldekortstatus from './meldekortstatus';
-import { erDemo } from '../../utils/app-state-utils';
-import { hentDagRelativTilFastsattMeldedag } from '../../demo/demo-state';
-import { datoUtenTid } from '../../utils/date-utils';
 
 const Registrert = () => {
     const brukerregistreringData = useContext(BrukerregistreringContext).data;
@@ -51,8 +48,6 @@ const Registrert = () => {
         }
     };
 
-    const iDag = erDemo() ? hentDagRelativTilFastsattMeldedag() : datoUtenTid(new Date().toISOString());
-
     return (
         <div className="blokk-s registrerings-container">
             <AlertStripeInfo className={showOpplysninger ? 'registrering-info' : ''}>
@@ -74,7 +69,7 @@ const Registrert = () => {
                     />
                 </Ekspanderbartpanel>
             ) : null}
-            <Meldekortstatus iDag={iDag} />
+            <Meldekortstatus />
         </div>
     );
 };
