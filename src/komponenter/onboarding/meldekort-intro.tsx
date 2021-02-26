@@ -21,6 +21,7 @@ import { EtikettInfo } from 'nav-frontend-etiketter';
 import LenkepanelMeldekort from './lenkepanel-Meldekort';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { hentIDag } from '../../utils/chrono';
+import { meldekortLenke, omMeldekortLenke } from '../../innhold/lenker';
 
 const MELDEKORT_INTRO_KEY = 'meldekortintro';
 
@@ -130,12 +131,7 @@ function Sluttkort(props: EndStateProps) {
                     )}`}
                 </Normaltekst>
                 <div>
-                    <LenkepanelMeldekort
-                        amplitudeData={amplitudeData}
-                        href={
-                            'https://www.nav.no/no/person/arbeid/dagpenger-ved-arbeidsloshet-og-permittering/meldekort-hvordan-gjor-du-det'
-                        }
-                    >
+                    <LenkepanelMeldekort amplitudeData={amplitudeData} href={omMeldekortLenke}>
                         Les om meldekort
                     </LenkepanelMeldekort>
                 </div>
@@ -154,12 +150,7 @@ function Sluttkort(props: EndStateProps) {
             <Meldekortstatus />
 
             <div>
-                <LenkepanelMeldekort
-                    amplitudeData={amplitudeData}
-                    href={
-                        'https://www.nav.no/no/person/arbeid/dagpenger-ved-arbeidsloshet-og-permittering/meldekort-hvordan-gjor-du-det'
-                    }
-                >
+                <LenkepanelMeldekort amplitudeData={amplitudeData} href={meldekortLenke}>
                     {`Send inn for uke 
                     ${hentISOUke(foerstkommendeMeldekort.meldeperiode?.fra!!)} og ${hentISOUke(
                         foerstkommendeMeldekort.meldeperiode?.til!!
