@@ -54,11 +54,11 @@ const LittStrengereVarsel = ({ rettighetsgruppe }: { rettighetsgruppe: string })
                 <li>
                     <Normaltekst>du ikke lenger være registrert som arbeidssøker</Normaltekst>
                 </li>
-                {['DAGP', 'IYT'].includes(rettighetsgruppe) ? (
+                {['DAGP', 'IYT'].includes(rettighetsgruppe) && (
                     <li>
                         <Normaltekst>{dagpengerKonsekvensMelding[rettighetsgruppe]}</Normaltekst>
                     </li>
-                ) : null}
+                )}
             </ul>
         </div>
     );
