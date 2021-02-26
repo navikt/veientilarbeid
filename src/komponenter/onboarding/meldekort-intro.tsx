@@ -195,11 +195,9 @@ function MeldekortIntro(props: MeldekortIntroProps) {
     return (
         <>
             <div className={'kortwrapper'}>
-                <Normaltekst>
-                    <EtikettInfo mini>
-                        {gjeldendeKortIndex + 1} av {introKort.length}
-                    </EtikettInfo>
-                </Normaltekst>
+                <EtikettInfo mini>
+                    {gjeldendeKortIndex + 1} av {introKort.length}
+                </EtikettInfo>
                 <div className={'kortinnhold'}>{introKort[gjeldendeKortIndex]}</div>
                 <br />
             </div>
