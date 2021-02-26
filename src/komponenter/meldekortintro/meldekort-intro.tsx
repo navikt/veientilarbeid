@@ -193,6 +193,14 @@ function MeldekortIntro(props: MeldekortIntroProps) {
             setGjeldendeKortIndex(gjeldendeKortIndex - 1);
         }
     };
+    const avsluttIntro = () => {
+        amplitudeLogger('veientilarbeid.intro', {
+            intro: 'meldekort',
+            handling: 'Avslutter introduksjon',
+            ...props.amplitudeData,
+        });
+        props.ferdigMedIntroCB();
+    };
 
     useEffect(() => {
         if (forrigeKortRef.current !== gjeldendeKortIndex) {
@@ -225,7 +233,7 @@ function MeldekortIntro(props: MeldekortIntroProps) {
                         Neste{' '}
                     </Nesteknapp>
                 ) : (
-                    <Nesteknapp mini onClick={props.ferdigMedIntroCB}>
+                    <Nesteknapp mini onClick={avsluttIntro}>
                         {' '}
                         Avslutt introduksjonen{' '}
                     </Nesteknapp>
