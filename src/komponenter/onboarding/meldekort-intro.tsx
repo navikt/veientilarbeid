@@ -16,11 +16,11 @@ import {
     hentMeldekortForLevering,
 } from '../../utils/meldekort-utils';
 import Meldekortstatus from './meldekortstatus';
-import { erDemo } from '../../utils/app-state-utils';
-import { hentDagRelativTilFastsattMeldedag, hentFraLocalStorage, settILocalStorage } from '../../demo/demo-state';
+import { hentFraLocalStorage, settILocalStorage } from '../../demo/demo-state';
 import { EtikettInfo } from 'nav-frontend-etiketter';
 import LenkepanelMeldekort from './lenkepanel-Meldekort';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
+import { hentIDag } from '../../utils/chrono';
 
 const MELDEKORT_INTRO_KEY = 'meldekortintro';
 
@@ -92,7 +92,7 @@ interface MeldekortIntroProps {
 
 function Sluttkort(props: EndStateProps) {
     const { meldekortData, amplitudeData } = props;
-    const dato = erDemo() ? hentDagRelativTilFastsattMeldedag() : datoUtenTid(new Date().toISOString());
+    const dato = datoUtenTid(hentIDag().toISOString());
     const meldekortForLevering = hentMeldekortForLevering(dato, meldekortData);
 
     const handleKlikkLesIntro = () => {
