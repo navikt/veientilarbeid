@@ -39,6 +39,9 @@ const providerProps: ProviderProps = {
     brukerInfo: {
         rettighetsgruppe: 'DAGP',
     },
+    amplitude: {
+        ukerRegistrert: 2,
+    },
     oppfolging: {
         formidlingsgruppe: Formidlingsgruppe.ARBS,
         servicegruppe: Servicegruppe.IKVAL,
