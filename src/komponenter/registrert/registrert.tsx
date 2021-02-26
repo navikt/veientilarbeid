@@ -6,7 +6,7 @@ import { loggAktivitet } from '../../metrics/metrics';
 import Opplysninger from '../innsyn/registreringsopplysninger';
 import './registrert.less';
 import Meldekortstatus from './meldekortstatus';
-import Onboardingwrapper from '../onboarding/meldekort-intro';
+import MeldekortIntroWrapper from '../meldekortintro/meldekort-intro';
 import { FeaturetoggleContext } from '../../ducks/feature-toggles';
 import { BrukerregistreringContext } from '../../ducks/brukerregistrering';
 import { OppfolgingContext } from '../../ducks/oppfolging';
@@ -99,7 +99,7 @@ const Registrert = () => {
             ) : null}
 
             {featuretoggledata['veientilarbeid.meldekortonboarding'] && erEksperimentkontor ? (
-                <Onboardingwrapper />
+                <MeldekortIntroWrapper />
             ) : (
                 <Meldekortstatus />
             )}

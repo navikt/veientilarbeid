@@ -265,7 +265,7 @@ function kanViseMeldekortStatus({
     return kanViseKomponent;
 }
 
-function Onboardingwrapper() {
+function MeldekortIntroWrapper() {
     const amplitudeData = React.useContext(AmplitudeContext);
     const { data: meldekortData } = React.useContext(Meldekort.MeldekortContext);
     const { data: registreringData } = React.useContext(Brukerregistrering.BrukerregistreringContext);
@@ -300,7 +300,7 @@ function Onboardingwrapper() {
     };
 
     return (
-        <Panel className={'meldekort-onboarding'} border>
+        <Panel className={'meldekort-intro'} border>
             <div className={'overall-wrapper'}>
                 {skalViseIntro ? (
                     <MeldekortIntro ferdigMedIntroCB={ferdigMedIntroCB} amplitudeData={amplitudeData} />
@@ -316,4 +316,4 @@ function Onboardingwrapper() {
     );
 }
 
-export default Onboardingwrapper;
+export default MeldekortIntroWrapper;
