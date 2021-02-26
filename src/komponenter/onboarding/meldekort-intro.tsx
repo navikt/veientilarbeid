@@ -74,7 +74,7 @@ function Kort3() {
             </Normaltekst>
 
             <Normaltekst className={'blokk-xs'}>
-                Det er derfor viktig at du sender meldekortene inn før fristen går ut.
+                Det er derfor viktig at du sender inn meldekortene før fristen går ut.
             </Normaltekst>
         </div>
     );
