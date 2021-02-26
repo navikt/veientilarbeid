@@ -29,15 +29,14 @@ function Meldekortstatus() {
 
     if (dagerEtterFastsattMeldedag === null) return null;
 
-    // Bare vis melding fra dag 1 (tirsdag) til dag 7 (mandag)
-    const mellomDag1Til7 = dagerEtterFastsattMeldedag > 0 && dagerEtterFastsattMeldedag <= 7;
+    const etterFoersteMeldedag = dagerEtterFastsattMeldedag > 0;
 
     const dagerTilInaktivering = beregnDagerTilInaktivering(dagerEtterFastsattMeldedag);
     const inaktiveringsDato = plussDager(iDag, dagerTilInaktivering);
 
     return (
         <div className={'onboarding-meldekortvarsel-container'}>
-            {mellomDag1Til7 ? (
+            {etterFoersteMeldedag ? (
                 <MeldekortAdvarsel
                     dagerEtterFastsattMeldedag={dagerEtterFastsattMeldedag}
                     amplitudeData={amplitudeData}

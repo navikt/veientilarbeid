@@ -3,6 +3,8 @@ import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { AmplitudeData } from '../../metrics/amplitude-utils';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { beregnDagerTilInaktivering } from '../../utils/meldekort-utils';
+import { datoMedUkedag, plussDager } from '../../utils/date-utils';
+import { hentIDag } from '../../utils/chrono';
 
 function MeldekortAdvarsel({
     dagerEtterFastsattMeldedag,
@@ -17,10 +19,12 @@ function MeldekortAdvarsel({
     const dagerTilInaktivering = beregnDagerTilInaktivering(dagerEtterFastsattMeldedag);
     // Viser strenger melding fra dag 3 (torsdag)
     const tillegg = dagerEtterFastsattMeldedag > 2 ? <LittStrengereVarsel rettighetsgruppe={rettighetsgruppe} /> : null;
+    const iDag = hentIDag();
+    const inaktiveringsDato = plussDager(iDag, dagerTilInaktivering);
 
     return (
         <>
-            {dagerTilInaktivering === 0 ? (
+            {dagerTilInaktivering <= 0 ? (
                 <Normaltekst>Siste frist for innsending av meldekortet er i kveld klokken 23.00</Normaltekst>
             ) : (
                 <>
@@ -32,7 +36,7 @@ function MeldekortAdvarsel({
                         </b>
                         på å sende inn meldekort.
                     </Normaltekst>
-                    <Normaltekst>Fristen er mandag klokken 23.00.</Normaltekst>
+                    <Normaltekst>Fristen er {datoMedUkedag(inaktiveringsDato)}, klokken 23.00.</Normaltekst>
                 </>
             )}
             {tillegg}
@@ -42,8 +46,8 @@ function MeldekortAdvarsel({
 
 const LittStrengereVarsel = ({ rettighetsgruppe }: { rettighetsgruppe: string }) => {
     const dagpengerKonsekvensMelding = {
-        DAGP: 'dagpengeutbetalingene dine stoppes',
-        IYT: 'en eventuell søknad om dagpenger kunne bli avslått',
+        DAGP: 'utbetaling av dagpenger stoppes',
+        IYT: 'en eventuell søknad om dagpenger kan bli avslått',
     };
 
     return (

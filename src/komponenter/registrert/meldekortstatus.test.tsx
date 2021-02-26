@@ -1,9 +1,10 @@
 import '@testing-library/jest-dom/extend-expect';
-import { Matcher, Nullish, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Meldekortstatus from './meldekortstatus';
 import React from 'react';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import { datoUtenTid, plussDager } from '../../utils/date-utils';
+import { regexMatcher } from '../../utils/test-utils';
 
 const meldekort = {
     maalformkode: 'NO',
@@ -39,17 +40,6 @@ const providerProps: ProviderProps = {
         rettighetsgruppe: 'DAGP',
     },
 };
-
-function regexMatcher(innhold: RegExp): Matcher {
-    return (content: string, node: Nullish<Element>) => {
-        if (!node) return false;
-
-        const hasText = (innerNode: any) => innhold.test(innerNode.textContent);
-        const nodeHasText = hasText(node);
-        const childrenDontHaveText = Array.from(node.children).every((child) => !hasText(child));
-        return nodeHasText && childrenDontHaveText;
-    };
-}
 
 describe('tester Meldekortstatus komponenten', () => {
     test('Komponenten vises på dag 1, og har rett varselestekst', () => {
@@ -168,7 +158,7 @@ describe('tester Meldekortstatus komponenten', () => {
         const dag3 = plussDager(dag0, 3);
 
         render(<Meldekortstatus />, { wrapper: contextProviders({ ...providerProps, iDag: dag3 }) });
-        expect(screen.queryByText(/dagpengeutbetalingene dine stoppes/i)).toBeInTheDocument();
+        expect(screen.queryByText(/utbetaling av dagpenger stoppes/i)).toBeInTheDocument();
     });
 
     test('Setning om at dagpengersøknad kan bli avslått vises for rettighetsgruppe IYT fra dag 3 og utover', () => {
@@ -177,6 +167,6 @@ describe('tester Meldekortstatus komponenten', () => {
         render(<Meldekortstatus />, {
             wrapper: contextProviders({ ...providerProps, iDag: dag3, brukerInfo: { rettighetsgruppe: 'IYT' } }),
         });
-        expect(screen.queryByText(/en eventuell søknad om dagpenger kunne bli avslått/i)).toBeInTheDocument();
+        expect(screen.queryByText(/en eventuell søknad om dagpenger kan bli avslått/i)).toBeInTheDocument();
     });
 });

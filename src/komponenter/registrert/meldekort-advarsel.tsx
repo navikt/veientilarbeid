@@ -56,8 +56,8 @@ function MeldekortAdvarsel({
 
 const LittStrengereVarsel = ({ rettighetsgruppe }: { rettighetsgruppe: string }) => {
     const dagpengerKonsekvensMelding = {
-        DAGP: 'dagpengeutbetalingene dine stoppes',
-        IYT: 'en eventuell søknad om dagpenger kunne bli avslått',
+        DAGP: 'utbetaling av dagpenger stoppes',
+        IYT: 'en eventuell søknad om dagpenger kan bli avslått',
     };
 
     return (

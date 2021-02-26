@@ -111,10 +111,6 @@ function Sluttkort(props: EndStateProps) {
         props.lesIntroPaaNyttCB();
     };
 
-    if (meldekortForLevering.length > 1) {
-        return <div>Vent litt, så får du en lenke av meg</div>;
-    }
-
     if (meldekortForLevering.length === 0) {
         const meldekortIkkeKlarForLevering = hentFoerstkommendeMeldekortIkkeKlarForLevering(dato, meldekortData);
         if (!meldekortIkkeKlarForLevering) return null;
@@ -135,6 +131,24 @@ function Sluttkort(props: EndStateProps) {
                         Les om meldekort
                     </LenkepanelMeldekort>
                 </div>
+                <Tilbakeknapp mini onClick={handleLesIntroPaaNytt}>
+                    Vis introduksjon til meldekort
+                </Tilbakeknapp>
+            </div>
+        );
+    }
+
+    if (meldekortForLevering.length > 1) {
+        return (
+            <div>
+                <Systemtittel className={'blokk-xs'}>Innsending av meldekort</Systemtittel>
+
+                <div className={'onboarding-meldekortvarsel-container'}>
+                    <Normaltekst>Du har {meldekortForLevering.length} meldekort som kan sendes inn.</Normaltekst>
+                </div>
+                <LenkepanelMeldekort amplitudeData={amplitudeData} href={meldekortLenke}>
+                    Send inn
+                </LenkepanelMeldekort>
                 <Tilbakeknapp mini onClick={handleLesIntroPaaNytt}>
                     Vis introduksjon til meldekort
                 </Tilbakeknapp>
