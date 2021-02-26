@@ -73,7 +73,7 @@ export function hentFoerstkommendeMeldekortIkkeKlarForLevering(
     const meldekortIkkeKlarForLevering = meldekort.meldekort
         .filter((meldekort) => !harBrukerLevertMeldekort(meldekort))
         .filter((meldekort) => foersteSendedagForMeldekort(meldekort) > iDag)
-        //.filter((meldekort) => !meldekort.meldeperiode?.kanKortSendes)
+        .filter((meldekort) => !meldekort.meldeperiode?.kanKortSendes)
         .sort((m1, m2) => foersteSendedagForMeldekort(m1).getTime() - foersteSendedagForMeldekort(m2).getTime());
 
     return meldekortIkkeKlarForLevering[0];
