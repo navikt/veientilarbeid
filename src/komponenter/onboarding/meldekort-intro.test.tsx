@@ -76,8 +76,8 @@ describe('tester onboarding komponenten for meldekort', () => {
         userEvent.click(nesteknapp);
         userEvent.click(screen.getByText(/avslutt introduksjon/i));
         expect(screen.getByText(/Innsending av meldekort/i)).toBeInTheDocument();
-        //  expect(nesteknapp).toBeDisabled();
-        //expect(forrigeknapp).toBeEnabled();
+        expect(nesteknapp).not.toBeInTheDocument();
+        expect(forrigeknapp).not.toBeInTheDocument();
     });
 
     test('man starter på endstate uten navigeringsvalg om man har vært registrert i minst én uke', () => {
