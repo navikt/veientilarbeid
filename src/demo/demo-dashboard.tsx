@@ -56,6 +56,7 @@ import {
 import tekster from '../tekster/tekster';
 import { InnloggingsNiva } from '../ducks/autentisering';
 import { setFastTidspunktForIDag } from '../utils/chrono';
+import { datoUtenTid } from '../utils/date-utils';
 
 interface OpprettetRegistreringDato {
     registrertForLanseringEgenvurdering: string;
@@ -68,7 +69,7 @@ export const opprettetRegistreringDato: OpprettetRegistreringDato = {
     registrertForLanseringEgenvurdering: '2019-05-09T12:00:00.111111+01:00',
     registrertMellomLanseringEgenvurderingOgMotestotte: '2019-05-11T12:00:00.111111+01:00',
     registrertEtterLanseringMotestotte: '2019-06-05T12:00:00.111111+01:00',
-    registrertNaa: new Date(),
+    registrertNaa: datoUtenTid(new Date().toISOString()),
 };
 
 class DemoDashboard extends React.Component<{}> {
