@@ -15,7 +15,7 @@ import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { OppfolgingContext } from '../../ducks/oppfolging';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { hentIDag } from '../../utils/chrono';
-import { datoUtenTid, plussDager, prettyPrintDato } from '../../utils/date-utils';
+import { datoUtenTid, plussDager, datoMedUkedag } from '../../utils/date-utils';
 
 function Meldekortstatus() {
     const { data: meldekortData } = React.useContext(Meldekort.MeldekortContext);
@@ -45,7 +45,7 @@ function Meldekortstatus() {
             ) : (
                 <>
                     <Normaltekst>Du kan nå sende inn meldekort.</Normaltekst>
-                    <Normaltekst>{`Fristen er ${prettyPrintDato(inaktiveringsDato)}, klokken 23.00.`}</Normaltekst>
+                    <Normaltekst>{`Fristen er ${datoMedUkedag(inaktiveringsDato)}, klokken 23.00.`}</Normaltekst>
                 </>
             )}
         </div>

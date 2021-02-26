@@ -27,7 +27,7 @@ export function hentISOUke(datoMedTid: string) {
     return Math.ceil(((dato.getTime() - foersteDatoIAaret.getTime()) / msPerDoegn + 1) / 7);
 }
 
-export function prettyPrintDato(dato: Date) {
+export function datoMedUkedag(dato: Date) {
     const dager = ['søndag', 'mandag', 'tirdag', 'onsdag', 'torsdag', 'fredag', 'lørdag'];
 
     const maneder = [

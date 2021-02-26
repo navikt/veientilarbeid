@@ -9,7 +9,7 @@ import { OppfolgingContext } from '../../ducks/oppfolging';
 import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
 import './meldekort-intro.less';
-import { datoUtenTid, hentISOUke, prettyPrintDato } from '../../utils/date-utils';
+import { datoUtenTid, hentISOUke, datoMedUkedag } from '../../utils/date-utils';
 import {
     foersteSendedagForMeldekort,
     hentFoerstkommendeMeldekortIkkeKlarForLevering,
@@ -126,7 +126,7 @@ function Sluttkort(props: EndStateProps) {
                     {`Meldekort for uke 
                     ${hentISOUke(meldekortIkkeKlarForLevering.meldeperiode?.fra!!)} og ${hentISOUke(
                         meldekortIkkeKlarForLevering.meldeperiode?.til!!
-                    )} blir tilgjengelig for innsending fra ${prettyPrintDato(
+                    )} blir tilgjengelig for innsending fra ${datoMedUkedag(
                         foersteSendedagForMeldekort(meldekortIkkeKlarForLevering)
                     )}`}
                 </Normaltekst>
