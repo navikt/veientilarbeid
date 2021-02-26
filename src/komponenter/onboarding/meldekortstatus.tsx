@@ -11,7 +11,6 @@ import MeldekortAdvarsel from './meldekort-advarsel';
 import * as Meldekort from '../../ducks/meldekort';
 import { beregnDagerEtterFastsattMeldedag, beregnDagerTilInaktivering } from '../../utils/meldekort-utils';
 import './meldekortstatus.less';
-import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { OppfolgingContext } from '../../ducks/oppfolging';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { hentIDag } from '../../utils/chrono';
@@ -21,7 +20,6 @@ function Meldekortstatus() {
     const { data: meldekortData } = React.useContext(Meldekort.MeldekortContext);
     const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
 
-    const amplitudeData = React.useContext(AmplitudeContext);
     if (!meldekortData || kanReaktiveres) return null;
 
     const iDag = datoUtenTid(hentIDag().toISOString());
@@ -37,10 +35,7 @@ function Meldekortstatus() {
     return (
         <div className={'onboarding-meldekortvarsel-container'}>
             {etterFoersteMeldedag ? (
-                <MeldekortAdvarsel
-                    dagerEtterFastsattMeldedag={dagerEtterFastsattMeldedag}
-                    amplitudeData={amplitudeData}
-                />
+                <MeldekortAdvarsel dagerEtterFastsattMeldedag={dagerEtterFastsattMeldedag} />
             ) : (
                 <>
                     <Normaltekst>Du kan nå sende inn meldekort.</Normaltekst>

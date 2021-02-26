@@ -271,27 +271,39 @@ function Onboardingwrapper() {
     const { data: registreringData } = React.useContext(Brukerregistrering.BrukerregistreringContext);
     const { data: oppfolgingData } = React.useContext(Oppfolging.OppfolgingContext);
     const { data: brukerInfoData } = React.useContext(BrukerInfo.BrukerInfoContext);
-    const [erFerdigMedIntro, setErFerdigMedIntro] = React.useState(hentFraLocalStorage(MELDEKORT_INTRO_KEY) || false);
+
+    const [harSettIntro, setHarSettIntro] = React.useState<boolean>(!!hentFraLocalStorage(MELDEKORT_INTRO_KEY));
+    const [tvingVisningAvIntro, setTvingVisningAvIntro] = React.useState<boolean>(false);
+
     const erNyregistrert = amplitudeData.ukerRegistrert === 0;
+    const skalViseIntro = tvingVisningAvIntro || (erNyregistrert && !harSettIntro);
+
+    useEffect(() => {
+        if (harSettIntro) {
+            settILocalStorage(MELDEKORT_INTRO_KEY, 'true');
+        } else {
+            slettFraLocalStorage(MELDEKORT_INTRO_KEY);
+        }
+    }, [harSettIntro]);
 
     if (!kanViseMeldekortStatus({ meldekortData, oppfolgingData, brukerInfoData, registreringData })) {
         slettFraLocalStorage(MELDEKORT_INTRO_KEY);
         return null;
     }
 
-    const ferdiMedIntroCB = () => {
-        setErFerdigMedIntro(true);
-        settILocalStorage(MELDEKORT_INTRO_KEY, 'meldekort_intro');
+    const ferdigMedIntroCB = () => {
+        setHarSettIntro(true);
+        setTvingVisningAvIntro(false);
     };
     const lesIntroPaaNyttCB = () => {
-        setErFerdigMedIntro(false);
+        setTvingVisningAvIntro(true);
     };
 
     return (
         <Panel className={'meldekort-onboarding'} border>
             <div className={'overall-wrapper'}>
-                {!erFerdigMedIntro && erNyregistrert ? (
-                    <MeldekortIntro ferdigMedIntroCB={ferdiMedIntroCB} amplitudeData={amplitudeData} />
+                {skalViseIntro ? (
+                    <MeldekortIntro ferdigMedIntroCB={ferdigMedIntroCB} amplitudeData={amplitudeData} />
                 ) : (
                     <Sluttkort
                         amplitudeData={amplitudeData}

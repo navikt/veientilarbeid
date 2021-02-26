@@ -1,18 +1,11 @@
 import React from 'react';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import { AmplitudeData } from '../../metrics/amplitude-utils';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { beregnDagerTilInaktivering } from '../../utils/meldekort-utils';
 import { datoMedUkedag, plussDager } from '../../utils/date-utils';
 import { hentIDag } from '../../utils/chrono';
 
-function MeldekortAdvarsel({
-    dagerEtterFastsattMeldedag,
-    amplitudeData,
-}: {
-    dagerEtterFastsattMeldedag: number | null;
-    amplitudeData: AmplitudeData;
-}) {
+function MeldekortAdvarsel({ dagerEtterFastsattMeldedag }: { dagerEtterFastsattMeldedag: number | null }) {
     const { rettighetsgruppe } = React.useContext(BrukerInfoContext).data;
     if (dagerEtterFastsattMeldedag === null) return null;
 
