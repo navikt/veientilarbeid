@@ -87,7 +87,7 @@ describe('tester Meldekortstatus komponenten', () => {
             )
         ).toBeInTheDocument();
         expect(
-            screen.queryByText(regexMatcher(/Siste frist for innsending av meldekortet er i kveld klokken 23:00/i))
+            screen.queryByText(regexMatcher(/Siste frist for innsending av meldekortet er i kveld klokken 23.00/i))
         ).toBeInTheDocument();
     });
 

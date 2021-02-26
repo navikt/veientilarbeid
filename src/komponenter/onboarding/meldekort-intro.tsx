@@ -30,7 +30,7 @@ function Kort1() {
             <Systemtittel className={'blokk-xs'}>Introduksjon til meldekort</Systemtittel>
 
             <Normaltekst className={'blokk-xs'}>
-                Når du er registrert som arbeidssøker, må du sende inn et meldekort hver 14 dag.
+                Når du er registrert som arbeidssøker, må du sende inn et meldekort hver 14. dag.
             </Normaltekst>
 
             <Normaltekst className={'blokk-xs'}>

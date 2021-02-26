@@ -45,7 +45,7 @@ function Meldekortstatus() {
             ) : (
                 <>
                     <Normaltekst>Du kan nå sende inn meldekort.</Normaltekst>
-                    <Normaltekst>{`Fristen er mandag, 1. mars, klokken 23:00.`}</Normaltekst>
+                    <Normaltekst>{`Fristen er mandag, 1. mars, klokken 23.00.`}</Normaltekst>
                 </>
             )}
         </div>

@@ -45,5 +45,5 @@ export function prettyPrintDato(dato: Date) {
         'desember',
     ];
 
-    return `${dager[dato.getDay()]} den ${dato.getDate()}. ${maneder[dato.getMonth()]}`;
+    return `${dager[dato.getDay()]} ${dato.getDate()}. ${maneder[dato.getMonth()]}`;
 }

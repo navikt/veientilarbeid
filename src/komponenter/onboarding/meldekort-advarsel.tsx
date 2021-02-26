@@ -20,7 +20,7 @@ function MeldekortAdvarsel({
     return (
         <>
             {dagerTilInaktivering === 0 ? (
-                <Normaltekst>Siste frist for innsending av meldekortet er i kveld klokken 23:00</Normaltekst>
+                <Normaltekst>Siste frist for innsending av meldekortet er i kveld klokken 23.00</Normaltekst>
             ) : (
                 <>
                     <Normaltekst>
@@ -31,7 +31,7 @@ function MeldekortAdvarsel({
                         </b>
                         på å sende inn meldekort.
                     </Normaltekst>
-                    <Normaltekst>Fristen er mandag klokken 23:00.</Normaltekst>
+                    <Normaltekst>Fristen er mandag klokken 23.00.</Normaltekst>
                 </>
             )}
             {tillegg}
