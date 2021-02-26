@@ -14,6 +14,7 @@ import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
+import { erSamarbeidskontor } from '../../utils/is-samarbeidskontor';
 
 const Registrert = () => {
     const brukerregistreringData = useContext(BrukerregistreringContext).data;
@@ -45,29 +46,6 @@ const Registrert = () => {
     const { registrering } = brukerregistreringData;
     const { opprettetDato, manueltRegistrertAv, besvarelse, teksterForBesvarelse } = registrering;
     const showOpplysninger = opprettetDato && besvarelse && teksterForBesvarelse;
-    const erEksperimentkontor = [
-        '030112',
-        '030105',
-        '3413',
-        '3407',
-        '3401',
-        '3807',
-        '3803',
-        '1120',
-        '1121',
-        '110302',
-        '110303',
-        '3808',
-        '110306',
-        '110307',
-        '030114',
-        '3418',
-        '3411',
-        '030108',
-        '030109',
-        '1149',
-        '110301',
-    ].includes(geografiskTilknytning || 'null');
 
     const handleClickOpen = () => {
         if (!clickedInnsyn) {
@@ -98,7 +76,7 @@ const Registrert = () => {
                 </Ekspanderbartpanel>
             ) : null}
 
-            {featuretoggledata['veientilarbeid.meldekortonboarding'] && erEksperimentkontor ? (
+            {featuretoggledata['veientilarbeid.meldekortonboarding'] && erSamarbeidskontor(geografiskTilknytning) ? (
                 <MeldekortIntroWrapper />
             ) : (
                 <Meldekortstatus />
