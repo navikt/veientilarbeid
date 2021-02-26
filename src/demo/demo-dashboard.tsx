@@ -236,18 +236,18 @@ class DemoDashboard extends React.Component<{}> {
         };
 
         const antallDagerEtterFastsattMeldedag = {
-            '-3': '-3 (fredag)',
-            '-2': 'Første sendedag (lørdag)',
-            '-1': '-1 (Søndag)',
-            '0': 'Fastsatt meldedag',
-            '1': '+1 (tirsdag)',
-            '2': '+2 (onsdag)',
-            '3': '+3 (torsdag)',
-            '4': '+4 (fredag)',
-            '5': '+5 (lørdag)',
-            '6': '+6 (søndag)',
-            '7': '+7 (mandag)',
-            '8': '+8 (tirsdag)',
+            [-3]: '😐 -3 (fredag)',
+            [-2]: '😁 -2 Første sendedag (lørdag)',
+            [-1]: '😁 -1 (Søndag)',
+            0: '😁 0 Fastsatt meldedag (mandag)',
+            1: '🙂 +1 (tirsdag)',
+            2: '🙂 +2 (onsdag)',
+            3: '🙂 +3 (torsdag)',
+            4: '🙂 +4 (fredag)',
+            5: '😬 +5 (lørdag)',
+            6: '😬 +6 (søndag)',
+            7: '🥵 +7 Siste frist (mandag)',
+            8: '💸 +8 (tirsdag)',
         };
 
         setFastTidspunktForIDag(hentDagRelativTilFastsattMeldedag());
@@ -322,11 +322,13 @@ class DemoDashboard extends React.Component<{}> {
                         id="velg-meldekortdager"
                         defaultValue={hentDagerEtterFastsattMeldedag()?.toString()}
                     >
-                        {Object.keys(antallDagerEtterFastsattMeldedag).map((dag: string) => (
-                            <option key={dag} value={dag}>
-                                {antallDagerEtterFastsattMeldedag[dag]}
-                            </option>
-                        ))}
+                        {Object.keys(antallDagerEtterFastsattMeldedag)
+                            .sort((a, b) => parseInt(a, 10) - parseInt(b, 10))
+                            .map((dag: string) => (
+                                <option key={dag} value={dag}>
+                                    {antallDagerEtterFastsattMeldedag[dag]}
+                                </option>
+                            ))}
                     </SelectKomponent>
                 </div>
                 <div className="two-select">
