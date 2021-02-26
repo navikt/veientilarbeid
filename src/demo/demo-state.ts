@@ -1,5 +1,6 @@
 import { InnloggingsNiva } from '../ducks/autentisering';
 import { foerstkommendeMandag, plussDager } from '../utils/date-utils';
+import { hentFraLocalStorage, settILocalStorage, slettFraLocalStorage } from '../utils/localStorage-utils';
 
 type JSONValue = null | string | number | boolean | JSONObject | JSONArray;
 interface JSONArray extends Array<JSONValue> {}
@@ -24,18 +25,6 @@ export enum DemoData {
     UNDER_OPPFOLGING = 'underOppfolging',
     KAN_REAKTIVERES = 'kanReaktiveres',
 }
-
-export const hentFraLocalStorage = (key: string): string | null => {
-    return window.localStorage.getItem(key);
-};
-
-export const settILocalStorage = (key: string, value: string): void => {
-    window.localStorage.setItem(key, value);
-};
-
-const slettFraLocalStorage = (key: string): void => {
-    window.localStorage.removeItem(key);
-};
 
 export const hentServicegruppe = (): string => {
     slettFraLocalStorage('innsatsgruppe'); // Rydder opp etter oppdatering av key fra innsatsgruppe til servicegruppe

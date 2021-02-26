@@ -16,12 +16,12 @@ import {
     hentMeldekortForLevering,
 } from '../../utils/meldekort-utils';
 import Meldekortstatus from './meldekortstatus';
-import { hentFraLocalStorage, settILocalStorage } from '../../demo/demo-state';
 import { EtikettInfo } from 'nav-frontend-etiketter';
 import LenkepanelMeldekort from './lenkepanel-Meldekort';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { hentIDag } from '../../utils/chrono';
 import { meldekortLenke, omMeldekortLenke } from '../../innhold/lenker';
+import { hentFraLocalStorage, settILocalStorage } from '../../utils/localStorage-utils';
 
 const MELDEKORT_INTRO_KEY = 'meldekortintro';
 

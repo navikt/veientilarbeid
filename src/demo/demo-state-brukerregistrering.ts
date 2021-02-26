@@ -1,6 +1,7 @@
 import { Besvarelse, ForeslattInnsatsgruppe, FremtidigSituasjonSvar, Profilering } from '../ducks/brukerregistrering';
-import { DemoData, hentFraLocalStorage, settILocalStorage } from './demo-state';
+import { DemoData } from './demo-state';
 import { opprettetRegistreringDato } from './demo-dashboard';
+import { hentFraLocalStorage, settILocalStorage } from '../utils/localStorage-utils';
 
 const defaultFremtidigSituasjon = FremtidigSituasjonSvar.NY_ARBEIDSGIVER;
 const defaultBesvarelse = {
