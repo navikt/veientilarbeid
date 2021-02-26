@@ -9,13 +9,13 @@
 import React from 'react';
 import MeldekortAdvarsel from './meldekort-advarsel';
 import * as Meldekort from '../../ducks/meldekort';
-import { beregnDagerEtterFastsattMeldedag } from '../../utils/meldekort-utils';
+import { beregnDagerEtterFastsattMeldedag, beregnDagerTilInaktivering } from '../../utils/meldekort-utils';
 import './meldekortstatus.less';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { OppfolgingContext } from '../../ducks/oppfolging';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { hentIDag } from '../../utils/chrono';
-import { datoUtenTid } from '../../utils/date-utils';
+import { datoUtenTid, plussDager, prettyPrintDato } from '../../utils/date-utils';
 
 function Meldekortstatus() {
     const { data: meldekortData } = React.useContext(Meldekort.MeldekortContext);
@@ -27,13 +27,13 @@ function Meldekortstatus() {
     const iDag = datoUtenTid(hentIDag().toISOString());
     const dagerEtterFastsattMeldedag = beregnDagerEtterFastsattMeldedag(iDag, meldekortData);
 
-    // Bare vis melding fra dag 1 (tirsdag) til dag 7 (mandag)
-    const mellomDag1Til7 =
-        dagerEtterFastsattMeldedag !== null && dagerEtterFastsattMeldedag > 0 && dagerEtterFastsattMeldedag <= 7;
-    const minstEttMeldekort = dagerEtterFastsattMeldedag !== null;
-    const kanViseMeldekortstatus = minstEttMeldekort;
+    if (dagerEtterFastsattMeldedag === null) return null;
 
-    if (!kanViseMeldekortstatus) return null;
+    // Bare vis melding fra dag 1 (tirsdag) til dag 7 (mandag)
+    const mellomDag1Til7 = dagerEtterFastsattMeldedag > 0 && dagerEtterFastsattMeldedag <= 7;
+
+    const dagerTilInaktivering = beregnDagerTilInaktivering(dagerEtterFastsattMeldedag);
+    const inaktiveringsDato = plussDager(iDag, dagerTilInaktivering);
 
     return (
         <div className={'onboarding-meldekortvarsel-container'}>
@@ -45,7 +45,7 @@ function Meldekortstatus() {
             ) : (
                 <>
                     <Normaltekst>Du kan nå sende inn meldekort.</Normaltekst>
-                    <Normaltekst>{`Fristen er mandag, 1. mars, klokken 23.00.`}</Normaltekst>
+                    <Normaltekst>{`Fristen er ${prettyPrintDato(inaktiveringsDato)}, klokken 23.00.`}</Normaltekst>
                 </>
             )}
         </div>

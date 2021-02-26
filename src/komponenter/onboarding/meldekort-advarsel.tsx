@@ -2,6 +2,7 @@ import React from 'react';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { AmplitudeData } from '../../metrics/amplitude-utils';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
+import { beregnDagerTilInaktivering } from '../../utils/meldekort-utils';
 
 function MeldekortAdvarsel({
     dagerEtterFastsattMeldedag,
@@ -62,10 +63,5 @@ const LittStrengereVarsel = ({ rettighetsgruppe }: { rettighetsgruppe: string })
         </div>
     );
 };
-
-function beregnDagerTilInaktivering(dagerEtterFastsattMeldedag: number) {
-    // Inaktivering skjer natt til tirsdag (dag 8)
-    return 7 - dagerEtterFastsattMeldedag;
-}
 
 export default MeldekortAdvarsel;

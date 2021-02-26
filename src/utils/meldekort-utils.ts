@@ -110,3 +110,8 @@ export function hentMeldegruppeForNesteMeldekort(iDag: Date, meldekortHistorie: 
     // Prioriterer det første meldekortet som tilfredstiller kriteriet
     return meldegruppePerMeldekort[0];
 }
+
+export function beregnDagerTilInaktivering(dagerEtterFastsattMeldedag: number) {
+    // Inaktivering skjer natt til tirsdag (dag 8)
+    return 7 - dagerEtterFastsattMeldedag;
+}
