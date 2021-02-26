@@ -21,7 +21,7 @@ import { EtikettInfo } from 'nav-frontend-etiketter';
 import LenkepanelMeldekort from './lenkepanel-Meldekort';
 import { hentIDag } from '../../utils/chrono';
 import { meldekortLenke, omMeldekortLenke } from '../../innhold/lenker';
-import { hentFraLocalStorage, settILocalStorage } from '../../utils/localStorage-utils';
+import { hentFraLocalStorage, settILocalStorage, slettFraLocalStorage } from '../../utils/localStorage-utils';
 
 const MELDEKORT_INTRO_KEY = 'meldekortintro';
 
@@ -275,6 +275,7 @@ function Onboardingwrapper() {
     const erNyregistrert = amplitudeData.ukerRegistrert === 0;
 
     if (!kanViseMeldekortStatus({ meldekortData, oppfolgingData, brukerInfoData, registreringData })) {
+        slettFraLocalStorage(MELDEKORT_INTRO_KEY);
         return null;
     }
 
