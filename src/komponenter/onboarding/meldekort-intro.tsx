@@ -3,9 +3,10 @@ import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
 import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
-import { BrukerregistreringContext } from '../../ducks/brukerregistrering';
-import { Data as MeldekortData, MeldekortContext } from '../../ducks/meldekort';
-import { OppfolgingContext } from '../../ducks/oppfolging';
+import * as Brukerregistrering from '../../ducks/brukerregistrering';
+import * as Meldekort from '../../ducks/meldekort';
+import * as Oppfolging from '../../ducks/oppfolging';
+import * as BrukerInfo from '../../ducks/bruker-info';
 import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
 import './meldekort-intro.less';
@@ -18,7 +19,6 @@ import {
 import Meldekortstatus from './meldekortstatus';
 import { EtikettInfo } from 'nav-frontend-etiketter';
 import LenkepanelMeldekort from './lenkepanel-Meldekort';
-import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { hentIDag } from '../../utils/chrono';
 import { meldekortLenke, omMeldekortLenke } from '../../innhold/lenker';
 import { hentFraLocalStorage, settILocalStorage } from '../../utils/localStorage-utils';
@@ -81,7 +81,7 @@ function Kort3() {
 }
 
 interface EndStateProps {
-    meldekortData: MeldekortData | null;
+    meldekortData: Meldekort.Data | null;
     amplitudeData: AmplitudeData;
     lesIntroPaaNyttCB: () => void;
 }
@@ -235,32 +235,48 @@ function MeldekortIntro(props: MeldekortIntroProps) {
     );
 }
 
-function Onboardingwrapper() {
-    const amplitudeData = React.useContext(AmplitudeContext);
-    const { data: meldekortData } = React.useContext(MeldekortContext);
-    const { data: registreringData } = React.useContext(BrukerregistreringContext);
-    const { data: oppfolgingData } = React.useContext(OppfolgingContext);
-    const { rettighetsgruppe } = React.useContext(BrukerInfoContext).data;
-    const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
-    const [erFerdigMedIntro, setErFerdigMedIntro] = React.useState(hentFraLocalStorage(MELDEKORT_INTRO_KEY) || false);
-    const brukerregistreringData = registreringData ? registreringData.registrering : null;
-    const erNyregistrert = amplitudeData.ukerRegistrert === 0;
-
+function kanViseMeldekortStatus({
+    meldekortData,
+    brukerInfoData,
+    oppfolgingData,
+    registreringData,
+}: {
+    meldekortData: Meldekort.Data | null;
+    brukerInfoData: BrukerInfo.Data;
+    oppfolgingData: Oppfolging.Data;
+    registreringData: Brukerregistrering.Data | null;
+}): boolean {
     const meldekortliste = meldekortData?.meldekort ?? [];
     const harMeldekort = meldekortliste.length > 0;
-    if (!harMeldekort) return null;
+    if (!harMeldekort) return false;
 
-    const erAAP = rettighetsgruppe === 'AAP';
+    const erAAP = brukerInfoData.rettighetsgruppe === 'AAP';
     const harDagpengerEllerArbeidssokerMeldekort =
         meldekortliste.filter((meldekort) => ['DAGP', 'ARBS'].includes(meldekort.meldegruppe ?? 'NULL')).length > 0;
+
+    const brukerregistreringData = registreringData?.registrering ?? null;
 
     const kanViseKomponent =
         !erAAP &&
         harDagpengerEllerArbeidssokerMeldekort &&
         erStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData }) &&
-        !kanReaktiveres;
+        !oppfolgingData.kanReaktiveres;
 
-    if (!kanViseKomponent) return null;
+    return kanViseKomponent;
+}
+
+function Onboardingwrapper() {
+    const amplitudeData = React.useContext(AmplitudeContext);
+    const { data: meldekortData } = React.useContext(Meldekort.MeldekortContext);
+    const { data: registreringData } = React.useContext(Brukerregistrering.BrukerregistreringContext);
+    const { data: oppfolgingData } = React.useContext(Oppfolging.OppfolgingContext);
+    const { data: brukerInfoData } = React.useContext(BrukerInfo.BrukerInfoContext);
+    const [erFerdigMedIntro, setErFerdigMedIntro] = React.useState(hentFraLocalStorage(MELDEKORT_INTRO_KEY) || false);
+    const erNyregistrert = amplitudeData.ukerRegistrert === 0;
+
+    if (!kanViseMeldekortStatus({ meldekortData, oppfolgingData, brukerInfoData, registreringData })) {
+        return null;
+    }
 
     const ferdiMedIntroCB = () => {
         setErFerdigMedIntro(true);
