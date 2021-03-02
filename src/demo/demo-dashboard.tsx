@@ -36,11 +36,6 @@ import {
     settSykmeldtMedArbeidsgiver,
     settUlesteDialoger,
     settUnderOppfolging,
-    slettAutentiseringsInfo,
-    slettEgenvurdering,
-    slettJsk,
-    slettMotestotte,
-    slettUnderOppfolging,
 } from './demo-state';
 
 import './demo-dashboard.less';
@@ -133,49 +128,25 @@ class DemoDashboard extends React.Component<{}> {
         const handleClick = (e: React.SyntheticEvent<EventTarget, Event>) => {
             const element = e.currentTarget as HTMLInputElement;
             if (element.id === SYKMELDT_MED_ARBEIDSGIVER) {
-                settSykmeldtMedArbeidsgiver(element.checked.toString());
+                settSykmeldtMedArbeidsgiver(element.checked);
             } else if (element.id === JSK) {
-                if (element.checked) {
-                    settJsk();
-                } else {
-                    slettJsk();
-                }
+                settJsk(element.checked);
             } else if (element.id === EGENVURDERING) {
-                if (element.checked) {
-                    settEgenvurdering();
-                } else {
-                    slettEgenvurdering();
-                }
+                settEgenvurdering(element.checked);
             } else if (element.id === MOTESTOTTE) {
-                if (element.checked) {
-                    settMotestotte();
-                } else {
-                    slettMotestotte();
-                }
+                settMotestotte(element.checked);
             } else if (element.id === FEATURES) {
-                if (element.checked) {
-                    settFeatureToggles(true);
-                } else {
-                    settFeatureToggles(false);
-                }
+                settFeatureToggles(element.checked);
             } else if (element.id === ULESTE_DIALOGER) {
-                settUlesteDialoger(element.checked.toString());
+                settUlesteDialoger(element.checked);
             } else if (element.id === RESERVASJON_KRR) {
-                settReservasjonKRR(element.checked.toString());
+                settReservasjonKRR(element.checked);
             } else if (element.id === AUTENTISERINGS_INFO) {
-                if (element.checked) {
-                    settAutentiseringsInfo();
-                } else {
-                    slettAutentiseringsInfo();
-                }
+                settAutentiseringsInfo(element.checked ? InnloggingsNiva.LEVEL_3 : InnloggingsNiva.LEVEL_4);
             } else if (element.id === UNDER_OPPFOLGING) {
-                if (element.checked) {
-                    settUnderOppfolging();
-                } else {
-                    slettUnderOppfolging();
-                }
+                settUnderOppfolging(element.checked);
             } else if (element.id === KAN_REAKTIVERES) {
-                settKanReaktiveres(element.checked.toString());
+                settKanReaktiveres(element.checked);
             }
             window.location.reload();
         };
