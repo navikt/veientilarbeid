@@ -1,7 +1,7 @@
 import { InnloggingsNiva } from '../ducks/autentisering';
 import { foerstkommendeMandag, plussDager } from '../utils/date-utils';
-import { hentFraLocalStorage, settILocalStorage, slettFraLocalStorage } from '../utils/localStorage-utils';
-import { hentQueryParam, settQueryParam, slettQueryParam } from '../utils/query-param-utils';
+import { hentFraLocalStorage, settILocalStorage, fjernFraLocalStorage } from '../utils/localStorage-utils';
+import { hentQueryParam, settQueryParam, fjernQueryParam } from '../utils/query-param-utils';
 
 type JSONValue = null | string | number | boolean | JSONObject | JSONArray;
 interface JSONArray extends Array<JSONValue> {}
@@ -34,15 +34,15 @@ export const hentDemoState = (key: string): string | null => (brukURL ? hentQuer
 export const settDemoState = (key: string, value: string): void =>
     brukURL ? settQueryParam(key, value) : settILocalStorage(key, value);
 
-export const slettDemoState = (key: string): void => (brukURL ? slettQueryParam(key) : slettFraLocalStorage(key));
+export const fjernDemoState = (key: string): void => (brukURL ? fjernQueryParam(key) : fjernFraLocalStorage(key));
 
 export const hentServicegruppe = (): string => {
-    slettDemoState('innsatsgruppe'); // Rydder opp etter oppdatering av key fra innsatsgruppe til servicegruppe
+    fjernDemoState('innsatsgruppe'); // Rydder opp etter oppdatering av key fra innsatsgruppe til servicegruppe
     return hentDemoState(DemoData.SERVICEGRUPPE) || 'IKVAL';
 };
 
 export const settServicegruppe = (value: string) => {
-    slettDemoState('innsatsgruppe'); // Rydder opp etter oppdatering av key fra innsatsgruppe til servicegruppe
+    fjernDemoState('innsatsgruppe'); // Rydder opp etter oppdatering av key fra innsatsgruppe til servicegruppe
     settDemoState(DemoData.SERVICEGRUPPE, value);
 };
 
@@ -104,7 +104,7 @@ export const settJsk = () => {
 };
 
 export const slettJsk = () => {
-    slettDemoState(DemoData.JSK);
+    fjernDemoState(DemoData.JSK);
 };
 
 export const hentEgenvurdering = (): JSONObject | null => {
@@ -117,7 +117,7 @@ export const settEgenvurdering = () => {
 };
 
 export const slettEgenvurdering = () => {
-    slettDemoState(DemoData.EGENVURDERING);
+    fjernDemoState(DemoData.EGENVURDERING);
 };
 
 export const hentMotestotte = (): JSONObject | null => {
@@ -130,7 +130,7 @@ export const settMotestotte = () => {
 };
 
 export const slettMotestotte = () => {
-    slettDemoState(DemoData.MOTESTOTTE);
+    fjernDemoState(DemoData.MOTESTOTTE);
 };
 
 export const hentDagerEtterFastsattMeldedag = (): number => {
@@ -184,7 +184,7 @@ export const hentAutentiseringsInfo = (): JSONObject => {
 };
 
 export const slettAutentiseringsInfo = () => {
-    slettDemoState(DemoData.AUTENTISERINGS_INFO);
+    fjernDemoState(DemoData.AUTENTISERINGS_INFO);
 };
 
 export const hentUnderOppfolging = (): JSONObject => {
@@ -197,7 +197,7 @@ export const settUnderOppfolging = () => {
 };
 
 export const slettUnderOppfolging = () => {
-    slettDemoState(DemoData.UNDER_OPPFOLGING);
+    fjernDemoState(DemoData.UNDER_OPPFOLGING);
 };
 
 export const hentKanReaktiveres = (): boolean => {

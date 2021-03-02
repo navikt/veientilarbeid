@@ -14,7 +14,7 @@ export const settILocalStorage = (key: string, value: string): void => {
     }
 };
 
-export const slettFraLocalStorage = (key: string): void => {
+export const fjernFraLocalStorage = (key: string): void => {
     try {
         window.localStorage.removeItem(key);
     } catch (e) {

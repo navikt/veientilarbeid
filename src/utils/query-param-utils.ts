@@ -8,7 +8,7 @@ export function settQueryParam(key: string, value: string, lastSidePaaNytt: bool
     oppdaterUrl(params, lastSidePaaNytt);
 }
 
-export function slettQueryParam(key: string, lastSidePaaNytt: boolean = false) {
+export function fjernQueryParam(key: string, lastSidePaaNytt: boolean = false) {
     const params = new URLSearchParams(window.location.search);
     params.delete(key);
     oppdaterUrl(params, lastSidePaaNytt);
