@@ -1,7 +1,7 @@
 import { InnloggingsNiva } from '../ducks/autentisering';
 import { foerstkommendeMandag, plussDager } from '../utils/date-utils';
 import { hentFraLocalStorage, settILocalStorage, fjernFraLocalStorage } from '../utils/localStorage-utils';
-import { hentQueryParam, settQueryParam, fjernQueryParam } from '../utils/query-param-utils';
+import { hentQueryParam, settQueryParam, fjernQueryParam, harQueryParam } from '../utils/query-param-utils';
 
 type JSONValue = null | string | number | boolean | JSONObject | JSONArray;
 interface JSONArray extends Array<JSONValue> {}
@@ -27,7 +27,7 @@ export enum DemoData {
     KAN_REAKTIVERES = 'kanReaktiveres',
 }
 
-const brukURL = false;
+const brukURL = harQueryParam('url');
 
 export const hentDemoState = (key: string): string | null => (brukURL ? hentQueryParam(key) : hentFraLocalStorage(key));
 
