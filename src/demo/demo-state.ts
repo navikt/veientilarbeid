@@ -37,12 +37,10 @@ export const settDemoState = (key: string, value: string): void =>
 export const fjernDemoState = (key: string): void => (brukURL ? fjernQueryParam(key) : fjernFraLocalStorage(key));
 
 export const hentServicegruppe = (): string => {
-    fjernDemoState('innsatsgruppe'); // Rydder opp etter oppdatering av key fra innsatsgruppe til servicegruppe
     return hentDemoState(DemoData.SERVICEGRUPPE) || 'IKVAL';
 };
 
 export const settServicegruppe = (value: string) => {
-    fjernDemoState('innsatsgruppe'); // Rydder opp etter oppdatering av key fra innsatsgruppe til servicegruppe
     settDemoState(DemoData.SERVICEGRUPPE, value);
 };
 
