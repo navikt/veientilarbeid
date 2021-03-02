@@ -72,7 +72,7 @@ describe('isKSSKontroll returnerer forventede verdier', () => {
             dinSituasjon: 'MISTET_JOBBEN',
             opprettetRegistreringDato: new Date(),
             POAGruppe: generateKSS(),
-            geografiskTilknytning: '0807',
+            geografiskTilknytning: '3808',
         };
         expect(isKSSKontroll(data)).toBe(false);
     });
