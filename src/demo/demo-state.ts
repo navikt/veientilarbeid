@@ -26,110 +26,116 @@ export enum DemoData {
     KAN_REAKTIVERES = 'kanReaktiveres',
 }
 
+export const hentDemoState = (key: string): string | null => hentFraLocalStorage(key);
+
+export const settDemoState = (key: string, value: string): void => settILocalStorage(key, value);
+
+export const slettDemoState = (key: string): void => slettFraLocalStorage(key);
+
 export const hentServicegruppe = (): string => {
-    slettFraLocalStorage('innsatsgruppe'); // Rydder opp etter oppdatering av key fra innsatsgruppe til servicegruppe
-    return hentFraLocalStorage(DemoData.SERVICEGRUPPE) || 'IKVAL';
+    slettDemoState('innsatsgruppe'); // Rydder opp etter oppdatering av key fra innsatsgruppe til servicegruppe
+    return hentDemoState(DemoData.SERVICEGRUPPE) || 'IKVAL';
 };
 
 export const settServicegruppe = (value: string) => {
-    slettFraLocalStorage('innsatsgruppe'); // Rydder opp etter oppdatering av key fra innsatsgruppe til servicegruppe
-    settILocalStorage(DemoData.SERVICEGRUPPE, value);
+    slettDemoState('innsatsgruppe'); // Rydder opp etter oppdatering av key fra innsatsgruppe til servicegruppe
+    settDemoState(DemoData.SERVICEGRUPPE, value);
 };
 
 export const hentFormidlingsgruppe = (): string => {
-    return hentFraLocalStorage(DemoData.FORMIDLINGSGRUPPE) || 'ARBS';
+    return hentDemoState(DemoData.FORMIDLINGSGRUPPE) || 'ARBS';
 };
 
 export const settFormidlingsgruppe = (value: string) => {
-    settILocalStorage(DemoData.FORMIDLINGSGRUPPE, value);
+    settDemoState(DemoData.FORMIDLINGSGRUPPE, value);
 };
 
 export const hentRettighetsgruppe = (): string => {
-    return hentFraLocalStorage(DemoData.RETTIGHETSGRUPPE) || 'INGEN_VERDI';
+    return hentDemoState(DemoData.RETTIGHETSGRUPPE) || 'INGEN_VERDI';
 };
 
 export const settRettighetsgruppe = (value: string) => {
-    settILocalStorage(DemoData.RETTIGHETSGRUPPE, value);
+    settDemoState(DemoData.RETTIGHETSGRUPPE, value);
 };
 
 export const hentSykmeldtMedArbeidsgiver = (): boolean => {
-    return hentFraLocalStorage(DemoData.SYKMELDT_MED_ARBEIDSGIVER) === 'true';
+    return hentDemoState(DemoData.SYKMELDT_MED_ARBEIDSGIVER) === 'true';
 };
 
 export const settSykmeldtMedArbeidsgiver = (value: string) => {
-    settILocalStorage(DemoData.SYKMELDT_MED_ARBEIDSGIVER, value);
+    settDemoState(DemoData.SYKMELDT_MED_ARBEIDSGIVER, value);
 };
 
 export const hentRegistreringType = (): string => {
-    return hentFraLocalStorage(DemoData.REGISTRERING_TYPE) || 'ORDINAER_REGISTRERING';
+    return hentDemoState(DemoData.REGISTRERING_TYPE) || 'ORDINAER_REGISTRERING';
 };
 
 export const settRegistreringType = (value: string) => {
-    settILocalStorage(DemoData.REGISTRERING_TYPE, value);
+    settDemoState(DemoData.REGISTRERING_TYPE, value);
 };
 
 export const hentGeografiskTilknytning = (): string => {
-    return hentFraLocalStorage(DemoData.GEOGRAFISK_TILKNYTNING) || '0807';
+    return hentDemoState(DemoData.GEOGRAFISK_TILKNYTNING) || '0807';
 };
 
 export const settGeografiskTilknytning = (value: string) => {
-    settILocalStorage(DemoData.GEOGRAFISK_TILKNYTNING, value);
+    settDemoState(DemoData.GEOGRAFISK_TILKNYTNING, value);
 };
 
 export const hentUlesteDialoger = (): boolean => {
-    return hentFraLocalStorage(DemoData.ULESTE_DIALOGER) === 'true';
+    return hentDemoState(DemoData.ULESTE_DIALOGER) === 'true';
 };
 
 export const settUlesteDialoger = (value: string) => {
-    settILocalStorage(DemoData.ULESTE_DIALOGER, value);
+    settDemoState(DemoData.ULESTE_DIALOGER, value);
 };
 
 export const hentJsk = (): JSONObject | null => {
-    const verdi = hentFraLocalStorage(DemoData.JSK);
+    const verdi = hentDemoState(DemoData.JSK);
     return verdi ? JSON.parse(verdi) : null;
 };
 
 export const settJsk = () => {
-    settILocalStorage(DemoData.JSK, JSON.stringify({ raad: [] }));
+    settDemoState(DemoData.JSK, JSON.stringify({ raad: [] }));
 };
 
 export const slettJsk = () => {
-    slettFraLocalStorage(DemoData.JSK);
+    slettDemoState(DemoData.JSK);
 };
 
 export const hentEgenvurdering = (): JSONObject | null => {
-    const verdi = hentFraLocalStorage(DemoData.EGENVURDERING);
+    const verdi = hentDemoState(DemoData.EGENVURDERING);
     return verdi ? JSON.parse(verdi) : null;
 };
 
 export const settEgenvurdering = () => {
-    settILocalStorage(DemoData.EGENVURDERING, JSON.stringify({ sistOppdatert: '2019-05-12T09:39:01.635+02:00' }));
+    settDemoState(DemoData.EGENVURDERING, JSON.stringify({ sistOppdatert: '2019-05-12T09:39:01.635+02:00' }));
 };
 
 export const slettEgenvurdering = () => {
-    slettFraLocalStorage(DemoData.EGENVURDERING);
+    slettDemoState(DemoData.EGENVURDERING);
 };
 
 export const hentMotestotte = (): JSONObject | null => {
-    const verdi = hentFraLocalStorage(DemoData.MOTESTOTTE);
+    const verdi = hentDemoState(DemoData.MOTESTOTTE);
     return verdi ? JSON.parse(verdi) : null;
 };
 
 export const settMotestotte = () => {
-    settILocalStorage(DemoData.MOTESTOTTE, JSON.stringify({ dato: '2019-06-06T09:39:01.635+02:00' }));
+    settDemoState(DemoData.MOTESTOTTE, JSON.stringify({ dato: '2019-06-06T09:39:01.635+02:00' }));
 };
 
 export const slettMotestotte = () => {
-    slettFraLocalStorage(DemoData.MOTESTOTTE);
+    slettDemoState(DemoData.MOTESTOTTE);
 };
 
 export const hentDagerEtterFastsattMeldedag = (): number => {
-    const verdi = hentFraLocalStorage(DemoData.MELDEKORT);
+    const verdi = hentDemoState(DemoData.MELDEKORT);
     return verdi ? parseInt(verdi) : 0;
 };
 
 export const settAntallDagerEtterFastsattMeldedag = (dag: string) => {
-    settILocalStorage(DemoData.MELDEKORT, dag);
+    settDemoState(DemoData.MELDEKORT, dag);
 };
 
 const features = (checked: boolean) => ({
@@ -137,24 +143,24 @@ const features = (checked: boolean) => ({
 });
 
 export const hentFeatureToggles = (): JSONObject => {
-    const verdi = hentFraLocalStorage(DemoData.FEATURE_TOGGLES);
+    const verdi = hentDemoState(DemoData.FEATURE_TOGGLES);
     return verdi ? JSON.parse(verdi) : features(true);
 };
 
 export const settFeatureToggles = (checked: boolean) => {
-    settILocalStorage(DemoData.FEATURE_TOGGLES, JSON.stringify(features(checked)));
+    settDemoState(DemoData.FEATURE_TOGGLES, JSON.stringify(features(checked)));
 };
 
 export const settReservasjonKRR = (value: string) => {
-    settILocalStorage(DemoData.RESERVASJON_KRR, value);
+    settDemoState(DemoData.RESERVASJON_KRR, value);
 };
 
 export const hentReservasjonKRR = (): boolean => {
-    return hentFraLocalStorage(DemoData.RESERVASJON_KRR) === 'true';
+    return hentDemoState(DemoData.RESERVASJON_KRR) === 'true';
 };
 
 export const settAutentiseringsInfo = () => {
-    settILocalStorage(
+    settDemoState(
         DemoData.AUTENTISERINGS_INFO,
         JSON.stringify({
             securityLevel: InnloggingsNiva.LEVEL_3,
@@ -164,7 +170,7 @@ export const settAutentiseringsInfo = () => {
 };
 
 export const hentAutentiseringsInfo = (): JSONObject => {
-    const verdi = hentFraLocalStorage(DemoData.AUTENTISERINGS_INFO);
+    const verdi = hentDemoState(DemoData.AUTENTISERINGS_INFO);
     return verdi
         ? JSON.parse(verdi)
         : {
@@ -174,28 +180,28 @@ export const hentAutentiseringsInfo = (): JSONObject => {
 };
 
 export const slettAutentiseringsInfo = () => {
-    slettFraLocalStorage(DemoData.AUTENTISERINGS_INFO);
+    slettDemoState(DemoData.AUTENTISERINGS_INFO);
 };
 
 export const hentUnderOppfolging = (): JSONObject => {
-    const verdi = hentFraLocalStorage(DemoData.UNDER_OPPFOLGING);
+    const verdi = hentDemoState(DemoData.UNDER_OPPFOLGING);
     return verdi ? JSON.parse(verdi) : { underOppfolging: false };
 };
 
 export const settUnderOppfolging = () => {
-    settILocalStorage(DemoData.UNDER_OPPFOLGING, JSON.stringify({ underOppfolging: true }));
+    settDemoState(DemoData.UNDER_OPPFOLGING, JSON.stringify({ underOppfolging: true }));
 };
 
 export const slettUnderOppfolging = () => {
-    slettFraLocalStorage(DemoData.UNDER_OPPFOLGING);
+    slettDemoState(DemoData.UNDER_OPPFOLGING);
 };
 
 export const hentKanReaktiveres = (): boolean => {
-    return hentFraLocalStorage(DemoData.KAN_REAKTIVERES) === 'true';
+    return hentDemoState(DemoData.KAN_REAKTIVERES) === 'true';
 };
 
 export const settKanReaktiveres = (value: string) => {
-    settILocalStorage(DemoData.KAN_REAKTIVERES, value);
+    settDemoState(DemoData.KAN_REAKTIVERES, value);
 };
 
 export const randomUlesteDialoger = () => {

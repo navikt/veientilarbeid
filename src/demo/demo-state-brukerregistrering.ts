@@ -1,7 +1,6 @@
 import { Besvarelse, ForeslattInnsatsgruppe, FremtidigSituasjonSvar, Profilering } from '../ducks/brukerregistrering';
-import { DemoData } from './demo-state';
+import { DemoData, hentDemoState, settDemoState } from './demo-state';
 import { opprettetRegistreringDato } from './demo-dashboard';
-import { hentFraLocalStorage, settILocalStorage } from '../utils/localStorage-utils';
 
 const defaultFremtidigSituasjon = FremtidigSituasjonSvar.NY_ARBEIDSGIVER;
 const defaultBesvarelse = {
@@ -56,7 +55,7 @@ const settRegistrering = (besvarelse?: Besvarelse, profilering?: Profilering, op
         },
     };
 
-    settILocalStorage(DemoData.BRUKER_REGISTRERING, JSON.stringify(data));
+    settDemoState(DemoData.BRUKER_REGISTRERING, JSON.stringify(data));
 };
 
 export const settFremtidigSituasjon = (fremtidigSituasjon: FremtidigSituasjonSvar) => {
@@ -74,7 +73,7 @@ export const settOpprettetDato = (opprettetDato: string) => {
 };
 
 export const hentBrukerRegistreringData = () => {
-    const data = hentFraLocalStorage(DemoData.BRUKER_REGISTRERING);
+    const data = hentDemoState(DemoData.BRUKER_REGISTRERING);
 
     return data
         ? JSON.parse(data)
