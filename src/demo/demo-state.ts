@@ -1,6 +1,7 @@
 import { InnloggingsNiva } from '../ducks/autentisering';
 import { foerstkommendeMandag, plussDager } from '../utils/date-utils';
 import { hentFraLocalStorage, settILocalStorage, slettFraLocalStorage } from '../utils/localStorage-utils';
+import { hentQueryParam, settQueryParam, slettQueryParam } from '../utils/query-param-utils';
 
 type JSONValue = null | string | number | boolean | JSONObject | JSONArray;
 interface JSONArray extends Array<JSONValue> {}
@@ -26,11 +27,14 @@ export enum DemoData {
     KAN_REAKTIVERES = 'kanReaktiveres',
 }
 
-export const hentDemoState = (key: string): string | null => hentFraLocalStorage(key);
+const brukURL = false;
 
-export const settDemoState = (key: string, value: string): void => settILocalStorage(key, value);
+export const hentDemoState = (key: string): string | null => (brukURL ? hentQueryParam(key) : hentFraLocalStorage(key));
 
-export const slettDemoState = (key: string): void => slettFraLocalStorage(key);
+export const settDemoState = (key: string, value: string): void =>
+    brukURL ? settQueryParam(key, value) : settILocalStorage(key, value);
+
+export const slettDemoState = (key: string): void => (brukURL ? slettQueryParam(key) : slettFraLocalStorage(key));
 
 export const hentServicegruppe = (): string => {
     slettDemoState('innsatsgruppe'); // Rydder opp etter oppdatering av key fra innsatsgruppe til servicegruppe
