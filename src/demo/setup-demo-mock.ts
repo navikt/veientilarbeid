@@ -31,7 +31,7 @@ import {
     randomUlesteDialoger,
 } from './demo-state';
 
-import { hentBrukerRegistreringData } from './demo-state-brukerregistrering';
+import { hentBrukerRegistrering } from './demo-state-brukerregistrering';
 import { AUTH_API } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
 import msw_get from '../mocks/msw-utils';
 
@@ -60,7 +60,7 @@ export const demo_handlers = [
         rettighetsgruppe: hentRettighetsgruppe(),
     }),
 
-    msw_get(BRUKERREGISTRERING_URL, hentBrukerRegistreringData()),
+    msw_get(BRUKERREGISTRERING_URL, hentBrukerRegistrering()),
 
     msw_get(ULESTEDIALOGER_URL, {
         antallUleste: hentUlesteDialoger() ? randomUlesteDialoger() : 0,

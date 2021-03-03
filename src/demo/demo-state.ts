@@ -11,7 +11,6 @@ export enum DemoData {
     SERVICEGRUPPE = 'servicegruppe',
     FORMIDLINGSGRUPPE = 'formidlingsgruppe',
     SYKMELDT_MED_ARBEIDSGIVER = 'sykmeldtMedArbeidsGiver',
-    BRUKER_REGISTRERING = 'brukerRegistrering',
     JSK = 'jsk',
     ULESTE_DIALOGER = 'ulesteDialoger',
     RESERVASJON_KRR = 'reservasjonKRR',
@@ -25,6 +24,9 @@ export enum DemoData {
     FEATURE_TOGGLES = 'featureToggles',
     UNDER_OPPFOLGING = 'underOppfolging',
     KAN_REAKTIVERES = 'kanReaktiveres',
+    FREMTIDIG_SITUASJON = 'fremtidigSituasjon',
+    FORESLATT_INNSATSGRUPPE = 'foreslattInnsatsgruppe',
+    REGISTRERING_OPPRETTET = 'registreringOpprettet',
 }
 
 const brukURL = harQueryParam('url');

@@ -1,4 +1,4 @@
-import { Besvarelse, ForeslattInnsatsgruppe, FremtidigSituasjonSvar, Profilering } from '../ducks/brukerregistrering';
+import { ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../ducks/brukerregistrering';
 import { DemoData, hentDemoState, settDemoState } from './demo-state';
 import { opprettetRegistreringDato } from './demo-dashboard';
 
@@ -11,7 +11,7 @@ const defaultBesvarelse = {
     andreForhold: 'NEI',
     sisteStilling: 'Barne- og ungdomsarbeider i skolefritidsordning',
     dinSituasjon: 'MISTET_JOBBEN',
-    fremtidigSituasjon: FremtidigSituasjonSvar.NY_ARBEIDSGIVER,
+    fremtidigSituasjon: defaultFremtidigSituasjon,
     tilbakeIArbeid: 'USIKKER',
 };
 const defaultForeslattInnsatsgruppe = ForeslattInnsatsgruppe.STANDARD_INNSATS;
@@ -44,78 +44,30 @@ const defaultTeksterForBesvarelse = [
     },
 ];
 
-const settRegistrering = (besvarelse?: Besvarelse, profilering?: Profilering, opprettetDato?: string) => {
-    const data = {
-        registrering: {
-            opprettetDato: opprettetDato || hentOpprettetDato(),
-            manueltRegistrertAv: null,
-            besvarelse: besvarelse || defaultBesvarelse,
-            profilering: profilering || { innsatsgruppe: hentForeslattInnsatsgruppe() },
-            teksterForBesvarelse: defaultTeksterForBesvarelse,
+export const hentBrukerRegistrering = () => ({
+    registrering: {
+        opprettetDato: hentDemoState('registreringOpprettet') || defaultOpprettetDato,
+        besvarelse: {
+            ...defaultBesvarelse,
+            fremtidigSituasjon: hentFremtidigSituasjon(),
         },
-    };
+        profilering: {
+            innsatsgruppe: hentDemoState('foreslattInnsatsgruppe') || defaultForeslattInnsatsgruppe,
+        },
+        teksterForBesvarelse: defaultTeksterForBesvarelse,
+        manueltRegistrertAv: null,
+    },
+});
 
-    settDemoState(DemoData.BRUKER_REGISTRERING, JSON.stringify(data));
-};
+export const hentFremtidigSituasjon = () => hentDemoState(DemoData.FREMTIDIG_SITUASJON) || defaultFremtidigSituasjon;
+export const settFremtidigSituasjon = (fremtidigSituasjon: FremtidigSituasjonSvar) =>
+    settDemoState(DemoData.FREMTIDIG_SITUASJON, fremtidigSituasjon);
 
-export const settFremtidigSituasjon = (fremtidigSituasjon: FremtidigSituasjonSvar) => {
-    settRegistrering(Object.assign({}, defaultBesvarelse, { fremtidigSituasjon }), undefined);
-};
+export const hentForeslattInnsatsgruppe = () =>
+    hentDemoState(DemoData.FORESLATT_INNSATSGRUPPE) || defaultForeslattInnsatsgruppe;
+export const settForeslattInnsatsgruppe = (innsatsgruppe: ForeslattInnsatsgruppe) =>
+    settDemoState(DemoData.FORESLATT_INNSATSGRUPPE, innsatsgruppe);
 
-export const settForeslattInnsatsgruppe = (innsatsgruppe: ForeslattInnsatsgruppe) => {
-    settRegistrering(undefined, {
-        innsatsgruppe: innsatsgruppe,
-    });
-};
-
-export const settOpprettetDato = (opprettetDato: string) => {
-    settRegistrering(undefined, undefined, opprettetDato);
-};
-
-export const hentBrukerRegistreringData = () => {
-    const data = hentDemoState(DemoData.BRUKER_REGISTRERING);
-
-    return data
-        ? JSON.parse(data)
-        : {
-              registrering: {
-                  opprettetDato: defaultOpprettetDato,
-                  besvarelse: defaultBesvarelse,
-                  profilering: {
-                      innsatsgruppe: defaultForeslattInnsatsgruppe,
-                  },
-                  teksterForBesvarelse: defaultTeksterForBesvarelse,
-                  manueltRegistrertAv: null,
-              },
-          };
-};
-
-export const hentFremtidigSituasjon = (): string => {
-    const data = hentBrukerRegistreringData();
-
-    if (data.registrering && data.registrering.besvarelse && data.registrering.besvarelse.fremtidigSituasjon) {
-        return data.registrering.besvarelse.fremtidigSituasjon;
-    }
-
-    return defaultFremtidigSituasjon;
-};
-
-export const hentForeslattInnsatsgruppe = (): string => {
-    const data = hentBrukerRegistreringData();
-
-    if (data.registrering && data.registrering.profilering && data.registrering.profilering.innsatsgruppe) {
-        return data.registrering.profilering.innsatsgruppe;
-    }
-
-    return defaultForeslattInnsatsgruppe;
-};
-
-export const hentOpprettetDato = (): string => {
-    const data = hentBrukerRegistreringData();
-
-    if (data.registrering && data.registrering.opprettetDato) {
-        return data.registrering.opprettetDato;
-    }
-
-    return defaultOpprettetDato;
-};
+export const hentOpprettetDato = () => hentDemoState(DemoData.REGISTRERING_OPPRETTET) || defaultOpprettetDato;
+export const settOpprettetDato = (opprettetDato: string) =>
+    settDemoState(DemoData.REGISTRERING_OPPRETTET, opprettetDato);
