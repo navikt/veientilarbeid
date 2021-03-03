@@ -59,20 +59,17 @@ describe('tester beregning av antall dager etter fastsatt meldingsdag', () => {
 
 describe('tester beregning av meldegruppe for neste meldekort', () => {
     test('den returnerer riktig meldegruppe for neste meldekort', () => {
-        const iDag = new Date('2021-01-06');
-        const meldegruppe = hentMeldegruppeForNesteMeldekort(iDag, meldekortHistore);
+        const meldegruppe = hentMeldegruppeForNesteMeldekort(meldekortHistore);
         expect(meldegruppe).toBe('ARBS');
     });
 
     test('den returnerer null for brukere uten meldekort', () => {
-        const iDag = new Date('2021-01-06');
-        const meldegruppe = hentMeldegruppeForNesteMeldekort(iDag, null);
+        const meldegruppe = hentMeldegruppeForNesteMeldekort(null);
         expect(meldegruppe).toBeNull();
     });
 
     test('den returnerer null når vi ikke har neste meldekort', () => {
-        const iDag = new Date('2021-01-06');
-        const meldegruppe = hentMeldegruppeForNesteMeldekort(iDag, { meldekort: [] });
+        const meldegruppe = hentMeldegruppeForNesteMeldekort({ meldekort: [] });
         expect(meldegruppe).toBeNull();
     });
 });

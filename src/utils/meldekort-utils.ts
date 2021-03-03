@@ -99,12 +99,10 @@ export function beregnDagerEtterFastsattMeldedag(iDag: Date, meldekortHistorie: 
     return flestAntallDager;
 }
 
-export function hentMeldegruppeForNesteMeldekort(iDag: Date, meldekortHistorie: Meldekort.Data | null) {
-    const meldegruppePerMeldekort = hentFoerstkommendeMeldekortKlarForLevering(iDag, meldekortHistorie).map(
-        (meldekort) => meldekort.meldegruppe
-    );
+export function hentMeldegruppeForNesteMeldekort(meldekortHistorie: Meldekort.Data | null) {
+    const meldegruppePerMeldekort = meldekortHistorie?.meldekort?.map((meldekort) => meldekort?.meldegruppe);
 
-    if (meldegruppePerMeldekort.length === 0) {
+    if (!meldegruppePerMeldekort || meldegruppePerMeldekort.length === 0) {
         return null;
     }
     // Prioriterer det første meldekortet som tilfredstiller kriteriet
