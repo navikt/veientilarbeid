@@ -46,13 +46,13 @@ const defaultTeksterForBesvarelse = [
 
 export const hentBrukerRegistrering = () => ({
     registrering: {
-        opprettetDato: hentDemoState('registreringOpprettet') || defaultOpprettetDato,
+        opprettetDato: hentOpprettetDato(),
         besvarelse: {
             ...defaultBesvarelse,
             fremtidigSituasjon: hentFremtidigSituasjon(),
         },
         profilering: {
-            innsatsgruppe: hentDemoState('foreslattInnsatsgruppe') || defaultForeslattInnsatsgruppe,
+            innsatsgruppe: hentForeslattInnsatsgruppe(),
         },
         teksterForBesvarelse: defaultTeksterForBesvarelse,
         manueltRegistrertAv: null,
