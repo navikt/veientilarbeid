@@ -288,20 +288,6 @@ class DemoDashboard extends React.Component<{}> {
                             </option>
                         ))}
                     </SelectKomponent>
-                    <SelectKomponent
-                        label={'Dager etter fastsatt meldedag'}
-                        onChange={handleChangeMeldekortdager}
-                        id="velg-meldekortdager"
-                        defaultValue={hentDagerEtterFastsattMeldedag()?.toString()}
-                    >
-                        {Object.keys(antallDagerEtterFastsattMeldedag)
-                            .sort((a, b) => parseInt(a, 10) - parseInt(b, 10))
-                            .map((dag: string) => (
-                                <option key={dag} value={dag}>
-                                    {antallDagerEtterFastsattMeldedag[dag]}
-                                </option>
-                            ))}
-                    </SelectKomponent>
                 </div>
                 <div className="two-select">
                     <SelectKomponent
@@ -339,6 +325,20 @@ class DemoDashboard extends React.Component<{}> {
                                 {opprettetRegistreringDatoLabels[key]}
                             </option>
                         ))}
+                    </SelectKomponent>
+                    <SelectKomponent
+                        label={'Dager etter fastsatt meldedag'}
+                        onChange={handleChangeMeldekortdager}
+                        id="velg-meldekortdager"
+                        defaultValue={hentDagerEtterFastsattMeldedag()?.toString()}
+                    >
+                        {Object.keys(antallDagerEtterFastsattMeldedag)
+                            .sort((a, b) => parseInt(a, 10) - parseInt(b, 10))
+                            .map((dag: string) => (
+                                <option key={dag} value={dag}>
+                                    {antallDagerEtterFastsattMeldedag[dag]}
+                                </option>
+                            ))}
                     </SelectKomponent>
                 </div>
                 <CheckboksPanelGruppe
