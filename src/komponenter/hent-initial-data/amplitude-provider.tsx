@@ -81,7 +81,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     );
     const antallMeldekortKlareForLevering = hentMeldekortForLevering(iDag, meldekortContext.data).length;
 
-    const meldegruppe = hentMeldegruppeForNesteMeldekort(iDag, meldekortContext.data);
+    const meldegruppe = hentMeldegruppeForNesteMeldekort(meldekortContext.data);
 
     const POAGruppe = getPoaGroup({
         dinSituasjon,
