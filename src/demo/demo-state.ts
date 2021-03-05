@@ -107,6 +107,10 @@ export const randomUlesteDialoger = () => {
 const fastsattMeldedag = foerstkommendeMandag(new Date());
 
 export function lagMeldekortData() {
+    const periodeStart = plussDager(fastsattMeldedag, -14);
+    const periodeSlutt = plussDager(fastsattMeldedag, -1);
+    const sendedag = plussDager(fastsattMeldedag, -2);
+    const iDag = hentDagRelativTilFastsattMeldedag();
     return {
         maalformkode: 'NO',
         meldeform: 'EMELD',
@@ -115,10 +119,10 @@ export function lagMeldekortData() {
                 meldekortId: 1526772064,
                 kortType: 'ELEKTRONISK',
                 meldeperiode: {
-                    fra: plussDager(fastsattMeldedag, -14).toISOString(),
-                    til: plussDager(fastsattMeldedag, -1).toISOString(),
-                    kortKanSendesFra: plussDager(fastsattMeldedag, -2).toISOString(),
-                    kanKortSendes: true,
+                    fra: periodeStart.toISOString(),
+                    til: periodeSlutt.toISOString(),
+                    kortKanSendesFra: sendedag.toISOString(),
+                    kanKortSendes: iDag >= sendedag,
                     periodeKode: '202103',
                 },
                 meldegruppe: 'ARBS',
