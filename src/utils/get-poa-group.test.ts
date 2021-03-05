@@ -18,7 +18,7 @@ describe('getPoaGroup returnerer forventede verdier', () => {
             dinSituasjon: 'MISTET_JOBBEN',
             innsatsgruppe: 'SITUASJONSBESTEMT_INNSATS',
             formidlingsgruppe: 'ARBS',
-            alder: 32,
+            alder: 30,
             servicegruppe: 'IKVAL',
             opprettetRegistreringDato: new Date(),
         };

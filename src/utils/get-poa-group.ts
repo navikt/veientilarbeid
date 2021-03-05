@@ -29,7 +29,7 @@ const getPoaGroup = (data: Data): POAGruppe => {
     kriterier.push(kssSituasjoner.includes(dinSituasjon) ? 'kss' : 'boo');
     kriterier.push(isStandard(innsatsgruppe, servicegruppe) ? 'kss' : 'boo');
     kriterier.push(formidlingsgruppe === 'ARBS' ? 'kss' : 'boo');
-    kriterier.push(alder > lavesteAlder && alder < hoyesteAlder ? 'kss' : 'boo');
+    kriterier.push(alder >= lavesteAlder && alder < hoyesteAlder ? 'kss' : 'boo');
     kriterier.push(erInnenfor12uker(opprettetRegistreringDato) ? 'kss' : 'boo');
     const isKSS = !kriterier.includes('boo');
     return isKSS ? 'kss' : 'boo';
