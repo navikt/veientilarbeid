@@ -1,42 +1,45 @@
 import React, { useEffect, useState } from 'react';
-import { Xknapp } from 'nav-frontend-ikonknapper';
+import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import { useLocalStorage } from '../../hooks/use-localstorarge';
-
-import Alternativ from './alternativ';
 
 interface Props {
     id: string;
-    tekst: string;
-    alternativer: Array<string>;
 }
 
-function Feedback({ id, tekst, alternativer }: Props) {
-    const [visFeedback, setVisFeedback] = useLocalStorage(`vis-${id}`, {
+function Feedback({ id }: Props) {
+    const [feedback, setFeedback] = useLocalStorage(`vis-${id}`, {
         updated: new Date(),
-        state: true,
+        valgt: '',
     });
-    const [skjulKomponent, setSkjulKomponent] = useState(false);
-
-    const handleSkjulKomponent = () =>
-        setVisFeedback({
-            updated: new Date(),
-            state: false,
-        });
+    const [valgt, setValgt] = useState('');
 
     useEffect(() => {
-        const { state } = visFeedback;
-        setSkjulKomponent(!state);
-    }, [visFeedback]);
+        const { valgt } = feedback;
+        setValgt(valgt);
+    }, [feedback]);
 
-    if (skjulKomponent) return null;
+    const handleFeedback = (feedback: string) => {
+        amplitudeLogger(id, {
+            feedback,
+        });
+        setFeedback({
+            updated: new Date(),
+            valgt: feedback,
+        });
+    };
 
     return (
         <>
-            <div>{tekst}</div>
-            {alternativer &&
-                Array.isArray(alternativer) &&
-                alternativer.map((alternativ) => <Alternativ feedbackId={id} alternativ={alternativ} />)}
-            <Xknapp onClick={handleSkjulKomponent} />
+            <div>Var dette nyttig informasjon?</div>
+            <button onClick={() => handleFeedback('ja')} className={valgt}>
+                Ja
+            </button>
+            <button onClick={() => handleFeedback('nei')} className={valgt}>
+                Nei
+            </button>
+            <button onClick={() => handleFeedback('vet ikke')} className={valgt}>
+                Vet ikke
+            </button>
         </>
     );
 }
