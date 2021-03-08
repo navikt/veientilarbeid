@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import { useLocalStorage } from '../../hooks/use-localstorarge';
+import './feedback.less';
+import { Undertekst } from 'nav-frontend-typografi';
+import classNames from 'classnames';
 
 interface Props {
     id: string;
@@ -11,6 +14,7 @@ function Feedback({ id }: Props) {
         updated: new Date(),
         valgt: '',
     });
+    // @ts-ignore
     const [valgt, setValgt] = useState('');
 
     useEffect(() => {
@@ -28,19 +32,34 @@ function Feedback({ id }: Props) {
         });
     };
 
+    const jaKnapp = classNames({
+        valgt: valgt === 'ja',
+        'feedback-knapp': true,
+    });
+    const neiKnapp = classNames({
+        valgt: valgt === 'nei',
+        'feedback-knapp': true,
+    });
+    const vetIkkeKnapp = classNames({
+        valgt: valgt === 'vet ikke',
+        'feedback-knapp': true,
+    });
+
     return (
-        <>
-            <div>Var dette nyttig informasjon?</div>
-            <button onClick={() => handleFeedback('ja')} className={valgt}>
-                Ja
-            </button>
-            <button onClick={() => handleFeedback('nei')} className={valgt}>
-                Nei
-            </button>
-            <button onClick={() => handleFeedback('vet ikke')} className={valgt}>
-                Vet ikke
-            </button>
-        </>
+        <div className={'feedback-container'}>
+            <Undertekst className={'feedback-tittel'}>Var dette nyttig informasjon?</Undertekst>
+            <div className={'valg'}>
+                <button onClick={() => handleFeedback('ja')} className={jaKnapp}>
+                    <Undertekst>Ja</Undertekst>
+                </button>
+                <button onClick={() => handleFeedback('nei')} className={neiKnapp}>
+                    <Undertekst>Nei</Undertekst>
+                </button>
+                <button onClick={() => handleFeedback('vet ikke')} className={vetIkkeKnapp}>
+                    <Undertekst>Vet ikke</Undertekst>
+                </button>
+            </div>
+        </div>
     );
 }
 

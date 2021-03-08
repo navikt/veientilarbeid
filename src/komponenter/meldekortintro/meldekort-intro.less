@@ -1,19 +1,35 @@
 @import '../../../node_modules/nav-frontend-core/less/_variabler';
 
+.meldekort-intro-omslutning {
+  margin: .5rem;
+  .panel {
+    background: none
+  }
+}
+
+.sluttkort {
+  padding: 1rem;
+}
+
 .meldekort-intro {
   background: #c4c4c41a;
+  background-color: #0000001a;
   padding: 0;
   margin-bottom: 0;
 
   .overall-wrapper{
-    padding: 1rem;
     background: white;
   }
 
+  .kortwrapper {
+   padding: 1rem;
+  }
+
   .knapper {
-    margin-top: 1rem;
     display: flex;
-    justify-content: space-between;
+    background: #0000001a;
+    padding: 1rem 0;
+    background-color: #d3d3d352;
   }
 
   .meldekortinfo {
@@ -35,5 +51,12 @@
     .overall-wrapper{
       width: 50%;
     }
+
+    .meldekort-intro {
+      width: 50%;
+      background-color: #0000001a;
+
+    }
+
   }
 }
