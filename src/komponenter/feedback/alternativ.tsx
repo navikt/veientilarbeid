@@ -1,7 +1,13 @@
+import React from 'react';
 import { amplitudeLogger } from '../../metrics/amplitude-utils'
 
-function Alternativ ({ feedbackId, alternativ }) {
-  function handleClick (event) {
+interface Props {
+  feedbackId: string;
+  alternativ: string;
+}
+
+function Alternativ ({ feedbackId, alternativ }: Props) {
+  function handleClick (event: React.MouseEvent) {
     event.preventDefault();
     amplitudeLogger(feedbackId, {
       alternativ
