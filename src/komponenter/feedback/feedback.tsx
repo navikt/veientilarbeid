@@ -59,9 +59,15 @@ function Feedback({ id }: Props) {
                 <button onClick={() => handleFeedback('ja')} className={jaKnapp}>
                     <Undertekst>Ja</Undertekst>
                 </button>
+                <span className="feedback-space" aria-hidden="true">
+                    |
+                </span>
                 <button onClick={() => handleFeedback('nei')} className={neiKnapp}>
                     <Undertekst>Nei</Undertekst>
                 </button>
+                <span className="feedback-space" aria-hidden="true">
+                    |
+                </span>
                 <button onClick={() => handleFeedback('vet ikke')} className={vetIkkeKnapp}>
                     <Undertekst>Vet ikke</Undertekst>
                 </button>
