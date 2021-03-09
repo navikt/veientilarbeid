@@ -23,7 +23,8 @@ function Feedback({ id }: Props) {
     }, [feedback]);
 
     const handleFeedback = (feedback: string) => {
-        amplitudeLogger(id, {
+        amplitudeLogger('veientilarbeid.intro.feedback', {
+            kort: id,
             feedback,
         });
         setFeedback({
