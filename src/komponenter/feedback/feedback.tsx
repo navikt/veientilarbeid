@@ -22,6 +22,8 @@ function Feedback({ id }: Props) {
         setValgt(valgt);
     }, [feedback]);
 
+    if (!id) return null;
+
     const handleFeedback = (feedback: string) => {
         amplitudeLogger('veientilarbeid.intro.feedback', {
             kort: id,
@@ -37,10 +39,12 @@ function Feedback({ id }: Props) {
         valgt: valgt === 'ja',
         'feedback-knapp': true,
     });
+
     const neiKnapp = classNames({
         valgt: valgt === 'nei',
         'feedback-knapp': true,
     });
+
     const vetIkkeKnapp = classNames({
         valgt: valgt === 'vet ikke',
         'feedback-knapp': true,
