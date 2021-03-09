@@ -1,0 +1,51 @@
+@import '../../../node_modules/nav-frontend-core/less/_variabler';
+
+.feedback-container{
+  display: flex;
+  flex-direction: column;
+  margin-top: 0;
+  margin-bottom: 0;
+
+  .feedback-tittel {
+    margin-right: .5rem;
+  }
+}
+
+.feedback-space {
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  color: @navGra20;
+}
+
+.feedback-knapp {
+  border: none;
+  background: none;
+  color: #0067C5;
+  cursor: pointer;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  width: 4rem;
+}
+
+.feedback-knapp:hover {
+  background: #0067C5;
+  color: white;
+}
+
+.valgt {
+  background-color: #2C6DC0;
+  color: white;
+}
+
+.valg {
+  margin-top: 0.5rem;
+}
+
+@media (min-width: @screen-sm-min) {
+  .feedback-container {
+    flex-direction: row;
+  }
+  .valg {
+    margin-top: 0;
+  }
+}

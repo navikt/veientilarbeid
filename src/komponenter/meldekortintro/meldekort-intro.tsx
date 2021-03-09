@@ -10,7 +10,7 @@ import * as BrukerInfo from '../../ducks/bruker-info';
 import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
 import './meldekort-intro.less';
-import { datoUtenTid, hentISOUke, datoMedUkedag } from '../../utils/date-utils';
+import { datoMedUkedag, datoUtenTid, hentISOUke } from '../../utils/date-utils';
 import {
     foersteSendedagForMeldekort,
     hentFoerstkommendeMeldekortIkkeKlarForLevering,
@@ -21,7 +21,8 @@ import { EtikettInfo } from 'nav-frontend-etiketter';
 import LenkepanelMeldekort from './lenkepanel-Meldekort';
 import { hentIDag } from '../../utils/chrono';
 import { meldekortLenke, omMeldekortLenke } from '../../innhold/lenker';
-import { hentFraLocalStorage, settILocalStorage, fjernFraLocalStorage } from '../../utils/localStorage-utils';
+import { fjernFraLocalStorage, hentFraLocalStorage, settILocalStorage } from '../../utils/localStorage-utils';
+import Feedback from '../feedback/feedback';
 
 const MELDEKORT_INTRO_KEY = 'meldekortintro';
 
@@ -42,6 +43,8 @@ function Kort1() {
             <Normaltekst className={'blokk-xs'}>
                 Det er innsending av meldekort som gjør at du opprettholder status som registrert arbeidssøker.
             </Normaltekst>
+            <hr />
+            <Feedback id={'meldekort-kort-01'} />
         </div>
     );
 }
@@ -60,6 +63,8 @@ function Kort2() {
                 Lar du være å sende inn meldekort, tolker NAV det som at du ikke ønsker å stå registrert som
                 arbeidssøker.
             </Normaltekst>
+            <hr />
+            <Feedback id={'meldekort-kort-02'} />
         </div>
     );
 }
@@ -76,6 +81,8 @@ function Kort3() {
             <Normaltekst className={'blokk-xs'}>
                 Det er derfor viktig at du sender inn meldekortene før fristen går ut.
             </Normaltekst>
+            <hr />
+            <Feedback id={'meldekort-kort-03'} />
         </div>
     );
 }
@@ -116,7 +123,7 @@ function Sluttkort(props: EndStateProps) {
         if (!meldekortIkkeKlarForLevering) return null;
 
         return (
-            <div>
+            <div className={'sluttkort'}>
                 <Systemtittel className={'blokk-xs'}>Innsending av meldekort</Systemtittel>
                 <Normaltekst className={'blokk-xs'}>
                     {`Meldekort for uke 
@@ -140,7 +147,7 @@ function Sluttkort(props: EndStateProps) {
 
     if (meldekortForLevering.length > 1) {
         return (
-            <div>
+            <div className={'sluttkort'}>
                 <Systemtittel className={'blokk-xs'}>Innsending av meldekort</Systemtittel>
 
                 <div className={'onboarding-meldekortvarsel-container'}>
@@ -158,7 +165,7 @@ function Sluttkort(props: EndStateProps) {
     const foerstkommendeMeldekort = meldekortForLevering[0];
 
     return (
-        <div>
+        <div className={'sluttkort'}>
             <Systemtittel className={'blokk-xs'}>Innsending av meldekort</Systemtittel>
 
             <Meldekortstatus />
@@ -308,19 +315,21 @@ function MeldekortIntroWrapper() {
     };
 
     return (
-        <Panel className={'meldekort-intro'} border>
-            <div className={'overall-wrapper'}>
-                {skalViseIntro ? (
-                    <MeldekortIntro ferdigMedIntroCB={ferdigMedIntroCB} amplitudeData={amplitudeData} />
-                ) : (
-                    <Sluttkort
-                        amplitudeData={amplitudeData}
-                        meldekortData={meldekortData}
-                        lesIntroPaaNyttCB={lesIntroPaaNyttCB}
-                    />
-                )}
-            </div>
-        </Panel>
+        <div className={'meldekort-intro-omslutning'}>
+            <Panel className={'meldekort-intro'} border>
+                <div className={'overall-wrapper'}>
+                    {skalViseIntro ? (
+                        <MeldekortIntro ferdigMedIntroCB={ferdigMedIntroCB} amplitudeData={amplitudeData} />
+                    ) : (
+                        <Sluttkort
+                            amplitudeData={amplitudeData}
+                            meldekortData={meldekortData}
+                            lesIntroPaaNyttCB={lesIntroPaaNyttCB}
+                        />
+                    )}
+                </div>
+            </Panel>
+        </div>
     );
 }
 
