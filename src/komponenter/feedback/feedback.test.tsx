@@ -6,6 +6,11 @@ import userEvent from '@testing-library/user-event';
 import Feedback from './feedback';
 
 describe('tester feedback komponenten', () => {
+    test('komponenten rendres ikke uten id', () => {
+        const { container } = render(<Feedback />);
+        expect(container).toBeEmptyDOMElement();
+    });
+
     test('komponenten rendrer som forventet', () => {
         const { container } = render(<Feedback id="feedback-test" />);
         expect(container).not.toBeEmptyDOMElement();

@@ -6,7 +6,7 @@ import { Undertekst } from 'nav-frontend-typografi';
 import classNames from 'classnames';
 
 interface Props {
-    id: string;
+    id?: string;
 }
 
 function Feedback({ id }: Props) {
