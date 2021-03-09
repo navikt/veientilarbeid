@@ -1,7 +1,6 @@
 import { InnloggingsNiva } from '../ducks/autentisering';
 import { foerstkommendeMandag, plussDager } from '../utils/date-utils';
-import { hentFraLocalStorage, settILocalStorage } from '../utils/localStorage-utils';
-import { hentQueryParam, settQueryParam, harQueryParam } from '../utils/query-param-utils';
+import { hentQueryParam, settQueryParam } from '../utils/query-param-utils';
 
 type JSONValue = null | string | number | boolean | JSONObject | JSONArray;
 interface JSONArray extends Array<JSONValue> {}
@@ -29,12 +28,9 @@ export enum DemoData {
     REGISTRERING_OPPRETTET = 'registreringOpprettet',
 }
 
-const brukURL = harQueryParam('url');
+export const hentDemoState = (key: string): string | null => hentQueryParam(key);
 
-export const hentDemoState = (key: string): string | null => (brukURL ? hentQueryParam(key) : hentFraLocalStorage(key));
-
-export const settDemoState = (key: string, value: string | boolean): void =>
-    brukURL ? settQueryParam(key, value.toString()) : settILocalStorage(key, value.toString());
+export const settDemoState = (key: string, value: string | boolean): void => settQueryParam(key, value.toString());
 
 export const hentServicegruppe = () => hentDemoState(DemoData.SERVICEGRUPPE) || 'IKVAL';
 export const settServicegruppe = (value: string) => settDemoState(DemoData.SERVICEGRUPPE, value);
