@@ -18,23 +18,14 @@ describe('tester feedback komponenten', () => {
 
     test('valgene blir registrert', () => {
         render(<Feedback id="feedback-test" />);
-        const jaKnapp = screen.getByText(/ja/i).closest('button');
-        const neiKnapp = screen.getByText(/nei/i).closest('button');
-        const vetikkeKnapp = screen.getByText(/vet ikke/i).closest('button');
-        expect(jaKnapp).toBeTruthy();
-        if (jaKnapp) {
-            userEvent.click(jaKnapp);
-            expect(jaKnapp.className).toContain('valgt');
-        }
-        expect(neiKnapp).toBeTruthy();
-        if (neiKnapp) {
-            userEvent.click(neiKnapp);
-            expect(neiKnapp.className).toContain('valgt');
-        }
-        expect(vetikkeKnapp).toBeTruthy();
-        if (vetikkeKnapp) {
-            userEvent.click(vetikkeKnapp);
-            expect(vetikkeKnapp.className).toContain('valgt');
-        }
+        const jaKnapp = screen.getByRole('button', { name: /ja/i });
+        const neiKnapp = screen.getByRole('button', { name: /nei/i });
+        const vetikkeKnapp = screen.getByRole('button', { name: /vet ikke/i });
+        userEvent.click(jaKnapp);
+        expect(jaKnapp.className).toContain('valgt');
+        userEvent.click(neiKnapp);
+        expect(neiKnapp.className).toContain('valgt');
+        userEvent.click(vetikkeKnapp);
+        expect(vetikkeKnapp.className).toContain('valgt');
     });
 });
