@@ -15,12 +15,12 @@ describe('tester feedback komponenten', () => {
         render(<Feedback id="feedback-test" />);
         const jaKnapp = screen.getByText(/ja/i).closest('button');
         const neiKnapp = screen.getByText(/nei/i).closest('button');
-        const vetikkeKnapp = screen.getByText(/vet ikke/i).closest('button');
-        userEvent.click(jaKnapp);
-        expect(jaKnapp.className).toContain('valgt');
-        userEvent.click(neiKnapp);
-        expect(neiKnapp.className).toContain('valgt');
-        userEvent.click(vetikkeKnapp);
-        expect(vetikkeKnapp.className).toContain('valgt');
+        const vetikkeKnapp = screen.getByText(/vet ikke/i).closest('button'); // @ts-ignore
+        userEvent.click(jaKnapp); // @ts-ignore
+        expect(jaKnapp.className).toContain('valgt'); // @ts-ignore
+        userEvent.click(neiKnapp); // @ts-ignore
+        expect(neiKnapp.className).toContain('valgt'); // @ts-ignore
+        userEvent.click(vetikkeKnapp); // @ts-ignore
+        expect(vetikkeKnapp.className).toContain('valgt'); // @ts-ignore
     });
 });
