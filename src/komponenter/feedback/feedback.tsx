@@ -11,7 +11,7 @@ interface Props {
 }
 
 function Feedback({ id }: Props) {
-    const [feedback, setFeedback] = useLocalStorage(`vta-feedback-${id}`, {
+    const [feedback, setFeedback] = useLocalStorage(`vta-feedback-intro-${id}`, {
         updated: new Date(),
         valgt: '',
     });
@@ -26,14 +26,14 @@ function Feedback({ id }: Props) {
     if (!id) return null;
 
     const handleFeedback = (feedback: string) => {
-        amplitudeLogger('veientilarbeid.intro.feedback', {
+        amplitudeLogger('veientilarbeid.feedback.intro', {
             kort: id,
             feedback,
+            ...amplitudeData,
         });
         setFeedback({
             updated: new Date(),
             valgt: feedback,
-            ...amplitudeData,
         });
     };
 
