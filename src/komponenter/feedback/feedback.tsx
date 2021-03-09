@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import { useLocalStorage } from '../../hooks/use-localstorarge';
 import './feedback.less';
@@ -14,8 +15,8 @@ function Feedback({ id }: Props) {
         updated: new Date(),
         valgt: '',
     });
-    // @ts-ignore
     const [valgt, setValgt] = useState('');
+    const amplitudeData = React.useContext(AmplitudeContext);
 
     useEffect(() => {
         const { valgt } = feedback;
@@ -32,6 +33,7 @@ function Feedback({ id }: Props) {
         setFeedback({
             updated: new Date(),
             valgt: feedback,
+            ...amplitudeData,
         });
     };
 
