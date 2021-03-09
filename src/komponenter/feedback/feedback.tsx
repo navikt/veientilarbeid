@@ -10,7 +10,7 @@ interface Props {
 }
 
 function Feedback({ id }: Props) {
-    const [feedback, setFeedback] = useLocalStorage(`vis-${id}`, {
+    const [feedback, setFeedback] = useLocalStorage(`vta-feedback-${id}`, {
         updated: new Date(),
         valgt: '',
     });
