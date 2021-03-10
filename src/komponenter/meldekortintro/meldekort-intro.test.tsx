@@ -46,9 +46,6 @@ const providerProps: ProviderProps = {
         formidlingsgruppe: Formidlingsgruppe.ARBS,
         servicegruppe: Servicegruppe.IKVAL,
     },
-    featureToggle: {
-        'veientilarbeid.meldekortonboarding': true,
-    },
 };
 
 function propsForRelativDag(dag: number): any {

@@ -71,7 +71,6 @@ export const hentDagerEtterFastsattMeldedag = (): number => {
 export const settAntallDagerEtterFastsattMeldedag = (dag: string) => settDemoState(DemoData.MELDEKORT, dag);
 
 const features = (checked: boolean) => ({
-    'veientilarbeid.meldekortonboarding': checked,
     'veientilarbeid.feedback': checked,
 });
 export const hentFeatureToggles = (): JSONObject => features(hentDemoState(DemoData.FEATURE_TOGGLES) === 'true');

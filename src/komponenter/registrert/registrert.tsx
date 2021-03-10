@@ -7,7 +7,6 @@ import Opplysninger from '../innsyn/registreringsopplysninger';
 import './registrert.less';
 import Meldekortstatus from './meldekortstatus';
 import MeldekortIntroWrapper from '../meldekortintro/meldekort-intro';
-import { FeaturetoggleContext } from '../../ducks/feature-toggles';
 import { BrukerregistreringContext } from '../../ducks/brukerregistrering';
 import { OppfolgingContext } from '../../ducks/oppfolging';
 import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
@@ -24,7 +23,6 @@ const Registrert = () => {
     const amplitudeData = React.useContext(AmplitudeContext);
     const [clickedInnsyn, setClickedInnsyn] = useState(false);
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
-    const { data: featuretoggledata } = React.useContext(FeaturetoggleContext);
 
     const kanViseKomponent =
         oppfolgingData.formidlingsgruppe === 'ARBS' &&
@@ -76,11 +74,7 @@ const Registrert = () => {
                 </Ekspanderbartpanel>
             ) : null}
 
-            {featuretoggledata['veientilarbeid.meldekortonboarding'] && erSamarbeidskontor(geografiskTilknytning) ? (
-                <MeldekortIntroWrapper />
-            ) : (
-                <Meldekortstatus />
-            )}
+            {erSamarbeidskontor(geografiskTilknytning) ? <MeldekortIntroWrapper /> : <Meldekortstatus />}
         </div>
     );
 };

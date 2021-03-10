@@ -40,24 +40,11 @@ const providerProps: ProviderProps = {
         formidlingsgruppe: Formidlingsgruppe.ARBS,
         servicegruppe: Servicegruppe.IKVAL,
     },
-    featureToggle: {
-        'veientilarbeid.meldekortonboarding': true,
-    },
     amplitude: { ukerRegistrert: 0 },
     iDag: new Date('2021-01-26T12:00:00+01:00'),
 };
 
 describe('Test av registreringskomponenten', () => {
-    test('Meldekortstatus-komponenten rendres når featuretoggle ikke er satt', () => {
-        const props: ProviderProps = {
-            ...providerProps,
-            featureToggle: { 'veientilarbeid.meldekortonboarding': false },
-        };
-        const { container } = render(<Registrert />, { wrapper: contextProviders(props) });
-        expect(container).not.toBeEmptyDOMElement();
-        expect(screen.getByText(/gå til meldekort/i)).toBeInTheDocument();
-    });
-
     test('Meldekort-intro-komponenten rendres når featuretoggle er satt og hører til eksperimentkontor', () => {
         const props: ProviderProps = providerProps;
         const { container } = render(<Registrert />, { wrapper: contextProviders({ ...props }) });
