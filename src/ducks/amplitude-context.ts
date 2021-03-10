@@ -7,6 +7,7 @@ export const initialState: AmplitudeData = {
     geografiskTilknytning: 'INGEN_VERDI',
     isKSSX: 'nei',
     isKSSK: 'nei',
+    erSamarbeidskontor: 'nei',
     ukerRegistrert: 0,
     nivaa: InnloggingsNiva.LEVEL_3,
     kanReaktiveres: 'nei',

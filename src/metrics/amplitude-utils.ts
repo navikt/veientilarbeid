@@ -26,6 +26,7 @@ export type AmplitudeData = {
     geografiskTilknytning: string;
     isKSSX: string;
     isKSSK: string;
+    erSamarbeidskontor: string;
     ukerRegistrert: number;
     nivaa: InnloggingsNiva;
     kanReaktiveres: string;
