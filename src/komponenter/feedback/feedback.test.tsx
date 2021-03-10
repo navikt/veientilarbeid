@@ -4,20 +4,32 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Feedback from './feedback';
+import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 
 describe('tester feedback komponenten', () => {
+    const standardProps: ProviderProps = {
+        featureToggle: { 'veientilarbeid.feedback': true },
+    };
+
+    test('komponenten rendres ikke uten feature toggle', () => {
+        const { container } = render(<Feedback />, {
+            wrapper: contextProviders({ featureToggle: { 'veientilarbeid.feedback': false } }),
+        });
+        expect(container).toBeEmptyDOMElement();
+    });
+
     test('komponenten rendres ikke uten id', () => {
-        const { container } = render(<Feedback />);
+        const { container } = render(<Feedback />, { wrapper: contextProviders(standardProps) });
         expect(container).toBeEmptyDOMElement();
     });
 
     test('komponenten rendrer som forventet', () => {
-        const { container } = render(<Feedback id="feedback-test" />);
+        const { container } = render(<Feedback id="feedback-test" />, { wrapper: contextProviders(standardProps) });
         expect(container).not.toBeEmptyDOMElement();
     });
 
     test('valgene blir registrert', () => {
-        render(<Feedback id="feedback-test" />);
+        render(<Feedback id="feedback-test" />, { wrapper: contextProviders(standardProps) });
         const jaKnapp = screen.getByRole('button', { name: /ja/i });
         const neiKnapp = screen.getByRole('button', { name: /nei/i });
         const vetikkeKnapp = screen.getByRole('button', { name: /vet ikke/i });

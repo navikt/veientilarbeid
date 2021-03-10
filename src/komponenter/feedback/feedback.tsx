@@ -5,6 +5,7 @@ import { useLocalStorage } from '../../hooks/use-localstorarge';
 import './feedback.less';
 import { Undertekst } from 'nav-frontend-typografi';
 import classNames from 'classnames';
+import { FeaturetoggleContext } from '../../ducks/feature-toggles';
 
 interface Props {
     id?: string;
@@ -17,6 +18,7 @@ function Feedback({ id }: Props) {
     });
     const [valgt, setValgt] = useState('');
     const amplitudeData = React.useContext(AmplitudeContext);
+    const { data: featuretoggledata } = React.useContext(FeaturetoggleContext);
 
     useEffect(() => {
         const { valgt } = feedback;
@@ -24,6 +26,7 @@ function Feedback({ id }: Props) {
     }, [feedback]);
 
     if (!id) return null;
+    if (!featuretoggledata['veientilarbeid.feedback']) return null;
 
     const handleFeedback = (feedback: string) => {
         amplitudeLogger('veientilarbeid.feedback.intro', {
@@ -53,26 +56,29 @@ function Feedback({ id }: Props) {
     });
 
     return (
-        <div className="feedback-container">
-            <Undertekst className="feedback-tittel">Var dette nyttig informasjon?</Undertekst>
-            <div className={'valg'}>
-                <button onClick={() => handleFeedback('ja')} className={jaKnapp}>
-                    <Undertekst>Ja</Undertekst>
-                </button>
-                <span className="feedback-space" aria-hidden="true">
-                    |
-                </span>
-                <button onClick={() => handleFeedback('nei')} className={neiKnapp}>
-                    <Undertekst>Nei</Undertekst>
-                </button>
-                <span className="feedback-space" aria-hidden="true">
-                    |
-                </span>
-                <button onClick={() => handleFeedback('vet ikke')} className={vetIkkeKnapp}>
-                    <Undertekst>Vet ikke</Undertekst>
-                </button>
+        <>
+            <hr />
+            <div className="feedback-container">
+                <Undertekst className="feedback-tittel">Var dette nyttig informasjon?</Undertekst>
+                <div className={'valg'}>
+                    <button onClick={() => handleFeedback('ja')} className={jaKnapp}>
+                        <Undertekst>Ja</Undertekst>
+                    </button>
+                    <span className="feedback-space" aria-hidden="true">
+                        |
+                    </span>
+                    <button onClick={() => handleFeedback('nei')} className={neiKnapp}>
+                        <Undertekst>Nei</Undertekst>
+                    </button>
+                    <span className="feedback-space" aria-hidden="true">
+                        |
+                    </span>
+                    <button onClick={() => handleFeedback('vet ikke')} className={vetIkkeKnapp}>
+                        <Undertekst>Vet ikke</Undertekst>
+                    </button>
+                </div>
             </div>
-        </div>
+        </>
     );
 }
 

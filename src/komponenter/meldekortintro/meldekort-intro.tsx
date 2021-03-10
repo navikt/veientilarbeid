@@ -43,7 +43,6 @@ function Kort1() {
             <Normaltekst className={'blokk-xs'}>
                 Det er innsending av meldekort som gjør at du opprettholder status som registrert arbeidssøker.
             </Normaltekst>
-            <hr />
             <Feedback id={'meldekort-kort-01'} />
         </div>
     );
@@ -63,7 +62,6 @@ function Kort2() {
                 Lar du være å sende inn meldekort, tolker NAV det som at du ikke ønsker å stå registrert som
                 arbeidssøker.
             </Normaltekst>
-            <hr />
             <Feedback id={'meldekort-kort-02'} />
         </div>
     );
@@ -81,7 +79,6 @@ function Kort3() {
             <Normaltekst className={'blokk-xs'}>
                 Det er derfor viktig at du sender inn meldekortene før fristen går ut.
             </Normaltekst>
-            <hr />
             <Feedback id={'meldekort-kort-03'} />
         </div>
     );
