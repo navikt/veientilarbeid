@@ -3,6 +3,7 @@
 .registrerings-container {
     border: 1px solid #5690a2;
     border-radius: 0.25rem;
+    background-color: white;
 }
 
 .registrering-svar,
@@ -24,4 +25,17 @@ registrering-info:hover {
     border: none;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+}
+
+.intro-wrapper {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid @navGra20;
+}
+
+@media (min-width: @screen-md-min) {
+    .intro-wrapper {
+       flex-direction: row;
+    }
+
 }

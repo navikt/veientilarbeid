@@ -78,6 +78,7 @@ function Feedback({ id }: Props) {
                     </button>
                 </div>
             </div>
+            <hr />
         </>
     );
 }

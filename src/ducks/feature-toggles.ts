@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { DataElement, STATUS } from './api';
 
-export const alleFeatureToggles = ['veientilarbeid.feedback'];
+export const alleFeatureToggles = ['veientilarbeid.feedback', 'veientilarbeid.14a-intro'];
 
 export interface Data {
     'veientilarbeid.feedback': boolean;
+    'veientilarbeid.14a-intro': boolean;
 }
 
 export interface State extends DataElement {
@@ -14,6 +15,7 @@ export interface State extends DataElement {
 export const initialState: State = {
     data: {
         'veientilarbeid.feedback': false,
+        'veientilarbeid.14a-intro': false,
     },
     status: STATUS.NOT_STARTED,
 };

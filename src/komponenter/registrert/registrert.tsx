@@ -14,6 +14,7 @@ import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { erSamarbeidskontor } from '../../utils/is-samarbeidskontor';
+import Intro14AWrapper from '../14a-intro/14a';
 
 const Registrert = () => {
     const brukerregistreringData = useContext(BrukerregistreringContext).data;
@@ -73,8 +74,15 @@ const Registrert = () => {
                     />
                 </Ekspanderbartpanel>
             ) : null}
+            {erSamarbeidskontor(geografiskTilknytning) ? (
+                <div className={'intro-wrapper'}>
+                    <MeldekortIntroWrapper />
 
-            {erSamarbeidskontor(geografiskTilknytning) ? <MeldekortIntroWrapper /> : <Meldekortstatus />}
+                    <Intro14AWrapper />
+                </div>
+            ) : (
+                <Meldekortstatus />
+            )}
         </div>
     );
 };
