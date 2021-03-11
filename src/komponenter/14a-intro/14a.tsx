@@ -49,7 +49,7 @@ function Kort2() {
                 Om du ønsker oppfølging før 12 uker, ber vi deg om å si i fra om at du ønsker å bli kontaktet.
             </Normaltekst>
             <hr />
-            <Feedback id={'Introkort14A' + '-02'} />
+            <Feedback id={'Introkort14A-02'} />
         </div>
     );
 }
@@ -74,7 +74,7 @@ function Kort3() {
                 <a href={'https://www.finn.no/job/browse.html'}>{', finn.no '}</a> eller andre jobbportaler.
             </Normaltekst>
             <hr />
-            <Feedback id={'Introkort14A' + '-03'} />
+            <Feedback id={'Introkort14A-03'} />
         </div>
     );
 }
