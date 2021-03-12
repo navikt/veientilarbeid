@@ -14,7 +14,7 @@ import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
 import Intro14AWrapper from '../14a-intro/14a';
-import { visEksperiment } from '../../utils/vis-eksperiment';
+import { visEksperiment } from '../../utils/samarbeidskontor-utils';
 
 const Registrert = () => {
     const brukerregistreringData = useContext(BrukerregistreringContext).data;

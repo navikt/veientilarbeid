@@ -1,4 +1,4 @@
-import { visEksperiment, erSamarbeidskontor } from './vis-eksperiment';
+import { visEksperiment, erSamarbeidskontor } from './samarbeidskontor-utils';
 
 describe('tester funksjonaliteten for visEksperiment', () => {
     test('returnerer true for Notodden og onboardingMeldekort', () => {
