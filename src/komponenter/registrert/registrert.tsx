@@ -13,8 +13,8 @@ import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
-import { erSamarbeidskontor } from '../../utils/is-samarbeidskontor';
 import Intro14AWrapper from '../14a-intro/14a';
+import { visEksperiment } from '../../utils/vis-eksperiment';
 
 const Registrert = () => {
     const brukerregistreringData = useContext(BrukerregistreringContext).data;
@@ -74,7 +74,7 @@ const Registrert = () => {
                     />
                 </Ekspanderbartpanel>
             ) : null}
-            {erSamarbeidskontor(geografiskTilknytning) ? (
+            {visEksperiment({ geografiskTilknytning, eksperiment: 'onboardingMeldekort' }) ? (
                 <div className={'intro-wrapper'}>
                     <MeldekortIntroWrapper />
 

@@ -1,4 +1,4 @@
-import visEksperiment from './vis-eksperiment';
+import { visEksperiment, erSamarbeidskontor } from './vis-eksperiment';
 
 describe('tester funksjonaliteten for visEksperiment', () => {
     test('returnerer true for Notodden og onboardingMeldekort', () => {
@@ -34,5 +34,17 @@ describe('tester funksjonaliteten for visEksperiment', () => {
                 eksperiment: 'onboardingMeldekort',
             })
         ).toBe(false);
+    });
+});
+
+describe('tester funksjonaliteten for erSamarbeidskontor', () => {
+    test('returnerer true for Notodden', () => {
+        expect(erSamarbeidskontor('3808')).toBe(true);
+    });
+    test('returnerer false for Færder', () => {
+        expect(erSamarbeidskontor('3811')).toBe(false);
+    });
+    test('returnerer false for manglende geografiskTilknytning', () => {
+        expect(erSamarbeidskontor(undefined)).toBe(false);
     });
 });

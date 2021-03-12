@@ -5,7 +5,7 @@ interface Data {
     eksperiment: Eksperiment;
 }
 
-function visEksperiment(data: Data): boolean {
+export function visEksperiment(data: Data): boolean {
     const { geografiskTilknytning, eksperiment } = data;
     if (!geografiskTilknytning) return false;
 
@@ -13,4 +13,7 @@ function visEksperiment(data: Data): boolean {
     return kontor?.eksperimenter.includes(eksperiment) || false;
 }
 
-export default visEksperiment;
+export function erSamarbeidskontor(geografiskTilknytning: string | null | undefined): boolean {
+    if (!geografiskTilknytning) return false;
+    return !!Samarbeidskontorer[geografiskTilknytning];
+}

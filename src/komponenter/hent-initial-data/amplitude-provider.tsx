@@ -23,7 +23,7 @@ import antallSynligeInfomeldinger from '../../utils/infomeldinger';
 import * as Meldekortstatus from '../../ducks/meldekortstatus';
 import isMeldekortbruker from '../../utils/er-meldekortbruker';
 import { datoUtenTid } from '../../utils/date-utils';
-import { erSamarbeidskontor } from '../../utils/is-samarbeidskontor';
+import { erSamarbeidskontor } from '../../utils/vis-eksperiment';
 
 function hentDagerEtterFastsattMeldedag(
     iDag: Date,
