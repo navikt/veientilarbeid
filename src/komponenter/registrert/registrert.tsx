@@ -33,7 +33,7 @@ const Registrert = () => {
     if (!kanViseKomponent) {
         return null;
     }
-    if (!brukerregistreringData) {
+    if (!brukerregistreringData || !brukerregistreringData.registrering) {
         return (
             <div className="blokk-s">
                 <AlertStripeInfo>

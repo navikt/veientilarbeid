@@ -39,13 +39,13 @@ const Egenvurdering = () => {
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const isLevel4 = securityLevel === InnloggingsNiva.LEVEL_4;
 
-    const opprettetRegistreringDatoString = brukerregistreringData?.registrering.opprettetDato;
+    const opprettetRegistreringDatoString = brukerregistreringData?.registrering?.opprettetDato;
     const opprettetRegistreringDato = opprettetRegistreringDatoString
         ? new Date(opprettetRegistreringDatoString)
         : null;
     const foreslattInnsatsgruppe = selectForeslattInnsatsgruppe(brukerregistreringData)!; // Komponent blir rendret kun hvis foreslått innsatsgruppe er satt
 
-    const dinSituasjon = brukerregistreringData?.registrering.besvarelse.dinSituasjon || 'INGEN_VERDI';
+    const dinSituasjon = brukerregistreringData?.registrering?.besvarelse.dinSituasjon || 'INGEN_VERDI';
 
     const harEgenvurderingbesvarelse = egenvurderingData !== null;
     const egenvurderingbesvarelseDato = egenvurderingData ? new Date(egenvurderingData.sistOppdatert) : null;

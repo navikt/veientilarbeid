@@ -78,19 +78,19 @@ export const initialState: State = {
 export const BrukerregistreringContext = React.createContext<State>(initialState);
 
 export function selectFremtidigSituasjonSvar(data: Data | null): FremtidigSituasjonSvar | null {
-    return data ? data.registrering.besvarelse.fremtidigSituasjon : null;
+    return data && data.registrering ? data.registrering?.besvarelse.fremtidigSituasjon : null;
 }
 
 export function selectDinSituasjonSvar(data: Data | null): string | null {
-    return data ? data.registrering.besvarelse.dinSituasjon : 'INGEN_VERDI';
+    return data && data.registrering ? data.registrering?.besvarelse.dinSituasjon : 'INGEN_VERDI';
 }
 
 export function selectForeslattInnsatsgruppe(data: Data | null): ForeslattInnsatsgruppe | undefined | null {
-    const profilering = data ? data.registrering.profilering : null;
+    const profilering = data && data.registrering ? data.registrering?.profilering : null;
 
     return profilering ? profilering.innsatsgruppe : undefined;
 }
 
 export const selectOpprettetRegistreringDato = (data: Data | null): string | null => {
-    return data ? data.registrering.opprettetDato : null;
+    return data && data.registrering ? data.registrering?.opprettetDato : null;
 };

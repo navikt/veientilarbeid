@@ -62,8 +62,8 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         rettighetsgruppe,
     } = brukerInfoData;
     const { servicegruppe, formidlingsgruppe, kanReaktiveres, reservasjonKRR } = oppfolgingData;
-    const opprettetRegistreringDatoString = brukerregistreringData?.registrering.opprettetDato;
-    const dinSituasjon = brukerregistreringData?.registrering.besvarelse.dinSituasjon || 'INGEN_VERDI';
+    const opprettetRegistreringDatoString = brukerregistreringData?.registrering?.opprettetDato;
+    const dinSituasjon = brukerregistreringData?.registrering?.besvarelse.dinSituasjon || 'INGEN_VERDI';
     const opprettetRegistreringDato = opprettetRegistreringDatoString
         ? new Date(opprettetRegistreringDatoString)
         : null;
@@ -71,7 +71,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const ukerRegistrert = opprettetRegistreringDato ? ukerFraDato(opprettetRegistreringDato) : ukerFraDato(new Date());
     const servicegruppeOrIVURD = servicegruppe || 'IVURD';
     const foreslattInnsatsgruppeOrIngenVerdi =
-        brukerregistreringData?.registrering.profilering?.innsatsgruppe || 'INGEN_VERDI';
+        brukerregistreringData?.registrering?.profilering?.innsatsgruppe || 'INGEN_VERDI';
     const formidlingsgruppeOrIngenVerdi = formidlingsgruppe || 'INGEN_VERDI';
 
     const iDag = datoUtenTid(new Date().toISOString());
