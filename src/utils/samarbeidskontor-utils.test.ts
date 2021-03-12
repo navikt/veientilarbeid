@@ -1,4 +1,4 @@
-import { visEksperiment, erSamarbeidskontor } from './samarbeidskontor-utils';
+import { visEksperiment, erSamarbeidskontor, hentEksperimenter } from './samarbeidskontor-utils';
 
 describe('tester funksjonaliteten for visEksperiment', () => {
     test('returnerer true for Notodden og onboardingMeldekort', () => {
@@ -46,5 +46,17 @@ describe('tester funksjonaliteten for erSamarbeidskontor', () => {
     });
     test('returnerer false for manglende geografiskTilknytning', () => {
         expect(erSamarbeidskontor(undefined)).toBe(false);
+    });
+});
+
+describe('tester funksjonaliteten for hentEksperimenter', () => {
+    test('returnerer riktig liste for samarbeidskontoret Notodden', () => {
+        expect(hentEksperimenter({ geografiskTilknytning: '3808' })).toStrictEqual(['onboardingMeldekort']);
+    });
+    test('returnerer tom liste for ikke-samarbeidskontoret Færder', () => {
+        expect(hentEksperimenter({ geografiskTilknytning: '3811' })).toStrictEqual([]);
+    });
+    test('returnerer tom liste for manglende geografiskTilknytning', () => {
+        expect(hentEksperimenter({})).toStrictEqual([]);
     });
 });

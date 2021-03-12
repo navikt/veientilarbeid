@@ -23,7 +23,7 @@ import antallSynligeInfomeldinger from '../../utils/infomeldinger';
 import * as Meldekortstatus from '../../ducks/meldekortstatus';
 import isMeldekortbruker from '../../utils/er-meldekortbruker';
 import { datoUtenTid } from '../../utils/date-utils';
-import { erSamarbeidskontor } from '../../utils/samarbeidskontor-utils';
+import { erSamarbeidskontor, hentEksperimenter } from '../../utils/samarbeidskontor-utils';
 
 function hentDagerEtterFastsattMeldedag(
     iDag: Date,
@@ -109,6 +109,8 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         ? 'ja'
         : 'nei';
 
+    const eksperimenter = hentEksperimenter({ geografiskTilknytning });
+
     const amplitudeData: AmplitudeData = {
         gruppe: POAGruppe,
         geografiskTilknytning: grupperGeografiskTilknytning(geografiskTilknytningOrIngenVerdi),
@@ -132,6 +134,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         erSykmeldtMedArbeidsgiver: erSykmeldtMedArbeidsgiver ? 'ja' : 'nei',
         dinSituasjon,
         reservasjonKRR: reservasjonKRR ? 'ja' : 'nei',
+        eksperimenter,
     };
 
     return <AmplitudeContext.Provider value={amplitudeData}>{props.children}</AmplitudeContext.Provider>;

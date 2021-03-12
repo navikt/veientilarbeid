@@ -25,6 +25,7 @@ export const initialState: AmplitudeData = {
     erSykmeldtMedArbeidsgiver: 'ukjent',
     dinSituasjon: 'ukjent',
     reservasjonKRR: 'ukjent',
+    eksperimenter: [],
 };
 
 export const AmplitudeContext = React.createContext<AmplitudeData>(initialState);

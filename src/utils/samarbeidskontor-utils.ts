@@ -17,3 +17,8 @@ export function erSamarbeidskontor(geografiskTilknytning: string | null | undefi
     if (!geografiskTilknytning) return false;
     return !!Samarbeidskontorer[geografiskTilknytning];
 }
+
+export function hentEksperimenter({ geografiskTilknytning }: { geografiskTilknytning?: string }): Eksperiment[] {
+    if (!geografiskTilknytning) return [];
+    return Samarbeidskontorer[geografiskTilknytning]?.eksperimenter ?? [];
+}
