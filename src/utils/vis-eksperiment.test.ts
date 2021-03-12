@@ -1,7 +1,7 @@
 import visEksperiment from './vis-eksperiment';
 
 describe('tester funksjonaliteten for visEksperiment', () => {
-    test('returnerer true for Notododden og onboardingMeldekort', () => {
+    test('returnerer true for Notodden og onboardingMeldekort', () => {
         expect(
             visEksperiment({
                 geografiskTilknytning: '3808',
@@ -10,7 +10,7 @@ describe('tester funksjonaliteten for visEksperiment', () => {
         ).toBe(true);
     });
 
-    test('returnerer false for Notododden og dummyEksperiment', () => {
+    test('returnerer false for Notodden og dummyEksperiment', () => {
         expect(
             visEksperiment({
                 geografiskTilknytning: '3808',
