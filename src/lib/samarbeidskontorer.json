@@ -1,22 +1,22 @@
 {
     "030112": {
-        "navn": "",
+        "navn": "Alna",
         "eksperimenter": ["onboardingMeldekort"]
     },
     "030105": {
-        "navn": "",
+        "navn": "Frogner",
         "eksperimenter": ["onboardingMeldekort"]
     },
     "3413": {
-        "navn": "",
+        "navn": "Stange",
         "eksperimenter": ["onboardingMeldekort"]
     },
     "3407": {
-        "navn": "",
+        "navn": "Gjøvik",
         "eksperimenter": ["onboardingMeldekort"]
     },
     "3401": {
-        "navn": "",
+        "navn": "Kongsvinger",
         "eksperimenter": ["onboardingMeldekort"]
     },
     "3808": {
@@ -32,55 +32,55 @@
         "eksperimenter": ["onboardingMeldekort"]
     },
     "1120": {
-        "navn": "",
+        "navn": "Klepp",
         "eksperimenter": ["onboardingMeldekort"]
     },
     "1121": {
-        "navn": "",
+        "navn": "Time",
         "eksperimenter": ["onboardingMeldekort"]
     },
     "110302": {
-        "navn": "",
+        "navn": "Tasta",
         "eksperimenter": ["onboardingMeldekort"]
     },
     "110303": {
-        "navn": "",
+        "navn": "Eiganes og Våland",
         "eksperimenter": ["onboardingMeldekort"]
     },
     "110306": {
-        "navn": "",
+        "navn": "Hillevåg",
         "eksperimenter": ["onboardingMeldekort"]
     },
     "110307": {
-        "navn": "",
+        "navn": "Hinna",
         "eksperimenter": ["onboardingMeldekort"]
     },
     "030114": {
-        "navn": "",
+        "navn": "Nordstrand",
         "eksperimenter": ["onboardingMeldekort"]
     },
     "3418": {
-        "navn": "",
+        "navn": "Åsnes",
         "eksperimenter": ["onboardingMeldekort"]
     },
     "3411": {
-        "navn": "",
+        "navn": "Ringsaker",
         "eksperimenter": ["onboardingMeldekort"]
     },
     "030108": {
-        "navn": "",
+        "navn": "Nordre Aker",
         "eksperimenter": ["onboardingMeldekort"]
     },
     "030109": {
-        "navn": "",
+        "navn": "Bjerke",
         "eksperimenter": ["onboardingMeldekort"]
     },
     "1149": {
-        "navn": "",
+        "navn": "Karmøy",
         "eksperimenter": ["onboardingMeldekort"]
     },
     "110301": {
-        "navn": "",
+        "navn": "Hundvåg",
         "eksperimenter": ["onboardingMeldekort"]
     }
 }
