@@ -19,12 +19,16 @@
         "navn": "",
         "eksperimenter": ["onboardingMeldekort"]
     },
+    "3808": {
+        "navn": "Notodden",
+        "eksperimenter": ["onboardingMeldekort"]
+    },
     "3807": {
-        "navn": "",
+        "navn": "Skien",
         "eksperimenter": ["onboardingMeldekort"]
     },
     "3803": {
-        "navn": "",
+        "navn": "Tønsberg",
         "eksperimenter": ["onboardingMeldekort"]
     },
     "1120": {
@@ -40,10 +44,6 @@
         "eksperimenter": ["onboardingMeldekort"]
     },
     "110303": {
-        "navn": "",
-        "eksperimenter": ["onboardingMeldekort"]
-    },
-    "3808": {
         "navn": "",
         "eksperimenter": ["onboardingMeldekort"]
     },
