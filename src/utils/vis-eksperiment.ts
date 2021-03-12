@@ -1,13 +1,13 @@
-import samarbeidskontorer from '../lib/samarbeidskontorer.json';
+import { Eksperiment, Samarbeidskontorer } from '../lib/samarbeidskontorer';
 
 interface Data {
     geografiskTilknytning: string;
-    eksperiment: string;
+    eksperiment: Eksperiment;
 }
 
 function visEksperiment(data: Data): boolean {
     const { geografiskTilknytning, eksperiment } = data;
-    const kontor = samarbeidskontorer[geografiskTilknytning];
+    const kontor = Samarbeidskontorer[geografiskTilknytning];
     return kontor?.eksperimenter.includes(eksperiment) || false;
 }
 
