@@ -27,4 +27,12 @@ describe('tester funksjonaliteten for visEksperiment', () => {
             })
         ).toBe(false);
     });
+
+    test('returnerer false for manglende geografiskTilknytning', () => {
+        expect(
+            visEksperiment({
+                eksperiment: 'onboardingMeldekort',
+            })
+        ).toBe(false);
+    });
 });
