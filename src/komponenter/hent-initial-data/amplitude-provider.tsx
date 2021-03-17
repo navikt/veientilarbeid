@@ -68,7 +68,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         ? new Date(opprettetRegistreringDatoString)
         : null;
     const geografiskTilknytningOrIngenVerdi = geografiskTilknytning || 'INGEN_VERDI';
-    const ukerRegistrert = opprettetRegistreringDato ? ukerFraDato(opprettetRegistreringDato) : ukerFraDato(new Date());
+    const ukerRegistrert = opprettetRegistreringDato ? ukerFraDato(opprettetRegistreringDato) : 'INGEN_DATO';
     const servicegruppeOrIVURD = servicegruppe || 'IVURD';
     const foreslattInnsatsgruppeOrIngenVerdi =
         brukerregistreringData?.registrering?.profilering?.innsatsgruppe || 'INGEN_VERDI';
