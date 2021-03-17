@@ -28,7 +28,7 @@ export type AmplitudeData = {
     isKSSX: string;
     isKSSK: string;
     erSamarbeidskontor: string;
-    ukerRegistrert: number;
+    ukerRegistrert: number | 'INGEN_DATO';
     nivaa: InnloggingsNiva;
     kanReaktiveres: string;
     formidlingsgruppe: string;
