@@ -42,7 +42,7 @@ spec:
   - name: FASIT_ENVIRONMENT_NAME
     value: {{ app_environment_name }}
   - name: DISABLE_FRONTEND_LOGGER
-      value: 'true'
+    value: 'true'
   envFrom:
     - configmap: loginservice-idporten
   image: {{image}}
