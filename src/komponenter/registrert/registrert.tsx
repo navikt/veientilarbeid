@@ -15,6 +15,7 @@ import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
 import Intro14AWrapper from '../14a-intro/14a';
 import { visEksperiment } from '../../utils/samarbeidskontor-utils';
+import { FeaturetoggleContext } from '../../ducks/feature-toggles';
 
 const Registrert = () => {
     const brukerregistreringData = useContext(BrukerregistreringContext).data;
@@ -24,6 +25,7 @@ const Registrert = () => {
     const amplitudeData = React.useContext(AmplitudeContext);
     const [clickedInnsyn, setClickedInnsyn] = useState(false);
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
+    const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
 
     const kanViseKomponent =
         oppfolgingData.formidlingsgruppe === 'ARBS' &&
@@ -52,6 +54,10 @@ const Registrert = () => {
             setClickedInnsyn(true);
         }
     };
+    const kanViseMeldekortintroForAlleKontorer = featuretoggleData['veientilarbeid.meldekortintro.foralle'];
+    const kanViseMeldekortintro =
+        kanViseMeldekortintroForAlleKontorer ||
+        visEksperiment({ geografiskTilknytning, eksperiment: 'onboardingMeldekort' });
 
     return (
         <div className="blokk-s registrerings-container">
@@ -74,10 +80,9 @@ const Registrert = () => {
                     />
                 </Ekspanderbartpanel>
             ) : null}
-            {visEksperiment({ geografiskTilknytning, eksperiment: 'onboardingMeldekort' }) ? (
+            {kanViseMeldekortintro ? (
                 <div className={'intro-wrapper'}>
                     <MeldekortIntroWrapper />
-
                     <Intro14AWrapper />
                 </div>
             ) : (
