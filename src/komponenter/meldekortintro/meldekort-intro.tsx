@@ -17,7 +17,6 @@ import {
     hentMeldekortForLevering,
 } from '../../utils/meldekort-utils';
 import Meldekortstatus from './meldekortstatus';
-// import { EtikettInfo } from 'nav-frontend-etiketter';
 import LenkepanelMeldekort from './lenkepanel-Meldekort';
 import { hentIDag } from '../../utils/chrono';
 import { meldekortLenke, omMeldekortLenke } from '../../innhold/lenker';

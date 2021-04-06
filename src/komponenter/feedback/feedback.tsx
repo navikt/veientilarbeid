@@ -9,9 +9,10 @@ import { FeaturetoggleContext } from '../../ducks/feature-toggles';
 
 interface Props {
     id?: string;
+    className?: string;
 }
 
-function Feedback({ id }: Props) {
+function Feedback({ id, className }: Props) {
     const [feedback, setFeedback] = useLocalStorage(`vta-feedback-intro-${id}`, {
         updated: new Date(),
         valgt: '',
@@ -57,8 +58,7 @@ function Feedback({ id }: Props) {
 
     return (
         <>
-            <hr />
-            <div className="feedback-container">
+            <div className={`feedback-container ${className ? className : ''}`}>
                 <Undertekst className="feedback-tittel">Var dette nyttig informasjon?</Undertekst>
                 <div className={'valg'}>
                     <button onClick={() => handleFeedback('ja')} className={jaKnapp}>
@@ -78,7 +78,6 @@ function Feedback({ id }: Props) {
                     </button>
                 </div>
             </div>
-            <hr />
         </>
     );
 }
