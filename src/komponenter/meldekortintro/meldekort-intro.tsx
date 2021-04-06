@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
+import { Normaltekst, Systemtittel, Undertekst } from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
 import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
@@ -17,7 +17,7 @@ import {
     hentMeldekortForLevering,
 } from '../../utils/meldekort-utils';
 import Meldekortstatus from './meldekortstatus';
-import { EtikettInfo } from 'nav-frontend-etiketter';
+// import { EtikettInfo } from 'nav-frontend-etiketter';
 import LenkepanelMeldekort from './lenkepanel-Meldekort';
 import { hentIDag } from '../../utils/chrono';
 import { meldekortLenke, omMeldekortLenke } from '../../innhold/lenker';
@@ -29,7 +29,8 @@ const MELDEKORT_INTRO_KEY = 'meldekortintro';
 function Kort1() {
     return (
         <div>
-            <Systemtittel className={'blokk-xs'}>Introduksjon til meldekort</Systemtittel>
+            <Systemtittel>Introduksjon til meldekort</Systemtittel>
+            <Undertekst className={'blokk-xs'}>1 av 3</Undertekst>
 
             <Normaltekst className={'blokk-xs'}>
                 Når du er registrert som arbeidssøker, må du sende inn et meldekort hver 14. dag.
@@ -51,7 +52,8 @@ function Kort1() {
 function Kort2() {
     return (
         <div>
-            <Systemtittel className={'blokk-xs'}>Introduksjon til meldekort</Systemtittel>
+            <Systemtittel>Introduksjon til meldekort</Systemtittel>
+            <Undertekst className={'blokk-xs'}>2 av 3</Undertekst>
             <Normaltekst className={'blokk-xs'}>
                 Utbetaling av dagpenger beregnes ut fra opplysninger du har lagt inn på meldekortet.
             </Normaltekst>
@@ -70,7 +72,8 @@ function Kort2() {
 function Kort3() {
     return (
         <div>
-            <Systemtittel className={'blokk-xs'}>Introduksjon til meldekort</Systemtittel>
+            <Systemtittel>Introduksjon til meldekort</Systemtittel>
+            <Undertekst className={'blokk-xs'}>3 av 3</Undertekst>
             <Normaltekst className={'blokk-xs'}>
                 Dersom du sender inn meldekortet for sent vil dagpengene kunne stanses, og du risikerer at
                 arbeidsoppfølging fra NAV avsluttes.
@@ -221,9 +224,6 @@ function MeldekortIntro(props: MeldekortIntroProps) {
     return (
         <>
             <div className={'kortwrapper'}>
-                <EtikettInfo mini>
-                    {gjeldendeKortIndex + 1} av {introKort.length}
-                </EtikettInfo>
                 <div className={'kortinnhold'}>{introKort[gjeldendeKortIndex]}</div>
                 <br />
             </div>
