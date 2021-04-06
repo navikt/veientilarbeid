@@ -40,7 +40,7 @@ function Kort1() {
                 på søknaden.
             </Normaltekst>
 
-            <Normaltekst className={'blokk-xs'}>
+            <Normaltekst className={'blokk-m'}>
                 Det er innsending av meldekort som gjør at du opprettholder status som registrert arbeidssøker.
             </Normaltekst>
             <Feedback id={'meldekort-kort-01'} />
@@ -59,7 +59,7 @@ function Kort2() {
             <Normaltekst className={'blokk-xs'}>
                 Sender du inn meldekortet etter fristen, kan det føre til at du får mindre utbetalt.
             </Normaltekst>
-            <Normaltekst className={'blokk-xs'}>
+            <Normaltekst className={'blokk-m'}>
                 Lar du være å sende inn meldekort, tolker NAV det som at du ikke ønsker å stå registrert som
                 arbeidssøker.
             </Normaltekst>
@@ -78,7 +78,7 @@ function Kort3() {
                 arbeidsoppfølging fra NAV avsluttes.
             </Normaltekst>
 
-            <Normaltekst className={'blokk-xs'}>
+            <Normaltekst className={'blokk-m'}>
                 Det er derfor viktig at du sender inn meldekortene før fristen går ut.
             </Normaltekst>
             <Feedback id={'meldekort-kort-03'} />
