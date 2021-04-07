@@ -22,6 +22,8 @@ import { hentIDag } from '../../utils/chrono';
 import { meldekortLenke, omMeldekortLenke } from '../../innhold/lenker';
 import { fjernFraLocalStorage, hentFraLocalStorage, settILocalStorage } from '../../utils/localStorage-utils';
 import Feedback from '../feedback/feedback';
+import PreState from './pre-state';
+import Lenke from 'nav-frontend-lenker';
 
 const MELDEKORT_INTRO_KEY = 'meldekortintro';
 
@@ -101,6 +103,7 @@ interface EndStateProps {
 interface MeldekortIntroProps {
     amplitudeData: AmplitudeData;
     ferdigMedIntroCB: () => void;
+    harSettIntro: boolean;
 }
 
 function Sluttkort(props: EndStateProps) {
@@ -143,9 +146,9 @@ function Sluttkort(props: EndStateProps) {
                         Les om meldekort
                     </LenkepanelMeldekort>
                 </div>
-                <Tilbakeknapp mini onClick={handleLesIntroPaaNytt}>
+                <Lenke href={''} onClick={handleLesIntroPaaNytt}>
                     Vis introduksjon til meldekort
-                </Tilbakeknapp>
+                </Lenke>
             </div>
         );
     }
@@ -161,9 +164,9 @@ function Sluttkort(props: EndStateProps) {
                 <LenkepanelMeldekort amplitudeData={amplitudeData} href={meldekortLenke}>
                     Send inn
                 </LenkepanelMeldekort>
-                <Tilbakeknapp mini onClick={handleLesIntroPaaNytt}>
+                <Lenke href={''} onClick={handleLesIntroPaaNytt}>
                     Vis introduksjon til meldekort
-                </Tilbakeknapp>
+                </Lenke>
             </div>
         );
     }
@@ -183,23 +186,36 @@ function Sluttkort(props: EndStateProps) {
                     )}`}
                 </LenkepanelMeldekort>
             </div>
-            <Tilbakeknapp mini onClick={handleLesIntroPaaNytt}>
+            <Lenke className={'tracking-wide'} href={''} onClick={handleLesIntroPaaNytt}>
                 Vis introduksjon til meldekort
-            </Tilbakeknapp>
+            </Lenke>
         </div>
     );
 }
 
 function MeldekortIntro(props: MeldekortIntroProps) {
-    const introKort = [<Kort1 />, <Kort2 />, <Kort3 />];
+    const introKort = [
+        <PreState
+            tittel={'Introduksjon til hvordan meldekort fungerer'}
+            lesetid={'3'}
+            startIntroCB={nesteKort}
+            hoppOverIntroCB={hoppOverIntro}
+        />,
+        <Kort1 />,
+        <Kort2 />,
+        <Kort3 />,
+    ];
 
-    const [gjeldendeKortIndex, setGjeldendeKortIndex] = useState(0);
+    const startkort = props.harSettIntro ? 1 : 0;
+    const [gjeldendeKortIndex, setGjeldendeKortIndex] = useState(startkort);
     const forrigeKortRef = useRef(gjeldendeKortIndex);
-    const nesteKort = () => {
+
+    function nesteKort() {
         if (gjeldendeKortIndex < introKort.length - 1) {
             setGjeldendeKortIndex(gjeldendeKortIndex + 1);
         }
-    };
+    }
+
     const forrigeKort = () => {
         if (gjeldendeKortIndex > 0) {
             setGjeldendeKortIndex(gjeldendeKortIndex - 1);
@@ -213,6 +229,16 @@ function MeldekortIntro(props: MeldekortIntroProps) {
         });
         props.ferdigMedIntroCB();
     };
+
+    function hoppOverIntro(e: React.SyntheticEvent) {
+        e.preventDefault();
+        amplitudeLogger('veientilarbeid.intro', {
+            intro: 'meldekort',
+            handling: 'Hopper over introduksjon',
+            ...props.amplitudeData,
+        });
+        props.ferdigMedIntroCB();
+    }
 
     useEffect(() => {
         if (forrigeKortRef.current !== gjeldendeKortIndex) {
@@ -231,22 +257,24 @@ function MeldekortIntro(props: MeldekortIntroProps) {
             <div className={'kortwrapper'}>
                 <div className={'kortinnhold'}>{introKort[gjeldendeKortIndex]}</div>
             </div>
-            <div className={'knapper'}>
-                <Tilbakeknapp mini disabled={gjeldendeKortIndex === 0} onClick={forrigeKort}>
-                    Forrige
-                </Tilbakeknapp>
-                {gjeldendeKortIndex !== introKort.length - 1 ? (
-                    <Nesteknapp mini onClick={nesteKort}>
-                        {' '}
-                        Neste{' '}
-                    </Nesteknapp>
-                ) : (
-                    <Nesteknapp mini onClick={avsluttIntro}>
-                        {' '}
-                        Avslutt introduksjonen{' '}
-                    </Nesteknapp>
-                )}
-            </div>
+            {gjeldendeKortIndex !== 0 ? (
+                <div className={'knapper'}>
+                    <Tilbakeknapp mini disabled={gjeldendeKortIndex === 1} onClick={forrigeKort}>
+                        Forrige
+                    </Tilbakeknapp>
+                    {gjeldendeKortIndex !== introKort.length - 1 ? (
+                        <Nesteknapp mini onClick={nesteKort}>
+                            {' '}
+                            Neste{' '}
+                        </Nesteknapp>
+                    ) : (
+                        <Nesteknapp mini onClick={avsluttIntro}>
+                            {' '}
+                            Avslutt introduksjonen{' '}
+                        </Nesteknapp>
+                    )}
+                </div>
+            ) : null}
         </>
     );
 }
@@ -320,7 +348,11 @@ function MeldekortIntroWrapper() {
             <Panel className={'meldekort-intro'} border>
                 <div className={'overall-wrapper'}>
                     {skalViseIntro ? (
-                        <MeldekortIntro ferdigMedIntroCB={ferdigMedIntroCB} amplitudeData={amplitudeData} />
+                        <MeldekortIntro
+                            harSettIntro={harSettIntro}
+                            ferdigMedIntroCB={ferdigMedIntroCB}
+                            amplitudeData={amplitudeData}
+                        />
                     ) : (
                         <Sluttkort
                             amplitudeData={amplitudeData}
