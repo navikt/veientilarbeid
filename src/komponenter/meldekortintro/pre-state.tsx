@@ -1,5 +1,5 @@
 import { Innholdstittel, Undertekst } from 'nav-frontend-typografi';
-import { Next, ClockFilled } from '@navikt/ds-icons/cjs';
+import { ClockFilled, Next } from '@navikt/ds-icons/cjs';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import Lenke from 'nav-frontend-lenker';
 import React from 'react';
@@ -20,7 +20,7 @@ function PreState(props: PreStateProps) {
                     <ClockFilled className={'mr-05'} />
                     <Undertekst>{props.lesetid} minutter lesetid</Undertekst>
                 </div>
-                <Hovedknapp mini onClick={props.startIntroCB}>
+                <Hovedknapp className={'mb-2'} mini onClick={props.startIntroCB}>
                     <span>Gå i gang</span>
                     <Next />
                 </Hovedknapp>
