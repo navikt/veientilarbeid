@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Normaltekst, Undertekst, Systemtittel } from 'nav-frontend-typografi';
+import { Normaltekst, Systemtittel, Undertekst } from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
 import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
@@ -13,6 +13,8 @@ import { fjernFraLocalStorage, hentFraLocalStorage, settILocalStorage } from '..
 import Feedback from '../feedback/feedback';
 import Lenkepanel14A from './lenkepanel-14a';
 import { FeaturetoggleContext } from '../../ducks/feature-toggles';
+import Lenke from 'nav-frontend-lenker';
+import PreState from '../meldekortintro/pre-state';
 
 const INTRO_KEY_14A = '14a-intro';
 
@@ -24,12 +26,16 @@ function Kort1() {
                 <Undertekst className="blokk-xs">1 av 3</Undertekst>
 
                 <Normaltekst className={'blokk-xs'}>
-                    Vi har gjort en vurdering og det ser ut til at du har gode muligheter til å skaffe deg en jobb på
-                    egenhånd.
+                    NAV har gjort en vurdering av svarene dine og det ser ut til at du har gode muligheter til å skaffe
+                    deg jobb på egenhånd.
                 </Normaltekst>
 
                 <Normaltekst className={'blokk-m'}>
-                    Vurderingen baserer seg på svarene du har gitt og opplysningene NAV har om din situasjon.
+                    Vurderingen baserer seg på svarene fra registreringen og opplysningene NAV har om din situasjon.
+                </Normaltekst>
+                <Normaltekst className={'blokk-m'}>
+                    De 12 første ukene fra du registrerte deg som arbeidssøker, vil derfor NAV som hovedregel ikke ta
+                    kontakt med deg i forbindelse med jobbsøking.
                 </Normaltekst>
             </div>
             <Feedback id={'Introkort14A-01'} />
@@ -44,11 +50,17 @@ function Kort2() {
                 <Systemtittel>Hva slags type hjelp kan jeg få?</Systemtittel>
                 <Undertekst className="blokk-xs">2 av 3</Undertekst>
                 <Normaltekst className={'blokk-xs'}>
-                    De 12 første ukene vil ikke NAV ta kontakt. I denne perioden har du selv ansvaret for å se etter og
-                    å søke på stillinger.
+                    Du vil motta et ‘Vedtak om oppfølging/bistandsbehov‘ om kort tid som bekrefter vurderingen vi har
+                    gjort om at du kan klare deg på egenhånd de første 12 ukene.
                 </Normaltekst>
                 <Normaltekst className={'blokk-m'}>
-                    Om du ønsker oppfølging før 12 uker, ber vi deg om å si i fra om at du ønsker å bli kontaktet.
+                    Om du ønsker oppfølging før 12 uker, ber vi deg om å si i fra om dette via Dialogen du finner når du
+                    har lest ferdig denne introduksjonen.
+                </Normaltekst>
+
+                <Normaltekst className={'blokk-m'}>
+                    Merk deg at dette vedtaket ikke er et svar på en eventuell søknad om dagpenger. Behandlingstiden for
+                    dagpenger er opp mot 28 dager fra du har sendt inn søknaden.
                 </Normaltekst>
             </div>
             <Feedback id={'Introkort14A-02'} />
@@ -104,12 +116,12 @@ function Sluttkort(props: EndStateProps) {
         });
     };
 
-    const handleLesIntroPaaNytt = (event: React.MouseEvent) => {
+    function handleLesIntroPaaNytt(event: React.SyntheticEvent) {
         event.preventDefault();
         event.stopPropagation();
         handleKlikkLesIntro();
         props.lesIntroPaaNyttCB();
-    };
+    }
 
     return (
         <div className={'sluttkort'}>
@@ -123,23 +135,35 @@ function Sluttkort(props: EndStateProps) {
             <Lenkepanel14A amplitudeData={amplitudeData} href={''}>
                 ta kontakt om du lurer på noe
             </Lenkepanel14A>
-            <Tilbakeknapp mini onClick={handleLesIntroPaaNytt}>
+            <Lenke className={'tracking-wide'} href={''} onClick={handleLesIntroPaaNytt}>
                 Les om hva slags hjelp du kan få
-            </Tilbakeknapp>
+            </Lenke>
         </div>
     );
 }
 
 function Intro14A(props: Intro14AProps) {
-    const introKort = [<Kort1 />, <Kort2 />, <Kort3 />];
+    const introKort = [
+        <PreState
+            hoppOverIntroCB={hoppOverIntro}
+            startIntroCB={nesteKort}
+            lesetid={'5'}
+            tittel={'Introduksjon om hjelp til jobbsøking fra NAV'}
+        />,
+        <Kort1 />,
+        <Kort2 />,
+        <Kort3 />,
+    ];
 
     const [gjeldendeKortIndex, setGjeldendeKortIndex] = useState(0);
     const forrigeKortRef = useRef(gjeldendeKortIndex);
-    const nesteKort = () => {
+
+    function nesteKort() {
         if (gjeldendeKortIndex < introKort.length - 1) {
             setGjeldendeKortIndex(gjeldendeKortIndex + 1);
         }
-    };
+    }
+
     const forrigeKort = () => {
         if (gjeldendeKortIndex > 0) {
             setGjeldendeKortIndex(gjeldendeKortIndex - 1);
@@ -153,6 +177,15 @@ function Intro14A(props: Intro14AProps) {
         });
         props.ferdigMedIntroCB();
     };
+
+    function hoppOverIntro() {
+        amplitudeLogger('veientilarbeid.intro', {
+            intro: '14a',
+            handling: 'Hopper over intro',
+            ...props.amplitudeData,
+        });
+        props.ferdigMedIntroCB();
+    }
 
     useEffect(() => {
         if (forrigeKortRef.current !== gjeldendeKortIndex) {
@@ -171,22 +204,24 @@ function Intro14A(props: Intro14AProps) {
             <div className={'kortwrapper'}>
                 <div className={'kortinnhold'}>{introKort[gjeldendeKortIndex]}</div>
             </div>
-            <div className={'knapper'}>
-                <Tilbakeknapp mini disabled={gjeldendeKortIndex === 0} onClick={forrigeKort}>
-                    Forrige
-                </Tilbakeknapp>
-                {gjeldendeKortIndex !== introKort.length - 1 ? (
-                    <Nesteknapp mini onClick={nesteKort}>
-                        {' '}
-                        Neste{' '}
-                    </Nesteknapp>
-                ) : (
-                    <Nesteknapp mini onClick={avsluttIntro}>
-                        {' '}
-                        Avslutt introduksjonen{' '}
-                    </Nesteknapp>
-                )}
-            </div>
+            {gjeldendeKortIndex !== 0 ? (
+                <div className={'knapper'}>
+                    <Tilbakeknapp mini disabled={gjeldendeKortIndex === 0} onClick={forrigeKort}>
+                        Forrige
+                    </Tilbakeknapp>
+                    {gjeldendeKortIndex !== introKort.length - 1 ? (
+                        <Nesteknapp mini onClick={nesteKort}>
+                            {' '}
+                            Neste{' '}
+                        </Nesteknapp>
+                    ) : (
+                        <Nesteknapp mini onClick={avsluttIntro}>
+                            {' '}
+                            Avslutt introduksjonen{' '}
+                        </Nesteknapp>
+                    )}
+                </div>
+            ) : null}
         </>
     );
 }
