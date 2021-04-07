@@ -224,7 +224,6 @@ function MeldekortIntro(props: MeldekortIntroProps) {
         <>
             <div className={'kortwrapper'}>
                 <div className={'kortinnhold'}>{introKort[gjeldendeKortIndex]}</div>
-                <br />
             </div>
             <div className={'knapper'}>
                 <Tilbakeknapp mini disabled={gjeldendeKortIndex === 0} onClick={forrigeKort}>

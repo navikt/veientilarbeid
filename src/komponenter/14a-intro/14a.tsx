@@ -167,7 +167,6 @@ function Intro14A(props: Intro14AProps) {
         <>
             <div className={'kortwrapper'}>
                 <div className={'kortinnhold'}>{introKort[gjeldendeKortIndex]}</div>
-                <br />
             </div>
             <div className={'knapper'}>
                 <Tilbakeknapp mini disabled={gjeldendeKortIndex === 0} onClick={forrigeKort}>
