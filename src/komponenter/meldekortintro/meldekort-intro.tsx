@@ -27,22 +27,24 @@ const MELDEKORT_INTRO_KEY = 'meldekortintro';
 
 function Kort1() {
     return (
-        <div>
-            <Systemtittel>Introduksjon til meldekort</Systemtittel>
-            <Undertekst className={'blokk-xs'}>1 av 3</Undertekst>
+        <div className="kortflate">
+            <div>
+                <Systemtittel>Introduksjon til meldekort</Systemtittel>
+                <Undertekst className={'blokk-xs'}>1 av 3</Undertekst>
 
-            <Normaltekst className={'blokk-xs'}>
-                Når du er registrert som arbeidssøker, må du sende inn et meldekort hver 14. dag.
-            </Normaltekst>
+                <Normaltekst className={'blokk-xs'}>
+                    Når du er registrert som arbeidssøker, må du sende inn et meldekort hver 14. dag.
+                </Normaltekst>
 
-            <Normaltekst className={'blokk-xs'}>
-                Dersom du har søkt om dagpenger må du sende inn meldekort. Det må du gjøre selv om du ikke har fått svar
-                på søknaden.
-            </Normaltekst>
+                <Normaltekst className={'blokk-xs'}>
+                    Dersom du har søkt om dagpenger må du sende inn meldekort. Det må du gjøre selv om du ikke har fått
+                    svar på søknaden.
+                </Normaltekst>
 
-            <Normaltekst className={'blokk-m'}>
-                Det er innsending av meldekort som gjør at du opprettholder status som registrert arbeidssøker.
-            </Normaltekst>
+                <Normaltekst className={'blokk-m'}>
+                    Det er innsending av meldekort som gjør at du opprettholder status som registrert arbeidssøker.
+                </Normaltekst>
+            </div>
             <Feedback id={'meldekort-kort-01'} />
         </div>
     );
@@ -50,19 +52,21 @@ function Kort1() {
 
 function Kort2() {
     return (
-        <div>
-            <Systemtittel>Introduksjon til meldekort</Systemtittel>
-            <Undertekst className={'blokk-xs'}>2 av 3</Undertekst>
-            <Normaltekst className={'blokk-xs'}>
-                Utbetaling av dagpenger beregnes ut fra opplysninger du har lagt inn på meldekortet.
-            </Normaltekst>
-            <Normaltekst className={'blokk-xs'}>
-                Sender du inn meldekortet etter fristen, kan det føre til at du får mindre utbetalt.
-            </Normaltekst>
-            <Normaltekst className={'blokk-m'}>
-                Lar du være å sende inn meldekort, tolker NAV det som at du ikke ønsker å stå registrert som
-                arbeidssøker.
-            </Normaltekst>
+        <div className="kortflate">
+            <div>
+                <Systemtittel>Introduksjon til meldekort</Systemtittel>
+                <Undertekst className={'blokk-xs'}>2 av 3</Undertekst>
+                <Normaltekst className={'blokk-xs'}>
+                    Utbetaling av dagpenger beregnes ut fra opplysninger du har lagt inn på meldekortet.
+                </Normaltekst>
+                <Normaltekst className={'blokk-xs'}>
+                    Sender du inn meldekortet etter fristen, kan det føre til at du får mindre utbetalt.
+                </Normaltekst>
+                <Normaltekst className={'blokk-m'}>
+                    Lar du være å sende inn meldekort, tolker NAV det som at du ikke ønsker å stå registrert som
+                    arbeidssøker.
+                </Normaltekst>
+            </div>
             <Feedback id={'meldekort-kort-02'} />
         </div>
     );
@@ -70,17 +74,19 @@ function Kort2() {
 
 function Kort3() {
     return (
-        <div>
-            <Systemtittel>Introduksjon til meldekort</Systemtittel>
-            <Undertekst className={'blokk-xs'}>3 av 3</Undertekst>
-            <Normaltekst className={'blokk-xs'}>
-                Dersom du sender inn meldekortet for sent vil dagpengene kunne stanses, og du risikerer at
-                arbeidsoppfølging fra NAV avsluttes.
-            </Normaltekst>
+        <div className="kortflate">
+            <div>
+                <Systemtittel>Introduksjon til meldekort</Systemtittel>
+                <Undertekst className={'blokk-xs'}>3 av 3</Undertekst>
+                <Normaltekst className={'blokk-xs'}>
+                    Dersom du sender inn meldekortet for sent vil dagpengene kunne stanses, og du risikerer at
+                    arbeidsoppfølging fra NAV avsluttes.
+                </Normaltekst>
 
-            <Normaltekst className={'blokk-m'}>
-                Det er derfor viktig at du sender inn meldekortene før fristen går ut.
-            </Normaltekst>
+                <Normaltekst className={'blokk-m'}>
+                    Det er derfor viktig at du sender inn meldekortene før fristen går ut.
+                </Normaltekst>
+            </div>
             <Feedback id={'meldekort-kort-03'} />
         </div>
     );

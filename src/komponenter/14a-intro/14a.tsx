@@ -18,19 +18,20 @@ const INTRO_KEY_14A = '14a-intro';
 
 function Kort1() {
     return (
-        <div>
-            <Systemtittel>Hva slags type hjelp kan jeg få?</Systemtittel>
-            <Undertekst className="blokk-xs">1 av 3</Undertekst>
+        <div className="kortflate">
+            <div>
+                <Systemtittel>Hva slags type hjelp kan jeg få?</Systemtittel>
+                <Undertekst className="blokk-xs">1 av 3</Undertekst>
 
-            <Normaltekst className={'blokk-xs'}>
-                Vi har gjort en vurdering og det ser ut til at du har gode muligheter til å skaffe deg en jobb på
-                egenhånd.
-            </Normaltekst>
+                <Normaltekst className={'blokk-xs'}>
+                    Vi har gjort en vurdering og det ser ut til at du har gode muligheter til å skaffe deg en jobb på
+                    egenhånd.
+                </Normaltekst>
 
-            <Normaltekst className={'blokk-m'}>
-                Vurderingen baserer seg på svarene du har gitt og opplysningene NAV har om din situasjon.
-            </Normaltekst>
-
+                <Normaltekst className={'blokk-m'}>
+                    Vurderingen baserer seg på svarene du har gitt og opplysningene NAV har om din situasjon.
+                </Normaltekst>
+            </div>
             <Feedback id={'Introkort14A-01'} />
         </div>
     );
@@ -38,17 +39,18 @@ function Kort1() {
 
 function Kort2() {
     return (
-        <div>
-            <Systemtittel>Hva slags type hjelp kan jeg få?</Systemtittel>
-            <Undertekst className="blokk-xs">2 av 3</Undertekst>
-            <Normaltekst className={'blokk-xs'}>
-                De 12 første ukene vil ikke NAV ta kontakt. I denne perioden har du selv ansvaret for å se etter og å
-                søke på stillinger.
-            </Normaltekst>
-            <Normaltekst className={'blokk-m'}>
-                Om du ønsker oppfølging før 12 uker, ber vi deg om å si i fra om at du ønsker å bli kontaktet.
-            </Normaltekst>
-
+        <div className="kortflate">
+            <div>
+                <Systemtittel>Hva slags type hjelp kan jeg få?</Systemtittel>
+                <Undertekst className="blokk-xs">2 av 3</Undertekst>
+                <Normaltekst className={'blokk-xs'}>
+                    De 12 første ukene vil ikke NAV ta kontakt. I denne perioden har du selv ansvaret for å se etter og
+                    å søke på stillinger.
+                </Normaltekst>
+                <Normaltekst className={'blokk-m'}>
+                    Om du ønsker oppfølging før 12 uker, ber vi deg om å si i fra om at du ønsker å bli kontaktet.
+                </Normaltekst>
+            </div>
             <Feedback id={'Introkort14A-02'} />
         </div>
     );
@@ -56,25 +58,26 @@ function Kort2() {
 
 function Kort3() {
     return (
-        <div>
-            <Systemtittel>Hva slags type hjelp kan jeg få?</Systemtittel>
-            <Undertekst className="blokk-xs">3 av 3</Undertekst>
-            <Normaltekst className={'blokk-xs'}>De første 12 ukene har du selv ansvaret for</Normaltekst>
-            <ul>
-                <li>
-                    <Normaltekst>Å skaffe deg oversikt over jobbmarkedet </Normaltekst>
-                </li>
-                <li>
-                    <Normaltekst>Å søke på stillinger</Normaltekst>
-                </li>
-            </ul>
+        <div className="kortflate">
+            <div>
+                <Systemtittel>Hva slags type hjelp kan jeg få?</Systemtittel>
+                <Undertekst className="blokk-xs">3 av 3</Undertekst>
+                <Normaltekst className={'blokk-xs'}>De første 12 ukene har du selv ansvaret for</Normaltekst>
+                <ul>
+                    <li>
+                        <Normaltekst>Å skaffe deg oversikt over jobbmarkedet </Normaltekst>
+                    </li>
+                    <li>
+                        <Normaltekst>Å søke på stillinger</Normaltekst>
+                    </li>
+                </ul>
 
-            <Normaltekst className={'blokk-m'}>
-                Du kan finne stillinger på
-                <a href={'https://arbeidsplassen.nav.no/'}>{' arbeidsplassen.no'}</a>
-                <a href={'https://www.finn.no/job/browse.html'}>{', finn.no '}</a> eller andre jobbportaler.
-            </Normaltekst>
-
+                <Normaltekst className={'blokk-m'}>
+                    Du kan finne stillinger på
+                    <a href={'https://arbeidsplassen.nav.no/'}>{' arbeidsplassen.no'}</a>
+                    <a href={'https://www.finn.no/job/browse.html'}>{', finn.no '}</a> eller andre jobbportaler.
+                </Normaltekst>
+            </div>
             <Feedback id={'Introkort14A-03'} />
         </div>
     );
