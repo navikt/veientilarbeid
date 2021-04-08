@@ -177,6 +177,7 @@ class DemoDashboard extends React.Component<{}> {
         const geografiskeTilknytninger = {
             '3808': 'Notodden',
             '010302': 'Grünerløkka',
+            '110302': 'Tasta',
         };
 
         const rettighetsgrupper = {
