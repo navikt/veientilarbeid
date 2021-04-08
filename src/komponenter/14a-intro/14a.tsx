@@ -23,19 +23,19 @@ function Kort1() {
         <div className="kortflate">
             <div>
                 <Systemtittel>Hva slags type hjelp kan jeg få?</Systemtittel>
-                <Undertekst className="blokk-xs">1 av 3</Undertekst>
+                <Undertekst className="blokk-xs">1 av 4</Undertekst>
 
                 <Normaltekst className={'blokk-xs'}>
                     NAV har gjort en vurdering av svarene dine og det ser ut til at du har gode muligheter til å skaffe
                     deg jobb på egenhånd.
                 </Normaltekst>
 
-                <Normaltekst className={'blokk-m'}>
+                <Normaltekst className={'blokk-xs'}>
                     Vurderingen baserer seg på svarene fra registreringen og opplysningene NAV har om din situasjon.
                 </Normaltekst>
                 <Normaltekst className={'blokk-m'}>
-                    De 12 første ukene fra du registrerte deg som arbeidssøker, vil derfor NAV som hovedregel ikke ta
-                    kontakt med deg i forbindelse med jobbsøking.
+                    De 12 første ukene fra du registrerte deg som arbeidssøker, vil NAV som hovedregel ikke ta kontakt i
+                    forbindelse med hjelp rundt jobbsøking.
                 </Normaltekst>
             </div>
             <Feedback id={'Introkort14A-01'} />
@@ -48,19 +48,17 @@ function Kort2() {
         <div className="kortflate">
             <div>
                 <Systemtittel>Hva slags type hjelp kan jeg få?</Systemtittel>
-                <Undertekst className="blokk-xs">2 av 3</Undertekst>
+                <Undertekst className="blokk-xs">2 av 4</Undertekst>
                 <Normaltekst className={'blokk-xs'}>
-                    Du vil motta et ‘Vedtak om oppfølging/bistandsbehov‘ om kort tid som bekrefter vurderingen vi har
-                    gjort om at du kan klare deg på egenhånd de første 12 ukene.
+                    Du vil motta et brev om ditt bistandsbehov* om kort tid.
                 </Normaltekst>
-                <Normaltekst className={'blokk-m'}>
-                    Om du ønsker oppfølging før 12 uker, ber vi deg om å si i fra om dette via Dialogen du finner når du
-                    har lest ferdig denne introduksjonen.
+                <Normaltekst className={'blokk-xs'}>
+                    Brevet vil bekrefte vurderingen vi har gjort om at du har gode muligheter for å klare deg på
+                    egenhånd.
                 </Normaltekst>
 
                 <Normaltekst className={'blokk-m'}>
-                    Merk deg at dette vedtaket ikke er et svar på en eventuell søknad om dagpenger. Behandlingstiden for
-                    dagpenger er opp mot 28 dager fra du har sendt inn søknaden.
+                    Merk deg at dette ikke er et svar på en eventuell søknad om dagpenger.
                 </Normaltekst>
             </div>
             <Feedback id={'Introkort14A-02'} />
@@ -73,24 +71,43 @@ function Kort3() {
         <div className="kortflate">
             <div>
                 <Systemtittel>Hva slags type hjelp kan jeg få?</Systemtittel>
-                <Undertekst className="blokk-xs">3 av 3</Undertekst>
-                <Normaltekst className={'blokk-xs'}>De første 12 ukene har du selv ansvaret for</Normaltekst>
-                <ul>
-                    <li>
-                        <Normaltekst>Å skaffe deg oversikt over jobbmarkedet </Normaltekst>
-                    </li>
-                    <li>
-                        <Normaltekst>Å søke på stillinger</Normaltekst>
-                    </li>
-                </ul>
+                <Undertekst className="blokk-xs">3 av 4</Undertekst>
+                <Normaltekst className={'blokk-xs'}>Du kan få hjelp fra en veileder før 12 uker har gått.</Normaltekst>
+
+                <Normaltekst className={'blokk-xs'}>
+                    Da må du bruke dialogen på slutten av denne introduksjonen.
+                </Normaltekst>
 
                 <Normaltekst className={'blokk-m'}>
-                    Du kan finne stillinger på
-                    <a href={'https://arbeidsplassen.nav.no/'}>{' arbeidsplassen.no'}</a>
-                    <a href={'https://www.finn.no/job/browse.html'}>{', finn.no '}</a> eller andre jobbportaler.
+                    Du kan gi oss beskjed om at du ønsker hjelp nå med en gang, eller se litt an hvordan du syns
+                    jobbsøkingen din går før du tar kontakt.
                 </Normaltekst>
             </div>
             <Feedback id={'Introkort14A-03'} />
+        </div>
+    );
+}
+function Kort4() {
+    return (
+        <div className="kortflate">
+            <div>
+                <Systemtittel>Hva slags type hjelp kan jeg få?</Systemtittel>
+                <Undertekst className="blokk-xs">4 av 4</Undertekst>
+                <Normaltekst className={'blokk-xs'}>
+                    En veileder sin oppgave er å besvare spørsmål og å bistå rundt det å søke stillinger og generelt
+                    tilby hjelp på veien til nytt* arbeid.
+                </Normaltekst>
+
+                <Normaltekst className={'blokk-xs'}>
+                    Husk at veiledere ikke kan svare på spørsmål om søknader, behandling av søknader eller utbetalinger
+                    av dagpenger.
+                </Normaltekst>
+
+                <Normaltekst className={'blokk-m'}>
+                    Dersom du lurer på noe om dagpenger ber vi deg bruke ‘Skriv til oss’.
+                </Normaltekst>
+            </div>
+            <Feedback id={'Introkort14A-04'} />
         </div>
     );
 }
@@ -128,13 +145,12 @@ function Sluttkort(props: EndStateProps) {
         <div className={'sluttkort'}>
             <Systemtittel className={'blokk-xs'}>Trenger du hjelp eller støtte?</Systemtittel>
 
-            <Normaltekst className={'blokk-xs'}>
-                Bruk dialogen dersom du har spørsmål rundt det å søke stillinger, å komme i jobb eller ønsker
-                arbeidsrettet hjelp.
-            </Normaltekst>
+            <Normaltekst className={'blokk-xs'}>Om du ønsker oppfølging før 12 uker må du gi oss beskjed.</Normaltekst>
+
+            <Normaltekst className={'blokk-xs'}>Du er inne i din første uke som registrert arbeidssøker.</Normaltekst>
 
             <Lenkepanel14A amplitudeData={amplitudeData} href={''}>
-                ta kontakt om du lurer på noe
+                Ta kontakt om du ønsker hjelp
             </Lenkepanel14A>
             <Lenke className={'tracking-wide'} href={''} onClick={handleLesIntroPaaNytt}>
                 Les om hva slags hjelp du kan få
@@ -154,6 +170,7 @@ function Intro14A(props: Intro14AProps) {
         <Kort1 />,
         <Kort2 />,
         <Kort3 />,
+        <Kort4 />,
     ];
 
     const startkort = props.harSettIntro ? 1 : 0;

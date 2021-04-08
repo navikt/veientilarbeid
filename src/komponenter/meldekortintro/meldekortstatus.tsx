@@ -14,7 +14,7 @@ import './meldekortstatus.less';
 import { OppfolgingContext } from '../../ducks/oppfolging';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { hentIDag } from '../../utils/chrono';
-import { datoUtenTid, plussDager, datoMedUkedag } from '../../utils/date-utils';
+import { datoMedUkedag, datoUtenTid, plussDager } from '../../utils/date-utils';
 
 function Meldekortstatus() {
     const { data: meldekortData } = React.useContext(Meldekort.MeldekortContext);
@@ -38,7 +38,7 @@ function Meldekortstatus() {
                 <MeldekortAdvarsel dagerEtterFastsattMeldedag={dagerEtterFastsattMeldedag} />
             ) : (
                 <>
-                    <Normaltekst>Du kan nå sende inn meldekort.</Normaltekst>
+                    <Normaltekst className={'blokk-xs'}>Du kan nå sende inn meldekort.</Normaltekst>
                     <Normaltekst>{`Fristen er ${datoMedUkedag(inaktiveringsDato)}, klokken 23.00.`}</Normaltekst>
                 </>
             )}

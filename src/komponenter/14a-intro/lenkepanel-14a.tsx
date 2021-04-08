@@ -33,7 +33,7 @@ const Lenkepanel14A: React.FC<Lenkepanel14AProps> = (props) => {
         >
             <div className="lenkepanel__innhold">
                 <div>
-                    <Element>Dialog</Element>
+                    <Element>Start en dialog med veileder</Element>
                     <Normaltekst>{props.children}</Normaltekst>
                 </div>
             </div>
