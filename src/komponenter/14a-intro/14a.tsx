@@ -103,6 +103,7 @@ interface EndStateProps {
 interface Intro14AProps {
     amplitudeData: AmplitudeData;
     ferdigMedIntroCB: () => void;
+    harSettIntro: boolean;
 }
 
 function Sluttkort(props: EndStateProps) {
@@ -155,7 +156,8 @@ function Intro14A(props: Intro14AProps) {
         <Kort3 />,
     ];
 
-    const [gjeldendeKortIndex, setGjeldendeKortIndex] = useState(0);
+    const startkort = props.harSettIntro ? 1 : 0;
+    const [gjeldendeKortIndex, setGjeldendeKortIndex] = useState(startkort);
     const forrigeKortRef = useRef(gjeldendeKortIndex);
 
     function nesteKort() {
@@ -206,7 +208,7 @@ function Intro14A(props: Intro14AProps) {
             </div>
             {gjeldendeKortIndex !== 0 ? (
                 <div className={'knapper'}>
-                    <Tilbakeknapp mini disabled={gjeldendeKortIndex === 0} onClick={forrigeKort}>
+                    <Tilbakeknapp mini disabled={gjeldendeKortIndex === 1} onClick={forrigeKort}>
                         Forrige
                     </Tilbakeknapp>
                     {gjeldendeKortIndex !== introKort.length - 1 ? (
@@ -286,7 +288,11 @@ function Intro14AWrapper() {
             <Panel className={'fjorten-A-intro'} border>
                 <div className={'overall-wrapper'}>
                     {skalViseIntro ? (
-                        <Intro14A ferdigMedIntroCB={ferdigMedIntroCB} amplitudeData={amplitudeData} />
+                        <Intro14A
+                            harSettIntro={harSettIntro}
+                            ferdigMedIntroCB={ferdigMedIntroCB}
+                            amplitudeData={amplitudeData}
+                        />
                     ) : (
                         <Sluttkort amplitudeData={amplitudeData} lesIntroPaaNyttCB={lesIntroPaaNyttCB} />
                     )}

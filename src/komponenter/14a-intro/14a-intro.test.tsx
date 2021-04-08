@@ -40,7 +40,7 @@ describe('tester onboarding komponenten for 14a-intro', () => {
         expect(screen.getByText(/Trenger du hjelp eller støtte/i)).toBeInTheDocument();
     });
 
-    test('komponenten starter på kort 1 når man er på uke 0', () => {
+    test('komponenten starter i pre-state når man er på uke 0', () => {
         render(<Intro14AWrapper />, {
             wrapper: contextProviders({
                 ...providerProps,
@@ -50,8 +50,7 @@ describe('tester onboarding komponenten for 14a-intro', () => {
                 },
             }),
         });
-        expect(screen.getByText(/Hva slags type hjelp kan jeg få/i)).toBeInTheDocument();
-        expect(screen.getByText(/1 av 3/i)).toBeInTheDocument();
+        expect(screen.getByText(/gå i gang/i)).toBeInTheDocument();
     });
 
     test('man kan navigere seg gjennom kortene', () => {
@@ -64,6 +63,9 @@ describe('tester onboarding komponenten for 14a-intro', () => {
                 },
             }),
         });
+        const startKnapp = screen.getByRole('button', { name: /gå i gang/i });
+        expect(screen.getByText(/minutter lesetid/i)).toBeInTheDocument();
+        userEvent.click(startKnapp);
         const forrigeKnapp = screen.getByRole('button', { name: /forrige/i });
         const nesteKnapp = screen.getByRole('button', { name: /neste/i });
         // Sjekker at vi er på første kortet
@@ -86,7 +88,7 @@ describe('tester onboarding komponenten for 14a-intro', () => {
         userEvent.click(avsluttKnapp);
         expect(screen.getByText(/Trenger du hjelp eller støtte/i)).toBeInTheDocument();
         // sjekker les igjen knapp
-        const lesIgjenKnapp = screen.getByRole('button', { name: /les om hva slags hjelp du kan få/i });
+        const lesIgjenKnapp = screen.getByText(/les om hva slags hjelp du kan få/i);
         userEvent.click(lesIgjenKnapp);
         expect(screen.getByText(/Hva slags type hjelp kan jeg få/i)).toBeInTheDocument();
         expect(screen.getByText(/1 av 3/i)).toBeInTheDocument();
