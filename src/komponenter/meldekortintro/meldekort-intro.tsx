@@ -131,20 +131,22 @@ function Sluttkort(props: EndStateProps) {
         if (!meldekortIkkeKlarForLevering) return null;
 
         return (
-            <div className={'sluttkort'}>
-                <Systemtittel className={'blokk-xs'}>Innsending av meldekort</Systemtittel>
-                <Normaltekst className={'blokk-xs'}>
-                    {`Meldekort for uke 
-                    ${hentISOUke(meldekortIkkeKlarForLevering.meldeperiode?.fra!!)} og ${hentISOUke(
-                        meldekortIkkeKlarForLevering.meldeperiode?.til!!
-                    )} blir tilgjengelig for innsending fra ${datoMedUkedag(
-                        foersteSendedagForMeldekort(meldekortIkkeKlarForLevering)
-                    )}`}
-                </Normaltekst>
+            <div className={'kortflate'}>
                 <div>
-                    <LenkepanelMeldekort amplitudeData={amplitudeData} href={omMeldekortLenke}>
-                        Les om meldekort
-                    </LenkepanelMeldekort>
+                    <Systemtittel className={'blokk-xs'}>Innsending av meldekort</Systemtittel>
+                    <Normaltekst className={'blokk-xs'}>
+                        {`Meldekort for uke 
+                        ${hentISOUke(meldekortIkkeKlarForLevering.meldeperiode?.fra!!)} og ${hentISOUke(
+                            meldekortIkkeKlarForLevering.meldeperiode?.til!!
+                        )} blir tilgjengelig for innsending fra ${datoMedUkedag(
+                            foersteSendedagForMeldekort(meldekortIkkeKlarForLevering)
+                        )}`}
+                    </Normaltekst>
+                    <div>
+                        <LenkepanelMeldekort amplitudeData={amplitudeData} href={omMeldekortLenke}>
+                            Les om meldekort
+                        </LenkepanelMeldekort>
+                    </div>
                 </div>
                 <Lenke href={''} onClick={handleLesIntroPaaNytt}>
                     Vis introduksjon til meldekort
@@ -155,15 +157,16 @@ function Sluttkort(props: EndStateProps) {
 
     if (meldekortForLevering.length > 1) {
         return (
-            <div className={'sluttkort'}>
-                <Systemtittel className={'blokk-xs'}>Innsending av meldekort</Systemtittel>
-
-                <div className={'onboarding-meldekortvarsel-container'}>
-                    <Normaltekst>Du har {meldekortForLevering.length} meldekort som kan sendes inn.</Normaltekst>
+            <div className={'kortflate'}>
+                <div>
+                    <Systemtittel className={'blokk-xs'}>Innsending av meldekort</Systemtittel>
+                    <div className={'onboarding-meldekortvarsel-container'}>
+                        <Normaltekst>Du har {meldekortForLevering.length} meldekort som kan sendes inn.</Normaltekst>
+                    </div>
+                    <LenkepanelMeldekort amplitudeData={amplitudeData} href={meldekortLenke}>
+                        Send inn
+                    </LenkepanelMeldekort>
                 </div>
-                <LenkepanelMeldekort amplitudeData={amplitudeData} href={meldekortLenke}>
-                    Send inn
-                </LenkepanelMeldekort>
                 <Lenke href={''} onClick={handleLesIntroPaaNytt}>
                     Vis introduksjon til meldekort
                 </Lenke>
@@ -173,18 +176,18 @@ function Sluttkort(props: EndStateProps) {
     const foerstkommendeMeldekort = meldekortForLevering[0];
 
     return (
-        <div className={'sluttkort'}>
-            <Systemtittel className={'blokk-xs'}>Innsending av meldekort</Systemtittel>
-
-            <Meldekortstatus />
-
+        <div className={'kortflate'}>
             <div>
-                <LenkepanelMeldekort amplitudeData={amplitudeData} href={meldekortLenke}>
-                    {`Send inn for uke 
-                    ${hentISOUke(foerstkommendeMeldekort.meldeperiode?.fra!!)} og ${hentISOUke(
-                        foerstkommendeMeldekort.meldeperiode?.til!!
-                    )}`}
-                </LenkepanelMeldekort>
+                <Systemtittel className={'blokk-xs'}>Innsending av meldekort</Systemtittel>
+                <Meldekortstatus />
+                <div>
+                    <LenkepanelMeldekort amplitudeData={amplitudeData} href={meldekortLenke}>
+                        {`Send inn for uke 
+                        ${hentISOUke(foerstkommendeMeldekort.meldeperiode?.fra!!)} og ${hentISOUke(
+                            foerstkommendeMeldekort.meldeperiode?.til!!
+                        )}`}
+                    </LenkepanelMeldekort>
+                </div>
             </div>
             <Lenke className={'tracking-wide'} href={''} onClick={handleLesIntroPaaNytt}>
                 Vis introduksjon til meldekort
