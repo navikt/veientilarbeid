@@ -21,7 +21,7 @@ function PreState(props: PreStateProps) {
                     <Undertekst>{props.lesetid} minutter lesetid</Undertekst>
                 </div>
                 <Hovedknapp className={'mb-2'} mini onClick={props.startIntroCB}>
-                    <span>Gå i gang</span>
+                    <span>Start introduksjonen</span>
                     <Next />
                 </Hovedknapp>
             </div>

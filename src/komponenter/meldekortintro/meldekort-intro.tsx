@@ -204,7 +204,7 @@ function Sluttkort(props: EndStateProps) {
 function MeldekortIntro(props: MeldekortIntroProps) {
     const introKort = [
         <PreState
-            tittel={'Introduksjon til hvordan meldekort fungerer'}
+            tittel={'Hva er meldekort og hvordan fungerer de?'}
             lesetid={'2'}
             startIntroCB={nesteKort}
             hoppOverIntroCB={hoppOverIntro}
