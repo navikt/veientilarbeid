@@ -184,7 +184,7 @@ function Intro14A(props: Intro14AProps) {
         <PreState
             hoppOverIntroCB={hoppOverIntro}
             startIntroCB={nesteKort}
-            lesetid={'5'}
+            lesetid={'3'}
             tittel={'Introduksjon om hjelp til jobbsøking fra NAV'}
         />,
         <Kort1 />,

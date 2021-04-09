@@ -197,7 +197,7 @@ function MeldekortIntro(props: MeldekortIntroProps) {
     const introKort = [
         <PreState
             tittel={'Introduksjon til hvordan meldekort fungerer'}
-            lesetid={'3'}
+            lesetid={'2'}
             startIntroCB={nesteKort}
             hoppOverIntroCB={hoppOverIntro}
         />,
