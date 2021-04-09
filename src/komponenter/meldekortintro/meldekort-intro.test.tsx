@@ -75,7 +75,7 @@ describe('tester onboarding komponenten for meldekort', () => {
     test('funksjonen for neste og forrige kort fungerer for nyregistrerte', () => {
         const props: ProviderProps = { ...providerProps, amplitude: { ukerRegistrert: 0 } };
         render(<MeldekortIntroWrapper />, { wrapper: contextProviders(props) });
-        const startKnapp = screen.getByText(/Gå i gang/i);
+        const startKnapp = screen.getByText(/start introduksjon/i);
         expect(screen.getByText(/2 minutter lesetid/i)).toBeInTheDocument();
         userEvent.click(startKnapp);
         const nesteknapp = screen.getByText(/neste/i);

@@ -51,7 +51,7 @@ describe('tester onboarding komponenten for 14a-intro', () => {
                 },
             }),
         });
-        expect(screen.getByText(/gå i gang/i)).toBeInTheDocument();
+        expect(screen.getByText(/start introduksjonen/i)).toBeInTheDocument();
     });
 
     test('man kan navigere seg gjennom kortene', () => {
@@ -64,7 +64,7 @@ describe('tester onboarding komponenten for 14a-intro', () => {
                 },
             }),
         });
-        const startKnapp = screen.getByRole('button', { name: /gå i gang/i });
+        const startKnapp = screen.getByRole('button', { name: /start introduksjonen/i });
         expect(screen.getByText(/3 minutter lesetid/i)).toBeInTheDocument();
         userEvent.click(startKnapp);
         const forrigeKnapp = screen.getByRole('button', { name: /forrige/i });
