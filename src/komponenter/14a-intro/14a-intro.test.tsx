@@ -70,7 +70,7 @@ describe('tester onboarding komponenten for 14a-intro', () => {
         const forrigeKnapp = screen.getByRole('button', { name: /forrige/i });
         const nesteKnapp = screen.getByRole('button', { name: /neste/i });
         // Sjekker at vi er på første kortet
-        expect(screen.getByText(/Hva slags type hjelp kan jeg få/i)).toBeInTheDocument();
+        expect(screen.getByText(/Hva slags hjelp kan jeg få/i)).toBeInTheDocument();
         expect(screen.getByText(/1 av 4/i)).toBeInTheDocument();
         // sjekker at vi ikke kan gå bakover fra første kort
         userEvent.click(forrigeKnapp);
@@ -91,9 +91,9 @@ describe('tester onboarding komponenten for 14a-intro', () => {
         userEvent.click(avsluttKnapp);
         expect(screen.getByText(/Trenger du hjelp eller støtte/i)).toBeInTheDocument();
         // sjekker les igjen knapp
-        const lesIgjenKnapp = screen.getByText(/les intro om hva slags hjelp du kan få/i);
+        const lesIgjenKnapp = screen.getByText(/les om hva slags hjelp du kan få/i);
         userEvent.click(lesIgjenKnapp);
-        expect(screen.getByText(/Hva slags type hjelp kan jeg få/i)).toBeInTheDocument();
+        expect(screen.getByText(/Hva slags hjelp kan jeg få/i)).toBeInTheDocument();
         expect(screen.getByText(/1 av 4/i)).toBeInTheDocument();
     });
 });

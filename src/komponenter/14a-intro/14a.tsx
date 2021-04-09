@@ -39,7 +39,7 @@ function Kort1() {
     return (
         <div className="kortflate">
             <div>
-                <Systemtittel>Hva slags type hjelp kan jeg få?</Systemtittel>
+                <Systemtittel>Hva slags hjelp kan jeg få?</Systemtittel>
                 <Undertekst className="blokk-xs">1 av 4</Undertekst>
 
                 <Normaltekst className={'blokk-xs'}>
@@ -64,14 +64,10 @@ function Kort2() {
     return (
         <div className="kortflate">
             <div>
-                <Systemtittel>Hva slags type hjelp kan jeg få?</Systemtittel>
+                <Systemtittel>Hva slags hjelp kan jeg få?</Systemtittel>
                 <Undertekst className="blokk-xs">2 av 4</Undertekst>
                 <Normaltekst className={'blokk-xs'}>
-                    Du vil motta et brev om ditt bistandsbehov om kort tid.
-                </Normaltekst>
-                <Normaltekst className={'blokk-xs'}>
-                    Brevet vil bekrefte vurderingen vi har gjort om at du har gode muligheter for å klare deg på
-                    egenhånd.
+                    Du vil i løpet av den første uken motta et brev om ditt bistandsbehov.
                 </Normaltekst>
 
                 <Normaltekst className={'blokk-m'}>
@@ -87,7 +83,7 @@ function Kort3() {
     return (
         <div className="kortflate">
             <div>
-                <Systemtittel>Hva slags type hjelp kan jeg få?</Systemtittel>
+                <Systemtittel>Hva slags hjelp kan jeg få?</Systemtittel>
                 <Undertekst className="blokk-xs">3 av 4</Undertekst>
                 <Normaltekst className={'blokk-xs'}>Du kan få hjelp fra en veileder før 12 uker har gått.</Normaltekst>
 
@@ -108,20 +104,20 @@ function Kort4() {
     return (
         <div className="kortflate">
             <div>
-                <Systemtittel>Hva slags type hjelp kan jeg få?</Systemtittel>
+                <Systemtittel>Hva slags hjelp kan jeg få?</Systemtittel>
                 <Undertekst className="blokk-xs">4 av 4</Undertekst>
                 <Normaltekst className={'blokk-xs'}>
-                    En veileder sin oppgave er å besvare spørsmål og å bistå rundt det å søke stillinger og generelt
-                    tilby hjelp på veien til nytt* arbeid.
+                    En veileder sin oppgave er å besvare spørsmål, bistå rundt det å søke stillinger og tilby hjelp på
+                    veien til arbeid.
                 </Normaltekst>
 
                 <Normaltekst className={'blokk-xs'}>
-                    Husk at veiledere ikke kan svare på spørsmål om søknader, behandling av søknader eller utbetalinger
-                    av dagpenger.
+                    Veiledere kan <strong>ikke</strong> svare på spørsmål om søknader, behandling av søknader eller
+                    utbetalinger av dagpenger.
                 </Normaltekst>
 
                 <Normaltekst className={'blokk-m'}>
-                    Dersom du lurer på noe om dagpenger ber vi deg bruke ‘Skriv til oss’.
+                    Dersom du lurer på noe om dagpenger ber vi deg bruke «Skriv til oss».
                 </Normaltekst>
             </div>
             <Feedback id={'Introkort14A-04'} />
@@ -172,8 +168,14 @@ function Sluttkort(props: EndStateProps) {
             <Lenkepanel14A amplitudeData={amplitudeData} href={''}>
                 Ta kontakt om du ønsker hjelp
             </Lenkepanel14A>
+
+            <Normaltekst className={'blokk-m'}>
+                Har du spørsmål om dagpenger må du bruke{' '}
+                <Lenke href="https://tjenester.nav.no/mininnboks/sporsmal/skriv/ARBD">Skriv til oss</Lenke>
+            </Normaltekst>
+
             <Lenke className={'tracking-wide'} href={''} onClick={handleLesIntroPaaNytt}>
-                Les intro om hva slags hjelp du kan få
+                Les om hva slags hjelp du kan få
             </Lenke>
         </div>
     );
