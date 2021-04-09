@@ -25,7 +25,7 @@ function PreState(props: PreStateProps) {
                     <Next />
                 </Hovedknapp>
             </div>
-            <Lenke onClick={props.hoppOverIntroCB} href={''}>
+            <Lenke onClick={props.hoppOverIntroCB} href={''} className="tracking-wide">
                 Jeg trenger ikke lese denne introduksjonen
             </Lenke>
         </div>

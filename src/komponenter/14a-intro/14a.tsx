@@ -173,7 +173,7 @@ function Sluttkort(props: EndStateProps) {
                 Ta kontakt om du ønsker hjelp
             </Lenkepanel14A>
             <Lenke className={'tracking-wide'} href={''} onClick={handleLesIntroPaaNytt}>
-                Les om hva slags hjelp du kan få
+                Les intro om hva slags hjelp du kan få
             </Lenke>
         </div>
     );
