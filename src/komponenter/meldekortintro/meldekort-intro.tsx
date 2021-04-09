@@ -250,7 +250,10 @@ function MeldekortIntro(props: MeldekortIntroProps) {
 
     useEffect(() => {
         if (forrigeKortRef.current !== gjeldendeKortIndex) {
-            const handling = `Går fra ${forrigeKortRef.current + 1} til kort ${gjeldendeKortIndex + 1}`;
+            const handling =
+                forrigeKortRef.current === 0
+                    ? `Starter meldekortintroduksjonen`
+                    : `Går fra ${forrigeKortRef.current} til kort ${gjeldendeKortIndex}`;
             amplitudeLogger('veientilarbeid.intro', {
                 intro: 'meldekort',
                 handling,
