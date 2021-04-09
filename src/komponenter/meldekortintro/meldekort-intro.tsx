@@ -39,12 +39,11 @@ function Kort1() {
                 </Normaltekst>
 
                 <Normaltekst className={'blokk-xs'}>
-                    Dersom du har søkt om dagpenger må du sende inn meldekort. Det må du gjøre selv om du ikke har fått
-                    svar på søknaden.
+                    Det er innsending av meldekort som gjør at du opprettholder status som registrert arbeidssøker.
                 </Normaltekst>
 
                 <Normaltekst className={'blokk-m'}>
-                    Det er innsending av meldekort som gjør at du opprettholder status som registrert arbeidssøker.
+                    Du må også sende meldekort i perioden du venter svar på en innsendt søknad om dagpenger.
                 </Normaltekst>
             </div>
             <Feedback id={'meldekort-kort-01'} />
