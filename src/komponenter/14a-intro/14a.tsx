@@ -10,6 +10,7 @@ import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
 import './14a-intro.less';
 import { fjernFraLocalStorage, hentFraLocalStorage, settILocalStorage } from '../../utils/localStorage-utils';
+import { visEksperiment } from '../../utils/samarbeidskontor-utils';
 import Feedback from '../feedback/feedback';
 import Lenkepanel14A from './lenkepanel-14a';
 import { FeaturetoggleContext } from '../../ducks/feature-toggles';
@@ -273,11 +274,18 @@ function kanVise14AStatus({
     oppfolgingData: Oppfolging.Data;
     registreringData: Brukerregistrering.Data | null;
 }): boolean {
+    const skalSeEksperiment = visEksperiment({
+        geografiskTilknytning: brukerInfoData.geografiskTilknytning,
+        eksperiment: 'onboarding14a',
+    });
     const erAAP = brukerInfoData.rettighetsgruppe === 'AAP';
     const brukerregistreringData = registreringData?.registrering ?? null;
 
     return (
-        !erAAP && erStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData }) && !oppfolgingData.kanReaktiveres
+        !erAAP &&
+        skalSeEksperiment &&
+        erStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData }) &&
+        !oppfolgingData.kanReaktiveres
     );
 }
 

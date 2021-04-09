@@ -10,6 +10,7 @@ import { Formidlingsgruppe, Servicegruppe } from '../../ducks/oppfolging';
 const providerProps: ProviderProps = {
     brukerInfo: {
         rettighetsgruppe: 'DAGP',
+        geografiskTilknytning: '110302',
     },
     amplitude: {
         ukerRegistrert: 2,
@@ -26,7 +27,7 @@ describe('tester onboarding komponenten for 14a-intro', () => {
         expect(container).toBeEmptyDOMElement();
     });
 
-    test('komponenten vises når featuretoggle er satt', () => {
+    test('komponenten vises når featuretoggle er satt og men hører til kontor som deltar på eksperimentet', () => {
         const { container } = render(<Intro14AWrapper />, {
             wrapper: contextProviders({ ...providerProps, featureToggle: { 'veientilarbeid.14a-intro': true } }),
         });
