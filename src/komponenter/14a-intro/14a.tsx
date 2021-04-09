@@ -5,6 +5,7 @@ import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import * as Brukerregistrering from '../../ducks/brukerregistrering';
 import * as Oppfolging from '../../ducks/oppfolging';
+import { OppfolgingContext, Servicegruppe } from '../../ducks/oppfolging';
 import * as BrukerInfo from '../../ducks/bruker-info';
 import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
@@ -61,13 +62,20 @@ function Kort1() {
 }
 
 function Kort2() {
+    const { servicegruppe } = React.useContext(OppfolgingContext).data;
+
     return (
         <div className="kortflate">
             <div>
                 <Systemtittel>Hva slags hjelp kan jeg få?</Systemtittel>
                 <Undertekst className="blokk-xs">2 av 4</Undertekst>
                 <Normaltekst className={'blokk-xs'}>
-                    Du vil i løpet av den første uken motta et brev om ditt bistandsbehov.
+                    Du vil i løpet av den første uken motta et
+                    {servicegruppe === Servicegruppe.IKVAL ? (
+                        <Lenke href={'https://mininnboks.nav.no/'}> brev om ditt bistandsbehov.</Lenke>
+                    ) : (
+                        ' brev om ditt bistandsbehov.'
+                    )}
                 </Normaltekst>
 
                 <Normaltekst className={'blokk-m'}>
