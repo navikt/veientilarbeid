@@ -18,6 +18,22 @@ import PreState from '../meldekortintro/pre-state';
 
 const INTRO_KEY_14A = '14a-intro';
 
+const ordenstall = {
+    0: 'første',
+    1: 'andre',
+    2: 'tredje',
+    3: 'fjerde',
+    4: 'femte',
+    5: 'sjette',
+    6: 'sjuende',
+    7: 'åttende',
+    8: 'niende',
+    9: 'tiende',
+    10: 'ellevte',
+    11: 'tolvte',
+    12: 'trettende',
+};
+
 function Kort1() {
     return (
         <div className="kortflate">
@@ -50,7 +66,7 @@ function Kort2() {
                 <Systemtittel>Hva slags type hjelp kan jeg få?</Systemtittel>
                 <Undertekst className="blokk-xs">2 av 4</Undertekst>
                 <Normaltekst className={'blokk-xs'}>
-                    Du vil motta et brev om ditt bistandsbehov* om kort tid.
+                    Du vil motta et brev om ditt bistandsbehov om kort tid.
                 </Normaltekst>
                 <Normaltekst className={'blokk-xs'}>
                     Brevet vil bekrefte vurderingen vi har gjort om at du har gode muligheter for å klare deg på
@@ -125,6 +141,7 @@ interface Intro14AProps {
 
 function Sluttkort(props: EndStateProps) {
     const { amplitudeData } = props;
+    const { ukerRegistrert } = amplitudeData;
 
     const handleKlikkLesIntro = () => {
         amplitudeLogger('veientilarbeid.intro', {
@@ -147,7 +164,9 @@ function Sluttkort(props: EndStateProps) {
 
             <Normaltekst className={'blokk-xs'}>Om du ønsker oppfølging før 12 uker må du gi oss beskjed.</Normaltekst>
 
-            <Normaltekst className={'blokk-xs'}>Du er inne i din første uke som registrert arbeidssøker.</Normaltekst>
+            <Normaltekst className={'blokk-xs'}>
+                Du er inne i din {ordenstall[ukerRegistrert]} uke som registrert arbeidssøker.
+            </Normaltekst>
 
             <Lenkepanel14A amplitudeData={amplitudeData} href={''}>
                 Ta kontakt om du ønsker hjelp
