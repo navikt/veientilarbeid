@@ -1,4 +1,5 @@
 import React from 'react';
+import { Dialog } from '@navikt/ds-icons/cjs';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import LenkepanelBase from 'nav-frontend-lenkepanel';
@@ -32,7 +33,10 @@ const Lenkepanel14A: React.FC<Lenkepanel14AProps> = (props) => {
             className={'fjorten-A-send-inn-kort'}
         >
             <div className="lenkepanel__innhold">
-                <div>
+                <span style={{ fontSize: '2rem' }}>
+                    <Dialog />
+                </span>
+                <div className="ml-1">
                     <Element>Start en dialog med veileder</Element>
                     <Normaltekst>{props.children}</Normaltekst>
                 </div>
