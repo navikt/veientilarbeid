@@ -26,7 +26,7 @@ function PreState(props: PreStateProps) {
                 </Hovedknapp>
             </div>
             <Lenke onClick={props.hoppOverIntroCB} href={''}>
-                Hopp over intro
+                Jeg trenger ikke lese denne introduksjonen
             </Lenke>
         </div>
     );
