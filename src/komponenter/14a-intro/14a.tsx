@@ -205,10 +205,11 @@ function Sluttkort(props: EndStateProps) {
                     Skriv til oss
                 </Lenke>
             </Normaltekst>
-
-            <Lenke className={'tracking-wide'} href={''} onClick={handleLesIntroPaaNytt}>
-                Les om hva slags hjelp du kan få
-            </Lenke>
+            <Normaltekst>
+                <Lenke className={'tracking-wide'} href={''} onClick={handleLesIntroPaaNytt}>
+                    Les om hva slags hjelp du kan få
+                </Lenke>
+            </Normaltekst>
         </div>
     );
 }

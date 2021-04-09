@@ -148,9 +148,11 @@ function Sluttkort(props: EndStateProps) {
                         </LenkepanelMeldekort>
                     </div>
                 </div>
-                <Lenke href={''} onClick={handleLesIntroPaaNytt}>
-                    Vis introduksjon til meldekort
-                </Lenke>
+                <Normaltekst>
+                    <Lenke href={''} onClick={handleLesIntroPaaNytt}>
+                        Vis introduksjon til meldekort
+                    </Lenke>
+                </Normaltekst>
             </div>
         );
     }
@@ -167,9 +169,11 @@ function Sluttkort(props: EndStateProps) {
                         Send inn
                     </LenkepanelMeldekort>
                 </div>
-                <Lenke href={''} onClick={handleLesIntroPaaNytt}>
-                    Vis introduksjon til meldekort
-                </Lenke>
+                <Normaltekst>
+                    <Lenke href={''} onClick={handleLesIntroPaaNytt}>
+                        Vis introduksjon til meldekort
+                    </Lenke>
+                </Normaltekst>
             </div>
         );
     }
@@ -189,9 +193,11 @@ function Sluttkort(props: EndStateProps) {
                     </LenkepanelMeldekort>
                 </div>
             </div>
-            <Lenke className={'tracking-wide'} href={''} onClick={handleLesIntroPaaNytt}>
-                Vis introduksjon til meldekort
-            </Lenke>
+            <Normaltekst>
+                <Lenke className={'tracking-wide'} href={''} onClick={handleLesIntroPaaNytt}>
+                    Vis introduksjon til meldekort
+                </Lenke>
+            </Normaltekst>
         </div>
     );
 }
