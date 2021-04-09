@@ -63,6 +63,15 @@ function Kort1() {
 
 function Kort2() {
     const { servicegruppe } = React.useContext(OppfolgingContext).data;
+    const amplitudeData = React.useContext(AmplitudeContext);
+
+    const handleLesBrev = () => {
+        amplitudeLogger('veientilarbeid.intro', {
+            intro: '14a',
+            handling: 'Går til min innboks',
+            ...amplitudeData,
+        });
+    };
 
     return (
         <div className="kortflate">
@@ -70,11 +79,16 @@ function Kort2() {
                 <Systemtittel>Hva slags hjelp kan jeg få?</Systemtittel>
                 <Undertekst className="blokk-xs">2 av 4</Undertekst>
                 <Normaltekst className={'blokk-xs'}>
-                    Du vil i løpet av den første uken motta et
                     {servicegruppe === Servicegruppe.IKVAL ? (
-                        <Lenke href={'https://mininnboks.nav.no/'}> brev om ditt bistandsbehov.</Lenke>
+                        <>
+                            Du har mottatt brevet{' '}
+                            <Lenke onClick={handleLesBrev} href={'https://mininnboks.nav.no/'}>
+                                «NAV har vurdert dine muligheter»
+                            </Lenke>
+                            .
+                        </>
                     ) : (
-                        ' brev om ditt bistandsbehov.'
+                        'Du vil i løpet av den første uken motta brevet «NAV har vurdert dine muligheter».'
                     )}
                 </Normaltekst>
 
