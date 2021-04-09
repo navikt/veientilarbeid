@@ -4,10 +4,8 @@ const BUILD_PATH = path.resolve(__dirname, './build');
 
 const removeCssHashPlugin = {
     overrideWebpackConfig: ({ webpackConfig, cracoConfig, pluginOptions, context: { env, paths } }) => {
-
         const plugins = webpackConfig.plugins;
-        plugins.forEach(plugin => {
-
+        plugins.forEach((plugin) => {
             const options = plugin.options;
 
             if (!options) {
@@ -23,35 +21,31 @@ const removeCssHashPlugin = {
                     men ved oppgradering av craco og reactscripts fra hhv. 3.5.0 til 5.5.0 og 2.1.8 til 3.2.0
                     fungerte ikke dette lenger. Breaking changes eller bug i react-scripts eller craco?
                  */
-                options.moduleFilename = () => "static/css/[name].css";
+                options.moduleFilename = () => 'static/css/[name].css';
             }
-
         });
 
         return webpackConfig;
-    }
+    },
 };
 
 module.exports = {
-    plugins: [
-        { plugin: CracoLessPlugin },
-        { plugin: removeCssHashPlugin },
-    ],
+    plugins: [{ plugin: CracoLessPlugin }, { plugin: removeCssHashPlugin }],
     webpack: {
         configure: {
             optimization: {
                 splitChunks: {
                     cacheGroups: {
                         default: false,
-                        vendors: false
+                        vendors: false,
                     },
                 },
-                runtimeChunk: false
+                runtimeChunk: false,
             },
             output: {
                 path: BUILD_PATH,
                 filename: 'static/js/[name].js',
             },
-        }
-    }
+        },
+    },
 };

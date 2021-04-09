@@ -82,8 +82,8 @@ const Registrert = () => {
             ) : null}
             {kanViseMeldekortintro ? (
                 <div className={'intro-wrapper'}>
-                    <MeldekortIntroWrapper />
                     <Intro14AWrapper />
+                    <MeldekortIntroWrapper />
                 </div>
             ) : (
                 <Meldekortstatus />

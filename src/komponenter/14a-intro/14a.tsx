@@ -1,54 +1,101 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
+import { Normaltekst, Systemtittel, Undertekst } from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
 import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import * as Brukerregistrering from '../../ducks/brukerregistrering';
 import * as Oppfolging from '../../ducks/oppfolging';
+import { OppfolgingContext, Servicegruppe } from '../../ducks/oppfolging';
 import * as BrukerInfo from '../../ducks/bruker-info';
 import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
 import './14a-intro.less';
-import { EtikettInfo } from 'nav-frontend-etiketter';
 import { fjernFraLocalStorage, hentFraLocalStorage, settILocalStorage } from '../../utils/localStorage-utils';
+import { visEksperiment } from '../../utils/samarbeidskontor-utils';
 import Feedback from '../feedback/feedback';
 import Lenkepanel14A from './lenkepanel-14a';
 import { FeaturetoggleContext } from '../../ducks/feature-toggles';
+import Lenke from 'nav-frontend-lenker';
+import PreState from '../meldekortintro/pre-state';
 
 const INTRO_KEY_14A = '14a-intro';
 
+const ordenstall = {
+    0: 'første',
+    1: 'andre',
+    2: 'tredje',
+    3: 'fjerde',
+    4: 'femte',
+    5: 'sjette',
+    6: 'sjuende',
+    7: 'åttende',
+    8: 'niende',
+    9: 'tiende',
+    10: 'ellevte',
+    11: 'tolvte',
+    12: 'trettende',
+};
+
 function Kort1() {
     return (
-        <div>
-            <Systemtittel className={'blokk-xs'}>Hva slags type hjelp kan jeg få?</Systemtittel>
+        <div className="kortflate">
+            <div>
+                <Systemtittel>Hva slags hjelp kan jeg få?</Systemtittel>
+                <Undertekst className="blokk-xs">1 av 4</Undertekst>
 
-            <Normaltekst className={'blokk-xs'}>
-                Vi har gjort en vurdering og det ser ut til at du har gode muligheter til å skaffe deg en jobb på
-                egenhånd.
-            </Normaltekst>
+                <Normaltekst className={'blokk-xs'}>
+                    NAV har gjort en vurdering av svarene dine og det ser ut til at du har gode muligheter til å skaffe
+                    deg jobb på egenhånd.
+                </Normaltekst>
 
-            <Normaltekst className={'blokk-xs'}>
-                Vurderingen baserer seg på svarene du har gitt og opplysningene NAV har om din situasjon.
-            </Normaltekst>
-
-            <hr />
+                <Normaltekst className={'blokk-xs'}>
+                    Vurderingen baserer seg på svarene fra registreringen og opplysningene NAV har om din situasjon.
+                </Normaltekst>
+                <Normaltekst className={'blokk-m'}>
+                    De 12 første ukene fra du registrerte deg som arbeidssøker, vil NAV som hovedregel ikke ta kontakt i
+                    forbindelse med hjelp rundt jobbsøking.
+                </Normaltekst>
+            </div>
             <Feedback id={'Introkort14A-01'} />
         </div>
     );
 }
 
 function Kort2() {
+    const { servicegruppe } = React.useContext(OppfolgingContext).data;
+    const amplitudeData = React.useContext(AmplitudeContext);
+
+    const handleLesBrev = () => {
+        amplitudeLogger('veientilarbeid.intro', {
+            intro: '14a',
+            handling: 'Går til min innboks',
+            ...amplitudeData,
+        });
+    };
+
     return (
-        <div>
-            <Systemtittel className={'blokk-xs'}>Hva slags type hjelp kan jeg få?</Systemtittel>
-            <Normaltekst className={'blokk-xs'}>
-                De 12 første ukene vil ikke NAV ta kontakt. I denne perioden har du selv ansvaret for å se etter og å
-                søke på stillinger.
-            </Normaltekst>
-            <Normaltekst className={'blokk-xs'}>
-                Om du ønsker oppfølging før 12 uker, ber vi deg om å si i fra om at du ønsker å bli kontaktet.
-            </Normaltekst>
-            <hr />
+        <div className="kortflate">
+            <div>
+                <Systemtittel>Hva slags hjelp kan jeg få?</Systemtittel>
+                <Undertekst className="blokk-xs">2 av 4</Undertekst>
+                <Normaltekst className={'blokk-xs'}>
+                    {servicegruppe === Servicegruppe.IKVAL ? (
+                        <>
+                            Du har mottatt brevet{' '}
+                            <Lenke onClick={handleLesBrev} href={'https://mininnboks.nav.no/'}>
+                                «NAV har vurdert dine muligheter»
+                            </Lenke>
+                            .
+                        </>
+                    ) : (
+                        'Du vil i løpet av den første uken motta brevet «NAV har vurdert dine muligheter».'
+                    )}
+                </Normaltekst>
+
+                <Normaltekst className={'blokk-m'}>
+                    Merk deg at dette ikke er et svar på en eventuell søknad om dagpenger.
+                </Normaltekst>
+            </div>
             <Feedback id={'Introkort14A-02'} />
         </div>
     );
@@ -56,25 +103,46 @@ function Kort2() {
 
 function Kort3() {
     return (
-        <div>
-            <Systemtittel className={'blokk-xs'}>Hva slags type hjelp kan jeg få?</Systemtittel>
-            <Normaltekst className={'blokk-xs'}>De første 12 ukene har du selv ansvaret for</Normaltekst>
-            <ul>
-                <li>
-                    <Normaltekst>Å skaffe deg oversikt over jobbmarkedet </Normaltekst>
-                </li>
-                <li>
-                    <Normaltekst>Å søke på stillinger</Normaltekst>
-                </li>
-            </ul>
+        <div className="kortflate">
+            <div>
+                <Systemtittel>Hva slags hjelp kan jeg få?</Systemtittel>
+                <Undertekst className="blokk-xs">3 av 4</Undertekst>
+                <Normaltekst className={'blokk-xs'}>Du kan få hjelp fra en veileder før 12 uker har gått.</Normaltekst>
 
-            <Normaltekst className={'blokk-xs'}>
-                Du kan finne stillinger på
-                <a href={'https://arbeidsplassen.nav.no/'}>{' arbeidsplassen.no'}</a>
-                <a href={'https://www.finn.no/job/browse.html'}>{', finn.no '}</a> eller andre jobbportaler.
-            </Normaltekst>
-            <hr />
+                <Normaltekst className={'blokk-xs'}>
+                    Da må du bruke dialogen på slutten av denne introduksjonen.
+                </Normaltekst>
+
+                <Normaltekst className={'blokk-m'}>
+                    Du kan gi oss beskjed om at du ønsker hjelp nå med en gang, eller se litt an hvordan du syns
+                    jobbsøkingen din går før du tar kontakt.
+                </Normaltekst>
+            </div>
             <Feedback id={'Introkort14A-03'} />
+        </div>
+    );
+}
+function Kort4() {
+    return (
+        <div className="kortflate">
+            <div>
+                <Systemtittel>Hva slags hjelp kan jeg få?</Systemtittel>
+                <Undertekst className="blokk-xs">4 av 4</Undertekst>
+                <Normaltekst className={'blokk-xs'}>
+                    En veileder sin oppgave er å besvare spørsmål, bistå rundt det å søke stillinger og tilby hjelp på
+                    veien til arbeid.
+                </Normaltekst>
+
+                <Normaltekst className={'blokk-xs'}>
+                    Veiledere kan <strong>ikke</strong> svare på spørsmål om søknader, behandling av søknader eller
+                    utbetalinger av dagpenger.
+                </Normaltekst>
+
+                <Normaltekst className={'blokk-m'}>
+                    Dersom du lurer på noe om dagpenger ber vi deg bruke «Skriv til oss».
+                </Normaltekst>
+            </div>
+            <Feedback id={'Introkort14A-04'} />
         </div>
     );
 }
@@ -87,10 +155,12 @@ interface EndStateProps {
 interface Intro14AProps {
     amplitudeData: AmplitudeData;
     ferdigMedIntroCB: () => void;
+    harSettIntro: boolean;
 }
 
 function Sluttkort(props: EndStateProps) {
     const { amplitudeData } = props;
+    const { ukerRegistrert } = amplitudeData;
 
     const handleKlikkLesIntro = () => {
         amplitudeLogger('veientilarbeid.intro', {
@@ -100,42 +170,74 @@ function Sluttkort(props: EndStateProps) {
         });
     };
 
-    const handleLesIntroPaaNytt = (event: React.MouseEvent) => {
+    const handleKlikkSkrivTilOss = () => {
+        amplitudeLogger('veientilarbeid.intro', {
+            intro: '14a',
+            handling: 'Går til skriv til oss',
+            ...amplitudeData,
+        });
+    };
+
+    function handleLesIntroPaaNytt(event: React.SyntheticEvent) {
         event.preventDefault();
         event.stopPropagation();
         handleKlikkLesIntro();
         props.lesIntroPaaNyttCB();
-    };
+    }
 
     return (
         <div className={'sluttkort'}>
             <Systemtittel className={'blokk-xs'}>Trenger du hjelp eller støtte?</Systemtittel>
 
+            <Normaltekst className={'blokk-xs'}>Om du ønsker oppfølging før 12 uker må du gi oss beskjed.</Normaltekst>
+
             <Normaltekst className={'blokk-xs'}>
-                Bruk dialogen dersom du har spørsmål rundt det å søke stillinger, å komme i jobb eller ønsker
-                arbeidsrettet hjelp.
+                Du er inne i din {ordenstall[ukerRegistrert]} uke som registrert arbeidssøker.
             </Normaltekst>
 
             <Lenkepanel14A amplitudeData={amplitudeData} href={''}>
-                ta kontakt om du lurer på noe
+                Ta kontakt om du ønsker hjelp
             </Lenkepanel14A>
-            <Tilbakeknapp mini onClick={handleLesIntroPaaNytt}>
-                Les om hva slags hjelp du kan få
-            </Tilbakeknapp>
+
+            <Normaltekst className={'blokk-m'}>
+                Har du spørsmål om dagpenger må du bruke{' '}
+                <Lenke onClick={handleKlikkSkrivTilOss} href="https://mininnboks.nav.no/sporsmal/skriv/ARBD">
+                    Skriv til oss
+                </Lenke>
+            </Normaltekst>
+            <Normaltekst>
+                <Lenke className={'tracking-wide'} href={''} onClick={handleLesIntroPaaNytt}>
+                    Les om hva slags hjelp du kan få
+                </Lenke>
+            </Normaltekst>
         </div>
     );
 }
 
 function Intro14A(props: Intro14AProps) {
-    const introKort = [<Kort1 />, <Kort2 />, <Kort3 />];
+    const introKort = [
+        <PreState
+            hoppOverIntroCB={hoppOverIntro}
+            startIntroCB={nesteKort}
+            lesetid={'3'}
+            tittel={'Introduksjon om hjelp til jobbsøking fra NAV'}
+        />,
+        <Kort1 />,
+        <Kort2 />,
+        <Kort3 />,
+        <Kort4 />,
+    ];
 
-    const [gjeldendeKortIndex, setGjeldendeKortIndex] = useState(0);
+    const startkort = props.harSettIntro ? 1 : 0;
+    const [gjeldendeKortIndex, setGjeldendeKortIndex] = useState(startkort);
     const forrigeKortRef = useRef(gjeldendeKortIndex);
-    const nesteKort = () => {
+
+    function nesteKort() {
         if (gjeldendeKortIndex < introKort.length - 1) {
             setGjeldendeKortIndex(gjeldendeKortIndex + 1);
         }
-    };
+    }
+
     const forrigeKort = () => {
         if (gjeldendeKortIndex > 0) {
             setGjeldendeKortIndex(gjeldendeKortIndex - 1);
@@ -149,6 +251,15 @@ function Intro14A(props: Intro14AProps) {
         });
         props.ferdigMedIntroCB();
     };
+
+    function hoppOverIntro() {
+        amplitudeLogger('veientilarbeid.intro', {
+            intro: '14a',
+            handling: 'Hopper over intro',
+            ...props.amplitudeData,
+        });
+        props.ferdigMedIntroCB();
+    }
 
     useEffect(() => {
         if (forrigeKortRef.current !== gjeldendeKortIndex) {
@@ -165,28 +276,26 @@ function Intro14A(props: Intro14AProps) {
     return (
         <>
             <div className={'kortwrapper'}>
-                <EtikettInfo mini>
-                    {gjeldendeKortIndex + 1} av {introKort.length}
-                </EtikettInfo>
                 <div className={'kortinnhold'}>{introKort[gjeldendeKortIndex]}</div>
-                <br />
             </div>
-            <div className={'knapper'}>
-                <Tilbakeknapp mini disabled={gjeldendeKortIndex === 0} onClick={forrigeKort}>
-                    Forrige
-                </Tilbakeknapp>
-                {gjeldendeKortIndex !== introKort.length - 1 ? (
-                    <Nesteknapp mini onClick={nesteKort}>
-                        {' '}
-                        Neste{' '}
-                    </Nesteknapp>
-                ) : (
-                    <Nesteknapp mini onClick={avsluttIntro}>
-                        {' '}
-                        Avslutt introduksjonen{' '}
-                    </Nesteknapp>
-                )}
-            </div>
+            {gjeldendeKortIndex !== 0 ? (
+                <div className={'knapper'}>
+                    <Tilbakeknapp mini disabled={gjeldendeKortIndex === 1} onClick={forrigeKort}>
+                        Forrige
+                    </Tilbakeknapp>
+                    {gjeldendeKortIndex !== introKort.length - 1 ? (
+                        <Nesteknapp mini onClick={nesteKort}>
+                            {' '}
+                            Neste{' '}
+                        </Nesteknapp>
+                    ) : (
+                        <Nesteknapp mini onClick={avsluttIntro}>
+                            {' '}
+                            Avslutt introduksjonen{' '}
+                        </Nesteknapp>
+                    )}
+                </div>
+            ) : null}
         </>
     );
 }
@@ -200,11 +309,18 @@ function kanVise14AStatus({
     oppfolgingData: Oppfolging.Data;
     registreringData: Brukerregistrering.Data | null;
 }): boolean {
+    const skalSeEksperiment = visEksperiment({
+        geografiskTilknytning: brukerInfoData.geografiskTilknytning,
+        eksperiment: 'onboarding14a',
+    });
     const erAAP = brukerInfoData.rettighetsgruppe === 'AAP';
     const brukerregistreringData = registreringData?.registrering ?? null;
 
     return (
-        !erAAP && erStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData }) && !oppfolgingData.kanReaktiveres
+        !erAAP &&
+        skalSeEksperiment &&
+        erStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData }) &&
+        !oppfolgingData.kanReaktiveres
     );
 }
 
@@ -251,7 +367,11 @@ function Intro14AWrapper() {
             <Panel className={'fjorten-A-intro'} border>
                 <div className={'overall-wrapper'}>
                     {skalViseIntro ? (
-                        <Intro14A ferdigMedIntroCB={ferdigMedIntroCB} amplitudeData={amplitudeData} />
+                        <Intro14A
+                            harSettIntro={harSettIntro}
+                            ferdigMedIntroCB={ferdigMedIntroCB}
+                            amplitudeData={amplitudeData}
+                        />
                     ) : (
                         <Sluttkort amplitudeData={amplitudeData} lesIntroPaaNyttCB={lesIntroPaaNyttCB} />
                     )}

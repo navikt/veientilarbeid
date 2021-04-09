@@ -1,4 +1,4 @@
-export type Eksperiment = 'onboardingMeldekort' | 'dummyEksperiment';
+export type Eksperiment = 'onboardingMeldekort' | 'dummyEksperiment' | 'onboarding14a';
 type Samarbeidskontor = { navn: string; eksperimenter: Eksperiment[] };
 
 export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidskontor } = {
@@ -44,11 +44,11 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
     },
     '110302': {
         navn: 'Tasta',
-        eksperimenter: ['onboardingMeldekort'],
+        eksperimenter: ['onboardingMeldekort', 'onboarding14a'],
     },
     '110303': {
         navn: 'Eiganes og Våland',
-        eksperimenter: ['onboardingMeldekort'],
+        eksperimenter: ['onboardingMeldekort', 'onboarding14a'],
     },
     '110306': {
         navn: 'Hillevåg',

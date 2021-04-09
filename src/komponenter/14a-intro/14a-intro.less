@@ -6,12 +6,11 @@
   .panel {
     background: none;
     border-radius: 0;
-    border: 1px solid @navGra20;
-    border-right: 0;
-    border-bottom: 0;
+    border: 0 solid @navGra20;
+    border-bottom-width: 1px;
+    height: 100%;
   }
 }
-
 
 .fjorten-A-intro {
   background: #c4c4c41a;
@@ -21,17 +20,33 @@
 
   .overall-wrapper{
     background: white;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   .kortwrapper {
-   padding: 1rem;
+    height: 100%;
+  }
+
+  .kortinnhold {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .kortflate {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   .knapper {
     display: flex;
-    background: #0000001a;
-    padding: 1rem 0;
-    background-color: #d3d3d352;
+    background: white;
   }
 
   .fjorten-A-info {
@@ -49,10 +64,23 @@
     padding: .6rem 1rem;
   }
 
+  .lesetid {
+    display: flex;
+    align-items: center;
+  }
+
 }
 
 @media (min-width: @screen-sm-min) {
   .meldekort-intro-omslutning{
     max-width: 50%;
+  }
+
+  .fjorten-A-intro-omslutning {
+    .panel {
+      border-right: 1px solid @navGra20;
+      border-bottom: 0;
+      height: 100%;
+    }
   }
 }

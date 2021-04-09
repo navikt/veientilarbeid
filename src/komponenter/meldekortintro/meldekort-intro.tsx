@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
+import { Normaltekst, Systemtittel, Undertekst } from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
 import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
@@ -17,32 +17,35 @@ import {
     hentMeldekortForLevering,
 } from '../../utils/meldekort-utils';
 import Meldekortstatus from './meldekortstatus';
-import { EtikettInfo } from 'nav-frontend-etiketter';
 import LenkepanelMeldekort from './lenkepanel-Meldekort';
 import { hentIDag } from '../../utils/chrono';
 import { meldekortLenke, omMeldekortLenke } from '../../innhold/lenker';
 import { fjernFraLocalStorage, hentFraLocalStorage, settILocalStorage } from '../../utils/localStorage-utils';
 import Feedback from '../feedback/feedback';
+import PreState from './pre-state';
+import Lenke from 'nav-frontend-lenker';
 
 const MELDEKORT_INTRO_KEY = 'meldekortintro';
 
 function Kort1() {
     return (
-        <div>
-            <Systemtittel className={'blokk-xs'}>Introduksjon til meldekort</Systemtittel>
+        <div className="kortflate">
+            <div>
+                <Systemtittel>Introduksjon til meldekort</Systemtittel>
+                <Undertekst className={'blokk-xs'}>1 av 3</Undertekst>
 
-            <Normaltekst className={'blokk-xs'}>
-                Når du er registrert som arbeidssøker, må du sende inn et meldekort hver 14. dag.
-            </Normaltekst>
+                <Normaltekst className={'blokk-xs'}>
+                    Når du er registrert som arbeidssøker, må du sende inn et meldekort hver 14. dag.
+                </Normaltekst>
 
-            <Normaltekst className={'blokk-xs'}>
-                Dersom du har søkt om dagpenger må du sende inn meldekort. Det må du gjøre selv om du ikke har fått svar
-                på søknaden.
-            </Normaltekst>
+                <Normaltekst className={'blokk-xs'}>
+                    Det er innsending av meldekort som gjør at du opprettholder status som registrert arbeidssøker.
+                </Normaltekst>
 
-            <Normaltekst className={'blokk-xs'}>
-                Det er innsending av meldekort som gjør at du opprettholder status som registrert arbeidssøker.
-            </Normaltekst>
+                <Normaltekst className={'blokk-m'}>
+                    Du må også sende meldekort i perioden du venter svar på en innsendt søknad om dagpenger.
+                </Normaltekst>
+            </div>
             <Feedback id={'meldekort-kort-01'} />
         </div>
     );
@@ -50,18 +53,21 @@ function Kort1() {
 
 function Kort2() {
     return (
-        <div>
-            <Systemtittel className={'blokk-xs'}>Introduksjon til meldekort</Systemtittel>
-            <Normaltekst className={'blokk-xs'}>
-                Utbetaling av dagpenger beregnes ut fra opplysninger du har lagt inn på meldekortet.
-            </Normaltekst>
-            <Normaltekst className={'blokk-xs'}>
-                Sender du inn meldekortet etter fristen, kan det føre til at du får mindre utbetalt.
-            </Normaltekst>
-            <Normaltekst className={'blokk-xs'}>
-                Lar du være å sende inn meldekort, tolker NAV det som at du ikke ønsker å stå registrert som
-                arbeidssøker.
-            </Normaltekst>
+        <div className="kortflate">
+            <div>
+                <Systemtittel>Introduksjon til meldekort</Systemtittel>
+                <Undertekst className={'blokk-xs'}>2 av 3</Undertekst>
+                <Normaltekst className={'blokk-xs'}>
+                    Utbetaling av dagpenger beregnes ut fra opplysninger du har lagt inn på meldekortet.
+                </Normaltekst>
+                <Normaltekst className={'blokk-xs'}>
+                    Sender du inn meldekortet etter fristen, kan det føre til at du får mindre utbetalt.
+                </Normaltekst>
+                <Normaltekst className={'blokk-m'}>
+                    Lar du være å sende inn meldekort, tolker NAV det som at du ikke ønsker å stå registrert som
+                    arbeidssøker.
+                </Normaltekst>
+            </div>
             <Feedback id={'meldekort-kort-02'} />
         </div>
     );
@@ -69,16 +75,19 @@ function Kort2() {
 
 function Kort3() {
     return (
-        <div>
-            <Systemtittel className={'blokk-xs'}>Introduksjon til meldekort</Systemtittel>
-            <Normaltekst className={'blokk-xs'}>
-                Dersom du sender inn meldekortet for sent vil dagpengene kunne stanses, og du risikerer at
-                arbeidsoppfølging fra NAV avsluttes.
-            </Normaltekst>
+        <div className="kortflate">
+            <div>
+                <Systemtittel>Introduksjon til meldekort</Systemtittel>
+                <Undertekst className={'blokk-xs'}>3 av 3</Undertekst>
+                <Normaltekst className={'blokk-xs'}>
+                    Dersom du sender inn meldekortet for sent vil dagpengene kunne stanses, og du risikerer at
+                    arbeidsoppfølging fra NAV avsluttes.
+                </Normaltekst>
 
-            <Normaltekst className={'blokk-xs'}>
-                Det er derfor viktig at du sender inn meldekortene før fristen går ut.
-            </Normaltekst>
+                <Normaltekst className={'blokk-m'}>
+                    Det er derfor viktig at du sender inn meldekortene før fristen går ut.
+                </Normaltekst>
+            </div>
             <Feedback id={'meldekort-kort-03'} />
         </div>
     );
@@ -93,6 +102,7 @@ interface EndStateProps {
 interface MeldekortIntroProps {
     amplitudeData: AmplitudeData;
     ferdigMedIntroCB: () => void;
+    harSettIntro: boolean;
 }
 
 function Sluttkort(props: EndStateProps) {
@@ -120,78 +130,100 @@ function Sluttkort(props: EndStateProps) {
         if (!meldekortIkkeKlarForLevering) return null;
 
         return (
-            <div className={'sluttkort'}>
-                <Systemtittel className={'blokk-xs'}>Innsending av meldekort</Systemtittel>
-                <Normaltekst className={'blokk-xs'}>
-                    {`Meldekort for uke 
-                    ${hentISOUke(meldekortIkkeKlarForLevering.meldeperiode?.fra!!)} og ${hentISOUke(
-                        meldekortIkkeKlarForLevering.meldeperiode?.til!!
-                    )} blir tilgjengelig for innsending fra ${datoMedUkedag(
-                        foersteSendedagForMeldekort(meldekortIkkeKlarForLevering)
-                    )}`}
-                </Normaltekst>
+            <div className={'kortflate'}>
                 <div>
-                    <LenkepanelMeldekort amplitudeData={amplitudeData} href={omMeldekortLenke}>
-                        Les om meldekort
-                    </LenkepanelMeldekort>
+                    <Systemtittel className={'blokk-xs'}>Innsending av meldekort</Systemtittel>
+                    <Normaltekst className={'blokk-xs'}>
+                        {`Meldekort for uke 
+                        ${hentISOUke(meldekortIkkeKlarForLevering.meldeperiode?.fra!!)} og ${hentISOUke(
+                            meldekortIkkeKlarForLevering.meldeperiode?.til!!
+                        )} blir tilgjengelig for innsending fra ${datoMedUkedag(
+                            foersteSendedagForMeldekort(meldekortIkkeKlarForLevering)
+                        )}`}
+                    </Normaltekst>
+                    <div>
+                        <LenkepanelMeldekort amplitudeData={amplitudeData} href={omMeldekortLenke}>
+                            Les om meldekort
+                        </LenkepanelMeldekort>
+                    </div>
                 </div>
-                <Tilbakeknapp mini onClick={handleLesIntroPaaNytt}>
-                    Vis introduksjon til meldekort
-                </Tilbakeknapp>
+                <Normaltekst>
+                    <Lenke href={''} onClick={handleLesIntroPaaNytt}>
+                        Vis introduksjon til meldekort
+                    </Lenke>
+                </Normaltekst>
             </div>
         );
     }
 
     if (meldekortForLevering.length > 1) {
         return (
-            <div className={'sluttkort'}>
-                <Systemtittel className={'blokk-xs'}>Innsending av meldekort</Systemtittel>
-
-                <div className={'onboarding-meldekortvarsel-container'}>
-                    <Normaltekst>Du har {meldekortForLevering.length} meldekort som kan sendes inn.</Normaltekst>
+            <div className={'kortflate'}>
+                <div>
+                    <Systemtittel className={'blokk-xs'}>Innsending av meldekort</Systemtittel>
+                    <div className={'onboarding-meldekortvarsel-container'}>
+                        <Normaltekst>Du har {meldekortForLevering.length} meldekort som kan sendes inn.</Normaltekst>
+                    </div>
+                    <LenkepanelMeldekort amplitudeData={amplitudeData} href={meldekortLenke}>
+                        Send inn
+                    </LenkepanelMeldekort>
                 </div>
-                <LenkepanelMeldekort amplitudeData={amplitudeData} href={meldekortLenke}>
-                    Send inn
-                </LenkepanelMeldekort>
-                <Tilbakeknapp mini onClick={handleLesIntroPaaNytt}>
-                    Vis introduksjon til meldekort
-                </Tilbakeknapp>
+                <Normaltekst>
+                    <Lenke href={''} onClick={handleLesIntroPaaNytt}>
+                        Vis introduksjon til meldekort
+                    </Lenke>
+                </Normaltekst>
             </div>
         );
     }
     const foerstkommendeMeldekort = meldekortForLevering[0];
 
     return (
-        <div className={'sluttkort'}>
-            <Systemtittel className={'blokk-xs'}>Innsending av meldekort</Systemtittel>
-
-            <Meldekortstatus />
-
+        <div className={'kortflate'}>
             <div>
-                <LenkepanelMeldekort amplitudeData={amplitudeData} href={meldekortLenke}>
-                    {`Send inn for uke 
-                    ${hentISOUke(foerstkommendeMeldekort.meldeperiode?.fra!!)} og ${hentISOUke(
-                        foerstkommendeMeldekort.meldeperiode?.til!!
-                    )}`}
-                </LenkepanelMeldekort>
+                <Systemtittel className={'blokk-xs'}>Innsending av meldekort</Systemtittel>
+                <Meldekortstatus />
+                <div>
+                    <LenkepanelMeldekort amplitudeData={amplitudeData} href={meldekortLenke}>
+                        {`Send inn for uke 
+                        ${hentISOUke(foerstkommendeMeldekort.meldeperiode?.fra!!)} og ${hentISOUke(
+                            foerstkommendeMeldekort.meldeperiode?.til!!
+                        )}`}
+                    </LenkepanelMeldekort>
+                </div>
             </div>
-            <Tilbakeknapp mini onClick={handleLesIntroPaaNytt}>
-                Vis introduksjon til meldekort
-            </Tilbakeknapp>
+            <Normaltekst>
+                <Lenke className={'tracking-wide'} href={''} onClick={handleLesIntroPaaNytt}>
+                    Vis introduksjon til meldekort
+                </Lenke>
+            </Normaltekst>
         </div>
     );
 }
 
 function MeldekortIntro(props: MeldekortIntroProps) {
-    const introKort = [<Kort1 />, <Kort2 />, <Kort3 />];
+    const introKort = [
+        <PreState
+            tittel={'Hva er meldekort og hvordan fungerer de?'}
+            lesetid={'2'}
+            startIntroCB={nesteKort}
+            hoppOverIntroCB={hoppOverIntro}
+        />,
+        <Kort1 />,
+        <Kort2 />,
+        <Kort3 />,
+    ];
 
-    const [gjeldendeKortIndex, setGjeldendeKortIndex] = useState(0);
+    const startkort = props.harSettIntro ? 1 : 0;
+    const [gjeldendeKortIndex, setGjeldendeKortIndex] = useState(startkort);
     const forrigeKortRef = useRef(gjeldendeKortIndex);
-    const nesteKort = () => {
+
+    function nesteKort() {
         if (gjeldendeKortIndex < introKort.length - 1) {
             setGjeldendeKortIndex(gjeldendeKortIndex + 1);
         }
-    };
+    }
+
     const forrigeKort = () => {
         if (gjeldendeKortIndex > 0) {
             setGjeldendeKortIndex(gjeldendeKortIndex - 1);
@@ -205,6 +237,16 @@ function MeldekortIntro(props: MeldekortIntroProps) {
         });
         props.ferdigMedIntroCB();
     };
+
+    function hoppOverIntro(e: React.SyntheticEvent) {
+        e.preventDefault();
+        amplitudeLogger('veientilarbeid.intro', {
+            intro: 'meldekort',
+            handling: 'Hopper over introduksjon',
+            ...props.amplitudeData,
+        });
+        props.ferdigMedIntroCB();
+    }
 
     useEffect(() => {
         if (forrigeKortRef.current !== gjeldendeKortIndex) {
@@ -221,28 +263,26 @@ function MeldekortIntro(props: MeldekortIntroProps) {
     return (
         <>
             <div className={'kortwrapper'}>
-                <EtikettInfo mini>
-                    {gjeldendeKortIndex + 1} av {introKort.length}
-                </EtikettInfo>
                 <div className={'kortinnhold'}>{introKort[gjeldendeKortIndex]}</div>
-                <br />
             </div>
-            <div className={'knapper'}>
-                <Tilbakeknapp mini disabled={gjeldendeKortIndex === 0} onClick={forrigeKort}>
-                    Forrige
-                </Tilbakeknapp>
-                {gjeldendeKortIndex !== introKort.length - 1 ? (
-                    <Nesteknapp mini onClick={nesteKort}>
-                        {' '}
-                        Neste{' '}
-                    </Nesteknapp>
-                ) : (
-                    <Nesteknapp mini onClick={avsluttIntro}>
-                        {' '}
-                        Avslutt introduksjonen{' '}
-                    </Nesteknapp>
-                )}
-            </div>
+            {gjeldendeKortIndex !== 0 ? (
+                <div className={'knapper'}>
+                    <Tilbakeknapp mini disabled={gjeldendeKortIndex === 1} onClick={forrigeKort}>
+                        Forrige
+                    </Tilbakeknapp>
+                    {gjeldendeKortIndex !== introKort.length - 1 ? (
+                        <Nesteknapp mini onClick={nesteKort}>
+                            {' '}
+                            Neste{' '}
+                        </Nesteknapp>
+                    ) : (
+                        <Nesteknapp mini onClick={avsluttIntro}>
+                            {' '}
+                            Avslutt introduksjonen{' '}
+                        </Nesteknapp>
+                    )}
+                </div>
+            ) : null}
         </>
     );
 }
@@ -316,7 +356,11 @@ function MeldekortIntroWrapper() {
             <Panel className={'meldekort-intro'} border>
                 <div className={'overall-wrapper'}>
                     {skalViseIntro ? (
-                        <MeldekortIntro ferdigMedIntroCB={ferdigMedIntroCB} amplitudeData={amplitudeData} />
+                        <MeldekortIntro
+                            harSettIntro={harSettIntro}
+                            ferdigMedIntroCB={ferdigMedIntroCB}
+                            amplitudeData={amplitudeData}
+                        />
                     ) : (
                         <Sluttkort
                             amplitudeData={amplitudeData}
