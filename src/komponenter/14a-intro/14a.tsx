@@ -304,18 +304,22 @@ function kanVise14AStatus({
     brukerInfoData,
     oppfolgingData,
     registreringData,
+    amplitudeData,
 }: {
     brukerInfoData: BrukerInfo.Data;
     oppfolgingData: Oppfolging.Data;
     registreringData: Brukerregistrering.Data | null;
+    amplitudeData: AmplitudeData;
 }): boolean {
     const skalSeEksperiment = visEksperiment('onboarding14a', {
         geografiskTilknytning: brukerInfoData.geografiskTilknytning,
     });
     const erAAP = brukerInfoData.rettighetsgruppe === 'AAP';
     const brukerregistreringData = registreringData?.registrering ?? null;
+    const erKss = amplitudeData.gruppe === 'kss';
 
     return (
+        erKss &&
         !erAAP &&
         skalSeEksperiment &&
         erStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData }) &&
@@ -346,7 +350,7 @@ function Intro14AWrapper() {
 
     const featuretoggleAktivert = featuretoggleData['veientilarbeid.14a-intro'];
     const kanViseKomponent =
-        featuretoggleAktivert && kanVise14AStatus({ oppfolgingData, brukerInfoData, registreringData });
+        featuretoggleAktivert && kanVise14AStatus({ amplitudeData, oppfolgingData, brukerInfoData, registreringData });
 
     if (!kanViseKomponent) {
         fjernFraLocalStorage(INTRO_KEY_14A);
