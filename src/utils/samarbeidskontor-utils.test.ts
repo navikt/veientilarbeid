@@ -1,11 +1,11 @@
 import { visEksperiment, erSamarbeidskontor, hentEksperimenter } from './samarbeidskontor-utils';
 
 describe('tester funksjonaliteten for visEksperiment', () => {
-    test('returnerer true for Notodden og onboardingMeldekort', () => {
+    test('returnerer true for Tasta og onboarding14a', () => {
         expect(
             visEksperiment({
-                geografiskTilknytning: '3808',
-                eksperiment: 'onboardingMeldekort',
+                geografiskTilknytning: '110302',
+                eksperiment: 'onboarding14a',
             })
         ).toBe(true);
     });
@@ -19,11 +19,11 @@ describe('tester funksjonaliteten for visEksperiment', () => {
         ).toBe(false);
     });
 
-    test('returnerer false for Færder og onboardingMeldekort', () => {
+    test('returnerer false for Færder og onboarding14a', () => {
         expect(
             visEksperiment({
                 geografiskTilknytning: '3811',
-                eksperiment: 'onboardingMeldekort',
+                eksperiment: 'onboarding14a',
             })
         ).toBe(false);
     });
@@ -31,7 +31,7 @@ describe('tester funksjonaliteten for visEksperiment', () => {
     test('returnerer false for manglende geografiskTilknytning', () => {
         expect(
             visEksperiment({
-                eksperiment: 'onboardingMeldekort',
+                eksperiment: 'onboarding14a',
             })
         ).toBe(false);
     });
@@ -50,8 +50,8 @@ describe('tester funksjonaliteten for erSamarbeidskontor', () => {
 });
 
 describe('tester funksjonaliteten for hentEksperimenter', () => {
-    test('returnerer riktig liste for samarbeidskontoret Notodden', () => {
-        expect(hentEksperimenter({ geografiskTilknytning: '3808' })).toStrictEqual(['onboardingMeldekort']);
+    test('returnerer riktig liste for samarbeidskontoret Tasta', () => {
+        expect(hentEksperimenter({ geografiskTilknytning: '110302' })).toStrictEqual(['onboarding14a']);
     });
     test('returnerer tom liste for ikke-samarbeidskontoret Færder', () => {
         expect(hentEksperimenter({ geografiskTilknytning: '3811' })).toStrictEqual([]);
