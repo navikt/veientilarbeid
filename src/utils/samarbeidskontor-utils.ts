@@ -1,12 +1,11 @@
 import { Eksperiment, Samarbeidskontorer } from '../lib/samarbeidskontorer';
 
-interface Data {
+interface BrukerContext {
     geografiskTilknytning?: string;
-    eksperiment: Eksperiment;
 }
 
-export function visEksperiment(data: Data): boolean {
-    const { geografiskTilknytning, eksperiment } = data;
+export function visEksperiment(eksperiment: Eksperiment, context: BrukerContext): boolean {
+    const { geografiskTilknytning } = context;
     if (!geografiskTilknytning) return false;
 
     const kontor = Samarbeidskontorer[geografiskTilknytning];

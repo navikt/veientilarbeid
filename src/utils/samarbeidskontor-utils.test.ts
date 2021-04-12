@@ -3,37 +3,30 @@ import { visEksperiment, erSamarbeidskontor, hentEksperimenter } from './samarbe
 describe('tester funksjonaliteten for visEksperiment', () => {
     test('returnerer true for Tasta og onboarding14a', () => {
         expect(
-            visEksperiment({
+            visEksperiment('onboarding14a', {
                 geografiskTilknytning: '110302',
-                eksperiment: 'onboarding14a',
             })
         ).toBe(true);
     });
 
     test('returnerer false for Notodden og dummyEksperiment', () => {
         expect(
-            visEksperiment({
+            visEksperiment('dummyEksperiment', {
                 geografiskTilknytning: '3808',
-                eksperiment: 'dummyEksperiment',
             })
         ).toBe(false);
     });
 
     test('returnerer false for Færder og onboarding14a', () => {
         expect(
-            visEksperiment({
+            visEksperiment('onboarding14a', {
                 geografiskTilknytning: '3811',
-                eksperiment: 'onboarding14a',
             })
         ).toBe(false);
     });
 
     test('returnerer false for manglende geografiskTilknytning', () => {
-        expect(
-            visEksperiment({
-                eksperiment: 'onboarding14a',
-            })
-        ).toBe(false);
+        expect(visEksperiment('onboarding14a', {})).toBe(false);
     });
 });
 

@@ -309,9 +309,8 @@ function kanVise14AStatus({
     oppfolgingData: Oppfolging.Data;
     registreringData: Brukerregistrering.Data | null;
 }): boolean {
-    const skalSeEksperiment = visEksperiment({
+    const skalSeEksperiment = visEksperiment('onboarding14a', {
         geografiskTilknytning: brukerInfoData.geografiskTilknytning,
-        eksperiment: 'onboarding14a',
     });
     const erAAP = brukerInfoData.rettighetsgruppe === 'AAP';
     const brukerregistreringData = registreringData?.registrering ?? null;
