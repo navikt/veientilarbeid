@@ -1,5 +1,3 @@
-import { datoUtenTid } from '../utils/date-utils';
-
 export type EksperimentId = 'dummyEksperiment' | 'onboarding14a';
 
 export type Eksperiment = {

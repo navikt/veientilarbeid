@@ -19,6 +19,7 @@ export enum DemoData {
     MOTESTOTTE = 'motestotte',
     GEOGRAFISK_TILKNYTNING = 'geografiskTilknytning',
     REGISTRERING_TYPE = 'registreringType',
+    ALDER = 'alder',
     RETTIGHETSGRUPPE = 'rettighetsgruppe',
     FEATURE_TOGGLES = 'featureToggles',
     UNDER_OPPFOLGING = 'underOppfolging',
@@ -40,6 +41,9 @@ export const settFormidlingsgruppe = (value: string) => settDemoState(DemoData.F
 
 export const hentRettighetsgruppe = () => hentDemoState(DemoData.RETTIGHETSGRUPPE) || 'INGEN_VERDI';
 export const settRettighetsgruppe = (value: string) => settDemoState(DemoData.RETTIGHETSGRUPPE, value);
+
+export const hentAlder = () => parseInt(hentDemoState(DemoData.ALDER) ?? '32');
+export const settAlder = (value: string) => settDemoState(DemoData.ALDER, value);
 
 export const hentSykmeldtMedArbeidsgiver = () => hentDemoState(DemoData.SYKMELDT_MED_ARBEIDSGIVER) === 'true';
 export const settSykmeldtMedArbeidsgiver = (value: boolean) => settDemoState(DemoData.SYKMELDT_MED_ARBEIDSGIVER, value);

@@ -12,6 +12,7 @@ import {
 } from '../ducks/api';
 
 import {
+    hentAlder,
     hentAutentiseringsInfo,
     hentEgenvurdering,
     hentFeatureToggles,
@@ -51,13 +52,7 @@ export const demo_handlers = [
         geografiskTilknytning: hentGeografiskTilknytning(),
         registreringType: hentRegistreringType(),
         rettighetsgruppe: hentRettighetsgruppe(),
-    }),
-
-    msw_get(BRUKERINFO_URL, {
-        erSykmeldtMedArbeidsgiver: hentSykmeldtMedArbeidsgiver(),
-        geografiskTilknytning: hentGeografiskTilknytning(),
-        registreringType: hentRegistreringType(),
-        rettighetsgruppe: hentRettighetsgruppe(),
+        alder: hentAlder(),
     }),
 
     msw_get(BRUKERREGISTRERING_URL, hentBrukerRegistrering()),
