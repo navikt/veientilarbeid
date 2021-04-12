@@ -87,7 +87,7 @@ describe('tester onboarding komponenten for 14a-intro', () => {
         expect(screen.getByText(/3 av 4/i)).toBeInTheDocument();
         userEvent.click(nesteKnapp);
         // Sjekker  avslutningsknapp
-        const avsluttKnapp = screen.getByRole('button', { name: /avslutt introduksjonen/i });
+        const avsluttKnapp = screen.getByRole('button', { name: /fullfør/i });
         userEvent.click(avsluttKnapp);
         expect(screen.getByText(/Trenger du hjelp eller støtte/i)).toBeInTheDocument();
         // sjekker les igjen knapp

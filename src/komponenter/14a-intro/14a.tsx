@@ -246,7 +246,7 @@ function Intro14A(props: Intro14AProps) {
     const avsluttIntro = () => {
         amplitudeLogger('veientilarbeid.intro', {
             intro: '14a',
-            handling: 'Avslutter introduksjon',
+            handling: 'Fullfører introduksjon',
             ...props.amplitudeData,
         });
         props.ferdigMedIntroCB();
@@ -291,7 +291,7 @@ function Intro14A(props: Intro14AProps) {
                     ) : (
                         <Nesteknapp mini onClick={avsluttIntro}>
                             {' '}
-                            Avslutt introduksjonen{' '}
+                            Fullfør{' '}
                         </Nesteknapp>
                     )}
                 </div>

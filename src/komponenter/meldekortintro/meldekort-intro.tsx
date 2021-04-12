@@ -232,7 +232,7 @@ function MeldekortIntro(props: MeldekortIntroProps) {
     const avsluttIntro = () => {
         amplitudeLogger('veientilarbeid.intro', {
             intro: 'meldekort',
-            handling: 'Avslutter introduksjon',
+            handling: 'Fullfører introduksjon',
             ...props.amplitudeData,
         });
         props.ferdigMedIntroCB();
@@ -281,7 +281,7 @@ function MeldekortIntro(props: MeldekortIntroProps) {
                     ) : (
                         <Nesteknapp mini onClick={avsluttIntro}>
                             {' '}
-                            Avslutt introduksjonen{' '}
+                            Fullfør{' '}
                         </Nesteknapp>
                     )}
                 </div>
