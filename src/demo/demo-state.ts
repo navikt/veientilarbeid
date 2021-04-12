@@ -73,7 +73,6 @@ export const settAntallDagerEtterFastsattMeldedag = (dag: string) => settDemoSta
 const features = (checked: boolean) => ({
     'veientilarbeid.feedback': checked,
     'veientilarbeid.14a-intro': checked,
-    'veientilarbeid.meldekortintro.foralle': checked,
 });
 export const hentFeatureToggles = (): JSONObject => features(hentDemoState(DemoData.FEATURE_TOGGLES) === 'true');
 export const settFeatureToggles = (checked: boolean) => settDemoState(DemoData.FEATURE_TOGGLES, checked);
