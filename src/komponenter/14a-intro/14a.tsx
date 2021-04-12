@@ -337,8 +337,8 @@ function Intro14AWrapper() {
     const [harSettIntro, setHarSettIntro] = React.useState<boolean>(!!hentFraLocalStorage(INTRO_KEY_14A));
     const [tvingVisningAvIntro, setTvingVisningAvIntro] = React.useState<boolean>(false);
 
-    const erNyregistrert = amplitudeData.ukerRegistrert === 0;
-    const skalViseIntro = tvingVisningAvIntro || (erNyregistrert && !harSettIntro);
+    const erNyregistrertKss = amplitudeData.ukerRegistrert === 0;
+    const rendreIntro = tvingVisningAvIntro || (erNyregistrertKss && !harSettIntro);
 
     useEffect(() => {
         if (harSettIntro) {
@@ -369,7 +369,7 @@ function Intro14AWrapper() {
         <div className={'fjorten-A-intro-omslutning'}>
             <Panel className={'fjorten-A-intro'} border>
                 <div className={'overall-wrapper'}>
-                    {skalViseIntro ? (
+                    {rendreIntro ? (
                         <Intro14A
                             harSettIntro={harSettIntro}
                             ferdigMedIntroCB={ferdigMedIntroCB}
