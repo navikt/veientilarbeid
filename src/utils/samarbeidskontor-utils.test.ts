@@ -5,8 +5,27 @@ describe('tester funksjonaliteten for visEksperiment', () => {
         expect(
             visEksperiment('onboarding14a', {
                 geografiskTilknytning: '110302',
+                registreringsDato: new Date('2021-04-13'),
             })
         ).toBe(true);
+    });
+
+    test('returnerer true for Tasta og onboarding14a når man er registrert samme dag', () => {
+        expect(
+            visEksperiment('onboarding14a', {
+                geografiskTilknytning: '110302',
+                registreringsDato: new Date('2021-04-12'),
+            })
+        ).toBe(true);
+    });
+
+    test('returnerer false for Tasta og onboarding14a når man er registrert dagen før eksperimentet', () => {
+        expect(
+            visEksperiment('onboarding14a', {
+                geografiskTilknytning: '110302',
+                registreringsDato: new Date('2021-04-11'),
+            })
+        ).toBe(false);
     });
 
     test('returnerer false for Notodden og dummyEksperiment', () => {
@@ -21,6 +40,7 @@ describe('tester funksjonaliteten for visEksperiment', () => {
         expect(
             visEksperiment('onboarding14a', {
                 geografiskTilknytning: '3811',
+                registreringsDato: new Date('2021-04-13'),
             })
         ).toBe(false);
     });
@@ -44,10 +64,14 @@ describe('tester funksjonaliteten for erSamarbeidskontor', () => {
 
 describe('tester funksjonaliteten for hentEksperimenter', () => {
     test('returnerer riktig liste for samarbeidskontoret Tasta', () => {
-        expect(hentEksperimenter({ geografiskTilknytning: '110302' })).toStrictEqual(['onboarding14a']);
+        expect(
+            hentEksperimenter({ geografiskTilknytning: '110302', registreringsDato: new Date('2021-04-13') })
+        ).toStrictEqual(['onboarding14a']);
     });
     test('returnerer tom liste for ikke-samarbeidskontoret Færder', () => {
-        expect(hentEksperimenter({ geografiskTilknytning: '3811' })).toStrictEqual([]);
+        expect(
+            hentEksperimenter({ geografiskTilknytning: '3811', registreringsDato: new Date('2021-04-13') })
+        ).toStrictEqual([]);
     });
     test('returnerer tom liste for manglende geografiskTilknytning', () => {
         expect(hentEksperimenter({})).toStrictEqual([]);

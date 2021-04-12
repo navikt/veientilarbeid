@@ -1,4 +1,12 @@
-export type Eksperiment = 'dummyEksperiment' | 'onboarding14a';
+import { datoUtenTid } from '../utils/date-utils';
+
+export type EksperimentId = 'dummyEksperiment' | 'onboarding14a';
+
+export type Eksperiment = {
+    id: EksperimentId;
+    registrertEtterDato?: Date;
+};
+
 type Samarbeidskontor = { navn: string; eksperimenter: Eksperiment[] };
 
 export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidskontor } = {
@@ -44,11 +52,11 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
     },
     '110302': {
         navn: 'Tasta',
-        eksperimenter: ['onboarding14a'],
+        eksperimenter: [{ id: 'onboarding14a', registrertEtterDato: new Date('2021-04-12') }],
     },
     '110303': {
         navn: 'Eiganes og Våland',
-        eksperimenter: ['onboarding14a'],
+        eksperimenter: [{ id: 'onboarding14a', registrertEtterDato: new Date('2021-04-12') }],
     },
     '110306': {
         navn: 'Hillevåg',

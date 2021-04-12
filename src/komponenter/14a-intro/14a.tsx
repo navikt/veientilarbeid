@@ -299,6 +299,13 @@ function Intro14A(props: Intro14AProps) {
         </>
     );
 }
+function hentRegistreringsdato(brukerregistrering: Brukerregistrering.Data | null) {
+    const registreringsDato = brukerregistrering?.registrering?.opprettetDato;
+    if (registreringsDato) {
+        return new Date(registreringsDato);
+    }
+    return null;
+}
 
 function kanVise14AStatus({
     brukerInfoData,
@@ -311,8 +318,11 @@ function kanVise14AStatus({
     registreringData: Brukerregistrering.Data | null;
     amplitudeData: AmplitudeData;
 }): boolean {
+    const registreringsDato = hentRegistreringsdato(registreringData);
+
     const skalSeEksperiment = visEksperiment('onboarding14a', {
         geografiskTilknytning: brukerInfoData.geografiskTilknytning,
+        registreringsDato,
     });
     const erAAP = brukerInfoData.rettighetsgruppe === 'AAP';
     const brukerregistreringData = registreringData?.registrering ?? null;

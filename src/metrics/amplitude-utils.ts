@@ -4,7 +4,7 @@ import { AMPLITUDE_API_KEY_PROD, AMPLITUDE_API_KEY_TEST, AMPLITUDE_ENDPOINT } fr
 import { InnloggingsNiva } from '../ducks/autentisering';
 import { erProduksjon } from '../utils/app-state-utils';
 import { POAGruppe } from '../utils/get-poa-group';
-import { Eksperiment } from '../lib/samarbeidskontorer';
+import { EksperimentId } from '../lib/samarbeidskontorer';
 
 const apiKey = erProduksjon() ? AMPLITUDE_API_KEY_PROD : AMPLITUDE_API_KEY_TEST;
 const config = {
@@ -45,7 +45,7 @@ export type AmplitudeData = {
     erSykmeldtMedArbeidsgiver: string;
     dinSituasjon: String;
     reservasjonKRR: string;
-    eksperimenter: Eksperiment[];
+    eksperimenter: EksperimentId[];
 };
 
 export function amplitudeLogger(name: string, values?: object) {
