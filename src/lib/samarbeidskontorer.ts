@@ -1,89 +1,89 @@
-export type Eksperiment = 'onboardingMeldekort' | 'dummyEksperiment' | 'onboarding14a';
+export type Eksperiment = 'dummyEksperiment' | 'onboarding14a';
 type Samarbeidskontor = { navn: string; eksperimenter: Eksperiment[] };
 
 export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidskontor } = {
     '030112': {
         navn: 'Alna',
-        eksperimenter: ['onboardingMeldekort'],
+        eksperimenter: [],
     },
     '030105': {
         navn: 'Frogner',
-        eksperimenter: ['onboardingMeldekort'],
+        eksperimenter: [],
     },
     '3413': {
         navn: 'Stange',
-        eksperimenter: ['onboardingMeldekort'],
+        eksperimenter: [],
     },
     '3407': {
         navn: 'Gjøvik',
-        eksperimenter: ['onboardingMeldekort'],
+        eksperimenter: [],
     },
     '3401': {
         navn: 'Kongsvinger',
-        eksperimenter: ['onboardingMeldekort'],
+        eksperimenter: [],
     },
     '3808': {
         navn: 'Notodden',
-        eksperimenter: ['onboardingMeldekort'],
+        eksperimenter: [],
     },
     '3807': {
         navn: 'Skien',
-        eksperimenter: ['onboardingMeldekort'],
+        eksperimenter: [],
     },
     '3803': {
         navn: 'Tønsberg',
-        eksperimenter: ['onboardingMeldekort'],
+        eksperimenter: [],
     },
     '1120': {
         navn: 'Klepp',
-        eksperimenter: ['onboardingMeldekort'],
+        eksperimenter: [],
     },
     '1121': {
         navn: 'Time',
-        eksperimenter: ['onboardingMeldekort'],
+        eksperimenter: [],
     },
     '110302': {
         navn: 'Tasta',
-        eksperimenter: ['onboardingMeldekort', 'onboarding14a'],
+        eksperimenter: ['onboarding14a'],
     },
     '110303': {
         navn: 'Eiganes og Våland',
-        eksperimenter: ['onboardingMeldekort', 'onboarding14a'],
+        eksperimenter: ['onboarding14a'],
     },
     '110306': {
         navn: 'Hillevåg',
-        eksperimenter: ['onboardingMeldekort'],
+        eksperimenter: [],
     },
     '110307': {
         navn: 'Hinna',
-        eksperimenter: ['onboardingMeldekort'],
+        eksperimenter: [],
     },
     '030114': {
         navn: 'Nordstrand',
-        eksperimenter: ['onboardingMeldekort'],
+        eksperimenter: [],
     },
     '3418': {
         navn: 'Åsnes',
-        eksperimenter: ['onboardingMeldekort'],
+        eksperimenter: [],
     },
     '3411': {
         navn: 'Ringsaker',
-        eksperimenter: ['onboardingMeldekort'],
+        eksperimenter: [],
     },
     '030108': {
         navn: 'Nordre Aker',
-        eksperimenter: ['onboardingMeldekort'],
+        eksperimenter: [],
     },
     '030109': {
         navn: 'Bjerke',
-        eksperimenter: ['onboardingMeldekort'],
+        eksperimenter: [],
     },
     '1149': {
         navn: 'Karmøy',
-        eksperimenter: ['onboardingMeldekort'],
+        eksperimenter: [],
     },
     '110301': {
         navn: 'Hundvåg',
-        eksperimenter: ['onboardingMeldekort'],
+        eksperimenter: [],
     },
 };
