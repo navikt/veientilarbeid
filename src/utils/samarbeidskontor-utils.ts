@@ -32,7 +32,7 @@ export function erSamarbeidskontor(geografiskTilknytning: string | null | undefi
 
 export function hentEksperimenter(brukerContext: BrukerContext): EksperimentId[] {
     const { geografiskTilknytning, registreringsDato } = brukerContext;
-    if (!geografiskTilknytning || !registreringsDato) return [];
+    if (!geografiskTilknytning) return [];
 
     const kontor = Samarbeidskontorer[geografiskTilknytning];
     if (!kontor?.eksperimenter) return [];
