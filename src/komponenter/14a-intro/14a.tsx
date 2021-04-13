@@ -16,6 +16,7 @@ import Lenkepanel14A from './lenkepanel-14a';
 import { FeaturetoggleContext } from '../../ducks/feature-toggles';
 import Lenke from 'nav-frontend-lenker';
 import PreState from '../meldekortintro/pre-state';
+import { UlesteDialogerContext } from '../../ducks/ulestedialoger';
 
 const INTRO_KEY_14A = '14a-intro';
 
@@ -149,6 +150,7 @@ function Kort4() {
 interface EndStateProps {
     amplitudeData: AmplitudeData;
     lesIntroPaaNyttCB: () => void;
+    antallUlesteDialoger: number;
 }
 
 interface Intro14AProps {
@@ -194,9 +196,7 @@ function Sluttkort(props: EndStateProps) {
                 Du er inne i din {ordenstall[ukerRegistrert]} uke som registrert arbeidssøker.
             </Normaltekst>
 
-            <Lenkepanel14A amplitudeData={amplitudeData} href={''}>
-                Ta kontakt om du ønsker hjelp
-            </Lenkepanel14A>
+            <Lenkepanel14A amplitudeData={amplitudeData} href={''} antallUlesteDialoger={props.antallUlesteDialoger} />
 
             <Normaltekst className={'blokk-m'}>
                 Har du spørsmål om dagpenger må du bruke{' '}
@@ -334,6 +334,7 @@ function Intro14AWrapper() {
     const { data: oppfolgingData } = React.useContext(Oppfolging.OppfolgingContext);
     const { data: brukerInfoData } = React.useContext(BrukerInfo.BrukerInfoContext);
     const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
+    const ulesteDialoger = React.useContext(UlesteDialogerContext).data;
 
     const [harSettIntro, setHarSettIntro] = React.useState<boolean>(!!hentFraLocalStorage(INTRO_KEY_14A));
     const [tvingVisningAvIntro, setTvingVisningAvIntro] = React.useState<boolean>(false);
@@ -377,7 +378,11 @@ function Intro14AWrapper() {
                             amplitudeData={amplitudeData}
                         />
                     ) : (
-                        <Sluttkort amplitudeData={amplitudeData} lesIntroPaaNyttCB={lesIntroPaaNyttCB} />
+                        <Sluttkort
+                            amplitudeData={amplitudeData}
+                            lesIntroPaaNyttCB={lesIntroPaaNyttCB}
+                            antallUlesteDialoger={ulesteDialoger.antallUleste}
+                        />
                     )}
                 </div>
             </Panel>

@@ -101,7 +101,7 @@ export const settKanReaktiveres = (value: boolean) => settDemoState(DemoData.KAN
 
 export const randomUlesteDialoger = () => {
     const min = 1;
-    const max = 99;
+    const max = 110;
     return Math.floor(min + Math.random() * (max - min));
 };
 
