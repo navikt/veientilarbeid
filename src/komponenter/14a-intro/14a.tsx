@@ -11,7 +11,6 @@ import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
 import './14a-intro.less';
 import { fjernFraLocalStorage, hentFraLocalStorage, settILocalStorage } from '../../utils/localStorage-utils';
-import { visEksperiment } from '../../utils/samarbeidskontor-utils';
 import Feedback from '../feedback/feedback';
 import Lenkepanel14A from './lenkepanel-14a';
 import { FeaturetoggleContext } from '../../ducks/feature-toggles';
@@ -302,13 +301,6 @@ function Intro14A(props: Intro14AProps) {
         </>
     );
 }
-function hentRegistreringsdato(brukerregistrering: Brukerregistrering.Data | null) {
-    const registreringsDato = brukerregistrering?.registrering?.opprettetDato;
-    if (registreringsDato) {
-        return new Date(registreringsDato);
-    }
-    return null;
-}
 
 function kanVise14AStatus({
     brukerInfoData,
@@ -321,12 +313,8 @@ function kanVise14AStatus({
     registreringData: Brukerregistrering.Data | null;
     amplitudeData: AmplitudeData;
 }): boolean {
-    const registreringsDato = hentRegistreringsdato(registreringData);
+    const skalSeEksperiment = amplitudeData.eksperimenter.includes('onboarding14a');
 
-    const skalSeEksperiment = visEksperiment('onboarding14a', {
-        geografiskTilknytning: brukerInfoData.geografiskTilknytning,
-        registreringsDato,
-    });
     const erAAP = brukerInfoData.rettighetsgruppe === 'AAP';
     const brukerregistreringData = registreringData?.registrering ?? null;
     const erKss = amplitudeData.gruppe === 'kss';
