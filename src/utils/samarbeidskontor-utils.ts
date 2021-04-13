@@ -12,17 +12,7 @@ function registrertEtterEksperimentdato(eksperiment: Eksperiment, registreringsd
 }
 
 export function visEksperiment(eksperimentId: EksperimentId, context: BrukerContext): boolean {
-    const { geografiskTilknytning, registreringsDato } = context;
-    if (!geografiskTilknytning) return false;
-
-    const kontor = Samarbeidskontorer[geografiskTilknytning];
-    if (!kontor?.eksperimenter) return false;
-
-    return (
-        kontor.eksperimenter
-            .filter((kontorEksperiment) => kontorEksperiment.id === eksperimentId)
-            .filter((eksperiment) => registrertEtterEksperimentdato(eksperiment, registreringsDato)).length > 0
-    );
+    return hentEksperimenter(context).includes(eksperimentId);
 }
 
 export function erSamarbeidskontor(geografiskTilknytning: string | null | undefined): boolean {
