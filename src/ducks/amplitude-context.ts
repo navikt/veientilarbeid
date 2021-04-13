@@ -1,6 +1,6 @@
 import React from 'react';
 import { AmplitudeData } from '../metrics/amplitude-utils';
-import { InnloggingsNiva } from '../ducks/autentisering';
+import { InnloggingsNiva } from './autentisering';
 
 export const initialState: AmplitudeData = {
     gruppe: 'boo',
