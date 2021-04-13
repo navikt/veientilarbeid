@@ -15,6 +15,7 @@ const providerProps: ProviderProps = {
     amplitude: {
         ukerRegistrert: 2,
         gruppe: 'kss',
+        eksperimenter: ['onboarding14a'],
     },
     oppfolging: {
         formidlingsgruppe: Formidlingsgruppe.ARBS,
@@ -48,8 +49,8 @@ describe('tester onboarding komponenten for 14a-intro', () => {
                 ...providerProps,
                 featureToggle: { 'veientilarbeid.14a-intro': true },
                 amplitude: {
+                    ...providerProps.amplitude,
                     ukerRegistrert: 0,
-                    gruppe: 'kss',
                 },
             }),
         });
@@ -62,8 +63,8 @@ describe('tester onboarding komponenten for 14a-intro', () => {
                 ...providerProps,
                 featureToggle: { 'veientilarbeid.14a-intro': true },
                 amplitude: {
+                    ...providerProps.amplitude,
                     ukerRegistrert: 0,
-                    gruppe: 'kss',
                 },
             }),
         });
