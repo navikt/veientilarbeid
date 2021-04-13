@@ -6,6 +6,7 @@ describe('tester funksjonaliteten for visEksperiment', () => {
             visEksperiment('onboarding14a', {
                 geografiskTilknytning: '110302',
                 registreringsDato: new Date('2021-04-14'),
+                enhetEksperimentId: 123,
             })
         ).toBe(true);
     });
@@ -15,6 +16,7 @@ describe('tester funksjonaliteten for visEksperiment', () => {
             visEksperiment('onboarding14a', {
                 geografiskTilknytning: '110302',
                 registreringsDato: new Date('2021-04-13'),
+                enhetEksperimentId: 123,
             })
         ).toBe(true);
     });
@@ -24,6 +26,7 @@ describe('tester funksjonaliteten for visEksperiment', () => {
             visEksperiment('onboarding14a', {
                 geografiskTilknytning: '110302',
                 registreringsDato: new Date('2021-04-12'),
+                enhetEksperimentId: 123,
             })
         ).toBe(false);
     });
@@ -32,6 +35,7 @@ describe('tester funksjonaliteten for visEksperiment', () => {
         expect(
             visEksperiment('dummyEksperiment', {
                 geografiskTilknytning: '3808',
+                enhetEksperimentId: 123,
             })
         ).toBe(false);
     });
@@ -41,12 +45,13 @@ describe('tester funksjonaliteten for visEksperiment', () => {
             visEksperiment('onboarding14a', {
                 geografiskTilknytning: '3811',
                 registreringsDato: new Date('2021-04-13'),
+                enhetEksperimentId: 123,
             })
         ).toBe(false);
     });
 
     test('returnerer false for manglende geografiskTilknytning', () => {
-        expect(visEksperiment('onboarding14a', {})).toBe(false);
+        expect(visEksperiment('onboarding14a', { enhetEksperimentId: 123 })).toBe(false);
     });
 });
 
@@ -65,15 +70,27 @@ describe('tester funksjonaliteten for erSamarbeidskontor', () => {
 describe('tester funksjonaliteten for hentEksperimenter', () => {
     test('returnerer riktig liste for samarbeidskontoret Tasta', () => {
         expect(
-            hentEksperimenter({ geografiskTilknytning: '110302', registreringsDato: new Date('2021-04-13') })
+            hentEksperimenter({
+                geografiskTilknytning: '110302',
+                registreringsDato: new Date('2021-04-13'),
+                enhetEksperimentId: 123,
+            })
         ).toStrictEqual(['onboarding14a']);
     });
     test('returnerer tom liste for ikke-samarbeidskontoret Færder', () => {
         expect(
-            hentEksperimenter({ geografiskTilknytning: '3811', registreringsDato: new Date('2021-04-13') })
+            hentEksperimenter({
+                geografiskTilknytning: '3811',
+                registreringsDato: new Date('2021-04-13'),
+                enhetEksperimentId: 123,
+            })
         ).toStrictEqual([]);
     });
     test('returnerer tom liste for manglende geografiskTilknytning', () => {
-        expect(hentEksperimenter({})).toStrictEqual([]);
+        expect(hentEksperimenter({ enhetEksperimentId: 123 })).toStrictEqual([]);
+    });
+
+    test('returnerer A/B-test for nesteknapp for partalls-ID', () => {
+        expect(hentEksperimenter({ enhetEksperimentId: 124 })).toStrictEqual(['nesteknappIntro']);
     });
 });

@@ -6,6 +6,15 @@ export const hentFraLocalStorage = (key: string): string | null => {
     }
 };
 
+export const hentEllerSettFraLocalStorage = (key: string, defaultVerdi: string): string => {
+    const fraLocalStorage = hentFraLocalStorage(key);
+    if (!fraLocalStorage) {
+        settILocalStorage(key, defaultVerdi);
+        return defaultVerdi;
+    }
+    return fraLocalStorage;
+};
+
 export const settILocalStorage = (key: string, value: string): void => {
     try {
         window.localStorage.setItem(key, value);

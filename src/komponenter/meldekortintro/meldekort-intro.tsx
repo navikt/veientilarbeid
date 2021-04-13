@@ -217,6 +217,7 @@ function MeldekortIntro(props: MeldekortIntroProps) {
     const startkort = props.harSettIntro ? 1 : 0;
     const [gjeldendeKortIndex, setGjeldendeKortIndex] = useState(startkort);
     const forrigeKortRef = useRef(gjeldendeKortIndex);
+    const nesteknappIntro = props.amplitudeData.eksperimenter.includes('nesteknappIntro');
 
     function nesteKort() {
         if (gjeldendeKortIndex < introKort.length - 1) {
@@ -280,8 +281,7 @@ function MeldekortIntro(props: MeldekortIntroProps) {
                         </Nesteknapp>
                     ) : (
                         <Nesteknapp mini onClick={avsluttIntro}>
-                            {' '}
-                            Fullfør{' '}
+                            {nesteknappIntro ? 'Neste' : 'Fullfør'}
                         </Nesteknapp>
                     )}
                 </div>

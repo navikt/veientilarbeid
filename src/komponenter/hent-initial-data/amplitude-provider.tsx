@@ -23,7 +23,7 @@ import antallSynligeInfomeldinger from '../../utils/infomeldinger';
 import * as Meldekortstatus from '../../ducks/meldekortstatus';
 import isMeldekortbruker from '../../utils/er-meldekortbruker';
 import { datoUtenTid } from '../../utils/date-utils';
-import { erSamarbeidskontor, hentEksperimenter } from '../../utils/samarbeidskontor-utils';
+import { erSamarbeidskontor, hentEksperimenter, hentEnhetEksperimentId } from '../../utils/samarbeidskontor-utils';
 
 function hentDagerEtterFastsattMeldedag(
     iDag: Date,
@@ -112,6 +112,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const eksperimenter = hentEksperimenter({
         geografiskTilknytning,
         registreringsDato: opprettetRegistreringDato,
+        enhetEksperimentId: hentEnhetEksperimentId(),
     });
 
     const amplitudeData: AmplitudeData = {
