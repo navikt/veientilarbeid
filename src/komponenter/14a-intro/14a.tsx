@@ -263,7 +263,10 @@ function Intro14A(props: Intro14AProps) {
 
     useEffect(() => {
         if (forrigeKortRef.current !== gjeldendeKortIndex) {
-            const handling = `Går fra ${forrigeKortRef.current + 1} til kort ${gjeldendeKortIndex + 1}`;
+            const handling =
+                forrigeKortRef.current === 0
+                    ? `Starter 14a-introduksjonen`
+                    : `Går fra ${forrigeKortRef.current} til kort ${gjeldendeKortIndex}`;
             amplitudeLogger('veientilarbeid.intro', {
                 intro: '14a',
                 handling,
