@@ -5,7 +5,7 @@ describe('tester funksjonaliteten for visEksperiment', () => {
         expect(
             visEksperiment('onboarding14a', {
                 geografiskTilknytning: '110302',
-                registreringsDato: new Date('2021-04-13'),
+                registreringsDato: new Date('2021-04-14'),
             })
         ).toBe(true);
     });
@@ -14,7 +14,7 @@ describe('tester funksjonaliteten for visEksperiment', () => {
         expect(
             visEksperiment('onboarding14a', {
                 geografiskTilknytning: '110302',
-                registreringsDato: new Date('2021-04-12'),
+                registreringsDato: new Date('2021-04-13'),
             })
         ).toBe(true);
     });
@@ -23,7 +23,7 @@ describe('tester funksjonaliteten for visEksperiment', () => {
         expect(
             visEksperiment('onboarding14a', {
                 geografiskTilknytning: '110302',
-                registreringsDato: new Date('2021-04-11'),
+                registreringsDato: new Date('2021-04-12'),
             })
         ).toBe(false);
     });

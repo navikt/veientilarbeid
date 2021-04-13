@@ -50,11 +50,11 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
     },
     '110302': {
         navn: 'Tasta',
-        eksperimenter: [{ id: 'onboarding14a', registrertEtterDato: new Date('2021-04-12') }],
+        eksperimenter: [{ id: 'onboarding14a', registrertEtterDato: new Date('2021-04-13') }],
     },
     '110303': {
         navn: 'Eiganes og Våland',
-        eksperimenter: [{ id: 'onboarding14a', registrertEtterDato: new Date('2021-04-12') }],
+        eksperimenter: [{ id: 'onboarding14a', registrertEtterDato: new Date('2021-04-13') }],
     },
     '110306': {
         navn: 'Hillevåg',
