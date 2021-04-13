@@ -109,7 +109,10 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         ? 'ja'
         : 'nei';
 
-    const eksperimenter = hentEksperimenter({ geografiskTilknytning });
+    const eksperimenter = hentEksperimenter({
+        geografiskTilknytning,
+        registreringsDato: opprettetRegistreringDato,
+    });
 
     const amplitudeData: AmplitudeData = {
         gruppe: POAGruppe,
