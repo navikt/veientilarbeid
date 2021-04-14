@@ -23,8 +23,9 @@ import antallSynligeInfomeldinger from '../../utils/infomeldinger';
 import * as Meldekortstatus from '../../ducks/meldekortstatus';
 import isMeldekortbruker from '../../utils/er-meldekortbruker';
 import { datoUtenTid } from '../../utils/date-utils';
-import { hentEksperimenter, hentEnhetEksperimentId } from '../../utils/eksperiment-utils';
+import { hentEksperimenter } from '../../utils/eksperiment-utils';
 import { erSamarbeidskontor } from '../../utils/samarbeidskontor-utils';
+import { hentEnhetEksperimentId } from '../../lib/ab-eksperiment';
 
 function hentDagerEtterFastsattMeldedag(
     iDag: Date,
