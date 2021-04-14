@@ -1,5 +1,4 @@
 import * as React from 'react';
-import handleViewport from 'react-in-viewport';
 import { AmplitudeContext } from '../ducks/amplitude-context';
 import {
     BrukerregistreringContext,
@@ -16,14 +15,7 @@ import { hotjarTrigger } from '../hotjar';
 import { AutentiseringContext, InnloggingsNiva } from '../ducks/autentisering';
 import { UnderOppfolgingContext } from '../ducks/under-oppfolging';
 
-interface ViewportProps {
-    inViewport: boolean;
-    forwardedRef: React.ForwardedRef<any>;
-}
-
 type Props = {};
-
-const WrappedMetrics: React.ComponentType<Props> = handleViewport(Metrics);
 
 export default function InnholdMetrics() {
     const { securityLevel } = React.useContext(AutentiseringContext).data;
@@ -31,11 +23,10 @@ export default function InnholdMetrics() {
 
     if (!underOppfolging || securityLevel === InnloggingsNiva.LEVEL_3) return null;
 
-    return <WrappedMetrics />;
+    return <Metrics />;
 }
 
-function Metrics(props: Props & ViewportProps) {
-    const [harVistTilBruker, setHarVistTilBruker] = React.useState<boolean>(false);
+function Metrics(props: Props) {
     const { formidlingsgruppe, servicegruppe } = React.useContext(OppfolgingContext).data;
     const amplitudeData = React.useContext(AmplitudeContext);
     const { antallDagerEtterFastsattMeldingsdag } = amplitudeData;
@@ -69,21 +60,11 @@ function Metrics(props: Props & ViewportProps) {
         return parseInt(antallDagerEtterFastsattMeldingsdag, 10) >= 1;
     };
 
-    if (props.inViewport && !harVistTilBruker) {
-        setHarVistTilBruker(true);
-    }
-
     React.useEffect(() => {
         hotjarTrigger(erMikrofrontend(), POAGruppe, hotjarEksperiment());
         loggVisning({ viser: 'Viser veien til arbeid', ...amplitudeData });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    React.useEffect(() => {
-        if (harVistTilBruker) {
-            loggVisning({ viser: 'Veien til arbeid i viewport', ...amplitudeData });
-        }
-    }, [amplitudeData, harVistTilBruker]);
-
-    return <span ref={props.forwardedRef}></span>;
+    return null;
 }
