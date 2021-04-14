@@ -1,11 +1,11 @@
 import { EksperimentId } from './eksperimenter';
 
-export type Eksperiment = {
+export type KontorEksperiment = {
     id: EksperimentId;
     registrertEtterDato?: Date;
 };
 
-type Samarbeidskontor = { navn: string; eksperimenter: Eksperiment[] };
+type Samarbeidskontor = { navn: string; eksperimenter: KontorEksperiment[] };
 
 export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidskontor } = {
     '030112': {

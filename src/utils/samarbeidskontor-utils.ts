@@ -1,4 +1,4 @@
-import { Eksperiment, Samarbeidskontorer } from '../lib/samarbeidskontorer';
+import { KontorEksperiment, Samarbeidskontorer } from '../lib/samarbeidskontorer';
 import { hentEllerSettFraLocalStorage } from './localStorage-utils';
 import { EksperimentId } from '../lib/eksperimenter';
 
@@ -8,7 +8,7 @@ interface BrukerContext {
     enhetEksperimentId: number;
 }
 
-function registrertEtterEksperimentdato(eksperiment: Eksperiment, registreringsdato?: Date | null) {
+function registrertEtterEksperimentdato(eksperiment: KontorEksperiment, registreringsdato?: Date | null) {
     if (!eksperiment.registrertEtterDato) return true;
     if (!registreringsdato) return false;
     return eksperiment.registrertEtterDato <= registreringsdato;
