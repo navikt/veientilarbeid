@@ -26,7 +26,7 @@ function InViewport(props: Props & ViewportProps) {
         if (harVistTilBruker) {
             loggVisning({ viser: props.loggTekst, ...amplitudeData });
         }
-    }, [amplitudeData, harVistTilBruker]);
+    }, [amplitudeData, harVistTilBruker, props.loggTekst]);
 
     return <span ref={props.forwardedRef}></span>;
 }
