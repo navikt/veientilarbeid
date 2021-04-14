@@ -31,7 +31,3 @@ export function hentEksperimenter(brukerContext: BrukerContext): EksperimentId[]
         ...hentEksperimenterFraSamarbeidskontor(brukerContext),
     ];
 }
-
-export function visEksperiment(eksperimentId: EksperimentId, context: BrukerContext): boolean {
-    return hentEksperimenter(context).includes(eksperimentId);
-}
