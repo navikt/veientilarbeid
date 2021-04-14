@@ -6,10 +6,11 @@ import { loggVisning } from '../../metrics/metrics';
 interface ViewportProps {
     inViewport: boolean;
     forwardedRef: React.ForwardedRef<any>;
-    loggTekst: string;
 }
 
-type Props = {};
+type Props = {
+    loggTekst: string;
+};
 
 const WrappedViewport: React.ComponentType<Props> = handleViewport(InViewport);
 
@@ -26,6 +27,8 @@ function InViewport(props: Props & ViewportProps) {
             loggVisning({ viser: props.loggTekst, ...amplitudeData });
         }
     }, [amplitudeData, harVistTilBruker]);
+
+    return <span ref={props.forwardedRef}></span>;
 }
 
 export default WrappedViewport;
