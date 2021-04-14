@@ -1,4 +1,5 @@
-import { visEksperiment, erSamarbeidskontor, hentEksperimenter } from './eksperiment-utils';
+import { visEksperiment, hentEksperimenter } from './eksperiment-utils';
+import { erSamarbeidskontor } from './samarbeidskontor-utils';
 
 describe('tester funksjonaliteten for visEksperiment', () => {
     test('returnerer true for Tasta og onboarding14a', () => {

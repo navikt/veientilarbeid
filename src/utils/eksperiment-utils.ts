@@ -1,22 +1,11 @@
-import { KontorEksperiment, Samarbeidskontorer } from '../lib/samarbeidskontorer';
 import { hentEllerSettFraLocalStorage } from './localStorage-utils';
 import { EksperimentId } from '../lib/eksperimenter';
+import { hentEksperimenterFraSamarbeidskontor } from './samarbeidskontor-utils';
 
-interface BrukerContext {
+export interface BrukerContext {
     geografiskTilknytning?: string;
     registreringsDato?: Date | null;
     enhetEksperimentId: number;
-}
-
-function registrertEtterEksperimentdato(eksperiment: KontorEksperiment, registreringsdato?: Date | null) {
-    if (!eksperiment.registrertEtterDato) return true;
-    if (!registreringsdato) return false;
-    return eksperiment.registrertEtterDato <= registreringsdato;
-}
-
-export function erSamarbeidskontor(geografiskTilknytning: string | null | undefined): boolean {
-    if (!geografiskTilknytning) return false;
-    return !!Samarbeidskontorer[geografiskTilknytning];
 }
 
 export function hentEnhetEksperimentId(): number {
@@ -30,18 +19,6 @@ function hentEksperimenterForABTest(enhetEksperimentId: number): EksperimentId[]
     eksperimenter.push(enhetEksperimentId % 2 === 0 ? 'nesteknappIntro' : 'fullførknappIntro');
 
     return eksperimenter;
-}
-
-function hentEksperimenterFraSamarbeidskontor(brukerContext: BrukerContext): EksperimentId[] {
-    const { geografiskTilknytning, registreringsDato } = brukerContext;
-    if (!geografiskTilknytning) return [];
-
-    const kontor = Samarbeidskontorer[geografiskTilknytning];
-    if (!kontor?.eksperimenter) return [];
-
-    return kontor.eksperimenter
-        .filter((eksperiment) => registrertEtterEksperimentdato(eksperiment, registreringsDato))
-        .map((eksperiment) => eksperiment.id);
 }
 
 export function hentEksperimenter(brukerContext: BrukerContext): EksperimentId[] {
