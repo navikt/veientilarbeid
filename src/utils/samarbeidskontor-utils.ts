@@ -1,5 +1,6 @@
-import { Eksperiment, EksperimentId, Samarbeidskontorer } from '../lib/samarbeidskontorer';
+import { Eksperiment, Samarbeidskontorer } from '../lib/samarbeidskontorer';
 import { hentEllerSettFraLocalStorage } from './localStorage-utils';
+import { EksperimentId } from '../lib/eksperimenter';
 
 interface BrukerContext {
     geografiskTilknytning?: string;

@@ -1,4 +1,4 @@
-export type EksperimentId = 'dummyEksperiment' | 'onboarding14a' | 'nesteknappIntro' | 'fullførknappIntro';
+import { EksperimentId } from './eksperimenter';
 
 export type Eksperiment = {
     id: EksperimentId;
