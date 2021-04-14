@@ -14,10 +14,6 @@ function registrertEtterEksperimentdato(eksperiment: KontorEksperiment, registre
     return eksperiment.registrertEtterDato <= registreringsdato;
 }
 
-export function visEksperiment(eksperimentId: EksperimentId, context: BrukerContext): boolean {
-    return hentEksperimenter(context).includes(eksperimentId);
-}
-
 export function erSamarbeidskontor(geografiskTilknytning: string | null | undefined): boolean {
     if (!geografiskTilknytning) return false;
     return !!Samarbeidskontorer[geografiskTilknytning];
@@ -53,4 +49,8 @@ export function hentEksperimenter(brukerContext: BrukerContext): EksperimentId[]
         ...hentEksperimenterForABTest(brukerContext.enhetEksperimentId),
         ...hentEksperimenterFraSamarbeidskontor(brukerContext),
     ];
+}
+
+export function visEksperiment(eksperimentId: EksperimentId, context: BrukerContext): boolean {
+    return hentEksperimenter(context).includes(eksperimentId);
 }
