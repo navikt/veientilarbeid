@@ -95,7 +95,14 @@
   .dialog__ikon {
     position: relative;
   }
+}
 
+@media (prefers-reduced-motion) {
+  .fjorten-A-intro {
+    .dialog__ulesteMeldinger {
+      animation: none;
+    }
+  }
 }
 
 @keyframes scaleIn {
