@@ -8,8 +8,12 @@ export interface BrukerContext {
     enhetEksperimentId: number;
 }
 
+function lagNyEnhetEksperimentId() {
+    return Math.floor(Math.random() * 99999).toString();
+}
+
 export function hentEnhetEksperimentId(): number {
-    const id = hentEllerSettFraLocalStorage('enhetEksperimentId', Math.floor(Math.random() * 99999).toString());
+    const id = hentEllerSettFraLocalStorage('enhetEksperimentId', lagNyEnhetEksperimentId());
     return parseInt(id, 10);
 }
 
