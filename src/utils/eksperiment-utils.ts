@@ -1,10 +1,8 @@
 import { hentEllerSettFraLocalStorage } from './localStorage-utils';
 import { EksperimentId } from '../lib/eksperimenter';
-import { hentEksperimenterFraSamarbeidskontor } from './samarbeidskontor-utils';
+import { hentEksperimenterFraSamarbeidskontor, KontorBrukerContext } from './samarbeidskontor-utils';
 
-export interface BrukerContext {
-    geografiskTilknytning?: string;
-    registreringsDato?: Date | null;
+export interface BrukerContext extends KontorBrukerContext {
     enhetEksperimentId: number;
 }
 

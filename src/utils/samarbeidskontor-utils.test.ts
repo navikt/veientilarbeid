@@ -1,9 +1,12 @@
-import { BrukerContext } from './eksperiment-utils';
-import { erSamarbeidskontor, hentEksperimenterFraSamarbeidskontor } from './samarbeidskontor-utils';
+import {
+    erSamarbeidskontor,
+    hentEksperimenterFraSamarbeidskontor,
+    KontorBrukerContext,
+} from './samarbeidskontor-utils';
 import { EksperimentId } from '../lib/eksperimenter';
 
 describe('tester funksjonaliteten for visEksperiment', () => {
-    function visEksperiment(eksperiementId: EksperimentId, brukerContext: BrukerContext) {
+    function visEksperiment(eksperiementId: EksperimentId, brukerContext: KontorBrukerContext) {
         return hentEksperimenterFraSamarbeidskontor(brukerContext).includes(eksperiementId);
     }
 
@@ -12,7 +15,6 @@ describe('tester funksjonaliteten for visEksperiment', () => {
             visEksperiment('onboarding14a', {
                 geografiskTilknytning: '110302',
                 registreringsDato: new Date('2021-04-14'),
-                enhetEksperimentId: 123,
             })
         ).toBe(true);
     });
@@ -22,7 +24,6 @@ describe('tester funksjonaliteten for visEksperiment', () => {
             visEksperiment('onboarding14a', {
                 geografiskTilknytning: '110302',
                 registreringsDato: new Date('2021-04-13'),
-                enhetEksperimentId: 123,
             })
         ).toBe(true);
     });
@@ -32,7 +33,6 @@ describe('tester funksjonaliteten for visEksperiment', () => {
             visEksperiment('onboarding14a', {
                 geografiskTilknytning: '110302',
                 registreringsDato: new Date('2021-04-12'),
-                enhetEksperimentId: 123,
             })
         ).toBe(false);
     });
@@ -41,7 +41,6 @@ describe('tester funksjonaliteten for visEksperiment', () => {
         expect(
             visEksperiment('dummyEksperiment', {
                 geografiskTilknytning: '3808',
-                enhetEksperimentId: 123,
             })
         ).toBe(false);
     });
@@ -51,13 +50,12 @@ describe('tester funksjonaliteten for visEksperiment', () => {
             visEksperiment('onboarding14a', {
                 geografiskTilknytning: '3811',
                 registreringsDato: new Date('2021-04-13'),
-                enhetEksperimentId: 123,
             })
         ).toBe(false);
     });
 
     test('returnerer false for manglende geografiskTilknytning', () => {
-        expect(visEksperiment('onboarding14a', { enhetEksperimentId: 123 })).toBe(false);
+        expect(visEksperiment('onboarding14a', {})).toBe(false);
     });
 });
 
@@ -79,7 +77,6 @@ describe('tester funksjonaliteten for hentEksperimenterFraSamarbeidskontor', () 
             hentEksperimenterFraSamarbeidskontor({
                 geografiskTilknytning: '110302',
                 registreringsDato: new Date('2021-04-13'),
-                enhetEksperimentId: 123,
             })
         ).toStrictEqual(['onboarding14a']);
     });
@@ -88,12 +85,11 @@ describe('tester funksjonaliteten for hentEksperimenterFraSamarbeidskontor', () 
             hentEksperimenterFraSamarbeidskontor({
                 geografiskTilknytning: '3811',
                 registreringsDato: new Date('2021-04-13'),
-                enhetEksperimentId: 123,
             })
         ).toStrictEqual([]);
     });
 
     test('returnerer tom liste for manglende geografiskTilknytning', () => {
-        expect(hentEksperimenterFraSamarbeidskontor({ enhetEksperimentId: 123 })).toStrictEqual([]);
+        expect(hentEksperimenterFraSamarbeidskontor({})).toStrictEqual([]);
     });
 });

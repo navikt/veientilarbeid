@@ -1,6 +1,10 @@
 import { KontorEksperiment, Samarbeidskontorer } from '../lib/samarbeidskontorer';
 import { EksperimentId } from '../lib/eksperimenter';
-import { BrukerContext } from './eksperiment-utils';
+
+export interface KontorBrukerContext {
+    geografiskTilknytning?: string;
+    registreringsDato?: Date | null;
+}
 
 function registrertEtterEksperimentdato(eksperiment: KontorEksperiment, registreringsdato?: Date | null) {
     if (!eksperiment.registrertEtterDato) return true;
@@ -13,8 +17,8 @@ export function erSamarbeidskontor(geografiskTilknytning: string | null | undefi
     return !!Samarbeidskontorer[geografiskTilknytning];
 }
 
-export function hentEksperimenterFraSamarbeidskontor(brukerContext: BrukerContext): EksperimentId[] {
-    const { geografiskTilknytning, registreringsDato } = brukerContext;
+export function hentEksperimenterFraSamarbeidskontor(kontorBrukerContext: KontorBrukerContext): EksperimentId[] {
+    const { geografiskTilknytning, registreringsDato } = kontorBrukerContext;
     if (!geografiskTilknytning) return [];
 
     const kontor = Samarbeidskontorer[geografiskTilknytning];
