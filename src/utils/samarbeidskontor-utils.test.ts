@@ -75,7 +75,7 @@ describe('tester funksjonaliteten for hentEksperimenter', () => {
                 registreringsDato: new Date('2021-04-13'),
                 enhetEksperimentId: 123,
             })
-        ).toStrictEqual(['onboarding14a']);
+        ).toStrictEqual(['fullførknappIntro', 'onboarding14a']);
     });
     test('returnerer tom liste for ikke-samarbeidskontoret Færder', () => {
         expect(
@@ -84,10 +84,10 @@ describe('tester funksjonaliteten for hentEksperimenter', () => {
                 registreringsDato: new Date('2021-04-13'),
                 enhetEksperimentId: 123,
             })
-        ).toStrictEqual([]);
+        ).toStrictEqual(['fullførknappIntro']);
     });
     test('returnerer tom liste for manglende geografiskTilknytning', () => {
-        expect(hentEksperimenter({ enhetEksperimentId: 123 })).toStrictEqual([]);
+        expect(hentEksperimenter({ enhetEksperimentId: 123 })).toStrictEqual(['fullførknappIntro']);
     });
 
     test('returnerer A/B-test for nesteknapp for partalls-ID', () => {

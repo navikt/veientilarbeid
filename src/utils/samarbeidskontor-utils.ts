@@ -28,10 +28,11 @@ export function hentEnhetEksperimentId(): number {
 }
 
 function hentEksperimenterForABTest(enhetEksperimentId: number): EksperimentId[] {
-    if (enhetEksperimentId % 2 === 0) {
-        return ['nesteknappIntro'];
-    }
-    return [];
+    const eksperimenter: EksperimentId[] = [];
+
+    eksperimenter.push(enhetEksperimentId % 2 === 0 ? 'nesteknappIntro' : 'fullførknappIntro');
+
+    return eksperimenter;
 }
 
 function hentEksperimenterFraSamarbeidskontor(brukerContext: BrukerContext): EksperimentId[] {
