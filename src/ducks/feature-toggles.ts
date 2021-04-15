@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { DataElement, STATUS } from './api';
 
-export enum alleFeatureToggles {
+export enum FeatureToggles {
     INTRO_FEEDBACK = 'veientilarbeid.feedback',
     INTRO_14A = 'veientilarbeid.14a-intro',
 }
 
-export function prettyPrintFeatureToggle(toggle: alleFeatureToggles) {
+export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
     switch (toggle) {
-        case alleFeatureToggles.INTRO_14A:
+        case FeatureToggles.INTRO_14A:
             return '14a-intro';
-        case alleFeatureToggles.INTRO_FEEDBACK:
+        case FeatureToggles.INTRO_FEEDBACK:
             return 'Intro feedback';
     }
 }

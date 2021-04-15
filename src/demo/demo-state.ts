@@ -1,7 +1,7 @@
 import { InnloggingsNiva } from '../ducks/autentisering';
 import { foerstkommendeMandag, plussDager } from '../utils/date-utils';
 import { hentQueryParam, settQueryParam } from '../utils/query-param-utils';
-import { alleFeatureToggles } from '../ducks/feature-toggles';
+import { FeatureToggles } from '../ducks/feature-toggles';
 
 type JSONValue = null | string | number | boolean | JSONObject | JSONArray;
 
@@ -78,7 +78,7 @@ export const hentDagerEtterFastsattMeldedag = (): number => {
 export const settAntallDagerEtterFastsattMeldedag = (dag: string) => settDemoState(DemoData.MELDEKORT, dag);
 
 export const hentFeatureToggles = () => {
-    return Object.values(alleFeatureToggles).reduce((liste, toggle) => {
+    return Object.values(FeatureToggles).reduce((liste, toggle) => {
         liste[toggle] = hentDemoState(toggle) === 'true';
         return liste;
     }, {});

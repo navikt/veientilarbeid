@@ -52,7 +52,7 @@ import tekster from '../tekster/tekster';
 import { InnloggingsNiva } from '../ducks/autentisering';
 import { setFastTidspunktForIDag } from '../utils/chrono';
 import { datoUtenTid } from '../utils/date-utils';
-import { alleFeatureToggles, prettyPrintFeatureToggle } from '../ducks/feature-toggles';
+import { FeatureToggles, prettyPrintFeatureToggle } from '../ducks/feature-toggles';
 
 interface OpprettetRegistreringDato {
     registrertForLanseringEgenvurdering: string;
@@ -79,7 +79,7 @@ class DemoDashboard extends React.Component<{}> {
         const AUTENTISERINGS_INFO = DemoData.AUTENTISERINGS_INFO;
         const UNDER_OPPFOLGING = DemoData.UNDER_OPPFOLGING;
         const KAN_REAKTIVERES = DemoData.KAN_REAKTIVERES;
-        const FEATURE_TOGGLES: string[] = Object.values(alleFeatureToggles);
+        const FEATURE_TOGGLES: string[] = Object.values(FeatureToggles);
 
         const handleChangeServicegruppe = (e: React.ChangeEvent<HTMLSelectElement>) => {
             settServicegruppe(e.target.value);
@@ -397,7 +397,7 @@ class DemoDashboard extends React.Component<{}> {
                 <CheckboksPanelGruppe
                     legend={'Featuretoggles'}
                     onChange={handleClick}
-                    checkboxes={Object.values(alleFeatureToggles).map((toggle) => {
+                    checkboxes={Object.values(FeatureToggles).map((toggle) => {
                         return {
                             label: prettyPrintFeatureToggle(toggle),
                             checked: hentDemoState(toggle) === 'true',
