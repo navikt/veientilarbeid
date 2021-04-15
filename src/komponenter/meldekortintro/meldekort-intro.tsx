@@ -331,7 +331,7 @@ function MeldekortIntroWrapper() {
     const [tvingVisningAvIntro, setTvingVisningAvIntro] = React.useState<boolean>(false);
 
     const erNyregistrert = amplitudeData.ukerRegistrert === 0;
-    const skalViseIntro = tvingVisningAvIntro || (erNyregistrert && !harSettIntro);
+    const rendreIntro = tvingVisningAvIntro || (erNyregistrert && !harSettIntro);
 
     useEffect(() => {
         if (harSettIntro) {
@@ -358,7 +358,7 @@ function MeldekortIntroWrapper() {
         <div className={'meldekort-intro-omslutning'}>
             <Panel className={'meldekort-intro'} border>
                 <div className={'overall-wrapper'}>
-                    {skalViseIntro ? (
+                    {rendreIntro ? (
                         <MeldekortIntro
                             hoppOverPreState={harSettIntro}
                             ferdigMedIntroCB={ferdigMedIntroCB}
