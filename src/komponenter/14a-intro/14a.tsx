@@ -210,7 +210,7 @@ function Sluttkort(props: EndStateProps) {
 interface Intro14AProps {
     amplitudeData: AmplitudeData;
     ferdigMedIntroCB: () => void;
-    harSettIntro: boolean;
+    hoppOverPreState: boolean;
 }
 
 function Intro14A(props: Intro14AProps) {
@@ -227,7 +227,7 @@ function Intro14A(props: Intro14AProps) {
         <Kort4 />,
     ];
 
-    const startkort = props.harSettIntro ? 1 : 0;
+    const startkort = props.hoppOverPreState ? 1 : 0;
     const [gjeldendeKortIndex, setGjeldendeKortIndex] = useState(startkort);
     const forrigeKortRef = useRef(gjeldendeKortIndex);
 
@@ -373,7 +373,7 @@ function Intro14AWrapper() {
                 <div className={'overall-wrapper'}>
                     {rendreIntro ? (
                         <Intro14A
-                            harSettIntro={harSettIntro}
+                            hoppOverPreState={harSettIntro}
                             ferdigMedIntroCB={ferdigMedIntroCB}
                             amplitudeData={amplitudeData}
                         />
