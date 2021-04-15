@@ -332,6 +332,7 @@ function MeldekortIntroWrapper() {
 
     const erNyregistrert = amplitudeData.ukerRegistrert === 0;
     const rendreIntro = tvingVisningAvIntro || (erNyregistrert && !harSettIntro);
+    const hoppOverPreState = harSettIntro;
 
     useEffect(() => {
         if (harSettIntro) {
@@ -360,7 +361,7 @@ function MeldekortIntroWrapper() {
                 <div className={'overall-wrapper'}>
                     {rendreIntro ? (
                         <MeldekortIntro
-                            hoppOverPreState={harSettIntro}
+                            hoppOverPreState={hoppOverPreState}
                             ferdigMedIntroCB={ferdigMedIntroCB}
                             amplitudeData={amplitudeData}
                         />
