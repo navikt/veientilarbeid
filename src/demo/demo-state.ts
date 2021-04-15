@@ -77,15 +77,13 @@ export const hentDagerEtterFastsattMeldedag = (): number => {
 };
 export const settAntallDagerEtterFastsattMeldedag = (dag: string) => settDemoState(DemoData.MELDEKORT, dag);
 
-export const hentFeatureToggles = featuretoggleobject;
-export const settFeatureToggles = (checked: boolean) => settDemoState(DemoData.FEATURE_TOGGLES, checked);
-
-function featuretoggleobject() {
-    return alleFeatureToggles.reduce((listen, verdi) => {
-        listen[verdi] = hentDemoState(DemoData.FEATURE_TOGGLES) === 'true';
-        return listen;
+export const hentFeatureToggles = () => {
+    return Object.values(alleFeatureToggles).reduce((liste, toggle) => {
+        liste[toggle] = hentDemoState(toggle) === 'true';
+        return liste;
     }, {});
-}
+};
+export const settFeatureToggles = (toggle: string, checked: boolean) => settDemoState(toggle, checked);
 
 export const hentReservasjonKRR = (): boolean => hentDemoState(DemoData.RESERVASJON_KRR) === 'true';
 export const settReservasjonKRR = (value: boolean) => settDemoState(DemoData.RESERVASJON_KRR, value);
