@@ -153,12 +153,6 @@ interface EndStateProps {
     antallUlesteDialoger: number;
 }
 
-interface Intro14AProps {
-    amplitudeData: AmplitudeData;
-    ferdigMedIntroCB: () => void;
-    harSettIntro: boolean;
-}
-
 function Sluttkort(props: EndStateProps) {
     const { amplitudeData } = props;
     const { ukerRegistrert } = amplitudeData;
@@ -211,6 +205,12 @@ function Sluttkort(props: EndStateProps) {
             </Normaltekst>
         </div>
     );
+}
+
+interface Intro14AProps {
+    amplitudeData: AmplitudeData;
+    ferdigMedIntroCB: () => void;
+    harSettIntro: boolean;
 }
 
 function Intro14A(props: Intro14AProps) {
