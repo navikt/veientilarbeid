@@ -341,6 +341,7 @@ function Intro14AWrapper() {
 
     const erNyregistrertKss = amplitudeData.ukerRegistrert === 0;
     const rendreIntro = tvingVisningAvIntro || (erNyregistrertKss && !harSettIntro);
+    const hoppOverPreState = harSettIntro;
 
     useEffect(() => {
         if (harSettIntro) {
@@ -373,7 +374,7 @@ function Intro14AWrapper() {
                 <div className={'overall-wrapper'}>
                     {rendreIntro ? (
                         <Intro14A
-                            hoppOverPreState={harSettIntro}
+                            hoppOverPreState={hoppOverPreState}
                             ferdigMedIntroCB={ferdigMedIntroCB}
                             amplitudeData={amplitudeData}
                         />
