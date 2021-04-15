@@ -99,12 +99,6 @@ interface EndStateProps {
     lesIntroPaaNyttCB: () => void;
 }
 
-interface MeldekortIntroProps {
-    amplitudeData: AmplitudeData;
-    ferdigMedIntroCB: () => void;
-    harSettIntro: boolean;
-}
-
 function Sluttkort(props: EndStateProps) {
     const { meldekortData, amplitudeData } = props;
     const dato = datoUtenTid(hentIDag().toISOString());
@@ -199,6 +193,12 @@ function Sluttkort(props: EndStateProps) {
             </Normaltekst>
         </div>
     );
+}
+
+interface MeldekortIntroProps {
+    amplitudeData: AmplitudeData;
+    ferdigMedIntroCB: () => void;
+    harSettIntro: boolean;
 }
 
 function MeldekortIntro(props: MeldekortIntroProps) {
