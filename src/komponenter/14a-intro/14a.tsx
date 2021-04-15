@@ -341,7 +341,7 @@ function Intro14AWrapper() {
 
     const erNyregistrertKss = amplitudeData.ukerRegistrert === 0;
     const rendreIntro = tvingVisningAvIntro || (erNyregistrertKss && !harSettIntro);
-    const hoppOverPreState = harSettIntro;
+    const hoppOverPreState = harSettIntro || tvingVisningAvIntro;
 
     useEffect(() => {
         if (harSettIntro) {
