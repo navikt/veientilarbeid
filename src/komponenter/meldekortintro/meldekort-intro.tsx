@@ -198,7 +198,7 @@ function Sluttkort(props: EndStateProps) {
 interface MeldekortIntroProps {
     amplitudeData: AmplitudeData;
     ferdigMedIntroCB: () => void;
-    harSettIntro: boolean;
+    hoppOverPreState: boolean;
 }
 
 function MeldekortIntro(props: MeldekortIntroProps) {
@@ -214,7 +214,7 @@ function MeldekortIntro(props: MeldekortIntroProps) {
         <Kort3 />,
     ];
 
-    const startkort = props.harSettIntro ? 1 : 0;
+    const startkort = props.hoppOverPreState ? 1 : 0;
     const [gjeldendeKortIndex, setGjeldendeKortIndex] = useState(startkort);
     const forrigeKortRef = useRef(gjeldendeKortIndex);
     const nesteknappIntro = props.amplitudeData.eksperimenter.includes('nesteknappIntro');
@@ -360,7 +360,7 @@ function MeldekortIntroWrapper() {
                 <div className={'overall-wrapper'}>
                     {skalViseIntro ? (
                         <MeldekortIntro
-                            harSettIntro={harSettIntro}
+                            hoppOverPreState={harSettIntro}
                             ferdigMedIntroCB={ferdigMedIntroCB}
                             amplitudeData={amplitudeData}
                         />
