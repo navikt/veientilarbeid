@@ -36,6 +36,7 @@ const InnholdView = () => {
                 <RessurslenkerJobbsok />
             </Rad>
             <OkonomiRad />
+            <InViewport loggTekst="Bunnen av veien til arbeid i viewport" />
         </>
     );
 };

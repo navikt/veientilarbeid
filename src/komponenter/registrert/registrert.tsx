@@ -12,6 +12,7 @@ import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import Intro14AWrapper from '../14a-intro/14a';
+import InViewport from '../in-viewport/in-viewport';
 
 const Registrert = () => {
     const brukerregistreringData = useContext(BrukerregistreringContext).data;
@@ -35,6 +36,7 @@ const Registrert = () => {
                 <AlertStripeInfo>
                     <Element>Du er registrert som arbeidssøker</Element>
                 </AlertStripeInfo>
+                <InViewport loggTekst="Tom registreringsboks i viewport" />
             </div>
         );
     }
@@ -74,6 +76,7 @@ const Registrert = () => {
                 <Intro14AWrapper />
                 <MeldekortIntroWrapper />
             </div>
+            <InViewport loggTekst="Registreringsboks i viewport" />
         </div>
     );
 };
