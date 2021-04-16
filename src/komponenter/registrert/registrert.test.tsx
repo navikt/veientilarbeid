@@ -6,6 +6,7 @@ import { contextProviders, ProviderProps } from '../../test/test-context-provide
 import Registrert from './registrert';
 import { Formidlingsgruppe, Servicegruppe } from '../../ducks/oppfolging';
 import { ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../../ducks/brukerregistrering';
+import { mockIntersectionObserver } from '../../mocks/intersection-observer-mock';
 
 const meldekort = {
     meldekort: [
@@ -45,6 +46,10 @@ const providerProps: ProviderProps = {
 };
 
 describe('Test av registreringskomponenten', () => {
+    beforeEach(() => {
+        mockIntersectionObserver();
+    });
+
     test('Meldekort-intro-komponenten rendres når featuretoggle er satt og hører til eksperimentkontor', () => {
         const props: ProviderProps = providerProps;
         const { container } = render(<Registrert />, { wrapper: contextProviders({ ...props }) });
