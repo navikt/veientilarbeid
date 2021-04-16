@@ -6,8 +6,8 @@ import {
     hentAutentiseringsInfo,
     hentDagerEtterFastsattMeldedag,
     hentDagRelativTilFastsattMeldedag,
+    hentDemoState,
     hentEgenvurdering,
-    hentFeatureToggles,
     hentFormidlingsgruppe,
     hentGeografiskTilknytning,
     hentJsk,
@@ -52,6 +52,7 @@ import tekster from '../tekster/tekster';
 import { InnloggingsNiva } from '../ducks/autentisering';
 import { setFastTidspunktForIDag } from '../utils/chrono';
 import { datoUtenTid } from '../utils/date-utils';
+import { FeatureToggles, prettyPrintFeatureToggle } from '../ducks/feature-toggles';
 
 interface OpprettetRegistreringDato {
     registrertForLanseringEgenvurdering: string;
@@ -76,9 +77,9 @@ class DemoDashboard extends React.Component<{}> {
         const ULESTE_DIALOGER = DemoData.ULESTE_DIALOGER;
         const RESERVASJON_KRR = DemoData.RESERVASJON_KRR;
         const AUTENTISERINGS_INFO = DemoData.AUTENTISERINGS_INFO;
-        const FEATURES = DemoData.FEATURE_TOGGLES;
         const UNDER_OPPFOLGING = DemoData.UNDER_OPPFOLGING;
         const KAN_REAKTIVERES = DemoData.KAN_REAKTIVERES;
+        const FEATURE_TOGGLES: string[] = Object.values(FeatureToggles);
 
         const handleChangeServicegruppe = (e: React.ChangeEvent<HTMLSelectElement>) => {
             settServicegruppe(e.target.value);
@@ -135,8 +136,8 @@ class DemoDashboard extends React.Component<{}> {
                 settEgenvurdering(element.checked);
             } else if (element.id === MOTESTOTTE) {
                 settMotestotte(element.checked);
-            } else if (element.id === FEATURES) {
-                settFeatureToggles(element.checked);
+            } else if (FEATURE_TOGGLES.includes(element.id)) {
+                settFeatureToggles(element.id, element.checked);
             } else if (element.id === ULESTE_DIALOGER) {
                 settUlesteDialoger(element.checked);
             } else if (element.id === RESERVASJON_KRR) {
@@ -382,11 +383,6 @@ class DemoDashboard extends React.Component<{}> {
                             id: AUTENTISERINGS_INFO,
                         },
                         {
-                            label: 'Eksperimentelle funksjoner',
-                            checked: !!hentFeatureToggles()[Object.keys(hentFeatureToggles())[0]],
-                            id: FEATURES,
-                        },
-                        {
                             label: 'Under oppfølging',
                             checked: hentUnderOppfolging().underOppfolging === true,
                             id: UNDER_OPPFOLGING,
@@ -397,6 +393,17 @@ class DemoDashboard extends React.Component<{}> {
                             id: KAN_REAKTIVERES,
                         },
                     ]}
+                />
+                <CheckboksPanelGruppe
+                    legend={'Featuretoggles'}
+                    onChange={handleClick}
+                    checkboxes={Object.values(FeatureToggles).map((toggle) => {
+                        return {
+                            label: prettyPrintFeatureToggle(toggle),
+                            checked: hentDemoState(toggle) === 'true',
+                            id: toggle,
+                        };
+                    })}
                 />
             </section>
         );

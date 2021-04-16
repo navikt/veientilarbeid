@@ -1,9 +1,12 @@
 import { InnloggingsNiva } from '../ducks/autentisering';
 import { foerstkommendeMandag, plussDager } from '../utils/date-utils';
 import { hentQueryParam, settQueryParam } from '../utils/query-param-utils';
+import { FeatureToggles } from '../ducks/feature-toggles';
 
 type JSONValue = null | string | number | boolean | JSONObject | JSONArray;
+
 interface JSONArray extends Array<JSONValue> {}
+
 type JSONObject = { [member: string]: JSONValue };
 
 export enum DemoData {
@@ -74,12 +77,13 @@ export const hentDagerEtterFastsattMeldedag = (): number => {
 };
 export const settAntallDagerEtterFastsattMeldedag = (dag: string) => settDemoState(DemoData.MELDEKORT, dag);
 
-const features = (checked: boolean) => ({
-    'veientilarbeid.feedback': checked,
-    'veientilarbeid.14a-intro': checked,
-});
-export const hentFeatureToggles = (): JSONObject => features(hentDemoState(DemoData.FEATURE_TOGGLES) === 'true');
-export const settFeatureToggles = (checked: boolean) => settDemoState(DemoData.FEATURE_TOGGLES, checked);
+export const hentFeatureToggles = () => {
+    return Object.values(FeatureToggles).reduce((liste, toggle) => {
+        liste[toggle] = hentDemoState(toggle) === 'true';
+        return liste;
+    }, {});
+};
+export const settFeatureToggles = (toggle: string, checked: boolean) => settDemoState(toggle, checked);
 
 export const hentReservasjonKRR = (): boolean => hentDemoState(DemoData.RESERVASJON_KRR) === 'true';
 export const settReservasjonKRR = (value: boolean) => settDemoState(DemoData.RESERVASJON_KRR, value);

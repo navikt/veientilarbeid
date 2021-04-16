@@ -36,7 +36,9 @@ const OppfolgingBrukerregistreringProvider = ({ children }: OppfolgingProviderPr
         UnderOppfolging.initialState
     );
     const [featureToggleState, setFeatureToggleState] = React.useState<FeatureToggle.State>(FeatureToggle.initialState);
-    const parameters = FeatureToggle.alleFeatureToggles.map((element) => 'feature=' + element).join('&');
+    const parameters = Object.values(FeatureToggle.FeatureToggles)
+        .map((element) => 'feature=' + element)
+        .join('&');
     const featureTogglesUrl = `${FEATURE_URL}/?${parameters}`;
 
     React.useEffect(() => {
