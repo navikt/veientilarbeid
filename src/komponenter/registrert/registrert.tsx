@@ -13,7 +13,6 @@ import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import Intro14AWrapper from '../14a-intro/14a';
 import InViewport from '../in-viewport/in-viewport';
-import { mockIntersectionObserver } from '../../mocks/intersection-observer-mock';
 
 const Registrert = () => {
     const brukerregistreringData = useContext(BrukerregistreringContext).data;
