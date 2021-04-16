@@ -27,12 +27,12 @@ import Lenke from 'nav-frontend-lenker';
 
 const MELDEKORT_INTRO_KEY = 'meldekortintro';
 
-function Kort1() {
+function Kort1({ nesteknappintro }: { nesteknappintro: boolean }) {
     return (
         <div className="kortflate">
             <div>
                 <Systemtittel>Introduksjon til meldekort</Systemtittel>
-                <Undertekst className={'blokk-xs'}>1 av 3</Undertekst>
+                <Undertekst className={'blokk-xs'}>1 av {nesteknappintro ? '4' : '3'}</Undertekst>
 
                 <Normaltekst className={'blokk-xs'}>
                     Når du er registrert som arbeidssøker, må du sende inn et meldekort hver 14. dag.
@@ -51,12 +51,12 @@ function Kort1() {
     );
 }
 
-function Kort2() {
+function Kort2({ nesteknappintro }: { nesteknappintro: boolean }) {
     return (
         <div className="kortflate">
             <div>
                 <Systemtittel>Introduksjon til meldekort</Systemtittel>
-                <Undertekst className={'blokk-xs'}>2 av 3</Undertekst>
+                <Undertekst className={'blokk-xs'}>2 av {nesteknappintro ? '4' : '3'}</Undertekst>
                 <Normaltekst className={'blokk-xs'}>
                     Utbetaling av dagpenger beregnes ut fra opplysninger du har lagt inn på meldekortet.
                 </Normaltekst>
@@ -73,12 +73,12 @@ function Kort2() {
     );
 }
 
-function Kort3() {
+function Kort3({ nesteknappintro }: { nesteknappintro: boolean }) {
     return (
         <div className="kortflate">
             <div>
                 <Systemtittel>Introduksjon til meldekort</Systemtittel>
-                <Undertekst className={'blokk-xs'}>3 av 3</Undertekst>
+                <Undertekst className={'blokk-xs'}>3 av {nesteknappintro ? '4' : '3'}</Undertekst>
                 <Normaltekst className={'blokk-xs'}>
                     Dersom du sender inn meldekortet for sent vil dagpengene kunne stanses, og du risikerer at
                     arbeidsoppfølging fra NAV avsluttes.
@@ -202,6 +202,10 @@ interface MeldekortIntroProps {
 }
 
 function MeldekortIntro(props: MeldekortIntroProps) {
+    const startkort = props.hoppOverPreState ? 1 : 0;
+    const [gjeldendeKortIndex, setGjeldendeKortIndex] = useState(startkort);
+    const forrigeKortRef = useRef(gjeldendeKortIndex);
+    const nesteknappIntro = props.amplitudeData.eksperimenter.includes('nesteknappIntro');
     const introKort = [
         <PreState
             tittel={'Hva er meldekort og hvordan fungerer de?'}
@@ -209,15 +213,10 @@ function MeldekortIntro(props: MeldekortIntroProps) {
             startIntroCB={nesteKort}
             hoppOverIntroCB={hoppOverIntro}
         />,
-        <Kort1 />,
-        <Kort2 />,
-        <Kort3 />,
+        <Kort1 nesteknappintro={nesteknappIntro} />,
+        <Kort2 nesteknappintro={nesteknappIntro} />,
+        <Kort3 nesteknappintro={nesteknappIntro} />,
     ];
-
-    const startkort = props.hoppOverPreState ? 1 : 0;
-    const [gjeldendeKortIndex, setGjeldendeKortIndex] = useState(startkort);
-    const forrigeKortRef = useRef(gjeldendeKortIndex);
-    const nesteknappIntro = props.amplitudeData.eksperimenter.includes('nesteknappIntro');
 
     function nesteKort() {
         if (gjeldendeKortIndex < introKort.length - 1) {
