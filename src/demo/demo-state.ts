@@ -30,6 +30,7 @@ export enum DemoData {
     FREMTIDIG_SITUASJON = 'fremtidigSituasjon',
     FORESLATT_INNSATSGRUPPE = 'foreslattInnsatsgruppe',
     REGISTRERING_OPPRETTET = 'registreringOpprettet',
+    SKJUL_DEMO = 'skjulDemo',
 }
 
 export const hentDemoState = (key: string): string | null => hentQueryParam(key);

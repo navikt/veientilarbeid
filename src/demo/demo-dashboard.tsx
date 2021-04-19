@@ -226,6 +226,10 @@ class DemoDashboard extends React.Component<{}> {
 
         setFastTidspunktForIDag(hentDagRelativTilFastsattMeldedag());
 
+        if (hentDemoState(DemoData.SKJUL_DEMO)) {
+            return null;
+        }
+
         return (
             <section className="demodashboard">
                 <Innholdstittel className="blokk-s">{tekster['demo-tittel']}</Innholdstittel>
