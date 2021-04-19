@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 
-function useLocalStorage(key, defaultValue, { serialize = JSON.stringify, deserialize = JSON.parse } = {}) {
+function useLocalStorage(
+    key: string,
+    defaultValue: any,
+    { serialize = JSON.stringify, deserialize = JSON.parse } = {}
+) {
     const [state, setState] = useState(() => {
         const itemInStorage = window.localStorage.getItem(key);
         if (itemInStorage) {
