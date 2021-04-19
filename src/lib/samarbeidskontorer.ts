@@ -38,7 +38,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
     },
     '3803': {
         navn: 'Tønsberg',
-        eksperimenter: [],
+        eksperimenter: [{ id: 'onboarding14a', registrertEtterDato: new Date('2021-04-19') }],
     },
     '1120': {
         navn: 'Klepp',
