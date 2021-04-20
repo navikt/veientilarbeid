@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
+import { erDemo } from '../utils/app-state-utils';
 
 export function useBrowserStorage(key: string, defaultValue: any) {
-    return useStorage(key, defaultValue, window.localStorage);
+    const storage = erDemo() ? window.sessionStorage : window.localStorage;
+    return useStorage(key, defaultValue, storage);
 }
 
 function useStorage(key: string, defaultValue: any, storage: Storage) {

@@ -1,5 +1,7 @@
+import { erDemo } from './app-state-utils';
+
 function hentStorage() {
-    return window.localStorage;
+    return erDemo() ? window.sessionStorage : window.localStorage;
 }
 
 export const hentFraBrowserStorage = (key: string): string | null => {
