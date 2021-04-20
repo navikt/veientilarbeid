@@ -1,5 +1,5 @@
 import { EksperimentId } from '../lib/eksperimenter';
-import { hentEllerSettFraLocalStorage } from '../utils/localStorage-utils';
+import { hentEllerSettFraLocalStorage } from '../utils/browserStorage-utils';
 
 function lagNyEnhetEksperimentId() {
     return Math.floor(Math.random() * 99999).toString();

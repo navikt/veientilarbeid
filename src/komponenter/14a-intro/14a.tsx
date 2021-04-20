@@ -10,7 +10,7 @@ import * as BrukerInfo from '../../ducks/bruker-info';
 import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
 import './14a-intro.less';
-import { fjernFraLocalStorage, hentFraLocalStorage, settILocalStorage } from '../../utils/localStorage-utils';
+import { fjernFraLocalStorage, hentFraLocalStorage, settILocalStorage } from '../../utils/browserStorage-utils';
 import Feedback from '../feedback/feedback';
 import Lenkepanel14A from './lenkepanel-14a';
 import { FeaturetoggleContext } from '../../ducks/feature-toggles';

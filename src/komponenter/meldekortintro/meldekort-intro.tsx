@@ -20,7 +20,7 @@ import Meldekortstatus from './meldekortstatus';
 import LenkepanelMeldekort from './lenkepanel-Meldekort';
 import { hentIDag } from '../../utils/chrono';
 import { meldekortLenke, omMeldekortLenke } from '../../innhold/lenker';
-import { fjernFraLocalStorage, hentFraLocalStorage, settILocalStorage } from '../../utils/localStorage-utils';
+import { fjernFraLocalStorage, hentFraLocalStorage, settILocalStorage } from '../../utils/browserStorage-utils';
 import Feedback from '../feedback/feedback';
 import PreState from './pre-state';
 import Lenke from 'nav-frontend-lenker';
