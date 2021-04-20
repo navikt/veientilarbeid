@@ -7,10 +7,6 @@ import { contextProviders, ProviderProps } from '../../test/test-context-provide
 import { InnloggingsNiva } from '../../ducks/autentisering';
 
 describe('Aap', () => {
-    beforeAll(() => {
-        window.HTMLElement.prototype.scrollIntoView = () => {};
-    });
-
     it('rendres når bruker er sykemeldt med arbeidsgiver og under oppfølging og Nivå 4', async () => {
         const props: ProviderProps = {
             brukerInfo: { erSykmeldtMedArbeidsgiver: true },
