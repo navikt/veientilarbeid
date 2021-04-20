@@ -1,6 +1,10 @@
+function hentStorage() {
+    return window.localStorage;
+}
+
 export const hentFraBrowserStorage = (key: string): string | null => {
     try {
-        return window.localStorage.getItem(key);
+        return hentStorage().getItem(key);
     } catch (e) {
         return null;
     }
@@ -17,7 +21,7 @@ export const hentEllerSettFraBrowserStorage = (key: string, defaultVerdi: string
 
 export const settIBrowserStorage = (key: string, value: string): void => {
     try {
-        window.localStorage.setItem(key, value);
+        hentStorage().setItem(key, value);
     } catch (e) {
         // Ignorer manglende localStorage. Enten full disk, privat nettlesermodus, eller annet lignende.
     }
@@ -25,7 +29,7 @@ export const settIBrowserStorage = (key: string, value: string): void => {
 
 export const fjernFraBrowserStorage = (key: string): void => {
     try {
-        window.localStorage.removeItem(key);
+        hentStorage().removeItem(key);
     } catch (e) {
         // Uproblematisk å ikke få slettet dersom localStorage mangler
     }
