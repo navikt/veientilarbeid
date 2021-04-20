@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
-import { useLocalStorage } from '../../hooks/use-localstorarge';
 import './feedback.less';
 import { Undertekst } from 'nav-frontend-typografi';
 import classNames from 'classnames';
 import { FeaturetoggleContext } from '../../ducks/feature-toggles';
+import { useBrowserStorage } from '../../hooks/use-browserstorage';
 
 interface Props {
     id?: string;
@@ -13,7 +13,7 @@ interface Props {
 }
 
 function Feedback({ id, className }: Props) {
-    const [feedback, setFeedback] = useLocalStorage(`vta-feedback-intro-${id}`, {
+    const [feedback, setFeedback] = useBrowserStorage(`vta-feedback-intro-${id}`, {
         updated: new Date(),
         valgt: '',
     });
