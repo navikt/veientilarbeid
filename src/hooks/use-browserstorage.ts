@@ -4,15 +4,11 @@ export function useBrowserStorage(key: string, defaultValue: any) {
     return useStorage(key, defaultValue);
 }
 
-function useStorage(
-    key: string,
-    defaultValue: any,
-    { serialize = JSON.stringify, deserialize = JSON.parse, storage = window.localStorage } = {}
-) {
+function useStorage(key: string, defaultValue: any, storage = window.localStorage) {
     const [state, setState] = useState(() => {
         const itemInStorage = storage.getItem(key);
         if (itemInStorage) {
-            return deserialize(itemInStorage);
+            return JSON.parse(itemInStorage);
         }
         return typeof defaultValue === 'function' ? defaultValue() : defaultValue || '';
     });
@@ -24,8 +20,8 @@ function useStorage(
             storage.removeItem(prevKey);
         }
         prevKeyRef.current = key;
-        storage.setItem(key, serialize(state));
-    }, [key, state, serialize]);
+        storage.setItem(key, JSON.stringify(state));
+    }, [key, state, storage]);
 
     return [state, setState];
 }
