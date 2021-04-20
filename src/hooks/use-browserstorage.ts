@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 
 export function useBrowserStorage(key: string, defaultValue: any) {
-    return useStorage(key, defaultValue);
+    return useStorage(key, defaultValue, window.localStorage);
 }
 
-function useStorage(key: string, defaultValue: any, storage = window.localStorage) {
+function useStorage(key: string, defaultValue: any, storage: Storage) {
     const [state, setState] = useState(() => {
         const itemInStorage = storage.getItem(key);
         if (itemInStorage) {
