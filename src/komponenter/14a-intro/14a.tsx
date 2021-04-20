@@ -10,7 +10,7 @@ import * as BrukerInfo from '../../ducks/bruker-info';
 import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
 import './14a-intro.less';
-import { fjernFraLocalStorage, hentFraLocalStorage, settILocalStorage } from '../../utils/browserStorage-utils';
+import { fjernFraBrowserStorage, hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
 import Feedback from '../feedback/feedback';
 import Lenkepanel14A from './lenkepanel-14a';
 import { FeaturetoggleContext } from '../../ducks/feature-toggles';
@@ -336,7 +336,7 @@ function Intro14AWrapper() {
     const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
     const ulesteDialoger = React.useContext(UlesteDialogerContext).data;
 
-    const [harSettIntro, setHarSettIntro] = React.useState<boolean>(!!hentFraLocalStorage(INTRO_KEY_14A));
+    const [harSettIntro, setHarSettIntro] = React.useState<boolean>(!!hentFraBrowserStorage(INTRO_KEY_14A));
     const [tvingVisningAvIntro, setTvingVisningAvIntro] = React.useState<boolean>(false);
 
     const erNyregistrertKss = amplitudeData.ukerRegistrert === 0;
@@ -345,9 +345,9 @@ function Intro14AWrapper() {
 
     useEffect(() => {
         if (harSettIntro) {
-            settILocalStorage(INTRO_KEY_14A, 'true');
+            settIBrowserStorage(INTRO_KEY_14A, 'true');
         } else {
-            fjernFraLocalStorage(INTRO_KEY_14A);
+            fjernFraBrowserStorage(INTRO_KEY_14A);
         }
     }, [harSettIntro]);
 
@@ -356,7 +356,7 @@ function Intro14AWrapper() {
         featuretoggleAktivert && kanVise14AStatus({ amplitudeData, oppfolgingData, brukerInfoData, registreringData });
 
     if (!kanViseKomponent) {
-        fjernFraLocalStorage(INTRO_KEY_14A);
+        fjernFraBrowserStorage(INTRO_KEY_14A);
         return null;
     }
 

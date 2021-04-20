@@ -1,4 +1,4 @@
-export const hentFraLocalStorage = (key: string): string | null => {
+export const hentFraBrowserStorage = (key: string): string | null => {
     try {
         return window.localStorage.getItem(key);
     } catch (e) {
@@ -6,16 +6,16 @@ export const hentFraLocalStorage = (key: string): string | null => {
     }
 };
 
-export const hentEllerSettFraLocalStorage = (key: string, defaultVerdi: string): string => {
-    const fraLocalStorage = hentFraLocalStorage(key);
+export const hentEllerSettFraBrowserStorage = (key: string, defaultVerdi: string): string => {
+    const fraLocalStorage = hentFraBrowserStorage(key);
     if (!fraLocalStorage) {
-        settILocalStorage(key, defaultVerdi);
+        settIBrowserStorage(key, defaultVerdi);
         return defaultVerdi;
     }
     return fraLocalStorage;
 };
 
-export const settILocalStorage = (key: string, value: string): void => {
+export const settIBrowserStorage = (key: string, value: string): void => {
     try {
         window.localStorage.setItem(key, value);
     } catch (e) {
@@ -23,7 +23,7 @@ export const settILocalStorage = (key: string, value: string): void => {
     }
 };
 
-export const fjernFraLocalStorage = (key: string): void => {
+export const fjernFraBrowserStorage = (key: string): void => {
     try {
         window.localStorage.removeItem(key);
     } catch (e) {

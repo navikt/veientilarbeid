@@ -1,12 +1,12 @@
 import { EksperimentId } from '../lib/eksperimenter';
-import { hentEllerSettFraLocalStorage } from '../utils/browserStorage-utils';
+import { hentEllerSettFraBrowserStorage } from '../utils/browserStorage-utils';
 
 function lagNyEnhetEksperimentId() {
     return Math.floor(Math.random() * 99999).toString();
 }
 
 export function hentEnhetEksperimentId(): number {
-    const id = hentEllerSettFraLocalStorage('enhetEksperimentId', lagNyEnhetEksperimentId());
+    const id = hentEllerSettFraBrowserStorage('enhetEksperimentId', lagNyEnhetEksperimentId());
     return parseInt(id, 10);
 }
 
