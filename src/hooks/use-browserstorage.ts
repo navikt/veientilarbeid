@@ -7,10 +7,10 @@ export function useBrowserStorage(key: string, defaultValue: any) {
 function useLocalStorage(
     key: string,
     defaultValue: any,
-    { serialize = JSON.stringify, deserialize = JSON.parse } = {}
+    { serialize = JSON.stringify, deserialize = JSON.parse, storage = window.localStorage } = {}
 ) {
     const [state, setState] = useState(() => {
-        const itemInStorage = window.localStorage.getItem(key);
+        const itemInStorage = storage.getItem(key);
         if (itemInStorage) {
             return deserialize(itemInStorage);
         }
@@ -21,10 +21,10 @@ function useLocalStorage(
     useEffect(() => {
         const prevKey = prevKeyRef.current;
         if (prevKey !== key) {
-            window.localStorage.removeItem(prevKey);
+            storage.removeItem(prevKey);
         }
         prevKeyRef.current = key;
-        window.localStorage.setItem(key, serialize(state));
+        storage.setItem(key, serialize(state));
     }, [key, state, serialize]);
 
     return [state, setState];
