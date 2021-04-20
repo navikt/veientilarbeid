@@ -20,7 +20,7 @@ import Meldekortstatus from './meldekortstatus';
 import LenkepanelMeldekort from './lenkepanel-Meldekort';
 import { hentIDag } from '../../utils/chrono';
 import { meldekortLenke, omMeldekortLenke } from '../../innhold/lenker';
-import { fjernFraLocalStorage, hentFraLocalStorage, settILocalStorage } from '../../utils/localStorage-utils';
+import { fjernFraBrowserStorage, hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
 import Feedback from '../feedback/feedback';
 import PreState from './pre-state';
 import Lenke from 'nav-frontend-lenker';
@@ -326,7 +326,7 @@ function MeldekortIntroWrapper() {
     const { data: oppfolgingData } = React.useContext(Oppfolging.OppfolgingContext);
     const { data: brukerInfoData } = React.useContext(BrukerInfo.BrukerInfoContext);
 
-    const [harSettIntro, setHarSettIntro] = React.useState<boolean>(!!hentFraLocalStorage(MELDEKORT_INTRO_KEY));
+    const [harSettIntro, setHarSettIntro] = React.useState<boolean>(!!hentFraBrowserStorage(MELDEKORT_INTRO_KEY));
     const [tvingVisningAvIntro, setTvingVisningAvIntro] = React.useState<boolean>(false);
 
     const erNyregistrert = amplitudeData.ukerRegistrert === 0;
@@ -335,14 +335,14 @@ function MeldekortIntroWrapper() {
 
     useEffect(() => {
         if (harSettIntro) {
-            settILocalStorage(MELDEKORT_INTRO_KEY, 'true');
+            settIBrowserStorage(MELDEKORT_INTRO_KEY, 'true');
         } else {
-            fjernFraLocalStorage(MELDEKORT_INTRO_KEY);
+            fjernFraBrowserStorage(MELDEKORT_INTRO_KEY);
         }
     }, [harSettIntro]);
 
     if (!kanViseMeldekortStatus({ meldekortData, oppfolgingData, brukerInfoData, registreringData })) {
-        fjernFraLocalStorage(MELDEKORT_INTRO_KEY);
+        fjernFraBrowserStorage(MELDEKORT_INTRO_KEY);
         return null;
     }
 

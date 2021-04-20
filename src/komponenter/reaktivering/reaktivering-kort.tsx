@@ -3,9 +3,9 @@ import AlertStripe from 'nav-frontend-alertstriper';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
 import { OppfolgingContext } from '../../ducks/oppfolging';
-import { useLocalStorage } from '../../hooks/use-localstorarge';
 import ReaktiveringMelding from './reaktivering-melding';
 import ReaktiveringIkkeAktueltMelding from './reaktivering-ikke-aktuelt-melding';
+import { useBrowserStorage } from '../../hooks/use-browserstorage';
 
 interface Variant {
     updated: string;
@@ -42,7 +42,7 @@ function Tittel(props: TittelProps) {
 const ReaktiveringKort = () => {
     const [reaktiveringsState, setReaktiveringsstate] = React.useState(true);
     const [apen, setApen] = React.useState(false);
-    const [reaktiveringVariant, setReaktiveringVariant] = useLocalStorage('vta-kan-reaktiveres-visning', {
+    const [reaktiveringVariant, setReaktiveringVariant] = useBrowserStorage('vta-kan-reaktiveres-visning', {
         updated: new Date(),
         state: true,
     });
