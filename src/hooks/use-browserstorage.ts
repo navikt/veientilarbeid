@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 
 export function useBrowserStorage(key: string, defaultValue: any) {
-    return useLocalStorage(key, defaultValue);
+    return useStorage(key, defaultValue);
 }
 
-function useLocalStorage(
+function useStorage(
     key: string,
     defaultValue: any,
     { serialize = JSON.stringify, deserialize = JSON.parse, storage = window.localStorage } = {}
