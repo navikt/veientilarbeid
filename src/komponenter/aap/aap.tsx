@@ -13,8 +13,8 @@ import tekster from '../../tekster/tekster';
 import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
-import { useEffect, useRef, useState } from 'react';
 import Rad from '../../innhold/rad';
+import { useState } from 'react';
 
 const handleButtonClick = () => {
     window.location.href = aapSoknadLenke;
@@ -25,20 +25,12 @@ const Aap = () => {
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
     const [visAap] = useState(queryString.parse(window.location.search).visAap === 'true');
-    const aapRef = useRef<HTMLDivElement>(null);
     const isLevel4 = securityLevel === InnloggingsNiva.LEVEL_4;
     const kanViseKomponent = erSykmeldtMedArbeidsgiver && underOppfolging && isLevel4;
 
-    useEffect(() => {
-        aapRef?.current?.scrollIntoView({
-            block: 'center',
-            behavior: 'smooth',
-        });
-    }, [aapRef]);
-
     return !kanViseKomponent ? null : (
         <Rad>
-            <div className="aap" ref={aapRef}>
+            <div className="aap">
                 <Systemtittel className="blokk-s aap--tittel">{tekster['aap-rad-tittel']}</Systemtittel>
                 <div className="tokol">
                     <div className="kolonne blokk-m">
