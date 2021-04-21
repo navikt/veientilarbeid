@@ -7,17 +7,49 @@ export interface BrowserStorage {
 }
 
 export const hentStorage = ((): (() => BrowserStorage) => {
-    const storageCache: { storage?: Storage } = {};
+    const storageCache: { storage?: BrowserStorage } = {};
 
     return () => {
         if (!storageCache.storage) {
-            storageCache.storage = finnBrowserStorage();
+            storageCache.storage = finnTilgjengeligBrowserStorage();
         }
         return storageCache.storage;
     };
 })();
 
-function finnBrowserStorage(): Storage {
+function finnTilgjengeligBrowserStorage(): BrowserStorage {
     const storageType = erDemo() ? 'sessionStorage' : 'localStorage';
+    if (!erStorageTilgjengelig(storageType)) {
+        return lagFallbackBrowserStorage();
+    }
+
     return window[storageType] as Storage;
+}
+
+function lagFallbackBrowserStorage(): BrowserStorage {
+    const lagring = {};
+
+    return {
+        getItem(key: string) {
+            return lagring[key];
+        },
+        removeItem(key: string): void {
+            delete lagring[key];
+        },
+        setItem(key: string, value: string): void {
+            lagring[key] = value;
+        },
+    };
+}
+
+function erStorageTilgjengelig(storageType: string) {
+    try {
+        const storage = window[storageType] as Storage;
+        const testKey = '__storageTest__';
+        storage.setItem(testKey, 'true');
+        storage.removeItem(testKey);
+        return true;
+    } catch (e) {
+        return false;
+    }
 }
