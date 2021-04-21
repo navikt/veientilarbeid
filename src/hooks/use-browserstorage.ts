@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import { erDemo } from '../utils/app-state-utils';
+import { hentStorage } from '../utils/browserStorage-support';
 
 export function useBrowserStorage(key: string, defaultValue: any) {
-    const storage = erDemo() ? window.sessionStorage : window.localStorage;
+    const storage = hentStorage();
     return useStorage(key, defaultValue, storage);
 }
 
