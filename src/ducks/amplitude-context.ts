@@ -1,6 +1,7 @@
 import React from 'react';
 import { AmplitudeData } from '../metrics/amplitude-utils';
 import { InnloggingsNiva } from './autentisering';
+import { DinSituasjonSvar } from './brukerregistrering';
 
 export const initialState: AmplitudeData = {
     gruppe: 'boo',
@@ -23,7 +24,7 @@ export const initialState: AmplitudeData = {
     buildTimestamp: new Date().toISOString(),
     antallSynligeInfomeldinger: 0,
     erSykmeldtMedArbeidsgiver: 'ukjent',
-    dinSituasjon: 'ukjent',
+    dinSituasjon: DinSituasjonSvar.INGEN_VERDI,
     reservasjonKRR: 'ukjent',
     eksperimenter: [],
 };
