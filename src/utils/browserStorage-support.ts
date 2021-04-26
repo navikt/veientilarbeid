@@ -26,7 +26,7 @@ function finnTilgjengeligBrowserStorage(): BrowserStorage {
     return window[storageType] as Storage;
 }
 
-function lagFallbackBrowserStorage(): BrowserStorage {
+export function lagFallbackBrowserStorage(): BrowserStorage {
     const lagring = {};
 
     return {
