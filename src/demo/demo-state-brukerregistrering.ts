@@ -1,4 +1,4 @@
-import { ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../ducks/brukerregistrering';
+import { DinSituasjonSvar, ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../ducks/brukerregistrering';
 import { DemoData, hentDemoState, settDemoState } from './demo-state';
 import { opprettetRegistreringDato } from './demo-dashboard';
 
@@ -10,7 +10,7 @@ const defaultBesvarelse = {
     helseHinder: 'NEI',
     andreForhold: 'NEI',
     sisteStilling: 'Barne- og ungdomsarbeider i skolefritidsordning',
-    dinSituasjon: 'MISTET_JOBBEN',
+    dinSituasjon: DinSituasjonSvar.MISTET_JOBBEN,
     fremtidigSituasjon: defaultFremtidigSituasjon,
     tilbakeIArbeid: 'USIKKER',
 };

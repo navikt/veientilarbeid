@@ -5,7 +5,7 @@ import { InnloggingsNiva } from '../../ducks/autentisering';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import Registrert from './registrert';
 import { Formidlingsgruppe, Servicegruppe } from '../../ducks/oppfolging';
-import { ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../../ducks/brukerregistrering';
+import { DinSituasjonSvar, ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../../ducks/brukerregistrering';
 import { mockIntersectionObserver } from '../../mocks/intersection-observer-mock';
 
 const meldekort = {
@@ -112,7 +112,7 @@ describe('Test av registreringskomponenten', () => {
                         helseHinder: 'NEI',
                         andreForhold: 'NEI',
                         sisteStilling: 'Barne- og ungdomsarbeider i skolefritidsordning',
-                        dinSituasjon: 'MISTET_JOBBEN',
+                        dinSituasjon: DinSituasjonSvar.MISTET_JOBBEN,
                         fremtidigSituasjon: FremtidigSituasjonSvar.NY_ARBEIDSGIVER,
                         tilbakeIArbeid: 'USIKKER',
                     },

@@ -1,6 +1,21 @@
 import { DataElement, STATUS } from './api';
 import * as React from 'react';
 
+export enum DinSituasjonSvar {
+    MISTET_JOBBEN = 'MISTET_JOBBEN',
+    ALDRI_HATT_JOBB = 'ALDRI_HATT_JOBB',
+    HAR_SAGT_OPP = 'HAR_SAGT_OPP',
+    VIL_BYTTE_JOBB = 'VIL_BYTTE_JOBB',
+    ER_PERMITTERT = 'ER_PERMITTERT',
+    USIKKER_JOBBSITUASJON = 'USIKKER_JOBBSITUASJON',
+    JOBB_OVER_2_AAR = 'JOBB_OVER_2_AAR',
+    VIL_FORTSETTE_I_JOBB = 'VIL_FORTSETTE_I_JOBB',
+    AKKURAT_FULLFORT_UTDANNING = 'AKKURAT_FULLFORT_UTDANNING',
+    DELTIDSJOBB_VIL_MER = 'DELTIDSJOBB_VIL_MER',
+    INGEN_SVAR = 'INGEN_SVAR',
+    INGEN_VERDI = 'INGEN_VERDI',
+}
+
 export enum FremtidigSituasjonSvar {
     SAMME_ARBEIDSGIVER = 'SAMME_ARBEIDSGIVER',
     SAMME_ARBEIDSGIVER_NY_STILLING = 'SAMME_ARBEIDSGIVER_NY_STILLING',
@@ -10,7 +25,7 @@ export enum FremtidigSituasjonSvar {
 }
 
 export interface Besvarelse {
-    dinSituasjon: string | null;
+    dinSituasjon: DinSituasjonSvar | null;
     fremtidigSituasjon: FremtidigSituasjonSvar;
     sisteStilling: string | null;
     tilbakeIArbeid: string | null;
@@ -82,7 +97,7 @@ export function selectFremtidigSituasjonSvar(data: Data | null): FremtidigSituas
 }
 
 export function selectDinSituasjonSvar(data: Data | null): string | null {
-    return data && data.registrering ? data.registrering?.besvarelse.dinSituasjon : 'INGEN_VERDI';
+    return data?.registrering?.besvarelse?.dinSituasjon || DinSituasjonSvar.INGEN_VERDI;
 }
 
 export function selectForeslattInnsatsgruppe(data: Data | null): ForeslattInnsatsgruppe | undefined | null {

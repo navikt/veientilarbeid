@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event';
 import Opplysninger from './registreringsopplysninger';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import '@testing-library/jest-dom/extend-expect';
+import { DinSituasjonSvar } from '../../ducks/brukerregistrering';
 
 const registreringsopplysninger = {
     manueltRegistrertAv: null,
@@ -15,7 +16,7 @@ const registreringsopplysninger = {
         helseHinder: 'NEI',
         andreForhold: 'NEI',
         sisteStilling: 'Barne- og ungdomsarbeider i skolefritidsordning',
-        dinSituasjon: 'MISTET_JOBBEN',
+        dinSituasjon: DinSituasjonSvar.MISTET_JOBBEN,
         fremtidigSituasjon: 'NY_ARBEIDSGIVER',
         tilbakeIArbeid: 'USIKKER',
     },

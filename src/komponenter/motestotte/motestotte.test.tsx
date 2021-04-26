@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 import Motestotte from './motestotte';
 import tekster from '../../tekster/tekster';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
-import { ForeslattInnsatsgruppe } from '../../ducks/brukerregistrering';
+import { DinSituasjonSvar, ForeslattInnsatsgruppe } from '../../ducks/brukerregistrering';
 import { Servicegruppe } from '../../ducks/oppfolging';
 
 describe('Motestotte', () => {
@@ -14,7 +14,7 @@ describe('Motestotte', () => {
         registrering: {
             opprettetDato: '2020-11-02',
             besvarelse: {
-                dinSituasjon: 'MISTET_JOBBEN',
+                dinSituasjon: DinSituasjonSvar.MISTET_JOBBEN,
             },
             profilering: {
                 innsatsgruppe: ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING,
@@ -89,7 +89,7 @@ describe('Motestotte', () => {
                 registrering: {
                     ...brukerregistrering.registrering,
                     besvarelse: {
-                        dinSituasjon: 'ER_PERMITTERT',
+                        dinSituasjon: DinSituasjonSvar.ER_PERMITTERT,
                     },
                 },
             },
