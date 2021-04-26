@@ -31,7 +31,7 @@ function lagFallbackBrowserStorage(): BrowserStorage {
 
     return {
         getItem(key: string) {
-            return lagring[key];
+            return lagring[key] ?? null;
         },
         removeItem(key: string): void {
             delete lagring[key];
