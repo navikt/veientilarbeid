@@ -112,6 +112,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         : 'nei';
 
     const eksperimenter = hentEksperimenter({
+        dinSituasjon,
         geografiskTilknytning,
         registreringsDato: opprettetRegistreringDato,
         enhetEksperimentId: hentEnhetEksperimentId(),
