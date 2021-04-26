@@ -1,5 +1,6 @@
 import { EksperimentId } from './eksperimenter';
 import { DinSituasjonSvar } from '../ducks/brukerregistrering';
+import { kssSituasjoner } from '../utils/is-kss-eksperiment';
 
 export type KontorEksperiment = {
     id: EksperimentId;
@@ -40,7 +41,13 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
     },
     '3803': {
         navn: 'Tønsberg',
-        eksperimenter: [{ id: 'onboarding14a', registrertEtterDato: new Date('2021-04-19') }],
+        eksperimenter: [
+            {
+                id: 'onboarding14a',
+                registrertEtterDato: new Date('2021-04-19'),
+                situasjoner: kssSituasjoner,
+            },
+        ],
     },
     '1120': {
         navn: 'Klepp',
@@ -52,11 +59,23 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
     },
     '110302': {
         navn: 'Tasta',
-        eksperimenter: [{ id: 'onboarding14a', registrertEtterDato: new Date('2021-04-13') }],
+        eksperimenter: [
+            {
+                id: 'onboarding14a',
+                registrertEtterDato: new Date('2021-04-13'),
+                situasjoner: kssSituasjoner,
+            },
+        ],
     },
     '110303': {
         navn: 'Eiganes og Våland',
-        eksperimenter: [{ id: 'onboarding14a', registrertEtterDato: new Date('2021-04-13') }],
+        eksperimenter: [
+            {
+                id: 'onboarding14a',
+                registrertEtterDato: new Date('2021-04-13'),
+                situasjoner: kssSituasjoner,
+            },
+        ],
     },
     '110306': {
         navn: 'Hillevåg',
