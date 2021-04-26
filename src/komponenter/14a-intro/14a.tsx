@@ -314,13 +314,15 @@ function kanVise14AStatus({
     amplitudeData: AmplitudeData;
 }): boolean {
     const skalSeEksperiment = amplitudeData.eksperimenter.includes('onboarding14a');
-
     const erAAP = brukerInfoData.rettighetsgruppe === 'AAP';
     const brukerregistreringData = registreringData?.registrering ?? null;
-    const erKss = amplitudeData.gruppe === 'kss';
+
+    const registrertUnder12Uker = amplitudeData.ukerRegistrert < 12;
+    const aldersgruppeUtenForsterketInnsats = brukerInfoData.alder >= 30 && brukerInfoData.alder <= 55;
 
     return (
-        erKss &&
+        registrertUnder12Uker &&
+        aldersgruppeUtenForsterketInnsats &&
         !erAAP &&
         skalSeEksperiment &&
         erStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData }) &&

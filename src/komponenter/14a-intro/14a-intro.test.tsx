@@ -11,6 +11,7 @@ const providerProps: ProviderProps = {
     brukerInfo: {
         rettighetsgruppe: 'DAGP',
         geografiskTilknytning: '110302',
+        alder: 42,
     },
     amplitude: {
         ukerRegistrert: 2,
@@ -28,6 +29,29 @@ describe('tester onboarding komponenten for 14a-intro', () => {
         const { container } = render(<Intro14AWrapper />, { wrapper: contextProviders(providerProps) });
         expect(container).toBeEmptyDOMElement();
     });
+
+    test('komponenten vises IKKE når bruker er 29 år', () => {
+        const { container } = render(<Intro14AWrapper />, {
+            wrapper: contextProviders({
+                ...providerProps,
+                featureToggle: { 'veientilarbeid.14a-intro': true },
+                brukerInfo: { alder: 29 },
+            }),
+        });
+        expect(container).toBeEmptyDOMElement();
+    });
+
+    test('komponenten vises IKKE når bruker har vært registrert i 13 uker', () => {
+        const { container } = render(<Intro14AWrapper />, {
+            wrapper: contextProviders({
+                ...providerProps,
+                featureToggle: { 'veientilarbeid.14a-intro': true },
+                amplitude: { ukerRegistrert: 13 },
+            }),
+        });
+        expect(container).toBeEmptyDOMElement();
+    });
+
     test('komponenten vises IKKE når eksperimentet onboarding14a ikke er med', () => {
         const { container } = render(<Intro14AWrapper />, {
             wrapper: contextProviders({
