@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import { erDemo } from '../utils/app-state-utils';
+import { BrowserStorage, hentStorage } from '../utils/browserStorage-support';
 
 export function useBrowserStorage(key: string, defaultValue: any) {
-    const storage = erDemo() ? window.sessionStorage : window.localStorage;
+    const storage = hentStorage();
     return useStorage(key, defaultValue, storage);
 }
 
-function useStorage(key: string, defaultValue: any, storage: Storage) {
+function useStorage(key: string, defaultValue: any, storage: BrowserStorage) {
     const [state, setState] = useState(() => {
         const itemInStorage = storage.getItem(key);
         if (itemInStorage) {
