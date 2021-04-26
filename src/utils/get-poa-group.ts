@@ -1,4 +1,5 @@
 import { DinSituasjonSvar } from '../ducks/brukerregistrering';
+import { kssSituasjoner } from './is-kss-eksperiment';
 
 export type POAGruppe = 'kss' | 'boo';
 
@@ -26,7 +27,7 @@ const getPoaGroup = (data: Data): POAGruppe => {
     const { dinSituasjon, innsatsgruppe, formidlingsgruppe, alder, opprettetRegistreringDato, servicegruppe } = data;
     const lavesteAlder = 30;
     const hoyesteAlder = 55;
-    const kssSituasjoner = [DinSituasjonSvar.HAR_SAGT_OPP, DinSituasjonSvar.MISTET_JOBBEN];
+
     const kriterier = [];
     kriterier.push(kssSituasjoner.includes(dinSituasjon) ? 'kss' : 'boo');
     kriterier.push(isStandard(innsatsgruppe, servicegruppe) ? 'kss' : 'boo');

@@ -4,6 +4,7 @@ import {
     KontorBrukerContext,
 } from './samarbeidskontor-utils';
 import { EksperimentId } from '../lib/eksperimenter';
+import { DinSituasjonSvar } from '../ducks/brukerregistrering';
 
 describe('tester funksjonaliteten for visEksperiment', () => {
     function visEksperiment(eksperiementId: EksperimentId, brukerContext: KontorBrukerContext) {
@@ -15,6 +16,7 @@ describe('tester funksjonaliteten for visEksperiment', () => {
             visEksperiment('onboarding14a', {
                 geografiskTilknytning: '110302',
                 registreringsDato: new Date('2021-04-14'),
+                dinSituasjon: DinSituasjonSvar.MISTET_JOBBEN,
             })
         ).toBe(true);
     });
@@ -24,6 +26,7 @@ describe('tester funksjonaliteten for visEksperiment', () => {
             visEksperiment('onboarding14a', {
                 geografiskTilknytning: '110302',
                 registreringsDato: new Date('2021-04-13'),
+                dinSituasjon: DinSituasjonSvar.MISTET_JOBBEN,
             })
         ).toBe(true);
     });
@@ -33,6 +36,7 @@ describe('tester funksjonaliteten for visEksperiment', () => {
             visEksperiment('onboarding14a', {
                 geografiskTilknytning: '110302',
                 registreringsDato: new Date('2021-04-12'),
+                dinSituasjon: DinSituasjonSvar.INGEN_VERDI,
             })
         ).toBe(false);
     });
@@ -41,6 +45,7 @@ describe('tester funksjonaliteten for visEksperiment', () => {
         expect(
             visEksperiment('dummyEksperiment', {
                 geografiskTilknytning: '3808',
+                dinSituasjon: DinSituasjonSvar.INGEN_VERDI,
             })
         ).toBe(false);
     });
@@ -50,6 +55,7 @@ describe('tester funksjonaliteten for visEksperiment', () => {
             visEksperiment('onboarding14a', {
                 geografiskTilknytning: '3811',
                 registreringsDato: new Date('2021-04-13'),
+                dinSituasjon: DinSituasjonSvar.INGEN_VERDI,
             })
         ).toBe(false);
     });
@@ -77,6 +83,7 @@ describe('tester funksjonaliteten for hentEksperimenterFraSamarbeidskontor', () 
             hentEksperimenterFraSamarbeidskontor({
                 geografiskTilknytning: '110302',
                 registreringsDato: new Date('2021-04-13'),
+                dinSituasjon: DinSituasjonSvar.MISTET_JOBBEN,
             })
         ).toStrictEqual(['onboarding14a']);
     });

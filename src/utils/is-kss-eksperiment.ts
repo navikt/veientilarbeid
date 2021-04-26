@@ -20,6 +20,8 @@
 import { POAGruppe } from './get-poa-group';
 import { DinSituasjonSvar } from '../ducks/brukerregistrering';
 
+export const kssSituasjoner = [DinSituasjonSvar.HAR_SAGT_OPP, DinSituasjonSvar.MISTET_JOBBEN];
+
 interface Data {
     POAGruppe: POAGruppe;
     dinSituasjon: DinSituasjonSvar;
@@ -45,11 +47,10 @@ const isKSSEksperiment = (data: Data): boolean => {
     const { POAGruppe, dinSituasjon, opprettetRegistreringDato, geografiskTilknytning } = data;
     const tilfeldigGyldigDato = new Date('2019-05-02');
     const beregningsDato = opprettetRegistreringDato !== null ? opprettetRegistreringDato : tilfeldigGyldigDato;
-    const gyldigeSituasjoner = [DinSituasjonSvar.HAR_SAGT_OPP, DinSituasjonSvar.MISTET_JOBBEN];
 
     return (
         POAGruppe === 'kss' &&
-        gyldigeSituasjoner.includes(dinSituasjon) &&
+        kssSituasjoner.includes(dinSituasjon) &&
         isGyldigKontorForDato(geografiskTilknytning, beregningsDato)
     );
 };

@@ -1,8 +1,10 @@
 import { EksperimentId } from './eksperimenter';
+import { DinSituasjonSvar } from '../ducks/brukerregistrering';
 
 export type KontorEksperiment = {
     id: EksperimentId;
     registrertEtterDato?: Date;
+    situasjoner?: DinSituasjonSvar[];
 };
 
 type Samarbeidskontor = { navn: string; eksperimenter: KontorEksperiment[] };

@@ -1,4 +1,5 @@
 import { hentEksperimenter } from './eksperiment-utils';
+import { DinSituasjonSvar } from '../ducks/brukerregistrering';
 
 describe('tester funksjonaliteten for hentEksperimenter', () => {
     test('returnerer riktig liste for samarbeidskontoret Tasta', () => {
@@ -6,6 +7,7 @@ describe('tester funksjonaliteten for hentEksperimenter', () => {
             hentEksperimenter({
                 geografiskTilknytning: '110302',
                 registreringsDato: new Date('2021-04-13'),
+                dinSituasjon: DinSituasjonSvar.MISTET_JOBBEN,
                 enhetEksperimentId: 123,
             })
         ).toStrictEqual(['fullførknappIntro', 'onboarding14a']);
