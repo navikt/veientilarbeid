@@ -45,7 +45,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
             {
                 id: 'onboarding14a',
                 registrertEtterDato: new Date('2021-04-19'),
-                situasjoner: kssSituasjoner,
+                situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
             },
         ],
     },
