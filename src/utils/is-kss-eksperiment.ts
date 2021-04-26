@@ -18,10 +18,11 @@
  * NAV Åsnes - 3418
  */
 import { POAGruppe } from './get-poa-group';
+import { DinSituasjonSvar } from '../ducks/brukerregistrering';
 
 interface Data {
     POAGruppe: POAGruppe;
-    dinSituasjon: string;
+    dinSituasjon: DinSituasjonSvar;
     opprettetRegistreringDato: Date | null;
     geografiskTilknytning: string;
 }
@@ -44,7 +45,7 @@ const isKSSEksperiment = (data: Data): boolean => {
     const { POAGruppe, dinSituasjon, opprettetRegistreringDato, geografiskTilknytning } = data;
     const tilfeldigGyldigDato = new Date('2019-05-02');
     const beregningsDato = opprettetRegistreringDato !== null ? opprettetRegistreringDato : tilfeldigGyldigDato;
-    const gyldigeSituasjoner = ['HAR_SAGT_OPP', 'MISTET_JOBBEN'];
+    const gyldigeSituasjoner = [DinSituasjonSvar.HAR_SAGT_OPP, DinSituasjonSvar.MISTET_JOBBEN];
 
     return (
         POAGruppe === 'kss' &&

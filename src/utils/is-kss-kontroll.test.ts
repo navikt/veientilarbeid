@@ -1,10 +1,11 @@
 import isKSSKontroll from './is-kss-kontroll';
 import getPoaGroup from './get-poa-group';
 import { POAGruppe } from './get-poa-group';
+import { DinSituasjonSvar } from '../ducks/brukerregistrering';
 
 const generateKSS = (): POAGruppe => {
     const data = {
-        dinSituasjon: 'MISTET_JOBBEN',
+        dinSituasjon: DinSituasjonSvar.MISTET_JOBBEN,
         innsatsgruppe: 'STANDARD_INNSATS',
         formidlingsgruppe: 'ARBS',
         alder: 32,
@@ -16,7 +17,7 @@ const generateKSS = (): POAGruppe => {
 
 const generateBOO = (): POAGruppe => {
     const data = {
-        dinSituasjon: 'MISTET_JOBBEN',
+        dinSituasjon: DinSituasjonSvar.MISTET_JOBBEN,
         innsatsgruppe: 'STANDARD_INNSATS',
         formidlingsgruppe: 'IARBS',
         alder: 32,
@@ -29,7 +30,7 @@ const generateBOO = (): POAGruppe => {
 describe('isKSSKontroll returnerer forventede verdier', () => {
     it('returnerer true for kss fra gyldig kontor registrert i dag med gyldig situasjon', () => {
         const data = {
-            dinSituasjon: 'MISTET_JOBBEN',
+            dinSituasjon: DinSituasjonSvar.MISTET_JOBBEN,
             opprettetRegistreringDato: new Date(),
             POAGruppe: generateKSS(),
             geografiskTilknytning: '1149',
@@ -39,7 +40,7 @@ describe('isKSSKontroll returnerer forventede verdier', () => {
 
     it('returnerer false for kss fra gyldig kontor med ugyldig dato med gyldig situasjon', () => {
         const data = {
-            dinSituasjon: 'MISTET_JOBBEN',
+            dinSituasjon: DinSituasjonSvar.MISTET_JOBBEN,
             opprettetRegistreringDato: null,
             POAGruppe: generateKSS(),
             geografiskTilknytning: '1149',
@@ -49,7 +50,7 @@ describe('isKSSKontroll returnerer forventede verdier', () => {
 
     it('returnerer false for boo fra gyldig kontor registrert i dag', () => {
         const data = {
-            dinSituasjon: 'MISTET_JOBBEN',
+            dinSituasjon: DinSituasjonSvar.MISTET_JOBBEN,
             opprettetRegistreringDato: new Date(),
             POAGruppe: generateBOO(),
             geografiskTilknytning: '1149',
@@ -59,7 +60,7 @@ describe('isKSSKontroll returnerer forventede verdier', () => {
 
     it('returnerer false for kss fra gyldig kontor registrert i dag med ugyldig situasjon', () => {
         const data = {
-            dinSituasjon: 'PERMITTERT',
+            dinSituasjon: DinSituasjonSvar.ER_PERMITTERT,
             opprettetRegistreringDato: new Date(),
             POAGruppe: generateKSS(),
             geografiskTilknytning: '1149',
@@ -69,7 +70,7 @@ describe('isKSSKontroll returnerer forventede verdier', () => {
 
     it('returnerer false for kss fra ugyldig kontor registrert i dag', () => {
         const data = {
-            dinSituasjon: 'MISTET_JOBBEN',
+            dinSituasjon: DinSituasjonSvar.MISTET_JOBBEN,
             opprettetRegistreringDato: new Date(),
             POAGruppe: generateKSS(),
             geografiskTilknytning: '3808',

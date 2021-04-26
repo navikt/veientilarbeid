@@ -1,9 +1,10 @@
 import getPoaGroup from './get-poa-group';
+import { DinSituasjonSvar } from '../ducks/brukerregistrering';
 
 describe('getPoaGroup returnerer forventede verdier', () => {
     it('returnerer kss for standard, IVURD, mistet jobben, arbs, rett alder og under 12 uker', () => {
         const data = {
-            dinSituasjon: 'MISTET_JOBBEN',
+            dinSituasjon: DinSituasjonSvar.MISTET_JOBBEN,
             innsatsgruppe: 'STANDARD_INNSATS',
             formidlingsgruppe: 'ARBS',
             alder: 32,
@@ -15,7 +16,7 @@ describe('getPoaGroup returnerer forventede verdier', () => {
 
     it('returnerer kss for situasjonsbestemt, IKVAL, mistet jobben, arbs, rett alder og under 12 uker', () => {
         const data = {
-            dinSituasjon: 'MISTET_JOBBEN',
+            dinSituasjon: DinSituasjonSvar.MISTET_JOBBEN,
             innsatsgruppe: 'SITUASJONSBESTEMT_INNSATS',
             formidlingsgruppe: 'ARBS',
             alder: 30,
@@ -27,7 +28,7 @@ describe('getPoaGroup returnerer forventede verdier', () => {
 
     it('returnerer kss for situasjonsbestemt, IKVAL, sagt opp jobben, arbs, rett alder og under 12 uker', () => {
         const data = {
-            dinSituasjon: 'HAR_SAGT_OPP',
+            dinSituasjon: DinSituasjonSvar.HAR_SAGT_OPP,
             innsatsgruppe: 'SITUASJONSBESTEMT_INNSATS',
             formidlingsgruppe: 'ARBS',
             alder: 32,
@@ -39,7 +40,7 @@ describe('getPoaGroup returnerer forventede verdier', () => {
 
     it('returnerer boo for situasjonsbestemt, IKVAL, sagt opp jobben, arbs, rett alder og under 12 uker', () => {
         const data = {
-            dinSituasjon: 'ER_PERMITTERT',
+            dinSituasjon: DinSituasjonSvar.ER_PERMITTERT,
             innsatsgruppe: 'SITUASJONSBESTEMT_INNSATS',
             formidlingsgruppe: 'ARBS',
             alder: 32,
@@ -51,7 +52,7 @@ describe('getPoaGroup returnerer forventede verdier', () => {
 
     it('returnerer boo for standard, mistet jobben, arbs, rett alder og over 12 uker', () => {
         const data = {
-            dinSituasjon: 'MISTET_JOBBEN',
+            dinSituasjon: DinSituasjonSvar.MISTET_JOBBEN,
             innsatsgruppe: 'STANDARD_INNSATS',
             formidlingsgruppe: 'ARBS',
             alder: 32,
@@ -63,7 +64,7 @@ describe('getPoaGroup returnerer forventede verdier', () => {
 
     it('returnerer boo for standard, mistet jobben, arbs, rett alder og dato null', () => {
         const data = {
-            dinSituasjon: 'MISTET_JOBBEN',
+            dinSituasjon: DinSituasjonSvar.MISTET_JOBBEN,
             innsatsgruppe: 'STANDARD_INNSATS',
             formidlingsgruppe: 'ARBS',
             alder: 32,
@@ -75,7 +76,7 @@ describe('getPoaGroup returnerer forventede verdier', () => {
 
     it('returnerer boo for standard, mistet jobben, arbs, alder under 30 og under 12 uker', () => {
         const data = {
-            dinSituasjon: 'MISTET_JOBBEN',
+            dinSituasjon: DinSituasjonSvar.MISTET_JOBBEN,
             innsatsgruppe: 'STANDARD_INNSATS',
             formidlingsgruppe: 'ARBS',
             alder: 29,
@@ -87,7 +88,7 @@ describe('getPoaGroup returnerer forventede verdier', () => {
 
     it('returnerer boo for standard, mistet jobben, arbs, alder over 50 og under 12 uker', () => {
         const data = {
-            dinSituasjon: 'MISTET_JOBBEN',
+            dinSituasjon: DinSituasjonSvar.MISTET_JOBBEN,
             innsatsgruppe: 'STANDARD_INNSATS',
             formidlingsgruppe: 'ARBS',
             alder: 56,
@@ -99,7 +100,7 @@ describe('getPoaGroup returnerer forventede verdier', () => {
 
     it('returnerer boo for standard, mistet jobben, iarbs, rett alder og under 12 uker', () => {
         const data = {
-            dinSituasjon: 'MISTET_JOBBEN',
+            dinSituasjon: DinSituasjonSvar.MISTET_JOBBEN,
             innsatsgruppe: 'STANDARD_INNSATS',
             formidlingsgruppe: 'IARBS',
             alder: 32,

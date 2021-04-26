@@ -44,7 +44,7 @@ function Metrics(props: Props) {
     const formidlingsgruppeOrIngenVerdi = formidlingsgruppe ? formidlingsgruppe : 'INGEN_VERDI';
     const servicegruppeOrIVURD = servicegruppe ? servicegruppe : 'IVURD';
 
-    const dinSituasjon = selectDinSituasjonSvar(brukerregistreringData) || 'INGEN_VERDI';
+    const dinSituasjon = selectDinSituasjonSvar(brukerregistreringData);
 
     const POAGruppe = getPoaGroup({
         dinSituasjon,

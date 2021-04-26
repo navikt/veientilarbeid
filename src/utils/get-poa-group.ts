@@ -1,7 +1,9 @@
+import { DinSituasjonSvar } from '../ducks/brukerregistrering';
+
 export type POAGruppe = 'kss' | 'boo';
 
 interface Data {
-    dinSituasjon: string;
+    dinSituasjon: DinSituasjonSvar;
     innsatsgruppe: string;
     formidlingsgruppe: string;
     alder: number;
@@ -24,7 +26,7 @@ const getPoaGroup = (data: Data): POAGruppe => {
     const { dinSituasjon, innsatsgruppe, formidlingsgruppe, alder, opprettetRegistreringDato, servicegruppe } = data;
     const lavesteAlder = 30;
     const hoyesteAlder = 55;
-    const kssSituasjoner = ['HAR_SAGT_OPP', 'MISTET_JOBBEN'];
+    const kssSituasjoner = [DinSituasjonSvar.HAR_SAGT_OPP, DinSituasjonSvar.MISTET_JOBBEN];
     const kriterier = [];
     kriterier.push(kssSituasjoner.includes(dinSituasjon) ? 'kss' : 'boo');
     kriterier.push(isStandard(innsatsgruppe, servicegruppe) ? 'kss' : 'boo');

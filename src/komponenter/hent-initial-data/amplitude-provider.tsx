@@ -4,7 +4,7 @@ import isKSSKontroll from '../../utils/is-kss-kontroll';
 import React from 'react';
 import { AutentiseringContext } from '../../ducks/autentisering';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
-import { BrukerregistreringContext } from '../../ducks/brukerregistrering';
+import { BrukerregistreringContext, DinSituasjonSvar } from '../../ducks/brukerregistrering';
 import { OppfolgingContext } from '../../ducks/oppfolging';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
@@ -65,7 +65,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     } = brukerInfoData;
     const { servicegruppe, formidlingsgruppe, kanReaktiveres, reservasjonKRR } = oppfolgingData;
     const opprettetRegistreringDatoString = brukerregistreringData?.registrering?.opprettetDato;
-    const dinSituasjon = brukerregistreringData?.registrering?.besvarelse.dinSituasjon || 'INGEN_VERDI';
+    const dinSituasjon = brukerregistreringData?.registrering?.besvarelse.dinSituasjon || DinSituasjonSvar.INGEN_VERDI;
     const opprettetRegistreringDato = opprettetRegistreringDatoString
         ? new Date(opprettetRegistreringDatoString)
         : null;

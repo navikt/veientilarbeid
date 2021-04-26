@@ -96,7 +96,7 @@ export function selectFremtidigSituasjonSvar(data: Data | null): FremtidigSituas
     return data && data.registrering ? data.registrering?.besvarelse.fremtidigSituasjon : null;
 }
 
-export function selectDinSituasjonSvar(data: Data | null): string | null {
+export function selectDinSituasjonSvar(data: Data | null): DinSituasjonSvar {
     return data?.registrering?.besvarelse?.dinSituasjon || DinSituasjonSvar.INGEN_VERDI;
 }
 
