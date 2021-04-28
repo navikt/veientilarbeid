@@ -4,9 +4,12 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import Lenke from 'nav-frontend-lenker';
 import React from 'react';
 
+import InViewport from '../in-viewport/in-viewport';
+
 interface PreStateProps {
     tittel: string;
     lesetid: string;
+    viewportTekst: string;
     startIntroCB: () => void;
     hoppOverIntroCB: (element: React.SyntheticEvent) => void;
 }
@@ -28,6 +31,7 @@ function PreState(props: PreStateProps) {
             <Lenke onClick={props.hoppOverIntroCB} href={''} className="tracking-wide">
                 Hopp over introduksjonen for nå
             </Lenke>
+            <InViewport loggTekst={props.viewportTekst} />
         </div>
     );
 }
