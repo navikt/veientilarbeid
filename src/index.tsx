@@ -40,6 +40,7 @@ if (erMikrofrontend()) {
     Sentry.init({
         dsn: 'https://c24577bb13734aaeb8968748ec67a24f@sentry.gc.nav.no/59',
         environment: erProduksjon() ? 'production' : 'test',
+        autoSessionTracking: false,
         release: process.env.REACT_APP_SENTRY_RELEASE || 'unknown',
         ignoreErrors: [
             'TypeError: Failed to fetch',
