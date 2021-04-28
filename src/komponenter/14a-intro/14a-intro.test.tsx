@@ -6,6 +6,7 @@ import userEvent from '@testing-library/user-event';
 import Intro14AWrapper from './14a';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import { Formidlingsgruppe, Servicegruppe } from '../../ducks/oppfolging';
+import { mockIntersectionObserver } from '../../mocks/intersection-observer-mock';
 
 const providerProps: ProviderProps = {
     brukerInfo: {
@@ -25,6 +26,10 @@ const providerProps: ProviderProps = {
 };
 
 describe('tester onboarding komponenten for 14a-intro', () => {
+    beforeEach(() => {
+        mockIntersectionObserver();
+    });
+
     test('komponenten vises IKKE når featuretoggle ikke er satt', () => {
         const { container } = render(<Intro14AWrapper />, { wrapper: contextProviders(providerProps) });
         expect(container).toBeEmptyDOMElement();

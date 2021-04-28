@@ -5,6 +5,7 @@ import userEvent from '@testing-library/user-event';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import MeldekortIntroWrapper from './meldekort-intro';
 import { Formidlingsgruppe, Servicegruppe } from '../../ducks/oppfolging';
+import { mockIntersectionObserver } from '../../mocks/intersection-observer-mock';
 import { regexMatcher } from '../../utils/test-utils';
 import { plussDager } from '../../utils/date-utils';
 
@@ -72,6 +73,10 @@ function propsForRelativDag(dag: number): any {
 }
 
 describe('tester onboarding komponenten for meldekort', () => {
+    beforeEach(() => {
+        mockIntersectionObserver();
+    });
+
     test('funksjonen for neste og forrige kort fungerer for nyregistrerte', () => {
         const props: ProviderProps = { ...providerProps, amplitude: { ukerRegistrert: 0 } };
         render(<MeldekortIntroWrapper />, { wrapper: contextProviders(props) });
