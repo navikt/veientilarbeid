@@ -81,12 +81,17 @@ describe('Tester egenvurdering-komponenten', () => {
             },
         };
         render(<Egenvurdering />, { wrapper: contextProviders(props) as ComponentType });
-
+        const mockHandleClick = jest.fn();
         const mockLocationAssign = jest.fn();
-        window.location.assign = mockLocationAssign;
+        window.location = {
+            ...window.location,
+            reload: mockLocationAssign,
+        };
 
         const knapp = screen.getByText(tekster['egenvurdering-lenke-tekst']);
+        knapp.onclick = mockHandleClick;
         userEvent.click(knapp);
-        expect(mockLocationAssign).toHaveBeenCalledTimes(1);
+        expect(mockHandleClick).toHaveBeenCalledTimes(1);
+        //expect(mockLocationAssign).toHaveBeenCalledTimes(1);
     });
 });
