@@ -219,6 +219,7 @@ function Intro14A(props: Intro14AProps) {
             hoppOverIntroCB={hoppOverIntro}
             startIntroCB={nesteKort}
             lesetid={'3'}
+            viewportTekst="Viser 14a pre-state i viewport"
             tittel={'Introduksjon om hjelp til jobbsøking fra NAV'}
         />,
         <Kort1 />,
