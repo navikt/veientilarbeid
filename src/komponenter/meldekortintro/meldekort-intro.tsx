@@ -210,6 +210,7 @@ function MeldekortIntro(props: MeldekortIntroProps) {
         <PreState
             tittel={'Hva er meldekort og hvordan fungerer de?'}
             lesetid={'2'}
+            viewportTekst="Viser meldekort pre-state i viewPort"
             startIntroCB={nesteKort}
             hoppOverIntroCB={hoppOverIntro}
         />,
