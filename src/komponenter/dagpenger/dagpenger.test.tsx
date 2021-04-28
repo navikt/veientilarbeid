@@ -29,26 +29,17 @@ describe('Tester dagpengerkomponenten', () => {
     });
 
     test('Knappen fungerer som den skal', () => {
-        const mockHandleClick = jest.fn();
-        /*
-        const mockLocationAssign = jest.fn();
-        window.location = {
-            ...window.location,
-            assign: mockLocationAssign
-        }
-        */
-
         const props: ProviderProps = {
             underOppfolging: { underOppfolging: true },
         };
+        const onClick = jest.fn();
+
         render(<Dagpenger />, { wrapper: contextProviders(props) });
 
-        const button = screen.getByText(tekster['dagpenger-lenke-tekst']);
-        button.onclick = mockHandleClick;
-
+        const button = screen.getByRole('button', { name: tekster['dagpenger-lenke-tekst'] });
+        button.onclick = onClick;
         userEvent.click(button);
-        expect(mockHandleClick).toHaveBeenCalledTimes(1);
-        //expect(mockLocationAssign).toHaveBeenCalledTimes(1);
+        expect(onClick).toHaveBeenCalledTimes(1);
     });
 
     test('Komponenten rendres IKKE når bruker IKKE er under oppfølging', () => {
