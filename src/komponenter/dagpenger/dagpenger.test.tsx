@@ -7,6 +7,13 @@ import tekster from '../../tekster/tekster';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 
 describe('Tester dagpengerkomponenten', () => {
+    const oldLocation = global.window.location;
+
+    afterEach(() => {
+        delete global.window.location;
+        global.window.location = Object.assign({}, oldLocation);
+    });
+
     test('Komponenten rendres når bruker er under oppfølging', () => {
         const props: ProviderProps = {
             underOppfolging: { underOppfolging: true },
@@ -29,20 +36,21 @@ describe('Tester dagpengerkomponenten', () => {
     });
 
     test('Knappen fungerer som den skal', () => {
-        const mockHandleClick = jest.fn();
-        const mockLocationAssign = jest.fn();
-
         const props: ProviderProps = {
             underOppfolging: { underOppfolging: true },
         };
+        const onClick = jest.fn();
+        const mockLocationAssign = jest.fn();
+
+        delete global.window.location;
+        global.window.location = ({ assign: mockLocationAssign } as unknown) as Location;
+
         render(<Dagpenger />, { wrapper: contextProviders(props) });
 
-        const button = screen.getByText(tekster['dagpenger-lenke-tekst']);
-        button.onclick = mockHandleClick;
-        window.location.assign = mockLocationAssign;
-
+        const button = screen.getByRole('button', { name: tekster['dagpenger-lenke-tekst'] });
+        button.onclick = onClick;
         userEvent.click(button);
-        expect(mockHandleClick).toHaveBeenCalledTimes(1);
+        expect(onClick).toHaveBeenCalledTimes(1);
         expect(mockLocationAssign).toHaveBeenCalledTimes(1);
     });
 

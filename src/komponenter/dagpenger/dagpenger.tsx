@@ -29,7 +29,7 @@ const Dagpenger = () => {
                         {tekster['dagpenger-tittel']}
                     </Systemtittel>
                     <Normaltekst className="blokk-s dagpenger__tekst">{tekster['dagpenger-tekst']}</Normaltekst>
-                    <Knapp onClick={handleButtonClick} className="blokk-xs">
+                    <Knapp onClick={() => handleButtonClick()} className="blokk-xs" htmlType="button">
                         {tekster['dagpenger-lenke-tekst']}
                     </Knapp>
                 </div>

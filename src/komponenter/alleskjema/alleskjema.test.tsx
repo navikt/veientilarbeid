@@ -7,6 +7,13 @@ import AlleSkjema from './alleskjema';
 import tekster from '../../tekster/tekster';
 
 describe('Tester alle skjema komponenten', () => {
+    const oldLocation = global.window.location;
+
+    afterEach(() => {
+        delete global.window.location;
+        global.window.location = Object.assign({}, oldLocation);
+    });
+
     test('Komponenten rendres når bruker er under oppfølging', () => {
         const props: ProviderProps = {
             underOppfolging: { underOppfolging: true },
@@ -28,6 +35,9 @@ describe('Tester alle skjema komponenten', () => {
     test('Klikk på knappen trigger funksjonen', () => {
         const mockHandleButtonClick = jest.fn();
         const mockWindowNavigate = jest.fn();
+        delete global.window.location;
+        global.window.location = ({ assign: mockWindowNavigate } as unknown) as Location;
+
         const props: ProviderProps = {
             underOppfolging: { underOppfolging: true },
         };
