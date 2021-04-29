@@ -11,6 +11,13 @@ import { ForeslattInnsatsgruppe } from '../../ducks/brukerregistrering';
 import { InnloggingsNiva } from '../../ducks/autentisering';
 
 describe('Tester egenvurdering-komponenten', () => {
+    const oldLocation = global.window.location;
+
+    afterEach(() => {
+        delete global.window.location;
+        global.window.location = Object.assign({}, oldLocation);
+    });
+
     let standardInnsatsBrukerregistrering = {
         registrering: {
             opprettetDato: '2020-01-01',
@@ -83,15 +90,14 @@ describe('Tester egenvurdering-komponenten', () => {
         render(<Egenvurdering />, { wrapper: contextProviders(props) as ComponentType });
         const mockHandleClick = jest.fn();
         const mockLocationAssign = jest.fn();
-        window.location = {
-            ...window.location,
-            reload: mockLocationAssign,
-        };
+
+        delete global.window.location;
+        global.window.location = { assign: mockLocationAssign } as Location;
 
         const knapp = screen.getByText(tekster['egenvurdering-lenke-tekst']);
         knapp.onclick = mockHandleClick;
         userEvent.click(knapp);
         expect(mockHandleClick).toHaveBeenCalledTimes(1);
-        //expect(mockLocationAssign).toHaveBeenCalledTimes(1);
+        expect(mockLocationAssign).toHaveBeenCalledTimes(1);
     });
 });

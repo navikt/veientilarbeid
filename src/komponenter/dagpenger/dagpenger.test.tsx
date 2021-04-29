@@ -7,6 +7,13 @@ import tekster from '../../tekster/tekster';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 
 describe('Tester dagpengerkomponenten', () => {
+    const oldLocation = global.window.location;
+
+    afterEach(() => {
+        delete global.window.location;
+        global.window.location = Object.assign({}, oldLocation);
+    });
+
     test('Komponenten rendres når bruker er under oppfølging', () => {
         const props: ProviderProps = {
             underOppfolging: { underOppfolging: true },
@@ -33,6 +40,10 @@ describe('Tester dagpengerkomponenten', () => {
             underOppfolging: { underOppfolging: true },
         };
         const onClick = jest.fn();
+        const mockLocationAssign = jest.fn();
+
+        delete global.window.location;
+        global.window.location = { assign: mockLocationAssign } as Location;
 
         render(<Dagpenger />, { wrapper: contextProviders(props) });
 
@@ -40,6 +51,7 @@ describe('Tester dagpengerkomponenten', () => {
         button.onclick = onClick;
         userEvent.click(button);
         expect(onClick).toHaveBeenCalledTimes(1);
+        expect(mockLocationAssign).toHaveBeenCalledTimes(1);
     });
 
     test('Komponenten rendres IKKE når bruker IKKE er under oppfølging', () => {
