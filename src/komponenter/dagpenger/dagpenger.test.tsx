@@ -43,7 +43,7 @@ describe('Tester dagpengerkomponenten', () => {
         const mockLocationAssign = jest.fn();
 
         delete global.window.location;
-        global.window.location = { assign: mockLocationAssign } as Location;
+        global.window.location = ({ assign: mockLocationAssign } as unknown) as Location;
 
         render(<Dagpenger />, { wrapper: contextProviders(props) });
 

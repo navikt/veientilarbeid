@@ -36,7 +36,7 @@ describe('Tester alle skjema komponenten', () => {
         const mockHandleButtonClick = jest.fn();
         const mockWindowNavigate = jest.fn();
         delete global.window.location;
-        global.window.location = { assign: mockWindowNavigate } as Location;
+        global.window.location = ({ assign: mockWindowNavigate } as unknown) as Location;
 
         const props: ProviderProps = {
             underOppfolging: { underOppfolging: true },

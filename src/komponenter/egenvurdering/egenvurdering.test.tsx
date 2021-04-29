@@ -92,7 +92,7 @@ describe('Tester egenvurdering-komponenten', () => {
         const mockLocationAssign = jest.fn();
 
         delete global.window.location;
-        global.window.location = { assign: mockLocationAssign } as Location;
+        global.window.location = ({ assign: mockLocationAssign } as unknown) as Location;
 
         const knapp = screen.getByText(tekster['egenvurdering-lenke-tekst']);
         knapp.onclick = mockHandleClick;
