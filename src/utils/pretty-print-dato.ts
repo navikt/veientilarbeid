@@ -13,7 +13,7 @@ const monthNames = [
     'desember',
 ];
 
-export default (dato: string) => {
+const prettyPrintDato = (dato: string) => {
     const now = new Date();
     const date = new Date(dato);
     const thisYear = now.getFullYear();
@@ -21,3 +21,5 @@ export default (dato: string) => {
     const month = monthNames[date.getMonth()];
     return `${date.getDate()}. ${month}${thisYear !== year ? ' ' + year : ''}`;
 };
+
+export default prettyPrintDato;

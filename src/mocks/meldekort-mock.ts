@@ -1,4 +1,4 @@
-export default {
+const meldekortMock = {
     maalformkode: 'NO',
     meldeform: 'EMELD',
     meldekort: [
@@ -71,3 +71,5 @@ export default {
     id: '1',
     antallGjenstaaendeFeriedager: 0,
 };
+
+export default meldekortMock;

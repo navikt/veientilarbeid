@@ -5,7 +5,7 @@ import Dialog from '../komponenter/dialog/dialog';
 import DittSykefravaer from '../komponenter/ditt-sykefravaer/ditt-sykefravaer';
 import Meldekort from '../komponenter/meldekort/meldekort';
 
-export default () => {
+const AktivitetDialog = () => {
     const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
     return (
         <>
@@ -17,3 +17,5 @@ export default () => {
         </>
     );
 };
+
+export default AktivitetDialog;
