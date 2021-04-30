@@ -1,4 +1,4 @@
-export default {
+const meldekortstatusMock = {
     meldekort: 0,
     etterregistrerteMeldekort: 0,
     antallGjenstaaendeFeriedager: 0,
@@ -10,3 +10,5 @@ export default {
     },
     nesteInnsendingAvMeldekort: null,
 };
+
+export default meldekortstatusMock;
