@@ -1,4 +1,4 @@
-export default {
+const brukerregistrering = {
     type: 'SYKMELDT',
     registrering: {
         manueltRegistrertAv: null,
@@ -47,3 +47,5 @@ export default {
         ],
     },
 };
+
+export default brukerregistrering;
