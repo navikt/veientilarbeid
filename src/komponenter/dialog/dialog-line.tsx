@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export default () => {
+const DialogLine = () => {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
             <g stroke="#000" strokeLinejoin="round" strokeMiterlimit="10" fill="none">
@@ -10,3 +10,5 @@ export default () => {
         </svg>
     );
 };
+
+export default DialogLine;
