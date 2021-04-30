@@ -68,7 +68,7 @@ const tekster = {
         'Å søke jobb er en jobb i seg selv. Kom i gang med jobben som jobbsøker med veilederen «Bli en bedre jobbsøker steg for steg».',
     'lenke-arbeidssoker': 'Start nå',
     'overskrift-arbeidssoker': 'Arbeidssøker steg for steg',
-    'cv-overskrift': 'Din CV og jobbprofil',
+    'cv-overskrift': 'Din CV og jobbønsker',
     'dagpenger-lenke-tekst': 'Til søknad',
     'dagpenger-tekst': 'Dagpenger skal gi deg som har blitt arbeidsledig økonomisk støtte mens du søker ny jobb.',
     'dagpenger-tittel': 'Dagpenger',
