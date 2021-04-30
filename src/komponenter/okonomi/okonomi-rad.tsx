@@ -44,7 +44,9 @@ const OkonomiRad = () => {
     );
 };
 
-export default () => {
+const OkonomiRadVarianter = () => {
     const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
     return erSykmeldtMedArbeidsgiver ? <OkonomiRad /> : <OkonomiRadDagpenger />;
 };
+
+export default OkonomiRadVarianter;
