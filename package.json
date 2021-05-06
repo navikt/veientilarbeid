@@ -30,7 +30,7 @@
         "amplitude-js": "7.4.4",
         "babel-polyfill": "6.26.0",
         "classnames": "2.3.1",
-        "core-js": "3.10.0",
+        "core-js": "3.11.3",
         "craco-less": "1.17.1",
         "gsap": "3.6.1",
         "html-react-parser": "1.2.4",
