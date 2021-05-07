@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as queryString from 'query-string';
 import { Knapp } from 'nav-frontend-knapper';
 import Panel from 'nav-frontend-paneler';
 import RettPaAapInnhold from './rett-pa-aap-innhold';
@@ -14,7 +13,6 @@ import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering
 import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import Rad from '../../innhold/rad';
-import { useState } from 'react';
 
 const handleButtonClick = () => {
     window.location.href = aapSoknadLenke;
@@ -24,7 +22,6 @@ const Aap = () => {
     const { securityLevel } = React.useContext(AutentiseringContext).data;
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
-    const [visAap] = useState(queryString.parse(window.location.search).visAap === 'true');
     const isLevel4 = securityLevel === InnloggingsNiva.LEVEL_4;
     const kanViseKomponent = erSykmeldtMedArbeidsgiver && underOppfolging && isLevel4;
 
@@ -43,11 +40,7 @@ const Aap = () => {
                         </Panel>
                     </div>
                     <div className="kolonne blokk-m">
-                        <Ekspanderbartpanel
-                            tittel={tekster['aap-rad-rett-pa-aap-panel-tittel']}
-                            border={true}
-                            apen={visAap}
-                        >
+                        <Ekspanderbartpanel tittel={tekster['aap-rad-rett-pa-aap-panel-tittel']} border={true}>
                             <RettPaAapInnhold />
                         </Ekspanderbartpanel>
                         <Ekspanderbartpanel tittel={tekster['aap-rad-soketidspunkt-panel-tittel']} border={true}>
