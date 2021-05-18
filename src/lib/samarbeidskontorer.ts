@@ -39,6 +39,16 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         navn: 'Skien',
         eksperimenter: [],
     },
+    '4202': {
+        navn: 'Grimstad',
+        eksperimenter: [
+            {
+                id: 'onboarding14a',
+                registrertEtterDato: new Date('2021-05-18'),
+                situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
+            },
+        ],
+    },
     '3803': {
         navn: 'Tønsberg',
         eksperimenter: [
