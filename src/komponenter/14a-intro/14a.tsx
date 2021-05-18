@@ -220,7 +220,7 @@ function Intro14A(props: Intro14AProps) {
             startIntroCB={nesteKort}
             lesetid={'3'}
             viewportTekst="Viser 14a pre-state i viewport"
-            tittel={'Introduksjon om hjelp til jobbsøking fra NAV'}
+            tittel={'Hva skjer de neste 12 ukene?'}
         />,
         <Kort1 />,
         <Kort2 />,
