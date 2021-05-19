@@ -11,7 +11,7 @@ function ErRendret(props: Props) {
 
     React.useEffect(() => {
         loggAktivitet({ aktivitet: props.loggTekst, ...amplitudeData });
-    }, []);
+    }, [amplitudeData, props.loggTekst]);
 
     return <></>;
 }
