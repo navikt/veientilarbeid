@@ -11,6 +11,7 @@ import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
 import './14a-intro.less';
 import { fjernFraBrowserStorage, hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
+import ErRendret from '../er-rendret/er-rendret';
 import Feedback from '../feedback/feedback';
 import Lenkepanel14A from './lenkepanel-14a';
 import { FeaturetoggleContext } from '../../ducks/feature-toggles';
@@ -376,11 +377,14 @@ function Intro14AWrapper() {
             <Panel className={'fjorten-A-intro'} border>
                 <div className={'overall-wrapper'}>
                     {rendreIntro ? (
-                        <Intro14A
-                            hoppOverPreState={hoppOverPreState}
-                            ferdigMedIntroCB={ferdigMedIntroCB}
-                            amplitudeData={amplitudeData}
-                        />
+                        <>
+                            <Intro14A
+                                hoppOverPreState={hoppOverPreState}
+                                ferdigMedIntroCB={ferdigMedIntroCB}
+                                amplitudeData={amplitudeData}
+                            />
+                            <ErRendret loggTekst="Rendrer 14a intro" />
+                        </>
                     ) : (
                         <Sluttkort
                             amplitudeData={amplitudeData}
