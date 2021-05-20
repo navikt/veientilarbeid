@@ -107,6 +107,16 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         navn: 'Ringsaker',
         eksperimenter: [],
     },
+    '3422': {
+        navn: 'Åmot',
+        eksperimenter: [
+            {
+                id: 'onboarding14a',
+                registrertEtterDato: new Date('2021-05-20'),
+                situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
+            },
+        ],
+    },
     '030108': {
         navn: 'Nordre Aker',
         eksperimenter: [],
