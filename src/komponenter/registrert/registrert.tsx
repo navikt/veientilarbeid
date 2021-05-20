@@ -14,6 +14,7 @@ import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import { FeaturetoggleContext } from '../../ducks/feature-toggles';
 import Intro14AWrapper from '../14a-intro/14a';
 import InViewport from '../in-viewport/in-viewport';
+import Permittert from './permittert';
 
 const Registrert = () => {
     const brukerregistreringData = useContext(BrukerregistreringContext).data;
@@ -67,6 +68,7 @@ const Registrert = () => {
             <AlertStripeInfo className={showOpplysninger ? 'registrering-info' : ''}>
                 <Element>{tittel}</Element>
             </AlertStripeInfo>
+            <Permittert visRegistrertSomPermittert={visRegistrertSomPermittert} />
             {showOpplysninger ? (
                 <Ekspanderbartpanel
                     tittel="Se svarene dine fra registreringen"
