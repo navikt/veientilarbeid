@@ -28,6 +28,7 @@ export enum DemoData {
     UNDER_OPPFOLGING = 'underOppfolging',
     KAN_REAKTIVERES = 'kanReaktiveres',
     FREMTIDIG_SITUASJON = 'fremtidigSituasjon',
+    DIN_SITUASJON = 'dinSituasjon',
     FORESLATT_INNSATSGRUPPE = 'foreslattInnsatsgruppe',
     REGISTRERING_OPPRETTET = 'registreringOpprettet',
     SKJUL_DEMO = 'skjulDemo',
