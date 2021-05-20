@@ -64,6 +64,9 @@ export const hentFremtidigSituasjon = () => hentDemoState(DemoData.FREMTIDIG_SIT
 export const settFremtidigSituasjon = (fremtidigSituasjon: FremtidigSituasjonSvar) =>
     settDemoState(DemoData.FREMTIDIG_SITUASJON, fremtidigSituasjon);
 
+export const hentDinSituasjon = () => hentDemoState(DemoData.DIN_SITUASJON) || defaultDinSituasjon;
+export const settDinSituasjon = (dinSituasjon: DinSituasjonSvar) => settDemoState(DemoData.DIN_SITUASJON, dinSituasjon);
+
 export const hentForeslattInnsatsgruppe = () =>
     hentDemoState(DemoData.FORESLATT_INNSATSGRUPPE) || defaultForeslattInnsatsgruppe;
 export const settForeslattInnsatsgruppe = (innsatsgruppe: ForeslattInnsatsgruppe) =>
