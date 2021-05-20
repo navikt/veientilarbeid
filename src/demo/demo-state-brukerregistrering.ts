@@ -50,6 +50,7 @@ export const hentBrukerRegistrering = () => ({
         opprettetDato: hentOpprettetDato(),
         besvarelse: {
             ...defaultBesvarelse,
+            dinSituasjon: hentDinSituasjon(),
             fremtidigSituasjon: hentFremtidigSituasjon(),
         },
         profilering: {
