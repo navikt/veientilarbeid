@@ -179,6 +179,7 @@ class DemoDashboard extends React.Component<{}> {
             '3808': 'Notodden',
             '010302': 'Grünerløkka',
             '110302': 'Tasta',
+            '3422': 'Åmot',
         };
 
         const rettighetsgrupper = {
