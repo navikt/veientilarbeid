@@ -16,7 +16,7 @@ function Permittert(props: Props) {
 
     const handleLesEndretSituasjon = () => {
         amplitudeLogger('veientilarbeid.aktivitet', {
-            handling: 'Går til les om endret situasjon fra registrert som permittert',
+            handling: 'Går til STO for endret situasjon fra registrert som permittert',
             ...amplitudeData,
         });
     };
@@ -36,11 +36,8 @@ function Permittert(props: Props) {
             </Normaltekst>
             <Normaltekst>
                 Når du har begynt i jobben din igjen, eller mister jobben, så{' '}
-                <Lenke
-                    onClick={handleLesEndretSituasjon}
-                    href="https://www.nav.no/arbeid/no/dagpenger#gi-beskjed-hvis-situasjonen-din-endrer-seg"
-                >
-                    gir du beskjed til NAV slik
+                <Lenke onClick={handleLesEndretSituasjon} href="https://mininnboks.nav.no/sporsmal/skriv/ARBD">
+                    må du gi beskjed til NAV
                 </Lenke>
                 .
             </Normaltekst>
