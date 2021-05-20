@@ -39,12 +39,14 @@ import {
 } from './demo-state';
 
 import './demo-dashboard.less';
-import { ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../ducks/brukerregistrering';
+import { DinSituasjonSvar, ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../ducks/brukerregistrering';
 import {
     hentForeslattInnsatsgruppe,
+    hentDinSituasjon,
     hentFremtidigSituasjon,
     hentOpprettetDato,
     settForeslattInnsatsgruppe,
+    settDinSituasjon,
     settFremtidigSituasjon,
     settOpprettetDato,
 } from './demo-state-brukerregistrering';
@@ -108,6 +110,11 @@ class DemoDashboard extends React.Component<{}> {
 
         const handleChangeBrukerregistrering = (e: React.ChangeEvent<HTMLSelectElement>) => {
             settFremtidigSituasjon(e.target.value as FremtidigSituasjonSvar);
+            window.location.reload();
+        };
+
+        const handleChangeDinSituasjon = (e: React.ChangeEvent<HTMLSelectElement>) => {
+            settDinSituasjon(e.target.value as DinSituasjonSvar);
             window.location.reload();
         };
 
@@ -195,6 +202,21 @@ class DemoDashboard extends React.Component<{}> {
             NY_ARBEIDSGIVER: 'Ny arbeidsgiver',
             USIKKER: 'Usikker',
             INGEN_PASSER: 'Ingen passer',
+        };
+
+        const dineSituasjoner = {
+            MISTET_JOBBEN: 'MISTET_JOBBEN',
+            ALDRI_HATT_JOBB: 'ALDRI_HATT_JOBB',
+            HAR_SAGT_OPP: 'HAR_SAGT_OPP',
+            VIL_BYTTE_JOBB: 'VIL_BYTTE_JOBB',
+            ER_PERMITTERT: 'ER_PERMITTERT',
+            USIKKER_JOBBSITUASJON: 'USIKKER_JOBBSITUASJON',
+            JOBB_OVER_2_AAR: 'JOBB_OVER_2_AAR',
+            VIL_FORTSETTE_I_JOBB: 'VIL_FORTSETTE_I_JOBB',
+            AKKURAT_FULLFORT_UTDANNING: 'AKKURAT_FULLFORT_UTDANNING',
+            DELTIDSJOBB_VIL_MER: 'DELTIDSJOBB_VIL_MER',
+            INGEN_SVAR: 'INGEN_SVAR',
+            INGEN_VERDI: 'INGEN_VERDI',
         };
 
         const foreslattInnsatsgrupper = {
@@ -306,6 +328,18 @@ class DemoDashboard extends React.Component<{}> {
                         {Object.keys(FremtidigSituasjonSvar).map((svar: string) => (
                             <option key={svar} value={svar}>
                                 {fremtidigeSituasjoner[svar]}
+                            </option>
+                        ))}
+                    </SelectKomponent>
+                    <SelectKomponent
+                        label="Velg dinSituasjon"
+                        onChange={handleChangeDinSituasjon}
+                        id="velg-din-situasjon"
+                        defaultValue={hentDinSituasjon()}
+                    >
+                        {Object.keys(DinSituasjonSvar).map((svar: string) => (
+                            <option key={svar} value={svar}>
+                                {dineSituasjoner[svar]}
                             </option>
                         ))}
                     </SelectKomponent>

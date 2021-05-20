@@ -3,6 +3,7 @@ import { DemoData, hentDemoState, settDemoState } from './demo-state';
 import { opprettetRegistreringDato } from './demo-dashboard';
 
 const defaultFremtidigSituasjon = FremtidigSituasjonSvar.NY_ARBEIDSGIVER;
+const defaultDinSituasjon = DinSituasjonSvar.MISTET_JOBBEN;
 const defaultBesvarelse = {
     utdanning: 'INGEN_UTDANNING',
     utdanningBestatt: 'INGEN_SVAR',
@@ -10,7 +11,7 @@ const defaultBesvarelse = {
     helseHinder: 'NEI',
     andreForhold: 'NEI',
     sisteStilling: 'Barne- og ungdomsarbeider i skolefritidsordning',
-    dinSituasjon: DinSituasjonSvar.MISTET_JOBBEN,
+    dinSituasjon: defaultDinSituasjon,
     fremtidigSituasjon: defaultFremtidigSituasjon,
     tilbakeIArbeid: 'USIKKER',
 };
@@ -49,6 +50,7 @@ export const hentBrukerRegistrering = () => ({
         opprettetDato: hentOpprettetDato(),
         besvarelse: {
             ...defaultBesvarelse,
+            dinSituasjon: hentDinSituasjon(),
             fremtidigSituasjon: hentFremtidigSituasjon(),
         },
         profilering: {
@@ -62,6 +64,9 @@ export const hentBrukerRegistrering = () => ({
 export const hentFremtidigSituasjon = () => hentDemoState(DemoData.FREMTIDIG_SITUASJON) || defaultFremtidigSituasjon;
 export const settFremtidigSituasjon = (fremtidigSituasjon: FremtidigSituasjonSvar) =>
     settDemoState(DemoData.FREMTIDIG_SITUASJON, fremtidigSituasjon);
+
+export const hentDinSituasjon = () => hentDemoState(DemoData.DIN_SITUASJON) || defaultDinSituasjon;
+export const settDinSituasjon = (dinSituasjon: DinSituasjonSvar) => settDemoState(DemoData.DIN_SITUASJON, dinSituasjon);
 
 export const hentForeslattInnsatsgruppe = () =>
     hentDemoState(DemoData.FORESLATT_INNSATSGRUPPE) || defaultForeslattInnsatsgruppe;

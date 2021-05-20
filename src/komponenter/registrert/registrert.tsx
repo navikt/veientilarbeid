@@ -11,16 +11,21 @@ import { OppfolgingContext } from '../../ducks/oppfolging';
 import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
+import { FeaturetoggleContext } from '../../ducks/feature-toggles';
 import Intro14AWrapper from '../14a-intro/14a';
 import InViewport from '../in-viewport/in-viewport';
+import Permittert from './permittert';
 
 const Registrert = () => {
     const brukerregistreringData = useContext(BrukerregistreringContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const autentiseringData = React.useContext(AutentiseringContext).data;
     const amplitudeData = React.useContext(AmplitudeContext);
+    const featuretoggleData = React.useContext(FeaturetoggleContext).data;
     const [clickedInnsyn, setClickedInnsyn] = useState(false);
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
+
+    const featureToggleErAktivert = featuretoggleData['veientilarbeid.registrert-permittert'];
 
     const kanViseKomponent =
         oppfolgingData.formidlingsgruppe === 'ARBS' &&
@@ -30,6 +35,7 @@ const Registrert = () => {
     if (!kanViseKomponent) {
         return null;
     }
+
     if (!brukerregistreringData || !brukerregistreringData.registrering) {
         return (
             <div className="blokk-s">
@@ -44,6 +50,12 @@ const Registrert = () => {
     const { opprettetDato, manueltRegistrertAv, besvarelse, teksterForBesvarelse } = registrering;
     const showOpplysninger = opprettetDato && besvarelse && teksterForBesvarelse;
 
+    const visRegistrertSomPermittert = featureToggleErAktivert && besvarelse.dinSituasjon === 'ER_PERMITTERT';
+
+    const tittel = visRegistrertSomPermittert
+        ? 'Du er registrert som permittert (arbeidssøker)'
+        : 'Du er registrert som arbeidssøker';
+
     const handleClickOpen = () => {
         if (!clickedInnsyn) {
             loggAktivitet({ aktivitet: 'Ser opplysninger fra registreringen', ...amplitudeData });
@@ -54,8 +66,9 @@ const Registrert = () => {
     return (
         <div className="blokk-s registrerings-container">
             <AlertStripeInfo className={showOpplysninger ? 'registrering-info' : ''}>
-                <Element>Du er registrert som arbeidssøker</Element>
+                <Element>{tittel}</Element>
             </AlertStripeInfo>
+            <Permittert visRegistrertSomPermittert={visRegistrertSomPermittert} />
             {showOpplysninger ? (
                 <Ekspanderbartpanel
                     tittel="Se svarene dine fra registreringen"
