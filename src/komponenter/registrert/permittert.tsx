@@ -3,6 +3,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import Lenke from 'nav-frontend-lenker';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
+import ErRendret from '../er-rendret/er-rendret';
 import './registrert.less';
 
 interface Props {
@@ -50,6 +51,7 @@ function Permittert(props: Props) {
                 </Lenke>
                 .
             </Normaltekst>
+            <ErRendret loggTekst="Rendrer registrert som permittert boks" />
         </div>
     );
 }
