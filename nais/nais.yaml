@@ -39,8 +39,8 @@ spec:
     value: {{ arbeidssokerregistrering_url }}
   - name: VEILARBPROXY_URL
     value: {{ veilarbproxy_url }}
-  - name: TJENESTER_URL
-    value: {{ tjenester_url }}
+  - name: SAKSOVERSIKT_URL
+    value: {{ saksoversikt_url }}
   - name: FASIT_ENVIRONMENT_NAME
     value: {{ app_environment_name }}
   - name: DISABLE_FRONTEND_LOGGER
