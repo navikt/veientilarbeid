@@ -21,6 +21,10 @@ proxy:
 
   - contextPath: /veilarbvedtakinfo
     baseUrl: {{ VEILARBPROXY_URL }}
+  
+  - contextPath: /tjenester
+    baseUrl: {{ TJENESTER_URL }}
+    requestRewrite: REMOVE_CONTEXT_PATH
 
 redirect:
   - from: /veientilarbeid
