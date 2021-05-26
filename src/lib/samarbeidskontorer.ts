@@ -97,7 +97,13 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
     },
     '030114': {
         navn: 'Nordstrand',
-        eksperimenter: [],
+        eksperimenter: [
+            {
+                id: 'onboarding14a',
+                registrertEtterDato: new Date('2021-05-26'),
+                situasjoner: kssSituasjoner,
+            },
+        ],
     },
     '3418': {
         navn: 'Åsnes',
