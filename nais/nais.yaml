@@ -46,10 +46,12 @@ spec:
   envFrom:
     - configmap: loginservice-idporten
   image: {{image}}
-  ingresses:
-  {{#each ingresses as |url|}}
-     - {{url}}
-  {{/each}}
+  {{#if ingresses}}
+    ingresses:
+    {{#each ingresses as |url|}}
+       - {{url}}
+    {{/each}}
+  {{/if}}
   liveness:
     path: /internal/isAlive
     port: 8080
