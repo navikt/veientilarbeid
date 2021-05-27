@@ -18,3 +18,7 @@ veilarbproxy_url: http://veilarbproxy.q1.svc.nais.local
 app_environment_name: paw
 ingresses:
   - https://veientilarbeid.dev.nav.no
+  - https://veientilarbeid.nais.oera-q.local # Kun for tilgang til /internal/selftest
+  - https://veientilarbeid-q1.dev-sbs.nais.io
+  - https://veientilarbeid-q1.nav.no
+  - https://tjenester-q1.nav.no/veientilarbeid
