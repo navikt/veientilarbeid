@@ -1,4 +1,4 @@
-import {contextpathDittNav, erMikrofrontend} from '../utils/app-state-utils';
+import { contextpathDittNav, erMikrofrontend } from '../utils/app-state-utils';
 
 export enum STATUS {
     OK = 'OK',
@@ -38,4 +38,6 @@ export const VEILARBOPPFOLGING_URL = `${contextpath}/veilarboppfolging/api/oppfo
     FEATURE_URL = `${contextpath}/api/feature`,
     MOTESTOTTE_URL = `${contextpath}/veilarbvedtakinfo/api/motestotte`,
     NESTE_MELDEKORT_URL = `${MELDEKORT_URL}/person/meldekort`,
+    PAABEGYNTE_SOKNADER_URL = `${contextpath}/saksoversikt-api/tjenester/saker/hentPaabegynteSoknader`,
+    MULIGE_ETTERSENDELSER_URL = `${contextpath}/saksoversikt-api/tjenester/ettersendelser/mulige`,
     MELDEKORTSTATUS_URL = `${MELDEKORT_URL}/person/meldekortstatus`;
