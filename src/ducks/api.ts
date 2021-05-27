@@ -40,4 +40,5 @@ export const VEILARBOPPFOLGING_URL = `${contextpath}/veilarboppfolging/api/oppfo
     NESTE_MELDEKORT_URL = `${MELDEKORT_URL}/person/meldekort`,
     PAABEGYNTE_SOKNADER_URL = `${contextpath}/saksoversikt-api/tjenester/saker/hentPaabegynteSoknader`,
     MULIGE_ETTERSENDELSER_URL = `${contextpath}/saksoversikt-api/tjenester/ettersendelser/mulige`,
+    SAKSTEMA_URL = `${contextpath}/saksoversikt-api/tjenester/sakstema`,
     MELDEKORTSTATUS_URL = `${MELDEKORT_URL}/person/meldekortstatus`;
