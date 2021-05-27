@@ -11,6 +11,8 @@ import oppfolgingResponse from './oppfolging-mock';
 import underOppfolgingResponse from './under-oppfolging-mock';
 import meldekortResponse from './meldekort-mock';
 import meldekortstatusResponse from './meldekortstatus-mock';
+import paabegynteSoknaderResponse from './saksoversikt-pabegyntesoknader-mock';
+import muligeEttersendelserResponse from './saksoversikt-mulige-ettersendelser-mock';
 import msw_get from './msw-utils';
 import {
     BRUKERINFO_URL,
@@ -24,6 +26,8 @@ import {
     ULESTEDIALOGER_URL,
     UNDER_OPPFOLGING_URL,
     VEILARBOPPFOLGING_URL,
+    PAABEGYNTE_SOKNADER_URL,
+    MULIGE_ETTERSENDELSER_URL,
 } from '../ducks/api';
 
 export const handlers = [
@@ -39,4 +43,6 @@ export const handlers = [
     msw_get(UNDER_OPPFOLGING_URL, underOppfolgingResponse),
     msw_get(NESTE_MELDEKORT_URL, meldekortResponse),
     msw_get(MELDEKORTSTATUS_URL, meldekortstatusResponse),
+    msw_get(PAABEGYNTE_SOKNADER_URL, paabegynteSoknaderResponse),
+    msw_get(MULIGE_ETTERSENDELSER_URL, muligeEttersendelserResponse),
 ];
