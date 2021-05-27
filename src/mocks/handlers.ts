@@ -13,6 +13,7 @@ import meldekortResponse from './meldekort-mock';
 import meldekortstatusResponse from './meldekortstatus-mock';
 import paabegynteSoknaderResponse from './saksoversikt-pabegyntesoknader-mock';
 import muligeEttersendelserResponse from './saksoversikt-mulige-ettersendelser-mock';
+import sakstemaResponse from './saksoversikt-sakstema-mock';
 import msw_get from './msw-utils';
 import {
     BRUKERINFO_URL,
@@ -28,6 +29,7 @@ import {
     VEILARBOPPFOLGING_URL,
     PAABEGYNTE_SOKNADER_URL,
     MULIGE_ETTERSENDELSER_URL,
+    SAKSTEMA_URL,
 } from '../ducks/api';
 
 export const handlers = [
@@ -45,4 +47,5 @@ export const handlers = [
     msw_get(MELDEKORTSTATUS_URL, meldekortstatusResponse),
     msw_get(PAABEGYNTE_SOKNADER_URL, paabegynteSoknaderResponse),
     msw_get(MULIGE_ETTERSENDELSER_URL, muligeEttersendelserResponse),
+    msw_get(SAKSTEMA_URL, sakstemaResponse),
 ];
