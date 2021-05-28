@@ -7,6 +7,7 @@ import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { BrukerregistreringContext, DinSituasjonSvar } from '../../ducks/brukerregistrering';
 import { OppfolgingContext } from '../../ducks/oppfolging';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
+import { PaabegynteSoknaderContext } from '../../ducks/paabegynte-soknader';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
 import grupperGeografiskTilknytning from '../../utils/grupper-geografisk-tilknytning';
 
@@ -49,6 +50,7 @@ function hentDagerEtterFastsattMeldedag(
 
 export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
+    const pabegynteSoknaderData = React.useContext(PaabegynteSoknaderContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const brukerInfoData = React.useContext(BrukerInfoContext).data;
     const { securityLevel: nivaa } = React.useContext(AutentiseringContext).data;
@@ -118,6 +120,8 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         enhetEksperimentId: hentEnhetEksperimentId(),
     });
 
+    const antallPabegynteSoknader = pabegynteSoknaderData.soknader.length;
+
     const amplitudeData: AmplitudeData = {
         gruppe: POAGruppe,
         geografiskTilknytning: grupperGeografiskTilknytning(geografiskTilknytningOrIngenVerdi),
@@ -142,7 +146,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         dinSituasjon,
         reservasjonKRR: reservasjonKRR ? 'ja' : 'nei',
         eksperimenter,
-        dagpengerSoknadMellomlagret: 'INGEN_DATA',
+        dagpengerSoknadMellomlagret: antallPabegynteSoknader,
         dagpengerVedleggEttersendes: 'INGEN_DATA',
         dagpengerSoknadVenterPaSvar: 'INGEN_DATA',
     };
