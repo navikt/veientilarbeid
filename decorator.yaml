@@ -24,7 +24,8 @@ proxy:
 
   - contextPath: /saksoversikt-api
     baseUrl: {{ SAKSOVERSIKT_API }}
-    pingRequestPath: /internal/isAlive
+    pingRequestPath: /saksoversikt-api/internal/isAlive
+
 
 redirect:
   - from: /veientilarbeid
