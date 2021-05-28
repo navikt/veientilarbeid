@@ -22,6 +22,10 @@ proxy:
   - contextPath: /veilarbvedtakinfo
     baseUrl: {{ VEILARBPROXY_URL }}
 
+  - contextPath: /saksoversikt-api
+    baseUrl: {{ SAKSOVERSIKT_API }}
+    pingRequestPath: /internal/isAlive
+
 redirect:
   - from: /veientilarbeid
     to: {{ VEIENTILARBEID_URL }}
