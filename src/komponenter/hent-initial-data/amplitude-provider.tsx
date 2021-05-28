@@ -60,8 +60,6 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const meldekortContext = React.useContext(Meldekort.MeldekortContext);
     const meldekortStatusContext = React.useContext(Meldekortstatus.MeldekortstatusContext);
 
-    console.log(muligeEttersendelserData);
-
     const {
         erSykmeldtMedArbeidsgiver,
         alder,
@@ -125,7 +123,9 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     });
 
     const antallPabegynteSoknader = pabegynteSoknaderData.soknader.length;
-    // const antallSoknaderMedMuligEttersendelse = muligeEttersendelserData.ettersendelser.filter(soknad => soknad.vedleggSomSkalEttersendes.length > 0).length
+    const antallSoknaderMedMuligEttersendelse = muligeEttersendelserData.filter(
+        (soknad) => soknad.vedleggSomSkalEttersendes.length > 0
+    ).length;
 
     const amplitudeData: AmplitudeData = {
         gruppe: POAGruppe,
@@ -152,7 +152,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         reservasjonKRR: reservasjonKRR ? 'ja' : 'nei',
         eksperimenter,
         dagpengerSoknadMellomlagret: antallPabegynteSoknader,
-        dagpengerVedleggEttersendes: 'INGEN_DATA',
+        dagpengerVedleggEttersendes: antallSoknaderMedMuligEttersendelse,
         dagpengerSoknadVenterPaSvar: 'INGEN_DATA',
     };
 
