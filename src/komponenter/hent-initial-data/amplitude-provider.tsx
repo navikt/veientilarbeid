@@ -124,7 +124,6 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         enhetEksperimentId: hentEnhetEksperimentId(),
     });
 
-    console.log(sakstemaData);
     const dagpengerSaksTema = sakstemaData.sakstema.find((tema) => tema.temakode === 'DAG');
     const antallSaksbehandlingerDagpenger = dagpengerSaksTema ? dagpengerSaksTema.behandlingskjeder.length : -1;
     const harDagpengesoknadTilBehandling =
