@@ -4,6 +4,7 @@ import Feilmelding from '../feilmeldinger/feilmelding';
 import * as BrukerInfo from '../../ducks/bruker-info';
 import * as Brukerregistrering from '../../ducks/brukerregistrering';
 import * as PaabegynteSoknader from '../../ducks/paabegynte-soknader';
+import * as MuligeEttersendelser from '../../ducks/mulige-ettersendelser';
 import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe } from '../../ducks/brukerregistrering';
 import * as Motestotte from '../../ducks/motestotte';
 import * as Meldekort from '../../ducks/meldekort';
@@ -19,6 +20,7 @@ import {
     NESTE_MELDEKORT_URL,
     ULESTEDIALOGER_URL,
     PAABEGYNTE_SOKNADER_URL,
+    MULIGE_ETTERSENDELSER_URL,
 } from '../../ducks/api';
 import { AmplitudeProvider } from './amplitude-provider';
 import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
@@ -45,6 +47,9 @@ const DataProvider = ({ children }: Props) => {
     const [motestotteState, setMotestotteState] = React.useState<Motestotte.State>(Motestotte.initialState);
     const [meldekortState, setMeldekortState] = React.useState<Meldekort.State>(Meldekort.initialState);
     const [brukerInfoState, setBrukerInfoState] = React.useState<BrukerInfo.State>(BrukerInfo.initialState);
+    const [muligeEttersendelserState, setMuligeEttersendelserState] = React.useState<MuligeEttersendelser.State>(
+        MuligeEttersendelser.initialState
+    );
     const [paabegynteSoknaderState, setPaabegynteSoknaderState] = React.useState<PaabegynteSoknader.State>(
         PaabegynteSoknader.initialState
     );
@@ -73,6 +78,11 @@ const DataProvider = ({ children }: Props) => {
         }
 
         fetchData<BrukerInfo.State, BrukerInfo.Data>(brukerInfoState, setBrukerInfoState, BRUKERINFO_URL);
+        fetchData<MuligeEttersendelser.State, MuligeEttersendelser.Data>(
+            muligeEttersendelserState,
+            setMuligeEttersendelserState,
+            MULIGE_ETTERSENDELSER_URL
+        );
         fetchData<PaabegynteSoknader.State, PaabegynteSoknader.Data>(
             paabegynteSoknaderState,
             setPaabegynteSoknaderState,
@@ -139,7 +149,11 @@ const DataProvider = ({ children }: Props) => {
                                     <PaabegynteSoknader.PaabegynteSoknaderContext.Provider
                                         value={paabegynteSoknaderState}
                                     >
-                                        <AmplitudeProvider>{children}</AmplitudeProvider>
+                                        <MuligeEttersendelser.MuligeEttersendelserContext.Provider
+                                            value={muligeEttersendelserState}
+                                        >
+                                            <AmplitudeProvider>{children}</AmplitudeProvider>
+                                        </MuligeEttersendelser.MuligeEttersendelserContext.Provider>
                                     </PaabegynteSoknader.PaabegynteSoknaderContext.Provider>
                                 </Motestotte.MotestotteContext.Provider>
                             </Egenvurdering.EgenvurderingContext.Provider>
