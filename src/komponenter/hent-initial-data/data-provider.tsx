@@ -3,6 +3,7 @@ import Innholdslaster from '../innholdslaster/innholdslaster';
 import Feilmelding from '../feilmeldinger/feilmelding';
 import * as BrukerInfo from '../../ducks/bruker-info';
 import * as Brukerregistrering from '../../ducks/brukerregistrering';
+import * as PaabegynteSoknader from '../../ducks/paabegynte-soknader';
 import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe } from '../../ducks/brukerregistrering';
 import * as Motestotte from '../../ducks/motestotte';
 import * as Meldekort from '../../ducks/meldekort';
@@ -17,6 +18,7 @@ import {
     MOTESTOTTE_URL,
     NESTE_MELDEKORT_URL,
     ULESTEDIALOGER_URL,
+    PAABEGYNTE_SOKNADER_URL,
 } from '../../ducks/api';
 import { AmplitudeProvider } from './amplitude-provider';
 import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
@@ -43,6 +45,9 @@ const DataProvider = ({ children }: Props) => {
     const [motestotteState, setMotestotteState] = React.useState<Motestotte.State>(Motestotte.initialState);
     const [meldekortState, setMeldekortState] = React.useState<Meldekort.State>(Meldekort.initialState);
     const [brukerInfoState, setBrukerInfoState] = React.useState<BrukerInfo.State>(BrukerInfo.initialState);
+    const [paabegynteSoknaderState, setPaabegynteSoknaderState] = React.useState<PaabegynteSoknader.State>(
+        PaabegynteSoknader.initialState
+    );
     const [egenvurderingState, setEgenvurderingState] = React.useState<Egenvurdering.State>(Egenvurdering.initialState);
     const [ulesteDialogerState, setUlesteDialogerState] = React.useState<UlesteDialoger.State>(
         UlesteDialoger.initialState
@@ -68,6 +73,11 @@ const DataProvider = ({ children }: Props) => {
         }
 
         fetchData<BrukerInfo.State, BrukerInfo.Data>(brukerInfoState, setBrukerInfoState, BRUKERINFO_URL);
+        fetchData<PaabegynteSoknader.State, PaabegynteSoknader.Data>(
+            paabegynteSoknaderState,
+            setPaabegynteSoknaderState,
+            PAABEGYNTE_SOKNADER_URL
+        );
         fetchData<UlesteDialoger.State, UlesteDialoger.Data>(
             ulesteDialogerState,
             setUlesteDialogerState,
@@ -126,7 +136,11 @@ const DataProvider = ({ children }: Props) => {
                         <Jobbsokerbesvarelse.JobbsokerbesvarelseContext.Provider value={jobbsokerbesvarelseState}>
                             <Egenvurdering.EgenvurderingContext.Provider value={egenvurderingState}>
                                 <Motestotte.MotestotteContext.Provider value={motestotteState}>
-                                    <AmplitudeProvider>{children}</AmplitudeProvider>
+                                    <PaabegynteSoknader.PaabegynteSoknaderContext.Provider
+                                        value={paabegynteSoknaderState}
+                                    >
+                                        <AmplitudeProvider>{children}</AmplitudeProvider>
+                                    </PaabegynteSoknader.PaabegynteSoknaderContext.Provider>
                                 </Motestotte.MotestotteContext.Provider>
                             </Egenvurdering.EgenvurderingContext.Provider>
                         </Jobbsokerbesvarelse.JobbsokerbesvarelseContext.Provider>
