@@ -9,6 +9,7 @@ import { OppfolgingContext } from '../../ducks/oppfolging';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import { PaabegynteSoknaderContext } from '../../ducks/paabegynte-soknader';
 import { MuligeEttersendelserContext } from '../../ducks/mulige-ettersendelser';
+import { SakstemaContext } from '../../ducks/sakstema';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
 import grupperGeografiskTilknytning from '../../utils/grupper-geografisk-tilknytning';
 
@@ -53,6 +54,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
     const pabegynteSoknaderData = React.useContext(PaabegynteSoknaderContext).data;
     const muligeEttersendelserData = React.useContext(MuligeEttersendelserContext).data;
+    const sakstemaData = React.useContext(SakstemaContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const brukerInfoData = React.useContext(BrukerInfoContext).data;
     const { securityLevel: nivaa } = React.useContext(AutentiseringContext).data;
@@ -122,6 +124,11 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         enhetEksperimentId: hentEnhetEksperimentId(),
     });
 
+    console.log(sakstemaData);
+    const dagpengerSaksTema = sakstemaData.sakstema.find((tema) => tema.temakode === 'DAG');
+    const antallSaksbehandlingerDagpenger = dagpengerSaksTema
+        ? dagpengerSaksTema.behandlingskjeder.length > 0
+        : 'INGEN_DATA';
     const antallPabegynteSoknader = pabegynteSoknaderData.soknader.length;
     const antallSoknaderMedMuligEttersendelse = muligeEttersendelserData.filter(
         (soknad) => soknad.vedleggSomSkalEttersendes.length > 0
@@ -153,7 +160,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         eksperimenter,
         dagpengerSoknadMellomlagret: antallPabegynteSoknader,
         dagpengerVedleggEttersendes: antallSoknaderMedMuligEttersendelse,
-        dagpengerSoknadVenterPaSvar: 'INGEN_DATA',
+        dagpengerSoknadVenterPaSvar: antallSaksbehandlingerDagpenger,
     };
 
     return <AmplitudeContext.Provider value={amplitudeData}>{props.children}</AmplitudeContext.Provider>;
