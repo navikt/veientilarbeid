@@ -126,9 +126,9 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
 
     console.log(sakstemaData);
     const dagpengerSaksTema = sakstemaData.sakstema.find((tema) => tema.temakode === 'DAG');
-    const antallSaksbehandlingerDagpenger = dagpengerSaksTema
-        ? dagpengerSaksTema.behandlingskjeder.length > 0
-        : 'INGEN_DATA';
+    const antallSaksbehandlingerDagpenger = dagpengerSaksTema ? dagpengerSaksTema.behandlingskjeder.length : -1;
+    const harDagpengesoknadTilBehandling =
+        antallSaksbehandlingerDagpenger < 0 ? 'INGEN_DATA' : antallSaksbehandlingerDagpenger > 0 ? 'ja' : 'nei';
     const antallPabegynteSoknader = pabegynteSoknaderData.soknader.length;
     const antallSoknaderMedMuligEttersendelse = muligeEttersendelserData.filter(
         (soknad) => soknad.vedleggSomSkalEttersendes.length > 0
@@ -160,7 +160,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         eksperimenter,
         dagpengerSoknadMellomlagret: antallPabegynteSoknader,
         dagpengerVedleggEttersendes: antallSoknaderMedMuligEttersendelse,
-        dagpengerSoknadVenterPaSvar: antallSaksbehandlingerDagpenger,
+        dagpengerSoknadVenterPaSvar: harDagpengesoknadTilBehandling,
     };
 
     return <AmplitudeContext.Provider value={amplitudeData}>{props.children}</AmplitudeContext.Provider>;

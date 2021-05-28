@@ -49,7 +49,7 @@ export type AmplitudeData = {
     eksperimenter: EksperimentId[];
     dagpengerVedleggEttersendes: number | 'INGEN_DATA';
     dagpengerSoknadMellomlagret: number | 'INGEN_DATA';
-    dagpengerSoknadVenterPaSvar: boolean | 'INGEN_DATA';
+    dagpengerSoknadVenterPaSvar: 'ja' | 'nei' | 'INGEN_DATA';
 };
 
 export function amplitudeLogger(name: string, values?: object) {
