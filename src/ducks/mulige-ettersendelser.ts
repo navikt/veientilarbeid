@@ -11,14 +11,10 @@ interface Ettersendelse {
     lenkeTilEttersending: string;
 }
 
-export interface Data {
-    ettersendelser: Ettersendelse[];
-}
+export type Data = Ettersendelse[];
 
 export const initialState: State = {
-    data: {
-        ettersendelser: [],
-    },
+    data: [],
     status: STATUS.NOT_STARTED,
 };
 

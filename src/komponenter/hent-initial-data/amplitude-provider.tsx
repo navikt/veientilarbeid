@@ -7,6 +7,9 @@ import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { BrukerregistreringContext, DinSituasjonSvar } from '../../ducks/brukerregistrering';
 import { OppfolgingContext } from '../../ducks/oppfolging';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
+import { PaabegynteSoknaderContext } from '../../ducks/paabegynte-soknader';
+import { MuligeEttersendelserContext } from '../../ducks/mulige-ettersendelser';
+import { SakstemaContext } from '../../ducks/sakstema';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
 import grupperGeografiskTilknytning from '../../utils/grupper-geografisk-tilknytning';
 
@@ -49,6 +52,9 @@ function hentDagerEtterFastsattMeldedag(
 
 export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
+    const pabegynteSoknaderData = React.useContext(PaabegynteSoknaderContext).data;
+    const muligeEttersendelserData = React.useContext(MuligeEttersendelserContext).data;
+    const sakstemaData = React.useContext(SakstemaContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const brukerInfoData = React.useContext(BrukerInfoContext).data;
     const { securityLevel: nivaa } = React.useContext(AutentiseringContext).data;
@@ -118,6 +124,15 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         enhetEksperimentId: hentEnhetEksperimentId(),
     });
 
+    const dagpengerSaksTema = sakstemaData.sakstema.find((tema) => tema.temakode === 'DAG');
+    const antallSaksbehandlingerDagpenger = dagpengerSaksTema ? dagpengerSaksTema.behandlingskjeder.length : -1;
+    const harDagpengesoknadTilBehandling =
+        antallSaksbehandlingerDagpenger < 0 ? 'INGEN_DATA' : antallSaksbehandlingerDagpenger > 0 ? 'ja' : 'nei';
+    const antallPabegynteSoknader = pabegynteSoknaderData.soknader.length;
+    const antallSoknaderMedMuligEttersendelse = muligeEttersendelserData.filter(
+        (soknad) => soknad.vedleggSomSkalEttersendes.length > 0
+    ).length;
+
     const amplitudeData: AmplitudeData = {
         gruppe: POAGruppe,
         geografiskTilknytning: grupperGeografiskTilknytning(geografiskTilknytningOrIngenVerdi),
@@ -142,6 +157,9 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         dinSituasjon,
         reservasjonKRR: reservasjonKRR ? 'ja' : 'nei',
         eksperimenter,
+        dagpengerSoknadMellomlagret: antallPabegynteSoknader,
+        dagpengerVedleggEttersendes: antallSoknaderMedMuligEttersendelse,
+        dagpengerSoknadVenterPaSvar: harDagpengesoknadTilBehandling,
     };
 
     return <AmplitudeContext.Provider value={amplitudeData}>{props.children}</AmplitudeContext.Provider>;

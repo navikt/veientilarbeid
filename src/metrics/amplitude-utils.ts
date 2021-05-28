@@ -47,6 +47,9 @@ export type AmplitudeData = {
     dinSituasjon: DinSituasjonSvar;
     reservasjonKRR: string;
     eksperimenter: EksperimentId[];
+    dagpengerVedleggEttersendes: number | 'INGEN_DATA';
+    dagpengerSoknadMellomlagret: number | 'INGEN_DATA';
+    dagpengerSoknadVenterPaSvar: 'ja' | 'nei' | 'INGEN_DATA';
 };
 
 export function amplitudeLogger(name: string, values?: object) {

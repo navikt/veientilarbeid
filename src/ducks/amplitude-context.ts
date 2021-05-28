@@ -27,6 +27,9 @@ export const initialState: AmplitudeData = {
     dinSituasjon: DinSituasjonSvar.INGEN_VERDI,
     reservasjonKRR: 'ukjent',
     eksperimenter: [],
+    dagpengerVedleggEttersendes: 'INGEN_DATA',
+    dagpengerSoknadMellomlagret: 'INGEN_DATA',
+    dagpengerSoknadVenterPaSvar: 'INGEN_DATA',
 };
 
 export const AmplitudeContext = React.createContext<AmplitudeData>(initialState);
