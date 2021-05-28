@@ -8,6 +8,7 @@ import { BrukerregistreringContext, DinSituasjonSvar } from '../../ducks/brukerr
 import { OppfolgingContext } from '../../ducks/oppfolging';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import { PaabegynteSoknaderContext } from '../../ducks/paabegynte-soknader';
+import { MuligeEttersendelserContext } from '../../ducks/mulige-ettersendelser';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
 import grupperGeografiskTilknytning from '../../utils/grupper-geografisk-tilknytning';
 
@@ -51,12 +52,15 @@ function hentDagerEtterFastsattMeldedag(
 export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
     const pabegynteSoknaderData = React.useContext(PaabegynteSoknaderContext).data;
+    const muligeEttersendelserData = React.useContext(MuligeEttersendelserContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const brukerInfoData = React.useContext(BrukerInfoContext).data;
     const { securityLevel: nivaa } = React.useContext(AutentiseringContext).data;
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const meldekortContext = React.useContext(Meldekort.MeldekortContext);
     const meldekortStatusContext = React.useContext(Meldekortstatus.MeldekortstatusContext);
+
+    console.log(muligeEttersendelserData);
 
     const {
         erSykmeldtMedArbeidsgiver,
@@ -121,6 +125,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     });
 
     const antallPabegynteSoknader = pabegynteSoknaderData.soknader.length;
+    // const antallSoknaderMedMuligEttersendelse = muligeEttersendelserData.ettersendelser.filter(soknad => soknad.vedleggSomSkalEttersendes.length > 0).length
 
     const amplitudeData: AmplitudeData = {
         gruppe: POAGruppe,
