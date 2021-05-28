@@ -15,9 +15,25 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         navn: 'Alna',
         eksperimenter: [],
     },
+    '030104': {
+        navn: 'St. Hanshaugen',
+        eksperimenter: [
+            {
+                id: 'onboarding14a',
+                registrertEtterDato: new Date('2021-05-28'),
+                situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
+            },
+        ],
+    },
     '030105': {
         navn: 'Frogner',
-        eksperimenter: [],
+        eksperimenter: [
+            {
+                id: 'onboarding14a',
+                registrertEtterDato: new Date('2021-05-28'),
+                situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
+            },
+        ],
     },
     '3413': {
         navn: 'Stange',
