@@ -29,6 +29,7 @@ import { datoUtenTid } from '../../utils/date-utils';
 import { hentEksperimenter } from '../../utils/eksperiment-utils';
 import { erSamarbeidskontor } from '../../utils/samarbeidskontor-utils';
 import { hentEnhetEksperimentId } from '../../lib/ab-eksperiment';
+import harUbehandletDpSoknad from '../../lib/har-ubehandlet-dp-soknad';
 
 function hentDagerEtterFastsattMeldedag(
     iDag: Date,
@@ -125,9 +126,8 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     });
 
     const dagpengerSaksTema = sakstemaData.sakstema.find((tema) => tema.temakode === 'DAG');
-    const antallSaksbehandlingerDagpenger = dagpengerSaksTema ? dagpengerSaksTema.behandlingskjeder.length : -1;
-    const harDagpengesoknadTilBehandling =
-        antallSaksbehandlingerDagpenger < 0 ? 'INGEN_DATA' : antallSaksbehandlingerDagpenger > 0 ? 'ja' : 'nei';
+    const ubehandledeDpSoknader = dagpengerSaksTema ? harUbehandletDpSoknad(dagpengerSaksTema.behandlingskjeder) : null;
+    const harDagpengesoknadTilBehandling = ubehandledeDpSoknader || 'INGEN_DATA';
     const antallPabegynteSoknader = pabegynteSoknaderData.soknader.length;
     const antallSoknaderMedMuligEttersendelse = muligeEttersendelserData.filter(
         (soknad) => soknad.vedleggSomSkalEttersendes.length > 0
