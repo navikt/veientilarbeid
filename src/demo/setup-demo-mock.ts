@@ -4,6 +4,7 @@ import {
     EGENVURDERINGBESVARELSE_URL,
     FEATURE_URL,
     JOBBSOKERBESVARELSE_URL,
+    MELDEKORTSTATUS_URL,
     MOTESTOTTE_URL,
     MULIGE_ETTERSENDELSER_URL,
     NESTE_MELDEKORT_URL,
@@ -41,6 +42,7 @@ import msw_get from '../mocks/msw-utils';
 import paabegynteSoknaderResponse from '../mocks/saksoversikt-pabegyntesoknader-mock';
 import muligeEttersendelserResponse from '../mocks/saksoversikt-mulige-ettersendelser-mock';
 import sakstemaResponse from '../mocks/saksoversikt-sakstema-mock';
+import meldekortstatusResponse from '../mocks/meldekortstatus-mock';
 
 export const demo_handlers = [
     msw_get(VEILARBOPPFOLGING_URL, {
@@ -80,6 +82,8 @@ export const demo_handlers = [
     msw_get(UNDER_OPPFOLGING_URL, hentUnderOppfolging()),
 
     msw_get(NESTE_MELDEKORT_URL, lagMeldekortData()),
+
+    msw_get(MELDEKORTSTATUS_URL, meldekortstatusResponse),
 
     msw_get(PAABEGYNTE_SOKNADER_URL, paabegynteSoknaderResponse),
 
