@@ -5,7 +5,10 @@ import {
     FEATURE_URL,
     JOBBSOKERBESVARELSE_URL,
     MOTESTOTTE_URL,
+    MULIGE_ETTERSENDELSER_URL,
     NESTE_MELDEKORT_URL,
+    PAABEGYNTE_SOKNADER_URL,
+    SAKSTEMA_URL,
     ULESTEDIALOGER_URL,
     UNDER_OPPFOLGING_URL,
     VEILARBOPPFOLGING_URL,
@@ -35,6 +38,9 @@ import {
 import { hentBrukerRegistrering } from './demo-state-brukerregistrering';
 import { AUTH_API } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
 import msw_get from '../mocks/msw-utils';
+import paabegynteSoknaderResponse from '../mocks/saksoversikt-pabegyntesoknader-mock';
+import muligeEttersendelserResponse from '../mocks/saksoversikt-mulige-ettersendelser-mock';
+import sakstemaResponse from '../mocks/saksoversikt-sakstema-mock';
 
 export const demo_handlers = [
     msw_get(VEILARBOPPFOLGING_URL, {
@@ -74,4 +80,10 @@ export const demo_handlers = [
     msw_get(UNDER_OPPFOLGING_URL, hentUnderOppfolging()),
 
     msw_get(NESTE_MELDEKORT_URL, lagMeldekortData()),
+
+    msw_get(PAABEGYNTE_SOKNADER_URL, paabegynteSoknaderResponse),
+
+    msw_get(MULIGE_ETTERSENDELSER_URL, muligeEttersendelserResponse),
+
+    msw_get(SAKSTEMA_URL, sakstemaResponse),
 ];
