@@ -1,4 +1,5 @@
 namespace: paw
+app_environment_name: paw
 appres_cms_url: https://appres.nav.no
 loginservice_url: https://loginservice.nav.no/login
 veientilarbeid_url: https://veientilarbeid.nav.no
