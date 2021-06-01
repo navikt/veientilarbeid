@@ -54,29 +54,6 @@ jobs:
           RESOURCE: nais/nais.yaml
           VARS: nais/vars-dev-paw.yaml
 
-  deploy-prod:
-    name: Deploy til prod
-    needs: deploy-dev-paw
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-        name: Checkout
-
-      - name: Lag tag for image
-        run: echo "TAG=$(git log -1 --pretty='%ad_%h' --date=format:'%Y%m%d%H%M%S')" >> $GITHUB_ENV
-
-      - name: Lag full image referanse
-        run: echo "IMAGE=$IMAGE_BASE:$TAG" >> $GITHUB_ENV
-
-      - name: Deploy to Prod
-        uses: nais/deploy/actions/deploy@master
-        env:
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-          DRY_RUN: false
-          CLUSTER: prod-sbs
-          RESOURCE: nais/nais.yaml
-          VARS: nais/vars-p.yaml
-
   deploy-prod-paw:
     name: Deploy til prod
     needs: deploy-dev-paw
@@ -102,7 +79,7 @@ jobs:
 
   release:
     name: Tag and release
-    needs: deploy-prod
+    needs: deploy-prod-paw
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
