@@ -35,6 +35,16 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
             },
         ],
     },
+    '030101': {
+        navn: 'Gamle Oslo',
+        eksperimenter: [
+            {
+                id: 'onboarding14a',
+                registrertEtterDato: new Date('2021-06-01'),
+                situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
+            },
+        ],
+    },
     '3413': {
         navn: 'Stange',
         eksperimenter: [],
@@ -160,5 +170,85 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
     '110301': {
         navn: 'Hundvåg',
         eksperimenter: [],
+    },
+    '3414': {
+        navn: 'Nord-Odal',
+        eksperimenter: [
+            {
+                id: 'onboarding14a',
+                registrertEtterDato: new Date('2021-06-01'),
+                situasjoner: [...kssSituasjoner],
+            },
+        ],
+    },
+    '3415': {
+        navn: 'Sør-Odal',
+        eksperimenter: [
+            {
+                id: 'onboarding14a',
+                registrertEtterDato: new Date('2021-06-01'),
+                situasjoner: [...kssSituasjoner],
+            },
+        ],
+    },
+    '3437': {
+        navn: 'Sel',
+        eksperimenter: [
+            {
+                id: 'onboarding14a',
+                registrertEtterDato: new Date('2021-06-01'),
+                situasjoner: [...kssSituasjoner],
+            },
+        ],
+    },
+    '3446': {
+        navn: 'Gran',
+        eksperimenter: [
+            {
+                id: 'onboarding14a',
+                registrertEtterDato: new Date('2021-06-01'),
+                situasjoner: [...kssSituasjoner],
+            },
+        ],
+    },
+    '3053': {
+        navn: 'Jevnaker',
+        eksperimenter: [
+            {
+                id: 'onboarding14a',
+                registrertEtterDato: new Date('2021-06-01'),
+                situasjoner: [...kssSituasjoner],
+            },
+        ],
+    },
+    '3054': {
+        navn: 'Lunner',
+        eksperimenter: [
+            {
+                id: 'onboarding14a',
+                registrertEtterDato: new Date('2021-06-01'),
+                situasjoner: [...kssSituasjoner],
+            },
+        ],
+    },
+    '3419': {
+        navn: 'Våler',
+        eksperimenter: [
+            {
+                id: 'onboarding14a',
+                registrertEtterDato: new Date('2021-06-01'),
+                situasjoner: [...kssSituasjoner],
+            },
+        ],
+    },
+    '3403': {
+        navn: 'Hamar',
+        eksperimenter: [
+            {
+                id: 'onboarding14a',
+                registrertEtterDato: new Date('2021-06-01'),
+                situasjoner: [...kssSituasjoner],
+            },
+        ],
     },
 };
