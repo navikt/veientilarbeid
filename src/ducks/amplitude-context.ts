@@ -10,6 +10,7 @@ export const initialState: AmplitudeData = {
     isKSSK: 'nei',
     erSamarbeidskontor: 'nei',
     ukerRegistrert: 'INGEN_DATO',
+    dagerRegistrert: 'INGEN_DATO',
     nivaa: InnloggingsNiva.LEVEL_3,
     kanReaktiveres: 'nei',
     formidlingsgruppe: 'INGEN_VERDI',

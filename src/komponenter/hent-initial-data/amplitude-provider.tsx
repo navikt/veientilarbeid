@@ -140,6 +140,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         isKSSK,
         erSamarbeidskontor: erSamarbeidskontor(geografiskTilknytningOrIngenVerdi) ? 'ja' : 'nei',
         ukerRegistrert,
+        dagerRegistrert: 'INGEN_DATO',
         nivaa,
         kanReaktiveres: kanReaktiveres ? 'ja' : 'nei',
         formidlingsgruppe: formidlingsgruppeOrIngenVerdi,

@@ -30,6 +30,7 @@ export type AmplitudeData = {
     isKSSK: string;
     erSamarbeidskontor: string;
     ukerRegistrert: number | 'INGEN_DATO';
+    dagerRegistrert: number | 'INGEN_DATO';
     nivaa: InnloggingsNiva;
     kanReaktiveres: string;
     formidlingsgruppe: string;
