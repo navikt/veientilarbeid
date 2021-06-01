@@ -1,6 +1,6 @@
 import isKSSKontroll from './is-kss-kontroll';
-import getPoaGroup from './get-poa-group';
-import { POAGruppe } from './get-poa-group';
+import getPoaGroup from '../utils/get-poa-group';
+import { POAGruppe } from '../utils/get-poa-group';
 import { DinSituasjonSvar } from '../ducks/brukerregistrering';
 
 const generateKSS = (): POAGruppe => {

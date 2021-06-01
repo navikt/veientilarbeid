@@ -1,5 +1,5 @@
 import { DinSituasjonSvar } from '../ducks/brukerregistrering';
-import { kssSituasjoner } from './is-kss-eksperiment';
+import { kssSituasjoner } from '../eksperiment/is-kss-eksperiment';
 
 export type POAGruppe = 'kss' | 'boo';
 

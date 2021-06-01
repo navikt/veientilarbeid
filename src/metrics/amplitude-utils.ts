@@ -4,7 +4,7 @@ import { AMPLITUDE_API_KEY_PROD, AMPLITUDE_API_KEY_TEST, AMPLITUDE_ENDPOINT } fr
 import { InnloggingsNiva } from '../ducks/autentisering';
 import { erProduksjon } from '../utils/app-state-utils';
 import { POAGruppe } from '../utils/get-poa-group';
-import { EksperimentId } from '../lib/eksperimenter';
+import { EksperimentId } from '../eksperiment/eksperimenter';
 import { DinSituasjonSvar } from '../ducks/brukerregistrering';
 
 const apiKey = erProduksjon() ? AMPLITUDE_API_KEY_PROD : AMPLITUDE_API_KEY_TEST;

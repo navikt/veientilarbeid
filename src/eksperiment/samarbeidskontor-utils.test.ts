@@ -3,7 +3,7 @@ import {
     hentEksperimenterFraSamarbeidskontor,
     KontorBrukerContext,
 } from './samarbeidskontor-utils';
-import { EksperimentId } from '../lib/eksperimenter';
+import { EksperimentId } from './eksperimenter';
 import { DinSituasjonSvar } from '../ducks/brukerregistrering';
 
 describe('tester funksjonaliteten for visEksperiment', () => {

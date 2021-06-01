@@ -1,6 +1,6 @@
 import { EksperimentId } from './eksperimenter';
 import { DinSituasjonSvar } from '../ducks/brukerregistrering';
-import { kssSituasjoner } from '../utils/is-kss-eksperiment';
+import { kssSituasjoner } from './is-kss-eksperiment';
 
 export type KontorEksperiment = {
     id: EksperimentId;

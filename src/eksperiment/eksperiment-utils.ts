@@ -1,6 +1,6 @@
-import { EksperimentId } from '../lib/eksperimenter';
+import { EksperimentId } from './eksperimenter';
 import { hentEksperimenterFraSamarbeidskontor, KontorBrukerContext } from './samarbeidskontor-utils';
-import { hentEksperimenterForABTest } from '../lib/ab-eksperiment';
+import { hentEksperimenterForABTest } from './ab-eksperiment';
 
 export interface BrukerContext extends KontorBrukerContext {
     enhetEksperimentId: number;

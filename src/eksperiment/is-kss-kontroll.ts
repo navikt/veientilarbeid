@@ -1,4 +1,4 @@
-import { POAGruppe } from './get-poa-group';
+import { POAGruppe } from '../utils/get-poa-group';
 
 interface Data {
     POAGruppe: POAGruppe;

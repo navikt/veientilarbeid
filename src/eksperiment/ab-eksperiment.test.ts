@@ -1,4 +1,4 @@
-import { hentEksperimenter } from '../utils/eksperiment-utils';
+import { hentEksperimenter } from './eksperiment-utils';
 
 describe('tester funksjonaliteten for A/B-testing', () => {
     test('returnerer A/B-test for fullførknapp for oddetalls-ID', () => {

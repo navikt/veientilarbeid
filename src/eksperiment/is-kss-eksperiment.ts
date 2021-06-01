@@ -17,7 +17,7 @@
  * NAV Ringsaker - 3411
  * NAV Åsnes - 3418
  */
-import { POAGruppe } from './get-poa-group';
+import { POAGruppe } from '../utils/get-poa-group';
 import { DinSituasjonSvar } from '../ducks/brukerregistrering';
 
 export const kssSituasjoner = [DinSituasjonSvar.HAR_SAGT_OPP, DinSituasjonSvar.MISTET_JOBBEN];

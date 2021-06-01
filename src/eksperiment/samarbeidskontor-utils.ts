@@ -1,5 +1,5 @@
-import { KontorEksperiment, Samarbeidskontorer } from '../lib/samarbeidskontorer';
-import { EksperimentId } from '../lib/eksperimenter';
+import { KontorEksperiment, Samarbeidskontorer } from './samarbeidskontorer';
+import { EksperimentId } from './eksperimenter';
 import { DinSituasjonSvar } from '../ducks/brukerregistrering';
 
 export interface KontorBrukerContext {

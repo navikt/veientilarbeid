@@ -1,4 +1,4 @@
-import { EksperimentId } from '../lib/eksperimenter';
+import { EksperimentId } from './eksperimenter';
 import { hentEllerSettFraBrowserStorage } from '../utils/browserStorage-utils';
 
 function lagNyEnhetEksperimentId() {

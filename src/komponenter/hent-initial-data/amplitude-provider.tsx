@@ -1,7 +1,7 @@
 import React from 'react';
 import getPoaGroup from '../../utils/get-poa-group';
-import isKSSEksperiment from '../../utils/is-kss-eksperiment';
-import isKSSKontroll from '../../utils/is-kss-kontroll';
+import isKSSEksperiment from '../../eksperiment/is-kss-eksperiment';
+import isKSSKontroll from '../../eksperiment/is-kss-kontroll';
 import { AutentiseringContext } from '../../ducks/autentisering';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { BrukerregistreringContext, DinSituasjonSvar } from '../../ducks/brukerregistrering';
@@ -28,9 +28,9 @@ import antallSynligeInfomeldinger from '../../utils/infomeldinger';
 import * as Meldekortstatus from '../../ducks/meldekortstatus';
 import isMeldekortbruker from '../../utils/er-meldekortbruker';
 import { datoUtenTid } from '../../utils/date-utils';
-import { hentEksperimenter } from '../../utils/eksperiment-utils';
-import { erSamarbeidskontor } from '../../utils/samarbeidskontor-utils';
-import { hentEnhetEksperimentId } from '../../lib/ab-eksperiment';
+import { hentEksperimenter } from '../../eksperiment/eksperiment-utils';
+import { erSamarbeidskontor } from '../../eksperiment/samarbeidskontor-utils';
+import { hentEnhetEksperimentId } from '../../eksperiment/ab-eksperiment';
 import harUbehandletDpSoknad from '../../lib/har-ubehandlet-dp-soknad';
 
 function hentDagerEtterFastsattMeldedag(
