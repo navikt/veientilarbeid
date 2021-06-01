@@ -1,7 +1,7 @@
+import React from 'react';
 import getPoaGroup from '../../utils/get-poa-group';
 import isKSSEksperiment from '../../utils/is-kss-eksperiment';
 import isKSSKontroll from '../../utils/is-kss-kontroll';
-import React from 'react';
 import { AutentiseringContext } from '../../ducks/autentisering';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { BrukerregistreringContext, DinSituasjonSvar } from '../../ducks/brukerregistrering';
@@ -14,6 +14,8 @@ import { BrukerInfoContext } from '../../ducks/bruker-info';
 import grupperGeografiskTilknytning from '../../utils/grupper-geografisk-tilknytning';
 
 import ukerFraDato from '../../utils/uker-fra-dato';
+import dagerFraDato from '../../utils/dager-fra-dato';
+
 import {
     beregnDagerEtterFastsattMeldedag,
     hentMeldegruppeForNesteMeldekort,
@@ -78,6 +80,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         : null;
     const geografiskTilknytningOrIngenVerdi = geografiskTilknytning || 'INGEN_VERDI';
     const ukerRegistrert = opprettetRegistreringDato ? ukerFraDato(opprettetRegistreringDato) : 'INGEN_DATO';
+    const dagerRegistrert = opprettetRegistreringDato ? dagerFraDato(opprettetRegistreringDato) : 'INGEN_DATO';
     const servicegruppeOrIVURD = servicegruppe || 'IVURD';
     const foreslattInnsatsgruppeOrIngenVerdi =
         brukerregistreringData?.registrering?.profilering?.innsatsgruppe || 'INGEN_VERDI';
@@ -140,7 +143,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         isKSSK,
         erSamarbeidskontor: erSamarbeidskontor(geografiskTilknytningOrIngenVerdi) ? 'ja' : 'nei',
         ukerRegistrert,
-        dagerRegistrert: 'INGEN_DATO',
+        dagerRegistrert,
         nivaa,
         kanReaktiveres: kanReaktiveres ? 'ja' : 'nei',
         formidlingsgruppe: formidlingsgruppeOrIngenVerdi,
