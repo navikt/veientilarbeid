@@ -5,7 +5,7 @@ export interface State extends DataElement {
     data: Data;
 }
 
-interface Soknad {
+export interface Soknad {
     tittel: string;
     lenke: string;
     dato: string;
