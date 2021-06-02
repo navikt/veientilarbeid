@@ -32,6 +32,7 @@ import { hentEksperimenter } from '../../eksperiment/eksperiment-utils';
 import { erSamarbeidskontor } from '../../eksperiment/samarbeidskontor-utils';
 import { hentEnhetEksperimentId } from '../../eksperiment/ab-eksperiment';
 import harUbehandletDpSoknad from '../../lib/har-ubehandlet-dp-soknad';
+import dagerFraPabegyntSoknad from '../../utils/dager-fra-pabegynt-soknad';
 
 function hentDagerEtterFastsattMeldedag(
     iDag: Date,
@@ -135,6 +136,10 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const antallSoknaderMedMuligEttersendelse = muligeEttersendelserData.filter(
         (soknad) => soknad.vedleggSomSkalEttersendes.length > 0
     ).length;
+    const dagpengerDagerMellomPaabegyntSoknadOgRegistrering = dagerFraPabegyntSoknad({
+        soknader: pabegynteSoknaderData.soknader,
+        registreringsDato: opprettetRegistreringDato,
+    });
 
     const amplitudeData: AmplitudeData = {
         gruppe: POAGruppe,
@@ -164,7 +169,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         dagpengerSoknadMellomlagret: antallPabegynteSoknader,
         dagpengerVedleggEttersendes: antallSoknaderMedMuligEttersendelse,
         dagpengerSoknadVenterPaSvar: harDagpengesoknadTilBehandling,
-        dagpengerDagerMellomPaabegyntSoknadOgRegistrering: 'INGEN_DATA',
+        dagpengerDagerMellomPaabegyntSoknadOgRegistrering,
         dagpengerDagerMellomInnsendtSoknadOgRegistrering: 'INGEN_DATA',
     };
 
