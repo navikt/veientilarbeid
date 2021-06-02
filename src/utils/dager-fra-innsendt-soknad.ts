@@ -1,6 +1,6 @@
 import dagerFraDato from './dager-fra-dato';
 
-interface Behandling {
+export interface Behandling {
     status: string;
     sistOppdatert: string;
 }
