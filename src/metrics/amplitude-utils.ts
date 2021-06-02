@@ -51,6 +51,8 @@ export type AmplitudeData = {
     dagpengerVedleggEttersendes: number | 'INGEN_DATA';
     dagpengerSoknadMellomlagret: number | 'INGEN_DATA';
     dagpengerSoknadVenterPaSvar: 'ja' | 'nei' | 'INGEN_DATA';
+    dagpengerDagerMellomPaabegyntSoknadOgRegistrering: number | 'INGEN_DATA';
+    dagpengerDagerMellomInnsendtSoknadOgRegistrering: number | 'INGEN_DATA';
 };
 
 export function amplitudeLogger(name: string, values?: object) {

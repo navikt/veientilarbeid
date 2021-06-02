@@ -164,6 +164,8 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         dagpengerSoknadMellomlagret: antallPabegynteSoknader,
         dagpengerVedleggEttersendes: antallSoknaderMedMuligEttersendelse,
         dagpengerSoknadVenterPaSvar: harDagpengesoknadTilBehandling,
+        dagpengerDagerMellomPaabegyntSoknadOgRegistrering: 'INGEN_DATA',
+        dagpengerDagerMellomInnsendtSoknadOgRegistrering: 'INGEN_DATA',
     };
 
     return <AmplitudeContext.Provider value={amplitudeData}>{props.children}</AmplitudeContext.Provider>;
