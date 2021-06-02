@@ -211,16 +211,6 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
             },
         ],
     },
-    '3053': {
-        navn: 'Jevnaker',
-        eksperimenter: [
-            {
-                id: 'onboarding14a',
-                registrertEtterDato: new Date('2021-06-01'),
-                situasjoner: [...kssSituasjoner],
-            },
-        ],
-    },
     '3054': {
         navn: 'Lunner',
         eksperimenter: [
