@@ -27,6 +27,7 @@
         "@navikt/fnrvalidator": "1.1.4",
         "@sentry/browser": "6.3.6",
         "@sentry/react": "6.3.6",
+        "@types/react-modal": "3.12.0",
         "amplitude-js": "8.3.0",
         "babel-polyfill": "6.26.0",
         "classnames": "2.3.1",
@@ -54,6 +55,10 @@
         "nav-frontend-lenkepanel-style": "2.0.1",
         "nav-frontend-lenker": "2.0.1",
         "nav-frontend-lenker-style": "2.0.1",
+        "nav-frontend-lukknapp": "2.0.1",
+        "nav-frontend-lukknapp-style": "2.0.1",
+        "nav-frontend-modal": "2.0.1",
+        "nav-frontend-modal-style": "2.0.1",
         "nav-frontend-paneler": "3.0.1",
         "nav-frontend-paneler-style": "2.0.1",
         "nav-frontend-skjema": "4.0.1",
@@ -70,6 +75,7 @@
         "react-dom": "16.14.0",
         "react-ga": "3.3.0",
         "react-in-viewport": "1.0.0-alpha.16",
+        "react-modal": "3.13.1",
         "react-motion": "0.5.2"
     },
     "devDependencies": {

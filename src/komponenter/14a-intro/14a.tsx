@@ -18,6 +18,7 @@ import { FeaturetoggleContext } from '../../ducks/feature-toggles';
 import Lenke from 'nav-frontend-lenker';
 import PreState from '../meldekortintro/pre-state';
 import { UlesteDialogerContext } from '../../ducks/ulestedialoger';
+import ModalWrapper from 'nav-frontend-modal';
 
 const INTRO_KEY_14A = '14a-intro';
 
@@ -356,6 +357,7 @@ function Intro14AWrapper() {
     }, [harSettIntro]);
 
     const featuretoggleAktivert = featuretoggleData['veientilarbeid.14a-intro'];
+    const modalToggle = featuretoggleData['veientilarbeid.modal'];
     const kanViseKomponent =
         featuretoggleAktivert && kanVise14AStatus({ amplitudeData, oppfolgingData, brukerInfoData, registreringData });
 
@@ -372,7 +374,49 @@ function Intro14AWrapper() {
         setTvingVisningAvIntro(true);
     };
 
-    return (
+    const modalStuff = (
+        <>
+            <div className={'fjorten-A-intro-omslutning'}>
+                <Panel className={'fjorten-A-intro'} border>
+                    <div className={'overall-wrapper'}>
+                        <Sluttkort
+                            amplitudeData={amplitudeData}
+                            lesIntroPaaNyttCB={lesIntroPaaNyttCB}
+                            antallUlesteDialoger={ulesteDialoger.antallUleste}
+                        />
+                    </div>
+                </Panel>
+            </div>
+            {rendreIntro ? (
+                <ModalWrapper onRequestClose={ferdigMedIntroCB} isOpen={rendreIntro} contentLabel={'test'}>
+                    <div className={'fjorten-A-intro-omslutning'}>
+                        <Panel className={'fjorten-A-intro'} border>
+                            <div className={'overall-wrapper'}>
+                                {rendreIntro ? (
+                                    <>
+                                        <Intro14A
+                                            hoppOverPreState={hoppOverPreState}
+                                            ferdigMedIntroCB={ferdigMedIntroCB}
+                                            amplitudeData={amplitudeData}
+                                        />
+                                        <ErRendret loggTekst="Rendrer 14a intro" />
+                                    </>
+                                ) : (
+                                    <Sluttkort
+                                        amplitudeData={amplitudeData}
+                                        lesIntroPaaNyttCB={lesIntroPaaNyttCB}
+                                        antallUlesteDialoger={ulesteDialoger.antallUleste}
+                                    />
+                                )}
+                            </div>
+                        </Panel>
+                    </div>
+                </ModalWrapper>
+            ) : null}
+        </>
+    );
+
+    const vanlig = (
         <div className={'fjorten-A-intro-omslutning'}>
             <Panel className={'fjorten-A-intro'} border>
                 <div className={'overall-wrapper'}>
@@ -396,6 +440,8 @@ function Intro14AWrapper() {
             </Panel>
         </div>
     );
+
+    return modalToggle && !harSettIntro ? modalStuff : vanlig;
 }
 
 export default Intro14AWrapper;
