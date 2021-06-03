@@ -374,50 +374,13 @@ function Intro14AWrapper() {
         setTvingVisningAvIntro(true);
     };
 
-    const modalStuff = (
-        <>
-            <div className={'fjorten-A-intro-omslutning'}>
-                <Panel className={'fjorten-A-intro'} border>
-                    <div className={'overall-wrapper'}>
-                        <Sluttkort
-                            amplitudeData={amplitudeData}
-                            lesIntroPaaNyttCB={lesIntroPaaNyttCB}
-                            antallUlesteDialoger={ulesteDialoger.antallUleste}
-                        />
-                    </div>
-                </Panel>
-            </div>
-            {rendreIntro ? (
-                <ModalWrapper onRequestClose={ferdigMedIntroCB} isOpen={rendreIntro} contentLabel={'test'}>
-                    <div className={'fjorten-A-intro-omslutning'}>
-                        <Panel className={'fjorten-A-intro'} border>
-                            <div className={'overall-wrapper'}>
-                                {rendreIntro ? (
-                                    <>
-                                        <Intro14A
-                                            hoppOverPreState={hoppOverPreState}
-                                            ferdigMedIntroCB={ferdigMedIntroCB}
-                                            amplitudeData={amplitudeData}
-                                        />
-                                        <ErRendret loggTekst="Rendrer 14a intro" />
-                                    </>
-                                ) : (
-                                    <Sluttkort
-                                        amplitudeData={amplitudeData}
-                                        lesIntroPaaNyttCB={lesIntroPaaNyttCB}
-                                        antallUlesteDialoger={ulesteDialoger.antallUleste}
-                                    />
-                                )}
-                            </div>
-                        </Panel>
-                    </div>
-                </ModalWrapper>
-            ) : null}
-        </>
-    );
+    const stylingKlasse =
+        modalToggle && erNyregistrertKss && !harSettIntro
+            ? 'fjorten-A-intro-omslutning-modal'
+            : 'fjorten-A-intro-omslutning';
 
-    const vanlig = (
-        <div className={'fjorten-A-intro-omslutning'}>
+    const innhold = (
+        <div className={stylingKlasse}>
             <Panel className={'fjorten-A-intro'} border>
                 <div className={'overall-wrapper'}>
                     {rendreIntro ? (
@@ -441,7 +404,27 @@ function Intro14AWrapper() {
         </div>
     );
 
-    return modalToggle && !harSettIntro ? modalStuff : vanlig;
+    const innholdWrappetIModal = (
+        <>
+            <div className={'fjorten-A-intro-omslutning'}>
+                <Panel className={'fjorten-A-intro'} border>
+                    <div className={'overall-wrapper'}>
+                        <Sluttkort
+                            amplitudeData={amplitudeData}
+                            lesIntroPaaNyttCB={lesIntroPaaNyttCB}
+                            antallUlesteDialoger={ulesteDialoger.antallUleste}
+                        />
+                    </div>
+                </Panel>
+            </div>
+
+            <ModalWrapper onRequestClose={ferdigMedIntroCB} isOpen={rendreIntro} contentLabel={'test'}>
+                {innhold}
+            </ModalWrapper>
+        </>
+    );
+
+    return modalToggle && erNyregistrertKss && !harSettIntro ? innholdWrappetIModal : innhold;
 }
 
 export default Intro14AWrapper;
