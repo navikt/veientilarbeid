@@ -375,7 +375,12 @@ function Intro14AWrapper() {
     const ferdigMedIntroCB = () => {
         setHarSettIntro(true);
         setTvingVisningAvIntro(false);
+        const sluttkortBakModal = document.getElementById('innhold-registrering');
+        if (sluttkortBakModal) {
+            sluttkortBakModal.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+        }
     };
+
     const lesIntroPaaNyttCB = () => {
         setTvingVisningAvIntro(true);
     };
@@ -412,7 +417,7 @@ function Intro14AWrapper() {
 
     const innholdWrappetIModal = (
         <>
-            <div className={'fjorten-A-intro-omslutning'}>
+            <div id={'innhold-registrering'} className={'fjorten-A-intro-omslutning'}>
                 <Panel className={'fjorten-A-intro'} border>
                     <div className={'overall-wrapper'}>
                         <Sluttkort
