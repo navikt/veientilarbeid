@@ -46,16 +46,22 @@ function Kort1() {
                 <Undertekst className="blokk-xs">1 av 4</Undertekst>
 
                 <Normaltekst className={'blokk-xs'}>
-                    NAV har gjort en vurdering av svarene dine og det ser ut til at du har gode muligheter til å skaffe
+                    NAV har gjort en vurdering av svarene dine, og det ser ut til at du har gode muligheter til å skaffe
                     deg jobb på egenhånd.
                 </Normaltekst>
 
-                <Normaltekst className={'blokk-xs'}>
-                    Vurderingen baserer seg på svarene fra registreringen og opplysningene NAV har om din situasjon.
-                </Normaltekst>
+                <Normaltekst>Vurderingen baserer seg på:</Normaltekst>
+                <ul>
+                    <li>
+                        <Normaltekst>svarene fra registreringen</Normaltekst>
+                    </li>
+                    <li>
+                        <Normaltekst>opplysningene NAV har om din situasjon</Normaltekst>
+                    </li>
+                </ul>
                 <Normaltekst className={'blokk-m'}>
-                    De 12 første ukene fra du registrerte deg som arbeidssøker, vil NAV som hovedregel ikke ta kontakt i
-                    forbindelse med hjelp rundt jobbsøking.
+                    NAV tar som hovedregel ikke kontakt i forbindelse med hjelp til jobbsøking de første 12 ukene etter
+                    at du registrerte deg som arbeidssøker.
                 </Normaltekst>
             </div>
             <Feedback id={'Introkort14A-01'} />
@@ -95,7 +101,7 @@ function Kort2() {
                 </Normaltekst>
 
                 <Normaltekst className={'blokk-m'}>
-                    Merk deg at dette ikke er et svar på en eventuell søknad om dagpenger.
+                    Dette brevet er ikke et svar på en eventuell søknad om dagpenger.
                 </Normaltekst>
             </div>
             <Feedback id={'Introkort14A-02'} />
@@ -112,7 +118,7 @@ function Kort3() {
                 <Normaltekst className={'blokk-xs'}>Du kan få hjelp fra en veileder før 12 uker har gått.</Normaltekst>
 
                 <Normaltekst className={'blokk-xs'}>
-                    Da må du bruke dialogen på slutten av denne introduksjonen.
+                    Da må du selv kontakte veileder ved å bruke dialogen som vises på slutten av denne introduksjonen.
                 </Normaltekst>
 
                 <Normaltekst className={'blokk-m'}>
@@ -222,7 +228,7 @@ function Intro14A(props: Intro14AProps) {
             startIntroCB={nesteKort}
             lesetid={'3'}
             viewportTekst="Viser 14a pre-state i viewport"
-            tittel={'Hva skjer de neste 12 ukene?'}
+            tittel={'Introduksjon til veiledning og hjelp til jobbsøking'}
         />,
         <Kort1 />,
         <Kort2 />,
