@@ -381,6 +381,15 @@ function Intro14AWrapper() {
         }
     };
 
+    const lukkerModalCB = () => {
+        amplitudeLogger('veientilarbeid.intro', {
+            intro: '14a',
+            handling: 'Lukker modal',
+            ...amplitudeData,
+        });
+        ferdigMedIntroCB();
+    };
+
     const lesIntroPaaNyttCB = () => {
         setTvingVisningAvIntro(true);
     };
@@ -429,7 +438,7 @@ function Intro14AWrapper() {
                 </Panel>
             </div>
 
-            <ModalWrapper onRequestClose={ferdigMedIntroCB} isOpen={rendreIntro} contentLabel={'test'}>
+            <ModalWrapper onRequestClose={lukkerModalCB} isOpen={rendreIntro} contentLabel={'test'}>
                 {innhold}
             </ModalWrapper>
         </>
