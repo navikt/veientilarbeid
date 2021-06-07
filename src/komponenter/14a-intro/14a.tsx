@@ -438,7 +438,12 @@ function Intro14AWrapper() {
                 </Panel>
             </div>
 
-            <ModalWrapper onRequestClose={lukkerModalCB} isOpen={rendreIntro} contentLabel={'test'}>
+            <ModalWrapper
+                shouldCloseOnOverlayClick={false}
+                onRequestClose={lukkerModalCB}
+                isOpen={rendreIntro}
+                contentLabel={'test'}
+            >
                 {innhold}
             </ModalWrapper>
         </>
