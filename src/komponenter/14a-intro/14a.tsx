@@ -377,7 +377,7 @@ function Intro14AWrapper() {
         setTvingVisningAvIntro(false);
         const sluttkortBakModal = document.getElementById('innhold-registrering');
         if (sluttkortBakModal) {
-            sluttkortBakModal.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+            sluttkortBakModal.scrollIntoView({ block: 'end', inline: 'nearest' });
         }
     };
 

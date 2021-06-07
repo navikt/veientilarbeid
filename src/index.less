@@ -3,6 +3,14 @@
 
 @import '../node_modules/nav-frontend-core/less/core';
 
+html {
+    scroll-behavior: smooth;
+
+    @media (prefers-reduced-motion: reduce) {
+        scroll-behavior: auto;
+    }
+}
+
 @tablet-width: 760px;
 @desktop-width: 958px;
 
