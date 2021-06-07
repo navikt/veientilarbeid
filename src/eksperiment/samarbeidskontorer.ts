@@ -13,7 +13,13 @@ type Samarbeidskontor = { navn: string; eksperimenter: KontorEksperiment[] };
 export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidskontor } = {
     '030112': {
         navn: 'Alna',
-        eksperimenter: [],
+        eksperimenter: [
+            {
+                id: 'onboarding14a',
+                registrertEtterDato: new Date('2021-06-07'),
+                situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
+            },
+        ],
     },
     '030104': {
         navn: 'St. Hanshaugen',
