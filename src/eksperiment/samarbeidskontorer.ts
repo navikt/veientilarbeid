@@ -51,6 +51,16 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
             },
         ],
     },
+    '030108': {
+        navn: 'Nordre Aker',
+        eksperimenter: [
+            {
+                id: 'onboarding14a',
+                registrertEtterDato: new Date('2021-06-08'),
+                situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
+            },
+        ],
+    },
     '3413': {
         navn: 'Stange',
         eksperimenter: [],
@@ -160,10 +170,6 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
                 situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
             },
         ],
-    },
-    '030108': {
-        navn: 'Nordre Aker',
-        eksperimenter: [],
     },
     '030109': {
         navn: 'Bjerke',
