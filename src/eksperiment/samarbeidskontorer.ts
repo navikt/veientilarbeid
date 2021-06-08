@@ -61,6 +61,16 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
             },
         ],
     },
+    '030115': {
+        navn: 'Søndre Nordstrand',
+        eksperimenter: [
+            {
+                id: 'onboarding14a',
+                registrertEtterDato: new Date('2021-06-08'),
+                situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
+            },
+        ],
+    },
     '3413': {
         navn: 'Stange',
         eksperimenter: [],
