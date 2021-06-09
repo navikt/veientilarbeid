@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Element } from 'nav-frontend-typografi';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
@@ -32,6 +32,18 @@ const Registrert = () => {
         autentiseringData.securityLevel === InnloggingsNiva.LEVEL_4 &&
         underOppfolging;
 
+    const scrollToRegistrering = () => {
+        const goto = new URLSearchParams(window.location.search).get('goTo');
+        const registreringsboks = document.getElementById('registrering-status-container');
+        if (goto === 'registrering' && registreringsboks) {
+            registreringsboks.scrollIntoView({ block: 'end', inline: 'nearest' });
+        }
+    };
+
+    useEffect(() => {
+        scrollToRegistrering();
+    }, []);
+
     if (!kanViseKomponent) {
         return null;
     }
@@ -64,7 +76,7 @@ const Registrert = () => {
     };
 
     return (
-        <div className="blokk-s registrerings-container">
+        <div id="registrering-status-container" className="blokk-s registrerings-container">
             <AlertStripeInfo className={showOpplysninger ? 'registrering-info' : ''}>
                 <Element>{tittel}</Element>
             </AlertStripeInfo>
