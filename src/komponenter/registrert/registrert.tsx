@@ -64,7 +64,7 @@ const Registrert = () => {
     };
 
     return (
-        <div className="blokk-s registrerings-container">
+        <div id="registrering-status-container" className="blokk-s registrerings-container">
             <AlertStripeInfo className={showOpplysninger ? 'registrering-info' : ''}>
                 <Element>{tittel}</Element>
             </AlertStripeInfo>
