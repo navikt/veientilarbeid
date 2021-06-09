@@ -6,13 +6,13 @@ interface Behandling {
 type Resultat = 'ja' | 'nei';
 
 function harUbehandletDpSoknad(behandlingskjeder: Behandling[]): Resultat {
-    const underBehandling = behandlingskjeder.filter(
-        (behandling: Behandling) => behandling.status === 'UNDER_BEHANDLING'
-    );
-    const ferdigBehandlet = behandlingskjeder.filter(
-        (behandling: Behandling) => behandling.status === 'FERDIG_BEHANDLET'
-    );
-    return underBehandling.length > ferdigBehandlet.length ? 'ja' : 'nei';
+    if (behandlingskjeder.length === 0) return 'nei';
+
+    const nyesteSoknad = behandlingskjeder.sort((behandling) => {
+        return new Date(behandling.sistOppdatert).getMilliseconds();
+    })[0];
+
+    return nyesteSoknad.status !== 'FERDIG_BEHANDLET' ? 'ja' : 'nei';
 }
 
 export default harUbehandletDpSoknad;
