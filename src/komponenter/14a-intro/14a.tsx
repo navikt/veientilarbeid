@@ -311,7 +311,7 @@ function Intro14A(props: Intro14AProps) {
     );
 }
 
-function kanVise14AStatus({
+export function kanVise14AStatus({
     brukerInfoData,
     oppfolgingData,
     registreringData,
