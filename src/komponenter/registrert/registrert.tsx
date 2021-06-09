@@ -4,6 +4,7 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { loggAktivitet } from '../../metrics/metrics';
 import Opplysninger from '../innsyn/registreringsopplysninger';
+import DagpengerStatus from '../dagpenger-status/dagpenger-status';
 import './registrert.less';
 import MeldekortIntroWrapper from '../meldekortintro/meldekort-intro';
 import { BrukerregistreringContext } from '../../ducks/brukerregistrering';
@@ -98,6 +99,7 @@ const Registrert = () => {
                 </Ekspanderbartpanel>
             ) : null}
             <div className={'intro-wrapper'}>
+                <DagpengerStatus />
                 <Intro14AWrapper />
                 <MeldekortIntroWrapper />
             </div>

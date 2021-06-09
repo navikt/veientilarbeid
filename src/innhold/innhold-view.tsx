@@ -11,7 +11,6 @@ import Motestotte from '../komponenter/motestotte/motestotte';
 import KrrMelding from '../komponenter/krr-melding/krr-melding';
 import Registrert from '../komponenter/registrert/registrert';
 import AktivitetDialogMeldekort from './aktivitet-dialog-meldekort';
-import DagpengerStatus from '../komponenter/dagpenger-status/dagpenger-status';
 import InnholdMetrics from './innhold-metrics';
 import GenerelleFliser from '../komponenter/dittnav/generelle-fliser';
 import InViewport from '../komponenter/in-viewport/in-viewport';
@@ -26,7 +25,6 @@ const InnholdView = () => {
                 <ReaktiveringKort />
                 <KrrMelding />
                 <Registrert />
-                <DagpengerStatus />
                 <Egenvurdering />
                 <Motestotte />
                 <AktivitetDialogMeldekort />
