@@ -93,6 +93,11 @@ class DemoDashboard extends React.Component<{}> {
             window.location.reload();
         };
 
+        const handleChangeDagpengeStatus = (e: React.ChangeEvent<HTMLSelectElement>) => {
+            console.log(e.target.value);
+            window.location.reload();
+        };
+
         const handleChangeRegistreringType = (e: React.ChangeEvent<HTMLSelectElement>) => {
             settRegistreringType(e.target.value);
             window.location.reload();
@@ -172,6 +177,13 @@ class DemoDashboard extends React.Component<{}> {
             ARBS: 'ARBS',
             IARBS: 'IARBS',
             ISERV: 'ISERV',
+        };
+
+        const dagpengeStatuser = {
+            dagpengestatusIkkeSokt: 'Har ikke søkt dagpenger',
+            dagpengestatusStartetSoknad: 'Har startet dagpengesøknad',
+            dagpengestatusEttersendVedlegg: 'Har vedlegg som må ettersendes',
+            dagpengestatusInnsendtSoknad: 'Har sendt søknad',
         };
 
         const registreringTyper = {
@@ -314,6 +326,18 @@ class DemoDashboard extends React.Component<{}> {
                         {Object.keys(formidlingsgrupper).map((gruppe: string) => (
                             <option key={gruppe} value={gruppe}>
                                 {formidlingsgrupper[gruppe]}
+                            </option>
+                        ))}
+                    </SelectKomponent>
+                    <SelectKomponent
+                        label={'Velg dagpengestatus'}
+                        onChange={handleChangeDagpengeStatus}
+                        id="velg-dagpengestatus"
+                        defaultValue={'dagpengestatusIkkeSokt'}
+                    >
+                        {Object.keys(dagpengeStatuser).map((gruppe: string) => (
+                            <option key={gruppe} value={gruppe}>
+                                {dagpengeStatuser[gruppe]}
                             </option>
                         ))}
                     </SelectKomponent>
