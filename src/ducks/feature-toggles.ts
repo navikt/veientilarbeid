@@ -6,7 +6,7 @@ export enum FeatureToggles {
     INTRO_FEEDBACK = 'veientilarbeid.feedback',
     INTRO_14A = 'veientilarbeid.14a-intro',
     REGISTRERT_PERMITTERT = 'veientilarbeid.registrert-permittert',
-    DAGPENGER_STATUS = 'dagpenger-status',
+    DAGPENGER_STATUS = 'veientilarbeid.dagpenger-status',
 }
 
 export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
