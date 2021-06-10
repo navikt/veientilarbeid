@@ -157,3 +157,5 @@ export const hentDpSoknaderUnderArbeid = (): JSONValue =>
     hentDemoState(DemoData.DP_PABEGYNTE_SOKNADER) || { soknader: [] };
 
 export const hentDpMuligeEttersendelser = (): JSONValue => hentDemoState(DemoData.DP_MULIGE_ETTERSENDELSER) || [];
+
+export const hentDpSakstema = (): JSONValue => hentDemoState(DemoData.DP_SAKSTEMA) || { sakstema: [] };

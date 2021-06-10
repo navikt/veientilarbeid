@@ -36,6 +36,7 @@ import {
     randomUlesteDialoger,
     hentDpSoknaderUnderArbeid,
     hentDpMuligeEttersendelser,
+    hentDpSakstema,
 } from './demo-state';
 
 import { hentBrukerRegistrering } from './demo-state-brukerregistrering';
@@ -88,5 +89,5 @@ export const demo_handlers = [
 
     msw_get(MULIGE_ETTERSENDELSER_URL, hentDpMuligeEttersendelser()),
 
-    msw_get(SAKSTEMA_URL, { sakstema: [] }),
+    msw_get(SAKSTEMA_URL, hentDpSakstema()),
 ];
