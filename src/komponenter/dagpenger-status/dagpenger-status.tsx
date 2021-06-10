@@ -43,7 +43,7 @@ function DagpengerStatus() {
     if (rettighetsgruppe === 'DAGP') return <div>KOMPONENT FOR MOTTAR DAGPENGER IKKE LAGET</div>;
     if (ettersendelser.length > 0) return <div>KOMPONENT FOR MULIGE ETTERSENDELSER IKKE LAGET</div>;
     if (ubehandledeDpSoknader === 'ja') return <div>KOMPONENT FOR INNSENDT SØKNAD IKKE LAGET</div>;
-    if (paabegynteSoknader.length > 0) return <div>KOMPONENT FOR PÅBEGYNTE SØKNADER IKKE LAGET</div>;
+    if (paabegynteSoknader.length > 0) return <PaabegynSoknad />;
     else if (rettighetsgruppe === 'IYT' && paabegynteSoknader.length === 0) return <IkkeSoktDagpenger />;
     else return null;
 }
@@ -77,6 +77,40 @@ function IkkeSoktDagpenger() {
                 <Normaltekst>
                     <Lenke className={'tracking-wide'} href={''}>
                         Dagpenger er ikke aktuelt for meg
+                    </Lenke>
+                </Normaltekst>
+            </div>
+        </DagpengerDekorator>
+    );
+}
+
+function PaabegynSoknad() {
+    return (
+        <DagpengerDekorator tittle={'Du har en påbegynt søknad'}>
+            <div>
+                <Normaltekst>Du begynte på den for PLACEHOLDER dager siden</Normaltekst>
+                <Normaltekst>
+                    Har du spørsmål om dagpenger må du bruke{' '}
+                    <Lenke href="https://mininnboks.nav.no/sporsmal/skriv/ARBD">Skriv til oss</Lenke>
+                </Normaltekst>
+            </div>
+
+            <div>
+                <LenkepanelBase
+                    href={'https://www.nav.no/soknader/nb/person/arbeid/dagpenger'}
+                    border={true}
+                    className={'meldekort-send-inn-kort'}
+                >
+                    <div className="lenkepanel__innhold">
+                        <div className="ml-1">
+                            <Element>Forsett på søknaden</Element>
+                            <Normaltekst>...</Normaltekst>
+                        </div>
+                    </div>
+                </LenkepanelBase>
+                <Normaltekst>
+                    <Lenke className={'tracking-wide'} href={''}>
+                        Gå til dagpengeroversikt (side #2)
                     </Lenke>
                 </Normaltekst>
             </div>
