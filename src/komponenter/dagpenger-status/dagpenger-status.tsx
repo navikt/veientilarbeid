@@ -50,10 +50,8 @@ function DagpengerStatus() {
 
 function IkkeSoktDagpenger() {
     return (
-        <div className={'dagpenger-status-omslutning'}>
+        <DagpengerDekorator tittle={'Du har ikke søkt om dagpenger'}>
             <div>
-                <Element style={{ color: 'red' }}>DAGPENGER</Element>
-                <Systemtittel className={'blokk-xs'}>Du har ikke søkt om dagpenger</Systemtittel>
                 <Normaltekst className={'blokk-xs'}>
                     Du kan tidligst få dagpenger fra den dagen du sender inn søknaden.
                 </Normaltekst>
@@ -62,6 +60,7 @@ function IkkeSoktDagpenger() {
                     <Lenke href="https://mininnboks.nav.no/sporsmal/skriv/ARBD">Skriv til oss</Lenke>
                 </Normaltekst>
             </div>
+
             <div>
                 <LenkepanelBase
                     href={'https://www.nav.no/soknader/nb/person/arbeid/dagpenger'}
@@ -81,7 +80,7 @@ function IkkeSoktDagpenger() {
                     </Lenke>
                 </Normaltekst>
             </div>
-        </div>
+        </DagpengerDekorator>
     );
 }
 
