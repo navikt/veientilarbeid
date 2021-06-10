@@ -41,7 +41,7 @@ function DagpengerStatus() {
     const ettersendelser = muligeEttersendelserData;
 
     if (rettighetsgruppe === 'DAGP') return <div>KOMPONENT FOR MOTTAR DAGPENGER IKKE LAGET</div>;
-    if (ettersendelser.length > 0) return <div>KOMPONENT FOR MULIGE ETTERSENDELSER IKKE LAGET</div>;
+    if (ettersendelser.length > 0) return <EttersendVedlegg />;
     if (ubehandledeDpSoknader === 'ja') return <div>KOMPONENT FOR INNSENDT SØKNAD IKKE LAGET</div>;
     if (paabegynteSoknader.length > 0) return <PaabegyntSoknad />;
     else if (rettighetsgruppe === 'IYT' && paabegynteSoknader.length === 0) return <IkkeSoktDagpenger />;
@@ -88,7 +88,7 @@ function PaabegyntSoknad() {
     return (
         <DagpengerDekorator tittle={'Du har en påbegynt søknad'}>
             <div>
-                <Normaltekst>Du begynte på den for PLACEHOLDER dager siden</Normaltekst>
+                <Normaltekst className={'blokk-xs'}>Du begynte på den for PLACEHOLDER dager siden</Normaltekst>
                 <Normaltekst>
                     Har du spørsmål om dagpenger må du bruke{' '}
                     <Lenke href="https://mininnboks.nav.no/sporsmal/skriv/ARBD">Skriv til oss</Lenke>
@@ -104,6 +104,42 @@ function PaabegyntSoknad() {
                     <div className="lenkepanel__innhold">
                         <div className="ml-1">
                             <Element>Fortsett på søknaden</Element>
+                            <Normaltekst>...</Normaltekst>
+                        </div>
+                    </div>
+                </LenkepanelBase>
+                <Normaltekst>
+                    <Lenke className={'tracking-wide'} href={''}>
+                        Gå til dagpengeroversikt (side #2)
+                    </Lenke>
+                </Normaltekst>
+            </div>
+        </DagpengerDekorator>
+    );
+}
+
+function EttersendVedlegg() {
+    return (
+        <DagpengerDekorator tittle={'Du må ettersende vedlegg'}>
+            <div>
+                <Normaltekst className={'blokk-xs'}>
+                    Du begynte på søknaden om dagpenger for PLACEHOLDER dager siden
+                </Normaltekst>
+                <Normaltekst>
+                    Har du spørsmål om dagpenger må du bruke{' '}
+                    <Lenke href="https://mininnboks.nav.no/sporsmal/skriv/ARBD">Skriv til oss</Lenke>
+                </Normaltekst>
+            </div>
+
+            <div>
+                <LenkepanelBase
+                    href={'https://www.nav.no/soknader/nb/person/arbeid/dagpenger'}
+                    border={true}
+                    className={'meldekort-send-inn-kort'}
+                >
+                    <div className="lenkepanel__innhold">
+                        <div className="ml-1">
+                            <Element>Gå til ettersending</Element>
                             <Normaltekst>...</Normaltekst>
                         </div>
                     </div>
