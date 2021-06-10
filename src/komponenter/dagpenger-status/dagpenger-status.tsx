@@ -29,7 +29,7 @@ function DagpengerStatus() {
     const soknader = paabegynteSoknaderData.soknader;
     const rettighetsgruppe = brukerInfoData.rettighetsgruppe;
 
-    if (rettighetsgruppe === 'DAGP') return <div>KOMPONENT IKKE LAGET</div>;
+    if (rettighetsgruppe === 'DAGP') return <div>KOMPONENT FOR MOTTAR DAGPENGER IKKE LAGET</div>;
     else if (rettighetsgruppe === 'IYT' && soknader.length === 0) return <IkkeSoktDagpenger />;
     else return null;
 }
