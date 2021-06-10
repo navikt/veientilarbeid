@@ -20,6 +20,7 @@ import {
     hentSykmeldtMedArbeidsgiver,
     hentUlesteDialoger,
     hentUnderOppfolging,
+    hentDpStatus,
     settAntallDagerEtterFastsattMeldedag,
     settAutentiseringsInfo,
     settEgenvurdering,
@@ -36,6 +37,7 @@ import {
     settSykmeldtMedArbeidsgiver,
     settUlesteDialoger,
     settUnderOppfolging,
+    settDpStatus,
 } from './demo-state';
 
 import './demo-dashboard.less';
@@ -94,7 +96,7 @@ class DemoDashboard extends React.Component<{}> {
         };
 
         const handleChangeDagpengeStatus = (e: React.ChangeEvent<HTMLSelectElement>) => {
-            console.log(e.target.value);
+            settDpStatus(e.target.value);
             window.location.reload();
         };
 
@@ -333,7 +335,7 @@ class DemoDashboard extends React.Component<{}> {
                         label={'Velg dagpengestatus'}
                         onChange={handleChangeDagpengeStatus}
                         id="velg-dagpengestatus"
-                        defaultValue={'dagpengestatusIkkeSokt'}
+                        defaultValue={hentDpStatus()}
                     >
                         {Object.keys(dagpengeStatuser).map((gruppe: string) => (
                             <option key={gruppe} value={gruppe}>

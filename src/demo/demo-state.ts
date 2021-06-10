@@ -2,6 +2,9 @@ import { InnloggingsNiva } from '../ducks/autentisering';
 import { foerstkommendeMandag, plussDager } from '../utils/date-utils';
 import { hentQueryParam, settQueryParam } from '../utils/query-param-utils';
 import { FeatureToggles } from '../ducks/feature-toggles';
+import paabegynteSoknaderMock from '../mocks/saksoversikt-pabegyntesoknader-mock';
+import muligeEttersendelserMock from '../mocks/saksoversikt-mulige-ettersendelser-mock';
+import dpSakstemaMock from '../mocks/saksoversikt-sakstema-mock';
 
 type JSONValue = null | string | number | boolean | JSONObject | JSONArray;
 
@@ -32,9 +35,7 @@ export enum DemoData {
     FORESLATT_INNSATSGRUPPE = 'foreslattInnsatsgruppe',
     REGISTRERING_OPPRETTET = 'registreringOpprettet',
     SKJUL_DEMO = 'skjulDemo',
-    DP_PABEGYNTE_SOKNADER = 'dpPabegynteSoknader',
-    DP_MULIGE_ETTERSENDELSER = 'dpMuligeEttersendelser',
-    DP_SAKSTEMA = 'dpSakstema',
+    DP_STATUS = 'dpStatus',
 }
 
 export const hentDemoState = (key: string): string | null => hentQueryParam(key);
@@ -153,9 +154,20 @@ export function hentDagRelativTilFastsattMeldedag(): Date {
     return plussDager(fastsattMeldedag, dagerEtterFastsattMeldedag);
 }
 
-export const hentDpSoknaderUnderArbeid = (): JSONValue =>
-    hentDemoState(DemoData.DP_PABEGYNTE_SOKNADER) || { soknader: [] };
+export const hentDpStatus = () => hentDemoState(DemoData.DP_STATUS) || 'dagpengestatusIkkeSokt';
+export const settDpStatus = (value: string) => settDemoState(DemoData.DP_STATUS, value);
 
-export const hentDpMuligeEttersendelser = (): JSONValue => hentDemoState(DemoData.DP_MULIGE_ETTERSENDELSER) || [];
+export const hentDpSoknaderUnderArbeid = (): JSONValue => {
+    const status = hentDemoState(DemoData.DP_STATUS);
+    return status === 'dagpengestatusIkkeSokt' ? { soknader: [] } : paabegynteSoknaderMock;
+};
 
-export const hentDpSakstema = (): JSONValue => hentDemoState(DemoData.DP_SAKSTEMA) || { sakstema: [] };
+export const hentDpMuligeEttersendelser = (): JSONValue => {
+    const status = hentDemoState(DemoData.DP_STATUS);
+    return status === 'dagpengestatusEttersendVedlegg' ? muligeEttersendelserMock : [];
+};
+
+export const hentDpSakstema = (): JSONValue => {
+    const status = hentDemoState(DemoData.DP_STATUS);
+    return status === 'dagpengestatusInnsendtSoknad' ? dpSakstemaMock : { sakstema: [] };
+};
