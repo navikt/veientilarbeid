@@ -85,4 +85,21 @@ function IkkeSoktDagpenger() {
     );
 }
 
+interface DapengerDekoratorProps {
+    tittle: string;
+    children: React.ReactNode;
+}
+
+function DagpengerDekorator(props: DapengerDekoratorProps) {
+    return (
+        <div className={'dagpenger-status-omslutning'}>
+            <div>
+                <Element style={{ color: 'red' }}>DAGPENGER</Element>
+                <Systemtittel>{props.tittle}</Systemtittel>
+            </div>
+            {props?.children}
+        </div>
+    );
+}
+
 export default DagpengerStatus;
