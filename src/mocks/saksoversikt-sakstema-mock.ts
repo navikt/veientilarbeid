@@ -5,6 +5,7 @@ const sakstemaMock = {
             temanavn: 'Dagpenger',
             erGruppert: false,
             behandlingskjeder: [
+                { status: 'UNDER_BEHANDLING', sistOppdatert: '2021-05-15T09:31:57.507+01:00' },
                 { status: 'FERDIG_BEHANDLET', sistOppdatert: '2021-03-15T09:31:57.507+01:00' },
                 { status: 'FERDIG_BEHANDLET', sistOppdatert: '2017-03-13T03:18:00.709+01:00' },
                 { status: 'UNDER_BEHANDLING', sistOppdatert: '2016-11-17T13:01:40+01:00' },

@@ -6,6 +6,8 @@ import * as Oppfolging from '../../ducks/oppfolging';
 import * as BrukerInfo from '../../ducks/bruker-info';
 import * as PaabegynteSoknader from '../../ducks/paabegynte-soknader';
 import * as MuligeEttersendelser from '../../ducks/mulige-ettersendelser';
+import * as Sakstema from '../../ducks/sakstema';
+import harUbehandletDpSoknad from '../../lib/har-ubehandlet-dp-soknad';
 import { kanVise14AStatus } from '../14a-intro/14a';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
@@ -20,6 +22,7 @@ function DagpengerStatus() {
     const { data: brukerInfoData } = React.useContext(BrukerInfo.BrukerInfoContext);
     const { data: paabegynteSoknaderData } = React.useContext(PaabegynteSoknader.PaabegynteSoknaderContext);
     const { data: muligeEttersendelserData } = React.useContext(MuligeEttersendelser.MuligeEttersendelserContext);
+    const { data: sakstemaData } = React.useContext(Sakstema.SakstemaContext);
 
     const featuretoggleAktivert = featuretoggleData['veientilarbeid.dagpenger-status'];
 
@@ -28,12 +31,18 @@ function DagpengerStatus() {
 
     if (!kanViseKomponent) return null;
 
+    const dagpengerSaksTema = sakstemaData.sakstema.find((tema) => tema.temakode === 'DAG');
+    const ubehandledeDpSoknader = dagpengerSaksTema
+        ? harUbehandletDpSoknad(dagpengerSaksTema.behandlingskjeder)
+        : 'nei';
+    console.log(ubehandledeDpSoknader);
     const paabegynteSoknader = paabegynteSoknaderData.soknader;
     const rettighetsgruppe = brukerInfoData.rettighetsgruppe;
     const ettersendelser = muligeEttersendelserData;
 
     if (rettighetsgruppe === 'DAGP') return <div>KOMPONENT FOR MOTTAR DAGPENGER IKKE LAGET</div>;
     if (ettersendelser.length > 0) return <div>KOMPONENT FOR MULIGE ETTERSENDELSER IKKE LAGET</div>;
+    if (ubehandledeDpSoknader === 'ja') return <div>KOMPONENT FOR INNSENDT SØKNAD IKKE LAGET</div>;
     if (paabegynteSoknader.length > 0) return <div>KOMPONENT FOR PÅBEGYNTE SØKNADER IKKE LAGET</div>;
     else if (rettighetsgruppe === 'IYT' && paabegynteSoknader.length === 0) return <IkkeSoktDagpenger />;
     else return null;
