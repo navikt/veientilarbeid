@@ -103,7 +103,7 @@ function PaabegynSoknad() {
                 >
                     <div className="lenkepanel__innhold">
                         <div className="ml-1">
-                            <Element>Forsett på søknaden</Element>
+                            <Element>Fortsett på søknaden</Element>
                             <Normaltekst>...</Normaltekst>
                         </div>
                     </div>
