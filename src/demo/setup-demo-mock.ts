@@ -39,9 +39,6 @@ import {
 import { hentBrukerRegistrering } from './demo-state-brukerregistrering';
 import { AUTH_API } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
 import msw_get from '../mocks/msw-utils';
-import paabegynteSoknaderResponse from '../mocks/saksoversikt-pabegyntesoknader-mock';
-import muligeEttersendelserResponse from '../mocks/saksoversikt-mulige-ettersendelser-mock';
-import sakstemaResponse from '../mocks/saksoversikt-sakstema-mock';
 import meldekortstatusResponse from '../mocks/meldekortstatus-mock';
 
 export const demo_handlers = [
@@ -85,9 +82,9 @@ export const demo_handlers = [
 
     msw_get(MELDEKORTSTATUS_URL, meldekortstatusResponse),
 
-    msw_get(PAABEGYNTE_SOKNADER_URL, paabegynteSoknaderResponse),
+    msw_get(PAABEGYNTE_SOKNADER_URL, { soknader: [] }),
 
-    msw_get(MULIGE_ETTERSENDELSER_URL, muligeEttersendelserResponse),
+    msw_get(MULIGE_ETTERSENDELSER_URL, []),
 
-    msw_get(SAKSTEMA_URL, sakstemaResponse),
+    msw_get(SAKSTEMA_URL, { sakstema: [] }),
 ];
