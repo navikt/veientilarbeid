@@ -5,6 +5,7 @@ import * as Brukerregistrering from '../../ducks/brukerregistrering';
 import * as Oppfolging from '../../ducks/oppfolging';
 import * as BrukerInfo from '../../ducks/bruker-info';
 import * as PaabegynteSoknader from '../../ducks/paabegynte-soknader';
+import * as MuligeEttersendelser from '../../ducks/mulige-ettersendelser';
 import { kanVise14AStatus } from '../14a-intro/14a';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
@@ -18,6 +19,7 @@ function DagpengerStatus() {
     const { data: oppfolgingData } = React.useContext(Oppfolging.OppfolgingContext);
     const { data: brukerInfoData } = React.useContext(BrukerInfo.BrukerInfoContext);
     const { data: paabegynteSoknaderData } = React.useContext(PaabegynteSoknader.PaabegynteSoknaderContext);
+    const { data: muligeEttersendelserData } = React.useContext(MuligeEttersendelser.MuligeEttersendelserContext);
 
     const featuretoggleAktivert = featuretoggleData['veientilarbeid.dagpenger-status'];
 
@@ -28,8 +30,10 @@ function DagpengerStatus() {
 
     const paabegynteSoknader = paabegynteSoknaderData.soknader;
     const rettighetsgruppe = brukerInfoData.rettighetsgruppe;
+    const ettersendelser = muligeEttersendelserData;
 
     if (rettighetsgruppe === 'DAGP') return <div>KOMPONENT FOR MOTTAR DAGPENGER IKKE LAGET</div>;
+    if (ettersendelser.length > 0) return <div>KOMPONENT FOR MULIGE ETTERSENDELSER IKKE LAGET</div>;
     if (paabegynteSoknader.length > 0) return <div>KOMPONENT FOR PÅBEGYNTE SØKNADER IKKE LAGET</div>;
     else if (rettighetsgruppe === 'IYT' && paabegynteSoknader.length === 0) return <IkkeSoktDagpenger />;
     else return null;
