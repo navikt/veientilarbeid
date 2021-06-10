@@ -26,11 +26,12 @@ function DagpengerStatus() {
 
     if (!kanViseKomponent) return null;
 
-    const soknader = paabegynteSoknaderData.soknader;
+    const paabegynteSoknader = paabegynteSoknaderData.soknader;
     const rettighetsgruppe = brukerInfoData.rettighetsgruppe;
 
     if (rettighetsgruppe === 'DAGP') return <div>KOMPONENT FOR MOTTAR DAGPENGER IKKE LAGET</div>;
-    else if (rettighetsgruppe === 'IYT' && soknader.length === 0) return <IkkeSoktDagpenger />;
+    if (paabegynteSoknader.length > 0) return <div>KOMPONENT FOR PÅBEGYNTE SØKNADER IKKE LAGET</div>;
+    else if (rettighetsgruppe === 'IYT' && paabegynteSoknader.length === 0) return <IkkeSoktDagpenger />;
     else return null;
 }
 
