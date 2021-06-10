@@ -42,7 +42,12 @@ function DagpengerStatus() {
 
     if (rettighetsgruppe === 'DAGP') return <div>KOMPONENT FOR MOTTAR DAGPENGER IKKE LAGET</div>;
     if (ettersendelser.length > 0) return <EttersendVedlegg />;
-    if (ubehandledeDpSoknader === 'ja') return <div>KOMPONENT FOR INNSENDT SØKNAD IKKE LAGET</div>;
+    if (ubehandledeDpSoknader === 'ja')
+        return (
+            <div>
+                <SoknadTilBehandling />
+            </div>
+        );
     if (paabegynteSoknader.length > 0) return <PaabegyntSoknad />;
     else if (rettighetsgruppe === 'IYT' && paabegynteSoknader.length === 0) return <IkkeSoktDagpenger />;
     else return null;
@@ -148,6 +153,30 @@ function EttersendVedlegg() {
                     <Lenke className={'tracking-wide'} href={''}>
                         Gå til dagpengeroversikt (side #2)
                     </Lenke>
+                </Normaltekst>
+            </div>
+        </DagpengerDekorator>
+    );
+}
+
+function SoknadTilBehandling() {
+    return (
+        <DagpengerDekorator tittle={'Vi har mottatt en søknad om dagpenger'}>
+            <div>
+                <Normaltekst className={'blokk-xs'}>Innsendt/Mottattdato: PLACEHOLDER</Normaltekst>
+                <Normaltekst className={'blokk-xs'}>Du kan forvente svar innen 22 virkedager PLACEHOLDER</Normaltekst>
+            </div>
+            <div className="blokk-xs">
+                <Normaltekst>
+                    <Lenke className={'tracking-wide'} href={''}>
+                        Gå til dagpengeroversikt (side #2)
+                    </Lenke>
+                </Normaltekst>
+            </div>
+            <div>
+                <Normaltekst>
+                    Har du spørsmål om dagpenger må du bruke{' '}
+                    <Lenke href="https://mininnboks.nav.no/sporsmal/skriv/ARBD">Skriv til oss</Lenke>
                 </Normaltekst>
             </div>
         </DagpengerDekorator>
