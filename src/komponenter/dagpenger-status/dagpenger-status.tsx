@@ -43,7 +43,7 @@ function DagpengerStatus() {
     if (rettighetsgruppe === 'DAGP') return <div>KOMPONENT FOR MOTTAR DAGPENGER IKKE LAGET</div>;
     if (ettersendelser.length > 0) return <div>KOMPONENT FOR MULIGE ETTERSENDELSER IKKE LAGET</div>;
     if (ubehandledeDpSoknader === 'ja') return <div>KOMPONENT FOR INNSENDT SØKNAD IKKE LAGET</div>;
-    if (paabegynteSoknader.length > 0) return <PaabegynSoknad />;
+    if (paabegynteSoknader.length > 0) return <PaabegyntSoknad />;
     else if (rettighetsgruppe === 'IYT' && paabegynteSoknader.length === 0) return <IkkeSoktDagpenger />;
     else return null;
 }
@@ -84,7 +84,7 @@ function IkkeSoktDagpenger() {
     );
 }
 
-function PaabegynSoknad() {
+function PaabegyntSoknad() {
     return (
         <DagpengerDekorator tittle={'Du har en påbegynt søknad'}>
             <div>
