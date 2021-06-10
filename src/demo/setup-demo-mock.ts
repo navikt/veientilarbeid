@@ -35,6 +35,7 @@ import {
     lagMeldekortData,
     randomUlesteDialoger,
     hentDpSoknaderUnderArbeid,
+    hentDpMuligeEttersendelser,
 } from './demo-state';
 
 import { hentBrukerRegistrering } from './demo-state-brukerregistrering';
@@ -85,7 +86,7 @@ export const demo_handlers = [
 
     msw_get(PAABEGYNTE_SOKNADER_URL, hentDpSoknaderUnderArbeid()),
 
-    msw_get(MULIGE_ETTERSENDELSER_URL, []),
+    msw_get(MULIGE_ETTERSENDELSER_URL, hentDpMuligeEttersendelser()),
 
     msw_get(SAKSTEMA_URL, { sakstema: [] }),
 ];

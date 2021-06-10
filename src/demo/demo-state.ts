@@ -155,3 +155,5 @@ export function hentDagRelativTilFastsattMeldedag(): Date {
 
 export const hentDpSoknaderUnderArbeid = (): JSONValue =>
     hentDemoState(DemoData.DP_PABEGYNTE_SOKNADER) || { soknader: [] };
+
+export const hentDpMuligeEttersendelser = (): JSONValue => hentDemoState(DemoData.DP_MULIGE_ETTERSENDELSER) || [];
