@@ -32,6 +32,9 @@ export enum DemoData {
     FORESLATT_INNSATSGRUPPE = 'foreslattInnsatsgruppe',
     REGISTRERING_OPPRETTET = 'registreringOpprettet',
     SKJUL_DEMO = 'skjulDemo',
+    DP_PABEGYNTE_SOKNADER = 'dpPabegynteSoknader',
+    DP_MULIGE_ETTERSENDELSER = 'dpMuligeEttersendelser',
+    DP_SAKSTEMA = 'dpSakstema',
 }
 
 export const hentDemoState = (key: string): string | null => hentQueryParam(key);
@@ -149,3 +152,6 @@ export function hentDagRelativTilFastsattMeldedag(): Date {
     const dagerEtterFastsattMeldedag = hentDagerEtterFastsattMeldedag();
     return plussDager(fastsattMeldedag, dagerEtterFastsattMeldedag);
 }
+
+export const hentDpSoknaderUnderArbeid = (): JSONValue =>
+    hentDemoState(DemoData.DP_PABEGYNTE_SOKNADER) || { soknader: [] };

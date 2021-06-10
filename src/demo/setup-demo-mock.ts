@@ -34,6 +34,7 @@ import {
     hentUnderOppfolging,
     lagMeldekortData,
     randomUlesteDialoger,
+    hentDpSoknaderUnderArbeid,
 } from './demo-state';
 
 import { hentBrukerRegistrering } from './demo-state-brukerregistrering';
@@ -82,7 +83,7 @@ export const demo_handlers = [
 
     msw_get(MELDEKORTSTATUS_URL, meldekortstatusResponse),
 
-    msw_get(PAABEGYNTE_SOKNADER_URL, { soknader: [] }),
+    msw_get(PAABEGYNTE_SOKNADER_URL, hentDpSoknaderUnderArbeid()),
 
     msw_get(MULIGE_ETTERSENDELSER_URL, []),
 
