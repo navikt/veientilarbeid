@@ -152,6 +152,8 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
 
     const dagpengerStatusBeregning = beregnDagpengerStatus({
         rettighetsgruppe,
+        opprettetRegistreringDato,
+        paabegynteSoknader: pabegynteSoknaderData.soknader,
     });
 
     const amplitudeData: AmplitudeData = {
