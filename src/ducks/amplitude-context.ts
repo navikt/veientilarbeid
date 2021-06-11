@@ -33,6 +33,7 @@ export const initialState: AmplitudeData = {
     dagpengerSoknadVenterPaSvar: 'INGEN_DATA',
     dagpengerDagerMellomPaabegyntSoknadOgRegistrering: 'INGEN_DATA',
     dagpengerDagerMellomInnsendtSoknadOgRegistrering: 'INGEN_DATA',
+    dagpengerStatusBeregning: 'INGEN_DATA',
 };
 
 export const AmplitudeContext = React.createContext<AmplitudeData>(initialState);
