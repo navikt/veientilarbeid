@@ -150,10 +150,13 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
           })
         : 'INGEN_DATA';
 
+    const behandlingskjederDagpenger = dagpengerSaksTema ? dagpengerSaksTema.behandlingskjeder : null;
+
     const dagpengerStatusBeregning = beregnDagpengerStatus({
         rettighetsgruppe,
         opprettetRegistreringDato,
         paabegynteSoknader: pabegynteSoknaderData.soknader,
+        behandlingskjeder: behandlingskjederDagpenger,
     });
 
     const amplitudeData: AmplitudeData = {
