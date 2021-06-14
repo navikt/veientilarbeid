@@ -66,4 +66,40 @@ describe('tester funksjonen beregnDagpengerStatus', () => {
         });
         expect(status).toBe('ukjentStatus');
     });
+
+    test('returnerer soknadUnderBehandling når det er søknader UNDER_BEHANDLING etter registreringsdato', () => {
+        const opprettetRegistreringDato = new Date('2021-06-01');
+        const behandlingskjeder = [
+            {
+                status: 'UNDER_BEHANDLING',
+                sistOppdatert: '2021-06-02T15:48:19.375+02:00',
+            },
+        ];
+        const status = beregnDagpengerStatus({
+            rettighetsgruppe: 'ITY',
+            opprettetRegistreringDato,
+            behandlingskjeder,
+        });
+        expect(status).toBe('soknadUnderBehandling');
+    });
+
+    test('returnerer soknadFerdigBehandlet når det er søknader FERDIG_BEHANDLET etter registreringsdato og etter UNDER_BEHANDLING', () => {
+        const opprettetRegistreringDato = new Date('2021-06-01');
+        const behandlingskjeder = [
+            {
+                status: 'UNDER_BEHANDLING',
+                sistOppdatert: '2021-06-02T15:48:19.375+02:00',
+            },
+            {
+                status: 'FERDIG_BEHANDLET',
+                sistOppdatert: '2021-06-03T15:48:19.375+02:00',
+            },
+        ];
+        const status = beregnDagpengerStatus({
+            rettighetsgruppe: 'ITY',
+            opprettetRegistreringDato,
+            behandlingskjeder,
+        });
+        expect(status).toBe('soknadFerdigBehandlet');
+    });
 });
