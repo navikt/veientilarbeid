@@ -5,7 +5,7 @@ export interface State extends DataElement {
     data: Data;
 }
 
-interface Tema {
+export interface Tema {
     temakode: string;
     temanavn: string;
     erGruppert: boolean;
