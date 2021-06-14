@@ -9,7 +9,7 @@ export interface Beregningsdata {
     rettighetsgruppe?: string;
     opprettetRegistreringDato?: Date | null;
     paabegynteSoknader?: Soknad[];
-    behandlingskjeder?: Behandling[];
+    behandlingskjeder?: Behandling[] | null;
 }
 
 function sistOppdatertSortering(a: Behandling, b: Behandling) {
