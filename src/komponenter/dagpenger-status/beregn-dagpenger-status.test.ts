@@ -102,4 +102,24 @@ describe('tester funksjonen beregnDagpengerStatus', () => {
         });
         expect(status).toBe('soknadFerdigBehandlet');
     });
+
+    test('returnerer ukjentStatus når det er behandlinger før registreringsdato', () => {
+        const opprettetRegistreringDato = new Date('2021-06-01');
+        const behandlingskjeder = [
+            {
+                status: 'UNDER_BEHANDLING',
+                sistOppdatert: '2020-06-02T15:48:19.375+02:00',
+            },
+            {
+                status: 'FERDIG_BEHANDLET',
+                sistOppdatert: '2020-06-03T15:48:19.375+02:00',
+            },
+        ];
+        const status = beregnDagpengerStatus({
+            rettighetsgruppe: 'ITY',
+            opprettetRegistreringDato,
+            behandlingskjeder,
+        });
+        expect(status).toBe('ukjentStatus');
+    });
 });
