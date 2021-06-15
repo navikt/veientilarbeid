@@ -13,6 +13,7 @@ import beregnDagpengerSokeStatus, { DagpengerSokestatuser } from './beregn-dagpe
 import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import Lenke from 'nav-frontend-lenker';
 import { LenkepanelBase } from 'nav-frontend-lenkepanel';
+import { lenker } from '../dittnav/utils/lenker';
 
 function DagpengerStatus() {
     const amplitudeData = React.useContext(AmplitudeContext);
@@ -71,11 +72,6 @@ function IkkeSoktDagpenger() {
                 <Normaltekst className={'blokk-xs'}>
                     Du kan tidligst få dagpenger fra den dagen du sender inn søknaden.
                 </Normaltekst>
-                <Normaltekst>
-                    Har du spørsmål om dagpenger må du bruke{' '}
-                    <Lenke href="https://mininnboks.nav.no/sporsmal/skriv/ARBD">Skriv til oss</Lenke> eller{' '}
-                    <Lenke href="https://www.nav.no/person/kontakt-oss/chat/">Chat</Lenke>
-                </Normaltekst>
             </div>
 
             <div>
@@ -90,6 +86,12 @@ function IkkeSoktDagpenger() {
                         </div>
                     </div>
                 </LenkepanelBase>
+
+                <Normaltekst className={'blokk-xs'}>
+                    Har du spørsmål om dagpenger må du bruke{' '}
+                    <Lenke href="https://mininnboks.nav.no/sporsmal/skriv/ARBD">Skriv til oss</Lenke> eller{' '}
+                    <Lenke href="https://www.nav.no/person/kontakt-oss/chat/">Chat</Lenke>
+                </Normaltekst>
             </div>
         </DagpengerDekorator>
     );
@@ -97,12 +99,10 @@ function IkkeSoktDagpenger() {
 
 function PaabegyntSoknad() {
     return (
-        <DagpengerDekorator tittle={'Du har en påbegynt søknad'}>
+        <DagpengerDekorator tittle={'Du har startet på en  søknad om dagpenger, men ikke sendt den inn'}>
             <div>
-                <Normaltekst className={'blokk-xs'}>Du begynte på den for PLACEHOLDER dager siden</Normaltekst>
-                <Normaltekst>
-                    Har du spørsmål om dagpenger må du bruke{' '}
-                    <Lenke href="https://mininnboks.nav.no/sporsmal/skriv/ARBD">Skriv til oss</Lenke>
+                <Normaltekst className={'blokk-xs'}>
+                    <b>Du kan tidligst få dagpenger</b> fra den dagen du sender inn søknaden.
                 </Normaltekst>
             </div>
 
@@ -119,9 +119,16 @@ function PaabegyntSoknad() {
                         </div>
                     </div>
                 </LenkepanelBase>
+
+                <Normaltekst className={'blokk-xs'}>
+                    Har du spørsmål om dagpenger må du bruke{' '}
+                    <Lenke href="https://mininnboks.nav.no/sporsmal/skriv/ARBD">Skriv til oss</Lenke> eller{' '}
+                    <Lenke href="https://www.nav.no/person/kontakt-oss/chat/">Chat</Lenke>
+                </Normaltekst>
                 <Normaltekst>
-                    <Lenke className={'tracking-wide'} href={''}>
-                        Gå til dagpengeroversikt (side #2)
+                    Gå til{' '}
+                    <Lenke className={'tracking-wide'} href={lenker.saksoversikt.url}>
+                        din saksoversikt
                     </Lenke>
                 </Normaltekst>
             </div>
@@ -135,10 +142,6 @@ function EttersendVedlegg() {
             <div>
                 <Normaltekst className={'blokk-xs'}>
                     Du begynte på søknaden om dagpenger for PLACEHOLDER dager siden
-                </Normaltekst>
-                <Normaltekst>
-                    Har du spørsmål om dagpenger må du bruke{' '}
-                    <Lenke href="https://mininnboks.nav.no/sporsmal/skriv/ARBD">Skriv til oss</Lenke>
                 </Normaltekst>
             </div>
 
@@ -155,9 +158,15 @@ function EttersendVedlegg() {
                         </div>
                     </div>
                 </LenkepanelBase>
+                <Normaltekst className={'blokk-xs'}>
+                    Har du spørsmål om dagpenger må du bruke{' '}
+                    <Lenke href="https://mininnboks.nav.no/sporsmal/skriv/ARBD">Skriv til oss</Lenke> eller{' '}
+                    <Lenke href="https://www.nav.no/person/kontakt-oss/chat/">Chat</Lenke>
+                </Normaltekst>
                 <Normaltekst>
-                    <Lenke className={'tracking-wide'} href={''}>
-                        Gå til dagpengeroversikt (side #2)
+                    Gå til{' '}
+                    <Lenke className={'tracking-wide'} href={lenker.saksoversikt.url}>
+                        din saksoversikt
                     </Lenke>
                 </Normaltekst>
             </div>
@@ -198,7 +207,7 @@ function DagpengerDekorator(props: DapengerDekoratorProps) {
     return (
         <div className={'dagpenger-status-omslutning'}>
             <div>
-                <Systemtittel>{props.tittle}</Systemtittel>
+                <Systemtittel className={'blokk-xs'}>{props.tittle}</Systemtittel>
             </div>
             {props?.children}
         </div>
