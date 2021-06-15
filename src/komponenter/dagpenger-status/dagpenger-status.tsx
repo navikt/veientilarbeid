@@ -10,7 +10,7 @@ import * as Sakstema from '../../ducks/sakstema';
 import harUbehandletDpSoknad from '../../lib/har-ubehandlet-dp-soknad';
 import { kanVise14AStatus } from '../14a-intro/14a';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
-import beregnDagpengerStatus from './beregn-dagpenger-status';
+import beregnDagpengerSokeStatus from './beregn-dagpenger-status';
 import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import Lenke from 'nav-frontend-lenker';
 import { LenkepanelBase } from 'nav-frontend-lenkepanel';
@@ -46,7 +46,7 @@ function DagpengerStatus() {
     const rettighetsgruppe = brukerInfoData.rettighetsgruppe;
     const ettersendelser = muligeEttersendelserData;
 
-    const dagpengerSokeStatus = beregnDagpengerStatus({
+    const dagpengerSokeStatus = beregnDagpengerSokeStatus({
         opprettetRegistreringDato,
         rettighetsgruppe,
         paabegynteSoknader,
