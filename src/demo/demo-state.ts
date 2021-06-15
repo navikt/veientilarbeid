@@ -2,7 +2,6 @@ import { InnloggingsNiva } from '../ducks/autentisering';
 import { foerstkommendeMandag, plussDager } from '../utils/date-utils';
 import { hentQueryParam, settQueryParam } from '../utils/query-param-utils';
 import { FeatureToggles } from '../ducks/feature-toggles';
-import paabegynteSoknaderMock from '../mocks/saksoversikt-pabegyntesoknader-mock';
 import muligeEttersendelserMock from '../mocks/saksoversikt-mulige-ettersendelser-mock';
 import dpSakstemaMock from '../mocks/saksoversikt-sakstema-mock';
 
@@ -159,7 +158,20 @@ export const settDpStatus = (value: string) => settDemoState(DemoData.DP_STATUS,
 
 export const hentDpSoknaderUnderArbeid = (): JSONValue => {
     const status = hentDemoState(DemoData.DP_STATUS);
-    return status === 'dagpengestatusIkkeSokt' ? { soknader: [] } : paabegynteSoknaderMock;
+    const paabegyntDato = plussDager(new Date(), 2);
+    const pabegyntesoknaderMock = {
+        soknader: [
+            {
+                tittel: 'Søknad om dagpenger (ikke permittert)',
+                lenke: 'https://tjenester-q1.nav.no/soknaddagpenger-innsending/soknad/10010WQX9',
+                dato: paabegyntDato.toISOString(),
+                kilde: 'HENVENDELSE',
+            },
+        ],
+        feilendeBaksystemer: [],
+    };
+
+    return status === 'dagpengestatusIkkeSokt' ? { soknader: [] } : pabegyntesoknaderMock;
 };
 
 export const hentDpMuligeEttersendelser = (): JSONValue => {
