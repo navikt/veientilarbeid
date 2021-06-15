@@ -50,6 +50,8 @@ function DagpengerStatus() {
 
     if (dagpengerSokeStatus === DagpengerSokestatuser.mottarDagpenger)
         return <div>KOMPONENT FOR MOTTAR DAGPENGER IKKE LAGET</div>;
+    if (dagpengerSokeStatus === DagpengerSokestatuser.soknadFerdigBehandlet)
+        return <div>KOMPONENT FOR SOKNAD FERDIG BEHANDLET IKKE LAGET</div>;
     if (ettersendelser.length > 0) return <EttersendVedlegg />;
     if (dagpengerSokeStatus === DagpengerSokestatuser.soknadUnderBehandling)
         return (
