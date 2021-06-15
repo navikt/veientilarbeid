@@ -14,6 +14,8 @@ import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import Lenke from 'nav-frontend-lenker';
 import { LenkepanelBase } from 'nav-frontend-lenkepanel';
 import { lenker } from '../dittnav/utils/lenker';
+import { Behandling } from '../../utils/dager-fra-innsendt-soknad';
+import prettyPrintDato from '../../utils/pretty-print-dato';
 
 function DagpengerStatus() {
     const amplitudeData = React.useContext(AmplitudeContext);
@@ -38,6 +40,7 @@ function DagpengerStatus() {
         : null;
     const dagpengerSaksTema = sakstemaData.sakstema.find((tema) => tema.temakode === 'DAG');
     const behandlingskjeder = dagpengerSaksTema ? dagpengerSaksTema.behandlingskjeder : null;
+
     const paabegynteSoknader = paabegynteSoknaderData.soknader;
     const rettighetsgruppe = brukerInfoData.rettighetsgruppe;
     const ettersendelser = muligeEttersendelserData;
@@ -57,7 +60,7 @@ function DagpengerStatus() {
     if (dagpengerSokeStatus === DagpengerSokestatuser.soknadUnderBehandling)
         return (
             <div>
-                <SoknadTilBehandling />
+                <SoknadTilBehandling behandlingskjeder={behandlingskjeder} />
             </div>
         );
     if (dagpengerSokeStatus === DagpengerSokestatuser.harPaabegynteSoknader) return <PaabegyntSoknad />;
@@ -174,24 +177,41 @@ function EttersendVedlegg() {
     );
 }
 
-function SoknadTilBehandling() {
+function SoknadTilBehandling({ behandlingskjeder }: { behandlingskjeder: Behandling[] | null }) {
+    const datoForSisteInnsendeSoknad = (behandlingskjeder: Behandling[] | null): Date => {
+        if (!behandlingskjeder) return new Date();
+
+        const dato = behandlingskjeder
+            .filter((behandling) => behandling.status === 'UNDER_BEHANDLING')
+            .sort((a, b) => {
+                return new Date(b.sistOppdatert).getTime() - new Date(a.sistOppdatert).getTime();
+            })[0].sistOppdatert;
+
+        return new Date(dato);
+    };
+
+    const datoForSisteInnsendteSoknad = datoForSisteInnsendeSoknad(behandlingskjeder);
+
     return (
-        <DagpengerDekorator tittle={'Vi har mottatt en søknad om dagpenger'}>
+        <DagpengerDekorator tittle={'Vi har mottatt søknad om dagpenger'}>
             <div>
-                <Normaltekst className={'blokk-xs'}>Innsendt/Mottattdato: PLACEHOLDER</Normaltekst>
-                <Normaltekst className={'blokk-xs'}>Du kan forvente svar innen 22 virkedager PLACEHOLDER</Normaltekst>
-            </div>
-            <div className="blokk-xs">
-                <Normaltekst>
-                    <Lenke className={'tracking-wide'} href={''}>
-                        Gå til dagpengeroversikt (side #2)
-                    </Lenke>
+                <Normaltekst className={'blokk-xs'}>
+                    Siste søknad mottatt: {prettyPrintDato(datoForSisteInnsendteSoknad?.toISOString())}{' '}
                 </Normaltekst>
+                <Normaltekst className={'blokk-xs'}>Du kan forvente svar innen 24. juli</Normaltekst>
             </div>
+
             <div>
-                <Normaltekst>
+                <Normaltekst className={'blokk-xs'}>
                     Har du spørsmål om dagpenger må du bruke{' '}
-                    <Lenke href="https://mininnboks.nav.no/sporsmal/skriv/ARBD">Skriv til oss</Lenke>
+                    <Lenke href="https://mininnboks.nav.no/sporsmal/skriv/ARBD">Skriv til oss</Lenke> eller{' '}
+                    <Lenke href="https://www.nav.no/person/kontakt-oss/chat/">Chat</Lenke>
+                </Normaltekst>
+                <Normaltekst>
+                    Gå til{' '}
+                    <Lenke className={'tracking-wide'} href={lenker.saksoversikt.url}>
+                        din saksoversikt
+                    </Lenke>
                 </Normaltekst>
             </div>
         </DagpengerDekorator>
