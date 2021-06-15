@@ -43,4 +43,8 @@ export const lenker = {
         tittel: 'Ditt sykefravær',
         url: `${TJENESTER_URL}/sykefravaer`,
     },
+    saksoversikt: {
+        tittel: 'Din saksoversikt',
+        url: `${TJENESTER_URL}/saksoversikt`,
+    },
 };
