@@ -22,7 +22,7 @@ export enum DagpengerSokestatuser {
 
 type dagpengerSokestatus = DagpengerSokestatuser;
 
-function sistOppdatertSortering(a: Behandling, b: Behandling) {
+export function sistOppdatertSortering(a: Behandling, b: Behandling) {
     return new Date(b.sistOppdatert).getTime() - new Date(a.sistOppdatert).getTime();
 }
 
