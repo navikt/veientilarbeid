@@ -9,7 +9,7 @@ import * as MuligeEttersendelser from '../../ducks/mulige-ettersendelser';
 import * as Sakstema from '../../ducks/sakstema';
 import { kanVise14AStatus } from '../14a-intro/14a';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
-import beregnDagpengerSokeStatus, { DagpengerSokestatuser } from './beregn-dagpenger-status';
+import beregnDagpengerSokeStatus, { DagpengerSokestatuser, sistOppdatertSortering } from './beregn-dagpenger-status';
 import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import Lenke from 'nav-frontend-lenker';
 import { LenkepanelBase } from 'nav-frontend-lenkepanel';
@@ -52,8 +52,20 @@ function DagpengerStatus() {
         behandlingskjeder,
     });
 
-    if (dagpengerSokeStatus === DagpengerSokestatuser.mottarDagpenger)
-        return <div>KOMPONENT FOR MOTTAR DAGPENGER IKKE LAGET</div>;
+    if (dagpengerSokeStatus === DagpengerSokestatuser.mottarDagpenger) {
+        let sisteBehandling = null;
+        if (opprettetRegistreringDato && behandlingskjeder) {
+            const behandlingerEtterRegistrering = behandlingskjeder.filter(
+                (behandling) => new Date(behandling.sistOppdatert) > opprettetRegistreringDato
+            );
+            if (behandlingerEtterRegistrering.length > 0) {
+                behandlingerEtterRegistrering.sort(sistOppdatertSortering);
+                sisteBehandling = behandlingerEtterRegistrering[0];
+            }
+        }
+        return <MottarDagpenger behandling={sisteBehandling} />;
+    }
+
     if (dagpengerSokeStatus === DagpengerSokestatuser.soknadFerdigBehandlet)
         return <div>KOMPONENT FOR SOKNAD FERDIG BEHANDLET IKKE LAGET</div>;
     if (ettersendelser.length > 0) return <EttersendVedlegg />;
@@ -94,6 +106,34 @@ function IkkeSoktDagpenger() {
                     Har du spørsmål om dagpenger må du bruke{' '}
                     <Lenke href="https://mininnboks.nav.no/sporsmal/skriv/ARBD">Skriv til oss</Lenke> eller{' '}
                     <Lenke href="https://www.nav.no/person/kontakt-oss/chat/">Chat</Lenke>
+                </Normaltekst>
+            </div>
+        </DagpengerDekorator>
+    );
+}
+
+function MottarDagpenger({ behandling }: { behandling: Behandling | null }) {
+    return (
+        <DagpengerDekorator tittle={'Du har fått innvilget dagpenger'}>
+            <div>
+                {behandling ? (
+                    <Normaltekst className={'blokk-xs'}>
+                        Du fikk svar på søknaden {prettyPrintDato(new Date(behandling.sistOppdatert).toISOString())}
+                    </Normaltekst>
+                ) : null}
+            </div>
+
+            <div>
+                <Normaltekst className={'blokk-xs'}>
+                    Har du spørsmål om dagpenger må du bruke{' '}
+                    <Lenke href="https://mininnboks.nav.no/sporsmal/skriv/ARBD">Skriv til oss</Lenke> eller{' '}
+                    <Lenke href="https://www.nav.no/person/kontakt-oss/chat/">Chat</Lenke>
+                </Normaltekst>
+                <Normaltekst>
+                    Gå til{' '}
+                    <Lenke className={'tracking-wide'} href={lenker.saksoversikt.url}>
+                        din saksoversikt
+                    </Lenke>
                 </Normaltekst>
             </div>
         </DagpengerDekorator>
