@@ -12,20 +12,30 @@ export interface Beregningsdata {
     behandlingskjeder?: Behandling[] | null;
 }
 
+export enum DagpengerSokestatuser {
+    ukjentStatus = 'ukjentStatus',
+    harPaabegynteSoknader = 'harPaabegynteSoknader',
+    soknadUnderBehandling = 'soknadUnderBehandling',
+    soknadFerdigBehandlet = 'soknadFerdigBehandlet',
+    mottarDagpenger = 'mottarDagpenger',
+}
+
+type dagpengerSokestatus = DagpengerSokestatuser;
+
 function sistOppdatertSortering(a: Behandling, b: Behandling) {
     return new Date(b.sistOppdatert).getTime() - new Date(a.sistOppdatert).getTime();
 }
 
-function beregnDagpengerStatus(data: Beregningsdata): string {
+function beregnDagpengerStatus(data: Beregningsdata): dagpengerSokestatus {
     const { behandlingskjeder, rettighetsgruppe, opprettetRegistreringDato, paabegynteSoknader } = data;
-    let status = 'ukjentStatus';
+    let status = DagpengerSokestatuser.ukjentStatus;
     // Sjekker om det er påbegynte søknader etter registreringsdato
     if (opprettetRegistreringDato && paabegynteSoknader && paabegynteSoknader.length > 0) {
         const paabegynteSoknaderEtterRegistrering = paabegynteSoknader.filter(
             (soknad) => new Date(soknad.dato) > opprettetRegistreringDato
         );
         if (paabegynteSoknaderEtterRegistrering.length > 0) {
-            status = 'harPaabegynteSoknader';
+            status = DagpengerSokestatuser.harPaabegynteSoknader;
         }
     }
     // Sjekker om det er søknader under behandling eller ferdig behandlet etter registreringsdato
@@ -36,11 +46,14 @@ function beregnDagpengerStatus(data: Beregningsdata): string {
         if (behandlingerEtterRegistrering.length > 0) {
             behandlingerEtterRegistrering.sort(sistOppdatertSortering);
             const sisteBehandlingsStatus = behandlingerEtterRegistrering[0].status;
-            status = sisteBehandlingsStatus === 'UNDER_BEHANDLING' ? 'soknadUnderBehandling' : 'soknadFerdigBehandlet';
+            status =
+                sisteBehandlingsStatus === 'UNDER_BEHANDLING'
+                    ? DagpengerSokestatuser.soknadUnderBehandling
+                    : DagpengerSokestatuser.soknadFerdigBehandlet;
         }
     }
     if (rettighetsgruppe === 'DAGP') {
-        status = 'mottarDagpenger';
+        status = DagpengerSokestatuser.mottarDagpenger;
     }
     return status;
 }

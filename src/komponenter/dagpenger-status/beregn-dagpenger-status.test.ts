@@ -1,16 +1,16 @@
-import beregnDagpengerStatus from './beregn-dagpenger-status';
+import beregnDagpengerStatus, { DagpengerSokestatuser } from './beregn-dagpenger-status';
 
 describe('tester funksjonen beregnDagpengerStatus', () => {
     test('returnerer ukjentStatus uten input', () => {
         const status = beregnDagpengerStatus({});
-        expect(status).toBe('ukjentStatus');
+        expect(status).toBe(DagpengerSokestatuser.ukjentStatus);
     });
 
     test('returnerer mottarDagpenger når rettighetsgruppe er DAGP', () => {
         const status = beregnDagpengerStatus({
             rettighetsgruppe: 'DAGP',
         });
-        expect(status).toBe('mottarDagpenger');
+        expect(status).toBe(DagpengerSokestatuser.mottarDagpenger);
     });
 
     test('returnerer harPaabegynteSoknader når det er påbegynte søknader etter registreringsdato', () => {
@@ -28,7 +28,7 @@ describe('tester funksjonen beregnDagpengerStatus', () => {
             opprettetRegistreringDato,
             paabegynteSoknader,
         });
-        expect(status).toBe('harPaabegynteSoknader');
+        expect(status).toBe(DagpengerSokestatuser.harPaabegynteSoknader);
     });
 
     test('returnerer ukjentStatus når det er påbegynte søknader etter registreringsdato men registreringsdato er ukjent', () => {
@@ -46,7 +46,7 @@ describe('tester funksjonen beregnDagpengerStatus', () => {
             opprettetRegistreringDato,
             paabegynteSoknader,
         });
-        expect(status).toBe('ukjentStatus');
+        expect(status).toBe(DagpengerSokestatuser.ukjentStatus);
     });
 
     test('returnerer ukjentStatus når det er påbegynte søknader før registreringsdato', () => {
@@ -64,7 +64,7 @@ describe('tester funksjonen beregnDagpengerStatus', () => {
             opprettetRegistreringDato,
             paabegynteSoknader,
         });
-        expect(status).toBe('ukjentStatus');
+        expect(status).toBe(DagpengerSokestatuser.ukjentStatus);
     });
 
     test('returnerer soknadUnderBehandling når det er søknader UNDER_BEHANDLING etter registreringsdato', () => {
@@ -80,7 +80,7 @@ describe('tester funksjonen beregnDagpengerStatus', () => {
             opprettetRegistreringDato,
             behandlingskjeder,
         });
-        expect(status).toBe('soknadUnderBehandling');
+        expect(status).toBe(DagpengerSokestatuser.soknadUnderBehandling);
     });
 
     test('returnerer soknadFerdigBehandlet når det er søknader FERDIG_BEHANDLET etter registreringsdato og etter UNDER_BEHANDLING', () => {
@@ -100,7 +100,7 @@ describe('tester funksjonen beregnDagpengerStatus', () => {
             opprettetRegistreringDato,
             behandlingskjeder,
         });
-        expect(status).toBe('soknadFerdigBehandlet');
+        expect(status).toBe(DagpengerSokestatuser.soknadFerdigBehandlet);
     });
 
     test('returnerer ukjentStatus når det er behandlinger før registreringsdato', () => {
@@ -120,6 +120,6 @@ describe('tester funksjonen beregnDagpengerStatus', () => {
             opprettetRegistreringDato,
             behandlingskjeder,
         });
-        expect(status).toBe('ukjentStatus');
+        expect(status).toBe(DagpengerSokestatuser.ukjentStatus);
     });
 });
