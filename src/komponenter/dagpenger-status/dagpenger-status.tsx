@@ -10,6 +10,7 @@ import * as Sakstema from '../../ducks/sakstema';
 import harUbehandletDpSoknad from '../../lib/har-ubehandlet-dp-soknad';
 import { kanVise14AStatus } from '../14a-intro/14a';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
+import beregnDagpengerStatus from './beregn-dagpenger-status';
 import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import Lenke from 'nav-frontend-lenker';
 import { LenkepanelBase } from 'nav-frontend-lenkepanel';
@@ -31,7 +32,12 @@ function DagpengerStatus() {
 
     if (!kanViseKomponent) return null;
 
+    const opprettetRegistreringDatoString = registreringData?.registrering?.opprettetDato;
+    const opprettetRegistreringDato = opprettetRegistreringDatoString
+        ? new Date(opprettetRegistreringDatoString)
+        : null;
     const dagpengerSaksTema = sakstemaData.sakstema.find((tema) => tema.temakode === 'DAG');
+    const behandlingskjeder = dagpengerSaksTema ? dagpengerSaksTema.behandlingskjeder : null;
     const ubehandledeDpSoknader = dagpengerSaksTema
         ? harUbehandletDpSoknad(dagpengerSaksTema.behandlingskjeder)
         : 'nei';
@@ -39,6 +45,14 @@ function DagpengerStatus() {
     const paabegynteSoknader = paabegynteSoknaderData.soknader;
     const rettighetsgruppe = brukerInfoData.rettighetsgruppe;
     const ettersendelser = muligeEttersendelserData;
+
+    const dagpengerSokeStatus = beregnDagpengerStatus({
+        opprettetRegistreringDato,
+        rettighetsgruppe,
+        paabegynteSoknader,
+        behandlingskjeder,
+    });
+    console.log(dagpengerSokeStatus);
 
     if (rettighetsgruppe === 'DAGP') return <div>KOMPONENT FOR MOTTAR DAGPENGER IKKE LAGET</div>;
     if (ettersendelser.length > 0) return <EttersendVedlegg />;
