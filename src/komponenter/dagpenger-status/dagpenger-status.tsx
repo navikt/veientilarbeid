@@ -73,7 +73,8 @@ function IkkeSoktDagpenger() {
                 </Normaltekst>
                 <Normaltekst>
                     Har du spørsmål om dagpenger må du bruke{' '}
-                    <Lenke href="https://mininnboks.nav.no/sporsmal/skriv/ARBD">Skriv til oss</Lenke>
+                    <Lenke href="https://mininnboks.nav.no/sporsmal/skriv/ARBD">Skriv til oss</Lenke> eller{' '}
+                    <Lenke href="https://www.nav.no/person/kontakt-oss/chat/">Chat</Lenke>
                 </Normaltekst>
             </div>
 
@@ -86,15 +87,9 @@ function IkkeSoktDagpenger() {
                     <div className="lenkepanel__innhold">
                         <div className="ml-1">
                             <Element>Søk om dagpenger</Element>
-                            <Normaltekst>Du er registrert som ***</Normaltekst>
                         </div>
                     </div>
                 </LenkepanelBase>
-                <Normaltekst>
-                    <Lenke className={'tracking-wide'} href={''}>
-                        Dagpenger er ikke aktuelt for meg
-                    </Lenke>
-                </Normaltekst>
             </div>
         </DagpengerDekorator>
     );
@@ -203,7 +198,6 @@ function DagpengerDekorator(props: DapengerDekoratorProps) {
     return (
         <div className={'dagpenger-status-omslutning'}>
             <div>
-                <Element style={{ color: 'red' }}>DAGPENGER</Element>
                 <Systemtittel>{props.tittle}</Systemtittel>
             </div>
             {props?.children}
