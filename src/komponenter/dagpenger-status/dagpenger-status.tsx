@@ -9,7 +9,7 @@ import * as MuligeEttersendelser from '../../ducks/mulige-ettersendelser';
 import * as Sakstema from '../../ducks/sakstema';
 import { kanVise14AStatus } from '../14a-intro/14a';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
-import beregnDagpengerSokeStatus, { DagpengerSokestatuser, sistOppdatertSortering } from './beregn-dagpenger-status';
+import beregnDagpengerSokeStatus, { DagpengerSokestatuser, sistOppdaterteBehandling } from './beregn-dagpenger-status';
 import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import Lenke from 'nav-frontend-lenker';
 import { LenkepanelBase } from 'nav-frontend-lenkepanel';
@@ -52,20 +52,13 @@ function DagpengerStatus() {
         behandlingskjeder,
     });
 
+    let sisteBehandling = null;
+    if (opprettetRegistreringDato && behandlingskjeder)
+        sisteBehandling = sistOppdaterteBehandling(behandlingskjeder, opprettetRegistreringDato);
+
     if (dagpengerSokeStatus === DagpengerSokestatuser.mottarDagpenger) {
-        let sisteBehandling = null;
-        if (opprettetRegistreringDato && behandlingskjeder) {
-            const behandlingerEtterRegistrering = behandlingskjeder.filter(
-                (behandling) => new Date(behandling.sistOppdatert) > opprettetRegistreringDato
-            );
-            if (behandlingerEtterRegistrering.length > 0) {
-                behandlingerEtterRegistrering.sort(sistOppdatertSortering);
-                sisteBehandling = behandlingerEtterRegistrering[0];
-            }
-        }
         return <MottarDagpenger behandling={sisteBehandling} />;
     }
-
     if (dagpengerSokeStatus === DagpengerSokestatuser.soknadFerdigBehandlet)
         return <div>KOMPONENT FOR SOKNAD FERDIG BEHANDLET IKKE LAGET</div>;
     if (ettersendelser.length > 0) return <EttersendVedlegg />;
