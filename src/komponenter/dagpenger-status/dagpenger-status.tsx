@@ -7,10 +7,9 @@ import * as BrukerInfo from '../../ducks/bruker-info';
 import * as PaabegynteSoknader from '../../ducks/paabegynte-soknader';
 import * as MuligeEttersendelser from '../../ducks/mulige-ettersendelser';
 import * as Sakstema from '../../ducks/sakstema';
-import harUbehandletDpSoknad from '../../lib/har-ubehandlet-dp-soknad';
 import { kanVise14AStatus } from '../14a-intro/14a';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
-import beregnDagpengerSokeStatus from './beregn-dagpenger-status';
+import beregnDagpengerSokeStatus, { DagpengerSokestatuser } from './beregn-dagpenger-status';
 import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import Lenke from 'nav-frontend-lenker';
 import { LenkepanelBase } from 'nav-frontend-lenkepanel';
@@ -38,10 +37,6 @@ function DagpengerStatus() {
         : null;
     const dagpengerSaksTema = sakstemaData.sakstema.find((tema) => tema.temakode === 'DAG');
     const behandlingskjeder = dagpengerSaksTema ? dagpengerSaksTema.behandlingskjeder : null;
-    const ubehandledeDpSoknader = dagpengerSaksTema
-        ? harUbehandletDpSoknad(dagpengerSaksTema.behandlingskjeder)
-        : 'nei';
-    console.log(ubehandledeDpSoknader);
     const paabegynteSoknader = paabegynteSoknaderData.soknader;
     const rettighetsgruppe = brukerInfoData.rettighetsgruppe;
     const ettersendelser = muligeEttersendelserData;
@@ -52,18 +47,18 @@ function DagpengerStatus() {
         paabegynteSoknader,
         behandlingskjeder,
     });
-    console.log(dagpengerSokeStatus);
 
-    if (rettighetsgruppe === 'DAGP') return <div>KOMPONENT FOR MOTTAR DAGPENGER IKKE LAGET</div>;
+    if (dagpengerSokeStatus === DagpengerSokestatuser.mottarDagpenger)
+        return <div>KOMPONENT FOR MOTTAR DAGPENGER IKKE LAGET</div>;
     if (ettersendelser.length > 0) return <EttersendVedlegg />;
-    if (ubehandledeDpSoknader === 'ja')
+    if (dagpengerSokeStatus === DagpengerSokestatuser.soknadUnderBehandling)
         return (
             <div>
                 <SoknadTilBehandling />
             </div>
         );
-    if (paabegynteSoknader.length > 0) return <PaabegyntSoknad />;
-    else if (rettighetsgruppe === 'IYT' && paabegynteSoknader.length === 0) return <IkkeSoktDagpenger />;
+    if (dagpengerSokeStatus === DagpengerSokestatuser.harPaabegynteSoknader) return <PaabegyntSoknad />;
+    else if (dagpengerSokeStatus === DagpengerSokestatuser.ukjentStatus) return <IkkeSoktDagpenger />;
     else return null;
 }
 
