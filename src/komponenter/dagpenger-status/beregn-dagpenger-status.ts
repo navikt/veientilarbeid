@@ -51,11 +51,14 @@ function beregnDagpengerStatus(data: Beregningsdata): dagpengerSokestatus {
     // Sjekker om det er søknader under behandling eller ferdig behandlet etter registreringsdato
     if (opprettetRegistreringDato && behandlingskjeder) {
         const behandlingSistOppdatert = sistOppdaterteBehandling(behandlingskjeder, opprettetRegistreringDato);
-        const sisteBehandlingsStatus = behandlingSistOppdatert.status;
-        status =
-            sisteBehandlingsStatus === 'UNDER_BEHANDLING'
-                ? DagpengerSokestatuser.soknadUnderBehandling
-                : DagpengerSokestatuser.soknadFerdigBehandlet;
+        const sisteOppdaterteBehandlingEtterRegistreringsdato = behandlingSistOppdatert;
+
+        if (sisteOppdaterteBehandlingEtterRegistreringsdato) {
+            status =
+                sisteOppdaterteBehandlingEtterRegistreringsdato.status === 'UNDER_BEHANDLING'
+                    ? DagpengerSokestatuser.soknadUnderBehandling
+                    : DagpengerSokestatuser.soknadFerdigBehandlet;
+        }
     }
     if (rettighetsgruppe === 'DAGP') {
         status = DagpengerSokestatuser.mottarDagpenger;
