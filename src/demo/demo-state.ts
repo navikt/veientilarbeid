@@ -169,5 +169,7 @@ export const hentDpMuligeEttersendelser = (): JSONValue => {
 
 export const hentDpSakstema = (): JSONValue => {
     const status = hentDemoState(DemoData.DP_STATUS);
-    return status === 'dagpengestatusInnsendtSoknad' ? dpSakstemaMock : { sakstema: [] };
+    return status && ['dagpengestatusSoknadBehandlet', 'dagpengestatusInnsendtSoknad'].includes(status)
+        ? dpSakstemaMock
+        : { sakstema: [] };
 };

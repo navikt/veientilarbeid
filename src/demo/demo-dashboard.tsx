@@ -186,6 +186,7 @@ class DemoDashboard extends React.Component<{}> {
             dagpengestatusStartetSoknad: 'Har startet dagpengesøknad',
             dagpengestatusEttersendVedlegg: 'Har vedlegg som må ettersendes',
             dagpengestatusInnsendtSoknad: 'Har sendt søknad',
+            dagpengestatusSoknadBehandlet: 'Søknad ferdig behandlet',
         };
 
         const registreringTyper = {
