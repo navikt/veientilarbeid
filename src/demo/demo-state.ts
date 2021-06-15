@@ -3,7 +3,6 @@ import { foerstkommendeMandag, plussDager } from '../utils/date-utils';
 import { hentQueryParam, settQueryParam } from '../utils/query-param-utils';
 import { FeatureToggles } from '../ducks/feature-toggles';
 import muligeEttersendelserMock from '../mocks/saksoversikt-mulige-ettersendelser-mock';
-import dpSakstemaMock from '../mocks/saksoversikt-sakstema-mock';
 
 type JSONValue = null | string | number | boolean | JSONObject | JSONArray;
 
@@ -179,9 +178,107 @@ export const hentDpMuligeEttersendelser = (): JSONValue => {
     return status === 'dagpengestatusEttersendVedlegg' ? muligeEttersendelserMock : [];
 };
 
+function genererSakstemaMock(valgtStatus: string): JSONValue {
+    const plussDagerBehandlet = valgtStatus === 'dagpengestatusSoknadBehandlet' ? 4 : 2;
+    const plussDagerInnsendt = valgtStatus === 'dagpengestatusInnsendtSoknad' ? 4 : 2;
+    const sistOppdatertBehandlet = plussDager(new Date(), plussDagerBehandlet);
+    const sistOppdatertInnsendt = plussDager(new Date(), plussDagerInnsendt);
+    const sakstemaMock = {
+        sakstema: [
+            {
+                temakode: 'DAG',
+                temanavn: 'Dagpenger',
+                erGruppert: false,
+                behandlingskjeder: [
+                    { status: 'UNDER_BEHANDLING', sistOppdatert: sistOppdatertInnsendt.toISOString() },
+                    { status: 'FERDIG_BEHANDLET', sistOppdatert: sistOppdatertBehandlet.toISOString() },
+                ],
+                dokumentMetadata: [
+                    {
+                        retning: 'INN',
+                        dato: '2021-05-25T20:46:59.813+02:00',
+                        navn: null,
+                        journalpostId: '493391488',
+                        hoveddokument: {
+                            tittel: 'Søknad om dagpenger (ikke permittert)',
+                            dokumentreferanse: '515191444',
+                            kanVises: true,
+                            logiskDokument: false,
+                        },
+                        vedlegg: [
+                            {
+                                tittel: 'Dokumentasjon av andre ytelser',
+                                dokumentreferanse: '515191445',
+                                kanVises: true,
+                                logiskDokument: false,
+                            },
+                            {
+                                tittel: 'Kvitteringsside for dokumentinnsending',
+                                dokumentreferanse: '515191446',
+                                kanVises: true,
+                                logiskDokument: false,
+                            },
+                        ],
+                        avsender: 'SLUTTBRUKER',
+                        mottaker: 'NAV',
+                        tilhorendeSakid: null,
+                        tilhorendeFagsakId: null,
+                        behandlingsId: '10010WQW9',
+                        baksystem: ['HENVENDELSE'],
+                        temakode: 'DAG',
+                        temakodeVisning: 'Dagpenger',
+                        ettersending: false,
+                        erJournalfort: false,
+                        feilWrapper: { inneholderFeil: false, feilmelding: null },
+                        kategoriNotat: null,
+                        lenkeTilSoknad: null,
+                    },
+                    {
+                        retning: 'INN',
+                        dato: '2021-01-26T15:34:43.068+01:00',
+                        navn: null,
+                        journalpostId: '493329276',
+                        hoveddokument: {
+                            tittel: 'Søknad om dagpenger (ikke permittert)',
+                            dokumentreferanse: '515127318',
+                            kanVises: true,
+                            logiskDokument: false,
+                        },
+                        vedlegg: [
+                            {
+                                tittel: 'Kvitteringsside for dokumentinnsending',
+                                dokumentreferanse: '515127319',
+                                kanVises: true,
+                                logiskDokument: false,
+                            },
+                        ],
+                        avsender: 'SLUTTBRUKER',
+                        mottaker: 'NAV',
+                        tilhorendeSakid: null,
+                        tilhorendeFagsakId: null,
+                        behandlingsId: '10010WPUZ',
+                        baksystem: ['HENVENDELSE'],
+                        temakode: 'DAG',
+                        temakodeVisning: 'Dagpenger',
+                        ettersending: false,
+                        erJournalfort: false,
+                        feilWrapper: { inneholderFeil: false, feilmelding: null },
+                        kategoriNotat: null,
+                        lenkeTilSoknad: null,
+                    },
+                ],
+                tilhorendeSaker: [],
+                feilkoder: [],
+            },
+        ],
+        feilendeBaksystemer: ['JOARK', 'JOARK_SIKKERHETSBEGRENSNING'],
+    };
+    return sakstemaMock;
+}
+
 export const hentDpSakstema = (): JSONValue => {
     const status = hentDemoState(DemoData.DP_STATUS);
     return status && ['dagpengestatusSoknadBehandlet', 'dagpengestatusInnsendtSoknad'].includes(status)
-        ? dpSakstemaMock
+        ? genererSakstemaMock(status)
         : { sakstema: [] };
 };
