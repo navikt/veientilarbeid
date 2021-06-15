@@ -59,8 +59,7 @@ function DagpengerStatus() {
     if (dagpengerSokeStatus === DagpengerSokestatuser.mottarDagpenger) {
         return <MottarDagpenger behandling={sisteBehandling} />;
     }
-    if (dagpengerSokeStatus === DagpengerSokestatuser.soknadFerdigBehandlet)
-        return <div>KOMPONENT FOR SOKNAD FERDIG BEHANDLET IKKE LAGET</div>;
+    if (dagpengerSokeStatus === DagpengerSokestatuser.soknadFerdigBehandlet) return <FerdigBehandletSoknad />;
     if (ettersendelser.length > 0) return <EttersendVedlegg />;
     if (dagpengerSokeStatus === DagpengerSokestatuser.soknadUnderBehandling)
         return (
@@ -122,6 +121,29 @@ function MottarDagpenger({ behandling }: { behandling: Behandling | null }) {
                     <Lenke href="https://mininnboks.nav.no/sporsmal/skriv/ARBD">Skriv til oss</Lenke> eller{' '}
                     <Lenke href="https://www.nav.no/person/kontakt-oss/chat/">Chat</Lenke>
                 </Normaltekst>
+                <Normaltekst>
+                    Gå til{' '}
+                    <Lenke className={'tracking-wide'} href={lenker.saksoversikt.url}>
+                        din saksoversikt
+                    </Lenke>
+                </Normaltekst>
+            </div>
+        </DagpengerDekorator>
+    );
+}
+function FerdigBehandletSoknad() {
+    return (
+        <DagpengerDekorator tittle={'Søknaden din om dagpenger er ferdig behandlet'}>
+            <div>
+                <Normaltekst className={'blokk-xs'}>
+                    Vi har ikke digitaliesert utfallet av behandlingen, men du kan lese svarbrevet{' '}
+                    <Lenke className={'tracking-wide'} href={''}>
+                        her
+                    </Lenke>
+                </Normaltekst>
+            </div>
+
+            <div>
                 <Normaltekst>
                     Gå til{' '}
                     <Lenke className={'tracking-wide'} href={lenker.saksoversikt.url}>
