@@ -162,7 +162,7 @@ function PaabegyntSoknad() {
     return (
         <DagpengerDekorator tittle={'Du har startet på en  søknad om dagpenger, men ikke sendt den inn'}>
             <div>
-                <Normaltekst className={'blokk-xs'}>
+                <Normaltekst className={'blokk-xs gul-uthevingslinje'}>
                     <b>Du kan tidligst få dagpenger</b> fra den dagen du sender inn søknaden.
                 </Normaltekst>
             </div>
