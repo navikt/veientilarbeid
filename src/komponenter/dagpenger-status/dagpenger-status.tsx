@@ -62,11 +62,7 @@ function DagpengerStatus() {
     }
     if (dagpengerSokeStatus === DagpengerSokestatuser.soknadFerdigBehandlet) return <FerdigBehandletSoknad />;
     if (dagpengerSokeStatus === DagpengerSokestatuser.soknadUnderBehandling)
-        return (
-            <div>
-                <SoknadTilBehandling behandlingskjeder={behandlingskjeder} />
-            </div>
-        );
+        return <SoknadTilBehandling behandlingskjeder={behandlingskjeder} />;
     if (dagpengerSokeStatus === DagpengerSokestatuser.harPaabegynteSoknader)
         return <PaabegyntSoknad behandling={sisteBehandling} />;
     else if (dagpengerSokeStatus === DagpengerSokestatuser.ukjentStatus) return <IkkeSoktDagpenger />;
