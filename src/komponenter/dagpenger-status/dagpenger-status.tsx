@@ -15,6 +15,7 @@ import { LenkepanelBase } from 'nav-frontend-lenkepanel';
 import { lenker } from '../dittnav/utils/lenker';
 import { Behandling } from '../../utils/dager-fra-innsendt-soknad';
 import prettyPrintDato from '../../utils/pretty-print-dato';
+
 const virkedager = require('@alheimsins/virkedager');
 
 function DagpengerStatus() {
@@ -139,6 +140,11 @@ function FerdigBehandletSoknad() {
             </div>
 
             <div>
+                <Normaltekst className={'blokk-xs'}>
+                    Har du spørsmål om dagpenger må du bruke{' '}
+                    <Lenke href="https://mininnboks.nav.no/sporsmal/skriv/ARBD">Skriv til oss</Lenke> eller{' '}
+                    <Lenke href="https://www.nav.no/person/kontakt-oss/chat/">Chat</Lenke>
+                </Normaltekst>
                 <Normaltekst>
                     Gå til{' '}
                     <Lenke className={'tracking-wide'} href={lenker.saksoversikt.url}>
