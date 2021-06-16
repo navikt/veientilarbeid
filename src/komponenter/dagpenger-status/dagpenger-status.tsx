@@ -253,11 +253,6 @@ function SoknadTilBehandling({ behandlingskjeder }: { behandlingskjeder: Behandl
                         din saksoversikt
                     </Lenke>
                 </Normaltekst>
-                <Normaltekst>
-                    <Lenke className={'tracking-wide'} href={''}>
-                        Trekk søknaden
-                    </Lenke>
-                </Normaltekst>
             </div>
         </DagpengerDekorator>
     );
