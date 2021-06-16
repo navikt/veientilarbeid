@@ -117,15 +117,15 @@ function MottarDagpenger({ behandling }: { behandling: Behandling | null }) {
 
             <div>
                 <Normaltekst className={'blokk-xs'}>
+                    Du finner svarbrevet i{' '}
+                    <Lenke className={'tracking-wide'} href={lenker.saksoversikt.url}>
+                        Din saksoversikt
+                    </Lenke>
+                </Normaltekst>
+                <Normaltekst>
                     Har du spørsmål om dagpenger må du bruke{' '}
                     <Lenke href="https://mininnboks.nav.no/sporsmal/skriv/ARBD">Skriv til oss</Lenke> eller{' '}
                     <Lenke href="https://www.nav.no/person/kontakt-oss/chat/">Chat</Lenke>
-                </Normaltekst>
-                <Normaltekst>
-                    Gå til{' '}
-                    <Lenke className={'tracking-wide'} href={lenker.saksoversikt.url}>
-                        din saksoversikt
-                    </Lenke>
                 </Normaltekst>
             </div>
         </DagpengerDekorator>
