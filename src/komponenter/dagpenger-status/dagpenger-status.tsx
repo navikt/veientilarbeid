@@ -132,15 +132,6 @@ function FerdigBehandletSoknad() {
         <DagpengerDekorator tittle={'Søknaden din om dagpenger er ferdig behandlet'}>
             <div>
                 <Normaltekst className={'blokk-xs'}>
-                    Vi har ikke digitalisert utfallet av behandlingen, men du kan lese svarbrevet{' '}
-                    <Lenke className={'tracking-wide'} href={''}>
-                        her
-                    </Lenke>
-                </Normaltekst>
-            </div>
-
-            <div>
-                <Normaltekst className={'blokk-xs'}>
                     Har du spørsmål om dagpenger må du bruke{' '}
                     <Lenke href="https://mininnboks.nav.no/sporsmal/skriv/ARBD">Skriv til oss</Lenke> eller{' '}
                     <Lenke href="https://www.nav.no/person/kontakt-oss/chat/">Chat</Lenke>
