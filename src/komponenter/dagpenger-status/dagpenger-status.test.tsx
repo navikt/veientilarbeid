@@ -4,6 +4,7 @@ import { render } from '@testing-library/react';
 import DagpengerStatus from './dagpenger-status';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import { Formidlingsgruppe, Servicegruppe } from '../../ducks/oppfolging';
+import { mockIntersectionObserver } from '../../mocks/intersection-observer-mock';
 
 const providerProps: ProviderProps = {
     brukerInfo: {
@@ -22,6 +23,10 @@ const providerProps: ProviderProps = {
 };
 
 describe('Tester dagpengerkomponenten', () => {
+    beforeEach(() => {
+        mockIntersectionObserver();
+    });
+
     test('Komponenten rendres IKKE default', () => {
         const { container } = render(<DagpengerStatus />);
         expect(container).toBeEmptyDOMElement();

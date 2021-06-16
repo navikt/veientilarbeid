@@ -15,6 +15,8 @@ import { LenkepanelBase } from 'nav-frontend-lenkepanel';
 import { lenker } from '../dittnav/utils/lenker';
 import { Behandling } from '../../utils/dager-fra-innsendt-soknad';
 import prettyPrintDato from '../../utils/pretty-print-dato';
+import InViewport from '../in-viewport/in-viewport';
+import ErRendret from '../er-rendret/er-rendret';
 
 const virkedager = require('@alheimsins/virkedager');
 
@@ -272,10 +274,12 @@ interface DapengerDekoratorProps {
 function DagpengerDekorator(props: DapengerDekoratorProps) {
     return (
         <div className={'dagpenger-status-omslutning'}>
+            <ErRendret loggTekst="Rendrer dagpengerstatus" />
             <div>
                 <Systemtittel className={'blokk-xs'}>{props.tittle}</Systemtittel>
             </div>
             {props?.children}
+            <InViewport loggTekst="Viser dagpengerstatus i viewPort" />
         </div>
     );
 }
