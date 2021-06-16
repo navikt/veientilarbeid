@@ -5,7 +5,6 @@ import * as Brukerregistrering from '../../ducks/brukerregistrering';
 import * as Oppfolging from '../../ducks/oppfolging';
 import * as BrukerInfo from '../../ducks/bruker-info';
 import * as PaabegynteSoknader from '../../ducks/paabegynte-soknader';
-import * as MuligeEttersendelser from '../../ducks/mulige-ettersendelser';
 import * as Sakstema from '../../ducks/sakstema';
 import { kanVise14AStatus } from '../14a-intro/14a';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
@@ -25,7 +24,6 @@ function DagpengerStatus() {
     const { data: oppfolgingData } = React.useContext(Oppfolging.OppfolgingContext);
     const { data: brukerInfoData } = React.useContext(BrukerInfo.BrukerInfoContext);
     const { data: paabegynteSoknaderData } = React.useContext(PaabegynteSoknader.PaabegynteSoknaderContext);
-    const { data: muligeEttersendelserData } = React.useContext(MuligeEttersendelser.MuligeEttersendelserContext);
     const { data: sakstemaData } = React.useContext(Sakstema.SakstemaContext);
 
     const featuretoggleAktivert = featuretoggleData['veientilarbeid.dagpenger-status'];
@@ -44,7 +42,6 @@ function DagpengerStatus() {
 
     const paabegynteSoknader = paabegynteSoknaderData.soknader;
     const rettighetsgruppe = brukerInfoData.rettighetsgruppe;
-    const ettersendelser = muligeEttersendelserData;
 
     const dagpengerSokeStatus = beregnDagpengerSokeStatus({
         opprettetRegistreringDato,
@@ -61,7 +58,6 @@ function DagpengerStatus() {
         return <MottarDagpenger behandling={sisteBehandling} />;
     }
     if (dagpengerSokeStatus === DagpengerSokestatuser.soknadFerdigBehandlet) return <FerdigBehandletSoknad />;
-    if (ettersendelser.length > 0) return <EttersendVedlegg />;
     if (dagpengerSokeStatus === DagpengerSokestatuser.soknadUnderBehandling)
         return (
             <div>
@@ -179,44 +175,6 @@ function PaabegyntSoknad() {
                     </div>
                 </LenkepanelBase>
 
-                <Normaltekst className={'blokk-xs'}>
-                    Har du spørsmål om dagpenger må du bruke{' '}
-                    <Lenke href="https://mininnboks.nav.no/sporsmal/skriv/ARBD">Skriv til oss</Lenke> eller{' '}
-                    <Lenke href="https://www.nav.no/person/kontakt-oss/chat/">Chat</Lenke>
-                </Normaltekst>
-                <Normaltekst>
-                    Gå til{' '}
-                    <Lenke className={'tracking-wide'} href={lenker.saksoversikt.url}>
-                        din saksoversikt
-                    </Lenke>
-                </Normaltekst>
-            </div>
-        </DagpengerDekorator>
-    );
-}
-
-function EttersendVedlegg() {
-    return (
-        <DagpengerDekorator tittle={'Du må ettersende vedlegg'}>
-            <div>
-                <Normaltekst className={'blokk-xs'}>
-                    Du begynte på søknaden om dagpenger for PLACEHOLDER dager siden
-                </Normaltekst>
-            </div>
-
-            <div>
-                <LenkepanelBase
-                    href={'https://www.nav.no/soknader/nb/person/arbeid/dagpenger'}
-                    border={true}
-                    className={'meldekort-send-inn-kort'}
-                >
-                    <div className="lenkepanel__innhold">
-                        <div className="ml-1">
-                            <Element>Gå til ettersending</Element>
-                            <Normaltekst>...</Normaltekst>
-                        </div>
-                    </div>
-                </LenkepanelBase>
                 <Normaltekst className={'blokk-xs'}>
                     Har du spørsmål om dagpenger må du bruke{' '}
                     <Lenke href="https://mininnboks.nav.no/sporsmal/skriv/ARBD">Skriv til oss</Lenke> eller{' '}
