@@ -276,6 +276,7 @@ function DagpengerDekorator(props: DapengerDekoratorProps) {
         <div className={'dagpenger-status-omslutning'}>
             <ErRendret loggTekst="Rendrer dagpengerstatus" />
             <div>
+                <Element tag={'h1'}>DAGPENGER</Element>
                 <Systemtittel className={'blokk-xs'}>{props.tittle}</Systemtittel>
             </div>
             {props?.children}
