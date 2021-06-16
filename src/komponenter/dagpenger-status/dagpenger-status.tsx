@@ -136,7 +136,7 @@ function FerdigBehandletSoknad() {
         <DagpengerDekorator tittle={'Søknaden din om dagpenger er ferdig behandlet'}>
             <div>
                 <Normaltekst className={'blokk-xs'}>
-                    Vi har ikke digitaliesert utfallet av behandlingen, men du kan lese svarbrevet{' '}
+                    Vi har ikke digitalisert utfallet av behandlingen, men du kan lese svarbrevet{' '}
                     <Lenke className={'tracking-wide'} href={''}>
                         her
                     </Lenke>
