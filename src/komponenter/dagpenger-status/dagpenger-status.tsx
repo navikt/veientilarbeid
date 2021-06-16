@@ -67,7 +67,8 @@ function DagpengerStatus() {
                 <SoknadTilBehandling behandlingskjeder={behandlingskjeder} />
             </div>
         );
-    if (dagpengerSokeStatus === DagpengerSokestatuser.harPaabegynteSoknader) return <PaabegyntSoknad />;
+    if (dagpengerSokeStatus === DagpengerSokestatuser.harPaabegynteSoknader)
+        return <PaabegyntSoknad behandling={sisteBehandling} />;
     else if (dagpengerSokeStatus === DagpengerSokestatuser.ukjentStatus) return <IkkeSoktDagpenger />;
     else return null;
 }
@@ -159,9 +160,9 @@ function FerdigBehandletSoknad() {
     );
 }
 
-function PaabegyntSoknad() {
+function PaabegyntSoknad({ behandling }: { behandling: Behandling | null }) {
     return (
-        <DagpengerDekorator tittle={'Du har startet på en  søknad om dagpenger, men ikke sendt den inn'}>
+        <DagpengerDekorator tittle={'Du har startet på en søknad om dagpenger, men ikke sendt den inn'}>
             <div>
                 <Normaltekst className={'blokk-xs gul-uthevingslinje'}>
                     <b>Du kan tidligst få dagpenger</b> fra den dagen du sender inn søknaden.
@@ -177,7 +178,12 @@ function PaabegyntSoknad() {
                     <div className="lenkepanel__innhold">
                         <div className="ml-1">
                             <Element>Fortsett på søknaden</Element>
-                            <Normaltekst>...</Normaltekst>
+                            {behandling ? (
+                                <Normaltekst>
+                                    Du startet på søknaden den{' '}
+                                    {prettyPrintDato(new Date(behandling.sistOppdatert).toISOString())}
+                                </Normaltekst>
+                            ) : null}
                         </div>
                     </div>
                 </LenkepanelBase>
