@@ -184,7 +184,6 @@ class DemoDashboard extends React.Component<{}> {
         const dagpengeStatuser = {
             dagpengestatusIkkeSokt: 'Har ikke søkt dagpenger',
             dagpengestatusStartetSoknad: 'Har startet dagpengesøknad',
-            dagpengestatusEttersendVedlegg: 'Har vedlegg som må ettersendes',
             dagpengestatusInnsendtSoknad: 'Har sendt søknad',
             dagpengestatusSoknadBehandlet: 'Søknad ferdig behandlet',
         };
