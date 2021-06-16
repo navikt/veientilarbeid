@@ -210,7 +210,7 @@ function SoknadTilBehandling({ behandlingskjeder }: { behandlingskjeder: Behandl
     const ForventetSvar = () => {
         return (
             <Normaltekst className={'blokk-xs'}>
-                Du kan forvente svar innen {prettyPrintDato(datoForForventetSvar?.toISOString())}
+                Du kan <b>forvente svar</b> innen {prettyPrintDato(datoForForventetSvar?.toISOString())}
             </Normaltekst>
         );
     };
