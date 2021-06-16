@@ -211,6 +211,27 @@ function SoknadTilBehandling({ behandlingskjeder }: { behandlingskjeder: Behandl
     const datoForSisteInnsendteSoknad = datoForSisteInnsendeSoknad(behandlingskjeder);
     const kopiAvDatoForSisteInnsendteSoknad = new Date(datoForSisteInnsendteSoknad.toISOString());
     const datoForForventetSvar = new Date(virkedager(kopiAvDatoForSisteInnsendteSoknad, 30));
+    const dagensDato = new Date();
+
+    const ForventetSvar = () => {
+        return (
+            <Normaltekst className={'blokk-xs'}>
+                Du kan forvente svar innen {prettyPrintDato(datoForForventetSvar?.toISOString())}
+            </Normaltekst>
+        );
+    };
+
+    const Saksbehandlingstider = () => {
+        return (
+            <Normaltekst className={'blokk-xs'}>
+                Normal saksbehandlingstid er 30 dager. Se{' '}
+                <Lenke href="https://www.nav.no/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav">
+                    saksbehandlingsoversikten
+                </Lenke>{' '}
+                for mer informasjon.
+            </Normaltekst>
+        );
+    };
 
     return (
         <DagpengerDekorator tittle={'Vi har mottatt søknad om dagpenger'}>
@@ -218,9 +239,7 @@ function SoknadTilBehandling({ behandlingskjeder }: { behandlingskjeder: Behandl
                 <Normaltekst className={'blokk-xs'}>
                     Siste søknad mottatt: {prettyPrintDato(datoForSisteInnsendteSoknad?.toISOString())}{' '}
                 </Normaltekst>
-                <Normaltekst className={'blokk-xs'}>
-                    Du kan forvente svar innen {prettyPrintDato(datoForForventetSvar?.toISOString())}
-                </Normaltekst>
+                {dagensDato < datoForForventetSvar ? <ForventetSvar /> : <Saksbehandlingstider />}
             </div>
 
             <div>
