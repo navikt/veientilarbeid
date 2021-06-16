@@ -57,16 +57,20 @@ function DagpengerStatus() {
     if (opprettetRegistreringDato && behandlingskjeder)
         sisteBehandling = sistOppdaterteBehandling(behandlingskjeder, opprettetRegistreringDato);
 
-    if (dagpengerSokeStatus === DagpengerSokestatuser.mottarDagpenger) {
-        return <MottarDagpenger behandling={sisteBehandling} />;
+    switch (dagpengerSokeStatus) {
+        case DagpengerSokestatuser.mottarDagpenger:
+            return <MottarDagpenger behandling={sisteBehandling} />;
+        case DagpengerSokestatuser.soknadFerdigBehandlet:
+            return <FerdigBehandletSoknad />;
+        case DagpengerSokestatuser.soknadUnderBehandling:
+            return <SoknadTilBehandling behandlingskjeder={behandlingskjeder} />;
+        case DagpengerSokestatuser.harPaabegynteSoknader:
+            return <PaabegyntSoknad behandling={sisteBehandling} />;
+        case DagpengerSokestatuser.ukjentStatus:
+            return <IkkeSoktDagpenger />;
+        default:
+            return null;
     }
-    if (dagpengerSokeStatus === DagpengerSokestatuser.soknadFerdigBehandlet) return <FerdigBehandletSoknad />;
-    if (dagpengerSokeStatus === DagpengerSokestatuser.soknadUnderBehandling)
-        return <SoknadTilBehandling behandlingskjeder={behandlingskjeder} />;
-    if (dagpengerSokeStatus === DagpengerSokestatuser.harPaabegynteSoknader)
-        return <PaabegyntSoknad behandling={sisteBehandling} />;
-    else if (dagpengerSokeStatus === DagpengerSokestatuser.ukjentStatus) return <IkkeSoktDagpenger />;
-    else return null;
 }
 
 function IkkeSoktDagpenger() {
