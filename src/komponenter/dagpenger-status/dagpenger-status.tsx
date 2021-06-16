@@ -94,6 +94,7 @@ function IkkeSoktDagpenger() {
                     <div className="lenkepanel__innhold">
                         <div className="ml-1">
                             <Element>Søk om dagpenger</Element>
+                            <Normaltekst>Du kan begynne nå og fortsette senere</Normaltekst>
                         </div>
                     </div>
                 </LenkepanelBase>
