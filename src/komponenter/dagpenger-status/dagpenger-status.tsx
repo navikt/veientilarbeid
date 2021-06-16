@@ -16,6 +16,7 @@ import { LenkepanelBase } from 'nav-frontend-lenkepanel';
 import { lenker } from '../dittnav/utils/lenker';
 import { Behandling } from '../../utils/dager-fra-innsendt-soknad';
 import prettyPrintDato from '../../utils/pretty-print-dato';
+const virkedager = require('@alheimsins/virkedager');
 
 function DagpengerStatus() {
     const amplitudeData = React.useContext(AmplitudeContext);
@@ -246,6 +247,8 @@ function SoknadTilBehandling({ behandlingskjeder }: { behandlingskjeder: Behandl
     };
 
     const datoForSisteInnsendteSoknad = datoForSisteInnsendeSoknad(behandlingskjeder);
+    const kopiAvDatoForSisteInnsendteSoknad = new Date(datoForSisteInnsendteSoknad.toISOString());
+    const datoForForventetSvar = new Date(virkedager(kopiAvDatoForSisteInnsendteSoknad, 30));
 
     return (
         <DagpengerDekorator tittle={'Vi har mottatt søknad om dagpenger'}>
@@ -253,7 +256,9 @@ function SoknadTilBehandling({ behandlingskjeder }: { behandlingskjeder: Behandl
                 <Normaltekst className={'blokk-xs'}>
                     Siste søknad mottatt: {prettyPrintDato(datoForSisteInnsendteSoknad?.toISOString())}{' '}
                 </Normaltekst>
-                <Normaltekst className={'blokk-xs'}>Du kan forvente svar innen 24. juli</Normaltekst>
+                <Normaltekst className={'blokk-xs'}>
+                    Du kan forvente svar innen {prettyPrintDato(datoForForventetSvar?.toISOString())}
+                </Normaltekst>
             </div>
 
             <div>
