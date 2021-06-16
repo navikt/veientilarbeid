@@ -76,8 +76,12 @@ function IkkeSoktDagpenger() {
                 <Normaltekst className={'blokk-xs'}>
                     Du kan tidligst få dagpenger fra den dagen du sender inn søknaden.
                 </Normaltekst>
+                <Normaltekst className={'blokk-xs'}>
+                    Har du spørsmål om dagpenger må du bruke{' '}
+                    <Lenke href="https://mininnboks.nav.no/sporsmal/skriv/ARBD">Skriv til oss</Lenke> eller{' '}
+                    <Lenke href="https://www.nav.no/person/kontakt-oss/chat/">Chat</Lenke>
+                </Normaltekst>
             </div>
-
             <div>
                 <LenkepanelBase
                     href={'https://www.nav.no/soknader/nb/person/arbeid/dagpenger'}
@@ -90,12 +94,6 @@ function IkkeSoktDagpenger() {
                         </div>
                     </div>
                 </LenkepanelBase>
-
-                <Normaltekst className={'blokk-xs'}>
-                    Har du spørsmål om dagpenger må du bruke{' '}
-                    <Lenke href="https://mininnboks.nav.no/sporsmal/skriv/ARBD">Skriv til oss</Lenke> eller{' '}
-                    <Lenke href="https://www.nav.no/person/kontakt-oss/chat/">Chat</Lenke>
-                </Normaltekst>
             </div>
         </DagpengerDekorator>
     );
