@@ -57,6 +57,14 @@ function DagpengerStatus() {
     if (opprettetRegistreringDato && behandlingskjeder)
         sisteBehandling = sistOppdaterteBehandling(behandlingskjeder, opprettetRegistreringDato);
 
+    let sistePaabegynte = null;
+    if (paabegynteSoknader.length > 0) {
+        paabegynteSoknader.sort((a, b) => {
+            return new Date(b.dato).getTime() - new Date(a.dato).getTime();
+        });
+        sistePaabegynte = paabegynteSoknader[0];
+    }
+
     switch (dagpengerSokeStatus) {
         case DagpengerSokestatuser.mottarDagpenger:
             return <MottarDagpenger behandling={sisteBehandling} />;
@@ -65,7 +73,7 @@ function DagpengerStatus() {
         case DagpengerSokestatuser.soknadUnderBehandling:
             return <SoknadTilBehandling behandlingskjeder={behandlingskjeder} />;
         case DagpengerSokestatuser.harPaabegynteSoknader:
-            return <PaabegyntSoknad behandling={sisteBehandling} />;
+            return <PaabegyntSoknad paabegynt={sistePaabegynte} />;
         case DagpengerSokestatuser.ukjentStatus:
             return <IkkeSoktDagpenger />;
         default:
@@ -151,7 +159,9 @@ function FerdigBehandletSoknad() {
     );
 }
 
-function PaabegyntSoknad({ behandling }: { behandling: Behandling | null }) {
+function PaabegyntSoknad({ paabegynt }: { paabegynt: PaabegynteSoknader.Soknad | null }) {
+    if (!paabegynt) return null;
+
     return (
         <DagpengerDekorator tittle={'Du har startet på en søknad om dagpenger, men ikke sendt den inn'}>
             <div>
@@ -161,20 +171,13 @@ function PaabegyntSoknad({ behandling }: { behandling: Behandling | null }) {
             </div>
 
             <div>
-                <LenkepanelBase
-                    href={'https://www.nav.no/soknader/nb/person/arbeid/dagpenger'}
-                    border={true}
-                    className={'meldekort-send-inn-kort'}
-                >
+                <LenkepanelBase href={paabegynt.lenke} border={true} className={'meldekort-send-inn-kort'}>
                     <div className="lenkepanel__innhold">
                         <div className="ml-1">
                             <Element>Fortsett på søknaden</Element>
-                            {behandling ? (
-                                <Normaltekst>
-                                    Du startet på søknaden den{' '}
-                                    {prettyPrintDato(new Date(behandling.sistOppdatert).toISOString())}
-                                </Normaltekst>
-                            ) : null}
+                            <Normaltekst>
+                                Du startet på søknaden den {prettyPrintDato(new Date(paabegynt.dato).toISOString())}
+                            </Normaltekst>
                         </div>
                     </div>
                 </LenkepanelBase>
