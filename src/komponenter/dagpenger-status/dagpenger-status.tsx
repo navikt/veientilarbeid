@@ -8,6 +8,7 @@ import * as PaabegynteSoknader from '../../ducks/paabegynte-soknader';
 import * as Sakstema from '../../ducks/sakstema';
 import { kanVise14AStatus } from '../14a-intro/14a';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
+import { loggAktivitet } from '../../metrics/metrics';
 import beregnDagpengerSokeStatus, { DagpengerSokestatuser, sistOppdaterteBehandling } from './beregn-dagpenger-status';
 import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import Lenke from 'nav-frontend-lenker';
@@ -30,6 +31,11 @@ function DagpengerStatus() {
     const { data: sakstemaData } = React.useContext(Sakstema.SakstemaContext);
 
     const featuretoggleAktivert = featuretoggleData['veientilarbeid.dagpenger-status'];
+
+    function loggLenkeKlikk(aktivitet: string, url: string) {
+        loggAktivitet({ aktivitet, ...amplitudeData });
+        window.location.assign(url);
+    }
 
     const kanViseKomponent =
         featuretoggleAktivert && kanVise14AStatus({ amplitudeData, oppfolgingData, brukerInfoData, registreringData });
@@ -75,13 +81,13 @@ function DagpengerStatus() {
         case DagpengerSokestatuser.harPaabegynteSoknader:
             return <PaabegyntSoknad paabegynt={sistePaabegynte} />;
         case DagpengerSokestatuser.ukjentStatus:
-            return <IkkeSoktDagpenger />;
+            return <IkkeSoktDagpenger loggLenkeKlikk={loggLenkeKlikk} />;
         default:
             return null;
     }
 }
 
-function IkkeSoktDagpenger() {
+function IkkeSoktDagpenger({ loggLenkeKlikk }: { loggLenkeKlikk: Function }) {
     return (
         <DagpengerDekorator tittle={'Du har ikke søkt om dagpenger'}>
             <div>
@@ -90,8 +96,29 @@ function IkkeSoktDagpenger() {
                 </Normaltekst>
                 <Normaltekst className={'blokk-xs'}>
                     Har du spørsmål om dagpenger må du bruke{' '}
-                    <Lenke href="https://mininnboks.nav.no/sporsmal/skriv/ARBD">Skriv til oss</Lenke> eller{' '}
-                    <Lenke href="https://www.nav.no/person/kontakt-oss/chat/">Chat</Lenke>
+                    <Lenke
+                        href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
+                        onClick={() =>
+                            loggLenkeKlikk(
+                                'Går til STO fra ikke søkt om dagpenger',
+                                'https://mininnboks.nav.no/sporsmal/skriv/ARBD'
+                            )
+                        }
+                    >
+                        Skriv til oss
+                    </Lenke>{' '}
+                    eller{' '}
+                    <Lenke
+                        href="https://www.nav.no/person/kontakt-oss/chat/"
+                        onClick={() =>
+                            loggLenkeKlikk(
+                                'Går til Chat fra ikke søkt om dagpenger',
+                                'https://www.nav.no/person/kontakt-oss/chat/'
+                            )
+                        }
+                    >
+                        Chat
+                    </Lenke>
                 </Normaltekst>
             </div>
             <div>
