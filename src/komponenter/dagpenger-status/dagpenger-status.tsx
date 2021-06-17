@@ -13,11 +13,11 @@ import beregnDagpengerSokeStatus, { DagpengerSokestatuser, sistOppdaterteBehandl
 import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import Lenke from 'nav-frontend-lenker';
 import { LenkepanelBase } from 'nav-frontend-lenkepanel';
-import { lenker } from '../dittnav/utils/lenker';
 import { Behandling } from '../../utils/dager-fra-innsendt-soknad';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import InViewport from '../in-viewport/in-viewport';
 import ErRendret from '../er-rendret/er-rendret';
+import { saksoversikt_url } from '../../url';
 
 const virkedager = require('@alheimsins/virkedager');
 
@@ -161,10 +161,8 @@ function MottarDagpenger({ behandling, loggLenkeKlikk }: { behandling: Behandlin
                     Du finner svarbrevet i{' '}
                     <Lenke
                         className={'tracking-wide'}
-                        href={lenker.saksoversikt.url}
-                        onClick={() =>
-                            loggLenkeKlikk('Går til saksoversikten fra mottar dagpenger', lenker.saksoversikt.url)
-                        }
+                        href={saksoversikt_url}
+                        onClick={() => loggLenkeKlikk('Går til saksoversikten fra mottar dagpenger', saksoversikt_url)}
                     >
                         Din saksoversikt
                     </Lenke>
@@ -208,12 +206,9 @@ function FerdigBehandletSoknad({ loggLenkeKlikk }: { loggLenkeKlikk: Function })
                     Du finner svarbrevet i{' '}
                     <Lenke
                         className={'tracking-wide'}
-                        href={lenker.saksoversikt.url}
+                        href={saksoversikt_url}
                         onClick={() =>
-                            loggLenkeKlikk(
-                                'Går til saksoversikten fra søknad ferdig behandlet',
-                                lenker.saksoversikt.url
-                            )
+                            loggLenkeKlikk('Går til saksoversikten fra søknad ferdig behandlet', saksoversikt_url)
                         }
                     >
                         Din saksoversikt
@@ -387,10 +382,8 @@ function SoknadTilBehandling({
                     Du finner din innsendte søknad i{' '}
                     <Lenke
                         className={'tracking-wide'}
-                        href={lenker.saksoversikt.url}
-                        onClick={() =>
-                            loggLenkeKlikk('Går til saksoversikten fra innsendt søknad', lenker.saksoversikt.url)
-                        }
+                        href={saksoversikt_url}
+                        onClick={() => loggLenkeKlikk('Går til saksoversikten fra innsendt søknad', saksoversikt_url)}
                     >
                         Din saksoversikt
                     </Lenke>
