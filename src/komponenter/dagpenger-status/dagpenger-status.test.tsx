@@ -1,6 +1,6 @@
 import * as React from 'react';
 import '@testing-library/jest-dom/extend-expect';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import DagpengerStatus from './dagpenger-status';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import { Formidlingsgruppe, Servicegruppe } from '../../ducks/oppfolging';
@@ -46,5 +46,16 @@ describe('Tester dagpengerkomponenten', () => {
         });
 
         expect(container).not.toBeEmptyDOMElement();
+    });
+
+    test('Komponenten Ikke søkt dagpenger rendres når man har ukjentStatus', () => {
+        render(<DagpengerStatus />, {
+            wrapper: contextProviders({
+                ...providerProps,
+                featureToggle: { 'veientilarbeid.dagpenger-status': true },
+            }),
+        });
+
+        expect(screen.getByText(/du har ikke søkt om dagpenger/i)).toBeInTheDocument();
     });
 });
