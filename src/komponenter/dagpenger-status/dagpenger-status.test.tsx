@@ -58,4 +58,19 @@ describe('Tester dagpengerkomponenten', () => {
 
         expect(screen.getByText(/du har ikke søkt om dagpenger/i)).toBeInTheDocument();
     });
+
+    test('<MottarDagpenger> rendres ved innvilget søknad', () => {
+        render(<DagpengerStatus />, {
+            wrapper: contextProviders({
+                ...providerProps,
+                brukerInfo: {
+                    ...providerProps.brukerInfo,
+                    rettighetsgruppe: 'DAGP',
+                },
+                featureToggle: { 'veientilarbeid.dagpenger-status': true },
+            }),
+        });
+
+        expect(screen.getByText(/Du har fått innvilget dagpenger/i)).toBeInTheDocument();
+    });
 });
