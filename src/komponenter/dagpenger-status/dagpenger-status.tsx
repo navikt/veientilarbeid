@@ -126,6 +126,12 @@ function IkkeSoktDagpenger({ loggLenkeKlikk }: { loggLenkeKlikk: Function }) {
                     href={'https://www.nav.no/soknader/nb/person/arbeid/dagpenger'}
                     border={true}
                     className={'meldekort-send-inn-kort'}
+                    onClick={() =>
+                        loggLenkeKlikk(
+                            'Går til Søk om dagpenger fra ikke søkt om dagpenger',
+                            'https://www.nav.no/soknader/nb/person/arbeid/dagpenger'
+                        )
+                    }
                 >
                     <div className="lenkepanel__innhold">
                         <div className="ml-1">
@@ -153,7 +159,13 @@ function MottarDagpenger({ behandling, loggLenkeKlikk }: { behandling: Behandlin
             <div>
                 <Normaltekst className={'blokk-xs'}>
                     Du finner svarbrevet i{' '}
-                    <Lenke className={'tracking-wide'} href={lenker.saksoversikt.url}>
+                    <Lenke
+                        className={'tracking-wide'}
+                        href={lenker.saksoversikt.url}
+                        onClick={() =>
+                            loggLenkeKlikk('Går til saksoversikten fra mottar dagpenger', lenker.saksoversikt.url)
+                        }
+                    >
                         Din saksoversikt
                     </Lenke>
                 </Normaltekst>
@@ -187,13 +199,23 @@ function MottarDagpenger({ behandling, loggLenkeKlikk }: { behandling: Behandlin
         </DagpengerDekorator>
     );
 }
+
 function FerdigBehandletSoknad({ loggLenkeKlikk }: { loggLenkeKlikk: Function }) {
     return (
         <DagpengerDekorator tittle={'Søknaden din om dagpenger er ferdig behandlet'}>
             <div>
                 <Normaltekst className={'blokk-xs'}>
                     Du finner svarbrevet i{' '}
-                    <Lenke className={'tracking-wide'} href={lenker.saksoversikt.url}>
+                    <Lenke
+                        className={'tracking-wide'}
+                        href={lenker.saksoversikt.url}
+                        onClick={() =>
+                            loggLenkeKlikk(
+                                'Går til saksoversikten fra søknad ferdig behandlet',
+                                lenker.saksoversikt.url
+                            )
+                        }
+                    >
                         Din saksoversikt
                     </Lenke>
                 </Normaltekst>
@@ -246,7 +268,14 @@ function PaabegyntSoknad({
             </div>
 
             <div>
-                <LenkepanelBase href={paabegynt.lenke} border={true} className={'meldekort-send-inn-kort'}>
+                <LenkepanelBase
+                    href={paabegynt.lenke}
+                    border={true}
+                    className={'meldekort-send-inn-kort'}
+                    onClick={() =>
+                        loggLenkeKlikk('Går til Fortsett på søknaden fra påbegynte søknader', paabegynt.lenke)
+                    }
+                >
                     <div className="lenkepanel__innhold">
                         <div className="ml-1">
                             <Element>Fortsett på søknaden</Element>
@@ -320,11 +349,19 @@ function SoknadTilBehandling({
         );
     };
 
-    const Saksbehandlingstider = () => {
+    const Saksbehandlingstider = ({ loggLenkeKlikk }: { loggLenkeKlikk: Function }) => {
         return (
             <Normaltekst className={'blokk-xs'}>
                 Normal saksbehandlingstid er 30 dager. Se{' '}
-                <Lenke href="https://www.nav.no/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav">
+                <Lenke
+                    href="https://www.nav.no/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav"
+                    onClick={() =>
+                        loggLenkeKlikk(
+                            'Går til saksbehandlingstid fra innsendt søknad',
+                            'https://www.nav.no/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav'
+                        )
+                    }
+                >
                     saksbehandlingsoversikten
                 </Lenke>{' '}
                 for mer informasjon.
@@ -338,13 +375,23 @@ function SoknadTilBehandling({
                 <Normaltekst className={'blokk-xs'}>
                     Siste søknad mottatt: {prettyPrintDato(datoForSisteInnsendteSoknad?.toISOString())}{' '}
                 </Normaltekst>
-                {dagensDato < datoForForventetSvar ? <ForventetSvar /> : <Saksbehandlingstider />}
+                {dagensDato < datoForForventetSvar ? (
+                    <ForventetSvar />
+                ) : (
+                    <Saksbehandlingstider loggLenkeKlikk={loggLenkeKlikk} />
+                )}
             </div>
 
             <div>
                 <Normaltekst className={'blokk-xs'}>
                     Du finner din innsendte søknad i{' '}
-                    <Lenke className={'tracking-wide'} href={lenker.saksoversikt.url}>
+                    <Lenke
+                        className={'tracking-wide'}
+                        href={lenker.saksoversikt.url}
+                        onClick={() =>
+                            loggLenkeKlikk('Går til saksoversikten fra innsendt søknad', lenker.saksoversikt.url)
+                        }
+                    >
                         Din saksoversikt
                     </Lenke>
                 </Normaltekst>
