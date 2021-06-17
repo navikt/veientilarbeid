@@ -31,6 +31,24 @@ describe('tester funksjonen beregnDagpengerStatus', () => {
         expect(status).toBe(DagpengerSokestatuser.harPaabegynteSoknader);
     });
 
+    test('returnerer ukjentStatus når påbegynte søknader ikke er dagpenger søknad', () => {
+        const opprettetRegistreringDato = new Date('2021-06-01');
+        const paabegynteSoknader = [
+            {
+                tittel: 'Søknad om foreldrepenger',
+                lenke: 'https://tjenester-q1.nav.no/soknaddagpenger-innsending/soknad/10010WQX9',
+                dato: '2021-06-02T15:48:19.375+02:00',
+                kilde: 'HENVENDELSE',
+            },
+        ];
+        const status = beregnDagpengerStatus({
+            rettighetsgruppe: 'ITY',
+            opprettetRegistreringDato,
+            paabegynteSoknader,
+        });
+        expect(status).toBe(DagpengerSokestatuser.ukjentStatus);
+    });
+
     test('returnerer ukjentStatus når det er påbegynte søknader etter registreringsdato men registreringsdato er ukjent', () => {
         const opprettetRegistreringDato = null;
         const paabegynteSoknader = [
