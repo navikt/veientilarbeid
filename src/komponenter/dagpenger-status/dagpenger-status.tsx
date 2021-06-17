@@ -73,13 +73,13 @@ function DagpengerStatus() {
 
     switch (dagpengerSokeStatus) {
         case DagpengerSokestatuser.mottarDagpenger:
-            return <MottarDagpenger behandling={sisteBehandling} />;
+            return <MottarDagpenger behandling={sisteBehandling} loggLenkeKlikk={loggLenkeKlikk} />;
         case DagpengerSokestatuser.soknadFerdigBehandlet:
-            return <FerdigBehandletSoknad />;
+            return <FerdigBehandletSoknad loggLenkeKlikk={loggLenkeKlikk} />;
         case DagpengerSokestatuser.soknadUnderBehandling:
-            return <SoknadTilBehandling behandlingskjeder={behandlingskjeder} />;
+            return <SoknadTilBehandling behandlingskjeder={behandlingskjeder} loggLenkeKlikk={loggLenkeKlikk} />;
         case DagpengerSokestatuser.harPaabegynteSoknader:
-            return <PaabegyntSoknad paabegynt={sistePaabegynte} />;
+            return <PaabegyntSoknad paabegynt={sistePaabegynte} loggLenkeKlikk={loggLenkeKlikk} />;
         case DagpengerSokestatuser.ukjentStatus:
             return <IkkeSoktDagpenger loggLenkeKlikk={loggLenkeKlikk} />;
         default:
@@ -139,7 +139,7 @@ function IkkeSoktDagpenger({ loggLenkeKlikk }: { loggLenkeKlikk: Function }) {
     );
 }
 
-function MottarDagpenger({ behandling }: { behandling: Behandling | null }) {
+function MottarDagpenger({ behandling, loggLenkeKlikk }: { behandling: Behandling | null; loggLenkeKlikk: Function }) {
     return (
         <DagpengerDekorator tittle={'Du har fått innvilget dagpenger'}>
             <div>
@@ -159,14 +159,35 @@ function MottarDagpenger({ behandling }: { behandling: Behandling | null }) {
                 </Normaltekst>
                 <Normaltekst>
                     Har du spørsmål om dagpenger må du bruke{' '}
-                    <Lenke href="https://mininnboks.nav.no/sporsmal/skriv/ARBD">Skriv til oss</Lenke> eller{' '}
-                    <Lenke href="https://www.nav.no/person/kontakt-oss/chat/">Chat</Lenke>
+                    <Lenke
+                        href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
+                        onClick={() =>
+                            loggLenkeKlikk(
+                                'Går til STO fra mottar dagpenger',
+                                'https://mininnboks.nav.no/sporsmal/skriv/ARBD'
+                            )
+                        }
+                    >
+                        Skriv til oss
+                    </Lenke>{' '}
+                    eller{' '}
+                    <Lenke
+                        href="https://www.nav.no/person/kontakt-oss/chat/"
+                        onClick={() =>
+                            loggLenkeKlikk(
+                                'Går til Chat fra mottar dagpenger',
+                                'https://www.nav.no/person/kontakt-oss/chat/'
+                            )
+                        }
+                    >
+                        Chat
+                    </Lenke>
                 </Normaltekst>
             </div>
         </DagpengerDekorator>
     );
 }
-function FerdigBehandletSoknad() {
+function FerdigBehandletSoknad({ loggLenkeKlikk }: { loggLenkeKlikk: Function }) {
     return (
         <DagpengerDekorator tittle={'Søknaden din om dagpenger er ferdig behandlet'}>
             <div>
@@ -178,15 +199,42 @@ function FerdigBehandletSoknad() {
                 </Normaltekst>
                 <Normaltekst className={'blokk-xs'}>
                     Har du spørsmål om dagpenger må du bruke{' '}
-                    <Lenke href="https://mininnboks.nav.no/sporsmal/skriv/ARBD">Skriv til oss</Lenke> eller{' '}
-                    <Lenke href="https://www.nav.no/person/kontakt-oss/chat/">Chat</Lenke>
+                    <Lenke
+                        href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
+                        onClick={() =>
+                            loggLenkeKlikk(
+                                'Går til STO fra søknad ferdig behandlet',
+                                'https://mininnboks.nav.no/sporsmal/skriv/ARBD'
+                            )
+                        }
+                    >
+                        Skriv til oss
+                    </Lenke>{' '}
+                    eller{' '}
+                    <Lenke
+                        href="https://www.nav.no/person/kontakt-oss/chat/"
+                        onClick={() =>
+                            loggLenkeKlikk(
+                                'Går til Chat fra søknad ferdig behandlet',
+                                'https://www.nav.no/person/kontakt-oss/chat/'
+                            )
+                        }
+                    >
+                        Chat
+                    </Lenke>
                 </Normaltekst>
             </div>
         </DagpengerDekorator>
     );
 }
 
-function PaabegyntSoknad({ paabegynt }: { paabegynt: PaabegynteSoknader.Soknad | null }) {
+function PaabegyntSoknad({
+    paabegynt,
+    loggLenkeKlikk,
+}: {
+    paabegynt: PaabegynteSoknader.Soknad | null;
+    loggLenkeKlikk: Function;
+}) {
     if (!paabegynt) return null;
 
     return (
@@ -211,15 +259,42 @@ function PaabegyntSoknad({ paabegynt }: { paabegynt: PaabegynteSoknader.Soknad |
 
                 <Normaltekst className={'blokk-xs'}>
                     Har du spørsmål om dagpenger må du bruke{' '}
-                    <Lenke href="https://mininnboks.nav.no/sporsmal/skriv/ARBD">Skriv til oss</Lenke> eller{' '}
-                    <Lenke href="https://www.nav.no/person/kontakt-oss/chat/">Chat</Lenke>
+                    <Lenke
+                        href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
+                        onClick={() =>
+                            loggLenkeKlikk(
+                                'Går til STO fra påbegynte søknader',
+                                'https://mininnboks.nav.no/sporsmal/skriv/ARBD'
+                            )
+                        }
+                    >
+                        Skriv til oss
+                    </Lenke>{' '}
+                    eller{' '}
+                    <Lenke
+                        href="https://www.nav.no/person/kontakt-oss/chat/"
+                        onClick={() =>
+                            loggLenkeKlikk(
+                                'Går til Chat fra påbegynte søknader',
+                                'https://www.nav.no/person/kontakt-oss/chat/'
+                            )
+                        }
+                    >
+                        Chat
+                    </Lenke>
                 </Normaltekst>
             </div>
         </DagpengerDekorator>
     );
 }
 
-function SoknadTilBehandling({ behandlingskjeder }: { behandlingskjeder: Behandling[] | null }) {
+function SoknadTilBehandling({
+    behandlingskjeder,
+    loggLenkeKlikk,
+}: {
+    behandlingskjeder: Behandling[] | null;
+    loggLenkeKlikk: Function;
+}) {
     const datoForSisteInnsendeSoknad = (behandlingskjeder: Behandling[] | null): Date => {
         if (!behandlingskjeder) return new Date();
 
@@ -275,8 +350,29 @@ function SoknadTilBehandling({ behandlingskjeder }: { behandlingskjeder: Behandl
                 </Normaltekst>
                 <Normaltekst className={'blokk-xs'}>
                     Har du spørsmål om dagpenger må du bruke{' '}
-                    <Lenke href="https://mininnboks.nav.no/sporsmal/skriv/ARBD">Skriv til oss</Lenke> eller{' '}
-                    <Lenke href="https://www.nav.no/person/kontakt-oss/chat/">Chat</Lenke>
+                    <Lenke
+                        href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
+                        onClick={() =>
+                            loggLenkeKlikk(
+                                'Går til STO fra innsendt søknad',
+                                'https://mininnboks.nav.no/sporsmal/skriv/ARBD'
+                            )
+                        }
+                    >
+                        Skriv til oss
+                    </Lenke>{' '}
+                    eller{' '}
+                    <Lenke
+                        href="https://www.nav.no/person/kontakt-oss/chat/"
+                        onClick={() =>
+                            loggLenkeKlikk(
+                                'Går til Chat fra innsendt søknad',
+                                'https://www.nav.no/person/kontakt-oss/chat/'
+                            )
+                        }
+                    >
+                        Chat
+                    </Lenke>
                 </Normaltekst>
             </div>
         </DagpengerDekorator>
