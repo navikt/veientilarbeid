@@ -41,9 +41,9 @@ function beregnDagpengerStatus(data: Beregningsdata): dagpengerSokestatus {
     let status = DagpengerSokestatuser.ukjentStatus;
     // Sjekker om det er påbegynte søknader etter registreringsdato
     if (opprettetRegistreringDato && paabegynteSoknader && paabegynteSoknader.length > 0) {
-        const paabegynteSoknaderEtterRegistrering = paabegynteSoknader.filter(
-            (soknad) => new Date(soknad.dato) > opprettetRegistreringDato
-        );
+        const paabegynteSoknaderEtterRegistrering = paabegynteSoknader
+            .filter((soknad) => new Date(soknad.dato) > opprettetRegistreringDato)
+            .filter((soknad) => /[dD]agpenger/.test(soknad.tittel));
         if (paabegynteSoknaderEtterRegistrering.length > 0) {
             status = DagpengerSokestatuser.harPaabegynteSoknader;
         }
