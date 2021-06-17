@@ -173,14 +173,6 @@ function Sluttkort(props: EndStateProps) {
         });
     };
 
-    const handleKlikkSkrivTilOss = () => {
-        amplitudeLogger('veientilarbeid.intro', {
-            intro: '14a',
-            handling: 'Går til skriv til oss',
-            ...amplitudeData,
-        });
-    };
-
     function handleLesIntroPaaNytt(event: React.SyntheticEvent) {
         event.preventDefault();
         event.stopPropagation();
@@ -200,12 +192,6 @@ function Sluttkort(props: EndStateProps) {
 
             <Lenkepanel14A amplitudeData={amplitudeData} href={''} antallUlesteDialoger={props.antallUlesteDialoger} />
 
-            <Normaltekst className={'blokk-m'}>
-                Har du spørsmål om dagpenger må du bruke{' '}
-                <Lenke onClick={handleKlikkSkrivTilOss} href="https://mininnboks.nav.no/sporsmal/skriv/ARBD">
-                    Skriv til oss
-                </Lenke>
-            </Normaltekst>
             <Normaltekst>
                 <Lenke className={'tracking-wide'} href={''} onClick={handleLesIntroPaaNytt}>
                     Les om hva slags hjelp du kan få
