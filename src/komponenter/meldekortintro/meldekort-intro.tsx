@@ -127,15 +127,14 @@ function Sluttkort(props: EndStateProps) {
             <div className={'kortflate'}>
                 <div>
                     <Element tag={'h1'}>MELDEKORT</Element>
-                    <Systemtittel className={'blokk-xs'}>Innsending av meldekort</Systemtittel>
-                    <Normaltekst className={'blokk-xs'}>
+                    <Systemtittel className={'blokk-xs'}>
                         {`Meldekort for uke 
                         ${hentISOUke(meldekortIkkeKlarForLevering.meldeperiode?.fra!!)} og ${hentISOUke(
                             meldekortIkkeKlarForLevering.meldeperiode?.til!!
                         )} blir tilgjengelig for innsending fra ${datoMedUkedag(
                             foersteSendedagForMeldekort(meldekortIkkeKlarForLevering)
                         )}`}
-                    </Normaltekst>
+                    </Systemtittel>
                     <div>
                         <LenkepanelMeldekort amplitudeData={amplitudeData} href={omMeldekortLenke}>
                             Les om meldekort
@@ -156,10 +155,9 @@ function Sluttkort(props: EndStateProps) {
             <div className={'kortflate'}>
                 <div>
                     <Element tag={'h1'}>MELDEKORT</Element>
-                    <Systemtittel className={'blokk-xs'}>Innsending av meldekort</Systemtittel>
-                    <div className={'onboarding-meldekortvarsel-container'}>
-                        <Normaltekst>Du har {meldekortForLevering.length} meldekort som kan sendes inn.</Normaltekst>
-                    </div>
+                    <Systemtittel className={'blokk-xs'}>
+                        Du har {meldekortForLevering.length} meldekort som kan sendes inn.
+                    </Systemtittel>
                     <LenkepanelMeldekort amplitudeData={amplitudeData} href={meldekortLenke}>
                         Send inn
                     </LenkepanelMeldekort>
@@ -178,7 +176,7 @@ function Sluttkort(props: EndStateProps) {
         <div className={'kortflate'}>
             <div>
                 <Element tag={'h1'}>MELDEKORT</Element>
-                <Systemtittel className={'blokk-xs'}>Innsending av meldekort</Systemtittel>
+
                 <Meldekortstatus />
                 <div>
                     <LenkepanelMeldekort amplitudeData={amplitudeData} href={meldekortLenke}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
+import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { beregnDagerTilInaktivering } from '../../utils/meldekort-utils';
 import { datoMedUkedag, plussDager } from '../../utils/date-utils';
@@ -18,17 +18,17 @@ function MeldekortAdvarsel({ dagerEtterFastsattMeldedag }: { dagerEtterFastsattM
     return (
         <>
             {dagerTilInaktivering <= 0 ? (
-                <Normaltekst>Siste frist for innsending av meldekortet er i kveld klokken 23.00</Normaltekst>
+                <Systemtittel>Siste frist for innsending av meldekortet er i kveld klokken 23.00</Systemtittel>
             ) : (
                 <>
-                    <Normaltekst>
+                    <Systemtittel className={'blokk-xs'}>
                         Du har{' '}
                         <b>
                             {dagerTilInaktivering}{' '}
                             {dagerTilInaktivering === 0 || dagerTilInaktivering > 1 ? 'dager' : 'dag'}{' '}
                         </b>
                         på å sende inn meldekort.
-                    </Normaltekst>
+                    </Systemtittel>
                     <Normaltekst>Fristen er {datoMedUkedag(inaktiveringsDato)}, klokken 23.00.</Normaltekst>
                 </>
             )}

@@ -12,7 +12,7 @@ import * as Meldekort from '../../ducks/meldekort';
 import { beregnDagerEtterFastsattMeldedag, beregnDagerTilInaktivering } from '../../utils/meldekort-utils';
 import './meldekortstatus.less';
 import { OppfolgingContext } from '../../ducks/oppfolging';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { hentIDag } from '../../utils/chrono';
 import { datoMedUkedag, datoUtenTid, plussDager } from '../../utils/date-utils';
 
@@ -38,7 +38,7 @@ function Meldekortstatus() {
                 <MeldekortAdvarsel dagerEtterFastsattMeldedag={dagerEtterFastsattMeldedag} />
             ) : (
                 <>
-                    <Normaltekst className={'blokk-xs'}>Du kan nå sende inn meldekort.</Normaltekst>
+                    <Systemtittel className={'blokk-xs'}>Du kan nå sende inn meldekort</Systemtittel>
                     <Normaltekst>{`Fristen er ${datoMedUkedag(inaktiveringsDato)}, klokken 23.00.`}</Normaltekst>
                 </>
             )}
