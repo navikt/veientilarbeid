@@ -108,7 +108,7 @@ describe('tester onboarding komponenten for meldekort', () => {
         userEvent.click(nesteknapp);
         userEvent.click(nesteknapp);
         userEvent.click(screen.getByText(/fullfør/i));
-        expect(screen.getByText(/Innsending av meldekort/i)).toBeInTheDocument();
+        expect(screen.getByText(/Vis introduksjon til meldekort/i)).toBeInTheDocument();
         expect(nesteknapp).not.toBeInTheDocument();
         expect(forrigeknapp).not.toBeInTheDocument();
     });
