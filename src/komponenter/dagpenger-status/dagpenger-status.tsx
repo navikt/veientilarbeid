@@ -125,7 +125,7 @@ function IkkeSoktDagpenger({ loggLenkeKlikk }: { loggLenkeKlikk: Function }) {
                 <LenkepanelBase
                     href={'https://www.nav.no/soknader/nb/person/arbeid/dagpenger'}
                     border={true}
-                    className={'meldekort-send-inn-kort'}
+                    className={'til-soknad-dagpenger-status'}
                     onClick={() =>
                         loggLenkeKlikk(
                             'Går til Søk om dagpenger fra ikke søkt om dagpenger',
@@ -266,7 +266,7 @@ function PaabegyntSoknad({
                 <LenkepanelBase
                     href={paabegynt.lenke}
                     border={true}
-                    className={'meldekort-send-inn-kort'}
+                    className={'til-soknad-dagpenger-status'}
                     onClick={() =>
                         loggLenkeKlikk('Går til Fortsett på søknaden fra påbegynte søknader', paabegynt.lenke)
                     }
