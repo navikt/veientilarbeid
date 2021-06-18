@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Normaltekst, Systemtittel, Undertekst } from 'nav-frontend-typografi';
+import { Element, Normaltekst, Systemtittel, Undertekst } from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
 import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
@@ -126,6 +126,7 @@ function Sluttkort(props: EndStateProps) {
         return (
             <div className={'kortflate'}>
                 <div>
+                    <Element tag={'h1'}>MELDEKORT</Element>
                     <Systemtittel className={'blokk-xs'}>Innsending av meldekort</Systemtittel>
                     <Normaltekst className={'blokk-xs'}>
                         {`Meldekort for uke 
@@ -154,6 +155,7 @@ function Sluttkort(props: EndStateProps) {
         return (
             <div className={'kortflate'}>
                 <div>
+                    <Element tag={'h1'}>MELDEKORT</Element>
                     <Systemtittel className={'blokk-xs'}>Innsending av meldekort</Systemtittel>
                     <div className={'onboarding-meldekortvarsel-container'}>
                         <Normaltekst>Du har {meldekortForLevering.length} meldekort som kan sendes inn.</Normaltekst>
@@ -175,6 +177,7 @@ function Sluttkort(props: EndStateProps) {
     return (
         <div className={'kortflate'}>
             <div>
+                <Element tag={'h1'}>MELDEKORT</Element>
                 <Systemtittel className={'blokk-xs'}>Innsending av meldekort</Systemtittel>
                 <Meldekortstatus />
                 <div>
