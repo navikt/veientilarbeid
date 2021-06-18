@@ -10,6 +10,12 @@ const providerProps: ProviderProps = {
     brukerInfo: {
         geografiskTilknytning: '110302',
         alder: 42,
+        rettighetsgruppe: 'IYT',
+    },
+    brukerregistrering: {
+        registrering: {
+            opprettetDato: '2021-06-01',
+        },
     },
     amplitude: {
         ukerRegistrert: 2,

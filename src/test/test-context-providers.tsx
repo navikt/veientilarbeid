@@ -103,7 +103,9 @@ export const contextProviders = function (props: ProviderProps): React.FunctionC
                                                         <PaabegynteSoknader.PaabegynteSoknaderContext.Provider
                                                             value={merge(
                                                                 PaabegynteSoknader.initialState,
-                                                                props.paabegynteSoknader
+                                                                props.paabegynteSoknader && {
+                                                                    data: props.paabegynteSoknader,
+                                                                }
                                                             )}
                                                         >
                                                             <FeatureToggle.FeaturetoggleContext.Provider
