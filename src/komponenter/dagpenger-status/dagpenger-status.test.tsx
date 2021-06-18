@@ -169,4 +169,72 @@ describe('Tester dagpengerkomponenten', () => {
 
         expect(screen.getByText(/vi har mottatt søknad om dagpenger/i)).toBeInTheDocument();
     });
+
+    test('<FerdigBehandletSoknad> rendres ved søknad ferdig behandlet', () => {
+        render(<DagpengerStatus />, {
+            wrapper: contextProviders({
+                ...providerProps,
+                featureToggle: { 'veientilarbeid.dagpenger-status': true },
+                sakstema: {
+                    sakstema: [
+                        {
+                            temakode: 'DAG',
+                            temanavn: 'Dagpenger',
+                            erGruppert: false,
+                            behandlingskjeder: [
+                                { status: 'UNDER_BEHANDLING', sistOppdatert: '2021-06-03T09:31:57.507+01:00' },
+                                { status: 'FERDIG_BEHANDLET', sistOppdatert: '2021-06-06T09:31:57.507+01:00' },
+                            ],
+                            dokumentMetadata: [
+                                {
+                                    retning: 'INN',
+                                    dato: '2021-05-25T20:46:59.813+02:00',
+                                    navn: null,
+                                    journalpostId: '493391488',
+                                    hoveddokument: {
+                                        tittel: 'Søknad om dagpenger (ikke permittert)',
+                                        dokumentreferanse: '515191444',
+                                        kanVises: true,
+                                        logiskDokument: false,
+                                    },
+                                    vedlegg: [
+                                        {
+                                            tittel: 'Dokumentasjon av andre ytelser',
+                                            dokumentreferanse: '515191445',
+                                            kanVises: true,
+                                            logiskDokument: false,
+                                        },
+                                        {
+                                            tittel: 'Kvitteringsside for dokumentinnsending',
+                                            dokumentreferanse: '515191446',
+                                            kanVises: true,
+                                            logiskDokument: false,
+                                        },
+                                    ],
+                                    avsender: 'SLUTTBRUKER',
+                                    mottaker: 'NAV',
+                                    tilhorendeSakid: null,
+                                    tilhorendeFagsakId: null,
+                                    behandlingsId: '10010WQW9',
+                                    baksystem: ['HENVENDELSE'],
+                                    temakode: 'DAG',
+                                    temakodeVisning: 'Dagpenger',
+                                    ettersending: false,
+                                    erJournalfort: false,
+                                    feilWrapper: { inneholderFeil: false, feilmelding: null },
+                                    kategoriNotat: null,
+                                    lenkeTilSoknad: null,
+                                },
+                            ],
+                            tilhorendeSaker: [],
+                            feilkoder: [],
+                        },
+                    ],
+                    feilendeBaksystemer: ['JOARK', 'JOARK_SIKKERHETSBEGRENSNING'],
+                },
+            }),
+        });
+
+        expect(screen.getByText(/søknaden din om dagpenger er ferdig behandlet/i)).toBeInTheDocument();
+    });
 });
