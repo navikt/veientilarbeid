@@ -2,7 +2,6 @@ import React from 'react';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import LenkepanelBase from 'nav-frontend-lenkepanel';
-import { Dialog } from '@navikt/ds-icons/cjs';
 
 interface Lenkepanel14AProps {
     amplitudeData: AmplitudeData;
@@ -40,13 +39,12 @@ const Lenkepanel14A: React.FC<Lenkepanel14AProps> = (props) => {
         >
             <div className="lenkepanel__innhold">
                 <div className="dialog__ikon">
-                    <Dialog width="2rem" height="2rem" viewBox="0 0 24 24" />
                     {props.antallUlesteDialoger > 0 ? (
                         <span className="dialog__ulesteMeldinger">{Math.min(props.antallUlesteDialoger, 99)}</span>
                     ) : null}
                 </div>
                 <div className="ml-1">
-                    <Element>Start en dialog med veilederen din</Element>
+                    <Element>Start dialogen med veileder</Element>
                     <Normaltekst>{dialogTekst(props.antallUlesteDialoger)}</Normaltekst>
                 </div>
             </div>
