@@ -12,6 +12,7 @@ import * as BrukerInfo from '../ducks/bruker-info';
 import * as Meldekort from '../ducks/meldekort';
 import * as Motestotte from '../ducks/motestotte';
 import * as UnderOppfolging from '../ducks/under-oppfolging';
+import * as PaabegynteSoknader from '../ducks/paabegynte-soknader';
 import * as React from 'react';
 import { STATUS } from '../ducks/api';
 import { setFastTidspunktForIDag } from '../utils/chrono';
@@ -33,6 +34,7 @@ export type ProviderProps = {
     meldekort?: DeepPartial<Meldekort.Data>;
     motestotte?: DeepPartial<Motestotte.Data>;
     underOppfolging?: DeepPartial<UnderOppfolging.Data>;
+    paabegynteSoknader?: DeepPartial<PaabegynteSoknader.Data>;
     iDag?: Date;
 };
 
@@ -98,14 +100,21 @@ export const contextProviders = function (props: ProviderProps): React.FunctionC
                                                     <Amplitude.AmplitudeContext.Provider
                                                         value={merge(Amplitude.initialState, props.amplitude)}
                                                     >
-                                                        <FeatureToggle.FeaturetoggleContext.Provider
+                                                        <PaabegynteSoknader.PaabegynteSoknaderContext.Provider
                                                             value={merge(
-                                                                FeatureToggle.initialState,
-                                                                props.featureToggle && { data: props.featureToggle }
+                                                                PaabegynteSoknader.initialState,
+                                                                props.paabegynteSoknader
                                                             )}
                                                         >
-                                                            {children}
-                                                        </FeatureToggle.FeaturetoggleContext.Provider>
+                                                            <FeatureToggle.FeaturetoggleContext.Provider
+                                                                value={merge(
+                                                                    FeatureToggle.initialState,
+                                                                    props.featureToggle && { data: props.featureToggle }
+                                                                )}
+                                                            >
+                                                                {children}
+                                                            </FeatureToggle.FeaturetoggleContext.Provider>
+                                                        </PaabegynteSoknader.PaabegynteSoknaderContext.Provider>
                                                     </Amplitude.AmplitudeContext.Provider>
                                                 </Motestotte.MotestotteContext.Provider>
                                             </Oppfolging.OppfolgingContext.Provider>
