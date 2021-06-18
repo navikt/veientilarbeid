@@ -183,10 +183,7 @@ function Sluttkort(props: EndStateProps) {
     return (
         <div className={'sluttkort'}>
             <Element tag={'h1'}>OPPFØLGING</Element>
-            <Systemtittel className={'blokk-xs'}>Trenger du hjelp eller støtte?</Systemtittel>
-
-            <Normaltekst className={'blokk-xs'}>Om du ønsker oppfølging før 12 uker må du gi oss beskjed.</Normaltekst>
-
+            <Systemtittel className={'blokk-xs'}>Om du ønsker oppfølging før 12 uker må du gi oss beskjed</Systemtittel>
             <Normaltekst className={'blokk-xs'}>
                 Du er inne i din {ordenstall[ukerRegistrert]} uke som registrert arbeidssøker.
             </Normaltekst>
