@@ -105,7 +105,7 @@ function IkkeSoktDagpenger({ loggLenkeKlikk }: { loggLenkeKlikk: Function }) {
                             )
                         }
                     >
-                        Skriv til oss
+                        skriv til oss
                     </Lenke>{' '}
                     eller{' '}
                     <Lenke
@@ -117,7 +117,7 @@ function IkkeSoktDagpenger({ loggLenkeKlikk }: { loggLenkeKlikk: Function }) {
                             )
                         }
                     >
-                        Chat
+                        chat
                     </Lenke>
                 </Normaltekst>
             </div>
@@ -178,19 +178,19 @@ function MottarDagpenger({ behandling, loggLenkeKlikk }: { behandling: Behandlin
                             )
                         }
                     >
-                        Skriv til oss
+                        skriv til oss
                     </Lenke>{' '}
                     eller{' '}
                     <Lenke
                         href="https://www.nav.no/person/kontakt-oss/chat/"
                         onClick={() =>
                             loggLenkeKlikk(
-                                'Går til Chat fra mottar dagpenger',
+                                'Går til chat fra mottar dagpenger',
                                 'https://www.nav.no/person/kontakt-oss/chat/'
                             )
                         }
                     >
-                        Chat
+                        chat
                     </Lenke>
                 </Normaltekst>
             </div>
@@ -225,19 +225,19 @@ function FerdigBehandletSoknad({ loggLenkeKlikk }: { loggLenkeKlikk: Function })
                             )
                         }
                     >
-                        Skriv til oss
+                        skriv til oss
                     </Lenke>{' '}
                     eller{' '}
                     <Lenke
                         href="https://www.nav.no/person/kontakt-oss/chat/"
                         onClick={() =>
                             loggLenkeKlikk(
-                                'Går til Chat fra søknad ferdig behandlet',
+                                'Går til chat fra søknad ferdig behandlet',
                                 'https://www.nav.no/person/kontakt-oss/chat/'
                             )
                         }
                     >
-                        Chat
+                        chat
                     </Lenke>
                 </Normaltekst>
             </div>
@@ -292,19 +292,19 @@ function PaabegyntSoknad({
                             )
                         }
                     >
-                        Skriv til oss
+                        skriv til oss
                     </Lenke>{' '}
                     eller{' '}
                     <Lenke
                         href="https://www.nav.no/person/kontakt-oss/chat/"
                         onClick={() =>
                             loggLenkeKlikk(
-                                'Går til Chat fra påbegynte søknader',
+                                'Går til chat fra påbegynte søknader',
                                 'https://www.nav.no/person/kontakt-oss/chat/'
                             )
                         }
                     >
-                        Chat
+                        chat
                     </Lenke>
                 </Normaltekst>
             </div>
@@ -399,19 +399,19 @@ function SoknadTilBehandling({
                             )
                         }
                     >
-                        Skriv til oss
+                        skriv til oss
                     </Lenke>{' '}
                     eller{' '}
                     <Lenke
                         href="https://www.nav.no/person/kontakt-oss/chat/"
                         onClick={() =>
                             loggLenkeKlikk(
-                                'Går til Chat fra innsendt søknad',
+                                'Går til chat fra innsendt søknad',
                                 'https://www.nav.no/person/kontakt-oss/chat/'
                             )
                         }
                     >
-                        Chat
+                        chat
                     </Lenke>
                 </Normaltekst>
             </div>
