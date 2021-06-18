@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Normaltekst, Systemtittel, Undertekst } from 'nav-frontend-typografi';
+import { Element, Normaltekst, Systemtittel, Undertekst } from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
 import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
@@ -182,6 +182,7 @@ function Sluttkort(props: EndStateProps) {
 
     return (
         <div className={'sluttkort'}>
+            <Element tag={'h1'}>OPPFØLGING</Element>
             <Systemtittel className={'blokk-xs'}>Trenger du hjelp eller støtte?</Systemtittel>
 
             <Normaltekst className={'blokk-xs'}>Om du ønsker oppfølging før 12 uker må du gi oss beskjed.</Normaltekst>
