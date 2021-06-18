@@ -164,7 +164,7 @@ function MottarDagpenger({ behandling, loggLenkeKlikk }: { behandling: Behandlin
                         href={saksoversikt_url}
                         onClick={() => loggLenkeKlikk('Går til saksoversikten fra mottar dagpenger', saksoversikt_url)}
                     >
-                        Din saksoversikt
+                        Mine dagpenger
                     </Lenke>
                 </Normaltekst>
                 <Normaltekst>
@@ -211,7 +211,7 @@ function FerdigBehandletSoknad({ loggLenkeKlikk }: { loggLenkeKlikk: Function })
                             loggLenkeKlikk('Går til saksoversikten fra søknad ferdig behandlet', saksoversikt_url)
                         }
                     >
-                        Din saksoversikt
+                        Mine dagpenger
                     </Lenke>
                 </Normaltekst>
                 <Normaltekst className={'blokk-xs'}>
@@ -385,7 +385,7 @@ function SoknadTilBehandling({
                         href={saksoversikt_url}
                         onClick={() => loggLenkeKlikk('Går til saksoversikten fra innsendt søknad', saksoversikt_url)}
                     >
-                        Din saksoversikt
+                        Mine dagpenger
                     </Lenke>
                 </Normaltekst>
                 <Normaltekst className={'blokk-xs'}>
@@ -427,13 +427,15 @@ interface DapengerDekoratorProps {
 function DagpengerDekorator(props: DapengerDekoratorProps) {
     return (
         <div className={'dagpenger-status-omslutning'}>
-            <ErRendret loggTekst="Rendrer dagpengerstatus" />
-            <div>
-                <Element tag={'h1'}>DAGPENGER</Element>
-                <Systemtittel className={'blokk-xs'}>{props.tittle}</Systemtittel>
+            <div className={'innhold'}>
+                <ErRendret loggTekst="Rendrer dagpengerstatus" />
+                <div>
+                    <Element tag={'h1'}>DAGPENGER</Element>
+                    <Systemtittel className={'blokk-xs'}>{props.tittle}</Systemtittel>
+                </div>
+                {props?.children}
+                <InViewport loggTekst="Viser dagpengerstatus i viewPort" />
             </div>
-            {props?.children}
-            <InViewport loggTekst="Viser dagpengerstatus i viewPort" />
         </div>
     );
 }
