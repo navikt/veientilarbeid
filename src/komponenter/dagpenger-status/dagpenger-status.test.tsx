@@ -79,4 +79,27 @@ describe('Tester dagpengerkomponenten', () => {
 
         expect(screen.getByText(/Du har fått innvilget dagpenger/i)).toBeInTheDocument();
     });
+
+    test('<PaabegyntSoknad> rendres ved påbegynt søknad', () => {
+        render(<DagpengerStatus />, {
+            wrapper: contextProviders({
+                ...providerProps,
+                featureToggle: { 'veientilarbeid.dagpenger-status': true },
+                paabegynteSoknader: {
+                    soknader: [
+                        {
+                            tittel: 'Søknad om dagpenger (ikke permittert)',
+                            lenke: 'https://tjenester-q1.nav.no/soknaddagpenger-innsending/soknad/10010WQX9',
+                            dato: '2021-06-02T15:48:19.375+02:00',
+                            kilde: 'HENVENDELSE',
+                        },
+                    ],
+                },
+            }),
+        });
+
+        expect(
+            screen.getByText(/du har startet på en søknad om dagpenger, men ikke sendt den inn/i)
+        ).toBeInTheDocument();
+    });
 });
