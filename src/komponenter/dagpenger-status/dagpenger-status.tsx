@@ -38,7 +38,7 @@ function kanViseDpStatus({
     const harRettMeldeGruppe = ['ARBS', 'DAGP'].includes(amplitudeData.meldegruppe);
     const erARBS = oppfolgingData.formidlingsgruppe === 'ARBS';
     const registrertEtterDato = brukerregistreringData
-        ? new Date(brukerregistreringData.opprettetDato) > new Date('2021-06-22')
+        ? new Date(brukerregistreringData.opprettetDato) > new Date('2021-05-22')
         : false;
 
     return !erAAP && erARBS && harRettMeldeGruppe && registrertEtterDato && !oppfolgingData.kanReaktiveres;
