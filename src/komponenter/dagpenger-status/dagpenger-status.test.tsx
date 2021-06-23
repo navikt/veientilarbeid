@@ -43,11 +43,26 @@ describe('Tester dagpengerkomponenten', () => {
         expect(container).toBeEmptyDOMElement();
     });
 
-    test('Komponenten rendres når featuretoggle er togglet på', () => {
+    test('Komponenten rendres når featuretoggle for dagpenger-status er togglet på', () => {
         const { container } = render(<DagpengerStatus />, {
             wrapper: contextProviders({
                 ...providerProps,
                 featureToggle: { 'veientilarbeid.dagpenger-status': true },
+            }),
+        });
+
+        expect(container).not.toBeEmptyDOMElement();
+    });
+
+    test('Komponenten rendres når featuretoggle for dpstatus-for-alle er togglet på', () => {
+        const { container } = render(<DagpengerStatus />, {
+            wrapper: contextProviders({
+                ...providerProps,
+                amplitude: {
+                    ukerRegistrert: 2,
+                    gruppe: 'kss',
+                },
+                featureToggle: { 'veientilarbeid.dpstatus-for-alle': true },
             }),
         });
 

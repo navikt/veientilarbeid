@@ -8,7 +8,9 @@ import * as PaabegynteSoknader from '../../ducks/paabegynte-soknader';
 import * as Sakstema from '../../ducks/sakstema';
 import { kanVise14AStatus } from '../14a-intro/14a';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
+import { AmplitudeData } from '../../metrics/amplitude-utils';
 import { loggAktivitet } from '../../metrics/metrics';
+import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import beregnDagpengerSokeStatus, { DagpengerSokestatuser, sistOppdaterteBehandling } from './beregn-dagpenger-status';
 import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import Lenke from 'nav-frontend-lenker';
@@ -21,6 +23,32 @@ import { saksoversikt_url } from '../../url';
 
 const virkedager = require('@alheimsins/virkedager');
 
+function erKSS({
+    brukerInfoData,
+    oppfolgingData,
+    registreringData,
+    amplitudeData,
+}: {
+    brukerInfoData: BrukerInfo.Data;
+    oppfolgingData: Oppfolging.Data;
+    registreringData: Brukerregistrering.Data | null;
+    amplitudeData: AmplitudeData;
+}): boolean {
+    const erAAP = brukerInfoData.rettighetsgruppe === 'AAP';
+    const brukerregistreringData = registreringData?.registrering ?? null;
+
+    const registrertUnder12Uker = amplitudeData.ukerRegistrert < 12;
+    const aldersgruppeUtenForsterketInnsats = brukerInfoData.alder >= 30 && brukerInfoData.alder <= 55;
+
+    return (
+        registrertUnder12Uker &&
+        aldersgruppeUtenForsterketInnsats &&
+        !erAAP &&
+        erStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData }) &&
+        !oppfolgingData.kanReaktiveres
+    );
+}
+
 function DagpengerStatus() {
     const amplitudeData = React.useContext(AmplitudeContext);
     const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
@@ -30,7 +58,8 @@ function DagpengerStatus() {
     const { data: paabegynteSoknaderData } = React.useContext(PaabegynteSoknader.PaabegynteSoknaderContext);
     const { data: sakstemaData } = React.useContext(Sakstema.SakstemaContext);
 
-    const featuretoggleAktivert = featuretoggleData['veientilarbeid.dagpenger-status'];
+    const featuretoggleDagpengerStatusAktivert = featuretoggleData['veientilarbeid.dagpenger-status'];
+    const featuretoggleDPStatusForAlleAktivert = featuretoggleData['veientilarbeid.dpstatus-for-alle'];
 
     function loggLenkeKlikk(aktivitet: string, url: string) {
         loggAktivitet({ aktivitet, ...amplitudeData });
@@ -38,7 +67,10 @@ function DagpengerStatus() {
     }
 
     const kanViseKomponent =
-        featuretoggleAktivert && kanVise14AStatus({ amplitudeData, oppfolgingData, brukerInfoData, registreringData });
+        (featuretoggleDagpengerStatusAktivert &&
+            kanVise14AStatus({ amplitudeData, oppfolgingData, brukerInfoData, registreringData })) ||
+        (featuretoggleDPStatusForAlleAktivert &&
+            erKSS({ amplitudeData, oppfolgingData, brukerInfoData, registreringData }));
 
     if (!kanViseKomponent) return null;
 
