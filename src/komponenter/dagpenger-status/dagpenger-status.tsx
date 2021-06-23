@@ -23,7 +23,7 @@ import { saksoversikt_url } from '../../url';
 
 const virkedager = require('@alheimsins/virkedager');
 
-function erKSS({
+function kanViseDpStatus({
     brukerInfoData,
     oppfolgingData,
     registreringData,
@@ -36,14 +36,15 @@ function erKSS({
 }): boolean {
     const erAAP = brukerInfoData.rettighetsgruppe === 'AAP';
     const brukerregistreringData = registreringData?.registrering ?? null;
-
-    const registrertUnder12Uker = amplitudeData.ukerRegistrert < 12;
-    const aldersgruppeUtenForsterketInnsats = brukerInfoData.alder >= 30 && brukerInfoData.alder <= 55;
+    const harRettMeldeGruppe = ['ARBS', 'DAGP'].includes(amplitudeData.meldegruppe);
+    const registrertEtterDato = brukerregistreringData
+        ? new Date(brukerregistreringData.opprettetDato) > new Date('2021-06-22')
+        : false;
 
     return (
-        registrertUnder12Uker &&
-        aldersgruppeUtenForsterketInnsats &&
         !erAAP &&
+        harRettMeldeGruppe &&
+        registrertEtterDato &&
         erStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData }) &&
         !oppfolgingData.kanReaktiveres
     );
@@ -70,7 +71,7 @@ function DagpengerStatus() {
         (featuretoggleDagpengerStatusAktivert &&
             kanVise14AStatus({ amplitudeData, oppfolgingData, brukerInfoData, registreringData })) ||
         (featuretoggleDPStatusForAlleAktivert &&
-            erKSS({ amplitudeData, oppfolgingData, brukerInfoData, registreringData }));
+            kanViseDpStatus({ amplitudeData, oppfolgingData, brukerInfoData, registreringData }));
 
     if (!kanViseKomponent) return null;
 

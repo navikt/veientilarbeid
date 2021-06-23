@@ -59,8 +59,14 @@ describe('Tester dagpengerkomponenten', () => {
             wrapper: contextProviders({
                 ...providerProps,
                 amplitude: {
-                    ukerRegistrert: 2,
+                    ukerRegistrert: 0,
                     gruppe: 'kss',
+                    meldegruppe: 'ARBS',
+                },
+                brukerregistrering: {
+                    registrering: {
+                        opprettetDato: '2021-06-23',
+                    },
                 },
                 featureToggle: { 'veientilarbeid.dpstatus-for-alle': true },
             }),
