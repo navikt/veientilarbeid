@@ -7,6 +7,7 @@ export enum FeatureToggles {
     INTRO_14A = 'veientilarbeid.14a-intro',
     REGISTRERT_PERMITTERT = 'veientilarbeid.registrert-permittert',
     DAGPENGER_STATUS = 'veientilarbeid.dagpenger-status',
+    DPSTATUS_FOR_ALLE = 'veientilarbeid.dpstatus-for-alle',
 }
 
 export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
@@ -21,6 +22,8 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Registrert som permittert';
         case FeatureToggles.DAGPENGER_STATUS:
             return 'Dagpenger status';
+        case FeatureToggles.DPSTATUS_FOR_ALLE:
+            return 'Dagpenger status for alle';
     }
 }
 
@@ -30,6 +33,7 @@ export interface Data {
     'veientilarbeid.14a-intro': boolean;
     'veientilarbeid.registrert-permittert': boolean;
     'veientilarbeid.dagpenger-status': boolean;
+    'veientilarbeid.dpstatus-for-alle': boolean;
 }
 
 export interface State extends DataElement {
@@ -43,6 +47,7 @@ export const initialState: State = {
         'veientilarbeid.14a-intro': false,
         'veientilarbeid.registrert-permittert': false,
         'veientilarbeid.dagpenger-status': false,
+        'veientilarbeid.dpstatus-for-alle': false,
     },
     status: STATUS.NOT_STARTED,
 };
