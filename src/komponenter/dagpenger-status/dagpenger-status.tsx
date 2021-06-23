@@ -10,7 +10,6 @@ import { kanVise14AStatus } from '../14a-intro/14a';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { AmplitudeData } from '../../metrics/amplitude-utils';
 import { loggAktivitet } from '../../metrics/metrics';
-import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import beregnDagpengerSokeStatus, { DagpengerSokestatuser, sistOppdaterteBehandling } from './beregn-dagpenger-status';
 import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import Lenke from 'nav-frontend-lenker';
@@ -37,17 +36,12 @@ function kanViseDpStatus({
     const erAAP = brukerInfoData.rettighetsgruppe === 'AAP';
     const brukerregistreringData = registreringData?.registrering ?? null;
     const harRettMeldeGruppe = ['ARBS', 'DAGP'].includes(amplitudeData.meldegruppe);
+    const erARBS = oppfolgingData.formidlingsgruppe === 'ARBS';
     const registrertEtterDato = brukerregistreringData
         ? new Date(brukerregistreringData.opprettetDato) > new Date('2021-06-22')
         : false;
 
-    return (
-        !erAAP &&
-        harRettMeldeGruppe &&
-        registrertEtterDato &&
-        erStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData }) &&
-        !oppfolgingData.kanReaktiveres
-    );
+    return !erAAP && erARBS && harRettMeldeGruppe && registrertEtterDato && !oppfolgingData.kanReaktiveres;
 }
 
 function DagpengerStatus() {
