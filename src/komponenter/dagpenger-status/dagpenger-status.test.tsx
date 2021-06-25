@@ -104,7 +104,7 @@ describe('Tester dagpengerkomponenten', () => {
             }),
         });
 
-        expect(screen.getByText(/du har ikke søkt om dagpenger/i)).toBeInTheDocument();
+        expect(screen.getByText(/skal du søke dagpenger/i)).toBeInTheDocument();
     });
 
     test('<MottarDagpenger> rendres ved innvilget søknad', () => {

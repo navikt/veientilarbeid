@@ -126,7 +126,7 @@ function DagpengerStatus() {
 
 function IkkeSoktDagpenger({ loggLenkeKlikk }: { loggLenkeKlikk: Function }) {
     return (
-        <DagpengerDekorator tittle={'Du har ikke søkt om dagpenger'}>
+        <DagpengerDekorator tittle={'Skal du søke dagpenger?'}>
             <div>
                 <Normaltekst className={'blokk-xs'}>
                     Du kan tidligst få dagpenger fra den dagen du sender inn søknaden.
