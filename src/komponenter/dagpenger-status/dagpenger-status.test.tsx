@@ -75,6 +75,27 @@ describe('Tester dagpengerkomponenten', () => {
         expect(container).not.toBeEmptyDOMElement();
     });
 
+    test('Komponenten rendres IKKE når man er registrert etter 25. juni 2021 selv om dpstatus-for-alle er togglet på', () => {
+        const { container } = render(<DagpengerStatus />, {
+            wrapper: contextProviders({
+                ...providerProps,
+                amplitude: {
+                    ukerRegistrert: 0,
+                    gruppe: 'kss',
+                    meldegruppe: 'ARBS',
+                },
+                brukerregistrering: {
+                    registrering: {
+                        opprettetDato: '2021-06-26',
+                    },
+                },
+                featureToggle: { 'veientilarbeid.dpstatus-for-alle': true },
+            }),
+        });
+
+        expect(container).toBeEmptyDOMElement();
+    });
+
     test('Komponenten Ikke søkt dagpenger rendres når man har ukjentStatus', () => {
         render(<DagpengerStatus />, {
             wrapper: contextProviders({

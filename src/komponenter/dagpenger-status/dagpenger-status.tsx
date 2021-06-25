@@ -41,7 +41,17 @@ function kanViseDpStatus({
         ? new Date(brukerregistreringData.opprettetDato) > new Date('2021-05-22')
         : false;
 
-    return !erAAP && erARBS && harRettMeldeGruppe && registrertEtterDato && !oppfolgingData.kanReaktiveres;
+    const registrertFoerDato = brukerregistreringData
+        ? new Date(brukerregistreringData.opprettetDato) < new Date('2021-06-26')
+        : false;
+    return (
+        !erAAP &&
+        erARBS &&
+        harRettMeldeGruppe &&
+        registrertEtterDato &&
+        registrertFoerDato &&
+        !oppfolgingData.kanReaktiveres
+    );
 }
 
 function DagpengerStatus() {
