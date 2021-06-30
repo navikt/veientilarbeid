@@ -19,8 +19,6 @@ spec:
     value: {{ dialog_url }}
   - name: VEIVISERARBEIDSSOKER_URL
     value: {{ veiviserarbeidssoker_url }}
-  - name: VEILEDEARBEIDSSOKER_URL
-    value: {{ veiledearbeidssoker_url }}
   - name: JOBBSOKERKOMPETANSE_URL
     value: {{ jobbsokerkompetanse_url }}
   - name: DITTNAV_LINK_URL

@@ -36,8 +36,6 @@ redirect:
     to: {{ DIALOG_URL }}
   - from: /veiviserarbeidssoker
     to: {{ VEIVISERARBEIDSSOKER_URL }}
-  - from: /veiledearbeidssoker
-    to: {{ VEILEDEARBEIDSSOKER_URL }}
   - from: /jobbsokerkompetanse
     to: {{ JOBBSOKERKOMPETANSE_URL }}
   - from: /dittnav
