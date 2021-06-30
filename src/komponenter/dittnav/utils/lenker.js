@@ -19,12 +19,7 @@ const TJENESTER_URL =
         : /q/.test(env)
         ? `https://tjenester-${env}.nav.no`
         : 'http://localhost:3002';
-const VEILEDERARBEIDSSOKER_URL =
-    env === 'prod'
-        ? 'https://veiledearbeidssoker.nav.no'
-        : /q/.test(env)
-        ? 'https://veiledearbeidssoker-q.nav.no'
-        : 'http://localhost:3002';
+const VEILEDERARBEIDSSOKER_URL = env === 'prod' ? 'https://www.nav.no/arbeid' : 'https://www.dev.nav.no/arbeid';
 
 export const lenker = {
     skjemaer: {
