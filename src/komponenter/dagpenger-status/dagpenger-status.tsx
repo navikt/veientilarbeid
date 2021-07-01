@@ -128,6 +128,8 @@ function IkkeSoktDagpenger({ loggLenkeKlikk }: { loggLenkeKlikk: Function }) {
     return (
         <DagpengerDekorator tittle={'Skal du søke dagpenger?'}>
             <div>
+                <strong className="viktig-aa-vite blokk-xs">Viktig å vite!</strong>
+                <Normaltekst className={'blokk-xs'}>Du har ikke sendt inn søknad om dagpenger.</Normaltekst>
                 <Normaltekst className={'blokk-xs'}>
                     Du kan tidligst få dagpenger fra den dagen du sender inn søknaden.
                 </Normaltekst>
