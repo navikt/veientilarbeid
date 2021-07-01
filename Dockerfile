@@ -19,7 +19,7 @@ RUN cp -r /source/build /micro
 RUN npm run build
 
 
-FROM docker.pkg.github.com/navikt/pus-decorator/pus-decorator
+FROM docker.pkg.github.com/navikt/pus-decorator/pus-decorator:latest
 ENV APPLICATION_NAME=veientilarbeid
 ENV GZIP_ENABLED=true
 
