@@ -1,0 +1,78 @@
+kind: Application
+apiVersion: nais.io/v1alpha1
+metadata:
+  name: veientilarbeid
+  namespace: {{ namespace }}
+  labels:
+    team: paw
+spec:
+  env:
+  - name: APPRES_CMS_URL
+    value: {{ appres_cms_url }}
+  - name: LOGINSERVICE_URL
+    value: {{ loginservice_url }}
+  - name: VEIENTILARBEID_URL
+    value: {{ veientilarbeid_url }}
+  - name: AKTIVITETSPLAN_URL
+    value: {{ aktivitetsplan_url }}
+  - name: DIALOG_URL
+    value: {{ dialog_url }}
+  - name: VEIVISERARBEIDSSOKER_URL
+    value: {{ veiviserarbeidssoker_url }}
+  - name: JOBBSOKERKOMPETANSE_URL
+    value: {{ jobbsokerkompetanse_url }}
+  - name: DITTNAV_LINK_URL
+    value: {{ dittnav_link_url }}
+  - name: SYFOFRONT_URL
+    value: {{ syfofront_url }}
+  - name: VEIVISERSOSIALHJELP_URL
+    value: {{ veivisersosialhjelp_url }}
+  - name: ARBEIDSPLASSEN_URL
+    value: {{ arbeidsplassen_url }}
+  - name: BEHOVSVURDERING_URL
+    value: {{ behovsvurdering_url }}
+  - name: START_SAMTALE_URL
+    value: {{ start_samtale_url }}
+  - name: ARBEIDSSOKERREGISTRERING_URL
+    value: {{ arbeidssokerregistrering_url }}
+  - name: VEILARBPROXY_URL
+    value: {{ veilarbproxy_url }}
+  - name: SAKSOVERSIKT_API
+    value: {{ saksoversikt_api }}
+  - name: FASIT_ENVIRONMENT_NAME
+    value: {{ app_environment_name }}
+  - name: DISABLE_FRONTEND_LOGGER
+    value: 'true'
+  envFrom:
+    - configmap: loginservice-idporten
+  image: {{image}}
+  {{#if ingresses}}
+  ingresses:
+  {{#each ingresses as |url|}}
+     - {{url}}
+  {{/each}}
+  {{/if}}
+  liveness:
+    path: /internal/isAlive
+    port: 8080
+    initialDelay: 20
+  port: 8080
+  prometheus:
+    enabled: true
+    path: /internal/metrics
+  readiness:
+    path: /internal/isReady
+    port: 8080
+    initialDelay: 20
+  replicas:
+    min: 2
+    max: 4
+    cpuThresholdPercentage: 50
+  resources:
+    limits:
+      cpu: "3"
+      memory: 2048Mi
+    requests:
+      memory: 1024Mi
+      cpu: "1"
+  webproxy: true
