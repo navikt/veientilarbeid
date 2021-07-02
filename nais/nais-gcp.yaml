@@ -83,3 +83,4 @@ spec:
           namespace: pto
       external:
         - host: saksoversikt-api.dev.intern.nav.no
+        - host: appres-q1.nav.no
