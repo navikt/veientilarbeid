@@ -76,3 +76,8 @@ spec:
       memory: 1024Mi
       cpu: "1"
   webproxy: true
+  accessPolicy:
+    outbound:
+      rules:
+        - application: pto-proxy
+          namespace: pto
