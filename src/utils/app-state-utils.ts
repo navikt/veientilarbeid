@@ -13,4 +13,6 @@ export const erProduksjon = () => {
     return url.indexOf('www.nav.no/person/dittnav') > -1;
 };
 
+export const erStandaloneTestMiljo = () => url.indexOf('veientilarbeid.dev.nav.no') !== -1;
+
 export const contextpathDittNav = '/person/dittnav/veientilarbeid';
