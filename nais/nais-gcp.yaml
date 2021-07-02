@@ -81,3 +81,5 @@ spec:
       rules:
         - application: pto-proxy
           namespace: pto
+        external:
+          - host: saksoversikt-api.dev.intern.nav.no
