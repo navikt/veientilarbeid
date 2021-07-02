@@ -16,3 +16,5 @@ arbeidssokerregistrering_url: https://arbeidssokerregistrering-q1.nav.no
 veilarbproxy_url: http://pto-proxy.pto.svc.cluster.local/proxy
 saksoversikt_api: https://saksoversikt-api.dev.intern.nav.no
 app_environment_name: paw
+ingresses:
+  - https://veientilarbeid.dev.nav.no
