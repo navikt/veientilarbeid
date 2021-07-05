@@ -14,7 +14,7 @@ behovsvurdering_url: https://behovsvurdering-q1.dev-sbs.nais.io
 start_samtale_url: https://www-q1.nav.no/arbeid/start-samtale
 arbeidssokerregistrering_url: https://arbeidssokerregistrering-q1.nav.no
 veilarbproxy_url: http://pto-proxy.pto.svc.cluster.local/proxy
-saksoversikt_api: https://saksoversikt-api.dev.intern.nav.no
+saksoversikt_api: https://saksoversikt-api.dev.nav.no
 app_environment_name: paw
 ingresses:
   - https://veientilarbeid.dev.nav.no
