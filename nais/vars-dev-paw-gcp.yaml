@@ -18,3 +18,6 @@ saksoversikt_api: https://saksoversikt-api.dev.nav.no
 app_environment_name: paw
 ingresses:
   - https://veientilarbeid.dev.nav.no
+externalHosts:
+  - saksoversikt-api.dev.nav.no
+  - appres-q1.nav.no

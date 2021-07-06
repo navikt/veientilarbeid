@@ -82,5 +82,6 @@ spec:
         - application: pto-proxy
           namespace: pto
       external:
-        - host: saksoversikt-api.dev.nav.no
-        - host: appres-q1.nav.no
+      {{#each externalHosts as |host|}}
+         - {{host}}
+      {{/each}}
