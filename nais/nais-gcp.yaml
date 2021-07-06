@@ -83,5 +83,5 @@ spec:
           namespace: pto
       external:
       {{#each externalHosts as |host|}}
-         - {{host}}
+         - host: {{host}}
       {{/each}}
