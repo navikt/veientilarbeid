@@ -156,7 +156,7 @@ export const hentDpStatus = () => hentDemoState(DemoData.DP_STATUS) || 'dagpenge
 export const settDpStatus = (value: string) => settDemoState(DemoData.DP_STATUS, value);
 
 export const hentDpSoknaderUnderArbeid = (): JSONValue => {
-    const status = hentDemoState(DemoData.DP_STATUS);
+    const status = hentDpStatus();
     const paabegyntDato = plussDager(new Date(), 2);
     const pabegyntesoknaderMock = {
         soknader: [
@@ -174,7 +174,7 @@ export const hentDpSoknaderUnderArbeid = (): JSONValue => {
 };
 
 export const hentDpMuligeEttersendelser = (): JSONValue => {
-    const status = hentDemoState(DemoData.DP_STATUS);
+    const status = hentDpStatus();
     return status === 'dagpengestatusEttersendVedlegg' ? muligeEttersendelserMock : [];
 };
 
@@ -277,7 +277,7 @@ function genererSakstemaMock(valgtStatus: string): JSONValue {
 }
 
 export const hentDpSakstema = (): JSONValue => {
-    const status = hentDemoState(DemoData.DP_STATUS);
+    const status = hentDpStatus();
     return status && ['dagpengestatusSoknadBehandlet', 'dagpengestatusInnsendtSoknad'].includes(status)
         ? genererSakstemaMock(status)
         : { sakstema: [] };
