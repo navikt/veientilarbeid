@@ -38,6 +38,10 @@ export function sistOppdaterteBehandling(behandlingskjeder: Behandling[], regist
 
 function beregnDagpengerStatus(data: Beregningsdata): dagpengerSokestatus {
     const { behandlingskjeder, rettighetsgruppe, opprettetRegistreringDato, paabegynteSoknader } = data;
+    if (rettighetsgruppe === 'DAGP') {
+        return DagpengerSokestatuser.mottarDagpenger;
+    }
+
     let status = DagpengerSokestatuser.ukjentStatus;
     // Sjekker om det er påbegynte søknader etter registreringsdato
     if (opprettetRegistreringDato && paabegynteSoknader && paabegynteSoknader.length > 0) {
@@ -59,9 +63,6 @@ function beregnDagpengerStatus(data: Beregningsdata): dagpengerSokestatus {
                     ? DagpengerSokestatuser.soknadUnderBehandling
                     : DagpengerSokestatuser.soknadFerdigBehandlet;
         }
-    }
-    if (rettighetsgruppe === 'DAGP') {
-        status = DagpengerSokestatuser.mottarDagpenger;
     }
     return status;
 }
