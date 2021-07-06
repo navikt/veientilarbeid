@@ -42,29 +42,27 @@ function beregnDagpengerStatus(data: Beregningsdata): dagpengerSokestatus {
         return DagpengerSokestatuser.mottarDagpenger;
     }
 
-    let status = DagpengerSokestatuser.ukjentStatus;
-    // Sjekker om det er påbegynte søknader etter registreringsdato
-    if (opprettetRegistreringDato && paabegynteSoknader && paabegynteSoknader.length > 0) {
-        const paabegynteSoknaderEtterRegistrering = paabegynteSoknader
-            .filter((soknad) => new Date(soknad.dato) > opprettetRegistreringDato)
-            .filter((soknad) => /[dD]agpenger/.test(soknad.tittel));
-        if (paabegynteSoknaderEtterRegistrering.length > 0) {
-            status = DagpengerSokestatuser.harPaabegynteSoknader;
-        }
-    }
     // Sjekker om det er søknader under behandling eller ferdig behandlet etter registreringsdato
     if (opprettetRegistreringDato && behandlingskjeder) {
         const behandlingSistOppdatert = sistOppdaterteBehandling(behandlingskjeder, opprettetRegistreringDato);
         const sisteOppdaterteBehandlingEtterRegistreringsdato = behandlingSistOppdatert;
 
         if (sisteOppdaterteBehandlingEtterRegistreringsdato) {
-            status =
-                sisteOppdaterteBehandlingEtterRegistreringsdato.status === 'UNDER_BEHANDLING'
-                    ? DagpengerSokestatuser.soknadUnderBehandling
-                    : DagpengerSokestatuser.soknadFerdigBehandlet;
+            return sisteOppdaterteBehandlingEtterRegistreringsdato.status === 'UNDER_BEHANDLING'
+                ? DagpengerSokestatuser.soknadUnderBehandling
+                : DagpengerSokestatuser.soknadFerdigBehandlet;
         }
     }
-    return status;
+    // Sjekker om det er påbegynte søknader etter registreringsdato
+    if (opprettetRegistreringDato && paabegynteSoknader && paabegynteSoknader.length > 0) {
+        const paabegynteSoknaderEtterRegistrering = paabegynteSoknader
+            .filter((soknad) => new Date(soknad.dato) > opprettetRegistreringDato)
+            .filter((soknad) => /[dD]agpenger/.test(soknad.tittel));
+        if (paabegynteSoknaderEtterRegistrering.length > 0) {
+            return DagpengerSokestatuser.harPaabegynteSoknader;
+        }
+    }
+    return DagpengerSokestatuser.ukjentStatus;
 }
 
 export default beregnDagpengerStatus;
