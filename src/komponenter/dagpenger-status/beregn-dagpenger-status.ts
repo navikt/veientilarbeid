@@ -41,9 +41,12 @@ function beregnDagpengerStatus(data: Beregningsdata): dagpengerSokestatus {
     if (rettighetsgruppe === 'DAGP') {
         return DagpengerSokestatuser.mottarDagpenger;
     }
+    if (!opprettetRegistreringDato) {
+        return DagpengerSokestatuser.ukjentStatus;
+    }
 
     // Sjekker om det er søknader under behandling eller ferdig behandlet etter registreringsdato
-    if (opprettetRegistreringDato && behandlingskjeder) {
+    if (behandlingskjeder) {
         const behandlingSistOppdatert = sistOppdaterteBehandling(behandlingskjeder, opprettetRegistreringDato);
         const sisteOppdaterteBehandlingEtterRegistreringsdato = behandlingSistOppdatert;
 
@@ -54,7 +57,7 @@ function beregnDagpengerStatus(data: Beregningsdata): dagpengerSokestatus {
         }
     }
     // Sjekker om det er påbegynte søknader etter registreringsdato
-    if (opprettetRegistreringDato && paabegynteSoknader && paabegynteSoknader.length > 0) {
+    if (paabegynteSoknader && paabegynteSoknader.length > 0) {
         const paabegynteSoknaderEtterRegistrering = paabegynteSoknader
             .filter((soknad) => new Date(soknad.dato) > opprettetRegistreringDato)
             .filter((soknad) => /[dD]agpenger/.test(soknad.tittel));
