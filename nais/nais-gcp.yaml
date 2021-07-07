@@ -43,6 +43,8 @@ spec:
     value: {{ app_environment_name }}
   - name: DISABLE_FRONTEND_LOGGER
     value: 'true'
+  - name: DISABLE_SENSU_METRICS
+    value: 'true'
   envFrom:
     - configmap: loginservice-idporten
   image: {{image}}
