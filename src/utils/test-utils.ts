@@ -1,7 +1,7 @@
-import { Matcher, Nullish } from '@testing-library/react';
+import { Matcher } from '@testing-library/react';
 
 export function regexMatcher(innhold: RegExp): Matcher {
-    return (content: string, node: Nullish<Element>) => {
+    return (content: string, node: Element | null) => {
         if (!node) return false;
 
         const hasText = (innerNode: any) => innhold.test(innerNode.textContent);
