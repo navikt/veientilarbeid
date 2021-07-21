@@ -32,7 +32,7 @@
         "babel-polyfill": "6.26.0",
         "classnames": "2.3.1",
         "core-js": "3.15.2",
-        "craco-less": "1.17.1",
+        "craco-less": "1.18.0",
         "gsap": "3.7.0",
         "html-react-parser": "1.2.7",
         "intersection-observer": "0.12.0",
