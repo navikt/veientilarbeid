@@ -21,3 +21,4 @@ ingresses:
 externalHosts:
   - saksoversikt-api.dev.nav.no
   - appres-q1.nav.no
+  - unleash.nais.io

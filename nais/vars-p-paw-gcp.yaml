@@ -19,3 +19,4 @@ saksoversikt_api: https://saksoversikt-api.nais.oera.no
 externalHosts:
   - saksoversikt-api.nais.oera.no
   - appres.nav.no
+  - unleash.nais.io
