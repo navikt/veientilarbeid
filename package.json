@@ -89,7 +89,7 @@
         "@types/gsap": "3.0.0",
         "@types/jest": "26.0.24",
         "@types/merge-deep": "3.0.0",
-        "@types/node": "16.4.0",
+        "@types/node": "16.4.1",
         "@types/query-string": "5.1.0",
         "@types/react": "17.0.14",
         "@types/react-collapse": "5.0.1",
