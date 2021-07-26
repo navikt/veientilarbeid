@@ -30,32 +30,4 @@ describe('Tester komponenten Aktivitetsplan', () => {
         const { container } = render(<Aktivitetsplan />, { wrapper: contextProviders(props) });
         expect(container).toBeEmptyDOMElement();
     });
-
-    test('Komponenten skal vise vanlig melding uten query-parameter nyRegistrering om man er under oppfølging', async () => {
-        const props: ProviderProps = {
-            underOppfolging: {
-                underOppfolging: true,
-            },
-        };
-
-        delete global.window.location;
-        global.window.location = { search: '' } as Location;
-
-        render(<Aktivitetsplan />, { wrapper: contextProviders(props) });
-        expect(screen.getByText(/her holder du orden på aktiviteter/i)).toBeTruthy();
-    });
-
-    test('Komponenten skal vise tilpasset melding med query-parameter nyRegistrering=true ', async () => {
-        const props: ProviderProps = {
-            underOppfolging: {
-                underOppfolging: true,
-            },
-        };
-
-        delete global.window.location;
-        global.window.location = { search: '?nyRegistrering=true' } as Location;
-
-        render(<Aktivitetsplan />, { wrapper: contextProviders(props) });
-        expect(screen.getByText(/NAV har satt opp aktiviteter i aktivitetsplanen din/i)).toBeTruthy();
-    });
 });

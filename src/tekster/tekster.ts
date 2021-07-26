@@ -53,8 +53,6 @@ const tekster = {
     'alleskjema-lenke-tekst': 'Til alle skjemaer',
     'alleskjema-tekst': 'Her finner du alle skjemaer i NAV.',
     'alleskjema-tittel': 'Skjema og søknad',
-    'aktivitetsplan-beskrivelse-ny':
-        'NAV har satt opp aktiviteter i aktivitetsplanen din med en fristdato for når du skal ha gjort dem.',
     'aktivitetsplan-beskrivelse': 'Her holder du orden på aktiviteter du gjør i samarbeid med NAV.',
     'aktivitetsplan-lenke-ordinaer': 'Gå til aktivitetsplanen',
     'aktivitetsplan-lenke-sykmeldt': 'Gå til aktivitetsplanen',
