@@ -2,7 +2,7 @@ import React from 'react';
 import { loggAktivitet } from '../../metrics/metrics';
 import JobbsokertipsIkon from './svg/jobbsokertips';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
-import { jobbsokerkompetanseLenke, veiviserarbeidssokerLenke } from '../../innhold/lenker';
+import { jobbsokerkompetanseLenke } from '../../innhold/lenker';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { JobbsokerbesvarelseContext } from '../../ducks/jobbsokerbesvarelse';
 
@@ -12,22 +12,19 @@ const Jobbsokertips = () => {
 
     const harJobbbsokerbesvarelse = !!jobbsokerbesvarelseData?.raad;
 
-    if (!harJobbbsokerbesvarelse) return null;
-
-    const URL = harJobbbsokerbesvarelse ? jobbsokerkompetanseLenke : veiviserarbeidssokerLenke;
-
-    const lenketekst = harJobbbsokerbesvarelse
-        ? 'jobbsokertips-overskrift-har-besvarelse'
-        : 'jobbsokertips-overskrift-har-ikke-besvarelse';
-
-    const aktivitet = harJobbbsokerbesvarelse ? 'Går til jobbsøkerkompetanse' : 'Går til veiviser arbeidssøker';
-
     const handleClick = () => {
-        loggAktivitet({ aktivitet: aktivitet, ...amplitudeData });
+        loggAktivitet({ aktivitet: 'Går til jobbsøkerkompetanse', ...amplitudeData });
     };
 
+    if (!harJobbbsokerbesvarelse) return null;
+
     return (
-        <LenkepanelMedIkon href={URL} alt="" onClick={handleClick} overskrift={lenketekst}>
+        <LenkepanelMedIkon
+            href={jobbsokerkompetanseLenke}
+            alt=""
+            onClick={handleClick}
+            overskrift={'jobbsokertips-overskrift-har-besvarelse'}
+        >
             <JobbsokertipsIkon />
         </LenkepanelMedIkon>
     );
