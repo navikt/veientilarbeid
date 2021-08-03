@@ -12,6 +12,8 @@ const Jobbsokertips = () => {
 
     const harJobbbsokerbesvarelse = !!jobbsokerbesvarelseData?.raad;
 
+    if (!harJobbbsokerbesvarelse) return null;
+
     const URL = harJobbbsokerbesvarelse ? jobbsokerkompetanseLenke : veiviserarbeidssokerLenke;
 
     const lenketekst = harJobbbsokerbesvarelse
