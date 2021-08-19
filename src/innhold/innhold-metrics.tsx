@@ -29,7 +29,7 @@ export default function InnholdMetrics() {
 function Metrics(props: Props) {
     const { formidlingsgruppe, servicegruppe } = React.useContext(OppfolgingContext).data;
     const amplitudeData = React.useContext(AmplitudeContext);
-    const { antallDagerEtterFastsattMeldingsdag } = amplitudeData;
+    const { ukerRegistrert, eksperimenter } = amplitudeData;
     const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
     const { alder } = React.useContext(BrukerInfoContext).data;
 
@@ -56,8 +56,12 @@ function Metrics(props: Props) {
     });
 
     const hotjarEksperiment = () => {
-        // Henter data fra amplitude, antallDagerEtterFastsattMeldingsdag (mandag = 0)
-        return parseInt(antallDagerEtterFastsattMeldingsdag, 10) >= 1;
+        // Henter data fra amplitude
+        const erInnenfor0til4ukerRegistrert =
+            ukerRegistrert !== 'INGEN_DATO' && [0, 1, 2, 3, 4].includes(ukerRegistrert);
+        const deltarIeksperimentGruppen = eksperimenter.includes('onboarding14a');
+        const erKSS = POAGruppe === 'kss';
+        return erInnenfor0til4ukerRegistrert && deltarIeksperimentGruppen && erKSS;
     };
 
     React.useEffect(() => {
