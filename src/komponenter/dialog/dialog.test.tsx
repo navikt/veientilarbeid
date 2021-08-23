@@ -3,6 +3,7 @@ import { contextProviders, ProviderProps } from '../../test/test-context-provide
 import React, { ComponentType } from 'react';
 import { render, screen } from '@testing-library/react';
 import tekster from '../../tekster/tekster';
+import { Formidlingsgruppe, Servicegruppe } from '../../ducks/oppfolging';
 import '@testing-library/jest-dom/extend-expect';
 
 describe('Tester dialog-komponent', () => {
@@ -53,6 +54,33 @@ describe('Tester dialog-komponent', () => {
     test('Komponenten rendres IKKE når bruker IKKE er under oppfølging', () => {
         const props: ProviderProps = {
             underOppfolging: { underOppfolging: false },
+        };
+        const { container } = render(<Dialog />, { wrapper: contextProviders(props) });
+        expect(container).toBeEmptyDOMElement();
+    });
+
+    test('Komponenten rendres IKKE når bruker ser 14a onboarding', () => {
+        const props: ProviderProps = {
+            underOppfolging: {
+                underOppfolging: true,
+            },
+            brukerInfo: {
+                rettighetsgruppe: 'DAGP',
+                geografiskTilknytning: '110302',
+                alder: 42,
+            },
+            amplitude: {
+                ukerRegistrert: 2,
+                gruppe: 'kss',
+                eksperimenter: ['onboarding14a'],
+            },
+            oppfolging: {
+                formidlingsgruppe: Formidlingsgruppe.ARBS,
+                servicegruppe: Servicegruppe.IKVAL,
+            },
+            featureToggle: {
+                'veientilarbeid.14a-intro': true,
+            },
         };
         const { container } = render(<Dialog />, { wrapper: contextProviders(props) });
         expect(container).toBeEmptyDOMElement();
