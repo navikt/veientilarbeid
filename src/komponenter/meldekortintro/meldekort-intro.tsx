@@ -291,7 +291,7 @@ function MeldekortIntro(props: MeldekortIntroProps) {
     );
 }
 
-function kanViseMeldekortStatus({
+export function kanViseMeldekortStatus({
     meldekortData,
     brukerInfoData,
     oppfolgingData,
