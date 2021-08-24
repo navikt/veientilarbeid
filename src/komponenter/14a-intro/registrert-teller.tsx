@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 interface TellerProps {
@@ -42,6 +42,8 @@ function RegistrertTeller({ ukerRegistrert, registrertDato }: TellerProps) {
     if (over23Uker && registrertDato) {
         setning = `Du har vært registrert arbeidssøker siden ${registrertDato}`;
     }
+    if (setning === '') return null;
+
     return <Normaltekst className={'blokk-xs'}>{setning}</Normaltekst>;
 }
 
