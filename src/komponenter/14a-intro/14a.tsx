@@ -310,11 +310,9 @@ export function kanVise14AStatus({
     const erAAP = brukerInfoData.rettighetsgruppe === 'AAP';
     const brukerregistreringData = registreringData?.registrering ?? null;
 
-    const registrertUnder12Uker = amplitudeData.ukerRegistrert < 12;
     const aldersgruppeUtenForsterketInnsats = brukerInfoData.alder >= 30 && brukerInfoData.alder <= 55;
 
     return (
-        registrertUnder12Uker &&
         aldersgruppeUtenForsterketInnsats &&
         !erAAP &&
         skalSeEksperiment &&

@@ -23,6 +23,11 @@ const providerProps: ProviderProps = {
         formidlingsgruppe: Formidlingsgruppe.ARBS,
         servicegruppe: Servicegruppe.IKVAL,
     },
+    brukerregistrering: {
+        registrering: {
+            opprettetDato: '2020-06-01',
+        },
+    },
 };
 
 describe('tester onboarding komponenten for 14a-intro', () => {
@@ -54,6 +59,7 @@ describe('tester onboarding komponenten for 14a-intro', () => {
                 amplitude: { ukerRegistrert: 13 },
             }),
         });
+        screen.debug();
         expect(container).toBeEmptyDOMElement();
     });
 
