@@ -151,8 +151,18 @@ function Sluttkort(props: EndStateProps) {
     const { amplitudeData, registreringData } = props;
     const { ukerRegistrert } = amplitudeData;
     const registrertDato = registreringData?.registrering?.opprettetDato;
-    const kortTittel =
-        ukerRegistrert > 12 ? 'Ta kontakt med en veileder' : 'Om du ønsker oppfølging før 12 uker må du gi oss beskjed';
+    const registrertOver12Uker = ukerRegistrert > 12;
+    const kortTittel = registrertOver12Uker
+        ? 'Ta kontakt med en veileder'
+        : 'Om du ønsker oppfølging før 12 uker må du gi oss beskjed';
+
+    const VeiledersOppgaver = () => {
+        return (
+            <Normaltekst>
+                Veilederen kan besvare spørsmål, bistå rundt det å søke stillinger og tilby hjelp på veien til arbeid.
+            </Normaltekst>
+        );
+    };
 
     const handleKlikkLesIntro = () => {
         amplitudeLogger('veientilarbeid.intro', {
@@ -176,12 +186,15 @@ function Sluttkort(props: EndStateProps) {
             <RegistrertTeller ukerRegistrert={ukerRegistrert} registrertDato={registrertDato} />
 
             <Lenkepanel14A amplitudeData={amplitudeData} href={''} antallUlesteDialoger={props.antallUlesteDialoger} />
-
-            <Normaltekst>
-                <Lenke className={'tracking-wide'} href={''} onClick={handleLesIntroPaaNytt}>
-                    Les om hva slags hjelp du kan få
-                </Lenke>
-            </Normaltekst>
+            {registrertOver12Uker ? (
+                <VeiledersOppgaver />
+            ) : (
+                <Normaltekst>
+                    <Lenke className={'tracking-wide'} href={''} onClick={handleLesIntroPaaNytt}>
+                        Les om hva slags hjelp du kan få
+                    </Lenke>
+                </Normaltekst>
+            )}
         </div>
     );
 }
