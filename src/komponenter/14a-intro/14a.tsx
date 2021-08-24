@@ -151,6 +151,8 @@ function Sluttkort(props: EndStateProps) {
     const { amplitudeData, registreringData } = props;
     const { ukerRegistrert } = amplitudeData;
     const registrertDato = registreringData?.registrering?.opprettetDato;
+    const kortTittel =
+        ukerRegistrert > 12 ? 'Ta kontakt med en veileder' : 'Om du ønsker oppfølging før 12 uker må du gi oss beskjed';
 
     const handleKlikkLesIntro = () => {
         amplitudeLogger('veientilarbeid.intro', {
@@ -170,7 +172,7 @@ function Sluttkort(props: EndStateProps) {
     return (
         <div className={'sluttkort'}>
             <Element tag={'h1'}>OPPFØLGING</Element>
-            <Systemtittel className={'blokk-xs'}>Om du ønsker oppfølging før 12 uker må du gi oss beskjed</Systemtittel>
+            <Systemtittel className={'blokk-xs'}>{kortTittel}</Systemtittel>
             <RegistrertTeller ukerRegistrert={ukerRegistrert} registrertDato={registrertDato} />
 
             <Lenkepanel14A amplitudeData={amplitudeData} href={''} antallUlesteDialoger={props.antallUlesteDialoger} />
