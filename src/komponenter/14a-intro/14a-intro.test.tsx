@@ -59,7 +59,6 @@ describe('tester onboarding komponenten for 14a-intro', () => {
                 amplitude: { ukerRegistrert: 13 },
             }),
         });
-        screen.debug();
         expect(container).toBeEmptyDOMElement();
     });
 
