@@ -36,7 +36,36 @@ const ordenstall = {
     10: 'ellevte',
     11: 'tolvte',
     12: 'trettende',
+    13: 'fjortende',
+    14: 'femtende',
+    15: 'sekstende',
+    16: 'syttende',
+    17: 'attende',
+    18: 'nittende',
+    19: 'tjuende',
+    20: 'tjueførste',
+    21: 'tjueandre',
+    22: 'tjuetredje',
+    23: 'tjuefjerde',
+    24: 'tjuefemte',
 };
+
+interface TellerProps {
+    ukerRegistrert: number | 'INGEN_DATO';
+    registrertDato: string | undefined;
+}
+
+function RegistrertTeller({ ukerRegistrert, registrertDato }: TellerProps) {
+    const over23Uker = ukerRegistrert > 23;
+    let setning = '';
+    if (!over23Uker) {
+        setning = `Du er inne i din ${ordenstall[ukerRegistrert]} uke som registrert arbeidssøker.`;
+    }
+    if (over23Uker && registrertDato) {
+        setning = `Du har vært registrert arbeidssøker siden ${registrertDato}`;
+    }
+    return <Normaltekst className={'blokk-xs'}>{setning}</Normaltekst>;
+}
 
 function Kort1() {
     return (
@@ -157,13 +186,15 @@ function Kort4() {
 
 interface EndStateProps {
     amplitudeData: AmplitudeData;
+    registreringData: Brukerregistrering.Data | null;
     lesIntroPaaNyttCB: () => void;
     antallUlesteDialoger: number;
 }
 
 function Sluttkort(props: EndStateProps) {
-    const { amplitudeData } = props;
+    const { amplitudeData, registreringData } = props;
     const { ukerRegistrert } = amplitudeData;
+    const registrertDato = registreringData?.registrering?.opprettetDato;
 
     const handleKlikkLesIntro = () => {
         amplitudeLogger('veientilarbeid.intro', {
@@ -184,9 +215,7 @@ function Sluttkort(props: EndStateProps) {
         <div className={'sluttkort'}>
             <Element tag={'h1'}>OPPFØLGING</Element>
             <Systemtittel className={'blokk-xs'}>Om du ønsker oppfølging før 12 uker må du gi oss beskjed</Systemtittel>
-            <Normaltekst className={'blokk-xs'}>
-                Du er inne i din {ordenstall[ukerRegistrert]} uke som registrert arbeidssøker.
-            </Normaltekst>
+            <RegistrertTeller ukerRegistrert={ukerRegistrert} registrertDato={registrertDato} />
 
             <Lenkepanel14A amplitudeData={amplitudeData} href={''} antallUlesteDialoger={props.antallUlesteDialoger} />
 
@@ -399,6 +428,7 @@ function Intro14AWrapper() {
                     ) : (
                         <Sluttkort
                             amplitudeData={amplitudeData}
+                            registreringData={registreringData}
                             lesIntroPaaNyttCB={lesIntroPaaNyttCB}
                             antallUlesteDialoger={ulesteDialoger.antallUleste}
                         />
@@ -415,6 +445,7 @@ function Intro14AWrapper() {
                     <div className={'overall-wrapper'}>
                         <Sluttkort
                             amplitudeData={amplitudeData}
+                            registreringData={registreringData}
                             lesIntroPaaNyttCB={lesIntroPaaNyttCB}
                             antallUlesteDialoger={ulesteDialoger.antallUleste}
                         />
