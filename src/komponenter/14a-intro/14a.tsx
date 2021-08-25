@@ -14,29 +14,14 @@ import { fjernFraBrowserStorage, hentFraBrowserStorage, settIBrowserStorage } fr
 import ErRendret from '../er-rendret/er-rendret';
 import Feedback from '../feedback/feedback';
 import Lenkepanel14A from './lenkepanel-14a';
-import { FeaturetoggleContext } from '../../ducks/feature-toggles';
+import { FeaturetoggleContext, Data as FeaturetoggleData } from '../../ducks/feature-toggles';
 import Lenke from 'nav-frontend-lenker';
 import PreState from '../meldekortintro/pre-state';
 import { UlesteDialogerContext } from '../../ducks/ulestedialoger';
 import ModalWrapper from 'nav-frontend-modal';
+import RegistrertTeller from './registrert-teller';
 
 const INTRO_KEY_14A = '14a-intro';
-
-const ordenstall = {
-    0: 'første',
-    1: 'andre',
-    2: 'tredje',
-    3: 'fjerde',
-    4: 'femte',
-    5: 'sjette',
-    6: 'sjuende',
-    7: 'åttende',
-    8: 'niende',
-    9: 'tiende',
-    10: 'ellevte',
-    11: 'tolvte',
-    12: 'trettende',
-};
 
 function Kort1() {
     return (
@@ -157,13 +142,27 @@ function Kort4() {
 
 interface EndStateProps {
     amplitudeData: AmplitudeData;
+    registreringData: Brukerregistrering.Data | null;
     lesIntroPaaNyttCB: () => void;
     antallUlesteDialoger: number;
 }
 
 function Sluttkort(props: EndStateProps) {
-    const { amplitudeData } = props;
+    const { amplitudeData, registreringData } = props;
     const { ukerRegistrert } = amplitudeData;
+    const registrertDato = registreringData?.registrering?.opprettetDato;
+    const registrertOver12Uker = ukerRegistrert > 12;
+    const kortTittel = registrertOver12Uker
+        ? 'Ta kontakt med en veileder'
+        : 'Om du ønsker oppfølging før 12 uker må du gi oss beskjed';
+
+    const VeiledersOppgaver = () => {
+        return (
+            <Normaltekst>
+                Veilederen kan besvare spørsmål, bistå rundt det å søke stillinger og tilby hjelp på veien til arbeid.
+            </Normaltekst>
+        );
+    };
 
     const handleKlikkLesIntro = () => {
         amplitudeLogger('veientilarbeid.intro', {
@@ -183,18 +182,19 @@ function Sluttkort(props: EndStateProps) {
     return (
         <div className={'sluttkort'}>
             <Element tag={'h1'}>OPPFØLGING</Element>
-            <Systemtittel className={'blokk-xs'}>Om du ønsker oppfølging før 12 uker må du gi oss beskjed</Systemtittel>
-            <Normaltekst className={'blokk-xs'}>
-                Du er inne i din {ordenstall[ukerRegistrert]} uke som registrert arbeidssøker.
-            </Normaltekst>
+            <Systemtittel className={'blokk-xs'}>{kortTittel}</Systemtittel>
+            <RegistrertTeller ukerRegistrert={ukerRegistrert} registrertDato={registrertDato} />
 
             <Lenkepanel14A amplitudeData={amplitudeData} href={''} antallUlesteDialoger={props.antallUlesteDialoger} />
-
-            <Normaltekst>
-                <Lenke className={'tracking-wide'} href={''} onClick={handleLesIntroPaaNytt}>
-                    Les om hva slags hjelp du kan få
-                </Lenke>
-            </Normaltekst>
+            {registrertOver12Uker ? (
+                <VeiledersOppgaver />
+            ) : (
+                <Normaltekst>
+                    <Lenke className={'tracking-wide'} href={''} onClick={handleLesIntroPaaNytt}>
+                        Les om hva slags hjelp du kan få
+                    </Lenke>
+                </Normaltekst>
+            )}
         </div>
     );
 }
@@ -300,21 +300,23 @@ export function kanVise14AStatus({
     oppfolgingData,
     registreringData,
     amplitudeData,
+    featuretoggleData,
 }: {
     brukerInfoData: BrukerInfo.Data;
     oppfolgingData: Oppfolging.Data;
     registreringData: Brukerregistrering.Data | null;
     amplitudeData: AmplitudeData;
+    featuretoggleData: FeaturetoggleData;
 }): boolean {
     const skalSeEksperiment = amplitudeData.eksperimenter.includes('onboarding14a');
     const erAAP = brukerInfoData.rettighetsgruppe === 'AAP';
     const brukerregistreringData = registreringData?.registrering ?? null;
+    const featuretoggleAktivert = featuretoggleData && featuretoggleData['veientilarbeid.14a-intro'];
 
-    const registrertUnder12Uker = amplitudeData.ukerRegistrert < 12;
     const aldersgruppeUtenForsterketInnsats = brukerInfoData.alder >= 30 && brukerInfoData.alder <= 55;
 
     return (
-        registrertUnder12Uker &&
+        featuretoggleAktivert &&
         aldersgruppeUtenForsterketInnsats &&
         !erAAP &&
         skalSeEksperiment &&
@@ -346,10 +348,14 @@ function Intro14AWrapper() {
         }
     }, [harSettIntro]);
 
-    const featuretoggleAktivert = featuretoggleData['veientilarbeid.14a-intro'];
     const modalToggle = featuretoggleData['veientilarbeid.modal'];
-    const kanViseKomponent =
-        featuretoggleAktivert && kanVise14AStatus({ amplitudeData, oppfolgingData, brukerInfoData, registreringData });
+    const kanViseKomponent = kanVise14AStatus({
+        amplitudeData,
+        featuretoggleData,
+        oppfolgingData,
+        brukerInfoData,
+        registreringData,
+    });
 
     if (!kanViseKomponent) {
         fjernFraBrowserStorage(INTRO_KEY_14A);
@@ -399,6 +405,7 @@ function Intro14AWrapper() {
                     ) : (
                         <Sluttkort
                             amplitudeData={amplitudeData}
+                            registreringData={registreringData}
                             lesIntroPaaNyttCB={lesIntroPaaNyttCB}
                             antallUlesteDialoger={ulesteDialoger.antallUleste}
                         />
@@ -415,6 +422,7 @@ function Intro14AWrapper() {
                     <div className={'overall-wrapper'}>
                         <Sluttkort
                             amplitudeData={amplitudeData}
+                            registreringData={registreringData}
                             lesIntroPaaNyttCB={lesIntroPaaNyttCB}
                             antallUlesteDialoger={ulesteDialoger.antallUleste}
                         />
