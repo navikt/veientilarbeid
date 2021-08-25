@@ -51,15 +51,15 @@ describe('tester onboarding komponenten for 14a-intro', () => {
         expect(container).toBeEmptyDOMElement();
     });
 
-    test('komponenten vises IKKE når bruker har vært registrert i 13 uker', () => {
+    test('komponenten VISES også når bruker har vært registrert i 13 uker', () => {
         const { container } = render(<Intro14AWrapper />, {
             wrapper: contextProviders({
                 ...providerProps,
                 featureToggle: { 'veientilarbeid.14a-intro': true },
-                amplitude: { ukerRegistrert: 13 },
+                amplitude: { ...providerProps.amplitude, ukerRegistrert: 13 },
             }),
         });
-        expect(container).toBeEmptyDOMElement();
+        expect(container).not.toBeEmptyDOMElement();
     });
 
     test('komponenten vises IKKE når eksperimentet onboarding14a ikke er med', () => {
