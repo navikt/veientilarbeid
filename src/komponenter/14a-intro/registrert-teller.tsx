@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 
+import prettyPrintDato from '../../utils/pretty-print-dato';
+
 interface TellerProps {
     ukerRegistrert: number | 'INGEN_DATO';
     registrertDato: string | undefined;
@@ -40,7 +42,7 @@ function RegistrertTeller({ ukerRegistrert, registrertDato }: TellerProps) {
         setning = `Du er inne i din ${ordenstall[ukerRegistrert]} uke som registrert arbeidssøker.`;
     }
     if (over23Uker && registrertDato) {
-        setning = `Du har vært registrert arbeidssøker siden ${registrertDato}`;
+        setning = `Du har vært registrert arbeidssøker siden ${prettyPrintDato(registrertDato)}`;
     }
     if (setning === '') return null;
 

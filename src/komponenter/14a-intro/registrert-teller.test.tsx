@@ -17,7 +17,7 @@ describe('Tester komponenten RegistrertTeller', () => {
 
     test('Komponenten rendres med dato dersom man er i uke 24', () => {
         render(<RegistrertTeller ukerRegistrert={24} registrertDato="2021-06-01" />);
-        expect(screen.getByText(/2021-06-01/)).toBeInTheDocument();
+        expect(screen.getByText(/1. juni/)).toBeInTheDocument();
     });
 
     test('Komponenten rendres IKKE med dato dersom man er i uke 24 og dato er undefined', () => {
