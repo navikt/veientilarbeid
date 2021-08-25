@@ -153,7 +153,7 @@ function Sluttkort(props: EndStateProps) {
     const registrertDato = registreringData?.registrering?.opprettetDato;
     const registrertOver12Uker = ukerRegistrert > 12;
     const kortTittel = registrertOver12Uker
-        ? 'Ta kontakt med en veileder'
+        ? 'Ta kontakt om du ønsker hjelp'
         : 'Om du ønsker oppfølging før 12 uker må du gi oss beskjed';
 
     const VeiledersOppgaver = () => {
