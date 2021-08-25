@@ -47,7 +47,7 @@ describe('Tester dagpengerkomponenten', () => {
         const { container } = render(<DagpengerStatus />, {
             wrapper: contextProviders({
                 ...providerProps,
-                featureToggle: { 'veientilarbeid.dagpenger-status': true },
+                featureToggle: { 'veientilarbeid.dagpenger-status': true, 'veientilarbeid.14a-intro': true },
             }),
         });
 
@@ -89,7 +89,10 @@ describe('Tester dagpengerkomponenten', () => {
                         opprettetDato: '2021-06-26',
                     },
                 },
-                featureToggle: { 'veientilarbeid.dpstatus-for-alle': true },
+                featureToggle: {
+                    'veientilarbeid.dpstatus-for-alle': true,
+                    'veientilarbeid.14a-intro': true,
+                },
             }),
         });
 
@@ -100,7 +103,7 @@ describe('Tester dagpengerkomponenten', () => {
         render(<DagpengerStatus />, {
             wrapper: contextProviders({
                 ...providerProps,
-                featureToggle: { 'veientilarbeid.dagpenger-status': true },
+                featureToggle: { 'veientilarbeid.dagpenger-status': true, 'veientilarbeid.14a-intro': true },
             }),
         });
 
@@ -115,7 +118,7 @@ describe('Tester dagpengerkomponenten', () => {
                     ...providerProps.brukerInfo,
                     rettighetsgruppe: 'DAGP',
                 },
-                featureToggle: { 'veientilarbeid.dagpenger-status': true },
+                featureToggle: { 'veientilarbeid.dagpenger-status': true, 'veientilarbeid.14a-intro': true },
             }),
         });
 
@@ -126,7 +129,7 @@ describe('Tester dagpengerkomponenten', () => {
         render(<DagpengerStatus />, {
             wrapper: contextProviders({
                 ...providerProps,
-                featureToggle: { 'veientilarbeid.dagpenger-status': true },
+                featureToggle: { 'veientilarbeid.dagpenger-status': true, 'veientilarbeid.14a-intro': true },
                 paabegynteSoknader: {
                     soknader: [
                         {
@@ -149,7 +152,7 @@ describe('Tester dagpengerkomponenten', () => {
         render(<DagpengerStatus />, {
             wrapper: contextProviders({
                 ...providerProps,
-                featureToggle: { 'veientilarbeid.dagpenger-status': true },
+                featureToggle: { 'veientilarbeid.dagpenger-status': true, 'veientilarbeid.14a-intro': true },
                 sakstema: {
                     sakstema: [
                         {
@@ -216,7 +219,7 @@ describe('Tester dagpengerkomponenten', () => {
         render(<DagpengerStatus />, {
             wrapper: contextProviders({
                 ...providerProps,
-                featureToggle: { 'veientilarbeid.dagpenger-status': true },
+                featureToggle: { 'veientilarbeid.dagpenger-status': true, 'veientilarbeid.14a-intro': true },
                 sakstema: {
                     sakstema: [
                         {

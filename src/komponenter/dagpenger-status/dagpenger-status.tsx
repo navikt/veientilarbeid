@@ -73,7 +73,7 @@ function DagpengerStatus() {
 
     const kanViseKomponent =
         (featuretoggleDagpengerStatusAktivert &&
-            kanVise14AStatus({ amplitudeData, oppfolgingData, brukerInfoData, registreringData })) ||
+            kanVise14AStatus({ amplitudeData, featuretoggleData, oppfolgingData, brukerInfoData, registreringData })) ||
         (featuretoggleDPStatusForAlleAktivert &&
             kanViseDpStatus({ amplitudeData, oppfolgingData, brukerInfoData, registreringData }));
 

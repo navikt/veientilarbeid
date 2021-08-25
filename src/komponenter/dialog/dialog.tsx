@@ -10,6 +10,7 @@ import tekster from '../../tekster/tekster';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { UlesteDialogerContext } from '../../ducks/ulestedialoger';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
+import { FeaturetoggleContext } from '../../ducks/feature-toggles';
 import * as BrukerInfo from '../../ducks/bruker-info';
 import { OppfolgingContext } from '../../ducks/oppfolging';
 import * as Brukerregistrering from '../../ducks/brukerregistrering';
@@ -18,11 +19,18 @@ import { kanVise14AStatus } from '../14a-intro/14a';
 const Dialog = () => {
     const amplitudeData = React.useContext(AmplitudeContext);
     const ulesteDialoger = React.useContext(UlesteDialogerContext).data;
+    const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const { data: registreringData } = React.useContext(Brukerregistrering.BrukerregistreringContext);
     const { data: oppfolgingData } = React.useContext(OppfolgingContext);
     const { data: brukerInfoData } = React.useContext(BrukerInfo.BrukerInfoContext);
-    const ser14aStatus = kanVise14AStatus({ amplitudeData, oppfolgingData, brukerInfoData, registreringData });
+    const ser14aStatus = kanVise14AStatus({
+        amplitudeData,
+        featuretoggleData,
+        oppfolgingData,
+        brukerInfoData,
+        registreringData,
+    });
 
     const kanViseKomponent = underOppfolging && !ser14aStatus;
 

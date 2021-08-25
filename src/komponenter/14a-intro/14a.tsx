@@ -14,7 +14,7 @@ import { fjernFraBrowserStorage, hentFraBrowserStorage, settIBrowserStorage } fr
 import ErRendret from '../er-rendret/er-rendret';
 import Feedback from '../feedback/feedback';
 import Lenkepanel14A from './lenkepanel-14a';
-import { FeaturetoggleContext } from '../../ducks/feature-toggles';
+import { FeaturetoggleContext, Data as FeaturetoggleData } from '../../ducks/feature-toggles';
 import Lenke from 'nav-frontend-lenker';
 import PreState from '../meldekortintro/pre-state';
 import { UlesteDialogerContext } from '../../ducks/ulestedialoger';
@@ -300,19 +300,23 @@ export function kanVise14AStatus({
     oppfolgingData,
     registreringData,
     amplitudeData,
+    featuretoggleData,
 }: {
     brukerInfoData: BrukerInfo.Data;
     oppfolgingData: Oppfolging.Data;
     registreringData: Brukerregistrering.Data | null;
     amplitudeData: AmplitudeData;
+    featuretoggleData: FeaturetoggleData;
 }): boolean {
     const skalSeEksperiment = amplitudeData.eksperimenter.includes('onboarding14a');
     const erAAP = brukerInfoData.rettighetsgruppe === 'AAP';
     const brukerregistreringData = registreringData?.registrering ?? null;
+    const featuretoggleAktivert = featuretoggleData && featuretoggleData['veientilarbeid.14a-intro'];
 
     const aldersgruppeUtenForsterketInnsats = brukerInfoData.alder >= 30 && brukerInfoData.alder <= 55;
 
     return (
+        featuretoggleAktivert &&
         aldersgruppeUtenForsterketInnsats &&
         !erAAP &&
         skalSeEksperiment &&
@@ -344,10 +348,14 @@ function Intro14AWrapper() {
         }
     }, [harSettIntro]);
 
-    const featuretoggleAktivert = featuretoggleData['veientilarbeid.14a-intro'];
     const modalToggle = featuretoggleData['veientilarbeid.modal'];
-    const kanViseKomponent =
-        featuretoggleAktivert && kanVise14AStatus({ amplitudeData, oppfolgingData, brukerInfoData, registreringData });
+    const kanViseKomponent = kanVise14AStatus({
+        amplitudeData,
+        featuretoggleData,
+        oppfolgingData,
+        brukerInfoData,
+        registreringData,
+    });
 
     if (!kanViseKomponent) {
         fjernFraBrowserStorage(INTRO_KEY_14A);
