@@ -57,11 +57,11 @@ function Metrics(props: Props) {
 
     const hotjarEksperiment = () => {
         // Henter data fra amplitude
-        const erInnenfor0til4ukerRegistrert =
-            ukerRegistrert !== 'INGEN_DATO' && [0, 1, 2, 3, 4].includes(ukerRegistrert);
+        const erInnenfor0til6ukerRegistrert =
+            ukerRegistrert !== 'INGEN_DATO' && [0, 1, 2, 3, 4, 5, 6].includes(ukerRegistrert);
         const deltarIeksperimentGruppen = eksperimenter.includes('onboarding14a');
         const erKSS = POAGruppe === 'kss';
-        return erInnenfor0til4ukerRegistrert && deltarIeksperimentGruppen && erKSS;
+        return erInnenfor0til6ukerRegistrert && deltarIeksperimentGruppen && erKSS;
     };
 
     React.useEffect(() => {
