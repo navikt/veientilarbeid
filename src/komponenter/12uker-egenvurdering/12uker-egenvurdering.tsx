@@ -90,6 +90,7 @@ function Intro12UkerWrapper() {
 
     function skjulKort() {
         setHarSettIntro(true);
+        window.location.reload();
     }
 
     useEffect(() => {
