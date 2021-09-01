@@ -23,6 +23,7 @@ import RegistrertTeller from './registrert-teller';
 import { kanVise12UkerEgenvurdering } from '../12uker-egenvurdering/12uker-egenvurdering';
 
 const INTRO_KEY_14A = '14a-intro';
+const INTRO_KEY_12UKER = '12uker-egenvurdering';
 
 function Kort1() {
     return (
@@ -335,6 +336,7 @@ function Intro14AWrapper() {
     const ulesteDialoger = React.useContext(UlesteDialogerContext).data;
 
     const [harSettIntro, setHarSettIntro] = React.useState<boolean>(!!hentFraBrowserStorage(INTRO_KEY_14A));
+    const [harSett12uker] = React.useState<boolean>(!!hentFraBrowserStorage(INTRO_KEY_12UKER));
     const [tvingVisningAvIntro, setTvingVisningAvIntro] = React.useState<boolean>(false);
 
     const erNyregistrertKss = amplitudeData.ukerRegistrert === 0;
@@ -357,6 +359,7 @@ function Intro14AWrapper() {
         registreringData,
         amplitudeData,
         featuretoggleData,
+        harSettIntro: harSett12uker,
     });
 
     const kanVise14AIntro = kanVise14AStatus({
