@@ -209,7 +209,7 @@ function MeldekortIntro(props: MeldekortIntroProps) {
     const nesteknappIntro = props.amplitudeData.eksperimenter.includes('nesteknappIntro');
     const introKort = [
         <PreState
-            tittel={'Hva er meldekort og hvordan fungerer de?'}
+            tittel={'Det viktigste du trenger å vite om meldekort'}
             lesetid={'2'}
             viewportTekst="Viser meldekort pre-state i viewPort"
             startIntroCB={nesteKort}
