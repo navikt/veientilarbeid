@@ -1,4 +1,4 @@
-import { Ingress, Innholdstittel, Undertekst } from 'nav-frontend-typografi';
+import { Innholdstittel, Undertekst } from 'nav-frontend-typografi';
 import { ClockFilled, Next } from '@navikt/ds-icons/cjs';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import Lenke from 'nav-frontend-lenker';
@@ -19,9 +19,6 @@ function PreState(props: PreStateProps) {
         <div className={'kortflate'}>
             <div>
                 <Innholdstittel className={'blokk-xs'}>{props.tittel}</Innholdstittel>
-                <Ingress className={'blokk-xs'}>
-                    Du er registrert som arbeidssøker og får derfor denne introduksjonen
-                </Ingress>
                 <div className={'lesetid mb-2'}>
                     <ClockFilled className={'mr-05'} />
                     <Undertekst>{props.lesetid} minutter lesetid</Undertekst>
