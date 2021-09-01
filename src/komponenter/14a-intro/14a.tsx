@@ -20,6 +20,7 @@ import PreState from '../meldekortintro/pre-state';
 import { UlesteDialogerContext } from '../../ducks/ulestedialoger';
 import ModalWrapper from 'nav-frontend-modal';
 import RegistrertTeller from './registrert-teller';
+import { kanVise12UkerEgenvurdering } from '../12uker-egenvurdering/12uker-egenvurdering';
 
 const INTRO_KEY_14A = '14a-intro';
 
@@ -349,13 +350,24 @@ function Intro14AWrapper() {
     }, [harSettIntro]);
 
     const modalToggle = featuretoggleData['veientilarbeid.modal'];
-    const kanViseKomponent = kanVise14AStatus({
+
+    const kanVise12UkerEgenvurderingKomponent = kanVise12UkerEgenvurdering({
+        brukerInfoData,
+        oppfolgingData,
+        registreringData,
+        amplitudeData,
+        featuretoggleData,
+    });
+
+    const kanVise14AIntro = kanVise14AStatus({
         amplitudeData,
         featuretoggleData,
         oppfolgingData,
         brukerInfoData,
         registreringData,
     });
+
+    const kanViseKomponent = kanVise14AIntro && !kanVise12UkerEgenvurderingKomponent;
 
     if (!kanViseKomponent) {
         fjernFraBrowserStorage(INTRO_KEY_14A);

@@ -14,6 +14,7 @@ import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import { FeaturetoggleContext } from '../../ducks/feature-toggles';
 import Intro14AWrapper from '../14a-intro/14a';
+import EgenvurderingUke12 from '../12uker-egenvurdering/12uker-egenvurdering';
 import InViewport from '../in-viewport/in-viewport';
 import Permittert from './permittert';
 
@@ -101,6 +102,7 @@ const Registrert = () => {
             <div className={'intro-wrapper'}>
                 <DagpengerStatus />
                 <Intro14AWrapper />
+                <EgenvurderingUke12 />
                 <MeldekortIntroWrapper />
             </div>
             <InViewport loggTekst="Registreringsboks i viewport" />

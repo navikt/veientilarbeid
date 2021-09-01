@@ -45,11 +45,10 @@ export function kanVise12UkerEgenvurdering({
 }): boolean {
     const { ukerRegistrert, eksperimenter } = amplitudeData;
     const skalSeEksperiment = eksperimenter.includes('onboarding14a');
-    const erRegistrertUke11 = ukerRegistrert && ukerRegistrert === 11;
+    const erRegistrertUke11 = ukerRegistrert === 11;
     const erAAP = brukerInfoData.rettighetsgruppe === 'AAP';
     const brukerregistreringData = registreringData?.registrering ?? null;
-    const featuretoggleAktivert =
-        featuretoggleData && featuretoggleData['veientilarbeid.eientilarbeid.egenvurderinguke12'];
+    const featuretoggleAktivert = featuretoggleData && featuretoggleData['veientilarbeid.egenvurderinguke12'];
 
     const aldersgruppeUtenForsterketInnsats = brukerInfoData.alder >= 30 && brukerInfoData.alder <= 55;
 
