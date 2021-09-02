@@ -336,9 +336,9 @@ function Intro14AWrapper() {
     const ulesteDialoger = React.useContext(UlesteDialogerContext).data;
 
     const [harSettIntro, setHarSettIntro] = React.useState<boolean>(!!hentFraBrowserStorage(INTRO_KEY_14A));
-    const [harSett12uker] = React.useState<boolean>(!!hentFraBrowserStorage(INTRO_KEY_12UKER));
     const [tvingVisningAvIntro, setTvingVisningAvIntro] = React.useState<boolean>(false);
 
+    const sistSettEgenvurdering = Number(hentFraBrowserStorage(INTRO_KEY_12UKER)) ?? 0;
     const erNyregistrertKss = amplitudeData.ukerRegistrert === 0;
     const rendreIntro = tvingVisningAvIntro || (erNyregistrertKss && !harSettIntro);
     const hoppOverPreState = harSettIntro || tvingVisningAvIntro;
@@ -359,7 +359,7 @@ function Intro14AWrapper() {
         registreringData,
         amplitudeData,
         featuretoggleData,
-        kanViseIntroGittLocalStorage: harSett12uker,
+        sistVistFraLocalstorage: sistSettEgenvurdering,
     });
 
     const kanVise14AIntro = kanVise14AStatus({

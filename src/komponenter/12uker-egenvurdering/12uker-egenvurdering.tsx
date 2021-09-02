@@ -70,14 +70,14 @@ export function kanVise12UkerEgenvurdering({
     registreringData,
     amplitudeData,
     featuretoggleData,
-    kanViseIntroGittLocalStorage,
+    sistVistFraLocalstorage,
 }: {
     brukerInfoData: BrukerInfo.Data;
     oppfolgingData: Oppfolging.Data;
     registreringData: Brukerregistrering.Data | null;
     amplitudeData: AmplitudeData;
     featuretoggleData: FeaturetoggleData;
-    kanViseIntroGittLocalStorage: boolean;
+    sistVistFraLocalstorage: number;
 }): boolean {
     const { ukerRegistrert, eksperimenter } = amplitudeData;
     const skalSeEksperiment = eksperimenter.includes('onboarding14a');
@@ -88,6 +88,11 @@ export function kanVise12UkerEgenvurdering({
 
     const aldersgruppeUtenForsterketInnsats = brukerInfoData.alder >= 30 && brukerInfoData.alder <= 55;
 
+    const viseEgenvurderingIgjen =
+        sistVistFraLocalstorage === 0
+            ? true
+            : Date.now() < sistVistFraLocalstorage + ANTALL_DAGER_COOL_DOWN * 24 * 60 * 60;
+
     return (
         featuretoggleAktivert &&
         erRegistrertUke11 &&
@@ -96,7 +101,7 @@ export function kanVise12UkerEgenvurdering({
         skalSeEksperiment &&
         erStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData }) &&
         !oppfolgingData.kanReaktiveres &&
-        kanViseIntroGittLocalStorage
+        viseEgenvurderingIgjen
     );
 }
 
@@ -108,8 +113,6 @@ function Intro12UkerWrapper() {
     const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
 
     const sistSettEgenvurdering = Number(hentFraBrowserStorage(INTRO_KEY_12UKER)) ?? 0;
-    const viseEgenvurderingIgjen =
-        sistSettEgenvurdering === 0 ? true : Date.now() < sistSettEgenvurdering + ANTALL_DAGER_COOL_DOWN * 24 * 60 * 60;
 
     function skjulKort() {
         settIBrowserStorage(INTRO_KEY_12UKER, Date.now().toString());
@@ -127,7 +130,7 @@ function Intro12UkerWrapper() {
         oppfolgingData,
         brukerInfoData,
         registreringData,
-        kanViseIntroGittLocalStorage: viseEgenvurderingIgjen,
+        sistVistFraLocalstorage: sistSettEgenvurdering,
     });
 
     if (!kanViseKomponent) {
