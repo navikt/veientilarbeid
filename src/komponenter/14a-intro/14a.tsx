@@ -359,7 +359,7 @@ function Intro14AWrapper() {
         registreringData,
         amplitudeData,
         featuretoggleData,
-        harSettIntro: harSett12uker,
+        kanViseIntroGittLocalStorage: harSett12uker,
     });
 
     const kanVise14AIntro = kanVise14AStatus({

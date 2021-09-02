@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
 import Lenke from 'nav-frontend-lenker';
@@ -14,6 +14,7 @@ import { fjernFraBrowserStorage, hentFraBrowserStorage, settIBrowserStorage } fr
 import { FeaturetoggleContext, Data as FeaturetoggleData } from '../../ducks/feature-toggles';
 
 const INTRO_KEY_12UKER = '12uker-egenvurdering';
+const ANTALL_DAGER_COOL_DOWN = 7;
 
 interface EndStateProps {
     amplitudeData: AmplitudeData;
@@ -69,14 +70,14 @@ export function kanVise12UkerEgenvurdering({
     registreringData,
     amplitudeData,
     featuretoggleData,
-    harSettIntro,
+    kanViseIntroGittLocalStorage,
 }: {
     brukerInfoData: BrukerInfo.Data;
     oppfolgingData: Oppfolging.Data;
     registreringData: Brukerregistrering.Data | null;
     amplitudeData: AmplitudeData;
     featuretoggleData: FeaturetoggleData;
-    harSettIntro: boolean;
+    kanViseIntroGittLocalStorage: boolean;
 }): boolean {
     const { ukerRegistrert, eksperimenter } = amplitudeData;
     const skalSeEksperiment = eksperimenter.includes('onboarding14a');
@@ -95,7 +96,7 @@ export function kanVise12UkerEgenvurdering({
         skalSeEksperiment &&
         erStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData }) &&
         !oppfolgingData.kanReaktiveres &&
-        !harSettIntro
+        kanViseIntroGittLocalStorage
     );
 }
 
@@ -106,25 +107,19 @@ function Intro12UkerWrapper() {
     const { data: brukerInfoData } = React.useContext(BrukerInfo.BrukerInfoContext);
     const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
 
-    const [harSettIntro, setHarSettIntro] = React.useState<boolean>(!!hentFraBrowserStorage(INTRO_KEY_12UKER));
+    const sistSettEgenvurdering = Number(hentFraBrowserStorage(INTRO_KEY_12UKER)) ?? 0;
+    const viseEgenvurderingIgjen = Date.now() < sistSettEgenvurdering + ANTALL_DAGER_COOL_DOWN * 24 * 60 * 60;
+    console.log(sistSettEgenvurdering, viseEgenvurderingIgjen, hentFraBrowserStorage(INTRO_KEY_12UKER));
 
     function skjulKort() {
-        setHarSettIntro(true);
+        settIBrowserStorage(INTRO_KEY_12UKER, Date.now().toString());
         window.location.reload();
     }
 
     function sendTilOppfolging() {
-        setHarSettIntro(true);
+        settIBrowserStorage(INTRO_KEY_12UKER, Date.now().toString());
         window.location.assign(dialogLenke);
     }
-
-    useEffect(() => {
-        if (harSettIntro) {
-            settIBrowserStorage(INTRO_KEY_12UKER, 'true');
-        } else {
-            fjernFraBrowserStorage(INTRO_KEY_12UKER);
-        }
-    }, [harSettIntro]);
 
     const kanViseKomponent = kanVise12UkerEgenvurdering({
         amplitudeData,
@@ -132,7 +127,7 @@ function Intro12UkerWrapper() {
         oppfolgingData,
         brukerInfoData,
         registreringData,
-        harSettIntro,
+        kanViseIntroGittLocalStorage: viseEgenvurderingIgjen,
     });
 
     if (!kanViseKomponent) {
