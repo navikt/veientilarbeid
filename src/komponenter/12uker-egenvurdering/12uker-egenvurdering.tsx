@@ -108,8 +108,8 @@ function Intro12UkerWrapper() {
     const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
 
     const sistSettEgenvurdering = Number(hentFraBrowserStorage(INTRO_KEY_12UKER)) ?? 0;
-    const viseEgenvurderingIgjen = Date.now() < sistSettEgenvurdering + ANTALL_DAGER_COOL_DOWN * 24 * 60 * 60;
-    console.log(sistSettEgenvurdering, viseEgenvurderingIgjen, hentFraBrowserStorage(INTRO_KEY_12UKER));
+    const viseEgenvurderingIgjen =
+        sistSettEgenvurdering === 0 ? true : Date.now() < sistSettEgenvurdering + ANTALL_DAGER_COOL_DOWN * 24 * 60 * 60;
 
     function skjulKort() {
         settIBrowserStorage(INTRO_KEY_12UKER, Date.now().toString());
