@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
-import { Xknapp } from 'nav-frontend-ikonknapper';
 import Panel from 'nav-frontend-paneler';
 import Lenke from 'nav-frontend-lenker';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
@@ -41,21 +40,25 @@ function Sluttkort(props: EndStateProps) {
 
     return (
         <div className={'sluttkort'}>
-            <Element tag={'h1'}>BEHOV FOR OPPFØLGING?</Element>
-            <Systemtittel className={'blokk-xs'}>Du har vært registrert i {ukerRegistrert} uker</Systemtittel>
-            <div>
-                <Xknapp onClick={handleAvslaaOppfolging} />
-                <Normaltekst>
+            <div className="p-1 ">
+                <Element tag={'h1'}>BEHOV FOR OPPFØLGING?</Element>
+                <Systemtittel className={'blokk-xs'}>Du har vært registrert i {ukerRegistrert} uker</Systemtittel>
+            </div>
+            <div className="egenvurdering-wrapper">
+                <button onClick={handleAvslaaOppfolging}>X</button>
+                <Normaltekst className="blokk-xs">
                     Har du fortsatt tro på at du greier å skaffe deg jobb på egenhånd, eller tenker du det er behov for
                     bistand/hjelp fra en veileder ved NAV-kontoret ditt?
                 </Normaltekst>
-                <button onClick={handleOnskerOppfolging}>Jeg ønsker hjelp</button>
-                <Normaltekst>
-                    <Lenke className={'tracking-wide'} href={''} onClick={handleAvslaaOppfolging}>
-                        Jeg klarer meg fint selv
-                    </Lenke>
-                </Normaltekst>
+                <button onClick={handleOnskerOppfolging} className="egenvurdering-knapp">
+                    Jeg ønsker hjelp
+                </button>
             </div>
+            <Normaltekst className="p-1">
+                <Lenke className="tracking-wide" href={''} onClick={handleAvslaaOppfolging}>
+                    Jeg klarer meg fint selv
+                </Lenke>
+            </Normaltekst>
         </div>
     );
 }
