@@ -46,11 +46,15 @@ function Sluttkort(props: EndStateProps) {
                 <Systemtittel className={'blokk-xs'}>Du har vært registrert i {ukerRegistrert} uker</Systemtittel>
             </div>
             <div className="egenvurdering-wrapper">
-                <button onClick={handleAvslaaOppfolging}>X</button>
-                <Normaltekst className="blokk-xs">
-                    Har du fortsatt tro på at du greier å skaffe deg jobb på egenhånd, eller tenker du det er behov for
-                    bistand/hjelp fra en veileder ved NAV-kontoret ditt?
-                </Normaltekst>
+                <div className="egenvurdering-innhold">
+                    <Normaltekst className="blokk-xs">
+                        Har du fortsatt tro på at du greier å skaffe deg jobb på egenhånd, eller tenker du det er behov
+                        for bistand/hjelp fra en veileder ved NAV-kontoret ditt?
+                    </Normaltekst>
+                    <button className="egenvurdering-avslaa-knapp" onClick={handleAvslaaOppfolging}>
+                        X
+                    </button>
+                </div>
                 <button onClick={handleOnskerOppfolging} className="egenvurdering-knapp">
                     Jeg ønsker hjelp
                 </button>
