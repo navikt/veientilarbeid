@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
+import { Xknapp } from 'nav-frontend-ikonknapper';
 import Panel from 'nav-frontend-paneler';
 import Lenke from 'nav-frontend-lenker';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
@@ -8,6 +9,7 @@ import * as Oppfolging from '../../ducks/oppfolging';
 import * as BrukerInfo from '../../ducks/bruker-info';
 import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import { AmplitudeData } from '../../metrics/amplitude-utils';
+import { dialogLenke } from '../../innhold/lenker';
 import './12uker-egenvurdering.less';
 import { fjernFraBrowserStorage, hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
 import { FeaturetoggleContext, Data as FeaturetoggleData } from '../../ducks/feature-toggles';
@@ -18,6 +20,7 @@ interface EndStateProps {
     amplitudeData: AmplitudeData;
     registreringData: Brukerregistrering.Data | null;
     skjulKort: () => void;
+    sendTilOppfolging: () => void;
 }
 
 function Sluttkort(props: EndStateProps) {
@@ -30,15 +33,29 @@ function Sluttkort(props: EndStateProps) {
         props.skjulKort();
     }
 
+    function handleOnskerOppfolging(event: React.SyntheticEvent) {
+        event.preventDefault();
+        event.stopPropagation();
+        props.sendTilOppfolging();
+    }
+
     return (
         <div className={'sluttkort'}>
             <Element tag={'h1'}>BEHOV FOR OPPFØLGING?</Element>
             <Systemtittel className={'blokk-xs'}>Du har vært registrert i {ukerRegistrert} uker</Systemtittel>
-            <Normaltekst>
-                <Lenke className={'tracking-wide'} href={''} onClick={handleAvslaaOppfolging}>
-                    Jeg klarer meg fint selv
-                </Lenke>
-            </Normaltekst>
+            <div>
+                <Xknapp onClick={handleAvslaaOppfolging} />
+                <Normaltekst>
+                    Har du fortsatt tro på at du greier å skaffe deg jobb på egenhånd, eller tenker du det er behov for
+                    bistand/hjelp fra en veileder ved NAV-kontoret ditt?
+                </Normaltekst>
+                <button onClick={handleOnskerOppfolging}>Jeg ønsker hjelp</button>
+                <Normaltekst>
+                    <Lenke className={'tracking-wide'} href={''} onClick={handleAvslaaOppfolging}>
+                        Jeg klarer meg fint selv
+                    </Lenke>
+                </Normaltekst>
+            </div>
         </div>
     );
 }
@@ -93,6 +110,11 @@ function Intro12UkerWrapper() {
         window.location.reload();
     }
 
+    function sendTilOppfolging() {
+        setHarSettIntro(true);
+        window.location.assign(dialogLenke);
+    }
+
     useEffect(() => {
         if (harSettIntro) {
             settIBrowserStorage(INTRO_KEY_12UKER, 'true');
@@ -123,6 +145,7 @@ function Intro12UkerWrapper() {
                         amplitudeData={amplitudeData}
                         registreringData={registreringData}
                         skjulKort={skjulKort}
+                        sendTilOppfolging={sendTilOppfolging}
                     />
                 </div>
             </Panel>
