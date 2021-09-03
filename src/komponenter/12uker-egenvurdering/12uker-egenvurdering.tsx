@@ -25,8 +25,8 @@ const ANTALL_DAGER_COOL_DOWN = 7;
 interface EndStateProps {
     amplitudeData: AmplitudeData;
     registreringData: Brukerregistrering.Data | null;
-    skjulKort: (loggTekst: string) => void;
-    sendTilOppfolging: () => void;
+    avslaarEgenvurdering: (loggTekst: string) => void;
+    sendTilEgenvurdering: () => void;
 }
 
 function Sluttkort(props: EndStateProps) {
@@ -36,19 +36,19 @@ function Sluttkort(props: EndStateProps) {
     function handleAvslaaOppfolgingKnapp(event: React.SyntheticEvent) {
         event.preventDefault();
         event.stopPropagation();
-        props.skjulKort('Avslår 12 ukers egenvurdering fra x-knapp');
+        props.avslaarEgenvurdering('Avslår 12 ukers egenvurdering fra x-knapp');
     }
 
     function handleAvslaaOppfolgingLenke(event: React.SyntheticEvent) {
         event.preventDefault();
         event.stopPropagation();
-        props.skjulKort('Avslår 12 ukers egenvurdering fra lenke');
+        props.avslaarEgenvurdering('Avslår 12 ukers egenvurdering fra lenke');
     }
 
     function handleOnskerOppfolging(event: React.SyntheticEvent) {
         event.preventDefault();
         event.stopPropagation();
-        props.sendTilOppfolging();
+        props.sendTilEgenvurdering();
     }
 
     return (
@@ -153,13 +153,13 @@ function Intro12UkerWrapper() {
 
     const sistSettEgenvurdering = Number(hentFraBrowserStorage(INTRO_KEY_12UKER)) ?? 0;
 
-    function skjulKort(loggTekst: string) {
+    function avslaarEgenvurdering(loggTekst: string) {
         settIBrowserStorage(INTRO_KEY_12UKER, Date.now().toString());
         loggAktivitet({ aktivitet: loggTekst, ...amplitudeData });
         window.location.reload();
     }
 
-    function sendTilOppfolging() {
+    function sendTilEgenvurdering() {
         settIBrowserStorage(INTRO_KEY_12UKER, Date.now().toString());
         loggAktivitet({ aktivitet: 'Går til 12 ukers egenvurdering', ...amplitudeData });
         window.location.assign(`${behovsvurderingLenke}/hvilken-veiledning-trengs`);
@@ -187,8 +187,8 @@ function Intro12UkerWrapper() {
                     <Sluttkort
                         amplitudeData={amplitudeData}
                         registreringData={registreringData}
-                        skjulKort={skjulKort}
-                        sendTilOppfolging={sendTilOppfolging}
+                        avslaarEgenvurdering={avslaarEgenvurdering}
+                        sendTilEgenvurdering={sendTilEgenvurdering}
                     />
                 </div>
             </Panel>
