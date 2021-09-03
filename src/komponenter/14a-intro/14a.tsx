@@ -4,6 +4,7 @@ import Panel from 'nav-frontend-paneler';
 import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import * as Brukerregistrering from '../../ducks/brukerregistrering';
+import * as Egenvurdering from '../../ducks/egenvurdering';
 import * as Oppfolging from '../../ducks/oppfolging';
 import { OppfolgingContext, Servicegruppe } from '../../ducks/oppfolging';
 import * as BrukerInfo from '../../ducks/bruker-info';
@@ -330,6 +331,7 @@ export function kanVise14AStatus({
 function Intro14AWrapper() {
     const amplitudeData = React.useContext(AmplitudeContext);
     const { data: registreringData } = React.useContext(Brukerregistrering.BrukerregistreringContext);
+    const { data: egenvurderingData } = React.useContext(Egenvurdering.EgenvurderingContext);
     const { data: oppfolgingData } = React.useContext(Oppfolging.OppfolgingContext);
     const { data: brukerInfoData } = React.useContext(BrukerInfo.BrukerInfoContext);
     const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
@@ -355,6 +357,7 @@ function Intro14AWrapper() {
 
     const kanVise12UkerEgenvurderingKomponent = kanVise12UkerEgenvurdering({
         brukerInfoData,
+        egenvurderingData,
         oppfolgingData,
         registreringData,
         amplitudeData,

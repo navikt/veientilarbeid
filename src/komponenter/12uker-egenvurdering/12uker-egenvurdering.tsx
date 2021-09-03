@@ -4,6 +4,7 @@ import { Knapp } from 'nav-frontend-knapper';
 import Panel from 'nav-frontend-paneler';
 import Lenke from 'nav-frontend-lenker';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
+import * as Egenvurdering from '../../ducks/egenvurdering';
 import * as Brukerregistrering from '../../ducks/brukerregistrering';
 import * as Oppfolging from '../../ducks/oppfolging';
 import * as BrukerInfo from '../../ducks/bruker-info';
@@ -13,6 +14,7 @@ import { loggAktivitet } from '../../metrics/metrics';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import { behovsvurderingLenke } from '../../innhold/lenker';
+import { plussDager } from '../../utils/date-utils';
 import './12uker-egenvurdering.less';
 import { fjernFraBrowserStorage, hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
 import { FeaturetoggleContext, Data as FeaturetoggleData } from '../../ducks/feature-toggles';
@@ -84,6 +86,7 @@ function Sluttkort(props: EndStateProps) {
 
 export function kanVise12UkerEgenvurdering({
     brukerInfoData,
+    egenvurderingData,
     oppfolgingData,
     registreringData,
     amplitudeData,
@@ -91,6 +94,7 @@ export function kanVise12UkerEgenvurdering({
     sistVistFraLocalstorage,
 }: {
     brukerInfoData: BrukerInfo.Data;
+    egenvurderingData: Egenvurdering.Data | null;
     oppfolgingData: Oppfolging.Data;
     registreringData: Brukerregistrering.Data | null;
     amplitudeData: AmplitudeData;
@@ -103,6 +107,21 @@ export function kanVise12UkerEgenvurdering({
     const erAAP = brukerInfoData.rettighetsgruppe === 'AAP';
     const brukerregistreringData = registreringData?.registrering ?? null;
     const featuretoggleAktivert = featuretoggleData && featuretoggleData['veientilarbeid.egenvurderinguke12'];
+
+    const egenvurderingbesvarelseDato = egenvurderingData ? new Date(egenvurderingData.sistOppdatert) : null;
+    const opprettetRegistreringDatoString = registreringData?.registrering?.opprettetDato;
+    const opprettetRegistreringDato = opprettetRegistreringDatoString
+        ? new Date(opprettetRegistreringDatoString)
+        : null;
+
+    const harEgenvurderingEtter11Uker = (): boolean => {
+        let isValid = false;
+        if (opprettetRegistreringDato && egenvurderingbesvarelseDato) {
+            const dato77dagerEtterRegistrering = plussDager(opprettetRegistreringDato, 77);
+            isValid = dato77dagerEtterRegistrering.getTime() < egenvurderingbesvarelseDato.getTime();
+        }
+        return isValid;
+    };
 
     const aldersgruppeUtenForsterketInnsats = brukerInfoData.alder >= 30 && brukerInfoData.alder <= 55;
 
@@ -119,6 +138,7 @@ export function kanVise12UkerEgenvurdering({
         skalSeEksperiment &&
         erStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData }) &&
         !oppfolgingData.kanReaktiveres &&
+        !harEgenvurderingEtter11Uker() &&
         viseEgenvurderingIgjen
     );
 }
@@ -126,6 +146,7 @@ export function kanVise12UkerEgenvurdering({
 function Intro12UkerWrapper() {
     const amplitudeData = React.useContext(AmplitudeContext);
     const { data: registreringData } = React.useContext(Brukerregistrering.BrukerregistreringContext);
+    const { data: egenvurderingData } = React.useContext(Egenvurdering.EgenvurderingContext);
     const { data: oppfolgingData } = React.useContext(Oppfolging.OppfolgingContext);
     const { data: brukerInfoData } = React.useContext(BrukerInfo.BrukerInfoContext);
     const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
@@ -146,6 +167,7 @@ function Intro12UkerWrapper() {
 
     const kanViseKomponent = kanVise12UkerEgenvurdering({
         amplitudeData,
+        egenvurderingData,
         featuretoggleData,
         oppfolgingData,
         brukerInfoData,
