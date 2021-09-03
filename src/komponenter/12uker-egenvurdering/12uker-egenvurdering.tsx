@@ -33,13 +33,13 @@ function Sluttkort(props: EndStateProps) {
     function handleAvslaaOppfolgingKnapp(event: React.SyntheticEvent) {
         event.preventDefault();
         event.stopPropagation();
-        props.skjulKort('Avslår egenvurdering 12 uker fra knapp');
+        props.skjulKort('Avslår 12 ukers egenvurdering fra knapp');
     }
 
     function handleAvslaaOppfolgingLenke(event: React.SyntheticEvent) {
         event.preventDefault();
         event.stopPropagation();
-        props.skjulKort('Avslår egenvurdering 12 uker fra lenke');
+        props.skjulKort('Avslår 12 ukers egenvurdering fra lenke');
     }
 
     function handleOnskerOppfolging(event: React.SyntheticEvent) {
@@ -169,8 +169,8 @@ function Intro12UkerWrapper() {
                     />
                 </div>
             </Panel>
-            <ErRendret loggTekst="Rendrer 12uker egenvurdering" />
-            <InViewport loggTekst="Viser 12uker egenvurdering i viewport" />
+            <ErRendret loggTekst="Rendrer 12 ukers egenvurdering" />
+            <InViewport loggTekst="Viser 12 ukers egenvurdering i viewport" />
         </div>
     );
 
