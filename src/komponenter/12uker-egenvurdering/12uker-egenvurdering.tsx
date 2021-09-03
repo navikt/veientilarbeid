@@ -9,6 +9,8 @@ import * as Oppfolging from '../../ducks/oppfolging';
 import * as BrukerInfo from '../../ducks/bruker-info';
 import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import { AmplitudeData } from '../../metrics/amplitude-utils';
+import ErRendret from '../er-rendret/er-rendret';
+import InViewport from '../in-viewport/in-viewport';
 import { behovsvurderingLenke } from '../../innhold/lenker';
 import './12uker-egenvurdering.less';
 import { fjernFraBrowserStorage, hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
@@ -159,6 +161,8 @@ function Intro12UkerWrapper() {
                     />
                 </div>
             </Panel>
+            <ErRendret loggTekst="Rendrer 12uker egenvurdering" />
+            <InViewport loggTekst="Viser 12uker egenvurdering i viewport" />
         </div>
     );
 
