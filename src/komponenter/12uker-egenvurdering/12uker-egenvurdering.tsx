@@ -36,7 +36,7 @@ function Sluttkort(props: EndStateProps) {
     function handleAvslaaOppfolgingKnapp(event: React.SyntheticEvent) {
         event.preventDefault();
         event.stopPropagation();
-        props.skjulKort('Avslår 12 ukers egenvurdering fra knapp');
+        props.skjulKort('Avslår 12 ukers egenvurdering fra x-knapp');
     }
 
     function handleAvslaaOppfolgingLenke(event: React.SyntheticEvent) {
