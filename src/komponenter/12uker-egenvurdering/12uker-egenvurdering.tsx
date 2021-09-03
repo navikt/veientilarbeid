@@ -1,5 +1,6 @@
 import React from 'react';
 import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
+import { Knapp } from 'nav-frontend-knapper';
 import Panel from 'nav-frontend-paneler';
 import Lenke from 'nav-frontend-lenker';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
@@ -50,22 +51,24 @@ function Sluttkort(props: EndStateProps) {
                     X
                 </button>
             </div>
-            <div className="egenvurdering-wrapper">
+            <div className="egenvurdering-wrapper p-1 blokk-xs">
                 <div className="egenvurdering-innhold">
-                    <Normaltekst className="blokk-xs">
+                    <Normaltekst>
                         Har du fortsatt tro på at du greier å skaffe deg jobb på egenhånd, eller tenker du det er behov
                         for bistand/hjelp fra en veileder ved NAV-kontoret ditt?
                     </Normaltekst>
                 </div>
-                <button onClick={handleOnskerOppfolging} className="egenvurdering-knapp">
-                    Jeg ønsker hjelp
-                </button>
             </div>
-            <Normaltekst className="p-1">
-                <Lenke className="tracking-wide" href={''} onClick={handleAvslaaOppfolging}>
-                    Jeg klarer meg fint selv
-                </Lenke>
-            </Normaltekst>
+            <div className="flex flex-column space-between p-1">
+                <Knapp onClick={handleOnskerOppfolging} className="blokk-s">
+                    Jeg ønsker hjelp
+                </Knapp>
+                <Normaltekst>
+                    <Lenke className="tracking-wide" href={''} onClick={handleAvslaaOppfolging}>
+                        Jeg klarer meg fint selv
+                    </Lenke>
+                </Normaltekst>
+            </div>
         </div>
     );
 }
