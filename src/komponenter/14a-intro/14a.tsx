@@ -22,6 +22,7 @@ import { UlesteDialogerContext } from '../../ducks/ulestedialoger';
 import ModalWrapper from 'nav-frontend-modal';
 import RegistrertTeller from './registrert-teller';
 import { kanVise12UkerEgenvurdering } from '../12uker-egenvurdering/12uker-egenvurdering';
+import EgenVurdering from '../12uker-egenvurdering/12uker-egenvurdering';
 
 const INTRO_KEY_14A = '14a-intro';
 const INTRO_KEY_12UKER = '12uker-egenvurdering';
@@ -345,6 +346,18 @@ function Intro14AWrapper() {
     const rendreIntro = tvingVisningAvIntro || (erNyregistrertKss && !harSettIntro);
     const hoppOverPreState = harSettIntro || tvingVisningAvIntro;
 
+    const [visEgenvurderingsKomponent, setVisEgenvurderingsKomponent] = React.useState<boolean>(
+        kanVise12UkerEgenvurdering({
+            brukerInfoData,
+            egenvurderingData,
+            oppfolgingData,
+            registreringData,
+            amplitudeData,
+            featuretoggleData,
+            sistVistFraLocalstorage: sistSettEgenvurdering,
+        })
+    );
+
     useEffect(() => {
         if (harSettIntro) {
             settIBrowserStorage(INTRO_KEY_14A, 'true');
@@ -355,16 +368,6 @@ function Intro14AWrapper() {
 
     const modalToggle = featuretoggleData['veientilarbeid.modal'];
 
-    const kanVise12UkerEgenvurderingKomponent = kanVise12UkerEgenvurdering({
-        brukerInfoData,
-        egenvurderingData,
-        oppfolgingData,
-        registreringData,
-        amplitudeData,
-        featuretoggleData,
-        sistVistFraLocalstorage: sistSettEgenvurdering,
-    });
-
     const kanVise14AIntro = kanVise14AStatus({
         amplitudeData,
         featuretoggleData,
@@ -373,7 +376,12 @@ function Intro14AWrapper() {
         registreringData,
     });
 
-    const kanViseKomponent = kanVise14AIntro && !kanVise12UkerEgenvurderingKomponent;
+    const kanViseKomponent = kanVise14AIntro && !visEgenvurderingsKomponent;
+
+    if (visEgenvurderingsKomponent) {
+        fjernFraBrowserStorage(INTRO_KEY_14A);
+        return <EgenVurdering setVisEgenvurderingsKomponent={setVisEgenvurderingsKomponent} />;
+    }
 
     if (!kanViseKomponent) {
         fjernFraBrowserStorage(INTRO_KEY_14A);

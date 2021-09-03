@@ -143,7 +143,11 @@ export function kanVise12UkerEgenvurdering({
     );
 }
 
-function Intro12UkerWrapper() {
+interface EgenVurderingsProps {
+    setVisEgenvurderingsKomponent: (boolean: boolean) => void;
+}
+
+function Intro12UkerWrapper(props: EgenVurderingsProps) {
     const amplitudeData = React.useContext(AmplitudeContext);
     const { data: registreringData } = React.useContext(Brukerregistrering.BrukerregistreringContext);
     const { data: egenvurderingData } = React.useContext(Egenvurdering.EgenvurderingContext);
@@ -156,7 +160,7 @@ function Intro12UkerWrapper() {
     function avslaarEgenvurdering(loggTekst: string) {
         settIBrowserStorage(INTRO_KEY_12UKER, Date.now().toString());
         loggAktivitet({ aktivitet: loggTekst, ...amplitudeData });
-        window.location.reload();
+        props.setVisEgenvurderingsKomponent(false);
     }
 
     function sendTilEgenvurdering() {
