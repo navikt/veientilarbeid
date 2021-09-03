@@ -8,7 +8,8 @@ import * as Brukerregistrering from '../../ducks/brukerregistrering';
 import * as Oppfolging from '../../ducks/oppfolging';
 import * as BrukerInfo from '../../ducks/bruker-info';
 import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
-import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
+import { AmplitudeData } from '../../metrics/amplitude-utils';
+import { loggAktivitet } from '../../metrics/metrics';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import { behovsvurderingLenke } from '../../innhold/lenker';
@@ -133,13 +134,13 @@ function Intro12UkerWrapper() {
 
     function skjulKort(loggTekst: string) {
         settIBrowserStorage(INTRO_KEY_12UKER, Date.now().toString());
-        amplitudeLogger('veientilarbeid.aktivitet', { aktivitet: loggTekst, ...amplitudeData });
+        loggAktivitet({ aktivitet: loggTekst, ...amplitudeData });
         window.location.reload();
     }
 
     function sendTilOppfolging() {
         settIBrowserStorage(INTRO_KEY_12UKER, Date.now().toString());
-        amplitudeLogger('veientilarbeid.aktivitet', { aktivitet: 'Går til 12 ukers egenvurdering', ...amplitudeData });
+        loggAktivitet({ aktivitet: 'Går til 12 ukers egenvurdering', ...amplitudeData });
         window.location.assign(`${behovsvurderingLenke}/hvilken-veiledning-trengs`);
     }
 
