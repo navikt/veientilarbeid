@@ -8,7 +8,7 @@ import * as Oppfolging from '../../ducks/oppfolging';
 import * as BrukerInfo from '../../ducks/bruker-info';
 import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import { AmplitudeData } from '../../metrics/amplitude-utils';
-import { dialogLenke } from '../../innhold/lenker';
+import { behovsvurderingLenke } from '../../innhold/lenker';
 import './12uker-egenvurdering.less';
 import { fjernFraBrowserStorage, hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
 import { FeaturetoggleContext, Data as FeaturetoggleData } from '../../ducks/feature-toggles';
@@ -125,7 +125,7 @@ function Intro12UkerWrapper() {
 
     function sendTilOppfolging() {
         settIBrowserStorage(INTRO_KEY_12UKER, Date.now().toString());
-        window.location.assign(dialogLenke);
+        window.location.assign(`${behovsvurderingLenke}/hvilken-veiledning-trengs`);
     }
 
     const kanViseKomponent = kanVise12UkerEgenvurdering({
