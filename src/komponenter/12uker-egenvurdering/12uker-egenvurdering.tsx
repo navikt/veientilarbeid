@@ -41,9 +41,14 @@ function Sluttkort(props: EndStateProps) {
 
     return (
         <div className={'sluttkort'}>
-            <div className="p-1 ">
-                <Element tag={'h1'}>BEHOV FOR OPPFØLGING?</Element>
-                <Systemtittel className={'blokk-xs'}>Du har vært registrert i {ukerRegistrert} uker</Systemtittel>
+            <div className="p-1 flex space-between">
+                <div>
+                    <Element tag={'h1'}>BEHOV FOR OPPFØLGING?</Element>
+                    <Systemtittel className={'blokk-xs'}>Du har vært registrert i {ukerRegistrert} uker</Systemtittel>
+                </div>
+                <button className="egenvurdering-avslaa-knapp" onClick={handleAvslaaOppfolging}>
+                    X
+                </button>
             </div>
             <div className="egenvurdering-wrapper">
                 <div className="egenvurdering-innhold">
@@ -51,9 +56,6 @@ function Sluttkort(props: EndStateProps) {
                         Har du fortsatt tro på at du greier å skaffe deg jobb på egenhånd, eller tenker du det er behov
                         for bistand/hjelp fra en veileder ved NAV-kontoret ditt?
                     </Normaltekst>
-                    <button className="egenvurdering-avslaa-knapp" onClick={handleAvslaaOppfolging}>
-                        X
-                    </button>
                 </div>
                 <button onClick={handleOnskerOppfolging} className="egenvurdering-knapp">
                     Jeg ønsker hjelp
