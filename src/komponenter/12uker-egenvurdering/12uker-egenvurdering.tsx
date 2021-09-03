@@ -8,7 +8,7 @@ import * as Brukerregistrering from '../../ducks/brukerregistrering';
 import * as Oppfolging from '../../ducks/oppfolging';
 import * as BrukerInfo from '../../ducks/bruker-info';
 import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
-import { AmplitudeData } from '../../metrics/amplitude-utils';
+import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import { behovsvurderingLenke } from '../../innhold/lenker';
@@ -22,7 +22,7 @@ const ANTALL_DAGER_COOL_DOWN = 7;
 interface EndStateProps {
     amplitudeData: AmplitudeData;
     registreringData: Brukerregistrering.Data | null;
-    skjulKort: () => void;
+    skjulKort: (loggTekst: string) => void;
     sendTilOppfolging: () => void;
 }
 
@@ -30,10 +30,16 @@ function Sluttkort(props: EndStateProps) {
     const { amplitudeData } = props;
     const { ukerRegistrert } = amplitudeData;
 
-    function handleAvslaaOppfolging(event: React.SyntheticEvent) {
+    function handleAvslaaOppfolgingKnapp(event: React.SyntheticEvent) {
         event.preventDefault();
         event.stopPropagation();
-        props.skjulKort();
+        props.skjulKort('Avslår egenvurdering 12 uker fra knapp');
+    }
+
+    function handleAvslaaOppfolgingLenke(event: React.SyntheticEvent) {
+        event.preventDefault();
+        event.stopPropagation();
+        props.skjulKort('Avslår egenvurdering 12 uker fra lenke');
     }
 
     function handleOnskerOppfolging(event: React.SyntheticEvent) {
@@ -49,7 +55,7 @@ function Sluttkort(props: EndStateProps) {
                     <Element tag={'h1'}>BEHOV FOR OPPFØLGING?</Element>
                     <Systemtittel className={'blokk-xs'}>Du har vært registrert i {ukerRegistrert} uker</Systemtittel>
                 </div>
-                <button className="egenvurdering-avslaa-knapp" onClick={handleAvslaaOppfolging}>
+                <button className="egenvurdering-avslaa-knapp" onClick={handleAvslaaOppfolgingKnapp}>
                     X
                 </button>
             </div>
@@ -66,7 +72,7 @@ function Sluttkort(props: EndStateProps) {
                     Jeg ønsker hjelp
                 </Knapp>
                 <Normaltekst>
-                    <Lenke className="tracking-wide" href={''} onClick={handleAvslaaOppfolging}>
+                    <Lenke className="tracking-wide" href={''} onClick={handleAvslaaOppfolgingLenke}>
                         Jeg klarer meg fint selv
                     </Lenke>
                 </Normaltekst>
@@ -125,13 +131,15 @@ function Intro12UkerWrapper() {
 
     const sistSettEgenvurdering = Number(hentFraBrowserStorage(INTRO_KEY_12UKER)) ?? 0;
 
-    function skjulKort() {
+    function skjulKort(loggTekst: string) {
         settIBrowserStorage(INTRO_KEY_12UKER, Date.now().toString());
+        amplitudeLogger('veientilarbeid.aktivitet', { aktivitet: loggTekst, ...amplitudeData });
         window.location.reload();
     }
 
     function sendTilOppfolging() {
         settIBrowserStorage(INTRO_KEY_12UKER, Date.now().toString());
+        amplitudeLogger('veientilarbeid.aktivitet', { aktivitet: 'Går til 12 ukers egenvurdering', ...amplitudeData });
         window.location.assign(`${behovsvurderingLenke}/hvilken-veiledning-trengs`);
     }
 
