@@ -1,6 +1,6 @@
 import * as React from 'react';
 import '@testing-library/jest-dom/extend-expect';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import EgenVurdering12Uker from './12uker-egenvurdering';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
@@ -56,5 +56,6 @@ describe('tester komponenten for 12uker-egenvurdering', () => {
             }
         );
         expect(container).not.toBeEmptyDOMElement();
+        expect(screen.getByText(/behov for oppfølging/i)).toBeInTheDocument();
     });
 });
