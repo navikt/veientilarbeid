@@ -35,7 +35,7 @@ describe('tester komponenten for 12uker-egenvurdering', () => {
         mockIntersectionObserver();
     });
 
-    test('komponenten vises IKKE når featuretoggle ikke er satt', () => {
+    test('komponenten vises IKKE når featuretoggle IKKE er satt', () => {
         const setVisEgenvurderingsKomponent = jest.fn();
         const { container } = render(
             <EgenVurdering12Uker setVisEgenvurderingsKomponent={setVisEgenvurderingsKomponent} />,
