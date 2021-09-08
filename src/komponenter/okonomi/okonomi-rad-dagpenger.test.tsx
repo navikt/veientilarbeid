@@ -34,4 +34,17 @@ describe('Tester rendring av komponenten', () => {
         render(<OkonomiRad />, { wrapper: contextProviders(props) });
         expect(screen.getByText(tekster['dagpenger-heading-tekst'])).toBeTruthy();
     });
+
+    test('Komponenten rendres IKKE når toggle er av', () => {
+        const props: ProviderProps = {
+            underOppfolging: {
+                underOppfolging: true,
+            },
+            featureToggle: {
+                'veientilarbeid.rydding.skjulOkonomiBoks': true,
+            },
+        };
+        const { container } = render(<OkonomiRad />, { wrapper: contextProviders(props) });
+        expect(container).toBeEmptyDOMElement();
+    });
 });

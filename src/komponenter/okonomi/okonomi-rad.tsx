@@ -9,14 +9,19 @@ import { dagpengerLesmerLenke, sosialhjelpLenke, sykepengerLenke } from '../../i
 import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
+import { FeaturetoggleContext } from '../../ducks/feature-toggles';
 import OkonomiRadDagpenger from './okonomi-rad-dagpenger';
 
 const OkonomiRad = () => {
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
     const { securityLevel } = React.useContext(AutentiseringContext).data;
+    const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
     const isLevel4 = securityLevel === InnloggingsNiva.LEVEL_4;
-    const kanViseKomponent = isLevel4 && underOppfolging && erSykmeldtMedArbeidsgiver;
+    const skjulBoksFeaturetoggleAktivert =
+        featuretoggleData && featuretoggleData['veientilarbeid.rydding.skjulOkonomiBoks'];
+    const kanViseKomponent =
+        isLevel4 && underOppfolging && erSykmeldtMedArbeidsgiver && !skjulBoksFeaturetoggleAktivert;
     return !kanViseKomponent ? null : (
         <div className="okonomi-rad blokk-l">
             <OkonomiPanel

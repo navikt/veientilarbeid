@@ -43,4 +43,23 @@ describe('Tester at komponenten rendres som forventet', () => {
         const { container } = render(<OkonomiRad />, { wrapper: contextProviders(props) });
         expect(container).not.toBeEmptyDOMElement();
     });
+
+    test('Komponenten vises IKKE om man om den er togglet av', () => {
+        const props: ProviderProps = {
+            autentisering: {
+                securityLevel: InnloggingsNiva.LEVEL_4,
+            },
+            brukerInfo: {
+                erSykmeldtMedArbeidsgiver: true,
+            },
+            underOppfolging: {
+                underOppfolging: true,
+            },
+            featureToggle: {
+                'veientilarbeid.rydding.skjulOkonomiBoks': true,
+            },
+        };
+        const { container } = render(<OkonomiRad />, { wrapper: contextProviders(props) });
+        expect(container).toBeEmptyDOMElement();
+    });
 });
