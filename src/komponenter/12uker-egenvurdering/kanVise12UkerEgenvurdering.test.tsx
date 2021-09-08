@@ -52,6 +52,7 @@ const grunndata = {
         'veientilarbeid.dagpenger-status': false,
         'veientilarbeid.dpstatus-for-alle': false,
         'veientilarbeid.egenvurderinguke12': true,
+        'veientilarbeid.rydding.skjulJobbBoks': false,
     },
     amplitudeData: {
         gruppe: poagruppeKSS,
