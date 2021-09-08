@@ -12,19 +12,25 @@ import {
 } from '../../ducks/brukerregistrering';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
+import { FeaturetoggleContext } from '../../ducks/feature-toggles';
 
 const RessurslenkerJobbsok = () => {
     const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
+    const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
 
     const fremtidigSvar = selectFremtidigSituasjonSvar(brukerregistreringData);
+    const skjulBoksFeaturetoggleAktivert =
+        featuretoggleData && featuretoggleData['veientilarbeid.rydding.skjulJobbBoks'];
 
     const tilbakeTilSammeArbeidsgiver =
         fremtidigSvar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER ||
         fremtidigSvar === FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER_NY_STILLING;
 
     const visRessurslenker = underOppfolging && !(tilbakeTilSammeArbeidsgiver && erSykmeldtMedArbeidsgiver);
+
+    if (skjulBoksFeaturetoggleAktivert) return null;
 
     return visRessurslenker ? (
         <section className="ressurslenker">

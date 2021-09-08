@@ -22,6 +22,19 @@ describe('Tester at komponenten rendres som forventet', () => {
         expect(container).not.toBeEmptyDOMElement();
     });
 
+    test('Komponeneten vises IKKE om den er togglet til skjult', () => {
+        const props: ProviderProps = {
+            underOppfolging: {
+                underOppfolging: true,
+            },
+            featureToggle: {
+                'veientilarbeid.rydding.skjulJobbBoks': true,
+            },
+        };
+        const { container } = render(<Ressurslenker />, { wrapper: contextProviders(props) });
+        expect(container).toBeEmptyDOMElement();
+    });
+
     test('Komponeneten vises IKKE om man er sykmeldt og skal tilbake til samme arbeidsgiver', () => {
         const props: ProviderProps = {
             brukerregistrering: {

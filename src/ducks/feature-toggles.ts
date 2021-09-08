@@ -9,6 +9,7 @@ export enum FeatureToggles {
     DAGPENGER_STATUS = 'veientilarbeid.dagpenger-status',
     DPSTATUS_FOR_ALLE = 'veientilarbeid.dpstatus-for-alle',
     EGENVURDERING_UKE12 = 'veientilarbeid.egenvurderinguke12',
+    RYDDING_SKJUL_JOBB_BOKS = 'veientilarbeid.rydding.skjulJobbBoks',
 }
 
 export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
@@ -27,6 +28,8 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Dagpenger status for alle';
         case FeatureToggles.EGENVURDERING_UKE12:
             return 'Egenvurdering uke 12';
+        case FeatureToggles.RYDDING_SKJUL_JOBB_BOKS:
+            return 'Skjul arbeidsplassen';
     }
 }
 
@@ -38,6 +41,7 @@ export interface Data {
     'veientilarbeid.dagpenger-status': boolean;
     'veientilarbeid.dpstatus-for-alle': boolean;
     'veientilarbeid.egenvurderinguke12': boolean;
+    'veientilarbeid.rydding.skjulJobbBoks': boolean;
 }
 
 export interface State extends DataElement {
@@ -53,6 +57,7 @@ export const initialState: State = {
         'veientilarbeid.dagpenger-status': false,
         'veientilarbeid.dpstatus-for-alle': false,
         'veientilarbeid.egenvurderinguke12': false,
+        'veientilarbeid.rydding.skjulJobbBoks': false,
     },
     status: STATUS.NOT_STARTED,
 };
