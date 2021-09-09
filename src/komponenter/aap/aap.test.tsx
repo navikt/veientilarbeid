@@ -20,6 +20,22 @@ describe('Aap', () => {
         expect(await screen.getByText(tekster['aap-rad-tittel'])).toBeTruthy();
     });
 
+    it('rendres IKKE når featureToggle veientilarbeid.rydding.skjulAAPRad  er aktivert', async () => {
+        const props: ProviderProps = {
+            brukerInfo: { erSykmeldtMedArbeidsgiver: true },
+            underOppfolging: { underOppfolging: true },
+            autentisering: {
+                securityLevel: InnloggingsNiva.LEVEL_4,
+            },
+            featureToggle: {
+                'veientilarbeid.rydding.skjulAAPRad': true,
+            },
+        };
+
+        const { container } = render(<Aap />, { wrapper: contextProviders(props) });
+        expect(container).toBeEmptyDOMElement();
+    });
+
     it('rendres IKKE når bruker IKKE er sykmeldt og under oppfolging nivå 4', async () => {
         const props: ProviderProps = {
             brukerInfo: { erSykmeldtMedArbeidsgiver: false },

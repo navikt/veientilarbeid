@@ -12,6 +12,7 @@ import tekster from '../../tekster/tekster';
 import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
+import { FeaturetoggleContext } from '../../ducks/feature-toggles';
 import Rad from '../../innhold/rad';
 
 const handleButtonClick = () => {
@@ -22,8 +23,12 @@ const Aap = () => {
     const { securityLevel } = React.useContext(AutentiseringContext).data;
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
+    const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
+
     const isLevel4 = securityLevel === InnloggingsNiva.LEVEL_4;
-    const kanViseKomponent = erSykmeldtMedArbeidsgiver && underOppfolging && isLevel4;
+    const skjulRadFeaturetoggleAktivert = featuretoggleData && featuretoggleData['veientilarbeid.rydding.skjulAAPRad'];
+
+    const kanViseKomponent = erSykmeldtMedArbeidsgiver && underOppfolging && isLevel4 && !skjulRadFeaturetoggleAktivert;
 
     return !kanViseKomponent ? null : (
         <Rad>
