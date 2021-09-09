@@ -25,6 +25,7 @@ const Registrert = () => {
     const featuretoggleData = React.useContext(FeaturetoggleContext).data;
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const [clickedInnsyn, setClickedInnsyn] = useState(false);
+    const [visKvittering, setVisKvittering] = useState('');
 
     const featureToggleErAktivert = featuretoggleData['veientilarbeid.registrert-permittert'];
 
@@ -35,10 +36,12 @@ const Registrert = () => {
 
     const scrollToRegistrering = () => {
         const goto = new URLSearchParams(window.location.search).get('goTo');
+        const kvittering = new URLSearchParams(window.location.search).get('visKvittering');
         const registreringsboks = document.getElementById('registrering-status-container');
         if (goto === 'registrering' && registreringsboks) {
             registreringsboks.scrollIntoView({ block: 'end', inline: 'nearest' });
         }
+        setVisKvittering(kvittering || '');
     };
 
     useEffect(() => {
@@ -104,6 +107,7 @@ const Registrert = () => {
                 <MeldekortIntroWrapper />
             </div>
             <InViewport loggTekst="Registreringsboks i viewport" />
+            {visKvittering && <div>{visKvittering}</div>}
         </div>
     );
 };
