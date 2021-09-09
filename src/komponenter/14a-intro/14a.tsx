@@ -329,7 +329,11 @@ export function kanVise14AStatus({
     );
 }
 
-function Intro14AWrapper() {
+interface IntroProps {
+    visKvittering?: string;
+}
+
+function Intro14AWrapper(props: IntroProps) {
     const amplitudeData = React.useContext(AmplitudeContext);
     const { data: registreringData } = React.useContext(Brukerregistrering.BrukerregistreringContext);
     const { data: egenvurderingData } = React.useContext(Egenvurdering.EgenvurderingContext);

@@ -103,11 +103,10 @@ const Registrert = () => {
             ) : null}
             <div className={'intro-wrapper'}>
                 <DagpengerStatus />
-                <Intro14AWrapper />
+                <Intro14AWrapper visKvittering={visKvittering} />
                 <MeldekortIntroWrapper />
             </div>
             <InViewport loggTekst="Registreringsboks i viewport" />
-            {visKvittering && <div>{visKvittering}</div>}
         </div>
     );
 };
