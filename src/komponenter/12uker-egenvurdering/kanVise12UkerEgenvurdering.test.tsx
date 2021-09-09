@@ -54,6 +54,7 @@ const grunndata = {
         'veientilarbeid.egenvurderinguke12': true,
         'veientilarbeid.rydding.skjulJobbBoks': false,
         'veientilarbeid.rydding.skjulOkonomiBoks': false,
+        'veientilarbeid.rydding.skjulAAPRad': false,
     },
     amplitudeData: {
         gruppe: poagruppeKSS,
