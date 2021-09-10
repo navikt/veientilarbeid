@@ -12,6 +12,7 @@ export enum FeatureToggles {
     RYDDING_SKJUL_JOBB_BOKS = 'veientilarbeid.rydding.skjulJobbBoks',
     RYDDING_SKJUL_OKONOMI_BOKS = 'veientilarbeid.rydding.skjulOkonomiBoks',
     RYDDING_SKJUL_AAP_RAD = 'veientilarbeid.rydding.skjulAAPRad',
+    BRUKERUNDERSOKELSE_VIS = 'veientilarbeid.visbrukerundersokelse',
 }
 
 export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
@@ -36,6 +37,8 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Skjul økonomiboks';
         case FeatureToggles.RYDDING_SKJUL_AAP_RAD:
             return 'Skjul AAP rad';
+        case FeatureToggles.BRUKERUNDERSOKELSE_VIS:
+            return 'Vis brukerundersøkelse';
     }
 }
 
@@ -50,6 +53,7 @@ export interface Data {
     'veientilarbeid.rydding.skjulJobbBoks': boolean;
     'veientilarbeid.rydding.skjulOkonomiBoks': boolean;
     'veientilarbeid.rydding.skjulAAPRad': boolean;
+    'veientilarbeid.visbrukerundersokelse': boolean;
 }
 
 export interface State extends DataElement {
@@ -68,6 +72,7 @@ export const initialState: State = {
         'veientilarbeid.rydding.skjulJobbBoks': false,
         'veientilarbeid.rydding.skjulOkonomiBoks': false,
         'veientilarbeid.rydding.skjulAAPRad': false,
+        'veientilarbeid.visbrukerundersokelse': false,
     },
     status: STATUS.NOT_STARTED,
 };
