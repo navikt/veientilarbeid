@@ -10,6 +10,7 @@ import Egenvurdering from '../komponenter/egenvurdering/egenvurdering';
 import Motestotte from '../komponenter/motestotte/motestotte';
 import KrrMelding from '../komponenter/krr-melding/krr-melding';
 import Registrert from '../komponenter/registrert/registrert';
+import Brukerundersokelse from '../komponenter/brukerundersokelse/brukerundersokelse';
 import AktivitetDialogMeldekort from './aktivitet-dialog-meldekort';
 import InnholdMetrics from './innhold-metrics';
 import GenerelleFliser from '../komponenter/dittnav/generelle-fliser';
@@ -24,6 +25,7 @@ const InnholdView = () => {
             <Rad>
                 <ReaktiveringKort />
                 <KrrMelding />
+                <Brukerundersokelse />
                 <Registrert />
                 <Egenvurdering />
                 <Motestotte />
