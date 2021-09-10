@@ -143,6 +143,7 @@ function Brukerundersokelse() {
         settIBrowserStorage(KEY_VTA_BRUKERUNDERSOKELSE, Date.now().toString());
         loggAktivitet({ aktivitet: loggTekst, ...amplitudeData });
         window.location.assign(undersokelseUrl);
+        setVisKomponent(false);
     }
 
     if (!visKomponent) {
