@@ -33,8 +33,8 @@ function Sluttkort(props: EndStateProps) {
             </div>
             <div className="p-1">
                 <div>
-                    <Normaltekst className={'blokk-xs'}>Svaret ditt er delt med veileder</Normaltekst>
-                    {svarerJa && <Normaltekst>Du får svar i løpet av noen dager</Normaltekst>}
+                    <Normaltekst className={'blokk-xs'}>Svaret ditt er delt med veileder.</Normaltekst>
+                    {svarerJa && <Normaltekst>Du får svar i løpet av noen dager.</Normaltekst>}
                 </div>
             </div>
         </div>
