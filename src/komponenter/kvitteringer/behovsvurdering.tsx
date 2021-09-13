@@ -27,7 +27,7 @@ function Sluttkort(props: EndStateProps) {
                     <Element tag={'h1'}>Oppfølging</Element>
                     <Systemtittel>Egenvurdering</Systemtittel>
                 </div>
-                <button className="brukerundersokelse-avslaa-knapp" onClick={handleLukkeKvitteringKnapp}>
+                <button className="behovsvurdering-lukk-knapp" onClick={handleLukkeKvitteringKnapp}>
                     X
                 </button>
             </div>
@@ -61,8 +61,8 @@ function Kvittering({ kvittering }: { kvittering?: string }) {
     }
 
     const innhold = (
-        <div className="brukerundersokelse-omslutning blokk-s">
-            <Panel className={'brukerundersokelse-intro'} border>
+        <div className="behovsvurdering-omslutning blokk-s">
+            <Panel className={'behovsvurdering-intro'} border>
                 <div className={'overall-wrapper'}>
                     <Sluttkort lukkerKvittering={lukkerKvittering} kvittering={kvittering} />
                 </div>
