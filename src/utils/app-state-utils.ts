@@ -15,4 +15,6 @@ export const erProduksjon = () => {
 
 export const erStandaloneTestMiljo = () => url.indexOf('veientilarbeid.dev.nav.no') !== -1;
 
+export const erStandaloneProd = () => /[&?]standalone=true/.test(url);
+
 export const contextpathDittNav = '/person/dittnav/veientilarbeid';
