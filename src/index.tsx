@@ -7,14 +7,7 @@ import * as Sentry from '@sentry/browser';
 import App from './app';
 
 import './index.less';
-import {
-    erDemo,
-    erMikrofrontend,
-    erMock,
-    erProduksjon,
-    erStandaloneProd,
-    erStandaloneTestMiljo,
-} from './utils/app-state-utils';
+import { erDemo, erMikrofrontend, erMock, erProduksjon, erStandalone } from './utils/app-state-utils';
 import NAVSPA from './NAVSPA';
 import { redirectTilDittNav } from './komponenter/hent-initial-data/redirect-dittnav-utils';
 
@@ -36,7 +29,7 @@ if (erDemo()) {
 const brukerReelleData = !(erMock() || erDemo());
 
 if (!erMikrofrontend()) {
-    if (brukerReelleData && !erStandaloneTestMiljo() && !erStandaloneProd()) {
+    if (brukerReelleData && !erStandalone()) {
         redirectTilDittNav();
     } else {
         ReactDOM.render(<App />, document.getElementById('maincontent') as HTMLElement);
