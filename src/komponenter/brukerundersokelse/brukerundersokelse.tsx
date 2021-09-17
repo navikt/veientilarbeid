@@ -74,7 +74,7 @@ function Sluttkort(props: EndStateProps) {
             </div>
             <div className="flex flex-column space-between p-1">
                 <Knapp onClick={handleOnskerUndersokelseFraKnapp} className="blokk-s">
-                    Jeg kan hjelpe
+                    Jeg kan hjelpe (åpner e-post du kan sende oss)
                 </Knapp>
                 <Normaltekst>
                     <Lenke className="tracking-wide" href={''} onClick={handleAvslaaUndersokelseLenke}>
