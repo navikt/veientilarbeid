@@ -15,10 +15,12 @@ import { FeaturetoggleContext } from '../../ducks/feature-toggles';
 const KEY_VTA_BRUKERUNDERSOKELSE = 'vta-brukerundersokelse';
 const sisteUndersokelseDato = '2021-09-09';
 const undersokelseUrl = 'mailto:brukertest@nav.no?subject=Intervju%20dittNAV';
+const skjemaUrl = 'https://www.survey-xact.no/LinkCollector?key=LM2H233WJ21J';
 
 interface EndStateProps {
     avslaarBrukerundersokelse: (loggTekst: string) => void;
     sendTilBrukerundersokelse: (loggTekst: string) => void;
+    sendTilBrukerundersokelseSkjema: (loggTekst: string) => void;
 }
 
 function Sluttkort(props: EndStateProps) {
@@ -37,7 +39,7 @@ function Sluttkort(props: EndStateProps) {
     function handleOnskerUndersokelseFraKnapp(event: React.SyntheticEvent) {
         event.preventDefault();
         event.stopPropagation();
-        props.sendTilBrukerundersokelse('Takker ja til brukerundersøkelse fra knapp');
+        props.sendTilBrukerundersokelseSkjema('Takker ja til brukerundersøkelse fra knapp');
     }
 
     function handleOnskerUndersokelseFraLenke(event: React.SyntheticEvent) {
@@ -74,7 +76,7 @@ function Sluttkort(props: EndStateProps) {
             </div>
             <div className="flex flex-column space-between p-1">
                 <Knapp onClick={handleOnskerUndersokelseFraKnapp} className="blokk-s">
-                    Jeg kan hjelpe (åpner e-post du kan sende oss)
+                    Jeg kan hjelpe
                 </Knapp>
                 <Normaltekst>
                     <Lenke className="tracking-wide" href={''} onClick={handleAvslaaUndersokelseLenke}>
@@ -146,6 +148,13 @@ function Brukerundersokelse() {
         setVisKomponent(false);
     }
 
+    function sendTilBrukerundersokelseSkjema(loggTekst: string) {
+        settIBrowserStorage(KEY_VTA_BRUKERUNDERSOKELSE, Date.now().toString());
+        loggAktivitet({ aktivitet: loggTekst, ...amplitudeData });
+        window.location.assign(skjemaUrl);
+        setVisKomponent(false);
+    }
+
     if (!visKomponent) {
         return null;
     }
@@ -157,6 +166,7 @@ function Brukerundersokelse() {
                     <Sluttkort
                         avslaarBrukerundersokelse={avslaarBrukerundersokelse}
                         sendTilBrukerundersokelse={sendTilBrukerundersokelse}
+                        sendTilBrukerundersokelseSkjema={sendTilBrukerundersokelseSkjema}
                     />
                 </div>
             </Panel>
