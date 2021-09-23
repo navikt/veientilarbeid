@@ -51,8 +51,8 @@ jobs:
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: dev-gcp
-          RESOURCE: nais/nais-gcp.yaml
-          VARS: nais/vars-dev-paw-gcp.yaml
+          RESOURCE: nais/nais.yaml
+          VARS: nais/vars-dev.yaml
 
   deploy-prod:
     name: Deploy til prod
@@ -74,8 +74,8 @@ jobs:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           DRY_RUN: false
           CLUSTER: prod-gcp
-          RESOURCE: nais/nais-gcp.yaml
-          VARS: nais/vars-p-paw-gcp.yaml
+          RESOURCE: nais/nais.yaml
+          VARS: nais/vars-p.yaml
 
   release:
     name: Tag and release
