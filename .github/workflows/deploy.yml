@@ -33,29 +33,7 @@ jobs:
           docker push ${IMAGE}
 
   deploy-dev:
-    name: Deploy til dev-sbs i namespace "paw"
-    needs: test-build-and-push
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-        name: Checkout
-
-      - name: Lag tag for image
-        run: echo "TAG=$(git log -1 --pretty='%ad_%h' --date=format:'%Y%m%d%H%M%S')" >> $GITHUB_ENV
-
-      - name: Lag full image referanse
-        run: echo "IMAGE=$IMAGE_BASE:$TAG" >> $GITHUB_ENV
-
-      - name: Deploy
-        uses: nais/deploy/actions/deploy@master
-        env:
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-          CLUSTER: dev-sbs
-          RESOURCE: nais/nais.yaml
-          VARS: nais/vars-dev-paw.yaml
-
-  deploy-dev-gcp:
-    name: Deploy til dev-gcp i namespace "paw"
+    name: Deploy til dev
     needs: test-build-and-push
     runs-on: ubuntu-latest
     steps:
@@ -76,9 +54,9 @@ jobs:
           RESOURCE: nais/nais-gcp.yaml
           VARS: nais/vars-dev-paw-gcp.yaml
 
-  deploy-prod-gcp:
-    name: Deploy til prod-gcp
-    needs: deploy-dev-gcp
+  deploy-prod:
+    name: Deploy til prod
+    needs: deploy-dev
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -98,29 +76,6 @@ jobs:
           CLUSTER: prod-gcp
           RESOURCE: nais/nais-gcp.yaml
           VARS: nais/vars-p-paw-gcp.yaml
-
-  deploy-prod-paw:
-    name: Deploy til prod
-    needs: deploy-dev
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-        name: Checkout
-
-      - name: Lag tag for image
-        run: echo "TAG=$(git log -1 --pretty='%ad_%h' --date=format:'%Y%m%d%H%M%S')" >> $GITHUB_ENV
-
-      - name: Lag full image referanse
-        run: echo "IMAGE=$IMAGE_BASE:$TAG" >> $GITHUB_ENV
-
-      - name: Deploy to Prod
-        uses: nais/deploy/actions/deploy@master
-        env:
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-          DRY_RUN: false
-          CLUSTER: prod-sbs
-          RESOURCE: nais/nais.yaml
-          VARS: nais/vars-p-paw.yaml
 
   release:
     name: Tag and release
