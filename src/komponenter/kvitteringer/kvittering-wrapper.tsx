@@ -1,5 +1,6 @@
 import React from 'react';
 import BehovsvurderingKvittering from './behovsvurdering';
+import ReaktiveringKvittering from './reaktivering';
 
 interface Props {
     kvittering?: string | null;
@@ -20,7 +21,12 @@ function KvitteringWrapper(props: Props) {
     const { kvittering } = props;
     const kvitteringstype = finnKvitteringstype(kvittering);
     if (!kvittering || kvitteringstype === 'ukjent') return null;
-    return <BehovsvurderingKvittering kvittering={kvittering} />;
+    return (
+        <>
+            {kvitteringstype === 'behovsvurdering' && <BehovsvurderingKvittering kvittering={kvittering} />}
+            {kvitteringstype === 'reaktivering' && <ReaktiveringKvittering kvittering={kvittering} />}
+        </>
+    );
 }
 
 export default KvitteringWrapper;
