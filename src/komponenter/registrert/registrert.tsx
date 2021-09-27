@@ -14,7 +14,7 @@ import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import { FeaturetoggleContext } from '../../ducks/feature-toggles';
 import Intro14AWrapper from '../14a-intro/14a';
-import BehovsvurderingKvittering from '../kvitteringer/behovsvurdering';
+import KvitteringWrapper from '../kvitteringer/kvittering-wrapper';
 import InViewport from '../in-viewport/in-viewport';
 import Permittert from './permittert';
 
@@ -103,7 +103,7 @@ const Registrert = () => {
                 </Ekspanderbartpanel>
             ) : null}
 
-            {visKvittering && <BehovsvurderingKvittering kvittering={visKvittering} />}
+            {visKvittering && <KvitteringWrapper kvittering={visKvittering} />}
 
             <div className={'intro-wrapper'}>
                 <DagpengerStatus />
