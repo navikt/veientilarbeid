@@ -32,7 +32,7 @@ function Sluttkort(props: EndStateProps) {
         <div className={'sluttkort'}>
             <div className="p-1 flex space-between">
                 <div>
-                    <Element tag={'h1'}>Registrering</Element>
+                    <Element tag={'h1'}>Dagpenger</Element>
                     <Systemtittel>Du må søke om dagpenger på nytt</Systemtittel>
                 </div>
                 <button className="behovsvurdering-lukk-knapp" onClick={handleLukkeKvitteringKnapp}>
@@ -41,14 +41,13 @@ function Sluttkort(props: EndStateProps) {
             </div>
             <div className="p-1">
                 <Normaltekst className="blokk">
-                    Dersom du før reaktiveringen har fått innvilget dagpenger kan du søke om gjenopptak.
+                    Har du mottatt dagpenger vil utbetalingene være stoppet og du må derfor sende inn ny søknad.
                 </Normaltekst>
                 <Normaltekst className="blokk">
-                    Du kan tidligst få dagpenger fra den dagen du sender søknaden.
+                    Du kan tidligst få dagpenger igjen fra den dagen du sender søknaden.
                 </Normaltekst>
-                <Normaltekst className="blokk">Søknadsdialogen hjelper deg videre.</Normaltekst>
                 <Knapp onClick={handleSokGjenopptak} className="blokk-s">
-                    Søk gjenopptak av dagpenger
+                    Søk dagpenger
                 </Knapp>
             </div>
         </div>
