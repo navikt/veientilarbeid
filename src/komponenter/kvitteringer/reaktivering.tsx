@@ -4,6 +4,7 @@ import { Knapp } from 'nav-frontend-knapper';
 import Panel from 'nav-frontend-paneler';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { loggAktivitet } from '../../metrics/metrics';
+import { dagpengerSoknadLenke } from '../../innhold/lenker';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import './behovsvurdering.less';
@@ -71,7 +72,7 @@ function KvitteringReaktivering({ kvittering }: { kvittering?: string }) {
 
     function sokDagpenger(loggTekst: string) {
         loggAktivitet({ aktivitet: loggTekst, ...amplitudeData });
-        window.location.assign('https://www.nav.no/soknader/nb/person/arbeid/dagpenger');
+        window.location.assign(dagpengerSoknadLenke);
         setVisKomponent(false);
     }
 
