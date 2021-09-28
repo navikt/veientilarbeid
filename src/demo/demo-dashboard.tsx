@@ -21,6 +21,7 @@ import {
     hentUlesteDialoger,
     hentUnderOppfolging,
     hentDpStatus,
+    hentKvitteringStatus,
     settAntallDagerEtterFastsattMeldedag,
     settAutentiseringsInfo,
     settEgenvurdering,
@@ -38,6 +39,7 @@ import {
     settUlesteDialoger,
     settUnderOppfolging,
     settDpStatus,
+    settKvitteringStatus,
 } from './demo-state';
 
 import './demo-dashboard.less';
@@ -97,6 +99,11 @@ class DemoDashboard extends React.Component<{}> {
 
         const handleChangeDagpengeStatus = (e: React.ChangeEvent<HTMLSelectElement>) => {
             settDpStatus(e.target.value);
+            window.location.reload();
+        };
+
+        const handleChangeKvitteringStatus = (e: React.ChangeEvent<HTMLSelectElement>) => {
+            settKvitteringStatus(e.target.value);
             window.location.reload();
         };
 
@@ -186,6 +193,13 @@ class DemoDashboard extends React.Component<{}> {
             dagpengestatusStartetSoknad: 'Har startet dagpengesøknad',
             dagpengestatusInnsendtSoknad: 'Har sendt søknad',
             dagpengestatusSoknadBehandlet: 'Søknad ferdig behandlet',
+        };
+
+        const kvitteringsStatuser = {
+            kvitteringIkkeValgt: 'Ingen kvitteringer',
+            reaktivering: 'Etter reaktivering',
+            behovsvurderingJa: 'Etter ja behovsvurdering',
+            behovsvurderingNei: 'Etter nei behovsvurdering',
         };
 
         const registreringTyper = {
@@ -406,6 +420,18 @@ class DemoDashboard extends React.Component<{}> {
                                     {antallDagerEtterFastsattMeldedag[dag]}
                                 </option>
                             ))}
+                    </SelectKomponent>
+                    <SelectKomponent
+                        label={'Velg kvitteringstatus'}
+                        onChange={handleChangeKvitteringStatus}
+                        id="velg-kvitteringstatus"
+                        defaultValue={hentKvitteringStatus()}
+                    >
+                        {Object.keys(kvitteringsStatuser).map((gruppe: string) => (
+                            <option key={gruppe} value={gruppe}>
+                                {kvitteringsStatuser[gruppe]}
+                            </option>
+                        ))}
                     </SelectKomponent>
                 </div>
                 <CheckboksPanelGruppe

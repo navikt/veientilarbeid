@@ -34,6 +34,7 @@ export enum DemoData {
     REGISTRERING_OPPRETTET = 'registreringOpprettet',
     SKJUL_DEMO = 'skjulDemo',
     DP_STATUS = 'dpStatus',
+    KVITTERING_STATUS = 'visKvittering',
 }
 
 export const hentDemoState = (key: string): string | null => hentQueryParam(key);
@@ -282,3 +283,6 @@ export const hentDpSakstema = (): JSONValue => {
         ? genererSakstemaMock(status)
         : { sakstema: [] };
 };
+
+export const hentKvitteringStatus = () => hentDemoState(DemoData.KVITTERING_STATUS) || 'kvitteringIkkeValgt';
+export const settKvitteringStatus = (value: string) => settDemoState(DemoData.KVITTERING_STATUS, value);
