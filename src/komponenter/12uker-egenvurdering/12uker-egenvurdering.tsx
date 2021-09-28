@@ -66,7 +66,7 @@ function Sluttkort(props: EndStateProps) {
                 <div className="egenvurdering-innhold">
                     <Normaltekst>
                         Har du fortsatt tro på at du greier å skaffe deg jobb på egenhånd, eller tenker du det er behov
-                        for bistand/hjelp fra en veileder ved NAV-kontoret ditt?
+                        for hjelp og støtte fra en veileder ved NAV-kontoret ditt?
                     </Normaltekst>
                 </div>
             </div>
