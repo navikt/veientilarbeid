@@ -83,11 +83,18 @@ export const hentDagerEtterFastsattMeldedag = (): number => {
 export const settAntallDagerEtterFastsattMeldedag = (dag: string) => settDemoState(DemoData.MELDEKORT, dag);
 
 export const hentFeatureToggles = () => {
+    const presets = {
+        'veientilarbeid.rydding.skjulJobbBoks': true,
+        'veientilarbeid.rydding.skjulOkonomiBoks': true,
+    };
     return Object.values(FeatureToggles).reduce((liste, toggle) => {
-        liste[toggle] = hentDemoState(toggle) === 'true';
+        const presetVerdi = presets[toggle];
+        liste[toggle] = !hentDemoState(toggle) && presetVerdi ? presetVerdi : hentDemoState(toggle) === 'true';
+        console.log(liste);
         return liste;
     }, {});
 };
+
 export const settFeatureToggles = (toggle: string, checked: boolean) => settDemoState(toggle, checked);
 
 export const hentReservasjonKRR = (): boolean => hentDemoState(DemoData.RESERVASJON_KRR) === 'true';
