@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { Knapp } from 'nav-frontend-knapper';
+import Lenke from 'nav-frontend-lenker';
 import Panel from 'nav-frontend-paneler';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { loggAktivitet } from '../../metrics/metrics';
@@ -20,6 +21,12 @@ function Sluttkort(props: EndStateProps) {
         event.preventDefault();
         event.stopPropagation();
         props.lukkerKvittering('Lukker kvittering etter reaktivering');
+    }
+
+    function handleIkkeSokeNaa(event: React.SyntheticEvent) {
+        event.preventDefault();
+        event.stopPropagation();
+        props.lukkerKvittering('Skal ikke søke dagpenger nå etter reaktivering');
     }
 
     function handleSokGjenopptak(event: React.SyntheticEvent) {
@@ -49,6 +56,11 @@ function Sluttkort(props: EndStateProps) {
                 <Knapp onClick={handleSokGjenopptak} className="blokk-s">
                     Søk dagpenger
                 </Knapp>
+                <Normaltekst>
+                    <Lenke className="tracking-wide" href="" onClick={handleIkkeSokeNaa}>
+                        Skal ikke søke dagpenger nå
+                    </Lenke>
+                </Normaltekst>
             </div>
         </div>
     );
