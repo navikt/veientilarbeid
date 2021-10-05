@@ -7,7 +7,7 @@ import { contextProviders, ProviderProps } from '../../test/test-context-provide
 describe('Tester komponenten Aktivitetsplan', () => {
     const oldLocation = global.window.location;
     afterEach(() => {
-        delete global.window.location;
+        delete (global as any).window.location;
         global.window.location = Object.assign({}, oldLocation);
     });
 
