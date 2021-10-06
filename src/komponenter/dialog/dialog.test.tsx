@@ -1,6 +1,6 @@
 import Dialog from './dialog';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
-import { ComponentType } from 'react';
+import { FunctionComponent } from 'react';
 import { render, screen } from '@testing-library/react';
 import tekster from '../../tekster/tekster';
 import { Formidlingsgruppe, Servicegruppe } from '../../ducks/oppfolging';
@@ -11,7 +11,7 @@ describe('Tester dialog-komponent', () => {
         const providerProps: ProviderProps = {
             underOppfolging: { underOppfolging: true },
         };
-        render(<Dialog />, { wrapper: contextProviders(providerProps) as ComponentType });
+        render(<Dialog />, { wrapper: contextProviders(providerProps) as FunctionComponent });
         expect(screen.getByText(/dialog med veilederen din/i)).toBeTruthy();
         expect(screen.getByText(/send melding hvis du lurer på noe/i)).toBeTruthy();
     });
@@ -21,7 +21,7 @@ describe('Tester dialog-komponent', () => {
             underOppfolging: { underOppfolging: true },
             ulesteDialoger: { antallUleste: 0 },
         };
-        render(<Dialog />, { wrapper: contextProviders(providerProps) as ComponentType });
+        render(<Dialog />, { wrapper: contextProviders(providerProps) as FunctionComponent });
         expect(await screen.queryByText(/ulest/i)).toBeFalsy();
     });
 
@@ -30,7 +30,7 @@ describe('Tester dialog-komponent', () => {
             underOppfolging: { underOppfolging: true },
             ulesteDialoger: { antallUleste: 1 },
         };
-        render(<Dialog />, { wrapper: contextProviders(providerProps) as ComponentType });
+        render(<Dialog />, { wrapper: contextProviders(providerProps) as FunctionComponent });
         expect(screen.getByText(/1 ulest melding/i)).toBeTruthy();
     });
 
@@ -39,7 +39,7 @@ describe('Tester dialog-komponent', () => {
             underOppfolging: { underOppfolging: true },
             ulesteDialoger: { antallUleste: 42 },
         };
-        render(<Dialog />, { wrapper: contextProviders(providerProps) as ComponentType });
+        render(<Dialog />, { wrapper: contextProviders(providerProps) as FunctionComponent });
         expect(screen.getByText(/42 uleste meldinger/i)).toBeTruthy();
     });
 
