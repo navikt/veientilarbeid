@@ -1,19 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Element, Normaltekst, Systemtittel, Undertekst } from 'nav-frontend-typografi';
+import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
 import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import * as Brukerregistrering from '../../ducks/brukerregistrering';
 import * as Egenvurdering from '../../ducks/egenvurdering';
 import * as Oppfolging from '../../ducks/oppfolging';
-import { OppfolgingContext, Servicegruppe } from '../../ducks/oppfolging';
 import * as BrukerInfo from '../../ducks/bruker-info';
 import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
 import './14a-intro.less';
 import { fjernFraBrowserStorage, hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
 import ErRendret from '../er-rendret/er-rendret';
-import Feedback from '../feedback/feedback';
 import Lenkepanel14A from './lenkepanel-14a';
 import { FeaturetoggleContext, Data as FeaturetoggleData } from '../../ducks/feature-toggles';
 import Lenke from 'nav-frontend-lenker';
@@ -23,126 +21,10 @@ import ModalWrapper from 'nav-frontend-modal';
 import RegistrertTeller from './registrert-teller';
 import { kanVise12UkerEgenvurdering } from '../12uker-egenvurdering/12uker-egenvurdering';
 import EgenVurdering from '../12uker-egenvurdering/12uker-egenvurdering';
+import Kortliste from './kss/Kort';
 
 const INTRO_KEY_14A = '14a-intro';
 const INTRO_KEY_12UKER = '12uker-egenvurdering';
-
-function Kort1() {
-    return (
-        <div className="kortflate">
-            <div>
-                <Systemtittel>Hva slags hjelp kan jeg få?</Systemtittel>
-                <Undertekst className="blokk-xs">1 av 4</Undertekst>
-
-                <Normaltekst className={'blokk-xs'}>
-                    NAV har gjort en vurdering av svarene dine, og det ser ut til at du har gode muligheter til å skaffe
-                    deg jobb på egenhånd.
-                </Normaltekst>
-
-                <Normaltekst>Vurderingen baserer seg på:</Normaltekst>
-                <ul>
-                    <li>
-                        <Normaltekst>svarene fra registreringen</Normaltekst>
-                    </li>
-                    <li>
-                        <Normaltekst>opplysningene NAV har om din situasjon</Normaltekst>
-                    </li>
-                </ul>
-                <Normaltekst className={'blokk-m'}>
-                    NAV tar som hovedregel ikke kontakt i forbindelse med hjelp til jobbsøking de første 12 ukene etter
-                    at du registrerte deg som arbeidssøker.
-                </Normaltekst>
-            </div>
-            <Feedback id={'Introkort14A-01'} />
-        </div>
-    );
-}
-
-function Kort2() {
-    const { servicegruppe } = React.useContext(OppfolgingContext).data;
-    const amplitudeData = React.useContext(AmplitudeContext);
-
-    const handleLesBrev = () => {
-        amplitudeLogger('veientilarbeid.intro', {
-            intro: '14a',
-            handling: 'Går til min innboks',
-            ...amplitudeData,
-        });
-    };
-
-    return (
-        <div className="kortflate">
-            <div>
-                <Systemtittel>Hva slags hjelp kan jeg få?</Systemtittel>
-                <Undertekst className="blokk-xs">2 av 4</Undertekst>
-                <Normaltekst className={'blokk-xs'}>
-                    {servicegruppe === Servicegruppe.IKVAL ? (
-                        <>
-                            Du har mottatt brevet{' '}
-                            <Lenke onClick={handleLesBrev} href={'https://mininnboks.nav.no/'}>
-                                «NAV har vurdert dine muligheter»
-                            </Lenke>
-                            .
-                        </>
-                    ) : (
-                        'Du vil i løpet av den første uken motta brevet «NAV har vurdert dine muligheter».'
-                    )}
-                </Normaltekst>
-
-                <Normaltekst className={'blokk-m'}>
-                    Dette brevet er ikke et svar på en eventuell søknad om dagpenger.
-                </Normaltekst>
-            </div>
-            <Feedback id={'Introkort14A-02'} />
-        </div>
-    );
-}
-
-function Kort3() {
-    return (
-        <div className="kortflate">
-            <div>
-                <Systemtittel>Hva slags hjelp kan jeg få?</Systemtittel>
-                <Undertekst className="blokk-xs">3 av 4</Undertekst>
-                <Normaltekst className={'blokk-xs'}>Du kan få hjelp fra en veileder før 12 uker har gått.</Normaltekst>
-
-                <Normaltekst className={'blokk-xs'}>
-                    Da må du selv kontakte veileder ved å bruke dialogen som vises på slutten av denne introduksjonen.
-                </Normaltekst>
-
-                <Normaltekst className={'blokk-m'}>
-                    Du kan gi oss beskjed om at du ønsker hjelp nå med en gang, eller se litt an hvordan du syns
-                    jobbsøkingen din går før du tar kontakt.
-                </Normaltekst>
-            </div>
-            <Feedback id={'Introkort14A-03'} />
-        </div>
-    );
-}
-function Kort4() {
-    return (
-        <div className="kortflate">
-            <div>
-                <Systemtittel>Hva slags hjelp kan jeg få?</Systemtittel>
-                <Undertekst className="blokk-xs">4 av 4</Undertekst>
-                <Normaltekst className={'blokk-xs'}>
-                    En veileder sin oppgave er å besvare spørsmål, bistå rundt det å søke stillinger og tilby hjelp på
-                    veien til arbeid.
-                </Normaltekst>
-
-                <Normaltekst className={'blokk-xs'}>
-                    Veiledere kan <strong>ikke</strong> svare på spørsmål om søknader, behandling av søknader eller
-                    utbetalinger av dagpenger.
-                </Normaltekst>
-
-                <Normaltekst className={'blokk-m'}>
-                    Dersom du lurer på noe om dagpenger ber vi deg bruke «Skriv til oss».
-                </Normaltekst>
-            </div>
-            <Feedback id={'Introkort14A-04'} />
-        </div>
-    );
-}
 
 interface EndStateProps {
     amplitudeData: AmplitudeData;
@@ -218,10 +100,7 @@ function Intro14A(props: Intro14AProps) {
             viewportTekst="Viser 14a pre-state i viewport"
             tittel={'Introduksjon til veiledning og hjelp til jobbsøking'}
         />,
-        <Kort1 />,
-        <Kort2 />,
-        <Kort3 />,
-        <Kort4 />,
+        ...Kortliste,
     ];
 
     const startkort = props.hoppOverPreState ? 1 : 0;
