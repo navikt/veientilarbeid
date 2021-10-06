@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import getPoaGroup from '../../utils/get-poa-group';
 import isKSSEksperiment from '../../eksperiment/is-kss-eksperiment';
 import isKSSKontroll from '../../eksperiment/is-kss-kontroll';
@@ -68,13 +68,8 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const meldekortContext = React.useContext(Meldekort.MeldekortContext);
     const meldekortStatusContext = React.useContext(Meldekortstatus.MeldekortstatusContext);
 
-    const {
-        erSykmeldtMedArbeidsgiver,
-        alder,
-        geografiskTilknytning,
-        registreringType,
-        rettighetsgruppe,
-    } = brukerInfoData;
+    const { erSykmeldtMedArbeidsgiver, alder, geografiskTilknytning, registreringType, rettighetsgruppe } =
+        brukerInfoData;
     const { servicegruppe, formidlingsgruppe, kanReaktiveres, reservasjonKRR } = oppfolgingData;
     const opprettetRegistreringDatoString = brukerregistreringData?.registrering?.opprettetDato;
     const dinSituasjon = brukerregistreringData?.registrering?.besvarelse.dinSituasjon || DinSituasjonSvar.INGEN_VERDI;

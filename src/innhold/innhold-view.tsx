@@ -1,4 +1,3 @@
-import * as React from 'react';
 import './innhold.less';
 import Rad from './rad';
 import AapRad from '../komponenter/aap/aap';

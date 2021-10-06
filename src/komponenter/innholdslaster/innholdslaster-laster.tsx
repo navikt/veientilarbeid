@@ -1,4 +1,3 @@
-import * as React from 'react';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 
 import './innholdslaster-laster.less';

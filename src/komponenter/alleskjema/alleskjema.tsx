@@ -1,4 +1,4 @@
-import React from 'react';
+import { useContext } from 'react';
 import { Knapp } from 'nav-frontend-knapper';
 import Panel from 'nav-frontend-paneler';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
@@ -10,8 +10,8 @@ import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
 const AlleSkjema = () => {
-    const amplitudeData = React.useContext(AmplitudeContext);
-    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
+    const amplitudeData = useContext(AmplitudeContext);
+    const { underOppfolging } = useContext(UnderOppfolgingContext).data;
     const kanViseKomponent = underOppfolging;
 
     const handleButtonClick = () => {

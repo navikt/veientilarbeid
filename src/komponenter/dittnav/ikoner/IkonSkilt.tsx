@@ -1,5 +1,3 @@
-import React from 'react';
-
 const IkonSkilt = () => (
     <svg width="48" height="48" viewBox="0 0 177 177" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M93 164H85V17C85.5 16 87 14 89 14C91 14 92.6667 16 93 17V164Z" fill="#6D655F" />

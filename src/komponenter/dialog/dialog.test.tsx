@@ -1,6 +1,6 @@
 import Dialog from './dialog';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
-import React, { ComponentType } from 'react';
+import { ComponentType } from 'react';
 import { render, screen } from '@testing-library/react';
 import tekster from '../../tekster/tekster';
 import { Formidlingsgruppe, Servicegruppe } from '../../ducks/oppfolging';

@@ -2,7 +2,7 @@ import { Innholdstittel, Undertekst } from 'nav-frontend-typografi';
 import { ClockFilled, Next } from '@navikt/ds-icons/cjs';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import Lenke from 'nav-frontend-lenker';
-import React from 'react';
+import * as React from 'react';
 
 import InViewport from '../in-viewport/in-viewport';
 

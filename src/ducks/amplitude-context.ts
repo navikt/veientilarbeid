@@ -1,4 +1,4 @@
-import React from 'react';
+import { createContext } from 'react';
 import { AmplitudeData } from '../metrics/amplitude-utils';
 import { InnloggingsNiva } from './autentisering';
 import { DinSituasjonSvar } from './brukerregistrering';
@@ -36,4 +36,4 @@ export const initialState: AmplitudeData = {
     dagpengerStatusBeregning: 'INGEN_DATA',
 };
 
-export const AmplitudeContext = React.createContext<AmplitudeData>(initialState);
+export const AmplitudeContext = createContext<AmplitudeData>(initialState);

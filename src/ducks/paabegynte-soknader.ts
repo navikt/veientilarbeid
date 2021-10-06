@@ -1,5 +1,5 @@
 import { DataElement, STATUS } from './api';
-import React from 'react';
+import { createContext } from 'react';
 
 export interface State extends DataElement {
     data: Data;
@@ -25,4 +25,4 @@ export const initialState: State = {
     status: STATUS.NOT_STARTED,
 };
 
-export const PaabegynteSoknaderContext = React.createContext<State>(initialState);
+export const PaabegynteSoknaderContext = createContext<State>(initialState);

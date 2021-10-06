@@ -1,5 +1,3 @@
-import React from 'react';
-
 const IkonSparegris = () => (
     <svg
         width="48px"

@@ -1,5 +1,3 @@
-import React from 'react';
-
 const IkonPlaster = () => (
     <svg
         width="38px"

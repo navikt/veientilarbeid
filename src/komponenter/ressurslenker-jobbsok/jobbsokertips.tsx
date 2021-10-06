@@ -1,4 +1,4 @@
-import React from 'react';
+import { useContext } from 'react';
 import { loggAktivitet } from '../../metrics/metrics';
 import JobbsokertipsIkon from './svg/jobbsokertips';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
@@ -7,8 +7,8 @@ import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { JobbsokerbesvarelseContext } from '../../ducks/jobbsokerbesvarelse';
 
 const Jobbsokertips = () => {
-    const amplitudeData = React.useContext(AmplitudeContext);
-    const jobbsokerbesvarelseData = React.useContext(JobbsokerbesvarelseContext).data;
+    const amplitudeData = useContext(AmplitudeContext);
+    const jobbsokerbesvarelseData = useContext(JobbsokerbesvarelseContext).data;
 
     const harJobbbsokerbesvarelse = !!jobbsokerbesvarelseData?.raad;
 
