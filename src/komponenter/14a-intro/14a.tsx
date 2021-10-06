@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
 import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
@@ -12,78 +11,17 @@ import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
 import './14a-intro.less';
 import { fjernFraBrowserStorage, hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
 import ErRendret from '../er-rendret/er-rendret';
-import Lenkepanel14A from './lenkepanel-14a';
 import { FeaturetoggleContext, Data as FeaturetoggleData } from '../../ducks/feature-toggles';
-import Lenke from 'nav-frontend-lenker';
 import PreState from '../meldekortintro/pre-state';
 import { UlesteDialogerContext } from '../../ducks/ulestedialoger';
 import ModalWrapper from 'nav-frontend-modal';
-import RegistrertTeller from './registrert-teller';
 import { kanVise12UkerEgenvurdering } from '../12uker-egenvurdering/12uker-egenvurdering';
 import EgenVurdering from '../12uker-egenvurdering/12uker-egenvurdering';
-import Kortliste from './kss/Kort';
+import kortliste from './kss/Kort';
+import Sluttkort from './kss/Sluttkort';
 
 const INTRO_KEY_14A = '14a-intro';
 const INTRO_KEY_12UKER = '12uker-egenvurdering';
-
-interface EndStateProps {
-    amplitudeData: AmplitudeData;
-    registreringData: Brukerregistrering.Data | null;
-    lesIntroPaaNyttCB: () => void;
-    antallUlesteDialoger: number;
-}
-
-function Sluttkort(props: EndStateProps) {
-    const { amplitudeData, registreringData } = props;
-    const { ukerRegistrert } = amplitudeData;
-    const registrertDato = registreringData?.registrering?.opprettetDato;
-    const registrertOver12Uker = ukerRegistrert > 12;
-    const kortTittel = registrertOver12Uker
-        ? 'Ta kontakt om du ønsker hjelp'
-        : 'Om du ønsker oppfølging før 12 uker må du gi oss beskjed';
-
-    const VeiledersOppgaver = () => {
-        return (
-            <Normaltekst>
-                Veilederen kan besvare spørsmål, bistå rundt det å søke stillinger og tilby hjelp på veien til arbeid.
-            </Normaltekst>
-        );
-    };
-
-    const handleKlikkLesIntro = () => {
-        amplitudeLogger('veientilarbeid.intro', {
-            intro: '14a',
-            handling: 'Leser introduksjonen på nytt',
-            ...amplitudeData,
-        });
-    };
-
-    function handleLesIntroPaaNytt(event: React.SyntheticEvent) {
-        event.preventDefault();
-        event.stopPropagation();
-        handleKlikkLesIntro();
-        props.lesIntroPaaNyttCB();
-    }
-
-    return (
-        <div className={'sluttkort'}>
-            <Element tag={'h1'}>OPPFØLGING</Element>
-            <Systemtittel className={'blokk-xs'}>{kortTittel}</Systemtittel>
-            <RegistrertTeller ukerRegistrert={ukerRegistrert} registrertDato={registrertDato} />
-
-            <Lenkepanel14A amplitudeData={amplitudeData} href={''} antallUlesteDialoger={props.antallUlesteDialoger} />
-            {registrertOver12Uker ? (
-                <VeiledersOppgaver />
-            ) : (
-                <Normaltekst>
-                    <Lenke className={'tracking-wide'} href={''} onClick={handleLesIntroPaaNytt}>
-                        Les om hva slags hjelp du kan få
-                    </Lenke>
-                </Normaltekst>
-            )}
-        </div>
-    );
-}
 
 interface Intro14AProps {
     amplitudeData: AmplitudeData;
@@ -100,7 +38,7 @@ function Intro14A(props: Intro14AProps) {
             viewportTekst="Viser 14a pre-state i viewport"
             tittel={'Introduksjon til veiledning og hjelp til jobbsøking'}
         />,
-        ...Kortliste,
+        ...kortliste,
     ];
 
     const startkort = props.hoppOverPreState ? 1 : 0;
