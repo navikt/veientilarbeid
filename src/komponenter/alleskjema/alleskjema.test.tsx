@@ -10,7 +10,7 @@ describe('Tester alle skjema komponenten', () => {
     const oldLocation = global.window.location;
 
     afterEach(() => {
-        delete global.window.location;
+        delete (global as any).window.location;
         global.window.location = Object.assign({}, oldLocation);
     });
 
@@ -35,8 +35,8 @@ describe('Tester alle skjema komponenten', () => {
     test('Klikk på knappen trigger funksjonen', () => {
         const mockHandleButtonClick = jest.fn();
         const mockWindowNavigate = jest.fn();
-        delete global.window.location;
-        global.window.location = ({ assign: mockWindowNavigate } as unknown) as Location;
+        delete (global as any).window.location;
+        global.window.location = { assign: mockWindowNavigate } as unknown as Location;
 
         const props: ProviderProps = {
             underOppfolging: { underOppfolging: true },

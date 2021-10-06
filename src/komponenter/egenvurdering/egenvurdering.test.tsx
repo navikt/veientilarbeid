@@ -14,7 +14,7 @@ describe('Tester egenvurdering-komponenten', () => {
     const oldLocation = global.window.location;
 
     afterEach(() => {
-        delete global.window.location;
+        delete (global as any).window.location;
         global.window.location = Object.assign({}, oldLocation);
     });
 
@@ -91,8 +91,8 @@ describe('Tester egenvurdering-komponenten', () => {
         const mockHandleClick = jest.fn();
         const mockLocationAssign = jest.fn();
 
-        delete global.window.location;
-        global.window.location = ({ assign: mockLocationAssign } as unknown) as Location;
+        delete (global as any).window.location;
+        global.window.location = { assign: mockLocationAssign } as unknown as Location;
 
         const knapp = screen.getByText(tekster['egenvurdering-lenke-tekst']);
         knapp.onclick = mockHandleClick;
