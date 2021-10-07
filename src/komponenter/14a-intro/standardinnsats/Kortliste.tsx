@@ -28,7 +28,7 @@ function Kort1() {
                     </li>
                 </ul>
             </div>
-            <Feedback id={'Introkort14A-01'} />
+            <Feedback id={'Introkort14A-01-standard'} />
         </div>
     );
 }
@@ -40,6 +40,7 @@ function Kort2() {
     const handleLesBrev = () => {
         amplitudeLogger('veientilarbeid.intro', {
             intro: '14a',
+            brukergruppe: 'Standard innsats',
             handling: 'Går til min innboks',
             ...amplitudeData,
         });
@@ -68,7 +69,7 @@ function Kort2() {
                     Dette brevet er ikke et svar på en eventuell søknad om dagpenger.
                 </Normaltekst>
             </div>
-            <Feedback id={'Introkort14A-02'} />
+            <Feedback id={'Introkort14A-02-standard'} />
         </div>
     );
 }
@@ -90,7 +91,7 @@ function Kort3() {
                     jobbsøkingen din går før du tar kontakt.
                 </Normaltekst>
             </div>
-            <Feedback id={'Introkort14A-03'} />
+            <Feedback id={'Introkort14A-03-standard'} />
         </div>
     );
 }
@@ -100,6 +101,7 @@ function Kort4() {
     function loggLenkeKlikk(handling: string, url: string) {
         amplitudeLogger('veientilarbeid.intro', {
             intro: '14a',
+            brukergruppe: 'Standard innsats',
             handling,
             ...amplitudeData,
         });
@@ -149,7 +151,7 @@ function Kort4() {
                     .
                 </Normaltekst>
             </div>
-            <Feedback id={'Introkort14A-04'} />
+            <Feedback id={'Introkort14A-04-standard'} />
         </div>
     );
 }
