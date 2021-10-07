@@ -17,7 +17,8 @@ import { UlesteDialogerContext } from '../../ducks/ulestedialoger';
 import ModalWrapper from 'nav-frontend-modal';
 import { kanVise12UkerEgenvurdering } from '../12uker-egenvurdering/12uker-egenvurdering';
 import EgenVurdering from '../12uker-egenvurdering/12uker-egenvurdering';
-import { Kortliste, Sluttkort, Startkort } from './kss';
+import { KssStartkort, KssKortliste, KssSluttkort } from './kss';
+// import { Kortliste, Sluttkort, Startkort } from './standardinnsats';
 
 const INTRO_KEY_14A = '14a-intro';
 const INTRO_KEY_12UKER = '12uker-egenvurdering';
@@ -29,6 +30,7 @@ interface Intro14AProps {
 }
 
 function Intro14A(props: Intro14AProps) {
+    const [Startkort, Kortliste] = [KssStartkort, KssKortliste];
     const introKort = [<Startkort hoppOverIntroCB={hoppOverIntro} startIntroCB={nesteKort} />, ...Kortliste];
 
     const startkort = props.hoppOverPreState ? 1 : 0;
@@ -141,6 +143,7 @@ interface IntroProps {
 }
 
 function Intro14AWrapper(props: IntroProps) {
+    const Sluttkort = KssSluttkort;
     const amplitudeData = React.useContext(AmplitudeContext);
     const { data: registreringData } = React.useContext(Brukerregistrering.BrukerregistreringContext);
     const { data: egenvurderingData } = React.useContext(Egenvurdering.EgenvurderingContext);
@@ -148,12 +151,10 @@ function Intro14AWrapper(props: IntroProps) {
     const { data: brukerInfoData } = React.useContext(BrukerInfo.BrukerInfoContext);
     const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
     const ulesteDialoger = React.useContext(UlesteDialogerContext).data;
-    const brukerregistreringData = registreringData?.registrering ?? null;
 
     const [harSettIntro, setHarSettIntro] = React.useState<boolean>(!!hentFraBrowserStorage(INTRO_KEY_14A));
     const [tvingVisningAvIntro, setTvingVisningAvIntro] = React.useState<boolean>(false);
 
-    const erStandardInnsatsgruppe = sjekkOmBrukerErStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData });
     const sistSettEgenvurdering = Number(hentFraBrowserStorage(INTRO_KEY_12UKER)) ?? 0;
     const erNyregistrertKss = amplitudeData.ukerRegistrert === 0;
     const rendreIntro = tvingVisningAvIntro || (erNyregistrertKss && !harSettIntro);
@@ -189,7 +190,7 @@ function Intro14AWrapper(props: IntroProps) {
         registreringData,
     });
 
-    const kanViseKomponent = erStandardInnsatsgruppe && kanVise14AIntro && !visEgenvurderingsKomponent;
+    const kanViseKomponent = kanVise14AIntro && !visEgenvurderingsKomponent;
 
     if (visEgenvurderingsKomponent) {
         fjernFraBrowserStorage(INTRO_KEY_14A);
