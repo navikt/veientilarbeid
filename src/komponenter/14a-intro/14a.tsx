@@ -18,7 +18,7 @@ import { UlesteDialogerContext } from '../../ducks/ulestedialoger';
 import ModalWrapper from 'nav-frontend-modal';
 import { kanVise12UkerEgenvurdering } from '../12uker-egenvurdering/12uker-egenvurdering';
 import EgenVurdering from '../12uker-egenvurdering/12uker-egenvurdering';
-import kortliste from './kss/Kort';
+import Kortliste from './kss/Kortliste';
 import Sluttkort from './kss/Sluttkort';
 
 const INTRO_KEY_14A = '14a-intro';
@@ -39,7 +39,7 @@ function Intro14A(props: Intro14AProps) {
             viewportTekst="Viser 14a pre-state i viewport"
             tittel={'Introduksjon til veiledning og hjelp til jobbsøking'}
         />,
-        ...kortliste,
+        ...Kortliste,
     ];
 
     const startkort = props.hoppOverPreState ? 1 : 0;
