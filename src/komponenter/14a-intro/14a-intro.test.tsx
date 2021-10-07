@@ -39,6 +39,20 @@ describe('tester onboarding komponenten for 14a-intro', () => {
         expect(container).not.toBeEmptyDOMElement();
     });
 
+    test('komponenten vises IKKE når bruker ikke har standard innsats', () => {
+        const { container } = render(<Intro14AWrapper />, {
+            wrapper: contextProviders({
+                ...providerProps,
+                oppfolging: {
+                    formidlingsgruppe: Formidlingsgruppe.IARBS,
+                    servicegruppe: Servicegruppe.VURDI,
+                },
+                brukerInfo: { alder: 29 },
+            }),
+        });
+        expect(container).toBeEmptyDOMElement();
+    });
+
     test('komponenten vises også når bruker er 29 år', () => {
         const { container } = render(<Intro14AWrapper />, {
             wrapper: contextProviders({
