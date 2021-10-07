@@ -99,6 +99,16 @@ function Kort3() {
     );
 }
 function Kort4() {
+    const amplitudeData = useContext(AmplitudeContext);
+
+    function loggLenkeKlikk(handling: string, url: string) {
+        amplitudeLogger('veientilarbeid.intro', {
+            intro: '14a',
+            handling,
+            ...amplitudeData,
+        });
+        window.location.assign(url);
+    }
     return (
         <div className="kortflate">
             <div>
@@ -115,7 +125,31 @@ function Kort4() {
                 </Normaltekst>
 
                 <Normaltekst className={'blokk-m'}>
-                    Dersom du lurer på noe om dagpenger ber vi deg bruke «Skriv til oss».
+                    Dersom du lurer på noe om dagpenger ber vi deg bruke{' '}
+                    <Lenke
+                        href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
+                        onClick={() =>
+                            loggLenkeKlikk(
+                                'Går til STO fra 14a onboarding kort',
+                                'https://mininnboks.nav.no/sporsmal/skriv/ARBD'
+                            )
+                        }
+                    >
+                        «Skriv til oss»
+                    </Lenke>{' '}
+                    eller{' '}
+                    <Lenke
+                        href="https://www.nav.no/person/kontakt-oss/chat/"
+                        onClick={() =>
+                            loggLenkeKlikk(
+                                'Går til Chat fra 14a onboarding kort',
+                                'https://www.nav.no/person/kontakt-oss/chat/'
+                            )
+                        }
+                    >
+                        «Chat»
+                    </Lenke>
+                    .
                 </Normaltekst>
             </div>
             <Feedback id={'Introkort14A-04'} />

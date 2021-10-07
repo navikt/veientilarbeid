@@ -34,12 +34,26 @@ describe('tester onboarding komponenten for 14a-intro', () => {
         mockIntersectionObserver();
     });
 
-    test('komponenten vises IKKE når featuretoggle ikke er satt', () => {
+    test('komponenten vises også når featuretoggle ikke er satt', () => {
         const { container } = render(<Intro14AWrapper />, { wrapper: contextProviders(providerProps) });
+        expect(container).not.toBeEmptyDOMElement();
+    });
+
+    test('komponenten vises IKKE når bruker ikke har standard innsats', () => {
+        const { container } = render(<Intro14AWrapper />, {
+            wrapper: contextProviders({
+                ...providerProps,
+                oppfolging: {
+                    formidlingsgruppe: Formidlingsgruppe.IARBS,
+                    servicegruppe: Servicegruppe.VURDI,
+                },
+                brukerInfo: { alder: 29 },
+            }),
+        });
         expect(container).toBeEmptyDOMElement();
     });
 
-    test('komponenten vises IKKE når bruker er 29 år', () => {
+    test('komponenten vises også når bruker er 29 år', () => {
         const { container } = render(<Intro14AWrapper />, {
             wrapper: contextProviders({
                 ...providerProps,
@@ -47,7 +61,7 @@ describe('tester onboarding komponenten for 14a-intro', () => {
                 brukerInfo: { alder: 29 },
             }),
         });
-        expect(container).toBeEmptyDOMElement();
+        expect(container).not.toBeEmptyDOMElement();
     });
 
     test('komponenten VISES også når bruker har vært registrert i 13 uker', () => {
@@ -61,7 +75,7 @@ describe('tester onboarding komponenten for 14a-intro', () => {
         expect(container).not.toBeEmptyDOMElement();
     });
 
-    test('komponenten vises IKKE når eksperimentet onboarding14a ikke er med', () => {
+    test('komponenten vises også når eksperimentet onboarding14a ikke er med', () => {
         const { container } = render(<Intro14AWrapper />, {
             wrapper: contextProviders({
                 ...providerProps,
@@ -69,7 +83,7 @@ describe('tester onboarding komponenten for 14a-intro', () => {
                 amplitude: { ...providerProps.amplitude, eksperimenter: [] },
             }),
         });
-        expect(container).toBeEmptyDOMElement();
+        expect(container).not.toBeEmptyDOMElement();
     });
 
     test('komponenten vises når featuretoggle er satt og men hører til kontor som deltar på eksperimentet', () => {

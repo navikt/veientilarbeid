@@ -27,10 +27,13 @@ interface Intro14AProps {
     amplitudeData: AmplitudeData;
     ferdigMedIntroCB: () => void;
     hoppOverPreState: boolean;
+    skalViseKssKort: boolean;
 }
 
 function Intro14A(props: Intro14AProps) {
-    const [Startkort, Kortliste] = false ? [StandardStartkort, StandardKortliste] : [KssStartkort, KssKortliste];
+    const [Startkort, Kortliste] = props.skalViseKssKort
+        ? [KssStartkort, KssKortliste]
+        : [StandardStartkort, StandardKortliste];
     const introKort = [<Startkort hoppOverIntroCB={hoppOverIntro} startIntroCB={nesteKort} />, ...Kortliste];
 
     const startkort = props.hoppOverPreState ? 1 : 0;
@@ -143,7 +146,6 @@ interface IntroProps {
 }
 
 function Intro14AWrapper(props: IntroProps) {
-    const Sluttkort = false ? StandardSluttkort : KssSluttkort;
     const amplitudeData = React.useContext(AmplitudeContext);
     const { data: registreringData } = React.useContext(Brukerregistrering.BrukerregistreringContext);
     const { data: egenvurderingData } = React.useContext(Egenvurdering.EgenvurderingContext);
@@ -154,6 +156,9 @@ function Intro14AWrapper(props: IntroProps) {
 
     const [harSettIntro, setHarSettIntro] = React.useState<boolean>(!!hentFraBrowserStorage(INTRO_KEY_14A));
     const [tvingVisningAvIntro, setTvingVisningAvIntro] = React.useState<boolean>(false);
+
+    const brukerregistreringData = registreringData?.registrering ?? null;
+    const erStandardInnsatsgruppe = sjekkOmBrukerErStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData });
 
     const sistSettEgenvurdering = Number(hentFraBrowserStorage(INTRO_KEY_12UKER)) ?? 0;
     const erNyregistrertKss = amplitudeData.ukerRegistrert === 0;
@@ -182,7 +187,7 @@ function Intro14AWrapper(props: IntroProps) {
 
     const modalToggle = featuretoggleData['veientilarbeid.modal'];
 
-    const kanVise14AIntro = kanVise14AStatus({
+    const skalViseKssKort = kanVise14AStatus({
         amplitudeData,
         featuretoggleData,
         oppfolgingData,
@@ -190,7 +195,8 @@ function Intro14AWrapper(props: IntroProps) {
         registreringData,
     });
 
-    const kanViseKomponent = kanVise14AIntro && !visEgenvurderingsKomponent;
+    const kanViseKomponent = erStandardInnsatsgruppe && !visEgenvurderingsKomponent;
+    const Sluttkort = skalViseKssKort ? KssSluttkort : StandardSluttkort;
 
     if (visEgenvurderingsKomponent) {
         fjernFraBrowserStorage(INTRO_KEY_14A);
@@ -236,6 +242,7 @@ function Intro14AWrapper(props: IntroProps) {
                     {rendreIntro ? (
                         <>
                             <Intro14A
+                                skalViseKssKort={skalViseKssKort}
                                 hoppOverPreState={hoppOverPreState}
                                 ferdigMedIntroCB={ferdigMedIntroCB}
                                 amplitudeData={amplitudeData}
