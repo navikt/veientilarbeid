@@ -18,7 +18,7 @@ import ModalWrapper from 'nav-frontend-modal';
 import { kanVise12UkerEgenvurdering } from '../12uker-egenvurdering/12uker-egenvurdering';
 import EgenVurdering from '../12uker-egenvurdering/12uker-egenvurdering';
 import { KssStartkort, KssKortliste, KssSluttkort } from './kss';
-// import { Kortliste, Sluttkort, Startkort } from './standardinnsats';
+import { StandardStartkort, StandardKortliste, StandardSluttkort } from './standardinnsats';
 
 const INTRO_KEY_14A = '14a-intro';
 const INTRO_KEY_12UKER = '12uker-egenvurdering';
@@ -30,7 +30,7 @@ interface Intro14AProps {
 }
 
 function Intro14A(props: Intro14AProps) {
-    const [Startkort, Kortliste] = [KssStartkort, KssKortliste];
+    const [Startkort, Kortliste] = false ? [StandardStartkort, StandardKortliste] : [KssStartkort, KssKortliste];
     const introKort = [<Startkort hoppOverIntroCB={hoppOverIntro} startIntroCB={nesteKort} />, ...Kortliste];
 
     const startkort = props.hoppOverPreState ? 1 : 0;
@@ -143,7 +143,7 @@ interface IntroProps {
 }
 
 function Intro14AWrapper(props: IntroProps) {
-    const Sluttkort = KssSluttkort;
+    const Sluttkort = false ? StandardSluttkort : KssSluttkort;
     const amplitudeData = React.useContext(AmplitudeContext);
     const { data: registreringData } = React.useContext(Brukerregistrering.BrukerregistreringContext);
     const { data: egenvurderingData } = React.useContext(Egenvurdering.EgenvurderingContext);
