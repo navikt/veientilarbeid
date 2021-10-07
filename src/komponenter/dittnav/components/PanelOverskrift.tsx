@@ -1,4 +1,3 @@
-import React from 'react';
 import { Element, Normaltekst, Undertittel } from 'nav-frontend-typografi';
 
 const PanelOverskrift = ({ overskrift, type }: { overskrift: string; type: string }) => {

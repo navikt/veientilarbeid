@@ -1,4 +1,4 @@
-import React from 'react';
+import { useContext } from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import Lenke from 'nav-frontend-lenker';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
@@ -11,7 +11,7 @@ interface Props {
 }
 
 function Permittert(props: Props) {
-    const amplitudeData = React.useContext(AmplitudeContext);
+    const amplitudeData = useContext(AmplitudeContext);
     const { visRegistrertSomPermittert } = props;
 
     const handleLesEndretSituasjon = () => {

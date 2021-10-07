@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { LenkepanelBase } from 'nav-frontend-lenkepanel';
 import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import { trackEvent } from '../utils/googleAnalytics';

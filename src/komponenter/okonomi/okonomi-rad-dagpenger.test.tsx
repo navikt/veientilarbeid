@@ -1,4 +1,3 @@
-import * as React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import { screen, render } from '@testing-library/react';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';

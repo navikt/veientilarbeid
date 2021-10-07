@@ -1,5 +1,5 @@
 import { DataElement, STATUS } from './api';
-import React from 'react';
+import { createContext } from 'react';
 
 export interface State extends DataElement {
     data: Data;
@@ -14,4 +14,4 @@ export interface Data {
     raad?: any[];
 }
 
-export const JobbsokerbesvarelseContext = React.createContext<State>(initialState);
+export const JobbsokerbesvarelseContext = createContext<State>(initialState);

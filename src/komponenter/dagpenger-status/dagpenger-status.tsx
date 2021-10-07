@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import './dagpenger-status.less';
 import { FeaturetoggleContext } from '../../ducks/feature-toggles';
 import * as Brukerregistrering from '../../ducks/brukerregistrering';

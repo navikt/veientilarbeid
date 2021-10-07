@@ -1,4 +1,4 @@
-import React from 'react';
+import { useContext } from 'react';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
@@ -11,9 +11,9 @@ import TrekkDagpengeSoknad from '../meldinger/trekk-dp-soknad';
 import tekster from '../../tekster/tekster';
 
 const OkonomiRadDagpenger = () => {
-    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
-    const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
-    const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
+    const { underOppfolging } = useContext(UnderOppfolgingContext).data;
+    const { erSykmeldtMedArbeidsgiver } = useContext(BrukerInfoContext).data;
+    const { data: featuretoggleData } = useContext(FeaturetoggleContext);
 
     const skjulBoksFeaturetoggleAktivert =
         featuretoggleData && featuretoggleData['veientilarbeid.rydding.skjulOkonomiBoks'];

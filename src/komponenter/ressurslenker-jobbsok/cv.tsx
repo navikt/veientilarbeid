@@ -1,4 +1,4 @@
-import React from 'react';
+import { useContext } from 'react';
 import { loggAktivitet } from '../../metrics/metrics';
 import CvIkon from './svg/cv';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
@@ -6,7 +6,7 @@ import { cvLenke } from '../../innhold/lenker';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 
 const CV = () => {
-    const amplitudeData = React.useContext(AmplitudeContext);
+    const amplitudeData = useContext(AmplitudeContext);
 
     const handleClick = () => {
         loggAktivitet({ aktivitet: 'Går til CV', ...amplitudeData });

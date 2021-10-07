@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Parser from 'html-react-parser';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import tekster from '../../tekster/tekster';

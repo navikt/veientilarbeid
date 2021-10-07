@@ -6,7 +6,7 @@
  * link til meldekort
  */
 
-import React from 'react';
+import { useContext } from 'react';
 import MeldekortAdvarsel from './meldekort-advarsel';
 import * as Meldekort from '../../ducks/meldekort';
 import { beregnDagerEtterFastsattMeldedag, beregnDagerTilInaktivering } from '../../utils/meldekort-utils';
@@ -17,8 +17,8 @@ import { hentIDag } from '../../utils/chrono';
 import { datoMedUkedag, datoUtenTid, plussDager } from '../../utils/date-utils';
 
 function Meldekortstatus() {
-    const { data: meldekortData } = React.useContext(Meldekort.MeldekortContext);
-    const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
+    const { data: meldekortData } = useContext(Meldekort.MeldekortContext);
+    const { kanReaktiveres } = useContext(OppfolgingContext).data;
 
     if (!meldekortData || kanReaktiveres) return null;
 

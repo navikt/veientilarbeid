@@ -1,5 +1,5 @@
 import { DataElement, STATUS } from './api';
-import React from 'react';
+import { createContext } from 'react';
 
 export interface Data {
     sistOppdatert: string;
@@ -14,4 +14,4 @@ export const initialState: State = {
     status: STATUS.NOT_STARTED,
 };
 
-export const EgenvurderingContext = React.createContext<State>(initialState);
+export const EgenvurderingContext = createContext<State>(initialState);

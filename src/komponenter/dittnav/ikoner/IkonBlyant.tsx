@@ -1,5 +1,3 @@
-import React from 'react';
-
 const IkonBlyant = () => (
     <svg width="48" height="48" viewBox="0 0 177 177" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="18" y="89.3427" width="141" height="63" rx="5" fill="#C5D9E2" />

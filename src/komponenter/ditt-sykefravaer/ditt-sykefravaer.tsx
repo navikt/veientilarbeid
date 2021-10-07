@@ -1,4 +1,4 @@
-import React from 'react';
+import { useContext } from 'react';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { loggAktivitet } from '../../metrics/metrics';
 import Plaster from './plaster';
@@ -8,9 +8,9 @@ import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
 const DittSykefravaer = () => {
-    const amplitudeData = React.useContext(AmplitudeContext);
-    const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
-    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
+    const amplitudeData = useContext(AmplitudeContext);
+    const { erSykmeldtMedArbeidsgiver } = useContext(BrukerInfoContext).data;
+    const { underOppfolging } = useContext(UnderOppfolgingContext).data;
     const kanViseKomponent = erSykmeldtMedArbeidsgiver && underOppfolging;
 
     if (!kanViseKomponent) {

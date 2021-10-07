@@ -1,4 +1,3 @@
-import React from 'react';
 import tekster from '../utils/tekster.json';
 import LenkepanelMedIkon from './LenkepanelMedIkon';
 import PanelOverskrift from './PanelOverskrift';

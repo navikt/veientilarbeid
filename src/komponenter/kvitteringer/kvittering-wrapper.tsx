@@ -1,4 +1,3 @@
-import React from 'react';
 import BehovsvurderingKvittering from './behovsvurdering';
 import ReaktiveringKvittering from './reaktivering';
 

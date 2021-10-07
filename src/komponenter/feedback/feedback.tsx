@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import './feedback.less';
@@ -18,8 +18,8 @@ function Feedback({ id, className }: Props) {
         valgt: '',
     });
     const [valgt, setValgt] = useState('');
-    const amplitudeData = React.useContext(AmplitudeContext);
-    const { data: featuretoggledata } = React.useContext(FeaturetoggleContext);
+    const amplitudeData = useContext(AmplitudeContext);
+    const { data: featuretoggledata } = useContext(FeaturetoggleContext);
 
     useEffect(() => {
         const { valgt } = feedback;

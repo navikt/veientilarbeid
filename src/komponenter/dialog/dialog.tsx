@@ -1,4 +1,4 @@
-import React from 'react';
+import { useContext } from 'react';
 import LenkepanelBase from 'nav-frontend-lenkepanel';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { loggAktivitet } from '../../metrics/metrics';
@@ -17,13 +17,13 @@ import * as Brukerregistrering from '../../ducks/brukerregistrering';
 import { kanVise14AStatus } from '../14a-intro/14a';
 
 const Dialog = () => {
-    const amplitudeData = React.useContext(AmplitudeContext);
-    const ulesteDialoger = React.useContext(UlesteDialogerContext).data;
-    const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
-    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
-    const { data: registreringData } = React.useContext(Brukerregistrering.BrukerregistreringContext);
-    const { data: oppfolgingData } = React.useContext(OppfolgingContext);
-    const { data: brukerInfoData } = React.useContext(BrukerInfo.BrukerInfoContext);
+    const amplitudeData = useContext(AmplitudeContext);
+    const ulesteDialoger = useContext(UlesteDialogerContext).data;
+    const { data: featuretoggleData } = useContext(FeaturetoggleContext);
+    const { underOppfolging } = useContext(UnderOppfolgingContext).data;
+    const { data: registreringData } = useContext(Brukerregistrering.BrukerregistreringContext);
+    const { data: oppfolgingData } = useContext(OppfolgingContext);
+    const { data: brukerInfoData } = useContext(BrukerInfo.BrukerInfoContext);
     const ser14aStatus = kanVise14AStatus({
         amplitudeData,
         featuretoggleData,

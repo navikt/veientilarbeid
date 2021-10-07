@@ -1,4 +1,4 @@
-import React from 'react';
+import { useContext } from 'react';
 import { Normaltekst, Systemtittel, Undertekst } from 'nav-frontend-typografi';
 import Feedback from '../../feedback/feedback';
 import Lenke from 'nav-frontend-lenker';
@@ -38,8 +38,8 @@ function Kort1() {
 }
 
 function Kort2() {
-    const { servicegruppe } = React.useContext(OppfolgingContext).data;
-    const amplitudeData = React.useContext(AmplitudeContext);
+    const { servicegruppe } = useContext(OppfolgingContext).data;
+    const amplitudeData = useContext(AmplitudeContext);
 
     const handleLesBrev = () => {
         amplitudeLogger('veientilarbeid.intro', {

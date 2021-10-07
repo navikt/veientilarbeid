@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { ComponentType } from 'react';
+import { FunctionComponent } from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -31,7 +30,7 @@ describe('Tester egenvurdering-komponenten', () => {
             oppfolging: { servicegruppe: Servicegruppe.IVURD },
             brukerregistrering: null,
         };
-        const { container } = render(<Egenvurdering />, { wrapper: contextProviders(props) as ComponentType });
+        const { container } = render(<Egenvurdering />, { wrapper: contextProviders(props) as FunctionComponent });
         expect(container).toBeEmptyDOMElement();
     });
 
@@ -44,7 +43,7 @@ describe('Tester egenvurdering-komponenten', () => {
                 securityLevel: InnloggingsNiva.LEVEL_4,
             },
         };
-        render(<Egenvurdering />, { wrapper: contextProviders(props) as ComponentType });
+        render(<Egenvurdering />, { wrapper: contextProviders(props) as FunctionComponent });
         expect(screen.getByText(tekster['egenvurdering-tittel'])).toBeTruthy();
     });
 
@@ -65,7 +64,7 @@ describe('Tester egenvurdering-komponenten', () => {
             brukerregistrering: standardInnsatsBrukerregistrering,
             egenvurdering: { sistOppdatert: '2020-02-01' },
         };
-        render(<Egenvurdering />, { wrapper: contextProviders(props) as ComponentType });
+        render(<Egenvurdering />, { wrapper: contextProviders(props) as FunctionComponent });
         expect(await screen.queryByText(tekster['egenvurdering-tittel'])).toBeFalsy();
     });
 
@@ -74,7 +73,7 @@ describe('Tester egenvurdering-komponenten', () => {
             underOppfolging: { underOppfolging: true },
         };
 
-        render(<Egenvurdering />, { wrapper: contextProviders(props) as ComponentType });
+        render(<Egenvurdering />, { wrapper: contextProviders(props) as FunctionComponent });
         expect(await screen.queryByText(tekster['egenvurdering-tittel'])).toBeFalsy();
     });
 
@@ -87,7 +86,7 @@ describe('Tester egenvurdering-komponenten', () => {
                 securityLevel: InnloggingsNiva.LEVEL_4,
             },
         };
-        render(<Egenvurdering />, { wrapper: contextProviders(props) as ComponentType });
+        render(<Egenvurdering />, { wrapper: contextProviders(props) as FunctionComponent });
         const mockHandleClick = jest.fn();
         const mockLocationAssign = jest.fn();
 

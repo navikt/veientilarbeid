@@ -1,5 +1,3 @@
-import React from 'react';
-
 const SvgOkonomiskSosialhjelp = (props: { className: string }) => (
     <svg width="1em" height="1em" viewBox="0 0 109 109" {...props}>
         <defs>

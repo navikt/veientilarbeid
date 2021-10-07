@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import * as Brukerregistrering from '../../../ducks/brukerregistrering';
 import { AmplitudeData, amplitudeLogger } from '../../../metrics/amplitude-utils';
 import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';

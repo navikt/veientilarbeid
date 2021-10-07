@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import LenkepanelBase from 'nav-frontend-lenkepanel';

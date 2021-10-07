@@ -1,4 +1,4 @@
-import React from 'react';
+import { useContext } from 'react';
 import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { loggAktivitet } from '../../metrics/metrics';
 import EmailText from './email-text';
@@ -12,12 +12,12 @@ import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import { kanViseMeldekortStatus } from '../meldekortintro/meldekort-intro';
 
 const Meldekort = () => {
-    const amplitudeData = React.useContext(AmplitudeContext);
-    const { data: meldekortData } = React.useContext(MeldekortInnhold.MeldekortContext);
-    const { data: registreringData } = React.useContext(Brukerregistrering.BrukerregistreringContext);
-    const { data: oppfolgingData } = React.useContext(Oppfolging.OppfolgingContext);
-    const { data: brukerInfoData } = React.useContext(BrukerInfoContext);
-    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
+    const amplitudeData = useContext(AmplitudeContext);
+    const { data: meldekortData } = useContext(MeldekortInnhold.MeldekortContext);
+    const { data: registreringData } = useContext(Brukerregistrering.BrukerregistreringContext);
+    const { data: oppfolgingData } = useContext(Oppfolging.OppfolgingContext);
+    const { data: brukerInfoData } = useContext(BrukerInfoContext);
+    const { underOppfolging } = useContext(UnderOppfolgingContext).data;
     const { erSykmeldtMedArbeidsgiver } = brukerInfoData;
     const serMeldekortIntro = kanViseMeldekortStatus({
         meldekortData,

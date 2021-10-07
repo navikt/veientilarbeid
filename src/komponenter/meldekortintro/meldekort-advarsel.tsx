@@ -1,4 +1,4 @@
-import React from 'react';
+import { useContext } from 'react';
 import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { beregnDagerTilInaktivering } from '../../utils/meldekort-utils';
@@ -10,10 +10,10 @@ import * as Sakstema from '../../ducks/sakstema';
 import * as Brukerregistrering from '../../ducks/brukerregistrering';
 
 function MeldekortAdvarsel({ dagerEtterFastsattMeldedag }: { dagerEtterFastsattMeldedag: number | null }) {
-    const { rettighetsgruppe } = React.useContext(BrukerInfoContext).data;
-    const { data: registreringData } = React.useContext(Brukerregistrering.BrukerregistreringContext);
-    const { data: paabegynteSoknaderData } = React.useContext(PaabegynteSoknader.PaabegynteSoknaderContext);
-    const { data: sakstemaData } = React.useContext(Sakstema.SakstemaContext);
+    const { rettighetsgruppe } = useContext(BrukerInfoContext).data;
+    const { data: registreringData } = useContext(Brukerregistrering.BrukerregistreringContext);
+    const { data: paabegynteSoknaderData } = useContext(PaabegynteSoknader.PaabegynteSoknaderContext);
+    const { data: sakstemaData } = useContext(Sakstema.SakstemaContext);
 
     const opprettetRegistreringDatoString = registreringData?.registrering?.opprettetDato;
     const opprettetRegistreringDato = opprettetRegistreringDatoString
