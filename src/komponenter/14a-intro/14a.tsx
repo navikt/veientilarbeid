@@ -7,7 +7,7 @@ import * as Brukerregistrering from '../../ducks/brukerregistrering';
 import * as Egenvurdering from '../../ducks/egenvurdering';
 import * as Oppfolging from '../../ducks/oppfolging';
 import * as BrukerInfo from '../../ducks/bruker-info';
-import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
+import sjekkOmBrukerErStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
 import './14a-intro.less';
 import { fjernFraBrowserStorage, hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
@@ -133,7 +133,7 @@ export function kanVise14AStatus({
         aldersgruppeUtenForsterketInnsats &&
         !erAAP &&
         skalSeEksperiment &&
-        erStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData }) &&
+        sjekkOmBrukerErStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData }) &&
         !oppfolgingData.kanReaktiveres
     );
 }
@@ -150,10 +150,12 @@ function Intro14AWrapper(props: IntroProps) {
     const { data: brukerInfoData } = React.useContext(BrukerInfo.BrukerInfoContext);
     const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
     const ulesteDialoger = React.useContext(UlesteDialogerContext).data;
+    const brukerregistreringData = registreringData?.registrering ?? null;
 
     const [harSettIntro, setHarSettIntro] = React.useState<boolean>(!!hentFraBrowserStorage(INTRO_KEY_14A));
     const [tvingVisningAvIntro, setTvingVisningAvIntro] = React.useState<boolean>(false);
 
+    const erStandardInnsatsgruppe = sjekkOmBrukerErStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData });
     const sistSettEgenvurdering = Number(hentFraBrowserStorage(INTRO_KEY_12UKER)) ?? 0;
     const erNyregistrertKss = amplitudeData.ukerRegistrert === 0;
     const rendreIntro = tvingVisningAvIntro || (erNyregistrertKss && !harSettIntro);
@@ -189,7 +191,7 @@ function Intro14AWrapper(props: IntroProps) {
         registreringData,
     });
 
-    const kanViseKomponent = kanVise14AIntro && !visEgenvurderingsKomponent;
+    const kanViseKomponent = erStandardInnsatsgruppe && kanVise14AIntro && !visEgenvurderingsKomponent;
 
     if (visEgenvurderingsKomponent) {
         fjernFraBrowserStorage(INTRO_KEY_14A);
