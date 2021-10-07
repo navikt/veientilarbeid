@@ -17,9 +17,7 @@ import { UlesteDialogerContext } from '../../ducks/ulestedialoger';
 import ModalWrapper from 'nav-frontend-modal';
 import { kanVise12UkerEgenvurdering } from '../12uker-egenvurdering/12uker-egenvurdering';
 import EgenVurdering from '../12uker-egenvurdering/12uker-egenvurdering';
-import Kortliste from './kss/Kortliste';
-import Sluttkort from './kss/Sluttkort';
-import Startkort from './kss/Startkort';
+import { Kortliste, Sluttkort, Startkort } from './kss';
 
 const INTRO_KEY_14A = '14a-intro';
 const INTRO_KEY_12UKER = '12uker-egenvurdering';
