@@ -13,13 +13,13 @@ import './14a-intro.less';
 import { fjernFraBrowserStorage, hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
 import ErRendret from '../er-rendret/er-rendret';
 import { FeaturetoggleContext, Data as FeaturetoggleData } from '../../ducks/feature-toggles';
-import PreState from '../meldekortintro/pre-state';
 import { UlesteDialogerContext } from '../../ducks/ulestedialoger';
 import ModalWrapper from 'nav-frontend-modal';
 import { kanVise12UkerEgenvurdering } from '../12uker-egenvurdering/12uker-egenvurdering';
 import EgenVurdering from '../12uker-egenvurdering/12uker-egenvurdering';
 import Kortliste from './kss/Kortliste';
 import Sluttkort from './kss/Sluttkort';
+import Startkort from './kss/Startkort';
 
 const INTRO_KEY_14A = '14a-intro';
 const INTRO_KEY_12UKER = '12uker-egenvurdering';
@@ -31,16 +31,7 @@ interface Intro14AProps {
 }
 
 function Intro14A(props: Intro14AProps) {
-    const introKort = [
-        <PreState
-            hoppOverIntroCB={hoppOverIntro}
-            startIntroCB={nesteKort}
-            lesetid={'3'}
-            viewportTekst="Viser 14a pre-state i viewport"
-            tittel={'Introduksjon til veiledning og hjelp til jobbsøking'}
-        />,
-        ...Kortliste,
-    ];
+    const introKort = [<Startkort hoppOverIntroCB={hoppOverIntro} startIntroCB={nesteKort} />, ...Kortliste];
 
     const startkort = props.hoppOverPreState ? 1 : 0;
     const [gjeldendeKortIndex, setGjeldendeKortIndex] = useState(startkort);
