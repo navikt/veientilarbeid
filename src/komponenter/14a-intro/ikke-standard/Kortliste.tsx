@@ -38,7 +38,9 @@ function Kort1() {
                     )}
                 </Normaltekst>
 
-                <Normaltekst>Dette brevet er ikke et svar på en eventuell søknad om dagpenger.</Normaltekst>
+                <Normaltekst className={'blokk-xs'}>
+                    Dette brevet er ikke et svar på en eventuell søknad om dagpenger.
+                </Normaltekst>
             </div>
             <Feedback id={'Introkort14A-01-ikke-standard'} />
         </div>
@@ -57,7 +59,7 @@ function Kort2() {
                     veien til arbeid.
                 </Normaltekst>
 
-                <Normaltekst className={'blokk-m'}>
+                <Normaltekst className={'blokk-xs'}>
                     Veilederen vil også finne ut mer om din situasjon slik at vi bedre kan hjelpe deg videre.
                 </Normaltekst>
             </div>
@@ -88,7 +90,7 @@ function Kort3() {
                     Veiledere kan ikke svare på spørsmål om søknader, behandling av søknader eller utbetalinger av
                     dagpenger.
                 </Normaltekst>
-                <Normaltekst className={'blokk-m'}>
+                <Normaltekst className={'blokk-xs'}>
                     Har du spørsmål om dagpenger, eller andre søknader må du bruke{' '}
                     <Lenke
                         href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
