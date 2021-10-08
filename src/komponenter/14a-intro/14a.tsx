@@ -288,7 +288,7 @@ function Intro14AWrapper(props: IntroProps) {
         </>
     );
 
-    return modalToggle && erNyregistrertKss && !harSettIntro ? innholdWrappetIModal : innhold;
+    return modalToggle && skalViseKssKort && erNyregistrertKss && !harSettIntro ? innholdWrappetIModal : innhold;
 }
 
 export default Intro14AWrapper;
