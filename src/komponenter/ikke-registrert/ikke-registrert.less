@@ -1,0 +1,35 @@
+@import '../../../node_modules/nav-frontend-core/less/_variabler';
+
+.egenvurdering {
+    .innhold {
+        h2 {
+            padding-top: 10px;
+        }
+        padding: 0;
+        margin: 0;
+        text-align: left;
+    }
+}
+
+.ramme {
+    border-color: @navGra60;
+    width: 100%;
+    padding: 24px;
+}
+
+@media (min-width: @screen-sm-min) {
+    .innhold {
+        text-align: left;
+        padding: 0;
+        margin: 0;
+        max-width: 24rem;
+    }
+
+    .ramme {
+        width: calc(50% - 0.5rem);
+    }
+
+    &__tekst {
+        text-align: left;
+    }
+}
