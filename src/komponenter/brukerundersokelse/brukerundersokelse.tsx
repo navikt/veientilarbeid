@@ -43,18 +43,12 @@ function Sluttkort(props: EndStateProps) {
         props.sendTilBrukerundersokelseSkjema('Takker ja til brukerundersøkelse fra knapp');
     }
 
-    function handleOnskerUndersokelseFraLenke(event: React.SyntheticEvent) {
-        event.preventDefault();
-        event.stopPropagation();
-        props.sendTilBrukerundersokelse('Takker ja til brukerundersøkelse fra lenke');
-    }
-
     return (
         <div className={'sluttkort'}>
             <div className="p-1 flex space-between">
                 <div>
                     <Element tag={'h1'}>BRUKERUNDERSØKELSE</Element>
-                    <Systemtittel>Hjelp oss å bli bedre</Systemtittel>
+                    <Systemtittel>Kunne du tenke deg å bli med på et intervju?</Systemtittel>
                 </div>
                 <button className="brukerundersokelse-avslaa-knapp" onClick={handleAvslaaUndersokelseKnapp}>
                     X
@@ -63,16 +57,9 @@ function Sluttkort(props: EndStateProps) {
             <div className="p-1">
                 <div>
                     <Normaltekst className={'blokk-xs'}>
-                        Kunne du tenkte deg å bli med på et intervju sånn at vi kan legge bedre til rette for at du skal
-                        kunne klare deg selv som arbeidssøker?
+                        Vi ønsker å vite hvordan vi kan gi deg bedre informasjon når du logger deg inn på nav.no.
                     </Normaltekst>
-                    <Normaltekst>
-                        Send en e-post til{' '}
-                        <Lenke className="tracking-wide" href={''} onClick={handleOnskerUndersokelseFraLenke}>
-                            brukertest@nav.no
-                        </Lenke>{' '}
-                        med emnet "Intervju dittNAV" så tar vi kontakt med mer informasjon de neste dagene.
-                    </Normaltekst>
+                    <Normaltekst>Er du interessert i det?</Normaltekst>
                 </div>
             </div>
             <div className="flex flex-column space-between p-1">
