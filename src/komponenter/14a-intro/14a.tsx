@@ -161,8 +161,8 @@ function Intro14AWrapper(props: IntroProps) {
     const erStandardInnsatsgruppe = sjekkOmBrukerErStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData });
 
     const sistSettEgenvurdering = Number(hentFraBrowserStorage(INTRO_KEY_12UKER)) ?? 0;
-    const erNyregistrertKss = amplitudeData.ukerRegistrert === 0;
-    const rendreIntro = tvingVisningAvIntro || (erNyregistrertKss && !harSettIntro);
+    const erNyregistrert = amplitudeData.ukerRegistrert === 0;
+    const rendreIntro = tvingVisningAvIntro || (erNyregistrert && !harSettIntro);
     const hoppOverPreState = harSettIntro || tvingVisningAvIntro;
 
     const [visEgenvurderingsKomponent, setVisEgenvurderingsKomponent] = React.useState<boolean>(
@@ -231,7 +231,7 @@ function Intro14AWrapper(props: IntroProps) {
     };
 
     const stylingKlasse =
-        modalToggle && erNyregistrertKss && !harSettIntro
+        modalToggle && erNyregistrert && !harSettIntro
             ? 'fjorten-A-intro-omslutning-modal'
             : 'fjorten-A-intro-omslutning';
 
@@ -288,7 +288,7 @@ function Intro14AWrapper(props: IntroProps) {
         </>
     );
 
-    return modalToggle && skalViseKssKort && erNyregistrertKss && !harSettIntro ? innholdWrappetIModal : innhold;
+    return modalToggle && skalViseKssKort && erNyregistrert && !harSettIntro ? innholdWrappetIModal : innhold;
 }
 
 export default Intro14AWrapper;
