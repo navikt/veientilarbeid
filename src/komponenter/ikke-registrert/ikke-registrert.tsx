@@ -21,11 +21,16 @@ const IkkeRegistrert = (props: Props) => {
     };
 
     const kanViseKomponent = skalTilRegistrering;
+    const infoboks = document.getElementById('registrering-status-informasjon');
 
     if (!kanViseKomponent) return null;
 
+    if (kanViseKomponent && infoboks) {
+        infoboks.scrollIntoView({ block: 'end', inline: 'nearest' });
+    }
+
     return (
-        <Panel border className="ramme blokk-s">
+        <Panel border className="ramme blokk-s" id="registrering-status-informasjon">
             <section className="egenvurdering">
                 <div className="innhold">
                     <Systemtittel tag="h2" className="blokk-xs">
