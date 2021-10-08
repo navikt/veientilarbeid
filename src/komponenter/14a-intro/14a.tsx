@@ -19,6 +19,7 @@ import { kanVise12UkerEgenvurdering } from '../12uker-egenvurdering/12uker-egenv
 import EgenVurdering from '../12uker-egenvurdering/12uker-egenvurdering';
 import { KssStartkort, KssKortliste, KssSluttkort } from './kss';
 import { StandardStartkort, StandardKortliste, StandardSluttkort } from './standardinnsats';
+import { IkkeStandardStartkort, IkkeStandardKortliste, IkkeStandardSluttkort } from './ikke-standard';
 
 const INTRO_KEY_14A = '14a-intro';
 const INTRO_KEY_12UKER = '12uker-egenvurdering';
@@ -28,12 +29,16 @@ interface Intro14AProps {
     ferdigMedIntroCB: () => void;
     hoppOverPreState: boolean;
     skalViseKssKort: boolean;
+    erStandardInnsatsgruppe: boolean;
 }
 
 function Intro14A(props: Intro14AProps) {
     const [Startkort, Kortliste] = props.skalViseKssKort
         ? [KssStartkort, KssKortliste]
-        : [StandardStartkort, StandardKortliste];
+        : props.erStandardInnsatsgruppe
+        ? [StandardStartkort, StandardKortliste]
+        : [IkkeStandardStartkort, IkkeStandardKortliste];
+
     const introKort = [<Startkort hoppOverIntroCB={hoppOverIntro} startIntroCB={nesteKort} />, ...Kortliste];
 
     const startkort = props.hoppOverPreState ? 1 : 0;
@@ -186,6 +191,7 @@ function Intro14AWrapper(props: IntroProps) {
     }, [harSettIntro]);
 
     const modalToggle = featuretoggleData['veientilarbeid.modal'];
+    const ikkeStandardToggle = featuretoggleData['veientilarbeid.14a-intro.ikke-standard'];
 
     const skalViseKssKort = kanVise14AStatus({
         amplitudeData,
@@ -195,8 +201,14 @@ function Intro14AWrapper(props: IntroProps) {
         registreringData,
     });
 
-    const kanViseKomponent = erStandardInnsatsgruppe && !visEgenvurderingsKomponent;
-    const Sluttkort = skalViseKssKort ? KssSluttkort : StandardSluttkort;
+    const kanViseKomponent =
+        (erStandardInnsatsgruppe && !visEgenvurderingsKomponent) ||
+        (ikkeStandardToggle && !erStandardInnsatsgruppe && !visEgenvurderingsKomponent);
+    const Sluttkort = skalViseKssKort
+        ? KssSluttkort
+        : erStandardInnsatsgruppe
+        ? StandardSluttkort
+        : IkkeStandardSluttkort;
 
     if (visEgenvurderingsKomponent) {
         fjernFraBrowserStorage(INTRO_KEY_14A);
@@ -242,6 +254,7 @@ function Intro14AWrapper(props: IntroProps) {
                     {rendreIntro ? (
                         <>
                             <Intro14A
+                                erStandardInnsatsgruppe={erStandardInnsatsgruppe}
                                 skalViseKssKort={skalViseKssKort}
                                 hoppOverPreState={hoppOverPreState}
                                 ferdigMedIntroCB={ferdigMedIntroCB}
