@@ -13,6 +13,7 @@ export enum FeatureToggles {
     RYDDING_SKJUL_OKONOMI_BOKS = 'veientilarbeid.rydding.skjulOkonomiBoks',
     RYDDING_SKJUL_AAP_RAD = 'veientilarbeid.rydding.skjulAAPRad',
     BRUKERUNDERSOKELSE_VIS = 'veientilarbeid.visbrukerundersokelse',
+    INTRO_14A_IKKE_STANDARD = 'veientilarbeid.14a-intro.ikke-standard',
 }
 
 export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
@@ -39,6 +40,8 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Skjul AAP rad';
         case FeatureToggles.BRUKERUNDERSOKELSE_VIS:
             return 'Vis brukerundersøkelse';
+        case FeatureToggles.INTRO_14A_IKKE_STANDARD:
+            return 'Vis 14a for ikke standard';
     }
 }
 
@@ -54,6 +57,7 @@ export interface Data {
     'veientilarbeid.rydding.skjulOkonomiBoks': boolean;
     'veientilarbeid.rydding.skjulAAPRad': boolean;
     'veientilarbeid.visbrukerundersokelse': boolean;
+    'veientilarbeid.14a-intro.ikke-standard': boolean;
 }
 
 export interface State extends DataElement {
@@ -73,6 +77,7 @@ export const initialState: State = {
         'veientilarbeid.rydding.skjulOkonomiBoks': false,
         'veientilarbeid.rydding.skjulAAPRad': false,
         'veientilarbeid.visbrukerundersokelse': false,
+        'veientilarbeid.14a-intro.ikke-standard': false,
     },
     status: STATUS.NOT_STARTED,
 };
