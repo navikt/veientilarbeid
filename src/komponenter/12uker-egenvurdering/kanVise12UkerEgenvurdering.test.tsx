@@ -56,6 +56,7 @@ const grunndata = {
         'veientilarbeid.rydding.skjulOkonomiBoks': false,
         'veientilarbeid.rydding.skjulAAPRad': false,
         'veientilarbeid.visbrukerundersokelse': false,
+        'veientilarbeid.14a-intro.ikke-standard': false,
     },
     amplitudeData: {
         gruppe: poagruppeKSS,
