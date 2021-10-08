@@ -5,6 +5,8 @@ import Panel from 'nav-frontend-paneler';
 import { loggAktivitet } from '../../metrics/metrics';
 import './ikke-registrert.less';
 import { registreringsLenke } from '../../innhold/lenker';
+import InViewport from '../in-viewport/in-viewport';
+import ErRendret from '../er-rendret/er-rendret';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 
 interface Props {
@@ -31,6 +33,7 @@ const IkkeRegistrert = (props: Props) => {
 
     return (
         <Panel border className="ramme blokk-s" id="registrering-status-informasjon">
+            <ErRendret loggTekst="Rendrer IkkeRegistrert" />
             <section className="egenvurdering">
                 <div className="innhold">
                     <Systemtittel tag="h2" className="blokk-xs">
@@ -44,6 +47,7 @@ const IkkeRegistrert = (props: Props) => {
                     </Hovedknapp>
                 </div>
             </section>
+            <InViewport loggTekst="Viser IkkeRegistrert i viewport" />
         </Panel>
     );
 };

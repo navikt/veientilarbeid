@@ -2,9 +2,14 @@ import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import IkkeRegistrert from './ikke-registrert';
+import { mockIntersectionObserver } from '../../mocks/intersection-observer-mock';
 
 describe('Tester IkkeRegistrert-komponenten', () => {
     const oldLocation = global.window.location;
+
+    beforeEach(() => {
+        mockIntersectionObserver();
+    });
 
     afterEach(() => {
         delete (global as any).window.location;
