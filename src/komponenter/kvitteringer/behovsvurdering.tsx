@@ -7,6 +7,7 @@ import { loggAktivitet } from '../../metrics/metrics';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import './behovsvurdering.less';
+import { SuccessFilled } from '@navikt/ds-icons';
 
 interface EndStateProps {
     lukkerKvittering: (loggTekst: string) => void;
@@ -25,17 +26,25 @@ function Sluttkort(props: EndStateProps) {
         <div className={'sluttkort'}>
             <div className="p-1 flex space-between">
                 <div>
-                    <Element tag={'h1'}>Oppfølging</Element>
-                    <Systemtittel>Egenvurdering</Systemtittel>
-                </div>
-                <button className="behovsvurdering-lukk-knapp" onClick={handleLukkeKvitteringKnapp}>
-                    X
-                </button>
-            </div>
-            <div className="p-1">
-                <div>
-                    <Normaltekst className={'blokk-xs'}>Svaret ditt er delt med veileder.</Normaltekst>
-                    {svarerJa && <Normaltekst>Du får svar i løpet av noen dager.</Normaltekst>}
+                    <Element tag={'h1'} className="p-1">
+                        Oppfølging og egenvurdering
+                    </Element>
+                    <div className={'behovsvurdering-kort'}>
+                        <div className="flex behovsvurdering-header">
+                            <Systemtittel>
+                                <SuccessFilled color="currentColor" className={'mr-05 nav-oransje'} />
+                                Svaret ditt er delt med din veileder
+                            </Systemtittel>
+                            <button className="behovsvurdering-lukk-knapp" onClick={handleLukkeKvitteringKnapp}>
+                                X
+                            </button>
+                        </div>
+                        {svarerJa && (
+                            <div className="behovsvurdering-innhold">
+                                <Normaltekst>Du får svar i løpet av noen dager.</Normaltekst>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>
