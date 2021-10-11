@@ -54,6 +54,21 @@ describe('tester onboarding komponenten for 14a-intro', () => {
         expect(container).toBeEmptyDOMElement();
     });
 
+    test('komponenten vises når bruker ikke har standard innsats og feature-toggle er på', () => {
+        const { container } = render(<Intro14AWrapper />, {
+            wrapper: contextProviders({
+                ...providerProps,
+                featureToggle: { 'veientilarbeid.14a-intro.ikke-standard': true },
+                oppfolging: {
+                    formidlingsgruppe: Formidlingsgruppe.IARBS,
+                    servicegruppe: Servicegruppe.VURDI,
+                },
+                brukerInfo: { alder: 29 },
+            }),
+        });
+        expect(container).not.toBeEmptyDOMElement();
+    });
+
     test('komponenten vises også når bruker er 29 år', () => {
         const { container } = render(<Intro14AWrapper />, {
             wrapper: contextProviders({
