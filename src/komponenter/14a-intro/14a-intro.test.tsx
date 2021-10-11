@@ -39,10 +39,11 @@ describe('tester onboarding komponenten for 14a-intro', () => {
         expect(container).not.toBeEmptyDOMElement();
     });
 
-    test('komponenten vises IKKE når bruker ikke har standard innsats', () => {
+    test('komponenten vises IKKE når bruker ikke har standard innsats og feature-toggle ikke er på', () => {
         const { container } = render(<Intro14AWrapper />, {
             wrapper: contextProviders({
                 ...providerProps,
+                featureToggle: { 'veientilarbeid.14a-intro.ikke-standard': false },
                 oppfolging: {
                     formidlingsgruppe: Formidlingsgruppe.IARBS,
                     servicegruppe: Servicegruppe.VURDI,
