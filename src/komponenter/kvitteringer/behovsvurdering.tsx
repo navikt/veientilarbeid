@@ -7,6 +7,8 @@ import { loggAktivitet } from '../../metrics/metrics';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import './behovsvurdering.less';
+import { SuccessFilled } from '@navikt/ds-icons';
+import { Knapp } from 'nav-frontend-knapper';
 
 interface EndStateProps {
     lukkerKvittering: (loggTekst: string) => void;
@@ -15,27 +17,42 @@ interface EndStateProps {
 
 function Sluttkort(props: EndStateProps) {
     const svarerJa = props.kvittering && props.kvittering === 'behovsvurderingJa';
-    function handleLukkeKvitteringKnapp(event: React.SyntheticEvent) {
+
+    function handleLukkeKvitteringKnapp(event: React.SyntheticEvent, fraKnapp: string) {
         event.preventDefault();
         event.stopPropagation();
-        props.lukkerKvittering('Lukker kvittering fra behovsvurderingen');
+        props.lukkerKvittering(`Lukker kvittering fra behovsvurderingen: ${fraKnapp}`);
     }
 
     return (
         <div className={'sluttkort'}>
             <div className="p-1 flex space-between">
                 <div>
-                    <Element tag={'h1'}>Oppfølging</Element>
-                    <Systemtittel>Egenvurdering</Systemtittel>
-                </div>
-                <button className="behovsvurdering-lukk-knapp" onClick={handleLukkeKvitteringKnapp}>
-                    X
-                </button>
-            </div>
-            <div className="p-1">
-                <div>
-                    <Normaltekst className={'blokk-xs'}>Svaret ditt er delt med veileder.</Normaltekst>
-                    {svarerJa && <Normaltekst>Du får svar i løpet av noen dager.</Normaltekst>}
+                    <Element tag={'h1'} className="p-1">
+                        Egenvurdering
+                    </Element>
+                    <div className={'behovsvurdering-kort'}>
+                        <div className="flex behovsvurdering-header">
+                            <Systemtittel>
+                                <SuccessFilled color="currentColor" className={'mr-05 nav-oransje'} />
+                                Svaret ditt er delt med din veileder
+                            </Systemtittel>{' '}
+                            <button
+                                className="behovsvurdering-lukk-knapp"
+                                onClick={(e) => handleLukkeKvitteringKnapp(e, 'kryss-knapp')}
+                            >
+                                X
+                            </button>
+                        </div>
+                        {svarerJa && (
+                            <div className="behovsvurdering-innhold">
+                                <Normaltekst>Du får svar i løpet av noen dager.</Normaltekst>
+                            </div>
+                        )}
+                        <div className="behovsvurdering-innhold">
+                            <Knapp onClick={(e) => handleLukkeKvitteringKnapp(e, 'ok-knapp')}>Ok</Knapp>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
