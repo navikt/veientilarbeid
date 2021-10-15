@@ -12,7 +12,7 @@ import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
 import './14a-intro.less';
 import { fjernFraBrowserStorage, hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
 import ErRendret from '../er-rendret/er-rendret';
-import { FeaturetoggleContext, Data as FeaturetoggleData } from '../../ducks/feature-toggles';
+import { FeaturetoggleContext } from '../../ducks/feature-toggles';
 import { UlesteDialogerContext } from '../../ducks/ulestedialoger';
 import ModalWrapper from 'nav-frontend-modal';
 import { kanVise12UkerEgenvurdering } from '../12uker-egenvurdering/12uker-egenvurdering';
@@ -20,6 +20,7 @@ import EgenVurdering from '../12uker-egenvurdering/12uker-egenvurdering';
 import { KssStartkort, KssKortliste, KssSluttkort } from './kss';
 import { StandardStartkort, StandardKortliste, StandardSluttkort } from './standardinnsats';
 import { IkkeStandardStartkort, IkkeStandardKortliste, IkkeStandardSluttkort } from './ikke-standard';
+import { kanVise14AStatus } from '../../lib/kan-vise-14a';
 
 const INTRO_KEY_14A = '14a-intro';
 const INTRO_KEY_12UKER = '12uker-egenvurdering';
@@ -113,36 +114,6 @@ function Intro14A(props: Intro14AProps) {
                 </div>
             ) : null}
         </>
-    );
-}
-
-export function kanVise14AStatus({
-    brukerInfoData,
-    oppfolgingData,
-    registreringData,
-    amplitudeData,
-    featuretoggleData,
-}: {
-    brukerInfoData: BrukerInfo.Data;
-    oppfolgingData: Oppfolging.Data;
-    registreringData: Brukerregistrering.Data | null;
-    amplitudeData: AmplitudeData;
-    featuretoggleData: FeaturetoggleData;
-}): boolean {
-    const skalSeEksperiment = amplitudeData.eksperimenter.includes('onboarding14a');
-    const erAAP = brukerInfoData.rettighetsgruppe === 'AAP';
-    const brukerregistreringData = registreringData?.registrering ?? null;
-    const featuretoggleAktivert = featuretoggleData && featuretoggleData['veientilarbeid.14a-intro'];
-
-    const aldersgruppeUtenForsterketInnsats = brukerInfoData.alder >= 30 && brukerInfoData.alder <= 55;
-
-    return (
-        featuretoggleAktivert &&
-        aldersgruppeUtenForsterketInnsats &&
-        !erAAP &&
-        skalSeEksperiment &&
-        sjekkOmBrukerErStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData }) &&
-        !oppfolgingData.kanReaktiveres
     );
 }
 
