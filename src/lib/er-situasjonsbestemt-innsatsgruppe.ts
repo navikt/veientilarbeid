@@ -6,7 +6,7 @@ interface DataGrunnlag {
     oppfolgingData: OppfolgingData;
 }
 
-function erSituasjonsbestemtInnsatsgruppe(data: DataGrunnlag): boolean {
+function sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe(data: DataGrunnlag): boolean {
     const { brukerregistreringData, oppfolgingData } = data;
     const foreslattInnsatsgruppe = brukerregistreringData?.profilering?.innsatsgruppe;
     const { servicegruppe, formidlingsgruppe } = oppfolgingData;
@@ -14,7 +14,7 @@ function erSituasjonsbestemtInnsatsgruppe(data: DataGrunnlag): boolean {
     if (
         (servicegruppe === 'BFORM' || servicegruppe === 'IVURD') &&
         formidlingsgruppe === 'ARBS' &&
-        foreslattInnsatsgruppe === 'SITUASJONSBESTEMT_INNSATS'
+        (foreslattInnsatsgruppe === 'SITUASJONSBESTEMT_INNSATS' || foreslattInnsatsgruppe === 'STANDARD_INNSATS')
     ) {
         return true;
     }
@@ -22,4 +22,4 @@ function erSituasjonsbestemtInnsatsgruppe(data: DataGrunnlag): boolean {
     return false;
 }
 
-export default erSituasjonsbestemtInnsatsgruppe;
+export default sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe;
