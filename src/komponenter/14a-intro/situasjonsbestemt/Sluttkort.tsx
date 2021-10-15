@@ -1,5 +1,5 @@
 import { AmplitudeData, amplitudeLogger } from '../../../metrics/amplitude-utils';
-import { Element, Normaltekst, Systemtittel, Undertekst } from 'nav-frontend-typografi';
+import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { OppfolgingContext, Servicegruppe } from '../../../ducks/oppfolging';
 import Lenkepanel14A from '../lenkepanel-14a';
 import Lenke from 'nav-frontend-lenker';
@@ -38,24 +38,27 @@ function Sluttkort(props: EndStateProps) {
         return (
             <>
                 <div>
-                    <Systemtittel>Hva slags hjelp kan du forvente å få?</Systemtittel>
-                    <Undertekst className="blokk-xs">1 av 3</Undertekst>
+                    <Systemtittel>
+                        {servicegruppe === Servicegruppe.BFORM
+                            ? 'Ta kontakt om du har spørsmål'
+                            : 'Du vil motta et brev som forteller hva NAV kan hjelpe deg med'}
+                    </Systemtittel>
 
                     <Normaltekst className={'blokk-xs'}>
-                        {servicegruppe === Servicegruppe.IKVAL ? (
+                        {servicegruppe === Servicegruppe.BFORM ? (
                             <>
                                 Du har mottatt brevet{' '}
                                 <Lenke onClick={handleLesBrev} href={'https://mininnboks.nav.no/'}>
-                                    «NAV har vurdert dine muligheter»
+                                    «NAV har vurdert mulighetene dine på arbeidsmarkedet»
                                 </Lenke>
                                 .
                             </>
                         ) : (
                             <>
-                                Brevet får du sendt til
+                                Brevet får du sendt til{' '}
                                 <Lenke onClick={handleLesBrev} href={'https://mininnboks.nav.no/'}>
                                     innboksen
-                                </Lenke>
+                                </Lenke>{' '}
                                 din innen én uke.
                             </>
                         )}
@@ -67,8 +70,12 @@ function Sluttkort(props: EndStateProps) {
                     <Normaltekst className={'blokk-xs'}>
                         Du kan stille spørsmål til veileder ved å henvende deg via dialogen.
                     </Normaltekst>
+                    <Lenkepanel14A
+                        amplitudeData={amplitudeData}
+                        href={''}
+                        antallUlesteDialoger={props.antallUlesteDialoger}
+                    />
                 </div>
-                <Feedback id={'Introkort14A-01-ikke-standard'} />
                 <Normaltekst className={'blokk-m'}>
                     Har du spørsmål om dagpenger, eller andre søknader, må du bruke{' '}
                     <Lenke
@@ -96,6 +103,7 @@ function Sluttkort(props: EndStateProps) {
                     </Lenke>
                     .
                 </Normaltekst>
+                <Feedback id={'Introkort14A-01-ikke-standard'} />
             </>
         );
     };
@@ -103,11 +111,6 @@ function Sluttkort(props: EndStateProps) {
     return (
         <div className={'sluttkort'}>
             <Element tag={'h1'}>OPPFØLGING</Element>
-            <Systemtittel className={'blokk-xs'}>Ta kontakt om du har spørsmål</Systemtittel>
-            <Normaltekst className={'blokk-xs'}>
-                Har du spørsmål til veileder eller ting du vil fortelle til veileder kan du starte en dialog.
-            </Normaltekst>
-            <Lenkepanel14A amplitudeData={amplitudeData} href={''} antallUlesteDialoger={props.antallUlesteDialoger} />
             <VeiledersOppgaver />
         </div>
     );
