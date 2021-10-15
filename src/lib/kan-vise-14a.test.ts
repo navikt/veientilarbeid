@@ -94,7 +94,7 @@ const grunndata = {
 };
 
 describe('Tester funksjonen kanVise14AStatus', () => {
-    test('Nei hvis ikke AAP', () => {
+    test('Nei hvis AAP', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
         testdata.brukerInfoData.rettighetsgruppe = 'AAP';
         expect(kanVise14AStatus(testdata)).toBe(false);
@@ -124,13 +124,13 @@ describe('Tester funksjonen kanVise14AStatus', () => {
         expect(kanVise14AStatus(testdata)).toBe(false);
     });
 
-    test('NEI hvis ikke bruker ikke er standard innstasgruppe', () => {
+    test('NEI hvis ikke bruker ikke er standard innsatsgruppe', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
         testdata.oppfolgingData.servicegruppe = 'BKART';
         expect(kanVise14AStatus(testdata)).toBe(false);
     });
 
-    test('JA hvis ikke bruker skal se experiement, er innefor aldersgruppe, har featuretoggle, ikke kan reaktivers og er standard innsatsgruppe', () => {
+    test('JA hvis ikke bruker skal se eksperiment, er innefor aldersgruppe, har featuretoggle, ikke kan reaktivers og er standard innsatsgruppe', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
         testdata.amplitudeData.eksperimenter = [eksperiment];
         testdata.brukerInfoData.alder = 45;
