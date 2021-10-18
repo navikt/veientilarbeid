@@ -6,7 +6,7 @@ import * as Oppfolging from '../../ducks/oppfolging';
 import * as BrukerInfo from '../../ducks/bruker-info';
 import * as PaabegynteSoknader from '../../ducks/paabegynte-soknader';
 import * as Sakstema from '../../ducks/sakstema';
-import { kanVise14AStatus } from '../14a-intro/14a';
+import { kanVise14AStatus } from '../../lib/kan-vise-14a';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { AmplitudeData } from '../../metrics/amplitude-utils';
 import { loggAktivitet } from '../../metrics/metrics';

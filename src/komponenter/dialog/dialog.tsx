@@ -14,7 +14,7 @@ import { FeaturetoggleContext } from '../../ducks/feature-toggles';
 import * as BrukerInfo from '../../ducks/bruker-info';
 import { OppfolgingContext } from '../../ducks/oppfolging';
 import * as Brukerregistrering from '../../ducks/brukerregistrering';
-import { kanVise14AStatus } from '../14a-intro/14a';
+import { kanVise14AStatus } from '../../lib/kan-vise-14a';
 
 const Dialog = () => {
     const amplitudeData = useContext(AmplitudeContext);
