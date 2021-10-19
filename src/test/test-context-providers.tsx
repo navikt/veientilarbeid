@@ -7,7 +7,6 @@ import * as FeatureToggle from '../ducks/feature-toggles';
 import * as Egenvurdering from '../ducks/egenvurdering';
 import * as Oppfolging from '../ducks/oppfolging';
 import * as UlesteDialoger from '../ducks/ulestedialoger';
-import * as Jobbsokerbesvarelse from '../ducks/jobbsokerbesvarelse';
 import * as BrukerInfo from '../ducks/bruker-info';
 import * as Meldekort from '../ducks/meldekort';
 import * as Motestotte from '../ducks/motestotte';
@@ -30,7 +29,6 @@ export type ProviderProps = {
     egenvurdering?: DeepPartial<Egenvurdering.Data>;
     oppfolging?: DeepPartial<Oppfolging.Data>;
     ulesteDialoger?: DeepPartial<UlesteDialoger.Data>;
-    jobbsokerbesvarelse?: DeepPartial<Jobbsokerbesvarelse.Data>;
     brukerInfo?: DeepPartial<BrukerInfo.Data>;
     meldekort?: DeepPartial<Meldekort.Data>;
     motestotte?: DeepPartial<Motestotte.Data>;
@@ -69,73 +67,66 @@ export const contextProviders = function (props: ProviderProps): React.FunctionC
                                     props.ulesteDialoger && { data: props.ulesteDialoger }
                                 )}
                             >
-                                <Jobbsokerbesvarelse.JobbsokerbesvarelseContext.Provider
+                                <Egenvurdering.EgenvurderingContext.Provider
                                     value={merge(
-                                        Jobbsokerbesvarelse.initialState,
-                                        props.jobbsokerbesvarelse && { data: props.jobbsokerbesvarelse }
+                                        Egenvurdering.initialState,
+                                        props.egenvurdering && { data: props.egenvurdering }
                                     )}
                                 >
-                                    <Egenvurdering.EgenvurderingContext.Provider
+                                    <UnderOppfolging.UnderOppfolgingContext.Provider
                                         value={merge(
-                                            Egenvurdering.initialState,
-                                            props.egenvurdering && { data: props.egenvurdering }
+                                            UnderOppfolging.initialState,
+                                            props.underOppfolging && { data: props.underOppfolging }
                                         )}
                                     >
-                                        <UnderOppfolging.UnderOppfolgingContext.Provider
+                                        <Oppfolging.OppfolgingContext.Provider
                                             value={merge(
-                                                UnderOppfolging.initialState,
-                                                props.underOppfolging && { data: props.underOppfolging }
+                                                Oppfolging.initialState,
+                                                props.oppfolging && { data: props.oppfolging }
                                             )}
                                         >
-                                            <Oppfolging.OppfolgingContext.Provider
+                                            <Motestotte.MotestotteContext.Provider
                                                 value={merge(
-                                                    Oppfolging.initialState,
-                                                    props.oppfolging && { data: props.oppfolging }
+                                                    Motestotte.initialState,
+                                                    props.motestotte && { data: props.motestotte }
                                                 )}
                                             >
-                                                <Motestotte.MotestotteContext.Provider
-                                                    value={merge(
-                                                        Motestotte.initialState,
-                                                        props.motestotte && { data: props.motestotte }
-                                                    )}
+                                                <Amplitude.AmplitudeContext.Provider
+                                                    value={merge(Amplitude.initialState, props.amplitude)}
                                                 >
-                                                    <Amplitude.AmplitudeContext.Provider
-                                                        value={merge(Amplitude.initialState, props.amplitude)}
+                                                    <PaabegynteSoknader.PaabegynteSoknaderContext.Provider
+                                                        value={merge(
+                                                            PaabegynteSoknader.initialState,
+                                                            props.paabegynteSoknader && {
+                                                                data: props.paabegynteSoknader,
+                                                            }
+                                                        )}
                                                     >
-                                                        <PaabegynteSoknader.PaabegynteSoknaderContext.Provider
+                                                        <Sakstema.SakstemaContext.Provider
                                                             value={merge(
-                                                                PaabegynteSoknader.initialState,
-                                                                props.paabegynteSoknader && {
-                                                                    data: props.paabegynteSoknader,
+                                                                Sakstema.initialState,
+                                                                props.sakstema && {
+                                                                    data: props.sakstema,
                                                                 }
                                                             )}
                                                         >
-                                                            <Sakstema.SakstemaContext.Provider
+                                                            <FeatureToggle.FeaturetoggleContext.Provider
                                                                 value={merge(
-                                                                    Sakstema.initialState,
-                                                                    props.sakstema && {
-                                                                        data: props.sakstema,
+                                                                    FeatureToggle.initialState,
+                                                                    props.featureToggle && {
+                                                                        data: props.featureToggle,
                                                                     }
                                                                 )}
                                                             >
-                                                                <FeatureToggle.FeaturetoggleContext.Provider
-                                                                    value={merge(
-                                                                        FeatureToggle.initialState,
-                                                                        props.featureToggle && {
-                                                                            data: props.featureToggle,
-                                                                        }
-                                                                    )}
-                                                                >
-                                                                    {children}
-                                                                </FeatureToggle.FeaturetoggleContext.Provider>
-                                                            </Sakstema.SakstemaContext.Provider>
-                                                        </PaabegynteSoknader.PaabegynteSoknaderContext.Provider>
-                                                    </Amplitude.AmplitudeContext.Provider>
-                                                </Motestotte.MotestotteContext.Provider>
-                                            </Oppfolging.OppfolgingContext.Provider>
-                                        </UnderOppfolging.UnderOppfolgingContext.Provider>
-                                    </Egenvurdering.EgenvurderingContext.Provider>
-                                </Jobbsokerbesvarelse.JobbsokerbesvarelseContext.Provider>
+                                                                {children}
+                                                            </FeatureToggle.FeaturetoggleContext.Provider>
+                                                        </Sakstema.SakstemaContext.Provider>
+                                                    </PaabegynteSoknader.PaabegynteSoknaderContext.Provider>
+                                                </Amplitude.AmplitudeContext.Provider>
+                                            </Motestotte.MotestotteContext.Provider>
+                                        </Oppfolging.OppfolgingContext.Provider>
+                                    </UnderOppfolging.UnderOppfolgingContext.Provider>
+                                </Egenvurdering.EgenvurderingContext.Provider>
                             </UlesteDialoger.UlesteDialogerContext.Provider>
                         </Brukerregistrering.BrukerregistreringContext.Provider>
                     </BrukerInfo.BrukerInfoContext.Provider>
