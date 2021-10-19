@@ -5,8 +5,6 @@ loginservice_url: https://loginservice-q.nav.no/login
 veientilarbeid_url: https://veientilarbeid.dev.nav.no
 aktivitetsplan_url: https://aktivitetsplan-q1.dev-sbs.nais.io
 dialog_url: https://www-q1.nav.no/arbeid/dialog
-veiviserarbeidssoker_url: https://veiviserarbeidssoker-q1.nav.no
-jobbsokerkompetanse_url: https://jobbsokerkompetanse-q.nav.no
 dittnav_link_url: https://www.dev.nav.no/person/dittnav
 syfofront_url: https://tjenester-q1.nav.no/sykefravaer
 veivisersosialhjelp_url: https://tjenester-q1.nav.no/veivisersosialhjelp
