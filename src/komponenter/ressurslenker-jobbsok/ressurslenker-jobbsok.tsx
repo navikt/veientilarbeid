@@ -2,7 +2,6 @@ import * as React from 'react';
 import './ressurslenker-jobbsok.less';
 import Stillingsok from './stillingsok';
 import CV from './cv';
-import Jobbsokertips from './jobbsokertips';
 import { Systemtittel } from 'nav-frontend-typografi';
 import tekster from '../../tekster/tekster';
 import {
@@ -41,9 +40,6 @@ const RessurslenkerJobbsok = () => {
             <div className="tokol">
                 <Stillingsok />
                 <CV />
-            </div>
-            <div className="tokol">
-                <Jobbsokertips />
             </div>
         </section>
     ) : null;
