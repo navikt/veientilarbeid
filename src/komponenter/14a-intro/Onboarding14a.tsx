@@ -5,8 +5,9 @@ import * as Oppfolging from '../../ducks/oppfolging';
 import { FeaturetoggleContext } from '../../ducks/feature-toggles';
 import Kortbunke from './Kortbunke';
 import React from 'react';
+import Enkeltkort from './Enkeltkort';
 
-function Onboarding14A(): JSX.Element | null {
+function Onboarding14a(): JSX.Element | null {
     const { data: registreringData } = React.useContext(Brukerregistrering.BrukerregistreringContext);
     const { data: oppfolgingData } = React.useContext(Oppfolging.OppfolgingContext);
     const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
@@ -17,17 +18,18 @@ function Onboarding14A(): JSX.Element | null {
         brukerregistreringData,
         oppfolgingData,
     });
+
     const ikkeStandardToggle = featuretoggleData['veientilarbeid.14a-intro.ikke-standard'];
 
     const kanViseSituasjonsbestemt = erSituasjonsbestemtInnsatsgruppe && ikkeStandardToggle;
     const kanViseKomponent = erStandardInnsatsgruppe || kanViseSituasjonsbestemt;
+
     if (!kanViseKomponent) return null;
 
-    if (erStandardInnsatsgruppe) {
-        return <Kortbunke />;
-    }
+    if (erStandardInnsatsgruppe) return <Kortbunke />;
+    if (kanViseSituasjonsbestemt) return <Enkeltkort />;
 
     return null;
 }
 
-export default Onboarding14A;
+export default Onboarding14a;

@@ -11,14 +11,13 @@ function sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe(data: DataGrunnlag): bool
     const foreslattInnsatsgruppe = brukerregistreringData?.profilering?.innsatsgruppe;
     const { servicegruppe, formidlingsgruppe } = oppfolgingData;
 
+    if (servicegruppe === 'BFORM' && formidlingsgruppe === 'ARBS') return true;
     if (
-        (servicegruppe === 'BFORM' || servicegruppe === 'IVURD') &&
+        servicegruppe === 'IVURD' &&
         formidlingsgruppe === 'ARBS' &&
-        (foreslattInnsatsgruppe === 'SITUASJONSBESTEMT_INNSATS' || foreslattInnsatsgruppe === 'STANDARD_INNSATS')
-    ) {
+        foreslattInnsatsgruppe === 'SITUASJONSBESTEMT_INNSATS'
+    )
         return true;
-    }
-
     return false;
 }
 

@@ -8,15 +8,13 @@ import Feedback from '../../feedback/feedback';
 
 interface EndStateProps {
     amplitudeData: AmplitudeData;
-
-    lesIntroPaaNyttCB: () => void;
     antallUlesteDialoger: number;
 }
 
 function Sluttkort(props: EndStateProps) {
     const { amplitudeData } = props;
     const { servicegruppe } = useContext(OppfolgingContext).data;
-    console.log('sluttkort');
+
     const handleLesBrev = () => {
         amplitudeLogger('veientilarbeid.intro', {
             intro: '14a',
@@ -38,7 +36,7 @@ function Sluttkort(props: EndStateProps) {
         return (
             <>
                 <div>
-                    <Systemtittel>
+                    <Systemtittel className={'blokk-xs'}>
                         {servicegruppe === Servicegruppe.BFORM
                             ? 'Ta kontakt om du har spørsmål'
                             : 'Du vil motta et brev som forteller hva NAV kan hjelpe deg med'}

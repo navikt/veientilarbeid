@@ -14,7 +14,7 @@ import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import { FeaturetoggleContext } from '../../ducks/feature-toggles';
-import Intro14AWrapper from '../14a-intro/Kortbunke';
+import Onboarding14A from '../14a-intro/Onboarding14a';
 import KvitteringWrapper from '../kvitteringer/kvittering-wrapper';
 import InViewport from '../in-viewport/in-viewport';
 import Permittert from './permittert';
@@ -108,7 +108,7 @@ const Registrert = () => {
 
             <div className={'intro-wrapper'}>
                 <DagpengerStatus />
-                <Intro14AWrapper />
+                <Onboarding14A />
                 <MeldekortIntroWrapper />
             </div>
             <InViewport loggTekst="Registreringsboks i viewport" />
