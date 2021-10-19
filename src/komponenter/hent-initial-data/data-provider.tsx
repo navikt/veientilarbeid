@@ -11,12 +11,10 @@ import * as Motestotte from '../../ducks/motestotte';
 import * as Meldekort from '../../ducks/meldekort';
 import * as Egenvurdering from '../../ducks/egenvurdering';
 import * as UlesteDialoger from '../../ducks/ulestedialoger';
-import * as Jobbsokerbesvarelse from '../../ducks/jobbsokerbesvarelse';
 import { fetchData } from '../../ducks/api-utils';
 import {
     BRUKERINFO_URL,
     EGENVURDERINGBESVARELSE_URL,
-    JOBBSOKERBESVARELSE_URL,
     MOTESTOTTE_URL,
     NESTE_MELDEKORT_URL,
     ULESTEDIALOGER_URL,
@@ -60,9 +58,6 @@ const DataProvider = ({ children }: Props) => {
     const [ulesteDialogerState, setUlesteDialogerState] = React.useState<UlesteDialoger.State>(
         UlesteDialoger.initialState
     );
-    const [jobbsokerbesvarelseState, setJobbsokerbesvarelseState] = React.useState<Jobbsokerbesvarelse.State>(
-        Jobbsokerbesvarelse.initialState
-    );
 
     const data = React.useContext(Brukerregistrering.BrukerregistreringContext).data;
     const foreslaattInnsatsgruppe = selectForeslattInnsatsgruppe(data);
@@ -99,11 +94,6 @@ const DataProvider = ({ children }: Props) => {
         );
 
         if (underOppfolging) {
-            fetchData<Jobbsokerbesvarelse.State, Jobbsokerbesvarelse.Data>(
-                jobbsokerbesvarelseState,
-                setJobbsokerbesvarelseState,
-                JOBBSOKERBESVARELSE_URL
-            );
             if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
                 fetchData<Egenvurdering.State, Egenvurdering.Data>(
                     egenvurderingState,
@@ -125,8 +115,6 @@ const DataProvider = ({ children }: Props) => {
         ventPa.push(ulesteDialogerState);
 
         if (underOppfolging) {
-            ventPa.push(jobbsokerbesvarelseState);
-
             if (skalSjekkeEgenvurderingBesvarelse(foreslaattInnsatsgruppe)) {
                 ventPa.push(egenvurderingState);
             }
@@ -147,23 +135,19 @@ const DataProvider = ({ children }: Props) => {
             <Meldekort.MeldekortContext.Provider value={meldekortState}>
                 <BrukerInfo.BrukerInfoContext.Provider value={brukerInfoState}>
                     <UlesteDialoger.UlesteDialogerContext.Provider value={ulesteDialogerState}>
-                        <Jobbsokerbesvarelse.JobbsokerbesvarelseContext.Provider value={jobbsokerbesvarelseState}>
-                            <Egenvurdering.EgenvurderingContext.Provider value={egenvurderingState}>
-                                <Motestotte.MotestotteContext.Provider value={motestotteState}>
-                                    <PaabegynteSoknader.PaabegynteSoknaderContext.Provider
-                                        value={paabegynteSoknaderState}
+                        <Egenvurdering.EgenvurderingContext.Provider value={egenvurderingState}>
+                            <Motestotte.MotestotteContext.Provider value={motestotteState}>
+                                <PaabegynteSoknader.PaabegynteSoknaderContext.Provider value={paabegynteSoknaderState}>
+                                    <MuligeEttersendelser.MuligeEttersendelserContext.Provider
+                                        value={muligeEttersendelserState}
                                     >
-                                        <MuligeEttersendelser.MuligeEttersendelserContext.Provider
-                                            value={muligeEttersendelserState}
-                                        >
-                                            <Sakstema.SakstemaContext.Provider value={sakstemaState}>
-                                                <AmplitudeProvider>{children}</AmplitudeProvider>
-                                            </Sakstema.SakstemaContext.Provider>
-                                        </MuligeEttersendelser.MuligeEttersendelserContext.Provider>
-                                    </PaabegynteSoknader.PaabegynteSoknaderContext.Provider>
-                                </Motestotte.MotestotteContext.Provider>
-                            </Egenvurdering.EgenvurderingContext.Provider>
-                        </Jobbsokerbesvarelse.JobbsokerbesvarelseContext.Provider>
+                                        <Sakstema.SakstemaContext.Provider value={sakstemaState}>
+                                            <AmplitudeProvider>{children}</AmplitudeProvider>
+                                        </Sakstema.SakstemaContext.Provider>
+                                    </MuligeEttersendelser.MuligeEttersendelserContext.Provider>
+                                </PaabegynteSoknader.PaabegynteSoknaderContext.Provider>
+                            </Motestotte.MotestotteContext.Provider>
+                        </Egenvurdering.EgenvurderingContext.Provider>
                     </UlesteDialoger.UlesteDialogerContext.Provider>
                 </BrukerInfo.BrukerInfoContext.Provider>
             </Meldekort.MeldekortContext.Provider>
