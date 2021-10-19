@@ -14,7 +14,6 @@ export enum DemoData {
     SERVICEGRUPPE = 'servicegruppe',
     FORMIDLINGSGRUPPE = 'formidlingsgruppe',
     SYKMELDT_MED_ARBEIDSGIVER = 'sykmeldtMedArbeidsGiver',
-    JSK = 'jsk',
     ULESTE_DIALOGER = 'ulesteDialoger',
     RESERVASJON_KRR = 'reservasjonKRR',
     EGENVURDERING = 'egenvurdering',
@@ -64,9 +63,6 @@ export const settGeografiskTilknytning = (value: string) => settDemoState(DemoDa
 
 export const hentUlesteDialoger = () => hentDemoState(DemoData.ULESTE_DIALOGER) === 'true';
 export const settUlesteDialoger = (value: boolean) => settDemoState(DemoData.ULESTE_DIALOGER, value);
-
-export const hentJsk = (): JSONObject | null => (hentDemoState(DemoData.JSK) === 'true' ? { raad: [] } : null);
-export const settJsk = (value: boolean) => settDemoState(DemoData.JSK, value);
 
 export const hentEgenvurdering = (): JSONObject | null =>
     hentDemoState(DemoData.EGENVURDERING) === 'true' ? { sistOppdatert: '2019-05-12T09:39:01.635+02:00' } : null;
