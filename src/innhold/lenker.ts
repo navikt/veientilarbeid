@@ -7,12 +7,6 @@ export const stillingLenke = erMikrofrontend()
     ? `${contextpathDittNav}/arbeidsplassen/stillinger`
     : '/arbeidsplassen/stillinger';
 export const cvLenke = erMikrofrontend() ? `${contextpathDittNav}/arbeidsplassen/cv` : '/arbeidsplassen/cv';
-export const veiviserarbeidssokerLenke = erMikrofrontend()
-    ? `${contextpathDittNav}/veiviserarbeidssoker`
-    : '/veiviserarbeidssoker';
-export const jobbsokerkompetanseLenke = erMikrofrontend()
-    ? `${contextpathDittNav}/jobbsokerkompetanse/resultatside`
-    : '/jobbsokerkompetanse/resultatside';
 export const sykefravaerLenke = erMikrofrontend() ? `${contextpathDittNav}/sykefravaer` : '/sykefravaer';
 export const dagpengerLesmerLenke = 'https://www.nav.no/arbeid/no/arbeidsledig/';
 export const dagpengerSoknadLenke = 'https://www.nav.no/soknader/nb/person/arbeid/dagpenger';
