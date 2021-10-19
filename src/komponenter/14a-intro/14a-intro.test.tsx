@@ -2,7 +2,7 @@ import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import Intro14AWrapper from './14a';
+import Intro14AWrapper from './Kortbunke';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import { Formidlingsgruppe, Servicegruppe } from '../../ducks/oppfolging';
 import { mockIntersectionObserver } from '../../mocks/intersection-observer-mock';

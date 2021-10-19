@@ -6,7 +6,6 @@ import * as Oppfolging from '../../ducks/oppfolging';
 import * as BrukerInfo from '../../ducks/bruker-info';
 import * as PaabegynteSoknader from '../../ducks/paabegynte-soknader';
 import * as Sakstema from '../../ducks/sakstema';
-import { kanVise14AStatus } from '../../lib/kan-vise-14a';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { AmplitudeData } from '../../metrics/amplitude-utils';
 import { loggAktivitet } from '../../metrics/metrics';
@@ -19,6 +18,7 @@ import prettyPrintDato from '../../utils/pretty-print-dato';
 import InViewport from '../in-viewport/in-viewport';
 import ErRendret from '../er-rendret/er-rendret';
 import { saksoversikt_url } from '../../url';
+import { kanVise14AStatus } from '../../lib/kan-vise-14a';
 
 const virkedager = require('@alheimsins/virkedager');
 
