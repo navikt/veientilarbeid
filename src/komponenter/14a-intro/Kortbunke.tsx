@@ -175,6 +175,7 @@ function Intro14AWrapper(props: IntroProps) {
     const kanViseKomponent =
         (erStandardInnsatsgruppe && !visEgenvurderingsKomponent) ||
         (ikkeStandardToggle && !erStandardInnsatsgruppe && !visEgenvurderingsKomponent);
+
     const Sluttkort = skalViseKssKort
         ? KssSluttkort
         : erStandardInnsatsgruppe
