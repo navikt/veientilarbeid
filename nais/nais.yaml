@@ -17,10 +17,6 @@ spec:
     value: {{ aktivitetsplan_url }}
   - name: DIALOG_URL
     value: {{ dialog_url }}
-  - name: VEIVISERARBEIDSSOKER_URL
-    value: {{ veiviserarbeidssoker_url }}
-  - name: JOBBSOKERKOMPETANSE_URL
-    value: {{ jobbsokerkompetanse_url }}
   - name: DITTNAV_LINK_URL
     value: {{ dittnav_link_url }}
   - name: SYFOFRONT_URL

@@ -10,7 +10,6 @@ import {
     hentEgenvurdering,
     hentFormidlingsgruppe,
     hentGeografiskTilknytning,
-    hentJsk,
     hentKanReaktiveres,
     hentMotestotte,
     hentRegistreringType,
@@ -28,7 +27,6 @@ import {
     settFeatureToggles,
     settFormidlingsgruppe,
     settGeografiskTilknytning,
-    settJsk,
     settKanReaktiveres,
     settMotestotte,
     settRegistreringType,
@@ -77,7 +75,6 @@ export const opprettetRegistreringDato: OpprettetRegistreringDato = {
 class DemoDashboard extends React.Component<{}> {
     render() {
         const SYKMELDT_MED_ARBEIDSGIVER = DemoData.SYKMELDT_MED_ARBEIDSGIVER;
-        const JSK = DemoData.JSK;
         const EGENVURDERING = DemoData.EGENVURDERING;
         const MOTESTOTTE = DemoData.MOTESTOTTE;
         const ULESTE_DIALOGER = DemoData.ULESTE_DIALOGER;
@@ -151,8 +148,6 @@ class DemoDashboard extends React.Component<{}> {
             const element = e.currentTarget as HTMLInputElement;
             if (element.id === SYKMELDT_MED_ARBEIDSGIVER) {
                 settSykmeldtMedArbeidsgiver(element.checked);
-            } else if (element.id === JSK) {
-                settJsk(element.checked);
             } else if (element.id === EGENVURDERING) {
                 settEgenvurdering(element.checked);
             } else if (element.id === MOTESTOTTE) {
@@ -442,11 +437,6 @@ class DemoDashboard extends React.Component<{}> {
                             label: tekster['demo-sykmelding'],
                             checked: hentSykmeldtMedArbeidsgiver(),
                             id: SYKMELDT_MED_ARBEIDSGIVER,
-                        },
-                        {
-                            label: tekster['demo-jsk'],
-                            checked: !!hentJsk(),
-                            id: JSK,
                         },
                         {
                             label: tekster['demo-dialog'],

@@ -3,7 +3,6 @@ import {
     BRUKERREGISTRERING_URL,
     EGENVURDERINGBESVARELSE_URL,
     FEATURE_URL,
-    JOBBSOKERBESVARELSE_URL,
     MELDEKORTSTATUS_URL,
     MOTESTOTTE_URL,
     MULIGE_ETTERSENDELSER_URL,
@@ -22,7 +21,6 @@ import {
     hentFeatureToggles,
     hentFormidlingsgruppe,
     hentGeografiskTilknytning,
-    hentJsk,
     hentKanReaktiveres,
     hentMotestotte,
     hentRegistreringType,
@@ -68,8 +66,6 @@ export const demo_handlers = [
     msw_get(ULESTEDIALOGER_URL, {
         antallUleste: hentUlesteDialoger() ? randomUlesteDialoger() : 0,
     }),
-
-    msw_get(JOBBSOKERBESVARELSE_URL, hentJsk()),
 
     msw_get(EGENVURDERINGBESVARELSE_URL, hentEgenvurdering()),
 

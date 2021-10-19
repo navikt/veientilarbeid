@@ -5,7 +5,6 @@ import egenvurderingbesvarelseResponse from './egenvurderingbesvarelse-mock';
 import brukerRegistreringResponse from './brukerregistrering-mock';
 import motestotteResponse from './motestotte-mock';
 import featureTogglesResponse from './feature-toggles-mock';
-import jobbsokerbesvarelseResponse from './jobbsokerbesvarelse-mock';
 import brukerInfoResponse from './bruker-info-mock';
 import oppfolgingResponse from './oppfolging-mock';
 import underOppfolgingResponse from './under-oppfolging-mock';
@@ -20,7 +19,6 @@ import {
     BRUKERREGISTRERING_URL,
     EGENVURDERINGBESVARELSE_URL,
     FEATURE_URL,
-    JOBBSOKERBESVARELSE_URL,
     MELDEKORTSTATUS_URL,
     MOTESTOTTE_URL,
     NESTE_MELDEKORT_URL,
@@ -39,7 +37,6 @@ export const handlers = [
     msw_get(EGENVURDERINGBESVARELSE_URL, egenvurderingbesvarelseResponse),
     msw_get(BRUKERREGISTRERING_URL, brukerRegistreringResponse),
     msw_get(ULESTEDIALOGER_URL, ulesteDialogerResponse),
-    msw_get(JOBBSOKERBESVARELSE_URL, jobbsokerbesvarelseResponse),
     msw_get(BRUKERINFO_URL, brukerInfoResponse),
     msw_get(VEILARBOPPFOLGING_URL, oppfolgingResponse),
     msw_get(UNDER_OPPFOLGING_URL, underOppfolgingResponse),

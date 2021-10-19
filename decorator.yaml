@@ -13,9 +13,6 @@ proxy:
     baseUrl: {{ VEILARBPROXY_URL }}
     minSecurityLevel: 3
 
-  - contextPath: /veilarbjobbsokerkompetanse
-    baseUrl: {{ VEILARBPROXY_URL }}
-
   - contextPath: /veilarbdialog
     baseUrl: {{ VEILARBPROXY_URL }}
 
@@ -34,10 +31,6 @@ redirect:
     to: {{ AKTIVITETSPLAN_URL }}
   - from: /dialog
     to: {{ DIALOG_URL }}
-  - from: /veiviserarbeidssoker
-    to: {{ VEIVISERARBEIDSSOKER_URL }}
-  - from: /jobbsokerkompetanse
-    to: {{ JOBBSOKERKOMPETANSE_URL }}
   - from: /dittnav
     to: {{ DITTNAV_LINK_URL }}
   - from: /sykefravaer
