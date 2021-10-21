@@ -271,4 +271,32 @@ describe('tester onboarding komponenten for meldekort', () => {
         render(<MeldekortIntroWrapper />, { wrapper: contextProviders(props) });
         expect(screen.getByText(/Du har 2 meldekort/i)).toBeInTheDocument();
     });
+
+    test('Viser boks for bruker med profil: situasjonsbestemt og feature-toggle på', () => {
+        const props: ProviderProps = {
+            ...providerProps,
+            ...propsForRelativDag(7),
+            oppfolging: {
+                formidlingsgruppe: Formidlingsgruppe.ARBS,
+                servicegruppe: Servicegruppe.BFORM,
+            },
+            featureToggle: { 'meldekort.onboarding-for-situasjonsbestemt': true },
+        };
+        const { container } = render(<MeldekortIntroWrapper />, { wrapper: contextProviders(props) });
+        expect(container).not.toBeEmptyDOMElement();
+    });
+
+    test('Viser ikke boks for bruker med profil: situasjonsbestemt og feature-toggle av', () => {
+        const props: ProviderProps = {
+            ...providerProps,
+            ...propsForRelativDag(7),
+            oppfolging: {
+                formidlingsgruppe: Formidlingsgruppe.ARBS,
+                servicegruppe: Servicegruppe.BFORM,
+            },
+            featureToggle: { 'meldekort.onboarding-for-situasjonsbestemt': false },
+        };
+        const { container } = render(<MeldekortIntroWrapper />, { wrapper: contextProviders(props) });
+        expect(container).toBeEmptyDOMElement();
+    });
 });

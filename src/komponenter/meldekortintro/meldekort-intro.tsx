@@ -8,12 +8,14 @@ import * as Meldekort from '../../ducks/meldekort';
 import * as Oppfolging from '../../ducks/oppfolging';
 import * as BrukerInfo from '../../ducks/bruker-info';
 import { FeaturetoggleContext } from '../../ducks/feature-toggles';
-import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
 import './meldekort-intro.less';
 import { fjernFraBrowserStorage, hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
 
-import { StandardStartkort, StandardKortliste, StandardSluttkort } from './standard';
+import { StandardStartkort, StandardKortliste } from './standard';
+import { SituasjonsbestemtStartkort, SituasjonsbestemtKortliste } from './situasjonsbestemt';
+import Sluttkort from './Sluttkort';
+import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../../lib/er-situasjonsbestemt-innsatsgruppe';
 import { kanViseMeldekortStatus } from '../../lib/kan-vise-meldekort-status';
 
 const MELDEKORT_INTRO_KEY = 'meldekortintro';
@@ -31,13 +33,24 @@ function MeldekortIntro(props: MeldekortIntroProps) {
     const nesteknappIntro = props.amplitudeData.eksperimenter.includes('nesteknappIntro');
 
     const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
+    const { data: registreringData } = React.useContext(Brukerregistrering.BrukerregistreringContext);
+    const { data: oppfolgingData } = React.useContext(Oppfolging.OppfolgingContext);
+    const brukerregistreringData = registreringData?.registrering ?? null;
+
     const onboardingForSituasjonsbestemtToggle = featuretoggleData['meldekort.onboarding-for-situasjonsbestemt'];
+    const erSituasjonsbestemtInnsatsgruppe = sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe({
+        brukerregistreringData,
+        oppfolgingData,
+    });
+    const skalViseOnboardingForSituasjonsbestemt =
+        onboardingForSituasjonsbestemtToggle && erSituasjonsbestemtInnsatsgruppe;
 
-    const introKort = [
-        <StandardStartkort startIntroCB={nesteKort} hoppOverIntroCB={hoppOverIntro} />,
-        ...StandardKortliste,
-    ];
-
+    const introKort = skalViseOnboardingForSituasjonsbestemt
+        ? [
+              <SituasjonsbestemtStartkort startIntroCB={nesteKort} hoppOverIntroCB={hoppOverIntro} />,
+              ...SituasjonsbestemtKortliste,
+          ]
+        : [<StandardStartkort startIntroCB={nesteKort} hoppOverIntroCB={hoppOverIntro} />, ...StandardKortliste];
     function nesteKort() {
         if (gjeldendeKortIndex < introKort.length - 1) {
             setGjeldendeKortIndex(gjeldendeKortIndex + 1);
@@ -108,36 +121,6 @@ function MeldekortIntro(props: MeldekortIntroProps) {
     );
 }
 
-export function kanViseMeldekortStatus({
-    meldekortData,
-    brukerInfoData,
-    oppfolgingData,
-    registreringData,
-}: {
-    meldekortData: Meldekort.Data | null;
-    brukerInfoData: BrukerInfo.Data;
-    oppfolgingData: Oppfolging.Data;
-    registreringData: Brukerregistrering.Data | null;
-}): boolean {
-    const meldekortliste = meldekortData?.meldekort ?? [];
-    const harMeldekort = meldekortliste.length > 0;
-    if (!harMeldekort) return false;
-
-    const erAAP = brukerInfoData.rettighetsgruppe === 'AAP';
-    const harDagpengerEllerArbeidssokerMeldekort =
-        meldekortliste.filter((meldekort) => ['DAGP', 'ARBS'].includes(meldekort.meldegruppe ?? 'NULL')).length > 0;
-
-    const brukerregistreringData = registreringData?.registrering ?? null;
-
-    const kanViseKomponent =
-        !erAAP &&
-        harDagpengerEllerArbeidssokerMeldekort &&
-        erStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData }) &&
-        !oppfolgingData.kanReaktiveres;
-
-    return kanViseKomponent;
-}
-
 function MeldekortIntroWrapper() {
     const amplitudeData = React.useContext(AmplitudeContext);
     const { data: meldekortData } = React.useContext(Meldekort.MeldekortContext);
@@ -152,6 +135,17 @@ function MeldekortIntroWrapper() {
     const rendreIntro = tvingVisningAvIntro || (erNyregistrert && !harSettIntro);
     const hoppOverPreState = harSettIntro || tvingVisningAvIntro;
 
+    const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
+    const brukerregistreringData = registreringData?.registrering ?? null;
+
+    const onboardingForSituasjonsbestemtToggle = featuretoggleData['meldekort.onboarding-for-situasjonsbestemt'];
+    const erSituasjonsbestemtInnsatsgruppe = sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe({
+        brukerregistreringData,
+        oppfolgingData,
+    });
+    const skalViseOnboardingForSituasjonsbestemt =
+        onboardingForSituasjonsbestemtToggle && erSituasjonsbestemtInnsatsgruppe;
+
     useEffect(() => {
         if (harSettIntro) {
             settIBrowserStorage(MELDEKORT_INTRO_KEY, 'true');
@@ -160,7 +154,10 @@ function MeldekortIntroWrapper() {
         }
     }, [harSettIntro]);
 
-    if (!kanViseMeldekortStatus({ meldekortData, oppfolgingData, brukerInfoData, registreringData })) {
+    if (
+        !kanViseMeldekortStatus({ meldekortData, oppfolgingData, brukerInfoData, registreringData }) &&
+        !skalViseOnboardingForSituasjonsbestemt
+    ) {
         fjernFraBrowserStorage(MELDEKORT_INTRO_KEY);
         return null;
     }
@@ -184,7 +181,7 @@ function MeldekortIntroWrapper() {
                             amplitudeData={amplitudeData}
                         />
                     ) : (
-                        <StandardSluttkort
+                        <Sluttkort
                             amplitudeData={amplitudeData}
                             meldekortData={meldekortData}
                             lesIntroPaaNyttCB={lesIntroPaaNyttCB}
