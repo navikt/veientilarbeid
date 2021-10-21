@@ -1,4 +1,4 @@
-import PreState from '../../meldekortintro/pre-state';
+import PreState from '../pre-state';
 
 interface Props {
     hoppOverIntroCB: () => void;

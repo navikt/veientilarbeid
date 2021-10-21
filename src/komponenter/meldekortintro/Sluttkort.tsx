@@ -1,17 +1,17 @@
 import Lenke from 'nav-frontend-lenker';
 import { Systemtittel, Normaltekst, Element } from 'nav-frontend-typografi';
-import { omMeldekortLenke, meldekortLenke } from '../../../innhold/lenker';
-import { AmplitudeData, amplitudeLogger } from '../../../metrics/amplitude-utils';
-import { hentIDag } from '../../../utils/chrono';
-import { datoUtenTid, hentISOUke, datoMedUkedag } from '../../../utils/date-utils';
+import { omMeldekortLenke, meldekortLenke } from '../../innhold/lenker';
+import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
+import { hentIDag } from '../../utils/chrono';
+import { datoUtenTid, hentISOUke, datoMedUkedag } from '../../utils/date-utils';
 import {
     hentMeldekortForLevering,
     hentFoerstkommendeMeldekortIkkeKlarForLevering,
     foersteSendedagForMeldekort,
-} from '../../../utils/meldekort-utils';
-import * as Meldekort from '../../../ducks/meldekort';
-import LenkepanelMeldekort from '../lenkepanel-Meldekort';
-import Meldekortstatus from '../meldekortstatus';
+} from '../../utils/meldekort-utils';
+import * as Meldekort from '../../ducks/meldekort';
+import LenkepanelMeldekort from './lenkepanel-Meldekort';
+import Meldekortstatus from './meldekortstatus';
 
 interface EndStateProps {
     meldekortData: Meldekort.Data | null;
