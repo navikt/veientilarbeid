@@ -14,6 +14,7 @@ export enum FeatureToggles {
     RYDDING_SKJUL_AAP_RAD = 'veientilarbeid.rydding.skjulAAPRad',
     BRUKERUNDERSOKELSE_VIS = 'veientilarbeid.visbrukerundersokelse',
     INTRO_14A_IKKE_STANDARD = 'veientilarbeid.14a-intro.ikke-standard',
+    MELDEKORT_INTRO_SITUASJONSBESTEMT = 'meldekort.onboarding-for-situasjonsbestemt',
 }
 
 export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
@@ -42,6 +43,8 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Vis brukerundersøkelse';
         case FeatureToggles.INTRO_14A_IKKE_STANDARD:
             return 'Vis 14a for ikke standard';
+        case FeatureToggles.MELDEKORT_INTRO_SITUASJONSBESTEMT:
+            return 'Vis meldekort-intro for situasjonsbestemt';
     }
 }
 

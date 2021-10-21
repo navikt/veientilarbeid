@@ -7,6 +7,7 @@ import * as Brukerregistrering from '../../ducks/brukerregistrering';
 import * as Meldekort from '../../ducks/meldekort';
 import * as Oppfolging from '../../ducks/oppfolging';
 import * as BrukerInfo from '../../ducks/bruker-info';
+import { FeaturetoggleContext } from '../../ducks/feature-toggles';
 import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
 import './meldekort-intro.less';
@@ -27,6 +28,9 @@ function MeldekortIntro(props: MeldekortIntroProps) {
     const [gjeldendeKortIndex, setGjeldendeKortIndex] = useState(startkort);
     const forrigeKortRef = useRef(gjeldendeKortIndex);
     const nesteknappIntro = props.amplitudeData.eksperimenter.includes('nesteknappIntro');
+
+    const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
+    const onboardingForSituasjonsbestemtToggle = featuretoggleData['meldekort.onboarding-for-situasjonsbestemt'];
 
     const introKort = [
         <StandardStartkort startIntroCB={nesteKort} hoppOverIntroCB={hoppOverIntro} />,
