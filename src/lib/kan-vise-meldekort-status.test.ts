@@ -131,6 +131,6 @@ describe('Tester funksjonen kanViseMeldekortStatus', () => {
         testdata.meldekortData.meldekort = [{ meldegruppe: 'DAGP' }];
         testdata.brukerInfoData.rettighetsgruppe = 'DAGP';
 
-        expect(kanViseMeldekortStatus(testdata)).toBe(false);
+        expect(kanViseMeldekortStatus(testdata)).toBe(true);
     });
 });
