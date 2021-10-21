@@ -14,6 +14,7 @@ import './meldekort-intro.less';
 import { fjernFraBrowserStorage, hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
 
 import { StandardStartkort, StandardKortliste, StandardSluttkort } from './standard';
+import { kanViseMeldekortStatus } from '../../lib/kan-vise-meldekort-status';
 
 const MELDEKORT_INTRO_KEY = 'meldekortintro';
 
