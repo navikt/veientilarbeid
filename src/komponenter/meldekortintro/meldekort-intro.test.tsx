@@ -280,7 +280,7 @@ describe('tester onboarding komponenten for meldekort', () => {
                 formidlingsgruppe: Formidlingsgruppe.ARBS,
                 servicegruppe: Servicegruppe.BFORM,
             },
-            featureToggle: { 'meldekort.onboarding-for-situasjonsbestemt': true },
+            featureToggle: { 'veientilarbeid.meldekort-intro.situasjonsbestemt': true },
         };
         const { container } = render(<MeldekortIntroWrapper />, { wrapper: contextProviders(props) });
         expect(container).not.toBeEmptyDOMElement();
@@ -294,7 +294,7 @@ describe('tester onboarding komponenten for meldekort', () => {
                 formidlingsgruppe: Formidlingsgruppe.ARBS,
                 servicegruppe: Servicegruppe.BFORM,
             },
-            featureToggle: { 'meldekort.onboarding-for-situasjonsbestemt': false },
+            featureToggle: { 'veientilarbeid.meldekort-intro.situasjonsbestemt': false },
         };
         const { container } = render(<MeldekortIntroWrapper />, { wrapper: contextProviders(props) });
         expect(container).toBeEmptyDOMElement();

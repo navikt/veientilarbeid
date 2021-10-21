@@ -63,7 +63,7 @@ const grunndata = {
         'veientilarbeid.rydding.skjulAAPRad': false,
         'veientilarbeid.visbrukerundersokelse': false,
         'veientilarbeid.14a-intro.ikke-standard': false,
-        'meldekort.onboarding-for-situasjonsbestemt': false,
+        'veientilarbeid.meldekort-intro.situasjonsbestemt': false,
     },
     amplitudeData: {
         geografiskTilknytning: 'INGEN_VERDI',
