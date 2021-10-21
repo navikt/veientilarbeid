@@ -58,6 +58,7 @@ export interface Data {
     'veientilarbeid.rydding.skjulAAPRad': boolean;
     'veientilarbeid.visbrukerundersokelse': boolean;
     'veientilarbeid.14a-intro.ikke-standard': boolean;
+    'meldekort.onboarding-for-situasjonsbestemt': boolean;
 }
 
 export interface State extends DataElement {
@@ -78,6 +79,7 @@ export const initialState: State = {
         'veientilarbeid.rydding.skjulAAPRad': false,
         'veientilarbeid.visbrukerundersokelse': false,
         'veientilarbeid.14a-intro.ikke-standard': false,
+        'meldekort.onboarding-for-situasjonsbestemt': false,
     },
     status: STATUS.NOT_STARTED,
 };
