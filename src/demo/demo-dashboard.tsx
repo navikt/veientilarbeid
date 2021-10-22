@@ -431,6 +431,7 @@ class DemoDashboard extends React.Component<{}> {
                 </div>
                 <CheckboksPanelGruppe
                     onChange={handleClick}
+                    className="featuretoggles"
                     legend=""
                     checkboxes={[
                         {
@@ -477,6 +478,7 @@ class DemoDashboard extends React.Component<{}> {
                 />
                 <CheckboksPanelGruppe
                     legend={'Featuretoggles'}
+                    className="featuretoggles"
                     onChange={handleClick}
                     checkboxes={Object.values(FeatureToggles).map((toggle) => {
                         return {
