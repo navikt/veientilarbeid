@@ -14,6 +14,7 @@ export enum FeatureToggles {
     RYDDING_SKJUL_AAP_RAD = 'veientilarbeid.rydding.skjulAAPRad',
     BRUKERUNDERSOKELSE_VIS = 'veientilarbeid.visbrukerundersokelse',
     INTRO_14A_IKKE_STANDARD = 'veientilarbeid.14a-intro.ikke-standard',
+    INTRO_MELDEKORT_SITUASJONSBESTEMT = 'veientilarbeid.meldekort-intro.situasjonsbestemt',
 }
 
 export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
@@ -42,6 +43,8 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Vis brukerundersøkelse';
         case FeatureToggles.INTRO_14A_IKKE_STANDARD:
             return 'Vis 14a for ikke standard';
+        case FeatureToggles.INTRO_MELDEKORT_SITUASJONSBESTEMT:
+            return 'Vis meldekort-intro for situasjonsbestemt';
     }
 }
 
@@ -58,6 +61,7 @@ export interface Data {
     'veientilarbeid.rydding.skjulAAPRad': boolean;
     'veientilarbeid.visbrukerundersokelse': boolean;
     'veientilarbeid.14a-intro.ikke-standard': boolean;
+    'veientilarbeid.meldekort-intro.situasjonsbestemt': boolean;
 }
 
 export interface State extends DataElement {
@@ -78,6 +82,7 @@ export const initialState: State = {
         'veientilarbeid.rydding.skjulAAPRad': false,
         'veientilarbeid.visbrukerundersokelse': false,
         'veientilarbeid.14a-intro.ikke-standard': false,
+        'veientilarbeid.meldekort-intro.situasjonsbestemt': false,
     },
     status: STATUS.NOT_STARTED,
 };

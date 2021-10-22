@@ -1,16 +1,22 @@
-import { Formidlingsgruppe, Servicegruppe } from '../../ducks/oppfolging';
-import { DinSituasjonSvar, FremtidigSituasjonSvar } from '../../ducks/brukerregistrering';
-import { InnloggingsNiva } from '../../ducks/autentisering';
-import { plussDager } from '../../utils/date-utils';
-import { POAGruppe } from '../../utils/get-poa-group';
-import { EksperimentId } from '../../eksperiment/eksperimenter';
-import { kanVise12UkerEgenvurdering } from './12uker-egenvurdering';
+import { DinSituasjonSvar, FremtidigSituasjonSvar } from '../ducks/brukerregistrering';
+import { InnloggingsNiva } from '../ducks/autentisering';
+import { plussDager } from '../utils/date-utils';
+import { kanViseMeldekortStatus } from './kan-vise-meldekort-status';
+import { Formidlingsgruppe, Servicegruppe } from '../ducks/oppfolging';
 
-const eksperiment: EksperimentId = 'onboarding14a';
-const poagruppeKSS: POAGruppe = 'kss';
-const dpVenter: 'nei' = 'nei';
+// const eksperiment: EksperimentId = 'onboarding14a';
+// const poagruppeKSS: POAGruppe = 'kss';
+// const dpVenter: 'nei' = 'nei';
+
+// meldekortData: Meldekort.Data | null;
+//     brukerInfoData: BrukerInfo.Data;
+//     oppfolgingData: Oppfolging.Data;
+//     registreringData: Brukerregistrering.Data | null;
 
 const grunndata = {
+    meldekortData: {
+        meldekort: [],
+    },
     brukerInfoData: {
         rettighetsgruppe: 'DAGP',
         geografiskTilknytning: '110302',
@@ -60,7 +66,6 @@ const grunndata = {
         'veientilarbeid.meldekort-intro.situasjonsbestemt': false,
     },
     amplitudeData: {
-        gruppe: poagruppeKSS,
         geografiskTilknytning: 'INGEN_VERDI',
         isKSSX: 'nei',
         isKSSK: 'nei',
@@ -83,10 +88,8 @@ const grunndata = {
         erSykmeldtMedArbeidsgiver: 'ukjent',
         dinSituasjon: DinSituasjonSvar.INGEN_VERDI,
         reservasjonKRR: 'ukjent',
-        eksperimenter: [eksperiment],
         dagpengerVedleggEttersendes: 0,
         dagpengerSoknadMellomlagret: 0,
-        dagpengerSoknadVenterPaSvar: dpVenter,
         dagpengerDagerMellomPaabegyntSoknadOgRegistrering: 0,
         dagpengerDagerMellomInnsendtSoknadOgRegistrering: 0,
         dagpengerStatusBeregning: 'INGEN_DATA',
@@ -94,13 +97,40 @@ const grunndata = {
     sistVistFraLocalstorage: 0,
 };
 
-describe('Tester funksjonen kanVise12UkerEgenvurdering', () => {
-    test('returnerer true om alt er satt korrekt', () => {
-        expect(kanVise12UkerEgenvurdering(grunndata)).toBe(true);
+describe('Tester funksjonen kanViseMeldekortStatus', () => {
+    test('NEI hvis ikke har meldekort', () => {
+        const testdata = JSON.parse(JSON.stringify(grunndata));
+        testdata.meldekortData.meldekort = [];
+        expect(kanViseMeldekortStatus(testdata)).toBe(false);
     });
 
-    test('returnerer false om man er registrert i uke 0', () => {
-        const testData = { ...grunndata, amplitudeData: { ...grunndata.amplitudeData, ukerRegistrert: 0 } };
-        expect(kanVise12UkerEgenvurdering(testData)).toBe(false);
+    test('Nei hvis AAP', () => {
+        const testdata = JSON.parse(JSON.stringify(grunndata));
+        testdata.brukerInfoData.rettighetsgruppe = 'AAP';
+        expect(kanViseMeldekortStatus(testdata)).toBe(false);
+    });
+
+    test('NEI hvis ikke bruker Ikke har dagpenger eller arbeidssoker meldekort', () => {
+        const testdata = JSON.parse(JSON.stringify(grunndata));
+        testdata.meldekortData.meldekort = [{ meldegruppe: 'DAGP' }];
+        expect(kanViseMeldekortStatus(testdata)).toBe(true);
+        testdata.meldekortData.meldekort = [{ meldegruppe: 'ARBS' }];
+        expect(kanViseMeldekortStatus(testdata)).toBe(true);
+        testdata.meldekortData.meldekort = [{ meldegruppe: 'INGEN_VERDI' }];
+        expect(kanViseMeldekortStatus(testdata)).toBe(false);
+    });
+
+    test('NEI hvis ikke bruker ikke er standard innsatsgruppe', () => {
+        const testdata = JSON.parse(JSON.stringify(grunndata));
+        testdata.oppfolgingData.servicegruppe = 'BKART';
+        expect(kanViseMeldekortStatus(testdata)).toBe(false);
+    });
+
+    test('JA hvis har meldekort, ikke "AAP", "DAGP" eller "ARBS", er standard innsatsgruppe', () => {
+        const testdata = JSON.parse(JSON.stringify(grunndata));
+        testdata.meldekortData.meldekort = [{ meldegruppe: 'DAGP' }];
+        testdata.brukerInfoData.rettighetsgruppe = 'DAGP';
+
+        expect(kanViseMeldekortStatus(testdata)).toBe(true);
     });
 });

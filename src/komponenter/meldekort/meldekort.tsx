@@ -9,7 +9,7 @@ import * as Oppfolging from '../../ducks/oppfolging';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
-import { kanViseMeldekortStatus } from '../meldekortintro/meldekort-intro';
+import { kanViseMeldekortStatus } from '../../lib/kan-vise-meldekort-status';
 
 const Meldekort = () => {
     const amplitudeData = useContext(AmplitudeContext);
