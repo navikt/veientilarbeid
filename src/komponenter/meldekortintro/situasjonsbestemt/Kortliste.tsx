@@ -31,7 +31,7 @@ function Kort2() {
                 <Systemtittel>Introduksjon til meldekort</Systemtittel>
                 <Undertekst className={'blokk-xs'}>2 av 3</Undertekst>
 
-                <Normaltekst className={'blokk-m'}>
+                <Normaltekst className={'blokk-xs'}>
                     Lar du være å sende inn meldekort, tolker NAV det som at du ikke ønsker å stå registrert som
                     arbeidssøker.
                 </Normaltekst>
