@@ -126,6 +126,17 @@ describe('Tester funksjonen kanViseMeldekortStatus', () => {
         expect(kanViseMeldekortStatus(testdata)).toBe(false);
     });
 
+    test('JA hvis bruker er situasjonsbestemt innsatsgruppe og toggle', () => {
+        const testdata = JSON.parse(JSON.stringify(grunndata));
+        testdata.meldekortData.meldekort = [{ meldegruppe: 'ARBS' }];
+        testdata.oppfolgingData.servicegruppe = 'BFORM';
+        testdata.featuretoggleData = {
+            ...testdata.featuretoggleData,
+            'veientilarbeid.meldekort-intro.situasjonsbestemt': true,
+        };
+        expect(kanViseMeldekortStatus(testdata)).toBe(true);
+    });
+
     test('JA hvis har meldekort, ikke "AAP", "DAGP" eller "ARBS", er standard innsatsgruppe', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
         testdata.meldekortData.meldekort = [{ meldegruppe: 'DAGP' }];

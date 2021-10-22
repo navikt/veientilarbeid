@@ -3,18 +3,22 @@ import * as Brukerregistrering from '../ducks/brukerregistrering';
 import * as Meldekort from '../ducks/meldekort';
 import * as Oppfolging from '../ducks/oppfolging';
 import * as BrukerInfo from '../ducks/bruker-info';
+import * as FeatureToggles from '../ducks/feature-toggles';
 import erStandardInnsatsgruppe from './er-standard-innsatsgruppe';
+import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from './er-situasjonsbestemt-innsatsgruppe';
 
 export function kanViseMeldekortStatus({
     meldekortData,
     brukerInfoData,
     oppfolgingData,
     registreringData,
+    featuretoggleData,
 }: {
     meldekortData: Meldekort.Data | null;
     brukerInfoData: BrukerInfo.Data;
     oppfolgingData: Oppfolging.Data;
     registreringData: Brukerregistrering.Data | null;
+    featuretoggleData: FeatureToggles.Data;
 }): boolean {
     const meldekortliste = meldekortData?.meldekort ?? [];
     const harMeldekort = meldekortliste.length > 0;
@@ -25,11 +29,20 @@ export function kanViseMeldekortStatus({
         meldekortliste.filter((meldekort) => ['DAGP', 'ARBS'].includes(meldekort.meldegruppe ?? 'NULL')).length > 0;
 
     const brukerregistreringData = registreringData?.registrering ?? null;
+    const erSituasjonsbestemtInnsatsgruppe = sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe({
+        brukerregistreringData,
+        oppfolgingData,
+    });
+    const onboardingForSituasjonsbestemtToggle = featuretoggleData['veientilarbeid.meldekort-intro.situasjonsbestemt'];
+
+    const skalViseOnboardingForSituasjonsbestemt =
+        onboardingForSituasjonsbestemtToggle && erSituasjonsbestemtInnsatsgruppe;
 
     const kanViseKomponent =
         !erAAP &&
         harDagpengerEllerArbeidssokerMeldekort &&
-        erStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData }) &&
+        (erStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData }) ||
+            skalViseOnboardingForSituasjonsbestemt) &&
         !oppfolgingData.kanReaktiveres;
 
     return kanViseKomponent;

@@ -9,6 +9,7 @@ import * as Oppfolging from '../../ducks/oppfolging';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { BrukerInfoContext } from '../../ducks/bruker-info';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
+import { FeaturetoggleContext } from '../../ducks/feature-toggles';
 import { kanViseMeldekortStatus } from '../../lib/kan-vise-meldekort-status';
 
 const Meldekort = () => {
@@ -17,6 +18,7 @@ const Meldekort = () => {
     const { data: registreringData } = useContext(Brukerregistrering.BrukerregistreringContext);
     const { data: oppfolgingData } = useContext(Oppfolging.OppfolgingContext);
     const { data: brukerInfoData } = useContext(BrukerInfoContext);
+    const { data: featuretoggleData } = useContext(FeaturetoggleContext);
     const { underOppfolging } = useContext(UnderOppfolgingContext).data;
     const { erSykmeldtMedArbeidsgiver } = brukerInfoData;
     const serMeldekortIntro = kanViseMeldekortStatus({
@@ -24,6 +26,7 @@ const Meldekort = () => {
         brukerInfoData,
         oppfolgingData,
         registreringData,
+        featuretoggleData,
     });
 
     const kanViseKomponent = !erSykmeldtMedArbeidsgiver && underOppfolging && !serMeldekortIntro;

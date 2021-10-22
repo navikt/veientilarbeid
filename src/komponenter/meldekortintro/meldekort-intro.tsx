@@ -136,15 +136,6 @@ function MeldekortIntroWrapper() {
     const hoppOverPreState = harSettIntro || tvingVisningAvIntro;
 
     const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
-    const brukerregistreringData = registreringData?.registrering ?? null;
-
-    const onboardingForSituasjonsbestemtToggle = featuretoggleData['veientilarbeid.meldekort-intro.situasjonsbestemt'];
-    const erSituasjonsbestemtInnsatsgruppe = sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe({
-        brukerregistreringData,
-        oppfolgingData,
-    });
-    const skalViseOnboardingForSituasjonsbestemt =
-        onboardingForSituasjonsbestemtToggle && erSituasjonsbestemtInnsatsgruppe;
 
     useEffect(() => {
         if (harSettIntro) {
@@ -155,8 +146,7 @@ function MeldekortIntroWrapper() {
     }, [harSettIntro]);
 
     if (
-        !kanViseMeldekortStatus({ meldekortData, oppfolgingData, brukerInfoData, registreringData }) &&
-        !skalViseOnboardingForSituasjonsbestemt
+        !kanViseMeldekortStatus({ meldekortData, oppfolgingData, brukerInfoData, registreringData, featuretoggleData })
     ) {
         fjernFraBrowserStorage(MELDEKORT_INTRO_KEY);
         return null;
