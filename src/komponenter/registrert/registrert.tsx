@@ -14,7 +14,7 @@ import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import { FeaturetoggleContext } from '../../ducks/feature-toggles';
-import Onboarding14A from '../14a-intro/Onboarding14a';
+import Onboarding14A from '../onboarding14a/Onboarding14a';
 import KvitteringWrapper from '../kvitteringer/kvittering-wrapper';
 import InViewport from '../in-viewport/in-viewport';
 import Permittert from './permittert';
