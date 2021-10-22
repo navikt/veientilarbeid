@@ -83,7 +83,6 @@
         "@testing-library/react": "12.1.2",
         "@testing-library/user-event": "13.5.0",
         "@types/amplitude-js": "8.0.1",
-        "@types/classnames": "2.3.1",
         "@types/jest": "27.0.2",
         "@types/merge-deep": "3.0.0",
         "@types/node": "16.11.2",
