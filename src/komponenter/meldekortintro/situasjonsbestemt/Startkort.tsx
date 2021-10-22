@@ -11,7 +11,7 @@ function Startkort(props: Props) {
         <PreState
             tittel={'Det viktigste du trenger å vite om meldekort'}
             lesetid={'2'}
-            viewportTekst="Viser meldekort pre-state i viewPort"
+            viewportTekst="Viser meldekortintro pre-state for situasjonsbestemt i viewPort"
             startIntroCB={startIntroCB}
             hoppOverIntroCB={hoppOverIntroCB}
         />
