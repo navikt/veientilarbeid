@@ -6,6 +6,62 @@
     background-color: white;
 }
 
+.ny_registrerings-container {
+    // border: 1px solid #5690a2;
+    // border-radius: 0.25rem;
+    background-color: none;
+
+    .intro-wrapper {
+        background: none;
+        margin: 0;
+
+        .fjorten-A-intro-omslutning,
+        .meldekort-intro-omslutning {
+            margin-top: 8px;
+            margin-left: 8px;
+            &:first-child {
+                margin-left: 0;
+            }
+            .panel {
+                .overall-wrapper {
+                    background-color: white;
+                    border-radius: 8px;
+
+                    padding: 1rem 0;
+                    .lenkepanel__innhold {
+                        margin: 0 1rem;
+                    }
+                    h1,
+                    h2,
+                    p {
+                        padding: 0 1rem;
+                    }
+                    .sluttkort {
+                        >.fjorten-A-send-inn-kort {
+                            margin: 0 1rem 2rem 1rem;
+                        }
+
+                        .kortwrapper {
+                            padding: 1rem 0;
+                            .lenke {
+                                margin: none;
+                            }
+                            .kortinnhold {
+                                .kortflate {
+                                    .typo-systemtittel,
+                                    .typo-undertekst {
+                                        border-left: solid 2px #2c6dc0;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 .registrering-svar,
 .registrering-svar:hover,
 .registrering-svar:active {
@@ -32,7 +88,7 @@ registrering-info:hover {
     flex-direction: column;
     border-top: 1px solid @navGra20;
     background: #d8f9ff47;
-    margin: 0
+    margin: 0;
 }
 
 .permittert-blokk {
@@ -41,9 +97,8 @@ registrering-info:hover {
 }
 @media (min-width: @screen-md-min) {
     .intro-wrapper {
-       flex-direction: row;
-        margin-right: .25rem;
-        margin-left: .25rem;
+        flex-direction: row;
+        margin-right: 0.25rem;
+        margin-left: 0.25rem;
     }
-
 }

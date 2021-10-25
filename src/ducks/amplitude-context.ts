@@ -15,6 +15,7 @@ export const initialState: AmplitudeData = {
     kanReaktiveres: 'nei',
     formidlingsgruppe: 'INGEN_VERDI',
     servicegruppe: 'IVURD',
+    foreslattInnsatsgruppe: 'INGEN_VERDI',
     rettighetsgruppe: 'INGEN_VERDI',
     meldegruppe: 'INGEN_VERDI',
     registreringType: 'INGEN_VERDI',

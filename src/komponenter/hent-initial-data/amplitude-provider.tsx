@@ -166,6 +166,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         kanReaktiveres: kanReaktiveres ? 'ja' : 'nei',
         formidlingsgruppe: formidlingsgruppeOrIngenVerdi,
         servicegruppe: servicegruppeOrIVURD,
+        foreslattInnsatsgruppe: foreslattInnsatsgruppeOrIngenVerdi,
         underOppfolging: underOppfolging ? 'ja' : 'nei',
         rettighetsgruppe: rettighetsgruppe || 'INGEN_VERDI',
         meldegruppe: meldegruppe || 'INGEN_VERDI',
