@@ -19,7 +19,7 @@ function Onboarding14a(): JSX.Element | null {
         oppfolgingData,
     });
 
-    const ikkeStandardToggle = featuretoggleData['veientilarbeid.14a-intro.ikke-standard'];
+    const ikkeStandardToggle = featuretoggleData['veientilarbeid.onboarding14a.situasjonsbestemt'];
 
     const kanViseSituasjonsbestemt = erSituasjonsbestemtInnsatsgruppe && ikkeStandardToggle;
     const kanViseKomponent = erStandardInnsatsgruppe || kanViseSituasjonsbestemt;

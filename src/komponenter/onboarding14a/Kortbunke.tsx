@@ -159,7 +159,7 @@ function Intro14AWrapper(props: IntroProps) {
     }, [harSettIntro]);
 
     const modalToggle = featuretoggleData['veientilarbeid.modal'];
-    const ikkeStandardToggle = featuretoggleData['veientilarbeid.14a-intro.ikke-standard'];
+    const ikkeStandardToggle = featuretoggleData['veientilarbeid.onboarding14a.situasjonsbestemt'];
 
     const skalViseKssKort = kanVise14AStatus({
         amplitudeData,

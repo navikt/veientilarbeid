@@ -43,7 +43,7 @@ describe('tester onboarding komponenten for 14a-intro', () => {
         const { container } = render(<Intro14AWrapper />, {
             wrapper: contextProviders({
                 ...providerProps,
-                featureToggle: { 'veientilarbeid.14a-intro.ikke-standard': false },
+                featureToggle: { 'veientilarbeid.onboarding14a.situasjonsbestemt': false },
                 oppfolging: {
                     formidlingsgruppe: Formidlingsgruppe.IARBS,
                     servicegruppe: Servicegruppe.VURDI,
@@ -58,7 +58,7 @@ describe('tester onboarding komponenten for 14a-intro', () => {
         const { container } = render(<Intro14AWrapper />, {
             wrapper: contextProviders({
                 ...providerProps,
-                featureToggle: { 'veientilarbeid.14a-intro.ikke-standard': true },
+                featureToggle: { 'veientilarbeid.onboarding14a.situasjonsbestemt': true },
                 oppfolging: {
                     formidlingsgruppe: Formidlingsgruppe.IARBS,
                     servicegruppe: Servicegruppe.VURDI,

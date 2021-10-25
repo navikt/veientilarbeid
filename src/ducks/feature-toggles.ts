@@ -13,7 +13,7 @@ export enum FeatureToggles {
     RYDDING_SKJUL_OKONOMI_BOKS = 'veientilarbeid.rydding.skjulOkonomiBoks',
     RYDDING_SKJUL_AAP_RAD = 'veientilarbeid.rydding.skjulAAPRad',
     BRUKERUNDERSOKELSE_VIS = 'veientilarbeid.visbrukerundersokelse',
-    INTRO_14A_IKKE_STANDARD = 'veientilarbeid.14a-intro.ikke-standard',
+    INTRO_14A_IKKE_STANDARD = 'veientilarbeid.onboarding14a.situasjonsbestemt',
     INTRO_MELDEKORT_SITUASJONSBESTEMT = 'veientilarbeid.meldekort-intro.situasjonsbestemt',
 }
 
@@ -60,7 +60,7 @@ export interface Data {
     'veientilarbeid.rydding.skjulOkonomiBoks': boolean;
     'veientilarbeid.rydding.skjulAAPRad': boolean;
     'veientilarbeid.visbrukerundersokelse': boolean;
-    'veientilarbeid.14a-intro.ikke-standard': boolean;
+    'veientilarbeid.onboarding14a.situasjonsbestemt': boolean;
     'veientilarbeid.meldekort-intro.situasjonsbestemt': boolean;
 }
 
@@ -81,7 +81,7 @@ export const initialState: State = {
         'veientilarbeid.rydding.skjulOkonomiBoks': false,
         'veientilarbeid.rydding.skjulAAPRad': false,
         'veientilarbeid.visbrukerundersokelse': false,
-        'veientilarbeid.14a-intro.ikke-standard': false,
+        'veientilarbeid.onboarding14a.situasjonsbestemt': false,
         'veientilarbeid.meldekort-intro.situasjonsbestemt': false,
     },
     status: STATUS.NOT_STARTED,
