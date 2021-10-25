@@ -1,5 +1,5 @@
 import { Formidlingsgruppe, Servicegruppe } from '../../ducks/oppfolging';
-import { DinSituasjonSvar, FremtidigSituasjonSvar } from '../../ducks/brukerregistrering';
+import { DinSituasjonSvar, FremtidigSituasjonSvar, ForeslattInnsatsgruppe } from '../../ducks/brukerregistrering';
 import { InnloggingsNiva } from '../../ducks/autentisering';
 import { plussDager } from '../../utils/date-utils';
 import { POAGruppe } from '../../utils/get-poa-group';
@@ -72,6 +72,7 @@ const grunndata = {
         kanReaktiveres: 'nei',
         formidlingsgruppe: 'INGEN_VERDI',
         servicegruppe: 'IVURD',
+        foreslattInnsatsgruppe: ForeslattInnsatsgruppe.STANDARD_INNSATS,
         rettighetsgruppe: 'INGEN_VERDI',
         meldegruppe: 'INGEN_VERDI',
         registreringType: 'INGEN_VERDI',
