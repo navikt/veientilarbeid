@@ -68,7 +68,6 @@ const Registrert = () => {
     const { opprettetDato, manueltRegistrertAv, besvarelse, teksterForBesvarelse } = registrering;
     const showOpplysninger = opprettetDato && besvarelse && teksterForBesvarelse;
 
-    const nyStylingToggle = featuretoggleData['veientilarbeid.oppdatert-styling'];
     const visRegistrertSomPermittert = featureToggleErAktivert && besvarelse.dinSituasjon === 'ER_PERMITTERT';
 
     const tittel = visRegistrertSomPermittert
@@ -83,10 +82,7 @@ const Registrert = () => {
     };
 
     return (
-        <div
-            id="registrering-status-container"
-            className={`${nyStylingToggle ? 'ny_registrerings-container' : 'registrerings-container'} blokk-s`}
-        >
+        <div id="registrering-status-container" className={'registrerings-container blokk-s'}>
             <AlertStripeInfo className={showOpplysninger ? 'registrering-info' : ''}>
                 <Element>{tittel}</Element>
             </AlertStripeInfo>

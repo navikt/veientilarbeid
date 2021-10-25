@@ -58,7 +58,6 @@ const grunndata = {
         'veientilarbeid.visbrukerundersokelse': false,
         'veientilarbeid.14a-intro.ikke-standard': false,
         'veientilarbeid.meldekort-intro.situasjonsbestemt': false,
-        'veientilarbeid.oppdatert-styling': false,
     },
     amplitudeData: {
         gruppe: poagruppeKSS,
