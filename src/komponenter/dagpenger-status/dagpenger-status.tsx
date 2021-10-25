@@ -18,7 +18,7 @@ import prettyPrintDato from '../../utils/pretty-print-dato';
 import InViewport from '../in-viewport/in-viewport';
 import ErRendret from '../er-rendret/er-rendret';
 import { saksoversikt_url } from '../../url';
-import { kanVise14AStatus } from '../../lib/kan-vise-14a';
+import { kanViseOnboarding14A } from '../../lib/kan-vise-onboarding14a';
 
 const virkedager = require('@alheimsins/virkedager');
 
@@ -73,7 +73,13 @@ function DagpengerStatus() {
 
     const kanViseKomponent =
         (featuretoggleDagpengerStatusAktivert &&
-            kanVise14AStatus({ amplitudeData, featuretoggleData, oppfolgingData, brukerInfoData, registreringData })) ||
+            kanViseOnboarding14A({
+                amplitudeData,
+                featuretoggleData,
+                oppfolgingData,
+                brukerInfoData,
+                registreringData,
+            })) ||
         (featuretoggleDPStatusForAlleAktivert &&
             kanViseDpStatus({ amplitudeData, oppfolgingData, brukerInfoData, registreringData }));
 

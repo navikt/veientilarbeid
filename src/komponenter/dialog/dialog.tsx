@@ -14,7 +14,7 @@ import { FeaturetoggleContext } from '../../ducks/feature-toggles';
 import * as BrukerInfo from '../../ducks/bruker-info';
 import { OppfolgingContext } from '../../ducks/oppfolging';
 import * as Brukerregistrering from '../../ducks/brukerregistrering';
-import { kanVise14AStatus } from '../../lib/kan-vise-14a';
+import { kanViseOnboarding14A } from '../../lib/kan-vise-onboarding14a';
 
 const Dialog = () => {
     const amplitudeData = useContext(AmplitudeContext);
@@ -24,7 +24,7 @@ const Dialog = () => {
     const { data: registreringData } = useContext(Brukerregistrering.BrukerregistreringContext);
     const { data: oppfolgingData } = useContext(OppfolgingContext);
     const { data: brukerInfoData } = useContext(BrukerInfo.BrukerInfoContext);
-    const ser14aStatus = kanVise14AStatus({
+    const ser14aStatus = kanViseOnboarding14A({
         amplitudeData,
         featuretoggleData,
         oppfolgingData,

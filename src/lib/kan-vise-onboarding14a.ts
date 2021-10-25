@@ -5,7 +5,7 @@ import * as BrukerInfo from '../ducks/bruker-info';
 import { AmplitudeData } from '../metrics/amplitude-utils';
 import sjekkOmBrukerErStandardInnsatsgruppe from './er-standard-innsatsgruppe';
 
-export function kanVise14AStatus({
+export function kanViseOnboarding14A({
     brukerInfoData,
     oppfolgingData,
     registreringData,

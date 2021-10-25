@@ -94,7 +94,7 @@ const grunndata = {
     sistVistFraLocalstorage: 0,
 };
 
-describe('Tester funksjonen kanVise14AStatus', () => {
+describe('Tester funksjonen erKSSBruker', () => {
     test('Nei hvis AAP', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
         testdata.brukerInfoData.rettighetsgruppe = 'AAP';

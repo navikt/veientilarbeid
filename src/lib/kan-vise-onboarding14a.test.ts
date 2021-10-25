@@ -3,7 +3,7 @@ import { InnloggingsNiva } from '../ducks/autentisering';
 import { plussDager } from '../utils/date-utils';
 import { POAGruppe } from '../utils/get-poa-group';
 import { EksperimentId } from '../eksperiment/eksperimenter';
-import { kanVise14AStatus } from './kan-vise-14a';
+import { kanViseOnboarding14A } from './kan-vise-onboarding14a';
 import { Formidlingsgruppe, Servicegruppe } from '../ducks/oppfolging';
 
 const eksperiment: EksperimentId = 'onboarding14a';
@@ -94,41 +94,41 @@ const grunndata = {
     sistVistFraLocalstorage: 0,
 };
 
-describe('Tester funksjonen kanVise14AStatus', () => {
+describe('Tester funksjonen kanViseOnboarding14A', () => {
     test('Nei hvis AAP', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
         testdata.brukerInfoData.rettighetsgruppe = 'AAP';
-        expect(kanVise14AStatus(testdata)).toBe(false);
+        expect(kanViseOnboarding14A(testdata)).toBe(false);
     });
 
     test('NEI hvis ikke eksperiment', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
         testdata.amplitudeData.eksperimenter = [];
-        expect(kanVise14AStatus(testdata)).toBe(false);
+        expect(kanViseOnboarding14A(testdata)).toBe(false);
     });
 
     test('NEI hvis ikke innefor aldersgruppe', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
         testdata.brukerInfoData.alder = 56;
-        expect(kanVise14AStatus(testdata)).toBe(false);
+        expect(kanViseOnboarding14A(testdata)).toBe(false);
     });
 
     test('NEI hvis ikke featureToggle', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
         testdata.featuretoggleData['veientilarbeid.14a-intro'] = false;
-        expect(kanVise14AStatus(testdata)).toBe(false);
+        expect(kanViseOnboarding14A(testdata)).toBe(false);
     });
 
     test('NEI hvis ikke bruker kan reaktveres', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
         testdata.oppfolgingData.kanReaktiveres = true;
-        expect(kanVise14AStatus(testdata)).toBe(false);
+        expect(kanViseOnboarding14A(testdata)).toBe(false);
     });
 
     test('NEI hvis ikke bruker ikke er standard innsatsgruppe', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
         testdata.oppfolgingData.servicegruppe = 'BKART';
-        expect(kanVise14AStatus(testdata)).toBe(false);
+        expect(kanViseOnboarding14A(testdata)).toBe(false);
     });
 
     test('JA hvis ikke bruker skal se eksperiment, er innefor aldersgruppe, har featuretoggle, ikke kan reaktivers og er standard innsatsgruppe', () => {
@@ -140,6 +140,6 @@ describe('Tester funksjonen kanVise14AStatus', () => {
         testdata.oppfolgingData.servicegruppe = 'IKVAL';
         testdata.oppfolgingData.formidlingsgruppe = 'ARBS';
 
-        expect(kanVise14AStatus(testdata)).toBe(true);
+        expect(kanViseOnboarding14A(testdata)).toBe(true);
     });
 });
