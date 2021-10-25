@@ -7,7 +7,7 @@ import { loggAktivitet } from '../../metrics/metrics';
 import Opplysninger from '../innsyn/registreringsopplysninger';
 import DagpengerStatus from '../dagpenger-status/dagpenger-status';
 import './registrert.less';
-import MeldekortIntroWrapper from '../meldekortintro/meldekort-intro';
+import MeldekortIntroWrapper from '../onboardingMeldekort/meldekort-intro';
 import { BrukerregistreringContext } from '../../ducks/brukerregistrering';
 import { OppfolgingContext } from '../../ducks/oppfolging';
 import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
