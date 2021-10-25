@@ -19,8 +19,7 @@ import { kanVise12UkerEgenvurdering } from '../12uker-egenvurdering/12uker-egenv
 import EgenVurdering from '../12uker-egenvurdering/12uker-egenvurdering';
 import { KssStartkort, KssKortliste, KssSluttkort } from './kss';
 import { StandardStartkort, StandardKortliste, StandardSluttkort } from './standardinnsats';
-// import { IkkeStandardStartkort, IkkeStandardKortliste, IkkeStandardSluttkort } from './ikke-standard';
-import { kanVise14AStatus } from '../../lib/kan-vise-14a';
+import { erKSSBruker } from '../../lib/er-kss-bruker';
 
 const INTRO_KEY_14A = '14a-intro';
 const INTRO_KEY_12UKER = '12uker-egenvurdering';
@@ -161,7 +160,7 @@ function Intro14AWrapper(props: IntroProps) {
     const modalToggle = featuretoggleData['veientilarbeid.modal'];
     const ikkeStandardToggle = featuretoggleData['veientilarbeid.onboarding14a.situasjonsbestemt'];
 
-    const skalViseKssKort = kanVise14AStatus({
+    const skalViseKssKort = erKSSBruker({
         amplitudeData,
         featuretoggleData,
         oppfolgingData,
