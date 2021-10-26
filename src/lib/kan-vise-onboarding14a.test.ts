@@ -1,14 +1,7 @@
 import { DinSituasjonSvar, FremtidigSituasjonSvar } from '../ducks/brukerregistrering';
-import { InnloggingsNiva } from '../ducks/autentisering';
 import { plussDager } from '../utils/date-utils';
-import { POAGruppe } from '../utils/get-poa-group';
-import { EksperimentId } from '../eksperiment/eksperimenter';
 import { kanViseOnboarding14A } from './kan-vise-onboarding14a';
 import { Formidlingsgruppe, Servicegruppe } from '../ducks/oppfolging';
-
-const eksperiment: EksperimentId = 'onboarding14a';
-const poagruppeKSS: POAGruppe = 'kss';
-const dpVenter: 'nei' = 'nei';
 
 const grunndata = {
     brukerInfoData: {
@@ -59,38 +52,6 @@ const grunndata = {
         'veientilarbeid.onboarding14a.situasjonsbestemt': false,
         'veientilarbeid.meldekort-intro.situasjonsbestemt': false,
     },
-    amplitudeData: {
-        gruppe: poagruppeKSS,
-        geografiskTilknytning: 'INGEN_VERDI',
-        isKSSX: 'nei',
-        isKSSK: 'nei',
-        erSamarbeidskontor: 'nei',
-        ukerRegistrert: 11,
-        dagerRegistrert: 78,
-        nivaa: InnloggingsNiva.LEVEL_4,
-        kanReaktiveres: 'nei',
-        formidlingsgruppe: 'INGEN_VERDI',
-        servicegruppe: 'IVURD',
-        rettighetsgruppe: 'INGEN_VERDI',
-        meldegruppe: 'INGEN_VERDI',
-        registreringType: 'INGEN_VERDI',
-        underOppfolging: 'nei',
-        antallDagerEtterFastsattMeldingsdag: 'ikke meldekortbruker',
-        antallMeldekortKlareForLevering: 0,
-        gitVersion: 'INGEN_VERDI',
-        buildTimestamp: new Date().toISOString(),
-        antallSynligeInfomeldinger: 0,
-        erSykmeldtMedArbeidsgiver: 'ukjent',
-        dinSituasjon: DinSituasjonSvar.INGEN_VERDI,
-        reservasjonKRR: 'ukjent',
-        eksperimenter: [eksperiment],
-        dagpengerVedleggEttersendes: 0,
-        dagpengerSoknadMellomlagret: 0,
-        dagpengerSoknadVenterPaSvar: dpVenter,
-        dagpengerDagerMellomPaabegyntSoknadOgRegistrering: 0,
-        dagpengerDagerMellomInnsendtSoknadOgRegistrering: 0,
-        dagpengerStatusBeregning: 'INGEN_DATA',
-    },
     sistVistFraLocalstorage: 0,
 };
 
@@ -101,21 +62,17 @@ describe('Tester funksjonen kanViseOnboarding14A', () => {
         expect(kanViseOnboarding14A(testdata)).toBe(false);
     });
 
-    test('NEI hvis ikke eksperiment', () => {
+    test('Ja hvis featureToggle og situasjonsbestemt', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
-        testdata.amplitudeData.eksperimenter = [];
-        expect(kanViseOnboarding14A(testdata)).toBe(false);
+        testdata.featuretoggleData['veientilarbeid.onboarding14a.situasjonsbestemt'] = true;
+        testdata.oppfolgingData.servicegruppe = 'BFORM';
+        expect(kanViseOnboarding14A(testdata)).toBe(true);
     });
 
-    test('NEI hvis ikke innefor aldersgruppe', () => {
+    test('NEI hvis ikke featureToggle og situasjonsbestemt', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
-        testdata.brukerInfoData.alder = 56;
-        expect(kanViseOnboarding14A(testdata)).toBe(false);
-    });
-
-    test('NEI hvis ikke featureToggle', () => {
-        const testdata = JSON.parse(JSON.stringify(grunndata));
-        testdata.featuretoggleData['veientilarbeid.14a-intro'] = false;
+        testdata.featuretoggleData['veientilarbeid.onboarding14a.situasjonsbestemt'] = false;
+        testdata.oppfolgingData.servicegruppe = 'BFORM';
         expect(kanViseOnboarding14A(testdata)).toBe(false);
     });
 
@@ -131,15 +88,11 @@ describe('Tester funksjonen kanViseOnboarding14A', () => {
         expect(kanViseOnboarding14A(testdata)).toBe(false);
     });
 
-    test('JA hvis ikke bruker skal se eksperiment, er innefor aldersgruppe, har featuretoggle, ikke kan reaktivers og er standard innsatsgruppe', () => {
+    test('JA hvis ikke kan reaktivers og er standard innsatsgruppe', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
-        testdata.amplitudeData.eksperimenter = [eksperiment];
-        testdata.brukerInfoData.alder = 45;
-        testdata.featuretoggleData['veientilarbeid.14a-intro'] = true;
         testdata.oppfolgingData.kanReaktiveres = false;
         testdata.oppfolgingData.servicegruppe = 'IKVAL';
         testdata.oppfolgingData.formidlingsgruppe = 'ARBS';
-
         expect(kanViseOnboarding14A(testdata)).toBe(true);
     });
 });

@@ -2,35 +2,29 @@ import { Data as FeaturetoggleData } from '../ducks/feature-toggles';
 import * as Brukerregistrering from '../ducks/brukerregistrering';
 import * as Oppfolging from '../ducks/oppfolging';
 import * as BrukerInfo from '../ducks/bruker-info';
-import { AmplitudeData } from '../metrics/amplitude-utils';
 import sjekkOmBrukerErStandardInnsatsgruppe from './er-standard-innsatsgruppe';
+import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from './er-situasjonsbestemt-innsatsgruppe';
 
 export function kanViseOnboarding14A({
     brukerInfoData,
     oppfolgingData,
     registreringData,
-    amplitudeData,
     featuretoggleData,
 }: {
     brukerInfoData: BrukerInfo.Data;
     oppfolgingData: Oppfolging.Data;
     registreringData: Brukerregistrering.Data | null;
-    amplitudeData: AmplitudeData;
     featuretoggleData: FeaturetoggleData;
 }): boolean {
-    const skalSeEksperiment = amplitudeData.eksperimenter.includes('onboarding14a');
     const erAAP = brukerInfoData.rettighetsgruppe === 'AAP';
     const brukerregistreringData = registreringData?.registrering ?? null;
-    const featuretoggleAktivert = featuretoggleData && featuretoggleData['veientilarbeid.14a-intro'];
+    const erSituasjonsbestemtInnsatsgruppe = sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe({
+        brukerregistreringData,
+        oppfolgingData,
+    });
+    const visOnboardingForSituasjonsbestemtToggle = featuretoggleData['veientilarbeid.onboarding14a.situasjonsbestemt'];
+    const kanViseSituasjonsbestemt = erSituasjonsbestemtInnsatsgruppe && visOnboardingForSituasjonsbestemtToggle;
+    const erStandardInnsatsgruppe = sjekkOmBrukerErStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData });
 
-    const aldersgruppeUtenForsterketInnsats = brukerInfoData.alder >= 30 && brukerInfoData.alder <= 55;
-
-    return (
-        featuretoggleAktivert &&
-        aldersgruppeUtenForsterketInnsats &&
-        !erAAP &&
-        skalSeEksperiment &&
-        sjekkOmBrukerErStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData }) &&
-        !oppfolgingData.kanReaktiveres
-    );
+    return !erAAP && (erStandardInnsatsgruppe || kanViseSituasjonsbestemt) && !oppfolgingData.kanReaktiveres;
 }

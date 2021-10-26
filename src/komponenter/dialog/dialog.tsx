@@ -25,7 +25,6 @@ const Dialog = () => {
     const { data: oppfolgingData } = useContext(OppfolgingContext);
     const { data: brukerInfoData } = useContext(BrukerInfo.BrukerInfoContext);
     const ser14aStatus = kanViseOnboarding14A({
-        amplitudeData,
         featuretoggleData,
         oppfolgingData,
         brukerInfoData,
