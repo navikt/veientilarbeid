@@ -12,7 +12,7 @@ export enum FeatureToggles {
     RYDDING_SKJUL_OKONOMI_BOKS = 'veientilarbeid.rydding.skjulOkonomiBoks',
     RYDDING_SKJUL_AAP_RAD = 'veientilarbeid.rydding.skjulAAPRad',
     BRUKERUNDERSOKELSE_VIS = 'veientilarbeid.visbrukerundersokelse',
-    INTRO_14A_IKKE_STANDARD = 'veientilarbeid.onboarding14a.situasjonsbestemt',
+    INTRO_14A_SITUASJONSBESTEMT = 'veientilarbeid.onboarding14a.situasjonsbestemt',
     INTRO_MELDEKORT_SITUASJONSBESTEMT = 'veientilarbeid.meldekort-intro.situasjonsbestemt',
 }
 
@@ -38,8 +38,8 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Skjul AAP rad';
         case FeatureToggles.BRUKERUNDERSOKELSE_VIS:
             return 'Vis brukerundersøkelse';
-        case FeatureToggles.INTRO_14A_IKKE_STANDARD:
-            return 'Vis 14a for ikke standard';
+        case FeatureToggles.INTRO_14A_SITUASJONSBESTEMT:
+            return 'Vis 14a-intro for situasjonsbestemt';
         case FeatureToggles.INTRO_MELDEKORT_SITUASJONSBESTEMT:
             return 'Vis meldekort-intro for situasjonsbestemt';
     }
