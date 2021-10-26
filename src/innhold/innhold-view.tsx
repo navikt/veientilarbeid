@@ -4,7 +4,6 @@ import AapRad from '../komponenter/aap/aap';
 import Banner from '../komponenter/banner/banner';
 import OkonomiRad from '../komponenter/okonomi/okonomi-rad';
 import ReaktiveringKort from '../komponenter/reaktivering/reaktivering-kort';
-import RessurslenkerJobbsok from '../komponenter/ressurslenker-jobbsok/ressurslenker-jobbsok';
 import Egenvurdering from '../komponenter/egenvurdering/egenvurdering';
 import Motestotte from '../komponenter/motestotte/motestotte';
 import KrrMelding from '../komponenter/krr-melding/krr-melding';
@@ -33,9 +32,6 @@ const InnholdView = () => {
             </Rad>
 
             <AapRad />
-            <Rad>
-                <RessurslenkerJobbsok />
-            </Rad>
             <OkonomiRad />
             <InViewport loggTekst="Bunnen av veien til arbeid i viewport" />
         </>
