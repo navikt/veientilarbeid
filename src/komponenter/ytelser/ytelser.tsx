@@ -81,9 +81,9 @@ function Ytelser() {
                             href="https://www.nav.no/"
                             onClick={() => loggLenkeKlikk('Går til forsiden fra ytelse kort', 'https://www.nav.no/')}
                         >
-                            forsiden{' '}
+                            forsiden
                         </Lenke>
-                        av nav.no
+                        {' '}av nav.no
                     </Normaltekst>
                 </div>
             </Panel>
