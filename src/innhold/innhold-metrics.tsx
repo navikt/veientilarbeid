@@ -14,6 +14,7 @@ import { erMikrofrontend } from '../utils/app-state-utils';
 import { hotjarTrigger } from '../hotjar';
 import { AutentiseringContext, InnloggingsNiva } from '../ducks/autentisering';
 import { UnderOppfolgingContext } from '../ducks/under-oppfolging';
+import sjekkOmBrukerErStandardInnsatsgruppe from '../lib/er-standard-innsatsgruppe';
 
 type Props = {};
 
@@ -27,14 +28,15 @@ export default function InnholdMetrics() {
 }
 
 function Metrics(props: Props) {
-    const { formidlingsgruppe, servicegruppe } = React.useContext(OppfolgingContext).data;
+    const { data: oppfolgingData } = React.useContext(OppfolgingContext);
+    const { formidlingsgruppe, servicegruppe } = oppfolgingData;
     const amplitudeData = React.useContext(AmplitudeContext);
-    const { ukerRegistrert, eksperimenter } = amplitudeData;
-    const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
+    const { ukerRegistrert } = amplitudeData;
+    const registreringData = React.useContext(BrukerregistreringContext).data;
     const { alder } = React.useContext(BrukerInfoContext).data;
 
-    const opprettetRegistreringDatoString = selectOpprettetRegistreringDato(brukerregistreringData);
-    const foreslattInnsatsgruppe = selectForeslattInnsatsgruppe(brukerregistreringData);
+    const opprettetRegistreringDatoString = selectOpprettetRegistreringDato(registreringData);
+    const foreslattInnsatsgruppe = selectForeslattInnsatsgruppe(registreringData);
 
     const opprettetRegistreringDato = opprettetRegistreringDatoString
         ? new Date(opprettetRegistreringDatoString)
@@ -44,7 +46,7 @@ function Metrics(props: Props) {
     const formidlingsgruppeOrIngenVerdi = formidlingsgruppe ? formidlingsgruppe : 'INGEN_VERDI';
     const servicegruppeOrIVURD = servicegruppe ? servicegruppe : 'IVURD';
 
-    const dinSituasjon = selectDinSituasjonSvar(brukerregistreringData);
+    const dinSituasjon = selectDinSituasjonSvar(registreringData);
 
     const POAGruppe = getPoaGroup({
         dinSituasjon,
@@ -57,11 +59,13 @@ function Metrics(props: Props) {
 
     const hotjarEksperiment = () => {
         // Henter data fra amplitude
-        const erInnenfor0til11ukerRegistrert =
-            ukerRegistrert !== 'INGEN_DATO' && [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].includes(ukerRegistrert);
-        const deltarIeksperimentGruppen = eksperimenter.includes('onboarding14a');
-        const erKSS = POAGruppe === 'kss';
-        return erInnenfor0til11ukerRegistrert && deltarIeksperimentGruppen && erKSS;
+        const brukerregistreringData = registreringData?.registrering ?? null;
+        const erInnenfor12ukerRegistrert = ukerRegistrert !== 'INGEN_DATO' && ukerRegistrert <= 12;
+        const erStandardInnsatsgruppe = sjekkOmBrukerErStandardInnsatsgruppe({
+            brukerregistreringData,
+            oppfolgingData,
+        });
+        return erInnenfor12ukerRegistrert && erStandardInnsatsgruppe;
     };
 
     React.useEffect(() => {
