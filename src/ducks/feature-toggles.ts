@@ -9,7 +9,6 @@ export enum FeatureToggles {
     DAGPENGER_STATUS = 'veientilarbeid.dagpenger-status',
     DPSTATUS_FOR_ALLE = 'veientilarbeid.dpstatus-for-alle',
     EGENVURDERING_UKE12 = 'veientilarbeid.egenvurderinguke12',
-    RYDDING_SKJUL_JOBB_BOKS = 'veientilarbeid.rydding.skjulJobbBoks',
     RYDDING_SKJUL_OKONOMI_BOKS = 'veientilarbeid.rydding.skjulOkonomiBoks',
     RYDDING_SKJUL_AAP_RAD = 'veientilarbeid.rydding.skjulAAPRad',
     BRUKERUNDERSOKELSE_VIS = 'veientilarbeid.visbrukerundersokelse',
@@ -33,8 +32,6 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Dagpenger status for alle';
         case FeatureToggles.EGENVURDERING_UKE12:
             return 'Egenvurdering uke 12';
-        case FeatureToggles.RYDDING_SKJUL_JOBB_BOKS:
-            return 'Skjul arbeidsplassen';
         case FeatureToggles.RYDDING_SKJUL_OKONOMI_BOKS:
             return 'Skjul økonomiboks';
         case FeatureToggles.RYDDING_SKJUL_AAP_RAD:
@@ -56,7 +53,6 @@ export interface Data {
     'veientilarbeid.dagpenger-status': boolean;
     'veientilarbeid.dpstatus-for-alle': boolean;
     'veientilarbeid.egenvurderinguke12': boolean;
-    'veientilarbeid.rydding.skjulJobbBoks': boolean;
     'veientilarbeid.rydding.skjulOkonomiBoks': boolean;
     'veientilarbeid.rydding.skjulAAPRad': boolean;
     'veientilarbeid.visbrukerundersokelse': boolean;
@@ -77,7 +73,6 @@ export const initialState: State = {
         'veientilarbeid.dagpenger-status': false,
         'veientilarbeid.dpstatus-for-alle': false,
         'veientilarbeid.egenvurderinguke12': false,
-        'veientilarbeid.rydding.skjulJobbBoks': false,
         'veientilarbeid.rydding.skjulOkonomiBoks': false,
         'veientilarbeid.rydding.skjulAAPRad': false,
         'veientilarbeid.visbrukerundersokelse': false,
