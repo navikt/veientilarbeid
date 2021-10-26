@@ -1,0 +1,31 @@
+@import '../../../node_modules/nav-frontend-core/less/_variabler';
+
+.ytelser-omslutning {
+    margin: 0.5rem 0.25rem;
+    flex: 1;
+    .panel {
+        background: none;
+        border-radius: 0;
+        border: 0 solid @navGra20;
+        border-bottom-width: 1px;
+        height: 100%;
+        padding: 0;
+        .overall-wrapper {
+            background-color: #0000000d;
+            height: 100%;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}
+@media (min-width: @screen-md-min) {
+    .meldekort-intro-omslutning {
+        max-width: 50%;
+        .panel {
+            border-bottom: 0;
+            height: 100%;
+            border-bottom-width: 0;
+        }
+    }
+}
