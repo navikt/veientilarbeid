@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import { createContext, useContext } from 'react';
 import { AmplitudeData } from '../metrics/amplitude-utils';
 import { InnloggingsNiva } from './autentisering';
 import { DinSituasjonSvar } from './brukerregistrering';
@@ -37,4 +37,14 @@ export const initialState: AmplitudeData = {
     dagpengerStatusBeregning: 'INGEN_DATA',
 };
 
-export const AmplitudeContext = createContext<AmplitudeData>(initialState);
+const AmplitudeContext = createContext<AmplitudeData>(initialState);
+
+function useAmplitudeData() {
+    const context = useContext(AmplitudeContext);
+    if (context === undefined) {
+        throw new Error('useAmplitudeData må brukes under en AmplitudeProvider');
+    }
+    return context;
+}
+
+export { AmplitudeContext, useAmplitudeData };
