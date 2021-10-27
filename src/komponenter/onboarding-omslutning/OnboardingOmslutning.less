@@ -1,16 +1,14 @@
 @import '../../../node_modules/nav-frontend-core/less/_variabler';
 
-.ytelser-omslutning {
+.kort-omslutning {
     margin: 0.5rem 0.25rem;
     flex: 1;
-    .panel {
+    .kort-panel {
         background: none;
         border-radius: 0;
-        // border: 0 solid @navGra20;
-        // border-bottom-width: 0;
         height: 100%;
         padding: 0;
-        .overall-wrapper {
+        .kort-innhold{
             background-color: #0000000d;
             height: 100%;
             padding: 1rem;
@@ -19,10 +17,12 @@
         }
     }
 }
+
+
 @media (min-width: @screen-md-min) {
-    .meldekort-intro-omslutning {
+    .kort-omslutning {
         max-width: 50%;
-        .panel {
+        .kort-panel {
             border-bottom: 0;
             height: 100%;
             border-bottom-width: 0;

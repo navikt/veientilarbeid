@@ -8,12 +8,11 @@ import { loggAktivitet } from '../../metrics/metrics';
 
 import sjekkOmBrukerErStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import { erKSSBruker } from '../../lib/er-kss-bruker';
-import Panel from 'nav-frontend-paneler';
 import Lenke from 'nav-frontend-lenker';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
-import './ytelser.less';
+import OnboardingOmslutning from '../onboarding-omslutning/OnboardingOmslutning';
 
 function Ytelser() {
     const { data: registreringData } = useContext(Brukerregistrering.BrukerregistreringContext);
@@ -40,55 +39,45 @@ function Ytelser() {
     if (!kanViseKomponent) return null;
 
     return (
-        <div className={'ytelser-omslutning'}>
+        <OnboardingOmslutning>
             <ErRendret loggTekst="Rendrer ytelser-kort" />
-            <Panel className={'ytelser'}>
-                <div className="overall-wrapper">
-                    <Element tag={'h1'}>SPØRSMÅL OM YTELSER</Element>
-                    <Systemtittel className={'blokk-xs'}>
-                        Har du spørsmål om å søke om eller motta pengestøtte fra NAV?
-                    </Systemtittel>
-                    <Normaltekst className={'blokk-xs'}>
-                        Har du spørsmål om å søke eller motta ytelser fra NAV, må du bruke{' '}
-                        <Lenke
-                            href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
-                            onClick={() =>
-                                loggLenkeKlikk(
-                                    'Går til STO fra ytelser-kort',
-                                    'https://mininnboks.nav.no/sporsmal/skriv/ARBD'
-                                )
-                            }
-                        >
-                            skriv til oss
-                        </Lenke>{' '}
-                        eller{' '}
-                        <Lenke
-                            href="https://www.nav.no/person/kontakt-oss/chat/"
-                            onClick={() =>
-                                loggLenkeKlikk(
-                                    'Går til chat fra ytelser-kort',
-                                    'https://www.nav.no/person/kontakt-oss/chat/'
-                                )
-                            }
-                        >
-                            chat
-                        </Lenke>
-                        .
-                    </Normaltekst>
-                    <Normaltekst className={'blokk-m'}>
-                        Du kan lese om livssituasjoner NAV kan hjelpe med på{' '}
-                        <Lenke
-                            href="https://www.nav.no/"
-                            onClick={() => loggLenkeKlikk('Går til forsiden fra ytelse kort', 'https://www.nav.no/')}
-                        >
-                            forsiden
-                        </Lenke>
-                        {' '}av nav.no
-                    </Normaltekst>
-                </div>
-            </Panel>
+            <Element tag={'h1'}>SPØRSMÅL OM YTELSER</Element>
+            <Systemtittel className={'blokk-xs'}>
+                Har du spørsmål om å søke om eller motta pengestøtte fra NAV?
+            </Systemtittel>
+            <Normaltekst className={'blokk-xs'}>
+                Har du spørsmål om å søke eller motta ytelser fra NAV, må du bruke{' '}
+                <Lenke
+                    href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
+                    onClick={() =>
+                        loggLenkeKlikk('Går til STO fra ytelser-kort', 'https://mininnboks.nav.no/sporsmal/skriv/ARBD')
+                    }
+                >
+                    skriv til oss
+                </Lenke>{' '}
+                eller{' '}
+                <Lenke
+                    href="https://www.nav.no/person/kontakt-oss/chat/"
+                    onClick={() =>
+                        loggLenkeKlikk('Går til chat fra ytelser-kort', 'https://www.nav.no/person/kontakt-oss/chat/')
+                    }
+                >
+                    chat
+                </Lenke>
+                .
+            </Normaltekst>
+            <Normaltekst className={'blokk-m'}>
+                Du kan lese om livssituasjoner NAV kan hjelpe med på{' '}
+                <Lenke
+                    href="https://www.nav.no/"
+                    onClick={() => loggLenkeKlikk('Går til forsiden fra ytelse kort', 'https://www.nav.no/')}
+                >
+                    forsiden
+                </Lenke>
+                {' '}av nav.no
+            </Normaltekst>
             <InViewport loggTekst="Viser ytelser-kort i viewport" />
-        </div>
+        </OnboardingOmslutning>
     );
 }
 
