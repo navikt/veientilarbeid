@@ -86,7 +86,6 @@ export const hentFeatureToggles = () => {
     return Object.values(FeatureToggles).reduce((liste, toggle) => {
         const presetVerdi = presets[toggle];
         liste[toggle] = !hentDemoState(toggle) && presetVerdi ? presetVerdi : hentDemoState(toggle) === 'true';
-        console.log(liste);
         return liste;
     }, {});
 };
