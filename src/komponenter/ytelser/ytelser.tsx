@@ -4,7 +4,7 @@ import * as Oppfolging from '../../ducks/oppfolging';
 import * as BrukerInfo from '../../ducks/bruker-info';
 import { FeaturetoggleContext } from '../../ducks/feature-toggles';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
-import { amplitudeLogger } from '../../metrics/amplitude-utils';
+import { loggAktivitet } from '../../metrics/metrics';
 
 import sjekkOmBrukerErStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import { erKSSBruker } from '../../lib/er-kss-bruker';
@@ -31,10 +31,7 @@ function Ytelser() {
     const kanViseKomponent = erStandardInnsatsgruppe && !erDetteKSSBruker;
 
     function loggLenkeKlikk(action: string, url: string) {
-        amplitudeLogger('veientilarbeid.action', {
-            action,
-            ...amplitudeData,
-        });
+        loggAktivitet({ aktivitet: action, ...amplitudeData });
         window.location.assign(url);
     }
 
