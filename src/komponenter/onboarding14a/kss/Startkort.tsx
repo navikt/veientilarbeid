@@ -8,6 +8,7 @@ interface Props {
 function Startkort(props: Props) {
     return (
         <PreState
+            tematag="HJELP OG STØTTE"
             hoppOverIntroCB={props.hoppOverIntroCB}
             startIntroCB={props.startIntroCB}
             lesetid={'3'}
