@@ -6,7 +6,7 @@ function Kort1() {
         <div className="kortflate">
             <div>
                 <Element tag={'h1'}>MELDEKORT</Element>
-                <Systemtittel>Introduksjon til meldekort</Systemtittel>
+                <Systemtittel>Send inn meldekort annenhver uke</Systemtittel>
                 <Undertekst className={'blokk-xs'}>1 av 3</Undertekst>
                 <Normaltekst className={'blokk-xs'}>
                     Når du er registrert som arbeidssøker, må du sende inn et meldekort hver 14. dag.
@@ -30,7 +30,7 @@ function Kort2() {
         <div className="kortflate">
             <div>
                 <Element tag={'h1'}>MELDEKORT</Element>
-                <Systemtittel>Introduksjon til meldekort</Systemtittel>
+                <Systemtittel>Hva brukes meldekortet til?</Systemtittel>
                 <Undertekst className={'blokk-xs'}>2 av 3</Undertekst>
 
                 <Normaltekst className={'blokk-xs'}>
@@ -52,7 +52,7 @@ function Kort3() {
         <div className="kortflate">
             <div>
                 <Element tag={'h1'}>MELDEKORT</Element>
-                <Systemtittel>Introduksjon til meldekort</Systemtittel>
+                <Systemtittel>Send meldekort før fristen går ut</Systemtittel>
                 <Undertekst className={'blokk-xs'}>3 av 3</Undertekst>
 
                 <Normaltekst className={'blokk-xs'}>

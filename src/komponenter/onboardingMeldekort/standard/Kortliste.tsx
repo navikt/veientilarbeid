@@ -6,7 +6,7 @@ function Kort1() {
         <div className="kortflate">
             <div>
                 <Element tag={'h1'}>MELDEKORT</Element>
-                <Systemtittel>Introduksjon til meldekort</Systemtittel>
+                <Systemtittel>Send inn meldekort annenhver uke</Systemtittel>
                 <Undertekst className={'blokk-xs'}>1 av 3</Undertekst>
 
                 <Normaltekst className={'blokk-xs'}>
@@ -31,7 +31,7 @@ function Kort2() {
         <div className="kortflate">
             <div>
                 <Element tag={'h1'}>MELDEKORT</Element>
-                <Systemtittel>Introduksjon til meldekort</Systemtittel>
+                <Systemtittel>Hva brukes meldekortet til?</Systemtittel>
                 <Undertekst className={'blokk-xs'}>2 av 3</Undertekst>
                 <Normaltekst className={'blokk-xs'}>
                     Utbetaling av dagpenger beregnes ut fra opplysninger du har lagt inn på meldekortet.
@@ -54,7 +54,7 @@ function Kort3() {
         <div className="kortflate">
             <div>
                 <Element tag={'h1'}>MELDEKORT</Element>
-                <Systemtittel>Introduksjon til meldekort</Systemtittel>
+                <Systemtittel>Send meldekort før fristen går ut</Systemtittel>
                 <Undertekst className={'blokk-xs'}>3 av 3</Undertekst>
                 <Normaltekst className={'blokk-xs'}>
                     Dersom du sender inn meldekortet for sent vil dagpengene kunne stanses, og du risikerer at
