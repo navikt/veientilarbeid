@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Normaltekst, Systemtittel, Undertekst } from 'nav-frontend-typografi';
+import { Normaltekst, Systemtittel, Undertekst, Element } from 'nav-frontend-typografi';
 import Feedback from '../../feedback/feedback';
 import Lenke from 'nav-frontend-lenker';
 import { OppfolgingContext, Servicegruppe } from '../../../ducks/oppfolging';
@@ -10,6 +10,7 @@ function Kort1() {
     return (
         <div className="kortflate">
             <div>
+                <Element tag={'h1'}>HJELP OG STØTTE</Element>
                 <Systemtittel>Hva slags hjelp kan jeg få?</Systemtittel>
                 <Undertekst className="blokk-xs">1 av 4</Undertekst>
 
@@ -49,6 +50,7 @@ function Kort2() {
     return (
         <div className="kortflate">
             <div>
+                <Element tag={'h1'}>HJELP OG STØTTE</Element>
                 <Systemtittel>Hva slags hjelp kan jeg få?</Systemtittel>
                 <Undertekst className="blokk-xs">2 av 4</Undertekst>
                 <Normaltekst className={'blokk-xs'}>
@@ -78,6 +80,7 @@ function Kort3() {
     return (
         <div className="kortflate">
             <div>
+                <Element tag={'h1'}>HJELP OG STØTTE</Element>
                 <Systemtittel>Hva slags hjelp kan jeg få?</Systemtittel>
                 <Undertekst className="blokk-xs">3 av 4</Undertekst>
                 <Normaltekst className={'blokk-xs'}>Du kan få hjelp fra en veileder.</Normaltekst>
@@ -111,6 +114,7 @@ function Kort4() {
     return (
         <div className="kortflate">
             <div>
+                <Element tag={'h1'}>HJELP OG STØTTE</Element>
                 <Systemtittel>Hva slags hjelp kan jeg få?</Systemtittel>
                 <Undertekst className="blokk-xs">4 av 4</Undertekst>
                 <Normaltekst className={'blokk-xs'}>
