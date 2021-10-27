@@ -10,6 +10,8 @@ import sjekkOmBrukerErStandardInnsatsgruppe from '../../lib/er-standard-innsatsg
 import { erKSSBruker } from '../../lib/er-kss-bruker';
 import Panel from 'nav-frontend-paneler';
 import Lenke from 'nav-frontend-lenker';
+import ErRendret from '../er-rendret/er-rendret';
+import InViewport from '../in-viewport/in-viewport';
 import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import './ytelser.less';
 
@@ -39,6 +41,7 @@ function Ytelser() {
 
     return (
         <div className={'ytelser-omslutning'}>
+            <ErRendret loggTekst="Rendrer ytelser-kort" />
             <Panel className={'ytelser'}>
                 <div className="overall-wrapper">
                     <Element tag={'h1'}>SPØRSMÅL OM YTELSER</Element>
@@ -51,7 +54,7 @@ function Ytelser() {
                             href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
                             onClick={() =>
                                 loggLenkeKlikk(
-                                    'Går til STO fra ytelse kort',
+                                    'Går til STO fra ytelser-kort',
                                     'https://mininnboks.nav.no/sporsmal/skriv/ARBD'
                                 )
                             }
@@ -63,7 +66,7 @@ function Ytelser() {
                             href="https://www.nav.no/person/kontakt-oss/chat/"
                             onClick={() =>
                                 loggLenkeKlikk(
-                                    'Går til Chat fra ytelse kort',
+                                    'Går til chat fra ytelser-kort',
                                     'https://www.nav.no/person/kontakt-oss/chat/'
                                 )
                             }
@@ -84,6 +87,7 @@ function Ytelser() {
                     </Normaltekst>
                 </div>
             </Panel>
+            <InViewport loggTekst="Viser ytelser-kort i viewport" />
         </div>
     );
 }
