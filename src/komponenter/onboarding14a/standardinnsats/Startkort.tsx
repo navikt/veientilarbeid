@@ -13,7 +13,7 @@ function Startkort(props: Props) {
             startIntroCB={props.startIntroCB}
             lesetid={'3'}
             viewportTekst="Viser 14a pre-state i viewport"
-            tittel={'Introduksjon til veiledning og hjelp til jobbsøking'}
+            tittel={'Hva slags hjelp kan jeg få?'}
         />
     );
 }
