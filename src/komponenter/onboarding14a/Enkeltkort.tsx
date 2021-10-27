@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { SituasjonsbestemtSluttkort } from './situasjonsbestemt';
-import Panel from 'nav-frontend-paneler';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { UlesteDialogerContext } from '../../ducks/ulestedialoger';
+import OnboardingOmslutning from '../onboarding-omslutning/OnboardingOmslutning';
 
 const Enkeltkort = () => {
     const amplitudeData = useContext(AmplitudeContext);
@@ -11,13 +11,9 @@ const Enkeltkort = () => {
     const Sluttkort = SituasjonsbestemtSluttkort;
 
     return (
-        <div className={'fjorten-A-intro-omslutning'}>
-            <Panel className={'fjorten-A-intro'} border>
-                <div className={'overall-wrapper'}>
-                    <Sluttkort amplitudeData={amplitudeData} antallUlesteDialoger={ulesteDialoger.antallUleste} />
-                </div>
-            </Panel>
-        </div>
+        <OnboardingOmslutning>
+            <Sluttkort amplitudeData={amplitudeData} antallUlesteDialoger={ulesteDialoger.antallUleste} />
+        </OnboardingOmslutning>
     );
 };
 
