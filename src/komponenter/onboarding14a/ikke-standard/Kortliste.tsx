@@ -101,7 +101,7 @@ function Kort3() {
                             )
                         }
                     >
-                        «Skriv til oss»
+                        skriv til oss
                     </Lenke>{' '}
                     eller{' '}
                     <Lenke
@@ -113,7 +113,7 @@ function Kort3() {
                             )
                         }
                     >
-                        «Chat»
+                        chat
                     </Lenke>
                     .
                 </Normaltekst>

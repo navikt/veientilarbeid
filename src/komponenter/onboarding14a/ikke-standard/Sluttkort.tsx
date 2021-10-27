@@ -37,7 +37,7 @@ function Sluttkort(props: EndStateProps) {
                             )
                         }
                     >
-                        «Skriv til oss»
+                        skriv til oss
                     </Lenke>{' '}
                     eller{' '}
                     <Lenke
@@ -49,7 +49,7 @@ function Sluttkort(props: EndStateProps) {
                             )
                         }
                     >
-                        «Chat»
+                        chat
                     </Lenke>
                     .
                 </Normaltekst>

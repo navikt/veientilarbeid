@@ -56,7 +56,7 @@ function Ytelser() {
                                 )
                             }
                         >
-                            «Skriv til oss»
+                            skriv til oss
                         </Lenke>{' '}
                         eller{' '}
                         <Lenke
@@ -68,7 +68,7 @@ function Ytelser() {
                                 )
                             }
                         >
-                            «Chat»
+                            chat
                         </Lenke>
                         .
                     </Normaltekst>

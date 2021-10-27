@@ -134,7 +134,7 @@ function Kort4() {
                             )
                         }
                     >
-                        «Skriv til oss»
+                        skriv til oss
                     </Lenke>{' '}
                     eller{' '}
                     <Lenke
@@ -146,7 +146,7 @@ function Kort4() {
                             )
                         }
                     >
-                        «Chat»
+                        chat
                     </Lenke>
                     .
                 </Normaltekst>
