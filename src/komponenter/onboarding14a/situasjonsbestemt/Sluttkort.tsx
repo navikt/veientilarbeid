@@ -108,7 +108,7 @@ function Sluttkort(props: EndStateProps) {
 
     return (
         <div className={'sluttkort'}>
-            <Element tag={'h1'}>OPPFØLGING</Element>
+            <Element tag={'h1'}>HJELP OG STØTTE</Element>
             <VeiledersOppgaver />
         </div>
     );
