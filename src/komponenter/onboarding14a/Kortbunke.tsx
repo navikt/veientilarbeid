@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import * as React from 'react';
-import Panel from 'nav-frontend-paneler';
 import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import * as Brukerregistrering from '../../ducks/brukerregistrering';
@@ -20,6 +19,7 @@ import EgenVurdering from '../12uker-egenvurdering/12uker-egenvurdering';
 import { KssStartkort, KssKortliste, KssSluttkort } from './kss';
 import { StandardStartkort, StandardKortliste, StandardSluttkort } from './standardinnsats';
 import { erKSSBruker } from '../../lib/er-kss-bruker';
+import OnboardingOmslutning from '../onboarding-omslutning/OnboardingOmslutning';
 
 const INTRO_KEY_14A = '14a-intro';
 const INTRO_KEY_12UKER = '12uker-egenvurdering';
@@ -206,53 +206,44 @@ function Intro14AWrapper(props: IntroProps) {
         setTvingVisningAvIntro(true);
     };
 
-    const stylingKlasse =
-        modalToggle && erNyregistrert && !harSettIntro
-            ? 'fjorten-A-intro-omslutning-modal'
-            : 'fjorten-A-intro-omslutning';
+    const stylingKlasse = modalToggle && erNyregistrert && !harSettIntro ? 'fjorten-A-intro-omslutning-modal' : '';
 
     const innhold = (
-        <div className={stylingKlasse}>
-            <Panel className={'fjorten-A-intro'} border>
-                <div className={'overall-wrapper'}>
-                    {rendreIntro ? (
-                        <>
-                            <Intro14A
-                                erStandardInnsatsgruppe={erStandardInnsatsgruppe}
-                                skalViseKssKort={skalViseKssKort}
-                                hoppOverPreState={hoppOverPreState}
-                                ferdigMedIntroCB={ferdigMedIntroCB}
-                                amplitudeData={amplitudeData}
-                            />
-                            <ErRendret loggTekst="Rendrer 14a intro" />
-                        </>
-                    ) : (
-                        <Sluttkort
-                            amplitudeData={amplitudeData}
-                            registreringData={registreringData}
-                            lesIntroPaaNyttCB={lesIntroPaaNyttCB}
-                            antallUlesteDialoger={ulesteDialoger.antallUleste}
-                        />
-                    )}
-                </div>
-            </Panel>
-        </div>
+        // <div className={stylingKlasse}>
+        <OnboardingOmslutning className={stylingKlasse}>
+            {rendreIntro ? (
+                <>
+                    <Intro14A
+                        erStandardInnsatsgruppe={erStandardInnsatsgruppe}
+                        skalViseKssKort={skalViseKssKort}
+                        hoppOverPreState={hoppOverPreState}
+                        ferdigMedIntroCB={ferdigMedIntroCB}
+                        amplitudeData={amplitudeData}
+                    />
+                    <ErRendret loggTekst="Rendrer 14a intro" />
+                </>
+            ) : (
+                <Sluttkort
+                    amplitudeData={amplitudeData}
+                    registreringData={registreringData}
+                    lesIntroPaaNyttCB={lesIntroPaaNyttCB}
+                    antallUlesteDialoger={ulesteDialoger.antallUleste}
+                />
+            )}
+        </OnboardingOmslutning>
+        // </div>
     );
 
     const innholdWrappetIModal = (
         <>
-            <div id={'innhold-registrering'} className={'fjorten-A-intro-omslutning'}>
-                <Panel className={'fjorten-A-intro'} border>
-                    <div className={'overall-wrapper'}>
-                        <Sluttkort
-                            amplitudeData={amplitudeData}
-                            registreringData={registreringData}
-                            lesIntroPaaNyttCB={lesIntroPaaNyttCB}
-                            antallUlesteDialoger={ulesteDialoger.antallUleste}
-                        />
-                    </div>
-                </Panel>
-            </div>
+            <OnboardingOmslutning id={'innhold-registrering'}>
+                <Sluttkort
+                    amplitudeData={amplitudeData}
+                    registreringData={registreringData}
+                    lesIntroPaaNyttCB={lesIntroPaaNyttCB}
+                    antallUlesteDialoger={ulesteDialoger.antallUleste}
+                />
+            </OnboardingOmslutning>
 
             <ModalWrapper
                 shouldCloseOnOverlayClick={false}
