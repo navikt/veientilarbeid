@@ -47,11 +47,13 @@ function Kort2() {
         });
     };
 
+    const tittel = servicegruppe === Servicegruppe.IKVAL ? 'Du har mottatt et brev' : 'Du vil motta et brev';
+
     return (
         <div className="kortflate">
             <div>
                 <Element tag={'h1'}>HJELP OG STØTTE</Element>
-                <Systemtittel>Hva slags hjelp kan jeg få?</Systemtittel>
+                <Systemtittel>{tittel}</Systemtittel>
                 <Undertekst className="blokk-xs">2 av 4</Undertekst>
                 <Normaltekst className={'blokk-xs'}>
                     {servicegruppe === Servicegruppe.IKVAL ? (
@@ -77,28 +79,6 @@ function Kort2() {
 }
 
 function Kort3() {
-    return (
-        <div className="kortflate">
-            <div>
-                <Element tag={'h1'}>HJELP OG STØTTE</Element>
-                <Systemtittel>Hva slags hjelp kan jeg få?</Systemtittel>
-                <Undertekst className="blokk-xs">3 av 4</Undertekst>
-                <Normaltekst className={'blokk-xs'}>Du kan få hjelp fra en veileder.</Normaltekst>
-
-                <Normaltekst className={'blokk-xs'}>
-                    Da må du selv kontakte veileder ved å bruke dialogen som vises på slutten av denne introduksjonen.
-                </Normaltekst>
-
-                <Normaltekst className={'blokk-m'}>
-                    Du kan gi oss beskjed om at du ønsker hjelp nå med en gang, eller se litt an hvordan du syns
-                    jobbsøkingen din går før du tar kontakt.
-                </Normaltekst>
-            </div>
-            <Feedback id={'Introkort14A-03-standard'} />
-        </div>
-    );
-}
-function Kort4() {
     const amplitudeData = useContext(AmplitudeContext);
 
     function loggLenkeKlikk(handling: string, url: string) {
@@ -115,8 +95,8 @@ function Kort4() {
         <div className="kortflate">
             <div>
                 <Element tag={'h1'}>HJELP OG STØTTE</Element>
-                <Systemtittel>Hva slags hjelp kan jeg få?</Systemtittel>
-                <Undertekst className="blokk-xs">4 av 4</Undertekst>
+                <Systemtittel>Hva er en veileder?</Systemtittel>
+                <Undertekst className="blokk-xs">3 av 4</Undertekst>
                 <Normaltekst className={'blokk-xs'}>
                     En veileder sin oppgave er å besvare spørsmål, bistå rundt det å søke stillinger og tilby hjelp på
                     veien til arbeid.
@@ -156,6 +136,29 @@ function Kort4() {
                 </Normaltekst>
             </div>
             <Feedback id={'Introkort14A-04-standard'} />
+        </div>
+    );
+}
+
+function Kort4() {
+    return (
+        <div className="kortflate">
+            <div>
+                <Element tag={'h1'}>HJELP OG STØTTE</Element>
+                <Systemtittel>Ta kontakt om du trenger hjelp</Systemtittel>
+                <Undertekst className="blokk-xs">4 av 4</Undertekst>
+                <Normaltekst className={'blokk-xs'}>Du kan få hjelp fra en veileder.</Normaltekst>
+
+                <Normaltekst className={'blokk-xs'}>
+                    Da må du selv kontakte veileder ved å bruke dialogen som vises på slutten av denne introduksjonen.
+                </Normaltekst>
+
+                <Normaltekst className={'blokk-m'}>
+                    Du kan gi oss beskjed om at du ønsker hjelp nå med en gang, eller se litt an hvordan du syns
+                    jobbsøkingen din går før du tar kontakt.
+                </Normaltekst>
+            </div>
+            <Feedback id={'Introkort14A-03-standard'} />
         </div>
     );
 }
