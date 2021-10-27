@@ -39,7 +39,7 @@ function Ytelser() {
 
     return (
         <div className={'ytelser-omslutning'}>
-            <Panel className={'ytelser'} border>
+            <Panel className={'ytelser'}>
                 <div className="overall-wrapper">
                     <Element tag={'h1'}>SPØRSMÅL OM YTELSER</Element>
                     <Systemtittel className={'blokk-xs'}>
