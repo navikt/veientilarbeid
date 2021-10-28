@@ -206,7 +206,10 @@ function Intro14AWrapper(props: IntroProps) {
         setTvingVisningAvIntro(true);
     };
 
-    const stylingKlasse = modalToggle && erNyregistrert && !harSettIntro ? 'fjorten-A-intro-omslutning-modal' : '';
+    const stylingKlasse =
+        modalToggle && erNyregistrert && !harSettIntro
+            ? 'fjorten-A-intro-omslutning-modal'
+            : 'fjorten-A-intro-omslutning';
 
     const innhold = (
         // <div className={stylingKlasse}>
