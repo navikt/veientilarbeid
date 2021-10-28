@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import * as React from 'react';
-import Panel from 'nav-frontend-paneler';
 import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import * as Brukerregistrering from '../../ducks/brukerregistrering';
@@ -17,6 +16,7 @@ import { SituasjonsbestemtStartkort, SituasjonsbestemtKortliste } from './situas
 import Sluttkort from './Sluttkort';
 import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../../lib/er-situasjonsbestemt-innsatsgruppe';
 import { kanViseMeldekortStatus } from '../../lib/kan-vise-meldekort-status';
+import OnboardingOmslutning from '../onboarding-omslutning/OnboardingOmslutning';
 
 const MELDEKORT_INTRO_KEY = 'meldekortintro';
 
@@ -161,25 +161,21 @@ function MeldekortIntroWrapper() {
     };
 
     return (
-        <div className={'meldekort-intro-omslutning'}>
-            <Panel className={'meldekort-intro'} border>
-                <div className={'overall-wrapper'}>
-                    {rendreIntro ? (
-                        <MeldekortIntro
-                            hoppOverPreState={hoppOverPreState}
-                            ferdigMedIntroCB={ferdigMedIntroCB}
-                            amplitudeData={amplitudeData}
-                        />
-                    ) : (
-                        <Sluttkort
-                            amplitudeData={amplitudeData}
-                            meldekortData={meldekortData}
-                            lesIntroPaaNyttCB={lesIntroPaaNyttCB}
-                        />
-                    )}
-                </div>
-            </Panel>
-        </div>
+        <OnboardingOmslutning>
+            {rendreIntro ? (
+                <MeldekortIntro
+                    hoppOverPreState={hoppOverPreState}
+                    ferdigMedIntroCB={ferdigMedIntroCB}
+                    amplitudeData={amplitudeData}
+                />
+            ) : (
+                <Sluttkort
+                    amplitudeData={amplitudeData}
+                    meldekortData={meldekortData}
+                    lesIntroPaaNyttCB={lesIntroPaaNyttCB}
+                />
+            )}
+        </OnboardingOmslutning>
     );
 }
 

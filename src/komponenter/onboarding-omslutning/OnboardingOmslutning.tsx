@@ -7,7 +7,7 @@ export interface OnboardingOmslutningProps extends React.ComponentPropsWithoutRe
 }
 
 const OnboardingOmslutning = ({ children, className, ...rest }: OnboardingOmslutningProps) => (
-    <div className={`${className} kort-omslutning`} {...rest}>
+    <div className={`${className || ''} kort-omslutning`} {...rest}>
         <Panel className={'kort-panel'}>
             <div className={'kort-innhold'}>{children}</div>
         </Panel>
