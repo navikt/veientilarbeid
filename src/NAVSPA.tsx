@@ -4,6 +4,7 @@ import * as ReactDOM from 'react-dom';
 interface NAVSPAScope {
     [name: string]: NAVSPAApp;
 }
+
 type NAVSPAApp = (element: HTMLElement, props: any) => void;
 
 export default class NAVSPA {
