@@ -1,14 +1,14 @@
 import { createContext, useContext } from 'react';
 
-interface GlobaleInnstillierProps {
+interface GlobaleInnstillingerProps {
     krevStandardInnsatsgruppe?: boolean;
 }
 
-interface GlobaleInnstillingerInputProps extends GlobaleInnstillierProps {
+interface GlobaleInnstillingerInputProps extends GlobaleInnstillingerProps {
     children?: JSX.Element | JSX.Element[];
 }
 
-const GlobaleInstillingerContext = createContext({} as GlobaleInnstillierProps);
+const GlobaleInstillingerContext = createContext({} as GlobaleInnstillingerProps);
 
 export function GlobaleInnstillingerProvider({ children, krevStandardInnsatsgruppe }: GlobaleInnstillingerInputProps) {
     return (
