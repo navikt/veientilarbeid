@@ -15,6 +15,7 @@ import {
     VEILARBOPPFOLGING_URL,
 } from '../../ducks/api';
 import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
+import KanViseVTA from '../kan-vise-vta/kan-vise-vta';
 
 interface OwnProps {
     children: React.ReactElement<any>;
@@ -83,9 +84,11 @@ const OppfolgingBrukerregistreringProvider = ({ children }: OppfolgingProviderPr
                 <Meldekortstatus.MeldekortstatusContext.Provider value={meldekortstatusState}>
                     <UnderOppfolging.UnderOppfolgingContext.Provider value={underOppfolgingState}>
                         <Brukerregistrering.BrukerregistreringContext.Provider value={brukerregistreringState}>
-                            <FeatureToggle.FeaturetoggleContext.Provider value={featureToggleState}>
-                                {children}
-                            </FeatureToggle.FeaturetoggleContext.Provider>
+                            <KanViseVTA>
+                                <FeatureToggle.FeaturetoggleContext.Provider value={featureToggleState}>
+                                    {children}
+                                </FeatureToggle.FeaturetoggleContext.Provider>
+                            </KanViseVTA>
                         </Brukerregistrering.BrukerregistreringContext.Provider>
                     </UnderOppfolging.UnderOppfolgingContext.Provider>
                 </Meldekortstatus.MeldekortstatusContext.Provider>
