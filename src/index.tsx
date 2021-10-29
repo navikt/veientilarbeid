@@ -31,7 +31,7 @@ if (!erMikrofrontend()) {
     if (brukerReelleData && !erStandalone()) {
         redirectTilDittNav();
     } else {
-        ReactDOM.render(<App />, document.getElementById('maincontent') as HTMLElement);
+        ReactDOM.render(<App krevStandardInnsatsgruppe />, document.getElementById('maincontent') as HTMLElement);
     }
 }
 
