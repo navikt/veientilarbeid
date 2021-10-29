@@ -1,11 +1,10 @@
-import { Systemtittel, Undertekst, Normaltekst, Element } from 'nav-frontend-typografi';
+import { Systemtittel, Undertekst, Normaltekst } from 'nav-frontend-typografi';
 import Feedback from '../../feedback/feedback';
 
 function Kort1() {
     return (
         <div className="kortflate">
             <div>
-                <Element tag={'h1'}>MELDEKORT</Element>
                 <Systemtittel>Send inn meldekort annenhver uke</Systemtittel>
                 <Undertekst className={'blokk-xs'}>1 av 3</Undertekst>
                 <Normaltekst className={'blokk-xs'}>
@@ -29,7 +28,6 @@ function Kort2() {
     return (
         <div className="kortflate">
             <div>
-                <Element tag={'h1'}>MELDEKORT</Element>
                 <Systemtittel>Hva brukes meldekortet til?</Systemtittel>
                 <Undertekst className={'blokk-xs'}>2 av 3</Undertekst>
 
@@ -51,7 +49,6 @@ function Kort3() {
     return (
         <div className="kortflate">
             <div>
-                <Element tag={'h1'}>MELDEKORT</Element>
                 <Systemtittel>Send meldekort før fristen går ut</Systemtittel>
                 <Undertekst className={'blokk-xs'}>3 av 3</Undertekst>
 

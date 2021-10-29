@@ -1,5 +1,5 @@
 import { AmplitudeData, amplitudeLogger } from '../../../metrics/amplitude-utils';
-import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
+import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { OppfolgingContext, Servicegruppe } from '../../../ducks/oppfolging';
 import Lenkepanel14A from '../lenkepanel-14a';
 import Lenke from 'nav-frontend-lenker';
@@ -108,7 +108,6 @@ function Sluttkort(props: EndStateProps) {
 
     return (
         <div className={'sluttkort'}>
-            <Element tag={'h1'}>HJELP OG STØTTE</Element>
             <VeiledersOppgaver />
         </div>
     );
