@@ -1,5 +1,5 @@
 import Lenke from 'nav-frontend-lenker';
-import { Systemtittel, Normaltekst, Element } from 'nav-frontend-typografi';
+import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
 import { omMeldekortLenke, meldekortLenke } from '../../innhold/lenker';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
 import { hentIDag } from '../../utils/chrono';
@@ -46,7 +46,6 @@ function Sluttkort(props: EndStateProps) {
         return (
             <div className={'kortflate'}>
                 <div>
-                    <Element tag={'h1'}>MELDEKORT</Element>
                     <Systemtittel className={'blokk-xs'}>
                         {`Meldekort for uke 
                         ${hentISOUke(meldekortIkkeKlarForLevering.meldeperiode?.fra!!)} og ${hentISOUke(
@@ -74,7 +73,6 @@ function Sluttkort(props: EndStateProps) {
         return (
             <div className={'kortflate'}>
                 <div>
-                    <Element tag={'h1'}>MELDEKORT</Element>
                     <Systemtittel className={'blokk-xs'}>
                         Du har {meldekortForLevering.length} meldekort som kan sendes inn.
                     </Systemtittel>
@@ -95,8 +93,6 @@ function Sluttkort(props: EndStateProps) {
     return (
         <div className={'kortflate'}>
             <div>
-                <Element tag={'h1'}>MELDEKORT</Element>
-
                 <Meldekortstatus />
                 <div>
                     <LenkepanelMeldekort amplitudeData={amplitudeData} href={meldekortLenke}>
