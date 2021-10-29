@@ -84,11 +84,9 @@ const OppfolgingBrukerregistreringProvider = ({ children }: OppfolgingProviderPr
                 <Meldekortstatus.MeldekortstatusContext.Provider value={meldekortstatusState}>
                     <UnderOppfolging.UnderOppfolgingContext.Provider value={underOppfolgingState}>
                         <Brukerregistrering.BrukerregistreringContext.Provider value={brukerregistreringState}>
-                            <KanViseVTA>
-                                <FeatureToggle.FeaturetoggleContext.Provider value={featureToggleState}>
-                                    {children}
-                                </FeatureToggle.FeaturetoggleContext.Provider>
-                            </KanViseVTA>
+                            <FeatureToggle.FeaturetoggleContext.Provider value={featureToggleState}>
+                                <KanViseVTA>{children}</KanViseVTA>
+                            </FeatureToggle.FeaturetoggleContext.Provider>
                         </Brukerregistrering.BrukerregistreringContext.Provider>
                     </UnderOppfolging.UnderOppfolgingContext.Provider>
                 </Meldekortstatus.MeldekortstatusContext.Provider>
