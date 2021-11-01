@@ -1,7 +1,7 @@
 import { createContext, useContext } from 'react';
 
 interface GlobaleInnstillingerProps {
-    krevStandardInnsatsgruppe?: boolean;
+    kreverStandardInnsatsgruppe?: boolean;
 }
 
 interface GlobaleInnstillingerInputProps extends GlobaleInnstillingerProps {
@@ -10,9 +10,12 @@ interface GlobaleInnstillingerInputProps extends GlobaleInnstillingerProps {
 
 const GlobaleInstillingerContext = createContext({} as GlobaleInnstillingerProps);
 
-export function GlobaleInnstillingerProvider({ children, krevStandardInnsatsgruppe }: GlobaleInnstillingerInputProps) {
+export function GlobaleInnstillingerProvider({
+    children,
+    kreverStandardInnsatsgruppe,
+}: GlobaleInnstillingerInputProps) {
     return (
-        <GlobaleInstillingerContext.Provider value={{ krevStandardInnsatsgruppe }}>
+        <GlobaleInstillingerContext.Provider value={{ kreverStandardInnsatsgruppe }}>
             {children}
         </GlobaleInstillingerContext.Provider>
     );

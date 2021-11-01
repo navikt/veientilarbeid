@@ -13,7 +13,7 @@ function KanViseVTA(props: Props) {
     const { data: oppfolgingData } = React.useContext(OppfolgingContext);
     const { data: registreringData } = React.useContext(BrukerregistreringContext);
     const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
-    const { krevStandardInnsatsgruppe } = useGlobaleInnstillinger();
+    const { kreverStandardInnsatsgruppe } = useGlobaleInnstillinger();
     const brukerregistreringData = registreringData?.registrering ?? null;
     const erStandardInnsatsgruppe = sjekkOmBrukerErStandardInnsatsgruppe({
         brukerregistreringData,
@@ -24,8 +24,8 @@ function KanViseVTA(props: Props) {
 
     const kanViseKomponent = () => {
         if (!featuretoggleAktivert) return true;
-        if (krevStandardInnsatsgruppe === true && erStandardInnsatsgruppe) return true;
-        if (krevStandardInnsatsgruppe !== true && !erStandardInnsatsgruppe) return true;
+        if (kreverStandardInnsatsgruppe === true && erStandardInnsatsgruppe) return true;
+        if (kreverStandardInnsatsgruppe !== true && !erStandardInnsatsgruppe) return true;
         return false;
     };
 
