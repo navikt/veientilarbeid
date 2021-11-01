@@ -48,12 +48,9 @@ function MeldekortAdvarsel({ dagerEtterFastsattMeldedag }: { dagerEtterFastsattM
             ) : (
                 <>
                     <Systemtittel className={'blokk-xs'}>
-                        Du har{' '}
-                        <b>
-                            {dagerTilInaktivering}{' '}
-                            {dagerTilInaktivering === 0 || dagerTilInaktivering > 1 ? 'dager' : 'dag'}{' '}
-                        </b>
-                        på å sende inn meldekort.
+                        Du har {dagerTilInaktivering}{' '}
+                        {dagerTilInaktivering === 0 || dagerTilInaktivering > 1 ? 'dager' : 'dag'} på å sende inn
+                        meldekort.
                     </Systemtittel>
                     <Normaltekst>Fristen er {datoMedUkedag(inaktiveringsDato)}, klokken 23.00.</Normaltekst>
                 </>
