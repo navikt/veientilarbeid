@@ -4,14 +4,14 @@ import AutentiseringsInfoFetcher from './komponenter/hent-initial-data/autentise
 import { GlobaleInnstillingerProvider } from './context/GlobaleInnstillinger';
 
 interface Props {
-    krevStandardInnsatsgruppe?: boolean;
+    kreverStandardInnsatsgruppe?: boolean;
 }
 
 class App extends React.Component<Props> {
     render() {
         return (
             <Sentry.ErrorBoundary>
-                <GlobaleInnstillingerProvider krevStandardInnsatsgruppe={this.props.krevStandardInnsatsgruppe}>
+                <GlobaleInnstillingerProvider kreverStandardInnsatsgruppe={this.props.kreverStandardInnsatsgruppe}>
                     <AutentiseringsInfoFetcher />
                 </GlobaleInnstillingerProvider>
             </Sentry.ErrorBoundary>
