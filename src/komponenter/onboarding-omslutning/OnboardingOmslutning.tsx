@@ -16,9 +16,11 @@ const OnboardingOmslutning = ({ children, title, className, ...rest }: Onboardin
             className={`${className || ''} ${featuretoggleAktivert ? 'oppdatert-kort-omslutning' : 'kort-omslutning'}`}
             {...rest}
         >
-            {title && <Element tag={'h1'}>{title}</Element>}
             <Panel className={'kort-panel'}>
-                <div className={'kort-innhold'}>{children}</div>
+                <div className={'kort-innhold'}>
+                    {title && <Element tag={'h1'}>{title}</Element>}
+                    {children}
+                </div>
             </Panel>
         </div>
     );

@@ -6,6 +6,11 @@
     background-color: white;
 }
 
+.oppdatert-registrerings-container {
+    border:none;
+    background-color: transparent;
+}
+
 .registrering-svar,
 .registrering-svar:hover,
 .registrering-svar:active {
@@ -30,8 +35,15 @@ registrering-info:hover {
 .intro-wrapper {
     display: flex;
     flex-direction: column;
+    background: transparent;
+    margin: 0;
+}
+
+.oppdatert-intro-wrapper {
+    display: flex;
+    flex-direction: column;
     border-top: 1px solid @navGra20;
-    background: #d8f9ff47;
+    background: none;
     margin: 0;
 }
 
@@ -42,7 +54,14 @@ registrering-info:hover {
 @media (min-width: @screen-md-min) {
     .intro-wrapper {
         flex-direction: row;
+        align-items: stretch;
         margin-right: 0.25rem;
         margin-left: 0.25rem;
+    }
+    .oppdatert-intro-wrapper {
+        flex-direction: row;
+        align-items: stretch;
+        margin-right: 0;
+        margin-left: 0;
     }
 }
