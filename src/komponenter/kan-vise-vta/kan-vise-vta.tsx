@@ -6,7 +6,7 @@ import sjekkOmBrukerErStandardInnsatsgruppe from '../../lib/er-standard-innsatsg
 import { useGlobaleInnstillinger } from '../../context/GlobaleInnstillinger';
 
 interface Props {
-    children: React.ReactElement<any>;
+    children: React.ReactNode;
 }
 
 function KanViseVTA(props: Props) {
@@ -31,7 +31,7 @@ function KanViseVTA(props: Props) {
 
     if (!kanViseKomponent()) return null;
 
-    return <>{props.children}</>;
+    return props.children ? <>{props.children}</> : null;
 }
 
 export default KanViseVTA;

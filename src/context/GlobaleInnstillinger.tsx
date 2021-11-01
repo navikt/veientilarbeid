@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react';
 
-interface GlobaleInnstillingerProps {
+export interface GlobaleInnstillingerProps {
     kreverStandardInnsatsgruppe?: boolean;
 }
 

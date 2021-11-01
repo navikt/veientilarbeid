@@ -1,5 +1,4 @@
 declare module 'nav-frontend-spinner' {
-
     export type storrelseType = 'XXS' | 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
 
     interface Spinner {
