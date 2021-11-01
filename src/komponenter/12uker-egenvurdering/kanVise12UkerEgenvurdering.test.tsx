@@ -58,6 +58,7 @@ const grunndata = {
         'veientilarbeid.onboarding14a.situasjonsbestemt': false,
         'veientilarbeid.meldekort-intro.situasjonsbestemt': false,
         'veientilarbeid.kanViseUtfraSituasjon': false,
+        'veientilarbeid.vis-oppdatert-styling': false,
     },
     amplitudeData: {
         gruppe: poagruppeKSS,
