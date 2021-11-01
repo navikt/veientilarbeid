@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as Brukerregistrering from '../../../ducks/brukerregistrering';
 import { AmplitudeData, amplitudeLogger } from '../../../metrics/amplitude-utils';
-import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
+import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import RegistrertTeller from '../registrert-teller';
 import Lenkepanel14A from '../lenkepanel-14a';
 import Lenke from 'nav-frontend-lenker';
@@ -47,7 +47,6 @@ function Sluttkort(props: EndStateProps) {
 
     return (
         <div className={'sluttkort'}>
-            <Element tag={'h1'}>HJELP OG STØTTE</Element>
             <Systemtittel className={'blokk-xs'}>{kortTittel}</Systemtittel>
             <RegistrertTeller ukerRegistrert={ukerRegistrert} registrertDato={registrertDato} />
             <Lenkepanel14A amplitudeData={amplitudeData} href={''} antallUlesteDialoger={props.antallUlesteDialoger} />

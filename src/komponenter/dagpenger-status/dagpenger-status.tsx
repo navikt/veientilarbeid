@@ -303,7 +303,7 @@ function PaabegyntSoknad({
         <DagpengerDekorator tittle={'Du har startet på en søknad om dagpenger, men ikke sendt den inn'}>
             <div>
                 <Normaltekst className={'blokk-xs gul-uthevingslinje'}>
-                    <b>Du kan tidligst få dagpenger</b> fra den dagen du sender inn søknaden.
+                    Du kan tidligst få dagpenger fra den dagen du sender inn søknaden.
                 </Normaltekst>
             </div>
 
@@ -384,7 +384,7 @@ function SoknadTilBehandling({
     const ForventetSvar = () => {
         return (
             <Normaltekst className={'blokk-xs'}>
-                Du kan <b>forvente svar</b> innen {prettyPrintDato(datoForForventetSvar?.toISOString())}
+                Du kan forvente svar innen {prettyPrintDato(datoForForventetSvar?.toISOString())}
             </Normaltekst>
         );
     };

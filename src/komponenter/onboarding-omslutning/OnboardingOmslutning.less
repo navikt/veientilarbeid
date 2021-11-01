@@ -1,5 +1,37 @@
 @import '../../../node_modules/nav-frontend-core/less/_variabler';
 
+.oppdatert-kort-omslutning {
+    margin: 0.5rem 0;
+    margin-left: 0.25rem;
+    flex: 1;
+    &:first-child {
+        margin-left: 0;
+    }
+    .typo-element {
+        padding: 1rem;
+    }
+    .typo-innholdstittel,
+    .typo-systemtittel {
+        font-weight: 400;
+    }
+    .kort-panel {
+        background: none;
+        padding: 0;
+        flex: 1;
+        .kort-innhold {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            .lesetid {
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+}
+
 .kort-omslutning {
     margin: 0.5rem 0.25rem;
     flex: 1;
@@ -8,7 +40,7 @@
         border-radius: 0;
         height: 100%;
         padding: 0;
-        .kort-innhold{
+        .kort-innhold {
             background-color: #0000000d;
             height: 100%;
             padding: 1rem;
@@ -17,7 +49,6 @@
         }
     }
 }
-
 
 @media (min-width: @screen-md-min) {
     .kort-omslutning {

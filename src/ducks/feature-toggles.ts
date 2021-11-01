@@ -15,6 +15,7 @@ export enum FeatureToggles {
     INTRO_14A_SITUASJONSBESTEMT = 'veientilarbeid.onboarding14a.situasjonsbestemt',
     INTRO_MELDEKORT_SITUASJONSBESTEMT = 'veientilarbeid.meldekort-intro.situasjonsbestemt',
     KAN_VISE_UTFRA_SITUASJON = 'veientilarbeid.kanViseUtfraSituasjon',
+    VIS_OPPDATERT_STYLING = 'veientilarbeid.vis-oppdatert-styling',
 }
 
 export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
@@ -45,6 +46,8 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Vis meldekort-intro for situasjonsbestemt';
         case FeatureToggles.KAN_VISE_UTFRA_SITUASJON:
             return 'Vis VTA fra situasjon';
+        case FeatureToggles.VIS_OPPDATERT_STYLING:
+            return 'Vis oppdatert styling';
     }
 }
 
@@ -62,6 +65,7 @@ export interface Data {
     'veientilarbeid.onboarding14a.situasjonsbestemt': boolean;
     'veientilarbeid.meldekort-intro.situasjonsbestemt': boolean;
     'veientilarbeid.kanViseUtfraSituasjon': boolean;
+    'veientilarbeid.vis-oppdatert-styling': boolean;
 }
 
 export interface State extends DataElement {
@@ -83,6 +87,7 @@ export const initialState: State = {
         'veientilarbeid.onboarding14a.situasjonsbestemt': false,
         'veientilarbeid.meldekort-intro.situasjonsbestemt': false,
         'veientilarbeid.kanViseUtfraSituasjon': false,
+        'veientilarbeid.vis-oppdatert-styling': false,
     },
     status: STATUS.NOT_STARTED,
 };

@@ -11,7 +11,7 @@ import { erKSSBruker } from '../../lib/er-kss-bruker';
 import Lenke from 'nav-frontend-lenker';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
-import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
+import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import OnboardingOmslutning from '../onboarding-omslutning/OnboardingOmslutning';
 
 function Ytelser() {
@@ -39,9 +39,8 @@ function Ytelser() {
     if (!kanViseKomponent) return null;
 
     return (
-        <OnboardingOmslutning>
+        <OnboardingOmslutning title="SPØRSMÅL OM YTELSER">
             <ErRendret loggTekst="Rendrer ytelser-kort" />
-            <Element tag={'h1'}>SPØRSMÅL OM YTELSER</Element>
             <Systemtittel className={'blokk-xs'}>
                 Har du spørsmål om å søke om eller motta pengestøtte fra NAV?
             </Systemtittel>

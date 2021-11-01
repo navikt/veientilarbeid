@@ -31,6 +31,8 @@ const Registrert = () => {
     const [visKvittering, setVisKvittering] = useState('');
 
     const featureToggleErAktivert = featuretoggleData['veientilarbeid.registrert-permittert'];
+    const oppdatertStylingFeaturetoggle =
+        featuretoggleData && featuretoggleData['veientilarbeid.vis-oppdatert-styling'];
 
     const kanViseKomponent =
         oppfolgingData.formidlingsgruppe === 'ARBS' &&
@@ -83,7 +85,14 @@ const Registrert = () => {
     };
 
     return (
-        <div id="registrering-status-container" className={'registrerings-container blokk-s'}>
+        <div
+            id="registrering-status-container"
+            className={
+                oppdatertStylingFeaturetoggle
+                    ? 'oppdatert-registrerings-container blokk-s'
+                    : 'registrerings-container blokk-s'
+            }
+        >
             <AlertStripeInfo className={showOpplysninger ? 'registrering-info' : ''}>
                 <Element>{tittel}</Element>
             </AlertStripeInfo>
@@ -107,7 +116,7 @@ const Registrert = () => {
 
             {visKvittering && <KvitteringWrapper kvittering={visKvittering} />}
 
-            <div className={'intro-wrapper'}>
+            <div className={oppdatertStylingFeaturetoggle ? 'oppdatert-intro-wrapper' : 'intro-wrapper'}>
                 <DagpengerStatus />
                 <Onboarding14A />
                 <MeldekortIntroWrapper />
