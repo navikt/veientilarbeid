@@ -4,7 +4,7 @@ import { Knapp } from 'nav-frontend-knapper';
 import Panel from 'nav-frontend-paneler';
 import Lenke from 'nav-frontend-lenker';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
-import * as Egenvurdering from '../../ducks/egenvurdering';
+import * as Egenvurdering from '../../context/egenvurdering';
 import * as Brukerregistrering from '../../context/brukerregistrering';
 import * as Oppfolging from '../../context/oppfolging';
 import * as BrukerInfo from '../../context/bruker-info';

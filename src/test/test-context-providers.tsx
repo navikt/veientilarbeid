@@ -4,7 +4,7 @@ import { AmplitudeData } from '../metrics/amplitude-utils';
 import * as Autentisering from '../ducks/autentisering';
 import * as Brukerregistrering from '../context/brukerregistrering';
 import * as FeatureToggle from '../context/feature-toggles';
-import * as Egenvurdering from '../ducks/egenvurdering';
+import * as Egenvurdering from '../context/egenvurdering';
 import * as Oppfolging from '../context/oppfolging';
 import * as UlesteDialoger from '../ducks/ulestedialoger';
 import * as BrukerInfo from '../context/bruker-info';
