@@ -5,7 +5,7 @@ import { AmplitudeContext } from '../../ducks/amplitude-context';
 import * as Brukerregistrering from '../../ducks/brukerregistrering';
 import * as Meldekort from '../../ducks/meldekort';
 import * as Oppfolging from '../../ducks/oppfolging';
-import * as BrukerInfo from '../../ducks/bruker-info';
+import * as BrukerInfo from '../../context/bruker-info';
 import { FeaturetoggleContext } from '../../ducks/feature-toggles';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
 import './meldekort-intro.less';

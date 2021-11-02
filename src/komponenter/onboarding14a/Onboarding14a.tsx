@@ -2,7 +2,7 @@ import sjekkOmBrukerErStandardInnsatsgruppe from '../../lib/er-standard-innsatsg
 import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../../lib/er-situasjonsbestemt-innsatsgruppe';
 import * as Brukerregistrering from '../../ducks/brukerregistrering';
 import * as Oppfolging from '../../ducks/oppfolging';
-import * as BrukerInfo from '../../ducks/bruker-info';
+import * as BrukerInfo from '../../context/bruker-info';
 import { FeaturetoggleContext } from '../../ducks/feature-toggles';
 import Kortbunke from './Kortbunke';
 import React from 'react';

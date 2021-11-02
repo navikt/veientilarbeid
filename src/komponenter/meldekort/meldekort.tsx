@@ -7,7 +7,7 @@ import * as Brukerregistrering from '../../ducks/brukerregistrering';
 import * as MeldekortInnhold from '../../ducks/meldekort';
 import * as Oppfolging from '../../ducks/oppfolging';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
-import { BrukerInfoContext } from '../../ducks/bruker-info';
+import { BrukerInfoContext } from '../../context/bruker-info';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import { FeaturetoggleContext } from '../../ducks/feature-toggles';
 import { kanViseMeldekortStatus } from '../../lib/kan-vise-meldekort-status';

@@ -7,7 +7,7 @@ import './dagpenger.less';
 import { dagpengerSoknadLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
-import { BrukerInfoContext } from '../../ducks/bruker-info';
+import { BrukerInfoContext } from '../../context/bruker-info';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
 const Dagpenger = () => {

@@ -10,7 +10,7 @@ import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import { PaabegynteSoknaderContext } from '../../ducks/paabegynte-soknader';
 import { MuligeEttersendelserContext } from '../../ducks/mulige-ettersendelser';
 import { SakstemaContext } from '../../ducks/sakstema';
-import { BrukerInfoContext } from '../../ducks/bruker-info';
+import { BrukerInfoContext } from '../../context/bruker-info';
 import grupperGeografiskTilknytning from '../../utils/grupper-geografisk-tilknytning';
 
 import ukerFraDato from '../../utils/uker-fra-dato';

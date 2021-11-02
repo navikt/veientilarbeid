@@ -1,5 +1,5 @@
-import { DataElement, STATUS } from './api';
-import * as React from 'react';
+import { DataElement, STATUS } from '../ducks/api';
+import { createContext, useContext } from 'react';
 
 export enum RegistreringType {
     REAKTIVERING = 'REAKTIVERING',
@@ -34,4 +34,6 @@ export const initialState: State = {
     },
 };
 
-export const BrukerInfoContext = React.createContext<State>(initialState);
+export const BrukerInfoContext = createContext<State>(initialState);
+
+export const useBrukerinfo = () => useContext(BrukerInfoContext);

@@ -1,7 +1,7 @@
 import { Data as FeaturetoggleData } from '../ducks/feature-toggles';
 import * as Brukerregistrering from '../ducks/brukerregistrering';
 import * as Oppfolging from '../ducks/oppfolging';
-import * as BrukerInfo from '../ducks/bruker-info';
+import * as BrukerInfo from '../context/bruker-info';
 import sjekkOmBrukerErStandardInnsatsgruppe from './er-standard-innsatsgruppe';
 import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from './er-situasjonsbestemt-innsatsgruppe';
 

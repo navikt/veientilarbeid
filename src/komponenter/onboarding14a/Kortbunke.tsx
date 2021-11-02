@@ -5,7 +5,7 @@ import { AmplitudeContext } from '../../ducks/amplitude-context';
 import * as Brukerregistrering from '../../ducks/brukerregistrering';
 import * as Egenvurdering from '../../ducks/egenvurdering';
 import * as Oppfolging from '../../ducks/oppfolging';
-import * as BrukerInfo from '../../ducks/bruker-info';
+import * as BrukerInfo from '../../context/bruker-info';
 import sjekkOmBrukerErStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
 import './14a-intro.less';

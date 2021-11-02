@@ -7,7 +7,7 @@ import {
     selectOpprettetRegistreringDato,
 } from '../ducks/brukerregistrering';
 import { OppfolgingContext } from '../ducks/oppfolging';
-import { BrukerInfoContext } from '../ducks/bruker-info';
+import { BrukerInfoContext } from '../context/bruker-info';
 import getPoaGroup from '../utils/get-poa-group';
 import { loggVisning } from '../metrics/metrics';
 import { erMikrofrontend } from '../utils/app-state-utils';

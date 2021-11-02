@@ -7,7 +7,7 @@ import NyRettTilSykepengerBilde from './ny-rett-til-sykepenger';
 import OkonomiskSosialhjelpBilde from './okonomisk-sosialhjelp';
 import { dagpengerLesmerLenke, sosialhjelpLenke, sykepengerLenke } from '../../innhold/lenker';
 import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
-import { BrukerInfoContext } from '../../ducks/bruker-info';
+import { BrukerInfoContext } from '../../context/bruker-info';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import { FeaturetoggleContext } from '../../ducks/feature-toggles';
 import OkonomiRadDagpenger from './okonomi-rad-dagpenger';

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Innholdslaster from '../innholdslaster/innholdslaster';
 import Feilmelding from '../feilmeldinger/feilmelding';
-import * as BrukerInfo from '../../ducks/bruker-info';
+import * as BrukerInfo from '../../context/bruker-info';
 import * as Brukerregistrering from '../../ducks/brukerregistrering';
 import * as PaabegynteSoknader from '../../ducks/paabegynte-soknader';
 import * as MuligeEttersendelser from '../../ducks/mulige-ettersendelser';

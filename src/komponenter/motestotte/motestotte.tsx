@@ -14,7 +14,7 @@ import { loggAktivitet } from '../../metrics/metrics';
 import './motestotte.less';
 import { OppfolgingContext, Servicegruppe } from '../../ducks/oppfolging';
 import { MotestotteContext } from '../../ducks/motestotte';
-import { BrukerInfoContext } from '../../ducks/bruker-info';
+import { BrukerInfoContext } from '../../context/bruker-info';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import tekster from '../../tekster/tekster';

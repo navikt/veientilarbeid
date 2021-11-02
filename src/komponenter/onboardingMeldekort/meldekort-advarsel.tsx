@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
-import { BrukerInfoContext } from '../../ducks/bruker-info';
+import { BrukerInfoContext } from '../../context/bruker-info';
 import { beregnDagerTilInaktivering } from '../../utils/meldekort-utils';
 import { datoMedUkedag, plussDager } from '../../utils/date-utils';
 import { hentIDag } from '../../utils/chrono';

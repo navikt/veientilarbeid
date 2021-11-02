@@ -11,7 +11,7 @@ import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { UlesteDialogerContext } from '../../ducks/ulestedialoger';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import { FeaturetoggleContext } from '../../ducks/feature-toggles';
-import * as BrukerInfo from '../../ducks/bruker-info';
+import * as BrukerInfo from '../../context/bruker-info';
 import { OppfolgingContext } from '../../ducks/oppfolging';
 import * as Brukerregistrering from '../../ducks/brukerregistrering';
 import { kanViseOnboarding14A } from '../../lib/kan-vise-onboarding14a';

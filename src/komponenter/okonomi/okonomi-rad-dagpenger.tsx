@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
-import { BrukerInfoContext } from '../../ducks/bruker-info';
+import { BrukerInfoContext } from '../../context/bruker-info';
 import { FeaturetoggleContext } from '../../ducks/feature-toggles';
 import Rad from '../../innhold/rad';
 import Dagpenger from '../dagpenger/dagpenger';

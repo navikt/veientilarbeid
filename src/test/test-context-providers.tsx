@@ -7,7 +7,7 @@ import * as FeatureToggle from '../ducks/feature-toggles';
 import * as Egenvurdering from '../ducks/egenvurdering';
 import * as Oppfolging from '../ducks/oppfolging';
 import * as UlesteDialoger from '../ducks/ulestedialoger';
-import * as BrukerInfo from '../ducks/bruker-info';
+import * as BrukerInfo from '../context/bruker-info';
 import * as Meldekort from '../ducks/meldekort';
 import * as Motestotte from '../ducks/motestotte';
 import * as UnderOppfolging from '../ducks/under-oppfolging';
