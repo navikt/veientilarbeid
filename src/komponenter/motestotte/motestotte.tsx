@@ -13,7 +13,7 @@ import { motestotteLenke } from '../../innhold/lenker';
 import { loggAktivitet } from '../../metrics/metrics';
 import './motestotte.less';
 import { OppfolgingContext, Servicegruppe } from '../../context/oppfolging';
-import { MotestotteContext } from '../../ducks/motestotte';
+import { MotestotteContext } from '../../context/motestotte';
 import { BrukerInfoContext } from '../../context/bruker-info';
 import { AmplitudeContext } from '../../context/amplitude-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';

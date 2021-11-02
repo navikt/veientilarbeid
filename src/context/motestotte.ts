@@ -1,4 +1,4 @@
-import { DataElement, STATUS } from './api';
+import { DataElement, STATUS } from '../ducks/api';
 import * as React from 'react';
 
 export interface Data {
@@ -15,3 +15,5 @@ export const initialState: State = {
 };
 
 export const MotestotteContext = React.createContext<State>(initialState);
+
+export const useMotestotteData = () => React.useContext(MotestotteContext).data;

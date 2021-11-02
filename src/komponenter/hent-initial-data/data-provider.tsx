@@ -7,7 +7,7 @@ import * as PaabegynteSoknader from '../../ducks/paabegynte-soknader';
 import * as MuligeEttersendelser from '../../ducks/mulige-ettersendelser';
 import * as Sakstema from '../../ducks/sakstema';
 import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe } from '../../context/brukerregistrering';
-import * as Motestotte from '../../ducks/motestotte';
+import * as Motestotte from '../../context/motestotte';
 import * as Meldekort from '../../context/meldekort';
 import * as Egenvurdering from '../../context/egenvurdering';
 import * as UlesteDialoger from '../../ducks/ulestedialoger';
