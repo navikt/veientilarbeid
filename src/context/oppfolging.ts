@@ -1,4 +1,4 @@
-import { DataElement, STATUS } from './api';
+import { DataElement, STATUS } from '../ducks/api';
 import * as React from 'react';
 
 export enum Servicegruppe {
@@ -45,3 +45,5 @@ export const initialState: State = {
 };
 
 export const OppfolgingContext = React.createContext<State>(initialState);
+
+export const useOppfolgingData = () => React.useContext(OppfolgingContext).data;

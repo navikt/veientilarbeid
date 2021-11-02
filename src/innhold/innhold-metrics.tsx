@@ -6,7 +6,7 @@ import {
     selectForeslattInnsatsgruppe,
     selectOpprettetRegistreringDato,
 } from '../context/brukerregistrering';
-import { OppfolgingContext } from '../ducks/oppfolging';
+import { OppfolgingContext } from '../context/oppfolging';
 import { BrukerInfoContext } from '../context/bruker-info';
 import getPoaGroup from '../utils/get-poa-group';
 import { loggVisning } from '../metrics/metrics';

@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 import Egenvurdering from './egenvurdering';
 import tekster from '../../tekster/tekster';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
-import { Servicegruppe } from '../../ducks/oppfolging';
+import { Servicegruppe } from '../../context/oppfolging';
 import { ForeslattInnsatsgruppe } from '../../context/brukerregistrering';
 import { InnloggingsNiva } from '../../ducks/autentisering';
 

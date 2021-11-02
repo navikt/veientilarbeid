@@ -4,7 +4,7 @@ import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import * as Brukerregistrering from '../../context/brukerregistrering';
 import * as Meldekort from '../../ducks/meldekort';
-import * as Oppfolging from '../../ducks/oppfolging';
+import * as Oppfolging from '../../context/oppfolging';
 import * as BrukerInfo from '../../context/bruker-info';
 import { FeaturetoggleContext } from '../../context/feature-toggles';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';

@@ -12,7 +12,7 @@ import { UlesteDialogerContext } from '../../ducks/ulestedialoger';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import { FeaturetoggleContext } from '../../context/feature-toggles';
 import * as BrukerInfo from '../../context/bruker-info';
-import { OppfolgingContext } from '../../ducks/oppfolging';
+import { OppfolgingContext } from '../../context/oppfolging';
 import * as Brukerregistrering from '../../context/brukerregistrering';
 import { kanViseOnboarding14A } from '../../lib/kan-vise-onboarding14a';
 

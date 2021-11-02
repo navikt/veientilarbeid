@@ -9,7 +9,7 @@ import DagpengerStatus from '../dagpenger-status/dagpenger-status';
 import './registrert.less';
 import MeldekortIntroWrapper from '../onboardingMeldekort/meldekort-intro';
 import { BrukerregistreringContext } from '../../context/brukerregistrering';
-import { OppfolgingContext } from '../../ducks/oppfolging';
+import { OppfolgingContext } from '../../context/oppfolging';
 import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';

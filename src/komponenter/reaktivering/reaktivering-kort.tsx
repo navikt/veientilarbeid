@@ -2,7 +2,7 @@ import * as React from 'react';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
-import { OppfolgingContext } from '../../ducks/oppfolging';
+import { OppfolgingContext } from '../../context/oppfolging';
 import ReaktiveringMelding from './reaktivering-melding';
 import ReaktiveringIkkeAktueltMelding from './reaktivering-ikke-aktuelt-melding';
 import { useBrowserStorage } from '../../hooks/use-browserstorage';

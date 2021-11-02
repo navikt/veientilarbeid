@@ -7,7 +7,7 @@ import { reaktiveringLenke, dialogLenke } from '../../innhold/lenker';
 import { loggAktivitet } from '../../metrics/metrics';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
-import { OppfolgingContext } from '../../ducks/oppfolging';
+import { OppfolgingContext } from '../../context/oppfolging';
 import './reaktivering-melding.less';
 
 interface ViewportProps {

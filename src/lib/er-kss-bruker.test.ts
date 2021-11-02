@@ -4,7 +4,7 @@ import { plussDager } from '../utils/date-utils';
 import { POAGruppe } from '../utils/get-poa-group';
 import { EksperimentId } from '../eksperiment/eksperimenter';
 import { erKSSBruker } from './er-kss-bruker';
-import { Formidlingsgruppe, Servicegruppe } from '../ducks/oppfolging';
+import { Formidlingsgruppe, Servicegruppe } from '../context/oppfolging';
 
 const eksperiment: EksperimentId = 'onboarding14a';
 const poagruppeKSS: POAGruppe = 'kss';

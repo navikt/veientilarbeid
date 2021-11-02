@@ -13,7 +13,7 @@ import { behovsvurderingLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
-import { OppfolgingContext, Servicegruppe } from '../../ducks/oppfolging';
+import { OppfolgingContext, Servicegruppe } from '../../context/oppfolging';
 import { EgenvurderingContext } from '../../ducks/egenvurdering';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 

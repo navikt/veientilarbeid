@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Normaltekst, Systemtittel, Undertekst } from 'nav-frontend-typografi';
 import Feedback from '../../feedback/feedback';
 import Lenke from 'nav-frontend-lenker';
-import { OppfolgingContext, Servicegruppe } from '../../../ducks/oppfolging';
+import { OppfolgingContext, Servicegruppe } from '../../../context/oppfolging';
 import { amplitudeLogger } from '../../../metrics/amplitude-utils';
 import { AmplitudeContext } from '../../../ducks/amplitude-context';
 

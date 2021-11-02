@@ -5,7 +5,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import './krr-melding.less';
 import { difiLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
-import { OppfolgingContext } from '../../ducks/oppfolging';
+import { OppfolgingContext } from '../../context/oppfolging';
 import { loggAktivitet } from '../../metrics/metrics';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';

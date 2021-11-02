@@ -5,7 +5,7 @@ import isKSSKontroll from '../../eksperiment/is-kss-kontroll';
 import { AutentiseringContext } from '../../ducks/autentisering';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { BrukerregistreringContext, DinSituasjonSvar } from '../../context/brukerregistrering';
-import { OppfolgingContext } from '../../ducks/oppfolging';
+import { OppfolgingContext } from '../../context/oppfolging';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import { PaabegynteSoknaderContext } from '../../ducks/paabegynte-soknader';
 import { MuligeEttersendelserContext } from '../../ducks/mulige-ettersendelser';

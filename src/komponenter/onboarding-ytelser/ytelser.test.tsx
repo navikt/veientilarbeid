@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 
 import Ytelser from './ytelser';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
-import { Formidlingsgruppe, Servicegruppe } from '../../ducks/oppfolging';
+import { Formidlingsgruppe, Servicegruppe } from '../../context/oppfolging';
 import { mockIntersectionObserver } from '../../mocks/intersection-observer-mock';
 
 const providerProps: ProviderProps = {

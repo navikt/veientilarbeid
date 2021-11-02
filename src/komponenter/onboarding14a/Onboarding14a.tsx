@@ -1,17 +1,18 @@
 import sjekkOmBrukerErStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../../lib/er-situasjonsbestemt-innsatsgruppe';
 import { useBrukerregistreringData } from '../../context/brukerregistrering';
-import * as Oppfolging from '../../ducks/oppfolging';
+
 import * as BrukerInfo from '../../context/bruker-info';
 import { useFeatureToggleData } from '../../context/feature-toggles';
 import Kortbunke from './Kortbunke';
 import React from 'react';
 import Enkeltkort from './Enkeltkort';
 import { kanViseOnboarding14A } from '../../lib/kan-vise-onboarding14a';
+import { useOppfolgingData } from '../../context/oppfolging';
 
 function Onboarding14a(): JSX.Element | null {
     const registreringData = useBrukerregistreringData();
-    const { data: oppfolgingData } = React.useContext(Oppfolging.OppfolgingContext);
+    const oppfolgingData = useOppfolgingData();
     const featuretoggleData = useFeatureToggleData();
     const { data: brukerInfoData } = React.useContext(BrukerInfo.BrukerInfoContext);
 

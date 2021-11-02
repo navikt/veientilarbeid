@@ -2,7 +2,7 @@ import { DinSituasjonSvar, FremtidigSituasjonSvar } from '../context/brukerregis
 import { InnloggingsNiva } from '../ducks/autentisering';
 import { plussDager } from '../utils/date-utils';
 import { kanViseMeldekortStatus } from './kan-vise-meldekort-status';
-import { Formidlingsgruppe, Servicegruppe } from '../ducks/oppfolging';
+import { Formidlingsgruppe, Servicegruppe } from '../context/oppfolging';
 
 // const eksperiment: EksperimentId = 'onboarding14a';
 // const poagruppeKSS: POAGruppe = 'kss';

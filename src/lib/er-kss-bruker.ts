@@ -1,6 +1,6 @@
 import { Data as FeaturetoggleData } from '../context/feature-toggles';
 import * as Brukerregistrering from '../context/brukerregistrering';
-import * as Oppfolging from '../ducks/oppfolging';
+import * as Oppfolging from '../context/oppfolging';
 import * as BrukerInfo from '../context/bruker-info';
 import { AmplitudeData } from '../metrics/amplitude-utils';
 import sjekkOmBrukerErStandardInnsatsgruppe from './er-standard-innsatsgruppe';

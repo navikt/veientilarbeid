@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Innholdslaster from '../innholdslaster/innholdslaster';
-import * as Oppfolging from '../../ducks/oppfolging';
+import * as Oppfolging from '../../context/oppfolging';
 import * as UnderOppfolging from '../../ducks/under-oppfolging';
 import Feilmelding from '../feilmeldinger/feilmelding';
 import * as Brukerregistrering from '../../context/brukerregistrering';

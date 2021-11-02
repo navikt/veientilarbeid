@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import * as Brukerregistrering from '../../context/brukerregistrering';
-import * as Oppfolging from '../../ducks/oppfolging';
+import * as Oppfolging from '../../context/oppfolging';
 import * as BrukerInfo from '../../context/bruker-info';
 import { FeaturetoggleContext } from '../../context/feature-toggles';
 import { AmplitudeContext } from '../../ducks/amplitude-context';

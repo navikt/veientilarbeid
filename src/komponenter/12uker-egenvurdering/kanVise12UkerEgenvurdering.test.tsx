@@ -1,4 +1,4 @@
-import { Formidlingsgruppe, Servicegruppe } from '../../ducks/oppfolging';
+import { Formidlingsgruppe, Servicegruppe } from '../../context/oppfolging';
 import { DinSituasjonSvar, FremtidigSituasjonSvar, ForeslattInnsatsgruppe } from '../../context/brukerregistrering';
 import { InnloggingsNiva } from '../../ducks/autentisering';
 import { plussDager } from '../../utils/date-utils';

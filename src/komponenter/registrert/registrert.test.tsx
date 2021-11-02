@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { InnloggingsNiva } from '../../ducks/autentisering';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import Registrert from './registrert';
-import { Formidlingsgruppe, Servicegruppe } from '../../ducks/oppfolging';
+import { Formidlingsgruppe, Servicegruppe } from '../../context/oppfolging';
 import { DinSituasjonSvar, ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../../context/brukerregistrering';
 import { mockIntersectionObserver } from '../../mocks/intersection-observer-mock';
 

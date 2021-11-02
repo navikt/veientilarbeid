@@ -11,7 +11,7 @@ import MeldekortAdvarsel from './meldekort-advarsel';
 import * as Meldekort from '../../ducks/meldekort';
 import { beregnDagerEtterFastsattMeldedag, beregnDagerTilInaktivering } from '../../utils/meldekort-utils';
 import './meldekortstatus.less';
-import { OppfolgingContext } from '../../ducks/oppfolging';
+import { OppfolgingContext } from '../../context/oppfolging';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { hentIDag } from '../../utils/chrono';
 import { datoMedUkedag, datoUtenTid, plussDager } from '../../utils/date-utils';

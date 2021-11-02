@@ -4,7 +4,7 @@ import Motestotte from './motestotte';
 import tekster from '../../tekster/tekster';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import { DinSituasjonSvar, ForeslattInnsatsgruppe } from '../../context/brukerregistrering';
-import { Servicegruppe } from '../../ducks/oppfolging';
+import { Servicegruppe } from '../../context/oppfolging';
 
 describe('Motestotte', () => {
     const brukerInfo = { erSykmeldtMedArbeidsgiver: true };

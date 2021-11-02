@@ -1,6 +1,6 @@
 import { AmplitudeData, amplitudeLogger } from '../../../metrics/amplitude-utils';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
-import { OppfolgingContext, Servicegruppe } from '../../../ducks/oppfolging';
+import { OppfolgingContext, Servicegruppe } from '../../../context/oppfolging';
 import Lenkepanel14A from '../lenkepanel-14a';
 import Lenke from 'nav-frontend-lenker';
 import { useContext } from 'react';

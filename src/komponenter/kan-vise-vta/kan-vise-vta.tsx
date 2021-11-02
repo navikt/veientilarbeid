@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { OppfolgingContext } from '../../ducks/oppfolging';
+import { OppfolgingContext } from '../../context/oppfolging';
 import { BrukerregistreringContext } from '../../context/brukerregistrering';
 import { FeaturetoggleContext } from '../../context/feature-toggles';
 import sjekkOmBrukerErStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
