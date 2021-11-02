@@ -18,7 +18,7 @@ import Onboarding14A from '../onboarding14a/Onboarding14a';
 import KvitteringWrapper from '../kvitteringer/kvittering-wrapper';
 import InViewport from '../in-viewport/in-viewport';
 import Permittert from './permittert';
-import Ytelser from '../ytelser/ytelser';
+import Ytelser from '../onboarding-ytelser/ytelser';
 
 const Registrert = () => {
     const brukerregistreringData = useContext(BrukerregistreringContext).data;
