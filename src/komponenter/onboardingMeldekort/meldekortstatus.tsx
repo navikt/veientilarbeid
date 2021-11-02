@@ -8,7 +8,7 @@
 
 import { useContext } from 'react';
 import MeldekortAdvarsel from './meldekort-advarsel';
-import * as Meldekort from '../../ducks/meldekort';
+import * as Meldekort from '../../context/meldekort';
 import { beregnDagerEtterFastsattMeldedag, beregnDagerTilInaktivering } from '../../utils/meldekort-utils';
 import './meldekortstatus.less';
 import { OppfolgingContext } from '../../context/oppfolging';

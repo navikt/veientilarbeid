@@ -21,7 +21,7 @@ import {
     hentMeldegruppeForNesteMeldekort,
     hentMeldekortForLevering,
 } from '../../utils/meldekort-utils';
-import * as Meldekort from '../../ducks/meldekort';
+import * as Meldekort from '../../context/meldekort';
 import { STATUS } from '../../ducks/api';
 import { AmplitudeData } from '../../metrics/amplitude-utils';
 import antallSynligeInfomeldinger from '../../utils/infomeldinger';

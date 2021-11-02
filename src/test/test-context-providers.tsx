@@ -8,7 +8,7 @@ import * as Egenvurdering from '../context/egenvurdering';
 import * as Oppfolging from '../context/oppfolging';
 import * as UlesteDialoger from '../ducks/ulestedialoger';
 import * as BrukerInfo from '../context/bruker-info';
-import * as Meldekort from '../ducks/meldekort';
+import * as Meldekort from '../context/meldekort';
 import * as Motestotte from '../ducks/motestotte';
 import * as UnderOppfolging from '../ducks/under-oppfolging';
 import * as PaabegynteSoknader from '../ducks/paabegynte-soknader';

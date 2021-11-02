@@ -1,5 +1,5 @@
-import { DataElement, STATUS } from './api';
-import { createContext } from 'react';
+import { DataElement, STATUS } from '../ducks/api';
+import { createContext, useContext } from 'react';
 
 export interface State extends DataElement {
     data: Data | null;
@@ -29,3 +29,5 @@ export const initialState: State = {
 };
 
 export const MeldekortContext = createContext<State>(initialState);
+
+export const useMeldekortData = () => useContext(MeldekortContext).data;

@@ -8,7 +8,7 @@ import * as MuligeEttersendelser from '../../ducks/mulige-ettersendelser';
 import * as Sakstema from '../../ducks/sakstema';
 import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe } from '../../context/brukerregistrering';
 import * as Motestotte from '../../ducks/motestotte';
-import * as Meldekort from '../../ducks/meldekort';
+import * as Meldekort from '../../context/meldekort';
 import * as Egenvurdering from '../../context/egenvurdering';
 import * as UlesteDialoger from '../../ducks/ulestedialoger';
 import { fetchData } from '../../ducks/api-utils';

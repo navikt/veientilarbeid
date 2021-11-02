@@ -4,7 +4,7 @@ import { loggAktivitet } from '../../metrics/metrics';
 import EmailText from './email-text';
 import { omMeldekortLenke } from '../../innhold/lenker';
 import * as Brukerregistrering from '../../context/brukerregistrering';
-import * as MeldekortInnhold from '../../ducks/meldekort';
+import * as MeldekortInnhold from '../../context/meldekort';
 import * as Oppfolging from '../../context/oppfolging';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { BrukerInfoContext } from '../../context/bruker-info';

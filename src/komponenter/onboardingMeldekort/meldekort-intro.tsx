@@ -3,7 +3,6 @@ import * as React from 'react';
 import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import * as Brukerregistrering from '../../context/brukerregistrering';
-import * as Meldekort from '../../ducks/meldekort';
 import * as Oppfolging from '../../context/oppfolging';
 import * as BrukerInfo from '../../context/bruker-info';
 import { FeaturetoggleContext } from '../../context/feature-toggles';
@@ -17,6 +16,7 @@ import Sluttkort from './Sluttkort';
 import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../../lib/er-situasjonsbestemt-innsatsgruppe';
 import { kanViseMeldekortStatus } from '../../lib/kan-vise-meldekort-status';
 import OnboardingOmslutning from '../onboarding-omslutning/OnboardingOmslutning';
+import { useMeldekortData } from '../../context/meldekort';
 
 const MELDEKORT_INTRO_KEY = 'meldekortintro';
 
@@ -123,7 +123,8 @@ function MeldekortIntro(props: MeldekortIntroProps) {
 
 function MeldekortIntroWrapper() {
     const amplitudeData = React.useContext(AmplitudeContext);
-    const { data: meldekortData } = React.useContext(Meldekort.MeldekortContext);
+    const meldekortData = useMeldekortData();
+
     const { data: registreringData } = React.useContext(Brukerregistrering.BrukerregistreringContext);
     const { data: oppfolgingData } = React.useContext(Oppfolging.OppfolgingContext);
     const { data: brukerInfoData } = React.useContext(BrukerInfo.BrukerInfoContext);
