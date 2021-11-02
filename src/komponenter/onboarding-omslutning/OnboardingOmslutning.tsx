@@ -17,9 +17,10 @@ const OnboardingOmslutning = ({ children, title, className, ...rest }: Onboardin
             {...rest}
         >
             <Panel className={'kort-panel'}>
+                {title && <div className="kort-heading"></div>}
                 <div className={'kort-innhold'}>
-                    {title && <Element tag={'h1'}>{title}</Element>}
-                    {children}
+                    <Element tag={'h1'}>{title}</Element>
+                    <div className="kort-body">{children}</div>
                 </div>
             </Panel>
         </div>
