@@ -23,7 +23,7 @@ import {
     SAKSTEMA_URL,
 } from '../../ducks/api';
 import { AmplitudeProvider } from './amplitude-provider';
-import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
+import { AutentiseringContext, InnloggingsNiva } from '../../context/autentisering';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
 const skalSjekkeEgenvurderingBesvarelse = (

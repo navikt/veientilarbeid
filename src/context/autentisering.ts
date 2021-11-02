@@ -1,5 +1,5 @@
-import { DataElement, STATUS } from './api';
-import { createContext } from 'react';
+import { DataElement, STATUS } from '../ducks/api';
+import { createContext, useContext } from 'react';
 
 export enum InnloggingsNiva {
     LEVEL_1 = 'Level1',
@@ -27,3 +27,5 @@ export const initialState: State = {
 };
 
 export const AutentiseringContext = createContext<State>(initialState);
+
+export const useAutentiseringData = () => useContext(AutentiseringContext);

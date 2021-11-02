@@ -1,5 +1,5 @@
 import { DinSituasjonSvar, FremtidigSituasjonSvar } from '../context/brukerregistrering';
-import { InnloggingsNiva } from '../ducks/autentisering';
+import { InnloggingsNiva } from '../context/autentisering';
 import { plussDager } from '../utils/date-utils';
 import { kanViseMeldekortStatus } from './kan-vise-meldekort-status';
 import { Formidlingsgruppe, Servicegruppe } from '../context/oppfolging';

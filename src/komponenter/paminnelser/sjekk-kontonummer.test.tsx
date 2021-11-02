@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import SjekkKtnr from './sjekk-kontonummer';
-import { InnloggingsNiva } from '../../ducks/autentisering';
+import { InnloggingsNiva } from '../../context/autentisering';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 
 describe('tester at komponenten oppfører seg som forventet', () => {

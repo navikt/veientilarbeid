@@ -14,7 +14,7 @@ import {
     UNDER_OPPFOLGING_URL,
     VEILARBOPPFOLGING_URL,
 } from '../../ducks/api';
-import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
+import { AutentiseringContext, InnloggingsNiva } from '../../context/autentisering';
 import KanViseVTA from '../kan-vise-vta/kan-vise-vta';
 
 interface OwnProps {

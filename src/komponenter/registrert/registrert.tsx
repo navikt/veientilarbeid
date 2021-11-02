@@ -10,7 +10,7 @@ import './registrert.less';
 import MeldekortIntroWrapper from '../onboardingMeldekort/meldekort-intro';
 import { BrukerregistreringContext } from '../../context/brukerregistrering';
 import { OppfolgingContext } from '../../context/oppfolging';
-import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
+import { AutentiseringContext, InnloggingsNiva } from '../../context/autentisering';
 import { AmplitudeContext } from '../../context/amplitude-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import { FeaturetoggleContext } from '../../context/feature-toggles';

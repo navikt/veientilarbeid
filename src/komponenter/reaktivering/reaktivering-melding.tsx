@@ -6,7 +6,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import { reaktiveringLenke, dialogLenke } from '../../innhold/lenker';
 import { loggAktivitet } from '../../metrics/metrics';
 import { AmplitudeContext } from '../../context/amplitude-context';
-import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
+import { AutentiseringContext, InnloggingsNiva } from '../../context/autentisering';
 import { OppfolgingContext } from '../../context/oppfolging';
 import './reaktivering-melding.less';
 

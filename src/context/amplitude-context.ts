@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react';
 import { AmplitudeData } from '../metrics/amplitude-utils';
-import { InnloggingsNiva } from '../ducks/autentisering';
+import { InnloggingsNiva } from './autentisering';
 import { DinSituasjonSvar } from './brukerregistrering';
 
 export const initialState: AmplitudeData = {

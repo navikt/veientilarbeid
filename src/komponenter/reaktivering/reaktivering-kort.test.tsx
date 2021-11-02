@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
-import { InnloggingsNiva } from '../../ducks/autentisering';
+import { InnloggingsNiva } from '../../context/autentisering';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import Reaktivering from './reaktivering-kort';
 import { mockIntersectionObserver } from '../../mocks/intersection-observer-mock';

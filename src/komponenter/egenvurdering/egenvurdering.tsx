@@ -12,7 +12,7 @@ import './egenvurdering.less';
 import { behovsvurderingLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 import { AmplitudeContext } from '../../context/amplitude-context';
-import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
+import { AutentiseringContext, InnloggingsNiva } from '../../context/autentisering';
 import { OppfolgingContext, Servicegruppe } from '../../context/oppfolging';
 import { EgenvurderingContext } from '../../context/egenvurdering';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';

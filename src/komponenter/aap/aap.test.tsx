@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import Aap from './aap';
 import tekster from '../../tekster/tekster';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
-import { InnloggingsNiva } from '../../ducks/autentisering';
+import { InnloggingsNiva } from '../../context/autentisering';
 
 describe('Aap', () => {
     it('rendres når bruker er sykemeldt med arbeidsgiver og under oppfølging og Nivå 4', async () => {

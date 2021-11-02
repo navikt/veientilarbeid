@@ -1,4 +1,4 @@
-import { InnloggingsNiva } from '../ducks/autentisering';
+import { InnloggingsNiva } from '../context/autentisering';
 
 const authMock = {
     loggedIn: true,

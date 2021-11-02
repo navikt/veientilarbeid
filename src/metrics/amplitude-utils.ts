@@ -1,7 +1,7 @@
 // tslint:disable align no-any
 import amplitude from 'amplitude-js';
 import { AMPLITUDE_API_KEY_PROD, AMPLITUDE_API_KEY_TEST, AMPLITUDE_ENDPOINT } from '../utils/konstanter';
-import { InnloggingsNiva } from '../ducks/autentisering';
+import { InnloggingsNiva } from '../context/autentisering';
 import { erProduksjon } from '../utils/app-state-utils';
 import { POAGruppe } from '../utils/get-poa-group';
 import { EksperimentId } from '../eksperiment/eksperimenter';

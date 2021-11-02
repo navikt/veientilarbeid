@@ -12,7 +12,7 @@ import getPoaGroup from '../utils/get-poa-group';
 import { loggVisning } from '../metrics/metrics';
 import { erMikrofrontend } from '../utils/app-state-utils';
 import { hotjarTrigger } from '../hotjar';
-import { AutentiseringContext, InnloggingsNiva } from '../ducks/autentisering';
+import { AutentiseringContext, InnloggingsNiva } from '../context/autentisering';
 import { UnderOppfolgingContext } from '../ducks/under-oppfolging';
 import sjekkOmBrukerErStandardInnsatsgruppe from '../lib/er-standard-innsatsgruppe';
 

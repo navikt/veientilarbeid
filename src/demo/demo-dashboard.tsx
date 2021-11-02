@@ -53,7 +53,7 @@ import {
     settOpprettetDato,
 } from './demo-state-brukerregistrering';
 import tekster from '../tekster/tekster';
-import { InnloggingsNiva } from '../ducks/autentisering';
+import { InnloggingsNiva } from '../context/autentisering';
 import { setFastTidspunktForIDag } from '../utils/chrono';
 import { datoUtenTid } from '../utils/date-utils';
 import { FeatureToggles, prettyPrintFeatureToggle } from '../context/feature-toggles';

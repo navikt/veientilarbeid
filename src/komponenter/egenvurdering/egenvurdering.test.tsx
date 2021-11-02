@@ -7,7 +7,7 @@ import tekster from '../../tekster/tekster';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import { Servicegruppe } from '../../context/oppfolging';
 import { ForeslattInnsatsgruppe } from '../../context/brukerregistrering';
-import { InnloggingsNiva } from '../../ducks/autentisering';
+import { InnloggingsNiva } from '../../context/autentisering';
 
 describe('Tester egenvurdering-komponenten', () => {
     const oldLocation = global.window.location;

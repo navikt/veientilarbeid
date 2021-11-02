@@ -1,6 +1,6 @@
 import { Formidlingsgruppe, Servicegruppe } from '../../context/oppfolging';
 import { DinSituasjonSvar, FremtidigSituasjonSvar, ForeslattInnsatsgruppe } from '../../context/brukerregistrering';
-import { InnloggingsNiva } from '../../ducks/autentisering';
+import { InnloggingsNiva } from '../../context/autentisering';
 import { plussDager } from '../../utils/date-utils';
 import { POAGruppe } from '../../utils/get-poa-group';
 import { EksperimentId } from '../../eksperiment/eksperimenter';

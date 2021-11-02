@@ -1,4 +1,4 @@
-import { InnloggingsNiva } from '../ducks/autentisering';
+import { InnloggingsNiva } from '../context/autentisering';
 import { foerstkommendeMandag, plussDager } from '../utils/date-utils';
 import { hentQueryParam, settQueryParam } from '../utils/query-param-utils';
 import { FeatureToggles } from '../context/feature-toggles';

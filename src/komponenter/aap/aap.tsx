@@ -9,7 +9,7 @@ import { Normaltekst, Systemtittel, Undertittel } from 'nav-frontend-typografi';
 import './aap.less';
 import { aapSoknadLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
-import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
+import { AutentiseringContext, InnloggingsNiva } from '../../context/autentisering';
 import { BrukerInfoContext } from '../../context/bruker-info';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import { FeaturetoggleContext } from '../../context/feature-toggles';
