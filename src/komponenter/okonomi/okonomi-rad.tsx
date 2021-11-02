@@ -9,7 +9,7 @@ import { dagpengerLesmerLenke, sosialhjelpLenke, sykepengerLenke } from '../../i
 import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
 import { BrukerInfoContext } from '../../context/bruker-info';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
-import { FeaturetoggleContext } from '../../ducks/feature-toggles';
+import { FeaturetoggleContext } from '../../context/feature-toggles';
 import OkonomiRadDagpenger from './okonomi-rad-dagpenger';
 
 const OkonomiRad = () => {

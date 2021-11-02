@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './dagpenger-status.less';
-import { FeaturetoggleContext } from '../../ducks/feature-toggles';
+import { FeaturetoggleContext } from '../../context/feature-toggles';
 import * as Brukerregistrering from '../../ducks/brukerregistrering';
 import * as Oppfolging from '../../ducks/oppfolging';
 import * as BrukerInfo from '../../context/bruker-info';

@@ -4,7 +4,7 @@ import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import './feedback.less';
 import { Undertekst } from 'nav-frontend-typografi';
 import classNames from 'classnames';
-import { FeaturetoggleContext } from '../../ducks/feature-toggles';
+import { FeaturetoggleContext } from '../../context/feature-toggles';
 import { useBrowserStorage } from '../../hooks/use-browserstorage';
 
 interface Props {

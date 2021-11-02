@@ -56,7 +56,7 @@ import tekster from '../tekster/tekster';
 import { InnloggingsNiva } from '../ducks/autentisering';
 import { setFastTidspunktForIDag } from '../utils/chrono';
 import { datoUtenTid } from '../utils/date-utils';
-import { FeatureToggles, prettyPrintFeatureToggle } from '../ducks/feature-toggles';
+import { FeatureToggles, prettyPrintFeatureToggle } from '../context/feature-toggles';
 
 interface OpprettetRegistreringDato {
     registrertForLanseringEgenvurdering: string;

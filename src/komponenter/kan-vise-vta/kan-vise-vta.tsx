@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OppfolgingContext } from '../../ducks/oppfolging';
 import { BrukerregistreringContext } from '../../ducks/brukerregistrering';
-import { FeaturetoggleContext } from '../../ducks/feature-toggles';
+import { FeaturetoggleContext } from '../../context/feature-toggles';
 import sjekkOmBrukerErStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import { useGlobaleInnstillinger } from '../../context/GlobaleInnstillinger';
 

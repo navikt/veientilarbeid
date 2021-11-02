@@ -11,7 +11,7 @@ import InViewport from '../in-viewport/in-viewport';
 import { EksperimentId } from '../../eksperiment/eksperimenter';
 import './brukerundersokelse.less';
 import { hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
-import { FeaturetoggleContext } from '../../ducks/feature-toggles';
+import { FeaturetoggleContext } from '../../context/feature-toggles';
 
 const KEY_VTA_BRUKERUNDERSOKELSE = 'vta-brukerundersokelse';
 const sisteUndersokelseDato = '2021-09-09';

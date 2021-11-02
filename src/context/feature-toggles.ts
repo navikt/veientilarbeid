@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataElement, STATUS } from './api';
+import { DataElement, STATUS } from '../ducks/api';
 
 export enum FeatureToggles {
     MODAL = 'veientilarbeid.modal',
@@ -93,3 +93,5 @@ export const initialState: State = {
 };
 
 export const FeaturetoggleContext = React.createContext<State>(initialState);
+
+export const useFeatureToggleData = () => React.useContext(FeaturetoggleContext).data;

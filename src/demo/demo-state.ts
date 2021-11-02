@@ -1,7 +1,7 @@
 import { InnloggingsNiva } from '../ducks/autentisering';
 import { foerstkommendeMandag, plussDager } from '../utils/date-utils';
 import { hentQueryParam, settQueryParam } from '../utils/query-param-utils';
-import { FeatureToggles } from '../ducks/feature-toggles';
+import { FeatureToggles } from '../context/feature-toggles';
 import muligeEttersendelserMock from '../mocks/saksoversikt-mulige-ettersendelser-mock';
 
 type JSONValue = null | string | number | boolean | JSONObject | JSONArray;

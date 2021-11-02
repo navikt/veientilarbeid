@@ -17,7 +17,7 @@ import { behovsvurderingLenke } from '../../innhold/lenker';
 import { plussDager } from '../../utils/date-utils';
 import './12uker-egenvurdering.less';
 import { fjernFraBrowserStorage, hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
-import { FeaturetoggleContext, Data as FeaturetoggleData } from '../../ducks/feature-toggles';
+import { FeaturetoggleContext, Data as FeaturetoggleData } from '../../context/feature-toggles';
 
 const INTRO_KEY_12UKER = '12uker-egenvurdering';
 const ANTALL_DAGER_COOL_DOWN = 7;

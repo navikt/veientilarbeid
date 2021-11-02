@@ -4,7 +4,7 @@ import * as Oppfolging from '../../ducks/oppfolging';
 import * as UnderOppfolging from '../../ducks/under-oppfolging';
 import Feilmelding from '../feilmeldinger/feilmelding';
 import * as Brukerregistrering from '../../ducks/brukerregistrering';
-import * as FeatureToggle from '../../ducks/feature-toggles';
+import * as FeatureToggle from '../../context/feature-toggles';
 import * as Meldekortstatus from '../../ducks/meldekortstatus';
 import { fetchData } from '../../ducks/api-utils';
 import {

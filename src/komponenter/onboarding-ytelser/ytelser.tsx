@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import * as Brukerregistrering from '../../ducks/brukerregistrering';
 import * as Oppfolging from '../../ducks/oppfolging';
 import * as BrukerInfo from '../../context/bruker-info';
-import { FeaturetoggleContext } from '../../ducks/feature-toggles';
+import { FeaturetoggleContext } from '../../context/feature-toggles';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import { loggAktivitet } from '../../metrics/metrics';
 
