@@ -4,7 +4,7 @@ import Feilmelding from '../feilmeldinger/feilmelding';
 import * as BrukerInfo from '../../context/bruker-info';
 import * as Brukerregistrering from '../../context/brukerregistrering';
 import * as PaabegynteSoknader from '../../ducks/paabegynte-soknader';
-import * as MuligeEttersendelser from '../../ducks/mulige-ettersendelser';
+import * as MuligeEttersendelser from '../../context/mulige-ettersendelser';
 import * as Sakstema from '../../ducks/sakstema';
 import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe } from '../../context/brukerregistrering';
 import * as Motestotte from '../../context/motestotte';

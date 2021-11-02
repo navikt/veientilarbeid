@@ -8,7 +8,7 @@ import { BrukerregistreringContext, DinSituasjonSvar } from '../../context/bruke
 import { OppfolgingContext } from '../../context/oppfolging';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import { PaabegynteSoknaderContext } from '../../ducks/paabegynte-soknader';
-import { MuligeEttersendelserContext } from '../../ducks/mulige-ettersendelser';
+import { MuligeEttersendelserContext } from '../../context/mulige-ettersendelser';
 import { SakstemaContext } from '../../ducks/sakstema';
 import { BrukerInfoContext } from '../../context/bruker-info';
 import grupperGeografiskTilknytning from '../../utils/grupper-geografisk-tilknytning';
