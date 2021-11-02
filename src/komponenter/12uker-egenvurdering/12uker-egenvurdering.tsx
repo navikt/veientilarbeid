@@ -5,7 +5,7 @@ import Panel from 'nav-frontend-paneler';
 import Lenke from 'nav-frontend-lenker';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
 import * as Egenvurdering from '../../ducks/egenvurdering';
-import * as Brukerregistrering from '../../ducks/brukerregistrering';
+import * as Brukerregistrering from '../../context/brukerregistrering';
 import * as Oppfolging from '../../ducks/oppfolging';
 import * as BrukerInfo from '../../context/bruker-info';
 import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';

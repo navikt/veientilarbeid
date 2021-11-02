@@ -1,4 +1,4 @@
-import { DataElement, STATUS } from './api';
+import { DataElement, STATUS } from '../ducks/api';
 import * as React from 'react';
 
 export enum DinSituasjonSvar {
@@ -91,6 +91,8 @@ export const initialState: State = {
 };
 
 export const BrukerregistreringContext = React.createContext<State>(initialState);
+
+export const useBrukerregistreringData = () => React.useContext(BrukerregistreringContext).data;
 
 export function selectFremtidigSituasjonSvar(data: Data | null): FremtidigSituasjonSvar | null {
     return data && data.registrering ? data.registrering?.besvarelse.fremtidigSituasjon : null;

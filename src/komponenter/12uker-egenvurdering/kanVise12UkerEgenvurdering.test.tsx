@@ -1,5 +1,5 @@
 import { Formidlingsgruppe, Servicegruppe } from '../../ducks/oppfolging';
-import { DinSituasjonSvar, FremtidigSituasjonSvar, ForeslattInnsatsgruppe } from '../../ducks/brukerregistrering';
+import { DinSituasjonSvar, FremtidigSituasjonSvar, ForeslattInnsatsgruppe } from '../../context/brukerregistrering';
 import { InnloggingsNiva } from '../../ducks/autentisering';
 import { plussDager } from '../../utils/date-utils';
 import { POAGruppe } from '../../utils/get-poa-group';

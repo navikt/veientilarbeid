@@ -7,7 +7,7 @@ import { hentIDag } from '../../utils/chrono';
 import * as PaabegynteSoknader from '../../ducks/paabegynte-soknader';
 import beregnDagpengerStatus, { DagpengerSokestatuser } from '../dagpenger-status/beregn-dagpenger-status';
 import * as Sakstema from '../../ducks/sakstema';
-import * as Brukerregistrering from '../../ducks/brukerregistrering';
+import * as Brukerregistrering from '../../context/brukerregistrering';
 
 function MeldekortAdvarsel({ dagerEtterFastsattMeldedag }: { dagerEtterFastsattMeldedag: number | null }) {
     const { rettighetsgruppe } = useContext(BrukerInfoContext).data;

@@ -1,5 +1,5 @@
 // import { Data as FeaturetoggleData } from '../ducks/feature-toggles';
-import * as Brukerregistrering from '../ducks/brukerregistrering';
+import * as Brukerregistrering from '../context/brukerregistrering';
 import * as Meldekort from '../ducks/meldekort';
 import * as Oppfolging from '../ducks/oppfolging';
 import * as BrukerInfo from '../context/bruker-info';

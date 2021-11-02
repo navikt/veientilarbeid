@@ -1,6 +1,6 @@
 import { KontorEksperiment, Samarbeidskontorer } from './samarbeidskontorer';
 import { EksperimentId } from './eksperimenter';
-import { DinSituasjonSvar } from '../ducks/brukerregistrering';
+import { DinSituasjonSvar } from '../context/brukerregistrering';
 
 export interface KontorBrukerContext {
     geografiskTilknytning?: string;

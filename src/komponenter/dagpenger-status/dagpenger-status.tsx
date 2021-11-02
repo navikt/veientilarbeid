@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './dagpenger-status.less';
 import { FeaturetoggleContext } from '../../context/feature-toggles';
-import * as Brukerregistrering from '../../ducks/brukerregistrering';
+import * as Brukerregistrering from '../../context/brukerregistrering';
 import * as Oppfolging from '../../ducks/oppfolging';
 import * as BrukerInfo from '../../context/bruker-info';
 import * as PaabegynteSoknader from '../../ducks/paabegynte-soknader';

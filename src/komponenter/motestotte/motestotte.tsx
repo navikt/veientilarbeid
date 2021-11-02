@@ -8,7 +8,7 @@ import {
     selectDinSituasjonSvar,
     selectForeslattInnsatsgruppe,
     selectOpprettetRegistreringDato,
-} from '../../ducks/brukerregistrering';
+} from '../../context/brukerregistrering';
 import { motestotteLenke } from '../../innhold/lenker';
 import { loggAktivitet } from '../../metrics/metrics';
 import './motestotte.less';

@@ -7,7 +7,7 @@ import {
     BrukerregistreringContext,
     ForeslattInnsatsgruppe,
     selectForeslattInnsatsgruppe,
-} from '../../ducks/brukerregistrering';
+} from '../../context/brukerregistrering';
 import './egenvurdering.less';
 import { behovsvurderingLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';

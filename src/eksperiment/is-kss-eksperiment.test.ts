@@ -1,7 +1,7 @@
 import isKSSEksperiment from './is-kss-eksperiment';
 import getPoaGroup from '../utils/get-poa-group';
 import { POAGruppe } from '../utils/get-poa-group';
-import { DinSituasjonSvar } from '../ducks/brukerregistrering';
+import { DinSituasjonSvar } from '../context/brukerregistrering';
 
 const generateKSS = (): POAGruppe => {
     const data = {

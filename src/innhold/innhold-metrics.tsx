@@ -5,7 +5,7 @@ import {
     selectDinSituasjonSvar,
     selectForeslattInnsatsgruppe,
     selectOpprettetRegistreringDato,
-} from '../ducks/brukerregistrering';
+} from '../context/brukerregistrering';
 import { OppfolgingContext } from '../ducks/oppfolging';
 import { BrukerInfoContext } from '../context/bruker-info';
 import getPoaGroup from '../utils/get-poa-group';

@@ -18,7 +18,7 @@
  * NAV Åsnes - 3418
  */
 import { POAGruppe } from '../utils/get-poa-group';
-import { DinSituasjonSvar } from '../ducks/brukerregistrering';
+import { DinSituasjonSvar } from '../context/brukerregistrering';
 
 export const kssSituasjoner = [DinSituasjonSvar.HAR_SAGT_OPP, DinSituasjonSvar.MISTET_JOBBEN];
 

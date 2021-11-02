@@ -3,7 +3,7 @@ import Innholdslaster from '../innholdslaster/innholdslaster';
 import * as Oppfolging from '../../ducks/oppfolging';
 import * as UnderOppfolging from '../../ducks/under-oppfolging';
 import Feilmelding from '../feilmeldinger/feilmelding';
-import * as Brukerregistrering from '../../ducks/brukerregistrering';
+import * as Brukerregistrering from '../../context/brukerregistrering';
 import * as FeatureToggle from '../../context/feature-toggles';
 import * as Meldekortstatus from '../../ducks/meldekortstatus';
 import { fetchData } from '../../ducks/api-utils';

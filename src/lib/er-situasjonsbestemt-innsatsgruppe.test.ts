@@ -1,4 +1,4 @@
-import { ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../ducks/brukerregistrering';
+import { ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../context/brukerregistrering';
 import { Servicegruppe, Formidlingsgruppe } from '../ducks/oppfolging';
 import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from './er-situasjonsbestemt-innsatsgruppe';
 

@@ -3,7 +3,7 @@ import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { loggAktivitet } from '../../metrics/metrics';
 import EmailText from './email-text';
 import { omMeldekortLenke } from '../../innhold/lenker';
-import * as Brukerregistrering from '../../ducks/brukerregistrering';
+import * as Brukerregistrering from '../../context/brukerregistrering';
 import * as MeldekortInnhold from '../../ducks/meldekort';
 import * as Oppfolging from '../../ducks/oppfolging';
 import { AmplitudeContext } from '../../ducks/amplitude-context';

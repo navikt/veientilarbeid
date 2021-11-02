@@ -1,4 +1,4 @@
-import { DinSituasjonSvar, FremtidigSituasjonSvar } from '../ducks/brukerregistrering';
+import { DinSituasjonSvar, FremtidigSituasjonSvar } from '../context/brukerregistrering';
 import { InnloggingsNiva } from '../ducks/autentisering';
 import { plussDager } from '../utils/date-utils';
 import { POAGruppe } from '../utils/get-poa-group';

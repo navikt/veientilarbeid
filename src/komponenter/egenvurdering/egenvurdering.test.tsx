@@ -6,7 +6,7 @@ import Egenvurdering from './egenvurdering';
 import tekster from '../../tekster/tekster';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import { Servicegruppe } from '../../ducks/oppfolging';
-import { ForeslattInnsatsgruppe } from '../../ducks/brukerregistrering';
+import { ForeslattInnsatsgruppe } from '../../context/brukerregistrering';
 import { InnloggingsNiva } from '../../ducks/autentisering';
 
 describe('Tester egenvurdering-komponenten', () => {

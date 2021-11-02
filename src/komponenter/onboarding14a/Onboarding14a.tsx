@@ -1,6 +1,6 @@
 import sjekkOmBrukerErStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../../lib/er-situasjonsbestemt-innsatsgruppe';
-import * as Brukerregistrering from '../../ducks/brukerregistrering';
+import { useBrukerregistreringData } from '../../context/brukerregistrering';
 import * as Oppfolging from '../../ducks/oppfolging';
 import * as BrukerInfo from '../../context/bruker-info';
 import { useFeatureToggleData } from '../../context/feature-toggles';
@@ -10,7 +10,7 @@ import Enkeltkort from './Enkeltkort';
 import { kanViseOnboarding14A } from '../../lib/kan-vise-onboarding14a';
 
 function Onboarding14a(): JSX.Element | null {
-    const { data: registreringData } = React.useContext(Brukerregistrering.BrukerregistreringContext);
+    const registreringData = useBrukerregistreringData();
     const { data: oppfolgingData } = React.useContext(Oppfolging.OppfolgingContext);
     const featuretoggleData = useFeatureToggleData();
     const { data: brukerInfoData } = React.useContext(BrukerInfo.BrukerInfoContext);

@@ -41,7 +41,7 @@ import {
 } from './demo-state';
 
 import './demo-dashboard.less';
-import { DinSituasjonSvar, ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../ducks/brukerregistrering';
+import { DinSituasjonSvar, ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../context/brukerregistrering';
 import {
     hentForeslattInnsatsgruppe,
     hentDinSituasjon,

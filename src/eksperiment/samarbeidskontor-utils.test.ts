@@ -4,7 +4,7 @@ import {
     KontorBrukerContext,
 } from './samarbeidskontor-utils';
 import { EksperimentId } from './eksperimenter';
-import { DinSituasjonSvar } from '../ducks/brukerregistrering';
+import { DinSituasjonSvar } from '../context/brukerregistrering';
 
 describe('tester funksjonaliteten for visEksperiment', () => {
     function visEksperiment(eksperiementId: EksperimentId, brukerContext: KontorBrukerContext) {

@@ -5,7 +5,7 @@ import { InnloggingsNiva } from '../ducks/autentisering';
 import { erProduksjon } from '../utils/app-state-utils';
 import { POAGruppe } from '../utils/get-poa-group';
 import { EksperimentId } from '../eksperiment/eksperimenter';
-import { DinSituasjonSvar, ForeslattInnsatsgruppe } from '../ducks/brukerregistrering';
+import { DinSituasjonSvar, ForeslattInnsatsgruppe } from '../context/brukerregistrering';
 
 const apiKey = erProduksjon() ? AMPLITUDE_API_KEY_PROD : AMPLITUDE_API_KEY_TEST;
 const config = {

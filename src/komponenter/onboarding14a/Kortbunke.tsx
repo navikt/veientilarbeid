@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import * as React from 'react';
 import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
 import { AmplitudeContext } from '../../ducks/amplitude-context';
-import * as Brukerregistrering from '../../ducks/brukerregistrering';
+import * as Brukerregistrering from '../../context/brukerregistrering';
 import * as Egenvurdering from '../../ducks/egenvurdering';
 import * as Oppfolging from '../../ducks/oppfolging';
 import * as BrukerInfo from '../../context/bruker-info';

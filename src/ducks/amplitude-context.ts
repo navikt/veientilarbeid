@@ -1,7 +1,7 @@
 import { createContext, useContext } from 'react';
 import { AmplitudeData } from '../metrics/amplitude-utils';
 import { InnloggingsNiva } from './autentisering';
-import { DinSituasjonSvar } from './brukerregistrering';
+import { DinSituasjonSvar } from '../context/brukerregistrering';
 
 export const initialState: AmplitudeData = {
     gruppe: 'boo',

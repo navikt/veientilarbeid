@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import Motestotte from './motestotte';
 import tekster from '../../tekster/tekster';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
-import { DinSituasjonSvar, ForeslattInnsatsgruppe } from '../../ducks/brukerregistrering';
+import { DinSituasjonSvar, ForeslattInnsatsgruppe } from '../../context/brukerregistrering';
 import { Servicegruppe } from '../../ducks/oppfolging';
 
 describe('Motestotte', () => {

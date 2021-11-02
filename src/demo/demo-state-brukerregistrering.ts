@@ -1,4 +1,4 @@
-import { DinSituasjonSvar, ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../ducks/brukerregistrering';
+import { DinSituasjonSvar, ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../context/brukerregistrering';
 import { DemoData, hentDemoState, settDemoState } from './demo-state';
 import { opprettetRegistreringDato } from './demo-dashboard';
 

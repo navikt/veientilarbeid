@@ -4,7 +4,7 @@ import { InnloggingsNiva } from '../../ducks/autentisering';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import Registrert from './registrert';
 import { Formidlingsgruppe, Servicegruppe } from '../../ducks/oppfolging';
-import { DinSituasjonSvar, ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../../ducks/brukerregistrering';
+import { DinSituasjonSvar, ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../../context/brukerregistrering';
 import { mockIntersectionObserver } from '../../mocks/intersection-observer-mock';
 
 const meldekort = {

@@ -1,4 +1,4 @@
-import { Brukerregistrering } from '../ducks/brukerregistrering';
+import { Brukerregistrering } from '../context/brukerregistrering';
 import { Data as OppfolgingData } from '../ducks/oppfolging';
 
 interface DataGrunnlag {
