@@ -25,7 +25,7 @@ import * as Meldekort from '../../context/meldekort';
 import { STATUS } from '../../ducks/api';
 import { AmplitudeData } from '../../metrics/amplitude-utils';
 import antallSynligeInfomeldinger from '../../utils/infomeldinger';
-import * as Meldekortstatus from '../../ducks/meldekortstatus';
+import * as Meldekortstatus from '../../context/meldekortstatus';
 import isMeldekortbruker from '../../utils/er-meldekortbruker';
 import { datoUtenTid } from '../../utils/date-utils';
 import { hentEksperimenter } from '../../eksperiment/eksperiment-utils';

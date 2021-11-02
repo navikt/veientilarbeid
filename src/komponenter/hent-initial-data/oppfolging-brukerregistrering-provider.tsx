@@ -5,7 +5,7 @@ import * as UnderOppfolging from '../../ducks/under-oppfolging';
 import Feilmelding from '../feilmeldinger/feilmelding';
 import * as Brukerregistrering from '../../context/brukerregistrering';
 import * as FeatureToggle from '../../context/feature-toggles';
-import * as Meldekortstatus from '../../ducks/meldekortstatus';
+import * as Meldekortstatus from '../../context/meldekortstatus';
 import { fetchData } from '../../ducks/api-utils';
 import {
     BRUKERREGISTRERING_URL,
