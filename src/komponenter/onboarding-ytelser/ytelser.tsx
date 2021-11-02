@@ -3,7 +3,7 @@ import * as Brukerregistrering from '../../context/brukerregistrering';
 import * as Oppfolging from '../../context/oppfolging';
 import * as BrukerInfo from '../../context/bruker-info';
 import { FeaturetoggleContext } from '../../context/feature-toggles';
-import { AmplitudeContext } from '../../ducks/amplitude-context';
+import { AmplitudeContext } from '../../context/amplitude-context';
 import { loggAktivitet } from '../../metrics/metrics';
 
 import sjekkOmBrukerErStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';

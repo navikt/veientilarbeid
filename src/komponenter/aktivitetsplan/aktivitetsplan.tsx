@@ -3,7 +3,7 @@ import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import DesignMug from './design-mug';
 import { loggAktivitet } from '../../metrics/metrics';
 import { aktivitetsplanLenke } from '../../innhold/lenker';
-import { AmplitudeContext } from '../../ducks/amplitude-context';
+import { AmplitudeContext } from '../../context/amplitude-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
 const Aktivitetsplan = () => {

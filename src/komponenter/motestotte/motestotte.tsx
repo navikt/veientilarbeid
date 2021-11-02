@@ -15,7 +15,7 @@ import './motestotte.less';
 import { OppfolgingContext, Servicegruppe } from '../../context/oppfolging';
 import { MotestotteContext } from '../../ducks/motestotte';
 import { BrukerInfoContext } from '../../context/bruker-info';
-import { AmplitudeContext } from '../../ducks/amplitude-context';
+import { AmplitudeContext } from '../../context/amplitude-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import tekster from '../../tekster/tekster';
 

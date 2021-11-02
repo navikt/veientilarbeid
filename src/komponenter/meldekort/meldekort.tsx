@@ -6,7 +6,7 @@ import { omMeldekortLenke } from '../../innhold/lenker';
 import * as Brukerregistrering from '../../context/brukerregistrering';
 import * as MeldekortInnhold from '../../context/meldekort';
 import * as Oppfolging from '../../context/oppfolging';
-import { AmplitudeContext } from '../../ducks/amplitude-context';
+import { AmplitudeContext } from '../../context/amplitude-context';
 import { BrukerInfoContext } from '../../context/bruker-info';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import { FeaturetoggleContext } from '../../context/feature-toggles';

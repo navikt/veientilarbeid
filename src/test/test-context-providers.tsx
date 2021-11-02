@@ -1,5 +1,5 @@
 import merge from 'merge-deep';
-import * as Amplitude from '../ducks/amplitude-context';
+import * as Amplitude from '../context/amplitude-context';
 import { AmplitudeData } from '../metrics/amplitude-utils';
 import * as Autentisering from '../ducks/autentisering';
 import * as Brukerregistrering from '../context/brukerregistrering';

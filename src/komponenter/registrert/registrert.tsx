@@ -11,7 +11,7 @@ import MeldekortIntroWrapper from '../onboardingMeldekort/meldekort-intro';
 import { BrukerregistreringContext } from '../../context/brukerregistrering';
 import { OppfolgingContext } from '../../context/oppfolging';
 import { AutentiseringContext, InnloggingsNiva } from '../../ducks/autentisering';
-import { AmplitudeContext } from '../../ducks/amplitude-context';
+import { AmplitudeContext } from '../../context/amplitude-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 import { FeaturetoggleContext } from '../../context/feature-toggles';
 import Onboarding14A from '../onboarding14a/Onboarding14a';

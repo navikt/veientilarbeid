@@ -4,7 +4,7 @@ import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { Knapp } from 'nav-frontend-knapper';
 import Lenke from 'nav-frontend-lenker';
 import Panel from 'nav-frontend-paneler';
-import { AmplitudeContext } from '../../ducks/amplitude-context';
+import { AmplitudeContext } from '../../context/amplitude-context';
 import { loggAktivitet } from '../../metrics/metrics';
 import { dagpengerSoknadLenke } from '../../innhold/lenker';
 import ErRendret from '../er-rendret/er-rendret';

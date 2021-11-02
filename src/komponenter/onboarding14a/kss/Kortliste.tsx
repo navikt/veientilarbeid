@@ -4,7 +4,7 @@ import Feedback from '../../feedback/feedback';
 import Lenke from 'nav-frontend-lenker';
 import { OppfolgingContext, Servicegruppe } from '../../../context/oppfolging';
 import { amplitudeLogger } from '../../../metrics/amplitude-utils';
-import { AmplitudeContext } from '../../../ducks/amplitude-context';
+import { AmplitudeContext } from '../../../context/amplitude-context';
 
 function Kort1() {
     return (

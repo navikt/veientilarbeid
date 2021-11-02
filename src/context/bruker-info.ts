@@ -36,4 +36,4 @@ export const initialState: State = {
 
 export const BrukerInfoContext = createContext<State>(initialState);
 
-export const useBrukerinfo = () => useContext(BrukerInfoContext);
+export const useBrukerinfoData = () => useContext(BrukerInfoContext).data;

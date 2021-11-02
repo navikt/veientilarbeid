@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import Lenke from 'nav-frontend-lenker';
-import { AmplitudeContext } from '../../ducks/amplitude-context';
+import { AmplitudeContext } from '../../context/amplitude-context';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import ErRendret from '../er-rendret/er-rendret';
 import './registrert.less';

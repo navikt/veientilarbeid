@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { AmplitudeContext } from '../../ducks/amplitude-context';
+import { AmplitudeContext } from '../../context/amplitude-context';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import './feedback.less';
 import { Undertekst } from 'nav-frontend-typografi';

@@ -7,7 +7,7 @@ import './ikke-registrert.less';
 import { registreringsLenke } from '../../innhold/lenker';
 import InViewport from '../in-viewport/in-viewport';
 import ErRendret from '../er-rendret/er-rendret';
-import { AmplitudeContext } from '../../ducks/amplitude-context';
+import { AmplitudeContext } from '../../context/amplitude-context';
 
 interface Props {
     skalTilRegistrering: boolean;

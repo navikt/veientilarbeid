@@ -7,7 +7,7 @@ import { difiLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 import { OppfolgingContext } from '../../context/oppfolging';
 import { loggAktivitet } from '../../metrics/metrics';
-import { AmplitudeContext } from '../../ducks/amplitude-context';
+import { AmplitudeContext } from '../../context/amplitude-context';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
 
 const KrrMelding = () => {

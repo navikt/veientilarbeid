@@ -3,7 +3,7 @@ import getPoaGroup from '../../utils/get-poa-group';
 import isKSSEksperiment from '../../eksperiment/is-kss-eksperiment';
 import isKSSKontroll from '../../eksperiment/is-kss-kontroll';
 import { AutentiseringContext } from '../../ducks/autentisering';
-import { AmplitudeContext } from '../../ducks/amplitude-context';
+import { AmplitudeContext } from '../../context/amplitude-context';
 import { BrukerregistreringContext, DinSituasjonSvar } from '../../context/brukerregistrering';
 import { OppfolgingContext } from '../../context/oppfolging';
 import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
