@@ -8,7 +8,7 @@ import './dialog.less';
 import { dialogLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 import { AmplitudeContext } from '../../context/amplitude-context';
-import { UlesteDialogerContext } from '../../ducks/ulestedialoger';
+import { UlesteDialogerContext } from '../../context/ulestedialoger';
 import { UnderOppfolgingContext } from '../../context/under-oppfolging';
 import { FeaturetoggleContext } from '../../context/feature-toggles';
 import * as BrukerInfo from '../../context/bruker-info';

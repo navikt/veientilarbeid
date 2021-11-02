@@ -4,9 +4,9 @@ import { BrukerInfoContext } from '../../context/bruker-info';
 import { beregnDagerTilInaktivering } from '../../utils/meldekort-utils';
 import { datoMedUkedag, plussDager } from '../../utils/date-utils';
 import { hentIDag } from '../../utils/chrono';
-import * as PaabegynteSoknader from '../../ducks/paabegynte-soknader';
+import * as PaabegynteSoknader from '../../context/paabegynte-soknader';
 import beregnDagpengerStatus, { DagpengerSokestatuser } from '../dagpenger-status/beregn-dagpenger-status';
-import * as Sakstema from '../../ducks/sakstema';
+import * as Sakstema from '../../context/sakstema';
 import * as Brukerregistrering from '../../context/brukerregistrering';
 
 function MeldekortAdvarsel({ dagerEtterFastsattMeldedag }: { dagerEtterFastsattMeldedag: number | null }) {

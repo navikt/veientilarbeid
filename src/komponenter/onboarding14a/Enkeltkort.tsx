@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { SituasjonsbestemtSluttkort } from './situasjonsbestemt';
 import { AmplitudeContext } from '../../context/amplitude-context';
-import { UlesteDialogerContext } from '../../ducks/ulestedialoger';
+import { UlesteDialogerContext } from '../../context/ulestedialoger';
 import OnboardingOmslutning from '../onboarding-omslutning/OnboardingOmslutning';
 
 const Enkeltkort = () => {
