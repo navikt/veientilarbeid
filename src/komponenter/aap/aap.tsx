@@ -11,7 +11,7 @@ import { aapSoknadLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 import { AutentiseringContext, InnloggingsNiva } from '../../context/autentisering';
 import { BrukerInfoContext } from '../../context/bruker-info';
-import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
+import { UnderOppfolgingContext } from '../../context/under-oppfolging';
 import { FeaturetoggleContext } from '../../context/feature-toggles';
 import Rad from '../../innhold/rad';
 

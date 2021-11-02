@@ -24,7 +24,7 @@ import {
 } from '../../ducks/api';
 import { AmplitudeProvider } from './amplitude-provider';
 import { AutentiseringContext, InnloggingsNiva } from '../../context/autentisering';
-import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
+import { UnderOppfolgingContext } from '../../context/under-oppfolging';
 
 const skalSjekkeEgenvurderingBesvarelse = (
     foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null

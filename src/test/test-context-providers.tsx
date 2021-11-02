@@ -10,7 +10,7 @@ import * as UlesteDialoger from '../ducks/ulestedialoger';
 import * as BrukerInfo from '../context/bruker-info';
 import * as Meldekort from '../context/meldekort';
 import * as Motestotte from '../context/motestotte';
-import * as UnderOppfolging from '../ducks/under-oppfolging';
+import * as UnderOppfolging from '../context/under-oppfolging';
 import * as PaabegynteSoknader from '../ducks/paabegynte-soknader';
 import * as Sakstema from '../ducks/sakstema';
 import * as React from 'react';

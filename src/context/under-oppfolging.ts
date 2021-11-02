@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataElement, STATUS } from './api';
+import { DataElement, STATUS } from '../ducks/api';
 
 export interface State extends DataElement {
     data: Data;
@@ -17,3 +17,5 @@ export const initialState: State = {
 };
 
 export const UnderOppfolgingContext = React.createContext<State>(initialState);
+
+export const useUnderOppfolgingData = () => React.useContext(UnderOppfolgingContext);

@@ -8,7 +8,7 @@ import { dagpengerSoknadLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 import { AmplitudeContext } from '../../context/amplitude-context';
 import { BrukerInfoContext } from '../../context/bruker-info';
-import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
+import { UnderOppfolgingContext } from '../../context/under-oppfolging';
 
 const Dagpenger = () => {
     const amplitudeData = useContext(AmplitudeContext);

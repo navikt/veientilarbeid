@@ -4,7 +4,7 @@ import DesignMug from './design-mug';
 import { loggAktivitet } from '../../metrics/metrics';
 import { aktivitetsplanLenke } from '../../innhold/lenker';
 import { AmplitudeContext } from '../../context/amplitude-context';
-import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
+import { UnderOppfolgingContext } from '../../context/under-oppfolging';
 
 const Aktivitetsplan = () => {
     const amplitudeData = useContext(AmplitudeContext);

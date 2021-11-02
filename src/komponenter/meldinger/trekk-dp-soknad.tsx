@@ -5,7 +5,7 @@ import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { loggAktivitet } from '../../metrics/metrics';
 import './melding.less';
 import { AmplitudeContext } from '../../context/amplitude-context';
-import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
+import { UnderOppfolgingContext } from '../../context/under-oppfolging';
 
 const TrekkDagpengeSoknad = () => {
     const amplitudeData = React.useContext(AmplitudeContext);

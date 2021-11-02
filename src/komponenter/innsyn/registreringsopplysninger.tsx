@@ -5,7 +5,7 @@ import { dialogLenke } from '../../innhold/lenker';
 import { Besvarelse, Svar } from '../../context/brukerregistrering';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import './registreringsopplysninger.less';
-import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
+import { UnderOppfolgingContext } from '../../context/under-oppfolging';
 
 const Opplysning = (props: any) => {
     const { sporsmal, svar } = props;

@@ -6,7 +6,7 @@ import { AutentiseringContext } from '../../context/autentisering';
 import { AmplitudeContext } from '../../context/amplitude-context';
 import { BrukerregistreringContext, DinSituasjonSvar } from '../../context/brukerregistrering';
 import { OppfolgingContext } from '../../context/oppfolging';
-import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
+import { UnderOppfolgingContext } from '../../context/under-oppfolging';
 import { PaabegynteSoknaderContext } from '../../ducks/paabegynte-soknader';
 import { MuligeEttersendelserContext } from '../../context/mulige-ettersendelser';
 import { SakstemaContext } from '../../ducks/sakstema';

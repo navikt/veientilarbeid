@@ -8,7 +8,7 @@ import tekster from '../../tekster/tekster';
 import { OppfolgingContext } from '../../context/oppfolging';
 import { loggAktivitet } from '../../metrics/metrics';
 import { AmplitudeContext } from '../../context/amplitude-context';
-import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
+import { UnderOppfolgingContext } from '../../context/under-oppfolging';
 
 const KrrMelding = () => {
     const oppfolgingData = React.useContext(OppfolgingContext).data;

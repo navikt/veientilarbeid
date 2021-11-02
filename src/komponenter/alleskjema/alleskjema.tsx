@@ -7,7 +7,7 @@ import './alleskjema.less';
 import { alleSkjemaSoknadLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 import { AmplitudeContext } from '../../context/amplitude-context';
-import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
+import { UnderOppfolgingContext } from '../../context/under-oppfolging';
 
 const AlleSkjema = () => {
     const amplitudeData = useContext(AmplitudeContext);

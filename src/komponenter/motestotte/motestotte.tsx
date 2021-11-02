@@ -16,7 +16,7 @@ import { OppfolgingContext, Servicegruppe } from '../../context/oppfolging';
 import { MotestotteContext } from '../../context/motestotte';
 import { BrukerInfoContext } from '../../context/bruker-info';
 import { AmplitudeContext } from '../../context/amplitude-context';
-import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
+import { UnderOppfolgingContext } from '../../context/under-oppfolging';
 import tekster from '../../tekster/tekster';
 
 const LANSERINGSDATO_MOTESTOTTE = new Date('2020-03-12');

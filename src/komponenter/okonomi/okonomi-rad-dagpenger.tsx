@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { Systemtittel } from 'nav-frontend-typografi';
-import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
+import { UnderOppfolgingContext } from '../../context/under-oppfolging';
 import { BrukerInfoContext } from '../../context/bruker-info';
 import { FeaturetoggleContext } from '../../context/feature-toggles';
 import Rad from '../../innhold/rad';

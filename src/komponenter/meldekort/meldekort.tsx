@@ -8,7 +8,7 @@ import * as MeldekortInnhold from '../../context/meldekort';
 import * as Oppfolging from '../../context/oppfolging';
 import { AmplitudeContext } from '../../context/amplitude-context';
 import { BrukerInfoContext } from '../../context/bruker-info';
-import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
+import { UnderOppfolgingContext } from '../../context/under-oppfolging';
 import { FeaturetoggleContext } from '../../context/feature-toggles';
 import { kanViseMeldekortStatus } from '../../lib/kan-vise-meldekort-status';
 

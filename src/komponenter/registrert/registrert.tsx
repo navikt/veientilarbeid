@@ -12,7 +12,7 @@ import { BrukerregistreringContext } from '../../context/brukerregistrering';
 import { OppfolgingContext } from '../../context/oppfolging';
 import { AutentiseringContext, InnloggingsNiva } from '../../context/autentisering';
 import { AmplitudeContext } from '../../context/amplitude-context';
-import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
+import { UnderOppfolgingContext } from '../../context/under-oppfolging';
 import { FeaturetoggleContext } from '../../context/feature-toggles';
 import Onboarding14A from '../onboarding14a/Onboarding14a';
 import KvitteringWrapper from '../kvitteringer/kvittering-wrapper';

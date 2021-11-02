@@ -15,7 +15,7 @@ import { AmplitudeContext } from '../../context/amplitude-context';
 import { AutentiseringContext, InnloggingsNiva } from '../../context/autentisering';
 import { OppfolgingContext, Servicegruppe } from '../../context/oppfolging';
 import { EgenvurderingContext } from '../../context/egenvurdering';
-import { UnderOppfolgingContext } from '../../ducks/under-oppfolging';
+import { UnderOppfolgingContext } from '../../context/under-oppfolging';
 
 const LANSERINGSDATO_EGENVURDERING = new Date(2019, 4, 10);
 
