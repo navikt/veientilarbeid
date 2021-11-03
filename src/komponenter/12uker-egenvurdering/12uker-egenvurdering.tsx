@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
+import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { Knapp } from 'nav-frontend-knapper';
-import Panel from 'nav-frontend-paneler';
 import Lenke from 'nav-frontend-lenker';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import * as Egenvurdering from '../../contexts/egenvurdering';
@@ -18,6 +17,7 @@ import { plussDager } from '../../utils/date-utils';
 import { fjernFraBrowserStorage, hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
 import { FeaturetoggleContext, Data as FeaturetoggleData } from '../../contexts/feature-toggles';
 import './12uker-egenvurdering.less';
+import OnboardingOmslutning from '../onboarding-omslutning/OnboardingOmslutning';
 
 const INTRO_KEY_12UKER = '12uker-egenvurdering';
 const ANTALL_DAGER_COOL_DOWN = 7;
@@ -53,9 +53,8 @@ function Sluttkort(props: EndStateProps) {
 
     return (
         <div className={'sluttkort'}>
-            <div className="p-1 flex space-between">
+            <div className="flex space-between">
                 <div>
-                    <Element tag={'h1'}>BEHOV FOR OPPFØLGING?</Element>
                     <Systemtittel className={'blokk-xs'}>Du har vært registrert i {ukerRegistrert} uker</Systemtittel>
                 </div>
                 <button className="egenvurdering-avslaa-knapp" onClick={handleAvslaaOppfolgingKnapp}>
@@ -70,7 +69,7 @@ function Sluttkort(props: EndStateProps) {
                     </Normaltekst>
                 </div>
             </div>
-            <div className="flex flex-column space-between p-1">
+            <div className="flex flex-column space-between">
                 <Knapp onClick={handleOnskerOppfolging} className="blokk-s">
                     Jeg ønsker hjelp
                 </Knapp>
@@ -185,20 +184,17 @@ function Intro12UkerWrapper(props: EgenVurderingsProps) {
     }
 
     const innhold = (
-        <div className="tolv-uker-intro-omslutning">
-            <Panel className={'tolv-uker-intro'} border>
-                <div className={'overall-wrapper'}>
-                    <Sluttkort
-                        amplitudeData={amplitudeData}
-                        registreringData={registreringData}
-                        avslaarEgenvurdering={avslaarEgenvurdering}
-                        sendTilEgenvurdering={sendTilEgenvurdering}
-                    />
-                </div>
-            </Panel>
+        <OnboardingOmslutning title="BEHOV FOR OPPFØLGING?">
+            <Sluttkort
+                amplitudeData={amplitudeData}
+                registreringData={registreringData}
+                avslaarEgenvurdering={avslaarEgenvurdering}
+                sendTilEgenvurdering={sendTilEgenvurdering}
+            />
+
             <ErRendret loggTekst="Rendrer 12 ukers egenvurdering" />
             <InViewport loggTekst="Viser 12 ukers egenvurdering i viewport" />
-        </div>
+        </OnboardingOmslutning>
     );
 
     return innhold;
