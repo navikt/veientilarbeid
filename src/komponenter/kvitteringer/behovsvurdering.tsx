@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import * as React from 'react';
 import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
-import { AmplitudeContext } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { loggAktivitet } from '../../metrics/metrics';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
@@ -60,7 +60,7 @@ function Sluttkort(props: EndStateProps) {
 }
 
 function Kvittering({ kvittering }: { kvittering?: string }) {
-    const amplitudeData = React.useContext(AmplitudeContext);
+    const amplitudeData = useAmplitudeData();
     const [visKomponent, setVisKomponent] = useState(false);
 
     useEffect(() => {

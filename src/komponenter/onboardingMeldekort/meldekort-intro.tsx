@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import * as React from 'react';
 import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
-import { AmplitudeContext } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../../contexts/amplitude-context';
 import * as Brukerregistrering from '../../contexts/brukerregistrering';
 import * as Oppfolging from '../../contexts/oppfolging';
 import * as BrukerInfo from '../../contexts/bruker-info';
@@ -122,7 +122,7 @@ function MeldekortIntro(props: MeldekortIntroProps) {
 }
 
 function MeldekortIntroWrapper() {
-    const amplitudeData = React.useContext(AmplitudeContext);
+    const amplitudeData = useAmplitudeData();
     const meldekortData = useMeldekortData();
 
     const { data: registreringData } = React.useContext(Brukerregistrering.BrukerregistreringContext);

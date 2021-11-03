@@ -11,7 +11,7 @@ import MeldekortIntroWrapper from '../onboardingMeldekort/meldekort-intro';
 import { BrukerregistreringContext } from '../../contexts/brukerregistrering';
 import { OppfolgingContext } from '../../contexts/oppfolging';
 import { AutentiseringContext, InnloggingsNiva } from '../../contexts/autentisering';
-import { AmplitudeContext } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import { FeaturetoggleContext } from '../../contexts/feature-toggles';
 import Onboarding14A from '../onboarding14a/Onboarding14a';
@@ -24,7 +24,7 @@ const Registrert = () => {
     const brukerregistreringData = useContext(BrukerregistreringContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const autentiseringData = React.useContext(AutentiseringContext).data;
-    const amplitudeData = React.useContext(AmplitudeContext);
+    const amplitudeData = useAmplitudeData();
     const featuretoggleData = React.useContext(FeaturetoggleContext).data;
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const [clickedInnsyn, setClickedInnsyn] = useState(false);

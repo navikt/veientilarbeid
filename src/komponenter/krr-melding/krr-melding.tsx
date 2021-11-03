@@ -7,13 +7,13 @@ import { difiLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 import { OppfolgingContext } from '../../contexts/oppfolging';
 import { loggAktivitet } from '../../metrics/metrics';
-import { AmplitudeContext } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 
 const KrrMelding = () => {
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const { reservasjonKRR } = oppfolgingData;
-    const amplitudeData = React.useContext(AmplitudeContext);
+    const amplitudeData = useAmplitudeData();
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const kanViseKomponent = underOppfolging;
 

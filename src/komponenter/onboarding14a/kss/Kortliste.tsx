@@ -4,7 +4,7 @@ import Feedback from '../../feedback/feedback';
 import Lenke from 'nav-frontend-lenker';
 import { OppfolgingContext, Servicegruppe } from '../../../contexts/oppfolging';
 import { amplitudeLogger } from '../../../metrics/amplitude-utils';
-import { AmplitudeContext } from '../../../contexts/amplitude-context';
+import { useAmplitudeData } from '../../../contexts/amplitude-context';
 
 function Kort1() {
     return (
@@ -39,7 +39,7 @@ function Kort1() {
 
 function Kort2() {
     const { servicegruppe } = useContext(OppfolgingContext).data;
-    const amplitudeData = useContext(AmplitudeContext);
+    const amplitudeData = useAmplitudeData();
 
     const handleLesBrev = () => {
         amplitudeLogger('veientilarbeid.intro', {
@@ -80,7 +80,7 @@ function Kort2() {
 }
 
 function Kort3() {
-    const amplitudeData = useContext(AmplitudeContext);
+    const amplitudeData = useAmplitudeData();
 
     function loggLenkeKlikk(handling: string, url: string) {
         amplitudeLogger('veientilarbeid.intro', {

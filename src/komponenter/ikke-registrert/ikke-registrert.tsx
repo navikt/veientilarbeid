@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
@@ -7,14 +6,14 @@ import './ikke-registrert.less';
 import { registreringsLenke } from '../../innhold/lenker';
 import InViewport from '../in-viewport/in-viewport';
 import ErRendret from '../er-rendret/er-rendret';
-import { AmplitudeContext } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../../contexts/amplitude-context';
 
 interface Props {
     skalTilRegistrering: boolean;
 }
 
 const IkkeRegistrert = (props: Props) => {
-    const amplitudeData = React.useContext(AmplitudeContext);
+    const amplitudeData = useAmplitudeData();
     const { skalTilRegistrering } = props;
 
     const handleButtonClick = () => {

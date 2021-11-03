@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import * as React from 'react';
 import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
-import { AmplitudeContext } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../../contexts/amplitude-context';
 import * as Brukerregistrering from '../../contexts/brukerregistrering';
 import * as Egenvurdering from '../../contexts/egenvurdering';
 import { useOppfolgingData } from '../../contexts/oppfolging';
@@ -118,7 +118,7 @@ interface IntroProps {
 }
 
 function Intro14AWrapper(props: IntroProps) {
-    const amplitudeData = React.useContext(AmplitudeContext);
+    const amplitudeData = useAmplitudeData();
     const { data: registreringData } = React.useContext(Brukerregistrering.BrukerregistreringContext);
     const { data: egenvurderingData } = React.useContext(Egenvurdering.EgenvurderingContext);
     const oppfolgingData = useOppfolgingData();

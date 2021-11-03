@@ -6,14 +6,14 @@ import { omMeldekortLenke } from '../../innhold/lenker';
 import * as Brukerregistrering from '../../contexts/brukerregistrering';
 import * as MeldekortInnhold from '../../contexts/meldekort';
 import * as Oppfolging from '../../contexts/oppfolging';
-import { AmplitudeContext } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { BrukerInfoContext } from '../../contexts/bruker-info';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import { FeaturetoggleContext } from '../../contexts/feature-toggles';
 import { kanViseMeldekortStatus } from '../../lib/kan-vise-meldekort-status';
 
 const Meldekort = () => {
-    const amplitudeData = useContext(AmplitudeContext);
+    const amplitudeData = useAmplitudeData();
     const { data: meldekortData } = useContext(MeldekortInnhold.MeldekortContext);
     const { data: registreringData } = useContext(Brukerregistrering.BrukerregistreringContext);
     const { data: oppfolgingData } = useContext(Oppfolging.OppfolgingContext);

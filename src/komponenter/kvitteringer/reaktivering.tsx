@@ -4,7 +4,7 @@ import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { Knapp } from 'nav-frontend-knapper';
 import Lenke from 'nav-frontend-lenker';
 import Panel from 'nav-frontend-paneler';
-import { AmplitudeContext } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { loggAktivitet } from '../../metrics/metrics';
 import { dagpengerSoknadLenke } from '../../innhold/lenker';
 import ErRendret from '../er-rendret/er-rendret';
@@ -68,7 +68,7 @@ function Sluttkort(props: EndStateProps) {
 }
 
 function KvitteringReaktivering({ kvittering }: { kvittering?: string }) {
-    const amplitudeData = React.useContext(AmplitudeContext);
+    const amplitudeData = useAmplitudeData();
     const [visKomponent, setVisKomponent] = useState(false);
 
     useEffect(() => {

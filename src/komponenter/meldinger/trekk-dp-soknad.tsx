@@ -4,11 +4,11 @@ import Panel from 'nav-frontend-paneler';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { loggAktivitet } from '../../metrics/metrics';
 import './melding.less';
-import { AmplitudeContext } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 
 const TrekkDagpengeSoknad = () => {
-    const amplitudeData = React.useContext(AmplitudeContext);
+    const amplitudeData = useAmplitudeData();
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
 
     const kanViseKomponent = underOppfolging;

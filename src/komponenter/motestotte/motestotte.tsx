@@ -15,7 +15,7 @@ import './motestotte.less';
 import { OppfolgingContext, Servicegruppe } from '../../contexts/oppfolging';
 import { MotestotteContext } from '../../contexts/motestotte';
 import { BrukerInfoContext } from '../../contexts/bruker-info';
-import { AmplitudeContext } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import tekster from '../../tekster/tekster';
 
@@ -39,7 +39,7 @@ function hentTekster(erSykmeldtMedArbeidsgiver: boolean): MotestotteTekster {
 }
 
 const Motestotte = () => {
-    const amplitudeData = React.useContext(AmplitudeContext);
+    const amplitudeData = useAmplitudeData();
     const data = React.useContext(BrukerregistreringContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const motestotteData = React.useContext(MotestotteContext).data;

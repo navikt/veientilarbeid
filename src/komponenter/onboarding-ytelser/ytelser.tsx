@@ -3,7 +3,7 @@ import * as Brukerregistrering from '../../contexts/brukerregistrering';
 import * as Oppfolging from '../../contexts/oppfolging';
 import * as BrukerInfo from '../../contexts/bruker-info';
 import { FeaturetoggleContext } from '../../contexts/feature-toggles';
-import { AmplitudeContext } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { loggAktivitet } from '../../metrics/metrics';
 
 import sjekkOmBrukerErStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
@@ -19,7 +19,7 @@ function Ytelser() {
     const { data: oppfolgingData } = useContext(Oppfolging.OppfolgingContext);
     const { data: featuretoggleData } = useContext(FeaturetoggleContext);
     const { data: brukerInfoData } = useContext(BrukerInfo.BrukerInfoContext);
-    const amplitudeData = useContext(AmplitudeContext);
+    const amplitudeData = useAmplitudeData();
     const brukerregistreringData = registreringData?.registrering ?? null;
     const erStandardInnsatsgruppe = sjekkOmBrukerErStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData });
     const erDetteKSSBruker = erKSSBruker({
