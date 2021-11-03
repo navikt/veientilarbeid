@@ -16,4 +16,4 @@ export const initialState: State = {
 
 export const EgenvurderingContext = createContext<State>(initialState);
 
-export const useEgenvurdering = () => useContext(EgenvurderingContext).data;
+export const useEgenvurderingData = () => useContext(EgenvurderingContext).data;
