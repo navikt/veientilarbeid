@@ -94,7 +94,7 @@
         "cross-env": "7.0.3",
         "file-loader": "6.2.0",
         "husky": "7.0.4",
-        "less": "3.12.2",
+        "less": "4.1.2",
         "lint-staged": "11.2.6",
         "merge-deep": "3.0.3",
         "msw": "0.35.0",
