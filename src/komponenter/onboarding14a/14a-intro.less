@@ -1,72 +1,27 @@
 @import '../../../node_modules/nav-frontend-core/less/_variabler';
 
 .fjorten-A-intro-omslutning-modal {
-  margin: 0;
-  flex: 1;
-  .panel {
-    background: none;
-    border-radius: 0;
-    border: 0 solid @navGra20;
-    height: 60ch;
-    width: 80vw;
-  }
-}
-
-.kort-omslutning {
-
-  .dialog__ulesteMeldinger {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    font-size: 13px;
-    line-height: 13px;
-    background-color: #c30000;
-    padding: 4px;
-    border-radius: 100%;
-    border: 1px solid white;
-    color: white;
-    font-weight: 400;
-    width: 23px;
-    text-align: center;
-    animation: scaleIn 1s ease-in-out;
-  }
-
-  .dialog__ikon {
-    position: relative;
-  }
-}
-
-@media (prefers-reduced-motion) {
-  .kort-omslutning {
-    .dialog__ulesteMeldinger {
-      animation: none;
-    }
-  }
-}
-
-@keyframes scaleIn {
-  0%   { transform: scale(0); }
-  75%  { transform: scale(1.3); }
-  100% { transform: scale(1); }
-}
-
-@media (min-width: @screen-md-min) {
-
-  .fjorten-A-intro-omslutning {
-    .panel {
-      border-bottom: 0;
-      height: 100%;
-    }
-  }
-  .fjorten-A-intro-omslutning-modal {
     margin: 0;
     flex: 1;
     .panel {
-      background: none;
-      border-radius: 0;
-      border: 0 solid @navGra20;
-      height: 48ch;
-      width: 50ch;
+        background: none;
+        border-radius: 0;
+        border: 0 solid @navGra20;
+        height: 60ch;
+        width: 80vw;
     }
-  }
+}
+
+@media (min-width: @screen-md-min) {
+    .fjorten-A-intro-omslutning-modal {
+        margin: 0;
+        flex: 1;
+        .panel {
+            background: none;
+            border-radius: 0;
+            border: 0 solid @navGra20;
+            height: 48ch;
+            width: 50ch;
+        }
+    }
 }
