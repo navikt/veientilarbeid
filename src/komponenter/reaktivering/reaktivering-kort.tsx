@@ -1,8 +1,8 @@
 import * as React from 'react';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
-import { AutentiseringContext, InnloggingsNiva } from '../../context/autentisering';
-import { OppfolgingContext } from '../../context/oppfolging';
+import { AutentiseringContext, InnloggingsNiva } from '../../contexts/autentisering';
+import { OppfolgingContext } from '../../contexts/oppfolging';
 import ReaktiveringMelding from './reaktivering-melding';
 import ReaktiveringIkkeAktueltMelding from './reaktivering-ikke-aktuelt-melding';
 import { useBrowserStorage } from '../../hooks/use-browserstorage';

@@ -1,9 +1,9 @@
 import { useContext } from 'react';
-import * as Brukerregistrering from '../../context/brukerregistrering';
-import * as Oppfolging from '../../context/oppfolging';
-import * as BrukerInfo from '../../context/bruker-info';
-import { FeaturetoggleContext } from '../../context/feature-toggles';
-import { AmplitudeContext } from '../../context/amplitude-context';
+import * as Brukerregistrering from '../../contexts/brukerregistrering';
+import * as Oppfolging from '../../contexts/oppfolging';
+import * as BrukerInfo from '../../contexts/bruker-info';
+import { FeaturetoggleContext } from '../../contexts/feature-toggles';
+import { AmplitudeContext } from '../../contexts/amplitude-context';
 import { loggAktivitet } from '../../metrics/metrics';
 
 import sjekkOmBrukerErStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';

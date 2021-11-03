@@ -1,4 +1,4 @@
-import { InnloggingsNiva } from '../context/autentisering';
+import { InnloggingsNiva } from '../contexts/autentisering';
 
 const authMock = {
     loggedIn: true,

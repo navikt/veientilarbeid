@@ -3,7 +3,7 @@ import { contextProviders, ProviderProps } from '../../test/test-context-provide
 import { FunctionComponent } from 'react';
 import { render, screen } from '@testing-library/react';
 import tekster from '../../tekster/tekster';
-import { Formidlingsgruppe, Servicegruppe } from '../../context/oppfolging';
+import { Formidlingsgruppe, Servicegruppe } from '../../contexts/oppfolging';
 import '@testing-library/jest-dom/extend-expect';
 
 describe('Tester dialog-komponent', () => {

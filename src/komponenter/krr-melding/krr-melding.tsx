@@ -5,10 +5,10 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import './krr-melding.less';
 import { difiLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
-import { OppfolgingContext } from '../../context/oppfolging';
+import { OppfolgingContext } from '../../contexts/oppfolging';
 import { loggAktivitet } from '../../metrics/metrics';
-import { AmplitudeContext } from '../../context/amplitude-context';
-import { UnderOppfolgingContext } from '../../context/under-oppfolging';
+import { AmplitudeContext } from '../../contexts/amplitude-context';
+import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 
 const KrrMelding = () => {
     const oppfolgingData = React.useContext(OppfolgingContext).data;

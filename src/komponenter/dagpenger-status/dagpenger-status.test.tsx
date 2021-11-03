@@ -2,7 +2,7 @@ import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
 import DagpengerStatus from './dagpenger-status';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
-import { Formidlingsgruppe, Servicegruppe } from '../../context/oppfolging';
+import { Formidlingsgruppe, Servicegruppe } from '../../contexts/oppfolging';
 import { mockIntersectionObserver } from '../../mocks/intersection-observer-mock';
 
 const providerProps: ProviderProps = {

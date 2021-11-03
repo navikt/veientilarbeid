@@ -1,5 +1,5 @@
 import getPoaGroup from './get-poa-group';
-import { DinSituasjonSvar } from '../context/brukerregistrering';
+import { DinSituasjonSvar } from '../contexts/brukerregistrering';
 
 describe('getPoaGroup returnerer forventede verdier', () => {
     it('returnerer kss for standard, IVURD, mistet jobben, arbs, rett alder og under 12 uker', () => {

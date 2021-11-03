@@ -3,9 +3,9 @@ import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { loggAktivitet } from '../../metrics/metrics';
 import Plaster from './plaster';
 import { sykefravaerLenke } from '../../innhold/lenker';
-import { AmplitudeContext } from '../../context/amplitude-context';
-import { BrukerInfoContext } from '../../context/bruker-info';
-import { UnderOppfolgingContext } from '../../context/under-oppfolging';
+import { AmplitudeContext } from '../../contexts/amplitude-context';
+import { BrukerInfoContext } from '../../contexts/bruker-info';
+import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 
 const DittSykefravaer = () => {
     const amplitudeData = useContext(AmplitudeContext);

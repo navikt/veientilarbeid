@@ -3,8 +3,8 @@ import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import DesignMug from './design-mug';
 import { loggAktivitet } from '../../metrics/metrics';
 import { aktivitetsplanLenke } from '../../innhold/lenker';
-import { AmplitudeContext } from '../../context/amplitude-context';
-import { UnderOppfolgingContext } from '../../context/under-oppfolging';
+import { AmplitudeContext } from '../../contexts/amplitude-context';
+import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 
 const Aktivitetsplan = () => {
     const amplitudeData = useContext(AmplitudeContext);

@@ -1,11 +1,11 @@
 import * as React from 'react';
 import Innholdslaster from '../innholdslaster/innholdslaster';
-import * as Oppfolging from '../../context/oppfolging';
-import * as UnderOppfolging from '../../context/under-oppfolging';
+import * as Oppfolging from '../../contexts/oppfolging';
+import * as UnderOppfolging from '../../contexts/under-oppfolging';
 import Feilmelding from '../feilmeldinger/feilmelding';
-import * as Brukerregistrering from '../../context/brukerregistrering';
-import * as FeatureToggle from '../../context/feature-toggles';
-import * as Meldekortstatus from '../../context/meldekortstatus';
+import * as Brukerregistrering from '../../contexts/brukerregistrering';
+import * as FeatureToggle from '../../contexts/feature-toggles';
+import * as Meldekortstatus from '../../contexts/meldekortstatus';
 import { fetchData } from '../../ducks/api-utils';
 import {
     BRUKERREGISTRERING_URL,
@@ -14,7 +14,7 @@ import {
     UNDER_OPPFOLGING_URL,
     VEILARBOPPFOLGING_URL,
 } from '../../ducks/api';
-import { AutentiseringContext, InnloggingsNiva } from '../../context/autentisering';
+import { AutentiseringContext, InnloggingsNiva } from '../../contexts/autentisering';
 import KanViseVTA from '../kan-vise-vta/kan-vise-vta';
 
 interface OwnProps {

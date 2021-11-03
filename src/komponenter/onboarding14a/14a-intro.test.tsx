@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 
 import Intro14AWrapper from './Kortbunke';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
-import { Formidlingsgruppe, Servicegruppe } from '../../context/oppfolging';
+import { Formidlingsgruppe, Servicegruppe } from '../../contexts/oppfolging';
 import { mockIntersectionObserver } from '../../mocks/intersection-observer-mock';
 
 const providerProps: ProviderProps = {

@@ -1,5 +1,5 @@
 import dagerFraDato from './dager-fra-dato';
-import { Soknad } from '../context/paabegynte-soknader';
+import { Soknad } from '../contexts/paabegynte-soknader';
 
 interface Data {
     soknader: Soknad[];

@@ -3,13 +3,13 @@ import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { loggAktivitet } from '../../metrics/metrics';
 import EmailText from './email-text';
 import { omMeldekortLenke } from '../../innhold/lenker';
-import * as Brukerregistrering from '../../context/brukerregistrering';
-import * as MeldekortInnhold from '../../context/meldekort';
-import * as Oppfolging from '../../context/oppfolging';
-import { AmplitudeContext } from '../../context/amplitude-context';
-import { BrukerInfoContext } from '../../context/bruker-info';
-import { UnderOppfolgingContext } from '../../context/under-oppfolging';
-import { FeaturetoggleContext } from '../../context/feature-toggles';
+import * as Brukerregistrering from '../../contexts/brukerregistrering';
+import * as MeldekortInnhold from '../../contexts/meldekort';
+import * as Oppfolging from '../../contexts/oppfolging';
+import { AmplitudeContext } from '../../contexts/amplitude-context';
+import { BrukerInfoContext } from '../../contexts/bruker-info';
+import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
+import { FeaturetoggleContext } from '../../contexts/feature-toggles';
 import { kanViseMeldekortStatus } from '../../lib/kan-vise-meldekort-status';
 
 const Meldekort = () => {

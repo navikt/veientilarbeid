@@ -1,5 +1,5 @@
 import dagerFraPabegyntSoknad from './dager-fra-pabegynt-soknad';
-import { Soknad } from '../context/paabegynte-soknader';
+import { Soknad } from '../contexts/paabegynte-soknader';
 
 describe('tester funksjonen dagerFraPabegyntSoknad', () => {
     test('den returnerer INGEN_DATO når det ikke finnes søknader', () => {

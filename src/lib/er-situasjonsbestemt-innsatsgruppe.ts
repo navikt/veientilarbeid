@@ -1,5 +1,5 @@
-import { Brukerregistrering } from '../context/brukerregistrering';
-import { Data as OppfolgingData } from '../context/oppfolging';
+import { Brukerregistrering } from '../contexts/brukerregistrering';
+import { Data as OppfolgingData } from '../contexts/oppfolging';
 
 interface DataGrunnlag {
     brukerregistreringData: Brukerregistrering | null;

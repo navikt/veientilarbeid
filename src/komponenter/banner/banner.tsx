@@ -5,7 +5,7 @@ import './banner.less';
 import tekster from '../../tekster/tekster';
 import { erMikrofrontend } from '../../utils/app-state-utils';
 import { PropsWithChildren } from 'react';
-import { BrukerInfoContext } from '../../context/bruker-info';
+import { BrukerInfoContext } from '../../contexts/bruker-info';
 
 const Banner: React.FunctionComponent<PropsWithChildren<{}>> = () => {
     const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;

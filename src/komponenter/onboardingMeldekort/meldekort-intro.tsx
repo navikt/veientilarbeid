@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import * as React from 'react';
 import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
-import { AmplitudeContext } from '../../context/amplitude-context';
-import * as Brukerregistrering from '../../context/brukerregistrering';
-import * as Oppfolging from '../../context/oppfolging';
-import * as BrukerInfo from '../../context/bruker-info';
-import { FeaturetoggleContext } from '../../context/feature-toggles';
+import { AmplitudeContext } from '../../contexts/amplitude-context';
+import * as Brukerregistrering from '../../contexts/brukerregistrering';
+import * as Oppfolging from '../../contexts/oppfolging';
+import * as BrukerInfo from '../../contexts/bruker-info';
+import { FeaturetoggleContext } from '../../contexts/feature-toggles';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
 import './meldekort-intro.less';
 import { fjernFraBrowserStorage, hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
@@ -16,7 +16,7 @@ import Sluttkort from './Sluttkort';
 import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../../lib/er-situasjonsbestemt-innsatsgruppe';
 import { kanViseMeldekortStatus } from '../../lib/kan-vise-meldekort-status';
 import OnboardingOmslutning from '../onboarding-omslutning/OnboardingOmslutning';
-import { useMeldekortData } from '../../context/meldekort';
+import { useMeldekortData } from '../../contexts/meldekort';
 
 const MELDEKORT_INTRO_KEY = 'meldekortintro';
 

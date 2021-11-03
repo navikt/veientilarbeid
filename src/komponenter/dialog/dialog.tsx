@@ -7,13 +7,13 @@ import DialogLine from './dialog-line';
 import './dialog.less';
 import { dialogLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
-import { AmplitudeContext } from '../../context/amplitude-context';
-import { UlesteDialogerContext } from '../../context/ulestedialoger';
-import { UnderOppfolgingContext } from '../../context/under-oppfolging';
-import { FeaturetoggleContext } from '../../context/feature-toggles';
-import * as BrukerInfo from '../../context/bruker-info';
-import { OppfolgingContext } from '../../context/oppfolging';
-import * as Brukerregistrering from '../../context/brukerregistrering';
+import { AmplitudeContext } from '../../contexts/amplitude-context';
+import { UlesteDialogerContext } from '../../contexts/ulestedialoger';
+import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
+import { FeaturetoggleContext } from '../../contexts/feature-toggles';
+import * as BrukerInfo from '../../contexts/bruker-info';
+import { OppfolgingContext } from '../../contexts/oppfolging';
+import * as Brukerregistrering from '../../contexts/brukerregistrering';
 import { kanViseOnboarding14A } from '../../lib/kan-vise-onboarding14a';
 
 const Dialog = () => {

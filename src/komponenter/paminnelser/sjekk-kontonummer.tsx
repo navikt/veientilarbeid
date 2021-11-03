@@ -4,8 +4,8 @@ import Panel from 'nav-frontend-paneler';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { loggAktivitet } from '../../metrics/metrics';
 import './paminnelse.less';
-import { AmplitudeContext } from '../../context/amplitude-context';
-import { UnderOppfolgingContext } from '../../context/under-oppfolging';
+import { AmplitudeContext } from '../../contexts/amplitude-context';
+import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 
 const SjekkKontonummer = () => {
     const amplitudeData = React.useContext(AmplitudeContext);

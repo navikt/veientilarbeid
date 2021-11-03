@@ -1,7 +1,7 @@
-import { InnloggingsNiva } from '../context/autentisering';
+import { InnloggingsNiva } from '../contexts/autentisering';
 import { foerstkommendeMandag, plussDager } from '../utils/date-utils';
 import { hentQueryParam, settQueryParam } from '../utils/query-param-utils';
-import { FeatureToggles } from '../context/feature-toggles';
+import { FeatureToggles } from '../contexts/feature-toggles';
 import muligeEttersendelserMock from '../mocks/saksoversikt-mulige-ettersendelser-mock';
 
 type JSONValue = null | string | number | boolean | JSONObject | JSONArray;

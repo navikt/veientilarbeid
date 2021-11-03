@@ -1,13 +1,13 @@
 import { useContext } from 'react';
 import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
-import { BrukerInfoContext } from '../../context/bruker-info';
+import { BrukerInfoContext } from '../../contexts/bruker-info';
 import { beregnDagerTilInaktivering } from '../../utils/meldekort-utils';
 import { datoMedUkedag, plussDager } from '../../utils/date-utils';
 import { hentIDag } from '../../utils/chrono';
-import * as PaabegynteSoknader from '../../context/paabegynte-soknader';
+import * as PaabegynteSoknader from '../../contexts/paabegynte-soknader';
 import beregnDagpengerStatus, { DagpengerSokestatuser } from '../dagpenger-status/beregn-dagpenger-status';
-import * as Sakstema from '../../context/sakstema';
-import * as Brukerregistrering from '../../context/brukerregistrering';
+import * as Sakstema from '../../contexts/sakstema';
+import * as Brukerregistrering from '../../contexts/brukerregistrering';
 
 function MeldekortAdvarsel({ dagerEtterFastsattMeldedag }: { dagerEtterFastsattMeldedag: number | null }) {
     const { rettighetsgruppe } = useContext(BrukerInfoContext).data;

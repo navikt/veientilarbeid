@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom/extend-expect';
 import { render } from '@testing-library/react';
-import { Formidlingsgruppe, Servicegruppe } from '../../context/oppfolging';
+import { Formidlingsgruppe, Servicegruppe } from '../../contexts/oppfolging';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 
 describe('tester at komponenten rendrer som forventet', () => {

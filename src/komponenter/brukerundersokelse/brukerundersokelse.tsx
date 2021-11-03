@@ -4,14 +4,14 @@ import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { Knapp } from 'nav-frontend-knapper';
 import Panel from 'nav-frontend-paneler';
 import Lenke from 'nav-frontend-lenker';
-import { AmplitudeContext } from '../../context/amplitude-context';
+import { AmplitudeContext } from '../../contexts/amplitude-context';
 import { loggAktivitet } from '../../metrics/metrics';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import { EksperimentId } from '../../eksperiment/eksperimenter';
 import './brukerundersokelse.less';
 import { hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
-import { FeaturetoggleContext } from '../../context/feature-toggles';
+import { FeaturetoggleContext } from '../../contexts/feature-toggles';
 
 const KEY_VTA_BRUKERUNDERSOKELSE = 'vta-brukerundersokelse';
 const sisteUndersokelseDato = '2021-09-09';

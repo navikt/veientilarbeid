@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import Opplysninger from './registreringsopplysninger';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import '@testing-library/jest-dom/extend-expect';
-import { DinSituasjonSvar } from '../../context/brukerregistrering';
+import { DinSituasjonSvar } from '../../contexts/brukerregistrering';
 
 const registreringsopplysninger = {
     manueltRegistrertAv: null,

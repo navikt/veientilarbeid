@@ -6,9 +6,9 @@ import { loggAktivitet } from '../../metrics/metrics';
 import './dagpenger.less';
 import { dagpengerSoknadLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
-import { AmplitudeContext } from '../../context/amplitude-context';
-import { BrukerInfoContext } from '../../context/bruker-info';
-import { UnderOppfolgingContext } from '../../context/under-oppfolging';
+import { AmplitudeContext } from '../../contexts/amplitude-context';
+import { BrukerInfoContext } from '../../contexts/bruker-info';
+import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 
 const Dagpenger = () => {
     const amplitudeData = useContext(AmplitudeContext);

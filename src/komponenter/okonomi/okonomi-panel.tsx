@@ -5,7 +5,7 @@ import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { lesOmOkonomi } from '../../metrics/metrics';
 import './okonomi-panel.less';
 import tekster from '../../tekster/tekster';
-import { OppfolgingContext } from '../../context/oppfolging';
+import { OppfolgingContext } from '../../contexts/oppfolging';
 
 interface OkonomiPanelProps {
     tittelId: string;

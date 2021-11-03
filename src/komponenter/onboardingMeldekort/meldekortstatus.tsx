@@ -8,10 +8,10 @@
 
 import { useContext } from 'react';
 import MeldekortAdvarsel from './meldekort-advarsel';
-import * as Meldekort from '../../context/meldekort';
+import * as Meldekort from '../../contexts/meldekort';
 import { beregnDagerEtterFastsattMeldedag, beregnDagerTilInaktivering } from '../../utils/meldekort-utils';
 import './meldekortstatus.less';
-import { OppfolgingContext } from '../../context/oppfolging';
+import { OppfolgingContext } from '../../contexts/oppfolging';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { hentIDag } from '../../utils/chrono';
 import { datoMedUkedag, datoUtenTid, plussDager } from '../../utils/date-utils';

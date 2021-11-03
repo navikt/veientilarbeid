@@ -1,12 +1,12 @@
 import sjekkOmBrukerErStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../../lib/er-situasjonsbestemt-innsatsgruppe';
-import { useBrukerregistreringData } from '../../context/brukerregistrering';
-import { useFeatureToggleData } from '../../context/feature-toggles';
+import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
+import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import Kortbunke from './Kortbunke';
 import Enkeltkort from './Enkeltkort';
 import { kanViseOnboarding14A } from '../../lib/kan-vise-onboarding14a';
-import { useOppfolgingData } from '../../context/oppfolging';
-import { useBrukerinfoData } from '../../context/bruker-info';
+import { useOppfolgingData } from '../../contexts/oppfolging';
+import { useBrukerinfoData } from '../../contexts/bruker-info';
 
 function Onboarding14a(): JSX.Element | null {
     const registreringData = useBrukerregistreringData();

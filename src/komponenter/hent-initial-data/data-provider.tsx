@@ -1,16 +1,16 @@
 import * as React from 'react';
 import Innholdslaster from '../innholdslaster/innholdslaster';
 import Feilmelding from '../feilmeldinger/feilmelding';
-import * as BrukerInfo from '../../context/bruker-info';
-import * as Brukerregistrering from '../../context/brukerregistrering';
-import * as PaabegynteSoknader from '../../context/paabegynte-soknader';
-import * as MuligeEttersendelser from '../../context/mulige-ettersendelser';
-import * as Sakstema from '../../context/sakstema';
-import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe } from '../../context/brukerregistrering';
-import * as Motestotte from '../../context/motestotte';
-import * as Meldekort from '../../context/meldekort';
-import * as Egenvurdering from '../../context/egenvurdering';
-import * as UlesteDialoger from '../../context/ulestedialoger';
+import * as BrukerInfo from '../../contexts/bruker-info';
+import * as Brukerregistrering from '../../contexts/brukerregistrering';
+import * as PaabegynteSoknader from '../../contexts/paabegynte-soknader';
+import * as MuligeEttersendelser from '../../contexts/mulige-ettersendelser';
+import * as Sakstema from '../../contexts/sakstema';
+import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe } from '../../contexts/brukerregistrering';
+import * as Motestotte from '../../contexts/motestotte';
+import * as Meldekort from '../../contexts/meldekort';
+import * as Egenvurdering from '../../contexts/egenvurdering';
+import * as UlesteDialoger from '../../contexts/ulestedialoger';
 import { fetchData } from '../../ducks/api-utils';
 import {
     BRUKERINFO_URL,
@@ -23,8 +23,8 @@ import {
     SAKSTEMA_URL,
 } from '../../ducks/api';
 import { AmplitudeProvider } from './amplitude-provider';
-import { AutentiseringContext, InnloggingsNiva } from '../../context/autentisering';
-import { UnderOppfolgingContext } from '../../context/under-oppfolging';
+import { AutentiseringContext, InnloggingsNiva } from '../../contexts/autentisering';
+import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 
 const skalSjekkeEgenvurderingBesvarelse = (
     foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null

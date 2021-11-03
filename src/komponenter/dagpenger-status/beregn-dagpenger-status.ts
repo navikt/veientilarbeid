@@ -1,4 +1,4 @@
-import { Soknad } from '../../context/paabegynte-soknader';
+import { Soknad } from '../../contexts/paabegynte-soknader';
 
 interface Behandling {
     status: string;

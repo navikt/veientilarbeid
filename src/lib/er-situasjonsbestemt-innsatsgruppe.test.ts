@@ -1,5 +1,5 @@
-import { ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../context/brukerregistrering';
-import { Servicegruppe, Formidlingsgruppe } from '../context/oppfolging';
+import { ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../contexts/brukerregistrering';
+import { Servicegruppe, Formidlingsgruppe } from '../contexts/oppfolging';
 import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from './er-situasjonsbestemt-innsatsgruppe';
 
 const grunnData = {

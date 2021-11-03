@@ -1,6 +1,6 @@
 import * as React from 'react';
 import handleViewport from 'react-in-viewport';
-import { AmplitudeContext } from '../../context/amplitude-context';
+import { AmplitudeContext } from '../../contexts/amplitude-context';
 import { loggVisning } from '../../metrics/metrics';
 
 interface ViewportProps {

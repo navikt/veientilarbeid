@@ -1,7 +1,7 @@
 import Panel from 'nav-frontend-paneler';
 import { Element } from 'nav-frontend-typografi';
 import React from 'react';
-import { FeaturetoggleContext } from '../../context/feature-toggles';
+import { FeaturetoggleContext } from '../../contexts/feature-toggles';
 import './OnboardingOmslutning.less';
 
 export interface OnboardingOmslutningProps extends React.ComponentPropsWithoutRef<'div'> {

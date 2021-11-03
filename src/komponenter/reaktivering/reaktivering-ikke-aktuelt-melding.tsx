@@ -4,9 +4,9 @@ import Lenke from 'nav-frontend-lenker';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { reaktiveringLenke, dialogLenke } from '../../innhold/lenker';
 import { loggAktivitet, loggVisning } from '../../metrics/metrics';
-import { AmplitudeContext } from '../../context/amplitude-context';
-import { AutentiseringContext, InnloggingsNiva } from '../../context/autentisering';
-import { OppfolgingContext } from '../../context/oppfolging';
+import { AmplitudeContext } from '../../contexts/amplitude-context';
+import { AutentiseringContext, InnloggingsNiva } from '../../contexts/autentisering';
+import { OppfolgingContext } from '../../contexts/oppfolging';
 import './reaktivering-melding.less';
 
 const ReaktiveringIkkeAktueltMelding = () => {

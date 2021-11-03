@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import MeldekortIntroWrapper from './meldekort-intro';
-import { Formidlingsgruppe, Servicegruppe } from '../../context/oppfolging';
+import { Formidlingsgruppe, Servicegruppe } from '../../contexts/oppfolging';
 import { mockIntersectionObserver } from '../../mocks/intersection-observer-mock';
 import { regexMatcher } from '../../utils/test-utils';
 import { plussDager } from '../../utils/date-utils';

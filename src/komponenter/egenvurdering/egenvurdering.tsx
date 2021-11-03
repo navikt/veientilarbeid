@@ -7,15 +7,15 @@ import {
     BrukerregistreringContext,
     ForeslattInnsatsgruppe,
     selectForeslattInnsatsgruppe,
-} from '../../context/brukerregistrering';
+} from '../../contexts/brukerregistrering';
 import './egenvurdering.less';
 import { behovsvurderingLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
-import { AmplitudeContext } from '../../context/amplitude-context';
-import { AutentiseringContext, InnloggingsNiva } from '../../context/autentisering';
-import { OppfolgingContext, Servicegruppe } from '../../context/oppfolging';
-import { EgenvurderingContext } from '../../context/egenvurdering';
-import { UnderOppfolgingContext } from '../../context/under-oppfolging';
+import { AmplitudeContext } from '../../contexts/amplitude-context';
+import { AutentiseringContext, InnloggingsNiva } from '../../contexts/autentisering';
+import { OppfolgingContext, Servicegruppe } from '../../contexts/oppfolging';
+import { EgenvurderingContext } from '../../contexts/egenvurdering';
+import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 
 const LANSERINGSDATO_EGENVURDERING = new Date(2019, 4, 10);
 

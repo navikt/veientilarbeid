@@ -9,10 +9,10 @@ import { Normaltekst, Systemtittel, Undertittel } from 'nav-frontend-typografi';
 import './aap.less';
 import { aapSoknadLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
-import { AutentiseringContext, InnloggingsNiva } from '../../context/autentisering';
-import { BrukerInfoContext } from '../../context/bruker-info';
-import { UnderOppfolgingContext } from '../../context/under-oppfolging';
-import { FeaturetoggleContext } from '../../context/feature-toggles';
+import { AutentiseringContext, InnloggingsNiva } from '../../contexts/autentisering';
+import { BrukerInfoContext } from '../../contexts/bruker-info';
+import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
+import { FeaturetoggleContext } from '../../contexts/feature-toggles';
 import Rad from '../../innhold/rad';
 
 const handleButtonClick = () => {

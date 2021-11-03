@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from 'react';
-import { AmplitudeContext } from '../../context/amplitude-context';
+import { AmplitudeContext } from '../../contexts/amplitude-context';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import './feedback.less';
 import { Undertekst } from 'nav-frontend-typografi';
 import classNames from 'classnames';
-import { FeaturetoggleContext } from '../../context/feature-toggles';
+import { FeaturetoggleContext } from '../../contexts/feature-toggles';
 import { useBrowserStorage } from '../../hooks/use-browserstorage';
 
 interface Props {

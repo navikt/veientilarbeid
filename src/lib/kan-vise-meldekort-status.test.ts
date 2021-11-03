@@ -1,8 +1,8 @@
-import { DinSituasjonSvar, FremtidigSituasjonSvar } from '../context/brukerregistrering';
-import { InnloggingsNiva } from '../context/autentisering';
+import { DinSituasjonSvar, FremtidigSituasjonSvar } from '../contexts/brukerregistrering';
+import { InnloggingsNiva } from '../contexts/autentisering';
 import { plussDager } from '../utils/date-utils';
 import { kanViseMeldekortStatus } from './kan-vise-meldekort-status';
-import { Formidlingsgruppe, Servicegruppe } from '../context/oppfolging';
+import { Formidlingsgruppe, Servicegruppe } from '../contexts/oppfolging';
 
 // const eksperiment: EksperimentId = 'onboarding14a';
 // const poagruppeKSS: POAGruppe = 'kss';

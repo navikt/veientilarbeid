@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { OppfolgingContext } from '../../context/oppfolging';
-import { BrukerregistreringContext } from '../../context/brukerregistrering';
-import { FeaturetoggleContext } from '../../context/feature-toggles';
+import { OppfolgingContext } from '../../contexts/oppfolging';
+import { BrukerregistreringContext } from '../../contexts/brukerregistrering';
+import { FeaturetoggleContext } from '../../contexts/feature-toggles';
 import sjekkOmBrukerErStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
-import { useGlobaleInnstillinger } from '../../context/GlobaleInnstillinger';
+import { useGlobaleInnstillinger } from '../../contexts/GlobaleInnstillinger';
 
 interface Props {
     children: React.ReactNode;

@@ -1,10 +1,10 @@
 import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
-import { InnloggingsNiva } from '../../context/autentisering';
+import { InnloggingsNiva } from '../../contexts/autentisering';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import Registrert from './registrert';
-import { Formidlingsgruppe, Servicegruppe } from '../../context/oppfolging';
-import { DinSituasjonSvar, ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../../context/brukerregistrering';
+import { Formidlingsgruppe, Servicegruppe } from '../../contexts/oppfolging';
+import { DinSituasjonSvar, ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../../contexts/brukerregistrering';
 import { mockIntersectionObserver } from '../../mocks/intersection-observer-mock';
 
 const meldekort = {

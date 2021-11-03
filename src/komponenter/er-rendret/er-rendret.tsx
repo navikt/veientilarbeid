@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AmplitudeContext } from '../../context/amplitude-context';
+import { AmplitudeContext } from '../../contexts/amplitude-context';
 import { loggAktivitet } from '../../metrics/metrics';
 
 type Props = {

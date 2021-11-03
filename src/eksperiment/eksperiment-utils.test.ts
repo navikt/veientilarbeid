@@ -1,5 +1,5 @@
 import { hentEksperimenter } from './eksperiment-utils';
-import { DinSituasjonSvar } from '../context/brukerregistrering';
+import { DinSituasjonSvar } from '../contexts/brukerregistrering';
 
 describe('tester funksjonaliteten for hentEksperimenter', () => {
     test('returnerer riktig liste for samarbeidskontoret Tasta', () => {

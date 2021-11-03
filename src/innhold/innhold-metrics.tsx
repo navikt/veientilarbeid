@@ -1,19 +1,19 @@
 import * as React from 'react';
-import { AmplitudeContext } from '../context/amplitude-context';
+import { AmplitudeContext } from '../contexts/amplitude-context';
 import {
     BrukerregistreringContext,
     selectDinSituasjonSvar,
     selectForeslattInnsatsgruppe,
     selectOpprettetRegistreringDato,
-} from '../context/brukerregistrering';
-import { OppfolgingContext } from '../context/oppfolging';
-import { BrukerInfoContext } from '../context/bruker-info';
+} from '../contexts/brukerregistrering';
+import { OppfolgingContext } from '../contexts/oppfolging';
+import { BrukerInfoContext } from '../contexts/bruker-info';
 import getPoaGroup from '../utils/get-poa-group';
 import { loggVisning } from '../metrics/metrics';
 import { erMikrofrontend } from '../utils/app-state-utils';
 import { hotjarTrigger } from '../hotjar';
-import { AutentiseringContext, InnloggingsNiva } from '../context/autentisering';
-import { UnderOppfolgingContext } from '../context/under-oppfolging';
+import { AutentiseringContext, InnloggingsNiva } from '../contexts/autentisering';
+import { UnderOppfolgingContext } from '../contexts/under-oppfolging';
 import sjekkOmBrukerErStandardInnsatsgruppe from '../lib/er-standard-innsatsgruppe';
 
 type Props = {};

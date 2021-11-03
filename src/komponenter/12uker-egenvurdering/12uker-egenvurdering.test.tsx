@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 
 import EgenVurdering12Uker from './12uker-egenvurdering';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
-import { Formidlingsgruppe, Servicegruppe } from '../../context/oppfolging';
+import { Formidlingsgruppe, Servicegruppe } from '../../contexts/oppfolging';
 import { mockIntersectionObserver } from '../../mocks/intersection-observer-mock';
 import { plussDager } from '../../utils/date-utils';
 

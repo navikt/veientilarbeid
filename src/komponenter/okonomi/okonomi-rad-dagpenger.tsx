@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { Systemtittel } from 'nav-frontend-typografi';
-import { UnderOppfolgingContext } from '../../context/under-oppfolging';
-import { BrukerInfoContext } from '../../context/bruker-info';
-import { FeaturetoggleContext } from '../../context/feature-toggles';
+import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
+import { BrukerInfoContext } from '../../contexts/bruker-info';
+import { FeaturetoggleContext } from '../../contexts/feature-toggles';
 import Rad from '../../innhold/rad';
 import Dagpenger from '../dagpenger/dagpenger';
 import AlleSkjema from '../alleskjema/alleskjema';

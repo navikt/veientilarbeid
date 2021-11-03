@@ -1,4 +1,4 @@
-import { DinSituasjonSvar } from '../context/brukerregistrering';
+import { DinSituasjonSvar } from '../contexts/brukerregistrering';
 import { kssSituasjoner } from '../eksperiment/is-kss-eksperiment';
 
 export type POAGruppe = 'kss' | 'boo';

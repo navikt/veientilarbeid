@@ -8,15 +8,15 @@ import {
     selectDinSituasjonSvar,
     selectForeslattInnsatsgruppe,
     selectOpprettetRegistreringDato,
-} from '../../context/brukerregistrering';
+} from '../../contexts/brukerregistrering';
 import { motestotteLenke } from '../../innhold/lenker';
 import { loggAktivitet } from '../../metrics/metrics';
 import './motestotte.less';
-import { OppfolgingContext, Servicegruppe } from '../../context/oppfolging';
-import { MotestotteContext } from '../../context/motestotte';
-import { BrukerInfoContext } from '../../context/bruker-info';
-import { AmplitudeContext } from '../../context/amplitude-context';
-import { UnderOppfolgingContext } from '../../context/under-oppfolging';
+import { OppfolgingContext, Servicegruppe } from '../../contexts/oppfolging';
+import { MotestotteContext } from '../../contexts/motestotte';
+import { BrukerInfoContext } from '../../contexts/bruker-info';
+import { AmplitudeContext } from '../../contexts/amplitude-context';
+import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import tekster from '../../tekster/tekster';
 
 const LANSERINGSDATO_MOTESTOTTE = new Date('2020-03-12');

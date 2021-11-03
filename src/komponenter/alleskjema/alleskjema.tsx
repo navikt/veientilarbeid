@@ -6,8 +6,8 @@ import { loggAktivitet } from '../../metrics/metrics';
 import './alleskjema.less';
 import { alleSkjemaSoknadLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
-import { AmplitudeContext } from '../../context/amplitude-context';
-import { UnderOppfolgingContext } from '../../context/under-oppfolging';
+import { AmplitudeContext } from '../../contexts/amplitude-context';
+import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 
 const AlleSkjema = () => {
     const amplitudeData = useContext(AmplitudeContext);

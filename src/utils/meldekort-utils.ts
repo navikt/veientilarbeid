@@ -4,7 +4,7 @@
  */
 
 import { datoUtenTid, plussDager } from './date-utils';
-import * as Meldekort from '../context/meldekort';
+import * as Meldekort from '../contexts/meldekort';
 
 const dagIms = 1000 * 60 * 60 * 24;
 const dagerIMeldeperiode = 14;

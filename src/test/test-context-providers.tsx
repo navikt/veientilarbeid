@@ -1,22 +1,22 @@
 import merge from 'merge-deep';
-import * as Amplitude from '../context/amplitude-context';
+import * as Amplitude from '../contexts/amplitude-context';
 import { AmplitudeData } from '../metrics/amplitude-utils';
-import * as Autentisering from '../context/autentisering';
-import * as Brukerregistrering from '../context/brukerregistrering';
-import * as FeatureToggle from '../context/feature-toggles';
-import * as Egenvurdering from '../context/egenvurdering';
-import * as Oppfolging from '../context/oppfolging';
-import * as UlesteDialoger from '../context/ulestedialoger';
-import * as BrukerInfo from '../context/bruker-info';
-import * as Meldekort from '../context/meldekort';
-import * as Motestotte from '../context/motestotte';
-import * as UnderOppfolging from '../context/under-oppfolging';
-import * as PaabegynteSoknader from '../context/paabegynte-soknader';
-import * as Sakstema from '../context/sakstema';
+import * as Autentisering from '../contexts/autentisering';
+import * as Brukerregistrering from '../contexts/brukerregistrering';
+import * as FeatureToggle from '../contexts/feature-toggles';
+import * as Egenvurdering from '../contexts/egenvurdering';
+import * as Oppfolging from '../contexts/oppfolging';
+import * as UlesteDialoger from '../contexts/ulestedialoger';
+import * as BrukerInfo from '../contexts/bruker-info';
+import * as Meldekort from '../contexts/meldekort';
+import * as Motestotte from '../contexts/motestotte';
+import * as UnderOppfolging from '../contexts/under-oppfolging';
+import * as PaabegynteSoknader from '../contexts/paabegynte-soknader';
+import * as Sakstema from '../contexts/sakstema';
 import * as React from 'react';
 import { STATUS } from '../ducks/api';
 import { setFastTidspunktForIDag } from '../utils/chrono';
-import { GlobaleInnstillingerProps, GlobaleInnstillingerProvider } from '../context/GlobaleInnstillinger';
+import { GlobaleInnstillingerProps, GlobaleInnstillingerProvider } from '../contexts/GlobaleInnstillinger';
 import KanViseVTA from '../komponenter/kan-vise-vta/kan-vise-vta';
 
 type DeepPartial<T> = {

@@ -2,15 +2,15 @@ import * as React from 'react';
 import getPoaGroup from '../../utils/get-poa-group';
 import isKSSEksperiment from '../../eksperiment/is-kss-eksperiment';
 import isKSSKontroll from '../../eksperiment/is-kss-kontroll';
-import { AutentiseringContext } from '../../context/autentisering';
-import { AmplitudeContext } from '../../context/amplitude-context';
-import { BrukerregistreringContext, DinSituasjonSvar } from '../../context/brukerregistrering';
-import { OppfolgingContext } from '../../context/oppfolging';
-import { UnderOppfolgingContext } from '../../context/under-oppfolging';
-import { PaabegynteSoknaderContext } from '../../context/paabegynte-soknader';
-import { MuligeEttersendelserContext } from '../../context/mulige-ettersendelser';
-import { SakstemaContext } from '../../context/sakstema';
-import { BrukerInfoContext } from '../../context/bruker-info';
+import { AutentiseringContext } from '../../contexts/autentisering';
+import { AmplitudeContext } from '../../contexts/amplitude-context';
+import { BrukerregistreringContext, DinSituasjonSvar } from '../../contexts/brukerregistrering';
+import { OppfolgingContext } from '../../contexts/oppfolging';
+import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
+import { PaabegynteSoknaderContext } from '../../contexts/paabegynte-soknader';
+import { MuligeEttersendelserContext } from '../../contexts/mulige-ettersendelser';
+import { SakstemaContext } from '../../contexts/sakstema';
+import { BrukerInfoContext } from '../../contexts/bruker-info';
 import grupperGeografiskTilknytning from '../../utils/grupper-geografisk-tilknytning';
 
 import ukerFraDato from '../../utils/uker-fra-dato';
@@ -21,11 +21,11 @@ import {
     hentMeldegruppeForNesteMeldekort,
     hentMeldekortForLevering,
 } from '../../utils/meldekort-utils';
-import * as Meldekort from '../../context/meldekort';
+import * as Meldekort from '../../contexts/meldekort';
 import { STATUS } from '../../ducks/api';
 import { AmplitudeData } from '../../metrics/amplitude-utils';
 import antallSynligeInfomeldinger from '../../utils/infomeldinger';
-import * as Meldekortstatus from '../../context/meldekortstatus';
+import * as Meldekortstatus from '../../contexts/meldekortstatus';
 import isMeldekortbruker from '../../utils/er-meldekortbruker';
 import { datoUtenTid } from '../../utils/date-utils';
 import { hentEksperimenter } from '../../eksperiment/eksperiment-utils';

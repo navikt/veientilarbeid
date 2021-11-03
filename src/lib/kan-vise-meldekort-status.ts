@@ -1,9 +1,9 @@
 // import { Data as FeaturetoggleData } from '../ducks/feature-toggles';
-import * as Brukerregistrering from '../context/brukerregistrering';
-import * as Meldekort from '../context/meldekort';
-import * as Oppfolging from '../context/oppfolging';
-import * as BrukerInfo from '../context/bruker-info';
-import * as FeatureToggles from '../context/feature-toggles';
+import * as Brukerregistrering from '../contexts/brukerregistrering';
+import * as Meldekort from '../contexts/meldekort';
+import * as Oppfolging from '../contexts/oppfolging';
+import * as BrukerInfo from '../contexts/bruker-info';
+import * as FeatureToggles from '../contexts/feature-toggles';
 import erStandardInnsatsgruppe from './er-standard-innsatsgruppe';
 import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from './er-situasjonsbestemt-innsatsgruppe';
 

@@ -9,7 +9,7 @@ import {
     hentFoerstkommendeMeldekortIkkeKlarForLevering,
     foersteSendedagForMeldekort,
 } from '../../utils/meldekort-utils';
-import * as Meldekort from '../../context/meldekort';
+import * as Meldekort from '../../contexts/meldekort';
 import LenkepanelMeldekort from './lenkepanel-Meldekort';
 import Meldekortstatus from './meldekortstatus';
 

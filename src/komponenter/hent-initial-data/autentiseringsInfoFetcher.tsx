@@ -5,7 +5,7 @@ import { fetchData } from '../../ducks/api-utils';
 import { contextpathDittNav, erMikrofrontend } from '../../utils/app-state-utils';
 import DataProvider from './data-provider';
 import OppfolgingBrukerregistreringProvider from './oppfolging-brukerregistrering-provider';
-import * as Autentisering from '../../context/autentisering';
+import * as Autentisering from '../../contexts/autentisering';
 import InnholdView from '../../innhold/innhold-view';
 
 export const AUTH_API = '/api/auth';

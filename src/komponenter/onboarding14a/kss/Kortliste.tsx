@@ -2,9 +2,9 @@ import { useContext } from 'react';
 import { Normaltekst, Systemtittel, Undertekst } from 'nav-frontend-typografi';
 import Feedback from '../../feedback/feedback';
 import Lenke from 'nav-frontend-lenker';
-import { OppfolgingContext, Servicegruppe } from '../../../context/oppfolging';
+import { OppfolgingContext, Servicegruppe } from '../../../contexts/oppfolging';
 import { amplitudeLogger } from '../../../metrics/amplitude-utils';
-import { AmplitudeContext } from '../../../context/amplitude-context';
+import { AmplitudeContext } from '../../../contexts/amplitude-context';
 
 function Kort1() {
     return (

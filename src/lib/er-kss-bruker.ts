@@ -1,7 +1,7 @@
-import { Data as FeaturetoggleData } from '../context/feature-toggles';
-import * as Brukerregistrering from '../context/brukerregistrering';
-import * as Oppfolging from '../context/oppfolging';
-import * as BrukerInfo from '../context/bruker-info';
+import { Data as FeaturetoggleData } from '../contexts/feature-toggles';
+import * as Brukerregistrering from '../contexts/brukerregistrering';
+import * as Oppfolging from '../contexts/oppfolging';
+import * as BrukerInfo from '../contexts/bruker-info';
 import { AmplitudeData } from '../metrics/amplitude-utils';
 import sjekkOmBrukerErStandardInnsatsgruppe from './er-standard-innsatsgruppe';
 

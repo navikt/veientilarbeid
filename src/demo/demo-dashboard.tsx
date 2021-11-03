@@ -41,7 +41,7 @@ import {
 } from './demo-state';
 
 import './demo-dashboard.less';
-import { DinSituasjonSvar, ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../context/brukerregistrering';
+import { DinSituasjonSvar, ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../contexts/brukerregistrering';
 import {
     hentForeslattInnsatsgruppe,
     hentDinSituasjon,
@@ -53,10 +53,10 @@ import {
     settOpprettetDato,
 } from './demo-state-brukerregistrering';
 import tekster from '../tekster/tekster';
-import { InnloggingsNiva } from '../context/autentisering';
+import { InnloggingsNiva } from '../contexts/autentisering';
 import { setFastTidspunktForIDag } from '../utils/chrono';
 import { datoUtenTid } from '../utils/date-utils';
-import { FeatureToggles, prettyPrintFeatureToggle } from '../context/feature-toggles';
+import { FeatureToggles, prettyPrintFeatureToggle } from '../contexts/feature-toggles';
 
 interface OpprettetRegistreringDato {
     registrertForLanseringEgenvurdering: string;
