@@ -6,7 +6,7 @@ import DagpengerBilde from './dagpenger';
 import NyRettTilSykepengerBilde from './ny-rett-til-sykepenger';
 import OkonomiskSosialhjelpBilde from './okonomisk-sosialhjelp';
 import { dagpengerLesmerLenke, sosialhjelpLenke, sykepengerLenke } from '../../innhold/lenker';
-import { AutentiseringContext, InnloggingsNiva } from '../../contexts/autentisering';
+import { useAutentiseringData, InnloggingsNiva } from '../../contexts/autentisering';
 import { BrukerInfoContext } from '../../contexts/bruker-info';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import { FeaturetoggleContext } from '../../contexts/feature-toggles';
@@ -15,7 +15,7 @@ import OkonomiRadDagpenger from './okonomi-rad-dagpenger';
 const OkonomiRad = () => {
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
-    const { securityLevel } = React.useContext(AutentiseringContext).data;
+    const { securityLevel } = useAutentiseringData();
     const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
     const isLevel4 = securityLevel === InnloggingsNiva.LEVEL_4;
     const skjulBoksFeaturetoggleAktivert =

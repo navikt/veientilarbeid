@@ -5,14 +5,14 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import { reaktiveringLenke, dialogLenke } from '../../innhold/lenker';
 import { loggAktivitet, loggVisning } from '../../metrics/metrics';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
-import { AutentiseringContext, InnloggingsNiva } from '../../contexts/autentisering';
+import { useAutentiseringData, InnloggingsNiva } from '../../contexts/autentisering';
 import { OppfolgingContext } from '../../contexts/oppfolging';
 import './reaktivering-melding.less';
 
 const ReaktiveringIkkeAktueltMelding = () => {
     const amplitudeData = useAmplitudeData();
     const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
-    const { securityLevel } = React.useContext(AutentiseringContext).data;
+    const { securityLevel } = useAutentiseringData();
     const isLevel4 = securityLevel === InnloggingsNiva.LEVEL_4;
     const kanViseKomponent = isLevel4 && kanReaktiveres;
 

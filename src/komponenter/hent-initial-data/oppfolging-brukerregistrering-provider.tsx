@@ -14,7 +14,7 @@ import {
     UNDER_OPPFOLGING_URL,
     VEILARBOPPFOLGING_URL,
 } from '../../ducks/api';
-import { AutentiseringContext, InnloggingsNiva } from '../../contexts/autentisering';
+import { useAutentiseringData, InnloggingsNiva } from '../../contexts/autentisering';
 import KanViseVTA from '../kan-vise-vta/kan-vise-vta';
 
 interface OwnProps {
@@ -24,7 +24,7 @@ interface OwnProps {
 type OppfolgingProviderProps = OwnProps;
 
 const OppfolgingBrukerregistreringProvider = ({ children }: OppfolgingProviderProps) => {
-    const { securityLevel } = React.useContext(AutentiseringContext).data;
+    const { securityLevel } = useAutentiseringData();
 
     const [meldekortstatusState, setMeldekortstatusState] = React.useState<Meldekortstatus.State>(
         Meldekortstatus.initialState

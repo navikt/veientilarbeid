@@ -9,7 +9,7 @@ import { Normaltekst, Systemtittel, Undertittel } from 'nav-frontend-typografi';
 import './aap.less';
 import { aapSoknadLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
-import { AutentiseringContext, InnloggingsNiva } from '../../contexts/autentisering';
+import { useAutentiseringData, InnloggingsNiva } from '../../contexts/autentisering';
 import { BrukerInfoContext } from '../../contexts/bruker-info';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import { FeaturetoggleContext } from '../../contexts/feature-toggles';
@@ -20,7 +20,7 @@ const handleButtonClick = () => {
 };
 
 const Aap = () => {
-    const { securityLevel } = React.useContext(AutentiseringContext).data;
+    const { securityLevel } = useAutentiseringData();
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
     const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);

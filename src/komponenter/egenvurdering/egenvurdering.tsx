@@ -12,7 +12,7 @@ import './egenvurdering.less';
 import { behovsvurderingLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
-import { AutentiseringContext, InnloggingsNiva } from '../../contexts/autentisering';
+import { useAutentiseringData, InnloggingsNiva } from '../../contexts/autentisering';
 import { OppfolgingContext, Servicegruppe } from '../../contexts/oppfolging';
 import { EgenvurderingContext } from '../../contexts/egenvurdering';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
@@ -35,7 +35,7 @@ const Egenvurdering = () => {
     const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
     const egenvurderingData = React.useContext(EgenvurderingContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
-    const { securityLevel } = React.useContext(AutentiseringContext).data;
+    const { securityLevel } = useAutentiseringData();
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const isLevel4 = securityLevel === InnloggingsNiva.LEVEL_4;
 

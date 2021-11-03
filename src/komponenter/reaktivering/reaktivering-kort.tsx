@@ -1,7 +1,7 @@
 import * as React from 'react';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
-import { AutentiseringContext, InnloggingsNiva } from '../../contexts/autentisering';
+import { useAutentiseringData, InnloggingsNiva } from '../../contexts/autentisering';
 import { OppfolgingContext } from '../../contexts/oppfolging';
 import ReaktiveringMelding from './reaktivering-melding';
 import ReaktiveringIkkeAktueltMelding from './reaktivering-ikke-aktuelt-melding';
@@ -47,7 +47,7 @@ const ReaktiveringKort = () => {
         state: true,
     });
     const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
-    const { securityLevel } = React.useContext(AutentiseringContext).data;
+    const { securityLevel } = useAutentiseringData();
     const isLevel4 = securityLevel === InnloggingsNiva.LEVEL_4;
     const kanViseKomponent = isLevel4 && kanReaktiveres;
 

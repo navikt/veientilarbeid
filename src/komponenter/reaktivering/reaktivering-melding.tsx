@@ -6,7 +6,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import { reaktiveringLenke, dialogLenke } from '../../innhold/lenker';
 import { loggAktivitet } from '../../metrics/metrics';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
-import { AutentiseringContext, InnloggingsNiva } from '../../contexts/autentisering';
+import { useAutentiseringData, InnloggingsNiva } from '../../contexts/autentisering';
 import { OppfolgingContext } from '../../contexts/oppfolging';
 import './reaktivering-melding.less';
 
@@ -23,7 +23,7 @@ type Props = {
 const ReaktiveringMelding = (props: Props & ViewportProps) => {
     const amplitudeData = useAmplitudeData();
     const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
-    const { securityLevel } = React.useContext(AutentiseringContext).data;
+    const { securityLevel } = useAutentiseringData();
 
     const [harVistTilBruker, setHarVistTilBruker] = React.useState<boolean>(false);
 

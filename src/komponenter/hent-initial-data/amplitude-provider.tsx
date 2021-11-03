@@ -2,7 +2,7 @@ import * as React from 'react';
 import getPoaGroup from '../../utils/get-poa-group';
 import isKSSEksperiment from '../../eksperiment/is-kss-eksperiment';
 import isKSSKontroll from '../../eksperiment/is-kss-kontroll';
-import { AutentiseringContext } from '../../contexts/autentisering';
+import { useAutentiseringData } from '../../contexts/autentisering';
 import { AmplitudeContext } from '../../contexts/amplitude-context';
 import { BrukerregistreringContext, DinSituasjonSvar } from '../../contexts/brukerregistrering';
 import { OppfolgingContext } from '../../contexts/oppfolging';
@@ -63,7 +63,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const sakstemaData = React.useContext(SakstemaContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const brukerInfoData = React.useContext(BrukerInfoContext).data;
-    const { securityLevel: nivaa } = React.useContext(AutentiseringContext).data;
+    const { securityLevel: nivaa } = useAutentiseringData();
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const meldekortContext = React.useContext(Meldekort.MeldekortContext);
     const meldekortStatusContext = React.useContext(Meldekortstatus.MeldekortstatusContext);

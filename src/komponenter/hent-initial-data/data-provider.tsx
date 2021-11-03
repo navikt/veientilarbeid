@@ -23,7 +23,7 @@ import {
     SAKSTEMA_URL,
 } from '../../ducks/api';
 import { AmplitudeProvider } from './amplitude-provider';
-import { AutentiseringContext, InnloggingsNiva } from '../../contexts/autentisering';
+import { useAutentiseringData, InnloggingsNiva } from '../../contexts/autentisering';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 
 const skalSjekkeEgenvurderingBesvarelse = (
@@ -42,7 +42,7 @@ interface OwnProps {
 type Props = OwnProps;
 
 const DataProvider = ({ children }: Props) => {
-    const { securityLevel } = React.useContext(AutentiseringContext).data;
+    const { securityLevel } = useAutentiseringData();
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const [motestotteState, setMotestotteState] = React.useState<Motestotte.State>(Motestotte.initialState);
     const [meldekortState, setMeldekortState] = React.useState<Meldekort.State>(Meldekort.initialState);
