@@ -28,4 +28,4 @@ export const initialState: State = {
 
 export const AutentiseringContext = createContext<State>(initialState);
 
-export const useAutentiseringData = () => useContext(AutentiseringContext);
+export const useAutentiseringData = () => useContext(AutentiseringContext).data;

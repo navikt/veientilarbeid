@@ -18,4 +18,4 @@ export const initialState: State = {
 
 export const UnderOppfolgingContext = React.createContext<State>(initialState);
 
-export const useUnderOppfolgingData = () => React.useContext(UnderOppfolgingContext);
+export const useUnderOppfolgingData = () => React.useContext(UnderOppfolgingContext).data;

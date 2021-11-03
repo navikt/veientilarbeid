@@ -1,26 +1,26 @@
 import * as React from 'react';
-import { AmplitudeContext } from '../contexts/amplitude-context';
+import { useAmplitudeData } from '../contexts/amplitude-context';
 import {
-    BrukerregistreringContext,
     selectDinSituasjonSvar,
     selectForeslattInnsatsgruppe,
     selectOpprettetRegistreringDato,
+    useBrukerregistreringData,
 } from '../contexts/brukerregistrering';
-import { OppfolgingContext } from '../contexts/oppfolging';
-import { BrukerInfoContext } from '../contexts/bruker-info';
+import { useOppfolgingData } from '../contexts/oppfolging';
+import { useBrukerinfoData } from '../contexts/bruker-info';
 import getPoaGroup from '../utils/get-poa-group';
 import { loggVisning } from '../metrics/metrics';
 import { erMikrofrontend } from '../utils/app-state-utils';
 import { hotjarTrigger } from '../hotjar';
-import { AutentiseringContext, InnloggingsNiva } from '../contexts/autentisering';
-import { UnderOppfolgingContext } from '../contexts/under-oppfolging';
+import { InnloggingsNiva, useAutentiseringData } from '../contexts/autentisering';
+import { useUnderOppfolgingData } from '../contexts/under-oppfolging';
 import sjekkOmBrukerErStandardInnsatsgruppe from '../lib/er-standard-innsatsgruppe';
 
 type Props = {};
 
 export default function InnholdMetrics() {
-    const { securityLevel } = React.useContext(AutentiseringContext).data;
-    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
+    const { securityLevel } = useAutentiseringData();
+    const { underOppfolging } = useUnderOppfolgingData();
 
     if (!underOppfolging || securityLevel === InnloggingsNiva.LEVEL_3) return null;
 
@@ -28,12 +28,14 @@ export default function InnholdMetrics() {
 }
 
 function Metrics(props: Props) {
-    const { data: oppfolgingData } = React.useContext(OppfolgingContext);
+    const oppfolgingData = useOppfolgingData();
     const { formidlingsgruppe, servicegruppe } = oppfolgingData;
-    const amplitudeData = React.useContext(AmplitudeContext);
+
+    const amplitudeData = useAmplitudeData();
     const { ukerRegistrert } = amplitudeData;
-    const registreringData = React.useContext(BrukerregistreringContext).data;
-    const { alder } = React.useContext(BrukerInfoContext).data;
+
+    const registreringData = useBrukerregistreringData();
+    const { alder } = useBrukerinfoData();
 
     const opprettetRegistreringDatoString = selectOpprettetRegistreringDato(registreringData);
     const foreslattInnsatsgruppe = selectForeslattInnsatsgruppe(registreringData);
