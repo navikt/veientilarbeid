@@ -63,6 +63,10 @@ interface OpprettetRegistreringDato {
     registrertMellomLanseringEgenvurderingOgMotestotte: string;
     registrertEtterLanseringMotestotte: string;
     registrertIDag: string;
+    uke1: string;
+    uke2: string;
+    uke11: string;
+    uke12: string;
 }
 
 export const opprettetRegistreringDato: OpprettetRegistreringDato = {
@@ -70,6 +74,10 @@ export const opprettetRegistreringDato: OpprettetRegistreringDato = {
     registrertMellomLanseringEgenvurderingOgMotestotte: '2019-05-11T12:00:00.111111+01:00',
     registrertEtterLanseringMotestotte: '2019-06-05T12:00:00.111111+01:00',
     registrertIDag: datoUtenTid(new Date().toISOString()).toISOString(),
+    uke1: datoUtenTid(new Date(new Date().setDate(new Date().getDate() - 7)).toISOString()).toISOString(),
+    uke2: datoUtenTid(new Date(new Date().setDate(new Date().getDate() - 7 * 2)).toISOString()).toISOString(),
+    uke11: datoUtenTid(new Date(new Date().setDate(new Date().getDate() - 7 * 11)).toISOString()).toISOString(),
+    uke12: datoUtenTid(new Date(new Date().setDate(new Date().getDate() - 7 * 12)).toISOString()).toISOString(),
 };
 
 class DemoDashboard extends React.Component<{}> {
@@ -253,6 +261,10 @@ class DemoDashboard extends React.Component<{}> {
             registrertMellomLanseringEgenvurderingOgMotestotte: '11.05.19 - Etter egenvurdering/før møtestøtte',
             registrertEtterLanseringMotestotte: '05.06.19 - Etter lansering møtestøtte',
             registrertIDag: 'Registrert i dag',
+            uke1: 'En uke siden',
+            uke2: 'To uker siden',
+            uke11: '11 uker siden',
+            uke12: '12 uker siden',
         };
 
         const antallDagerEtterFastsattMeldedag = {
