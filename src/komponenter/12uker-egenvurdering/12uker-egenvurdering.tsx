@@ -15,9 +15,9 @@ import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import { behovsvurderingLenke } from '../../innhold/lenker';
 import { plussDager } from '../../utils/date-utils';
-import './12uker-egenvurdering.less';
 import { fjernFraBrowserStorage, hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
 import { FeaturetoggleContext, Data as FeaturetoggleData } from '../../contexts/feature-toggles';
+import './12uker-egenvurdering.less';
 
 const INTRO_KEY_12UKER = '12uker-egenvurdering';
 const ANTALL_DAGER_COOL_DOWN = 7;
