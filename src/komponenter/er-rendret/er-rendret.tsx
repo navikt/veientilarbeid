@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AmplitudeContext } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { loggAktivitet } from '../../metrics/metrics';
 
 type Props = {
@@ -7,7 +7,7 @@ type Props = {
 };
 
 function ErRendret(props: Props) {
-    const amplitudeData = React.useContext(AmplitudeContext);
+    const amplitudeData = useAmplitudeData();
 
     React.useEffect(() => {
         loggAktivitet({ aktivitet: props.loggTekst, ...amplitudeData });

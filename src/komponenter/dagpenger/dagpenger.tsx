@@ -6,12 +6,12 @@ import { loggAktivitet } from '../../metrics/metrics';
 import './dagpenger.less';
 import { dagpengerSoknadLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
-import { AmplitudeContext } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { BrukerInfoContext } from '../../contexts/bruker-info';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 
 const Dagpenger = () => {
-    const amplitudeData = useContext(AmplitudeContext);
+    const amplitudeData = useAmplitudeData();
     const { underOppfolging } = useContext(UnderOppfolgingContext).data;
     const { erSykmeldtMedArbeidsgiver } = useContext(BrukerInfoContext).data;
     const kanViseKomponent = underOppfolging && !erSykmeldtMedArbeidsgiver;

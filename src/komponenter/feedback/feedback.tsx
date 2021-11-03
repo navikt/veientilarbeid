@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { AmplitudeContext } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import './feedback.less';
 import { Undertekst } from 'nav-frontend-typografi';
@@ -18,7 +18,7 @@ function Feedback({ id, className }: Props) {
         valgt: '',
     });
     const [valgt, setValgt] = useState('');
-    const amplitudeData = useContext(AmplitudeContext);
+    const amplitudeData = useAmplitudeData();
     const { data: featuretoggledata } = useContext(FeaturetoggleContext);
 
     useEffect(() => {

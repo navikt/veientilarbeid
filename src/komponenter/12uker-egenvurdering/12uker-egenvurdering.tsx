@@ -3,7 +3,7 @@ import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { Knapp } from 'nav-frontend-knapper';
 import Panel from 'nav-frontend-paneler';
 import Lenke from 'nav-frontend-lenker';
-import { AmplitudeContext } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../../contexts/amplitude-context';
 import * as Egenvurdering from '../../contexts/egenvurdering';
 import * as Brukerregistrering from '../../contexts/brukerregistrering';
 import * as Oppfolging from '../../contexts/oppfolging';
@@ -148,7 +148,7 @@ interface EgenVurderingsProps {
 }
 
 function Intro12UkerWrapper(props: EgenVurderingsProps) {
-    const amplitudeData = React.useContext(AmplitudeContext);
+    const amplitudeData = useAmplitudeData();
     const { data: registreringData } = React.useContext(Brukerregistrering.BrukerregistreringContext);
     const { data: egenvurderingData } = React.useContext(Egenvurdering.EgenvurderingContext);
     const { data: oppfolgingData } = React.useContext(Oppfolging.OppfolgingContext);

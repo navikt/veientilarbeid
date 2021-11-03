@@ -7,7 +7,7 @@ import DialogLine from './dialog-line';
 import './dialog.less';
 import { dialogLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
-import { AmplitudeContext } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { UlesteDialogerContext } from '../../contexts/ulestedialoger';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import { FeaturetoggleContext } from '../../contexts/feature-toggles';
@@ -17,7 +17,7 @@ import * as Brukerregistrering from '../../contexts/brukerregistrering';
 import { kanViseOnboarding14A } from '../../lib/kan-vise-onboarding14a';
 
 const Dialog = () => {
-    const amplitudeData = useContext(AmplitudeContext);
+    const amplitudeData = useAmplitudeData();
     const ulesteDialoger = useContext(UlesteDialogerContext).data;
     const { data: featuretoggleData } = useContext(FeaturetoggleContext);
     const { underOppfolging } = useContext(UnderOppfolgingContext).data;

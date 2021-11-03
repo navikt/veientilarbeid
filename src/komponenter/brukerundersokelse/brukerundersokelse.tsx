@@ -4,7 +4,7 @@ import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { Knapp } from 'nav-frontend-knapper';
 import Panel from 'nav-frontend-paneler';
 import Lenke from 'nav-frontend-lenker';
-import { AmplitudeContext } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { loggAktivitet } from '../../metrics/metrics';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
@@ -107,9 +107,10 @@ export function kanViseUndersokelse({
 }
 
 function Brukerundersokelse() {
-    const amplitudeData = React.useContext(AmplitudeContext);
-    const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
+    const amplitudeData = useAmplitudeData();
     const { gruppe, ukerRegistrert, eksperimenter } = amplitudeData;
+
+    const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
     const featureToggleAktiv = featuretoggleData['veientilarbeid.visbrukerundersokelse'];
 
     const sistSettUndersokelse = Number(hentFraBrowserStorage(KEY_VTA_BRUKERUNDERSOKELSE)) ?? 0;

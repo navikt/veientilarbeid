@@ -3,12 +3,12 @@ import LenkepanelMedIkon from '../lenkepanel-med-ikon/lenkepanel-med-ikon';
 import { loggAktivitet } from '../../metrics/metrics';
 import Plaster from './plaster';
 import { sykefravaerLenke } from '../../innhold/lenker';
-import { AmplitudeContext } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { BrukerInfoContext } from '../../contexts/bruker-info';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 
 const DittSykefravaer = () => {
-    const amplitudeData = useContext(AmplitudeContext);
+    const amplitudeData = useAmplitudeData();
     const { erSykmeldtMedArbeidsgiver } = useContext(BrukerInfoContext).data;
     const { underOppfolging } = useContext(UnderOppfolgingContext).data;
     const kanViseKomponent = erSykmeldtMedArbeidsgiver && underOppfolging;

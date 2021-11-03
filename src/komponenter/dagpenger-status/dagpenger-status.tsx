@@ -6,7 +6,7 @@ import * as Oppfolging from '../../contexts/oppfolging';
 import * as BrukerInfo from '../../contexts/bruker-info';
 import * as PaabegynteSoknader from '../../contexts/paabegynte-soknader';
 import * as Sakstema from '../../contexts/sakstema';
-import { AmplitudeContext } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { AmplitudeData } from '../../metrics/amplitude-utils';
 import { loggAktivitet } from '../../metrics/metrics';
 import beregnDagpengerSokeStatus, { DagpengerSokestatuser, sistOppdaterteBehandling } from './beregn-dagpenger-status';
@@ -55,7 +55,7 @@ function kanViseDpStatus({
 }
 
 function DagpengerStatus() {
-    const amplitudeData = React.useContext(AmplitudeContext);
+    const amplitudeData = useAmplitudeData();
     const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
     const { data: registreringData } = React.useContext(Brukerregistrering.BrukerregistreringContext);
     const { data: oppfolgingData } = React.useContext(Oppfolging.OppfolgingContext);

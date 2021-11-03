@@ -6,11 +6,11 @@ import { loggAktivitet } from '../../metrics/metrics';
 import './alleskjema.less';
 import { alleSkjemaSoknadLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
-import { AmplitudeContext } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 
 const AlleSkjema = () => {
-    const amplitudeData = useContext(AmplitudeContext);
+    const amplitudeData = useAmplitudeData();
     const { underOppfolging } = useContext(UnderOppfolgingContext).data;
     const kanViseKomponent = underOppfolging;
 
