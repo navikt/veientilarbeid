@@ -213,7 +213,7 @@ function Intro14AWrapper(props: IntroProps) {
 
     const innhold = (
         // <div className={stylingKlasse}>
-        <OnboardingOmslutning title="HJELP OG STØTTE" className={stylingKlasse}>
+        <OnboardingOmslutning title="Hjelp og støtte" className={stylingKlasse}>
             {rendreIntro ? (
                 <>
                     <Intro14A
@@ -239,7 +239,7 @@ function Intro14AWrapper(props: IntroProps) {
 
     const innholdWrappetIModal = (
         <>
-            <OnboardingOmslutning title="HJELP OG STØTTE" id={'innhold-registrering'}>
+            <OnboardingOmslutning title="Hjelp og støtte" id={'innhold-registrering'}>
                 <Sluttkort
                     amplitudeData={amplitudeData}
                     registreringData={registreringData}

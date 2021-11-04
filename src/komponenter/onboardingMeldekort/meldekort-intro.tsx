@@ -162,7 +162,7 @@ function MeldekortIntroWrapper() {
     };
 
     return (
-        <OnboardingOmslutning title="MELDEKORT" className="meldekort-intro">
+        <OnboardingOmslutning title="Meldekort" className="meldekort-intro">
             {rendreIntro ? (
                 <MeldekortIntro
                     hoppOverPreState={hoppOverPreState}

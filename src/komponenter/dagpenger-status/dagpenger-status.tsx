@@ -471,7 +471,7 @@ interface DapengerDekoratorProps {
 
 function DagpengerDekorator(props: DapengerDekoratorProps) {
     return (
-        <OnboardingOmslutning title="DAGPENGER">
+        <OnboardingOmslutning title="Dagpenger">
             <ErRendret loggTekst="Rendrer dagpengerstatus" />
             <div>
                 <Systemtittel className={'blokk-xs'}>{props.tittle}</Systemtittel>

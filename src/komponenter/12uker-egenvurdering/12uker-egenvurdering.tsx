@@ -184,7 +184,7 @@ function Intro12UkerWrapper(props: EgenVurderingsProps) {
     }
 
     const innhold = (
-        <OnboardingOmslutning title="BEHOV FOR OPPFØLGING?">
+        <OnboardingOmslutning title="Behov for oppfølging?">
             <Sluttkort
                 amplitudeData={amplitudeData}
                 registreringData={registreringData}

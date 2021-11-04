@@ -39,7 +39,7 @@ function Ytelser() {
     if (!kanViseKomponent) return null;
 
     return (
-        <OnboardingOmslutning title="SPØRSMÅL OM YTELSER">
+        <OnboardingOmslutning title="Spørsmål om ytelser">
             <ErRendret loggTekst="Rendrer ytelser-kort" />
             <Systemtittel className={'blokk-xs'}>
                 Har du spørsmål om å søke om eller motta pengestøtte fra NAV?

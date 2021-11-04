@@ -11,7 +11,7 @@ const Enkeltkort = () => {
     const Sluttkort = SituasjonsbestemtSluttkort;
 
     return (
-        <OnboardingOmslutning title="HJELP OG STØTTE">
+        <OnboardingOmslutning title="Hjelp og støtte">
             <Sluttkort amplitudeData={amplitudeData} antallUlesteDialoger={ulesteDialoger.antallUleste} />
         </OnboardingOmslutning>
     );
