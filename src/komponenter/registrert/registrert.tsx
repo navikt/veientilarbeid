@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import * as React from 'react';
-import { Element } from 'nav-frontend-typografi';
+import { Element, Systemtittel } from 'nav-frontend-typografi';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { loggAktivitet } from '../../metrics/metrics';
@@ -67,6 +67,7 @@ const Registrert = () => {
             </div>
         );
     }
+
     const { registrering } = brukerregistreringData;
     const { opprettetDato, manueltRegistrertAv, besvarelse, teksterForBesvarelse } = registrering;
     const showOpplysninger = opprettetDato && besvarelse && teksterForBesvarelse;
@@ -93,9 +94,15 @@ const Registrert = () => {
                     : 'registrerings-container blokk-s'
             }
         >
-            <AlertStripeInfo className={showOpplysninger ? 'registrering-info' : ''}>
-                <Element>{tittel}</Element>
-            </AlertStripeInfo>
+            <Systemtittel className="registrering-status-heading">{tittel}</Systemtittel>
+            {visKvittering && <KvitteringWrapper kvittering={visKvittering} />}
+
+            <div className={oppdatertStylingFeaturetoggle ? 'oppdatert-intro-wrapper' : 'intro-wrapper'}>
+                <DagpengerStatus />
+                <Onboarding14A />
+                <MeldekortIntroWrapper />
+                <Ytelser />
+            </div>
             <Permittert visRegistrertSomPermittert={visRegistrertSomPermittert} />
             {showOpplysninger ? (
                 <Ekspanderbartpanel
@@ -113,15 +120,6 @@ const Registrert = () => {
                     />
                 </Ekspanderbartpanel>
             ) : null}
-
-            {visKvittering && <KvitteringWrapper kvittering={visKvittering} />}
-
-            <div className={oppdatertStylingFeaturetoggle ? 'oppdatert-intro-wrapper' : 'intro-wrapper'}>
-                <DagpengerStatus />
-                <Onboarding14A />
-                <MeldekortIntroWrapper />
-                <Ytelser />
-            </div>
             <InViewport loggTekst="Registreringsboks i viewport" />
         </div>
     );

@@ -1,9 +1,19 @@
 @import '~nav-frontend-core/less/core';
 
+.oppdatert-registrerings-container {
+    .registrering-status-heading {
+        padding: 1rem;
+        font-weight: 400;
+    }
+}
+
 .registrerings-container {
     border: 1px solid #5690a2;
     border-radius: 0.25rem;
     background-color: white;
+    .registrering-status-heading {
+        padding: 1rem;
+    }
 }
 
 .oppdatert-registrerings-container {
@@ -17,6 +27,7 @@
     border: none;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+    background-color: #0000000d;
 }
 
 span.ekspanderbartPanel__tittel {
@@ -55,8 +66,6 @@ registrering-info:hover {
     .intro-wrapper {
         flex-direction: row;
         align-items: stretch;
-        margin-right: 0.25rem;
-        margin-left: 0.25rem;
     }
     .oppdatert-intro-wrapper {
         flex-direction: row;

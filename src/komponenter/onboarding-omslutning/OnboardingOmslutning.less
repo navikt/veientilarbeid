@@ -43,7 +43,12 @@
 }
 
 .kort-omslutning {
-    margin: 0.5rem 0.25rem;
+    margin: 0.5rem 0;
+    margin-left: 0.25rem;
+    flex: 1;
+    &:first-child {
+        margin-left: 0;
+    }
     flex: 1;
     .kort-panel {
         background: none;
