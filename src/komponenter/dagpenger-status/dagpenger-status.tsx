@@ -1,5 +1,4 @@
 import * as React from 'react';
-import './dagpenger-status.less';
 import { FeaturetoggleContext } from '../../contexts/feature-toggles';
 import * as Brukerregistrering from '../../contexts/brukerregistrering';
 import * as Oppfolging from '../../contexts/oppfolging';
@@ -19,6 +18,7 @@ import InViewport from '../in-viewport/in-viewport';
 import ErRendret from '../er-rendret/er-rendret';
 import { saksoversikt_url } from '../../url';
 import { erKSSBruker } from '../../lib/er-kss-bruker';
+import OnboardingOmslutning from '../onboarding-omslutning/OnboardingOmslutning';
 
 const virkedager = require('@alheimsins/virkedager');
 
@@ -471,17 +471,14 @@ interface DapengerDekoratorProps {
 
 function DagpengerDekorator(props: DapengerDekoratorProps) {
     return (
-        <div className={'dagpenger-status-omslutning'}>
-            <div className={'innhold'}>
-                <ErRendret loggTekst="Rendrer dagpengerstatus" />
-                <div>
-                    <Element tag={'h1'}>DAGPENGER</Element>
-                    <Systemtittel className={'blokk-xs'}>{props.tittle}</Systemtittel>
-                </div>
+        <OnboardingOmslutning title="DAGPENGER">
+            <ErRendret loggTekst="Rendrer dagpengerstatus" />
+            <div>
+                <Systemtittel className={'blokk-xs'}>{props.tittle}</Systemtittel>
                 {props?.children}
-                <InViewport loggTekst="Viser dagpengerstatus i viewPort" />
             </div>
-        </div>
+            <InViewport loggTekst="Viser dagpengerstatus i viewPort" />
+        </OnboardingOmslutning>
     );
 }
 
