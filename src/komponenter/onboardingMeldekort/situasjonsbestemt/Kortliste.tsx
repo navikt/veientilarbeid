@@ -5,18 +5,15 @@ function Kort1() {
     return (
         <div className="kortflate">
             <div>
-                <Systemtittel>Send inn meldekort annenhver uke</Systemtittel>
+                <Systemtittel>Hvor ofte skal jeg sende inn meldekort?</Systemtittel>
                 <Undertekst className={'blokk-xs'}>1 av 3</Undertekst>
                 <Normaltekst className={'blokk-xs'}>
-                    Når du er registrert som arbeidssøker, må du sende inn et meldekort hver 14. dag.
-                </Normaltekst>
-
-                <Normaltekst className={'blokk-xs'}>
-                    Det er innsending av meldekort som gjør at du opprettholder status som registrert arbeidssøker.
+                    For å være registrert som arbeidssøker, må du sende inn meldekortet hver 14. dag.
                 </Normaltekst>
 
                 <Normaltekst className={'blokk-m'}>
-                    Du må også sende meldekort i perioden du venter svar på eventuelle innsendte søknader.
+                    Har du fått beskjed om at du skal være registrert i NAV, er det derfor viktig at du sender inn
+                    meldekortene innen fristen.
                 </Normaltekst>
             </div>
             <Feedback id={'meldekort-kort-01'} />
@@ -28,7 +25,7 @@ function Kort2() {
     return (
         <div className="kortflate">
             <div>
-                <Systemtittel>Hva brukes meldekortet til?</Systemtittel>
+                <Systemtittel>Hva skjer om jeg ikke sender inn meldekortet?</Systemtittel>
                 <Undertekst className={'blokk-xs'}>2 av 3</Undertekst>
 
                 <Normaltekst className={'blokk-xs'}>
@@ -36,8 +33,7 @@ function Kort2() {
                     arbeidssøker.
                 </Normaltekst>
                 <Normaltekst className={'blokk-m'}>
-                    Dersom du ikke lenger er registrert som arbeidssøker på tidspunktet NAV behandler søknaden din, vil
-                    det kunne påvirke utfallet.
+                    Venter du på svar på en innsendt søknad, kan du få avslag dersom du ikke har sendt inn meldekortet.
                 </Normaltekst>
             </div>
             <Feedback id={'meldekort-kort-02'} />
@@ -49,20 +45,17 @@ function Kort3() {
     return (
         <div className="kortflate">
             <div>
-                <Systemtittel>Send meldekort før fristen går ut</Systemtittel>
+                <Systemtittel>Hva skjer om jeg sender inn meldekortet for sent?</Systemtittel>
                 <Undertekst className={'blokk-xs'}>3 av 3</Undertekst>
 
                 <Normaltekst className={'blokk-xs'}>
-                    Dersom du sender inn meldekortet for sent, risikerer du at arbeidsoppfølging fra NAV avsluttes.
-                </Normaltekst>
-
-                <Normaltekst className={'blokk-xs'}>
-                    Utbetalingene for enkelte ytelser, som for eksempel dagpenger, vil også kunne stanses dersom du
-                    sender inn for sent.
+                    Utbetalingene av ytelser, som for eksempel dagpenger, vil kunne stanses dersom du sender meldekortet
+                    for sent.
                 </Normaltekst>
 
                 <Normaltekst className={'blokk-m'}>
-                    Det er derfor viktig at du sender inn meldekortene før fristen går ut.
+                    Det er også viktig å vite at du kan få mindre penger utbetalt dersom du sender meldekortene for
+                    sent.
                 </Normaltekst>
             </div>
             <Feedback id={'meldekort-kort-03'} />
