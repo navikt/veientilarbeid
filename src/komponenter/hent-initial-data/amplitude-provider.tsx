@@ -10,7 +10,7 @@ import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import { PaabegynteSoknaderContext } from '../../contexts/paabegynte-soknader';
 import { MuligeEttersendelserContext } from '../../contexts/mulige-ettersendelser';
 import { SakstemaContext } from '../../contexts/sakstema';
-import { BrukerInfoContext } from '../../contexts/bruker-info';
+import { useBrukerinfoData } from '../../contexts/bruker-info';
 import grupperGeografiskTilknytning from '../../utils/grupper-geografisk-tilknytning';
 
 import ukerFraDato from '../../utils/uker-fra-dato';
@@ -62,7 +62,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const muligeEttersendelserData = React.useContext(MuligeEttersendelserContext).data;
     const sakstemaData = React.useContext(SakstemaContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
-    const brukerInfoData = React.useContext(BrukerInfoContext).data;
+    const brukerInfoData = useBrukerinfoData();
     const { securityLevel: nivaa } = useAutentiseringData();
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const meldekortContext = React.useContext(Meldekort.MeldekortContext);

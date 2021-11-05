@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
-import { BrukerInfoContext } from '../../contexts/bruker-info';
+import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { beregnDagerTilInaktivering } from '../../utils/meldekort-utils';
 import { datoMedUkedag, plussDager } from '../../utils/date-utils';
 import { hentIDag } from '../../utils/chrono';
@@ -10,7 +10,7 @@ import * as Sakstema from '../../contexts/sakstema';
 import * as Brukerregistrering from '../../contexts/brukerregistrering';
 
 function MeldekortAdvarsel({ dagerEtterFastsattMeldedag }: { dagerEtterFastsattMeldedag: number | null }) {
-    const { rettighetsgruppe } = useContext(BrukerInfoContext).data;
+    const { rettighetsgruppe } = useBrukerinfoData();
     const { data: registreringData } = useContext(Brukerregistrering.BrukerregistreringContext);
     const { data: paabegynteSoknaderData } = useContext(PaabegynteSoknader.PaabegynteSoknaderContext);
     const { data: sakstemaData } = useContext(Sakstema.SakstemaContext);

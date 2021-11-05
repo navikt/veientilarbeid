@@ -14,7 +14,7 @@ import { loggAktivitet } from '../../metrics/metrics';
 import './motestotte.less';
 import { OppfolgingContext, Servicegruppe } from '../../contexts/oppfolging';
 import { MotestotteContext } from '../../contexts/motestotte';
-import { BrukerInfoContext } from '../../contexts/bruker-info';
+import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import tekster from '../../tekster/tekster';
@@ -43,7 +43,7 @@ const Motestotte = () => {
     const data = React.useContext(BrukerregistreringContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const motestotteData = React.useContext(MotestotteContext).data;
-    const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
+    const { erSykmeldtMedArbeidsgiver } = useBrukerinfoData();
     const { systemtittel, tekster } = hentTekster(erSykmeldtMedArbeidsgiver);
     const opprettetRegistreringDatoString = selectOpprettetRegistreringDato(data);
     const opprettetRegistreringDato = opprettetRegistreringDatoString

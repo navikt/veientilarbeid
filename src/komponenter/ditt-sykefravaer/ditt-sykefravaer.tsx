@@ -4,12 +4,12 @@ import { loggAktivitet } from '../../metrics/metrics';
 import Plaster from './plaster';
 import { sykefravaerLenke } from '../../innhold/lenker';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
-import { BrukerInfoContext } from '../../contexts/bruker-info';
+import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 
 const DittSykefravaer = () => {
     const amplitudeData = useAmplitudeData();
-    const { erSykmeldtMedArbeidsgiver } = useContext(BrukerInfoContext).data;
+    const { erSykmeldtMedArbeidsgiver } = useBrukerinfoData();
     const { underOppfolging } = useContext(UnderOppfolgingContext).data;
     const kanViseKomponent = erSykmeldtMedArbeidsgiver && underOppfolging;
 

@@ -5,10 +5,10 @@ import './banner.less';
 import tekster from '../../tekster/tekster';
 import { erMikrofrontend } from '../../utils/app-state-utils';
 import { PropsWithChildren } from 'react';
-import { BrukerInfoContext } from '../../contexts/bruker-info';
+import { useBrukerinfoData } from '../../contexts/bruker-info';
 
 const Banner: React.FunctionComponent<PropsWithChildren<{}>> = () => {
-    const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
+    const { erSykmeldtMedArbeidsgiver } = useBrukerinfoData();
     const type = erSykmeldtMedArbeidsgiver ? 'sykmeldt' : 'ordinaer';
 
     return erMikrofrontend() ? null : (

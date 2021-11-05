@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
-import { BrukerInfoContext } from '../../contexts/bruker-info';
+import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { FeaturetoggleContext } from '../../contexts/feature-toggles';
 import Rad from '../../innhold/rad';
 import Dagpenger from '../dagpenger/dagpenger';
@@ -12,7 +12,7 @@ import tekster from '../../tekster/tekster';
 
 const OkonomiRadDagpenger = () => {
     const { underOppfolging } = useContext(UnderOppfolgingContext).data;
-    const { erSykmeldtMedArbeidsgiver } = useContext(BrukerInfoContext).data;
+    const { erSykmeldtMedArbeidsgiver } = useBrukerinfoData();
     const { data: featuretoggleData } = useContext(FeaturetoggleContext);
 
     const skjulBoksFeaturetoggleAktivert =

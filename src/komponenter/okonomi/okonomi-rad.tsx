@@ -7,14 +7,14 @@ import NyRettTilSykepengerBilde from './ny-rett-til-sykepenger';
 import OkonomiskSosialhjelpBilde from './okonomisk-sosialhjelp';
 import { dagpengerLesmerLenke, sosialhjelpLenke, sykepengerLenke } from '../../innhold/lenker';
 import { useAutentiseringData, InnloggingsNiva } from '../../contexts/autentisering';
-import { BrukerInfoContext } from '../../contexts/bruker-info';
+import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import { FeaturetoggleContext } from '../../contexts/feature-toggles';
 import OkonomiRadDagpenger from './okonomi-rad-dagpenger';
 
 const OkonomiRad = () => {
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
-    const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
+    const { erSykmeldtMedArbeidsgiver } = useBrukerinfoData();
     const { securityLevel } = useAutentiseringData();
     const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
     const isLevel4 = securityLevel === InnloggingsNiva.LEVEL_4;
@@ -50,7 +50,7 @@ const OkonomiRad = () => {
 };
 
 const OkonomiRadVarianter = () => {
-    const { erSykmeldtMedArbeidsgiver } = React.useContext(BrukerInfoContext).data;
+    const { erSykmeldtMedArbeidsgiver } = useBrukerinfoData();
     return erSykmeldtMedArbeidsgiver ? <OkonomiRad /> : <OkonomiRadDagpenger />;
 };
 

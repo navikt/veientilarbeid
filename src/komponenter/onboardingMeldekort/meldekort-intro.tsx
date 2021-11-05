@@ -4,7 +4,7 @@ import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import * as Brukerregistrering from '../../contexts/brukerregistrering';
 import * as Oppfolging from '../../contexts/oppfolging';
-import * as BrukerInfo from '../../contexts/bruker-info';
+import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { FeaturetoggleContext } from '../../contexts/feature-toggles';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
 import './meldekort-intro.less';
@@ -127,7 +127,7 @@ function MeldekortIntroWrapper() {
 
     const { data: registreringData } = React.useContext(Brukerregistrering.BrukerregistreringContext);
     const { data: oppfolgingData } = React.useContext(Oppfolging.OppfolgingContext);
-    const { data: brukerInfoData } = React.useContext(BrukerInfo.BrukerInfoContext);
+    const brukerInfoData = useBrukerinfoData();
 
     const [harSettIntro, setHarSettIntro] = React.useState<boolean>(!!hentFraBrowserStorage(MELDEKORT_INTRO_KEY));
     const [tvingVisningAvIntro, setTvingVisningAvIntro] = React.useState<boolean>(false);

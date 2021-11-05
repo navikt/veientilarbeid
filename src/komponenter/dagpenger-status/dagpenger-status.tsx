@@ -59,7 +59,7 @@ function DagpengerStatus() {
     const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
     const { data: registreringData } = React.useContext(Brukerregistrering.BrukerregistreringContext);
     const { data: oppfolgingData } = React.useContext(Oppfolging.OppfolgingContext);
-    const { data: brukerInfoData } = React.useContext(BrukerInfo.BrukerInfoContext);
+    const brukerInfoData = BrukerInfo.useBrukerinfoData();
     const { data: paabegynteSoknaderData } = React.useContext(PaabegynteSoknader.PaabegynteSoknaderContext);
     const { data: sakstemaData } = React.useContext(Sakstema.SakstemaContext);
 

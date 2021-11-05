@@ -5,7 +5,7 @@ import { useAmplitudeData } from '../../contexts/amplitude-context';
 import * as Brukerregistrering from '../../contexts/brukerregistrering';
 import * as Egenvurdering from '../../contexts/egenvurdering';
 import { useOppfolgingData } from '../../contexts/oppfolging';
-import * as BrukerInfo from '../../contexts/bruker-info';
+import { useBrukerinfoData } from '../../contexts/bruker-info';
 import sjekkOmBrukerErStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
 import './14a-intro.less';
@@ -122,7 +122,7 @@ function Intro14AWrapper(props: IntroProps) {
     const { data: registreringData } = React.useContext(Brukerregistrering.BrukerregistreringContext);
     const { data: egenvurderingData } = React.useContext(Egenvurdering.EgenvurderingContext);
     const oppfolgingData = useOppfolgingData();
-    const { data: brukerInfoData } = React.useContext(BrukerInfo.BrukerInfoContext);
+    const brukerInfoData = useBrukerinfoData();
     const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
     const ulesteDialoger = React.useContext(UlesteDialogerContext).data;
 

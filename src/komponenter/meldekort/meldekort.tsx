@@ -7,7 +7,7 @@ import * as Brukerregistrering from '../../contexts/brukerregistrering';
 import * as MeldekortInnhold from '../../contexts/meldekort';
 import * as Oppfolging from '../../contexts/oppfolging';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
-import { BrukerInfoContext } from '../../contexts/bruker-info';
+import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import { FeaturetoggleContext } from '../../contexts/feature-toggles';
 import { kanViseMeldekortStatus } from '../../lib/kan-vise-meldekort-status';
@@ -17,7 +17,7 @@ const Meldekort = () => {
     const { data: meldekortData } = useContext(MeldekortInnhold.MeldekortContext);
     const { data: registreringData } = useContext(Brukerregistrering.BrukerregistreringContext);
     const { data: oppfolgingData } = useContext(Oppfolging.OppfolgingContext);
-    const { data: brukerInfoData } = useContext(BrukerInfoContext);
+    const brukerInfoData = useBrukerinfoData();
     const { data: featuretoggleData } = useContext(FeaturetoggleContext);
     const { underOppfolging } = useContext(UnderOppfolgingContext).data;
     const { erSykmeldtMedArbeidsgiver } = brukerInfoData;

@@ -16,8 +16,8 @@ import { behovsvurderingLenke } from '../../innhold/lenker';
 import { plussDager } from '../../utils/date-utils';
 import { fjernFraBrowserStorage, hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
 import { FeaturetoggleContext, Data as FeaturetoggleData } from '../../contexts/feature-toggles';
-import './12uker-egenvurdering.less';
 import OnboardingOmslutning from '../onboarding-omslutning/OnboardingOmslutning';
+import './12uker-egenvurdering.less';
 
 const INTRO_KEY_12UKER = '12uker-egenvurdering';
 const ANTALL_DAGER_COOL_DOWN = 7;
@@ -151,7 +151,7 @@ function Intro12UkerWrapper(props: EgenVurderingsProps) {
     const { data: registreringData } = React.useContext(Brukerregistrering.BrukerregistreringContext);
     const { data: egenvurderingData } = React.useContext(Egenvurdering.EgenvurderingContext);
     const { data: oppfolgingData } = React.useContext(Oppfolging.OppfolgingContext);
-    const { data: brukerInfoData } = React.useContext(BrukerInfo.BrukerInfoContext);
+    const brukerInfoData = BrukerInfo.useBrukerinfoData();
     const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
 
     const sistSettEgenvurdering = Number(hentFraBrowserStorage(INTRO_KEY_12UKER)) ?? 0;

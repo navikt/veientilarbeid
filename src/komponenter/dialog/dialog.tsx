@@ -11,7 +11,7 @@ import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { UlesteDialogerContext } from '../../contexts/ulestedialoger';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import { FeaturetoggleContext } from '../../contexts/feature-toggles';
-import * as BrukerInfo from '../../contexts/bruker-info';
+import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { OppfolgingContext } from '../../contexts/oppfolging';
 import * as Brukerregistrering from '../../contexts/brukerregistrering';
 import { kanViseOnboarding14A } from '../../lib/kan-vise-onboarding14a';
@@ -23,7 +23,7 @@ const Dialog = () => {
     const { underOppfolging } = useContext(UnderOppfolgingContext).data;
     const { data: registreringData } = useContext(Brukerregistrering.BrukerregistreringContext);
     const { data: oppfolgingData } = useContext(OppfolgingContext);
-    const { data: brukerInfoData } = useContext(BrukerInfo.BrukerInfoContext);
+    const brukerInfoData = useBrukerinfoData();
     const ser14aStatus = kanViseOnboarding14A({
         featuretoggleData,
         oppfolgingData,

@@ -7,13 +7,13 @@ import './dagpenger.less';
 import { dagpengerSoknadLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
-import { BrukerInfoContext } from '../../contexts/bruker-info';
+import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 
 const Dagpenger = () => {
     const amplitudeData = useAmplitudeData();
     const { underOppfolging } = useContext(UnderOppfolgingContext).data;
-    const { erSykmeldtMedArbeidsgiver } = useContext(BrukerInfoContext).data;
+    const { erSykmeldtMedArbeidsgiver } = useBrukerinfoData();
     const kanViseKomponent = underOppfolging && !erSykmeldtMedArbeidsgiver;
 
     const handleButtonClick = () => {

@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import * as Brukerregistrering from '../../contexts/brukerregistrering';
 import * as Oppfolging from '../../contexts/oppfolging';
-import * as BrukerInfo from '../../contexts/bruker-info';
+import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { FeaturetoggleContext } from '../../contexts/feature-toggles';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { loggAktivitet } from '../../metrics/metrics';
@@ -18,7 +18,7 @@ function Ytelser() {
     const { data: registreringData } = useContext(Brukerregistrering.BrukerregistreringContext);
     const { data: oppfolgingData } = useContext(Oppfolging.OppfolgingContext);
     const { data: featuretoggleData } = useContext(FeaturetoggleContext);
-    const { data: brukerInfoData } = useContext(BrukerInfo.BrukerInfoContext);
+    const brukerInfoData = useBrukerinfoData();
     const amplitudeData = useAmplitudeData();
     const brukerregistreringData = registreringData?.registrering ?? null;
     const erStandardInnsatsgruppe = sjekkOmBrukerErStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData });
