@@ -2,6 +2,13 @@ import { DinSituasjonSvar, FremtidigSituasjonSvar } from '../contexts/brukerregi
 import { plussDager } from '../utils/date-utils';
 import { kanViseOnboarding14A } from './kan-vise-onboarding14a';
 import { Formidlingsgruppe, Servicegruppe } from '../contexts/oppfolging';
+import { POAGruppe } from '../utils/get-poa-group';
+import { EksperimentId } from '../eksperiment/eksperimenter';
+import { InnloggingsNiva } from '../contexts/autentisering';
+
+const eksperiment: EksperimentId = 'onboarding14a';
+const poagruppeKSS: POAGruppe = 'kss';
+const dpVenter: 'nei' = 'nei';
 
 const grunndata = {
     brukerInfoData: {
@@ -37,6 +44,38 @@ const grunndata = {
     egenvurderingData: {
         sistOppdatert: plussDager(new Date(), -78).toISOString(),
     },
+    amplitudeData: {
+        gruppe: poagruppeKSS,
+        geografiskTilknytning: 'INGEN_VERDI',
+        isKSSX: 'nei',
+        isKSSK: 'nei',
+        erSamarbeidskontor: 'nei',
+        ukerRegistrert: 11,
+        dagerRegistrert: 78,
+        nivaa: InnloggingsNiva.LEVEL_4,
+        kanReaktiveres: 'nei',
+        formidlingsgruppe: 'INGEN_VERDI',
+        servicegruppe: 'IVURD',
+        rettighetsgruppe: 'INGEN_VERDI',
+        meldegruppe: 'INGEN_VERDI',
+        registreringType: 'INGEN_VERDI',
+        underOppfolging: 'nei',
+        antallDagerEtterFastsattMeldingsdag: 'ikke meldekortbruker',
+        antallMeldekortKlareForLevering: 0,
+        gitVersion: 'INGEN_VERDI',
+        buildTimestamp: new Date().toISOString(),
+        antallSynligeInfomeldinger: 0,
+        erSykmeldtMedArbeidsgiver: 'ukjent',
+        dinSituasjon: DinSituasjonSvar.INGEN_VERDI,
+        reservasjonKRR: 'ukjent',
+        eksperimenter: [eksperiment],
+        dagpengerVedleggEttersendes: 0,
+        dagpengerSoknadMellomlagret: 0,
+        dagpengerSoknadVenterPaSvar: dpVenter,
+        dagpengerDagerMellomPaabegyntSoknadOgRegistrering: 0,
+        dagpengerDagerMellomInnsendtSoknadOgRegistrering: 0,
+        dagpengerStatusBeregning: 'INGEN_DATA',
+    },
     featuretoggleData: {
         'veientilarbeid.modal': false,
         'veientilarbeid.feedback': false,
@@ -62,16 +101,18 @@ describe('Tester funksjonen kanViseOnboarding14A', () => {
         expect(kanViseOnboarding14A(testdata)).toBe(false);
     });
 
-    test('Ja hvis featureToggle og situasjonsbestemt', () => {
+    test('Ja hvis eksperimant og situasjonsbestemt', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
-        testdata.featuretoggleData['veientilarbeid.onboarding14a.situasjonsbestemt'] = true;
+        // testdata.featuretoggleData['veientilarbeid.onboarding14a.situasjonsbestemt'] = true;
+        testdata.amplitudeData.eksperimenter = [eksperiment];
         testdata.oppfolgingData.servicegruppe = 'BFORM';
         expect(kanViseOnboarding14A(testdata)).toBe(true);
     });
 
-    test('NEI hvis ikke featureToggle og situasjonsbestemt', () => {
+    test('NEI hvis ikke eksperiment og situasjonsbestemt', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
-        testdata.featuretoggleData['veientilarbeid.onboarding14a.situasjonsbestemt'] = false;
+        // testdata.featuretoggleData['veientilarbeid.onboarding14a.situasjonsbestemt'] = false;
+        testdata.amplitudeData.eksperimenter = [];
         testdata.oppfolgingData.servicegruppe = 'BFORM';
         expect(kanViseOnboarding14A(testdata)).toBe(false);
     });

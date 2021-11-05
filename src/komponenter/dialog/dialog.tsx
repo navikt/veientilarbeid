@@ -29,6 +29,7 @@ const Dialog = () => {
         oppfolgingData,
         brukerInfoData,
         registreringData,
+        amplitudeData,
     });
 
     const kanViseKomponent = underOppfolging && !ser14aStatus;

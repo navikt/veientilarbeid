@@ -28,6 +28,7 @@ const Meldekort = () => {
         oppfolgingData,
         registreringData,
         featuretoggleData,
+        amplitudeData,
     });
 
     const kanViseKomponent = !erSykmeldtMedArbeidsgiver && underOppfolging && !serMeldekortIntro;

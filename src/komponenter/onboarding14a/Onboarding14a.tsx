@@ -7,12 +7,15 @@ import Enkeltkort from './Enkeltkort';
 import { kanViseOnboarding14A } from '../../lib/kan-vise-onboarding14a';
 import { useOppfolgingData } from '../../contexts/oppfolging';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
+import { erPilotBruker } from '../../lib/er-pilot-bruker';
+import { useAmplitudeData } from '../../contexts/amplitude-context';
 
 function Onboarding14a(): JSX.Element | null {
     const registreringData = useBrukerregistreringData();
     const oppfolgingData = useOppfolgingData();
     const featuretoggleData = useFeatureToggleData();
     const brukerInfoData = useBrukerinfoData();
+    const amplitudeData = useAmplitudeData();
 
     const brukerregistreringData = registreringData?.registrering ?? null;
     const erStandardInnsatsgruppe = sjekkOmBrukerErStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData });
@@ -20,14 +23,21 @@ function Onboarding14a(): JSX.Element | null {
         brukerregistreringData,
         oppfolgingData,
     });
-    const visOnboardingForSituasjonsbestemtToggle = featuretoggleData['veientilarbeid.onboarding14a.situasjonsbestemt'];
+    // const visOnboardingForSituasjonsbestemtToggle = featuretoggleData['veientilarbeid.onboarding14a.situasjonsbestemt'];
 
-    const kanViseSituasjonsbestemt = erSituasjonsbestemtInnsatsgruppe && visOnboardingForSituasjonsbestemtToggle;
+    const brukerErPilot = erPilotBruker({
+        brukerInfoData,
+        oppfolgingData,
+        registreringData,
+        amplitudeData,
+    });
+    const kanViseSituasjonsbestemt = erSituasjonsbestemtInnsatsgruppe && brukerErPilot; // visOnboardingForSituasjonsbestemtToggle;
     const kanViseKomponent = kanViseOnboarding14A({
         featuretoggleData,
         oppfolgingData,
         brukerInfoData,
         registreringData,
+        amplitudeData,
     });
 
     if (!kanViseKomponent) return null;
