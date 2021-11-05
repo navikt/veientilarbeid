@@ -15,7 +15,7 @@ import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import OnboardingOmslutning from '../onboarding-omslutning/OnboardingOmslutning';
 
 function Ytelser() {
-    const { data: registreringData } = useContext(Brukerregistrering.BrukerregistreringContext);
+    const registreringData = Brukerregistrering.useBrukerregistreringData();
     const { data: oppfolgingData } = useContext(Oppfolging.OppfolgingContext);
     const { data: featuretoggleData } = useContext(FeaturetoggleContext);
     const brukerInfoData = useBrukerinfoData();

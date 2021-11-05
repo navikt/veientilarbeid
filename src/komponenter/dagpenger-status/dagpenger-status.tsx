@@ -56,10 +56,10 @@ function kanViseDpStatus({
 
 function DagpengerStatus() {
     const amplitudeData = useAmplitudeData();
-    const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
-    const { data: registreringData } = React.useContext(Brukerregistrering.BrukerregistreringContext);
-    const { data: oppfolgingData } = React.useContext(Oppfolging.OppfolgingContext);
+    const registreringData = Brukerregistrering.useBrukerregistreringData();
     const brukerInfoData = BrukerInfo.useBrukerinfoData();
+    const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
+    const { data: oppfolgingData } = React.useContext(Oppfolging.OppfolgingContext);
     const { data: paabegynteSoknaderData } = React.useContext(PaabegynteSoknader.PaabegynteSoknaderContext);
     const { data: sakstemaData } = React.useContext(Sakstema.SakstemaContext);
 

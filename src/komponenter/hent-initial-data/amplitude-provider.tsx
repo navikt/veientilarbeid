@@ -4,7 +4,7 @@ import isKSSEksperiment from '../../eksperiment/is-kss-eksperiment';
 import isKSSKontroll from '../../eksperiment/is-kss-kontroll';
 import { useAutentiseringData } from '../../contexts/autentisering';
 import { AmplitudeContext } from '../../contexts/amplitude-context';
-import { BrukerregistreringContext, DinSituasjonSvar } from '../../contexts/brukerregistrering';
+import { DinSituasjonSvar, useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { OppfolgingContext } from '../../contexts/oppfolging';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import { PaabegynteSoknaderContext } from '../../contexts/paabegynte-soknader';
@@ -57,7 +57,7 @@ function hentDagerEtterFastsattMeldedag(
 }
 
 export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
-    const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
+    const brukerregistreringData = useBrukerregistreringData();
     const pabegynteSoknaderData = React.useContext(PaabegynteSoknaderContext).data;
     const muligeEttersendelserData = React.useContext(MuligeEttersendelserContext).data;
     const sakstemaData = React.useContext(SakstemaContext).data;

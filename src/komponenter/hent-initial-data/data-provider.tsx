@@ -2,11 +2,14 @@ import * as React from 'react';
 import Innholdslaster from '../innholdslaster/innholdslaster';
 import Feilmelding from '../feilmeldinger/feilmelding';
 import * as BrukerInfo from '../../contexts/bruker-info';
-import * as Brukerregistrering from '../../contexts/brukerregistrering';
 import * as PaabegynteSoknader from '../../contexts/paabegynte-soknader';
 import * as MuligeEttersendelser from '../../contexts/mulige-ettersendelser';
 import * as Sakstema from '../../contexts/sakstema';
-import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe } from '../../contexts/brukerregistrering';
+import {
+    ForeslattInnsatsgruppe,
+    selectForeslattInnsatsgruppe,
+    useBrukerregistreringData,
+} from '../../contexts/brukerregistrering';
 import * as Motestotte from '../../contexts/motestotte';
 import * as Meldekort from '../../contexts/meldekort';
 import * as Egenvurdering from '../../contexts/egenvurdering';
@@ -59,7 +62,7 @@ const DataProvider = ({ children }: Props) => {
         UlesteDialoger.initialState
     );
 
-    const data = React.useContext(Brukerregistrering.BrukerregistreringContext).data;
+    const data = useBrukerregistreringData();
     const foreslaattInnsatsgruppe = selectForeslattInnsatsgruppe(data);
 
     React.useEffect(() => {

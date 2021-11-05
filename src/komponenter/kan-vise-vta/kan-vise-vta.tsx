@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OppfolgingContext } from '../../contexts/oppfolging';
-import { BrukerregistreringContext } from '../../contexts/brukerregistrering';
+import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { FeaturetoggleContext } from '../../contexts/feature-toggles';
 import sjekkOmBrukerErStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import { useGlobaleInnstillinger } from '../../contexts/GlobaleInnstillinger';
@@ -11,7 +11,7 @@ interface Props {
 
 function KanViseVTA(props: Props) {
     const { data: oppfolgingData } = React.useContext(OppfolgingContext);
-    const { data: registreringData } = React.useContext(BrukerregistreringContext);
+    const registreringData = useBrukerregistreringData();
     const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
     const { kreverStandardInnsatsgruppe } = useGlobaleInnstillinger();
     const brukerregistreringData = registreringData?.registrering ?? null;

@@ -3,11 +3,11 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
 import {
-    BrukerregistreringContext,
     ForeslattInnsatsgruppe,
     selectDinSituasjonSvar,
     selectForeslattInnsatsgruppe,
     selectOpprettetRegistreringDato,
+    useBrukerregistreringData,
 } from '../../contexts/brukerregistrering';
 import { motestotteLenke } from '../../innhold/lenker';
 import { loggAktivitet } from '../../metrics/metrics';
@@ -40,7 +40,7 @@ function hentTekster(erSykmeldtMedArbeidsgiver: boolean): MotestotteTekster {
 
 const Motestotte = () => {
     const amplitudeData = useAmplitudeData();
-    const data = React.useContext(BrukerregistreringContext).data;
+    const data = useBrukerregistreringData();
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const motestotteData = React.useContext(MotestotteContext).data;
     const { erSykmeldtMedArbeidsgiver } = useBrukerinfoData();

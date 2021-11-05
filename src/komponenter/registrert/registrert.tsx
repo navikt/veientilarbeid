@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as React from 'react';
 import { Element, Systemtittel } from 'nav-frontend-typografi';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
@@ -8,7 +8,7 @@ import Opplysninger from '../innsyn/registreringsopplysninger';
 import DagpengerStatus from '../dagpenger-status/dagpenger-status';
 import './registrert.less';
 import MeldekortIntroWrapper from '../onboardingMeldekort/meldekort-intro';
-import { BrukerregistreringContext } from '../../contexts/brukerregistrering';
+import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { OppfolgingContext } from '../../contexts/oppfolging';
 import { useAutentiseringData, InnloggingsNiva } from '../../contexts/autentisering';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
@@ -21,7 +21,7 @@ import Permittert from './permittert';
 import Ytelser from '../onboarding-ytelser/ytelser';
 
 const Registrert = () => {
-    const brukerregistreringData = useContext(BrukerregistreringContext).data;
+    const brukerregistreringData = useBrukerregistreringData();
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const autentiseringData = useAutentiseringData();
     const amplitudeData = useAmplitudeData();

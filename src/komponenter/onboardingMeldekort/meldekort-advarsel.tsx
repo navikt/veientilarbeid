@@ -7,11 +7,11 @@ import { hentIDag } from '../../utils/chrono';
 import * as PaabegynteSoknader from '../../contexts/paabegynte-soknader';
 import beregnDagpengerStatus, { DagpengerSokestatuser } from '../dagpenger-status/beregn-dagpenger-status';
 import * as Sakstema from '../../contexts/sakstema';
-import * as Brukerregistrering from '../../contexts/brukerregistrering';
+import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 
 function MeldekortAdvarsel({ dagerEtterFastsattMeldedag }: { dagerEtterFastsattMeldedag: number | null }) {
     const { rettighetsgruppe } = useBrukerinfoData();
-    const { data: registreringData } = useContext(Brukerregistrering.BrukerregistreringContext);
+    const registreringData = useBrukerregistreringData();
     const { data: paabegynteSoknaderData } = useContext(PaabegynteSoknader.PaabegynteSoknaderContext);
     const { data: sakstemaData } = useContext(Sakstema.SakstemaContext);
 

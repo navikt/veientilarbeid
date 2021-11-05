@@ -17,6 +17,7 @@ import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../../lib/er-situasjo
 import { kanViseMeldekortStatus } from '../../lib/kan-vise-meldekort-status';
 import OnboardingOmslutning from '../onboarding-omslutning/OnboardingOmslutning';
 import { useMeldekortData } from '../../contexts/meldekort';
+import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 
 const MELDEKORT_INTRO_KEY = 'meldekortintro';
 
@@ -33,7 +34,7 @@ function MeldekortIntro(props: MeldekortIntroProps) {
     const nesteknappIntro = props.amplitudeData.eksperimenter.includes('nesteknappIntro');
 
     const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
-    const { data: registreringData } = React.useContext(Brukerregistrering.BrukerregistreringContext);
+    const registreringData = useBrukerregistreringData();
     const { data: oppfolgingData } = React.useContext(Oppfolging.OppfolgingContext);
     const brukerregistreringData = registreringData?.registrering ?? null;
 
@@ -125,7 +126,7 @@ function MeldekortIntroWrapper() {
     const amplitudeData = useAmplitudeData();
     const meldekortData = useMeldekortData();
 
-    const { data: registreringData } = React.useContext(Brukerregistrering.BrukerregistreringContext);
+    const registreringData = Brukerregistrering.useBrukerregistreringData();
     const { data: oppfolgingData } = React.useContext(Oppfolging.OppfolgingContext);
     const brukerInfoData = useBrukerinfoData();
 

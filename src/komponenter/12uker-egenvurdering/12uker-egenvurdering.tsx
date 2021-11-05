@@ -148,7 +148,7 @@ interface EgenVurderingsProps {
 
 function Intro12UkerWrapper(props: EgenVurderingsProps) {
     const amplitudeData = useAmplitudeData();
-    const { data: registreringData } = React.useContext(Brukerregistrering.BrukerregistreringContext);
+    const registreringData = Brukerregistrering.useBrukerregistreringData();
     const { data: egenvurderingData } = React.useContext(Egenvurdering.EgenvurderingContext);
     const { data: oppfolgingData } = React.useContext(Oppfolging.OppfolgingContext);
     const brukerInfoData = BrukerInfo.useBrukerinfoData();

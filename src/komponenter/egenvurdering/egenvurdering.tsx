@@ -4,9 +4,9 @@ import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
 import { loggAktivitet } from '../../metrics/metrics';
 import {
-    BrukerregistreringContext,
     ForeslattInnsatsgruppe,
     selectForeslattInnsatsgruppe,
+    useBrukerregistreringData,
 } from '../../contexts/brukerregistrering';
 import './egenvurdering.less';
 import { behovsvurderingLenke } from '../../innhold/lenker';
@@ -32,7 +32,7 @@ export const antallTimerSidenRegistrering = (registreringsDato: Date) => {
 
 const Egenvurdering = () => {
     const amplitudeData = useAmplitudeData();
-    const brukerregistreringData = React.useContext(BrukerregistreringContext).data;
+    const brukerregistreringData = useBrukerregistreringData();
     const egenvurderingData = React.useContext(EgenvurderingContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const { securityLevel } = useAutentiseringData();

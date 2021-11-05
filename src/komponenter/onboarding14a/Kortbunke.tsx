@@ -119,7 +119,7 @@ interface IntroProps {
 
 function Intro14AWrapper(props: IntroProps) {
     const amplitudeData = useAmplitudeData();
-    const { data: registreringData } = React.useContext(Brukerregistrering.BrukerregistreringContext);
+    const registreringData = Brukerregistrering.useBrukerregistreringData();
     const { data: egenvurderingData } = React.useContext(Egenvurdering.EgenvurderingContext);
     const oppfolgingData = useOppfolgingData();
     const brukerInfoData = useBrukerinfoData();
