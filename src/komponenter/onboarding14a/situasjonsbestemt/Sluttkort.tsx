@@ -22,14 +22,6 @@ function Sluttkort(props: EndStateProps) {
             ...amplitudeData,
         });
     };
-    function loggLenkeKlikk(handling: string, url: string) {
-        amplitudeLogger('veientilarbeid.intro', {
-            intro: '14a',
-            handling,
-            ...amplitudeData,
-        });
-        window.location.assign(url);
-    }
 
     const VeiledersOppgaver = () => {
         return (
@@ -73,33 +65,6 @@ function Sluttkort(props: EndStateProps) {
                         antallUlesteDialoger={props.antallUlesteDialoger}
                     />
                 </div>
-                <Normaltekst className={'blokk-m'}>
-                    Har du spørsmål om dagpenger, eller andre søknader, må du bruke{' '}
-                    <Lenke
-                        href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
-                        onClick={() =>
-                            loggLenkeKlikk(
-                                'Går til STO fra 14a sluttkort',
-                                'https://mininnboks.nav.no/sporsmal/skriv/ARBD'
-                            )
-                        }
-                    >
-                        skriv til oss
-                    </Lenke>{' '}
-                    eller{' '}
-                    <Lenke
-                        href="https://www.nav.no/person/kontakt-oss/chat/"
-                        onClick={() =>
-                            loggLenkeKlikk(
-                                'Går til Chat fra 14a sluttkort',
-                                'https://www.nav.no/person/kontakt-oss/chat/'
-                            )
-                        }
-                    >
-                        chat
-                    </Lenke>
-                    .
-                </Normaltekst>
             </>
         );
     };
