@@ -18,7 +18,7 @@ function Sluttkort(props: EndStateProps) {
     const { amplitudeData, registreringData } = props;
     const { ukerRegistrert } = amplitudeData;
     const registrertDato = registreringData?.registrering?.opprettetDato;
-    const kortTittel = 'Om du ønsker oppfølging må du gi oss beskjed om dette';
+    const kortTittel = 'Om du ønsker oppfølging må du gi oss beskjed';
 
     const VeiledersOppgaver = () => {
         return (

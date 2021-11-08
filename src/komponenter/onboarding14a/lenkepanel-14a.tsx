@@ -36,7 +36,7 @@ const Lenkepanel14A: React.FC<Lenkepanel14AProps> = (props) => {
             tittelProps="undertittel"
             linkCreator={linkCreator}
             border={true}
-            className={'fjorten-A-send-inn-kort'}
+            className={'fjorten-A-start-dialog-kort'}
         >
             <div className="lenkepanel__innhold">
                 <div className="dialog__ikon">
