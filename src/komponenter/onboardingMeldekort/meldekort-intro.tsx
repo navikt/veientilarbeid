@@ -18,6 +18,7 @@ import { kanViseMeldekortStatus } from '../../lib/kan-vise-meldekort-status';
 import OnboardingOmslutning from '../onboarding-omslutning/OnboardingOmslutning';
 import { useMeldekortData } from '../../contexts/meldekort';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
+import ErRendret from '../er-rendret/er-rendret';
 
 const MELDEKORT_INTRO_KEY = 'meldekortintro';
 
@@ -139,6 +140,11 @@ function MeldekortIntroWrapper() {
     const hoppOverPreState = harSettIntro || tvingVisningAvIntro;
 
     const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
+    const brukerregistreringData = registreringData?.registrering ?? null;
+    const erSituasjonsbestemtInnsatsgruppe = sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe({
+        brukerregistreringData,
+        oppfolgingData,
+    });
 
     useEffect(() => {
         if (harSettIntro) {
@@ -173,11 +179,18 @@ function MeldekortIntroWrapper() {
     return (
         <OnboardingOmslutning title="Meldekort" className="meldekort-intro">
             {rendreIntro ? (
-                <MeldekortIntro
-                    hoppOverPreState={hoppOverPreState}
-                    ferdigMedIntroCB={ferdigMedIntroCB}
-                    amplitudeData={amplitudeData}
-                />
+                <>
+                    <MeldekortIntro
+                        hoppOverPreState={hoppOverPreState}
+                        ferdigMedIntroCB={ferdigMedIntroCB}
+                        amplitudeData={amplitudeData}
+                    />
+                    <ErRendret
+                        loggTekst={`Rendrer meldekort intro${
+                            erSituasjonsbestemtInnsatsgruppe && ' - situasjonsbestemt'
+                        }`}
+                    />
+                </>
             ) : (
                 <Sluttkort
                     amplitudeData={amplitudeData}
