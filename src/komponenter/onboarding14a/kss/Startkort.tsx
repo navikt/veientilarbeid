@@ -12,7 +12,7 @@ function Startkort(props: Props) {
             hoppOverIntroCB={props.hoppOverIntroCB}
             startIntroCB={props.startIntroCB}
             lesetid={'3'}
-            viewportTekst="Viser 14a pre-state i viewport"
+            viewportTekst="Viser 14a pre-state i viewport - KSS"
             tittel={'Hva slags hjelp kan jeg få?'}
         />
     );
