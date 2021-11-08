@@ -12,8 +12,8 @@ function Kort1() {
                 </Normaltekst>
 
                 <Normaltekst className={'blokk-m'}>
-                    Har du fått beskjed om at du skal være registrert i NAV, er det derfor viktig at du sender inn
-                    meldekortene innen fristen.
+                    Har du fått beskjed om at du skal være registrert i NAV, må du også sender inn meldekortene hver 14.
+                    dag.
                 </Normaltekst>
             </div>
             <Feedback id={'meldekort-kort-01'} />

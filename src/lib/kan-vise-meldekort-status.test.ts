@@ -3,8 +3,9 @@ import { InnloggingsNiva } from '../contexts/autentisering';
 import { plussDager } from '../utils/date-utils';
 import { kanViseMeldekortStatus } from './kan-vise-meldekort-status';
 import { Formidlingsgruppe, Servicegruppe } from '../contexts/oppfolging';
+import { EksperimentId } from '../eksperiment/eksperimenter';
 
-// const eksperiment: EksperimentId = 'onboarding14a';
+const eksperiment: EksperimentId = 'onboarding14a';
 // const poagruppeKSS: POAGruppe = 'kss';
 // const dpVenter: 'nei' = 'nei';
 
@@ -88,6 +89,7 @@ const grunndata = {
         erSykmeldtMedArbeidsgiver: 'ukjent',
         dinSituasjon: DinSituasjonSvar.INGEN_VERDI,
         reservasjonKRR: 'ukjent',
+        eksperimenter: [eksperiment],
         dagpengerVedleggEttersendes: 0,
         dagpengerSoknadMellomlagret: 0,
         dagpengerDagerMellomPaabegyntSoknadOgRegistrering: 0,

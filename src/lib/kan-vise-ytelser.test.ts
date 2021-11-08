@@ -1,6 +1,6 @@
 import { DinSituasjonSvar, FremtidigSituasjonSvar } from '../contexts/brukerregistrering';
 import { plussDager } from '../utils/date-utils';
-import { kanViseOnboarding14A } from './kan-vise-onboarding14a';
+import { kanViseOnboardingYtelser } from './kan-vise-ytelser';
 import { Formidlingsgruppe, Servicegruppe } from '../contexts/oppfolging';
 import { POAGruppe } from '../utils/get-poa-group';
 import { EksperimentId } from '../eksperiment/eksperimenter';
@@ -13,7 +13,7 @@ const dpVenter: 'nei' = 'nei';
 const grunndata = {
     brukerInfoData: {
         rettighetsgruppe: 'DAGP',
-        geografiskTilknytning: '110302',
+        geografiskTilknytning: '3811',
         alder: 42,
         erSykmeldtMedArbeidsgiver: false,
     },
@@ -68,7 +68,7 @@ const grunndata = {
         erSykmeldtMedArbeidsgiver: 'ukjent',
         dinSituasjon: DinSituasjonSvar.INGEN_VERDI,
         reservasjonKRR: 'ukjent',
-        eksperimenter: [eksperiment],
+        eksperimenter: [],
         dagpengerVedleggEttersendes: 0,
         dagpengerSoknadMellomlagret: 0,
         dagpengerSoknadVenterPaSvar: dpVenter,
@@ -89,44 +89,45 @@ const grunndata = {
         'veientilarbeid.rydding.skjulAAPRad': false,
         'veientilarbeid.visbrukerundersokelse': false,
         'veientilarbeid.onboarding14a.situasjonsbestemt': false,
+        'veientilarbeid.ytelser.situasjonsbestemt': false,
         'veientilarbeid.meldekort-intro.situasjonsbestemt': false,
     },
     sistVistFraLocalstorage: 0,
 };
 
-describe('Tester funksjonen kanViseOnboarding14A', () => {
+describe('Tester funksjonen ytelser-onboarding', () => {
     test('Nei hvis AAP', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
         testdata.brukerInfoData.rettighetsgruppe = 'AAP';
-        expect(kanViseOnboarding14A(testdata)).toBe(false);
+        expect(kanViseOnboardingYtelser(testdata)).toBe(false);
     });
 
     test('Ja hvis eksperiment, featuretoggle og situasjonsbestemt', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
-        testdata.featuretoggleData['veientilarbeid.onboarding14a.situasjonsbestemt'] = true;
+        testdata.featuretoggleData['veientilarbeid.ytelser.situasjonsbestemt'] = true;
         testdata.amplitudeData.eksperimenter = [eksperiment];
         testdata.oppfolgingData.servicegruppe = 'BFORM';
-        expect(kanViseOnboarding14A(testdata)).toBe(true);
+        expect(kanViseOnboardingYtelser(testdata)).toBe(true);
     });
 
     test('NEI hvis ikke eksperiment, ikke featuretoggle og situasjonsbestemt', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
-        testdata.featuretoggleData['veientilarbeid.onboarding14a.situasjonsbestemt'] = false;
+        testdata.featuretoggleData['veientilarbeid.ytelser.situasjonsbestemt'] = false;
         testdata.amplitudeData.eksperimenter = [];
         testdata.oppfolgingData.servicegruppe = 'BFORM';
-        expect(kanViseOnboarding14A(testdata)).toBe(false);
+        expect(kanViseOnboardingYtelser(testdata)).toBe(false);
     });
 
-    test('NEI hvis ikke bruker kan reaktveres', () => {
+    test('NEI hvis bruker kan reaktveres', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
         testdata.oppfolgingData.kanReaktiveres = true;
-        expect(kanViseOnboarding14A(testdata)).toBe(false);
+        expect(kanViseOnboardingYtelser(testdata)).toBe(false);
     });
 
     test('NEI hvis ikke bruker ikke er standard innsatsgruppe', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
         testdata.oppfolgingData.servicegruppe = 'BKART';
-        expect(kanViseOnboarding14A(testdata)).toBe(false);
+        expect(kanViseOnboardingYtelser(testdata)).toBe(false);
     });
 
     test('JA hvis ikke kan reaktivers og er standard innsatsgruppe', () => {
@@ -134,6 +135,6 @@ describe('Tester funksjonen kanViseOnboarding14A', () => {
         testdata.oppfolgingData.kanReaktiveres = false;
         testdata.oppfolgingData.servicegruppe = 'IKVAL';
         testdata.oppfolgingData.formidlingsgruppe = 'ARBS';
-        expect(kanViseOnboarding14A(testdata)).toBe(true);
+        expect(kanViseOnboardingYtelser(testdata)).toBe(true);
     });
 });

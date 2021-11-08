@@ -6,6 +6,8 @@ import * as BrukerInfo from '../contexts/bruker-info';
 import * as FeatureToggles from '../contexts/feature-toggles';
 import erStandardInnsatsgruppe from './er-standard-innsatsgruppe';
 import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from './er-situasjonsbestemt-innsatsgruppe';
+import { AmplitudeData } from '../metrics/amplitude-utils';
+import { erPilotBruker } from './er-pilot-bruker';
 
 export function kanViseMeldekortStatus({
     meldekortData,
@@ -13,12 +15,14 @@ export function kanViseMeldekortStatus({
     oppfolgingData,
     registreringData,
     featuretoggleData,
+    amplitudeData,
 }: {
     meldekortData: Meldekort.Data | null;
     brukerInfoData: BrukerInfo.Data;
     oppfolgingData: Oppfolging.Data;
     registreringData: Brukerregistrering.Data | null;
     featuretoggleData: FeatureToggles.Data;
+    amplitudeData: AmplitudeData;
 }): boolean {
     const meldekortliste = meldekortData?.meldekort ?? [];
     const harMeldekort = meldekortliste.length > 0;
@@ -33,16 +37,25 @@ export function kanViseMeldekortStatus({
         brukerregistreringData,
         oppfolgingData,
     });
-    const onboardingForSituasjonsbestemtToggle = featuretoggleData['veientilarbeid.meldekort-intro.situasjonsbestemt'];
 
-    const skalViseOnboardingForSituasjonsbestemt =
-        onboardingForSituasjonsbestemtToggle && erSituasjonsbestemtInnsatsgruppe;
+    const MeldekortintroForSituasjonsbestemtToggle =
+        featuretoggleData['veientilarbeid.meldekort-intro.situasjonsbestemt'];
+
+    const brukerErPilot = erPilotBruker({
+        brukerInfoData,
+        oppfolgingData,
+        registreringData,
+        amplitudeData,
+    });
+
+    const skalViseMeldekortintroForSituasjonsbestemt =
+        erSituasjonsbestemtInnsatsgruppe && brukerErPilot && MeldekortintroForSituasjonsbestemtToggle;
 
     const kanViseKomponent =
         !erAAP &&
         harDagpengerEllerArbeidssokerMeldekort &&
         (erStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData }) ||
-            skalViseOnboardingForSituasjonsbestemt) &&
+            skalViseMeldekortintroForSituasjonsbestemt) &&
         !oppfolgingData.kanReaktiveres;
 
     return kanViseKomponent;

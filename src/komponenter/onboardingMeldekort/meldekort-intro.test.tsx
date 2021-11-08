@@ -7,6 +7,9 @@ import { Formidlingsgruppe, Servicegruppe } from '../../contexts/oppfolging';
 import { mockIntersectionObserver } from '../../mocks/intersection-observer-mock';
 import { regexMatcher } from '../../utils/test-utils';
 import { plussDager } from '../../utils/date-utils';
+import { EksperimentId } from '../../eksperiment/eksperimenter';
+
+const eksperiment: EksperimentId = 'onboarding14a';
 
 const meldekort = {
     maalformkode: 'NO',
@@ -41,11 +44,13 @@ const providerProps: ProviderProps = {
     },
     amplitude: {
         ukerRegistrert: 2,
+        eksperimenter: [eksperiment],
     },
     oppfolging: {
         formidlingsgruppe: Formidlingsgruppe.ARBS,
         servicegruppe: Servicegruppe.IKVAL,
     },
+    featureToggle: { 'veientilarbeid.meldekort-intro.situasjonsbestemt': true },
 };
 
 function propsForRelativDag(dag: number): any {
@@ -280,13 +285,12 @@ describe('tester onboarding komponenten for meldekort', () => {
                 formidlingsgruppe: Formidlingsgruppe.ARBS,
                 servicegruppe: Servicegruppe.BFORM,
             },
-            featureToggle: { 'veientilarbeid.meldekort-intro.situasjonsbestemt': true },
         };
         const { container } = render(<MeldekortIntroWrapper />, { wrapper: contextProviders(props) });
         expect(container).not.toBeEmptyDOMElement();
     });
 
-    test('Viser ikke boks for bruker med profil: situasjonsbestemt og feature-toggle av', () => {
+    test('Viser ikke boks for bruker med profil: situasjonsbestemt, eksperiment av og feature-toggle av', () => {
         const props: ProviderProps = {
             ...providerProps,
             ...propsForRelativDag(7),
@@ -294,6 +298,7 @@ describe('tester onboarding komponenten for meldekort', () => {
                 formidlingsgruppe: Formidlingsgruppe.ARBS,
                 servicegruppe: Servicegruppe.BFORM,
             },
+            amplitude: { eksperimenter: [] },
             featureToggle: { 'veientilarbeid.meldekort-intro.situasjonsbestemt': false },
         };
         const { container } = render(<MeldekortIntroWrapper />, { wrapper: contextProviders(props) });

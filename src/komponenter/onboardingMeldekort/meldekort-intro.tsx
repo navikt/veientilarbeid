@@ -148,7 +148,14 @@ function MeldekortIntroWrapper() {
     }, [harSettIntro]);
 
     if (
-        !kanViseMeldekortStatus({ meldekortData, oppfolgingData, brukerInfoData, registreringData, featuretoggleData })
+        !kanViseMeldekortStatus({
+            meldekortData,
+            oppfolgingData,
+            brukerInfoData,
+            registreringData,
+            featuretoggleData,
+            amplitudeData,
+        })
     ) {
         fjernFraBrowserStorage(MELDEKORT_INTRO_KEY);
         return null;

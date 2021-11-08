@@ -1,14 +1,14 @@
 import { DinSituasjonSvar, FremtidigSituasjonSvar } from '../contexts/brukerregistrering';
 import { plussDager } from '../utils/date-utils';
-import { kanViseOnboarding14A } from './kan-vise-onboarding14a';
-import { Formidlingsgruppe, Servicegruppe } from '../contexts/oppfolging';
-import { POAGruppe } from '../utils/get-poa-group';
-import { EksperimentId } from '../eksperiment/eksperimenter';
 import { InnloggingsNiva } from '../contexts/autentisering';
+import { erPilotBruker } from './er-pilot-bruker';
+import { Formidlingsgruppe, Servicegruppe } from '../contexts/oppfolging';
+import { EksperimentId } from '../eksperiment/eksperimenter';
+import { POAGruppe } from '../utils/get-poa-group';
 
 const eksperiment: EksperimentId = 'onboarding14a';
-const poagruppeKSS: POAGruppe = 'kss';
 const dpVenter: 'nei' = 'nei';
+const poagruppeKSS: POAGruppe = 'kss';
 
 const grunndata = {
     brukerInfoData: {
@@ -44,6 +44,21 @@ const grunndata = {
     egenvurderingData: {
         sistOppdatert: plussDager(new Date(), -78).toISOString(),
     },
+    featuretoggleData: {
+        'veientilarbeid.modal': false,
+        'veientilarbeid.feedback': false,
+        'veientilarbeid.14a-intro': true,
+        'veientilarbeid.registrert-permittert': false,
+        'veientilarbeid.dagpenger-status': false,
+        'veientilarbeid.dpstatus-for-alle': false,
+        'veientilarbeid.egenvurderinguke12': true,
+        'veientilarbeid.rydding.skjulJobbBoks': false,
+        'veientilarbeid.rydding.skjulOkonomiBoks': false,
+        'veientilarbeid.rydding.skjulAAPRad': false,
+        'veientilarbeid.visbrukerundersokelse': false,
+        'veientilarbeid.onboarding14a.situasjonsbestemt': false,
+        'veientilarbeid.meldekort-intro.situasjonsbestemt': false,
+    },
     amplitudeData: {
         gruppe: poagruppeKSS,
         geografiskTilknytning: 'INGEN_VERDI',
@@ -76,64 +91,32 @@ const grunndata = {
         dagpengerDagerMellomInnsendtSoknadOgRegistrering: 0,
         dagpengerStatusBeregning: 'INGEN_DATA',
     },
-    featuretoggleData: {
-        'veientilarbeid.modal': false,
-        'veientilarbeid.feedback': false,
-        'veientilarbeid.14a-intro': true,
-        'veientilarbeid.registrert-permittert': false,
-        'veientilarbeid.dagpenger-status': false,
-        'veientilarbeid.dpstatus-for-alle': false,
-        'veientilarbeid.egenvurderinguke12': true,
-        'veientilarbeid.rydding.skjulJobbBoks': false,
-        'veientilarbeid.rydding.skjulOkonomiBoks': false,
-        'veientilarbeid.rydding.skjulAAPRad': false,
-        'veientilarbeid.visbrukerundersokelse': false,
-        'veientilarbeid.onboarding14a.situasjonsbestemt': false,
-        'veientilarbeid.meldekort-intro.situasjonsbestemt': false,
-    },
     sistVistFraLocalstorage: 0,
 };
 
-describe('Tester funksjonen kanViseOnboarding14A', () => {
+describe('Tester funksjonen er-pilot-bruker', () => {
     test('Nei hvis AAP', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
         testdata.brukerInfoData.rettighetsgruppe = 'AAP';
-        expect(kanViseOnboarding14A(testdata)).toBe(false);
+        expect(erPilotBruker(testdata)).toBe(false);
     });
 
-    test('Ja hvis eksperiment, featuretoggle og situasjonsbestemt', () => {
+    test('NEI hvis ikke eksperiment', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
-        testdata.featuretoggleData['veientilarbeid.onboarding14a.situasjonsbestemt'] = true;
-        testdata.amplitudeData.eksperimenter = [eksperiment];
-        testdata.oppfolgingData.servicegruppe = 'BFORM';
-        expect(kanViseOnboarding14A(testdata)).toBe(true);
-    });
-
-    test('NEI hvis ikke eksperiment, ikke featuretoggle og situasjonsbestemt', () => {
-        const testdata = JSON.parse(JSON.stringify(grunndata));
-        testdata.featuretoggleData['veientilarbeid.onboarding14a.situasjonsbestemt'] = false;
         testdata.amplitudeData.eksperimenter = [];
-        testdata.oppfolgingData.servicegruppe = 'BFORM';
-        expect(kanViseOnboarding14A(testdata)).toBe(false);
+        expect(erPilotBruker(testdata)).toBe(false);
     });
 
     test('NEI hvis ikke bruker kan reaktveres', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
         testdata.oppfolgingData.kanReaktiveres = true;
-        expect(kanViseOnboarding14A(testdata)).toBe(false);
+        expect(erPilotBruker(testdata)).toBe(false);
     });
 
-    test('NEI hvis ikke bruker ikke er standard innsatsgruppe', () => {
+    test('JA hvis bruker ikke er AAP, skal se eksperiment og ikke kan reaktivers', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
-        testdata.oppfolgingData.servicegruppe = 'BKART';
-        expect(kanViseOnboarding14A(testdata)).toBe(false);
-    });
-
-    test('JA hvis ikke kan reaktivers og er standard innsatsgruppe', () => {
-        const testdata = JSON.parse(JSON.stringify(grunndata));
+        testdata.amplitudeData.eksperimenter = [eksperiment];
         testdata.oppfolgingData.kanReaktiveres = false;
-        testdata.oppfolgingData.servicegruppe = 'IKVAL';
-        testdata.oppfolgingData.formidlingsgruppe = 'ARBS';
-        expect(kanViseOnboarding14A(testdata)).toBe(true);
+        expect(erPilotBruker(testdata)).toBe(true);
     });
 });

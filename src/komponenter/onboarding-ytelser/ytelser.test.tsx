@@ -15,7 +15,7 @@ const providerProps: ProviderProps = {
     amplitude: {
         ukerRegistrert: 2,
         gruppe: 'kss',
-        eksperimenter: ['onboarding14a'],
+        eksperimenter: [],
     },
     oppfolging: {
         formidlingsgruppe: Formidlingsgruppe.ARBS,
@@ -33,7 +33,7 @@ describe('tester komponenten for Ytelser', () => {
         mockIntersectionObserver();
     });
 
-    test('komponenten VISES for standardInnsats', () => {
+    test('komponenten VISES for standardInnsats uten ekperiment', () => {
         const { container } = render(<Ytelser />, { wrapper: contextProviders(providerProps) });
         expect(container).not.toBeEmptyDOMElement();
     });

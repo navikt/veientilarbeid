@@ -7,7 +7,7 @@ import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from './er-situasjonsbestem
 import { AmplitudeData } from '../metrics/amplitude-utils';
 import { erPilotBruker } from './er-pilot-bruker';
 
-export function kanViseOnboarding14A({
+export function kanViseOnboardingYtelser({
     brukerInfoData,
     oppfolgingData,
     registreringData,
@@ -32,10 +32,14 @@ export function kanViseOnboarding14A({
         brukerregistreringData,
         oppfolgingData,
     });
-    const visOnboardingForSituasjonsbestemtToggle = featuretoggleData['veientilarbeid.onboarding14a.situasjonsbestemt'];
-    const kanViseSituasjonsbestemt =
-        erSituasjonsbestemtInnsatsgruppe && brukerErPilot && visOnboardingForSituasjonsbestemtToggle;
+    const visYtelserForSituasjonsbestemtToggle = featuretoggleData['veientilarbeid.ytelser.situasjonsbestemt'];
+
+    const kanViseForSituasjonsbestemt =
+        erSituasjonsbestemtInnsatsgruppe && brukerErPilot && visYtelserForSituasjonsbestemtToggle;
+
     const erStandardInnsatsgruppe = sjekkOmBrukerErStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData });
 
-    return !erAAP && (erStandardInnsatsgruppe || kanViseSituasjonsbestemt) && !oppfolgingData.kanReaktiveres;
+    const kanViseForStandard = erStandardInnsatsgruppe && !brukerErPilot;
+
+    return !erAAP && (kanViseForStandard || kanViseForSituasjonsbestemt) && !oppfolgingData.kanReaktiveres;
 }
