@@ -14,7 +14,7 @@ export function kanViseMeldekortStatus({
     brukerInfoData,
     oppfolgingData,
     registreringData,
-    // featuretoggleData,
+    featuretoggleData,
     amplitudeData,
 }: {
     meldekortData: Meldekort.Data | null;
@@ -38,7 +38,8 @@ export function kanViseMeldekortStatus({
         oppfolgingData,
     });
 
-    // const onboardingForSituasjonsbestemtToggle = featuretoggleData['veientilarbeid.meldekort-intro.situasjonsbestemt'];
+    const MeldekortintroForSituasjonsbestemtToggle =
+        featuretoggleData['veientilarbeid.meldekort-intro.situasjonsbestemt'];
 
     const brukerErPilot = erPilotBruker({
         brukerInfoData,
@@ -47,13 +48,14 @@ export function kanViseMeldekortStatus({
         amplitudeData,
     });
 
-    const skalViseOnboardingForSituasjonsbestemt = erSituasjonsbestemtInnsatsgruppe && brukerErPilot;
+    const skalViseMeldekortintroForSituasjonsbestemt =
+        erSituasjonsbestemtInnsatsgruppe && brukerErPilot && MeldekortintroForSituasjonsbestemtToggle;
 
     const kanViseKomponent =
         !erAAP &&
         harDagpengerEllerArbeidssokerMeldekort &&
         (erStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData }) ||
-            skalViseOnboardingForSituasjonsbestemt) &&
+            skalViseMeldekortintroForSituasjonsbestemt) &&
         !oppfolgingData.kanReaktiveres;
 
     return kanViseKomponent;

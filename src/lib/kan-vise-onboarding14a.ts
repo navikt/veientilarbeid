@@ -11,7 +11,7 @@ export function kanViseOnboarding14A({
     brukerInfoData,
     oppfolgingData,
     registreringData,
-    // featuretoggleData,
+    featuretoggleData,
     amplitudeData,
 }: {
     brukerInfoData: BrukerInfo.Data;
@@ -32,8 +32,9 @@ export function kanViseOnboarding14A({
         brukerregistreringData,
         oppfolgingData,
     });
-    // const visOnboardingForSituasjonsbestemtToggle = featuretoggleData['veientilarbeid.onboarding14a.situasjonsbestemt'];
-    const kanViseSituasjonsbestemt = erSituasjonsbestemtInnsatsgruppe && brukerErPilot; // visOnboardingForSituasjonsbestemtToggle;
+    const visOnboardingForSituasjonsbestemtToggle = featuretoggleData['veientilarbeid.onboarding14a.situasjonsbestemt'];
+    const kanViseSituasjonsbestemt =
+        erSituasjonsbestemtInnsatsgruppe && brukerErPilot && visOnboardingForSituasjonsbestemtToggle;
     const erStandardInnsatsgruppe = sjekkOmBrukerErStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData });
 
     return !erAAP && (erStandardInnsatsgruppe || kanViseSituasjonsbestemt) && !oppfolgingData.kanReaktiveres;

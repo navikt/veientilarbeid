@@ -101,17 +101,17 @@ describe('Tester funksjonen kanViseOnboarding14A', () => {
         expect(kanViseOnboarding14A(testdata)).toBe(false);
     });
 
-    test('Ja hvis eksperimant og situasjonsbestemt', () => {
+    test('Ja hvis eksperiment, featuretoggle og situasjonsbestemt', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
-        // testdata.featuretoggleData['veientilarbeid.onboarding14a.situasjonsbestemt'] = true;
+        testdata.featuretoggleData['veientilarbeid.onboarding14a.situasjonsbestemt'] = true;
         testdata.amplitudeData.eksperimenter = [eksperiment];
         testdata.oppfolgingData.servicegruppe = 'BFORM';
         expect(kanViseOnboarding14A(testdata)).toBe(true);
     });
 
-    test('NEI hvis ikke eksperiment og situasjonsbestemt', () => {
+    test('NEI hvis ikke eksperiment, ikke featuretoggle og situasjonsbestemt', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
-        // testdata.featuretoggleData['veientilarbeid.onboarding14a.situasjonsbestemt'] = false;
+        testdata.featuretoggleData['veientilarbeid.onboarding14a.situasjonsbestemt'] = false;
         testdata.amplitudeData.eksperimenter = [];
         testdata.oppfolgingData.servicegruppe = 'BFORM';
         expect(kanViseOnboarding14A(testdata)).toBe(false);
