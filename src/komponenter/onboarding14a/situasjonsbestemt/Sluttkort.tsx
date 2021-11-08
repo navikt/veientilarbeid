@@ -4,7 +4,6 @@ import { OppfolgingContext, Servicegruppe } from '../../../contexts/oppfolging';
 import Lenkepanel14A from '../lenkepanel-14a';
 import Lenke from 'nav-frontend-lenker';
 import { useContext } from 'react';
-import Feedback from '../../feedback/feedback';
 
 interface EndStateProps {
     amplitudeData: AmplitudeData;
@@ -101,7 +100,6 @@ function Sluttkort(props: EndStateProps) {
                     </Lenke>
                     .
                 </Normaltekst>
-                <Feedback id={'Introkort14A-01-ikke-standard'} />
             </>
         );
     };
