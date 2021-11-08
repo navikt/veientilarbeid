@@ -179,7 +179,7 @@ function IkkeSoktDagpenger({ loggLenkeKlikk }: { loggLenkeKlikk: Function }) {
                     }
                 >
                     <div className="lenkepanel__innhold">
-                        <div className="ml-1">
+                        <div className="">
                             <Element>Søk om dagpenger</Element>
                             <Normaltekst>Du kan begynne nå og fortsette senere</Normaltekst>
                         </div>
@@ -317,7 +317,7 @@ function PaabegyntSoknad({
                     }
                 >
                     <div className="lenkepanel__innhold">
-                        <div className="ml-1">
+                        <div className="">
                             <Element>Fortsett på søknaden</Element>
                             <Normaltekst>
                                 Du startet på søknaden den {prettyPrintDato(new Date(paabegynt.dato).toISOString())}
