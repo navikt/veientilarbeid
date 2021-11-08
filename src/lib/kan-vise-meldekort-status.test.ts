@@ -64,7 +64,7 @@ const grunndata = {
         'veientilarbeid.rydding.skjulAAPRad': false,
         'veientilarbeid.visbrukerundersokelse': false,
         'veientilarbeid.onboarding14a.situasjonsbestemt': false,
-        'veientilarbeid.meldekort-intro.situasjonsbestemt': false,
+        'veientilarbeid.onboardingMeldekort.situasjonsbestemt': false,
     },
     amplitudeData: {
         geografiskTilknytning: 'INGEN_VERDI',
@@ -134,7 +134,7 @@ describe('Tester funksjonen kanViseMeldekortStatus', () => {
         testdata.oppfolgingData.servicegruppe = 'BFORM';
         testdata.featuretoggleData = {
             ...testdata.featuretoggleData,
-            'veientilarbeid.meldekort-intro.situasjonsbestemt': true,
+            'veientilarbeid.onboardingMeldekort.situasjonsbestemt': true,
         };
         expect(kanViseMeldekortStatus(testdata)).toBe(true);
     });

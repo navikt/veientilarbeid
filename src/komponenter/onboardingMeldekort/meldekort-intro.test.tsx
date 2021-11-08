@@ -50,7 +50,7 @@ const providerProps: ProviderProps = {
         formidlingsgruppe: Formidlingsgruppe.ARBS,
         servicegruppe: Servicegruppe.IKVAL,
     },
-    featureToggle: { 'veientilarbeid.meldekort-intro.situasjonsbestemt': true },
+    featureToggle: { 'veientilarbeid.onboardingMeldekort.situasjonsbestemt': true },
 };
 
 function propsForRelativDag(dag: number): any {
@@ -299,7 +299,7 @@ describe('tester onboarding komponenten for meldekort', () => {
                 servicegruppe: Servicegruppe.BFORM,
             },
             amplitude: { eksperimenter: [] },
-            featureToggle: { 'veientilarbeid.meldekort-intro.situasjonsbestemt': false },
+            featureToggle: { 'veientilarbeid.onboardingMeldekort.situasjonsbestemt': false },
         };
         const { container } = render(<MeldekortIntroWrapper />, { wrapper: contextProviders(props) });
         expect(container).toBeEmptyDOMElement();

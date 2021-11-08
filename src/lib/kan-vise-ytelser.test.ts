@@ -90,7 +90,7 @@ const grunndata = {
         'veientilarbeid.visbrukerundersokelse': false,
         'veientilarbeid.onboarding14a.situasjonsbestemt': false,
         'veientilarbeid.onboardingYtelser.situasjonsbestemt': false,
-        'veientilarbeid.meldekort-intro.situasjonsbestemt': false,
+        'veientilarbeid.onboardingMeldekort.situasjonsbestemt': false,
     },
     sistVistFraLocalstorage: 0,
 };

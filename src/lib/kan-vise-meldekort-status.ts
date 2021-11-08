@@ -39,7 +39,7 @@ export function kanViseMeldekortStatus({
     });
 
     const MeldekortintroForSituasjonsbestemtToggle =
-        featuretoggleData['veientilarbeid.meldekort-intro.situasjonsbestemt'];
+        featuretoggleData['veientilarbeid.onboardingMeldekort.situasjonsbestemt'];
 
     const brukerErPilot = erPilotBruker({
         brukerInfoData,

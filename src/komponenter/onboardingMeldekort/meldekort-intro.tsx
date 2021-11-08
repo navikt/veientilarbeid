@@ -38,7 +38,8 @@ function MeldekortIntro(props: MeldekortIntroProps) {
     const { data: oppfolgingData } = React.useContext(Oppfolging.OppfolgingContext);
     const brukerregistreringData = registreringData?.registrering ?? null;
 
-    const onboardingForSituasjonsbestemtToggle = featuretoggleData['veientilarbeid.meldekort-intro.situasjonsbestemt'];
+    const onboardingForSituasjonsbestemtToggle =
+        featuretoggleData['veientilarbeid.onboardingMeldekort.situasjonsbestemt'];
     const erSituasjonsbestemtInnsatsgruppe = sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe({
         brukerregistreringData,
         oppfolgingData,
