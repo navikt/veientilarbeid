@@ -44,7 +44,7 @@ const Lenkepanel14A: React.FC<Lenkepanel14AProps> = (props) => {
                         <span className="dialog__ulesteMeldinger">{Math.min(props.antallUlesteDialoger, 99)}</span>
                     ) : null}
                 </div>
-                <div className="ml-1">
+                <div className={props.antallUlesteDialoger > 0 ? 'ml-1' : ''}>
                     <Element>Start dialogen med veileder</Element>
                     <Normaltekst>{dialogTekst(props.antallUlesteDialoger)}</Normaltekst>
                 </div>

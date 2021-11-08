@@ -39,11 +39,9 @@ function Ytelser() {
         <OnboardingOmslutning title="Spørsmål om ytelser">
             <ErRendret loggTekst="Rendrer ytelser-kort" />
             <div className={'kortflate'}>
-                <Systemtittel className={'blokk-xs'}>
-                    Har du spørsmål om å søke om eller motta pengestøtte fra NAV?
-                </Systemtittel>
+                <Systemtittel className={'blokk-xs'}>Har du spørsmål om å søke eller motta pengestøtte?</Systemtittel>
                 <Normaltekst className={'blokk-xs'}>
-                    Har du spørsmål om å søke eller motta ytelser fra NAV, må du bruke{' '}
+                    Du kan stille spørsmål om ytelser via{' '}
                     <Lenke
                         href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
                         onClick={() =>
@@ -55,7 +53,7 @@ function Ytelser() {
                     >
                         skriv til oss
                     </Lenke>{' '}
-                    eller{' '}
+                    og{' '}
                     <Lenke
                         href="https://www.nav.no/person/kontakt-oss/chat/"
                         onClick={() =>
