@@ -66,7 +66,7 @@ function MeldekortIntro(props: MeldekortIntroProps) {
     };
     const avsluttIntro = () => {
         amplitudeLogger('veientilarbeid.intro', {
-            intro: 'meldekort',
+            intro: erSituasjonsbestemtInnsatsgruppe ? 'meldekort-situasjonsbestemt' : 'meldekort',
             handling: 'Fullfører introduksjon',
             ...props.amplitudeData,
         });
@@ -75,7 +75,7 @@ function MeldekortIntro(props: MeldekortIntroProps) {
 
     function hoppOverIntro() {
         amplitudeLogger('veientilarbeid.intro', {
-            intro: 'meldekort',
+            intro: erSituasjonsbestemtInnsatsgruppe ? 'meldekort-situasjonsbestemt' : 'meldekort',
             handling: 'Hopper over introduksjon',
             ...props.amplitudeData,
         });
@@ -89,13 +89,13 @@ function MeldekortIntro(props: MeldekortIntroProps) {
                     ? `Starter meldekortintroduksjonen`
                     : `Går fra ${forrigeKortRef.current} til kort ${gjeldendeKortIndex}`;
             amplitudeLogger('veientilarbeid.intro', {
-                intro: 'meldekort',
+                intro: erSituasjonsbestemtInnsatsgruppe ? 'meldekort-situasjonsbestemt' : 'meldekort',
                 handling,
                 ...props.amplitudeData,
             });
             forrigeKortRef.current = gjeldendeKortIndex;
         }
-    }, [gjeldendeKortIndex, props.amplitudeData]);
+    }, [gjeldendeKortIndex, props.amplitudeData, erSituasjonsbestemtInnsatsgruppe]);
 
     return (
         <>

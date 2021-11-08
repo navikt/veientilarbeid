@@ -12,6 +12,9 @@ import {
 import * as Meldekort from '../../contexts/meldekort';
 import LenkepanelMeldekort from './lenkepanel-Meldekort';
 import Meldekortstatus from './meldekortstatus';
+import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../../lib/er-situasjonsbestemt-innsatsgruppe';
+import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
+import { useOppfolgingData } from '../../contexts/oppfolging';
 
 interface EndStateProps {
     meldekortData: Meldekort.Data | null;
@@ -24,9 +27,18 @@ function Sluttkort(props: EndStateProps) {
     const dato = datoUtenTid(hentIDag().toISOString());
     const meldekortForLevering = hentMeldekortForLevering(dato, meldekortData);
 
+    const registreringData = useBrukerregistreringData();
+    const oppfolgingData = useOppfolgingData();
+    const brukerregistreringData = registreringData?.registrering ?? null;
+
+    const erSituasjonsbestemtInnsatsgruppe = sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe({
+        brukerregistreringData,
+        oppfolgingData,
+    });
+
     const handleKlikkLesIntro = () => {
         amplitudeLogger('veientilarbeid.intro', {
-            intro: 'meldekort',
+            intro: erSituasjonsbestemtInnsatsgruppe ? 'situasjonsbestemt-meldekort' : 'meldekort',
             handling: 'Leser introduksjonen på nytt',
             ...amplitudeData,
         });
