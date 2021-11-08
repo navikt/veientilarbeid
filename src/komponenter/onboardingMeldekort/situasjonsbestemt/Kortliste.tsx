@@ -16,7 +16,7 @@ function Kort1() {
                     dag.
                 </Normaltekst>
             </div>
-            <Feedback id={'meldekort-kort-01'} />
+            <Feedback id={'meldekort-kort-01-situasjonsbestemt'} />
         </div>
     );
 }
@@ -36,7 +36,7 @@ function Kort2() {
                     Venter du på svar på en innsendt søknad, kan du få avslag dersom du ikke har sendt inn meldekortet.
                 </Normaltekst>
             </div>
-            <Feedback id={'meldekort-kort-02'} />
+            <Feedback id={'meldekort-kort-02-situasjonsbestemt'} />
         </div>
     );
 }
@@ -58,7 +58,7 @@ function Kort3() {
                     sent.
                 </Normaltekst>
             </div>
-            <Feedback id={'meldekort-kort-03'} />
+            <Feedback id={'meldekort-kort-03-situasjonsbestemt'} />
         </div>
     );
 }
