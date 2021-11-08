@@ -38,7 +38,7 @@ function Sluttkort(props: EndStateProps) {
 
     const handleKlikkLesIntro = () => {
         amplitudeLogger('veientilarbeid.intro', {
-            intro: erSituasjonsbestemtInnsatsgruppe ? 'situasjonsbestemt-meldekort' : 'meldekort',
+            intro: erSituasjonsbestemtInnsatsgruppe ? 'meldekort - situasjonsbestemt' : 'meldekort',
             handling: 'Leser introduksjonen på nytt',
             ...amplitudeData,
         });
