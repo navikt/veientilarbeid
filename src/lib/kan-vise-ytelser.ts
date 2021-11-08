@@ -32,7 +32,8 @@ export function kanViseOnboardingYtelser({
         brukerregistreringData,
         oppfolgingData,
     });
-    const visYtelserForSituasjonsbestemtToggle = featuretoggleData['veientilarbeid.ytelser.situasjonsbestemt'];
+    const visYtelserForSituasjonsbestemtToggle =
+        featuretoggleData['veientilarbeid.onboardingYtelser.situasjonsbestemt'];
 
     const kanViseForSituasjonsbestemt =
         erSituasjonsbestemtInnsatsgruppe && brukerErPilot && visYtelserForSituasjonsbestemtToggle;

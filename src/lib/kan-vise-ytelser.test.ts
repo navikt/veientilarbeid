@@ -89,7 +89,7 @@ const grunndata = {
         'veientilarbeid.rydding.skjulAAPRad': false,
         'veientilarbeid.visbrukerundersokelse': false,
         'veientilarbeid.onboarding14a.situasjonsbestemt': false,
-        'veientilarbeid.ytelser.situasjonsbestemt': false,
+        'veientilarbeid.onboardingYtelser.situasjonsbestemt': false,
         'veientilarbeid.meldekort-intro.situasjonsbestemt': false,
     },
     sistVistFraLocalstorage: 0,
@@ -104,7 +104,7 @@ describe('Tester funksjonen ytelser-onboarding', () => {
 
     test('Ja hvis eksperiment, featuretoggle og situasjonsbestemt', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
-        testdata.featuretoggleData['veientilarbeid.ytelser.situasjonsbestemt'] = true;
+        testdata.featuretoggleData['veientilarbeid.onboardingYtelser.situasjonsbestemt'] = true;
         testdata.amplitudeData.eksperimenter = [eksperiment];
         testdata.oppfolgingData.servicegruppe = 'BFORM';
         expect(kanViseOnboardingYtelser(testdata)).toBe(true);
@@ -112,7 +112,7 @@ describe('Tester funksjonen ytelser-onboarding', () => {
 
     test('NEI hvis ikke eksperiment, ikke featuretoggle og situasjonsbestemt', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
-        testdata.featuretoggleData['veientilarbeid.ytelser.situasjonsbestemt'] = false;
+        testdata.featuretoggleData['veientilarbeid.onboardingYtelser.situasjonsbestemt'] = false;
         testdata.amplitudeData.eksperimenter = [];
         testdata.oppfolgingData.servicegruppe = 'BFORM';
         expect(kanViseOnboardingYtelser(testdata)).toBe(false);

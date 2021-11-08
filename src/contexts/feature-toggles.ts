@@ -14,7 +14,7 @@ export enum FeatureToggles {
     BRUKERUNDERSOKELSE_VIS = 'veientilarbeid.visbrukerundersokelse',
     INTRO_14A_SITUASJONSBESTEMT = 'veientilarbeid.onboarding14a.situasjonsbestemt',
     INTRO_MELDEKORT_SITUASJONSBESTEMT = 'veientilarbeid.meldekort-intro.situasjonsbestemt',
-    INTRO_YTELSER_SITUASJONSBESTEMT = 'veientilarbeid.ytelser.situasjonsbestemt',
+    INTRO_YTELSER_SITUASJONSBESTEMT = 'veientilarbeid.onboardingYtelser.situasjonsbestemt',
     KAN_VISE_UTFRA_SITUASJON = 'veientilarbeid.kanViseUtfraSituasjon',
     VIS_OPPDATERT_STYLING = 'veientilarbeid.vis-oppdatert-styling',
 }
@@ -67,7 +67,7 @@ export interface Data {
     'veientilarbeid.visbrukerundersokelse': boolean;
     'veientilarbeid.onboarding14a.situasjonsbestemt': boolean;
     'veientilarbeid.meldekort-intro.situasjonsbestemt': boolean;
-    'veientilarbeid.ytelser.situasjonsbestemt': boolean;
+    'veientilarbeid.onboardingYtelser.situasjonsbestemt': boolean;
     'veientilarbeid.kanViseUtfraSituasjon': boolean;
     'veientilarbeid.vis-oppdatert-styling': boolean;
 }
@@ -90,7 +90,7 @@ export const initialState: State = {
         'veientilarbeid.visbrukerundersokelse': false,
         'veientilarbeid.onboarding14a.situasjonsbestemt': false,
         'veientilarbeid.meldekort-intro.situasjonsbestemt': false,
-        'veientilarbeid.ytelser.situasjonsbestemt': false,
+        'veientilarbeid.onboardingYtelser.situasjonsbestemt': false,
         'veientilarbeid.kanViseUtfraSituasjon': false,
         'veientilarbeid.vis-oppdatert-styling': false,
     },
