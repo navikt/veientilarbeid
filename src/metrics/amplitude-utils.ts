@@ -23,9 +23,11 @@ amplitude.getInstance().init(apiKey, undefined, config);
 
 export type AmplitudeLogger = (name: string, values?: object) => void;
 
+export type BrukergruppeType = 'standard' | 'situasjonsbestemt' | 'annet' | 'ukjent';
+
 export type AmplitudeData = {
     gruppe: POAGruppe;
-    brukergruppe: 'standard' | 'situasjonsbestemt' | 'annet' | 'ukjent';
+    brukergruppe: BrukergruppeType;
     geografiskTilknytning: string;
     isKSSX: string;
     isKSSK: string;

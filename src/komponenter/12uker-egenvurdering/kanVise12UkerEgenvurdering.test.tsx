@@ -5,6 +5,7 @@ import { plussDager } from '../../utils/date-utils';
 import { POAGruppe } from '../../utils/get-poa-group';
 import { EksperimentId } from '../../eksperiment/eksperimenter';
 import { kanVise12UkerEgenvurdering } from './12uker-egenvurdering';
+import { BrukergruppeType } from '../../metrics/amplitude-utils';
 
 const eksperiment: EksperimentId = 'onboarding14a';
 const poagruppeKSS: POAGruppe = 'kss';
@@ -63,7 +64,7 @@ const grunndata = {
     },
     amplitudeData: {
         gruppe: poagruppeKSS,
-        brukergruppe: 'ukjent',
+        brukergruppe: 'ukjent' as BrukergruppeType,
         geografiskTilknytning: 'INGEN_VERDI',
         isKSSX: 'nei',
         isKSSK: 'nei',
