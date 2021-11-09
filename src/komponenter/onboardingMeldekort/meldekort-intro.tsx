@@ -187,7 +187,7 @@ function MeldekortIntroWrapper() {
                     />
                     <ErRendret
                         loggTekst={`Rendrer meldekort intro${
-                            erSituasjonsbestemtInnsatsgruppe && ' - situasjonsbestemt'
+                            erSituasjonsbestemtInnsatsgruppe ? ' - situasjonsbestemt' : ''
                         }`}
                     />
                 </>

@@ -45,7 +45,7 @@ function Ytelser() {
     return (
         <OnboardingOmslutning title="Spørsmål om ytelser">
             <ErRendret
-                loggTekst={`Rendrer ytelser-kort ${erSituasjonsbestemtInnsatsgruppe && '- situasjonsbestemt'}`}
+                loggTekst={`Rendrer ytelser-kort ${erSituasjonsbestemtInnsatsgruppe ? '- situasjonsbestemt' : ''}`}
             />
             <div className={'kortflate'}>
                 <Systemtittel className={'blokk-xs'}>Har du spørsmål om å søke eller motta pengestøtte?</Systemtittel>
@@ -88,7 +88,9 @@ function Ytelser() {
                 </Normaltekst>
             </div>
             <InViewport
-                loggTekst={`Viser ytelser-kort i viewport ${erSituasjonsbestemtInnsatsgruppe && '- situasjonsbestemt'}`}
+                loggTekst={`Viser ytelser-kort i viewport ${
+                    erSituasjonsbestemtInnsatsgruppe ? '- situasjonsbestemt' : ''
+                }`}
             />
         </OnboardingOmslutning>
     );
