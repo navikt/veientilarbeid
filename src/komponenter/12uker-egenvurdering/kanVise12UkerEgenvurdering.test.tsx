@@ -63,6 +63,7 @@ const grunndata = {
     },
     amplitudeData: {
         gruppe: poagruppeKSS,
+        brukergruppe: 'ukjent',
         geografiskTilknytning: 'INGEN_VERDI',
         isKSSX: 'nei',
         isKSSK: 'nei',
