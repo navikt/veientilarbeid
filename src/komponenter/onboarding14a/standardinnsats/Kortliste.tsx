@@ -40,7 +40,6 @@ function Kort2() {
     const handleLesBrev = () => {
         amplitudeLogger('veientilarbeid.intro', {
             intro: '14a',
-            brukergruppe: 'Standard innsats',
             handling: 'Går til min innboks',
             ...amplitudeData,
         });
@@ -82,7 +81,6 @@ function Kort3() {
     function loggLenkeKlikk(handling: string, url: string) {
         amplitudeLogger('veientilarbeid.intro', {
             intro: '14a',
-            brukergruppe: 'Standard innsats',
             handling,
             ...amplitudeData,
         });

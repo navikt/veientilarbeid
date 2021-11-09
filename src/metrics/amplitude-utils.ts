@@ -25,6 +25,7 @@ export type AmplitudeLogger = (name: string, values?: object) => void;
 
 export type AmplitudeData = {
     gruppe: POAGruppe;
+    brukergruppe: 'standard' | 'situasjonsbestemt' | 'annet' | 'ukjent';
     geografiskTilknytning: string;
     isKSSX: string;
     isKSSK: string;

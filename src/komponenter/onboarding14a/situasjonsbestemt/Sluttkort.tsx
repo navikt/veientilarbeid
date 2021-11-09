@@ -17,7 +17,6 @@ function Sluttkort(props: EndStateProps) {
     const handleLesBrev = () => {
         amplitudeLogger('veientilarbeid.intro', {
             intro: '14a',
-            brukergruppe: 'Standard innsats',
             handling: 'Går til min innboks',
             ...amplitudeData,
         });

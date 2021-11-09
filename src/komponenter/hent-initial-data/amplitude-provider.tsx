@@ -35,6 +35,8 @@ import harUbehandletDpSoknad from '../../lib/har-ubehandlet-dp-soknad';
 import dagerFraPabegyntSoknad from '../../utils/dager-fra-pabegynt-soknad';
 import dagerFraInnsendtSoknad from '../../utils/dager-fra-innsendt-soknad';
 import beregnDagpengerStatus from '../dagpenger-status/beregn-dagpenger-status';
+import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
+import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../../lib/er-situasjonsbestemt-innsatsgruppe';
 
 function hentDagerEtterFastsattMeldedag(
     iDag: Date,
@@ -154,8 +156,26 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         behandlingskjeder: behandlingskjederDagpenger,
     });
 
+    const brukerregistreringDataEllerNull = brukerregistreringData?.registrering ?? null;
+
+    const brukerErStandardInnsatsgruppe = erStandardInnsatsgruppe({
+        brukerregistreringData: brukerregistreringDataEllerNull,
+        oppfolgingData,
+    });
+    const brukerErSituasjonsbestemtInnsatsgruppe = sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe({
+        brukerregistreringData: brukerregistreringDataEllerNull,
+        oppfolgingData,
+    });
+
+    const brukergruppering = brukerErStandardInnsatsgruppe
+        ? 'standard'
+        : brukerErSituasjonsbestemtInnsatsgruppe
+        ? 'situasjonsbestemt'
+        : 'annet';
+
     const amplitudeData: AmplitudeData = {
         gruppe: POAGruppe,
+        brukergruppe: brukergruppering,
         geografiskTilknytning: grupperGeografiskTilknytning(geografiskTilknytningOrIngenVerdi),
         isKSSX,
         isKSSK,
