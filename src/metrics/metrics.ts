@@ -28,7 +28,13 @@ export const loggVisning = (data: AmplitudeStandardVisningsData) => {
     amplitudeLogger(`${domene}.visning`, data);
 };
 
+export type RendringsMetrikkData = {
+    rendrer: string;
+};
+
+export type AmplitudeStandardRendringsData = RendringsMetrikkData & AmplitudeData;
+
 // Brukes når vi ønsker å indikere at noe er rendret, men ikke nødvendigvis sett av bruker
-export const loggRendring = (data: AmplitudeStandardVisningsData) => {
+export const loggRendring = (data: AmplitudeStandardRendringsData) => {
     amplitudeLogger(`${domene}.rendring`, data);
 };
