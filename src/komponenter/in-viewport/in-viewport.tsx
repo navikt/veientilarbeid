@@ -1,5 +1,6 @@
-import * as React from 'react';
+import { useEffect, useState } from 'react';
 import handleViewport from 'react-in-viewport';
+
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { loggVisning } from '../../metrics/metrics';
 
@@ -15,14 +16,14 @@ type Props = {
 const WrappedViewport: React.ComponentType<Props> = handleViewport(InViewport);
 
 function InViewport(props: Props & ViewportProps) {
-    const [harVistTilBruker, setHarVistTilBruker] = React.useState<boolean>(false);
+    const [harVistTilBruker, setHarVistTilBruker] = useState<boolean>(false);
     const amplitudeData = useAmplitudeData();
 
     if (props.inViewport && !harVistTilBruker) {
         setHarVistTilBruker(true);
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (harVistTilBruker) {
             loggVisning({ viser: props.loggTekst, ...amplitudeData });
         }
