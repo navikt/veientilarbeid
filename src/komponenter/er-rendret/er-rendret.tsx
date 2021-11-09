@@ -1,4 +1,5 @@
-import * as React from 'react';
+import { useEffect } from 'react';
+
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { loggRendring } from '../../metrics/metrics';
 
@@ -9,11 +10,11 @@ type Props = {
 function ErRendret(props: Props) {
     const amplitudeData = useAmplitudeData();
 
-    React.useEffect(() => {
+    useEffect(() => {
         loggRendring({ rendrer: props.loggTekst, ...amplitudeData });
     }, [amplitudeData, props.loggTekst]);
 
-    return <></>;
+    return null;
 }
 
 export default ErRendret;
