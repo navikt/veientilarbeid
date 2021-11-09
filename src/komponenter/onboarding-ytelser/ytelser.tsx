@@ -12,7 +12,6 @@ import InViewport from '../in-viewport/in-viewport';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import OnboardingOmslutning from '../onboarding-omslutning/OnboardingOmslutning';
 import { kanViseOnboardingYtelser } from '../../lib/kan-vise-ytelser';
-import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../../lib/er-situasjonsbestemt-innsatsgruppe';
 
 function Ytelser() {
     const registreringData = Brukerregistrering.useBrukerregistreringData();
@@ -20,12 +19,6 @@ function Ytelser() {
     const { data: featuretoggleData } = useContext(FeaturetoggleContext);
     const brukerInfoData = useBrukerinfoData();
     const amplitudeData = useAmplitudeData();
-
-    const brukerregistreringData = registreringData?.registrering ?? null;
-    const erSituasjonsbestemtInnsatsgruppe = sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe({
-        brukerregistreringData,
-        oppfolgingData,
-    });
 
     const kanViseKomponent = kanViseOnboardingYtelser({
         amplitudeData,
@@ -44,9 +37,7 @@ function Ytelser() {
 
     return (
         <OnboardingOmslutning title="Spørsmål om ytelser">
-            <ErRendret
-                loggTekst={`Rendrer ytelser-kort ${erSituasjonsbestemtInnsatsgruppe ? '- situasjonsbestemt' : ''}`}
-            />
+            <ErRendret loggTekst={`Rendrer ytelser-kort`} />
             <div className={'kortflate'}>
                 <Systemtittel className={'blokk-xs'}>Har du spørsmål om å søke eller motta pengestøtte?</Systemtittel>
                 <Normaltekst className={'blokk-xs'}>
@@ -87,11 +78,7 @@ function Ytelser() {
                     {' '}av nav.no
                 </Normaltekst>
             </div>
-            <InViewport
-                loggTekst={`Viser ytelser-kort i viewport ${
-                    erSituasjonsbestemtInnsatsgruppe ? '- situasjonsbestemt' : ''
-                }`}
-            />
+            <InViewport loggTekst={`Viser ytelser-kort i viewport`} />
         </OnboardingOmslutning>
     );
 }

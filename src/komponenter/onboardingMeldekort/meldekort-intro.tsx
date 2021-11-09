@@ -67,7 +67,7 @@ function MeldekortIntro(props: MeldekortIntroProps) {
     };
     const avsluttIntro = () => {
         amplitudeLogger('veientilarbeid.intro', {
-            intro: erSituasjonsbestemtInnsatsgruppe ? 'meldekort-situasjonsbestemt' : 'meldekort',
+            intro: 'meldekort',
             handling: 'Fullfører introduksjon',
             ...props.amplitudeData,
         });
@@ -76,7 +76,7 @@ function MeldekortIntro(props: MeldekortIntroProps) {
 
     function hoppOverIntro() {
         amplitudeLogger('veientilarbeid.intro', {
-            intro: erSituasjonsbestemtInnsatsgruppe ? 'meldekort-situasjonsbestemt' : 'meldekort',
+            intro: 'meldekort',
             handling: 'Hopper over introduksjon',
             ...props.amplitudeData,
         });
@@ -90,7 +90,7 @@ function MeldekortIntro(props: MeldekortIntroProps) {
                     ? `Starter meldekortintroduksjonen`
                     : `Går fra ${forrigeKortRef.current} til kort ${gjeldendeKortIndex}`;
             amplitudeLogger('veientilarbeid.intro', {
-                intro: erSituasjonsbestemtInnsatsgruppe ? 'meldekort-situasjonsbestemt' : 'meldekort',
+                intro: 'meldekort',
                 handling,
                 ...props.amplitudeData,
             });
@@ -140,11 +140,6 @@ function MeldekortIntroWrapper() {
     const hoppOverPreState = harSettIntro || tvingVisningAvIntro;
 
     const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
-    const brukerregistreringData = registreringData?.registrering ?? null;
-    const erSituasjonsbestemtInnsatsgruppe = sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe({
-        brukerregistreringData,
-        oppfolgingData,
-    });
 
     useEffect(() => {
         if (harSettIntro) {
@@ -185,11 +180,7 @@ function MeldekortIntroWrapper() {
                         ferdigMedIntroCB={ferdigMedIntroCB}
                         amplitudeData={amplitudeData}
                     />
-                    <ErRendret
-                        loggTekst={`Rendrer meldekort intro${
-                            erSituasjonsbestemtInnsatsgruppe ? ' - situasjonsbestemt' : ''
-                        }`}
-                    />
+                    <ErRendret loggTekst={`Rendrer meldekort intro`} />
                 </>
             ) : (
                 <Sluttkort
