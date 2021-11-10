@@ -12,6 +12,9 @@ import { useOppfolgingData } from '../../contexts/oppfolging';
 import { useEgenvurderingData } from '../../contexts/egenvurdering';
 import { useUnderOppfolgingData } from '../../contexts/under-oppfolging';
 import { kanViseEgenvurdering } from '../../lib/kan-vise-egenvurdering';
+import { useFeatureToggleData } from '../../contexts/feature-toggles';
+import { useBrukerinfoData } from '../../contexts/bruker-info';
+import { kanViseOnboarding14A } from '../../lib/kan-vise-onboarding14a';
 
 export const antallTimerMellomAOgBRundetOpp = (a: Date, b: Date): number => {
     if (!a || !b) {
@@ -31,6 +34,8 @@ const Egenvurdering = () => {
     const oppfolgingData = useOppfolgingData();
     const autentiseringData = useAutentiseringData();
     const underOppfolgingData = useUnderOppfolgingData();
+    const featuretoggleData = useFeatureToggleData();
+    const brukerInfoData = useBrukerinfoData();
 
     const skalViseEgenvurderingLenke = kanViseEgenvurdering({
         underOppfolgingData,
@@ -40,12 +45,20 @@ const Egenvurdering = () => {
         oppfolgingData,
     });
 
+    const viserOnboarding14A = kanViseOnboarding14A({
+        featuretoggleData,
+        oppfolgingData,
+        brukerInfoData,
+        registreringData,
+        amplitudeData,
+    });
+
     const handleButtonClick = () => {
         loggAktivitet({ aktivitet: 'Går til egenvurdering', ...amplitudeData });
         window.location.assign(behovsvurderingLenke);
     };
 
-    if (!skalViseEgenvurderingLenke) {
+    if (!skalViseEgenvurderingLenke || viserOnboarding14A) {
         return null;
     }
 
