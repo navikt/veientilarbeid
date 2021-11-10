@@ -61,6 +61,7 @@ const grunndata = {
         'veientilarbeid.onboardingYtelser.situasjonsbestemt': false,
         'veientilarbeid.kanViseUtfraSituasjon': false,
         'veientilarbeid.vis-oppdatert-styling': false,
+        'veientilarbeid.vis-egenvurdering-med-14a': false,
     },
     amplitudeData: {
         gruppe: poagruppeKSS,

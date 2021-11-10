@@ -53,7 +53,7 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
         case FeatureToggles.VIS_OPPDATERT_STYLING:
             return 'Vis oppdatert styling';
         case FeatureToggles.VIS_EGENVURDERING_MED_14A:
-            return 'Vis egenvurdering emd 14a';
+            return 'Vis egenvurdering med 14a';
     }
 }
 
