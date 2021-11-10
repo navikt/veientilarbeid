@@ -15,6 +15,7 @@ import { kanViseEgenvurdering } from '../../lib/kan-vise-egenvurdering';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { kanViseOnboarding14A } from '../../lib/kan-vise-onboarding14a';
+import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../../lib/er-situasjonsbestemt-innsatsgruppe';
 
 export const antallTimerMellomAOgBRundetOpp = (a: Date, b: Date): number => {
     if (!a || !b) {
@@ -53,6 +54,13 @@ const Egenvurdering = () => {
         amplitudeData,
     });
 
+    const brukerregistreringData = registreringData?.registrering ?? null;
+
+    const erSituasjonsbestemtInnsatsgruppe = sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe({
+        brukerregistreringData,
+        oppfolgingData,
+    });
+
     const featuretoggleAktivert = featuretoggleData && featuretoggleData['veientilarbeid.vis-egenvurdering-med-14a'];
 
     const handleButtonClick = () => {
@@ -60,7 +68,10 @@ const Egenvurdering = () => {
         window.location.assign(behovsvurderingLenke);
     };
 
-    if (!skalViseEgenvurderingLenke || (viserOnboarding14A && featuretoggleAktivert)) {
+    if (
+        !skalViseEgenvurderingLenke ||
+        (viserOnboarding14A && featuretoggleAktivert && !erSituasjonsbestemtInnsatsgruppe)
+    ) {
         return null;
     }
 

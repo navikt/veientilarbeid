@@ -61,9 +61,10 @@ function Onboarding14a(): JSX.Element | null {
 
     if (!kanViseKomponent) return null;
 
-    if (skalViseEgenvurdering && featuretoggleAktivert) return <EgenvurederingKort />;
-    if (erStandardInnsatsgruppe) return <Kortbunke />;
+    if (skalViseEgenvurdering && featuretoggleAktivert && !erSituasjonsbestemtInnsatsgruppe)
+        return <EgenvurederingKort />;
     if (kanViseSituasjonsbestemt) return <Enkeltkort />;
+    if (erStandardInnsatsgruppe) return <Kortbunke />;
 
     return null;
 }
