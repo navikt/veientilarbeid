@@ -5,7 +5,6 @@ import {
     FEATURE_URL,
     MELDEKORTSTATUS_URL,
     MOTESTOTTE_URL,
-    MULIGE_ETTERSENDELSER_URL,
     NESTE_MELDEKORT_URL,
     PAABEGYNTE_SOKNADER_URL,
     SAKSTEMA_URL,
@@ -33,7 +32,6 @@ import {
     lagMeldekortData,
     randomUlesteDialoger,
     hentDpSoknaderUnderArbeid,
-    hentDpMuligeEttersendelser,
     hentDpSakstema,
 } from './demo-state';
 
@@ -82,8 +80,6 @@ export const demo_handlers = [
     msw_get(MELDEKORTSTATUS_URL, meldekortstatusResponse),
 
     msw_get(PAABEGYNTE_SOKNADER_URL, hentDpSoknaderUnderArbeid()),
-
-    msw_get(MULIGE_ETTERSENDELSER_URL, hentDpMuligeEttersendelser()),
 
     msw_get(SAKSTEMA_URL, hentDpSakstema()),
 ];
