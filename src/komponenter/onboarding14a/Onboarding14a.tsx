@@ -57,10 +57,11 @@ function Onboarding14a(): JSX.Element | null {
         registreringData,
         amplitudeData,
     });
+    const featuretoggleAktivert = featuretoggleData && featuretoggleData['veientilarbeid.vis-egenvurdering-med-14a'];
 
     if (!kanViseKomponent) return null;
 
-    if (skalViseEgenvurdering) return <EgenvurederingKort />;
+    if (skalViseEgenvurdering && featuretoggleAktivert) return <EgenvurederingKort />;
     if (erStandardInnsatsgruppe) return <Kortbunke />;
     if (kanViseSituasjonsbestemt) return <Enkeltkort />;
 

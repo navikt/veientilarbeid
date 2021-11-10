@@ -53,12 +53,14 @@ const Egenvurdering = () => {
         amplitudeData,
     });
 
+    const featuretoggleAktivert = featuretoggleData && featuretoggleData['veientilarbeid.vis-egenvurdering-med-14a'];
+
     const handleButtonClick = () => {
         loggAktivitet({ aktivitet: 'Går til egenvurdering', ...amplitudeData });
         window.location.assign(behovsvurderingLenke);
     };
 
-    if (!skalViseEgenvurderingLenke || viserOnboarding14A) {
+    if (!skalViseEgenvurderingLenke || (viserOnboarding14A && featuretoggleAktivert)) {
         return null;
     }
 
