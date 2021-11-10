@@ -8,7 +8,6 @@ import { DinSituasjonSvar, useBrukerregistreringData } from '../../contexts/bruk
 import { OppfolgingContext } from '../../contexts/oppfolging';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import { PaabegynteSoknaderContext } from '../../contexts/paabegynte-soknader';
-import { MuligeEttersendelserContext } from '../../contexts/mulige-ettersendelser';
 import { SakstemaContext } from '../../contexts/sakstema';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import grupperGeografiskTilknytning from '../../utils/grupper-geografisk-tilknytning';
@@ -61,7 +60,6 @@ function hentDagerEtterFastsattMeldedag(
 export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const brukerregistreringData = useBrukerregistreringData();
     const pabegynteSoknaderData = React.useContext(PaabegynteSoknaderContext).data;
-    const muligeEttersendelserData = React.useContext(MuligeEttersendelserContext).data;
     const sakstemaData = React.useContext(SakstemaContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const brukerInfoData = useBrukerinfoData();
@@ -132,9 +130,6 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const ubehandledeDpSoknader = dagpengerSaksTema ? harUbehandletDpSoknad(dagpengerSaksTema.behandlingskjeder) : null;
     const harDagpengesoknadTilBehandling = ubehandledeDpSoknader || 'INGEN_DATA';
     const antallPabegynteSoknader = pabegynteSoknaderData.soknader.length;
-    const antallSoknaderMedMuligEttersendelse = muligeEttersendelserData.filter(
-        (soknad) => soknad.vedleggSomSkalEttersendes.length > 0
-    ).length;
     const dagpengerDagerMellomPaabegyntSoknadOgRegistrering = dagerFraPabegyntSoknad({
         soknader: pabegynteSoknaderData.soknader,
         registreringsDato: opprettetRegistreringDato,
@@ -201,7 +196,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         reservasjonKRR: reservasjonKRR ? 'ja' : 'nei',
         eksperimenter,
         dagpengerSoknadMellomlagret: antallPabegynteSoknader,
-        dagpengerVedleggEttersendes: antallSoknaderMedMuligEttersendelse,
+        dagpengerVedleggEttersendes: 'INGEN_DATA',
         dagpengerSoknadVenterPaSvar: harDagpengesoknadTilBehandling,
         dagpengerDagerMellomPaabegyntSoknadOgRegistrering,
         dagpengerDagerMellomInnsendtSoknadOgRegistrering,
