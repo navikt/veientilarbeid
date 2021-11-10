@@ -3,7 +3,6 @@ import Innholdslaster from '../innholdslaster/innholdslaster';
 import Feilmelding from '../feilmeldinger/feilmelding';
 import * as BrukerInfo from '../../contexts/bruker-info';
 import * as PaabegynteSoknader from '../../contexts/paabegynte-soknader';
-import * as MuligeEttersendelser from '../../contexts/mulige-ettersendelser';
 import * as Sakstema from '../../contexts/sakstema';
 import {
     ForeslattInnsatsgruppe,
@@ -22,7 +21,6 @@ import {
     NESTE_MELDEKORT_URL,
     ULESTEDIALOGER_URL,
     PAABEGYNTE_SOKNADER_URL,
-    MULIGE_ETTERSENDELSER_URL,
     SAKSTEMA_URL,
 } from '../../ducks/api';
 import { AmplitudeProvider } from './amplitude-provider';
@@ -51,9 +49,6 @@ const DataProvider = ({ children }: Props) => {
     const [meldekortState, setMeldekortState] = React.useState<Meldekort.State>(Meldekort.initialState);
     const [brukerInfoState, setBrukerInfoState] = React.useState<BrukerInfo.State>(BrukerInfo.initialState);
     const [sakstemaState, setSakstemaState] = React.useState<Sakstema.State>(Sakstema.initialState);
-    const [muligeEttersendelserState, setMuligeEttersendelserState] = React.useState<MuligeEttersendelser.State>(
-        MuligeEttersendelser.initialState
-    );
     const [paabegynteSoknaderState, setPaabegynteSoknaderState] = React.useState<PaabegynteSoknader.State>(
         PaabegynteSoknader.initialState
     );
@@ -80,11 +75,6 @@ const DataProvider = ({ children }: Props) => {
 
         fetchData<BrukerInfo.State, BrukerInfo.Data>(brukerInfoState, setBrukerInfoState, BRUKERINFO_URL);
         fetchData<Sakstema.State, Sakstema.Data>(sakstemaState, setSakstemaState, SAKSTEMA_URL);
-        fetchData<MuligeEttersendelser.State, MuligeEttersendelser.Data>(
-            muligeEttersendelserState,
-            setMuligeEttersendelserState,
-            MULIGE_ETTERSENDELSER_URL
-        );
         fetchData<PaabegynteSoknader.State, PaabegynteSoknader.Data>(
             paabegynteSoknaderState,
             setPaabegynteSoknaderState,
@@ -141,13 +131,9 @@ const DataProvider = ({ children }: Props) => {
                         <Egenvurdering.EgenvurderingContext.Provider value={egenvurderingState}>
                             <Motestotte.MotestotteContext.Provider value={motestotteState}>
                                 <PaabegynteSoknader.PaabegynteSoknaderContext.Provider value={paabegynteSoknaderState}>
-                                    <MuligeEttersendelser.MuligeEttersendelserContext.Provider
-                                        value={muligeEttersendelserState}
-                                    >
-                                        <Sakstema.SakstemaContext.Provider value={sakstemaState}>
-                                            <AmplitudeProvider>{children}</AmplitudeProvider>
-                                        </Sakstema.SakstemaContext.Provider>
-                                    </MuligeEttersendelser.MuligeEttersendelserContext.Provider>
+                                    <Sakstema.SakstemaContext.Provider value={sakstemaState}>
+                                        <AmplitudeProvider>{children}</AmplitudeProvider>
+                                    </Sakstema.SakstemaContext.Provider>
                                 </PaabegynteSoknader.PaabegynteSoknaderContext.Provider>
                             </Motestotte.MotestotteContext.Provider>
                         </Egenvurdering.EgenvurderingContext.Provider>
