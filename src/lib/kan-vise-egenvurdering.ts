@@ -20,16 +20,15 @@ export function kanViseEgenvurdering({
     const LANSERINGSDATO_EGENVURDERING = new Date(2019, 4, 10);
     const { securityLevel } = autentiseringData;
     const { underOppfolging } = underOppfolgingData;
+    const foreslattInnsatsgruppe = Brukerregistrering.selectForeslattInnsatsgruppe(registreringData)!; // Komponent blir rendret kun hvis foreslått innsatsgruppe er satt
+    const dinSituasjon = registreringData?.registrering?.besvarelse?.dinSituasjon || 'INGEN_VERDI';
+    const harEgenvurderingbesvarelse = egenvurderingData !== null;
+    const isLevel4 = securityLevel === Autentisering.InnloggingsNiva.LEVEL_4;
+
     const opprettetRegistreringDatoString = registreringData?.registrering?.opprettetDato;
     const opprettetRegistreringDato = opprettetRegistreringDatoString
         ? new Date(opprettetRegistreringDatoString)
         : null;
-    const foreslattInnsatsgruppe = Brukerregistrering.selectForeslattInnsatsgruppe(registreringData)!; // Komponent blir rendret kun hvis foreslått innsatsgruppe er satt
-
-    const dinSituasjon = registreringData?.registrering?.besvarelse.dinSituasjon || 'INGEN_VERDI';
-
-    const harEgenvurderingbesvarelse = egenvurderingData !== null;
-    const isLevel4 = securityLevel === Autentisering.InnloggingsNiva.LEVEL_4;
     const egenvurderingbesvarelseDato = egenvurderingData ? new Date(egenvurderingData.sistOppdatert) : null;
     const egenvurderingsbesvarelseValid = (): boolean => {
         let isValid = false;
