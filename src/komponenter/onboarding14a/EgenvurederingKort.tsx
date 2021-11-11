@@ -5,7 +5,7 @@ import { loggAktivitet } from '../../metrics/metrics';
 import OnboardingOmslutning from '../onboarding-omslutning/OnboardingOmslutning';
 import { behovsvurderingLenke } from '../../innhold/lenker';
 
-const EgenvurederingKort = () => {
+const EgenvurderingKort = () => {
     const amplitudeData = useAmplitudeData();
 
     const handleButtonClick = () => {
@@ -27,4 +27,4 @@ const EgenvurederingKort = () => {
     );
 };
 
-export default EgenvurederingKort;
+export default EgenvurderingKort;
