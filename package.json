@@ -4,6 +4,7 @@
     "private": true,
     "scripts": {
         "start": "cross-env REACT_APP_MOCK=true craco start",
+        "start:micro": "cross-env REACT_APP_MOCK=true REACT_APP_MICRO='true' craco start",
         "build:micro": "cross-env REACT_APP_MICRO=true npm run build",
         "build": "REACT_APP_SENTRY_RELEASE=$(sentry-cli releases propose-version) craco build",
         "lint": "eslint --ext=jsx,js,ts,tsx ./src",
