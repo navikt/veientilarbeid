@@ -2,8 +2,15 @@ import * as React from 'react';
 import Lenke from 'nav-frontend-lenker';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 
+import EgenvurderingKort from '../EgenvurderingKort';
+import { kanViseEgenvurdering } from '../../../lib/kan-vise-egenvurdering';
 import * as Brukerregistrering from '../../../contexts/brukerregistrering';
 import { AmplitudeData, amplitudeLogger } from '../../../metrics/amplitude-utils';
+import { useUnderOppfolgingData } from '../../../contexts/under-oppfolging';
+import { useAutentiseringData } from '../../../contexts/autentisering';
+import { useEgenvurderingData } from '../../../contexts/egenvurdering';
+import { useOppfolgingData } from '../../../contexts/oppfolging';
+import { useFeatureToggleData } from '../../../contexts/feature-toggles';
 import RegistrertTeller from '../registrert-teller';
 import Lenkepanel14A from '../lenkepanel-14a';
 
@@ -18,11 +25,27 @@ interface EndStateProps {
 function Sluttkort(props: EndStateProps) {
     const { amplitudeData, registreringData } = props;
     const { ukerRegistrert } = amplitudeData;
+    const underOppfolgingData = useUnderOppfolgingData();
+    const autentiseringData = useAutentiseringData();
+    const egenvurderingData = useEgenvurderingData();
+    const oppfolgingData = useOppfolgingData();
+    const featuretoggleData = useFeatureToggleData();
     const registrertDato = registreringData?.registrering?.opprettetDato;
     const registrertOver12Uker = ukerRegistrert > 12;
     const kortTittel = registrertOver12Uker
         ? 'Ta kontakt om du ønsker hjelp'
         : 'Om du ønsker oppfølging før 12 uker må du gi oss beskjed';
+
+    const featuretoggleEgenvurderingAktivert =
+        featuretoggleData && featuretoggleData['veientilarbeid.vis-egenvurdering-med-14a'];
+
+    const skalViseEgenvurdering = kanViseEgenvurdering({
+        underOppfolgingData,
+        registreringData,
+        autentiseringData,
+        egenvurderingData,
+        oppfolgingData,
+    });
 
     const VeiledersOppgaver = () => {
         return (
@@ -46,6 +69,8 @@ function Sluttkort(props: EndStateProps) {
         handleKlikkLesIntro();
         props.lesIntroPaaNyttCB();
     }
+
+    if (featuretoggleEgenvurderingAktivert && skalViseEgenvurdering) return <EgenvurderingKort />;
 
     return (
         <div className={'sluttkort'}>

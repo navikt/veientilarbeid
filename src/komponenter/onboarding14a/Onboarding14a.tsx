@@ -9,11 +9,6 @@ import { useOppfolgingData } from '../../contexts/oppfolging';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { erPilotBruker } from '../../lib/er-pilot-bruker';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
-import { kanViseEgenvurdering } from '../../lib/kan-vise-egenvurdering';
-import { useUnderOppfolgingData } from '../../contexts/under-oppfolging';
-import { useAutentiseringData } from '../../contexts/autentisering';
-import { useEgenvurderingData } from '../../contexts/egenvurdering';
-import EgenvurederingKort from './EgenvurderingKort';
 
 function Onboarding14a(): JSX.Element | null {
     const registreringData = useBrukerregistreringData();
@@ -21,10 +16,6 @@ function Onboarding14a(): JSX.Element | null {
     const featuretoggleData = useFeatureToggleData();
     const brukerInfoData = useBrukerinfoData();
     const amplitudeData = useAmplitudeData();
-
-    const underOppfolgingData = useUnderOppfolgingData();
-    const autentiseringData = useAutentiseringData();
-    const egenvurderingData = useEgenvurderingData();
 
     const brukerregistreringData = registreringData?.registrering ?? null;
     const erStandardInnsatsgruppe = sjekkOmBrukerErStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData });
@@ -42,14 +33,6 @@ function Onboarding14a(): JSX.Element | null {
     });
     const kanViseSituasjonsbestemt = erSituasjonsbestemtInnsatsgruppe && brukerErPilot; // visOnboardingForSituasjonsbestemtToggle;
 
-    const skalViseEgenvurdering = kanViseEgenvurdering({
-        underOppfolgingData,
-        registreringData,
-        autentiseringData,
-        egenvurderingData,
-        oppfolgingData,
-    });
-
     const kanViseKomponent = kanViseOnboarding14A({
         featuretoggleData,
         oppfolgingData,
@@ -57,12 +40,9 @@ function Onboarding14a(): JSX.Element | null {
         registreringData,
         amplitudeData,
     });
-    const featuretoggleAktivert = featuretoggleData && featuretoggleData['veientilarbeid.vis-egenvurdering-med-14a'];
 
     if (!kanViseKomponent) return null;
 
-    if (skalViseEgenvurdering && featuretoggleAktivert && !erSituasjonsbestemtInnsatsgruppe)
-        return <EgenvurederingKort />;
     if (kanViseSituasjonsbestemt) return <Enkeltkort />;
     if (erStandardInnsatsgruppe) return <Kortbunke />;
 
