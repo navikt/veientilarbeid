@@ -13,7 +13,7 @@ import { kanViseEgenvurdering } from '../../lib/kan-vise-egenvurdering';
 import { useUnderOppfolgingData } from '../../contexts/under-oppfolging';
 import { useAutentiseringData } from '../../contexts/autentisering';
 import { useEgenvurderingData } from '../../contexts/egenvurdering';
-import EgenvurederingKort from './EgenvurederingKort';
+import EgenvurederingKort from './EgenvurderingKort';
 
 function Onboarding14a(): JSX.Element | null {
     const registreringData = useBrukerregistreringData();

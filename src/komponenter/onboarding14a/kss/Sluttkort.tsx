@@ -1,10 +1,11 @@
 import * as React from 'react';
+import Lenke from 'nav-frontend-lenker';
+import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
+
 import * as Brukerregistrering from '../../../contexts/brukerregistrering';
 import { AmplitudeData, amplitudeLogger } from '../../../metrics/amplitude-utils';
-import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import RegistrertTeller from '../registrert-teller';
 import Lenkepanel14A from '../lenkepanel-14a';
-import Lenke from 'nav-frontend-lenker';
 
 interface EndStateProps {
     amplitudeData: AmplitudeData;
