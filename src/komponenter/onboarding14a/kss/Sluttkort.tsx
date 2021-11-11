@@ -70,7 +70,20 @@ function Sluttkort(props: EndStateProps) {
         props.lesIntroPaaNyttCB();
     }
 
-    if (featuretoggleEgenvurderingAktivert && skalViseEgenvurdering) return <EgenvurderingKort />;
+    const EgenVurderingMedLesLink = () => {
+        return (
+            <div className="sluttkort">
+                <EgenvurderingKort />
+                <Normaltekst>
+                    <Lenke className={'tracking-wide'} href={''} onClick={handleLesIntroPaaNytt}>
+                        Les om hva slags hjelp du kan få
+                    </Lenke>
+                </Normaltekst>
+            </div>
+        );
+    };
+
+    if (featuretoggleEgenvurderingAktivert && skalViseEgenvurdering) return <EgenVurderingMedLesLink />;
 
     return (
         <div className={'sluttkort'}>

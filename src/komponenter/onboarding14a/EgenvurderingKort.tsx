@@ -13,7 +13,7 @@ const EgenvurderingKort = () => {
     };
 
     return (
-        <div className={'sluttkort'}>
+        <>
             <Systemtittel className={'blokk-xs'}>Hva trenger du for å komme i jobb?</Systemtittel>
             <Normaltekst className="blokk-s ">
                 Du har krav på en skriftlig vurdering av behovet ditt for hjelp fra NAV. Derfor vil vi vite hva du selv
@@ -22,7 +22,7 @@ const EgenvurderingKort = () => {
             <Hovedknapp onClick={handleButtonClick} className="blokk-xs">
                 Svar her
             </Hovedknapp>
-        </div>
+        </>
     );
 };
 
