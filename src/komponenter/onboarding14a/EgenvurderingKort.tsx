@@ -6,6 +6,8 @@ import { loggAktivitet } from '../../metrics/metrics';
 import { behovsvurderingLenke } from '../../innhold/lenker';
 import { settIBrowserStorage } from '../../utils/browserStorage-utils';
 import Lenke from 'nav-frontend-lenker';
+import ErRendret from '../er-rendret/er-rendret';
+import InViewport from '../in-viewport/in-viewport';
 
 export const AVSLAATT_EGENVURDERING = 'egenvurdering-avslaatt';
 
@@ -39,6 +41,8 @@ const EgenvurderingKort = () => {
                     Jeg ønsker å klare meg selv
                 </Lenke>
             </Normaltekst>
+            <ErRendret loggTekst="Rendrer egenvurdering " />
+            <InViewport loggTekst="Viser egenvurdering i viewport" />
         </>
     );
 };
