@@ -14,8 +14,7 @@ import { useUnderOppfolgingData } from '../../contexts/under-oppfolging';
 import { kanViseEgenvurdering } from '../../lib/kan-vise-egenvurdering';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
-import { kanViseOnboarding14A } from '../../lib/kan-vise-onboarding14a';
-import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../../lib/er-situasjonsbestemt-innsatsgruppe';
+import { erKSSBruker } from '../../lib/er-kss-bruker';
 
 export const antallTimerMellomAOgBRundetOpp = (a: Date, b: Date): number => {
     if (!a || !b) {
@@ -46,21 +45,6 @@ const Egenvurdering = () => {
         oppfolgingData,
     });
 
-    const viserOnboarding14A = kanViseOnboarding14A({
-        featuretoggleData,
-        oppfolgingData,
-        brukerInfoData,
-        registreringData,
-        amplitudeData,
-    });
-
-    const brukerregistreringData = registreringData?.registrering ?? null;
-
-    const erSituasjonsbestemtInnsatsgruppe = sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe({
-        brukerregistreringData,
-        oppfolgingData,
-    });
-
     const featuretoggleAktivert = featuretoggleData && featuretoggleData['veientilarbeid.vis-egenvurdering-med-14a'];
 
     const handleButtonClick = () => {
@@ -68,10 +52,15 @@ const Egenvurdering = () => {
         window.location.assign(behovsvurderingLenke);
     };
 
-    if (
-        !skalViseEgenvurderingLenke ||
-        (viserOnboarding14A && featuretoggleAktivert && !erSituasjonsbestemtInnsatsgruppe)
-    ) {
+    const brukerErKss = erKSSBruker({
+        amplitudeData,
+        featuretoggleData,
+        oppfolgingData,
+        brukerInfoData,
+        registreringData,
+    });
+
+    if (!skalViseEgenvurderingLenke || (featuretoggleAktivert && brukerErKss)) {
         return null;
     }
 
