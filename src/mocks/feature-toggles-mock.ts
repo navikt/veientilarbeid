@@ -1,5 +1,5 @@
 const featureToggles = {
-    // For tiden ingen feature toggles
+    'veientilarbeid.kanViseUtfraSituasjon': true,
 };
 
 export default featureToggles;

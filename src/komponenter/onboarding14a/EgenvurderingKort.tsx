@@ -27,6 +27,7 @@ const EgenvurderingKort = () => {
 
     return (
         <>
+            <ErRendret loggTekst="Rendrer egenvurdering på sluttkort" />
             <Systemtittel className={'blokk-xs'}>Hva trenger du for å komme i jobb?</Systemtittel>
             <Normaltekst className="blokk-s ">
                 Du har krav på en skriftlig vurdering av behovet ditt for hjelp fra NAV. Derfor vil vi vite hva du selv
@@ -41,8 +42,7 @@ const EgenvurderingKort = () => {
                     Jeg ønsker å klare meg selv
                 </Lenke>
             </Normaltekst>
-            <ErRendret loggTekst="Rendrer egenvurdering " />
-            <InViewport loggTekst="Viser egenvurdering i viewport" />
+            <InViewport loggTekst="Viser egenvurdering i viewport på sluttkort" />
         </>
     );
 };
