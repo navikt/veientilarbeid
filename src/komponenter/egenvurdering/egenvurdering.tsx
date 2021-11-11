@@ -52,7 +52,7 @@ const Egenvurdering = () => {
         window.location.assign(behovsvurderingLenke);
     };
 
-    const brukerErKss = erKSSBruker({
+    const brukerErKSS = erKSSBruker({
         amplitudeData,
         featuretoggleData,
         oppfolgingData,
@@ -60,7 +60,7 @@ const Egenvurdering = () => {
         registreringData,
     });
 
-    if (!skalViseEgenvurderingLenke || (featuretoggleAktivert && brukerErKss)) {
+    if (!skalViseEgenvurderingLenke || (featuretoggleAktivert && brukerErKSS)) {
         return null;
     }
 

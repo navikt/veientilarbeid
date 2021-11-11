@@ -2,7 +2,7 @@ import * as React from 'react';
 import Lenke from 'nav-frontend-lenker';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 
-import EgenvurderingKort from '../EgenvurderingKort';
+import EgenvurderingKort, { AVSLAATT_EGENVURDERING } from '../EgenvurderingKort';
 import { kanViseEgenvurdering } from '../../../lib/kan-vise-egenvurdering';
 import * as Brukerregistrering from '../../../contexts/brukerregistrering';
 import { AmplitudeData, amplitudeLogger } from '../../../metrics/amplitude-utils';
@@ -13,6 +13,7 @@ import { useOppfolgingData } from '../../../contexts/oppfolging';
 import { useFeatureToggleData } from '../../../contexts/feature-toggles';
 import RegistrertTeller from '../registrert-teller';
 import Lenkepanel14A from '../lenkepanel-14a';
+import { hentFraBrowserStorage } from '../../../utils/browserStorage-utils';
 
 interface EndStateProps {
     amplitudeData: AmplitudeData;
@@ -83,7 +84,9 @@ function Sluttkort(props: EndStateProps) {
         );
     };
 
-    if (featuretoggleEgenvurderingAktivert && skalViseEgenvurdering) return <EgenVurderingMedLesLink />;
+    const harAvslattEgenvurdering = hentFraBrowserStorage(AVSLAATT_EGENVURDERING);
+    if (featuretoggleEgenvurderingAktivert && skalViseEgenvurdering && !harAvslattEgenvurdering)
+        return <EgenVurderingMedLesLink />;
 
     return (
         <div className={'sluttkort'}>
