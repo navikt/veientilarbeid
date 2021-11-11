@@ -1,23 +1,20 @@
-import * as React from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
 import { loggAktivitet } from '../../metrics/metrics';
-import {
-    ForeslattInnsatsgruppe,
-    selectForeslattInnsatsgruppe,
-    useBrukerregistreringData,
-} from '../../contexts/brukerregistrering';
+import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import './egenvurdering.less';
 import { behovsvurderingLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
-import { useAutentiseringData, InnloggingsNiva } from '../../contexts/autentisering';
-import { OppfolgingContext, Servicegruppe } from '../../contexts/oppfolging';
-import { EgenvurderingContext } from '../../contexts/egenvurdering';
-import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
-
-const LANSERINGSDATO_EGENVURDERING = new Date(2019, 4, 10);
+import { useAutentiseringData } from '../../contexts/autentisering';
+import { useOppfolgingData } from '../../contexts/oppfolging';
+import { useEgenvurderingData } from '../../contexts/egenvurdering';
+import { useUnderOppfolgingData } from '../../contexts/under-oppfolging';
+import { kanViseEgenvurdering } from '../../lib/kan-vise-egenvurdering';
+import { useFeatureToggleData } from '../../contexts/feature-toggles';
+import { useBrukerinfoData } from '../../contexts/bruker-info';
+import { erKSSBruker } from '../../lib/er-kss-bruker';
 
 export const antallTimerMellomAOgBRundetOpp = (a: Date, b: Date): number => {
     if (!a || !b) {
@@ -32,49 +29,38 @@ export const antallTimerSidenRegistrering = (registreringsDato: Date) => {
 
 const Egenvurdering = () => {
     const amplitudeData = useAmplitudeData();
-    const brukerregistreringData = useBrukerregistreringData();
-    const egenvurderingData = React.useContext(EgenvurderingContext).data;
-    const oppfolgingData = React.useContext(OppfolgingContext).data;
-    const { securityLevel } = useAutentiseringData();
-    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
-    const isLevel4 = securityLevel === InnloggingsNiva.LEVEL_4;
+    const registreringData = useBrukerregistreringData();
+    const egenvurderingData = useEgenvurderingData();
+    const oppfolgingData = useOppfolgingData();
+    const autentiseringData = useAutentiseringData();
+    const underOppfolgingData = useUnderOppfolgingData();
+    const featuretoggleData = useFeatureToggleData();
+    const brukerInfoData = useBrukerinfoData();
 
-    const opprettetRegistreringDatoString = brukerregistreringData?.registrering?.opprettetDato;
-    const opprettetRegistreringDato = opprettetRegistreringDatoString
-        ? new Date(opprettetRegistreringDatoString)
-        : null;
-    const foreslattInnsatsgruppe = selectForeslattInnsatsgruppe(brukerregistreringData)!; // Komponent blir rendret kun hvis foreslått innsatsgruppe er satt
+    const skalViseEgenvurderingLenke = kanViseEgenvurdering({
+        underOppfolgingData,
+        registreringData,
+        autentiseringData,
+        egenvurderingData,
+        oppfolgingData,
+    });
 
-    const dinSituasjon = brukerregistreringData?.registrering?.besvarelse.dinSituasjon || 'INGEN_VERDI';
-
-    const harEgenvurderingbesvarelse = egenvurderingData !== null;
-    const egenvurderingbesvarelseDato = egenvurderingData ? new Date(egenvurderingData.sistOppdatert) : null;
-    const egenvurderingsbesvarelseValid = (): boolean => {
-        let isValid = false;
-        if (opprettetRegistreringDato && egenvurderingbesvarelseDato) {
-            isValid = opprettetRegistreringDato <= egenvurderingbesvarelseDato;
-        }
-        return isValid;
-    };
-
-    const skalViseEgenvurderingLenke =
-        underOppfolging &&
-        isLevel4 &&
-        dinSituasjon !== 'ER_PERMITTERT' &&
-        oppfolgingData.servicegruppe === Servicegruppe.IVURD &&
-        (!harEgenvurderingbesvarelse || !egenvurderingsbesvarelseValid()) &&
-        opprettetRegistreringDato !== null &&
-        opprettetRegistreringDato >= LANSERINGSDATO_EGENVURDERING &&
-        !oppfolgingData.reservasjonKRR &&
-        (foreslattInnsatsgruppe === ForeslattInnsatsgruppe.STANDARD_INNSATS ||
-            foreslattInnsatsgruppe === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS);
+    const featuretoggleAktivert = featuretoggleData && featuretoggleData['veientilarbeid.vis-egenvurdering-med-14a'];
 
     const handleButtonClick = () => {
         loggAktivitet({ aktivitet: 'Går til egenvurdering', ...amplitudeData });
         window.location.assign(behovsvurderingLenke);
     };
 
-    if (!skalViseEgenvurderingLenke) {
+    const brukerErKSS = erKSSBruker({
+        amplitudeData,
+        featuretoggleData,
+        oppfolgingData,
+        brukerInfoData,
+        registreringData,
+    });
+
+    if (!skalViseEgenvurderingLenke || (featuretoggleAktivert && brukerErKSS)) {
         return null;
     }
 

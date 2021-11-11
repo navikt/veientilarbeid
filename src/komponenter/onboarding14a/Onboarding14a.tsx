@@ -32,6 +32,7 @@ function Onboarding14a(): JSX.Element | null {
         amplitudeData,
     });
     const kanViseSituasjonsbestemt = erSituasjonsbestemtInnsatsgruppe && brukerErPilot; // visOnboardingForSituasjonsbestemtToggle;
+
     const kanViseKomponent = kanViseOnboarding14A({
         featuretoggleData,
         oppfolgingData,
@@ -42,8 +43,8 @@ function Onboarding14a(): JSX.Element | null {
 
     if (!kanViseKomponent) return null;
 
-    if (erStandardInnsatsgruppe) return <Kortbunke />;
     if (kanViseSituasjonsbestemt) return <Enkeltkort />;
+    if (erStandardInnsatsgruppe) return <Kortbunke />;
 
     return null;
 }

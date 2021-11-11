@@ -17,6 +17,7 @@ export enum FeatureToggles {
     INTRO_YTELSER_SITUASJONSBESTEMT = 'veientilarbeid.onboardingYtelser.situasjonsbestemt',
     KAN_VISE_UTFRA_SITUASJON = 'veientilarbeid.kanViseUtfraSituasjon',
     VIS_OPPDATERT_STYLING = 'veientilarbeid.vis-oppdatert-styling',
+    VIS_EGENVURDERING_MED_14A = 'veientilarbeid.vis-egenvurdering-med-14a',
 }
 
 export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
@@ -51,6 +52,8 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Vis ytelser fra situasjon';
         case FeatureToggles.VIS_OPPDATERT_STYLING:
             return 'Vis oppdatert styling';
+        case FeatureToggles.VIS_EGENVURDERING_MED_14A:
+            return 'Vis egenvurdering med 14a';
     }
 }
 
@@ -70,6 +73,7 @@ export interface Data {
     'veientilarbeid.onboardingYtelser.situasjonsbestemt': boolean;
     'veientilarbeid.kanViseUtfraSituasjon': boolean;
     'veientilarbeid.vis-oppdatert-styling': boolean;
+    'veientilarbeid.vis-egenvurdering-med-14a': boolean;
 }
 
 export interface State extends DataElement {
@@ -93,6 +97,7 @@ export const initialState: State = {
         'veientilarbeid.onboardingYtelser.situasjonsbestemt': false,
         'veientilarbeid.kanViseUtfraSituasjon': false,
         'veientilarbeid.vis-oppdatert-styling': false,
+        'veientilarbeid.vis-egenvurdering-med-14a': false,
     },
     status: STATUS.NOT_STARTED,
 };
