@@ -16,7 +16,7 @@ const EgenvurderingKort = () => {
 
     const handleButtonClick = () => {
         settIBrowserStorage(AVSLAATT_EGENVURDERING, Date.now().toString());
-        loggAktivitet({ aktivitet: 'Går til egenvurdering', ...amplitudeData });
+        loggAktivitet({ aktivitet: 'Går til egenvurdering fra sluttkort', ...amplitudeData });
         window.location.assign(behovsvurderingLenke);
     };
 
