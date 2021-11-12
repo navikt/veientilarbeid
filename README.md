@@ -9,12 +9,18 @@ Veien til arbeid
 
 Dersom testene feiler etter oppdatering av f.eks. Node versjon kan det være lurt å tømme cachen `npm run test -- --clearCache`
 
-# Som mikrofrontend på Ditt Nav
+# Som mikrofrontend på Ditt NAV lokalt
 
-1. Gå til https://test-login.dev-sbs.nais.io/
-2. Velg Uten Id-porten
-3. Logg inn med en bruker som er under arbeidsrettet oppfølging i q1
-4. Gå til https://www-q1.nav.no/person/dittnav/ i samme vindu
+-   Start veien til arbeid med `npm run start:micro`
+-   Start dittnav med `npm start`
+-   Gå til http://localhost:9002/person/dittnav
+
+# Som mikrofrontend på Ditt NAV i dev
+
+1. Start naisdevice
+2. Gå til https://www.dev.nav.no/person/dittnav/
+3. Velg IDPorten (ver 2)
+4. Logg inn med en bruker som er under arbeidsrettet oppfølging i dev
 
 For å gå over til demovisning gå til [/demo/index.html](http://localhost:3002/demo/index.html)
 
