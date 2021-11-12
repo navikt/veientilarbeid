@@ -2,7 +2,7 @@ const oppfolgingMock = {
     underOppfolging: true,
     kanReaktiveres: false,
     reservasjonKRR: false,
-    servicegruppe: 'BFORM',
+    servicegruppe: 'IKVAL',
     formidlingsgruppe: 'ARBS',
 };
 

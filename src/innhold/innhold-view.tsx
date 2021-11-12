@@ -2,7 +2,6 @@ import './innhold.less';
 import Rad from './rad';
 import AapRad from '../komponenter/aap/aap';
 import Banner from '../komponenter/banner/banner';
-import OkonomiRad from '../komponenter/okonomi/okonomi-rad';
 import ReaktiveringKort from '../komponenter/reaktivering/reaktivering-kort';
 import Egenvurdering from '../komponenter/egenvurdering/egenvurdering';
 import Motestotte from '../komponenter/motestotte/motestotte';
@@ -32,7 +31,6 @@ const InnholdView = () => {
             </Rad>
 
             <AapRad />
-            <OkonomiRad />
             <InViewport loggTekst="Bunnen av veien til arbeid i viewport" />
         </>
     );
