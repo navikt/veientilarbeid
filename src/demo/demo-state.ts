@@ -79,10 +79,7 @@ export const hentDagerEtterFastsattMeldedag = (): number => {
 export const settAntallDagerEtterFastsattMeldedag = (dag: string) => settDemoState(DemoData.MELDEKORT, dag);
 
 export const hentFeatureToggles = () => {
-    const presets = {
-        'veientilarbeid.rydding.skjulJobbBoks': true,
-        'veientilarbeid.rydding.skjulOkonomiBoks': true,
-    };
+    const presets = {};
     return Object.values(FeatureToggles).reduce((liste, toggle) => {
         const presetVerdi = presets[toggle];
         liste[toggle] = !hentDemoState(toggle) && presetVerdi ? presetVerdi : hentDemoState(toggle) === 'true';
