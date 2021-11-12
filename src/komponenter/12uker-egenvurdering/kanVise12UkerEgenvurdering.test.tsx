@@ -53,7 +53,6 @@ const grunndata = {
         'veientilarbeid.dagpenger-status': false,
         'veientilarbeid.dpstatus-for-alle': false,
         'veientilarbeid.egenvurderinguke12': true,
-        'veientilarbeid.rydding.skjulOkonomiBoks': false,
         'veientilarbeid.rydding.skjulAAPRad': false,
         'veientilarbeid.visbrukerundersokelse': false,
         'veientilarbeid.onboarding14a.situasjonsbestemt': false,
