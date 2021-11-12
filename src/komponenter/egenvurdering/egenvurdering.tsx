@@ -13,8 +13,7 @@ import { useEgenvurderingData } from '../../contexts/egenvurdering';
 import { useUnderOppfolgingData } from '../../contexts/under-oppfolging';
 import { kanViseEgenvurdering } from '../../lib/kan-vise-egenvurdering';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
-import { useBrukerinfoData } from '../../contexts/bruker-info';
-import { erKSSBruker } from '../../lib/er-kss-bruker';
+import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 
 export const antallTimerMellomAOgBRundetOpp = (a: Date, b: Date): number => {
     if (!a || !b) {
@@ -35,7 +34,6 @@ const Egenvurdering = () => {
     const autentiseringData = useAutentiseringData();
     const underOppfolgingData = useUnderOppfolgingData();
     const featuretoggleData = useFeatureToggleData();
-    const brukerInfoData = useBrukerinfoData();
 
     const skalViseEgenvurderingLenke = kanViseEgenvurdering({
         underOppfolgingData,
@@ -52,15 +50,13 @@ const Egenvurdering = () => {
         window.location.assign(behovsvurderingLenke);
     };
 
-    const brukerErKSS = erKSSBruker({
-        amplitudeData,
-        featuretoggleData,
+    const brukerregistreringData = registreringData?.registrering ?? null;
+    const brukerErStandard = erStandardInnsatsgruppe({
+        brukerregistreringData,
         oppfolgingData,
-        brukerInfoData,
-        registreringData,
     });
 
-    if (!skalViseEgenvurderingLenke || (featuretoggleAktivert && brukerErKSS)) {
+    if (!skalViseEgenvurderingLenke || (featuretoggleAktivert && brukerErStandard)) {
         return null;
     }
 
