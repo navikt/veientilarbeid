@@ -9,8 +9,8 @@ type NAVSPAApp = (element: HTMLElement, props: any) => void;
 
 export default class NAVSPA {
     public static eksporter(name: string, component: React.ComponentType) {
-        NAVSPA.scope[name] = (element: HTMLElement) => {
-            ReactDOM.render(React.createElement(component), element);
+        NAVSPA.scope[name] = (element: HTMLElement, props: any) => {
+            ReactDOM.render(React.createElement(component, props), element);
         };
     }
 
