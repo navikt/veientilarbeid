@@ -6,6 +6,7 @@
  * header - overskriften som står øverst for hele onboardingen
  * id - brukes til logging
  * hoppOverPrestate - true = starter på kort nr 2 ellers kort 1
+ * hoppRettTilSluttkort - true = tvinger visning av sluttkort, selvom onbordingen ikke allerede er vist.
  * innhold - array av jsx-komponenter i den rekkefølgen du ønsker at de skal vises
  *
  */
