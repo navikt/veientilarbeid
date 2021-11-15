@@ -15,7 +15,6 @@ interface OnboardingFooterProps {
 
 const OnboardingFooter = (props: OnboardingFooterProps) => {
     const { antallSider, gjeldendeKortIndex, forrigeKort, nesteKort, hoppOverIntro, handleLesIntroPaaNytt } = props;
-
     if (antallSider <= 1) return null;
     if (antallSider >= 2) {
         if (gjeldendeKortIndex === 0) {
@@ -49,7 +48,7 @@ const OnboardingFooter = (props: OnboardingFooterProps) => {
                         Forrige
                     </Tilbakeknapp>
                     <Nesteknapp mini onClick={nesteKort}>
-                        Neste
+                        {gjeldendeKortIndex === antallSider - 2 ? 'Fullfør' : 'Neste'}
                     </Nesteknapp>
                 </div>
             </>
