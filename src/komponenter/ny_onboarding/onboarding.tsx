@@ -25,19 +25,21 @@ interface OnboardingProps {
     header: string;
     id: string;
     hoppOverPreState: boolean;
+    hoppRettTilSluttkort?: boolean;
     innhold: JSX.Element[];
 }
 
 const Onboarding = (props: OnboardingProps) => {
-    const { header, hoppOverPreState, innhold, id } = props;
+    const { header, hoppOverPreState, hoppRettTilSluttkort, innhold, id } = props;
 
-    const ONBOARDING_KEY = `${id}`;
+    const ONBOARDING_KEY = id;
 
     const amplitudeData = useAmplitudeData();
     const featuretoggleData = useFeatureToggleData();
 
     const [harSettIntro, setHarSettIntro] = useState<boolean>(!!hentFraBrowserStorage(ONBOARDING_KEY));
-    const startkort = harSettIntro ? (hoppOverPreState ? 1 : innhold.length - 1) : 0;
+
+    const startkort = harSettIntro || hoppRettTilSluttkort ? innhold.length - 1 : hoppOverPreState ? 1 : 0;
 
     const [gjeldendeKortIndex, setGjeldendeKortIndex] = useState(startkort);
 
@@ -75,7 +77,7 @@ const Onboarding = (props: OnboardingProps) => {
     const hoppOverIntro = (e: React.MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
-        setGjeldendeKortIndex(innhold.length);
+        setGjeldendeKortIndex(innhold.length - 1);
         amplitudeLogger('veientilarbeid.onboarding', {
             intro: id,
             handling: 'Hopper over onboardingen',
@@ -105,6 +107,7 @@ const Onboarding = (props: OnboardingProps) => {
 
     return (
         <div className={stylingFeaturetoggle ? 'ny_onboarding' : 'onboarding'}>
+            <ErRendret loggTekst={`Rendrer onboarding: ${id}`} />
             <div className="onboarding-container">
                 <div className="onboarding-header">
                     <Element tag={'h1'} className="kort-heading">
@@ -123,7 +126,6 @@ const Onboarding = (props: OnboardingProps) => {
                     />
                 </div>
             </div>
-            <ErRendret loggTekst={`Rendrer onboarding: ${id}`} />
             <InViewport loggTekst={`Viser onboarindg i viewport: ${id}`} />
         </div>
     );
