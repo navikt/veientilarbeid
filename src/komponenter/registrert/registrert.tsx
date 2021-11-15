@@ -101,7 +101,7 @@ const Registrert = () => {
                 <DagpengerStatus />
                 <Onboarding14A />
                 <MeldekortIntroWrapper />
-                <Ytelser />
+                <YtelserOnboaridng />
             </div>
             <Permittert visRegistrertSomPermittert={visRegistrertSomPermittert} />
             {showOpplysninger ? (

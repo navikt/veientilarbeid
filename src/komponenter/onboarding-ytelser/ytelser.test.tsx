@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom/extend-expect';
 import { render } from '@testing-library/react';
 
-import Ytelser from './ytelser';
+import YtelserOnboarding from './ytelser-onboaridng';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import { Formidlingsgruppe, Servicegruppe } from '../../contexts/oppfolging';
 import { mockIntersectionObserver } from '../../mocks/intersection-observer-mock';
@@ -34,12 +34,12 @@ describe('tester komponenten for Ytelser', () => {
     });
 
     test('komponenten VISES for standardInnsats uten ekperiment', () => {
-        const { container } = render(<Ytelser />, { wrapper: contextProviders(providerProps) });
+        const { container } = render(<YtelserOnboarding />, { wrapper: contextProviders(providerProps) });
         expect(container).not.toBeEmptyDOMElement();
     });
 
     test('komponenten vises IKKE for Situasjonsbestemt innsats', () => {
-        const { container } = render(<Ytelser />, {
+        const { container } = render(<YtelserOnboarding />, {
             wrapper: contextProviders({
                 ...providerProps,
                 oppfolging: { ...providerProps.oppfolging, servicegruppe: Servicegruppe.BKART },
