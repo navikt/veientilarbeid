@@ -72,7 +72,7 @@ const Onboarding = (props: OnboardingProps) => {
         setGjeldendeKortIndex(innhold.length);
         amplitudeLogger('veientilarbeid.onboarding', {
             intro: id,
-            handling: 'Hopper over introduksjon',
+            handling: 'Hopper over onboardingen',
             ...amplitudeData,
         });
     };
@@ -82,7 +82,7 @@ const Onboarding = (props: OnboardingProps) => {
         e.stopPropagation();
         amplitudeLogger('veientilarbeid.onboarding', {
             intro: id,
-            handling: 'Leser introduksjonen på nytt',
+            handling: 'Leser onboardingen på nytt',
             ...amplitudeData,
         });
         setGjeldendeKortIndex(1);
