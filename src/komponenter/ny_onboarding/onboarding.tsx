@@ -10,12 +10,14 @@
  *
  */
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Element } from 'nav-frontend-typografi';
 
 import OnboardingFooter from './onboardingFooter';
 import './onboarding.less';
-// import { hentFraBrowserStorage } from '../../utils/browserStorage-utils';
+import { fjernFraBrowserStorage, hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
+import { amplitudeLogger } from '../../metrics/amplitude-utils';
+import { useAmplitudeData } from '../../contexts/amplitude-context';
 
 interface OnboardingProps {
     header: string;
@@ -25,16 +27,42 @@ interface OnboardingProps {
 }
 
 const Onboarding = (props: OnboardingProps) => {
-    const { header, hoppOverPreState, innhold } = props;
+    const { header, hoppOverPreState, innhold, id } = props;
 
-    const startkort = hoppOverPreState ? 1 : 0;
+    const ONBOARDING_KEY = `onboarding_${id}`;
+    const [harSettIntro, setHarSettIntro] = useState<boolean>(!!hentFraBrowserStorage(ONBOARDING_KEY));
+
+    const startkort = harSettIntro ? (hoppOverPreState ? 1 : innhold.length - 1) : 0;
     const [gjeldendeKortIndex, setGjeldendeKortIndex] = useState(startkort);
 
+    const amplitudeData = useAmplitudeData();
+
     const forrigeKort = () => {
+        amplitudeLogger('veientilarbeid.intro', {
+            intro: id,
+            handling: `Går fra ${gjeldendeKortIndex} til ${gjeldendeKortIndex - 1}`,
+            amplitudeData,
+        });
         setGjeldendeKortIndex(gjeldendeKortIndex - 1);
     };
 
     const nesteKort = () => {
+        let handling = '';
+        if (gjeldendeKortIndex + 1 === innhold.length - 1) {
+            setHarSettIntro(true);
+            handling = 'Fullfører introduksjon';
+        } else if (gjeldendeKortIndex === 0) {
+            handling = `Starter introduksjonen`;
+        } else {
+            handling = `Går fra ${gjeldendeKortIndex === 0 ? 'introkort' : gjeldendeKortIndex} til ${
+                gjeldendeKortIndex + 1
+            }`;
+        }
+        amplitudeLogger('veientilarbeid.onboarding', {
+            intro: id,
+            handling,
+            ...amplitudeData,
+        });
         setGjeldendeKortIndex((gjeldendeKortIndex + 1) % (innhold.length + 1));
     };
 
@@ -42,13 +70,32 @@ const Onboarding = (props: OnboardingProps) => {
         e.preventDefault();
         e.stopPropagation();
         setGjeldendeKortIndex(innhold.length);
+        amplitudeLogger('veientilarbeid.onboarding', {
+            intro: id,
+            handling: 'Hopper over introduksjon',
+            ...amplitudeData,
+        });
     };
 
     const handleLesIntroPaaNytt = (e: React.MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
+        amplitudeLogger('veientilarbeid.onboarding', {
+            intro: id,
+            handling: 'Leser introduksjonen på nytt',
+            ...amplitudeData,
+        });
         setGjeldendeKortIndex(1);
     };
+
+    useEffect(() => {
+        if (harSettIntro) {
+            settIBrowserStorage(ONBOARDING_KEY, 'true');
+        } else {
+            fjernFraBrowserStorage(ONBOARDING_KEY);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [harSettIntro]);
 
     return (
         <div className="onboarding">
