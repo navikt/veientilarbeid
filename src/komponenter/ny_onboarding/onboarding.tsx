@@ -48,11 +48,11 @@ const Onboarding = (props: OnboardingProps) => {
 
     const nesteKort = () => {
         let handling = '';
-        if (gjeldendeKortIndex + 1 === innhold.length - 1) {
+        if (gjeldendeKortIndex === 0) {
+            handling = `Starter onboardingen`;
+        } else if (gjeldendeKortIndex + 1 === innhold.length - 1) {
             setHarSettIntro(true);
-            handling = 'Fullfører introduksjon';
-        } else if (gjeldendeKortIndex === 0) {
-            handling = `Starter introduksjonen`;
+            handling = 'Fullfører onboardingen';
         } else {
             handling = `Går fra ${gjeldendeKortIndex === 0 ? 'introkort' : gjeldendeKortIndex} til ${
                 gjeldendeKortIndex + 1
