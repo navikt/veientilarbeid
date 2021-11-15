@@ -7,7 +7,7 @@ import { useOppfolgingData } from '../../contexts/oppfolging';
 import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../../lib/er-situasjonsbestemt-innsatsgruppe';
 import { kanViseMeldekortStatus } from '../../lib/kan-vise-meldekort-status';
 import { fjernFraBrowserStorage } from '../../utils/browserStorage-utils';
-import Onboarding from '../ny_onboarding/onboarding';
+import Onboarding from '../onboarding/onboarding';
 import { SituasjonsbestemtKortliste, SituasjonsbestemtStartkort } from './situasjonsbestemt';
 import Sluttkort from './Sluttkort';
 import { StandardKortliste, StandardStartkort } from './standard';

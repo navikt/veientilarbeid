@@ -3,7 +3,7 @@ import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { kanViseOnboardingYtelser } from '../../lib/kan-vise-ytelser';
 import Sluttkort from './sluttkort';
-import Onboarding from '../ny_onboarding/onboarding';
+import Onboarding from '../onboarding/onboarding';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useOppfolgingData } from '../../contexts/oppfolging';
 
