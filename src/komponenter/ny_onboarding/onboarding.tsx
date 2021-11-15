@@ -32,16 +32,11 @@ interface OnboardingProps {
 
 const Onboarding = (props: OnboardingProps) => {
     const { header, hoppOverPreState, hoppRettTilSluttkort, innhold, id } = props;
-
     const ONBOARDING_KEY = id;
-
     const amplitudeData = useAmplitudeData();
     const featuretoggleData = useFeatureToggleData();
-
     const [harSettIntro, setHarSettIntro] = useState<boolean>(!!hentFraBrowserStorage(ONBOARDING_KEY));
-
     const startkort = harSettIntro || hoppRettTilSluttkort ? innhold.length - 1 : hoppOverPreState ? 1 : 0;
-
     const [gjeldendeKortIndex, setGjeldendeKortIndex] = useState(startkort);
 
     const stylingFeaturetoggle = featuretoggleData && featuretoggleData['veientilarbeid.vis-oppdatert-styling'];
@@ -116,16 +111,18 @@ const Onboarding = (props: OnboardingProps) => {
                     </Element>
                 </div>
                 <div className="onboarding-body">{innhold[gjeldendeKortIndex]}</div>
-                <div className="onboarding-footer">
-                    <OnboardingFooter
-                        antallSider={innhold.length}
-                        gjeldendeKortIndex={gjeldendeKortIndex}
-                        forrigeKort={forrigeKort}
-                        nesteKort={nesteKort}
-                        hoppOverIntro={hoppOverIntro}
-                        handleLesIntroPaaNytt={handleLesIntroPaaNytt}
-                    />
-                </div>
+                {innhold.length > 1 && (
+                    <div className="onboarding-footer">
+                        <OnboardingFooter
+                            antallSider={innhold.length}
+                            gjeldendeKortIndex={gjeldendeKortIndex}
+                            forrigeKort={forrigeKort}
+                            nesteKort={nesteKort}
+                            hoppOverIntro={hoppOverIntro}
+                            handleLesIntroPaaNytt={handleLesIntroPaaNytt}
+                        />
+                    </div>
+                )}
             </div>
             <InViewport loggTekst={`Viser onboarindg i viewport: ${id}`} />
         </div>
