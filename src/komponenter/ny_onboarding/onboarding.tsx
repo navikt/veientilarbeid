@@ -1,5 +1,18 @@
+/**
+ * Komponent for onboarding
+ *
+ * Brukes ved at man sender inn et array med innhold (jsx-komponenter)
+ * og så sørger denne komponenten for navigasjon gjennom listen av kort
+ * header - overskriften som står øverst for hele onboardingen
+ * id - brukes til logging
+ * hoppOverPrestate - true = starter på kort nr 2 ellers kort 1
+ * innhold - array av jsx-komponenter i den rekkefølgen du ønsker at de skal vises
+ *
+ */
+
 import { useState } from 'react';
 import { Element } from 'nav-frontend-typografi';
+
 import OnboardingFooter from './onboardingFooter';
 import './onboarding.less';
 // import { hentFraBrowserStorage } from '../../utils/browserStorage-utils';
@@ -20,14 +33,17 @@ const Onboarding = (props: OnboardingProps) => {
     const forrigeKort = () => {
         setGjeldendeKortIndex(gjeldendeKortIndex - 1);
     };
+
     const nesteKort = () => {
         setGjeldendeKortIndex((gjeldendeKortIndex + 1) % (innhold.length + 1));
     };
+
     const hoppOverIntro = (e: React.MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
         setGjeldendeKortIndex(innhold.length);
     };
+
     const handleLesIntroPaaNytt = (e: React.MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
