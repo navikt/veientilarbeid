@@ -12,13 +12,15 @@
 
 import { useEffect, useState } from 'react';
 import { Element } from 'nav-frontend-typografi';
-
 import OnboardingFooter from './onboardingFooter';
-import './onboarding.less';
 import { fjernFraBrowserStorage, hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { useFeatureToggleData } from '../../contexts/feature-toggles';
+import ErRendret from '../er-rendret/er-rendret';
+import InViewport from '../in-viewport/in-viewport';
 
+import './onboarding.less';
 interface OnboardingProps {
     header: string;
     id: string;
@@ -29,13 +31,17 @@ interface OnboardingProps {
 const Onboarding = (props: OnboardingProps) => {
     const { header, hoppOverPreState, innhold, id } = props;
 
-    const ONBOARDING_KEY = `onboarding_${id}`;
-    const [harSettIntro, setHarSettIntro] = useState<boolean>(!!hentFraBrowserStorage(ONBOARDING_KEY));
-
-    const startkort = harSettIntro ? (hoppOverPreState ? 1 : innhold.length - 1) : 0;
-    const [gjeldendeKortIndex, setGjeldendeKortIndex] = useState(startkort);
+    const ONBOARDING_KEY = `${id}`;
 
     const amplitudeData = useAmplitudeData();
+    const featuretoggleData = useFeatureToggleData();
+
+    const [harSettIntro, setHarSettIntro] = useState<boolean>(!!hentFraBrowserStorage(ONBOARDING_KEY));
+    const startkort = harSettIntro ? (hoppOverPreState ? 1 : innhold.length - 1) : 0;
+
+    const [gjeldendeKortIndex, setGjeldendeKortIndex] = useState(startkort);
+
+    const stylingFeaturetoggle = featuretoggleData && featuretoggleData['veientilarbeid.vis-oppdatert-styling'];
 
     const forrigeKort = () => {
         amplitudeLogger('veientilarbeid.intro', {
@@ -98,7 +104,7 @@ const Onboarding = (props: OnboardingProps) => {
     }, [harSettIntro]);
 
     return (
-        <div className="onboarding">
+        <div className={stylingFeaturetoggle ? 'ny_onboarding' : 'onboarding'}>
             <div className="onboarding-container">
                 <div className="onboarding-header">
                     <Element tag={'h1'} className="kort-heading">
@@ -117,6 +123,8 @@ const Onboarding = (props: OnboardingProps) => {
                     />
                 </div>
             </div>
+            <ErRendret loggTekst={`Rendrer onboarding: ${id}`} />
+            <InViewport loggTekst={`Viser onboarindg i viewport: ${id}`} />
         </div>
     );
 };
