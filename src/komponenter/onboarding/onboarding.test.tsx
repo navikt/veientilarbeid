@@ -131,7 +131,7 @@ describe('Tester onboarding komponenten med mange kort', () => {
 
 const bareSluttkort = [<div>Sluttkort</div>];
 
-describe('Tester onboarding komponenten med bare sluttkort kort', () => {
+describe('Tester onboarding komponenten med bare sluttkort', () => {
     beforeEach(() => {
         mockIntersectionObserver();
     });
@@ -149,7 +149,7 @@ describe('Tester onboarding komponenten med bare sluttkort kort', () => {
         expect(screen.getByText(/sluttkort/i)).toBeInTheDocument();
     });
 
-    test('Skjuler navigasjonsknapper hvis bare ett kort', () => {
+    test('Skjuler navigasjonsknapper', () => {
         render(
             <Onboarding
                 header="Introduksjon til onboardingen"
