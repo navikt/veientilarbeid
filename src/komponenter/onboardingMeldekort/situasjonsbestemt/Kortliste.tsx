@@ -3,7 +3,7 @@ import Feedback from '../../feedback/feedback';
 
 function Kort1() {
     return (
-        <div className="kortflate">
+        <>
             <div>
                 <Systemtittel>Hvor ofte skal jeg sende inn meldekort?</Systemtittel>
                 <Undertekst className={'blokk-xs'}>1 av 3</Undertekst>
@@ -17,13 +17,13 @@ function Kort1() {
                 </Normaltekst>
             </div>
             <Feedback id={'meldekort-kort-01'} />
-        </div>
+        </>
     );
 }
 
 function Kort2() {
     return (
-        <div className="kortflate">
+        <>
             <div>
                 <Systemtittel>Hva skjer om jeg ikke sender inn meldekortet?</Systemtittel>
                 <Undertekst className={'blokk-xs'}>2 av 3</Undertekst>
@@ -37,13 +37,13 @@ function Kort2() {
                 </Normaltekst>
             </div>
             <Feedback id={'meldekort-kort-02'} />
-        </div>
+        </>
     );
 }
 
 function Kort3() {
     return (
-        <div className="kortflate">
+        <>
             <div>
                 <Systemtittel>Hva skjer om jeg sender inn meldekortet for sent?</Systemtittel>
                 <Undertekst className={'blokk-xs'}>3 av 3</Undertekst>
@@ -59,7 +59,7 @@ function Kort3() {
                 </Normaltekst>
             </div>
             <Feedback id={'meldekort-kort-03'} />
-        </div>
+        </>
     );
 }
 

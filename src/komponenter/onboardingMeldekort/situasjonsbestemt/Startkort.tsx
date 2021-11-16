@@ -1,21 +1,15 @@
-import PreState from '../pre-state';
+import { ClockFilled } from '@navikt/ds-icons';
+import { Innholdstittel, Undertekst } from 'nav-frontend-typografi';
 
-interface Props {
-    hoppOverIntroCB: () => void;
-    startIntroCB: () => void;
-}
-
-function Startkort(props: Props) {
-    const { startIntroCB, hoppOverIntroCB } = props;
+function Startkort() {
     return (
-        <PreState
-            tematag="MELDEKORT"
-            tittel={'Det viktigste du trenger å vite om meldekort'}
-            lesetid={'2'}
-            viewportTekst="Viser meldekortintro pre-state for situasjonsbestemt i viewPort"
-            startIntroCB={startIntroCB}
-            hoppOverIntroCB={hoppOverIntroCB}
-        />
+        <>
+            <Innholdstittel className={'blokk-xs'}>Det viktigste du trenger å vite om meldekort</Innholdstittel>
+            <div className={'lesetid mb-2'}>
+                <ClockFilled className={'mr-05'} />
+                <Undertekst>2 minutter lesetid</Undertekst>
+            </div>
+        </>
     );
 }
 
