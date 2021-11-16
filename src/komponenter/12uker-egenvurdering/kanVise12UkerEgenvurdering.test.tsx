@@ -89,6 +89,7 @@ const grunndata = {
         dinSituasjon: DinSituasjonSvar.INGEN_VERDI,
         reservasjonKRR: 'ukjent',
         eksperimenter: [eksperiment],
+        aktiveFeatureToggles: [],
         dagpengerVedleggEttersendes: 0,
         dagpengerSoknadMellomlagret: 0,
         dagpengerSoknadVenterPaSvar: dpVenter,

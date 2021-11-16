@@ -10,6 +10,7 @@ import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import { PaabegynteSoknaderContext } from '../../contexts/paabegynte-soknader';
 import { SakstemaContext } from '../../contexts/sakstema';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
+import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import grupperGeografiskTilknytning from '../../utils/grupper-geografisk-tilknytning';
 
 import ukerFraDato from '../../utils/uker-fra-dato';
@@ -59,6 +60,7 @@ function hentDagerEtterFastsattMeldedag(
 
 export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const brukerregistreringData = useBrukerregistreringData();
+    const featuretoggleData = useFeatureToggleData();
     const pabegynteSoknaderData = React.useContext(PaabegynteSoknaderContext).data;
     const sakstemaData = React.useContext(SakstemaContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
@@ -125,6 +127,13 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         registreringsDato: opprettetRegistreringDato,
         enhetEksperimentId: hentEnhetEksperimentId(),
     });
+
+    const aktiveFeatureToggles = Object.keys(featuretoggleData).reduce((toggles, current) => {
+        if (featuretoggleData[current]) {
+            toggles.push(current);
+        }
+        return toggles;
+    }, [] as string[]);
 
     const dagpengerSaksTema = sakstemaData.sakstema.find((tema) => tema.temakode === 'DAG');
     const ubehandledeDpSoknader = dagpengerSaksTema ? harUbehandletDpSoknad(dagpengerSaksTema.behandlingskjeder) : null;
@@ -195,6 +204,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         dinSituasjon,
         reservasjonKRR: reservasjonKRR ? 'ja' : 'nei',
         eksperimenter,
+        aktiveFeatureToggles,
         dagpengerSoknadMellomlagret: antallPabegynteSoknader,
         dagpengerVedleggEttersendes: 'INGEN_DATA',
         dagpengerSoknadVenterPaSvar: harDagpengesoknadTilBehandling,

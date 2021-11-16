@@ -30,6 +30,7 @@ export const initialState: AmplitudeData = {
     dinSituasjon: DinSituasjonSvar.INGEN_VERDI,
     reservasjonKRR: 'ukjent',
     eksperimenter: [],
+    aktiveFeatureToggles: [],
     dagpengerVedleggEttersendes: 'INGEN_DATA',
     dagpengerSoknadMellomlagret: 'INGEN_DATA',
     dagpengerSoknadVenterPaSvar: 'INGEN_DATA',
