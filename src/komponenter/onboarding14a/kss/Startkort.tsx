@@ -1,20 +1,15 @@
-import PreState from '../../onboardingMeldekort/pre-state';
+import { ClockFilled } from '@navikt/ds-icons';
+import { Innholdstittel, Undertekst } from 'nav-frontend-typografi';
 
-interface Props {
-    hoppOverIntroCB: () => void;
-    startIntroCB: () => void;
-}
-
-function Startkort(props: Props) {
+function Startkort() {
     return (
-        <PreState
-            tematag="HJELP OG STØTTE"
-            hoppOverIntroCB={props.hoppOverIntroCB}
-            startIntroCB={props.startIntroCB}
-            lesetid={'3'}
-            viewportTekst="Viser 14a pre-state i viewport - KSS"
-            tittel={'Hva slags hjelp kan jeg få?'}
-        />
+        <>
+            <Innholdstittel className={'blokk-xs'}>Hva slags hjelp kan jeg få?</Innholdstittel>
+            <div className={'lesetid mb-2'}>
+                <ClockFilled className={'mr-05'} />
+                <Undertekst>3 minutter lesetid</Undertekst>
+            </div>
+        </>
     );
 }
 

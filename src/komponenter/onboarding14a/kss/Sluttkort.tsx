@@ -1,11 +1,7 @@
-import * as React from 'react';
-import Lenke from 'nav-frontend-lenker';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 
 import EgenvurderingKort, { AVSLAATT_EGENVURDERING } from '../EgenvurderingKort';
 import { kanViseEgenvurdering } from '../../../lib/kan-vise-egenvurdering';
-import * as Brukerregistrering from '../../../contexts/brukerregistrering';
-import { AmplitudeData, amplitudeLogger } from '../../../metrics/amplitude-utils';
 import { useUnderOppfolgingData } from '../../../contexts/under-oppfolging';
 import { useAutentiseringData } from '../../../contexts/autentisering';
 import { useEgenvurderingData } from '../../../contexts/egenvurdering';
@@ -14,23 +10,22 @@ import { useFeatureToggleData } from '../../../contexts/feature-toggles';
 import RegistrertTeller from '../registrert-teller';
 import Lenkepanel14A from '../lenkepanel-14a';
 import { hentFraBrowserStorage } from '../../../utils/browserStorage-utils';
+import { useAmplitudeData } from '../../../contexts/amplitude-context';
+import { useBrukerregistreringData } from '../../../contexts/brukerregistrering';
+import { useUlesteDialogerData } from '../../../contexts/ulestedialoger';
 
-interface EndStateProps {
-    amplitudeData: AmplitudeData;
-    registreringData: Brukerregistrering.Data | null;
-
-    lesIntroPaaNyttCB: () => void;
-    antallUlesteDialoger: number;
-}
-
-function Sluttkort(props: EndStateProps) {
-    const { amplitudeData, registreringData } = props;
+function Sluttkort() {
+    const amplitudeData = useAmplitudeData();
     const { ukerRegistrert } = amplitudeData;
+
+    const registreringData = useBrukerregistreringData();
     const underOppfolgingData = useUnderOppfolgingData();
     const autentiseringData = useAutentiseringData();
     const egenvurderingData = useEgenvurderingData();
     const oppfolgingData = useOppfolgingData();
     const featuretoggleData = useFeatureToggleData();
+    const { antallUleste } = useUlesteDialogerData();
+
     const registrertDato = registreringData?.registrering?.opprettetDato;
     const registrertOver12Uker = ukerRegistrert > 12;
     const kortTittel = registrertOver12Uker
@@ -48,40 +43,8 @@ function Sluttkort(props: EndStateProps) {
         oppfolgingData,
     });
 
-    const VeiledersOppgaver = () => {
-        return (
-            <Normaltekst>
-                Veilederen kan besvare spørsmål, bistå rundt det å søke stillinger og tilby hjelp på veien til arbeid.
-            </Normaltekst>
-        );
-    };
-
-    const handleKlikkLesIntro = () => {
-        amplitudeLogger('veientilarbeid.intro', {
-            intro: '14a',
-            handling: 'Leser introduksjonen på nytt',
-            ...amplitudeData,
-        });
-    };
-
-    function handleLesIntroPaaNytt(event: React.SyntheticEvent) {
-        event.preventDefault();
-        event.stopPropagation();
-        handleKlikkLesIntro();
-        props.lesIntroPaaNyttCB();
-    }
-
     const EgenVurderingMedLesLink = () => {
-        return (
-            <div className="sluttkort">
-                <EgenvurderingKort />
-                <Normaltekst>
-                    <Lenke className={'tracking-wide'} href={''} onClick={handleLesIntroPaaNytt}>
-                        Les om hva slags hjelp du kan få
-                    </Lenke>
-                </Normaltekst>
-            </div>
-        );
+        return <EgenvurderingKort />;
     };
 
     const harAvslattEgenvurdering = hentFraBrowserStorage(AVSLAATT_EGENVURDERING);
@@ -89,21 +52,18 @@ function Sluttkort(props: EndStateProps) {
         return <EgenVurderingMedLesLink />;
 
     return (
-        <div className={'sluttkort'}>
+        <>
             <Systemtittel className={'blokk-xs'}>{kortTittel}</Systemtittel>
             <RegistrertTeller ukerRegistrert={ukerRegistrert} registrertDato={registrertDato} />
 
-            <Lenkepanel14A amplitudeData={amplitudeData} href={''} antallUlesteDialoger={props.antallUlesteDialoger} />
-            {registrertOver12Uker ? (
-                <VeiledersOppgaver />
-            ) : (
+            <Lenkepanel14A amplitudeData={amplitudeData} href={''} antallUlesteDialoger={antallUleste} />
+            {registrertOver12Uker && (
                 <Normaltekst>
-                    <Lenke className={'tracking-wide'} href={''} onClick={handleLesIntroPaaNytt}>
-                        Les om hva slags hjelp du kan få
-                    </Lenke>
+                    Veilederen kan besvare spørsmål, bistå rundt det å søke stillinger og tilby hjelp på veien til
+                    arbeid.
                 </Normaltekst>
             )}
-        </div>
+        </>
     );
 }
 

@@ -168,7 +168,7 @@ describe('tester onboarding komponenten for 14a-intro', () => {
         userEvent.click(avsluttKnapp);
         expect(screen.getByText(/Om du ønsker oppfølging/i)).toBeInTheDocument();
         // sjekker les igjen knapp
-        const lesIgjenKnapp = screen.getByText(/les om hva slags hjelp du kan få/i);
+        const lesIgjenKnapp = screen.getByText(/Vis introduksjon/i);
         userEvent.click(lesIgjenKnapp);
         expect(screen.getByText(/Hva slags hjelp kan jeg få/i)).toBeInTheDocument();
         expect(screen.getByText(/1 av 4/i)).toBeInTheDocument();
