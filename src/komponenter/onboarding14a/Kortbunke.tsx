@@ -83,6 +83,7 @@ function Intro14AWrapper(props: IntroProps) {
             hoppOverPreState={false}
             hoppRettTilSluttkort={!erNyregistrert}
             id={INTRO_KEY_14A}
+            lesPaaNyttLnkeTekst="Les om hva slags hjelp du kan få"
         />
     );
 

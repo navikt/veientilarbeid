@@ -11,10 +11,21 @@ interface OnboardingFooterProps {
     nesteKort: () => void;
     hoppOverIntro: (e: React.MouseEvent) => void;
     handleLesIntroPaaNytt: (e: React.MouseEvent) => void;
+    hoppOverLenkeTekst?: string;
+    lesPaaNyttLnkeTekst?: string;
 }
 
 const OnboardingFooter = (props: OnboardingFooterProps) => {
-    const { antallSider, gjeldendeKortIndex, forrigeKort, nesteKort, hoppOverIntro, handleLesIntroPaaNytt } = props;
+    const {
+        antallSider,
+        gjeldendeKortIndex,
+        forrigeKort,
+        nesteKort,
+        hoppOverIntro,
+        handleLesIntroPaaNytt,
+        hoppOverLenkeTekst,
+        lesPaaNyttLnkeTekst,
+    } = props;
     if (antallSider <= 1) return null;
     if (antallSider >= 2) {
         if (gjeldendeKortIndex === 0) {
@@ -25,7 +36,7 @@ const OnboardingFooter = (props: OnboardingFooterProps) => {
                         <Next />
                     </Hovedknapp>
                     <Lenke onClick={hoppOverIntro} href={'#'} className="tracking-wide">
-                        Hopp over introduksjonen for nå
+                        {hoppOverLenkeTekst ?? 'Hopp over introduksjonen for nå'}
                     </Lenke>
                 </div>
             );
@@ -35,7 +46,7 @@ const OnboardingFooter = (props: OnboardingFooterProps) => {
                 <div className="kolonne">
                     <Normaltekst>
                         <Lenke onClick={handleLesIntroPaaNytt} href={'#'}>
-                            Vis introduksjon
+                            {lesPaaNyttLnkeTekst || 'Vis introduksjon'}
                         </Lenke>
                     </Normaltekst>
                 </div>
