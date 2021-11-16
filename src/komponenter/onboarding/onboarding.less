@@ -1,5 +1,6 @@
+@import '../../../node_modules/nav-frontend-core/less/_variabler';
+
 .onboarding {
-    max-width: 50%;
     margin: 0.5rem 0;
     margin-left: 0.25rem;
     flex: 1;
@@ -36,5 +37,11 @@
                 // justify-content: flex-start;
             }
         }
+    }
+}
+
+@media (min-width: @screen-md-min) {
+    .onboarding {
+        max-width: 50%;
     }
 }
