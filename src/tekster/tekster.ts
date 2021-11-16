@@ -50,9 +50,6 @@ const tekster = {
     'aap-rett-pa-undertittel-ingress':
         'Her er de viktigste vilkårene du må oppfylle for å ha rett på arbeidsavklaringspenger:',
     'aap-rett-pa-undertittel': 'Har jeg rett på AAP?',
-    'alleskjema-lenke-tekst': 'Til alle skjemaer',
-    'alleskjema-tekst': 'Her finner du alle skjemaer i NAV.',
-    'alleskjema-tittel': 'Skjema og søknad',
     'aktivitetsplan-beskrivelse': 'Her holder du orden på aktiviteter du gjør i samarbeid med NAV.',
     'aktivitetsplan-lenke-ordinaer': 'Gå til aktivitetsplanen',
     'aktivitetsplan-lenke-sykmeldt': 'Gå til aktivitetsplanen',

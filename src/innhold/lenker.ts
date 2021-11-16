@@ -1,7 +1,6 @@
 import { contextpathDittNav, erMikrofrontend } from '../utils/app-state-utils';
 
 export const aktivitetsplanLenke = erMikrofrontend() ? `${contextpathDittNav}/aktivitetsplan` : '/aktivitetsplan';
-export const alleSkjemaSoknadLenke = 'https://www.nav.no/soknader';
 export const dialogLenke = erMikrofrontend() ? `${contextpathDittNav}/dialog` : '/dialog';
 export const stillingLenke = erMikrofrontend()
     ? `${contextpathDittNav}/arbeidsplassen/stillinger`
