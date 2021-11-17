@@ -90,12 +90,25 @@ function Feedback({ id, className }: Props) {
                     >
                         <Normaltekst className="feedback-utdyping">Hvorfor svarte du nei?</Normaltekst>
                         <ul className="feedback-grunner">
-                            <li onClick={() => handleFeedback('nei - visste det fra før')}>Visste det fra før</li>
-                            <li onClick={() => handleFeedback('nei - passer ikke min situasjon')}>
-                                Passer ikke min situasjon
+                            <li>
+                                <button onClick={() => handleFeedback('nei - visste det fra før')}>
+                                    Visste det fra før
+                                </button>
                             </li>
-                            <li onClick={() => handleFeedback('nei - Føles uvesentlig')}>Føles uvesentlig</li>
-                            <li onClick={() => handleFeedback('nei - annet')}>Annet</li>
+                            <li>
+                                <button onClick={() => handleFeedback('nei - passer ikke min situasjon')}>
+                                    Passer ikke min situasjon
+                                </button>
+                            </li>
+                            <li>
+                                <button onClick={() => handleFeedback('nei - Føles uvesentlig')}>
+                                    {' '}
+                                    Føles uvesentlig
+                                </button>
+                            </li>
+                            <li>
+                                <button onClick={() => handleFeedback('nei - annet')}>Annet</button>
+                            </li>
                         </ul>
                     </Popover>
                     <span className="feedback-space" aria-hidden="true">
