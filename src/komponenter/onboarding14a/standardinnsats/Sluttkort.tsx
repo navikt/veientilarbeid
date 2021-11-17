@@ -2,8 +2,8 @@ import { useBrukerregistreringData } from '../../../contexts/brukerregistrering'
 import { Systemtittel } from 'nav-frontend-typografi';
 import RegistrertTeller from '../registrert-teller';
 import Lenkepanel14A from '../lenkepanel-14a';
-import EgenvurderingKort, { AVSLAATT_EGENVURDERING } from '../EgenvurderingKort';
-import { kanViseEgenvurdering } from '../../../lib/kan-vise-egenvurdering';
+import EgenvurderingKort, { AVSLAATT_EGENVURDERING } from '../egenvurderingIVURD';
+import { kanViseIVURDEgenvurdering } from '../../../lib/kan-vise-IVURD-egenvurdering';
 import { useFeatureToggleData } from '../../../contexts/feature-toggles';
 import { useUnderOppfolgingData } from '../../../contexts/under-oppfolging';
 import { useAutentiseringData } from '../../../contexts/autentisering';
@@ -32,7 +32,7 @@ function Sluttkort() {
     const featuretoggleEgenvurderingAktivert =
         featuretoggleData && featuretoggleData['veientilarbeid.vis-egenvurdering-med-14a'];
 
-    const skalViseEgenvurdering = kanViseEgenvurdering({
+    const skalViseEgenvurdering = kanViseIVURDEgenvurdering({
         underOppfolgingData,
         registreringData,
         autentiseringData,

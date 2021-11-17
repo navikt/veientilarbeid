@@ -2,10 +2,10 @@ import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import Intro14AWrapper from './Kortbunke';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import { Formidlingsgruppe, Servicegruppe } from '../../contexts/oppfolging';
 import { mockIntersectionObserver } from '../../mocks/intersection-observer-mock';
+import Onboarding14a from './Onboarding14a';
 
 const providerProps: ProviderProps = {
     brukerInfo: {
@@ -35,18 +35,18 @@ describe('tester onboarding komponenten for 14a-intro', () => {
     });
 
     test('komponenten vises også når featuretoggle ikke er satt', () => {
-        const { container } = render(<Intro14AWrapper />, { wrapper: contextProviders(providerProps) });
+        const { container } = render(<Onboarding14a />, { wrapper: contextProviders(providerProps) });
         expect(container).not.toBeEmptyDOMElement();
     });
 
     test('komponenten vises IKKE når bruker ikke har standard innsats og feature-toggle ikke er på', () => {
-        const { container } = render(<Intro14AWrapper />, {
+        const { container } = render(<Onboarding14a />, {
             wrapper: contextProviders({
                 ...providerProps,
                 featureToggle: { 'veientilarbeid.onboarding14a.situasjonsbestemt': false },
                 oppfolging: {
-                    formidlingsgruppe: Formidlingsgruppe.IARBS,
-                    servicegruppe: Servicegruppe.VURDI,
+                    formidlingsgruppe: Formidlingsgruppe.ARBS,
+                    servicegruppe: Servicegruppe.BFORM,
                 },
                 brukerInfo: { alder: 29 },
             }),
@@ -55,13 +55,13 @@ describe('tester onboarding komponenten for 14a-intro', () => {
     });
 
     test('komponenten vises når bruker ikke har standard innsats og feature-toggle er på', () => {
-        const { container } = render(<Intro14AWrapper />, {
+        const { container } = render(<Onboarding14a />, {
             wrapper: contextProviders({
                 ...providerProps,
                 featureToggle: { 'veientilarbeid.onboarding14a.situasjonsbestemt': true },
                 oppfolging: {
-                    formidlingsgruppe: Formidlingsgruppe.IARBS,
-                    servicegruppe: Servicegruppe.VURDI,
+                    formidlingsgruppe: Formidlingsgruppe.ARBS,
+                    servicegruppe: Servicegruppe.BFORM,
                 },
                 brukerInfo: { alder: 29 },
             }),
@@ -70,7 +70,7 @@ describe('tester onboarding komponenten for 14a-intro', () => {
     });
 
     test('komponenten vises også når bruker er 29 år', () => {
-        const { container } = render(<Intro14AWrapper />, {
+        const { container } = render(<Onboarding14a />, {
             wrapper: contextProviders({
                 ...providerProps,
                 featureToggle: { 'veientilarbeid.14a-intro': true },
@@ -81,7 +81,7 @@ describe('tester onboarding komponenten for 14a-intro', () => {
     });
 
     test('komponenten VISES også når bruker har vært registrert i 13 uker', () => {
-        const { container } = render(<Intro14AWrapper />, {
+        const { container } = render(<Onboarding14a />, {
             wrapper: contextProviders({
                 ...providerProps,
                 featureToggle: { 'veientilarbeid.14a-intro': true },
@@ -92,7 +92,7 @@ describe('tester onboarding komponenten for 14a-intro', () => {
     });
 
     test('komponenten vises også når eksperimentet onboarding14a ikke er med', () => {
-        const { container } = render(<Intro14AWrapper />, {
+        const { container } = render(<Onboarding14a />, {
             wrapper: contextProviders({
                 ...providerProps,
                 featureToggle: { 'veientilarbeid.14a-intro': true },
@@ -103,21 +103,21 @@ describe('tester onboarding komponenten for 14a-intro', () => {
     });
 
     test('komponenten vises når featuretoggle er satt og men hører til kontor som deltar på eksperimentet', () => {
-        const { container } = render(<Intro14AWrapper />, {
+        const { container } = render(<Onboarding14a />, {
             wrapper: contextProviders({ ...providerProps, featureToggle: { 'veientilarbeid.14a-intro': true } }),
         });
         expect(container).not.toBeEmptyDOMElement();
     });
 
     test('komponenten starter på sluttkortet når man er forbi uke 0', () => {
-        render(<Intro14AWrapper />, {
+        render(<Onboarding14a />, {
             wrapper: contextProviders({ ...providerProps, featureToggle: { 'veientilarbeid.14a-intro': true } }),
         });
         expect(screen.getByText(/Om du ønsker oppfølging/i)).toBeInTheDocument();
     });
 
     test('komponenten starter i pre-state når man er på uke 0', () => {
-        render(<Intro14AWrapper />, {
+        render(<Onboarding14a />, {
             wrapper: contextProviders({
                 ...providerProps,
                 featureToggle: { 'veientilarbeid.14a-intro': true },
@@ -131,7 +131,7 @@ describe('tester onboarding komponenten for 14a-intro', () => {
     });
 
     test('man kan navigere seg gjennom kortene', () => {
-        render(<Intro14AWrapper />, {
+        render(<Onboarding14a />, {
             wrapper: contextProviders({
                 ...providerProps,
                 featureToggle: { 'veientilarbeid.14a-intro': true },

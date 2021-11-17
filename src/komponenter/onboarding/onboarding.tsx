@@ -76,6 +76,7 @@ const Onboarding = (props: OnboardingProps) => {
     const hoppOverIntro = (e: React.MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
+        setHarSettIntro(true);
         setGjeldendeKortIndex(innhold.length - 1);
         amplitudeLogger('veientilarbeid.onboarding', {
             intro: id,

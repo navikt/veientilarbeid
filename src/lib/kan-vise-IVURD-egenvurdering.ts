@@ -4,7 +4,7 @@ import * as Autentisering from '../contexts/autentisering';
 import * as Egenvurdering from '../contexts/egenvurdering';
 import * as Oppfolging from '../contexts/oppfolging';
 
-export function kanViseEgenvurdering({
+export function kanViseIVURDEgenvurdering({
     underOppfolgingData,
     registreringData,
     autentiseringData,

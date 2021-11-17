@@ -1,11 +1,11 @@
-import { Formidlingsgruppe, Servicegruppe } from '../../contexts/oppfolging';
-import { DinSituasjonSvar, FremtidigSituasjonSvar, ForeslattInnsatsgruppe } from '../../contexts/brukerregistrering';
-import { InnloggingsNiva } from '../../contexts/autentisering';
-import { plussDager } from '../../utils/date-utils';
-import { POAGruppe } from '../../utils/get-poa-group';
-import { EksperimentId } from '../../eksperiment/eksperimenter';
-import { kanVise12UkerEgenvurdering } from './12uker-egenvurdering';
-import { BrukergruppeType } from '../../metrics/amplitude-utils';
+import { Formidlingsgruppe, Servicegruppe } from '../contexts/oppfolging';
+import { DinSituasjonSvar, FremtidigSituasjonSvar, ForeslattInnsatsgruppe } from '../contexts/brukerregistrering';
+import { InnloggingsNiva } from '../contexts/autentisering';
+import { plussDager } from '../utils/date-utils';
+import { POAGruppe } from '../utils/get-poa-group';
+import { EksperimentId } from '../eksperiment/eksperimenter';
+import { kanVise12UkerEgenvurdering } from './kan-vise-12-uker-egenvurdering';
+import { BrukergruppeType } from '../metrics/amplitude-utils';
 
 const eksperiment: EksperimentId = 'onboarding14a';
 const poagruppeKSS: POAGruppe = 'kss';

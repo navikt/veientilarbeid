@@ -11,7 +11,7 @@ import { useAutentiseringData } from '../../contexts/autentisering';
 import { useOppfolgingData } from '../../contexts/oppfolging';
 import { useEgenvurderingData } from '../../contexts/egenvurdering';
 import { useUnderOppfolgingData } from '../../contexts/under-oppfolging';
-import { kanViseEgenvurdering } from '../../lib/kan-vise-egenvurdering';
+import { kanViseIVURDEgenvurdering } from '../../lib/kan-vise-IVURD-egenvurdering';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 
@@ -35,7 +35,7 @@ const Egenvurdering = () => {
     const underOppfolgingData = useUnderOppfolgingData();
     const featuretoggleData = useFeatureToggleData();
 
-    const skalViseEgenvurderingLenke = kanViseEgenvurdering({
+    const skalViseEgenvurderingLenke = kanViseIVURDEgenvurdering({
         underOppfolgingData,
         registreringData,
         autentiseringData,
