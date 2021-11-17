@@ -1,11 +1,13 @@
-import { useContext, useEffect, useState } from 'react';
-import { useAmplitudeData } from '../../contexts/amplitude-context';
-import { amplitudeLogger } from '../../metrics/amplitude-utils';
-import './feedback.less';
+import { useEffect, useState } from 'react';
 import { Undertekst } from 'nav-frontend-typografi';
 import classNames from 'classnames';
-import { FeaturetoggleContext } from '../../contexts/feature-toggles';
+
+import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { amplitudeLogger } from '../../metrics/amplitude-utils';
+import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useBrowserStorage } from '../../hooks/use-browserstorage';
+
+import './feedback.less';
 
 interface Props {
     id?: string;
@@ -19,7 +21,7 @@ function Feedback({ id, className }: Props) {
     });
     const [valgt, setValgt] = useState('');
     const amplitudeData = useAmplitudeData();
-    const { data: featuretoggledata } = useContext(FeaturetoggleContext);
+    const featuretoggledata = useFeatureToggleData();
 
     useEffect(() => {
         const { valgt } = feedback;
