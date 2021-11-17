@@ -1,7 +1,7 @@
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 
-import EgenvurderingKort, { AVSLAATT_EGENVURDERING } from '../EgenvurderingKort';
-import { kanViseEgenvurdering } from '../../../lib/kan-vise-egenvurdering';
+import EgenvurderingUke0, { AVSLAATT_EGENVURDERING } from '../egenvurdering-uke0';
+import { kanViseIVURDEgenvurdering } from '../../../lib/kan-vise-IVURD-egenvurdering';
 import { useUnderOppfolgingData } from '../../../contexts/under-oppfolging';
 import { useAutentiseringData } from '../../../contexts/autentisering';
 import { useEgenvurderingData } from '../../../contexts/egenvurdering';
@@ -13,6 +13,9 @@ import { hentFraBrowserStorage } from '../../../utils/browserStorage-utils';
 import { useAmplitudeData } from '../../../contexts/amplitude-context';
 import { useBrukerregistreringData } from '../../../contexts/brukerregistrering';
 import { useUlesteDialogerData } from '../../../contexts/ulestedialoger';
+import EgenvurderingUke12, { INTRO_KEY_12UKER } from '../egenvurdering-uke12';
+import { kanVise12UkerEgenvurdering } from '../../../lib/kan-vise-12-uker-egenvurdering';
+import { useBrukerinfoData } from '../../../contexts/bruker-info';
 
 function Sluttkort() {
     const amplitudeData = useAmplitudeData();
@@ -23,6 +26,7 @@ function Sluttkort() {
     const autentiseringData = useAutentiseringData();
     const egenvurderingData = useEgenvurderingData();
     const oppfolgingData = useOppfolgingData();
+    const brukerInfoData = useBrukerinfoData();
     const featuretoggleData = useFeatureToggleData();
     const { antallUleste } = useUlesteDialogerData();
 
@@ -35,7 +39,7 @@ function Sluttkort() {
     const featuretoggleEgenvurderingAktivert =
         featuretoggleData && featuretoggleData['veientilarbeid.vis-egenvurdering-med-14a'];
 
-    const skalViseEgenvurdering = kanViseEgenvurdering({
+    const skalViseIVUREgenvurdering = kanViseIVURDEgenvurdering({
         underOppfolgingData,
         registreringData,
         autentiseringData,
@@ -43,13 +47,24 @@ function Sluttkort() {
         oppfolgingData,
     });
 
-    const EgenVurderingMedLesLink = () => {
-        return <EgenvurderingKort />;
-    };
+    const sistSettEgenvurdering = Number(hentFraBrowserStorage(INTRO_KEY_12UKER)) ?? 0;
+    const visEgenvurderingsUke12 = kanVise12UkerEgenvurdering({
+        brukerInfoData,
+        egenvurderingData,
+        oppfolgingData,
+        registreringData,
+        amplitudeData,
+        featuretoggleData,
+        sistVistFraLocalstorage: sistSettEgenvurdering,
+    });
 
     const harAvslattEgenvurdering = hentFraBrowserStorage(AVSLAATT_EGENVURDERING);
-    if (featuretoggleEgenvurderingAktivert && skalViseEgenvurdering && !harAvslattEgenvurdering)
-        return <EgenVurderingMedLesLink />;
+    if (featuretoggleEgenvurderingAktivert && skalViseIVUREgenvurdering && !harAvslattEgenvurdering)
+        return <EgenvurderingUke0 />;
+
+    if (visEgenvurderingsUke12) {
+        return <EgenvurderingUke12 />;
+    }
 
     return (
         <>
