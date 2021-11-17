@@ -1,117 +1,22 @@
-import { useEffect, useRef, useState } from 'react';
 import * as React from 'react';
-import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
-import * as Brukerregistrering from '../../contexts/brukerregistrering';
-import * as Egenvurdering from '../../contexts/egenvurdering';
 import { useOppfolgingData } from '../../contexts/oppfolging';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import sjekkOmBrukerErStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
-import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
-import './14a-intro.less';
-import { fjernFraBrowserStorage, hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
-import ErRendret from '../er-rendret/er-rendret';
-import { FeaturetoggleContext } from '../../contexts/feature-toggles';
-import { UlesteDialogerContext } from '../../contexts/ulestedialoger';
-import ModalWrapper from 'nav-frontend-modal';
+import { fjernFraBrowserStorage, hentFraBrowserStorage } from '../../utils/browserStorage-utils';
+import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { kanVise12UkerEgenvurdering } from '../12uker-egenvurdering/12uker-egenvurdering';
 import EgenVurdering from '../12uker-egenvurdering/12uker-egenvurdering';
 import { KssStartkort, KssKortliste, KssSluttkort } from './kss';
 import { StandardStartkort, StandardKortliste, StandardSluttkort } from './standardinnsats';
 import { erKSSBruker } from '../../lib/er-kss-bruker';
-import OnboardingOmslutning from '../onboarding-omslutning/OnboardingOmslutning';
+import Onboarding from '../onboarding/onboarding';
+import './14a-intro.less';
+import { useEgenvurderingData } from '../../contexts/egenvurdering';
+import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 
 const INTRO_KEY_14A = '14a-intro';
 const INTRO_KEY_12UKER = '12uker-egenvurdering';
-
-interface Intro14AProps {
-    amplitudeData: AmplitudeData;
-    ferdigMedIntroCB: () => void;
-    hoppOverPreState: boolean;
-    skalViseKssKort: boolean;
-    erStandardInnsatsgruppe: boolean;
-}
-
-function Intro14A(props: Intro14AProps) {
-    const [Startkort, Kortliste] = props.skalViseKssKort
-        ? [KssStartkort, KssKortliste]
-        : [StandardStartkort, StandardKortliste];
-    const introKort = [<Startkort hoppOverIntroCB={hoppOverIntro} startIntroCB={nesteKort} />, ...Kortliste];
-
-    const startkort = props.hoppOverPreState ? 1 : 0;
-    const [gjeldendeKortIndex, setGjeldendeKortIndex] = useState(startkort);
-    const forrigeKortRef = useRef(gjeldendeKortIndex);
-
-    function nesteKort() {
-        if (gjeldendeKortIndex < introKort.length - 1) {
-            setGjeldendeKortIndex(gjeldendeKortIndex + 1);
-        }
-    }
-
-    const forrigeKort = () => {
-        if (gjeldendeKortIndex > 0) {
-            setGjeldendeKortIndex(gjeldendeKortIndex - 1);
-        }
-    };
-    const avsluttIntro = () => {
-        amplitudeLogger('veientilarbeid.intro', {
-            intro: '14a',
-            handling: 'Fullfører introduksjon',
-            ...props.amplitudeData,
-        });
-        props.ferdigMedIntroCB();
-    };
-
-    function hoppOverIntro() {
-        amplitudeLogger('veientilarbeid.intro', {
-            intro: '14a',
-            handling: 'Hopper over intro',
-            ...props.amplitudeData,
-        });
-        props.ferdigMedIntroCB();
-    }
-
-    useEffect(() => {
-        if (forrigeKortRef.current !== gjeldendeKortIndex) {
-            const handling =
-                forrigeKortRef.current === 0
-                    ? `Starter 14a-introduksjonen`
-                    : `Går fra ${forrigeKortRef.current} til kort ${gjeldendeKortIndex}`;
-            amplitudeLogger('veientilarbeid.intro', {
-                intro: '14a',
-                handling,
-                ...props.amplitudeData,
-            });
-            forrigeKortRef.current = gjeldendeKortIndex;
-        }
-    }, [gjeldendeKortIndex, props.amplitudeData]);
-
-    return (
-        <>
-            <div className={'kortwrapper'}>
-                <div className={'kortinnhold'}>{introKort[gjeldendeKortIndex]}</div>
-            </div>
-            {gjeldendeKortIndex !== 0 ? (
-                <div className={'knapper'}>
-                    <Tilbakeknapp mini disabled={gjeldendeKortIndex === 1} onClick={forrigeKort}>
-                        Forrige
-                    </Tilbakeknapp>
-                    {gjeldendeKortIndex !== introKort.length - 1 ? (
-                        <Nesteknapp mini onClick={nesteKort}>
-                            {' '}
-                            Neste{' '}
-                        </Nesteknapp>
-                    ) : (
-                        <Nesteknapp mini onClick={avsluttIntro}>
-                            {' '}
-                            Fullfør{' '}
-                        </Nesteknapp>
-                    )}
-                </div>
-            ) : null}
-        </>
-    );
-}
 
 interface IntroProps {
     visKvittering?: string;
@@ -119,23 +24,17 @@ interface IntroProps {
 
 function Intro14AWrapper(props: IntroProps) {
     const amplitudeData = useAmplitudeData();
-    const registreringData = Brukerregistrering.useBrukerregistreringData();
-    const { data: egenvurderingData } = React.useContext(Egenvurdering.EgenvurderingContext);
+    const registreringData = useBrukerregistreringData();
+    const egenvurderingData = useEgenvurderingData();
     const oppfolgingData = useOppfolgingData();
     const brukerInfoData = useBrukerinfoData();
-    const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
-    const ulesteDialoger = React.useContext(UlesteDialogerContext).data;
-
-    const [harSettIntro, setHarSettIntro] = React.useState<boolean>(!!hentFraBrowserStorage(INTRO_KEY_14A));
-    const [tvingVisningAvIntro, setTvingVisningAvIntro] = React.useState<boolean>(false);
+    const featuretoggleData = useFeatureToggleData();
 
     const brukerregistreringData = registreringData?.registrering ?? null;
     const erStandardInnsatsgruppe = sjekkOmBrukerErStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData });
 
     const sistSettEgenvurdering = Number(hentFraBrowserStorage(INTRO_KEY_12UKER)) ?? 0;
     const erNyregistrert = amplitudeData.ukerRegistrert === 0;
-    const rendreIntro = tvingVisningAvIntro || (erNyregistrert && !harSettIntro);
-    const hoppOverPreState = harSettIntro || tvingVisningAvIntro;
 
     const [visEgenvurderingsKomponent, setVisEgenvurderingsKomponent] = React.useState<boolean>(
         kanVise12UkerEgenvurdering({
@@ -149,15 +48,6 @@ function Intro14AWrapper(props: IntroProps) {
         })
     );
 
-    useEffect(() => {
-        if (harSettIntro) {
-            settIBrowserStorage(INTRO_KEY_14A, 'true');
-        } else {
-            fjernFraBrowserStorage(INTRO_KEY_14A);
-        }
-    }, [harSettIntro]);
-
-    const modalToggle = featuretoggleData['veientilarbeid.modal'];
     const ikkeStandardToggle = featuretoggleData['veientilarbeid.onboarding14a.situasjonsbestemt'];
 
     const skalViseKssKort = erKSSBruker({
@@ -172,7 +62,9 @@ function Intro14AWrapper(props: IntroProps) {
         (erStandardInnsatsgruppe && !visEgenvurderingsKomponent) ||
         (ikkeStandardToggle && !erStandardInnsatsgruppe && !visEgenvurderingsKomponent);
 
-    const Sluttkort = skalViseKssKort ? KssSluttkort : StandardSluttkort;
+    const [Startkort, Kortliste, Sluttkort] = skalViseKssKort
+        ? [KssStartkort, KssKortliste, KssSluttkort]
+        : [StandardStartkort, StandardKortliste, StandardSluttkort];
 
     if (visEgenvurderingsKomponent) {
         fjernFraBrowserStorage(INTRO_KEY_14A);
@@ -184,82 +76,18 @@ function Intro14AWrapper(props: IntroProps) {
         return null;
     }
 
-    const ferdigMedIntroCB = () => {
-        setHarSettIntro(true);
-        setTvingVisningAvIntro(false);
-        const sluttkortBakModal = document.getElementById('innhold-registrering');
-        if (sluttkortBakModal) {
-            sluttkortBakModal.scrollIntoView({ block: 'end', inline: 'nearest' });
-        }
-    };
-
-    const lukkerModalCB = () => {
-        amplitudeLogger('veientilarbeid.intro', {
-            intro: '14a',
-            handling: 'Lukker modal',
-            ...amplitudeData,
-        });
-        ferdigMedIntroCB();
-    };
-
-    const lesIntroPaaNyttCB = () => {
-        setTvingVisningAvIntro(true);
-    };
-
-    const stylingKlasse =
-        modalToggle && erNyregistrert && !harSettIntro
-            ? 'fjorten-A-intro-omslutning-modal'
-            : 'fjorten-A-intro-omslutning';
-
     const innhold = (
-        // <div className={stylingKlasse}>
-        <OnboardingOmslutning title="Hjelp og støtte" className={stylingKlasse}>
-            {rendreIntro ? (
-                <>
-                    <Intro14A
-                        erStandardInnsatsgruppe={erStandardInnsatsgruppe}
-                        skalViseKssKort={skalViseKssKort}
-                        hoppOverPreState={hoppOverPreState}
-                        ferdigMedIntroCB={ferdigMedIntroCB}
-                        amplitudeData={amplitudeData}
-                    />
-                    <ErRendret loggTekst="Rendrer 14a intro" />
-                </>
-            ) : (
-                <Sluttkort
-                    amplitudeData={amplitudeData}
-                    registreringData={registreringData}
-                    lesIntroPaaNyttCB={lesIntroPaaNyttCB}
-                    antallUlesteDialoger={ulesteDialoger.antallUleste}
-                />
-            )}
-        </OnboardingOmslutning>
-        // </div>
+        <Onboarding
+            innhold={[<Startkort />, ...Kortliste, <Sluttkort />]}
+            header="Hjelp og støtte"
+            hoppOverPreState={false}
+            hoppRettTilSluttkort={!erNyregistrert}
+            id={INTRO_KEY_14A}
+            lesPaaNyttLnkeTekst="Les om hva slags hjelp du kan få"
+        />
     );
 
-    const innholdWrappetIModal = (
-        <>
-            <OnboardingOmslutning title="Hjelp og støtte" id={'innhold-registrering'}>
-                <Sluttkort
-                    amplitudeData={amplitudeData}
-                    registreringData={registreringData}
-                    lesIntroPaaNyttCB={lesIntroPaaNyttCB}
-                    antallUlesteDialoger={ulesteDialoger.antallUleste}
-                />
-            </OnboardingOmslutning>
-
-            <ModalWrapper
-                shouldCloseOnOverlayClick={false}
-                onRequestClose={lukkerModalCB}
-                isOpen={rendreIntro}
-                contentLabel={'test'}
-            >
-                {innhold}
-            </ModalWrapper>
-        </>
-    );
-
-    return modalToggle && skalViseKssKort && erNyregistrert && !harSettIntro ? innholdWrappetIModal : innhold;
+    return innhold;
 }
 
 export default Intro14AWrapper;

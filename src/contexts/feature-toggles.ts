@@ -2,7 +2,6 @@ import * as React from 'react';
 import { DataElement, STATUS } from '../ducks/api';
 
 export enum FeatureToggles {
-    MODAL = 'veientilarbeid.modal',
     INTRO_FEEDBACK = 'veientilarbeid.feedback',
     INTRO_14A = 'veientilarbeid.14a-intro',
     REGISTRERT_PERMITTERT = 'veientilarbeid.registrert-permittert',
@@ -21,8 +20,6 @@ export enum FeatureToggles {
 
 export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
     switch (toggle) {
-        case FeatureToggles.MODAL:
-            return '14a-modal';
         case FeatureToggles.INTRO_14A:
             return '14a-intro';
         case FeatureToggles.INTRO_FEEDBACK:
@@ -55,7 +52,6 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
 }
 
 export interface Data {
-    'veientilarbeid.modal': boolean;
     'veientilarbeid.feedback': boolean;
     'veientilarbeid.14a-intro': boolean;
     'veientilarbeid.registrert-permittert': boolean;
@@ -78,7 +74,6 @@ export interface State extends DataElement {
 
 export const initialState: State = {
     data: {
-        'veientilarbeid.modal': false,
         'veientilarbeid.feedback': false,
         'veientilarbeid.14a-intro': false,
         'veientilarbeid.registrert-permittert': false,

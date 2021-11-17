@@ -1,19 +1,16 @@
-import { useContext } from 'react';
 import { SituasjonsbestemtSluttkort } from './situasjonsbestemt';
-import { useAmplitudeData } from '../../contexts/amplitude-context';
-import { UlesteDialogerContext } from '../../contexts/ulestedialoger';
-import OnboardingOmslutning from '../onboarding-omslutning/OnboardingOmslutning';
+import Onboarding from '../onboarding/onboarding';
 
 const Enkeltkort = () => {
-    const amplitudeData = useAmplitudeData();
-    const ulesteDialoger = useContext(UlesteDialogerContext).data;
-
-    const Sluttkort = SituasjonsbestemtSluttkort;
+    const innhold = [<SituasjonsbestemtSluttkort />];
 
     return (
-        <OnboardingOmslutning title="Hjelp og støtte">
-            <Sluttkort amplitudeData={amplitudeData} antallUlesteDialoger={ulesteDialoger.antallUleste} />
-        </OnboardingOmslutning>
+        <Onboarding
+            header="Hjelp og støtte"
+            innhold={innhold}
+            hoppOverPreState={false}
+            id="14a-intro-situasjonsbestemt"
+        />
     );
 };
 

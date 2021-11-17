@@ -28,10 +28,13 @@ interface OnboardingProps {
     hoppOverPreState: boolean;
     hoppRettTilSluttkort?: boolean;
     innhold: JSX.Element[];
+    hoppOverLenkeTekst?: string;
+    lesPaaNyttLnkeTekst?: string;
 }
 
 const Onboarding = (props: OnboardingProps) => {
-    const { header, hoppOverPreState, hoppRettTilSluttkort, innhold, id } = props;
+    const { header, hoppOverPreState, hoppRettTilSluttkort, innhold, id, hoppOverLenkeTekst, lesPaaNyttLnkeTekst } =
+        props;
     const ONBOARDING_KEY = id;
     const amplitudeData = useAmplitudeData();
     const featuretoggleData = useFeatureToggleData();
@@ -120,6 +123,8 @@ const Onboarding = (props: OnboardingProps) => {
                             nesteKort={nesteKort}
                             hoppOverIntro={hoppOverIntro}
                             handleLesIntroPaaNytt={handleLesIntroPaaNytt}
+                            hoppOverLenkeTekst={hoppOverLenkeTekst}
+                            lesPaaNyttLnkeTekst={lesPaaNyttLnkeTekst}
                         />
                     </div>
                 )}
