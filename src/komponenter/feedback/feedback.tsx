@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Undertekst } from 'nav-frontend-typografi';
+import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import classNames from 'classnames';
+import Popover from 'nav-frontend-popover';
 
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
@@ -20,6 +21,7 @@ function Feedback({ id, className }: Props) {
         valgt: '',
     });
     const [valgt, setValgt] = useState('');
+    const [visPopover, setVisPopover] = useState<HTMLElement | undefined>(undefined);
     const amplitudeData = useAmplitudeData();
     const featuretoggledata = useFeatureToggleData();
 
@@ -41,6 +43,12 @@ function Feedback({ id, className }: Props) {
             updated: new Date(),
             valgt: feedback,
         });
+        if (feedback === 'nei') {
+            const neiKnapp = document.getElementById('nei-knapp');
+            setVisPopover(neiKnapp || undefined);
+        } else {
+            setVisPopover(undefined);
+        }
     };
 
     const jaKnapp = classNames({
@@ -49,7 +57,7 @@ function Feedback({ id, className }: Props) {
     });
 
     const neiKnapp = classNames({
-        valgt: valgt === 'nei',
+        valgt: /nei/.test(valgt),
         'feedback-knapp': true,
     });
 
@@ -69,9 +77,27 @@ function Feedback({ id, className }: Props) {
                     <span className="feedback-space" aria-hidden="true">
                         |
                     </span>
-                    <button onClick={() => handleFeedback('nei')} className={neiKnapp}>
+                    <button onClick={() => handleFeedback('nei')} className={neiKnapp} id="nei-knapp">
                         <Undertekst>Nei</Undertekst>
                     </button>
+                    <Popover
+                        id="popover-nei"
+                        ankerEl={visPopover}
+                        onRequestClose={() => setVisPopover(undefined)}
+                        autoFokus={false}
+                        tabIndex={-1}
+                        utenPil
+                    >
+                        <Normaltekst className="feedback-utdyping">Hvorfor svarte du nei?</Normaltekst>
+                        <ul className="feedback-grunner">
+                            <li onClick={() => handleFeedback('nei - visste det fra før')}>Visste det fra før</li>
+                            <li onClick={() => handleFeedback('nei - passer ikke min situasjon')}>
+                                Passer ikke min situasjon
+                            </li>
+                            <li onClick={() => handleFeedback('nei - Føles uvesentlig')}>Føles uvesentlig</li>
+                            <li onClick={() => handleFeedback('nei - annet')}>Annet</li>
+                        </ul>
+                    </Popover>
                     <span className="feedback-space" aria-hidden="true">
                         |
                     </span>
