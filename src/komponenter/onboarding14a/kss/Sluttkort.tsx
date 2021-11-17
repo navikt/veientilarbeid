@@ -1,6 +1,6 @@
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 
-import EgenvurderingUke0, { AVSLAATT_EGENVURDERING } from '../egenvurdering-uke0';
+import EgenvurderingIVURD, { AVSLAATT_EGENVURDERING } from '../egenvurdering-uke0';
 import { kanViseIVURDEgenvurdering } from '../../../lib/kan-vise-IVURD-egenvurdering';
 import { useUnderOppfolgingData } from '../../../contexts/under-oppfolging';
 import { useAutentiseringData } from '../../../contexts/autentisering';
@@ -60,7 +60,7 @@ function Sluttkort() {
 
     const harAvslattEgenvurdering = hentFraBrowserStorage(AVSLAATT_EGENVURDERING);
     if (featuretoggleEgenvurderingAktivert && skalViseIVUREgenvurdering && !harAvslattEgenvurdering)
-        return <EgenvurderingUke0 />;
+        return <EgenvurderingIVURD />;
 
     if (visEgenvurderingsUke12) {
         return <EgenvurderingUke12 />;

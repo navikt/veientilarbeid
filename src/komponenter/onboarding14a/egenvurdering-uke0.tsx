@@ -11,7 +11,7 @@ import InViewport from '../in-viewport/in-viewport';
 
 export const AVSLAATT_EGENVURDERING = 'egenvurdering-avslaatt';
 
-const EgenvurderingUke0 = () => {
+const EgenvurderingIVURD = () => {
     const amplitudeData = useAmplitudeData();
 
     const handleButtonClick = () => {
@@ -47,4 +47,4 @@ const EgenvurderingUke0 = () => {
     );
 };
 
-export default EgenvurderingUke0;
+export default EgenvurderingIVURD;
