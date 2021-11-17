@@ -2,7 +2,7 @@ import { useBrukerregistreringData } from '../../../contexts/brukerregistrering'
 import { Systemtittel } from 'nav-frontend-typografi';
 import RegistrertTeller from '../registrert-teller';
 import Lenkepanel14A from '../lenkepanel-14a';
-import EgenvurderingKort, { AVSLAATT_EGENVURDERING } from '../egenvurdering-uke0';
+import EgenvurderingKort, { AVSLAATT_EGENVURDERING } from '../egenvurderingIVURD';
 import { kanViseIVURDEgenvurdering } from '../../../lib/kan-vise-IVURD-egenvurdering';
 import { useFeatureToggleData } from '../../../contexts/feature-toggles';
 import { useUnderOppfolgingData } from '../../../contexts/under-oppfolging';

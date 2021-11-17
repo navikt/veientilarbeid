@@ -1,6 +1,6 @@
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 
-import EgenvurderingIVURD, { AVSLAATT_EGENVURDERING } from '../egenvurdering-uke0';
+import EgenvurderingIVURD, { AVSLAATT_EGENVURDERING } from '../egenvurderingIVURD';
 import { kanViseIVURDEgenvurdering } from '../../../lib/kan-vise-IVURD-egenvurdering';
 import { useUnderOppfolgingData } from '../../../contexts/under-oppfolging';
 import { useAutentiseringData } from '../../../contexts/autentisering';

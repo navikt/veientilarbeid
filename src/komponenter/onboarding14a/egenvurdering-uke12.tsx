@@ -12,27 +12,15 @@ function EgenvurderingUke12() {
     const amplitudeData = useAmplitudeData();
     const { ukerRegistrert } = amplitudeData;
 
-    function avslaarEgenvurdering(loggTekst: string) {
+    function avslaarEgenvurdering() {
         settIBrowserStorage(INTRO_KEY_12UKER, Date.now().toString());
-        loggAktivitet({ aktivitet: loggTekst, ...amplitudeData });
+        loggAktivitet({ aktivitet: 'Avslår 12 ukers egenvurdering fra lenke', ...amplitudeData });
     }
 
     function sendTilEgenvurdering() {
         settIBrowserStorage(INTRO_KEY_12UKER, Date.now().toString());
         loggAktivitet({ aktivitet: 'Går til 12 ukers egenvurdering', ...amplitudeData });
         window.location.assign(`${behovsvurderingLenke}/hvilken-veiledning-trengs`);
-    }
-
-    function handleAvslaaOppfolgingLenke(event: React.SyntheticEvent) {
-        event.preventDefault();
-        event.stopPropagation();
-        avslaarEgenvurdering('Avslår 12 ukers egenvurdering fra lenke');
-    }
-
-    function handleOnskerOppfolging(event: React.SyntheticEvent) {
-        event.preventDefault();
-        event.stopPropagation();
-        sendTilEgenvurdering();
     }
 
     return (
@@ -51,11 +39,11 @@ function EgenvurderingUke12() {
                 </div>
             </div>
             <div className="flex flex-column space-between">
-                <Knapp onClick={handleOnskerOppfolging} className="blokk-s">
+                <Knapp onClick={sendTilEgenvurdering} className="blokk-s">
                     Jeg ønsker hjelp
                 </Knapp>
                 <Normaltekst>
-                    <Lenke className="tracking-wide" href={''} onClick={handleAvslaaOppfolgingLenke}>
+                    <Lenke className="tracking-wide" href={''} onClick={avslaarEgenvurdering}>
                         Jeg klarer meg fint selv
                     </Lenke>
                 </Normaltekst>

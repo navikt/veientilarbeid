@@ -53,7 +53,7 @@ export function kanVise12UkerEgenvurdering({
     const viseEgenvurderingIgjen =
         sistVistFraLocalstorage === 0
             ? true
-            : Date.now() < sistVistFraLocalstorage + ANTALL_DAGER_COOL_DOWN * 24 * 60 * 60;
+            : Date.now() > sistVistFraLocalstorage + ANTALL_DAGER_COOL_DOWN * 24 * 60 * 60;
 
     return (
         featuretoggleAktivert &&
