@@ -18,7 +18,7 @@ import InViewport from '../in-viewport/in-viewport';
 import ErRendret from '../er-rendret/er-rendret';
 import { saksoversikt_url } from '../../url';
 import { erKSSBruker } from '../../lib/er-kss-bruker';
-import OnboardingOmslutning from '../onboarding-omslutning/OnboardingOmslutning';
+import OnboardingOmslutning from './onboarding-omslutning/OnboardingOmslutning';
 
 const virkedager = require('@alheimsins/virkedager');
 
