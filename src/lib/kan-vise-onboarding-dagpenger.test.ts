@@ -1,12 +1,10 @@
 import { DinSituasjonSvar, FremtidigSituasjonSvar } from '../contexts/brukerregistrering';
 import { plussDager } from '../utils/date-utils';
-import { kanViseOnboardingYtelser } from './kan-vise-ytelser';
+import { kanViseOnboardingDagpenger } from './kan-vise-onboarding-dagpenger';
 import { Formidlingsgruppe, Servicegruppe } from '../contexts/oppfolging';
 import { POAGruppe } from '../utils/get-poa-group';
-import { EksperimentId } from '../eksperiment/eksperimenter';
 import { InnloggingsNiva } from '../contexts/autentisering';
 
-const eksperiment: EksperimentId = 'onboarding14a';
 const poagruppeKSS: POAGruppe = 'kss';
 const dpVenter: 'nei' = 'nei';
 
@@ -89,7 +87,7 @@ const grunndata = {
         'veientilarbeid.visbrukerundersokelse': false,
         'veientilarbeid.onboarding14a.situasjonsbestemt': false,
         'veientilarbeid.onboardingYtelser.situasjonsbestemt': false,
-        'veientilarbeid.onboardingDagpenger': false,
+        'veientilarbeid.onboardingDagpenger': true,
         'veientilarbeid.onboardingMeldekort.situasjonsbestemt': false,
     },
     sistVistFraLocalstorage: 0,
@@ -99,42 +97,40 @@ describe('Tester funksjonen ytelser-onboarding', () => {
     test('Nei hvis AAP', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
         testdata.brukerInfoData.rettighetsgruppe = 'AAP';
-        expect(kanViseOnboardingYtelser(testdata)).toBe(false);
+        expect(kanViseOnboardingDagpenger(testdata)).toBe(false);
     });
 
-    test('Ja hvis eksperiment, featuretoggle og situasjonsbestemt', () => {
+    test('Ja hvis featuretoggle og standard', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
-        testdata.featuretoggleData['veientilarbeid.onboardingYtelser.situasjonsbestemt'] = true;
-        testdata.amplitudeData.eksperimenter = [eksperiment];
-        testdata.oppfolgingData.servicegruppe = 'BFORM';
-        expect(kanViseOnboardingYtelser(testdata)).toBe(true);
+        testdata.oppfolgingData.servicegruppe = 'IKVAL';
+        testdata.oppfolgingData.formidlingsgruppe = 'ARBS';
+        expect(kanViseOnboardingDagpenger(testdata)).toBe(true);
     });
 
-    test('NEI hvis ikke eksperiment, ikke featuretoggle og situasjonsbestemt', () => {
+    test('NEI hvis situasjonsbestemt', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
-        testdata.featuretoggleData['veientilarbeid.onboardingYtelser.situasjonsbestemt'] = false;
-        testdata.amplitudeData.eksperimenter = [];
         testdata.oppfolgingData.servicegruppe = 'BFORM';
-        expect(kanViseOnboardingYtelser(testdata)).toBe(false);
+        expect(kanViseOnboardingDagpenger(testdata)).toBe(false);
     });
 
     test('NEI hvis bruker kan reaktveres', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
         testdata.oppfolgingData.kanReaktiveres = true;
-        expect(kanViseOnboardingYtelser(testdata)).toBe(false);
+        expect(kanViseOnboardingDagpenger(testdata)).toBe(false);
     });
 
     test('NEI hvis ikke bruker ikke er standard innsatsgruppe', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
         testdata.oppfolgingData.servicegruppe = 'BKART';
-        expect(kanViseOnboardingYtelser(testdata)).toBe(false);
+        expect(kanViseOnboardingDagpenger(testdata)).toBe(false);
     });
 
-    test('JA hvis ikke kan reaktivers og er standard innsatsgruppe', () => {
+    test('NEI hvis ikke kan reaktivers og er standard innsatsgruppe uten featuretoggle', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
+        testdata.featuretoggleData['veientilarbeid.onboardingDagpenger'] = false;
         testdata.oppfolgingData.kanReaktiveres = false;
         testdata.oppfolgingData.servicegruppe = 'IKVAL';
         testdata.oppfolgingData.formidlingsgruppe = 'ARBS';
-        expect(kanViseOnboardingYtelser(testdata)).toBe(true);
+        expect(kanViseOnboardingDagpenger(testdata)).toBe(false);
     });
 });
