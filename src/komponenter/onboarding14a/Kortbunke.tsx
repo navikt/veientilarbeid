@@ -10,6 +10,7 @@ import './14a-intro.less';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 
 const INTRO_KEY_14A = '14a-intro';
+const AMPLITUDE_TEMA_TAG = '14a';
 
 interface IntroProps {
     visKvittering?: string;
@@ -43,6 +44,7 @@ function Intro14AWrapper(props: IntroProps) {
             hoppOverPreState={false}
             hoppRettTilSluttkort={!erNyregistrert}
             id={INTRO_KEY_14A}
+            amplitudeTemaTag={AMPLITUDE_TEMA_TAG}
             lesPaaNyttLnkeTekst="Les om hva slags hjelp du kan få"
         />
     );

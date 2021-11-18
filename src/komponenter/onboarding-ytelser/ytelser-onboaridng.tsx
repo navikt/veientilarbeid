@@ -26,7 +26,15 @@ function YtelserOnboarding() {
 
     const innhold = [<Sluttkort />];
 
-    return <Onboarding header="Spørsmål om ytelser" innhold={innhold} id="ytelser" hoppOverPreState={false} />;
+    return (
+        <Onboarding
+            header="Spørsmål om ytelser"
+            innhold={innhold}
+            id="ytelser"
+            hoppOverPreState={false}
+            amplitudeTemaTag="ytelser"
+        />
+    );
 }
 
 export default YtelserOnboarding;

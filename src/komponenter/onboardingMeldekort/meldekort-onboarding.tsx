@@ -58,6 +58,7 @@ const MeldekortOnboarding = () => {
         <Onboarding
             header="Meldekort"
             id={MELDEKORT_ONBOARDING_KEY}
+            amplitudeTemaTag="meldekort"
             hoppOverPreState={hoppOverPreState}
             hoppRettTilSluttkort={!erNyregistrert}
             innhold={introKort}

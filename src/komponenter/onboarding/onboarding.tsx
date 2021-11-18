@@ -8,7 +8,7 @@
  * hoppOverPrestate - true = starter på kort nr 2 ellers kort 1
  * hoppRettTilSluttkort - true = tvinger visning av sluttkort, selvom onbordingen ikke allerede er vist.
  * innhold - array av jsx-komponenter i den rekkefølgen du ønsker at de skal vises
- *
+ * amplitudeTemaTag - tekst som brukes for å logge ting i amplitude
  */
 
 import { useEffect, useState } from 'react';
@@ -26,15 +26,24 @@ interface OnboardingProps {
     header: string;
     id: string;
     hoppOverPreState: boolean;
-    hoppRettTilSluttkort?: boolean;
+    amplitudeTemaTag: string;
     innhold: JSX.Element[];
+    hoppRettTilSluttkort?: boolean;
     hoppOverLenkeTekst?: string;
     lesPaaNyttLnkeTekst?: string;
 }
 
 const Onboarding = (props: OnboardingProps) => {
-    const { header, hoppOverPreState, hoppRettTilSluttkort, innhold, id, hoppOverLenkeTekst, lesPaaNyttLnkeTekst } =
-        props;
+    const {
+        header,
+        hoppOverPreState,
+        hoppRettTilSluttkort,
+        innhold,
+        id,
+        hoppOverLenkeTekst,
+        lesPaaNyttLnkeTekst,
+        amplitudeTemaTag,
+    } = props;
     const ONBOARDING_KEY = id;
     const amplitudeData = useAmplitudeData();
     const featuretoggleData = useFeatureToggleData();
@@ -45,8 +54,8 @@ const Onboarding = (props: OnboardingProps) => {
     const stylingFeaturetoggle = featuretoggleData && featuretoggleData['veientilarbeid.vis-oppdatert-styling'];
 
     const forrigeKort = () => {
-        amplitudeLogger('veientilarbeid.intro', {
-            intro: id,
+        amplitudeLogger('veientilarbeid.tema', {
+            tema: amplitudeTemaTag,
             handling: `Går fra ${gjeldendeKortIndex} til ${gjeldendeKortIndex - 1}`,
             amplitudeData,
         });
@@ -61,12 +70,12 @@ const Onboarding = (props: OnboardingProps) => {
             setHarSettIntro(true);
             handling = 'Fullfører onboardingen';
         } else {
-            handling = `Går fra ${gjeldendeKortIndex === 0 ? 'introkort' : gjeldendeKortIndex} til ${
+            handling = `Går fra ${gjeldendeKortIndex === 0 ? ' pre-state' : gjeldendeKortIndex} til ${
                 gjeldendeKortIndex + 1
             }`;
         }
-        amplitudeLogger('veientilarbeid.onboarding', {
-            intro: id,
+        amplitudeLogger('veientilarbeid.tema', {
+            tema: amplitudeTemaTag,
             handling,
             ...amplitudeData,
         });
@@ -78,8 +87,8 @@ const Onboarding = (props: OnboardingProps) => {
         e.stopPropagation();
         setHarSettIntro(true);
         setGjeldendeKortIndex(innhold.length - 1);
-        amplitudeLogger('veientilarbeid.onboarding', {
-            intro: id,
+        amplitudeLogger('veientilarbeid.tema', {
+            tema: amplitudeTemaTag,
             handling: 'Hopper over onboardingen',
             ...amplitudeData,
         });
@@ -88,8 +97,8 @@ const Onboarding = (props: OnboardingProps) => {
     const handleLesIntroPaaNytt = (e: React.MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
-        amplitudeLogger('veientilarbeid.onboarding', {
-            intro: id,
+        amplitudeLogger('veientilarbeid.tema', {
+            tema: amplitudeTemaTag,
             handling: 'Leser onboardingen på nytt',
             ...amplitudeData,
         });
@@ -107,7 +116,7 @@ const Onboarding = (props: OnboardingProps) => {
 
     return (
         <div className={stylingFeaturetoggle ? 'ny_onboarding' : 'onboarding'}>
-            <ErRendret loggTekst={`Rendrer onboarding: ${id}`} />
+            <ErRendret loggTekst={`Rendrer tema: ${amplitudeTemaTag}`} />
             <div className="onboarding-container">
                 <div className="onboarding-header">
                     <Element tag={'h1'} className="kort-heading">
@@ -132,7 +141,7 @@ const Onboarding = (props: OnboardingProps) => {
                     )}
                 </div>
             </div>
-            <InViewport loggTekst={`Viser onboarding i viewport: ${id}`} />
+            <InViewport loggTekst={`Viser tema i viewport: ${amplitudeTemaTag}`} />
         </div>
     );
 };

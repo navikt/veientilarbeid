@@ -5,7 +5,7 @@ import { mockIntersectionObserver } from '../../mocks/intersection-observer-mock
 import { settIBrowserStorage } from '../../utils/browserStorage-utils';
 
 import Onboarding from './onboarding';
-
+const AMPLITUDE_TEMA_TAG = 'test-tag';
 const introkort = [<div>introkort</div>, <div>Kort 1</div>, <div>Kort 2</div>, <div>Kort 3</div>, <div>Sluttkort</div>];
 
 describe('Tester onboarding komponenten med mange kort', () => {
@@ -19,6 +19,7 @@ describe('Tester onboarding komponenten med mange kort', () => {
                 header="Introduksjon til onboardingen"
                 id="ONBOARDING_INTRO"
                 hoppOverPreState={false}
+                amplitudeTemaTag={AMPLITUDE_TEMA_TAG}
                 innhold={introkort}
             />
         );
@@ -31,6 +32,7 @@ describe('Tester onboarding komponenten med mange kort', () => {
             <Onboarding
                 header="Introduksjon til onboardingen"
                 id="ONBOARDING_INTRO"
+                amplitudeTemaTag={AMPLITUDE_TEMA_TAG}
                 hoppOverPreState={false}
                 innhold={introkort}
             />
@@ -46,6 +48,7 @@ describe('Tester onboarding komponenten med mange kort', () => {
             <Onboarding
                 header="Introduksjon til onboardingen"
                 id="ONBOARDING_INTRO"
+                amplitudeTemaTag={AMPLITUDE_TEMA_TAG}
                 hoppOverPreState={true}
                 innhold={introkort}
             />
@@ -58,6 +61,7 @@ describe('Tester onboarding komponenten med mange kort', () => {
             <Onboarding
                 header="Introduksjon til onboardingen"
                 id="ONBOARDING_INTRO"
+                amplitudeTemaTag={AMPLITUDE_TEMA_TAG}
                 hoppOverPreState={true}
                 innhold={introkort}
             />
@@ -76,6 +80,7 @@ describe('Tester onboarding komponenten med mange kort', () => {
             <Onboarding
                 header="Introduksjon til onboardingen"
                 id="ONBOARDING_INTRO"
+                amplitudeTemaTag={AMPLITUDE_TEMA_TAG}
                 hoppOverPreState={true}
                 innhold={introkort}
             />
@@ -92,6 +97,7 @@ describe('Tester onboarding komponenten med mange kort', () => {
             <Onboarding
                 header="Introduksjon til onboardingen"
                 id="ONBOARDING_INTRO"
+                amplitudeTemaTag={AMPLITUDE_TEMA_TAG}
                 hoppOverPreState={true}
                 hoppRettTilSluttkort={true}
                 innhold={introkort}
@@ -106,6 +112,7 @@ describe('Tester onboarding komponenten med mange kort', () => {
             <Onboarding
                 header="Introduksjon til onboardingen"
                 id="ONBOARDING_INTRO"
+                amplitudeTemaTag={AMPLITUDE_TEMA_TAG}
                 hoppOverPreState={true}
                 innhold={introkort}
             />
@@ -118,6 +125,7 @@ describe('Tester onboarding komponenten med mange kort', () => {
             <Onboarding
                 header="Introduksjon til onboardingen"
                 id="ONBOARDING_INTRO"
+                amplitudeTemaTag={AMPLITUDE_TEMA_TAG}
                 hoppOverPreState={true}
                 hoppRettTilSluttkort={true}
                 innhold={introkort}
@@ -141,6 +149,7 @@ describe('Tester onboarding komponenten med bare sluttkort', () => {
             <Onboarding
                 header="Introduksjon til onboardingen"
                 id="ONBOARDING_INTRO"
+                amplitudeTemaTag={AMPLITUDE_TEMA_TAG}
                 hoppOverPreState={false}
                 innhold={bareSluttkort}
             />
@@ -154,6 +163,7 @@ describe('Tester onboarding komponenten med bare sluttkort', () => {
             <Onboarding
                 header="Introduksjon til onboardingen"
                 id="ONBOARDING_INTRO"
+                amplitudeTemaTag={AMPLITUDE_TEMA_TAG}
                 hoppOverPreState={false}
                 innhold={bareSluttkort}
             />
