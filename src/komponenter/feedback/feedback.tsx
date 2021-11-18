@@ -102,9 +102,9 @@ function Feedback({ id, className }: Props) {
                                 </button>
                             </li>
                             <li>
-                                <button onClick={() => handleFeedback('nei - føles uvesentlig')}>
+                                <button onClick={() => handleFeedback('nei - føles ikke viktig')}>
                                     {' '}
-                                    Føles uvesentlig
+                                    Føles ikke viktig
                                 </button>
                             </li>
                             <li>
