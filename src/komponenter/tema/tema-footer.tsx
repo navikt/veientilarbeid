@@ -4,7 +4,7 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import Lenke from 'nav-frontend-lenker';
 import { Normaltekst } from 'nav-frontend-typografi';
 
-interface OnboardingFooterProps {
+interface TemaFooterProps {
     antallSider: number;
     gjeldendeKortIndex: number;
     forrigeKort: () => void;
@@ -12,10 +12,10 @@ interface OnboardingFooterProps {
     hoppOverIntro: (e: React.MouseEvent) => void;
     handleLesIntroPaaNytt: (e: React.MouseEvent) => void;
     hoppOverLenkeTekst?: string;
-    lesPaaNyttLnkeTekst?: string;
+    lesPaaNyttLenkeTekst?: string;
 }
 
-const OnboardingFooter = (props: OnboardingFooterProps) => {
+const TemaFooter = (props: TemaFooterProps) => {
     const {
         antallSider,
         gjeldendeKortIndex,
@@ -24,7 +24,7 @@ const OnboardingFooter = (props: OnboardingFooterProps) => {
         hoppOverIntro,
         handleLesIntroPaaNytt,
         hoppOverLenkeTekst,
-        lesPaaNyttLnkeTekst,
+        lesPaaNyttLenkeTekst,
     } = props;
     if (antallSider <= 1) return null;
     if (antallSider >= 2) {
@@ -46,7 +46,7 @@ const OnboardingFooter = (props: OnboardingFooterProps) => {
                 <div className="kolonne">
                     <Normaltekst>
                         <Lenke onClick={handleLesIntroPaaNytt} href={'#'}>
-                            {lesPaaNyttLnkeTekst || 'Vis introduksjon'}
+                            {lesPaaNyttLenkeTekst || 'Vis introduksjon'}
                         </Lenke>
                     </Normaltekst>
                 </div>
@@ -68,4 +68,4 @@ const OnboardingFooter = (props: OnboardingFooterProps) => {
     return <></>;
 };
 
-export default OnboardingFooter;
+export default TemaFooter;

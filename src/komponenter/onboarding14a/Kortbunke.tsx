@@ -5,7 +5,7 @@ import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { KssStartkort, KssKortliste, KssSluttkort } from './kss';
 import { StandardStartkort, StandardKortliste, StandardSluttkort } from './standardinnsats';
 import { erKSSBruker } from '../../lib/er-kss-bruker';
-import Onboarding from '../onboarding/onboarding';
+import Tema from '../tema/tema';
 import './14a-intro.less';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 
@@ -38,14 +38,14 @@ function Intro14AWrapper(props: IntroProps) {
         : [StandardStartkort, StandardKortliste, StandardSluttkort];
 
     const innhold = (
-        <Onboarding
+        <Tema
             innhold={[<Startkort />, ...Kortliste, <Sluttkort />]}
             header="Hjelp og støtte"
             hoppOverPreState={false}
             hoppRettTilSluttkort={!erNyregistrert}
             id={INTRO_KEY_14A}
             amplitudeTemaTag={AMPLITUDE_TEMA_TAG}
-            lesPaaNyttLnkeTekst="Les om hva slags hjelp du kan få"
+            lesPaaNyttLenkeTekst="Les om hva slags hjelp du kan få"
         />
     );
 

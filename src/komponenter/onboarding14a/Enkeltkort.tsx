@@ -1,5 +1,5 @@
 import { SituasjonsbestemtSluttkort } from './situasjonsbestemt';
-import Onboarding from '../onboarding/onboarding';
+import Tema from '../tema/tema';
 
 const AMPLITUDE_TEMA_TAG = '14a';
 
@@ -7,7 +7,7 @@ const Enkeltkort = () => {
     const innhold = [<SituasjonsbestemtSluttkort />];
 
     return (
-        <Onboarding
+        <Tema
             header="Hjelp og støtte"
             innhold={innhold}
             hoppOverPreState={false}

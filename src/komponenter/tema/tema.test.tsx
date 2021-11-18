@@ -3,8 +3,8 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { mockIntersectionObserver } from '../../mocks/intersection-observer-mock';
 import { settIBrowserStorage } from '../../utils/browserStorage-utils';
+import Tema from './tema';
 
-import Onboarding from './onboarding';
 const AMPLITUDE_TEMA_TAG = 'test-tag';
 const introkort = [<div>introkort</div>, <div>Kort 1</div>, <div>Kort 2</div>, <div>Kort 3</div>, <div>Sluttkort</div>];
 
@@ -15,7 +15,7 @@ describe('Tester onboarding komponenten med mange kort', () => {
 
     test('Viser prestate som standard', () => {
         render(
-            <Onboarding
+            <Tema
                 header="Introduksjon til onboardingen"
                 id="ONBOARDING_INTRO"
                 hoppOverPreState={false}
@@ -29,7 +29,7 @@ describe('Tester onboarding komponenten med mange kort', () => {
 
     test('Kan starte onboarding', () => {
         render(
-            <Onboarding
+            <Tema
                 header="Introduksjon til onboardingen"
                 id="ONBOARDING_INTRO"
                 amplitudeTemaTag={AMPLITUDE_TEMA_TAG}
@@ -45,7 +45,7 @@ describe('Tester onboarding komponenten med mange kort', () => {
 
     test('Går rett til kort 1 hvis hopp "hoppOverPreState" true', () => {
         render(
-            <Onboarding
+            <Tema
                 header="Introduksjon til onboardingen"
                 id="ONBOARDING_INTRO"
                 amplitudeTemaTag={AMPLITUDE_TEMA_TAG}
@@ -58,7 +58,7 @@ describe('Tester onboarding komponenten med mange kort', () => {
 
     test('Kan navigere fram og tilbake i onboardingen', () => {
         render(
-            <Onboarding
+            <Tema
                 header="Introduksjon til onboardingen"
                 id="ONBOARDING_INTRO"
                 amplitudeTemaTag={AMPLITUDE_TEMA_TAG}
@@ -77,7 +77,7 @@ describe('Tester onboarding komponenten med mange kort', () => {
 
     test('TilbakeKnapp er disabled på kort 1', () => {
         render(
-            <Onboarding
+            <Tema
                 header="Introduksjon til onboardingen"
                 id="ONBOARDING_INTRO"
                 amplitudeTemaTag={AMPLITUDE_TEMA_TAG}
@@ -94,7 +94,7 @@ describe('Tester onboarding komponenten med mange kort', () => {
 
     test('Går rett til sluttkort hvis hopp "hoppRettTilSluttkort" true', () => {
         render(
-            <Onboarding
+            <Tema
                 header="Introduksjon til onboardingen"
                 id="ONBOARDING_INTRO"
                 amplitudeTemaTag={AMPLITUDE_TEMA_TAG}
@@ -109,7 +109,7 @@ describe('Tester onboarding komponenten med mange kort', () => {
     test('Går rett til sluttkort allerede lest onboarding', () => {
         settIBrowserStorage('ONBOARDING_INTRO', 'true');
         render(
-            <Onboarding
+            <Tema
                 header="Introduksjon til onboardingen"
                 id="ONBOARDING_INTRO"
                 amplitudeTemaTag={AMPLITUDE_TEMA_TAG}
@@ -122,7 +122,7 @@ describe('Tester onboarding komponenten med mange kort', () => {
 
     test('Kan lese intro fra sluttkort', () => {
         render(
-            <Onboarding
+            <Tema
                 header="Introduksjon til onboardingen"
                 id="ONBOARDING_INTRO"
                 amplitudeTemaTag={AMPLITUDE_TEMA_TAG}
@@ -146,7 +146,7 @@ describe('Tester onboarding komponenten med bare sluttkort', () => {
 
     test('Viser sluttkort som standard', () => {
         render(
-            <Onboarding
+            <Tema
                 header="Introduksjon til onboardingen"
                 id="ONBOARDING_INTRO"
                 amplitudeTemaTag={AMPLITUDE_TEMA_TAG}
@@ -160,7 +160,7 @@ describe('Tester onboarding komponenten med bare sluttkort', () => {
 
     test('Skjuler navigasjonsknapper', () => {
         render(
-            <Onboarding
+            <Tema
                 header="Introduksjon til onboardingen"
                 id="ONBOARDING_INTRO"
                 amplitudeTemaTag={AMPLITUDE_TEMA_TAG}

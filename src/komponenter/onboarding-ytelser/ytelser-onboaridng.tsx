@@ -3,7 +3,7 @@ import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { kanViseOnboardingYtelser } from '../../lib/kan-vise-ytelser';
 import Sluttkort from './sluttkort';
-import Onboarding from '../onboarding/onboarding';
+import Tema from '../tema/tema';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useOppfolgingData } from '../../contexts/oppfolging';
 
@@ -27,7 +27,7 @@ function YtelserOnboarding() {
     const innhold = [<Sluttkort />];
 
     return (
-        <Onboarding
+        <Tema
             header="Spørsmål om ytelser"
             innhold={innhold}
             id="ytelser"

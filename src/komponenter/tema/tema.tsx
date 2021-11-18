@@ -13,7 +13,7 @@
 
 import { useEffect, useState } from 'react';
 import { Element } from 'nav-frontend-typografi';
-import OnboardingFooter from './onboardingFooter';
+import TemaFooter from './tema-footer';
 import { fjernFraBrowserStorage, hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
@@ -21,8 +21,8 @@ import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 
-import './onboarding.less';
-interface OnboardingProps {
+import './tema.less';
+interface TemaProps {
     header: string;
     id: string;
     hoppOverPreState: boolean;
@@ -30,10 +30,10 @@ interface OnboardingProps {
     innhold: JSX.Element[];
     hoppRettTilSluttkort?: boolean;
     hoppOverLenkeTekst?: string;
-    lesPaaNyttLnkeTekst?: string;
+    lesPaaNyttLenkeTekst?: string;
 }
 
-const Onboarding = (props: OnboardingProps) => {
+const Tema = (props: TemaProps) => {
     const {
         header,
         hoppOverPreState,
@@ -41,7 +41,7 @@ const Onboarding = (props: OnboardingProps) => {
         innhold,
         id,
         hoppOverLenkeTekst,
-        lesPaaNyttLnkeTekst,
+        lesPaaNyttLenkeTekst,
         amplitudeTemaTag,
     } = props;
     const ONBOARDING_KEY = id;
@@ -54,7 +54,8 @@ const Onboarding = (props: OnboardingProps) => {
     const stylingFeaturetoggle = featuretoggleData && featuretoggleData['veientilarbeid.vis-oppdatert-styling'];
 
     const forrigeKort = () => {
-        amplitudeLogger('veientilarbeid.tema', {
+        amplitudeLogger('veientilarbeid.tema.onboarding', {
+            tilstand: 'onboarding',
             tema: amplitudeTemaTag,
             handling: `Går fra ${gjeldendeKortIndex} til ${gjeldendeKortIndex - 1}`,
             amplitudeData,
@@ -65,16 +66,17 @@ const Onboarding = (props: OnboardingProps) => {
     const nesteKort = () => {
         let handling = '';
         if (gjeldendeKortIndex === 0) {
-            handling = `Starter onboardingen`;
+            handling = `Starter`;
         } else if (gjeldendeKortIndex + 1 === innhold.length - 1) {
             setHarSettIntro(true);
-            handling = 'Fullfører onboardingen';
+            handling = 'Fullfører';
         } else {
-            handling = `Går fra ${gjeldendeKortIndex === 0 ? ' pre-state' : gjeldendeKortIndex} til ${
+            handling = `Går fra ${gjeldendeKortIndex === 0 ? 'start-kort' : gjeldendeKortIndex} til ${
                 gjeldendeKortIndex + 1
             }`;
         }
         amplitudeLogger('veientilarbeid.tema', {
+            tilstand: gjeldendeKortIndex === 0 ? 'start-kort' : 'onboarding',
             tema: amplitudeTemaTag,
             handling,
             ...amplitudeData,
@@ -88,8 +90,9 @@ const Onboarding = (props: OnboardingProps) => {
         setHarSettIntro(true);
         setGjeldendeKortIndex(innhold.length - 1);
         amplitudeLogger('veientilarbeid.tema', {
+            tilstand: 'onboarding',
             tema: amplitudeTemaTag,
-            handling: 'Hopper over onboardingen',
+            handling: 'Hopper over',
             ...amplitudeData,
         });
     };
@@ -98,8 +101,9 @@ const Onboarding = (props: OnboardingProps) => {
         e.preventDefault();
         e.stopPropagation();
         amplitudeLogger('veientilarbeid.tema', {
+            tilstand: 'sluttkort',
             tema: amplitudeTemaTag,
-            handling: 'Leser onboardingen på nytt',
+            handling: 'Går til onboarding',
             ...amplitudeData,
         });
         setGjeldendeKortIndex(1);
@@ -127,7 +131,7 @@ const Onboarding = (props: OnboardingProps) => {
                     <div className="onboarding-body">{innhold[gjeldendeKortIndex]}</div>
                     {innhold.length > 1 && (
                         <div className="onboarding-footer">
-                            <OnboardingFooter
+                            <TemaFooter
                                 antallSider={innhold.length}
                                 gjeldendeKortIndex={gjeldendeKortIndex}
                                 forrigeKort={forrigeKort}
@@ -135,7 +139,7 @@ const Onboarding = (props: OnboardingProps) => {
                                 hoppOverIntro={hoppOverIntro}
                                 handleLesIntroPaaNytt={handleLesIntroPaaNytt}
                                 hoppOverLenkeTekst={hoppOverLenkeTekst}
-                                lesPaaNyttLnkeTekst={lesPaaNyttLnkeTekst}
+                                lesPaaNyttLenkeTekst={lesPaaNyttLenkeTekst}
                             />
                         </div>
                     )}
@@ -146,4 +150,4 @@ const Onboarding = (props: OnboardingProps) => {
     );
 };
 
-export default Onboarding;
+export default Tema;
