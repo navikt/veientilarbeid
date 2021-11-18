@@ -54,7 +54,7 @@ const Tema = (props: TemaProps) => {
     const stylingFeaturetoggle = featuretoggleData && featuretoggleData['veientilarbeid.vis-oppdatert-styling'];
 
     const forrigeKort = () => {
-        amplitudeLogger('veientilarbeid.tema.onboarding', {
+        amplitudeLogger('veientilarbeid.tema', {
             tilstand: 'onboarding',
             tema: amplitudeTemaTag,
             handling: `Går fra ${gjeldendeKortIndex} til ${gjeldendeKortIndex - 1}`,
