@@ -114,21 +114,23 @@ const Onboarding = (props: OnboardingProps) => {
                         {header}
                     </Element>
                 </div>
-                <div className="onboarding-body">{innhold[gjeldendeKortIndex]}</div>
-                {innhold.length > 1 && (
-                    <div className="onboarding-footer">
-                        <OnboardingFooter
-                            antallSider={innhold.length}
-                            gjeldendeKortIndex={gjeldendeKortIndex}
-                            forrigeKort={forrigeKort}
-                            nesteKort={nesteKort}
-                            hoppOverIntro={hoppOverIntro}
-                            handleLesIntroPaaNytt={handleLesIntroPaaNytt}
-                            hoppOverLenkeTekst={hoppOverLenkeTekst}
-                            lesPaaNyttLnkeTekst={lesPaaNyttLnkeTekst}
-                        />
-                    </div>
-                )}
+                <div className="onboarding-panel">
+                    <div className="onboarding-body">{innhold[gjeldendeKortIndex]}</div>
+                    {innhold.length > 1 && (
+                        <div className="onboarding-footer">
+                            <OnboardingFooter
+                                antallSider={innhold.length}
+                                gjeldendeKortIndex={gjeldendeKortIndex}
+                                forrigeKort={forrigeKort}
+                                nesteKort={nesteKort}
+                                hoppOverIntro={hoppOverIntro}
+                                handleLesIntroPaaNytt={handleLesIntroPaaNytt}
+                                hoppOverLenkeTekst={hoppOverLenkeTekst}
+                                lesPaaNyttLnkeTekst={lesPaaNyttLnkeTekst}
+                            />
+                        </div>
+                    )}
+                </div>
             </div>
             <InViewport loggTekst={`Viser onboarding i viewport: ${id}`} />
         </div>

@@ -6,34 +6,100 @@
     .onboarding-container {
         height: 100%;
         background-color: #0000000d;
-        
+
         display: flex;
         flex-direction: column;
 
         .onboarding-header {
             padding: 1rem;
         }
-
-        .onboarding-body {
-            padding:  0.5rem 1rem;
-            flex: 1;
-        }
-
-        .lesetid {
+        .onboarding-panel {
             display: flex;
-            align-items: center;
-        }
+            flex-direction: column;
 
-        .onboarding-footer {
-            padding: 0.5rem 1rem;
-            .rad {
-                display: flex;
-                flex-direction: row;
+            flex: 1;
+            .onboarding-body {
+                padding: 0.5rem 1rem;
+                flex: 1;
             }
-            .kolonne {
+
+            .lesetid {
                 display: flex;
-                flex-direction: column;
-                // justify-content: flex-start;
+                align-items: center;
+            }
+
+            .onboarding-footer {
+                padding: 0.5rem 1rem;
+                .rad {
+                    display: flex;
+                    flex-direction: row;
+                }
+                .kolonne {
+                    display: flex;
+                    flex-direction: column;
+                    // justify-content: flex-start;
+                }
+            }
+        }
+    }
+}
+
+.ny_onboarding {
+    margin: 0.5rem 0;
+    flex: 1;
+    .onboarding-container {
+        height: 100%;
+        // background-color: #0000000d;
+
+        display: flex;
+        flex-direction: column;
+
+        .typo-innholdstittel,
+        .typo-systemtittel {
+            font-weight: 400;
+        }
+        
+
+        .onboarding-header {
+            padding: 1rem;
+        }
+        .onboarding-panel {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+
+            background-color: white;
+            border-radius: 8px;
+
+            .onboarding-body {
+                padding: 1rem;
+                flex: 1;
+
+                .typo-innholdstittel,
+                .typo-systemtittel {
+                    border-left: #0067C5 solid 2px;
+                    margin-left: -1rem;
+                    padding-left: 1rem;
+                }
+
+            }
+
+            .lesetid {
+                display: flex;
+                align-items: center;
+            }
+
+            .onboarding-footer {
+                padding: 0.5rem 1rem;
+                .rad {
+                    display: flex;
+                    flex-direction: row;
+                }
+                .kolonne {
+                    display: flex;
+                    flex-direction: column;
+                    // justify-content: flex-start;
+                }
             }
         }
     }
@@ -41,6 +107,13 @@
 
 @media (min-width: @screen-md-min) {
     .onboarding {
+        max-width: 50%;
+        margin-left: 0.25rem;
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+    .ny_onboarding {
         max-width: 50%;
         margin-left: 0.25rem;
         &:first-child {
