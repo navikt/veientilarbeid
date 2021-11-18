@@ -96,18 +96,19 @@ function Feedback({ id, className }: Props) {
                                 </button>
                             </li>
                             <li>
-                                <button onClick={() => handleFeedback('nei - passer ikke min situasjon')}>
-                                    Passer ikke min situasjon
+                                <button onClick={() => handleFeedback('nei - forstår ikke innholdet')}>
+                                    {' '}
+                                    Forstår ikke innholdet
                                 </button>
                             </li>
                             <li>
-                                <button onClick={() => handleFeedback('nei - Føles uvesentlig')}>
+                                <button onClick={() => handleFeedback('nei - føles uvesentlig')}>
                                     {' '}
                                     Føles uvesentlig
                                 </button>
                             </li>
                             <li>
-                                <button onClick={() => handleFeedback('nei - annet')}>Annet</button>
+                                <button onClick={() => handleFeedback('nei - andre grunner')}>Andre grunner</button>
                             </li>
                         </ul>
                     </Popover>
