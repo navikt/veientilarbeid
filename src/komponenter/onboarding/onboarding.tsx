@@ -130,7 +130,7 @@ const Onboarding = (props: OnboardingProps) => {
                     </div>
                 )}
             </div>
-            <InViewport loggTekst={`Viser onboarindg i viewport: ${id}`} />
+            <InViewport loggTekst={`Viser onboarding i viewport: ${id}`} />
         </div>
     );
 };
