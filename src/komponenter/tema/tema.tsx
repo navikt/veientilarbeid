@@ -66,17 +66,15 @@ const Tema = (props: TemaProps) => {
     const nesteKort = () => {
         let handling = '';
         if (gjeldendeKortIndex === 0) {
-            handling = `Starter`;
+            handling = `Starter onboarding`;
         } else if (gjeldendeKortIndex + 1 === innhold.length - 1) {
             setHarSettIntro(true);
             handling = 'Fullfører';
         } else {
-            handling = `Går fra ${gjeldendeKortIndex === 0 ? 'start-kort' : gjeldendeKortIndex} til ${
-                gjeldendeKortIndex + 1
-            }`;
+            handling = `Går fra ${gjeldendeKortIndex} til ${gjeldendeKortIndex + 1}`;
         }
         amplitudeLogger('veientilarbeid.tema', {
-            tilstand: gjeldendeKortIndex === 0 ? 'start-kort' : 'onboarding',
+            tilstand: gjeldendeKortIndex === 0 ? 'startkort' : 'onboarding',
             tema: amplitudeTemaTag,
             handling,
             ...amplitudeData,
@@ -90,7 +88,7 @@ const Tema = (props: TemaProps) => {
         setHarSettIntro(true);
         setGjeldendeKortIndex(innhold.length - 1);
         amplitudeLogger('veientilarbeid.tema', {
-            tilstand: 'onboarding',
+            tilstand: 'startkort',
             tema: amplitudeTemaTag,
             handling: 'Hopper over',
             ...amplitudeData,
