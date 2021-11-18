@@ -1,11 +1,14 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
+import classNames from 'classnames';
+import Popover from 'nav-frontend-popover';
+
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
-import './feedback.less';
-import { Undertekst } from 'nav-frontend-typografi';
-import classNames from 'classnames';
-import { FeaturetoggleContext } from '../../contexts/feature-toggles';
+import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useBrowserStorage } from '../../hooks/use-browserstorage';
+
+import './feedback.less';
 
 interface Props {
     id?: string;
@@ -18,8 +21,9 @@ function Feedback({ id, className }: Props) {
         valgt: '',
     });
     const [valgt, setValgt] = useState('');
+    const [visPopover, setVisPopover] = useState<HTMLElement | undefined>(undefined);
     const amplitudeData = useAmplitudeData();
-    const { data: featuretoggledata } = useContext(FeaturetoggleContext);
+    const featuretoggledata = useFeatureToggleData();
 
     useEffect(() => {
         const { valgt } = feedback;
@@ -39,6 +43,12 @@ function Feedback({ id, className }: Props) {
             updated: new Date(),
             valgt: feedback,
         });
+        if (feedback === 'nei') {
+            const neiKnapp = document.getElementById('nei-knapp');
+            setVisPopover(neiKnapp || undefined);
+        } else {
+            setVisPopover(undefined);
+        }
     };
 
     const jaKnapp = classNames({
@@ -47,7 +57,7 @@ function Feedback({ id, className }: Props) {
     });
 
     const neiKnapp = classNames({
-        valgt: valgt === 'nei',
+        valgt: /nei/.test(valgt),
         'feedback-knapp': true,
     });
 
@@ -67,9 +77,41 @@ function Feedback({ id, className }: Props) {
                     <span className="feedback-space" aria-hidden="true">
                         |
                     </span>
-                    <button onClick={() => handleFeedback('nei')} className={neiKnapp}>
+                    <button onClick={() => handleFeedback('nei')} className={neiKnapp} id="nei-knapp">
                         <Undertekst>Nei</Undertekst>
                     </button>
+                    <Popover
+                        id="popover-nei"
+                        ankerEl={visPopover}
+                        onRequestClose={() => setVisPopover(undefined)}
+                        autoFokus={false}
+                        tabIndex={-1}
+                        utenPil
+                    >
+                        <Normaltekst className="feedback-utdyping">Hvorfor svarte du nei?</Normaltekst>
+                        <ul className="feedback-grunner">
+                            <li>
+                                <button onClick={() => handleFeedback('nei - visste det fra før')}>
+                                    Visste det fra før
+                                </button>
+                            </li>
+                            <li>
+                                <button onClick={() => handleFeedback('nei - forstår ikke innholdet')}>
+                                    {' '}
+                                    Forstår ikke innholdet
+                                </button>
+                            </li>
+                            <li>
+                                <button onClick={() => handleFeedback('nei - føles uvesentlig')}>
+                                    {' '}
+                                    Føles uvesentlig
+                                </button>
+                            </li>
+                            <li>
+                                <button onClick={() => handleFeedback('nei - andre grunner')}>Andre grunner</button>
+                            </li>
+                        </ul>
+                    </Popover>
                     <span className="feedback-space" aria-hidden="true">
                         |
                     </span>
