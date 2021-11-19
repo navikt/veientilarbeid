@@ -1,7 +1,6 @@
 import './innhold.less';
 import Rad from './rad';
 import AapRad from '../komponenter/aap/aap';
-import Banner from '../komponenter/banner/banner';
 import ReaktiveringKort from '../komponenter/reaktivering/reaktivering-kort';
 import Egenvurdering from '../komponenter/egenvurdering/egenvurdering';
 import Motestotte from '../komponenter/motestotte/motestotte';
@@ -18,7 +17,6 @@ const InnholdView = () => {
         <>
             <InnholdMetrics />
             <InViewport loggTekst="Veien til arbeid i viewport" />
-            <Banner />
             <Rad>
                 <ReaktiveringKort />
                 <KrrMelding />
