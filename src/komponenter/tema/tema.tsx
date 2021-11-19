@@ -117,7 +117,11 @@ const Tema = (props: TemaProps) => {
     }, [harSettIntro]);
 
     return (
-        <div className={stylingFeaturetoggle ? 'ny_onboarding' : 'onboarding'}>
+        <div
+            className={`${stylingFeaturetoggle ? 'ny_onboarding' : 'onboarding'} ${
+                gjeldendeKortIndex === 0 && innhold.length > 1 ? 'onboarding_startkort' : ''
+            }`}
+        >
             <ErRendret loggTekst={`Rendrer tema: ${amplitudeTemaTag}`} />
             <div className="onboarding-container">
                 <div className="onboarding-header">

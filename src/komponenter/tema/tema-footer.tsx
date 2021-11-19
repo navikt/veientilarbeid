@@ -1,6 +1,6 @@
 import { Next } from '@navikt/ds-icons';
 import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
-import { Hovedknapp } from 'nav-frontend-knapper';
+import { Knapp } from 'nav-frontend-knapper';
 import Lenke from 'nav-frontend-lenker';
 import { Normaltekst } from 'nav-frontend-typografi';
 
@@ -31,10 +31,10 @@ const TemaFooter = (props: TemaFooterProps) => {
         if (gjeldendeKortIndex === 0) {
             return (
                 <div className="kolonne">
-                    <Hovedknapp className={'mb-2'} mini onClick={nesteKort}>
+                    <Knapp className={'mb-2'} onClick={nesteKort}>
                         <span>Start introduksjonen</span>
                         <Next />
-                    </Hovedknapp>
+                    </Knapp>
                     <Lenke onClick={hoppOverIntro} href={'#'} className="tracking-wide">
                         {hoppOverLenkeTekst ?? 'Hopp over introduksjonen for nå'}
                     </Lenke>

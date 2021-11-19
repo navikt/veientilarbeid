@@ -3,26 +3,41 @@
 .onboarding {
     margin: 0.5rem 0;
     flex: 1;
+    &.onboarding_startkort {
+        .onboarding-container {
+            height: 100%;
+            // padding: 1rem 0.5rem;
+            background-color: #0067c5;
+            color: #fff;
+            button.knapp {
+                padding: 1rem 0;
+            }
+            button.knapp:hover {
+                border-color: #fff;
+            }
+            a.lenke {
+                color: #fff;
+            }
+        }
+    }
     .onboarding-container {
         height: 100%;
         background-color: #0000000d;
 
         display: flex;
         flex-direction: column;
-
+        padding-bottom: 1rem;
         .onboarding-header {
             padding: 1rem;
         }
         .onboarding-panel {
             display: flex;
             flex-direction: column;
-
             flex: 1;
             .onboarding-body {
                 padding: 0.5rem 1rem;
-                flex: 1;
+                flex: 0;
             }
-
             .lesetid {
                 display: flex;
                 align-items: center;
@@ -58,7 +73,6 @@
         .typo-systemtittel {
             font-weight: 400;
         }
-        
 
         .onboarding-header {
             padding: 1rem;
@@ -77,11 +91,10 @@
 
                 .typo-innholdstittel,
                 .typo-systemtittel {
-                    border-left: #0067C5 solid 2px;
+                    border-left: #0067c5 solid 2px;
                     margin-left: -1rem;
                     padding-left: 1rem;
                 }
-
             }
 
             .lesetid {
