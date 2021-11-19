@@ -142,7 +142,6 @@ describe('tester onboarding komponenten for 14a-intro', () => {
             }),
         });
         const startKnapp = screen.getByRole('button', { name: /start introduksjonen/i });
-        expect(screen.getByText(/3 minutter lesetid/i)).toBeInTheDocument();
         userEvent.click(startKnapp);
         const forrigeKnapp = screen.getByRole('button', { name: /forrige/i });
         const nesteKnapp = screen.getByRole('button', { name: /neste/i });
