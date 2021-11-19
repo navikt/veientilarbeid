@@ -48,6 +48,9 @@ const Tema = (props: TemaProps) => {
     const amplitudeData = useAmplitudeData();
     const featuretoggleData = useFeatureToggleData();
     const [harSettIntro, setHarSettIntro] = useState<boolean>(!!hentFraBrowserStorage(ONBOARDING_KEY));
+
+    const registrert12UkerEllerMer = amplitudeData.ukerRegistrert >= 11;
+
     const startkort = harSettIntro || hoppRettTilSluttkort ? innhold.length - 1 : hoppOverPreState ? 1 : 0;
     const [gjeldendeKortIndex, setGjeldendeKortIndex] = useState(startkort);
 
@@ -131,7 +134,7 @@ const Tema = (props: TemaProps) => {
                 </div>
                 <div className="onboarding-panel">
                     <div className="onboarding-body">{innhold[gjeldendeKortIndex]}</div>
-                    {innhold.length > 1 && (
+                    {innhold.length > 1 && !registrert12UkerEllerMer && (
                         <div className="onboarding-footer">
                             <TemaFooter
                                 antallSider={innhold.length}
