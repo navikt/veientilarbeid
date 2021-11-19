@@ -1,7 +1,7 @@
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
-import Sluttkort from './sluttkort-har-ikke-sokt';
+import Sluttkort from './sluttkort';
 import Tema from '../tema/tema';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useOppfolgingData } from '../../contexts/oppfolging';
