@@ -2,7 +2,6 @@ import Lenke from 'nav-frontend-lenker';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { loggAktivitet } from '../../metrics/metrics';
-import TemaLenkepanel from '../tema/tema-lenkepanel';
 import { dagpengerSoknadLenke } from '../../innhold/lenker';
 import { Hovedknapp } from 'nav-frontend-knapper';
 
@@ -34,7 +33,6 @@ const Sluttkort = () => {
                 Søk om dagpenger
             </Hovedknapp>
 
-            <TemaLenkepanel href={dagpengerSoknadLenke}> Søk om dagpenger</TemaLenkepanel>
             <Normaltekst className={'blokk-xs'}>
                 Har du spørsmål om dagpenger må du bruke
                 <Lenke
