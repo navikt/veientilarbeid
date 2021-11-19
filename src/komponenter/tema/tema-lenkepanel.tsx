@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
 import LenkepanelBase from 'nav-frontend-lenkepanel';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { Normaltekst } from 'nav-frontend-typografi';
 
 interface TemaLenkepanelProps {
     href: string;
@@ -35,7 +35,6 @@ const TemaLenkepanel: React.FC<TemaLenkepanelProps> = (props) => {
         >
             <div className="lenkepanel__innhold">
                 <div className="ml-1">
-                    <Element>Meldekort</Element>
                     <Normaltekst>{props.children}</Normaltekst>
                 </div>
             </div>
