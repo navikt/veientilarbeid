@@ -2,7 +2,7 @@ import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { kanViseOnboardingYtelser } from '../../lib/kan-vise-ytelser';
-import Sluttkort from './sluttkort';
+import Sluttkort from './ytelser/sluttkort';
 import Tema from '../tema/tema';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useOppfolgingData } from '../../contexts/oppfolging';

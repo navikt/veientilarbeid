@@ -1,9 +1,9 @@
 import Lenke from 'nav-frontend-lenker';
 import { Systemtittel, Normaltekst, Element } from 'nav-frontend-typografi';
-import { useAmplitudeData } from '../../contexts/amplitude-context';
-import { loggAktivitet } from '../../metrics/metrics';
-import { saksoversikt_url } from '../../url';
-import TemaLenkepanel from '../tema/tema-lenkepanel';
+import { useAmplitudeData } from '../../../contexts/amplitude-context';
+import { loggAktivitet } from '../../../metrics/metrics';
+import { saksoversikt_url } from '../../../url';
+import TemaLenkepanel from '../../tema/tema-lenkepanel';
 
 const Sluttkort = () => {
     const amplitudeData = useAmplitudeData();

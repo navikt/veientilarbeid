@@ -1,8 +1,8 @@
 import Lenke from 'nav-frontend-lenker';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
-import { useAmplitudeData } from '../../contexts/amplitude-context';
-import { loggAktivitet } from '../../metrics/metrics';
-import { dagpengerSoknadLenke } from '../../innhold/lenker';
+import { useAmplitudeData } from '../../../contexts/amplitude-context';
+import { loggAktivitet } from '../../../metrics/metrics';
+import { dagpengerSoknadLenke } from '../../../innhold/lenker';
 import { Hovedknapp } from 'nav-frontend-knapper';
 
 const Sluttkort = () => {

@@ -1,7 +1,7 @@
 import Lenke from 'nav-frontend-lenker';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
-import { useAmplitudeData } from '../../contexts/amplitude-context';
-import { loggAktivitet } from '../../metrics/metrics';
+import { useAmplitudeData } from '../../../contexts/amplitude-context';
+import { loggAktivitet } from '../../../metrics/metrics';
 
 const Sluttkort = () => {
     const amplitudeData = useAmplitudeData();
