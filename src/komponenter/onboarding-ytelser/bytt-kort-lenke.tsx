@@ -1,7 +1,7 @@
 import Lenke from 'nav-frontend-lenker';
-import { Normaltekst } from 'nav-frontend-typografi';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { ReactComponent as BytteIkon } from './bytte-ikon.svg';
+import './bytt-kort-lenke.less';
 
 const ByttKortLenke = (props: { handleByttKortKlikk: (e: React.MouseEvent) => void; valgtYtelserVisning: string }) => {
     const featuretoggleData = useFeatureToggleData();
@@ -10,15 +10,11 @@ const ByttKortLenke = (props: { handleByttKortKlikk: (e: React.MouseEvent) => vo
     if (!kanViseKomponent) return null;
 
     return (
-        <div>
-            <Normaltekst className={'blokk-xs'}>
-                <BytteIkon />
-                <Lenke href="" onClick={props.handleByttKortKlikk}>
-                    {props.valgtYtelserVisning === 'dagpenger'
-                        ? 'Dagpenger er ikke aktuelt'
-                        : 'Dagpenger er mest aktuelt'}
-                </Lenke>
-            </Normaltekst>
+        <div className="bytt-tema-container">
+            <BytteIkon />
+            <Lenke href="" onClick={props.handleByttKortKlikk}>
+                {props.valgtYtelserVisning === 'dagpenger' ? 'Dagpenger er ikke aktuelt' : 'Dagpenger er mest aktuelt'}
+            </Lenke>
         </div>
     );
 };
