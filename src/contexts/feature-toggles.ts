@@ -14,6 +14,7 @@ export enum FeatureToggles {
     INTRO_MELDEKORT_SITUASJONSBESTEMT = 'veientilarbeid.onboardingMeldekort.situasjonsbestemt',
     INTRO_YTELSER_SITUASJONSBESTEMT = 'veientilarbeid.onboardingYtelser.situasjonsbestemt',
     INTRO_DAGPENGER = 'veientilarbeid.onboardingDagpenger',
+    INTRO_DAGPENGER_TOGGLE = 'veientilarbeid.onboardingDagpenger.toggle',
     KAN_VISE_UTFRA_SITUASJON = 'veientilarbeid.kanViseUtfraSituasjon',
     VIS_OPPDATERT_STYLING = 'veientilarbeid.vis-oppdatert-styling',
     VIS_EGENVURDERING_MED_14A = 'veientilarbeid.vis-egenvurdering-med-14a',
@@ -51,6 +52,8 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Vis egenvurdering med 14a';
         case FeatureToggles.INTRO_DAGPENGER:
             return 'Onboarding dagpenger';
+        case FeatureToggles.INTRO_DAGPENGER_TOGGLE:
+            return 'Onboarding dagpenger toggle';
     }
 }
 
@@ -67,6 +70,7 @@ export interface Data {
     'veientilarbeid.onboardingMeldekort.situasjonsbestemt': boolean;
     'veientilarbeid.onboardingYtelser.situasjonsbestemt': boolean;
     'veientilarbeid.onboardingDagpenger': boolean;
+    'veientilarbeid.onboardingDagpenger.toggle': boolean;
     'veientilarbeid.kanViseUtfraSituasjon': boolean;
     'veientilarbeid.vis-oppdatert-styling': boolean;
     'veientilarbeid.vis-egenvurdering-med-14a': boolean;
@@ -90,6 +94,7 @@ export const initialState: State = {
         'veientilarbeid.onboardingMeldekort.situasjonsbestemt': false,
         'veientilarbeid.onboardingYtelser.situasjonsbestemt': false,
         'veientilarbeid.onboardingDagpenger': false,
+        'veientilarbeid.onboardingDagpenger.toggle': false,
         'veientilarbeid.kanViseUtfraSituasjon': false,
         'veientilarbeid.vis-oppdatert-styling': false,
         'veientilarbeid.vis-egenvurdering-med-14a': false,

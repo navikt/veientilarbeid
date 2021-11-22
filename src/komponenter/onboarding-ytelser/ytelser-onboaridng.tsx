@@ -24,6 +24,9 @@ function YtelserOnboarding() {
 
     if (!kanViseKomponent) return null;
 
+    // const visOnboardingDagpenger = featuretoggleData['veientilarbeid.onboardingDagpenger'];
+    // const visOnboardingDagpengerToggleLenke = featuretoggleData['veientilarbeid.onboardingDagpenger.toggle'];
+
     const innhold = [<Sluttkort />];
 
     return (

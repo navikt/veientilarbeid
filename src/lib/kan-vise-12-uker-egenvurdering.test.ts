@@ -58,6 +58,7 @@ const grunndata = {
         'veientilarbeid.onboardingMeldekort.situasjonsbestemt': false,
         'veientilarbeid.onboardingYtelser.situasjonsbestemt': false,
         'veientilarbeid.onboardingDagpenger': false,
+        'veientilarbeid.onboardingDagpenger.toggle': false,
         'veientilarbeid.kanViseUtfraSituasjon': false,
         'veientilarbeid.vis-oppdatert-styling': false,
         'veientilarbeid.vis-egenvurdering-med-14a': false,

@@ -90,6 +90,7 @@ const grunndata = {
         'veientilarbeid.onboarding14a.situasjonsbestemt': false,
         'veientilarbeid.onboardingYtelser.situasjonsbestemt': false,
         'veientilarbeid.onboardingDagpenger': false,
+        'veientilarbeid.onboardingDagpenger.toggle': false,
         'veientilarbeid.onboardingMeldekort.situasjonsbestemt': false,
     },
     sistVistFraLocalstorage: 0,
