@@ -35,6 +35,8 @@ spec:
     value: {{ veilarbproxy_url }}
   - name: SAKSOVERSIKT_API
     value: {{ saksoversikt_api }}
+  - name: DP_INNSYN_API
+    value: {{ dp_innsyn_api }}
   - name: FASIT_ENVIRONMENT_NAME
     value: {{ app_environment_name }}
   - name: DISABLE_FRONTEND_LOGGER
