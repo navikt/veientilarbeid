@@ -10,6 +10,8 @@ import oppfolgingResponse from './oppfolging-mock';
 import underOppfolgingResponse from './under-oppfolging-mock';
 import meldekortResponse from './meldekort-mock';
 import meldekortstatusResponse from './meldekortstatus-mock';
+import dpSoknadResonse from './dp-innsyn-soknad';
+import dpVedtakResponse from './dp-innsyn-vedtak';
 import paabegynteSoknaderResponse from './saksoversikt-pabegyntesoknader-mock';
 import sakstemaResponse from './saksoversikt-sakstema-mock';
 import msw_get from './msw-utils';
@@ -26,6 +28,7 @@ import {
     VEILARBOPPFOLGING_URL,
     PAABEGYNTE_SOKNADER_URL,
     SAKSTEMA_URL,
+    DP_INNSYN_URL,
 } from '../ducks/api';
 
 export const handlers = [
@@ -42,4 +45,6 @@ export const handlers = [
     msw_get(MELDEKORTSTATUS_URL, meldekortstatusResponse),
     msw_get(PAABEGYNTE_SOKNADER_URL, paabegynteSoknaderResponse),
     msw_get(SAKSTEMA_URL, sakstemaResponse),
+    msw_get(`${DP_INNSYN_URL}/soknad`, dpSoknadResonse),
+    msw_get(`${DP_INNSYN_URL}/vedtak`, dpVedtakResponse),
 ];
