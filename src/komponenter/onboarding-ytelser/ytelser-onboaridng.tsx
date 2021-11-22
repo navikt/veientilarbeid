@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
@@ -8,6 +9,9 @@ import Tema from '../tema/tema';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useOppfolgingData } from '../../contexts/oppfolging';
 import { kanViseOnboardingDagpenger } from '../../lib/kan-vise-onboarding-dagpenger';
+import { amplitudeLogger } from '../../metrics/amplitude-utils';
+import { hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
+import ByttKortLenke from './bytt-kort-lenke';
 
 function YtelserOnboarding() {
     const registreringData = useBrukerregistreringData();
@@ -15,6 +19,25 @@ function YtelserOnboarding() {
     const featuretoggleData = useFeatureToggleData();
     const brukerInfoData = useBrukerinfoData();
     const amplitudeData = useAmplitudeData();
+    const YTELSER_TEMA_VIS_KEY = 'ytelser_tema_vis_key';
+
+    const [valgtYtelserVisning, setValgtYtelserVisning] = useState<string>(
+        hentFraBrowserStorage(YTELSER_TEMA_VIS_KEY) || 'ytelser'
+    );
+
+    const handleByttKortKlikk = (e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        amplitudeLogger('veientilarbeid.tema', {
+            tilstand: 'onboarding',
+            tema: 'ytelser',
+            handling: `Avviser dagpenger-tema`,
+            amplitudeData,
+        });
+        const valgtVisning = valgtYtelserVisning === 'dagpenger' ? 'ytelser' : 'dagpenger';
+        setValgtYtelserVisning(valgtVisning);
+        settIBrowserStorage(YTELSER_TEMA_VIS_KEY, valgtVisning);
+    };
 
     const kanViseYtelserKomponent = kanViseOnboardingYtelser({
         amplitudeData,
@@ -35,13 +58,20 @@ function YtelserOnboarding() {
     if (!kanViseYtelserKomponent && !kanViseDagpengerKomponent) return null;
 
     const visOnboardingDagpenger = featuretoggleData['veientilarbeid.onboardingDagpenger'];
-    // const visOnboardingDagpengerToggleLenke = featuretoggleData['veientilarbeid.onboardingDagpenger.toggle'];
 
     if (!visOnboardingDagpenger || kanViseYtelserKomponent) {
         return (
             <Tema
                 header="Spørsmål om ytelser"
-                innhold={[<SluttkortYtelser />]}
+                innhold={[
+                    <>
+                        <SluttkortYtelser />
+                        <ByttKortLenke
+                            handleByttKortKlikk={handleByttKortKlikk}
+                            valgtYtelserVisning={valgtYtelserVisning}
+                        />
+                    </>,
+                ]}
                 id="ytelser"
                 hoppOverPreState={false}
                 amplitudeTemaTag="ytelser"
@@ -52,7 +82,15 @@ function YtelserOnboarding() {
         return (
             <Tema
                 header="Dagpenger"
-                innhold={[<SluttkortDagpenger />]}
+                innhold={[
+                    <>
+                        <SluttkortDagpenger />
+                        <ByttKortLenke
+                            handleByttKortKlikk={handleByttKortKlikk}
+                            valgtYtelserVisning={valgtYtelserVisning}
+                        />
+                    </>,
+                ]}
                 id="dagpenger"
                 hoppOverPreState={false}
                 amplitudeTemaTag="ytelser"
