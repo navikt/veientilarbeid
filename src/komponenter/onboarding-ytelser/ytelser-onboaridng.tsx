@@ -59,7 +59,7 @@ function YtelserOnboarding() {
 
     const visOnboardingDagpenger = featuretoggleData['veientilarbeid.onboardingDagpenger'];
 
-    if (!visOnboardingDagpenger || kanViseYtelserKomponent) {
+    if (!visOnboardingDagpenger || (kanViseYtelserKomponent && valgtYtelserVisning === 'ytelser')) {
         return (
             <Tema
                 header="Spørsmål om ytelser"
@@ -78,7 +78,7 @@ function YtelserOnboarding() {
             />
         );
     }
-    if (visOnboardingDagpenger && kanViseDagpengerKomponent) {
+    if (visOnboardingDagpenger && kanViseDagpengerKomponent && valgtYtelserVisning === 'dagpenger') {
         return (
             <Tema
                 header="Dagpenger"
