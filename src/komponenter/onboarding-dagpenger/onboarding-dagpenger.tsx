@@ -6,8 +6,11 @@ import Tema from '../tema/tema';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useOppfolgingData } from '../../contexts/oppfolging';
 import { kanViseOnboardingDagpenger } from '../../lib/kan-vise-onboarding-dagpenger';
+import ByttKortLenke from './bytt-kort-lenke';
 
 function DagpengerOnboarding() {
+    const amplitudeTemaTag = 'dagpenger';
+
     const registreringData = useBrukerregistreringData();
     const oppfolgingData = useOppfolgingData();
     const featuretoggleData = useFeatureToggleData();
@@ -27,13 +30,16 @@ function DagpengerOnboarding() {
     const innhold = [<Sluttkort />];
 
     return (
-        <Tema
-            header="Dagpenger"
-            innhold={innhold}
-            id="dagpenger"
-            hoppOverPreState={false}
-            amplitudeTemaTag="dagpenger"
-        />
+        <div>
+            <Tema
+                header="Dagpenger"
+                innhold={innhold}
+                id="dagpenger"
+                hoppOverPreState={false}
+                amplitudeTemaTag={amplitudeTemaTag}
+            />
+            <ByttKortLenke amplitudeTemaTag={amplitudeTemaTag} />
+        </div>
     );
 }
 
