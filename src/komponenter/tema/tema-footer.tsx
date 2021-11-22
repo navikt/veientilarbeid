@@ -26,6 +26,7 @@ const TemaFooter = (props: TemaFooterProps) => {
         hoppOverLenkeTekst,
         lesPaaNyttLenkeTekst,
     } = props;
+
     if (antallSider <= 1) return null;
     if (antallSider >= 2) {
         if (gjeldendeKortIndex === 0) {
