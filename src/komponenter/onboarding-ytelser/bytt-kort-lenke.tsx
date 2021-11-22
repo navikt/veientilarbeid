@@ -6,14 +6,14 @@ import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import { hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
 import { ReactComponent as BytteIkon } from './bytte-ikon.svg';
 
-export const YTELSDER_TEMA_SWITCH_KEY = 'ytelsder_tema_switch_key';
+export const YTELSER_TEMA_SWITCH_KEY = 'ytelser_tema_switch_key';
 
 const ByttKortLenke = (props: { amplitudeTemaTag: string }) => {
     const { amplitudeTemaTag } = props;
     const amplitudeData = useAmplitudeData();
 
     const [valgtYtelserVisning, setValgtYtelserVisning] = useState<boolean>(
-        !!hentFraBrowserStorage(YTELSDER_TEMA_SWITCH_KEY)
+        !!hentFraBrowserStorage(YTELSER_TEMA_SWITCH_KEY)
     );
 
     const handleByttKortKlikk = (e: React.MouseEvent) => {
@@ -26,7 +26,7 @@ const ByttKortLenke = (props: { amplitudeTemaTag: string }) => {
             amplitudeData,
         });
         setValgtYtelserVisning(!valgtYtelserVisning);
-        settIBrowserStorage(YTELSDER_TEMA_SWITCH_KEY, valgtYtelserVisning ? 'false' : 'true');
+        settIBrowserStorage(YTELSER_TEMA_SWITCH_KEY, valgtYtelserVisning ? 'false' : 'true');
     };
 
     return (
