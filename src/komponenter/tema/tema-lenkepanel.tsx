@@ -7,15 +7,17 @@ import './tema-lenkepanel.less';
 interface TemaLenkepanelProps {
     href: string;
     children: React.ReactNode;
+    amplitudeTema: string;
+    amplitudeHandling: string;
 }
 
 const TemaLenkepanel: React.FC<TemaLenkepanelProps> = (props) => {
     const amplitudeData = useAmplitudeData();
 
     const handleClickInnsending = () => {
-        amplitudeLogger('veientilarbeid.intro', {
-            intro: 'meldekort',
-            handling: 'Går til innsending av meldekort',
+        amplitudeLogger('veientilarbeid.tema', {
+            tema: props.amplitudeTema,
+            handling: props.amplitudeHandling,
             ...amplitudeData,
         });
     };

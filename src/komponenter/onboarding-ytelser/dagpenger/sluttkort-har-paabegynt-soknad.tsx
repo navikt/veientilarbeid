@@ -22,7 +22,7 @@ const Sluttkort = () => {
             </Normaltekst>
             <Normaltekst className={'blokk-xs'}>Du har ikke sendt inn søknaden</Normaltekst>
 
-            <TemaLenkepanel href="">
+            <TemaLenkepanel href="" amplitudeHandling="Fortsetter påbegynt soknad" amplitudeTema="dagpenger">
                 <Element>Fortsett på påbegynt søknad</Element> du startet på søknaden {'{dato}'}
             </TemaLenkepanel>
 
