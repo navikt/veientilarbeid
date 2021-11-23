@@ -5,20 +5,17 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { loggAktivitet } from '../../metrics/metrics';
 import Opplysninger from '../innsyn/registreringsopplysninger';
-import DagpengerStatus from '../dagpenger-status/dagpenger-status';
-import './registrert.less';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { OppfolgingContext } from '../../contexts/oppfolging';
 import { useAutentiseringData, InnloggingsNiva } from '../../contexts/autentisering';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import { FeaturetoggleContext } from '../../contexts/feature-toggles';
-import Onboarding14A from '../onboarding14a/Onboarding14a';
 import KvitteringWrapper from '../kvitteringer/kvittering-wrapper';
 import InViewport from '../in-viewport/in-viewport';
 import Permittert from './permittert';
-import YtelserOnboaridng from '../onboarding-ytelser/ytelser-onboaridng';
-import MeldekortOnboarding from '../onboardingMeldekort/meldekort-onboarding';
+import './registrert.less';
+import Temapanel from '../tema-panel/tema-panel';
 
 const Registrert = () => {
     const brukerregistreringData = useBrukerregistreringData();
@@ -96,13 +93,8 @@ const Registrert = () => {
         >
             <Systemtittel className="registrering-status-heading">{tittel}</Systemtittel>
             {visKvittering && <KvitteringWrapper kvittering={visKvittering} />}
+            <Temapanel />
 
-            <div className={oppdatertStylingFeaturetoggle ? 'oppdatert-intro-wrapper' : 'intro-wrapper'}>
-                <DagpengerStatus />
-                <Onboarding14A />
-                <MeldekortOnboarding />
-                <YtelserOnboaridng />
-            </div>
             <Permittert visRegistrertSomPermittert={visRegistrertSomPermittert} />
             {showOpplysninger ? (
                 <Ekspanderbartpanel
