@@ -11,6 +11,7 @@ import {
     ULESTEDIALOGER_URL,
     UNDER_OPPFOLGING_URL,
     VEILARBOPPFOLGING_URL,
+    DP_INNSYN_URL,
 } from '../ducks/api';
 
 import {
@@ -83,8 +84,8 @@ export const demo_handlers = [
 
     msw_get(PAABEGYNTE_SOKNADER_URL, hentDpSoknaderUnderArbeid()),
 
-    msw_get(`${SAKSTEMA_URL}/vedtak`, hentDpInnsynVedtak()),
-    msw_get(`${SAKSTEMA_URL}/soknad`, hentDpInnsynSoknad()),
+    msw_get(`${DP_INNSYN_URL}/vedtak`, hentDpInnsynVedtak()),
+    msw_get(`${DP_INNSYN_URL}/soknad`, hentDpInnsynSoknad()),
 
     msw_get(SAKSTEMA_URL, hentDpSakstema()),
 ];
