@@ -25,7 +25,7 @@ proxy:
 
   - contextPath: /dp-innsyn-api
     baseUrl: {{ DP_INNSYN_API }}
-    pingRequestPath: /isalive
+   pingRequestPath: /internal/alive
 
 redirect:
   - from: /veientilarbeid
