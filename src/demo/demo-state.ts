@@ -3,6 +3,8 @@ import { foerstkommendeMandag, plussDager } from '../utils/date-utils';
 import { hentQueryParam, settQueryParam } from '../utils/query-param-utils';
 import { FeatureToggles } from '../contexts/feature-toggles';
 import muligeEttersendelserMock from '../mocks/saksoversikt-mulige-ettersendelser-mock';
+import DpInnsynSoknadMock from '../mocks/dp-innsyn-soknad';
+import DpInnsynVedtakMock from '../mocks/dp-innsyn-vedtak';
 
 type JSONValue = null | string | number | boolean | JSONObject | JSONArray;
 
@@ -285,3 +287,6 @@ export const hentDpSakstema = (): JSONValue => {
 
 export const hentKvitteringStatus = () => hentDemoState(DemoData.KVITTERING_STATUS) || 'kvitteringIkkeValgt';
 export const settKvitteringStatus = (value: string) => settDemoState(DemoData.KVITTERING_STATUS, value);
+
+export const hentDpInnsynVedtak = () => DpInnsynVedtakMock;
+export const hentDpInnsynSoknad = () => DpInnsynSoknadMock;
