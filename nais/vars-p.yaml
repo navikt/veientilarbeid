@@ -14,7 +14,7 @@ start_samtale_url: https://nav.no/arbeid/start-samtale
 arbeidssokerregistrering_url: https://arbeidssokerregistrering.nav.no
 veilarbproxy_url: http://pto-proxy.pto.svc.cluster.local/proxy
 saksoversikt_api: https://saksoversikt-api.nais.oera.no
-dp_innsyn_api: https://paw-auth-proxy.intern.nav.no
+dp_innsyn_api: http://paw-auth-proxy/proxy
 ingresses:
   - https://veientilarbeid.intern.nav.no
   - https://veientilarbeid.nav.no/
