@@ -81,6 +81,8 @@ spec:
       rules:
         - application: pto-proxy
           namespace: pto
+        - application: dp-innsyn
+          namespace: teamdagpenger
       external:
       {{#each externalHosts as |host|}}
          - host: {{host}}
