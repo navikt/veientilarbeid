@@ -9,6 +9,7 @@ export const cvLenke = erMikrofrontend() ? `${contextpathDittNav}/arbeidsplassen
 export const sykefravaerLenke = erMikrofrontend() ? `${contextpathDittNav}/sykefravaer` : '/sykefravaer';
 export const dagpengerLesmerLenke = 'https://www.nav.no/arbeid/no/arbeidsledig/';
 export const dagpengerSoknadLenke = 'https://www.nav.no/soknader/nb/person/arbeid/dagpenger';
+export const dagpengerStartSoknadLenke = 'https://tjenester.nav.no/soknaddagpenger/utslagskriterier/start#/';
 export const sosialhjelpLenke = erMikrofrontend()
     ? `${contextpathDittNav}/veivisersosialhjelp`
     : '/veivisersosialhjelp';
