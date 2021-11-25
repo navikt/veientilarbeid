@@ -1,6 +1,7 @@
 import { useBrukerregistreringData } from '../../../contexts/brukerregistrering';
 import { Systemtittel } from 'nav-frontend-typografi';
 import RegistrertTeller from '../registrert-teller';
+import { dialogLenke } from '../../../innhold/lenker';
 import Lenkepanel14A from '../lenkepanel-14a';
 import EgenvurderingKort, { AVSLAATT_EGENVURDERING } from '../egenvurderingIVURD';
 import { kanViseIVURDEgenvurdering } from '../../../lib/kan-vise-IVURD-egenvurdering';
@@ -52,7 +53,7 @@ function Sluttkort() {
         <>
             <Systemtittel className={'blokk-xs'}>{kortTittel}</Systemtittel>
             <RegistrertTeller ukerRegistrert={ukerRegistrert} registrertDato={registrertDato} />
-            <Lenkepanel14A amplitudeData={amplitudeData} href={''} antallUlesteDialoger={antallUleste} />
+            <Lenkepanel14A amplitudeData={amplitudeData} href={dialogLenke} antallUlesteDialoger={antallUleste} />
         </>
     );
 }

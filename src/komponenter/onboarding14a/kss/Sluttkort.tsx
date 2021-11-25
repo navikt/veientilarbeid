@@ -1,5 +1,6 @@
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 
+import { dialogLenke } from '../../../innhold/lenker';
 import EgenvurderingIVURD, { AVSLAATT_EGENVURDERING } from '../egenvurderingIVURD';
 import { kanViseIVURDEgenvurdering } from '../../../lib/kan-vise-IVURD-egenvurdering';
 import { useUnderOppfolgingData } from '../../../contexts/under-oppfolging';
@@ -71,7 +72,7 @@ function Sluttkort() {
             <Systemtittel className={'blokk-xs'}>{kortTittel}</Systemtittel>
             <RegistrertTeller ukerRegistrert={ukerRegistrert} registrertDato={registrertDato} />
 
-            <Lenkepanel14A amplitudeData={amplitudeData} href={''} antallUlesteDialoger={antallUleste} />
+            <Lenkepanel14A amplitudeData={amplitudeData} href={dialogLenke} antallUlesteDialoger={antallUleste} />
             {registrertOver12Uker && (
                 <Normaltekst>
                     Veilederen kan besvare spørsmål, bistå rundt det å søke stillinger og tilby hjelp på veien til
