@@ -16,7 +16,7 @@ function hentAktueltSluttkort(situasjon: string) {
 }
 
 function Sluttkort() {
-    const AktueltSluttkort = hentAktueltSluttkort('mottar');
+    const AktueltSluttkort = hentAktueltSluttkort('');
     return <AktueltSluttkort />;
 }
 
