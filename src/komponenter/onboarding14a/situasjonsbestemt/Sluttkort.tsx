@@ -5,6 +5,7 @@ import Lenkepanel14A from '../lenkepanel-14a';
 import Lenke from 'nav-frontend-lenker';
 import { useAmplitudeData } from '../../../contexts/amplitude-context';
 import { useUlesteDialogerData } from '../../../contexts/ulestedialoger';
+import { dialogLenke } from '../../../innhold/lenker';
 
 function Sluttkort() {
     const amplitudeData = useAmplitudeData();
@@ -53,7 +54,7 @@ function Sluttkort() {
             <Normaltekst className={'blokk-xs'}>
                 Du kan stille spørsmål til veileder ved å henvende deg via dialogen.
             </Normaltekst>
-            <Lenkepanel14A amplitudeData={amplitudeData} href={''} antallUlesteDialoger={antallUleste} />
+            <Lenkepanel14A amplitudeData={amplitudeData} href={dialogLenke} antallUlesteDialoger={antallUleste} />
         </>
     );
 }
