@@ -37,6 +37,7 @@ import dagerFraInnsendtSoknad from '../../utils/dager-fra-innsendt-soknad';
 import beregnDagpengerStatus from '../dagpenger-status/beregn-dagpenger-status';
 import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../../lib/er-situasjonsbestemt-innsatsgruppe';
+import erSannsynligvisInaktivertStandardbruker from '../../lib/er-sannsyligvis-inaktivert-standard-innsatsgruppe';
 
 function hentDagerEtterFastsattMeldedag(
     iDag: Date,
@@ -171,10 +172,16 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         oppfolgingData,
     });
 
+    const sannsynligvisInaktivertStandardbruker = erSannsynligvisInaktivertStandardbruker({
+        brukerregistreringData: brukerregistreringDataEllerNull,
+        oppfolgingData,
+    });
     const brukergruppering = brukerErStandardInnsatsgruppe
         ? 'standard'
         : brukerErSituasjonsbestemtInnsatsgruppe
         ? 'situasjonsbestemt'
+        : sannsynligvisInaktivertStandardbruker
+        ? 'sannsynligvis standard og inaktivert'
         : 'annet';
 
     const amplitudeData: AmplitudeData = {

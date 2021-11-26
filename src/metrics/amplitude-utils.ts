@@ -23,7 +23,12 @@ amplitude.getInstance().init(apiKey, undefined, config);
 
 export type AmplitudeLogger = (name: string, values?: object) => void;
 
-export type BrukergruppeType = 'standard' | 'situasjonsbestemt' | 'annet' | 'ukjent';
+export type BrukergruppeType =
+    | 'standard'
+    | 'situasjonsbestemt'
+    | 'sannsynligvis standard og inaktivert'
+    | 'annet'
+    | 'ukjent';
 
 export type AmplitudeData = {
     gruppe: POAGruppe;
