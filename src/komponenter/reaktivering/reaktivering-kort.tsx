@@ -6,6 +6,8 @@ import { OppfolgingContext } from '../../contexts/oppfolging';
 import ReaktiveringMelding from './reaktivering-melding';
 import ReaktiveringIkkeAktueltMelding from './reaktivering-ikke-aktuelt-melding';
 import { useBrowserStorage } from '../../hooks/use-browserstorage';
+import ErRendret from '../er-rendret/er-rendret';
+import InViewport from '../in-viewport/in-viewport';
 
 interface Variant {
     updated: string;
@@ -67,6 +69,7 @@ const ReaktiveringKort = () => {
 
     return (
         <section className="reaktivering-melding blokk-m">
+            <ErRendret loggTekst="Rendrer tema: kan reaktiveres" />
             <EkspanderbartpanelBase
                 tittel={<Tittel state={reaktiveringsState} />}
                 apen={apen}
@@ -79,6 +82,7 @@ const ReaktiveringKort = () => {
                     <ReaktiveringIkkeAktueltMelding />
                 )}
             </EkspanderbartpanelBase>
+            <InViewport loggTekst="Viser tema i viewport: kan reaktiveres" />
         </section>
     );
 };
