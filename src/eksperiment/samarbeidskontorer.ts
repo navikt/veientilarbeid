@@ -71,6 +71,126 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
             },
         ],
     },
+    '3014': {
+        navn: 'Indre Østfold',
+        eksperimenter: [
+            {
+                id: 'onboarding14a',
+                registrertEtterDato: new Date('2021-12-01'),
+                situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
+            },
+        ],
+    },
+    '3002': {
+        navn: 'Moss',
+        eksperimenter: [
+            {
+                id: 'onboarding14a',
+                registrertEtterDato: new Date('2021-12-01'),
+                situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
+            },
+        ],
+    },
+    '3013': {
+        navn: 'Marker',
+        eksperimenter: [
+            {
+                id: 'onboarding14a',
+                registrertEtterDato: new Date('2021-12-01'),
+                situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
+            },
+        ],
+    },
+    '3015': {
+        navn: 'Skiptvedt',
+        eksperimenter: [
+            {
+                id: 'onboarding14a',
+                registrertEtterDato: new Date('2021-12-01'),
+                situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
+            },
+        ],
+    },
+    '3017': {
+        navn: 'Råde',
+        eksperimenter: [
+            {
+                id: 'onboarding14a',
+                registrertEtterDato: new Date('2021-12-01'),
+                situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
+            },
+        ],
+    },
+    '3018': {
+        navn: 'Våler',
+        eksperimenter: [
+            {
+                id: 'onboarding14a',
+                registrertEtterDato: new Date('2021-12-01'),
+                situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
+            },
+        ],
+    },
+    '3019': {
+        navn: 'Vestby',
+        eksperimenter: [
+            {
+                id: 'onboarding14a',
+                registrertEtterDato: new Date('2021-12-01'),
+                situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
+            },
+        ],
+    },
+    '3020': {
+        navn: 'Nordre Follo',
+        eksperimenter: [
+            {
+                id: 'onboarding14a',
+                registrertEtterDato: new Date('2021-12-01'),
+                situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
+            },
+        ],
+    },
+    '3021': {
+        navn: 'Ås',
+        eksperimenter: [
+            {
+                id: 'onboarding14a',
+                registrertEtterDato: new Date('2021-12-01'),
+                situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
+            },
+        ],
+    },
+    '3022': {
+        navn: 'Frogn',
+        eksperimenter: [
+            {
+                id: 'onboarding14a',
+                registrertEtterDato: new Date('2021-12-01'),
+                situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
+            },
+        ],
+    },
+    '3023': {
+        navn: 'Nesodden',
+        eksperimenter: [
+            {
+                id: 'onboarding14a',
+                registrertEtterDato: new Date('2021-12-01'),
+                situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
+            },
+        ],
+    },
+    '3028': {
+        navn: 'Enebakk',
+        eksperimenter: [
+            {
+                id: 'onboarding14a',
+                registrertEtterDato: new Date('2021-12-01'),
+                situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
+            },
+        ],
+    },
     '3413': {
         navn: 'Stange',
         eksperimenter: [],
