@@ -10,7 +10,7 @@ function erSannsynligvisInaktivertStandardbruker(data: DataGrunnlag): boolean {
     const { oppfolgingData } = data;
     const { servicegruppe, formidlingsgruppe, kanReaktiveres } = oppfolgingData;
 
-    if (servicegruppe === 'IKVAL' && formidlingsgruppe === 'ARBS' && kanReaktiveres === true) {
+    if (servicegruppe === 'IKVAL' && formidlingsgruppe === 'ISERV' && kanReaktiveres === true) {
         return true;
     }
 

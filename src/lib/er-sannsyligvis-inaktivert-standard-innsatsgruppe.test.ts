@@ -24,17 +24,17 @@ const grunnData = {
         kanReaktiveres: true,
         reservasjonKRR: false,
         servicegruppe: Servicegruppe.IKVAL,
-        formidlingsgruppe: Formidlingsgruppe.ARBS,
+        formidlingsgruppe: Formidlingsgruppe.ISERV,
     },
 };
 
 describe('tester funksjonaliteten for erStandardInnsatsgruppe', () => {
-    test('returnerer true for ARBS + IKVAL + kan reaktiveres', () => {
+    test('returnerer true for ARBS + ISERV + kan reaktiveres', () => {
         const testData = { ...grunnData };
         expect(erSannsynligvisInaktivertStandardbruker(testData)).toBe(true);
     });
 
-    test('returnerer false for ARBS + IKVAL og ikke kan reaktiveres', () => {
+    test('returnerer false for ARBS + ISERV og ikke kan reaktiveres', () => {
         const testData = { ...grunnData, oppfolgingData: { ...grunnData.oppfolgingData, kanReaktiveres: false } };
         expect(erSannsynligvisInaktivertStandardbruker(testData)).toBe(false);
     });
