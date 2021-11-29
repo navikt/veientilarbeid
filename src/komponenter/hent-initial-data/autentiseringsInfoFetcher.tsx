@@ -6,17 +6,21 @@ import { contextpathDittNav, erMikrofrontend } from '../../utils/app-state-utils
 import DataProvider from './data-provider';
 import OppfolgingBrukerregistreringProvider from './oppfolging-brukerregistrering-provider';
 import * as Autentisering from '../../contexts/autentisering';
+import * as AutentiseringTokenx from '../../contexts/autentisering-tokenx';
 import InnholdView from '../../innhold/innhold-view';
+import { AUTH_PROXY_URL } from '../../ducks/api';
 
 export const AUTH_API = '/api/auth';
 
 const AutentiseringsInfoFetcher = () => {
     const [state, setState] = React.useState<Autentisering.State>(Autentisering.initialState);
+    const [tokenXState, setTokenXState] = React.useState<AutentiseringTokenx.State>(AutentiseringTokenx.initialState);
 
     const contextpath = erMikrofrontend() ? contextpathDittNav : '';
 
     React.useEffect(() => {
         fetchData<Autentisering.State, Autentisering.Data>(state, setState, `${contextpath}${AUTH_API}`);
+        fetchData<AutentiseringTokenx.State, AutentiseringTokenx.Data>(tokenXState, setTokenXState, AUTH_PROXY_URL);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
