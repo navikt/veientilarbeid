@@ -28,7 +28,7 @@ proxy:
     pingRequestPath: /internal/alive
 
   - contextPath: /auth-proxy
-    baseUrl: { { AUTH_PROXY } }
+    baseUrl: {{ AUTH_PROXY }}
     pingRequestPath: /internal/alive
 
 redirect:
