@@ -27,10 +27,6 @@ proxy:
     baseUrl: {{ DP_INNSYN_API }}
     pingRequestPath: /internal/alive
 
-  - contextPath: /auth-proxy
-    baseUrl: {{ AUTH_PROXY }}
-    pingRequestPath: /internal/alive
-
 redirect:
   - from: /veientilarbeid
     to: {{ VEIENTILARBEID_URL }}

@@ -9,8 +9,8 @@ spec:
   env:
   - name: APPRES_CMS_URL
     value: {{ appres_cms_url }}
-  - name: AUTH_PROXY
-    value: {{ auth_proxy }}
+  - name: TOKENX_AUTH_PROXY
+    value: {{ tokenx_auth_proxy }}
   - name: LOGINSERVICE_URL
     value: {{ loginservice_url }}
   - name: VEIENTILARBEID_URL
