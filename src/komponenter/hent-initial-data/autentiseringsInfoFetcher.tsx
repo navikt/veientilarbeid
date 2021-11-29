@@ -20,7 +20,11 @@ const AutentiseringsInfoFetcher = () => {
 
     React.useEffect(() => {
         fetchData<Autentisering.State, Autentisering.Data>(state, setState, `${contextpath}${AUTH_API}`);
-        fetchData<AutentiseringTokenx.State, AutentiseringTokenx.Data>(tokenXState, setTokenXState, AUTH_PROXY_URL);
+        fetchData<AutentiseringTokenx.State, AutentiseringTokenx.Data>(
+            tokenXState,
+            setTokenXState,
+            `${AUTH_PROXY_URL}/is-authenticated`
+        );
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
