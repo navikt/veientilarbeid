@@ -40,5 +40,4 @@ export const VEILARBOPPFOLGING_URL = `${contextpath}/veilarboppfolging/api/oppfo
     PAABEGYNTE_SOKNADER_URL = `${contextpath}/saksoversikt-api/tjenester/saker/hentPaabegynteSoknader`,
     SAKSTEMA_URL = `${contextpath}/saksoversikt-api/tjenester/sakstema`,
     DP_INNSYN_URL = `${contextpath}/dp-innsyn-api`,
-    AUTH_PROXY_URL = `${contextpath}/auth-proxy`,
     MELDEKORTSTATUS_URL = `${MELDEKORT_URL}/person/meldekortstatus`;
