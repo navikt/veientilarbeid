@@ -8,7 +8,7 @@ import OppfolgingBrukerregistreringProvider from './oppfolging-brukerregistrerin
 import * as Autentisering from '../../contexts/autentisering';
 import * as AutentiseringTokenx from '../../contexts/autentisering-tokenx';
 import InnholdView from '../../innhold/innhold-view';
-import { PAW_AUTH_PROXY } from '../../ducks/api';
+import { PAW_AUTH_PROXY, STATUS } from '../../ducks/api';
 
 export const AUTH_API = '/api/auth';
 
@@ -27,6 +27,12 @@ const AutentiseringsInfoFetcher = () => {
         );
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    React.useEffect(() => {
+        if (tokenXState.status !== STATUS.NOT_STARTED && !tokenXState.data.isAuthenticated) {
+            window.location.assign(`${contextpath}/paw-auth-proxy/oauth2/login?redirect=${window.location.href}`);
+        }
+    }, [tokenXState]);
 
     return (
         <Innholdslaster
