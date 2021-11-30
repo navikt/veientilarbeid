@@ -26,6 +26,10 @@ proxy:
   - contextPath: /dp-innsyn-api
     baseUrl: {{ DP_INNSYN_API }}
     pingRequestPath: /internal/alive
+  
+  - contextPath: /paw-auth-proxy
+    baseUrl: {{ PAW_AUTH_PROXY }}
+    pingRequestPath: /internal/alive
 
 redirect:
   - from: /veientilarbeid
