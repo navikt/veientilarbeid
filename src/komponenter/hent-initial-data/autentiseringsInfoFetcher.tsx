@@ -8,7 +8,7 @@ import OppfolgingBrukerregistreringProvider from './oppfolging-brukerregistrerin
 import * as Autentisering from '../../contexts/autentisering';
 import * as AutentiseringTokenx from '../../contexts/autentisering-tokenx';
 import InnholdView from '../../innhold/innhold-view';
-import { DP_INNSYN_URL } from '../../ducks/api';
+import { PAW_AUTH_PROXY } from '../../ducks/api';
 
 export const AUTH_API = '/api/auth';
 
@@ -23,7 +23,7 @@ const AutentiseringsInfoFetcher = () => {
         fetchData<AutentiseringTokenx.State, AutentiseringTokenx.Data>(
             tokenXState,
             setTokenXState,
-            `${DP_INNSYN_URL}/is-authenticated`
+            `${PAW_AUTH_PROXY}/is-authenticated`
         );
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

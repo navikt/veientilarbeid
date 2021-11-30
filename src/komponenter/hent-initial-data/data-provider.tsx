@@ -88,12 +88,12 @@ const DataProvider = ({ children }: Props) => {
         fetchData<DpInnsynSoknad.State, DpInnsynSoknad.Data>(
             dpInnsynSoknadState,
             setDpInnsynSoknadState,
-            `${DP_INNSYN_URL}/proxy/soknad`
+            `${DP_INNSYN_URL}/soknad`
         );
         fetchData<DpInnsynVedtak.State, DpInnsynVedtak.Data>(
             dpInnsynVedtakState,
             setDpInnsynVedtakState,
-            `${DP_INNSYN_URL}/proxy/vedtak`
+            `${DP_INNSYN_URL}/vedtak`
         );
 
         fetchData<PaabegynteSoknader.State, PaabegynteSoknader.Data>(
