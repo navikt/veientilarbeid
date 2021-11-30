@@ -29,7 +29,7 @@ const AutentiseringsInfoFetcher = () => {
     }, []);
 
     React.useEffect(() => {
-        if (tokenXState.status !== STATUS.NOT_STARTED && !tokenXState.data.isAuthenticated) {
+        if (tokenXState.status === STATUS.OK && !tokenXState.data.isAuthenticated) {
             window.location.assign(`${contextpath}/paw-auth-proxy/oauth2/login?redirect=${window.location.href}`);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
