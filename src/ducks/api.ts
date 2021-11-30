@@ -39,6 +39,6 @@ export const VEILARBOPPFOLGING_URL = `${contextpath}/veilarboppfolging/api/oppfo
     NESTE_MELDEKORT_URL = `${MELDEKORT_URL}/person/meldekort`,
     PAABEGYNTE_SOKNADER_URL = `${contextpath}/saksoversikt-api/tjenester/saker/hentPaabegynteSoknader`,
     SAKSTEMA_URL = `${contextpath}/saksoversikt-api/tjenester/sakstema`,
-    DP_INNSYN_URL = `${contextpath}/dp-innsyn-api`,
+    DP_INNSYN_URL = `${contextpath}/dp-innsyn-api/proxy/dp-innsyn`,
     PAW_AUTH_PROXY = `${contextpath}/paw-auth-proxy`,
     MELDEKORTSTATUS_URL = `${MELDEKORT_URL}/person/meldekortstatus`;
