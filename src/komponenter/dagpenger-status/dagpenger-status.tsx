@@ -186,6 +186,18 @@ function IkkeSoktDagpenger({ loggLenkeKlikk }: { loggLenkeKlikk: Function }) {
                     </div>
                 </LenkepanelBase>
             </div>
+            <div>
+                <Normaltekst className={'blokk-xs'}>
+                    Mener du dette er feil, kan du sjekke{' '}
+                    <Lenke
+                        className={'tracking-wide'}
+                        href={saksoversikt_url}
+                        onClick={() => loggLenkeKlikk('Går til mine dagpenger fra har ikke søkt', saksoversikt_url)}
+                    >
+                        Mine dagpenger
+                    </Lenke>
+                </Normaltekst>
+            </div>
         </DagpengerDekorator>
     );
 }
