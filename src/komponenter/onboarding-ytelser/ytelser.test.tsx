@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom/extend-expect';
 import { render } from '@testing-library/react';
 
-import YtelserOnboarding from './ytelser-onboaridng';
+import YtelserOnboarding from './ytelser-onboarding';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import { Formidlingsgruppe, Servicegruppe } from '../../contexts/oppfolging';
 import { mockIntersectionObserver } from '../../mocks/intersection-observer-mock';
