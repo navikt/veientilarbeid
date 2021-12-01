@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FeaturetoggleContext } from '../../contexts/feature-toggles';
+import { FeaturetoggleContext, Data as FeauturetoggleData } from '../../contexts/feature-toggles';
 import * as Brukerregistrering from '../../contexts/brukerregistrering';
 import * as Oppfolging from '../../contexts/oppfolging';
 import * as BrukerInfo from '../../contexts/bruker-info';
@@ -44,9 +44,50 @@ function kanViseDpStatus({
     const registrertFoerDato = brukerregistreringData
         ? new Date(brukerregistreringData.opprettetDato) < new Date('2021-06-26')
         : false;
+
     return (
         !erAAP &&
         erARBS &&
+        harRettMeldeGruppe &&
+        registrertEtterDato &&
+        registrertFoerDato &&
+        !oppfolgingData.kanReaktiveres
+    );
+}
+
+function kanViseDpStatusKSS({
+    amplitudeData,
+    featuretoggleData,
+    oppfolgingData,
+    brukerInfoData,
+    registreringData,
+}: {
+    amplitudeData: AmplitudeData;
+    featuretoggleData: FeauturetoggleData;
+    oppfolgingData: Oppfolging.Data;
+    brukerInfoData: BrukerInfo.Data;
+    registreringData: Brukerregistrering.Data | null;
+}): boolean {
+    const erAAP = brukerInfoData.rettighetsgruppe === 'AAP';
+    const brukerregistreringData = registreringData?.registrering ?? null;
+    const harRettMeldeGruppe = ['ARBS', 'DAGP'].includes(amplitudeData.meldegruppe);
+    const registrertEtterDato = brukerregistreringData
+        ? new Date(brukerregistreringData.opprettetDato) > new Date('2021-05-22')
+        : false;
+
+    const registrertFoerDato = brukerregistreringData
+        ? new Date(brukerregistreringData.opprettetDato) < new Date('2021-12-01')
+        : false;
+    const erKSS = erKSSBruker({
+        amplitudeData,
+        featuretoggleData,
+        oppfolgingData,
+        brukerInfoData,
+        registreringData,
+    });
+    return (
+        !erAAP &&
+        erKSS &&
         harRettMeldeGruppe &&
         registrertEtterDato &&
         registrertFoerDato &&
@@ -73,7 +114,7 @@ function DagpengerStatus() {
 
     const kanViseKomponent =
         (featuretoggleDagpengerStatusAktivert &&
-            erKSSBruker({
+            kanViseDpStatusKSS({
                 amplitudeData,
                 featuretoggleData,
                 oppfolgingData,
