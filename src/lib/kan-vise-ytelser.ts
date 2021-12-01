@@ -32,6 +32,13 @@ export function kanViseOnboardingYtelser({
         brukerregistreringData,
         oppfolgingData,
     });
+
+    const registrertFoerDato = brukerregistreringData
+        ? new Date(brukerregistreringData.opprettetDato) < new Date('2021-12-01')
+        : false;
+
+    const skalViseForPilot = brukerErPilot && registrertFoerDato;
+
     const visYtelserForSituasjonsbestemtToggle =
         featuretoggleData['veientilarbeid.onboardingYtelser.situasjonsbestemt'];
 
@@ -40,7 +47,7 @@ export function kanViseOnboardingYtelser({
 
     const erStandardInnsatsgruppe = sjekkOmBrukerErStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData });
 
-    const kanViseForStandard = erStandardInnsatsgruppe && !brukerErPilot;
+    const kanViseForStandard = erStandardInnsatsgruppe && !skalViseForPilot;
 
     return !erAAP && (kanViseForStandard || kanViseForSituasjonsbestemt) && !oppfolgingData.kanReaktiveres;
 }
