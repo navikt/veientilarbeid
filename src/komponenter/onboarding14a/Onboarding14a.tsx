@@ -7,7 +7,6 @@ import Enkeltkort from './Enkeltkort';
 import { kanViseOnboarding14A } from '../../lib/kan-vise-onboarding14a';
 import { useOppfolgingData } from '../../contexts/oppfolging';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
-import { erPilotBruker } from '../../lib/er-pilot-bruker';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 
 function Onboarding14a(): JSX.Element | null {
@@ -23,15 +22,9 @@ function Onboarding14a(): JSX.Element | null {
         brukerregistreringData,
         oppfolgingData,
     });
-    // const visOnboardingForSituasjonsbestemtToggle = featuretoggleData['veientilarbeid.onboarding14a.situasjonsbestemt'];
+    const visOnboardingForSituasjonsbestemtToggle = featuretoggleData['veientilarbeid.onboarding14a.situasjonsbestemt'];
 
-    const brukerErPilot = erPilotBruker({
-        brukerInfoData,
-        oppfolgingData,
-        registreringData,
-        amplitudeData,
-    });
-    const kanViseSituasjonsbestemt = erSituasjonsbestemtInnsatsgruppe && brukerErPilot; // visOnboardingForSituasjonsbestemtToggle;
+    const kanViseSituasjonsbestemt = erSituasjonsbestemtInnsatsgruppe && visOnboardingForSituasjonsbestemtToggle;
 
     const kanViseKomponent = kanViseOnboarding14A({
         featuretoggleData,
