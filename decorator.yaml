@@ -33,6 +33,10 @@ proxy:
     pingRequestPath: /internal/alive
     requestRewrite: REMOVE_CONTEXT_PATH
 
+  - contextPath: /bakveientilarbeid
+    baseUrl: {{ BAKVEIENTILARBEID_URL }}
+    pingRequestPath: /isAlive
+
 redirect:
   - from: /veientilarbeid
     to: {{ VEIENTILARBEID_URL }}

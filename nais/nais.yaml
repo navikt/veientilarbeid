@@ -45,6 +45,8 @@ spec:
     value: 'true'
   - name: DISABLE_SENSU_METRICS
     value: 'true'
+  - name: BAKVEIENTILARBEID_URL
+    value: {{ bakveientilarbeid_url }}
   envFrom:
     - configmap: loginservice-idporten
   image: {{image}}
