@@ -8,6 +8,7 @@ interface TemaLenkepanelProps {
     href: string;
     children: React.ReactNode;
     amplitudeTema: string;
+    amplitudeTilstand?: String;
     amplitudeHandling: string;
 }
 
@@ -17,6 +18,7 @@ const TemaLenkepanel: React.FC<TemaLenkepanelProps> = (props) => {
     const handleClickInnsending = () => {
         amplitudeLogger('veientilarbeid.tema', {
             tema: props.amplitudeTema,
+            tilstand: props.amplitudeTilstand,
             handling: props.amplitudeHandling,
             ...amplitudeData,
         });
