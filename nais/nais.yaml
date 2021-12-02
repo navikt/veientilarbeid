@@ -86,6 +86,7 @@ spec:
         - application: pto-proxy
           namespace: pto
         - application: paw-auth-proxy
+        - application: bakveientilarbeid
       external:
       {{#each externalHosts as |host|}}
          - host: {{host}}
