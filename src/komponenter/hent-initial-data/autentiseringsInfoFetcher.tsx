@@ -18,7 +18,7 @@ const AutentiseringsInfoFetcher = () => {
 
     React.useEffect(() => {
         fetchData<Autentisering.State, Autentisering.Data>(state, setState, `${contextpath}${AUTH_API}`);
-        fetchData<any, any>({}, () => {}, `${BAKVEIEN}/isAlive`);
+        fetchData<any, any>({}, () => {}, `${BAKVEIEN}/internal/isAlive`);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

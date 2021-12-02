@@ -35,7 +35,7 @@ proxy:
 
   - contextPath: /bakveientilarbeid
     baseUrl: {{ BAKVEIENTILARBEID_URL }}
-    pingRequestPath: /isAlive
+    pingRequestPath: /bakveientilarbeid/internal/isAlive
 
 redirect:
   - from: /veientilarbeid
