@@ -16,6 +16,7 @@ veilarbproxy_url: http://pto-proxy.pto.svc.cluster.local/proxy
 saksoversikt_api: https://saksoversikt-api.dev.nav.no
 dp_innsyn_api: http://paw-auth-proxy
 paw_auth_proxy: http://paw-auth-proxy
+bakveientilarbeid_url: http://bakveientilarbeid
 ingresses:
   - https://veientilarbeid.dev.nav.no
 externalHosts:
