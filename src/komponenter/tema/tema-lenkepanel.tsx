@@ -8,7 +8,7 @@ interface TemaLenkepanelProps {
     href: string;
     children: React.ReactNode;
     amplitudeTema: string;
-    amplitudeTilstand?: String;
+    amplitudeTilstand?: string;
     amplitudeHandling: string;
 }
 
