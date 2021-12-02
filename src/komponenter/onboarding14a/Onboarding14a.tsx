@@ -2,8 +2,8 @@ import sjekkOmBrukerErStandardInnsatsgruppe from '../../lib/er-standard-innsatsg
 import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../../lib/er-situasjonsbestemt-innsatsgruppe';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
-import Kortbunke from './Kortbunke';
-import Enkeltkort from './Enkeltkort';
+import Kortbunke from './StandardKortbunke';
+import SituasjonsbestemtKortbunke from './SituasjonsbestemtKortbunke';
 import { kanViseOnboarding14A } from '../../lib/kan-vise-onboarding14a';
 import { useOppfolgingData } from '../../contexts/oppfolging';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
@@ -36,7 +36,7 @@ function Onboarding14a(): JSX.Element | null {
 
     if (!kanViseKomponent) return null;
 
-    if (kanViseSituasjonsbestemt) return <Enkeltkort />;
+    if (kanViseSituasjonsbestemt) return <SituasjonsbestemtKortbunke />;
     if (erStandardInnsatsgruppe) return <Kortbunke />;
 
     return null;
