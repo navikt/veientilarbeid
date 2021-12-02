@@ -41,4 +41,5 @@ export const VEILARBOPPFOLGING_URL = `${contextpath}/veilarboppfolging/api/oppfo
     SAKSTEMA_URL = `${contextpath}/saksoversikt-api/tjenester/sakstema`,
     DP_INNSYN_URL = `${contextpath}/dp-innsyn-api/proxy/dp-innsyn`,
     PAW_AUTH_PROXY = `${contextpath}/paw-auth-proxy`,
+    BAKVEIEN = `${contextpath}/bakveientilarbeid`,
     MELDEKORTSTATUS_URL = `${MELDEKORT_URL}/person/meldekortstatus`;
