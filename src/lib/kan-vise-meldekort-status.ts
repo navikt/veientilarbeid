@@ -7,7 +7,6 @@ import * as FeatureToggles from '../contexts/feature-toggles';
 import erStandardInnsatsgruppe from './er-standard-innsatsgruppe';
 import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from './er-situasjonsbestemt-innsatsgruppe';
 import { AmplitudeData } from '../metrics/amplitude-utils';
-import { erPilotBruker } from './er-pilot-bruker';
 
 export function kanViseMeldekortStatus({
     meldekortData,
@@ -15,7 +14,6 @@ export function kanViseMeldekortStatus({
     oppfolgingData,
     registreringData,
     featuretoggleData,
-    amplitudeData,
 }: {
     meldekortData: Meldekort.Data | null;
     brukerInfoData: BrukerInfo.Data;
@@ -41,15 +39,8 @@ export function kanViseMeldekortStatus({
     const MeldekortintroForSituasjonsbestemtToggle =
         featuretoggleData['veientilarbeid.onboardingMeldekort.situasjonsbestemt'];
 
-    const brukerErPilot = erPilotBruker({
-        brukerInfoData,
-        oppfolgingData,
-        registreringData,
-        amplitudeData,
-    });
-
     const skalViseMeldekortintroForSituasjonsbestemt =
-        erSituasjonsbestemtInnsatsgruppe && brukerErPilot && MeldekortintroForSituasjonsbestemtToggle;
+        erSituasjonsbestemtInnsatsgruppe && MeldekortintroForSituasjonsbestemtToggle;
 
     const kanViseKomponent =
         !erAAP &&
