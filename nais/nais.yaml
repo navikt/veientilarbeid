@@ -35,10 +35,6 @@ spec:
     value: {{ veilarbproxy_url }}
   - name: SAKSOVERSIKT_API
     value: {{ saksoversikt_api }}
-  - name: DP_INNSYN_API
-    value: {{ dp_innsyn_api }}
-  - name: PAW_AUTH_PROXY
-    value: {{ paw_auth_proxy }}
   - name: FASIT_ENVIRONMENT_NAME
     value: {{ app_environment_name }}
   - name: DISABLE_FRONTEND_LOGGER
@@ -85,7 +81,6 @@ spec:
       rules:
         - application: pto-proxy
           namespace: pto
-        - application: paw-auth-proxy
         - application: bakveientilarbeid
       external:
       {{#each externalHosts as |host|}}

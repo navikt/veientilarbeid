@@ -7,7 +7,6 @@ import DataProvider from './data-provider';
 import OppfolgingBrukerregistreringProvider from './oppfolging-brukerregistrering-provider';
 import * as Autentisering from '../../contexts/autentisering';
 import InnholdView from '../../innhold/innhold-view';
-import { BAKVEIEN } from '../../ducks/api';
 
 export const AUTH_API = '/api/auth';
 
@@ -18,7 +17,6 @@ const AutentiseringsInfoFetcher = () => {
 
     React.useEffect(() => {
         fetchData<Autentisering.State, Autentisering.Data>(state, setState, `${contextpath}${AUTH_API}`);
-        fetchData<any, any>({}, () => {}, `${BAKVEIEN}/internal/isAlive`);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

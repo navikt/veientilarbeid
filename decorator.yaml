@@ -23,16 +23,6 @@ proxy:
     baseUrl: {{ SAKSOVERSIKT_API }}
     pingRequestPath: /saksoversikt-api/internal/isAlive
 
-  - contextPath: /dp-innsyn-api
-    baseUrl: {{ DP_INNSYN_API }}
-    pingRequestPath: /internal/alive
-    requestRewrite: REMOVE_CONTEXT_PATH
-  
-  - contextPath: /paw-auth-proxy
-    baseUrl: {{ PAW_AUTH_PROXY }}
-    pingRequestPath: /internal/alive
-    requestRewrite: REMOVE_CONTEXT_PATH
-
   - contextPath: /bakveientilarbeid
     baseUrl: {{ BAKVEIENTILARBEID_URL }}
     pingRequestPath: /bakveientilarbeid/internal/ping
