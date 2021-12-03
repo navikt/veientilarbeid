@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - test-ny-auth-proxy
       
 env:
   IMAGE_BASE: ghcr.io/${{github.repository}}/veientilarbeid
