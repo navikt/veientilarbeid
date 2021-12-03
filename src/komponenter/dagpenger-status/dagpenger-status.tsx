@@ -76,7 +76,7 @@ function kanViseDpStatusKSS({
         : false;
 
     const registrertFoerDato = brukerregistreringData
-        ? new Date(brukerregistreringData.opprettetDato) < new Date('2021-12-01')
+        ? new Date(brukerregistreringData.opprettetDato) < new Date('2021-12-06')
         : false;
     const erKSS = erKSSBruker({
         amplitudeData,
