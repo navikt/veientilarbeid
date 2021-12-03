@@ -153,11 +153,12 @@ const DataProvider = ({ children }: Props) => {
                             <Motestotte.MotestotteContext.Provider value={motestotteState}>
                                 <PaabegynteSoknader.PaabegynteSoknaderContext.Provider value={paabegynteSoknaderState}>
                                     <Sakstema.SakstemaContext.Provider value={sakstemaState}>
-                                        <DpInnsynSoknad.DpInnsynSoknadContext.Provider value={dpInnsynSoknadState}>
-                                            <DpInnsynVedtak.DpInnsynVedtakContext.Provider value={dpInnsynVedtakState}>
-                                                <AmplitudeProvider>{children}</AmplitudeProvider>
-                                            </DpInnsynVedtak.DpInnsynVedtakContext.Provider>
-                                        </DpInnsynSoknad.DpInnsynSoknadContext.Provider>
+                                        <AmplitudeProvider>{children}</AmplitudeProvider>
+                                        {/*<DpInnsynSoknad.DpInnsynSoknadContext.Provider value={dpInnsynSoknadState}>*/}
+                                        {/*    <DpInnsynVedtak.DpInnsynVedtakContext.Provider value={dpInnsynVedtakState}>*/}
+                                        {/*        <AmplitudeProvider>{children}</AmplitudeProvider>*/}
+                                        {/*    </DpInnsynVedtak.DpInnsynVedtakContext.Provider>*/}
+                                        {/*</DpInnsynSoknad.DpInnsynSoknadContext.Provider>*/}
                                     </Sakstema.SakstemaContext.Provider>
                                 </PaabegynteSoknader.PaabegynteSoknaderContext.Provider>
                             </Motestotte.MotestotteContext.Provider>
