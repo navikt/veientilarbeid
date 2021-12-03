@@ -14,6 +14,7 @@ import { useUnderOppfolgingData } from '../../contexts/under-oppfolging';
 import { kanViseIVURDEgenvurdering } from '../../lib/kan-vise-IVURD-egenvurdering';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
+import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../../lib/er-situasjonsbestemt-innsatsgruppe';
 
 export const antallTimerMellomAOgBRundetOpp = (a: Date, b: Date): number => {
     if (!a || !b) {
@@ -55,8 +56,16 @@ const Egenvurdering = () => {
         brukerregistreringData,
         oppfolgingData,
     });
+    const brukerErSituasjonsbestemt = sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe({
+        brukerregistreringData,
+        oppfolgingData,
+    });
 
-    if (!skalViseEgenvurderingLenke || (featuretoggleAktivert && brukerErStandard)) {
+    if (
+        !skalViseEgenvurderingLenke ||
+        (featuretoggleAktivert && brukerErStandard) ||
+        (featuretoggleAktivert && brukerErSituasjonsbestemt)
+    ) {
         return null;
     }
 

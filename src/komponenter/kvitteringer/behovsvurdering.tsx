@@ -9,6 +9,9 @@ import InViewport from '../in-viewport/in-viewport';
 import './behovsvurdering.less';
 import { SuccessFilled } from '@navikt/ds-icons';
 import { Knapp } from 'nav-frontend-knapper';
+import { settIBrowserStorage } from '../../utils/browserStorage-utils';
+
+export const HAR_MOTTATT_EGENVURDERING_KVITTERING = 'har_mottatt_egenvurdering_kvittering';
 
 interface EndStateProps {
     lukkerKvittering: (loggTekst: string) => void;
@@ -23,6 +26,10 @@ function Sluttkort(props: EndStateProps) {
         event.stopPropagation();
         props.lukkerKvittering(`Lukker kvittering fra behovsvurderingen: ${fraKnapp}`);
     }
+
+    useEffect(() => {
+        settIBrowserStorage(HAR_MOTTATT_EGENVURDERING_KVITTERING, 'true');
+    }, []);
 
     return (
         <div className={'sluttkort'}>
