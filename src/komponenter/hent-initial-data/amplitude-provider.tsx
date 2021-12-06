@@ -8,7 +8,6 @@ import { DinSituasjonSvar, useBrukerregistreringData } from '../../contexts/bruk
 import { OppfolgingContext } from '../../contexts/oppfolging';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import { PaabegynteSoknaderContext } from '../../contexts/paabegynte-soknader';
-import { SakstemaContext } from '../../contexts/sakstema';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import grupperGeografiskTilknytning from '../../utils/grupper-geografisk-tilknytning';
@@ -31,10 +30,7 @@ import { datoUtenTid } from '../../utils/date-utils';
 import { hentEksperimenter } from '../../eksperiment/eksperiment-utils';
 import { erSamarbeidskontor } from '../../eksperiment/samarbeidskontor-utils';
 import { hentEnhetEksperimentId } from '../../eksperiment/ab-eksperiment';
-import harUbehandletDpSoknad from '../../lib/har-ubehandlet-dp-soknad';
 import dagerFraPabegyntSoknad from '../../utils/dager-fra-pabegynt-soknad';
-import dagerFraInnsendtSoknad from '../../utils/dager-fra-innsendt-soknad';
-import beregnDagpengerStatus from '../dagpenger-status/beregn-dagpenger-status';
 import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../../lib/er-situasjonsbestemt-innsatsgruppe';
 import erSannsynligvisInaktivertStandardbruker from '../../lib/er-sannsyligvis-inaktivert-standard-innsatsgruppe';
@@ -63,7 +59,6 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const brukerregistreringData = useBrukerregistreringData();
     const featuretoggleData = useFeatureToggleData();
     const pabegynteSoknaderData = React.useContext(PaabegynteSoknaderContext).data;
-    const sakstemaData = React.useContext(SakstemaContext).data;
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const brukerInfoData = useBrukerinfoData();
     const { securityLevel: nivaa } = useAutentiseringData();
@@ -136,30 +131,14 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         return toggles;
     }, [] as string[]);
 
-    const dagpengerSaksTema = sakstemaData.sakstema.find((tema) => tema.temakode === 'DAG');
-    const ubehandledeDpSoknader = dagpengerSaksTema ? harUbehandletDpSoknad(dagpengerSaksTema.behandlingskjeder) : null;
-    const harDagpengesoknadTilBehandling = ubehandledeDpSoknader || 'INGEN_DATA';
+    const harDagpengesoknadTilBehandling = 'INGEN_DATA';
     const antallPabegynteSoknader = pabegynteSoknaderData.soknader.length;
     const dagpengerDagerMellomPaabegyntSoknadOgRegistrering = dagerFraPabegyntSoknad({
         soknader: pabegynteSoknaderData.soknader,
         registreringsDato: opprettetRegistreringDato,
     });
 
-    const dagpengerDagerMellomInnsendtSoknadOgRegistrering = dagpengerSaksTema
-        ? dagerFraInnsendtSoknad({
-              behandlingskjeder: dagpengerSaksTema.behandlingskjeder,
-              registreringsDato: opprettetRegistreringDato,
-          })
-        : 'INGEN_DATA';
-
-    const behandlingskjederDagpenger = dagpengerSaksTema ? dagpengerSaksTema.behandlingskjeder : null;
-
-    const dagpengerStatusBeregning = beregnDagpengerStatus({
-        rettighetsgruppe,
-        opprettetRegistreringDato,
-        paabegynteSoknader: pabegynteSoknaderData.soknader,
-        behandlingskjeder: behandlingskjederDagpenger,
-    });
+    const dagpengerDagerMellomInnsendtSoknadOgRegistrering = 'INGEN_DATA';
 
     const brukerregistreringDataEllerNull = brukerregistreringData?.registrering ?? null;
 
@@ -217,7 +196,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         dagpengerSoknadVenterPaSvar: harDagpengesoknadTilBehandling,
         dagpengerDagerMellomPaabegyntSoknadOgRegistrering,
         dagpengerDagerMellomInnsendtSoknadOgRegistrering,
-        dagpengerStatusBeregning,
+        dagpengerStatusBeregning: 'INGEN_DATA',
     };
 
     return <AmplitudeContext.Provider value={amplitudeData}>{props.children}</AmplitudeContext.Provider>;

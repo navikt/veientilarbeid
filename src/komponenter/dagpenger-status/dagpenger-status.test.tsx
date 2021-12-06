@@ -20,6 +20,7 @@ const providerProps: ProviderProps = {
         ukerRegistrert: 2,
         gruppe: 'kss',
         eksperimenter: ['onboarding14a'],
+        meldegruppe: 'ARBS',
     },
     oppfolging: {
         formidlingsgruppe: Formidlingsgruppe.ARBS,

@@ -1,4 +1,7 @@
 import * as React from 'react';
+import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
+import Lenke from 'nav-frontend-lenker';
+
 import { FeaturetoggleContext } from '../../contexts/feature-toggles';
 import * as Brukerregistrering from '../../contexts/brukerregistrering';
 import * as Oppfolging from '../../contexts/oppfolging';
@@ -6,53 +9,18 @@ import * as BrukerInfo from '../../contexts/bruker-info';
 import * as PaabegynteSoknader from '../../contexts/paabegynte-soknader';
 import * as Sakstema from '../../contexts/sakstema';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
-import { AmplitudeData } from '../../metrics/amplitude-utils';
 import { loggAktivitet } from '../../metrics/metrics';
 import beregnDagpengerSokeStatus, { DagpengerSokestatuser, sistOppdaterteBehandling } from './beregn-dagpenger-status';
-import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
-import Lenke from 'nav-frontend-lenker';
 import { LenkepanelBase } from 'nav-frontend-lenkepanel';
 import { Behandling } from '../../utils/dager-fra-innsendt-soknad';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import InViewport from '../in-viewport/in-viewport';
 import ErRendret from '../er-rendret/er-rendret';
 import { saksoversikt_url } from '../../url';
-import { erKSSBruker } from '../../lib/er-kss-bruker';
+import kanViseDpStatus from '../../lib/kan-vise-dp-status';
 import OnboardingOmslutning from './onboarding-omslutning/OnboardingOmslutning';
 
 const virkedager = require('@alheimsins/virkedager');
-
-function kanViseDpStatus({
-    brukerInfoData,
-    oppfolgingData,
-    registreringData,
-    amplitudeData,
-}: {
-    brukerInfoData: BrukerInfo.Data;
-    oppfolgingData: Oppfolging.Data;
-    registreringData: Brukerregistrering.Data | null;
-    amplitudeData: AmplitudeData;
-}): boolean {
-    const erAAP = brukerInfoData.rettighetsgruppe === 'AAP';
-    const brukerregistreringData = registreringData?.registrering ?? null;
-    const harRettMeldeGruppe = ['ARBS', 'DAGP'].includes(amplitudeData.meldegruppe);
-    const erARBS = oppfolgingData.formidlingsgruppe === 'ARBS';
-    const registrertEtterDato = brukerregistreringData
-        ? new Date(brukerregistreringData.opprettetDato) > new Date('2021-05-22')
-        : false;
-
-    const registrertFoerDato = brukerregistreringData
-        ? new Date(brukerregistreringData.opprettetDato) < new Date('2021-06-26')
-        : false;
-    return (
-        !erAAP &&
-        erARBS &&
-        harRettMeldeGruppe &&
-        registrertEtterDato &&
-        registrertFoerDato &&
-        !oppfolgingData.kanReaktiveres
-    );
-}
 
 function DagpengerStatus() {
     const amplitudeData = useAmplitudeData();
@@ -63,25 +31,18 @@ function DagpengerStatus() {
     const { data: paabegynteSoknaderData } = React.useContext(PaabegynteSoknader.PaabegynteSoknaderContext);
     const { data: sakstemaData } = React.useContext(Sakstema.SakstemaContext);
 
-    const featuretoggleDagpengerStatusAktivert = featuretoggleData['veientilarbeid.dagpenger-status'];
-    const featuretoggleDPStatusForAlleAktivert = featuretoggleData['veientilarbeid.dpstatus-for-alle'];
-
     function loggLenkeKlikk(aktivitet: string, url: string) {
         loggAktivitet({ aktivitet, ...amplitudeData });
         window.location.assign(url);
     }
 
-    const kanViseKomponent =
-        (featuretoggleDagpengerStatusAktivert &&
-            erKSSBruker({
-                amplitudeData,
-                featuretoggleData,
-                oppfolgingData,
-                brukerInfoData,
-                registreringData,
-            })) ||
-        (featuretoggleDPStatusForAlleAktivert &&
-            kanViseDpStatus({ amplitudeData, oppfolgingData, brukerInfoData, registreringData }));
+    const kanViseKomponent = kanViseDpStatus({
+        amplitudeData,
+        featuretoggleData,
+        oppfolgingData,
+        brukerInfoData,
+        registreringData,
+    });
 
     if (!kanViseKomponent) return null;
 
