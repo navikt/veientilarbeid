@@ -34,7 +34,7 @@ export function kanViseOnboardingYtelser({
     });
 
     const registrertFoerDato = brukerregistreringData
-        ? new Date(brukerregistreringData.opprettetDato) < new Date('2021-12-06')
+        ? new Date(brukerregistreringData.opprettetDato) < new Date('2021-12-07')
         : false;
 
     const skalViseForPilot = brukerErPilot && registrertFoerDato;

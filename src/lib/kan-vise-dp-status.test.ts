@@ -123,7 +123,7 @@ describe('Tester funksjonen kan-vise-dp-status', () => {
 
     test('FALSE hvis KSS med toggle og utenfor dato', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
-        testdata.registreringData.registrering.opprettetDato = new Date('2021-12-06').toISOString();
+        testdata.registreringData.registrering.opprettetDato = new Date('2021-12-07').toISOString();
         testdata.brukerInfoData.geografiskTilknytning = '110302';
         testdata.amplitudeData.meldegruppe = 'ARBS';
         testdata.amplitudeData.eksperimenter = ['onboarding14a'];
