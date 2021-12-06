@@ -62,8 +62,29 @@
 .ny_onboarding {
     margin: 0.5rem 0;
     flex: 1;
+
+    &.onboarding_startkort {
+        .onboarding-container {
+            .onboarding-panel {
+                height: 100%;
+                // padding: 1rem 0.5rem;
+                background-color: #0067c5;
+                color: #fff;
+                button.knapp {
+                    padding: 1rem 0;
+                }
+                button.knapp:hover {
+                    border-color: #fff;
+                }
+                a.lenke {
+                    color: #fff;
+                }
+            }
+        }
+    }
     .onboarding-container {
-        height: 100%;
+        // height: 100%;
+
         // background-color: #0000000d;
 
         display: flex;
@@ -81,19 +102,20 @@
             display: flex;
             flex-direction: column;
             flex: 1;
-
+            min-height: 270px;
             background-color: white;
             border-radius: 8px;
 
             .onboarding-body {
-                padding: 1rem;
-                flex: 1;
+                padding: 1.5rem;
+                padding-bottom: 0.5rem;
+                // flex: 1;
 
                 .typo-innholdstittel,
                 .typo-systemtittel {
-                    border-left: #0067c5 solid 2px;
-                    margin-left: -1rem;
-                    padding-left: 1rem;
+                    border-left: #0067c5 solid 4px;
+                    margin-left: -1.5rem;
+                    padding-left: calc(1.5rem - 4px);
                 }
             }
 
@@ -103,8 +125,9 @@
             }
 
             .onboarding-footer {
-                padding: 0.5rem 1rem;
+                padding: 0.5rem 1.5rem 1rem 1.5rem;
                 .rad {
+                    padding: 0;
                     display: flex;
                     flex-direction: row;
                 }

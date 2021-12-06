@@ -22,10 +22,13 @@ import {
     ULESTEDIALOGER_URL,
     PAABEGYNTE_SOKNADER_URL,
     SAKSTEMA_URL,
+    // DP_INNSYN_URL,
 } from '../../ducks/api';
 import { AmplitudeProvider } from './amplitude-provider';
 import { useAutentiseringData, InnloggingsNiva } from '../../contexts/autentisering';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
+// import * as DpInnsynSoknad from '../../contexts/dp-innsyn-soknad';
+// import * as DpInnsynVedtak from '../../contexts/dp-innsyn-vedtak';
 
 const skalSjekkeEgenvurderingBesvarelse = (
     foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null
@@ -56,6 +59,12 @@ const DataProvider = ({ children }: Props) => {
     const [ulesteDialogerState, setUlesteDialogerState] = React.useState<UlesteDialoger.State>(
         UlesteDialoger.initialState
     );
+    // const [dpInnsynSoknadState, setDpInnsynSoknadState] = React.useState<DpInnsynSoknad.State>(
+    //     DpInnsynSoknad.initialState
+    // );
+    // const [dpInnsynVedtakState, setDpInnsynVedtakState] = React.useState<DpInnsynVedtak.State>(
+    //     DpInnsynVedtak.initialState
+    // );
 
     const data = useBrukerregistreringData();
     const foreslaattInnsatsgruppe = selectForeslattInnsatsgruppe(data);
@@ -75,6 +84,18 @@ const DataProvider = ({ children }: Props) => {
 
         fetchData<BrukerInfo.State, BrukerInfo.Data>(brukerInfoState, setBrukerInfoState, BRUKERINFO_URL);
         fetchData<Sakstema.State, Sakstema.Data>(sakstemaState, setSakstemaState, SAKSTEMA_URL);
+
+        // fetchData<DpInnsynSoknad.State, DpInnsynSoknad.Data>(
+        //     dpInnsynSoknadState,
+        //     setDpInnsynSoknadState,
+        //     `${DP_INNSYN_URL}/soknad`
+        // );
+        // fetchData<DpInnsynVedtak.State, DpInnsynVedtak.Data>(
+        //     dpInnsynVedtakState,
+        //     setDpInnsynVedtakState,
+        //     `${DP_INNSYN_URL}/vedtak`
+        // );
+
         fetchData<PaabegynteSoknader.State, PaabegynteSoknader.Data>(
             paabegynteSoknaderState,
             setPaabegynteSoknaderState,
@@ -133,6 +154,11 @@ const DataProvider = ({ children }: Props) => {
                                 <PaabegynteSoknader.PaabegynteSoknaderContext.Provider value={paabegynteSoknaderState}>
                                     <Sakstema.SakstemaContext.Provider value={sakstemaState}>
                                         <AmplitudeProvider>{children}</AmplitudeProvider>
+                                        {/*<DpInnsynSoknad.DpInnsynSoknadContext.Provider value={dpInnsynSoknadState}>*/}
+                                        {/*    <DpInnsynVedtak.DpInnsynVedtakContext.Provider value={dpInnsynVedtakState}>*/}
+                                        {/*        <AmplitudeProvider>{children}</AmplitudeProvider>*/}
+                                        {/*    </DpInnsynVedtak.DpInnsynVedtakContext.Provider>*/}
+                                        {/*</DpInnsynSoknad.DpInnsynSoknadContext.Provider>*/}
                                     </Sakstema.SakstemaContext.Provider>
                                 </PaabegynteSoknader.PaabegynteSoknaderContext.Provider>
                             </Motestotte.MotestotteContext.Provider>

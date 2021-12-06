@@ -23,9 +23,9 @@ proxy:
     baseUrl: {{ SAKSOVERSIKT_API }}
     pingRequestPath: /saksoversikt-api/internal/isAlive
 
-  - contextPath: /dp-innsyn-api
-    baseUrl: {{ DP_INNSYN_API }}
-    pingRequestPath: /isalive
+  - contextPath: /bakveientilarbeid
+    baseUrl: {{ BAKVEIENTILARBEID_URL }}
+    pingRequestPath: /bakveientilarbeid/internal/ping
 
 redirect:
   - from: /veientilarbeid

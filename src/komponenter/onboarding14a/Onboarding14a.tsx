@@ -2,12 +2,11 @@ import sjekkOmBrukerErStandardInnsatsgruppe from '../../lib/er-standard-innsatsg
 import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../../lib/er-situasjonsbestemt-innsatsgruppe';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
-import Kortbunke from './Kortbunke';
-import Enkeltkort from './Enkeltkort';
+import Kortbunke from './StandardKortbunke';
+import SituasjonsbestemtKortbunke from './SituasjonsbestemtKortbunke';
 import { kanViseOnboarding14A } from '../../lib/kan-vise-onboarding14a';
 import { useOppfolgingData } from '../../contexts/oppfolging';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
-import { erPilotBruker } from '../../lib/er-pilot-bruker';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 
 function Onboarding14a(): JSX.Element | null {
@@ -23,15 +22,9 @@ function Onboarding14a(): JSX.Element | null {
         brukerregistreringData,
         oppfolgingData,
     });
-    // const visOnboardingForSituasjonsbestemtToggle = featuretoggleData['veientilarbeid.onboarding14a.situasjonsbestemt'];
+    const visOnboardingForSituasjonsbestemtToggle = featuretoggleData['veientilarbeid.onboarding14a.situasjonsbestemt'];
 
-    const brukerErPilot = erPilotBruker({
-        brukerInfoData,
-        oppfolgingData,
-        registreringData,
-        amplitudeData,
-    });
-    const kanViseSituasjonsbestemt = erSituasjonsbestemtInnsatsgruppe && brukerErPilot; // visOnboardingForSituasjonsbestemtToggle;
+    const kanViseSituasjonsbestemt = erSituasjonsbestemtInnsatsgruppe && visOnboardingForSituasjonsbestemtToggle;
 
     const kanViseKomponent = kanViseOnboarding14A({
         featuretoggleData,
@@ -43,7 +36,7 @@ function Onboarding14a(): JSX.Element | null {
 
     if (!kanViseKomponent) return null;
 
-    if (kanViseSituasjonsbestemt) return <Enkeltkort />;
+    if (kanViseSituasjonsbestemt) return <SituasjonsbestemtKortbunke />;
     if (erStandardInnsatsgruppe) return <Kortbunke />;
 
     return null;

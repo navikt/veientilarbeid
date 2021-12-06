@@ -11,6 +11,7 @@ import {
     ULESTEDIALOGER_URL,
     UNDER_OPPFOLGING_URL,
     VEILARBOPPFOLGING_URL,
+    DP_INNSYN_URL,
 } from '../ducks/api';
 
 import {
@@ -33,6 +34,8 @@ import {
     randomUlesteDialoger,
     hentDpSoknaderUnderArbeid,
     hentDpSakstema,
+    hentDpInnsynVedtak,
+    hentDpInnsynSoknad,
 } from './demo-state';
 
 import { hentBrukerRegistrering } from './demo-state-brukerregistrering';
@@ -80,6 +83,9 @@ export const demo_handlers = [
     msw_get(MELDEKORTSTATUS_URL, meldekortstatusResponse),
 
     msw_get(PAABEGYNTE_SOKNADER_URL, hentDpSoknaderUnderArbeid()),
+
+    msw_get(`${DP_INNSYN_URL}/vedtak`, hentDpInnsynVedtak()),
+    msw_get(`${DP_INNSYN_URL}/soknad`, hentDpInnsynSoknad()),
 
     msw_get(SAKSTEMA_URL, hentDpSakstema()),
 ];

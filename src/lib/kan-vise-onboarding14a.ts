@@ -5,14 +5,12 @@ import * as BrukerInfo from '../contexts/bruker-info';
 import sjekkOmBrukerErStandardInnsatsgruppe from './er-standard-innsatsgruppe';
 import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from './er-situasjonsbestemt-innsatsgruppe';
 import { AmplitudeData } from '../metrics/amplitude-utils';
-import { erPilotBruker } from './er-pilot-bruker';
 
 export function kanViseOnboarding14A({
     brukerInfoData,
     oppfolgingData,
     registreringData,
     featuretoggleData,
-    amplitudeData,
 }: {
     brukerInfoData: BrukerInfo.Data;
     oppfolgingData: Oppfolging.Data;
@@ -21,20 +19,13 @@ export function kanViseOnboarding14A({
     amplitudeData: AmplitudeData;
 }): boolean {
     const erAAP = brukerInfoData.rettighetsgruppe === 'AAP';
-    const brukerErPilot = erPilotBruker({
-        brukerInfoData,
-        oppfolgingData,
-        registreringData,
-        amplitudeData,
-    });
     const brukerregistreringData = registreringData?.registrering ?? null;
     const erSituasjonsbestemtInnsatsgruppe = sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe({
         brukerregistreringData,
         oppfolgingData,
     });
     const visOnboardingForSituasjonsbestemtToggle = featuretoggleData['veientilarbeid.onboarding14a.situasjonsbestemt'];
-    const kanViseSituasjonsbestemt =
-        erSituasjonsbestemtInnsatsgruppe && brukerErPilot && visOnboardingForSituasjonsbestemtToggle;
+    const kanViseSituasjonsbestemt = erSituasjonsbestemtInnsatsgruppe && visOnboardingForSituasjonsbestemtToggle;
     const erStandardInnsatsgruppe = sjekkOmBrukerErStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData });
 
     return !erAAP && (erStandardInnsatsgruppe || kanViseSituasjonsbestemt) && !oppfolgingData.kanReaktiveres;

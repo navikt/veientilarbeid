@@ -35,14 +35,14 @@ spec:
     value: {{ veilarbproxy_url }}
   - name: SAKSOVERSIKT_API
     value: {{ saksoversikt_api }}
-  - name: DP_INNSYN_API
-    value: {{ dp_innsyn_api }}
   - name: FASIT_ENVIRONMENT_NAME
     value: {{ app_environment_name }}
   - name: DISABLE_FRONTEND_LOGGER
     value: 'true'
   - name: DISABLE_SENSU_METRICS
     value: 'true'
+  - name: BAKVEIENTILARBEID_URL
+    value: {{ bakveientilarbeid_url }}
   envFrom:
     - configmap: loginservice-idporten
   image: {{image}}
@@ -81,8 +81,7 @@ spec:
       rules:
         - application: pto-proxy
           namespace: pto
-        - application: dp-innsyn
-          namespace: teamdagpenger
+        - application: bakveientilarbeid
       external:
       {{#each externalHosts as |host|}}
          - host: {{host}}
