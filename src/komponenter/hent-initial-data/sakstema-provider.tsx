@@ -36,6 +36,7 @@ export const SakstemaProvider = (props: { children: React.ReactNode }) => {
         if (oppdaterDpStatus) {
             fetchData<Sakstema.State, Sakstema.Data>(sakstemaState, setSakstemaState, SAKSTEMA_URL);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [oppdaterDpStatus, securityLevel]);
 
     return (

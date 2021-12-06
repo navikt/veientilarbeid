@@ -150,6 +150,7 @@ const DataProvider = ({ children }: Props) => {
                             <Motestotte.MotestotteContext.Provider value={motestotteState}>
                                 <PaabegynteSoknader.PaabegynteSoknaderContext.Provider value={paabegynteSoknaderState}>
                                     <AmplitudeProvider>
+                                        {/** Denne skal fjernes når nye DP-innsy en på plass */}
                                         <SakstemaProvider>{children}</SakstemaProvider>
                                     </AmplitudeProvider>
                                     {/*<DpInnsynSoknad.DpInnsynSoknadContext.Provider value={dpInnsynSoknadState}>*/}
