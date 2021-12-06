@@ -3,7 +3,6 @@ import Innholdslaster from '../innholdslaster/innholdslaster';
 import Feilmelding from '../feilmeldinger/feilmelding';
 import * as BrukerInfo from '../../contexts/bruker-info';
 import * as PaabegynteSoknader from '../../contexts/paabegynte-soknader';
-import * as Sakstema from '../../contexts/sakstema';
 import {
     ForeslattInnsatsgruppe,
     selectForeslattInnsatsgruppe,
@@ -21,10 +20,10 @@ import {
     NESTE_MELDEKORT_URL,
     ULESTEDIALOGER_URL,
     PAABEGYNTE_SOKNADER_URL,
-    SAKSTEMA_URL,
     // DP_INNSYN_URL,
 } from '../../ducks/api';
 import { AmplitudeProvider } from './amplitude-provider';
+import { SakstemaProvider } from './sakstema-provider';
 import { useAutentiseringData, InnloggingsNiva } from '../../contexts/autentisering';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 // import * as DpInnsynSoknad from '../../contexts/dp-innsyn-soknad';
@@ -51,7 +50,6 @@ const DataProvider = ({ children }: Props) => {
     const [motestotteState, setMotestotteState] = React.useState<Motestotte.State>(Motestotte.initialState);
     const [meldekortState, setMeldekortState] = React.useState<Meldekort.State>(Meldekort.initialState);
     const [brukerInfoState, setBrukerInfoState] = React.useState<BrukerInfo.State>(BrukerInfo.initialState);
-    const [sakstemaState, setSakstemaState] = React.useState<Sakstema.State>(Sakstema.initialState);
     const [paabegynteSoknaderState, setPaabegynteSoknaderState] = React.useState<PaabegynteSoknader.State>(
         PaabegynteSoknader.initialState
     );
@@ -83,7 +81,6 @@ const DataProvider = ({ children }: Props) => {
         }
 
         fetchData<BrukerInfo.State, BrukerInfo.Data>(brukerInfoState, setBrukerInfoState, BRUKERINFO_URL);
-        fetchData<Sakstema.State, Sakstema.Data>(sakstemaState, setSakstemaState, SAKSTEMA_URL);
 
         // fetchData<DpInnsynSoknad.State, DpInnsynSoknad.Data>(
         //     dpInnsynSoknadState,
@@ -152,14 +149,14 @@ const DataProvider = ({ children }: Props) => {
                         <Egenvurdering.EgenvurderingContext.Provider value={egenvurderingState}>
                             <Motestotte.MotestotteContext.Provider value={motestotteState}>
                                 <PaabegynteSoknader.PaabegynteSoknaderContext.Provider value={paabegynteSoknaderState}>
-                                    <Sakstema.SakstemaContext.Provider value={sakstemaState}>
-                                        <AmplitudeProvider>{children}</AmplitudeProvider>
-                                        {/*<DpInnsynSoknad.DpInnsynSoknadContext.Provider value={dpInnsynSoknadState}>*/}
-                                        {/*    <DpInnsynVedtak.DpInnsynVedtakContext.Provider value={dpInnsynVedtakState}>*/}
-                                        {/*        <AmplitudeProvider>{children}</AmplitudeProvider>*/}
-                                        {/*    </DpInnsynVedtak.DpInnsynVedtakContext.Provider>*/}
-                                        {/*</DpInnsynSoknad.DpInnsynSoknadContext.Provider>*/}
-                                    </Sakstema.SakstemaContext.Provider>
+                                    <AmplitudeProvider>
+                                        <SakstemaProvider>{children}</SakstemaProvider>
+                                    </AmplitudeProvider>
+                                    {/*<DpInnsynSoknad.DpInnsynSoknadContext.Provider value={dpInnsynSoknadState}>*/}
+                                    {/*    <DpInnsynVedtak.DpInnsynVedtakContext.Provider value={dpInnsynVedtakState}>*/}
+                                    {/*        <AmplitudeProvider>{children}</AmplitudeProvider>*/}
+                                    {/*    </DpInnsynVedtak.DpInnsynVedtakContext.Provider>*/}
+                                    {/*</DpInnsynSoknad.DpInnsynSoknadContext.Provider>*/}
                                 </PaabegynteSoknader.PaabegynteSoknaderContext.Provider>
                             </Motestotte.MotestotteContext.Provider>
                         </Egenvurdering.EgenvurderingContext.Provider>

@@ -36,7 +36,7 @@ export const SakstemaProvider = (props: { children: React.ReactNode }) => {
         if (oppdaterDpStatus) {
             fetchData<Sakstema.State, Sakstema.Data>(sakstemaState, setSakstemaState, SAKSTEMA_URL);
         }
-    }, [oppdaterDpStatus, securityLevel, sakstemaState]);
+    }, [oppdaterDpStatus, securityLevel]);
 
     return (
         <Sakstema.SakstemaContext.Provider value={sakstemaState}>{props.children}</Sakstema.SakstemaContext.Provider>
