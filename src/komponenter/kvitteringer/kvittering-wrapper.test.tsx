@@ -10,12 +10,12 @@ describe('tester komponenten for kvittering for behovsvurdering', () => {
     });
 
     test('komponenten vises IKKE når kvittering IKKE sendes med', () => {
-        const { container } = render(<KvitteringWrapper />);
+        const { container } = render(<KvitteringWrapper kvittering={''} />);
         expect(container).toBeEmptyDOMElement();
     });
 
     test('komponenten VISES når kvittering SENDES med', () => {
-        const { container } = render(<KvitteringWrapper kvittering="behovsvurderingJa" />);
+        const { container } = render(<KvitteringWrapper kvittering="reaktivering" />);
         expect(container).not.toBeEmptyDOMElement();
     });
 });

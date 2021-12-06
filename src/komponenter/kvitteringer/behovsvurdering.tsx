@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import * as React from 'react';
 import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
@@ -10,6 +10,7 @@ import './behovsvurdering.less';
 import { SuccessFilled } from '@navikt/ds-icons';
 import { Knapp } from 'nav-frontend-knapper';
 import { settIBrowserStorage } from '../../utils/browserStorage-utils';
+import { fjernQueryParam } from '../../utils/query-param-utils';
 
 export const HAR_MOTTATT_EGENVURDERING_KVITTERING = 'har_mottatt_egenvurdering_kvittering';
 
@@ -66,26 +67,16 @@ function Sluttkort(props: EndStateProps) {
     );
 }
 
-function Kvittering({ kvittering }: { kvittering?: string }) {
+function Kvittering({ kvittering, onClose }: { kvittering?: string; onClose: () => void }) {
     const amplitudeData = useAmplitudeData();
-    const [visKomponent, setVisKomponent] = useState(false);
-
-    useEffect(() => {
-        if (kvittering && kvittering.length > 0) {
-            setVisKomponent(true);
-        }
-    }, [kvittering]);
 
     function lukkerKvittering(loggTekst: string) {
         loggAktivitet({ aktivitet: loggTekst, ...amplitudeData });
-        setVisKomponent(false);
+        fjernQueryParam('visKvittering');
+        onClose();
     }
 
-    if (!visKomponent) {
-        return null;
-    }
-
-    const innhold = (
+    return (
         <div className="behovsvurdering-omslutning blokk-s">
             <Panel className={'behovsvurdering-intro'} border>
                 <div className={'overall-wrapper'}>
@@ -96,8 +87,6 @@ function Kvittering({ kvittering }: { kvittering?: string }) {
             <InViewport loggTekst="Viser kvittering behovsundersøkelse i viewport" />
         </div>
     );
-
-    return innhold;
 }
 
 export default Kvittering;

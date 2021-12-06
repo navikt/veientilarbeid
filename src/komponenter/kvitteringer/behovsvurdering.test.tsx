@@ -8,24 +8,15 @@ describe('tester komponenten for kvittering for behovsvurdering', () => {
     beforeEach(() => {
         mockIntersectionObserver();
     });
-
-    test('komponenten vises IKKE når kvittering IKKE sendes med', () => {
-        const { container } = render(<BehovsvurderingKvittering />);
-        expect(container).toBeEmptyDOMElement();
-    });
-
-    test('komponenten VISES når kvittering SENDES med', () => {
-        const { container } = render(<BehovsvurderingKvittering kvittering="behovsvurderingJa" />);
-        expect(container).not.toBeEmptyDOMElement();
-    });
+    const tomFunksjon = () => {};
 
     test('komponenten viser rett melding når kvittering er for ja', () => {
-        render(<BehovsvurderingKvittering kvittering="behovsvurderingJa" />);
+        render(<BehovsvurderingKvittering kvittering="behovsvurderingJa" onClose={tomFunksjon} />);
         expect(screen.getByText(/du får svar i løpet av noen dager/i)).toBeInTheDocument();
     });
 
     test('komponenten viser rett melding når kvittering er for nei', async () => {
-        render(<BehovsvurderingKvittering kvittering="behovsvurderingNei" />);
+        render(<BehovsvurderingKvittering kvittering="behovsvurderingNei" onClose={tomFunksjon} />);
         expect(await screen.queryByText(/du får svar i løpet av noen dager/i)).toBeFalsy();
     });
 });
