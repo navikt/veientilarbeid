@@ -11,6 +11,7 @@ import InnholdMetrics from './innhold-metrics';
 import GenerelleFliser from '../komponenter/dittnav/generelle-fliser';
 import InViewport from '../komponenter/in-viewport/in-viewport';
 import StatusTittel from '../komponenter/registrert/status-tittel';
+import EkspanderbartInnsyn from '../komponenter/innsyn/ekspanderbart-innsyn';
 
 const InnholdView = () => {
     return (
@@ -22,6 +23,7 @@ const InnholdView = () => {
                 <KrrMelding />
                 <StatusTittel />
                 <Registrert />
+                <EkspanderbartInnsyn />
                 <Egenvurdering />
                 <Motestotte />
                 <AktivitetDialogMeldekort />
