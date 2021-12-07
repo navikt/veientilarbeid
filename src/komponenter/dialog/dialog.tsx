@@ -10,7 +10,6 @@ import tekster from '../../tekster/tekster';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { UlesteDialogerContext } from '../../contexts/ulestedialoger';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
-import { FeaturetoggleContext } from '../../contexts/feature-toggles';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { OppfolgingContext } from '../../contexts/oppfolging';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
@@ -19,17 +18,14 @@ import { kanViseOnboarding14A } from '../../lib/kan-vise-onboarding14a';
 const Dialog = () => {
     const amplitudeData = useAmplitudeData();
     const ulesteDialoger = useContext(UlesteDialogerContext).data;
-    const { data: featuretoggleData } = useContext(FeaturetoggleContext);
     const { underOppfolging } = useContext(UnderOppfolgingContext).data;
     const registreringData = useBrukerregistreringData();
     const { data: oppfolgingData } = useContext(OppfolgingContext);
     const brukerInfoData = useBrukerinfoData();
     const ser14aStatus = kanViseOnboarding14A({
-        featuretoggleData,
         oppfolgingData,
         brukerInfoData,
         registreringData,
-        amplitudeData,
     });
 
     const kanViseKomponent = underOppfolging && !ser14aStatus;

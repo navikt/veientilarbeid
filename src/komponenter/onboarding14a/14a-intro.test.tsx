@@ -39,26 +39,10 @@ describe('tester onboarding komponenten for 14a-intro', () => {
         expect(container).not.toBeEmptyDOMElement();
     });
 
-    test('komponenten vises IKKE når bruker ikke har standard innsats og feature-toggle ikke er på', () => {
+    test('komponenten vises når bruker ikke har standard innsats', () => {
         const { container } = render(<Onboarding14a />, {
             wrapper: contextProviders({
                 ...providerProps,
-                featureToggle: { 'veientilarbeid.onboarding14a.situasjonsbestemt': false },
-                oppfolging: {
-                    formidlingsgruppe: Formidlingsgruppe.ARBS,
-                    servicegruppe: Servicegruppe.BFORM,
-                },
-                brukerInfo: { alder: 29 },
-            }),
-        });
-        expect(container).toBeEmptyDOMElement();
-    });
-
-    test('komponenten vises når bruker ikke har standard innsats og feature-toggle er på', () => {
-        const { container } = render(<Onboarding14a />, {
-            wrapper: contextProviders({
-                ...providerProps,
-                featureToggle: { 'veientilarbeid.onboarding14a.situasjonsbestemt': true },
                 oppfolging: {
                     formidlingsgruppe: Formidlingsgruppe.ARBS,
                     servicegruppe: Servicegruppe.BFORM,
