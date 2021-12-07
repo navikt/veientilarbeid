@@ -4,7 +4,6 @@ import { DataElement, STATUS } from '../ducks/api';
 export enum FeatureToggles {
     INTRO_FEEDBACK = 'veientilarbeid.feedback',
     INTRO_14A = 'veientilarbeid.14a-intro',
-    REGISTRERT_PERMITTERT = 'veientilarbeid.registrert-permittert',
     DAGPENGER_STATUS = 'veientilarbeid.dagpenger-status',
     DPSTATUS_FOR_ALLE = 'veientilarbeid.dpstatus-for-alle',
     EGENVURDERING_UKE12 = 'veientilarbeid.egenvurderinguke12',
@@ -26,8 +25,6 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return '14a-intro';
         case FeatureToggles.INTRO_FEEDBACK:
             return 'Intro feedback';
-        case FeatureToggles.REGISTRERT_PERMITTERT:
-            return 'Registrert som permittert';
         case FeatureToggles.DAGPENGER_STATUS:
             return 'Dagpenger status';
         case FeatureToggles.DPSTATUS_FOR_ALLE:
@@ -60,7 +57,6 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
 export interface Data {
     'veientilarbeid.feedback': boolean;
     'veientilarbeid.14a-intro': boolean;
-    'veientilarbeid.registrert-permittert': boolean;
     'veientilarbeid.dagpenger-status': boolean;
     'veientilarbeid.dpstatus-for-alle': boolean;
     'veientilarbeid.egenvurderinguke12': boolean;
@@ -84,7 +80,6 @@ export const initialState: State = {
     data: {
         'veientilarbeid.feedback': false,
         'veientilarbeid.14a-intro': false,
-        'veientilarbeid.registrert-permittert': false,
         'veientilarbeid.dagpenger-status': false,
         'veientilarbeid.dpstatus-for-alle': false,
         'veientilarbeid.egenvurderinguke12': false,

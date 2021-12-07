@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
 import * as React from 'react';
+import { useEffect, useState } from 'react';
 import { Element, Systemtittel } from 'nav-frontend-typografi';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
@@ -7,13 +7,12 @@ import { loggAktivitet } from '../../metrics/metrics';
 import Opplysninger from '../innsyn/registreringsopplysninger';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { OppfolgingContext } from '../../contexts/oppfolging';
-import { useAutentiseringData, InnloggingsNiva } from '../../contexts/autentisering';
+import { InnloggingsNiva, useAutentiseringData } from '../../contexts/autentisering';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import { FeaturetoggleContext } from '../../contexts/feature-toggles';
 import KvitteringWrapper from '../kvitteringer/kvittering-wrapper';
 import InViewport from '../in-viewport/in-viewport';
-import Permittert from './permittert';
 import './registrert.less';
 import Temapanel from '../tema-panel/tema-panel';
 
@@ -27,7 +26,6 @@ const Registrert = () => {
     const [clickedInnsyn, setClickedInnsyn] = useState(false);
     const [visKvittering, setVisKvittering] = useState('');
 
-    const featureToggleErAktivert = featuretoggleData['veientilarbeid.registrert-permittert'];
     const oppdatertStylingFeaturetoggle =
         featuretoggleData && featuretoggleData['veientilarbeid.vis-oppdatert-styling'];
 
@@ -69,12 +67,6 @@ const Registrert = () => {
     const { opprettetDato, manueltRegistrertAv, besvarelse, teksterForBesvarelse } = registrering;
     const showOpplysninger = opprettetDato && besvarelse && teksterForBesvarelse;
 
-    const visRegistrertSomPermittert = featureToggleErAktivert && besvarelse.dinSituasjon === 'ER_PERMITTERT';
-
-    const tittel = visRegistrertSomPermittert
-        ? 'Du er registrert som permittert (arbeidssøker)'
-        : 'Du er registrert som arbeidssøker';
-
     const handleClickOpen = () => {
         if (!clickedInnsyn) {
             loggAktivitet({ aktivitet: 'Ser opplysninger fra registreringen', ...amplitudeData });
@@ -91,11 +83,10 @@ const Registrert = () => {
                     : 'registrerings-container blokk-s'
             }
         >
-            <Systemtittel className="registrering-status-heading">{tittel}</Systemtittel>
+            <Systemtittel className="registrering-status-heading">{'Du er registrert som arbeidssøker'}</Systemtittel>
             {visKvittering && <KvitteringWrapper kvittering={visKvittering} />}
             <Temapanel />
 
-            <Permittert visRegistrertSomPermittert={visRegistrertSomPermittert} />
             {showOpplysninger ? (
                 <Ekspanderbartpanel
                     tittel="Se svarene dine fra registreringen"
