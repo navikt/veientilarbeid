@@ -53,7 +53,6 @@ const grunndata = {
         'veientilarbeid.rydding.skjulJobbBoks': false,
         'veientilarbeid.rydding.skjulOkonomiBoks': false,
         'veientilarbeid.rydding.skjulAAPRad': false,
-        'veientilarbeid.visbrukerundersokelse': false,
         'veientilarbeid.onboarding14a.situasjonsbestemt': false,
         'veientilarbeid.onboardingMeldekort.situasjonsbestemt': false,
     },

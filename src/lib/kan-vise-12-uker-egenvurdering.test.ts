@@ -52,7 +52,6 @@ const grunndata = {
         'veientilarbeid.dpstatus-for-alle': false,
         'veientilarbeid.egenvurderinguke12': true,
         'veientilarbeid.rydding.skjulAAPRad': false,
-        'veientilarbeid.visbrukerundersokelse': false,
         'veientilarbeid.onboarding14a.situasjonsbestemt': false,
         'veientilarbeid.onboardingMeldekort.situasjonsbestemt': false,
         'veientilarbeid.onboardingYtelser.situasjonsbestemt': false,
