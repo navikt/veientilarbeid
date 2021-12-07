@@ -10,6 +10,7 @@ import AktivitetDialogMeldekort from './aktivitet-dialog-meldekort';
 import InnholdMetrics from './innhold-metrics';
 import GenerelleFliser from '../komponenter/dittnav/generelle-fliser';
 import InViewport from '../komponenter/in-viewport/in-viewport';
+import StatusTittel from '../komponenter/registrert/status-tittel';
 
 const InnholdView = () => {
     return (
@@ -19,6 +20,7 @@ const InnholdView = () => {
             <Rad>
                 <ReaktiveringKort />
                 <KrrMelding />
+                <StatusTittel />
                 <Registrert />
                 <Egenvurdering />
                 <Motestotte />

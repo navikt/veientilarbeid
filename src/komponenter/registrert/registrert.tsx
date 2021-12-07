@@ -1,38 +1,29 @@
-import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { Element, Systemtittel } from 'nav-frontend-typografi';
+import { Element } from 'nav-frontend-typografi';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { loggAktivitet } from '../../metrics/metrics';
 import Opplysninger from '../innsyn/registreringsopplysninger';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
-import { OppfolgingContext } from '../../contexts/oppfolging';
-import { InnloggingsNiva, useAutentiseringData } from '../../contexts/autentisering';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
-import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
-import { FeaturetoggleContext } from '../../contexts/feature-toggles';
+import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import KvitteringWrapper from '../kvitteringer/kvittering-wrapper';
 import InViewport from '../in-viewport/in-viewport';
 import './registrert.less';
 import Temapanel from '../tema-panel/tema-panel';
+import useErInnloggetArbeidssoker from '../../hooks/useErInnloggetArbeidssoker';
 
 const Registrert = () => {
     const brukerregistreringData = useBrukerregistreringData();
-    const oppfolgingData = React.useContext(OppfolgingContext).data;
-    const autentiseringData = useAutentiseringData();
     const amplitudeData = useAmplitudeData();
-    const featuretoggleData = React.useContext(FeaturetoggleContext).data;
-    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
+    const featuretoggleData = useFeatureToggleData();
     const [clickedInnsyn, setClickedInnsyn] = useState(false);
     const [visKvittering, setVisKvittering] = useState('');
 
     const oppdatertStylingFeaturetoggle =
         featuretoggleData && featuretoggleData['veientilarbeid.vis-oppdatert-styling'];
 
-    const kanViseKomponent =
-        oppfolgingData.formidlingsgruppe === 'ARBS' &&
-        autentiseringData.securityLevel === InnloggingsNiva.LEVEL_4 &&
-        underOppfolging;
+    const kanViseKomponent = useErInnloggetArbeidssoker();
 
     const scrollToRegistrering = () => {
         const goto = new URLSearchParams(window.location.search).get('goTo');
@@ -83,8 +74,8 @@ const Registrert = () => {
                     : 'registrerings-container blokk-s'
             }
         >
-            <Systemtittel className="registrering-status-heading">{'Du er registrert som arbeidssøker'}</Systemtittel>
             {visKvittering && <KvitteringWrapper kvittering={visKvittering} />}
+
             <Temapanel />
 
             {showOpplysninger ? (

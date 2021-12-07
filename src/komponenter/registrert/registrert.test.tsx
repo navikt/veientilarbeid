@@ -4,7 +4,6 @@ import { InnloggingsNiva } from '../../contexts/autentisering';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import Registrert from './registrert';
 import { Formidlingsgruppe, Servicegruppe } from '../../contexts/oppfolging';
-import { DinSituasjonSvar, ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../../contexts/brukerregistrering';
 import { mockIntersectionObserver } from '../../mocks/intersection-observer-mock';
 
 const meldekort = {
@@ -76,8 +75,8 @@ describe('Test av registreringskomponenten', () => {
                 formidlingsgruppe: Formidlingsgruppe.ARBS,
             },
         };
-        render(<Registrert />, { wrapper: contextProviders(providerProps) });
-        expect(screen.getByText(/du er registrert som arbeidssøker/i)).toBeInTheDocument();
+        const { container } = render(<Registrert />, { wrapper: contextProviders(providerProps) });
+        expect(container).toBeInTheDocument();
     });
 
     test('Komponenten rendres IKKE når bruker IKKE er under oppfølging', () => {
@@ -92,67 +91,5 @@ describe('Test av registreringskomponenten', () => {
         };
         const { container } = render(<Registrert />, { wrapper: contextProviders(props) });
         expect(container).toBeEmptyDOMElement();
-    });
-
-    test('Komponenten viser innsynskomponent dersom man har ARBS, er logget inn på nivå 4 og har besvarelse', () => {
-        const providerProps: ProviderProps = {
-            underOppfolging: { underOppfolging: true },
-            meldekort,
-            autentisering: {
-                securityLevel: InnloggingsNiva.LEVEL_4,
-            },
-            brukerregistrering: {
-                registrering: {
-                    opprettetDato: '2020-01-03T11:53:05.486686+01:00',
-                    besvarelse: {
-                        utdanning: 'INGEN_UTDANNING',
-                        utdanningBestatt: 'INGEN_SVAR',
-                        utdanningGodkjent: 'INGEN_SVAR',
-                        helseHinder: 'NEI',
-                        andreForhold: 'NEI',
-                        sisteStilling: 'Barne- og ungdomsarbeider i skolefritidsordning',
-                        dinSituasjon: DinSituasjonSvar.MISTET_JOBBEN,
-                        fremtidigSituasjon: FremtidigSituasjonSvar.NY_ARBEIDSGIVER,
-                        tilbakeIArbeid: 'USIKKER',
-                    },
-                    profilering: {
-                        innsatsgruppe: ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS,
-                    },
-                    teksterForBesvarelse: [
-                        {
-                            sporsmalId: 'fremtidigSituasjon',
-                            sporsmal: 'Hva tenker du om din fremtidige situasjon?',
-                            svar: 'Jeg trenger ny jobb',
-                        },
-                        {
-                            sporsmalId: 'utdanningBestatt',
-                            sporsmal: 'Er utdanningen din bestått?',
-                            svar: 'Ikke aktuelt',
-                        },
-                        {
-                            sporsmalId: 'utdanningGodkjent',
-                            sporsmal: 'Er utdanningen din godkjent i Norge?',
-                            svar: 'Ikke aktuelt',
-                        },
-                        {
-                            sporsmalId: 'utdanning',
-                            sporsmal: 'Hva er din høyeste fullførte utdanning?',
-                            svar: 'Ingen utdanning',
-                        },
-                        {
-                            sporsmalId: 'andreForhold',
-                            sporsmal: 'Er det noe annet enn helsen din som NAV bør ta hensyn til?',
-                            svar: 'Nei',
-                        },
-                    ],
-                },
-            },
-            oppfolging: {
-                formidlingsgruppe: Formidlingsgruppe.ARBS,
-            },
-        };
-        render(<Registrert />, { wrapper: contextProviders(providerProps) });
-        expect(screen.getByText(/du er registrert som arbeidssøker/i)).toBeInTheDocument();
-        expect(screen.getByText(/se svarene dine fra registreringen/i)).toBeInTheDocument();
     });
 });
