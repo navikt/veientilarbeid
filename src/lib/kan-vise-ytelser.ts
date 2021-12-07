@@ -1,4 +1,3 @@
-import { Data as FeaturetoggleData } from '../contexts/feature-toggles';
 import * as Brukerregistrering from '../contexts/brukerregistrering';
 import * as Oppfolging from '../contexts/oppfolging';
 import * as BrukerInfo from '../contexts/bruker-info';
@@ -11,13 +10,11 @@ export function kanViseOnboardingYtelser({
     brukerInfoData,
     oppfolgingData,
     registreringData,
-    featuretoggleData,
     amplitudeData,
 }: {
     brukerInfoData: BrukerInfo.Data;
     oppfolgingData: Oppfolging.Data;
     registreringData: Brukerregistrering.Data | null;
-    featuretoggleData: FeaturetoggleData;
     amplitudeData: AmplitudeData;
 }): boolean {
     const erAAP = brukerInfoData.rettighetsgruppe === 'AAP';
@@ -39,11 +36,7 @@ export function kanViseOnboardingYtelser({
 
     const skalViseForPilot = brukerErPilot && registrertFoerDato;
 
-    const visYtelserForSituasjonsbestemtToggle =
-        featuretoggleData['veientilarbeid.onboardingYtelser.situasjonsbestemt'];
-
-    const kanViseForSituasjonsbestemt =
-        erSituasjonsbestemtInnsatsgruppe && brukerErPilot && visYtelserForSituasjonsbestemtToggle;
+    const kanViseForSituasjonsbestemt = erSituasjonsbestemtInnsatsgruppe && brukerErPilot;
 
     const erStandardInnsatsgruppe = sjekkOmBrukerErStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData });
 

@@ -54,7 +54,6 @@ const grunndata = {
         'veientilarbeid.rydding.skjulAAPRad': false,
         'veientilarbeid.onboarding14a.situasjonsbestemt': false,
         'veientilarbeid.onboardingMeldekort.situasjonsbestemt': false,
-        'veientilarbeid.onboardingYtelser.situasjonsbestemt': false,
         'veientilarbeid.onboardingDagpenger': false,
         'veientilarbeid.onboardingDagpenger.toggle': false,
         'veientilarbeid.kanViseUtfraSituasjon': false,

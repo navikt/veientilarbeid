@@ -41,7 +41,6 @@ function YtelserOnboarding() {
 
     const kanViseYtelserKomponent = kanViseOnboardingYtelser({
         amplitudeData,
-        featuretoggleData,
         oppfolgingData,
         brukerInfoData,
         registreringData,

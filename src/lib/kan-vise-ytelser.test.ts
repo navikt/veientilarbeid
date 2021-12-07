@@ -76,21 +76,6 @@ const grunndata = {
         dagpengerDagerMellomInnsendtSoknadOgRegistrering: 0,
         dagpengerStatusBeregning: 'INGEN_DATA',
     },
-    featuretoggleData: {
-        'veientilarbeid.feedback': false,
-        'veientilarbeid.14a-intro': true,
-        'veientilarbeid.dagpenger-status': false,
-        'veientilarbeid.dpstatus-for-alle': false,
-        'veientilarbeid.egenvurderinguke12': true,
-        'veientilarbeid.rydding.skjulJobbBoks': false,
-        'veientilarbeid.rydding.skjulOkonomiBoks': false,
-        'veientilarbeid.rydding.skjulAAPRad': false,
-        'veientilarbeid.onboarding14a.situasjonsbestemt': false,
-        'veientilarbeid.onboardingYtelser.situasjonsbestemt': false,
-        'veientilarbeid.onboardingDagpenger': false,
-        'veientilarbeid.onboardingDagpenger.toggle': false,
-        'veientilarbeid.onboardingMeldekort.situasjonsbestemt': false,
-    },
     sistVistFraLocalstorage: 0,
 };
 
@@ -101,17 +86,15 @@ describe('Tester funksjonen ytelser-onboarding', () => {
         expect(kanViseOnboardingYtelser(testdata)).toBe(false);
     });
 
-    test('Ja hvis eksperiment, featuretoggle og situasjonsbestemt', () => {
+    test('Ja hvis eksperiment og situasjonsbestemt', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
-        testdata.featuretoggleData['veientilarbeid.onboardingYtelser.situasjonsbestemt'] = true;
         testdata.amplitudeData.eksperimenter = [eksperiment];
         testdata.oppfolgingData.servicegruppe = 'BFORM';
         expect(kanViseOnboardingYtelser(testdata)).toBe(true);
     });
 
-    test('NEI hvis ikke eksperiment, ikke featuretoggle og situasjonsbestemt', () => {
+    test('NEI hvis ikke eksperiment og situasjonsbestemt', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
-        testdata.featuretoggleData['veientilarbeid.onboardingYtelser.situasjonsbestemt'] = false;
         testdata.amplitudeData.eksperimenter = [];
         testdata.oppfolgingData.servicegruppe = 'BFORM';
         expect(kanViseOnboardingYtelser(testdata)).toBe(false);

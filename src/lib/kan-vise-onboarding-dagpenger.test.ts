@@ -84,7 +84,6 @@ const grunndata = {
         'veientilarbeid.rydding.skjulOkonomiBoks': false,
         'veientilarbeid.rydding.skjulAAPRad': false,
         'veientilarbeid.onboarding14a.situasjonsbestemt': false,
-        'veientilarbeid.onboardingYtelser.situasjonsbestemt': false,
         'veientilarbeid.onboardingDagpenger': true,
         'veientilarbeid.onboardingDagpenger.toggle': false,
         'veientilarbeid.onboardingMeldekort.situasjonsbestemt': false,
