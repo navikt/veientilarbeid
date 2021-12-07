@@ -50,7 +50,6 @@ const providerProps: ProviderProps = {
         formidlingsgruppe: Formidlingsgruppe.ARBS,
         servicegruppe: Servicegruppe.IKVAL,
     },
-    featureToggle: { 'veientilarbeid.onboardingMeldekort.situasjonsbestemt': true },
 };
 
 function propsForRelativDag(dag: number): any {
@@ -276,7 +275,7 @@ describe('tester onboarding komponenten for meldekort', () => {
         expect(screen.getByText(/Du har 2 meldekort/i)).toBeInTheDocument();
     });
 
-    test('Viser boks for bruker med profil: situasjonsbestemt og feature-toggle på', () => {
+    test('Viser boks for bruker med profil: situasjonsbestemt', () => {
         const props: ProviderProps = {
             ...providerProps,
             ...propsForRelativDag(7),
@@ -287,20 +286,5 @@ describe('tester onboarding komponenten for meldekort', () => {
         };
         const { container } = render(<MeldekortOnboarding />, { wrapper: contextProviders(props) });
         expect(container).not.toBeEmptyDOMElement();
-    });
-
-    test('Viser ikke boks for bruker med profil: situasjonsbestemt, eksperiment av og feature-toggle av', () => {
-        const props: ProviderProps = {
-            ...providerProps,
-            ...propsForRelativDag(7),
-            oppfolging: {
-                formidlingsgruppe: Formidlingsgruppe.ARBS,
-                servicegruppe: Servicegruppe.BFORM,
-            },
-            amplitude: { eksperimenter: [] },
-            featureToggle: { 'veientilarbeid.onboardingMeldekort.situasjonsbestemt': false },
-        };
-        const { container } = render(<MeldekortOnboarding />, { wrapper: contextProviders(props) });
-        expect(container).toBeEmptyDOMElement();
     });
 });

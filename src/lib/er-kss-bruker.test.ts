@@ -53,7 +53,6 @@ const grunndata = {
         'veientilarbeid.rydding.skjulJobbBoks': false,
         'veientilarbeid.rydding.skjulOkonomiBoks': false,
         'veientilarbeid.rydding.skjulAAPRad': false,
-        'veientilarbeid.onboardingMeldekort.situasjonsbestemt': false,
     },
     amplitudeData: {
         gruppe: poagruppeKSS,

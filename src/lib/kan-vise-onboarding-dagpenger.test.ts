@@ -85,7 +85,6 @@ const grunndata = {
         'veientilarbeid.rydding.skjulAAPRad': false,
         'veientilarbeid.onboardingDagpenger': true,
         'veientilarbeid.onboardingDagpenger.toggle': false,
-        'veientilarbeid.onboardingMeldekort.situasjonsbestemt': false,
     },
     sistVistFraLocalstorage: 0,
 };

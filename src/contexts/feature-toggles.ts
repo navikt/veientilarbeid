@@ -8,7 +8,6 @@ export enum FeatureToggles {
     DPSTATUS_FOR_ALLE = 'veientilarbeid.dpstatus-for-alle',
     EGENVURDERING_UKE12 = 'veientilarbeid.egenvurderinguke12',
     RYDDING_SKJUL_AAP_RAD = 'veientilarbeid.rydding.skjulAAPRad',
-    INTRO_MELDEKORT_SITUASJONSBESTEMT = 'veientilarbeid.onboardingMeldekort.situasjonsbestemt',
     INTRO_DAGPENGER = 'veientilarbeid.onboardingDagpenger',
     INTRO_DAGPENGER_TOGGLE = 'veientilarbeid.onboardingDagpenger.toggle',
     KAN_VISE_UTFRA_SITUASJON = 'veientilarbeid.kanViseUtfraSituasjon',
@@ -30,8 +29,6 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Egenvurdering uke 12';
         case FeatureToggles.RYDDING_SKJUL_AAP_RAD:
             return 'Skjul AAP rad';
-        case FeatureToggles.INTRO_MELDEKORT_SITUASJONSBESTEMT:
-            return 'Vis meldekort-intro for situasjonsbestemt';
         case FeatureToggles.KAN_VISE_UTFRA_SITUASJON:
             return 'Vis VTA fra situasjon';
         case FeatureToggles.VIS_OPPDATERT_STYLING:
@@ -52,7 +49,6 @@ export interface Data {
     'veientilarbeid.dpstatus-for-alle': boolean;
     'veientilarbeid.egenvurderinguke12': boolean;
     'veientilarbeid.rydding.skjulAAPRad': boolean;
-    'veientilarbeid.onboardingMeldekort.situasjonsbestemt': boolean;
     'veientilarbeid.onboardingDagpenger': boolean;
     'veientilarbeid.onboardingDagpenger.toggle': boolean;
     'veientilarbeid.kanViseUtfraSituasjon': boolean;
@@ -72,7 +68,6 @@ export const initialState: State = {
         'veientilarbeid.dpstatus-for-alle': false,
         'veientilarbeid.egenvurderinguke12': false,
         'veientilarbeid.rydding.skjulAAPRad': false,
-        'veientilarbeid.onboardingMeldekort.situasjonsbestemt': false,
         'veientilarbeid.onboardingDagpenger': false,
         'veientilarbeid.onboardingDagpenger.toggle': false,
         'veientilarbeid.kanViseUtfraSituasjon': false,

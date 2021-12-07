@@ -1,7 +1,6 @@
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
-import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useMeldekortData } from '../../contexts/meldekort';
 import { useOppfolgingData } from '../../contexts/oppfolging';
 import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../../lib/er-situasjonsbestemt-innsatsgruppe';
@@ -13,7 +12,6 @@ import Sluttkort from './Sluttkort';
 import { StandardKortliste, StandardStartkort } from './standard';
 
 const MeldekortOnboarding = () => {
-    const featuretoggleData = useFeatureToggleData();
     const registreringData = useBrukerregistreringData();
     const oppfolgingData = useOppfolgingData();
     const amplitudeData = useAmplitudeData();
@@ -24,8 +22,6 @@ const MeldekortOnboarding = () => {
 
     const brukerregistreringData = registreringData?.registrering ?? null;
 
-    const onboardingForSituasjonsbestemtToggle =
-        featuretoggleData['veientilarbeid.onboardingMeldekort.situasjonsbestemt'];
     const erSituasjonsbestemtInnsatsgruppe = sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe({
         brukerregistreringData,
         oppfolgingData,
@@ -37,17 +33,13 @@ const MeldekortOnboarding = () => {
             oppfolgingData,
             brukerInfoData,
             registreringData,
-            featuretoggleData,
-            amplitudeData,
         })
     ) {
         fjernFraBrowserStorage(MELDEKORT_ONBOARDING_KEY);
         return null;
     }
 
-    const skalViseOnboardingForSituasjonsbestemt =
-        onboardingForSituasjonsbestemtToggle && erSituasjonsbestemtInnsatsgruppe;
-    const introKort = skalViseOnboardingForSituasjonsbestemt
+    const introKort = erSituasjonsbestemtInnsatsgruppe
         ? [<SituasjonsbestemtStartkort />, ...SituasjonsbestemtKortliste, <Sluttkort />]
         : [<StandardStartkort />, ...StandardKortliste, <Sluttkort />];
 

@@ -60,7 +60,6 @@ const grunndata = {
         'veientilarbeid.rydding.skjulJobbBoks': false,
         'veientilarbeid.rydding.skjulOkonomiBoks': false,
         'veientilarbeid.rydding.skjulAAPRad': false,
-        'veientilarbeid.onboardingMeldekort.situasjonsbestemt': false,
     },
     amplitudeData: {
         geografiskTilknytning: 'INGEN_VERDI',
@@ -124,14 +123,10 @@ describe('Tester funksjonen kanViseMeldekortStatus', () => {
         expect(kanViseMeldekortStatus(testdata)).toBe(false);
     });
 
-    test('JA hvis bruker er situasjonsbestemt innsatsgruppe og toggle', () => {
+    test('JA hvis bruker er situasjonsbestemt innsatsgruppe', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
         testdata.meldekortData.meldekort = [{ meldegruppe: 'ARBS' }];
         testdata.oppfolgingData.servicegruppe = 'BFORM';
-        testdata.featuretoggleData = {
-            ...testdata.featuretoggleData,
-            'veientilarbeid.onboardingMeldekort.situasjonsbestemt': true,
-        };
         expect(kanViseMeldekortStatus(testdata)).toBe(true);
     });
 
