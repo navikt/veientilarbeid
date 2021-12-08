@@ -1,7 +1,4 @@
 import { createRef, useCallback, useEffect } from 'react';
-import { Element } from 'nav-frontend-typografi';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import InViewport from '../in-viewport/in-viewport';
 import './registrert.less';
@@ -9,7 +6,6 @@ import Temapanel from '../tema-panel/tema-panel';
 import useErInnloggetArbeidssoker from '../../hooks/useErInnloggetArbeidssoker';
 
 const Registrert = () => {
-    const brukerregistreringData = useBrukerregistreringData();
     const featuretoggleData = useFeatureToggleData();
     const containerRef = createRef<HTMLDivElement>();
 
@@ -31,17 +27,6 @@ const Registrert = () => {
 
     if (!kanViseKomponent) {
         return null;
-    }
-
-    if (!brukerregistreringData || !brukerregistreringData.registrering) {
-        return (
-            <div className="blokk-s">
-                <AlertStripeInfo>
-                    <Element>Du er registrert som arbeidssøker</Element>
-                </AlertStripeInfo>
-                <InViewport loggTekst="Tom registreringsboks i viewport" />
-            </div>
-        );
     }
 
     return (
