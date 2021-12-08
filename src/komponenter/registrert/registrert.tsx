@@ -27,7 +27,7 @@ const Registrert = () => {
 
     useEffect(() => {
         scrollToRegistrering();
-    }, []);
+    }, [scrollToRegistrering]);
 
     if (!kanViseKomponent) {
         return null;
