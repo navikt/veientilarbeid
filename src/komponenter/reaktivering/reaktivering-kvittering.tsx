@@ -1,8 +1,9 @@
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { dagpengerSoknadLenke } from '../../innhold/lenker';
 import { loggAktivitet } from '../../metrics/metrics';
-import { Knapp } from 'nav-frontend-knapper';
-import { Panel, Heading, BodyShort, Link } from '@navikt/ds-react';
+import { Panel, Heading, BodyShort, Link, Button } from '@navikt/ds-react';
+import { Close } from '@navikt/ds-icons';
+
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import useVisKvittering from '../../hooks/use-vis-kvittering';
@@ -63,9 +64,9 @@ const ReaktiveringKvittering = () => {
                         </Heading>
                         <Heading size="medium">Du må søke om dagpenger på nytt</Heading>
                     </div>
-                    <button className="behovsvurdering-lukk-knapp" onClick={handleLukkeKvitteringKnapp}>
-                        X
-                    </button>
+                    <Button variant="tertiary" size="small" onClick={handleLukkeKvitteringKnapp}>
+                        <Close color="black" title="Lukk kvittering" />
+                    </Button>
                 </div>
                 <div>
                     <BodyShort className="blokk-xs">
@@ -74,9 +75,9 @@ const ReaktiveringKvittering = () => {
                     <BodyShort className="blokk-xs">
                         Du kan tidligst få dagpenger igjen fra den dagen du sender søknaden.
                     </BodyShort>
-                    <Knapp onClick={handleSokGjenopptak} className="blokk-xs">
+                    <Button variant="secondary" onClick={handleSokGjenopptak} className="blokk-xs">
                         Søk dagpenger
-                    </Knapp>
+                    </Button>
                     <BodyShort>
                         <Link onClick={handleIkkeSokeNaa}>Skal ikke søke dagpenger nå</Link>
                     </BodyShort>
