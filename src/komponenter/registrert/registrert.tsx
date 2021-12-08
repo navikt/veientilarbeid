@@ -1,4 +1,4 @@
-import { createRef, useEffect } from 'react';
+import { createRef, useCallback, useEffect } from 'react';
 import { Element } from 'nav-frontend-typografi';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
@@ -18,12 +18,12 @@ const Registrert = () => {
 
     const kanViseKomponent = useErInnloggetArbeidssoker();
 
-    const scrollToRegistrering = () => {
+    const scrollToRegistrering = useCallback(() => {
         const goto = new URLSearchParams(window.location.search).get('goTo');
         if (goto === 'registrering' && containerRef.current) {
             containerRef.current.scrollIntoView({ block: 'end', inline: 'nearest' });
         }
-    };
+    }, [containerRef]);
 
     useEffect(() => {
         scrollToRegistrering();
