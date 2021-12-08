@@ -1,11 +1,9 @@
-import { Hovedknapp } from 'nav-frontend-knapper';
 import { Next } from '@navikt/ds-icons/cjs';
-import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
+import { Heading, BodyShort, Button, Link } from '@navikt/ds-react';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { loggAktivitet } from '../../metrics/metrics';
 import { behovsvurderingLenke } from '../../innhold/lenker';
 import { settIBrowserStorage } from '../../utils/browserStorage-utils';
-import Lenke from 'nav-frontend-lenker';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 
@@ -28,20 +26,22 @@ const EgenvurderingIVURD = () => {
     return (
         <>
             <ErRendret loggTekst="Rendrer egenvurdering på sluttkort" />
-            <Systemtittel className={'blokk-xs'}>Hva trenger du for å komme i jobb?</Systemtittel>
-            <Normaltekst className="blokk-s ">
+            <Heading level="2" size="medium" className="blokk-xs">
+                Hva trenger du for å komme i jobb?
+            </Heading>
+            <BodyShort className="blokk-s ">
                 Du har krav på en skriftlig vurdering av behovet ditt for hjelp fra NAV. Derfor vil vi vite hva du selv
                 mener.
-            </Normaltekst>
-            <Hovedknapp mini onClick={handleButtonClick} className="blokk-xs">
+            </BodyShort>
+            <Button variant="primary" size="small" onClick={handleButtonClick} className="blokk-xs">
                 <span>Svar her</span>
                 <Next />
-            </Hovedknapp>
-            <Normaltekst className={'blokk-l'}>
-                <Lenke className={'tracking-wide'} href={''} onClick={avslaarEgenvurdering}>
+            </Button>
+            <BodyShort className={'blokk-l'}>
+                <Link href={''} onClick={avslaarEgenvurdering}>
                     Jeg ønsker å klare meg selv
-                </Lenke>
-            </Normaltekst>
+                </Link>
+            </BodyShort>
             <InViewport loggTekst="Viser egenvurdering i viewport på sluttkort" />
         </>
     );

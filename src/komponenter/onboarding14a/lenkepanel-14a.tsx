@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
-import LenkepanelBase from 'nav-frontend-lenkepanel';
+import { BodyShort, LinkPanel, Label } from '@navikt/ds-react';
 import './lenkepanel-14a.less';
 
 interface Lenkepanel14AProps {
@@ -19,11 +18,6 @@ const Lenkepanel14A: React.FC<Lenkepanel14AProps> = (props) => {
         });
     };
 
-    const linkCreator = (props: {}) => {
-        // eslint-disable-next-line jsx-a11y/anchor-has-content
-        return <a onClick={handleClickInnsending} {...props} />;
-    };
-
     function dialogTekst(antallUlesteDialoger: number) {
         if (antallUlesteDialoger === 0) return 'Ta kontakt om du ønsker hjelp';
         if (antallUlesteDialoger === 1) return `Du har ${antallUlesteDialoger} ulest melding`;
@@ -31,13 +25,7 @@ const Lenkepanel14A: React.FC<Lenkepanel14AProps> = (props) => {
     }
 
     return (
-        <LenkepanelBase
-            href={props.href}
-            tittelProps="undertittel"
-            linkCreator={linkCreator}
-            border={true}
-            className={'fjorten-A-start-dialog-kort'}
-        >
+        <LinkPanel href={props.href} onClick={handleClickInnsending} className={'fjorten-A-start-dialog-kort'}>
             <div className="lenkepanel__innhold">
                 <div className="dialog__ikon">
                     {props.antallUlesteDialoger > 0 ? (
@@ -45,11 +33,11 @@ const Lenkepanel14A: React.FC<Lenkepanel14AProps> = (props) => {
                     ) : null}
                 </div>
                 <div className={props.antallUlesteDialoger > 0 ? 'ml-1' : ''}>
-                    <Element>Start dialogen med veileder</Element>
-                    <Normaltekst>{dialogTekst(props.antallUlesteDialoger)}</Normaltekst>
+                    <Label>Start dialogen med veileder</Label>
+                    <BodyShort>{dialogTekst(props.antallUlesteDialoger)}</BodyShort>
                 </div>
             </div>
-        </LenkepanelBase>
+        </LinkPanel>
     );
 };
 
