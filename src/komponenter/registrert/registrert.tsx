@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { createRef, useEffect } from 'react';
 import { Element } from 'nav-frontend-typografi';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
@@ -11,6 +11,7 @@ import useErInnloggetArbeidssoker from '../../hooks/useErInnloggetArbeidssoker';
 const Registrert = () => {
     const brukerregistreringData = useBrukerregistreringData();
     const featuretoggleData = useFeatureToggleData();
+    const containerRef = createRef<HTMLDivElement>();
 
     const oppdatertStylingFeaturetoggle =
         featuretoggleData && featuretoggleData['veientilarbeid.vis-oppdatert-styling'];
@@ -19,9 +20,8 @@ const Registrert = () => {
 
     const scrollToRegistrering = () => {
         const goto = new URLSearchParams(window.location.search).get('goTo');
-        const registreringsboks = document.getElementById('registrering-status-container');
-        if (goto === 'registrering' && registreringsboks) {
-            registreringsboks.scrollIntoView({ block: 'end', inline: 'nearest' });
+        if (goto === 'registrering' && containerRef.current) {
+            containerRef.current.scrollIntoView({ block: 'end', inline: 'nearest' });
         }
     };
 
@@ -47,6 +47,7 @@ const Registrert = () => {
     return (
         <div
             id="registrering-status-container"
+            ref={containerRef}
             className={
                 oppdatertStylingFeaturetoggle
                     ? 'oppdatert-registrerings-container blokk-s'
