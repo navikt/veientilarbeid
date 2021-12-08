@@ -1,5 +1,5 @@
 import { Normaltekst } from 'nav-frontend-typografi';
-import { AlertStripeFeil } from 'nav-frontend-alertstriper';
+import { Alert } from '@navikt/ds-react';
 
 import './feilmelding.less';
 import tekster from '../../tekster/tekster';
@@ -10,9 +10,9 @@ interface FeilmeldingProps {
 
 function Feilmelding({ tekstId }: FeilmeldingProps) {
     return (
-        <AlertStripeFeil className="feilmelding-container">
+        <Alert variant="error" className="feilmelding-container">
             <Normaltekst>{tekster[tekstId]}</Normaltekst>
-        </AlertStripeFeil>
+        </Alert>
     );
 }
 

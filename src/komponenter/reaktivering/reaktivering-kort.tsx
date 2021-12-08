@@ -1,5 +1,5 @@
 import * as React from 'react';
-import AlertStripe from 'nav-frontend-alertstriper';
+import { Alert } from '@navikt/ds-react';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 import { useAutentiseringData, InnloggingsNiva } from '../../contexts/autentisering';
 import { OppfolgingContext } from '../../contexts/oppfolging';
@@ -35,9 +35,9 @@ interface TittelProps {
 function Tittel(props: TittelProps) {
     const { state } = props;
     return (
-        <AlertStripe type={state ? 'advarsel' : 'info'} form="inline">
+        <Alert size="small" variant={state ? 'warning' : 'info'}>
             Du er ikke lenger registrert som arbeidssøker hos NAV
-        </AlertStripe>
+        </Alert>
     );
 }
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import { Alert } from '@navikt/ds-react';
 import Lenke from 'nav-frontend-lenker';
 import { Normaltekst } from 'nav-frontend-typografi';
 import './krr-melding.less';
@@ -24,7 +24,7 @@ const KrrMelding = () => {
     if (!reservasjonKRR || !kanViseKomponent) return null;
 
     return (
-        <AlertStripeAdvarsel className="krr-melding blokk-xs">
+        <Alert variant="warning" className="krr-melding blokk-xs">
             <Normaltekst className="blokk-xs">{tekster['krr-melding-ingress']}</Normaltekst>
             <Normaltekst>{tekster['krr-melding-kulepunkt-ingress']}</Normaltekst>
             <ul>
@@ -41,7 +41,7 @@ const KrrMelding = () => {
             <Lenke href={difiLenke} onClick={handleLenkeKlikk}>
                 <Normaltekst>{tekster['krr-melding-lenketekst']}</Normaltekst>
             </Lenke>
-        </AlertStripeAdvarsel>
+        </Alert>
     );
 };
 
