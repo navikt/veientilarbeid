@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Element } from 'nav-frontend-typografi';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
-import KvitteringWrapper from '../kvitteringer/kvittering-wrapper';
 import InViewport from '../in-viewport/in-viewport';
 import './registrert.less';
 import Temapanel from '../tema-panel/tema-panel';
@@ -12,7 +11,6 @@ import useErInnloggetArbeidssoker from '../../hooks/useErInnloggetArbeidssoker';
 const Registrert = () => {
     const brukerregistreringData = useBrukerregistreringData();
     const featuretoggleData = useFeatureToggleData();
-    const [visKvittering, setVisKvittering] = useState('');
 
     const oppdatertStylingFeaturetoggle =
         featuretoggleData && featuretoggleData['veientilarbeid.vis-oppdatert-styling'];
@@ -21,12 +19,10 @@ const Registrert = () => {
 
     const scrollToRegistrering = () => {
         const goto = new URLSearchParams(window.location.search).get('goTo');
-        const kvittering = new URLSearchParams(window.location.search).get('visKvittering');
         const registreringsboks = document.getElementById('registrering-status-container');
         if (goto === 'registrering' && registreringsboks) {
             registreringsboks.scrollIntoView({ block: 'end', inline: 'nearest' });
         }
-        setVisKvittering(kvittering || '');
     };
 
     useEffect(() => {
@@ -57,8 +53,6 @@ const Registrert = () => {
                     : 'registrerings-container blokk-s'
             }
         >
-            {visKvittering && <KvitteringWrapper kvittering={visKvittering} />}
-
             <Temapanel />
             <InViewport loggTekst="Registreringsboks i viewport" />
         </div>

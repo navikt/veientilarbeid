@@ -12,6 +12,7 @@ import GenerelleFliser from '../komponenter/dittnav/generelle-fliser';
 import InViewport from '../komponenter/in-viewport/in-viewport';
 import StatusTittel from '../komponenter/registrert/status-tittel';
 import EkspanderbartInnsyn from '../komponenter/innsyn/ekspanderbart-innsyn';
+import ReaktiveringKvittering from '../komponenter/reaktivering/reaktivering-kvittering';
 
 const InnholdView = () => {
     return (
@@ -22,6 +23,7 @@ const InnholdView = () => {
                 <ReaktiveringKort />
                 <KrrMelding />
                 <StatusTittel />
+                <ReaktiveringKvittering />
                 <Registrert />
                 <EkspanderbartInnsyn />
                 <Egenvurdering />
