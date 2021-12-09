@@ -76,7 +76,7 @@ jobs:
           DRY_RUN: false
           CLUSTER: prod-gcp
           RESOURCE: nais/nais.yaml
-          VARS: nais/vars-p.yaml
+          VARS: nais/vars-prod.yaml
 
   release:
     if: github.ref == 'refs/heads/main'
