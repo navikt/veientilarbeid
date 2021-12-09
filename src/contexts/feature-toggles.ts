@@ -11,7 +11,6 @@ export enum FeatureToggles {
     INTRO_DAGPENGER = 'veientilarbeid.onboardingDagpenger',
     INTRO_DAGPENGER_TOGGLE = 'veientilarbeid.onboardingDagpenger.toggle',
     KAN_VISE_UTFRA_SITUASJON = 'veientilarbeid.kanViseUtfraSituasjon',
-    VIS_OPPDATERT_STYLING = 'veientilarbeid.vis-oppdatert-styling',
     VIS_EGENVURDERING_MED_14A = 'veientilarbeid.vis-egenvurdering-med-14a',
 }
 
@@ -31,8 +30,6 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Skjul AAP rad';
         case FeatureToggles.KAN_VISE_UTFRA_SITUASJON:
             return 'Vis VTA fra situasjon';
-        case FeatureToggles.VIS_OPPDATERT_STYLING:
-            return 'Vis oppdatert styling';
         case FeatureToggles.VIS_EGENVURDERING_MED_14A:
             return 'Vis egenvurdering med 14a';
         case FeatureToggles.INTRO_DAGPENGER:
@@ -52,7 +49,6 @@ export interface Data {
     'veientilarbeid.onboardingDagpenger': boolean;
     'veientilarbeid.onboardingDagpenger.toggle': boolean;
     'veientilarbeid.kanViseUtfraSituasjon': boolean;
-    'veientilarbeid.vis-oppdatert-styling': boolean;
     'veientilarbeid.vis-egenvurdering-med-14a': boolean;
 }
 
@@ -71,7 +67,6 @@ export const initialState: State = {
         'veientilarbeid.onboardingDagpenger': false,
         'veientilarbeid.onboardingDagpenger.toggle': false,
         'veientilarbeid.kanViseUtfraSituasjon': false,
-        'veientilarbeid.vis-oppdatert-styling': false,
         'veientilarbeid.vis-egenvurdering-med-14a': false,
     },
     status: STATUS.NOT_STARTED,

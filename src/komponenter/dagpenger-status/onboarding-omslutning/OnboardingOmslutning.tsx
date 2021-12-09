@@ -1,7 +1,6 @@
 import Panel from 'nav-frontend-paneler';
 import { Element } from 'nav-frontend-typografi';
 import React from 'react';
-import { FeaturetoggleContext } from '../../../contexts/feature-toggles';
 import './OnboardingOmslutning.less';
 
 export interface OnboardingOmslutningProps extends React.ComponentPropsWithoutRef<'div'> {
@@ -9,13 +8,8 @@ export interface OnboardingOmslutningProps extends React.ComponentPropsWithoutRe
 }
 
 const OnboardingOmslutning = ({ children, title, className, ...rest }: OnboardingOmslutningProps) => {
-    const { data: featuretoggleData } = React.useContext(FeaturetoggleContext);
-    const featuretoggleAktivert = featuretoggleData && featuretoggleData['veientilarbeid.vis-oppdatert-styling'];
     return (
-        <div
-            className={`${className || ''} ${featuretoggleAktivert ? 'oppdatert-kort-omslutning' : 'kort-omslutning'}`}
-            {...rest}
-        >
+        <div className={`${className || ''} kort-omslutning`} {...rest}>
             <Panel className={'kort-panel'}>
                 <div className={'kort-innhold'}>
                     {title && (
