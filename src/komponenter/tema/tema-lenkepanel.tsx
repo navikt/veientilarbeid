@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
-import LenkepanelBase from 'nav-frontend-lenkepanel';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
-import { Normaltekst } from 'nav-frontend-typografi';
 import './tema-lenkepanel.less';
+import { LinkPanel } from '@navikt/ds-react';
 interface TemaLenkepanelProps {
     href: string;
-    children: React.ReactNode;
+    tittel: string;
+    beskrivelse?: string;
     amplitudeTema: string;
     amplitudeTilstand?: string;
     amplitudeHandling: string;
@@ -24,23 +24,11 @@ const TemaLenkepanel: React.FC<TemaLenkepanelProps> = (props) => {
         });
     };
 
-    const linkCreator = (props: {}) => {
-        // eslint-disable-next-line jsx-a11y/anchor-has-content
-        return <a onClick={handleClickInnsending} {...props} />;
-    };
-
     return (
-        <LenkepanelBase
-            href={props.href}
-            tittelProps="undertittel"
-            linkCreator={linkCreator}
-            border={true}
-            className={'tema-lenkepanel'}
-        >
-            <div className="ml-1">
-                <Normaltekst>{props.children}</Normaltekst>
-            </div>
-        </LenkepanelBase>
+        <LinkPanel href={props.href} onClick={handleClickInnsending} className={'tema-lenkepanel'}>
+            <LinkPanel.Title>{props.tittel}</LinkPanel.Title>
+            {props.beskrivelse && <LinkPanel.Description>{props.beskrivelse}</LinkPanel.Description>}
+        </LinkPanel>
     );
 };
 

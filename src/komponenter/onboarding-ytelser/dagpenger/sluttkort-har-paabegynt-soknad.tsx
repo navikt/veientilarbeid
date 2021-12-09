@@ -1,5 +1,5 @@
 import Lenke from 'nav-frontend-lenker';
-import { Systemtittel, Normaltekst, Element } from 'nav-frontend-typografi';
+import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
 import { useAmplitudeData } from '../../../contexts/amplitude-context';
 import { loggAktivitet } from '../../../metrics/metrics';
 import { saksoversikt_url } from '../../../url';
@@ -22,9 +22,13 @@ const Sluttkort = () => {
             </Normaltekst>
             <Normaltekst className={'blokk-xs'}>Du har ikke sendt inn søknaden</Normaltekst>
 
-            <TemaLenkepanel href="" amplitudeHandling="Fortsetter påbegynt soknad" amplitudeTema="dagpenger">
-                <Element>Fortsett på påbegynt søknad</Element> du startet på søknaden {'{dato}'}
-            </TemaLenkepanel>
+            <TemaLenkepanel
+                href=""
+                amplitudeHandling="Fortsetter påbegynt soknad"
+                amplitudeTema="dagpenger"
+                tittel="Fortsett på påbegynt søknad"
+                beskrivelse={`du startet på søknaden ${'dato'}`}
+            />
 
             <Normaltekst className={'blokk-xs'}>
                 Se mer info på {' '}

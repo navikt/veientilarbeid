@@ -12,13 +12,13 @@
  */
 
 import { useEffect, useState } from 'react';
-import { Element } from 'nav-frontend-typografi';
 import TemaFooter from './tema-footer';
 import { fjernFraBrowserStorage, hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
+import { Label } from '@navikt/ds-react';
 
 import './tema.less';
 interface TemaProps {
@@ -120,9 +120,7 @@ const Tema = (props: TemaProps) => {
             <ErRendret loggTekst={`Rendrer tema: ${amplitudeTemaTag}`} />
             <div className="onboarding-container">
                 <div className="onboarding-header">
-                    <Element tag={'h1'} className="kort-heading">
-                        {header}
-                    </Element>
+                    <Label className="kort-heading">{header}</Label>
                 </div>
                 <div className="onboarding-panel">
                     <div className="onboarding-body">{innhold[gjeldendeKortIndex]}</div>
