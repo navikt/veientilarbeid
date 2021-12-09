@@ -68,7 +68,7 @@ function Feedback({ id, className }: Props) {
 
     return (
         <>
-            <div className={`${className ? className : ''} feedback-container blokk-xs`}>
+            <div className={`${className ? className : ''} feedback-container`}>
                 <Undertekst className="feedback-tittel">Var dette nyttig å lese?</Undertekst>
                 <div className={'valg'}>
                     <button onClick={() => handleFeedback('ja')} className={jaKnapp}>

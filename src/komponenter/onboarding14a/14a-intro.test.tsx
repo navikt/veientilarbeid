@@ -97,7 +97,7 @@ describe('tester onboarding komponenten for 14a-intro', () => {
         render(<Onboarding14a />, {
             wrapper: contextProviders({ ...providerProps, featureToggle: { 'veientilarbeid.14a-intro': true } }),
         });
-        expect(screen.getByText(/Om du ønsker oppfølging/i)).toBeInTheDocument();
+        expect(screen.getByText(/ønsker du oppfølging/i)).toBeInTheDocument();
     });
 
     test('komponenten starter i pre-state når man er på uke 0', () => {
@@ -149,7 +149,7 @@ describe('tester onboarding komponenten for 14a-intro', () => {
         // Sjekker  avslutningsknapp
         const avsluttKnapp = screen.getByRole('button', { name: /fullfør/i });
         userEvent.click(avsluttKnapp);
-        expect(screen.getByText(/Om du ønsker oppfølging/i)).toBeInTheDocument();
+        expect(screen.getByText(/Ønsker du oppfølging/i)).toBeInTheDocument();
         // sjekker les igjen knapp
         const lesIgjenKnapp = screen.getByText(/Les om hva slags hjelp du kan få/i);
         userEvent.click(lesIgjenKnapp);

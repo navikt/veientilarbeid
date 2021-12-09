@@ -35,7 +35,7 @@ function Sluttkort() {
     const registrertOver12Uker = ukerRegistrert > 12;
     const kortTittel = registrertOver12Uker
         ? 'Ta kontakt om du ønsker hjelp'
-        : 'Om du ønsker oppfølging før 12 uker må du gi oss beskjed';
+        : 'Ønsker du oppfølging før 12 uker må du gi oss beskjed';
 
     const featuretoggleEgenvurderingAktivert =
         featuretoggleData && featuretoggleData['veientilarbeid.vis-egenvurdering-med-14a'];

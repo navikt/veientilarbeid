@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
-import { BodyShort, LinkPanel, Label } from '@navikt/ds-react';
+import { BodyShort, LinkPanel } from '@navikt/ds-react';
 import './lenkepanel-14a.less';
 
 interface Lenkepanel14AProps {
@@ -19,24 +19,21 @@ const Lenkepanel14A: React.FC<Lenkepanel14AProps> = (props) => {
     };
 
     function dialogTekst(antallUlesteDialoger: number) {
-        if (antallUlesteDialoger === 0) return 'Ta kontakt om du ønsker hjelp';
-        if (antallUlesteDialoger === 1) return `Du har ${antallUlesteDialoger} ulest melding`;
-        return `Du har ${antallUlesteDialoger} uleste meldinger`;
+        if (antallUlesteDialoger === 0) return 'om du ønsker hjelp';
+        return (
+            <>
+                Du har <span className="dialog__ulesteMeldinger">{antallUlesteDialoger}</span>{' '}
+                {antallUlesteDialoger === 1 ? 'ulest melding' : 'uleste meldinger'}
+            </>
+        );
     }
 
     return (
         <LinkPanel href={props.href} onClick={handleClickInnsending} className={'fjorten-A-start-dialog-kort'}>
-            <div className="lenkepanel__innhold">
-                <div className="dialog__ikon">
-                    {props.antallUlesteDialoger > 0 ? (
-                        <span className="dialog__ulesteMeldinger">{Math.min(props.antallUlesteDialoger, 99)}</span>
-                    ) : null}
-                </div>
-                <div className={props.antallUlesteDialoger > 0 ? 'ml-1' : ''}>
-                    <Label>Start dialogen med veileder</Label>
-                    <BodyShort>{dialogTekst(props.antallUlesteDialoger)}</BodyShort>
-                </div>
-            </div>
+            <LinkPanel.Title>Start en dialog</LinkPanel.Title>
+            <LinkPanel.Description>
+                <BodyShort>{dialogTekst(props.antallUlesteDialoger)}</BodyShort>
+            </LinkPanel.Description>
         </LinkPanel>
     );
 };
