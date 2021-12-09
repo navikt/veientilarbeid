@@ -1,66 +1,7 @@
 @import '../../../node_modules/nav-frontend-core/less/_variabler';
 
 .onboarding {
-    margin: 0.5rem 0;
-    flex: 1;
-    &.onboarding_startkort {
-        .onboarding-container {
-            height: 100%;
-            // padding: 1rem 0.5rem;
-            background-color: #0067c5;
-            color: #fff;
-            button.knapp {
-                padding: 1rem 0;
-            }
-            button.knapp:hover {
-                border-color: #fff;
-            }
-            a.lenke {
-                color: #fff;
-            }
-        }
-    }
-    .onboarding-container {
-        height: 100%;
-        background-color: #0000000d;
-
-        display: flex;
-        flex-direction: column;
-        padding-bottom: 1rem;
-        .onboarding-header {
-            padding: 1rem;
-        }
-        .onboarding-panel {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            .onboarding-body {
-                padding: 0.5rem 1rem;
-                flex: 0;
-            }
-            .lesetid {
-                display: flex;
-                align-items: center;
-            }
-
-            .onboarding-footer {
-                padding: 0.5rem 1rem;
-                .rad {
-                    display: flex;
-                    flex-direction: row;
-                }
-                .kolonne {
-                    display: flex;
-                    flex-direction: column;
-                    // justify-content: flex-start;
-                }
-            }
-        }
-    }
-}
-
-.ny_onboarding {
-    margin: 0.5rem 0;
+    margin: 0 0.5rem;
     flex: 1;
 
     &.onboarding_startkort {
@@ -72,6 +13,7 @@
                 color: #fff;
                 button.knapp {
                     padding: 1rem 0;
+                    border-color: #fff;
                 }
                 button.knapp:hover {
                     border-color: #fff;
@@ -102,21 +44,12 @@
             display: flex;
             flex-direction: column;
             flex: 1;
-            min-height: 270px;
             background-color: white;
             border-radius: 8px;
 
             .onboarding-body {
-                padding: 1.5rem;
+                padding: 1rem;
                 padding-bottom: 0.5rem;
-                // flex: 1;
-
-                .typo-innholdstittel,
-                .typo-systemtittel {
-                    border-left: #0067c5 solid 4px;
-                    margin-left: -1.5rem;
-                    padding-left: calc(1.5rem - 4px);
-                }
             }
 
             .lesetid {
@@ -125,7 +58,7 @@
             }
 
             .onboarding-footer {
-                padding: 0.5rem 1.5rem 1rem 1.5rem;
+                padding: 0.5rem 1rem 1rem 1rem;
                 .rad {
                     padding: 0;
                     display: flex;
@@ -144,16 +77,13 @@
 @media (min-width: @screen-md-min) {
     .onboarding {
         max-width: 50%;
-        margin-left: 0.25rem;
+        margin: 0;
+        margin-left: 0.5rem;
         &:first-child {
             margin-left: 0;
         }
-    }
-    .ny_onboarding {
-        max-width: 50%;
-        margin-left: 0.25rem;
-        &:first-child {
-            margin-left: 0;
+        .onboarding-panel {
+            min-height: 270px;
         }
     }
 }

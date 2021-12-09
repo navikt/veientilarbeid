@@ -17,7 +17,6 @@ import TemaFooter from './tema-footer';
 import { fjernFraBrowserStorage, hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
-import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 
@@ -46,15 +45,12 @@ const Tema = (props: TemaProps) => {
     } = props;
     const ONBOARDING_KEY = id;
     const amplitudeData = useAmplitudeData();
-    const featuretoggleData = useFeatureToggleData();
     const [harSettIntro, setHarSettIntro] = useState<boolean>(!!hentFraBrowserStorage(ONBOARDING_KEY));
 
     const registrert12UkerEllerMer = amplitudeData.ukerRegistrert >= 11;
 
     const startkort = harSettIntro || hoppRettTilSluttkort ? innhold.length - 1 : hoppOverPreState ? 1 : 0;
     const [gjeldendeKortIndex, setGjeldendeKortIndex] = useState(startkort);
-
-    const stylingFeaturetoggle = featuretoggleData && featuretoggleData['veientilarbeid.vis-oppdatert-styling'];
 
     const forrigeKort = () => {
         amplitudeLogger('veientilarbeid.tema', {
@@ -120,11 +116,7 @@ const Tema = (props: TemaProps) => {
     }, [harSettIntro]);
 
     return (
-        <div
-            className={`${stylingFeaturetoggle ? 'ny_onboarding' : 'onboarding'} ${
-                gjeldendeKortIndex === 0 && innhold.length > 1 ? 'onboarding_startkort' : ''
-            }`}
-        >
+        <div className={`onboarding ${gjeldendeKortIndex === 0 && innhold.length > 1 ? 'onboarding_startkort' : ''}`}>
             <ErRendret loggTekst={`Rendrer tema: ${amplitudeTemaTag}`} />
             <div className="onboarding-container">
                 <div className="onboarding-header">
