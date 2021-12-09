@@ -10,6 +10,9 @@ export interface Soknad {
     lenke: string;
     dato: string;
     kilde: string;
+    journalpostId?: string;
+    datoInnsendt?: string;
+    kanal?: string;
 }
 
 export interface Data {
