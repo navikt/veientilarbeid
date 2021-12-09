@@ -20,14 +20,15 @@ import {
     NESTE_MELDEKORT_URL,
     ULESTEDIALOGER_URL,
     PAABEGYNTE_SOKNADER_URL,
-    // DP_INNSYN_URL,
+    DP_INNSYN_URL,
 } from '../../ducks/api';
+
 import { AmplitudeProvider } from './amplitude-provider';
 import { SakstemaProvider } from './sakstema-provider';
 import { useAutentiseringData, InnloggingsNiva } from '../../contexts/autentisering';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
-// import * as DpInnsynSoknad from '../../contexts/dp-innsyn-soknad';
-// import * as DpInnsynVedtak from '../../contexts/dp-innsyn-vedtak';
+import * as DpInnsynSoknad from '../../contexts/dp-innsyn-soknad';
+import * as DpInnsynVedtak from '../../contexts/dp-innsyn-vedtak';
 
 const skalSjekkeEgenvurderingBesvarelse = (
     foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null
@@ -57,12 +58,12 @@ const DataProvider = ({ children }: Props) => {
     const [ulesteDialogerState, setUlesteDialogerState] = React.useState<UlesteDialoger.State>(
         UlesteDialoger.initialState
     );
-    // const [dpInnsynSoknadState, setDpInnsynSoknadState] = React.useState<DpInnsynSoknad.State>(
-    //     DpInnsynSoknad.initialState
-    // );
-    // const [dpInnsynVedtakState, setDpInnsynVedtakState] = React.useState<DpInnsynVedtak.State>(
-    //     DpInnsynVedtak.initialState
-    // );
+    const [dpInnsynSoknadState, setDpInnsynSoknadState] = React.useState<DpInnsynSoknad.State>(
+        DpInnsynSoknad.initialState
+    );
+    const [dpInnsynVedtakState, setDpInnsynVedtakState] = React.useState<DpInnsynVedtak.State>(
+        DpInnsynVedtak.initialState
+    );
 
     const data = useBrukerregistreringData();
     const foreslaattInnsatsgruppe = selectForeslattInnsatsgruppe(data);
@@ -82,16 +83,16 @@ const DataProvider = ({ children }: Props) => {
 
         fetchData<BrukerInfo.State, BrukerInfo.Data>(brukerInfoState, setBrukerInfoState, BRUKERINFO_URL);
 
-        // fetchData<DpInnsynSoknad.State, DpInnsynSoknad.Data>(
-        //     dpInnsynSoknadState,
-        //     setDpInnsynSoknadState,
-        //     `${DP_INNSYN_URL}/soknad`
-        // );
-        // fetchData<DpInnsynVedtak.State, DpInnsynVedtak.Data>(
-        //     dpInnsynVedtakState,
-        //     setDpInnsynVedtakState,
-        //     `${DP_INNSYN_URL}/vedtak`
-        // );
+        fetchData<DpInnsynSoknad.State, DpInnsynSoknad.Data>(
+            dpInnsynSoknadState,
+            setDpInnsynSoknadState,
+            `${DP_INNSYN_URL}/soknad`
+        );
+        fetchData<DpInnsynVedtak.State, DpInnsynVedtak.Data>(
+            dpInnsynVedtakState,
+            setDpInnsynVedtakState,
+            `${DP_INNSYN_URL}/vedtak`
+        );
 
         fetchData<PaabegynteSoknader.State, PaabegynteSoknader.Data>(
             paabegynteSoknaderState,
@@ -149,15 +150,14 @@ const DataProvider = ({ children }: Props) => {
                         <Egenvurdering.EgenvurderingContext.Provider value={egenvurderingState}>
                             <Motestotte.MotestotteContext.Provider value={motestotteState}>
                                 <PaabegynteSoknader.PaabegynteSoknaderContext.Provider value={paabegynteSoknaderState}>
-                                    <AmplitudeProvider>
-                                        {/** Denne skal fjernes når nye DP-innsy en på plass */}
-                                        <SakstemaProvider>{children}</SakstemaProvider>
-                                    </AmplitudeProvider>
-                                    {/*<DpInnsynSoknad.DpInnsynSoknadContext.Provider value={dpInnsynSoknadState}>*/}
-                                    {/*    <DpInnsynVedtak.DpInnsynVedtakContext.Provider value={dpInnsynVedtakState}>*/}
-                                    {/*        <AmplitudeProvider>{children}</AmplitudeProvider>*/}
-                                    {/*    </DpInnsynVedtak.DpInnsynVedtakContext.Provider>*/}
-                                    {/*</DpInnsynSoknad.DpInnsynSoknadContext.Provider>*/}
+                                    <DpInnsynSoknad.DpInnsynSoknadContext.Provider value={dpInnsynSoknadState}>
+                                        <DpInnsynVedtak.DpInnsynVedtakContext.Provider value={dpInnsynVedtakState}>
+                                            <AmplitudeProvider>
+                                                {/** Denne skal fjernes når nye DP-innsyn er på plass */}
+                                                <SakstemaProvider>{children}</SakstemaProvider>
+                                            </AmplitudeProvider>
+                                        </DpInnsynVedtak.DpInnsynVedtakContext.Provider>
+                                    </DpInnsynSoknad.DpInnsynSoknadContext.Provider>
                                 </PaabegynteSoknader.PaabegynteSoknaderContext.Provider>
                             </Motestotte.MotestotteContext.Provider>
                         </Egenvurdering.EgenvurderingContext.Provider>
