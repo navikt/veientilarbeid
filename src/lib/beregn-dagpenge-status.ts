@@ -14,6 +14,9 @@ import { Vedtak } from '../contexts/dp-innsyn-vedtak';
 import { Soknad } from '../contexts/paabegynte-soknader';
 import { Meldekort } from '../contexts/meldekort';
 
+export const sorterEtterNyesteDatoInnsendt = (a: DpInnsynSoknad, b: DpInnsynSoknad) =>
+    new Date(b.datoInnsendt).getTime() - new Date(a.datoInnsendt).getTime();
+
 export type DagpengeStatus = 'paabegynt' | 'sokt' | 'mottar' | 'reaktivert' | 'ukjent' | 'avslag';
 function beregnDagpengeStatus({
     brukerInfoData,
@@ -59,8 +62,6 @@ function beregnDagpengeStatus({
         (soknad) => new Date(soknad.datoInnsendt).getTime() > registreringsDato.getTime()
     );
 
-    const sorterEtterNyesteDatoInnsendt = (a: DpInnsynSoknad, b: DpInnsynSoknad) =>
-        new Date(b.datoInnsendt).getTime() - new Date(a.datoInnsendt).getTime();
     const sistInnsendteSoknad = innsendteSoknaderEtterRegistreringsDato.sort(sorterEtterNyesteDatoInnsendt)[0];
 
     const vedtakEtterSistInnsendteSoknad = dagpengeVedtak.filter(

@@ -1,11 +1,32 @@
 import Lenke from 'nav-frontend-lenker';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
 import { useAmplitudeData } from '../../../contexts/amplitude-context';
+// import { useDpInnsynSoknadData } from '../../../contexts/dp-innsyn-soknad';
+// import { sorterEtterNyesteDatoInnsendt } from '../../../lib/beregn-dagpenge-status';
 import { loggAktivitet } from '../../../metrics/metrics';
 import { saksoversikt_url } from '../../../url';
+import { formaterDato, datoForForventetSvar } from '../../../utils/date-utils';
 
 const Sluttkort = () => {
     const amplitudeData = useAmplitudeData();
+
+    // const soknader = useDpInnsynSoknadData();
+    const siteInnsendteSoknad = {
+        søknadId: '2',
+        skjemaKode: 'NAV 04-01.03',
+        tittel: 'Søknad om dagpenger (ikke permittert)',
+        journalpostId: '11',
+        søknadsType: 'NySøknad',
+        kanal: 'Digital',
+        datoInnsendt: '2021-03-21T10:29:09.655',
+        vedlegg: [
+            {
+                skjemaNummer: '123',
+                navn: 'navn',
+                status: 'LastetOpp',
+            },
+        ],
+    }; // soknader?.soknad.sort(sorterEtterNyesteDatoInnsendt)[0];
 
     function loggLenkeKlikk(action: string, url: string) {
         loggAktivitet({ aktivitet: action, ...amplitudeData });
@@ -16,9 +37,18 @@ const Sluttkort = () => {
         <>
             <Systemtittel className={'blokk-xs'}>Dagpenger</Systemtittel>
 
-            <Normaltekst className={'blokk-xs'}>Siste søknad mottatt: {'{22. november}'}</Normaltekst>
-            <Normaltekst className={'blokk-xs'}>Du kan forvente svar {'{innen 3. januar 2022}'}</Normaltekst>
+            {siteInnsendteSoknad?.datoInnsendt && (
+                <>
+                    <Normaltekst className={'blokk-xs'}>
+                        Siste søknad mottatt: {formaterDato(new Date(siteInnsendteSoknad.datoInnsendt))}
+                    </Normaltekst>
 
+                    <Normaltekst className={'blokk-xs'}>
+                        Du kan forvente svar{' '}
+                        {formaterDato(datoForForventetSvar(new Date(siteInnsendteSoknad.datoInnsendt)))}
+                    </Normaltekst>
+                </>
+            )}
             <Normaltekst className={'blokk-xs'}>
                 Se mer info på {' '}
                 <Lenke

@@ -1,3 +1,4 @@
+const virkedager = require('@alheimsins/virkedager');
 const msPerDoegn = 1000 * 60 * 60 * 24;
 
 export function datoUtenTid(dato: string) {
@@ -47,3 +48,14 @@ export function datoMedUkedag(dato: Date) {
 
     return `${dager[dato.getDay()]} ${dato.getDate()}. ${maneder[dato.getMonth()]}`;
 }
+
+export const formaterDato = (dato: Date): string =>
+    new Date(dato).toLocaleDateString('no', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    });
+
+export const datoForForventetSvar = (dato: Date) => {
+    return new Date(virkedager(new Date(dato), 30));
+};
