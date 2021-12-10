@@ -43,7 +43,7 @@ function beregnDagpengeStatus({
     const registreringsDato = new Date(registreringData?.registrering!.opprettetDato);
 
     const paabegynteSoknaderEtterRegistreringsDato = paabegynteSoknader.filter(
-        (s) => new Date(s.datoInnsendt!).getTime() > registreringsDato.getTime()
+        (soknad) => new Date(soknad.datoInnsendt!).getTime() > registreringsDato.getTime()
     );
 
     if (paabegynteSoknaderEtterRegistreringsDato.length > 0) {
