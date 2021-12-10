@@ -75,6 +75,21 @@ describe('Tester funksjonen beregnDagpengeStatus', () => {
         ).toBe('ukjent');
     });
 
+    test('returnerer "ukjent" når ikke eksisterer påbegynte søknader etter registreringsdato', () => {
+        const testData = JSON.parse(JSON.stringify(grunndata));
+        const soknader = [...soknad];
+
+        return expect(
+            beregnDagpengeStatus({
+                ...testData,
+                paabegynteSoknader: soknader,
+                innsendteSoknader: [],
+                dagpengeVedtak: [],
+                meldekort: [],
+            })
+        ).toBe('ukjent');
+    });
+
     test('returnerer "paabegynt" når det eksisterer påbegynte søknader etter registreringsdato', () => {
         const testData = JSON.parse(JSON.stringify(grunndata));
         const soknader = [...soknad];
