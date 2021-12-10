@@ -1,5 +1,4 @@
-import Lenke from 'nav-frontend-lenker';
-import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
+import { BodyShort, Heading, Link } from '@navikt/ds-react';
 import { useAmplitudeData } from '../../../contexts/amplitude-context';
 import { useDpInnsynSoknadData } from '../../../contexts/dp-innsyn-soknad';
 import { sorterEtterNyesteDatoInnsendt } from '../../../lib/beregn-dagpenge-status';
@@ -20,23 +19,25 @@ const Sluttkort = () => {
 
     return (
         <>
-            <Systemtittel className={'blokk-xs'}>Dagpenger</Systemtittel>
+            <Heading size="medium" className={'blokk-xs'}>
+                Dagpenger
+            </Heading>
 
             {siteInnsendteSoknad?.datoInnsendt && (
                 <>
-                    <Normaltekst className={'blokk-xs'}>
+                    <BodyShort size="small" className={'blokk-xs'}>
                         Siste søknad mottatt: {formaterDato(new Date(siteInnsendteSoknad.datoInnsendt))}
-                    </Normaltekst>
+                    </BodyShort>
 
-                    <Normaltekst className={'blokk-xs'}>
+                    <BodyShort size="small" className={'blokk-xs'}>
                         Du kan forvente svar{' '}
                         {formaterDato(datoForForventetSvar(new Date(siteInnsendteSoknad.datoInnsendt)))}
-                    </Normaltekst>
+                    </BodyShort>
                 </>
             )}
-            <Normaltekst className={'blokk-xs'}>
+            <BodyShort size="small" className={'blokk-xs'}>
                 Se mer info på {' '}
-                <Lenke
+                <Link
                     className={'tracking-wide'}
                     href={saksoversikt_url}
                     onClick={() =>
@@ -47,12 +48,12 @@ const Sluttkort = () => {
                     }
                 >
                     Mine dagpenger
-                </Lenke>
-            </Normaltekst>
+                </Link>
+            </BodyShort>
 
-            <Normaltekst className={'blokk-xs'}>
+            <BodyShort size="small" className={'blokk-xs'}>
                 Har du spørsmål om å søke eller motta dagpenger, må du bruke
-                <Lenke
+                <Link
                     href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
                     onClick={() =>
                         loggLenkeKlikk(
@@ -62,9 +63,9 @@ const Sluttkort = () => {
                     }
                 >
                     skriv til oss
-                </Lenke>{' '}
+                </Link>{' '}
                 eller{' '}
-                <Lenke
+                <Link
                     href="https://www.nav.no/person/kontakt-oss/chat/"
                     onClick={() =>
                         loggLenkeKlikk(
@@ -74,12 +75,12 @@ const Sluttkort = () => {
                     }
                 >
                     chat
-                </Lenke>
+                </Link>
                 .
-            </Normaltekst>
-            <Normaltekst className={'blokk-xs'}>
+            </BodyShort>
+            <BodyShort size="small" className={'blokk-xs'}>
                 Du kan også lese om de ulike ytelsene på{' '}
-                <Lenke
+                <Link
                     href="https://www.nav.no/"
                     onClick={() =>
                         loggLenkeKlikk(
@@ -89,8 +90,8 @@ const Sluttkort = () => {
                     }
                 >
                     nav.no
-                </Lenke>
-            </Normaltekst>
+                </Link>
+            </BodyShort>
         </>
     );
 };

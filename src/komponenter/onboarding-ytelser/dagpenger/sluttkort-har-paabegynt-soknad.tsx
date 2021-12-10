@@ -1,5 +1,4 @@
-import Lenke from 'nav-frontend-lenker';
-import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
+import { Heading, BodyShort, Link } from '@navikt/ds-react';
 import { useAmplitudeData } from '../../../contexts/amplitude-context';
 import { loggAktivitet } from '../../../metrics/metrics';
 import { saksoversikt_url } from '../../../url';
@@ -15,12 +14,16 @@ const Sluttkort = () => {
 
     return (
         <>
-            <Systemtittel className={'blokk-xs'}>Du har startet på en søknad om dagpenger</Systemtittel>
+            <Heading size="medium" className={'blokk-xs'}>
+                Du har startet på en søknad om dagpenger
+            </Heading>
 
-            <Normaltekst className={'blokk-xs'}>
+            <BodyShort size="small" className={'blokk-xs'}>
                 Du kan tidligst få dagpenger fra den dagen du har søkt fra.
-            </Normaltekst>
-            <Normaltekst className={'blokk-xs'}>Du har ikke sendt inn søknaden</Normaltekst>
+            </BodyShort>
+            <BodyShort size="small" className={'blokk-xs'}>
+                Du har ikke sendt inn søknaden
+            </BodyShort>
 
             <TemaLenkepanel
                 href=""
@@ -30,9 +33,9 @@ const Sluttkort = () => {
                 beskrivelse={`du startet på søknaden ${'dato'}`}
             />
 
-            <Normaltekst className={'blokk-xs'}>
+            <BodyShort size="small" className={'blokk-xs'}>
                 Se mer info på {' '}
-                <Lenke
+                <Link
                     className={'tracking-wide'}
                     href={saksoversikt_url}
                     onClick={() =>
@@ -43,12 +46,12 @@ const Sluttkort = () => {
                     }
                 >
                     Mine dagpenger
-                </Lenke>
-            </Normaltekst>
+                </Link>
+            </BodyShort>
 
-            <Normaltekst className={'blokk-xs'}>
+            <BodyShort size="small" className={'blokk-xs'}>
                 Har du spørsmål om å søke eller motta dagpenger, må du bruke
-                <Lenke
+                <Link
                     href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
                     onClick={() =>
                         loggLenkeKlikk(
@@ -58,9 +61,9 @@ const Sluttkort = () => {
                     }
                 >
                     skriv til oss
-                </Lenke>{' '}
+                </Link>{' '}
                 eller{' '}
-                <Lenke
+                <Link
                     href="https://www.nav.no/person/kontakt-oss/chat/"
                     onClick={() =>
                         loggLenkeKlikk(
@@ -70,9 +73,9 @@ const Sluttkort = () => {
                     }
                 >
                     chat
-                </Lenke>
+                </Link>
                 .
-            </Normaltekst>
+            </BodyShort>
         </>
     );
 };
