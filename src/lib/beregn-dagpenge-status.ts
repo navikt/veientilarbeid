@@ -5,14 +5,12 @@
  - har innsendte søknader => []
  - har dagpengevedtak => []
  - rettighetsgruppe => "" fra brukerInfo
- - meldegruppe => fra meldekort []
  */
 import * as Brukerregistrering from '../contexts/brukerregistrering';
 import * as BrukerInfo from '../contexts/bruker-info';
 import { DpInnsynSoknad } from '../contexts/dp-innsyn-soknad';
 import { Vedtak } from '../contexts/dp-innsyn-vedtak';
 import { Soknad } from '../contexts/paabegynte-soknader';
-import { Meldekort } from '../contexts/meldekort';
 
 export const sorterEtterNyesteDatoInnsendt = (a: DpInnsynSoknad, b: DpInnsynSoknad) =>
     new Date(b.datoInnsendt).getTime() - new Date(a.datoInnsendt).getTime();
@@ -24,14 +22,12 @@ function beregnDagpengeStatus({
     paabegynteSoknader,
     innsendteSoknader,
     dagpengeVedtak,
-    meldekort,
 }: {
     brukerInfoData: BrukerInfo.Data;
     registreringData: Brukerregistrering.Data | null;
     paabegynteSoknader: Soknad[];
     innsendteSoknader: DpInnsynSoknad[];
     dagpengeVedtak: Vedtak[];
-    meldekort: Meldekort[];
 }): DagpengeStatus {
     /*
      *  [x] hvis påbegynt etter registreringsdato OG ingen innsendte =>  returner påbegynt

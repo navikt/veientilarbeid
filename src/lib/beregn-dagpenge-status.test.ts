@@ -41,7 +41,6 @@ describe('Tester funksjonen beregnDagpengeStatus', () => {
                 paabegynteSoknader: [],
                 innsendteSoknader: [],
                 dagpengeVedtak: [],
-                meldekort: [],
             })
         ).toBe('mottar');
     });
@@ -56,12 +55,11 @@ describe('Tester funksjonen beregnDagpengeStatus', () => {
                 paabegynteSoknader: [],
                 innsendteSoknader: [],
                 dagpengeVedtak: [],
-                meldekort: [],
             })
         ).toBe('ukjent');
     });
 
-    test('returnerer "ukjent" hvis ingen spor etter søknad, vedtak eller meldekort', () => {
+    test('returnerer "ukjent" hvis ingen spor etter søknad, vedtak eller', () => {
         const testData = JSON.parse(JSON.stringify(grunndata));
 
         return expect(
@@ -70,7 +68,6 @@ describe('Tester funksjonen beregnDagpengeStatus', () => {
                 paabegynteSoknader: [],
                 innsendteSoknader: [],
                 dagpengeVedtak: [],
-                meldekort: [],
             })
         ).toBe('ukjent');
     });
@@ -85,7 +82,6 @@ describe('Tester funksjonen beregnDagpengeStatus', () => {
                 paabegynteSoknader: soknader,
                 innsendteSoknader: [],
                 dagpengeVedtak: [],
-                meldekort: [],
             })
         ).toBe('ukjent');
     });
@@ -107,7 +103,6 @@ describe('Tester funksjonen beregnDagpengeStatus', () => {
                 paabegynteSoknader: soknader,
                 innsendteSoknader: [],
                 dagpengeVedtak: [],
-                meldekort: [],
             })
         ).toBe('paabegynt');
     });
@@ -132,7 +127,6 @@ describe('Tester funksjonen beregnDagpengeStatus', () => {
                         tilDato: 'null',
                     },
                 ],
-                meldekort: [],
             })
         ).toBe('sokt');
     });
@@ -157,7 +151,6 @@ describe('Tester funksjonen beregnDagpengeStatus', () => {
                         tilDato: 'null',
                     },
                 ],
-                meldekort: [],
             })
         ).toBe('avslag');
     });
