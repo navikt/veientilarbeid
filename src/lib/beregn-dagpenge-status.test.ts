@@ -3,6 +3,7 @@ import { DinSituasjonSvar, FremtidigSituasjonSvar } from '../contexts/brukerregi
 import beregnDagpengeStatus from './beregn-dagpenge-status';
 import soknad from '../mocks/dp-innsyn-soknad';
 
+const iDag = new Date();
 const grunndata = {
     brukerInfoData: {
         rettighetsgruppe: 'IYT',
@@ -12,7 +13,7 @@ const grunndata = {
     },
     registreringData: {
         registrering: {
-            opprettetDato: plussDager(new Date(), -78).toISOString(),
+            opprettetDato: iDag.toISOString(),
             manueltRegistrertAv: null,
             besvarelse: {
                 dinSituasjon: DinSituasjonSvar.MISTET_JOBBEN,
@@ -60,10 +61,24 @@ describe('Tester funksjonen beregnDagpengeStatus', () => {
         ).toBe('ukjent');
     });
 
+    test('returnerer "ukjent" hvis ingen spor etter søknad, vedtak eller meldekort', () => {
+        const testData = JSON.parse(JSON.stringify(grunndata));
+
+        return expect(
+            beregnDagpengeStatus({
+                ...testData,
+                paabegynteSoknader: [],
+                innsendteSoknader: [],
+                dagpengeVedtak: [],
+                meldekort: [],
+            })
+        ).toBe('ukjent');
+    });
+
     test('returnerer "paabegynt" når det eksisterer påbegynte søknader etter registreringsdato', () => {
         const testData = JSON.parse(JSON.stringify(grunndata));
         const soknader = [...soknad];
-        soknader[0].datoInnsendt = plussDager(new Date(), -1).toISOString();
+        soknader[0].datoInnsendt = plussDager(iDag, 1).toISOString();
 
         return expect(
             beregnDagpengeStatus({
