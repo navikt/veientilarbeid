@@ -29,6 +29,7 @@ import { useAutentiseringData, InnloggingsNiva } from '../../contexts/autentiser
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import * as DpInnsynSoknad from '../../contexts/dp-innsyn-soknad';
 import * as DpInnsynVedtak from '../../contexts/dp-innsyn-vedtak';
+import { useFeatureToggleData } from '../../contexts/feature-toggles';
 
 const skalSjekkeEgenvurderingBesvarelse = (
     foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null
@@ -68,6 +69,9 @@ const DataProvider = ({ children }: Props) => {
     const data = useBrukerregistreringData();
     const foreslaattInnsatsgruppe = selectForeslattInnsatsgruppe(data);
 
+    const featureToggleData = useFeatureToggleData();
+    const kanHenteDpData = featureToggleData['veientilarbeid.onboardingDagpenger.data'];
+
     React.useEffect(() => {
         if (securityLevel !== InnloggingsNiva.LEVEL_4) {
             return;
@@ -83,16 +87,19 @@ const DataProvider = ({ children }: Props) => {
 
         fetchData<BrukerInfo.State, BrukerInfo.Data>(brukerInfoState, setBrukerInfoState, BRUKERINFO_URL);
 
-        fetchData<DpInnsynSoknad.State, DpInnsynSoknad.Data>(
-            dpInnsynSoknadState,
-            setDpInnsynSoknadState,
-            `${DP_INNSYN_URL}/soknad`
-        );
-        fetchData<DpInnsynVedtak.State, DpInnsynVedtak.Data>(
-            dpInnsynVedtakState,
-            setDpInnsynVedtakState,
-            `${DP_INNSYN_URL}/vedtak`
-        );
+        if (kanHenteDpData) {
+            fetchData<DpInnsynSoknad.State, DpInnsynSoknad.Data>(
+                dpInnsynSoknadState,
+                setDpInnsynSoknadState,
+                `${DP_INNSYN_URL}/soknad`
+            );
+
+            fetchData<DpInnsynVedtak.State, DpInnsynVedtak.Data>(
+                dpInnsynVedtakState,
+                setDpInnsynVedtakState,
+                `${DP_INNSYN_URL}/vedtak`
+            );
+        }
 
         fetchData<PaabegynteSoknader.State, PaabegynteSoknader.Data>(
             paabegynteSoknaderState,

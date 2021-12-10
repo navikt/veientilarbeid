@@ -10,6 +10,7 @@ export enum FeatureToggles {
     RYDDING_SKJUL_AAP_RAD = 'veientilarbeid.rydding.skjulAAPRad',
     INTRO_DAGPENGER = 'veientilarbeid.onboardingDagpenger',
     INTRO_DAGPENGER_TOGGLE = 'veientilarbeid.onboardingDagpenger.toggle',
+    INTRO_DAGPENGER_DATA = 'veientilarbeid.onboardingDagpenger.data',
     KAN_VISE_UTFRA_SITUASJON = 'veientilarbeid.kanViseUtfraSituasjon',
     VIS_EGENVURDERING_MED_14A = 'veientilarbeid.vis-egenvurdering-med-14a',
 }
@@ -36,6 +37,8 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Onboarding dagpenger';
         case FeatureToggles.INTRO_DAGPENGER_TOGGLE:
             return 'Onboarding dagpenger toggle';
+        case FeatureToggles.INTRO_DAGPENGER_DATA:
+            return 'Onboarding dagpenger data fetching';
     }
 }
 
@@ -47,6 +50,7 @@ export interface Data {
     'veientilarbeid.egenvurderinguke12': boolean;
     'veientilarbeid.rydding.skjulAAPRad': boolean;
     'veientilarbeid.onboardingDagpenger': boolean;
+    'veientilarbeid.onboardingDagpenger.data'?: boolean;
     'veientilarbeid.onboardingDagpenger.toggle': boolean;
     'veientilarbeid.kanViseUtfraSituasjon': boolean;
     'veientilarbeid.vis-egenvurdering-med-14a': boolean;
@@ -65,6 +69,7 @@ export const initialState: State = {
         'veientilarbeid.egenvurderinguke12': false,
         'veientilarbeid.rydding.skjulAAPRad': false,
         'veientilarbeid.onboardingDagpenger': false,
+        'veientilarbeid.onboardingDagpenger.data': false,
         'veientilarbeid.onboardingDagpenger.toggle': false,
         'veientilarbeid.kanViseUtfraSituasjon': false,
         'veientilarbeid.vis-egenvurdering-med-14a': false,
