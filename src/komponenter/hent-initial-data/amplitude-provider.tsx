@@ -7,7 +7,7 @@ import { AmplitudeContext } from '../../contexts/amplitude-context';
 import { DinSituasjonSvar, useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { OppfolgingContext } from '../../contexts/oppfolging';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
-import { PaabegynteSoknaderContext } from '../../contexts/paabegynte-soknader';
+import { usePaabegynteSoknaderData } from '../../contexts/paabegynte-soknader';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import grupperGeografiskTilknytning from '../../utils/grupper-geografisk-tilknytning';
@@ -34,6 +34,9 @@ import dagerFraPabegyntSoknad from '../../utils/dager-fra-pabegynt-soknad';
 import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../../lib/er-situasjonsbestemt-innsatsgruppe';
 import erSannsynligvisInaktivertStandardbruker from '../../lib/er-sannsyligvis-inaktivert-standard-innsatsgruppe';
+import { useDpInnsynSoknadData } from '../../contexts/dp-innsyn-soknad';
+import { useDpInnsynVedtakData } from '../../contexts/dp-innsyn-vedtak';
+import beregnDagpengeStatus from '../../lib/beregn-dagpenge-status';
 
 function hentDagerEtterFastsattMeldedag(
     iDag: Date,
@@ -58,7 +61,10 @@ function hentDagerEtterFastsattMeldedag(
 export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const brukerregistreringData = useBrukerregistreringData();
     const featuretoggleData = useFeatureToggleData();
-    const pabegynteSoknaderData = React.useContext(PaabegynteSoknaderContext).data;
+    const innsendteSoknader = useDpInnsynSoknadData()?.soknad || [];
+    const dagpengeVedtak = useDpInnsynVedtakData().vedtak || [];
+
+    const pabegynteSoknaderData = usePaabegynteSoknaderData();
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const brukerInfoData = useBrukerinfoData();
     const { securityLevel: nivaa } = useAutentiseringData();
@@ -155,6 +161,15 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         brukerregistreringData: brukerregistreringDataEllerNull,
         oppfolgingData,
     });
+
+    const dagpengestatus = beregnDagpengeStatus({
+        brukerInfoData,
+        registreringData: brukerregistreringData,
+        paabegynteSoknader: pabegynteSoknaderData.soknader,
+        innsendteSoknader,
+        dagpengeVedtak,
+    });
+
     const brukergruppering = brukerErStandardInnsatsgruppe
         ? 'standard'
         : brukerErSituasjonsbestemtInnsatsgruppe
@@ -166,6 +181,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const amplitudeData: AmplitudeData = {
         gruppe: POAGruppe,
         brukergruppe: brukergruppering,
+        dagpengestatus,
         geografiskTilknytning: grupperGeografiskTilknytning(geografiskTilknytningOrIngenVerdi),
         isKSSX,
         isKSSK,
