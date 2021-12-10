@@ -5,7 +5,7 @@ import soknad from '../mocks/dp-innsyn-soknad';
 
 const grunndata = {
     brukerInfoData: {
-        rettighetsgruppe: 'DAGP',
+        rettighetsgruppe: 'IYT',
         geografiskTilknytning: '110302',
         alder: 42,
         erSykmeldtMedArbeidsgiver: false,
@@ -32,6 +32,7 @@ const grunndata = {
 describe('Tester funksjonen beregnDagpengeStatus', () => {
     test('returnerer "mottar" når bruker mottar dagpenger', () => {
         const testData = JSON.parse(JSON.stringify(grunndata));
+        testData.brukerInfoData.rettighetsgruppe = 'DAGP';
 
         return expect(
             beregnDagpengeStatus({
@@ -46,7 +47,6 @@ describe('Tester funksjonen beregnDagpengeStatus', () => {
 
     test('returnerer "ukjent" hvis ingen registreringsdato', () => {
         const testData = JSON.parse(JSON.stringify(grunndata));
-        delete testData.brukerInfoData.rettighetsgruppe;
         delete testData.registreringData.registrering.opprettetDato;
 
         return expect(
@@ -62,7 +62,6 @@ describe('Tester funksjonen beregnDagpengeStatus', () => {
 
     test('returnerer "paabegynt" når det eksisterer påbegynte søknader etter registreringsdato', () => {
         const testData = JSON.parse(JSON.stringify(grunndata));
-        delete testData.brukerInfoData.rettighetsgruppe;
         const soknader = [...soknad];
         soknader[0].datoInnsendt = plussDager(new Date(), -1).toISOString();
 
