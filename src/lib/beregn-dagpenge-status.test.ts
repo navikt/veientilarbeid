@@ -92,8 +92,14 @@ describe('Tester funksjonen beregnDagpengeStatus', () => {
 
     test('returnerer "paabegynt" når det eksisterer påbegynte søknader etter registreringsdato', () => {
         const testData = JSON.parse(JSON.stringify(grunndata));
-        const soknader = [...soknad];
-        soknader[0].datoInnsendt = plussDager(iDag, 1).toISOString();
+        const soknader = [
+            {
+                tittel: 'Søknad om dagpenger (ikke permittert)',
+                lenke: 'https://tjenester-q1.nav.no/soknaddagpenger-innsending/soknad/10010WQX9',
+                dato: plussDager(iDag, 1).toISOString(),
+                kilde: 'HENVENDELSE',
+            },
+        ];
 
         return expect(
             beregnDagpengeStatus({
@@ -104,5 +110,55 @@ describe('Tester funksjonen beregnDagpengeStatus', () => {
                 meldekort: [],
             })
         ).toBe('paabegynt');
+    });
+
+    test('returnerer "sokt" når det eksisterer innsendte søknader etter registreringsdato og ingen vedtak etter registreringsdato', () => {
+        const testData = JSON.parse(JSON.stringify(grunndata));
+        const soknader = [...soknad];
+        soknader[0].datoInnsendt = plussDager(iDag, 1).toISOString();
+
+        return expect(
+            beregnDagpengeStatus({
+                ...testData,
+                paabegynteSoknader: [],
+                innsendteSoknader: soknader,
+                dagpengeVedtak: [
+                    {
+                        vedtakId: '2',
+                        fagsakId: 'arenaId',
+                        status: 'INNVILGET',
+                        datoFattet: plussDager(iDag, -10).toISOString(),
+                        fraDato: '2021-11-19T10:31:18.176',
+                        tilDato: 'null',
+                    },
+                ],
+                meldekort: [],
+            })
+        ).toBe('sokt');
+    });
+
+    test('returnerer "avslag" når det eksisterer avslått vedtak nyere enn registreringsdato og sist innsendte søknad', () => {
+        const testData = JSON.parse(JSON.stringify(grunndata));
+        const soknader = [...soknad];
+        soknader[0].datoInnsendt = plussDager(iDag, 1).toISOString();
+
+        return expect(
+            beregnDagpengeStatus({
+                ...testData,
+                paabegynteSoknader: [],
+                innsendteSoknader: soknader,
+                dagpengeVedtak: [
+                    {
+                        vedtakId: '2',
+                        fagsakId: 'arenaId',
+                        status: 'AVSLÅTT',
+                        datoFattet: plussDager(iDag, 2).toISOString(),
+                        fraDato: '2021-11-19T10:31:18.176',
+                        tilDato: 'null',
+                    },
+                ],
+                meldekort: [],
+            })
+        ).toBe('avslag');
     });
 });
