@@ -1,5 +1,4 @@
-import { Normaltekst } from 'nav-frontend-typografi';
-
+import { BodyShort } from '@navikt/ds-react';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 
 interface TellerProps {
@@ -45,7 +44,11 @@ function RegistrertTeller({ ukerRegistrert, registrertDato }: TellerProps) {
     }
     if (setning === '') return null;
 
-    return <Normaltekst className={'blokk-xs'}>{setning}</Normaltekst>;
+    return (
+        <BodyShort size="small" className="blokk-xs">
+            {setning}
+        </BodyShort>
+    );
 }
 
 export default RegistrertTeller;
