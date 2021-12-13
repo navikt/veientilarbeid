@@ -1,9 +1,7 @@
-import Lenke from 'nav-frontend-lenker';
-import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
 import { useAmplitudeData } from '../../../contexts/amplitude-context';
 import { loggAktivitet } from '../../../metrics/metrics';
 import { dagpengerSoknadLenke } from '../../../innhold/lenker';
-import { Hovedknapp } from 'nav-frontend-knapper';
+import { BodyShort, Button, Heading, Link } from '@navikt/ds-react';
 
 const Sluttkort = () => {
     const amplitudeData = useAmplitudeData();
@@ -23,19 +21,21 @@ const Sluttkort = () => {
 
     return (
         <>
-            <Systemtittel className={'blokk-xs'}>Du har ikke sendt inn søknad om dagpenger</Systemtittel>
+            <Heading size="medium" className={'blokk-xs'}>
+                Du har ikke sendt inn søknad om dagpenger
+            </Heading>
 
-            <Normaltekst className={'blokk-xs'}>
+            <BodyShort className={'blokk-xs'}>
                 Du kan tidligst få dagpenger fra den dagen du sender inn søknaden.
-            </Normaltekst>
+            </BodyShort>
 
-            <Hovedknapp onClick={handleButtonClick} className="blokk-xs">
+            <Button variant="primary" onClick={handleButtonClick} className="blokk-xs">
                 Søk om dagpenger
-            </Hovedknapp>
+            </Button>
 
-            <Normaltekst className={'blokk-xs'}>
+            <BodyShort className={'blokk-xs'}>
                 Har du spørsmål om dagpenger må du bruke
-                <Lenke
+                <Link
                     href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
                     onClick={() =>
                         loggLenkeKlikk(
@@ -45,9 +45,9 @@ const Sluttkort = () => {
                     }
                 >
                     skriv til oss
-                </Lenke>{' '}
+                </Link>{' '}
                 eller{' '}
-                <Lenke
+                <Link
                     href="https://www.nav.no/person/kontakt-oss/chat/"
                     onClick={() =>
                         loggLenkeKlikk(
@@ -57,9 +57,9 @@ const Sluttkort = () => {
                     }
                 >
                     chat
-                </Lenke>
+                </Link>
                 .
-            </Normaltekst>
+            </BodyShort>
         </>
     );
 };

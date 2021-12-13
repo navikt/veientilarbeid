@@ -5,7 +5,7 @@ export interface State extends DataElement {
     data: Data;
 }
 
-interface Vedtak {
+export interface Vedtak {
     vedtakId: string;
     fagsakId: string;
     status: string;

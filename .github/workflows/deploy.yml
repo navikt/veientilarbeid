@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - test-ny-auth-proxy
+      - test-dp-innsyn
 env:
   IMAGE_BASE: ghcr.io/${{github.repository}}/veientilarbeid
 

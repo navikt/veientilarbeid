@@ -33,6 +33,7 @@ export type BrukergruppeType =
 export type AmplitudeData = {
     gruppe: POAGruppe;
     brukergruppe: BrukergruppeType;
+    dagpengestatus?: string;
     geografiskTilknytning: string;
     isKSSX: string;
     isKSSK: string;
