@@ -107,5 +107,8 @@
     "lint-staged": {
         "*.{js,jsx,json,md,ts,tsx}": "prettier --write"
     },
-    "snyk": true
+    "snyk": true,
+    "msw": {
+        "workerDirectory": "public"
+    }
 }
