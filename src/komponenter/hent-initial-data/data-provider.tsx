@@ -70,7 +70,7 @@ const DataProvider = ({ children }: Props) => {
     const foreslaattInnsatsgruppe = selectForeslattInnsatsgruppe(data);
 
     const featureToggleData = useFeatureToggleData();
-    const kanHenteDpData = featureToggleData['veientilarbeid.onboardingDagpenger.data'];
+    const kanHenteDpData = featureToggleData['veientilarbeid.bruk-dp-innsyn-api'];
 
     React.useEffect(() => {
         if (securityLevel !== InnloggingsNiva.LEVEL_4) {
