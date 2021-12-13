@@ -1,8 +1,5 @@
-import { Next } from '@navikt/ds-icons';
-import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
-import { Knapp } from 'nav-frontend-knapper';
-import Lenke from 'nav-frontend-lenker';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Next, Back } from '@navikt/ds-icons';
+import { BodyShort, Button, Link } from '@navikt/ds-react';
 
 interface TemaFooterProps {
     antallSider: number;
@@ -32,36 +29,37 @@ const TemaFooter = (props: TemaFooterProps) => {
         if (gjeldendeKortIndex === 0) {
             return (
                 <div className="kolonne">
-                    <Knapp className={'mb-2'} onClick={nesteKort}>
+                    <Button variant="secondary" className={'mb-2'} onClick={nesteKort}>
                         <span>Start introduksjonen</span>
                         <Next />
-                    </Knapp>
-                    <Lenke onClick={hoppOverIntro} href={'#'} className="tracking-wide">
+                    </Button>
+                    <Link onClick={hoppOverIntro} href={'#'} className="tracking-wide">
                         {hoppOverLenkeTekst ?? 'Hopp over introduksjonen for nå'}
-                    </Lenke>
+                    </Link>
                 </div>
             );
         }
         if (gjeldendeKortIndex === antallSider - 1) {
             return (
                 <div className="kolonne">
-                    <Normaltekst>
-                        <Lenke onClick={handleLesIntroPaaNytt} href={'#'}>
+                    <BodyShort size="small">
+                        <Link onClick={handleLesIntroPaaNytt} href={'#'}>
                             {lesPaaNyttLenkeTekst || 'Vis introduksjon'}
-                        </Lenke>
-                    </Normaltekst>
+                        </Link>
+                    </BodyShort>
                 </div>
             );
         }
         return (
             <>
                 <div className={'rad'}>
-                    <Tilbakeknapp mini disabled={gjeldendeKortIndex === 1} onClick={forrigeKort}>
-                        Forrige
-                    </Tilbakeknapp>
-                    <Nesteknapp mini onClick={nesteKort}>
+                    <Button size="small" variant="tertiary" disabled={gjeldendeKortIndex === 1} onClick={forrigeKort}>
+                        <Back /> Forrige
+                    </Button>
+                    <Button size="small" variant="tertiary" onClick={nesteKort}>
                         {gjeldendeKortIndex === antallSider - 2 ? 'Fullfør' : 'Neste'}
-                    </Nesteknapp>
+                        <Next />
+                    </Button>
                 </div>
             </>
         );
