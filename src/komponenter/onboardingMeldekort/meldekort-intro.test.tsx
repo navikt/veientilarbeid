@@ -86,7 +86,8 @@ describe('tester onboarding komponenten for meldekort', () => {
         const startKnapp = screen.getByText(/start introduksjon/i);
         userEvent.click(startKnapp);
         const nesteknapp = screen.getByText(/neste/i);
-        const forrigeknapp = screen.getByText(/forrige/i);
+        const forrigelabel = screen.getByText(/forrige/i);
+        const forrigeknapp = forrigelabel && forrigelabel.parentElement;
 
         expect(screen.getByText(/1 av 3/i)).toBeInTheDocument();
         expect(nesteknapp).toBeEnabled();
@@ -100,9 +101,9 @@ describe('tester onboarding komponenten for meldekort', () => {
         expect(screen.getByText(/fullfør/i)).toBeEnabled();
 
         // Kan gå tilbake til side 1
-        userEvent.click(forrigeknapp);
+        forrigeknapp && userEvent.click(forrigeknapp);
         expect(screen.getByText(/2 av 3/i)).toBeInTheDocument();
-        userEvent.click(forrigeknapp);
+        forrigeknapp && userEvent.click(forrigeknapp);
         expect(screen.getByText(/1 av 3/i)).toBeInTheDocument();
         expect(forrigeknapp).toBeDisabled();
 

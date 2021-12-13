@@ -104,8 +104,9 @@ describe('Tester onboarding komponenten med mange kort', () => {
             { wrapper: contextProviders(providerProps) }
         );
 
-        const tilbakeKnapp = screen.getByText(/forrige/i);
-        userEvent.click(tilbakeKnapp);
+        const tilbakelabel = screen.getByText(/forrige/i);
+        const tilbakeKnapp = tilbakelabel && tilbakelabel.parentElement;
+        tilbakeKnapp && userEvent.click(tilbakeKnapp);
         expect(tilbakeKnapp).toHaveAttribute('disabled');
         expect(screen.getByText(/Kort 1/i)).toBeInTheDocument();
     });
