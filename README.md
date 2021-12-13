@@ -3,7 +3,6 @@
 Veien til arbeid
 
 # For å kjøre lokalt
-
 -   `npm ci`
 -   `npm start`
 
