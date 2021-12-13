@@ -1,20 +1,22 @@
-import { Systemtittel, Undertekst, Normaltekst } from 'nav-frontend-typografi';
+import { Heading, BodyShort, Detail } from '@navikt/ds-react';
 import Feedback from '../../feedback/feedback';
 
 function Kort1() {
     return (
         <>
             <div>
-                <Systemtittel>Hvor ofte skal jeg sende inn meldekort?</Systemtittel>
-                <Undertekst className={'blokk-xs'}>1 av 3</Undertekst>
-                <Normaltekst className={'blokk-xs'}>
+                <Heading size="medium">Hvor ofte skal jeg sende inn meldekort?</Heading>
+                <Detail size="small" className="blokk-xs">
+                    1 av 3
+                </Detail>
+                <BodyShort size="small" className="blokk-xs">
                     For å være registrert som arbeidssøker, må du sende inn meldekortet hver 14. dag.
-                </Normaltekst>
+                </BodyShort>
 
-                <Normaltekst className={'blokk-m'}>
+                <BodyShort size="small">
                     Har du fått beskjed om at du skal være registrert i NAV, må du også sender inn meldekortene hver 14.
                     dag.
-                </Normaltekst>
+                </BodyShort>
             </div>
             <Feedback id={'meldekort-kort-01'} />
         </>
@@ -25,16 +27,18 @@ function Kort2() {
     return (
         <>
             <div>
-                <Systemtittel>Hva skjer om jeg ikke sender inn meldekortet?</Systemtittel>
-                <Undertekst className={'blokk-xs'}>2 av 3</Undertekst>
+                <Heading size="medium">Hva skjer om jeg ikke sender inn meldekortet?</Heading>
+                <Detail size="small" className="blokk-xs">
+                    2 av 3
+                </Detail>
 
-                <Normaltekst className={'blokk-xs'}>
+                <BodyShort size="small" className="blokk-xs">
                     Lar du være å sende inn meldekort, tolker NAV det som at du ikke ønsker å stå registrert som
                     arbeidssøker.
-                </Normaltekst>
-                <Normaltekst className={'blokk-m'}>
+                </BodyShort>
+                <BodyShort size="small">
                     Venter du på svar på en innsendt søknad, kan du få avslag dersom du ikke har sendt inn meldekortet.
-                </Normaltekst>
+                </BodyShort>
             </div>
             <Feedback id={'meldekort-kort-02'} />
         </>
@@ -45,18 +49,20 @@ function Kort3() {
     return (
         <>
             <div>
-                <Systemtittel>Hva skjer om jeg sender inn meldekortet for sent?</Systemtittel>
-                <Undertekst className={'blokk-xs'}>3 av 3</Undertekst>
+                <Heading size="medium">Hva skjer om jeg sender inn meldekortet for sent?</Heading>
+                <Detail size="small" className="blokk-xs">
+                    3 av 3
+                </Detail>
 
-                <Normaltekst className={'blokk-xs'}>
+                <BodyShort size="small" className="blokk-xs">
                     Utbetalingene av ytelser, som for eksempel dagpenger, vil kunne stanses dersom du sender meldekortet
                     for sent.
-                </Normaltekst>
+                </BodyShort>
 
-                <Normaltekst className={'blokk-m'}>
+                <BodyShort size="small">
                     Det er også viktig å vite at du kan få mindre penger utbetalt dersom du sender meldekortene for
                     sent.
-                </Normaltekst>
+                </BodyShort>
             </div>
             <Feedback id={'meldekort-kort-03'} />
         </>

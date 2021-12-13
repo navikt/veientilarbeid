@@ -1,10 +1,10 @@
-import { Innholdstittel } from 'nav-frontend-typografi';
+import { Heading } from '@navikt/ds-react';
 
 function Startkort() {
     return (
-        <>
-            <Innholdstittel className={'blokk-xs'}>Det viktigste du trenger å vite om meldekort</Innholdstittel>
-        </>
+        <Heading size="large" className="blokk-xs">
+            Det viktigste du trenger å vite om meldekort
+        </Heading>
     );
 }
 

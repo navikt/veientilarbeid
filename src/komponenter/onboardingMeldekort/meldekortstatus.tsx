@@ -12,7 +12,7 @@ import * as Meldekort from '../../contexts/meldekort';
 import { beregnDagerEtterFastsattMeldedag, beregnDagerTilInaktivering } from '../../utils/meldekort-utils';
 import './meldekortstatus.less';
 import { OppfolgingContext } from '../../contexts/oppfolging';
-import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
+import { Heading, BodyShort } from '@navikt/ds-react';
 import { hentIDag } from '../../utils/chrono';
 import { datoMedUkedag, datoUtenTid, plussDager } from '../../utils/date-utils';
 
@@ -38,8 +38,12 @@ function Meldekortstatus() {
                 <MeldekortAdvarsel dagerEtterFastsattMeldedag={dagerEtterFastsattMeldedag} />
             ) : (
                 <>
-                    <Systemtittel className={'blokk-xs'}>Du kan nå sende inn meldekort</Systemtittel>
-                    <Normaltekst>{`Fristen er ${datoMedUkedag(inaktiveringsDato)}, klokken 23.00.`}</Normaltekst>
+                    <Heading size="medium" className="blokk-xs">
+                        Du kan nå sende inn meldekort
+                    </Heading>
+                    <BodyShort size="small">{`Fristen er ${datoMedUkedag(
+                        inaktiveringsDato
+                    )}, klokken 23.00.`}</BodyShort>
                 </>
             )}
         </div>

@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
+import { Heading, BodyShort, Label } from '@navikt/ds-react';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { beregnDagerTilInaktivering } from '../../utils/meldekort-utils';
 import { datoMedUkedag, plussDager } from '../../utils/date-utils';
@@ -44,15 +44,15 @@ function MeldekortAdvarsel({ dagerEtterFastsattMeldedag }: { dagerEtterFastsattM
     return (
         <>
             {dagerTilInaktivering <= 0 ? (
-                <Systemtittel>Siste frist for innsending av meldekortet er i kveld klokken 23.00</Systemtittel>
+                <Heading size="medium">Siste frist for innsending av meldekortet er i kveld klokken 23.00</Heading>
             ) : (
                 <>
-                    <Systemtittel className={'blokk-xs'}>
+                    <Heading size="medium" className={'blokk-xs'}>
                         Du har {dagerTilInaktivering}{' '}
                         {dagerTilInaktivering === 0 || dagerTilInaktivering > 1 ? 'dager' : 'dag'} på å sende inn
                         meldekort.
-                    </Systemtittel>
-                    <Normaltekst>Fristen er {datoMedUkedag(inaktiveringsDato)}, klokken 23.00.</Normaltekst>
+                    </Heading>
+                    <BodyShort size="small">Fristen er {datoMedUkedag(inaktiveringsDato)}, klokken 23.00.</BodyShort>
                 </>
             )}
             {tillegg}
@@ -81,14 +81,14 @@ const LittStrengereVarsel = ({
 
     return (
         <div className={'strenger-varsel'}>
-            <Element>Dersom du ikke sender inn meldekort vil</Element>
+            <Label size="small">Dersom du ikke sender inn meldekort vil</Label>
             <ul className={'konsekvenser'}>
                 <li>
-                    <Normaltekst>du ikke lenger være registrert som arbeidssøker</Normaltekst>
+                    <BodyShort size="small">du ikke lenger være registrert som arbeidssøker</BodyShort>
                 </li>
                 {['DAGP', 'IYT'].includes(rettighetsgruppe) && (
                     <li>
-                        <Normaltekst>{dagpengerKonsekvensMelding}</Normaltekst>
+                        <BodyShort size="small">{dagpengerKonsekvensMelding}</BodyShort>
                     </li>
                 )}
             </ul>
