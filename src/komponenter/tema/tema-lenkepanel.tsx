@@ -3,6 +3,7 @@ import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import './tema-lenkepanel.less';
 import { LinkPanel } from '@navikt/ds-react';
+
 interface TemaLenkepanelProps {
     href: string;
     tittel: string;
