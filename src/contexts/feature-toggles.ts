@@ -50,7 +50,7 @@ export interface Data {
     'veientilarbeid.egenvurderinguke12': boolean;
     'veientilarbeid.rydding.skjulAAPRad': boolean;
     'veientilarbeid.onboardingDagpenger': boolean;
-    'veientilarbeid.veientilarbeid.bruk-dp-innsyn-api'?: boolean;
+    'veientilarbeid.bruk-dp-innsyn-api'?: boolean;
     'veientilarbeid.onboardingDagpenger.toggle': boolean;
     'veientilarbeid.kanViseUtfraSituasjon': boolean;
     'veientilarbeid.vis-egenvurdering-med-14a': boolean;
@@ -69,7 +69,7 @@ export const initialState: State = {
         'veientilarbeid.egenvurderinguke12': false,
         'veientilarbeid.rydding.skjulAAPRad': false,
         'veientilarbeid.onboardingDagpenger': false,
-        'veientilarbeid.veientilarbeid.bruk-dp-innsyn-api': false,
+        'veientilarbeid.bruk-dp-innsyn-api': false,
         'veientilarbeid.onboardingDagpenger.toggle': false,
         'veientilarbeid.kanViseUtfraSituasjon': false,
         'veientilarbeid.vis-egenvurdering-med-14a': false,
