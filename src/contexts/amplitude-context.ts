@@ -6,7 +6,7 @@ import { DinSituasjonSvar } from './brukerregistrering';
 export const initialState: AmplitudeData = {
     gruppe: 'boo',
     brukergruppe: 'ukjent',
-    dagpengestatus: 'ukjent',
+    dagpengestatus: 'INGEN_VERDI',
     geografiskTilknytning: 'INGEN_VERDI',
     isKSSX: 'nei',
     isKSSK: 'nei',
