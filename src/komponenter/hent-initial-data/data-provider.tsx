@@ -124,7 +124,7 @@ const DataProvider = ({ children }: Props) => {
             }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [securityLevel, underOppfolging]);
+    }, [securityLevel, underOppfolging, kanHenteDpData]);
 
     const avhengigheter: any[] = [];
     const ventPa: any[] = [];

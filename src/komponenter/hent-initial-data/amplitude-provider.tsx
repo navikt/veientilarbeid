@@ -61,9 +61,8 @@ function hentDagerEtterFastsattMeldedag(
 export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const brukerregistreringData = useBrukerregistreringData();
     const featuretoggleData = useFeatureToggleData();
-    const innsendteSoknader = useDpInnsynSoknadData()?.soknad || [];
-    const dagpengeVedtak = useDpInnsynVedtakData().vedtak || [];
-
+    const innsendteSoknader = useDpInnsynSoknadData();
+    const dagpengeVedtak = useDpInnsynVedtakData();
     const pabegynteSoknaderData = usePaabegynteSoknaderData();
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const brukerInfoData = useBrukerinfoData();

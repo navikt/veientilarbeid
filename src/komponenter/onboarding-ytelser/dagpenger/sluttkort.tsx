@@ -28,8 +28,8 @@ function Sluttkort() {
     const brukerInfoData = useBrukerinfoData();
     const registreringData = useBrukerregistreringData();
     const paabegynteSoknader = usePaabegynteSoknaderData().soknader;
-    const innsendteSoknader = useDpInnsynSoknadData()?.soknad || [];
-    const dagpengeVedtak = useDpInnsynVedtakData().vedtak || [];
+    const innsendteSoknader = useDpInnsynSoknadData();
+    const dagpengeVedtak = useDpInnsynVedtakData();
 
     const dagpengeStatus = beregnDagpengeStatus({
         brukerInfoData,

@@ -10,7 +10,7 @@ const Sluttkort = () => {
     const amplitudeData = useAmplitudeData();
 
     const soknader = useDpInnsynSoknadData();
-    const siteInnsendteSoknad = soknader?.soknad.sort(sorterEtterNyesteDatoInnsendt)[0];
+    const siteInnsendteSoknad = soknader?.sort(sorterEtterNyesteDatoInnsendt)[0];
 
     function loggLenkeKlikk(action: string, url: string) {
         loggAktivitet({ aktivitet: action, ...amplitudeData });

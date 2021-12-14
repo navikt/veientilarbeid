@@ -2,7 +2,7 @@ import { DataElement, STATUS } from '../ducks/api';
 import { createContext, useContext } from 'react';
 
 export interface State extends DataElement {
-    data: Data | null;
+    data: Data;
 }
 
 export interface DpInnsynSoknad {
@@ -22,12 +22,10 @@ export interface DpInnsynSoknad {
     ];
 }
 
-export interface Data {
-    soknad: DpInnsynSoknad[];
-}
+export type Data = DpInnsynSoknad[];
 
 export const initialState: State = {
-    data: { soknad: [] },
+    data: [],
     status: STATUS.NOT_STARTED,
 };
 

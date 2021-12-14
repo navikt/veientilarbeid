@@ -15,7 +15,7 @@ import { Soknad } from '../contexts/paabegynte-soknader';
 export const sorterEtterNyesteDatoInnsendt = (a: DpInnsynSoknad, b: DpInnsynSoknad) =>
     new Date(b.datoInnsendt).getTime() - new Date(a.datoInnsendt).getTime();
 
-export type DagpengeStatus = 'paabegynt' | 'sokt' | 'mottar' | 'reaktivert' | 'ukjent' | 'avslag';
+export type DagpengeStatus = 'paabegynt' | 'sokt' | 'mottar' | 'reaktivert' | 'ukjent' | 'avslag' | 'innvilget';
 function beregnDagpengeStatus({
     brukerInfoData,
     registreringData,
@@ -66,6 +66,10 @@ function beregnDagpengeStatus({
 
     if (vedtakEtterSistInnsendteSoknad.some((vedtak) => vedtak.status === 'AVSLÅTT')) {
         return 'avslag';
+    }
+
+    if (vedtakEtterSistInnsendteSoknad.some((vedtak) => vedtak.status === 'INNVILGET')) {
+        return 'innvilget';
     }
 
     if (innsendteSoknaderEtterRegistreringsDato.length > 0 && vedtakEtterSistInnsendteSoknad.length === 0) {

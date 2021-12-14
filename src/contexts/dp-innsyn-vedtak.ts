@@ -14,12 +14,10 @@ export interface Vedtak {
     tilDato?: string;
 }
 
-export interface Data {
-    vedtak?: Vedtak[];
-}
+export type Data = Vedtak[];
 
 export const initialState: State = {
-    data: { vedtak: [] },
+    data: [],
     status: STATUS.NOT_STARTED,
 };
 
