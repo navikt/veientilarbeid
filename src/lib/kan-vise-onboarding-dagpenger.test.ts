@@ -79,6 +79,7 @@ const grunndata = {
         'veientilarbeid.14a-intro': true,
         'veientilarbeid.dagpenger-status': false,
         'veientilarbeid.dpstatus-for-alle': false,
+        'veientilarbeid.bruk-dp-innsyn-api': true,
         'veientilarbeid.egenvurderinguke12': true,
         'veientilarbeid.rydding.skjulJobbBoks': false,
         'veientilarbeid.rydding.skjulOkonomiBoks': false,
@@ -96,11 +97,19 @@ describe('Tester funksjonen ytelser-onboarding', () => {
         expect(kanViseOnboardingDagpenger(testdata)).toBe(false);
     });
 
-    test('Ja hvis featuretoggle og standard', () => {
+    test('Ja hvis featuretoggles og standard', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
         testdata.oppfolgingData.servicegruppe = 'IKVAL';
         testdata.oppfolgingData.formidlingsgruppe = 'ARBS';
         expect(kanViseOnboardingDagpenger(testdata)).toBe(true);
+    });
+
+    test('NEI hvis featuretoggle for dp-innsyn-api ikke er aktiv', () => {
+        const testdata = JSON.parse(JSON.stringify(grunndata));
+        testdata.oppfolgingData.servicegruppe = 'IKVAL';
+        testdata.oppfolgingData.formidlingsgruppe = 'ARBS';
+        testdata.featuretoggleData['veientilarbeid.bruk-dp-innsyn-api'] = false;
+        expect(kanViseOnboardingDagpenger(testdata)).toBe(false);
     });
 
     test('NEI hvis situasjonsbestemt', () => {
