@@ -192,10 +192,11 @@ class DemoDashboard extends React.Component<{}> {
         };
 
         const dagpengeStatuser = {
-            dagpengestatusIkkeSokt: 'Har ikke søkt dagpenger',
-            dagpengestatusStartetSoknad: 'Har startet dagpengesøknad',
-            dagpengestatusInnsendtSoknad: 'Har sendt søknad',
-            dagpengestatusSoknadBehandlet: 'Søknad ferdig behandlet',
+            ukjent: 'Har ikke søkt dagpenger',
+            paabegynt: 'Har startet dagpengesøknad',
+            sokt: 'Har sendt søknad',
+            innvilget: 'Søknad innvilget',
+            avslag: 'Søknad avslått',
         };
 
         const kvitteringsStatuser = {

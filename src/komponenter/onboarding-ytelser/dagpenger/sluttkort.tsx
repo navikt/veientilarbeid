@@ -12,7 +12,7 @@ import { useDpInnsynVedtakData } from '../../../contexts/dp-innsyn-vedtak';
 import beregnDagpengeStatus from '../../../lib/beregn-dagpenge-status';
 
 function hentAktueltSluttkort(situasjon: string) {
-    if (situasjon === 'pabegynt') {
+    if (situasjon === 'paabegynt') {
         return HarPabegyntSoknad;
     } else if (situasjon === 'sokt') {
         return HarSokt;

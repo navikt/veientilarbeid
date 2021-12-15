@@ -3,8 +3,6 @@ import { foerstkommendeMandag, plussDager } from '../utils/date-utils';
 import { hentQueryParam, settQueryParam } from '../utils/query-param-utils';
 import { FeatureToggles } from '../contexts/feature-toggles';
 import muligeEttersendelserMock from '../mocks/saksoversikt-mulige-ettersendelser-mock';
-import DpInnsynSoknadMock from '../mocks/dp-innsyn-soknad';
-import DpInnsynVedtakMock from '../mocks/dp-innsyn-vedtak';
 
 type JSONValue = null | string | number | boolean | JSONObject | JSONArray;
 
@@ -154,7 +152,7 @@ export function hentDagRelativTilFastsattMeldedag(): Date {
     return plussDager(fastsattMeldedag, dagerEtterFastsattMeldedag);
 }
 
-export const hentDpStatus = () => hentDemoState(DemoData.DP_STATUS) || 'dagpengestatusIkkeSokt';
+export const hentDpStatus = () => hentDemoState(DemoData.DP_STATUS) || 'ukjent';
 export const settDpStatus = (value: string) => settDemoState(DemoData.DP_STATUS, value);
 
 export const hentDpSoknaderUnderArbeid = (): JSONValue => {
@@ -172,7 +170,7 @@ export const hentDpSoknaderUnderArbeid = (): JSONValue => {
         feilendeBaksystemer: [],
     };
 
-    return status === 'dagpengestatusIkkeSokt' ? { soknader: [] } : pabegyntesoknaderMock;
+    return status === 'paabegynt' ? pabegyntesoknaderMock : { soknader: [] };
 };
 
 export const hentDpMuligeEttersendelser = (): JSONValue => {
@@ -288,5 +286,61 @@ export const hentDpSakstema = (): JSONValue => {
 export const hentKvitteringStatus = () => hentDemoState(DemoData.KVITTERING_STATUS) || 'kvitteringIkkeValgt';
 export const settKvitteringStatus = (value: string) => settDemoState(DemoData.KVITTERING_STATUS, value);
 
-export const hentDpInnsynVedtak = () => DpInnsynVedtakMock;
-export const hentDpInnsynSoknad = () => DpInnsynSoknadMock;
+export const hentDpInnsynVedtak = (): JSONValue => {
+    const status = hentDpStatus();
+
+    if (status === 'innvilget') {
+        return [
+            {
+                vedtakId: '2',
+                fagsakId: 'arenaId',
+                status: 'INNVILGET',
+                datoFattet: plussDager(new Date(), 3).toISOString(),
+                fraDato: plussDager(new Date(), 10).toISOString(),
+                tilDato: 'null',
+            },
+        ];
+    }
+
+    if (status === 'avslag') {
+        return [
+            {
+                vedtakId: '2',
+                fagsakId: 'arenaId',
+                status: 'AVSLÅTT',
+                datoFattet: plussDager(new Date(), 3).toISOString(),
+                fraDato: plussDager(new Date(), 10).toISOString(),
+                tilDato: 'null',
+            },
+        ];
+    }
+
+    return [];
+};
+
+export const hentDpInnsynSoknad = (): JSONValue => {
+    const status = hentDpStatus();
+
+    if (['innvilget', 'avslag', 'sokt'].includes(status)) {
+        return [
+            {
+                søknadId: '2',
+                skjemaKode: 'NAV 04-01.03',
+                tittel: 'Søknad om dagpenger (ikke permittert)',
+                journalpostId: '11',
+                søknadsType: 'NySøknad',
+                kanal: 'Digital',
+                datoInnsendt: plussDager(new Date(), 2).toISOString(),
+                vedlegg: [
+                    {
+                        skjemaNummer: '123',
+                        navn: 'navn',
+                        status: 'LastetOpp',
+                    },
+                ],
+            },
+        ];
+    }
+
+    return [];
+};
