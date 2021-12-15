@@ -14,12 +14,8 @@ const Sluttkort = () => {
     return (
         <>
             <Heading size="medium" className={'blokk-xs'}>
-                Du har sendt inn en søknad om dagpenger
+                Du mottar dagpenger
             </Heading>
-
-            <BodyShort size="small" className={'blokk-xs'}>
-                Du kan tidligst få dagpenger fra den dagen du sender inn søknaden.
-            </BodyShort>
 
             <BodyShort size="small" className={'blokk-xs'}>
                 Se mer info på {' '}
@@ -38,7 +34,7 @@ const Sluttkort = () => {
             </BodyShort>
 
             <BodyShort size="small" className={'blokk-xs'}>
-                Har du spørsmål om å søke eller motta dagpenger, må du bruke{' '}
+                Har du spørsmål om dagpenger, må du bruke{' '}
                 <Link
                     href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
                     onClick={() =>
@@ -66,7 +62,7 @@ const Sluttkort = () => {
             </BodyShort>
 
             <BodyShort size="small" className={'blokk-xs'}>
-                Du kan også lese om de ulike ytelsene på{' '}
+                Du kan lese om de ulike ytelsene på{' '}
                 <Link
                     href="https://www.nav.no/"
                     onClick={() =>
