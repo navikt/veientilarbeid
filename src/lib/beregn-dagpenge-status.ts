@@ -60,9 +60,11 @@ function beregnDagpengeStatus({
 
     const sistInnsendteSoknad = innsendteSoknaderEtterRegistreringsDato.sort(sorterEtterNyesteDatoInnsendt)[0];
 
-    const vedtakEtterSistInnsendteSoknad = dagpengeVedtak.filter(
-        (vedtak) => new Date(vedtak.datoFattet).getTime() > new Date(sistInnsendteSoknad.datoInnsendt).getTime()
-    );
+    const vedtakEtterSistInnsendteSoknad = !sistInnsendteSoknad
+        ? []
+        : dagpengeVedtak.filter(
+              (vedtak) => new Date(vedtak.datoFattet).getTime() > new Date(sistInnsendteSoknad.datoInnsendt).getTime()
+          );
 
     if (vedtakEtterSistInnsendteSoknad.some((vedtak) => vedtak.status === 'AVSLÅTT')) {
         return 'avslag';

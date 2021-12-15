@@ -131,6 +131,30 @@ describe('Tester funksjonen beregnDagpengeStatus', () => {
         ).toBe('sokt');
     });
 
+    test('returnerer "ukjent" når det eksisterer innsendte søknader før registreringsdato og vedtak etter registreringsdato', () => {
+        const testData = JSON.parse(JSON.stringify(grunndata));
+        const soknader = [...soknad];
+        soknader[0].datoInnsendt = plussDager(iDag, -10).toISOString();
+
+        return expect(
+            beregnDagpengeStatus({
+                ...testData,
+                paabegynteSoknader: [],
+                innsendteSoknader: soknader,
+                dagpengeVedtak: [
+                    {
+                        vedtakId: '2',
+                        fagsakId: 'arenaId',
+                        status: 'INNVILGET',
+                        datoFattet: plussDager(iDag, -10).toISOString(),
+                        fraDato: '2021-11-19T10:31:18.176',
+                        tilDato: 'null',
+                    },
+                ],
+            })
+        ).toBe('ukjent');
+    });
+
     test('returnerer "avslag" når det eksisterer avslått vedtak nyere enn registreringsdato og sist innsendte søknad', () => {
         const testData = JSON.parse(JSON.stringify(grunndata));
         const soknader = [...soknad];
