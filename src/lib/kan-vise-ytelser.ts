@@ -21,7 +21,6 @@ export function kanViseOnboardingYtelser({
     const brukerErPilot = erPilotBruker({
         brukerInfoData,
         oppfolgingData,
-        registreringData,
         amplitudeData,
     });
     const brukerregistreringData = registreringData?.registrering ?? null;

@@ -1,4 +1,3 @@
-import * as Brukerregistrering from '../contexts/brukerregistrering';
 import * as Oppfolging from '../contexts/oppfolging';
 import * as BrukerInfo from '../contexts/bruker-info';
 import { AmplitudeData } from '../metrics/amplitude-utils';
@@ -10,7 +9,6 @@ export function erPilotBruker({
 }: {
     brukerInfoData: BrukerInfo.Data;
     oppfolgingData: Oppfolging.Data;
-    registreringData: Brukerregistrering.Data | null;
     amplitudeData: AmplitudeData;
 }): boolean {
     const skalSeEksperiment = amplitudeData.eksperimenter.includes('onboarding14a');
