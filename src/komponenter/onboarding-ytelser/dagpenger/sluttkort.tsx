@@ -3,6 +3,7 @@ import HarPabegyntSoknad from './sluttkort-har-paabegynt-soknad';
 import HarSokt from './sluttkort-har-sokt';
 import MottarDagpenger from './sluttkort-faar-dagpenger';
 import InnvilgetDagpenger from './sluttkort-innvilget-dagpenger';
+import AvslagDagpenger from './sluttkort-avslag-dagpenger';
 import { useBrukerinfoData } from '../../../contexts/bruker-info';
 import { useBrukerregistreringData } from '../../../contexts/brukerregistrering';
 import { usePaabegynteSoknaderData } from '../../../contexts/paabegynte-soknader';
@@ -19,6 +20,8 @@ function hentAktueltSluttkort(situasjon: string) {
         return MottarDagpenger;
     } else if (situasjon === 'innvilget') {
         return InnvilgetDagpenger;
+    } else if (situasjon === 'avslag') {
+        return AvslagDagpenger;
     } else {
         return HarIkkeSokt;
     }

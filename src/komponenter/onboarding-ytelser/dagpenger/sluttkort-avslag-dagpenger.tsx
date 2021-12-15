@@ -1,9 +1,7 @@
 import { BodyShort, Heading, Link } from '@navikt/ds-react';
 import { useAmplitudeData } from '../../../contexts/amplitude-context';
-import { useDpInnsynVedtakData, Vedtak } from '../../../contexts/dp-innsyn-vedtak';
 import { loggAktivitet } from '../../../metrics/metrics';
 import { saksoversikt_url } from '../../../url';
-import prettyPrintDato from '../../../utils/pretty-print-dato';
 
 const Sluttkort = () => {
     const amplitudeData = useAmplitudeData();
@@ -13,21 +11,11 @@ const Sluttkort = () => {
         window.location.assign(url);
     }
 
-    const vedtakData = useDpInnsynVedtakData();
-    const nyesteInnvilgedeVedtak = vedtakData
-        .filter((vedtak) => vedtak.status === 'INNVILGET')
-        .sort((a: Vedtak, b: Vedtak) => new Date(b.datoFattet).getTime() - new Date(a.datoFattet).getTime())[0];
-    if (!nyesteInnvilgedeVedtak) return null;
-
     return (
         <>
             <Heading size="medium" className={'blokk-xs'}>
-                Du har fått innvilget søknad om dagpenger
+                Du har fått avslått søknad om dagpenger
             </Heading>
-
-            <BodyShort size="small" className={'blokk-xs'}>
-                Dagpenger er innvilget fra {prettyPrintDato(nyesteInnvilgedeVedtak.fraDato)}
-            </BodyShort>
 
             <BodyShort size="small" className={'blokk-xs'}>
                 Se mer info på {' '}
@@ -36,7 +24,7 @@ const Sluttkort = () => {
                     href={saksoversikt_url}
                     onClick={() =>
                         loggLenkeKlikk(
-                            'Går til saksoversikten fra "dagpenger-tema - dagpenger innvilget"',
+                            'Går til saksoversikten fra "dagpenger-tema - dagpenger avslått"',
                             saksoversikt_url
                         )
                     }
@@ -51,7 +39,7 @@ const Sluttkort = () => {
                     href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
                     onClick={() =>
                         loggLenkeKlikk(
-                            'Går til STO fra "dagpenger-tema - dagpenger innvilget"',
+                            'Går til STO fra "dagpenger-tema - dagpenger avslått"',
                             'https://mininnboks.nav.no/sporsmal/skriv/ARBD'
                         )
                     }
@@ -63,7 +51,7 @@ const Sluttkort = () => {
                     href="https://www.nav.no/person/kontakt-oss/chat/"
                     onClick={() =>
                         loggLenkeKlikk(
-                            'Går til chat fra "dagpenger-tema - dagpenger innvilget"',
+                            'Går til chat fra "dagpenger-tema - dagpenger avslått"',
                             'https://www.nav.no/person/kontakt-oss/chat/'
                         )
                     }
@@ -79,7 +67,7 @@ const Sluttkort = () => {
                     href="https://www.nav.no/"
                     onClick={() =>
                         loggLenkeKlikk(
-                            'Går til forsiden fra  "dagpenger-tema - dagpenger innvilget"',
+                            'Går til forsiden fra  "dagpenger-tema - dagpenger avslått"',
                             'https://www.nav.no/'
                         )
                     }
