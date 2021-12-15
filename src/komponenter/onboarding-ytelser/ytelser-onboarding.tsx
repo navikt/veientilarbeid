@@ -71,10 +71,12 @@ function YtelserOnboarding() {
                 innhold={[
                     <>
                         <SluttkortYtelser />
-                        <ByttKortLenke
-                            handleByttKortKlikk={handleByttKortKlikk}
-                            valgtYtelserVisning={valgtYtelserVisning}
-                        />
+                        {brukerErPilot && (
+                            <ByttKortLenke
+                                handleByttKortKlikk={handleByttKortKlikk}
+                                valgtYtelserVisning={valgtYtelserVisning}
+                            />
+                        )}
                     </>,
                 ]}
                 id="ytelser"
