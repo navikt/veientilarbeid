@@ -50,7 +50,7 @@ const Sluttkort = () => {
             </BodyShort>
 
             <BodyShort size="small" className={'blokk-xs'}>
-                Har du spørsmål om å søke eller motta dagpenger, må du bruke
+                Har du spørsmål om å søke eller motta dagpenger, må du bruke{' '}
                 <Link
                     href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
                     onClick={() =>
