@@ -1,6 +1,5 @@
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
-import { useAmplitudeData } from '../../contexts/amplitude-context';
 import Sluttkort from './dagpenger/sluttkort';
 import Tema from '../tema/tema';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
@@ -14,10 +13,8 @@ function DagpengerOnboarding() {
     const oppfolgingData = useOppfolgingData();
     const featuretoggleData = useFeatureToggleData();
     const brukerInfoData = useBrukerinfoData();
-    const amplitudeData = useAmplitudeData();
 
     const kanViseKomponent = kanViseOnboardingDagpenger({
-        amplitudeData,
         featuretoggleData,
         oppfolgingData,
         brukerInfoData,

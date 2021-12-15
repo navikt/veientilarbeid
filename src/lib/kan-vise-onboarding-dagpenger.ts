@@ -3,20 +3,17 @@ import * as Brukerregistrering from '../contexts/brukerregistrering';
 import * as Oppfolging from '../contexts/oppfolging';
 import * as BrukerInfo from '../contexts/bruker-info';
 import sjekkOmBrukerErStandardInnsatsgruppe from './er-standard-innsatsgruppe';
-import { AmplitudeData } from '../metrics/amplitude-utils';
 
 export function kanViseOnboardingDagpenger({
     brukerInfoData,
     oppfolgingData,
     registreringData,
     featuretoggleData,
-    amplitudeData,
 }: {
     brukerInfoData: BrukerInfo.Data;
     oppfolgingData: Oppfolging.Data;
     registreringData: Brukerregistrering.Data | null;
     featuretoggleData: FeaturetoggleData;
-    amplitudeData: AmplitudeData;
 }): boolean {
     const erAAP = brukerInfoData.rettighetsgruppe === 'AAP';
 

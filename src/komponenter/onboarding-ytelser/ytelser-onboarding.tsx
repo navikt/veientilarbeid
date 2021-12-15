@@ -47,7 +47,6 @@ function YtelserOnboarding() {
     });
 
     const kanViseDagpengerKomponent = kanViseOnboardingDagpenger({
-        amplitudeData,
         featuretoggleData,
         oppfolgingData,
         brukerInfoData,
