@@ -1,16 +1,26 @@
 import { Heading, BodyShort, Link } from '@navikt/ds-react';
+
 import { useAmplitudeData } from '../../../contexts/amplitude-context';
+import { usePaabegynteSoknaderData, Soknad } from '../../../contexts/paabegynte-soknader';
 import { loggAktivitet } from '../../../metrics/metrics';
 import { saksoversikt_url } from '../../../url';
+import prettyPrintDato from '../../../utils/pretty-print-dato';
 import TemaLenkepanel from '../../tema/tema-lenkepanel';
 
 const Sluttkort = () => {
     const amplitudeData = useAmplitudeData();
+    const pabegynteSoknaderData = usePaabegynteSoknaderData();
 
     function loggLenkeKlikk(action: string, url: string) {
         loggAktivitet({ aktivitet: action, ...amplitudeData });
         window.location.assign(url);
     }
+
+    const sistePabegynteSoknad = pabegynteSoknaderData.soknader.sort(
+        (a: Soknad, b: Soknad) => new Date(b.dato).getTime() - new Date(a.dato).getTime()
+    )[0];
+
+    if (!sistePabegynteSoknad) return null;
 
     return (
         <>
@@ -30,7 +40,7 @@ const Sluttkort = () => {
                 amplitudeHandling="Fortsetter påbegynt soknad"
                 amplitudeTema="dagpenger"
                 tittel="Fortsett på påbegynt søknad"
-                beskrivelse={`du startet på søknaden ${'dato'}`}
+                beskrivelse={`du startet på søknaden ${prettyPrintDato(sistePabegynteSoknad.dato)}`}
             />
 
             <BodyShort size="small" className={'blokk-xs'}>
