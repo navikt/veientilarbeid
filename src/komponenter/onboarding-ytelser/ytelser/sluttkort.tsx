@@ -1,5 +1,4 @@
-import Lenke from 'nav-frontend-lenker';
-import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
+import { BodyShort, Heading, Link } from '@navikt/ds-react';
 import { useAmplitudeData } from '../../../contexts/amplitude-context';
 import { loggAktivitet } from '../../../metrics/metrics';
 
@@ -13,38 +12,40 @@ const Sluttkort = () => {
 
     return (
         <>
-            <Systemtittel className={'blokk-xs'}>Har du spørsmål om å søke eller motta pengestøtte?</Systemtittel>
-            <Normaltekst className={'blokk-xs'}>
+            <Heading size="medium" className={'blokk-xs'}>
+                Har du spørsmål om å søke eller motta pengestøtte?
+            </Heading>
+            <BodyShort size="small" className={'blokk-xs'}>
                 Du kan stille spørsmål om ytelser via{' '}
-                <Lenke
+                <Link
                     href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
                     onClick={() =>
                         loggLenkeKlikk('Går til STO fra ytelser-kort', 'https://mininnboks.nav.no/sporsmal/skriv/ARBD')
                     }
                 >
                     skriv til oss
-                </Lenke>{' '}
+                </Link>{' '}
                 og{' '}
-                <Lenke
+                <Link
                     href="https://www.nav.no/person/kontakt-oss/chat/"
                     onClick={() =>
                         loggLenkeKlikk('Går til chat fra ytelser-kort', 'https://www.nav.no/person/kontakt-oss/chat/')
                     }
                 >
                     chat
-                </Lenke>
+                </Link>
                 .
-            </Normaltekst>
-            <Normaltekst className={'blokk-m'}>
+            </BodyShort>
+            <BodyShort size="small" className={'blokk-m'}>
                 Du kan lese om livssituasjoner NAV kan hjelpe med på{' '}
-                <Lenke
+                <Link
                     href="https://www.nav.no/"
                     onClick={() => loggLenkeKlikk('Går til forsiden fra ytelse kort', 'https://www.nav.no/')}
                 >
                     forsiden
-                </Lenke>
+                </Link>
                 {' '}av nav.no
-            </Normaltekst>
+            </BodyShort>
         </>
     );
 };
