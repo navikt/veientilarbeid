@@ -1,7 +1,5 @@
-import { plussDager } from '../utils/date-utils';
 import { DinSituasjonSvar, FremtidigSituasjonSvar } from '../contexts/brukerregistrering';
 import beregnDagpengeStatus from './beregn-dagpenge-status';
-import soknad from '../mocks/dp-innsyn-soknad';
 
 const iDag = new Date();
 const grunndata = {

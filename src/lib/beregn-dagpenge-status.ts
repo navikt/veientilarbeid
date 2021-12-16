@@ -16,7 +16,15 @@ import { Soknad } from '../contexts/paabegynte-soknader';
 export const sorterEtterNyesteDatoInnsendt = (a: DpInnsynSoknad, b: DpInnsynSoknad) =>
     new Date(b.datoInnsendt).getTime() - new Date(a.datoInnsendt).getTime();
 
-export type DagpengeStatus = 'paabegynt' | 'sokt' | 'mottar' | 'reaktivert' | 'ukjent' | 'avslag' | 'innvilget';
+export type DagpengeStatus =
+    | 'paabegynt'
+    | 'sokt'
+    | 'mottar'
+    | 'reaktivert'
+    | 'ukjent'
+    | 'avslag'
+    | 'innvilget'
+    | 'soktogpaabegynt';
 function beregnDagpengeStatus({
     brukerInfoData,
     registreringData,
@@ -65,13 +73,22 @@ function beregnDagpengeStatus({
         }
     }
 
-    if (sistInnsendteSoknad) {
-        return 'sokt';
-    }
-
     const sistPaabegynteSoknad = paabegynteSoknader.sort(
         (a: Soknad, b: Soknad) => new Date(a.dato).getTime() - new Date(b.dato).getTime()
     )[0];
+
+    const harPaabegyntEtterInnsendt =
+        sistPaabegynteSoknad &&
+        sistInnsendteSoknad &&
+        new Date(sistPaabegynteSoknad.dato).getTime() > new Date(sistInnsendteSoknad?.datoInnsendt).getTime();
+
+    if (harPaabegyntEtterInnsendt) {
+        return 'soktogpaabegynt';
+    }
+
+    if (sistInnsendteSoknad) {
+        return 'sokt';
+    }
 
     if (sistPaabegynteSoknad) {
         return 'paabegynt';

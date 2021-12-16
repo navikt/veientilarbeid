@@ -5,12 +5,21 @@ import { sorterEtterNyesteDatoInnsendt } from '../../../lib/beregn-dagpenge-stat
 import { loggAktivitet } from '../../../metrics/metrics';
 import { saksoversikt_url } from '../../../url';
 import { formaterDato, datoForForventetSvar } from '../../../utils/date-utils';
+import { usePaabegynteSoknaderData } from '../../../contexts/paabegynte-soknader';
+import prettyPrintDato from '../../../utils/pretty-print-dato';
 
 const Sluttkort = () => {
     const amplitudeData = useAmplitudeData();
 
     const soknader = useDpInnsynSoknadData();
-    const siteInnsendteSoknad = soknader?.sort(sorterEtterNyesteDatoInnsendt)[0];
+    const sisteInnsendteSoknad = soknader?.sort(sorterEtterNyesteDatoInnsendt)[0];
+    const paabegynteSoknader = usePaabegynteSoknaderData().soknader;
+    const sistePaabegyntSoknad = paabegynteSoknader.sort(
+        (a, b) => new Date(b.dato).getTime() - new Date(a.dato).getTime()
+    )[0];
+    const harPaabegyntEtterInnsendt =
+        sistePaabegyntSoknad &&
+        new Date(sistePaabegyntSoknad.dato).getTime() > new Date(sisteInnsendteSoknad?.datoInnsendt).getTime();
 
     function loggLenkeKlikk(action: string, url: string) {
         loggAktivitet({ aktivitet: action, ...amplitudeData });
@@ -20,19 +29,25 @@ const Sluttkort = () => {
     return (
         <>
             <Heading size="medium" className={'blokk-xs'}>
-                Dagpenger
+                {harPaabegyntEtterInnsendt ? 'Søknad om dagpenger og påbegynte søknader' : 'Søknad om dagpenger'}
             </Heading>
 
-            {siteInnsendteSoknad?.datoInnsendt && (
+            {sisteInnsendteSoknad?.datoInnsendt && (
                 <>
                     <BodyShort size="small" className={'blokk-xs'}>
-                        Siste søknad mottatt: {formaterDato(new Date(siteInnsendteSoknad.datoInnsendt))}
+                        Den siste søkaden NAV har mottatt ble sendt inn{' '}
+                        {prettyPrintDato(sisteInnsendteSoknad.datoInnsendt)}.
                     </BodyShort>
 
                     <BodyShort size="small" className={'blokk-xs'}>
                         Du kan forvente svar{' '}
-                        {formaterDato(datoForForventetSvar(new Date(siteInnsendteSoknad.datoInnsendt)))}
+                        {formaterDato(datoForForventetSvar(new Date(sisteInnsendteSoknad.datoInnsendt)))}
                     </BodyShort>
+                    {harPaabegyntEtterInnsendt && (
+                        <BodyShort size="small" className={'blokk-xs'}>
+                            Du har også en påbegynt søknad du kan <a href={sistePaabegyntSoknad.lenke}>fortsette på</a>.
+                        </BodyShort>
+                    )}
                 </>
             )}
             <BodyShort size="small" className={'blokk-xs'}>
