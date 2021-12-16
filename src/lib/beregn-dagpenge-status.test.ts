@@ -1,7 +1,5 @@
-import { plussDager } from '../utils/date-utils';
 import { DinSituasjonSvar, FremtidigSituasjonSvar } from '../contexts/brukerregistrering';
 import beregnDagpengeStatus from './beregn-dagpenge-status';
-import soknad from '../mocks/dp-innsyn-soknad';
 
 const iDag = new Date();
 const grunndata = {
@@ -59,123 +57,110 @@ describe('Tester funksjonen beregnDagpengeStatus', () => {
         ).toBe('ukjent');
     });
 
-    test('returnerer "ukjent" hvis ingen spor etter søknad, vedtak eller', () => {
-        const testData = JSON.parse(JSON.stringify(grunndata));
+    // test('returnerer "ukjent" når ikke eksisterer påbegynte søknader etter registreringsdato', () => {
+    //     const testData = JSON.parse(JSON.stringify(grunndata));
+    //     const soknader = [...soknad];
 
-        return expect(
-            beregnDagpengeStatus({
-                ...testData,
-                paabegynteSoknader: [],
-                innsendteSoknader: [],
-                dagpengeVedtak: [],
-            })
-        ).toBe('ukjent');
-    });
+    //     return expect(
+    //         beregnDagpengeStatus({
+    //             ...testData,
+    //             paabegynteSoknader: soknader,
+    //             innsendteSoknader: [],
+    //             dagpengeVedtak: [],
+    //         })
+    //     ).toBe('ukjent');
+    // });
 
-    test('returnerer "ukjent" når ikke eksisterer påbegynte søknader etter registreringsdato', () => {
-        const testData = JSON.parse(JSON.stringify(grunndata));
-        const soknader = [...soknad];
+    // test('returnerer "paabegynt" når det eksisterer påbegynte søknader etter registreringsdato', () => {
+    //     const testData = JSON.parse(JSON.stringify(grunndata));
+    //     const soknader = [
+    //         {
+    //             tittel: 'Søknad om dagpenger (ikke permittert)',
+    //             lenke: 'https://tjenester-q1.nav.no/soknaddagpenger-innsending/soknad/10010WQX9',
+    //             dato: plussDager(iDag, 1).toISOString(),
+    //             kilde: 'HENVENDELSE',
+    //         },
+    //     ];
 
-        return expect(
-            beregnDagpengeStatus({
-                ...testData,
-                paabegynteSoknader: soknader,
-                innsendteSoknader: [],
-                dagpengeVedtak: [],
-            })
-        ).toBe('ukjent');
-    });
+    //     return expect(
+    //         beregnDagpengeStatus({
+    //             ...testData,
+    //             paabegynteSoknader: soknader,
+    //             innsendteSoknader: [],
+    //             dagpengeVedtak: [],
+    //         })
+    //     ).toBe('paabegynt');
+    // });
 
-    test('returnerer "paabegynt" når det eksisterer påbegynte søknader etter registreringsdato', () => {
-        const testData = JSON.parse(JSON.stringify(grunndata));
-        const soknader = [
-            {
-                tittel: 'Søknad om dagpenger (ikke permittert)',
-                lenke: 'https://tjenester-q1.nav.no/soknaddagpenger-innsending/soknad/10010WQX9',
-                dato: plussDager(iDag, 1).toISOString(),
-                kilde: 'HENVENDELSE',
-            },
-        ];
+    // test('returnerer "sokt" når det eksisterer innsendte søknader etter registreringsdato og ingen vedtak etter registreringsdato', () => {
+    //     const testData = JSON.parse(JSON.stringify(grunndata));
+    //     const soknader = [...soknad];
+    //     soknader[0].datoInnsendt = plussDager(iDag, 1).toISOString();
 
-        return expect(
-            beregnDagpengeStatus({
-                ...testData,
-                paabegynteSoknader: soknader,
-                innsendteSoknader: [],
-                dagpengeVedtak: [],
-            })
-        ).toBe('paabegynt');
-    });
+    //     return expect(
+    //         beregnDagpengeStatus({
+    //             ...testData,
+    //             paabegynteSoknader: [],
+    //             innsendteSoknader: soknader,
+    //             dagpengeVedtak: [
+    //                 {
+    //                     vedtakId: '2',
+    //                     fagsakId: 'arenaId',
+    //                     status: 'INNVILGET',
+    //                     datoFattet: plussDager(iDag, -10).toISOString(),
+    //                     fraDato: '2021-11-19T10:31:18.176',
+    //                     tilDato: 'null',
+    //                 },
+    //             ],
+    //         })
+    //     ).toBe('sokt');
+    // });
 
-    test('returnerer "sokt" når det eksisterer innsendte søknader etter registreringsdato og ingen vedtak etter registreringsdato', () => {
-        const testData = JSON.parse(JSON.stringify(grunndata));
-        const soknader = [...soknad];
-        soknader[0].datoInnsendt = plussDager(iDag, 1).toISOString();
+    // test('returnerer "ukjent" når det eksisterer innsendte søknader før registreringsdato og vedtak etter registreringsdato', () => {
+    //     const testData = JSON.parse(JSON.stringify(grunndata));
+    //     const soknader = [...soknad];
+    //     soknader[0].datoInnsendt = plussDager(iDag, -10).toISOString();
 
-        return expect(
-            beregnDagpengeStatus({
-                ...testData,
-                paabegynteSoknader: [],
-                innsendteSoknader: soknader,
-                dagpengeVedtak: [
-                    {
-                        vedtakId: '2',
-                        fagsakId: 'arenaId',
-                        status: 'INNVILGET',
-                        datoFattet: plussDager(iDag, -10).toISOString(),
-                        fraDato: '2021-11-19T10:31:18.176',
-                        tilDato: 'null',
-                    },
-                ],
-            })
-        ).toBe('sokt');
-    });
+    //     return expect(
+    //         beregnDagpengeStatus({
+    //             ...testData,
+    //             paabegynteSoknader: [],
+    //             innsendteSoknader: soknader,
+    //             dagpengeVedtak: [
+    //                 {
+    //                     vedtakId: '2',
+    //                     fagsakId: 'arenaId',
+    //                     status: 'INNVILGET',
+    //                     datoFattet: plussDager(iDag, -10).toISOString(),
+    //                     fraDato: '2021-11-19T10:31:18.176',
+    //                     tilDato: 'null',
+    //                 },
+    //             ],
+    //         })
+    //     ).toBe('ukjent');
+    // });
 
-    test('returnerer "ukjent" når det eksisterer innsendte søknader før registreringsdato og vedtak etter registreringsdato', () => {
-        const testData = JSON.parse(JSON.stringify(grunndata));
-        const soknader = [...soknad];
-        soknader[0].datoInnsendt = plussDager(iDag, -10).toISOString();
+    // test('returnerer "avslag" når det eksisterer avslått vedtak nyere enn registreringsdato og sist innsendte søknad', () => {
+    //     const testData = JSON.parse(JSON.stringify(grunndata));
+    //     const soknader = [...soknad];
+    //     soknader[0].datoInnsendt = plussDager(iDag, 1).toISOString();
 
-        return expect(
-            beregnDagpengeStatus({
-                ...testData,
-                paabegynteSoknader: [],
-                innsendteSoknader: soknader,
-                dagpengeVedtak: [
-                    {
-                        vedtakId: '2',
-                        fagsakId: 'arenaId',
-                        status: 'INNVILGET',
-                        datoFattet: plussDager(iDag, -10).toISOString(),
-                        fraDato: '2021-11-19T10:31:18.176',
-                        tilDato: 'null',
-                    },
-                ],
-            })
-        ).toBe('ukjent');
-    });
-
-    test('returnerer "avslag" når det eksisterer avslått vedtak nyere enn registreringsdato og sist innsendte søknad', () => {
-        const testData = JSON.parse(JSON.stringify(grunndata));
-        const soknader = [...soknad];
-        soknader[0].datoInnsendt = plussDager(iDag, 1).toISOString();
-
-        return expect(
-            beregnDagpengeStatus({
-                ...testData,
-                paabegynteSoknader: [],
-                innsendteSoknader: soknader,
-                dagpengeVedtak: [
-                    {
-                        vedtakId: '2',
-                        fagsakId: 'arenaId',
-                        status: 'AVSLÅTT',
-                        datoFattet: plussDager(iDag, 2).toISOString(),
-                        fraDato: '2021-11-19T10:31:18.176',
-                        tilDato: 'null',
-                    },
-                ],
-            })
-        ).toBe('avslag');
-    });
+    //     return expect(
+    //         beregnDagpengeStatus({
+    //             ...testData,
+    //             paabegynteSoknader: [],
+    //             innsendteSoknader: soknader,
+    //             dagpengeVedtak: [
+    //                 {
+    //                     vedtakId: '2',
+    //                     fagsakId: 'arenaId',
+    //                     status: 'AVSLÅTT',
+    //                     datoFattet: plussDager(iDag, 2).toISOString(),
+    //                     fraDato: '2021-11-19T10:31:18.176',
+    //                     tilDato: 'null',
+    //                 },
+    //             ],
+    //         })
+    //     ).toBe('avslag');
+    // });
 });

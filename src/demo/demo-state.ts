@@ -170,7 +170,7 @@ export const hentDpSoknaderUnderArbeid = (): JSONValue => {
         feilendeBaksystemer: [],
     };
 
-    return status === 'paabegynt' ? pabegyntesoknaderMock : { soknader: [] };
+    return ['paabegynt', 'soktogpaabegynt'].includes(status) ? pabegyntesoknaderMock : { soknader: [] };
 };
 
 export const hentDpMuligeEttersendelser = (): JSONValue => {
@@ -297,7 +297,7 @@ export const hentDpInnsynVedtak = (): JSONValue => {
                 status: 'INNVILGET',
                 datoFattet: plussDager(new Date(), 3).toISOString(),
                 fraDato: plussDager(new Date(), 10).toISOString(),
-                tilDato: 'null',
+                tilDato: null,
             },
         ];
     }
@@ -310,7 +310,7 @@ export const hentDpInnsynVedtak = (): JSONValue => {
                 status: 'AVSLÅTT',
                 datoFattet: plussDager(new Date(), 3).toISOString(),
                 fraDato: plussDager(new Date(), 10).toISOString(),
-                tilDato: 'null',
+                tilDato: null,
             },
         ];
     }
@@ -320,6 +320,27 @@ export const hentDpInnsynVedtak = (): JSONValue => {
 
 export const hentDpInnsynSoknad = (): JSONValue => {
     const status = hentDpStatus();
+
+    if (status === 'soktogpaabegynt') {
+        return [
+            {
+                søknadId: '2',
+                skjemaKode: 'NAV 04-01.03',
+                tittel: 'Søknad om dagpenger (ikke permittert)',
+                journalpostId: '11',
+                søknadsType: 'NySøknad',
+                kanal: 'Digital',
+                datoInnsendt: plussDager(new Date(), 1).toISOString(),
+                vedlegg: [
+                    {
+                        skjemaNummer: '123',
+                        navn: 'navn',
+                        status: 'LastetOpp',
+                    },
+                ],
+            },
+        ];
+    }
 
     if (['innvilget', 'avslag', 'sokt'].includes(status)) {
         return [

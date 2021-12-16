@@ -195,6 +195,7 @@ class DemoDashboard extends React.Component<{}> {
             ukjent: 'Har ikke søkt dagpenger',
             paabegynt: 'Har startet dagpengesøknad',
             sokt: 'Har sendt søknad',
+            soktogpaabegynt: 'Har sendt søknad og nytt utkast',
             innvilget: 'Søknad innvilget',
             avslag: 'Søknad avslått',
         };

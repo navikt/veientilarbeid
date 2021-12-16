@@ -9,12 +9,12 @@ import { useBrukerregistreringData } from '../../../contexts/brukerregistrering'
 import { usePaabegynteSoknaderData } from '../../../contexts/paabegynte-soknader';
 import { useDpInnsynSoknadData } from '../../../contexts/dp-innsyn-soknad';
 import { useDpInnsynVedtakData } from '../../../contexts/dp-innsyn-vedtak';
-import beregnDagpengeStatus from '../../../lib/beregn-dagpenge-status';
+import beregnDagpengeStatus, { DagpengeStatus } from '../../../lib/beregn-dagpenge-status';
 
-function hentAktueltSluttkort(situasjon: string) {
+function hentAktueltSluttkort(situasjon: DagpengeStatus) {
     if (situasjon === 'paabegynt') {
         return HarPabegyntSoknad;
-    } else if (situasjon === 'sokt') {
+    } else if (['sokt', 'soktogpaabegynt'].includes(situasjon)) {
         return HarSokt;
     } else if (situasjon === 'mottar') {
         return MottarDagpenger;

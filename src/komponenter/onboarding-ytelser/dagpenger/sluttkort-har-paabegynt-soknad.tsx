@@ -36,7 +36,7 @@ const Sluttkort = () => {
             </BodyShort>
 
             <TemaLenkepanel
-                href=""
+                href={sistePabegynteSoknad.lenke}
                 amplitudeHandling="Fortsetter påbegynt soknad"
                 amplitudeTema="dagpenger"
                 tittel="Fortsett på påbegynt søknad"
