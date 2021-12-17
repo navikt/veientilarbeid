@@ -51,7 +51,7 @@ const Sluttkort = () => {
                 </>
             )}
             <BodyShort size="small" className={'blokk-xs'}>
-                Se mer info på {' '}
+                Du kan ettersende dokumentasjon og se mer informasjon via {' '}
                 <Link
                     className={'tracking-wide'}
                     href={saksoversikt_url}
