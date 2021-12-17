@@ -72,6 +72,54 @@ describe('Tester funksjonen beregnDagpengeStatus', () => {
         ).toBe('ukjent');
     });
 
+    test('returnerer "avslag" når vedtak etter nyeste søknad og vedtaket har status "AVSLÅTT" ', () => {
+        const testData = JSON.parse(JSON.stringify(grunndata));
+        const soknader = [...soknad];
+        soknader[0].datoInnsendt = plussDager(iDag, 10).toISOString();
+
+        return expect(
+            beregnDagpengeStatus({
+                ...testData,
+                paabegynteSoknader: [],
+                innsendteSoknader: soknader,
+                dagpengeVedtak: [
+                    {
+                        vedtakId: '2',
+                        fagsakId: 'arenaId',
+                        status: 'AVSLÅTT',
+                        datoFattet: plussDager(iDag, 11).toISOString(),
+                        fraDato: '2021-11-19T10:31:18.176',
+                        tilDato: null,
+                    },
+                ],
+            })
+        ).toBe('avslag');
+    });
+
+    test('returnerer "innvilget" når vedtak etter nyeste søknad og vedtaket har status "INNVILGET" ', () => {
+        const testData = JSON.parse(JSON.stringify(grunndata));
+        const soknader = [...soknad];
+        soknader[0].datoInnsendt = plussDager(iDag, 10).toISOString();
+
+        return expect(
+            beregnDagpengeStatus({
+                ...testData,
+                paabegynteSoknader: [],
+                innsendteSoknader: soknader,
+                dagpengeVedtak: [
+                    {
+                        vedtakId: '2',
+                        fagsakId: 'arenaId',
+                        status: 'INNVILGET',
+                        datoFattet: plussDager(iDag, 11).toISOString(),
+                        fraDato: '2021-11-19T10:31:18.176',
+                        tilDato: null,
+                    },
+                ],
+            })
+        ).toBe('innvilget');
+    });
+
     test('returnerer "paabegynt" når det eksisterer påbegynte søknader', () => {
         const testData = JSON.parse(JSON.stringify(grunndata));
         const soknader = [
@@ -117,51 +165,26 @@ describe('Tester funksjonen beregnDagpengeStatus', () => {
         ).toBe('sokt');
     });
 
-    // test('returnerer "ukjent" når det eksisterer innsendte søknader før registreringsdato og vedtak etter registreringsdato', () => {
-    //     const testData = JSON.parse(JSON.stringify(grunndata));
-    //     const soknader = [...soknad];
-    //     soknader[0].datoInnsendt = plussDager(iDag, -10).toISOString();
+    test('returnerer "soktogpaabegynt" når siste påbeynte soknad er nyere enn siste innsendte søknad ', () => {
+        const testData = JSON.parse(JSON.stringify(grunndata));
+        const soknader = [...soknad];
+        soknader[0].datoInnsendt = plussDager(iDag, 1).toISOString();
+        const paabegyntSoknad = [
+            {
+                tittel: 'Søknad om dagpenger (ikke permittert)',
+                lenke: 'https://tjenester-q1.nav.no/soknaddagpenger-innsending/soknad/10010WQX9',
+                dato: plussDager(iDag, 2).toISOString(),
+                kilde: 'HENVENDELSE',
+            },
+        ];
 
-    //     return expect(
-    //         beregnDagpengeStatus({
-    //             ...testData,
-    //             paabegynteSoknader: [],
-    //             innsendteSoknader: soknader,
-    //             dagpengeVedtak: [
-    //                 {
-    //                     vedtakId: '2',
-    //                     fagsakId: 'arenaId',
-    //                     status: 'INNVILGET',
-    //                     datoFattet: plussDager(iDag, -10).toISOString(),
-    //                     fraDato: '2021-11-19T10:31:18.176',
-    //                     tilDato: 'null',
-    //                 },
-    //             ],
-    //         })
-    //     ).toBe('ukjent');
-    // });
-
-    // test('returnerer "avslag" når det eksisterer avslått vedtak nyere enn registreringsdato og sist innsendte søknad', () => {
-    //     const testData = JSON.parse(JSON.stringify(grunndata));
-    //     const soknader = [...soknad];
-    //     soknader[0].datoInnsendt = plussDager(iDag, 1).toISOString();
-
-    //     return expect(
-    //         beregnDagpengeStatus({
-    //             ...testData,
-    //             paabegynteSoknader: [],
-    //             innsendteSoknader: soknader,
-    //             dagpengeVedtak: [
-    //                 {
-    //                     vedtakId: '2',
-    //                     fagsakId: 'arenaId',
-    //                     status: 'AVSLÅTT',
-    //                     datoFattet: plussDager(iDag, 2).toISOString(),
-    //                     fraDato: '2021-11-19T10:31:18.176',
-    //                     tilDato: 'null',
-    //                 },
-    //             ],
-    //         })
-    //     ).toBe('avslag');
-    // });
+        return expect(
+            beregnDagpengeStatus({
+                ...testData,
+                paabegynteSoknader: paabegyntSoknad,
+                innsendteSoknader: soknader,
+                dagpengeVedtak: [],
+            })
+        ).toBe('soktogpaabegynt');
+    });
 });
