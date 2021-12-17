@@ -24,7 +24,9 @@ export type DagpengeStatus =
     | 'ukjent'
     | 'avslag'
     | 'innvilget'
-    | 'soktogpaabegynt';
+    | 'soktogpaabegynt'
+    | 'stanset';
+
 function beregnDagpengeStatus({
     brukerInfoData,
     registreringData,
@@ -70,6 +72,10 @@ function beregnDagpengeStatus({
 
         if (sisteDagpengevedtak && sisteDagpengevedtak.status === 'INNVILGET' && !erVedtakAvsluttet) {
             return 'innvilget';
+        }
+
+        if (erVedtakAvsluttet) {
+            return 'stanset';
         }
     }
 
