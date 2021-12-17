@@ -43,11 +43,6 @@ const Sluttkort = () => {
                         Du kan forvente svar{' '}
                         {formaterDato(datoForForventetSvar(new Date(sisteInnsendteSoknad.datoInnsendt)))}
                     </BodyShort>
-                    {harPaabegyntEtterInnsendt && (
-                        <BodyShort size="small" className={'blokk-xs'}>
-                            Du har også en påbegynt søknad du kan <a href={sistePaabegyntSoknad.lenke}>fortsette på</a>.
-                        </BodyShort>
-                    )}
                 </>
             )}
             <BodyShort size="small" className={'blokk-xs'}>
@@ -65,6 +60,12 @@ const Sluttkort = () => {
                     Mine dagpenger
                 </Link>
             </BodyShort>
+
+            {harPaabegyntEtterInnsendt && (
+                <BodyShort size="small" className={'blokk-xs'}>
+                    Du har også en påbegynt søknad du kan <a href={sistePaabegyntSoknad.lenke}>fortsette på</a>.
+                </BodyShort>
+            )}
 
             <BodyShort size="small" className={'blokk-xs'}>
                 Har du spørsmål om å søke eller motta dagpenger, må du bruke{' '}
