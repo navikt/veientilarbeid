@@ -22,8 +22,15 @@ function YtelserOnboarding() {
     const amplitudeData = useAmplitudeData();
     const YTELSER_TEMA_VIS_KEY = 'ytelser_tema_vis_key';
 
+    const kanViseDagpengerKomponent = kanViseOnboardingDagpenger({
+        featuretoggleData,
+        oppfolgingData,
+        brukerInfoData,
+        registreringData,
+    });
+
     const [valgtYtelserVisning, setValgtYtelserVisning] = useState<string>(
-        hentFraBrowserStorage(YTELSER_TEMA_VIS_KEY) || 'ytelser'
+        hentFraBrowserStorage(YTELSER_TEMA_VIS_KEY) || (kanViseDagpengerKomponent ? 'dagpenger' : 'ytelser')
     );
 
     const handleByttKortKlikk = (e: React.MouseEvent) => {
@@ -42,13 +49,6 @@ function YtelserOnboarding() {
 
     const kanViseYtelserKomponent = kanViseOnboardingYtelser({
         amplitudeData,
-        oppfolgingData,
-        brukerInfoData,
-        registreringData,
-    });
-
-    const kanViseDagpengerKomponent = kanViseOnboardingDagpenger({
-        featuretoggleData,
         oppfolgingData,
         brukerInfoData,
         registreringData,
