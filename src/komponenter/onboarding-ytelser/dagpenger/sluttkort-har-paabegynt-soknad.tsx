@@ -29,18 +29,18 @@ const Sluttkort = () => {
             </Heading>
 
             <BodyShort size="small" className={'blokk-xs'}>
-                Du kan tidligst få dagpenger fra den dagen du har søkt fra.
+                Du kan tidligst få dagpenger fra den dagen du har søkt.
             </BodyShort>
             <BodyShort size="small" className={'blokk-xs'}>
-                Du har ikke sendt inn søknaden
+                Du har ikke sendt inn søknaden.
             </BodyShort>
 
             <TemaLenkepanel
                 href={sistePabegynteSoknad.lenke}
                 amplitudeHandling="Fortsetter påbegynt soknad"
                 amplitudeTema="dagpenger"
-                tittel="Fortsett på påbegynt søknad"
-                beskrivelse={`du startet på søknaden ${prettyPrintDato(sistePabegynteSoknad.dato)}`}
+                tittel="Fortsett på søknad"
+                beskrivelse={`Påbegynt ${prettyPrintDato(sistePabegynteSoknad.dato)}`}
             />
 
             <BodyShort size="small" className={'blokk-xs'}>

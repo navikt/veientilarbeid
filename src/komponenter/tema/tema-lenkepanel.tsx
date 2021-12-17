@@ -26,7 +26,7 @@ const TemaLenkepanel: React.FC<TemaLenkepanelProps> = (props) => {
     };
 
     return (
-        <LinkPanel href={props.href} onClick={handleClickInnsending} className={'tema-lenkepanel'}>
+        <LinkPanel href={props.href} onClick={handleClickInnsending} className={'tema-lenkepanel blokk-xs'}>
             <LinkPanel.Title>{props.tittel}</LinkPanel.Title>
             {props.beskrivelse && <LinkPanel.Description>{props.beskrivelse}</LinkPanel.Description>}
         </LinkPanel>
