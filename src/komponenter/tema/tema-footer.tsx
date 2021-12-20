@@ -42,7 +42,7 @@ const TemaFooter = (props: TemaFooterProps) => {
         if (gjeldendeKortIndex === antallSider - 1) {
             return (
                 <div className="kolonne">
-                    <BodyShort size="small">
+                    <BodyShort>
                         <Link onClick={handleLesIntroPaaNytt} href={'#'}>
                             {lesPaaNyttLenkeTekst || 'Vis introduksjon'}
                         </Link>

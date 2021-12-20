@@ -16,17 +16,17 @@ function Kort1() {
                     1 av 4
                 </Detail>
 
-                <BodyShort size="small" className="blokk-xs">
+                <BodyShort className="blokk-xs">
                     NAV har gjort en vurdering av svarene dine, og det ser ut til at du har gode muligheter til å skaffe
                     deg jobb på egenhånd.
                 </BodyShort>
 
-                <BodyShort size="small">Vurderingen baserer seg på:</BodyShort>
+                <BodyShort>Vurderingen baserer seg på:</BodyShort>
                 <ul>
                     <li>svarene fra registreringen</li>
                     <li>opplysningene NAV har om din situasjon</li>
                 </ul>
-                <BodyShort size="small">
+                <BodyShort>
                     NAV tar som hovedregel ikke kontakt i forbindelse med hjelp til jobbsøking de første 12 ukene etter
                     at du registrerte deg som arbeidssøker.
                 </BodyShort>
@@ -59,7 +59,7 @@ function Kort2() {
                 <Detail size="small" className="blokk-xs">
                     2 av 4
                 </Detail>
-                <BodyShort size="small" className={'blokk-xs'}>
+                <BodyShort className={'blokk-xs'}>
                     {servicegruppe === Servicegruppe.IKVAL ? (
                         <>
                             Du har mottatt brevet{' '}
@@ -72,7 +72,7 @@ function Kort2() {
                         'Du vil i løpet av den første uken motta brevet «NAV har vurdert dine muligheter».'
                     )}
                 </BodyShort>
-                <BodyShort size="small">Dette brevet er ikke et svar på en eventuell søknad om dagpenger.</BodyShort>
+                <BodyShort>Dette brevet er ikke et svar på en eventuell søknad om dagpenger.</BodyShort>
             </div>
             <Feedback id={'Introkort14A-02'} />
         </div>
@@ -99,17 +99,17 @@ function Kort3() {
                 <Detail size="small" className="blokk-xs">
                     3 av 4
                 </Detail>
-                <BodyShort size="small" className={'blokk-xs'}>
+                <BodyShort className={'blokk-xs'}>
                     En veileder sin oppgave er å besvare spørsmål, bistå rundt det å søke stillinger og tilby hjelp på
                     veien til arbeid.
                 </BodyShort>
 
-                <BodyShort size="small" className={'blokk-xs'}>
+                <BodyShort className={'blokk-xs'}>
                     Veiledere kan <strong>ikke</strong> svare på spørsmål om søknader, behandling av søknader eller
                     utbetalinger av dagpenger.
                 </BodyShort>
 
-                <BodyShort size="small">
+                <BodyShort>
                     Dersom du lurer på noe om dagpenger ber vi deg bruke{' '}
                     <Link
                         href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
@@ -152,15 +152,13 @@ function Kort4() {
                 <Detail size="small" className="blokk-xs">
                     4 av 4
                 </Detail>
-                <BodyShort size="small" className={'blokk-xs'}>
-                    Du kan få hjelp fra en veileder før 12 uker har gått.
-                </BodyShort>
+                <BodyShort className={'blokk-xs'}>Du kan få hjelp fra en veileder før 12 uker har gått.</BodyShort>
 
-                <BodyShort size="small" className={'blokk-xs'}>
+                <BodyShort className={'blokk-xs'}>
                     Da må du selv kontakte veileder ved å bruke dialogen som vises på slutten av denne introduksjonen.
                 </BodyShort>
 
-                <BodyShort size="small">
+                <BodyShort>
                     Du kan gi oss beskjed om at du ønsker hjelp nå med en gang, eller se litt an hvordan du syns
                     jobbsøkingen din går før du tar kontakt.
                 </BodyShort>

@@ -44,11 +44,7 @@ function RegistrertTeller({ ukerRegistrert, registrertDato }: TellerProps) {
     }
     if (setning === '') return null;
 
-    return (
-        <BodyShort size="small" className="blokk-xs">
-            {setning}
-        </BodyShort>
-    );
+    return <BodyShort className="blokk-xs">{setning}</BodyShort>;
 }
 
 export default RegistrertTeller;

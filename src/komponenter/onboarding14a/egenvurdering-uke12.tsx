@@ -28,7 +28,7 @@ function EgenvurderingUke12() {
             </Heading>
             <div className="egenvurdering-wrapper blokk-xs">
                 <div className="egenvurdering-innhold">
-                    <BodyShort size="small">
+                    <BodyShort>
                         Har du fortsatt tro på at du greier å skaffe deg jobb på egenhånd, eller tenker du det er behov
                         for hjelp og støtte fra en veileder ved NAV-kontoret ditt?
                     </BodyShort>

@@ -25,7 +25,7 @@ function Sluttkort() {
                     Du har rett på å få hjelp og støtte fra en veileder
                 </Heading>
 
-                <BodyShort size="small" className={'blokk-xs'}>
+                <BodyShort className={'blokk-xs'}>
                     Du kan stille spørsmål til veileder ved å henvende deg via dialogen.
                 </BodyShort>
                 <Lenkepanel14A amplitudeData={amplitudeData} href={dialogLenke} antallUlesteDialoger={antallUleste} />
@@ -38,10 +38,10 @@ function Sluttkort() {
                     Du vil motta et brev som forteller hva NAV kan tilby deg av hjelp
                 </Heading>
 
-                <BodyShort size="small" className={'blokk-xs'}>
+                <BodyShort className={'blokk-xs'}>
                     Til vanlig sender vi brevet innen noen uker. Tar det lengre tid vil vi ta kontakt.
                 </BodyShort>
-                <BodyShort size="small" className={'blokk-xs'}>
+                <BodyShort className={'blokk-xs'}>
                     Du kan når som helst ta kontakt og fortelle oss hva du ønsker at vi hjelper deg med.
                 </BodyShort>
                 <TemaLenkepanel
@@ -61,10 +61,10 @@ function Sluttkort() {
                 Du vil motta et brev som forteller hva NAV kan tilby deg av hjelp
             </Heading>
 
-            <BodyShort size="small" className={'blokk-xs'}>
+            <BodyShort className={'blokk-xs'}>
                 Du får tilsendt brevet i løpet av noen uker. Tar det lengre tid vil vi ta kontakt.
             </BodyShort>
-            <BodyShort size="small" className={'blokk-xs'}>
+            <BodyShort className={'blokk-xs'}>
                 Du kan stille spørsmål til veileder ved å henvende deg via dialogen.
             </BodyShort>
 

@@ -10,11 +10,11 @@ function Kort1() {
                     1 av 3
                 </Detail>
 
-                <BodyShort size="small" className={'blokk-xs'}>
+                <BodyShort className={'blokk-xs'}>
                     Det ser foreløpig ut til at du kan få hjelp og støtte fra en veileder.
                 </BodyShort>
 
-                <BodyShort size="small">Vurderingen baserer seg på:</BodyShort>
+                <BodyShort>Vurderingen baserer seg på:</BodyShort>
                 <ul>
                     <li>svarene fra registreringen</li>
                     <li>opplysningene NAV har om din situasjon</li>
@@ -34,15 +34,15 @@ function Kort2() {
                     2 av 3
                 </Detail>
 
-                <BodyShort size="small" className={'blokk-xs'}>
+                <BodyShort className={'blokk-xs'}>
                     Du har krav på en skriftlig vurdering fra NAV om hvilket behov NAV mener du har behov for.
                 </BodyShort>
 
-                <BodyShort size="small" className={'blokk-xs'}>
+                <BodyShort className={'blokk-xs'}>
                     NAV tar som hovedregel kontakt før vi konkluderer med hva slags hjelp vi kan tilby deg.
                 </BodyShort>
 
-                <BodyShort size="small" className={'blokk-xs'}>
+                <BodyShort className={'blokk-xs'}>
                     Dersom vi ikke tar kontakt vil du motta et brev der vi formidler om hva slags oppfølging vi tror du
                     trenger.
                 </BodyShort>
@@ -61,12 +61,12 @@ function Kort3() {
                     3 av 3
                 </Detail>
 
-                <BodyShort size="small" className={'blokk-xs'}>
+                <BodyShort className={'blokk-xs'}>
                     Dersom du mener du ikke trenger hjelp, eller at du ønsker hjelp nå med en gang, kan du ta kontakt
                     med veileder.
                 </BodyShort>
 
-                <BodyShort size="small" className={'blokk-xs'}>
+                <BodyShort className={'blokk-xs'}>
                     Du kan starte en dialog med veileder etter at du er har lest ferdig denne introduksjonen.
                 </BodyShort>
             </div>
