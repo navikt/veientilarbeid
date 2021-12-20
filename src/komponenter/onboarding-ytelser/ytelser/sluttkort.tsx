@@ -15,7 +15,7 @@ const Sluttkort = () => {
             <Heading size="medium" className={'blokk-xs'}>
                 Har du spørsmål om å søke eller motta pengestøtte?
             </Heading>
-            <BodyShort size="small" className={'blokk-xs'}>
+            <BodyShort className={'blokk-xs'}>
                 Du kan stille spørsmål om ytelser via{' '}
                 <Link
                     href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
@@ -36,7 +36,7 @@ const Sluttkort = () => {
                 </Link>
                 .
             </BodyShort>
-            <BodyShort size="small" className={'blokk-m'}>
+            <BodyShort className={'blokk-m'}>
                 Du kan lese om livssituasjoner NAV kan hjelpe med på{' '}
                 <Link
                     href="https://www.nav.no/"

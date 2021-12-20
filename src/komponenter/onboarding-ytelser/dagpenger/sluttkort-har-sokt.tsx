@@ -34,18 +34,18 @@ const Sluttkort = () => {
 
             {sisteInnsendteSoknad?.datoInnsendt && (
                 <>
-                    <BodyShort size="small" className={'blokk-xs'}>
+                    <BodyShort className={'blokk-xs'}>
                         Den siste søkaden NAV har mottatt ble sendt inn{' '}
                         {prettyPrintDato(sisteInnsendteSoknad.datoInnsendt)}.
                     </BodyShort>
 
-                    <BodyShort size="small" className={'blokk-xs'}>
+                    <BodyShort className={'blokk-xs'}>
                         Du kan forvente svar{' '}
                         {formaterDato(datoForForventetSvar(new Date(sisteInnsendteSoknad.datoInnsendt)))}
                     </BodyShort>
                 </>
             )}
-            <BodyShort size="small" className={'blokk-xs'}>
+            <BodyShort className={'blokk-xs'}>
                 Du kan ettersende dokumentasjon og se mer informasjon via {' '}
                 <Link
                     className={'tracking-wide'}
@@ -62,12 +62,12 @@ const Sluttkort = () => {
             </BodyShort>
 
             {harPaabegyntEtterInnsendt && (
-                <BodyShort size="small" className={'blokk-xs'}>
+                <BodyShort className={'blokk-xs'}>
                     Du har også en påbegynt søknad du kan <a href={sistePaabegyntSoknad.lenke}>fortsette på</a>.
                 </BodyShort>
             )}
 
-            <BodyShort size="small" className={'blokk-xs'}>
+            <BodyShort className={'blokk-xs'}>
                 Har du spørsmål om å søke eller motta dagpenger, må du bruke{' '}
                 <Link
                     href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
@@ -94,7 +94,7 @@ const Sluttkort = () => {
                 </Link>
                 .
             </BodyShort>
-            <BodyShort size="small" className={'blokk-xs'}>
+            <BodyShort className={'blokk-xs'}>
                 Du kan også lese om de ulike ytelsene på{' '}
                 <Link
                     href="https://www.nav.no/"

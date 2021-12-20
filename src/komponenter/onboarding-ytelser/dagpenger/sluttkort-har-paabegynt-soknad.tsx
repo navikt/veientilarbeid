@@ -28,12 +28,8 @@ const Sluttkort = () => {
                 Du har startet på en søknad om dagpenger
             </Heading>
 
-            <BodyShort size="small" className={'blokk-xs'}>
-                Du kan tidligst få dagpenger fra den dagen du har søkt.
-            </BodyShort>
-            <BodyShort size="small" className={'blokk-xs'}>
-                Du har ikke sendt inn søknaden.
-            </BodyShort>
+            <BodyShort className={'blokk-xs'}>Du kan tidligst få dagpenger fra den dagen du har søkt.</BodyShort>
+            <BodyShort className={'blokk-xs'}>Du har ikke sendt inn søknaden.</BodyShort>
 
             <TemaLenkepanel
                 href={sistePabegynteSoknad.lenke}
@@ -43,7 +39,7 @@ const Sluttkort = () => {
                 beskrivelse={`Påbegynt ${prettyPrintDato(sistePabegynteSoknad.dato)}`}
             />
 
-            <BodyShort size="small" className={'blokk-xs'}>
+            <BodyShort className={'blokk-xs'}>
                 Se mer info på {' '}
                 <Link
                     className={'tracking-wide'}
@@ -59,7 +55,7 @@ const Sluttkort = () => {
                 </Link>
             </BodyShort>
 
-            <BodyShort size="small" className={'blokk-xs'}>
+            <BodyShort className={'blokk-xs'}>
                 Har du spørsmål om å søke eller motta dagpenger, må du bruke{' '}
                 <Link
                     href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"

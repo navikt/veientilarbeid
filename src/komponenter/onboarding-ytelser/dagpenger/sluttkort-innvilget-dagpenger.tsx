@@ -25,11 +25,11 @@ const Sluttkort = () => {
                 Du har fått innvilget søknad om dagpenger
             </Heading>
 
-            <BodyShort size="small" className={'blokk-xs'}>
+            <BodyShort className={'blokk-xs'}>
                 Dagpenger er innvilget fra {prettyPrintDato(nyesteInnvilgedeVedtak.fraDato)}
             </BodyShort>
 
-            <BodyShort size="small" className={'blokk-xs'}>
+            <BodyShort className={'blokk-xs'}>
                 Se mer info på {' '}
                 <Link
                     className={'tracking-wide'}
@@ -45,7 +45,7 @@ const Sluttkort = () => {
                 </Link>
             </BodyShort>
 
-            <BodyShort size="small" className={'blokk-xs'}>
+            <BodyShort className={'blokk-xs'}>
                 Har du spørsmål om dagpenger, må du bruke{' '}
                 <Link
                     href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
