@@ -24,7 +24,7 @@ const Sluttkort = () => {
                     href={mine_dagpenger_url}
                     onClick={() =>
                         loggLenkeKlikk(
-                            'Går til saksoversikten fra "dagpenger-tema - mottar dagpenger"',
+                            'Går til Mine dagpenger fra "dagpenger-tema - mottar dagpenger"',
                             mine_dagpenger_url
                         )
                     }
