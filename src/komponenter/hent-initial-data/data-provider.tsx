@@ -24,7 +24,6 @@ import {
 } from '../../ducks/api';
 
 import { AmplitudeProvider } from './amplitude-provider';
-import { SakstemaProvider } from './sakstema-provider';
 import { useAutentiseringData, InnloggingsNiva } from '../../contexts/autentisering';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import * as DpInnsynSoknad from '../../contexts/dp-innsyn-soknad';
@@ -159,10 +158,7 @@ const DataProvider = ({ children }: Props) => {
                                 <PaabegynteSoknader.PaabegynteSoknaderContext.Provider value={paabegynteSoknaderState}>
                                     <DpInnsynSoknad.DpInnsynSoknadContext.Provider value={dpInnsynSoknadState}>
                                         <DpInnsynVedtak.DpInnsynVedtakContext.Provider value={dpInnsynVedtakState}>
-                                            <AmplitudeProvider>
-                                                {/** Denne skal fjernes når nye DP-innsyn er på plass */}
-                                                <SakstemaProvider>{children}</SakstemaProvider>
-                                            </AmplitudeProvider>
+                                            <AmplitudeProvider>{children}</AmplitudeProvider>
                                         </DpInnsynVedtak.DpInnsynVedtakContext.Provider>
                                     </DpInnsynSoknad.DpInnsynSoknadContext.Provider>
                                 </PaabegynteSoknader.PaabegynteSoknaderContext.Provider>
