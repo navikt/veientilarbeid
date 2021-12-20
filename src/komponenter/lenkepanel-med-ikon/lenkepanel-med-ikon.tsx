@@ -1,8 +1,7 @@
 import * as React from 'react';
 import './lenkepanel-med-ikon.less';
-import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
-import LenkepanelBase from 'nav-frontend-lenkepanel';
 import tekster from '../../tekster/tekster';
+import { LinkPanel } from '@navikt/ds-react';
 
 interface Props {
     href: string;
@@ -16,29 +15,25 @@ interface Props {
 
 class LenkepanelMedIkon extends React.Component<Props> {
     render() {
-        const { href, onClick, className, overskrift, ingress, children } = this.props;
-
-        const linkCreator = (props: {}) => {
-            // eslint-disable-next-line jsx-a11y/anchor-has-content
-            return <a onClick={onClick} {...props} />;
-        };
+        const { href, onClick, overskrift, ingress, children } = this.props;
 
         return (
-            <LenkepanelBase
-                className={className}
-                href={href}
-                tittelProps="undertittel"
-                linkCreator={linkCreator}
-                border={true}
-            >
-                <div className="lenkepanel__innhold">
-                    <div className="lenkepanel__ikon">{children}</div>
+            <LinkPanel href={href} onClick={onClick} className="blokk-xs">
+                <div
+                    style={{
+                        display: 'grid',
+                        gridAutoFlow: 'column',
+                        gap: 'var(--navds-spacing-8)',
+                        alignItems: 'center',
+                    }}
+                >
+                    {children}
                     <div>
-                        <Undertittel>{tekster[overskrift]}</Undertittel>
-                        {ingress ? <Normaltekst>{tekster[ingress]}</Normaltekst> : ''}
+                        <LinkPanel.Title>{tekster[overskrift]}</LinkPanel.Title>
+                        {ingress ? <LinkPanel.Description>{tekster[ingress]}</LinkPanel.Description> : ''}
                     </div>
                 </div>
-            </LenkepanelBase>
+            </LinkPanel>
         );
     }
 }

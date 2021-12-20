@@ -1,6 +1,4 @@
 import { useContext } from 'react';
-import LenkepanelBase from 'nav-frontend-lenkepanel';
-import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { loggAktivitet } from '../../metrics/metrics';
 import DialogFill from './dialog-fill';
 import DialogLine from './dialog-line';
@@ -14,6 +12,7 @@ import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { OppfolgingContext } from '../../contexts/oppfolging';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { kanViseOnboarding14A } from '../../lib/kan-vise-onboarding14a';
+import { LinkPanel } from '@navikt/ds-react';
 
 const Dialog = () => {
     const amplitudeData = useAmplitudeData();
@@ -40,11 +39,6 @@ const Dialog = () => {
         }
     };
 
-    const linkCreator = (props: {}) => {
-        // eslint-disable-next-line jsx-a11y/anchor-has-content
-        return <a onClick={handleClick} {...props} />;
-    };
-
     const byggDialogTekst = () => {
         switch (antallUleste) {
             case 0:
@@ -57,23 +51,24 @@ const Dialog = () => {
     };
 
     return !kanViseKomponent ? null : (
-        <LenkepanelBase
-            href={dialogLenke}
-            tittelProps="undertittel"
-            linkCreator={linkCreator}
-            border={true}
-            className="dialog"
-        >
-            <div className="lenkepanel__innhold">
+        <LinkPanel href={dialogLenke} className="dialog blokk-xs" onClick={handleClick}>
+            <div
+                style={{
+                    display: 'grid',
+                    gridAutoFlow: 'column',
+                    gap: 'var(--navds-spacing-8)',
+                    alignItems: 'center',
+                }}
+            >
                 <div className="lenkepanel__ikon">
                     {antallUleste > 0 ? <DialogFill messagesCount={antallUleste} /> : <DialogLine />}
                 </div>
-                <div className="lenkepanel__tekst">
-                    <Undertittel>{tekster['dialog']}</Undertittel>
-                    <Normaltekst className="lenkepanel__ingress">{byggDialogTekst()}</Normaltekst>
+                <div>
+                    <LinkPanel.Title>{tekster['dialog']}</LinkPanel.Title>
+                    <LinkPanel.Description>{byggDialogTekst()}</LinkPanel.Description>
                 </div>
             </div>
-        </LenkepanelBase>
+        </LinkPanel>
     );
 };
 
