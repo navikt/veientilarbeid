@@ -1,21 +1,20 @@
 import * as React from 'react';
-import { LenkepanelBase } from 'nav-frontend-lenkepanel';
-import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import { trackEvent } from '../utils/googleAnalytics';
+import { LinkPanel } from '@navikt/ds-react';
 
 type PropTypes = {
-    overskrift: JSX.Element | string;
+    overskrift: string;
     ingress: JSX.Element | string | null;
     etikett?: string;
     gaCategory?: string;
     gaAction?: string;
     gaUrl?: string;
+    onClick?: () => void;
 };
 
 export const LenkepanelMedIkon: React.FC<PropTypes & React.HTMLProps<HTMLAnchorElement>> = ({
     href,
     onClick,
-    className,
     overskrift,
     ingress,
     etikett,
@@ -24,27 +23,35 @@ export const LenkepanelMedIkon: React.FC<PropTypes & React.HTMLProps<HTMLAnchorE
     gaUrl,
     children,
 }) => {
-    const linkCreator = (
-        props: React.AnchorHTMLAttributes<HTMLAnchorElement> // eslint-disable-next-line
-    ) => <a onClick={onClick} {...props} />;
-
     return (
-        <LenkepanelBase
-            className={className}
+        <LinkPanel
+            className="blokk-xs"
             href={href}
-            onClick={() => trackEvent(gaCategory, gaAction, gaUrl || href)}
-            linkCreator={linkCreator}
-            border
+            onClick={() => {
+                trackEvent(gaCategory, gaAction, gaUrl || href);
+                onClick && onClick();
+            }}
         >
-            <div className="lenkepanel__innhold">
-                <div className="lenkepanel__ikon">{children}</div>
+            <div
+                style={{
+                    display: 'grid',
+                    gridAutoFlow: 'column',
+                    gap: 'var(--navds-spacing-8)',
+                    alignItems: 'center',
+                }}
+            >
+                <div>{children}</div>
                 <div>
-                    {overskrift}
-                    {ingress ? <Normaltekst>{ingress}</Normaltekst> : ''}
-                    {etikett ? <Undertekst className="lenkepanel__etikett">{etikett}</Undertekst> : ''}
+                    <LinkPanel.Title>{overskrift}</LinkPanel.Title>
+                    {ingress ? <LinkPanel.Description>{ingress}</LinkPanel.Description> : ''}
+                    {etikett ? (
+                        <LinkPanel.Description className="lenkepanel__etikett">{etikett}</LinkPanel.Description>
+                    ) : (
+                        ''
+                    )}
                 </div>
             </div>
-        </LenkepanelBase>
+        </LinkPanel>
     );
 };
 

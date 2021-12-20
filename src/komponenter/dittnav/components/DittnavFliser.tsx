@@ -1,6 +1,5 @@
 import tekster from '../utils/tekster.json';
 import LenkepanelMedIkon from './LenkepanelMedIkon';
-import PanelOverskrift from './PanelOverskrift';
 import IkonBlyant from '../ikoner/IkonBlyant';
 import IkonSparegris from '../ikoner/IkonKane';
 import IkonPlaster from '../ikoner/IkonPlaster';
@@ -10,10 +9,10 @@ import { lenker } from '../utils/lenker';
 
 const DittnavFliser = () => (
     <>
-        <div className="dittnav-lenkeikon-container">
+        <div className="dittnav-fliser">
             <LenkepanelMedIkon
                 alt="Ditt sykefravær"
-                overskrift={PanelOverskrift({ overskrift: tekster['fliser.ditt.sykevravaer'], type: 'Undertittel' })}
+                overskrift={tekster['fliser.ditt.sykevravaer']}
                 ingress={tekster['fliser.ditt.sykevravaer.ingress']}
                 className="first"
                 href={lenker.dittSykefravaer.url}
@@ -24,7 +23,7 @@ const DittnavFliser = () => (
             </LenkepanelMedIkon>
             <LenkepanelMedIkon
                 alt="Mistet jobben?"
-                overskrift={PanelOverskrift({ overskrift: tekster['fliser.mistet.jobben'], type: 'Undertittel' })}
+                overskrift={tekster['fliser.mistet.jobben']}
                 ingress={tekster['fliser.mistet.jobben.ingress']}
                 href={lenker.veilederArbeidssoker.url}
                 gaCategory={GoogleAnalyticsCategory.Forside}
@@ -32,11 +31,10 @@ const DittnavFliser = () => (
             >
                 <IkonSkilt />
             </LenkepanelMedIkon>
-        </div>
-        <div className="dittnav-lenkeikon-container">
+
             <LenkepanelMedIkon
                 alt="Skjemaer"
-                overskrift={PanelOverskrift({ overskrift: tekster['fliser.skjemaer'], type: 'Undertittel' })}
+                overskrift={tekster['fliser.skjemaer']}
                 ingress={tekster['fliser.skjemaer.ingress']}
                 className="first"
                 href={lenker.skjemaer.url}
@@ -47,7 +45,7 @@ const DittnavFliser = () => (
             </LenkepanelMedIkon>
             <LenkepanelMedIkon
                 alt="Din pensjon"
-                overskrift={PanelOverskrift({ overskrift: tekster['fliser.din.pensjon'], type: 'Undertittel' })}
+                overskrift={tekster['fliser.din.pensjon']}
                 ingress={tekster['fliser.din.pensjon.ingress']}
                 href={lenker.dinPensjon.url}
                 gaCategory={GoogleAnalyticsCategory.Forside}
