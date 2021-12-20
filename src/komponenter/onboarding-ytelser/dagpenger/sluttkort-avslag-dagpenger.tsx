@@ -1,7 +1,7 @@
 import { BodyShort, Heading, Link } from '@navikt/ds-react';
 import { useAmplitudeData } from '../../../contexts/amplitude-context';
 import { loggAktivitet } from '../../../metrics/metrics';
-import { saksoversikt_url } from '../../../url';
+import { mine_dagpenger_url } from '../../../url';
 
 const Sluttkort = () => {
     const amplitudeData = useAmplitudeData();
@@ -21,11 +21,11 @@ const Sluttkort = () => {
                 Se mer info på {' '}
                 <Link
                     className={'tracking-wide'}
-                    href={saksoversikt_url}
+                    href={mine_dagpenger_url}
                     onClick={() =>
                         loggLenkeKlikk(
                             'Går til saksoversikten fra "dagpenger-tema - dagpenger avslått"',
-                            saksoversikt_url
+                            mine_dagpenger_url
                         )
                     }
                 >

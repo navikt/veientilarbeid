@@ -3,7 +3,7 @@ import { useAmplitudeData } from '../../../contexts/amplitude-context';
 import { useDpInnsynSoknadData } from '../../../contexts/dp-innsyn-soknad';
 import { sorterEtterNyesteDatoInnsendt } from '../../../lib/beregn-dagpenge-status';
 import { loggAktivitet } from '../../../metrics/metrics';
-import { saksoversikt_url } from '../../../url';
+import { mine_dagpenger_url } from '../../../url';
 import { formaterDato, datoForForventetSvar } from '../../../utils/date-utils';
 import { usePaabegynteSoknaderData } from '../../../contexts/paabegynte-soknader';
 import prettyPrintDato from '../../../utils/pretty-print-dato';
@@ -49,11 +49,11 @@ const Sluttkort = () => {
                 Du kan ettersende dokumentasjon og se mer informasjon via {' '}
                 <Link
                     className={'tracking-wide'}
-                    href={saksoversikt_url}
+                    href={mine_dagpenger_url}
                     onClick={() =>
                         loggLenkeKlikk(
                             'Går til saksoversikten fra "dagpenger-tema - har søkt dagpenger"',
-                            saksoversikt_url
+                            mine_dagpenger_url
                         )
                     }
                 >

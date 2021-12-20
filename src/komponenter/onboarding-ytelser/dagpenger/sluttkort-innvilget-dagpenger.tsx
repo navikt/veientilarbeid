@@ -2,7 +2,7 @@ import { BodyShort, Heading, Link } from '@navikt/ds-react';
 import { useAmplitudeData } from '../../../contexts/amplitude-context';
 import { useDpInnsynVedtakData, Vedtak } from '../../../contexts/dp-innsyn-vedtak';
 import { loggAktivitet } from '../../../metrics/metrics';
-import { saksoversikt_url } from '../../../url';
+import { mine_dagpenger_url } from '../../../url';
 import prettyPrintDato from '../../../utils/pretty-print-dato';
 
 const Sluttkort = () => {
@@ -33,11 +33,11 @@ const Sluttkort = () => {
                 Se mer info på {' '}
                 <Link
                     className={'tracking-wide'}
-                    href={saksoversikt_url}
+                    href={mine_dagpenger_url}
                     onClick={() =>
                         loggLenkeKlikk(
                             'Går til saksoversikten fra "dagpenger-tema - dagpenger innvilget"',
-                            saksoversikt_url
+                            mine_dagpenger_url
                         )
                     }
                 >
