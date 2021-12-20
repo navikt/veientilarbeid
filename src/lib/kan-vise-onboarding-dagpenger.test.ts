@@ -77,8 +77,6 @@ const grunndata = {
     featuretoggleData: {
         'veientilarbeid.feedback': false,
         'veientilarbeid.14a-intro': true,
-        'veientilarbeid.dagpenger-status': false,
-        'veientilarbeid.dpstatus-for-alle': false,
         'veientilarbeid.bruk-dp-innsyn-api': true,
         'veientilarbeid.egenvurderinguke12': true,
         'veientilarbeid.rydding.skjulJobbBoks': false,

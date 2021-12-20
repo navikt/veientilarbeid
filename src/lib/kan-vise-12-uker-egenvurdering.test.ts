@@ -48,8 +48,6 @@ const grunndata = {
     featuretoggleData: {
         'veientilarbeid.feedback': false,
         'veientilarbeid.14a-intro': true,
-        'veientilarbeid.dagpenger-status': false,
-        'veientilarbeid.dpstatus-for-alle': false,
         'veientilarbeid.egenvurderinguke12': true,
         'veientilarbeid.rydding.skjulAAPRad': false,
         'veientilarbeid.onboardingDagpenger': false,

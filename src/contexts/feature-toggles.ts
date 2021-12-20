@@ -4,7 +4,6 @@ import { DataElement, STATUS } from '../ducks/api';
 export enum FeatureToggles {
     INTRO_FEEDBACK = 'veientilarbeid.feedback',
     INTRO_14A = 'veientilarbeid.14a-intro',
-    DPSTATUS_FOR_ALLE = 'veientilarbeid.dpstatus-for-alle',
     EGENVURDERING_UKE12 = 'veientilarbeid.egenvurderinguke12',
     RYDDING_SKJUL_AAP_RAD = 'veientilarbeid.rydding.skjulAAPRad',
     INTRO_DAGPENGER = 'veientilarbeid.onboardingDagpenger',
@@ -20,8 +19,6 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return '14a-intro';
         case FeatureToggles.INTRO_FEEDBACK:
             return 'Intro feedback';
-        case FeatureToggles.DPSTATUS_FOR_ALLE:
-            return 'Dagpenger status for alle';
         case FeatureToggles.EGENVURDERING_UKE12:
             return 'Egenvurdering uke 12';
         case FeatureToggles.RYDDING_SKJUL_AAP_RAD:
@@ -42,7 +39,6 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
 export interface Data {
     'veientilarbeid.feedback': boolean;
     'veientilarbeid.14a-intro': boolean;
-    'veientilarbeid.dpstatus-for-alle': boolean;
     'veientilarbeid.egenvurderinguke12': boolean;
     'veientilarbeid.rydding.skjulAAPRad': boolean;
     'veientilarbeid.onboardingDagpenger': boolean;
@@ -60,7 +56,6 @@ export const initialState: State = {
     data: {
         'veientilarbeid.feedback': false,
         'veientilarbeid.14a-intro': false,
-        'veientilarbeid.dpstatus-for-alle': false,
         'veientilarbeid.egenvurderinguke12': false,
         'veientilarbeid.rydding.skjulAAPRad': false,
         'veientilarbeid.onboardingDagpenger': false,
