@@ -93,7 +93,7 @@ function YtelserOnboarding() {
                 ]}
                 id="dagpenger"
                 hoppOverPreState={false}
-                amplitudeTemaTag="ytelser"
+                amplitudeTemaTag="dagpenger"
             />
         );
     }
