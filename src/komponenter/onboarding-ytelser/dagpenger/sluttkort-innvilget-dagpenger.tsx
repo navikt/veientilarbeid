@@ -72,21 +72,6 @@ const Sluttkort = () => {
                 </Link>
                 .
             </BodyShort>
-
-            <BodyShort size="small" className={'blokk-xs'}>
-                Du kan også lese om de ulike ytelsene på{' '}
-                <Link
-                    href="https://www.nav.no/"
-                    onClick={() =>
-                        loggLenkeKlikk(
-                            'Går til forsiden fra  "dagpenger-tema - dagpenger innvilget"',
-                            'https://www.nav.no/'
-                        )
-                    }
-                >
-                    nav.no
-                </Link>
-            </BodyShort>
         </>
     );
 };
