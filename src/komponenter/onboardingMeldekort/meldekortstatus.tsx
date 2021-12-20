@@ -41,9 +41,7 @@ function Meldekortstatus() {
                     <Heading size="medium" className="blokk-xs">
                         Du kan nå sende inn meldekort
                     </Heading>
-                    <BodyShort size="small">{`Fristen er ${datoMedUkedag(
-                        inaktiveringsDato
-                    )}, klokken 23.00.`}</BodyShort>
+                    <BodyShort>{`Fristen er ${datoMedUkedag(inaktiveringsDato)}, klokken 23.00.`}</BodyShort>
                 </>
             )}
         </div>

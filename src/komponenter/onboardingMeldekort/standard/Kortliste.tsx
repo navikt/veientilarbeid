@@ -10,15 +10,15 @@ function Kort1() {
                     1 av 3
                 </Detail>
 
-                <BodyShort size="small" className="blokk-xs">
+                <BodyShort className="blokk-xs">
                     Når du er registrert som arbeidssøker, må du sende inn et meldekort hver 14. dag.
                 </BodyShort>
 
-                <BodyShort size="small" className="blokk-xs">
+                <BodyShort className="blokk-xs">
                     Det er innsending av meldekort som gjør at du opprettholder status som registrert arbeidssøker.
                 </BodyShort>
 
-                <BodyShort size="small">
+                <BodyShort>
                     Du må også sende meldekort i perioden du venter svar på en innsendt søknad om dagpenger.
                 </BodyShort>
             </div>
@@ -35,13 +35,13 @@ function Kort2() {
                 <Detail size="small" className="blokk-xs">
                     2 av 3
                 </Detail>
-                <BodyShort size="small" className="blokk-xs">
+                <BodyShort className="blokk-xs">
                     Utbetaling av dagpenger beregnes ut fra opplysninger du har lagt inn på meldekortet.
                 </BodyShort>
-                <BodyShort size="small" className="blokk-xs">
+                <BodyShort className="blokk-xs">
                     Sender du inn meldekortet etter fristen, kan det føre til at du får mindre utbetalt.
                 </BodyShort>
-                <BodyShort size="small">
+                <BodyShort>
                     Lar du være å sende inn meldekort, tolker NAV det som at du ikke ønsker å stå registrert som
                     arbeidssøker.
                 </BodyShort>
@@ -59,14 +59,12 @@ function Kort3() {
                 <Detail size="small" className="blokk-xs">
                     3 av 3
                 </Detail>
-                <BodyShort size="small" className="blokk-xs">
+                <BodyShort className="blokk-xs">
                     Dersom du sender inn meldekortet for sent vil dagpengene kunne stanses, og du risikerer at
                     arbeidsoppfølging fra NAV avsluttes.
                 </BodyShort>
 
-                <BodyShort size="small">
-                    Det er derfor viktig at du sender inn meldekortene før fristen går ut.
-                </BodyShort>
+                <BodyShort>Det er derfor viktig at du sender inn meldekortene før fristen går ut.</BodyShort>
             </div>
             <Feedback id={'meldekort-kort-03'} />
         </>

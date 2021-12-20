@@ -9,11 +9,11 @@ function Kort1() {
                 <Detail size="small" className="blokk-xs">
                     1 av 3
                 </Detail>
-                <BodyShort size="small" className="blokk-xs">
+                <BodyShort className="blokk-xs">
                     For å være registrert som arbeidssøker, må du sende inn meldekortet hver 14. dag.
                 </BodyShort>
 
-                <BodyShort size="small">
+                <BodyShort>
                     Har du fått beskjed om at du skal være registrert i NAV, må du også sender inn meldekortene hver 14.
                     dag.
                 </BodyShort>
@@ -32,11 +32,11 @@ function Kort2() {
                     2 av 3
                 </Detail>
 
-                <BodyShort size="small" className="blokk-xs">
+                <BodyShort className="blokk-xs">
                     Lar du være å sende inn meldekort, tolker NAV det som at du ikke ønsker å stå registrert som
                     arbeidssøker.
                 </BodyShort>
-                <BodyShort size="small">
+                <BodyShort>
                     Venter du på svar på en innsendt søknad, kan du få avslag dersom du ikke har sendt inn meldekortet.
                 </BodyShort>
             </div>
@@ -54,12 +54,12 @@ function Kort3() {
                     3 av 3
                 </Detail>
 
-                <BodyShort size="small" className="blokk-xs">
+                <BodyShort className="blokk-xs">
                     Utbetalingene av ytelser, som for eksempel dagpenger, vil kunne stanses dersom du sender meldekortet
                     for sent.
                 </BodyShort>
 
-                <BodyShort size="small">
+                <BodyShort>
                     Det er også viktig å vite at du kan få mindre penger utbetalt dersom du sender meldekortene for
                     sent.
                 </BodyShort>

@@ -48,7 +48,7 @@ function MeldekortAdvarsel({ dagerEtterFastsattMeldedag }: { dagerEtterFastsattM
                         {dagerTilInaktivering === 0 || dagerTilInaktivering > 1 ? 'dager' : 'dag'} på å sende inn
                         meldekort.
                     </Heading>
-                    <BodyShort size="small">Fristen er {datoMedUkedag(inaktiveringsDato)}, klokken 23.00.</BodyShort>
+                    <BodyShort>Fristen er {datoMedUkedag(inaktiveringsDato)}, klokken 23.00.</BodyShort>
                 </>
             )}
             {tillegg}
@@ -77,14 +77,14 @@ const LittStrengereVarsel = ({
 
     return (
         <div className={'strenger-varsel'}>
-            <Label size="small">Dersom du ikke sender inn meldekort vil</Label>
+            <Label>Dersom du ikke sender inn meldekort vil</Label>
             <ul className={'konsekvenser'}>
                 <li>
-                    <BodyShort size="small">du ikke lenger være registrert som arbeidssøker</BodyShort>
+                    <BodyShort>du ikke lenger være registrert som arbeidssøker</BodyShort>
                 </li>
                 {['DAGP', 'IYT'].includes(rettighetsgruppe) && (
                     <li>
-                        <BodyShort size="small">{dagpengerKonsekvensMelding}</BodyShort>
+                        <BodyShort>{dagpengerKonsekvensMelding}</BodyShort>
                     </li>
                 )}
             </ul>
