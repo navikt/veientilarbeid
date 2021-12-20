@@ -1,7 +1,9 @@
+import { BodyShort, Button, Heading, Link } from '@navikt/ds-react';
+
 import { useAmplitudeData } from '../../../contexts/amplitude-context';
 import { loggAktivitet } from '../../../metrics/metrics';
 import { dagpengerSoknadLenke } from '../../../innhold/lenker';
-import { BodyShort, Button, Heading, Link } from '@navikt/ds-react';
+import { saksoversikt_url } from '../../../url';
 
 const Sluttkort = () => {
     const amplitudeData = useAmplitudeData();
@@ -32,6 +34,22 @@ const Sluttkort = () => {
             <Button variant="primary" onClick={handleButtonClick} className="blokk-xs">
                 Søk om dagpenger
             </Button>
+
+            <BodyShort className={'blokk-xs'}>
+                Mener du dette er feil, kan du sjekke {' '}
+                <Link
+                    className={'tracking-wide'}
+                    href={saksoversikt_url}
+                    onClick={() =>
+                        loggLenkeKlikk(
+                            'Går til saksoversikten fra "dagpenger-tema - ikke søkt dagpenger"',
+                            saksoversikt_url
+                        )
+                    }
+                >
+                    Mine dagpenger
+                </Link>
+            </BodyShort>
 
             <BodyShort className={'blokk-xs'}>
                 Har du spørsmål om dagpenger må du bruke{' '}
