@@ -1,33 +1,29 @@
-import { useContext } from 'react';
 import { Heading, BodyShort, Label } from '@navikt/ds-react';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { beregnDagerTilInaktivering } from '../../utils/meldekort-utils';
 import { datoMedUkedag, plussDager } from '../../utils/date-utils';
 import { hentIDag } from '../../utils/chrono';
-import * as PaabegynteSoknader from '../../contexts/paabegynte-soknader';
-import beregnDagpengerStatus, { DagpengerSokestatuser } from '../dagpenger-status/beregn-dagpenger-status';
-import * as Sakstema from '../../contexts/sakstema';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
+import beregnDagpengeStatus, { DagpengeStatus } from '../../lib/beregn-dagpenge-status';
+import { usePaabegynteSoknaderData } from '../../contexts/paabegynte-soknader';
+import { useDpInnsynSoknadData } from '../../contexts/dp-innsyn-soknad';
+import { useDpInnsynVedtakData } from '../../contexts/dp-innsyn-vedtak';
 
 function MeldekortAdvarsel({ dagerEtterFastsattMeldedag }: { dagerEtterFastsattMeldedag: number | null }) {
     const { rettighetsgruppe } = useBrukerinfoData();
+
+    const brukerInfoData = useBrukerinfoData();
     const registreringData = useBrukerregistreringData();
-    const { data: paabegynteSoknaderData } = useContext(PaabegynteSoknader.PaabegynteSoknaderContext);
-    const { data: sakstemaData } = useContext(Sakstema.SakstemaContext);
+    const paabegynteSoknader = usePaabegynteSoknaderData().soknader;
+    const innsendteSoknader = useDpInnsynSoknadData();
+    const dagpengeVedtak = useDpInnsynVedtakData();
 
-    const opprettetRegistreringDatoString = registreringData?.registrering?.opprettetDato;
-    const opprettetRegistreringDato = opprettetRegistreringDatoString
-        ? new Date(opprettetRegistreringDatoString)
-        : null;
-
-    const dagpengerSaksTema = sakstemaData.sakstema.find((tema) => tema.temakode === 'DAG');
-    const behandlingskjeder = dagpengerSaksTema ? dagpengerSaksTema.behandlingskjeder : null;
-
-    const dagpengerStatus = beregnDagpengerStatus({
-        behandlingskjeder,
-        opprettetRegistreringDato,
-        paabegynteSoknader: paabegynteSoknaderData.soknader,
-        rettighetsgruppe,
+    const dagpengeStatus = beregnDagpengeStatus({
+        brukerInfoData,
+        registreringData,
+        paabegynteSoknader,
+        innsendteSoknader,
+        dagpengeVedtak,
     });
 
     if (dagerEtterFastsattMeldedag === null) return null;
@@ -36,7 +32,7 @@ function MeldekortAdvarsel({ dagerEtterFastsattMeldedag }: { dagerEtterFastsattM
     // Viser strenger melding fra dag 3 (torsdag)
     const tillegg =
         dagerEtterFastsattMeldedag > 2 ? (
-            <LittStrengereVarsel rettighetsgruppe={rettighetsgruppe} dagpengerStatus={dagpengerStatus} />
+            <LittStrengereVarsel rettighetsgruppe={rettighetsgruppe} dagpengeStatus={dagpengeStatus} />
         ) : null;
     const iDag = hentIDag();
     const inaktiveringsDato = plussDager(iDag, dagerTilInaktivering);
@@ -62,17 +58,17 @@ function MeldekortAdvarsel({ dagerEtterFastsattMeldedag }: { dagerEtterFastsattM
 
 const LittStrengereVarsel = ({
     rettighetsgruppe,
-    dagpengerStatus,
+    dagpengeStatus,
 }: {
     rettighetsgruppe: string;
-    dagpengerStatus: DagpengerSokestatuser;
+    dagpengeStatus: DagpengeStatus;
 }) => {
     const dagpengerKonsekvensMelding = (() => {
-        switch (dagpengerStatus) {
-            case DagpengerSokestatuser.mottarDagpenger:
+        switch (dagpengeStatus) {
+            case 'mottar':
                 return 'utbetaling av dagpenger stoppes';
-            case DagpengerSokestatuser.soknadUnderBehandling:
-            case DagpengerSokestatuser.harPaabegynteSoknader:
+            case 'sokt':
+            case 'paabegynt':
                 return 'din søknad om dagpenger kan bli avslått';
             default:
                 return 'en eventuell søknad om dagpenger kan bli avslått';
