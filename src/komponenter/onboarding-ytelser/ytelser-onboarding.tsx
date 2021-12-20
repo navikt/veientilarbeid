@@ -12,7 +12,6 @@ import { kanViseOnboardingDagpenger } from '../../lib/kan-vise-onboarding-dagpen
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import { hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
 import ByttKortLenke from './bytt-kort-lenke';
-import { erPilotBruker } from '../../lib/er-pilot-bruker';
 
 function YtelserOnboarding() {
     const registreringData = useBrukerregistreringData();
@@ -54,15 +53,9 @@ function YtelserOnboarding() {
         registreringData,
     });
 
-    const brukerErPilot = erPilotBruker({
-        brukerInfoData,
-        oppfolgingData,
-        amplitudeData,
-    });
-
     if (!kanViseYtelserKomponent && !kanViseDagpengerKomponent) return null;
 
-    const visOnboardingDagpenger = featuretoggleData['veientilarbeid.onboardingDagpenger'] && brukerErPilot;
+    const visOnboardingDagpenger = featuretoggleData['veientilarbeid.onboardingDagpenger'];
 
     if (!visOnboardingDagpenger || (kanViseYtelserKomponent && valgtYtelserVisning === 'ytelser')) {
         return (
@@ -71,7 +64,7 @@ function YtelserOnboarding() {
                 innhold={[
                     <>
                         <SluttkortYtelser />
-                        {brukerErPilot && (
+                        {kanViseDagpengerKomponent && (
                             <ByttKortLenke
                                 handleByttKortKlikk={handleByttKortKlikk}
                                 valgtYtelserVisning={valgtYtelserVisning}
