@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Innholdstittel } from 'nav-frontend-typografi';
-import { CheckboksPanelGruppe, Select as SelectKomponent } from 'nav-frontend-skjema';
 import {
     DemoData,
     hentAutentiseringsInfo,
@@ -57,6 +56,7 @@ import { InnloggingsNiva } from '../contexts/autentisering';
 import { setFastTidspunktForIDag } from '../utils/chrono';
 import { datoUtenTid } from '../utils/date-utils';
 import { FeatureToggles, prettyPrintFeatureToggle } from '../contexts/feature-toggles';
+import { Checkbox, CheckboxGroup, Select } from '@navikt/ds-react';
 
 interface OpprettetRegistreringDato {
     registrertForLanseringEgenvurdering: string;
@@ -294,7 +294,7 @@ class DemoDashboard extends React.Component<{}> {
             <section className="demodashboard">
                 <Innholdstittel className="blokk-s">{tekster['demo-tittel']}</Innholdstittel>
                 <div className="two-select">
-                    <SelectKomponent
+                    <Select
                         label={'Velg geografisk tilknytning'}
                         onChange={handleChangeGeografiskTilknytning}
                         id="velg-geografisktilknytning"
@@ -305,8 +305,8 @@ class DemoDashboard extends React.Component<{}> {
                                 {geografiskeTilknytninger[gruppe]}
                             </option>
                         ))}
-                    </SelectKomponent>
-                    <SelectKomponent
+                    </Select>
+                    <Select
                         label={'Velg rettighetsgruppe'}
                         onChange={handleChangeRettighetsgruppe}
                         id="velg-rettighetsgruppe"
@@ -317,8 +317,8 @@ class DemoDashboard extends React.Component<{}> {
                                 {rettighetsgrupper[gruppe]}
                             </option>
                         ))}
-                    </SelectKomponent>
-                    <SelectKomponent
+                    </Select>
+                    <Select
                         label={'Velg registreringstype'}
                         onChange={handleChangeRegistreringType}
                         id="velg-registreringtype"
@@ -329,8 +329,8 @@ class DemoDashboard extends React.Component<{}> {
                                 {registreringTyper[gruppe]}
                             </option>
                         ))}
-                    </SelectKomponent>
-                    <SelectKomponent
+                    </Select>
+                    <Select
                         label={tekster['demo-velgservicegruppe']}
                         onChange={handleChangeServicegruppe}
                         id="velg-bruker"
@@ -341,8 +341,8 @@ class DemoDashboard extends React.Component<{}> {
                                 {servicegrupper[gruppe]}
                             </option>
                         ))}
-                    </SelectKomponent>
-                    <SelectKomponent
+                    </Select>
+                    <Select
                         label={tekster['demo-velgformidlingsgruppe']}
                         onChange={handleChangeFormidlingsgruppe}
                         id="velg-formidlingsgruppe"
@@ -353,8 +353,8 @@ class DemoDashboard extends React.Component<{}> {
                                 {formidlingsgrupper[gruppe]}
                             </option>
                         ))}
-                    </SelectKomponent>
-                    <SelectKomponent
+                    </Select>
+                    <Select
                         label={'Velg dagpengestatus'}
                         onChange={handleChangeDagpengeStatus}
                         id="velg-dagpengestatus"
@@ -365,10 +365,10 @@ class DemoDashboard extends React.Component<{}> {
                                 {dagpengeStatuser[gruppe]}
                             </option>
                         ))}
-                    </SelectKomponent>
+                    </Select>
                 </div>
                 <div className="two-select">
-                    <SelectKomponent
+                    <Select
                         label={tekster['demo-brukerregistrering']}
                         onChange={handleChangeBrukerregistrering}
                         id="velg-fremtidig-situasjon"
@@ -379,8 +379,8 @@ class DemoDashboard extends React.Component<{}> {
                                 {fremtidigeSituasjoner[svar]}
                             </option>
                         ))}
-                    </SelectKomponent>
-                    <SelectKomponent
+                    </Select>
+                    <Select
                         label="Velg dinSituasjon"
                         onChange={handleChangeDinSituasjon}
                         id="velg-din-situasjon"
@@ -391,8 +391,8 @@ class DemoDashboard extends React.Component<{}> {
                                 {dineSituasjoner[svar]}
                             </option>
                         ))}
-                    </SelectKomponent>
-                    <SelectKomponent
+                    </Select>
+                    <Select
                         label={tekster['demo-foreslatt-innsatsgruppe']}
                         onChange={handleChangeForeslaattInnsatsgruppe}
                         id="velg-foreslaatt-innsatsgruppe"
@@ -403,8 +403,8 @@ class DemoDashboard extends React.Component<{}> {
                                 {foreslattInnsatsgrupper[svar]}
                             </option>
                         ))}
-                    </SelectKomponent>
-                    <SelectKomponent
+                    </Select>
+                    <Select
                         label={tekster['demo-opprettetregistreringdato']}
                         onChange={handleChangeOpprettetRegistreringDato}
                         id="velg-opprettetdato"
@@ -415,8 +415,8 @@ class DemoDashboard extends React.Component<{}> {
                                 {opprettetRegistreringDatoLabels[key]}
                             </option>
                         ))}
-                    </SelectKomponent>
-                    <SelectKomponent
+                    </Select>
+                    <Select
                         label={'Dager etter fastsatt meldedag'}
                         onChange={handleChangeMeldekortdager}
                         id="velg-meldekortdager"
@@ -429,8 +429,8 @@ class DemoDashboard extends React.Component<{}> {
                                     {antallDagerEtterFastsattMeldedag[dag]}
                                 </option>
                             ))}
-                    </SelectKomponent>
-                    <SelectKomponent
+                    </Select>
+                    <Select
                         label={'Velg kvitteringstatus'}
                         onChange={handleChangeKvitteringStatus}
                         id="velg-kvitteringstatus"
@@ -441,67 +441,64 @@ class DemoDashboard extends React.Component<{}> {
                                 {kvitteringsStatuser[gruppe]}
                             </option>
                         ))}
-                    </SelectKomponent>
+                    </Select>
                 </div>
-                <CheckboksPanelGruppe
-                    onChange={handleClick}
+                <CheckboxGroup
+                    // onChange={handleClick}
                     className="featuretoggles"
                     legend=""
-                    checkboxes={[
-                        {
-                            label: tekster['demo-sykmelding'],
-                            checked: hentSykmeldtMedArbeidsgiver(),
-                            id: SYKMELDT_MED_ARBEIDSGIVER,
-                        },
-                        {
-                            label: tekster['demo-dialog'],
-                            checked: hentUlesteDialoger(),
-                            id: ULESTE_DIALOGER,
-                        },
-                        {
-                            label: tekster['demo-krr'],
-                            checked: hentReservasjonKRR(),
-                            id: RESERVASJON_KRR,
-                        },
-                        {
-                            label: tekster['demo-egenvurdering'],
-                            checked: !!hentEgenvurdering(),
-                            id: EGENVURDERING,
-                        },
-                        {
-                            label: tekster['demo-motestotte'],
-                            checked: !!hentMotestotte(),
-                            id: MOTESTOTTE,
-                        },
-                        {
-                            label: tekster['demo-autentiseringsinfo'],
-                            checked: hentAutentiseringsInfo().securityLevel === InnloggingsNiva.LEVEL_3,
-                            id: AUTENTISERINGS_INFO,
-                        },
-                        {
-                            label: 'Under oppfølging',
-                            checked: hentUnderOppfolging().underOppfolging === true,
-                            id: UNDER_OPPFOLGING,
-                        },
-                        {
-                            label: 'Kan reaktiveres',
-                            checked: hentKanReaktiveres(),
-                            id: KAN_REAKTIVERES,
-                        },
-                    ]}
-                />
-                <CheckboksPanelGruppe
-                    legend={'Featuretoggles'}
-                    className="featuretoggles"
-                    onChange={handleClick}
-                    checkboxes={Object.values(FeatureToggles).map((toggle) => {
-                        return {
-                            label: prettyPrintFeatureToggle(toggle),
-                            checked: hentDemoState(toggle) === 'true',
-                            id: toggle,
-                        };
+                >
+                    <Checkbox
+                        id={SYKMELDT_MED_ARBEIDSGIVER}
+                        checked={hentSykmeldtMedArbeidsgiver()}
+                        onChange={handleClick}
+                    >
+                        {tekster['demo-sykmelding']}
+                    </Checkbox>
+                    <Checkbox id={ULESTE_DIALOGER} checked={hentUlesteDialoger()} onChange={handleClick}>
+                        {tekster['demo-dialog']}
+                    </Checkbox>
+                    <Checkbox id={RESERVASJON_KRR} checked={hentReservasjonKRR()} onChange={handleClick}>
+                        {tekster['demo-krr']}
+                    </Checkbox>
+                    <Checkbox id={EGENVURDERING} checked={!!hentEgenvurdering()} onChange={handleClick}>
+                        {tekster['demo-egenvurdering']}
+                    </Checkbox>
+                    <Checkbox id={MOTESTOTTE} checked={!!hentMotestotte()} onChange={handleClick}>
+                        {tekster['demo-motestotte']}
+                    </Checkbox>
+                    <Checkbox
+                        id={AUTENTISERINGS_INFO}
+                        checked={hentAutentiseringsInfo().securityLevel === InnloggingsNiva.LEVEL_3}
+                        onChange={handleClick}
+                    >
+                        {tekster['demo-autentiseringsinfo']}
+                    </Checkbox>
+                    <Checkbox
+                        id={UNDER_OPPFOLGING}
+                        checked={hentUnderOppfolging().underOppfolging === true}
+                        onChange={handleClick}
+                    >
+                        Under oppfølging
+                    </Checkbox>
+                    <Checkbox id={KAN_REAKTIVERES} checked={hentKanReaktiveres()} onChange={handleClick}>
+                        Kan reaktiveres
+                    </Checkbox>
+                </CheckboxGroup>
+                <CheckboxGroup legend={'Featuretoggles'} className="featuretoggles">
+                    {Object.values(FeatureToggles).map((toggle) => {
+                        return (
+                            <Checkbox
+                                checked={hentDemoState(toggle) === 'true'}
+                                key={toggle}
+                                id={toggle}
+                                onChange={handleClick}
+                            >
+                                {prettyPrintFeatureToggle(toggle)}
+                            </Checkbox>
+                        );
                     })}
-                />
+                </CheckboxGroup>
             </section>
         );
     }
