@@ -34,6 +34,7 @@ export type AmplitudeData = {
     gruppe: POAGruppe;
     brukergruppe: BrukergruppeType;
     dagpengestatus?: string;
+    dagerSidenDagpengerStanset?: number;
     geografiskTilknytning: string;
     isKSSX: string;
     isKSSK: string;
