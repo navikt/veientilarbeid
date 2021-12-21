@@ -2,14 +2,20 @@ import { BodyShort, Heading, Link } from '@navikt/ds-react';
 import { useAmplitudeData } from '../../../contexts/amplitude-context';
 import { loggAktivitet } from '../../../metrics/metrics';
 import { mine_dagpenger_url } from '../../../url';
+import PaabegynteSoknader from './paabegynte-soknader';
+import { useDpInnsynVedtakData } from '../../../contexts/dp-innsyn-vedtak';
+import { sorterEtterNyesteVedtak } from '../../../lib/beregn-dagpenge-status';
 
 const Sluttkort = () => {
     const amplitudeData = useAmplitudeData();
+    const dagpengeVedtak = useDpInnsynVedtakData();
 
     function loggLenkeKlikk(action: string, url: string) {
         loggAktivitet({ aktivitet: action, ...amplitudeData });
         window.location.assign(url);
     }
+
+    const sisteVedtak = dagpengeVedtak.sort(sorterEtterNyesteVedtak)[0];
 
     return (
         <>
@@ -32,6 +38,8 @@ const Sluttkort = () => {
                     Mine dagpenger
                 </Link>
             </BodyShort>
+
+            <PaabegynteSoknader dato={sisteVedtak?.datoFattet} komponent="mottar" />
 
             <BodyShort className={'blokk-xs'}>
                 Har du spørsmål om dagpenger, må du bruke{' '}

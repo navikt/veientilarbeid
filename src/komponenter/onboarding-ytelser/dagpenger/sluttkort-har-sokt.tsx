@@ -7,6 +7,7 @@ import { mine_dagpenger_url } from '../../../url';
 import { formaterDato, datoForForventetSvar } from '../../../utils/date-utils';
 import { usePaabegynteSoknaderData } from '../../../contexts/paabegynte-soknader';
 import prettyPrintDato from '../../../utils/pretty-print-dato';
+import PaabegynteSoknader from './paabegynte-soknader';
 
 const Sluttkort = () => {
     const amplitudeData = useAmplitudeData();
@@ -61,11 +62,7 @@ const Sluttkort = () => {
                 </Link>
             </BodyShort>
 
-            {harPaabegyntEtterInnsendt && (
-                <BodyShort className={'blokk-xs'}>
-                    Du har også en påbegynt søknad du kan <a href={sistePaabegyntSoknad.lenke}>fortsette på</a>.
-                </BodyShort>
-            )}
+            <PaabegynteSoknader dato={sisteInnsendteSoknad?.datoInnsendt} komponent="sokt" />
 
             <BodyShort className={'blokk-xs'}>
                 Har du spørsmål om å søke eller motta dagpenger, må du bruke{' '}

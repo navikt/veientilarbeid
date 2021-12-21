@@ -16,6 +16,8 @@ import { Soknad } from '../contexts/paabegynte-soknader';
 export const sorterEtterNyesteDatoInnsendt = (a: DpInnsynSoknad, b: DpInnsynSoknad) =>
     new Date(b.datoInnsendt).getTime() - new Date(a.datoInnsendt).getTime();
 
+export const sorterEtterNyesteVedtak = (a: Vedtak, b: Vedtak) =>
+    new Date(b.datoFattet).getTime() - new Date(a.datoFattet).getTime();
 export type DagpengeStatus =
     | 'paabegynt'
     | 'sokt'
@@ -52,9 +54,7 @@ function beregnDagpengeStatus({
 
     const registreringsDato = new Date(registreringData?.registrering!.opprettetDato);
     const sistInnsendteSoknad = innsendteSoknader.sort(sorterEtterNyesteDatoInnsendt)[0];
-    const sisteDagpengevedtak = dagpengeVedtak.sort(
-        (a: Vedtak, b: Vedtak) => new Date(b.datoFattet).getTime() - new Date(a.datoFattet).getTime()
-    )[0];
+    const sisteDagpengevedtak = dagpengeVedtak.sort(sorterEtterNyesteVedtak)[0];
 
     const erVedtakNyereEnnSoknad =
         sisteDagpengevedtak &&

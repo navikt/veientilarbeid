@@ -288,6 +288,7 @@ export const settKvitteringStatus = (value: string) => settDemoState(DemoData.KV
 
 export const hentDpInnsynVedtak = (): JSONValue => {
     const status = hentDpStatus();
+    const mottar = hentRettighetsgruppe() === 'DAGP';
 
     if (status === 'innvilget') {
         return [
@@ -309,6 +310,19 @@ export const hentDpInnsynVedtak = (): JSONValue => {
                 fagsakId: 'arenaId',
                 status: 'AVSLÅTT',
                 datoFattet: plussDager(new Date(), 3).toISOString(),
+                fraDato: plussDager(new Date(), 10).toISOString(),
+                tilDato: null,
+            },
+        ];
+    }
+
+    if (mottar) {
+        return [
+            {
+                vedtakId: '2',
+                fagsakId: 'arenaId',
+                status: 'INNVILGET',
+                datoFattet: plussDager(new Date(), -3).toISOString(),
                 fraDato: plussDager(new Date(), 10).toISOString(),
                 tilDato: null,
             },
