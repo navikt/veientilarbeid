@@ -450,25 +450,42 @@ class DemoDashboard extends React.Component<{}> {
                 >
                     <Checkbox
                         id={SYKMELDT_MED_ARBEIDSGIVER}
+                        value={SYKMELDT_MED_ARBEIDSGIVER}
                         checked={hentSykmeldtMedArbeidsgiver()}
                         onChange={handleClick}
                     >
                         {tekster['demo-sykmelding']}
                     </Checkbox>
-                    <Checkbox id={ULESTE_DIALOGER} checked={hentUlesteDialoger()} onChange={handleClick}>
+                    <Checkbox
+                        id={ULESTE_DIALOGER}
+                        value={ULESTE_DIALOGER}
+                        checked={hentUlesteDialoger()}
+                        onChange={handleClick}
+                    >
                         {tekster['demo-dialog']}
                     </Checkbox>
-                    <Checkbox id={RESERVASJON_KRR} checked={hentReservasjonKRR()} onChange={handleClick}>
+                    <Checkbox
+                        id={RESERVASJON_KRR}
+                        value={RESERVASJON_KRR}
+                        checked={hentReservasjonKRR()}
+                        onChange={handleClick}
+                    >
                         {tekster['demo-krr']}
                     </Checkbox>
-                    <Checkbox id={EGENVURDERING} checked={!!hentEgenvurdering()} onChange={handleClick}>
+                    <Checkbox
+                        id={EGENVURDERING}
+                        value={EGENVURDERING}
+                        checked={!!hentEgenvurdering()}
+                        onChange={handleClick}
+                    >
                         {tekster['demo-egenvurdering']}
                     </Checkbox>
-                    <Checkbox id={MOTESTOTTE} checked={!!hentMotestotte()} onChange={handleClick}>
+                    <Checkbox id={MOTESTOTTE} value={MOTESTOTTE} checked={!!hentMotestotte()} onChange={handleClick}>
                         {tekster['demo-motestotte']}
                     </Checkbox>
                     <Checkbox
                         id={AUTENTISERINGS_INFO}
+                        value={AUTENTISERINGS_INFO}
                         checked={hentAutentiseringsInfo().securityLevel === InnloggingsNiva.LEVEL_3}
                         onChange={handleClick}
                     >
@@ -476,12 +493,18 @@ class DemoDashboard extends React.Component<{}> {
                     </Checkbox>
                     <Checkbox
                         id={UNDER_OPPFOLGING}
+                        value={UNDER_OPPFOLGING}
                         checked={hentUnderOppfolging().underOppfolging === true}
                         onChange={handleClick}
                     >
                         Under oppfølging
                     </Checkbox>
-                    <Checkbox id={KAN_REAKTIVERES} checked={hentKanReaktiveres()} onChange={handleClick}>
+                    <Checkbox
+                        id={KAN_REAKTIVERES}
+                        value={KAN_REAKTIVERES}
+                        checked={hentKanReaktiveres()}
+                        onChange={handleClick}
+                    >
                         Kan reaktiveres
                     </Checkbox>
                 </CheckboxGroup>
@@ -492,6 +515,7 @@ class DemoDashboard extends React.Component<{}> {
                                 checked={hentDemoState(toggle) === 'true'}
                                 key={toggle}
                                 id={toggle}
+                                value={toggle}
                                 onChange={handleClick}
                             >
                                 {prettyPrintFeatureToggle(toggle)}
