@@ -5,6 +5,7 @@ import { mine_dagpenger_url } from '../../../url';
 import PaabegynteSoknader from './paabegynte-soknader';
 import { useDpInnsynVedtakData } from '../../../contexts/dp-innsyn-vedtak';
 import { sorterEtterNyesteVedtak } from '../../../lib/beregn-dagpenge-status';
+import SistInnsendtSoknad from './sist-innsendt-soknad';
 
 const Sluttkort = () => {
     const amplitudeData = useAmplitudeData();
@@ -38,7 +39,7 @@ const Sluttkort = () => {
                     Mine dagpenger
                 </Link>
             </BodyShort>
-
+            <SistInnsendtSoknad dato={sisteVedtak?.datoFattet} komponent="mottar" />
             <PaabegynteSoknader dato={sisteVedtak?.datoFattet} komponent="mottar" />
 
             <BodyShort className={'blokk-xs'}>

@@ -1,5 +1,6 @@
 const virkedager = require('@alheimsins/virkedager');
 const msPerDoegn = 1000 * 60 * 60 * 24;
+const DAGPENGER_SAKSBEHANDLINGSTID = 30;
 
 export function datoUtenTid(dato: string) {
     return new Date(dato.substr(0, 10));
@@ -57,5 +58,5 @@ export const formaterDato = (dato: Date): string =>
     });
 
 export const datoForForventetSvar = (dato: Date) => {
-    return new Date(virkedager(new Date(dato), 30));
+    return new Date(virkedager(new Date(dato), DAGPENGER_SAKSBEHANDLINGSTID));
 };

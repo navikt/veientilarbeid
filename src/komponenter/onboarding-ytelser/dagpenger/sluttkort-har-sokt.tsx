@@ -4,9 +4,8 @@ import { useDpInnsynSoknadData } from '../../../contexts/dp-innsyn-soknad';
 import { sorterEtterNyesteDatoInnsendt } from '../../../lib/beregn-dagpenge-status';
 import { loggAktivitet } from '../../../metrics/metrics';
 import { mine_dagpenger_url } from '../../../url';
-import { formaterDato, datoForForventetSvar } from '../../../utils/date-utils';
+import SistInnsendtSoknad from './sist-innsendt-soknad';
 import { usePaabegynteSoknaderData } from '../../../contexts/paabegynte-soknader';
-import prettyPrintDato from '../../../utils/pretty-print-dato';
 import PaabegynteSoknader from './paabegynte-soknader';
 
 const Sluttkort = () => {
@@ -32,20 +31,8 @@ const Sluttkort = () => {
             <Heading size="medium" className={'blokk-xs'}>
                 {harPaabegyntEtterInnsendt ? 'Søknad om dagpenger og påbegynte søknader' : 'Søknad om dagpenger'}
             </Heading>
+            <SistInnsendtSoknad dato={sisteInnsendteSoknad?.datoInnsendt} komponent="sokt" />
 
-            {sisteInnsendteSoknad?.datoInnsendt && (
-                <>
-                    <BodyShort className={'blokk-xs'}>
-                        Den siste søkaden NAV har mottatt ble sendt inn{' '}
-                        {prettyPrintDato(sisteInnsendteSoknad.datoInnsendt)}.
-                    </BodyShort>
-
-                    <BodyShort className={'blokk-xs'}>
-                        Du kan forvente svar{' '}
-                        {formaterDato(datoForForventetSvar(new Date(sisteInnsendteSoknad.datoInnsendt)))}
-                    </BodyShort>
-                </>
-            )}
             <BodyShort className={'blokk-xs'}>
                 Du kan ettersende dokumentasjon og se mer informasjon via {' '}
                 <Link
