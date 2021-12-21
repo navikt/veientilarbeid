@@ -26,7 +26,7 @@ import { AmplitudeData } from '../../metrics/amplitude-utils';
 import antallSynligeInfomeldinger from '../../utils/infomeldinger';
 import * as Meldekortstatus from '../../contexts/meldekortstatus';
 import isMeldekortbruker from '../../utils/er-meldekortbruker';
-import { datoUtenTid } from '../../utils/date-utils';
+import { antallDagerSiden, datoUtenTid } from '../../utils/date-utils';
 import { hentEksperimenter } from '../../eksperiment/eksperiment-utils';
 import { erSamarbeidskontor } from '../../eksperiment/samarbeidskontor-utils';
 import { hentEnhetEksperimentId } from '../../eksperiment/ab-eksperiment';
@@ -36,7 +36,7 @@ import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../../lib/er-situasjo
 import erSannsynligvisInaktivertStandardbruker from '../../lib/er-sannsyligvis-inaktivert-standard-innsatsgruppe';
 import { useDpInnsynSoknadData } from '../../contexts/dp-innsyn-soknad';
 import { useDpInnsynVedtakData } from '../../contexts/dp-innsyn-vedtak';
-import beregnDagpengeStatus from '../../lib/beregn-dagpenge-status';
+import beregnDagpengeStatus, { sorterEtterNyesteVedtak } from '../../lib/beregn-dagpenge-status';
 
 function hentDagerEtterFastsattMeldedag(
     iDag: Date,
@@ -169,6 +169,14 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         dagpengeVedtak,
     });
 
+    const sisteDagpengevedtak = dagpengeVedtak
+        .filter((vedtak) => vedtak.status === 'INNVILGET')
+        .sort(sorterEtterNyesteVedtak)[0];
+    const dagerSidenDagpengerStanset =
+        sisteDagpengevedtak?.tilDato && dagpengestatus === 'stanset'
+            ? antallDagerSiden(new Date(sisteDagpengevedtak.tilDato))
+            : undefined;
+
     const brukergruppering = brukerErStandardInnsatsgruppe
         ? 'standard'
         : brukerErSituasjonsbestemtInnsatsgruppe
@@ -181,6 +189,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         gruppe: POAGruppe,
         brukergruppe: brukergruppering,
         dagpengestatus,
+        dagerSidenDagpengerStanset,
         geografiskTilknytning: grupperGeografiskTilknytning(geografiskTilknytningOrIngenVerdi),
         isKSSX,
         isKSSK,

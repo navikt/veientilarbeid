@@ -60,3 +60,9 @@ export const formaterDato = (dato: Date): string =>
 export const datoForForventetSvar = (dato: Date) => {
     return new Date(virkedager(new Date(dato), DAGPENGER_SAKSBEHANDLINGSTID));
 };
+
+export const antallDagerSiden = (start: Date, slutt = new Date()) => {
+    const ms = slutt.getTime() - start.getTime();
+    const days = ms / msPerDoegn;
+    return Math.floor(days);
+};
