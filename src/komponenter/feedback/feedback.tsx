@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import classNames from 'classnames';
-import Popover from 'nav-frontend-popover';
+import { Popover } from '@navikt/ds-react';
 
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
@@ -82,11 +82,11 @@ function Feedback({ id, className }: Props) {
                     </button>
                     <Popover
                         id="popover-nei"
-                        ankerEl={visPopover}
-                        onRequestClose={() => setVisPopover(undefined)}
-                        autoFokus={false}
+                        anchorEl={visPopover || null}
+                        onClose={() => setVisPopover(undefined)}
+                        open={visPopover !== undefined}
                         tabIndex={-1}
-                        utenPil
+                        arrow={false}
                     >
                         <Normaltekst className="feedback-utdyping">Hvorfor svarte du nei?</Normaltekst>
                         <ul className="feedback-grunner">
