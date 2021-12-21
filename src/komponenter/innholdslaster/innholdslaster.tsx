@@ -1,12 +1,14 @@
 import * as React from 'react';
 import './innholdslaster.less';
-import Laster from './innholdslaster-laster';
 import { DataElement, STATUS } from '../../ducks/api';
+import { Loader } from '@navikt/ds-react';
 
 const array = (value: {}) => (Array.isArray(value) ? value : [value]);
 
-const harStatus = (...status: string[]) => (element: { status: string }) =>
-    array(status).toString().includes(element.status);
+const harStatus =
+    (...status: string[]) =>
+    (element: { status: string }) =>
+        array(status).toString().includes(element.status);
 
 const noenHarFeil = (avhengigheter: DataElement[]) => avhengigheter && avhengigheter.some(harStatus(STATUS.ERROR));
 const alleLastet = (avhengigheter: DataElement[]) => avhengigheter && avhengigheter.every(harStatus(STATUS.OK));
@@ -69,7 +71,7 @@ class Innholdslaster extends React.Component<InnholdslasterProps, Innholdslaster
     }
 
     render() {
-        const { avhengigheter, ventPa, betingelser, feilmeldingKomponent, storrelse } = this.props;
+        const { avhengigheter, ventPa, betingelser, feilmeldingKomponent } = this.props;
 
         const avhengigheterFiltrert = betingelser
             ? avhengigheter.filter((a, i) => betingelser[i] === true)
@@ -85,7 +87,11 @@ class Innholdslaster extends React.Component<InnholdslasterProps, Innholdslaster
             this.clearTimer();
             return <div className="innholdslaster-feilmelding">{feilmeldingKomponent}</div>;
         }
-        return <Laster className="innholdslaster-laster" storrelse={storrelse} />;
+        return (
+            <div className="innholdslaster-laster">
+                <Loader transparent size="2xlarge" />
+            </div>
+        );
     }
 }
 
