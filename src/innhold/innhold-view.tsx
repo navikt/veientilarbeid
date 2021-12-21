@@ -13,6 +13,7 @@ import InViewport from '../komponenter/in-viewport/in-viewport';
 import StatusTittel from '../komponenter/registrert/status-tittel';
 import EkspanderbartInnsyn from '../komponenter/innsyn/ekspanderbart-innsyn';
 import ReaktiveringKvittering from '../komponenter/reaktivering/reaktivering-kvittering';
+import DagpengerOgUtdanning from '../komponenter/meldinger/dagpenger-og-utdanning';
 
 const InnholdView = () => {
     return (
@@ -26,6 +27,7 @@ const InnholdView = () => {
                 <ReaktiveringKvittering />
                 <Registrert />
                 <EkspanderbartInnsyn />
+                <DagpengerOgUtdanning />
                 <Egenvurdering />
                 <Motestotte />
                 <AktivitetDialogMeldekort />
