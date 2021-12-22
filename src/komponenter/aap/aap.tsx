@@ -1,10 +1,6 @@
 import * as React from 'react';
-import { Knapp } from 'nav-frontend-knapper';
-import Panel from 'nav-frontend-paneler';
 import RettPaAapInnhold from './rett-pa-aap-innhold';
 import SoketidspunktInnhold from './soketidspunkt-innhold';
-import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
-import { Normaltekst, Systemtittel, Undertittel } from 'nav-frontend-typografi';
 
 import './aap.less';
 import { aapSoknadLenke } from '../../innhold/lenker';
@@ -14,6 +10,8 @@ import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import { FeaturetoggleContext } from '../../contexts/feature-toggles';
 import Rad from '../../innhold/rad';
+import { Heading, Panel, Button, BodyShort } from '@navikt/ds-react';
+import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 
 const handleButtonClick = () => {
     window.location.href = aapSoknadLenke;
@@ -33,15 +31,19 @@ const Aap = () => {
     return !kanViseKomponent ? null : (
         <Rad>
             <div className="aap">
-                <Systemtittel className="blokk-s aap--tittel">{tekster['aap-rad-tittel']}</Systemtittel>
+                <Heading size="medium" className="blokk-s aap--tittel">
+                    {tekster['aap-rad-tittel']}
+                </Heading>
                 <div className="tokol">
                     <div className="kolonne blokk-m">
                         <Panel border className="panelramme">
-                            <Undertittel className="blokk-s">{tekster['aap-rad-ingress-tittel']}</Undertittel>
-                            <Normaltekst className="blokk-s">{tekster['aap-rad-ingress']}</Normaltekst>
-                            <Knapp onClick={handleButtonClick} className="blokk-xs">
+                            <Heading size="small" className="blokk-s">
+                                {tekster['aap-rad-ingress-tittel']}
+                            </Heading>
+                            <BodyShort className="blokk-s">{tekster['aap-rad-ingress']}</BodyShort>
+                            <Button onClick={handleButtonClick} className="blokk-xs">
                                 {tekster['aap-rad-til-soknad-knapp-tekst']}
-                            </Knapp>
+                            </Button>
                         </Panel>
                     </div>
                     <div className="kolonne blokk-m">
