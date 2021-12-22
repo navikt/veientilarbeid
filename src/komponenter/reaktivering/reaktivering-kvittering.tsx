@@ -79,7 +79,9 @@ const ReaktiveringKvittering = () => {
                         Søk dagpenger
                     </Button>
                     <BodyShort>
-                        <Link onClick={handleIkkeSokeNaa}>Skal ikke søke dagpenger nå</Link>
+                        <Link href="#" onClick={handleIkkeSokeNaa}>
+                            Skal ikke søke dagpenger nå
+                        </Link>
                     </BodyShort>
                 </div>
             </Panel>
