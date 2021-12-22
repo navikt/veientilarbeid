@@ -63,6 +63,16 @@ describe('tester funksjonaliteten for visEksperiment', () => {
     test('returnerer false for manglende geografiskTilknytning', () => {
         expect(visEksperiment('onboarding14a', {})).toBe(false);
     });
+
+    test('returnerer false når man er registrert etter eksperiment slutt-dato', () => {
+        expect(
+            visEksperiment('dummyEksperiment', {
+                geografiskTilknytning: '_666_',
+                registreringsDato: new Date('2021-12-25'),
+                dinSituasjon: DinSituasjonSvar.INGEN_VERDI,
+            })
+        ).toBe(false);
+    });
 });
 
 describe('tester funksjonaliteten for erSamarbeidskontor', () => {

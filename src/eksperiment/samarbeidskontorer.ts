@@ -4,7 +4,8 @@ import { kssSituasjoner } from './is-kss-eksperiment';
 
 export type KontorEksperiment = {
     id: EksperimentId;
-    registrertEtterDato?: Date;
+    startDato?: Date;
+    sluttDato?: Date;
     situasjoner?: DinSituasjonSvar[];
 };
 
@@ -16,7 +17,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         eksperimenter: [
             {
                 id: 'onboarding14a',
-                registrertEtterDato: new Date('2021-06-07'),
+                startDato: new Date('2021-06-07'),
                 situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
             },
         ],
@@ -26,7 +27,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         eksperimenter: [
             {
                 id: 'onboarding14a',
-                registrertEtterDato: new Date('2021-05-28'),
+                startDato: new Date('2021-05-28'),
                 situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
             },
         ],
@@ -36,7 +37,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         eksperimenter: [
             {
                 id: 'onboarding14a',
-                registrertEtterDato: new Date('2021-05-28'),
+                startDato: new Date('2021-05-28'),
                 situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
             },
         ],
@@ -46,7 +47,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         eksperimenter: [
             {
                 id: 'onboarding14a',
-                registrertEtterDato: new Date('2021-06-01'),
+                startDato: new Date('2021-06-01'),
                 situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
             },
         ],
@@ -56,7 +57,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         eksperimenter: [
             {
                 id: 'onboarding14a',
-                registrertEtterDato: new Date('2021-06-08'),
+                startDato: new Date('2021-06-08'),
                 situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
             },
         ],
@@ -66,7 +67,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         eksperimenter: [
             {
                 id: 'onboarding14a',
-                registrertEtterDato: new Date('2021-06-08'),
+                startDato: new Date('2021-06-08'),
                 situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
             },
         ],
@@ -76,7 +77,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         eksperimenter: [
             {
                 id: 'onboarding14a',
-                registrertEtterDato: new Date('2021-12-01'),
+                startDato: new Date('2021-12-01'),
                 situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
             },
         ],
@@ -86,7 +87,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         eksperimenter: [
             {
                 id: 'onboarding14a',
-                registrertEtterDato: new Date('2021-12-01'),
+                startDato: new Date('2021-12-01'),
                 situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
             },
         ],
@@ -96,7 +97,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         eksperimenter: [
             {
                 id: 'onboarding14a',
-                registrertEtterDato: new Date('2021-12-01'),
+                startDato: new Date('2021-12-01'),
                 situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
             },
         ],
@@ -106,7 +107,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         eksperimenter: [
             {
                 id: 'onboarding14a',
-                registrertEtterDato: new Date('2021-12-01'),
+                startDato: new Date('2021-12-01'),
                 situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
             },
         ],
@@ -116,7 +117,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         eksperimenter: [
             {
                 id: 'onboarding14a',
-                registrertEtterDato: new Date('2021-12-01'),
+                startDato: new Date('2021-12-01'),
                 situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
             },
         ],
@@ -126,7 +127,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         eksperimenter: [
             {
                 id: 'onboarding14a',
-                registrertEtterDato: new Date('2021-12-01'),
+                startDato: new Date('2021-12-01'),
                 situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
             },
         ],
@@ -136,7 +137,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         eksperimenter: [
             {
                 id: 'onboarding14a',
-                registrertEtterDato: new Date('2021-12-01'),
+                startDato: new Date('2021-12-01'),
                 situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
             },
         ],
@@ -146,7 +147,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         eksperimenter: [
             {
                 id: 'onboarding14a',
-                registrertEtterDato: new Date('2021-12-01'),
+                startDato: new Date('2021-12-01'),
                 situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
             },
         ],
@@ -156,7 +157,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         eksperimenter: [
             {
                 id: 'onboarding14a',
-                registrertEtterDato: new Date('2021-12-01'),
+                startDato: new Date('2021-12-01'),
                 situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
             },
         ],
@@ -166,7 +167,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         eksperimenter: [
             {
                 id: 'onboarding14a',
-                registrertEtterDato: new Date('2021-12-01'),
+                startDato: new Date('2021-12-01'),
                 situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
             },
         ],
@@ -176,7 +177,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         eksperimenter: [
             {
                 id: 'onboarding14a',
-                registrertEtterDato: new Date('2021-12-01'),
+                startDato: new Date('2021-12-01'),
                 situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
             },
         ],
@@ -186,7 +187,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         eksperimenter: [
             {
                 id: 'onboarding14a',
-                registrertEtterDato: new Date('2021-12-01'),
+                startDato: new Date('2021-12-01'),
                 situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
             },
         ],
@@ -216,7 +217,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         eksperimenter: [
             {
                 id: 'onboarding14a',
-                registrertEtterDato: new Date('2021-05-18'),
+                startDato: new Date('2021-05-18'),
                 situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
             },
         ],
@@ -226,7 +227,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         eksperimenter: [
             {
                 id: 'onboarding14a',
-                registrertEtterDato: new Date('2021-04-19'),
+                startDato: new Date('2021-04-19'),
                 situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
             },
         ],
@@ -244,7 +245,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         eksperimenter: [
             {
                 id: 'onboarding14a',
-                registrertEtterDato: new Date('2021-04-13'),
+                startDato: new Date('2021-04-13'),
                 situasjoner: kssSituasjoner,
             },
         ],
@@ -254,7 +255,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         eksperimenter: [
             {
                 id: 'onboarding14a',
-                registrertEtterDato: new Date('2021-04-13'),
+                startDato: new Date('2021-04-13'),
                 situasjoner: kssSituasjoner,
             },
         ],
@@ -272,7 +273,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         eksperimenter: [
             {
                 id: 'onboarding14a',
-                registrertEtterDato: new Date('2021-05-26'),
+                startDato: new Date('2021-05-26'),
                 situasjoner: kssSituasjoner,
             },
         ],
@@ -286,7 +287,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         eksperimenter: [
             {
                 id: 'onboarding14a',
-                registrertEtterDato: new Date('2021-05-20'),
+                startDato: new Date('2021-05-20'),
                 situasjoner: kssSituasjoner,
             },
         ],
@@ -296,7 +297,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         eksperimenter: [
             {
                 id: 'onboarding14a',
-                registrertEtterDato: new Date('2021-05-20'),
+                startDato: new Date('2021-05-20'),
                 situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
             },
         ],
@@ -318,7 +319,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         eksperimenter: [
             {
                 id: 'onboarding14a',
-                registrertEtterDato: new Date('2021-06-01'),
+                startDato: new Date('2021-06-01'),
                 situasjoner: [...kssSituasjoner],
             },
         ],
@@ -328,7 +329,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         eksperimenter: [
             {
                 id: 'onboarding14a',
-                registrertEtterDato: new Date('2021-06-01'),
+                startDato: new Date('2021-06-01'),
                 situasjoner: [...kssSituasjoner],
             },
         ],
@@ -338,7 +339,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         eksperimenter: [
             {
                 id: 'onboarding14a',
-                registrertEtterDato: new Date('2021-06-01'),
+                startDato: new Date('2021-06-01'),
                 situasjoner: [...kssSituasjoner],
             },
         ],
@@ -348,7 +349,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         eksperimenter: [
             {
                 id: 'onboarding14a',
-                registrertEtterDato: new Date('2021-06-01'),
+                startDato: new Date('2021-06-01'),
                 situasjoner: [...kssSituasjoner],
             },
         ],
@@ -358,7 +359,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         eksperimenter: [
             {
                 id: 'onboarding14a',
-                registrertEtterDato: new Date('2021-06-01'),
+                startDato: new Date('2021-06-01'),
                 situasjoner: [...kssSituasjoner],
             },
         ],
@@ -368,7 +369,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         eksperimenter: [
             {
                 id: 'onboarding14a',
-                registrertEtterDato: new Date('2021-06-01'),
+                startDato: new Date('2021-06-01'),
                 situasjoner: [...kssSituasjoner],
             },
         ],
@@ -378,7 +379,18 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
         eksperimenter: [
             {
                 id: 'onboarding14a',
-                registrertEtterDato: new Date('2021-06-01'),
+                startDato: new Date('2021-06-01'),
+                situasjoner: [...kssSituasjoner],
+            },
+        ],
+    },
+    _666_: {
+        navn: 'Test kontor',
+        eksperimenter: [
+            {
+                id: 'dummyEksperiment',
+                startDato: new Date('2021-06-01'),
+                sluttDato: new Date('2021-12-24'),
                 situasjoner: [...kssSituasjoner],
             },
         ],

@@ -8,10 +8,21 @@ export interface KontorBrukerContext {
     dinSituasjon?: DinSituasjonSvar;
 }
 
-function registrertEtterEksperimentdato(eksperiment: KontorEksperiment, registreringsdato?: Date | null) {
-    if (!eksperiment.registrertEtterDato) return true;
+function registrertInnenEksperimentPeriode(eksperiment: KontorEksperiment, registreringsdato?: Date | null) {
+    if (!eksperiment.startDato && !eksperiment.sluttDato) {
+        return true;
+    }
     if (!registreringsdato) return false;
-    return eksperiment.registrertEtterDato <= registreringsdato;
+
+    if (!eksperiment.startDato && eksperiment.sluttDato) {
+        return eksperiment.sluttDato >= registreringsdato;
+    }
+
+    if (eksperiment.startDato && !eksperiment.sluttDato) {
+        return eksperiment.startDato <= registreringsdato;
+    }
+
+    return eksperiment.startDato! <= registreringsdato && registreringsdato <= eksperiment.sluttDato!;
 }
 
 function harGyldigSituasjon(eksperiment: KontorEksperiment, dinSituasjon?: DinSituasjonSvar): boolean {
@@ -33,7 +44,7 @@ export function hentEksperimenterFraSamarbeidskontor(kontorBrukerContext: Kontor
     if (!kontor?.eksperimenter) return [];
 
     return kontor.eksperimenter
-        .filter((eksperiment) => registrertEtterEksperimentdato(eksperiment, registreringsDato))
+        .filter((eksperiment) => registrertInnenEksperimentPeriode(eksperiment, registreringsDato))
         .filter((eksperiment) => harGyldigSituasjon(eksperiment, dinSituasjon))
         .map((eksperiment) => eksperiment.id);
 }
