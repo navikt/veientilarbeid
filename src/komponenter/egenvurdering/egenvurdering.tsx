@@ -1,6 +1,3 @@
-import { Hovedknapp } from 'nav-frontend-knapper';
-import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
-import Panel from 'nav-frontend-paneler';
 import { loggAktivitet } from '../../metrics/metrics';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import './egenvurdering.less';
@@ -15,6 +12,7 @@ import { kanViseIVURDEgenvurdering } from '../../lib/kan-vise-IVURD-egenvurderin
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../../lib/er-situasjonsbestemt-innsatsgruppe';
+import { BodyShort, Button, Heading, Panel } from '@navikt/ds-react';
 
 export const antallTimerMellomAOgBRundetOpp = (a: Date, b: Date): number => {
     if (!a || !b) {
@@ -73,13 +71,13 @@ const Egenvurdering = () => {
         <Panel border className="ramme blokk-s">
             <section className="egenvurdering">
                 <div className="innhold">
-                    <Systemtittel tag="h2" className="blokk-xs">
+                    <Heading level="2" size="medium" className="blokk-xs">
                         {tekster['egenvurdering-tittel']}
-                    </Systemtittel>
-                    <Normaltekst className="blokk-s egenvurdering__tekst">{tekster['egenvurdering-tekst']}</Normaltekst>
-                    <Hovedknapp onClick={handleButtonClick} className="blokk-xs">
+                    </Heading>
+                    <BodyShort className="blokk-s egenvurdering__tekst">{tekster['egenvurdering-tekst']}</BodyShort>
+                    <Button variant="primary" onClick={handleButtonClick} className="blokk-xs">
                         {tekster['egenvurdering-lenke-tekst']}
-                    </Hovedknapp>
+                    </Button>
                 </div>
             </section>
         </Panel>
