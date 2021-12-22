@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { Alert } from '@navikt/ds-react';
-import Lenke from 'nav-frontend-lenker';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Alert, BodyShort, Link } from '@navikt/ds-react';
 import './krr-melding.less';
 import { difiLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
@@ -25,22 +23,16 @@ const KrrMelding = () => {
 
     return (
         <Alert variant="warning" className="krr-melding blokk-xs">
-            <Normaltekst className="blokk-xs">{tekster['krr-melding-ingress']}</Normaltekst>
-            <Normaltekst>{tekster['krr-melding-kulepunkt-ingress']}</Normaltekst>
+            <BodyShort className="blokk-xs">{tekster['krr-melding-ingress']}</BodyShort>
+            <BodyShort>{tekster['krr-melding-kulepunkt-ingress']}</BodyShort>
             <ul>
-                <li>
-                    <Normaltekst>{tekster['krr-melding-kulepunkt1']}</Normaltekst>
-                </li>
-                <li>
-                    <Normaltekst>{tekster['krr-melding-kulepunkt2']}</Normaltekst>
-                </li>
-                <li>
-                    <Normaltekst>{tekster['krr-melding-kulepunkt3']}</Normaltekst>
-                </li>
+                <li>{tekster['krr-melding-kulepunkt1']}</li>
+                <li>{tekster['krr-melding-kulepunkt2']}</li>
+                <li>{tekster['krr-melding-kulepunkt3']}</li>
             </ul>
-            <Lenke href={difiLenke} onClick={handleLenkeKlikk}>
-                <Normaltekst>{tekster['krr-melding-lenketekst']}</Normaltekst>
-            </Lenke>
+            <Link href={difiLenke} onClick={handleLenkeKlikk}>
+                {tekster['krr-melding-lenketekst']}
+            </Link>
         </Alert>
     );
 };
