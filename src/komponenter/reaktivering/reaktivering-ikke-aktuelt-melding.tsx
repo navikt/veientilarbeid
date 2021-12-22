@@ -1,13 +1,11 @@
 import * as React from 'react';
-import { Knapp } from 'nav-frontend-knapper';
-import Lenke from 'nav-frontend-lenker';
-import { Normaltekst } from 'nav-frontend-typografi';
 import { reaktiveringLenke, dialogLenke } from '../../innhold/lenker';
 import { loggAktivitet, loggVisning } from '../../metrics/metrics';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useAutentiseringData, InnloggingsNiva } from '../../contexts/autentisering';
 import { OppfolgingContext } from '../../contexts/oppfolging';
 import './reaktivering-melding.less';
+import { BodyShort, Button, Link } from '@navikt/ds-react';
 
 const ReaktiveringIkkeAktueltMelding = () => {
     const amplitudeData = useAmplitudeData();
@@ -40,17 +38,17 @@ const ReaktiveringIkkeAktueltMelding = () => {
 
     return (
         <div>
-            <Normaltekst className="blokk-s">
-                <Knapp onClick={handleReaktivering}>Registrer deg som arbeidssøker</Knapp>
-            </Normaltekst>
-            <Normaltekst>
-                Er du usikker på om din situasjon betyr at du bør være registrert som arbeidssøker?
-            </Normaltekst>
-            <Normaltekst className="blokk-xs">
-                <Lenke href={dialogLenke} onClick={handleDialog}>
+            <BodyShort className="blokk-s">
+                <Button variant="secondary" onClick={handleReaktivering}>
+                    Registrer deg som arbeidssøker
+                </Button>
+            </BodyShort>
+            <BodyShort>Er du usikker på om din situasjon betyr at du bør være registrert som arbeidssøker?</BodyShort>
+            <BodyShort className="blokk-xs">
+                <Link href={dialogLenke} onClick={handleDialog}>
                     Ta kontakt med veilederen din i dialogtjenesten
-                </Lenke>
-            </Normaltekst>
+                </Link>
+            </BodyShort>
         </div>
     );
 };

@@ -1,14 +1,12 @@
 import * as React from 'react';
 import handleViewport from 'react-in-viewport';
-import { Knapp } from 'nav-frontend-knapper';
-import Lenke from 'nav-frontend-lenker';
-import { Normaltekst } from 'nav-frontend-typografi';
 import { reaktiveringLenke, dialogLenke } from '../../innhold/lenker';
 import { loggAktivitet } from '../../metrics/metrics';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useAutentiseringData, InnloggingsNiva } from '../../contexts/autentisering';
 import { OppfolgingContext } from '../../contexts/oppfolging';
 import './reaktivering-melding.less';
+import { BodyShort, Button, Link } from '@navikt/ds-react';
 
 interface ViewportProps {
     inViewport: boolean;
@@ -64,32 +62,32 @@ const ReaktiveringMelding = (props: Props & ViewportProps) => {
     }
     return (
         <div ref={props.forwardedRef}>
-            <Normaltekst className="blokk-xs">
+            <BodyShort className="blokk-xs">
                 Har du mottatt dagpenger vil utbetalingene nå være stoppet. Du må registrere deg på nytt og sende inn ny
                 søknad om dagpenger.
-            </Normaltekst>
-            <Normaltekst className="blokk-xs">
+            </BodyShort>
+            <BodyShort className="blokk-xs">
                 Dersom du har søkt eller ønsker å søke om dagpenger må du være registrert som arbeidssøker.
-            </Normaltekst>
-            <Normaltekst className="blokk-xs">
+            </BodyShort>
+            <BodyShort className="blokk-xs">
                 Dersom du ønsker arbeidsrettet oppfølging fra NAV, må du være registrert som arbeidssøker.
-            </Normaltekst>
-            <Normaltekst className="blokk-s">
-                <Knapp onClick={handleReaktivering}>Registrer deg som arbeidssøker</Knapp>
-            </Normaltekst>
-            <Normaltekst>
-                Er du usikker på om din situasjon betyr at du bør være registrert som arbeidssøker?
-            </Normaltekst>
-            <Normaltekst className="blokk-xs">
-                <Lenke href={dialogLenke} onClick={handleDialog}>
+            </BodyShort>
+            <BodyShort className="blokk-s">
+                <Button variant="secondary" onClick={handleReaktivering}>
+                    Registrer deg som arbeidssøker
+                </Button>
+            </BodyShort>
+            <BodyShort>Er du usikker på om din situasjon betyr at du bør være registrert som arbeidssøker?</BodyShort>
+            <BodyShort className="blokk-xs">
+                <Link href={dialogLenke} onClick={handleDialog}>
                     Ta kontakt med veilederen din i dialogtjenesten
-                </Lenke>
-            </Normaltekst>
-            <Normaltekst className="blokk-xs">
-                <Lenke href={dialogLenke} onClick={handleIkkeReaktivering}>
+                </Link>
+            </BodyShort>
+            <BodyShort className="blokk-xs">
+                <Link href={dialogLenke} onClick={handleIkkeReaktivering}>
                     Jeg har ikke lenger behov for å være registrert som arbeidssøker hos NAV
-                </Lenke>
-            </Normaltekst>
+                </Link>
+            </BodyShort>
         </div>
     );
 };
