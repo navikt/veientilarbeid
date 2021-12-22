@@ -1,5 +1,4 @@
 import { useBrukerregistreringData } from '../../../contexts/brukerregistrering';
-import { Systemtittel } from 'nav-frontend-typografi';
 import RegistrertTeller from '../registrert-teller';
 import { dialogLenke } from '../../../innhold/lenker';
 import Lenkepanel14A from '../lenkepanel-14a';
@@ -13,6 +12,7 @@ import { useOppfolgingData } from '../../../contexts/oppfolging';
 import { hentFraBrowserStorage } from '../../../utils/browserStorage-utils';
 import { useAmplitudeData } from '../../../contexts/amplitude-context';
 import { useUlesteDialogerData } from '../../../contexts/ulestedialoger';
+import { Heading } from '@navikt/ds-react';
 
 function Sluttkort() {
     const amplitudeData = useAmplitudeData();
@@ -51,7 +51,7 @@ function Sluttkort() {
 
     return (
         <>
-            <Systemtittel className={'blokk-xs'}>{kortTittel}</Systemtittel>
+            <Heading size="medium">{kortTittel}</Heading>
             <RegistrertTeller ukerRegistrert={ukerRegistrert} registrertDato={registrertDato} />
             <Lenkepanel14A amplitudeData={amplitudeData} href={dialogLenke} antallUlesteDialoger={antallUleste} />
         </>
