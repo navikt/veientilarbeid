@@ -1,5 +1,3 @@
-import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
-
 import { dialogLenke } from '../../../innhold/lenker';
 import EgenvurderingIVURD, { AVSLAATT_EGENVURDERING } from '../egenvurderingIVURD';
 import { kanViseIVURDEgenvurdering } from '../../../lib/kan-vise-IVURD-egenvurdering';
@@ -17,6 +15,7 @@ import { useUlesteDialogerData } from '../../../contexts/ulestedialoger';
 import EgenvurderingUke12, { INTRO_KEY_12UKER } from '../egenvurdering-uke12';
 import { kanVise12UkerEgenvurdering } from '../../../lib/kan-vise-12-uker-egenvurdering';
 import { useBrukerinfoData } from '../../../contexts/bruker-info';
+import { BodyShort, Heading } from '@navikt/ds-react';
 
 function Sluttkort() {
     const amplitudeData = useAmplitudeData();
@@ -69,15 +68,17 @@ function Sluttkort() {
 
     return (
         <>
-            <Systemtittel className={'blokk-xs'}>{kortTittel}</Systemtittel>
+            <Heading size="medium" className={'blokk-xs'}>
+                {kortTittel}
+            </Heading>
             <RegistrertTeller ukerRegistrert={ukerRegistrert} registrertDato={registrertDato} />
 
             <Lenkepanel14A amplitudeData={amplitudeData} href={dialogLenke} antallUlesteDialoger={antallUleste} />
             {registrertOver12Uker && (
-                <Normaltekst>
+                <BodyShort>
                     Veilederen kan besvare spørsmål, bistå rundt det å søke stillinger og tilby hjelp på veien til
                     arbeid.
-                </Normaltekst>
+                </BodyShort>
             )}
         </>
     );

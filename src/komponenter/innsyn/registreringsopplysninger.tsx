@@ -1,21 +1,21 @@
 import * as React from 'react';
-import { Normaltekst } from 'nav-frontend-typografi';
 import { loggAktivitet } from '../../metrics/metrics';
 import { dialogLenke } from '../../innhold/lenker';
 import { Besvarelse, Svar } from '../../contexts/brukerregistrering';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import './registreringsopplysninger.less';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
+import { BodyShort } from '@navikt/ds-react';
 
 const Opplysning = (props: any) => {
     const { sporsmal, svar } = props;
     return (
         <div className="blokk-s">
-            <Normaltekst>
+            <BodyShort>
                 {sporsmal}
                 <br />
                 <strong>{svar}</strong>
-            </Normaltekst>
+            </BodyShort>
         </div>
     );
 };
@@ -41,7 +41,7 @@ const Opplysninger = (props: any) => {
     return !kanViseKomponent ? null : (
         <>
             <div className="blokk-s">
-                <Normaltekst>
+                <BodyShort>
                     {manueltRegistrertAv ? 'NAV' : 'Du'} registrerte deg som arbeidssøker{' '}
                     {prettyPrintDato(opprettetDato)}.<br />
                     Du kan endre opplysningene du ga ved å kontakte NAV.
@@ -52,7 +52,7 @@ const Opplysninger = (props: any) => {
                         Gi beskjed til veilederen din
                     </a>{' '}
                     hvis situasjonen din endrer seg.
-                </Normaltekst>
+                </BodyShort>
             </div>
             {besvarelser.map((item, index) => (
                 <Opplysning {...item} key={index} />
