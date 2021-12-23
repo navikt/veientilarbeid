@@ -1,7 +1,4 @@
 import * as React from 'react';
-import { Hovedknapp } from 'nav-frontend-knapper';
-import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
-import Panel from 'nav-frontend-paneler';
 import {
     ForeslattInnsatsgruppe,
     selectDinSituasjonSvar,
@@ -18,6 +15,7 @@ import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import tekster from '../../tekster/tekster';
+import { BodyShort, Button, Heading, Panel } from '@navikt/ds-react';
 
 const LANSERINGSDATO_MOTESTOTTE = new Date('2020-03-12');
 
@@ -79,15 +77,17 @@ const Motestotte = () => {
         <Panel border className="ramme blokk-s">
             <section className="motestotte blokk-m">
                 <div className="innhold">
-                    <Systemtittel tag="h1" className="blokk-xs">
+                    <Heading size="medium" level="1" className="blokk-xs">
                         {systemtittel}
-                    </Systemtittel>
+                    </Heading>
                     {tekster.map((tekst) => (
-                        <Normaltekst key={tekst as string} className="blokk-m motestotte__tekst">
+                        <BodyShort key={tekst as string} className="blokk-m motestotte__tekst">
                             {tekst}
-                        </Normaltekst>
+                        </BodyShort>
                     ))}
-                    <Hovedknapp onClick={handleClick}>Start</Hovedknapp>
+                    <Button variant="primary" onClick={handleClick}>
+                        Start
+                    </Button>
                 </div>
             </section>
         </Panel>
