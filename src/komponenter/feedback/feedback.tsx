@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import classNames from 'classnames';
-import { Popover } from '@navikt/ds-react';
+import { BodyShort, Detail, Popover } from '@navikt/ds-react';
 
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
@@ -69,16 +68,18 @@ function Feedback({ id, className }: Props) {
     return (
         <>
             <div className={`${className ? className : ''} feedback-container`}>
-                <Undertekst className="feedback-tittel">Var dette nyttig å lese?</Undertekst>
+                <Detail size="small" className="feedback-tittel">
+                    Var dette nyttig å lese?
+                </Detail>
                 <div className={'valg'}>
                     <button onClick={() => handleFeedback('ja')} className={jaKnapp}>
-                        <Undertekst>Ja</Undertekst>
+                        <Detail size="small">Ja</Detail>
                     </button>
                     <span className="feedback-space" aria-hidden="true">
                         |
                     </span>
                     <button onClick={() => handleFeedback('nei')} className={neiKnapp} id="nei-knapp">
-                        <Undertekst>Nei</Undertekst>
+                        <Detail size="small">Nei</Detail>
                     </button>
                     <Popover
                         id="popover-nei"
@@ -88,7 +89,7 @@ function Feedback({ id, className }: Props) {
                         tabIndex={-1}
                         arrow={false}
                     >
-                        <Normaltekst className="feedback-utdyping">Hvorfor svarte du nei?</Normaltekst>
+                        <BodyShort className="feedback-utdyping">Hvorfor svarte du nei?</BodyShort>
                         <ul className="feedback-grunner">
                             <li>
                                 <button onClick={() => handleFeedback('nei - visste det fra før')}>
@@ -116,7 +117,7 @@ function Feedback({ id, className }: Props) {
                         |
                     </span>
                     <button onClick={() => handleFeedback('vet ikke')} className={vetIkkeKnapp}>
-                        <Undertekst>Vet ikke</Undertekst>
+                        <Detail size="small">Vet ikke</Detail>
                     </button>
                 </div>
             </div>

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Innholdstittel } from 'nav-frontend-typografi';
 import {
     DemoData,
     hentAutentiseringsInfo,
@@ -56,7 +55,7 @@ import { InnloggingsNiva } from '../contexts/autentisering';
 import { setFastTidspunktForIDag } from '../utils/chrono';
 import { datoUtenTid } from '../utils/date-utils';
 import { FeatureToggles, prettyPrintFeatureToggle } from '../contexts/feature-toggles';
-import { Checkbox, CheckboxGroup, Select } from '@navikt/ds-react';
+import { Checkbox, CheckboxGroup, Heading, Select } from '@navikt/ds-react';
 
 interface OpprettetRegistreringDato {
     registrertForLanseringEgenvurdering: string;
@@ -292,7 +291,9 @@ class DemoDashboard extends React.Component<{}> {
 
         return (
             <section className="demodashboard">
-                <Innholdstittel className="blokk-s">{tekster['demo-tittel']}</Innholdstittel>
+                <Heading size="xlarge" className="blokk-s">
+                    {tekster['demo-tittel']}
+                </Heading>
                 <div className="two-select">
                     <Select
                         label={'Velg geografisk tilknytning'}
