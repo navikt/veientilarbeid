@@ -1,12 +1,10 @@
-import { Hovedknapp } from 'nav-frontend-knapper';
-import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
-import Panel from 'nav-frontend-paneler';
 import { loggAktivitet } from '../../metrics/metrics';
 import './ikke-registrert.less';
 import { registreringsLenke } from '../../innhold/lenker';
 import InViewport from '../in-viewport/in-viewport';
 import ErRendret from '../er-rendret/er-rendret';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { Button, Heading, BodyShort, Panel } from '@navikt/ds-react';
 
 interface Props {
     skalTilRegistrering: boolean;
@@ -35,15 +33,15 @@ const IkkeRegistrert = (props: Props) => {
             <ErRendret loggTekst="Rendrer IkkeRegistrert" />
             <section className="egenvurdering">
                 <div className="innhold">
-                    <Systemtittel tag="h2" className="blokk-xs">
+                    <Heading size="medium" level="2" className="blokk-xs">
                         Du er ikke registrert som arbeidssøker
-                    </Systemtittel>
-                    <Normaltekst className="blokk-s egenvurdering__tekst">
+                    </Heading>
+                    <BodyShort className="blokk-s egenvurdering__tekst">
                         Vi kan ikke se at du er registrert som arbeidssøker hos oss.
-                    </Normaltekst>
-                    <Hovedknapp onClick={handleButtonClick} className="blokk-xs">
+                    </BodyShort>
+                    <Button variant="primary" onClick={handleButtonClick} className="blokk-xs">
                         Registrer deg som arbeidssøker
-                    </Hovedknapp>
+                    </Button>
                 </div>
             </section>
             <InViewport loggTekst="Viser IkkeRegistrert i viewport" />
