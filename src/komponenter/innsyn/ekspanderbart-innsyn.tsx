@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import Opplysninger from './registreringsopplysninger';
-import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
+import { Accordion } from '@navikt/ds-react';
 import { loggAktivitet } from '../../metrics/metrics';
 import useErInnloggetArbeidssoker from '../../hooks/useErInnloggetArbeidssoker';
 
@@ -26,15 +26,20 @@ const EkspanderbartInnsyn = () => {
 
     return kanViseKomponent ? (
         <div style={{ margin: '1rem 0' }}>
-            <Ekspanderbartpanel tittel="Se svarene dine fra registreringen" border onClick={handleClickOpen}>
-                <Opplysninger
-                    opprettetDato={opprettetDato}
-                    manueltRegistrertAv={manueltRegistrertAv}
-                    besvarelse={besvarelse}
-                    teksterForBesvarelse={teksterForBesvarelse}
-                    amplitudeData={amplitudeData}
-                />
-            </Ekspanderbartpanel>
+            <Accordion style={{ background: 'white', borderRadius: '5px' }}>
+                <Accordion.Item>
+                    <Accordion.Header onClick={handleClickOpen}>Se svarene dine fra registreringen</Accordion.Header>
+                    <Accordion.Content>
+                        <Opplysninger
+                            opprettetDato={opprettetDato}
+                            manueltRegistrertAv={manueltRegistrertAv}
+                            besvarelse={besvarelse}
+                            teksterForBesvarelse={teksterForBesvarelse}
+                            amplitudeData={amplitudeData}
+                        />
+                    </Accordion.Content>
+                </Accordion.Item>
+            </Accordion>
         </div>
     ) : null;
 };
