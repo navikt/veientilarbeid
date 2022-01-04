@@ -10,8 +10,7 @@ import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import { FeaturetoggleContext } from '../../contexts/feature-toggles';
 import Rad from '../../innhold/rad';
-import { Heading, Panel, Button, BodyShort } from '@navikt/ds-react';
-import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
+import { Heading, Panel, Button, BodyShort, Accordion } from '@navikt/ds-react';
 
 const handleButtonClick = () => {
     window.location.href = aapSoknadLenke;
@@ -47,12 +46,22 @@ const Aap = () => {
                         </Panel>
                     </div>
                     <div className="kolonne blokk-m">
-                        <Ekspanderbartpanel tittel={tekster['aap-rad-rett-pa-aap-panel-tittel']} border={true}>
-                            <RettPaAapInnhold />
-                        </Ekspanderbartpanel>
-                        <Ekspanderbartpanel tittel={tekster['aap-rad-soketidspunkt-panel-tittel']} border={true}>
-                            <SoketidspunktInnhold />
-                        </Ekspanderbartpanel>
+                        <Accordion className="blokk-xs" style={{ background: 'white', borderRadius: '5px' }}>
+                            <Accordion.Item>
+                                <Accordion.Header>{tekster['aap-rad-rett-pa-aap-panel-tittel']}</Accordion.Header>
+                                <Accordion.Content>
+                                    <RettPaAapInnhold />
+                                </Accordion.Content>
+                            </Accordion.Item>
+                        </Accordion>
+                        <Accordion className="blokk-xs" style={{ background: 'white', borderRadius: '5px' }}>
+                            <Accordion.Item>
+                                <Accordion.Header>{tekster['aap-rad-soketidspunkt-panel-tittel']}</Accordion.Header>
+                                <Accordion.Content>
+                                    <SoketidspunktInnhold />
+                                </Accordion.Content>
+                            </Accordion.Item>
+                        </Accordion>
                     </div>
                 </div>
             </div>
