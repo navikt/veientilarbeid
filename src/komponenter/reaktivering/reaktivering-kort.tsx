@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Alert } from '@navikt/ds-react';
-import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
+import { Alert, Heading } from '@navikt/ds-react';
 import { useAutentiseringData, InnloggingsNiva } from '../../contexts/autentisering';
 import { OppfolgingContext } from '../../contexts/oppfolging';
 import ReaktiveringMelding from './reaktivering-melding';
@@ -28,22 +27,8 @@ function getReaktiveringsState(variant: Variant): boolean {
     return dagerMellom >= 28 ? true : state;
 }
 
-interface TittelProps {
-    state: boolean;
-}
-
-function Tittel(props: TittelProps) {
-    const { state } = props;
-    return (
-        <Alert size="small" variant={state ? 'warning' : 'info'}>
-            Du er ikke lenger registrert som arbeidssøker hos NAV
-        </Alert>
-    );
-}
-
 const ReaktiveringKort = () => {
     const [reaktiveringsState, setReaktiveringsstate] = React.useState(true);
-    const [apen, setApen] = React.useState(false);
     const [reaktiveringVariant, setReaktiveringVariant] = useBrowserStorage('vta-kan-reaktiveres-visning', {
         updated: new Date(),
         state: true,
@@ -56,33 +41,26 @@ const ReaktiveringKort = () => {
     React.useEffect(() => {
         const status = getReaktiveringsState(reaktiveringVariant);
         setReaktiveringsstate(status);
-        setApen(status);
     }, [reaktiveringVariant]);
-
-    const handleClick = () => {
-        setApen(!apen);
-    };
 
     if (!kanViseKomponent) {
         return null;
     }
 
     return (
-        <section className="reaktivering-melding blokk-m">
+        <section className="blokk-m">
             <ErRendret loggTekst="Rendrer tema: kan reaktiveres" />
-            <EkspanderbartpanelBase
-                tittel={<Tittel state={reaktiveringsState} />}
-                apen={apen}
-                onClick={handleClick}
-                className={`alert ${reaktiveringsState}`}
-            >
+            <Alert variant={reaktiveringsState ? 'warning' : 'info'}>
+                <Heading size="small" level="2" className="blokk-xs">
+                    Du er ikke lenger registrert som arbeidssøker hos NAV
+                </Heading>
                 {reaktiveringsState ? (
-                    <ReaktiveringMelding setReaktivering={setReaktiveringVariant} setApen={setApen} />
+                    <ReaktiveringMelding setReaktivering={setReaktiveringVariant} />
                 ) : (
                     <ReaktiveringIkkeAktueltMelding />
                 )}
-            </EkspanderbartpanelBase>
-            <InViewport loggTekst="Viser tema i viewport: kan reaktiveres" />
+                <InViewport loggTekst="Viser tema i viewport: kan reaktiveres" />
+            </Alert>
         </section>
     );
 };

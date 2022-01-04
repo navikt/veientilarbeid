@@ -15,7 +15,6 @@ interface ViewportProps {
 
 type Props = {
     setReaktivering: (reaktivering: any) => void;
-    setApen: (apen: boolean) => void;
 };
 
 const ReaktiveringMelding = (props: Props & ViewportProps) => {
@@ -25,7 +24,7 @@ const ReaktiveringMelding = (props: Props & ViewportProps) => {
 
     const [harVistTilBruker, setHarVistTilBruker] = React.useState<boolean>(false);
 
-    const { setReaktivering, setApen } = props;
+    const { setReaktivering } = props;
     const isLevel4 = securityLevel === InnloggingsNiva.LEVEL_4;
     const kanViseKomponent = isLevel4 && kanReaktiveres;
 
@@ -48,7 +47,6 @@ const ReaktiveringMelding = (props: Props & ViewportProps) => {
     const handleIkkeReaktivering = (event: React.SyntheticEvent) => {
         event.preventDefault();
         loggAktivitet({ aktivitet: 'Velger ikke vis reaktivering', ...amplitudeData });
-        setApen(false);
         setTimeout(() => {
             setReaktivering({
                 updated: new Date(),
