@@ -5,7 +5,6 @@ import { loggAktivitet } from '../../metrics/metrics';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useAutentiseringData, InnloggingsNiva } from '../../contexts/autentisering';
 import { OppfolgingContext } from '../../contexts/oppfolging';
-import './reaktivering-melding.less';
 import { BodyShort, Button, Link } from '@navikt/ds-react';
 
 interface ViewportProps {
