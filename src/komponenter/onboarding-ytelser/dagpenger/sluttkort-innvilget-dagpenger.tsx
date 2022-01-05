@@ -22,11 +22,11 @@ const Sluttkort = () => {
     return (
         <>
             <Heading size="medium" className={'blokk-xs'}>
-                Du har fått innvilget søknad om dagpenger
+                Du har fått et vedtak om dagpenger
             </Heading>
 
             <BodyShort className={'blokk-xs'}>
-                Dagpenger er innvilget fra {prettyPrintDato(nyesteInnvilgedeVedtak.fraDato)}
+                Vedtaket ble fattet {prettyPrintDato(nyesteInnvilgedeVedtak.datoFattet)}
             </BodyShort>
 
             <BodyShort className={'blokk-xs'}>
