@@ -120,6 +120,55 @@ describe('Tester funksjonen beregnDagpengeStatus', () => {
         ).toBe('innvilget');
     });
 
+    test('returnerer "tidligere-innvilget" når vedtak etter nyeste søknad og vedtaket har status "INNVILGET" og nyregistrert ', () => {
+        const testData = JSON.parse(JSON.stringify(grunndata));
+        const soknader = [...soknad];
+        soknader[0].datoInnsendt = plussDager(iDag, 10).toISOString();
+        testData.registreringData.registrering.opprettetDato = plussDager(iDag, 12).toISOString();
+
+        return expect(
+            beregnDagpengeStatus({
+                ...testData,
+                paabegynteSoknader: [],
+                innsendteSoknader: soknader,
+                dagpengeVedtak: [
+                    {
+                        vedtakId: '2',
+                        fagsakId: 'arenaId',
+                        status: 'INNVILGET',
+                        datoFattet: plussDager(iDag, 11).toISOString(),
+                        fraDato: '2021-11-19T10:31:18.176',
+                        tilDato: null,
+                    },
+                ],
+            })
+        ).toBe('tidligere-innvilget');
+    });
+
+    test('returnerer "stanset" når vedtakets tilDato har vært', () => {
+        const testData = JSON.parse(JSON.stringify(grunndata));
+        const soknader = [...soknad];
+        soknader[0].datoInnsendt = plussDager(iDag, 10).toISOString();
+
+        return expect(
+            beregnDagpengeStatus({
+                ...testData,
+                paabegynteSoknader: [],
+                innsendteSoknader: soknader,
+                dagpengeVedtak: [
+                    {
+                        vedtakId: '2',
+                        fagsakId: 'arenaId',
+                        status: 'INNVILGET',
+                        datoFattet: plussDager(iDag, 11).toISOString(),
+                        fraDato: '2021-11-19T10:31:18.176',
+                        tilDato: plussDager(iDag, -1).toISOString(),
+                    },
+                ],
+            })
+        ).toBe('stanset');
+    });
+
     test('returnerer "paabegynt" når det eksisterer påbegynte søknader', () => {
         const testData = JSON.parse(JSON.stringify(grunndata));
         const soknader = [

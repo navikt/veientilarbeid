@@ -27,7 +27,8 @@ export type DagpengeStatus =
     | 'avslag'
     | 'innvilget'
     | 'soktogpaabegynt'
-    | 'stanset';
+    | 'stanset'
+    | 'tidligere-innvilget';
 
 function beregnDagpengeStatus({
     brukerInfoData,
@@ -68,10 +69,12 @@ function beregnDagpengeStatus({
             return 'avslag';
         }
 
-        const erVedtakAvsluttet = sisteDagpengevedtak.tilDato;
+        const erVedtakAvsluttet = sisteDagpengevedtak.tilDato
+            ? new Date(sisteDagpengevedtak.tilDato).getTime() < new Date().getTime()
+            : false;
 
         if (sisteDagpengevedtak && sisteDagpengevedtak.status === 'INNVILGET' && !erVedtakAvsluttet) {
-            return 'innvilget';
+            return vedtakErNyereEnnSisteRegistreringsdato ? 'innvilget' : 'tidligere-innvilget';
         }
 
         if (erVedtakAvsluttet) {
