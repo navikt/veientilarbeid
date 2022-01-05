@@ -28,6 +28,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
             {
                 id: 'onboarding14a',
                 startDato: new Date('2021-05-28'),
+                sluttDato: new Date('2021-12-19'),
                 situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
             },
         ],
@@ -128,6 +129,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
             {
                 id: 'onboarding14a',
                 startDato: new Date('2021-12-01'),
+                sluttDato: new Date('2021-12-19'),
                 situasjoner: [...kssSituasjoner, DinSituasjonSvar.ER_PERMITTERT],
             },
         ],
@@ -288,6 +290,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
             {
                 id: 'onboarding14a',
                 startDato: new Date('2021-05-20'),
+                sluttDato: new Date('2021-12-19'),
                 situasjoner: kssSituasjoner,
             },
         ],
@@ -340,6 +343,7 @@ export const Samarbeidskontorer: { [geografiskTilknytning: string]: Samarbeidsko
             {
                 id: 'onboarding14a',
                 startDato: new Date('2021-06-01'),
+                sluttDato: new Date('2021-12-19'),
                 situasjoner: [...kssSituasjoner],
             },
         ],
