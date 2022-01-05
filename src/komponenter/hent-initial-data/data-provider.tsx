@@ -28,7 +28,6 @@ import { useAutentiseringData, InnloggingsNiva } from '../../contexts/autentiser
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import * as DpInnsynSoknad from '../../contexts/dp-innsyn-soknad';
 import * as DpInnsynVedtak from '../../contexts/dp-innsyn-vedtak';
-import { useFeatureToggleData } from '../../contexts/feature-toggles';
 
 const skalSjekkeEgenvurderingBesvarelse = (
     foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null
@@ -68,9 +67,6 @@ const DataProvider = ({ children }: Props) => {
     const data = useBrukerregistreringData();
     const foreslaattInnsatsgruppe = selectForeslattInnsatsgruppe(data);
 
-    const featureToggleData = useFeatureToggleData();
-    const kanHenteDpData = featureToggleData['veientilarbeid.bruk-dp-innsyn-api'];
-
     React.useEffect(() => {
         if (securityLevel !== InnloggingsNiva.LEVEL_4) {
             return;
@@ -86,19 +82,17 @@ const DataProvider = ({ children }: Props) => {
 
         fetchData<BrukerInfo.State, BrukerInfo.Data>(brukerInfoState, setBrukerInfoState, BRUKERINFO_URL);
 
-        if (kanHenteDpData) {
-            fetchData<DpInnsynSoknad.State, DpInnsynSoknad.Data>(
-                dpInnsynSoknadState,
-                setDpInnsynSoknadState,
-                `${DP_INNSYN_URL}/soknad`
-            );
+        fetchData<DpInnsynSoknad.State, DpInnsynSoknad.Data>(
+            dpInnsynSoknadState,
+            setDpInnsynSoknadState,
+            `${DP_INNSYN_URL}/soknad`
+        );
 
-            fetchData<DpInnsynVedtak.State, DpInnsynVedtak.Data>(
-                dpInnsynVedtakState,
-                setDpInnsynVedtakState,
-                `${DP_INNSYN_URL}/vedtak`
-            );
-        }
+        fetchData<DpInnsynVedtak.State, DpInnsynVedtak.Data>(
+            dpInnsynVedtakState,
+            setDpInnsynVedtakState,
+            `${DP_INNSYN_URL}/vedtak`
+        );
 
         fetchData<PaabegynteSoknader.State, PaabegynteSoknader.Data>(
             paabegynteSoknaderState,
@@ -123,7 +117,7 @@ const DataProvider = ({ children }: Props) => {
             }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [securityLevel, underOppfolging, kanHenteDpData]);
+    }, [securityLevel, underOppfolging]);
 
     const avhengigheter: any[] = [];
     const ventPa: any[] = [];

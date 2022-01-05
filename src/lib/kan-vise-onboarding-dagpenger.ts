@@ -21,8 +21,7 @@ export function kanViseOnboardingDagpenger({
 
     const erStandardInnsatsgruppe = sjekkOmBrukerErStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData });
     const visOnboardingDagpengerToggle = featuretoggleData['veientilarbeid.onboardingDagpenger'];
-    const brukDpInnsynApiToggle = featuretoggleData['veientilarbeid.bruk-dp-innsyn-api'] || false;
-    const kanViseForStandard = erStandardInnsatsgruppe && visOnboardingDagpengerToggle && brukDpInnsynApiToggle;
+    const kanViseForStandard = erStandardInnsatsgruppe && visOnboardingDagpengerToggle;
 
     return !erAAP && kanViseForStandard && !oppfolgingData.kanReaktiveres;
 }
