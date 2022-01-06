@@ -26,7 +26,8 @@ const Sluttkort = () => {
             </Heading>
 
             <BodyShort className={'blokk-xs'}>
-                Vedtaket ble fattet {prettyPrintDato(nyesteInnvilgedeVedtak.datoFattet)}
+                Vedtaket ble fattet {prettyPrintDato(nyesteInnvilgedeVedtak.datoFattet)} og status er{' '}
+                <b>{nyesteInnvilgedeVedtak.status.toLocaleLowerCase()}</b>.
             </BodyShort>
 
             <BodyShort className={'blokk-xs'}>
