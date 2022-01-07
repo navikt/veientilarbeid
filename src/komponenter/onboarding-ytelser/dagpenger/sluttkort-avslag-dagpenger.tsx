@@ -1,7 +1,9 @@
 import { BodyShort, Heading, Link } from '@navikt/ds-react';
 import { useAmplitudeData } from '../../../contexts/amplitude-context';
+import { useDpInnsynVedtakData, Vedtak } from '../../../contexts/dp-innsyn-vedtak';
 import { loggAktivitet } from '../../../metrics/metrics';
 import { mine_dagpenger_url } from '../../../url';
+import prettyPrintDato from '../../../utils/pretty-print-dato';
 
 const Sluttkort = () => {
     const amplitudeData = useAmplitudeData();
@@ -11,11 +13,22 @@ const Sluttkort = () => {
         window.location.assign(url);
     }
 
+    const vedtakData = useDpInnsynVedtakData();
+    const nyesteVedtakMedAvslag = vedtakData
+        .filter((vedtak) => vedtak.status === 'AVSLÅTT')
+        .sort((a: Vedtak, b: Vedtak) => new Date(b.datoFattet).getTime() - new Date(a.datoFattet).getTime())[0];
+    if (!nyesteVedtakMedAvslag) return null;
+
     return (
         <>
             <Heading size="medium" className={'blokk-xs'}>
-                Du har fått avslått søknad om dagpenger
+                Du har fått et vedtak om dagpenger
             </Heading>
+
+            <BodyShort className={'blokk-xs'}>
+                Vedtaket ble fattet {prettyPrintDato(nyesteVedtakMedAvslag.datoFattet)} og status er{' '}
+                <b>{nyesteVedtakMedAvslag.status.toLocaleLowerCase()}</b>.
+            </BodyShort>
 
             <BodyShort className={'blokk-xs'}>
                 Se mer info på {' '}
