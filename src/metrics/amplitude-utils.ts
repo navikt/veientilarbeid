@@ -24,6 +24,7 @@ amplitude.getInstance().init(apiKey, undefined, config);
 export type AmplitudeLogger = (name: string, values?: object) => void;
 
 export type BrukergruppeType =
+    | 'standard og ungdomsinnsats'
     | 'standard'
     | 'situasjonsbestemt'
     | 'sannsynligvis standard og inaktivert'

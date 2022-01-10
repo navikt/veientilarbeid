@@ -97,6 +97,8 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
 
     const meldegruppe = hentMeldegruppeForNesteMeldekort(meldekortContext.data);
 
+    const forsterketUngdomsinnsats = alder < 30;
+
     const POAGruppe = getPoaGroup({
         dinSituasjon,
         formidlingsgruppe: formidlingsgruppeOrIngenVerdi,
@@ -151,6 +153,9 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         brukerregistreringData: brukerregistreringDataEllerNull,
         oppfolgingData,
     });
+
+    const brukerErUngMedStandardInnsatsgruppe = brukerErStandardInnsatsgruppe && forsterketUngdomsinnsats;
+
     const brukerErSituasjonsbestemtInnsatsgruppe = sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe({
         brukerregistreringData: brukerregistreringDataEllerNull,
         oppfolgingData,
@@ -177,7 +182,9 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
             ? antallDagerSiden(new Date(sisteDagpengevedtak.tilDato))
             : undefined;
 
-    const brukergruppering = brukerErStandardInnsatsgruppe
+    const brukergruppering = brukerErUngMedStandardInnsatsgruppe
+        ? 'standard og ungdomsinnsats'
+        : brukerErStandardInnsatsgruppe
         ? 'standard'
         : brukerErSituasjonsbestemtInnsatsgruppe
         ? 'situasjonsbestemt'
