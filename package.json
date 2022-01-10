@@ -53,7 +53,7 @@
         "@testing-library/jest-dom": "5.16.1",
         "@testing-library/react": "12.1.2",
         "@testing-library/user-event": "13.5.0",
-        "@types/amplitude-js": "8.9.2",
+        "@types/amplitude-js": "8.9.3",
         "@types/merge-deep": "3.0.0",
         "@types/react": "17.0.38",
         "@types/react-collapse": "5.0.1",
@@ -61,12 +61,12 @@
         "cross-env": "7.0.3",
         "husky": "7.0.4",
         "less": "4.1.2",
-        "lint-staged": "12.1.5",
+        "lint-staged": "12.1.7",
         "merge-deep": "3.0.3",
         "msw": "0.36.3",
         "prettier": "2.5.1",
         "react-scripts": "4.0.3",
-        "snyk": "1.814.0",
+        "snyk": "1.820.0",
         "typescript": "4.4.4"
     },
     "browserslist": [
