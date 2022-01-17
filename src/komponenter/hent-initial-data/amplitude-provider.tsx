@@ -37,7 +37,6 @@ import erSannsynligvisInaktivertStandardbruker from '../../lib/er-sannsyligvis-i
 import { useDpInnsynSoknadData } from '../../contexts/dp-innsyn-soknad';
 import { useDpInnsynVedtakData } from '../../contexts/dp-innsyn-vedtak';
 import beregnDagpengeStatus, { sorterEtterNyesteVedtak } from '../../lib/beregn-dagpenge-status';
-import sjekkOmBrukerErUngdomsinnsats from '../../lib/er-ungdomsinnsats';
 
 function hentDagerEtterFastsattMeldedag(
     iDag: Date,
@@ -98,7 +97,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
 
     const meldegruppe = hentMeldegruppeForNesteMeldekort(meldekortContext.data);
 
-    const forsterketUngdomsinnsats = sjekkOmBrukerErUngdomsinnsats({ brukerInfoData, featuretoggleData });
+    const forsterketUngdomsinnsats = alder < 30;
 
     const POAGruppe = getPoaGroup({
         dinSituasjon,
