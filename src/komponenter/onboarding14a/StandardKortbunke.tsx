@@ -14,11 +14,22 @@ import sjekkOmBrukerErUngdomsinnsats from '../../lib/er-ungdomsinnsats';
 const INTRO_KEY_14A = '14a-intro';
 const AMPLITUDE_TEMA_TAG = '14a';
 
-interface IntroProps {
-    visKvittering?: string;
+function hentKortbunke(
+    skalViseKssKort: boolean,
+    skalViseUngdomsinnsatsKort: boolean
+): [() => JSX.Element, JSX.Element[], () => JSX.Element] {
+    if (skalViseKssKort) {
+        return [KssStartkort, KssKortliste, KssSluttkort];
+    }
+
+    if (skalViseUngdomsinnsatsKort) {
+        return [UngdomsinnsatsStartkort, UngdomsinnsatsKortliste, UngdomsinnsatsSluttkort];
+    }
+
+    return [StandardStartkort, StandardKortliste, StandardSluttkort];
 }
 
-function Intro14AWrapper(props: IntroProps) {
+function Intro14AWrapper() {
     const amplitudeData = useAmplitudeData();
     const registreringData = useBrukerregistreringData();
     const oppfolgingData = useOppfolgingData();
@@ -37,11 +48,7 @@ function Intro14AWrapper(props: IntroProps) {
 
     const skalViseUngdomsinnsatsKort = sjekkOmBrukerErUngdomsinnsats({ brukerInfoData, featuretoggleData });
 
-    const [Startkort, Kortliste, Sluttkort] = skalViseKssKort
-        ? [KssStartkort, KssKortliste, KssSluttkort]
-        : skalViseUngdomsinnsatsKort
-        ? [UngdomsinnsatsStartkort, UngdomsinnsatsKortliste, UngdomsinnsatsSluttkort]
-        : [StandardStartkort, StandardKortliste, StandardSluttkort];
+    const [Startkort, Kortliste, Sluttkort] = hentKortbunke(skalViseKssKort, skalViseUngdomsinnsatsKort);
 
     const innhold = (
         <Tema
