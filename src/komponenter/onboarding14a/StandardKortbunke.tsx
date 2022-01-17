@@ -4,10 +4,12 @@ import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { KssStartkort, KssKortliste, KssSluttkort } from './kss';
 import { StandardStartkort, StandardKortliste, StandardSluttkort } from './standardinnsats';
+import { UngdomsinnsatsStartkort, UngdomsinnsatsKortliste, UngdomsinnsatsSluttkort } from './ungdomsinnsats';
 import { erKSSBruker } from '../../lib/er-kss-bruker';
 import Tema from '../tema/tema';
 import './14a-intro.less';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
+import sjekkOmBrukerErUngdomsinnsats from '../../lib/er-ungdomsinnsats';
 
 const INTRO_KEY_14A = '14a-intro';
 const AMPLITUDE_TEMA_TAG = '14a';
@@ -33,8 +35,12 @@ function Intro14AWrapper(props: IntroProps) {
         registreringData,
     });
 
+    const skalViseUngdomsinnsatsKort = sjekkOmBrukerErUngdomsinnsats({ brukerInfoData, featuretoggleData });
+
     const [Startkort, Kortliste, Sluttkort] = skalViseKssKort
         ? [KssStartkort, KssKortliste, KssSluttkort]
+        : skalViseUngdomsinnsatsKort
+        ? [UngdomsinnsatsStartkort, UngdomsinnsatsKortliste, UngdomsinnsatsSluttkort]
         : [StandardStartkort, StandardKortliste, StandardSluttkort];
 
     const innhold = (

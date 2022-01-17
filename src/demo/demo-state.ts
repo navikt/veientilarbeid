@@ -34,6 +34,7 @@ export enum DemoData {
     SKJUL_DEMO = 'skjulDemo',
     DP_STATUS = 'dpStatus',
     KVITTERING_STATUS = 'visKvittering',
+    ER_UNDER_30 = 'erUnder30',
 }
 
 export const hentDemoState = (key: string): string | null => hentQueryParam(key);

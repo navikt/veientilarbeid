@@ -36,6 +36,8 @@ import {
     settUnderOppfolging,
     settDpStatus,
     settKvitteringStatus,
+    hentAlder,
+    settAlder,
 } from './demo-state';
 
 import './demo-dashboard.less';
@@ -89,6 +91,8 @@ class DemoDashboard extends React.Component<{}> {
         const AUTENTISERINGS_INFO = DemoData.AUTENTISERINGS_INFO;
         const UNDER_OPPFOLGING = DemoData.UNDER_OPPFOLGING;
         const KAN_REAKTIVERES = DemoData.KAN_REAKTIVERES;
+        const ER_UNDER_30 = DemoData.ER_UNDER_30;
+
         const FEATURE_TOGGLES: string[] = Object.values(FeatureToggles);
 
         const handleChangeServicegruppe = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -171,6 +175,8 @@ class DemoDashboard extends React.Component<{}> {
                 settUnderOppfolging(element.checked);
             } else if (element.id === KAN_REAKTIVERES) {
                 settKanReaktiveres(element.checked);
+            } else if (element.id === ER_UNDER_30) {
+                settAlder(element.checked ? '25' : '42');
             }
             window.location.reload();
         };
@@ -507,6 +513,9 @@ class DemoDashboard extends React.Component<{}> {
                         onChange={handleClick}
                     >
                         Kan reaktiveres
+                    </Checkbox>
+                    <Checkbox id={ER_UNDER_30} value={ER_UNDER_30} checked={hentAlder() < 30} onChange={handleClick}>
+                        Er under 30 år
                     </Checkbox>
                 </CheckboxGroup>
                 <CheckboxGroup legend={'Featuretoggles'} className="featuretoggles">
