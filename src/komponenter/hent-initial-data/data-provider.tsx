@@ -12,6 +12,7 @@ import * as Motestotte from '../../contexts/motestotte';
 import * as Meldekort from '../../contexts/meldekort';
 import * as Egenvurdering from '../../contexts/egenvurdering';
 import * as UlesteDialoger from '../../contexts/ulestedialoger';
+import * as SprakValg from '../../contexts/sprak';
 import { fetchData } from '../../ducks/api-utils';
 import {
     BRUKERINFO_URL,
@@ -44,12 +45,21 @@ interface OwnProps {
 
 type Props = OwnProps;
 
+const hentSprakValg = (): SprakValg.State => {
+    const urlParams = new URLSearchParams(window.location.search);
+
+    return {
+        sprak: (urlParams.get('lang') || 'nb') as SprakValg.Sprak,
+    };
+};
+
 const DataProvider = ({ children }: Props) => {
     const { securityLevel } = useAutentiseringData();
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const [motestotteState, setMotestotteState] = React.useState<Motestotte.State>(Motestotte.initialState);
     const [meldekortState, setMeldekortState] = React.useState<Meldekort.State>(Meldekort.initialState);
     const [brukerInfoState, setBrukerInfoState] = React.useState<BrukerInfo.State>(BrukerInfo.initialState);
+    const [valgtSprak, setValgtSprak] = React.useState<SprakValg.State>(SprakValg.initialState);
     const [paabegynteSoknaderState, setPaabegynteSoknaderState] = React.useState<PaabegynteSoknader.State>(
         PaabegynteSoknader.initialState
     );
@@ -116,6 +126,8 @@ const DataProvider = ({ children }: Props) => {
                 fetchData<Motestotte.State, Motestotte.Data>(motestotteState, setMotestotteState, MOTESTOTTE_URL);
             }
         }
+
+        setValgtSprak(hentSprakValg());
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [securityLevel, underOppfolging]);
 
@@ -152,7 +164,9 @@ const DataProvider = ({ children }: Props) => {
                                 <PaabegynteSoknader.PaabegynteSoknaderContext.Provider value={paabegynteSoknaderState}>
                                     <DpInnsynSoknad.DpInnsynSoknadContext.Provider value={dpInnsynSoknadState}>
                                         <DpInnsynVedtak.DpInnsynVedtakContext.Provider value={dpInnsynVedtakState}>
-                                            <AmplitudeProvider>{children}</AmplitudeProvider>
+                                            <SprakValg.SprakContext.Provider value={valgtSprak}>
+                                                <AmplitudeProvider>{children}</AmplitudeProvider>
+                                            </SprakValg.SprakContext.Provider>
                                         </DpInnsynVedtak.DpInnsynVedtakContext.Provider>
                                     </DpInnsynSoknad.DpInnsynSoknadContext.Provider>
                                 </PaabegynteSoknader.PaabegynteSoknaderContext.Provider>
