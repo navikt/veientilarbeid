@@ -38,6 +38,7 @@ import {
     settKvitteringStatus,
     hentAlder,
     settAlder,
+    settDemoState,
 } from './demo-state';
 
 import './demo-dashboard.less';
@@ -152,6 +153,11 @@ class DemoDashboard extends React.Component<{}> {
 
         const handleChangeMeldekortdager = (e: React.ChangeEvent<HTMLSelectElement>) => {
             settAntallDagerEtterFastsattMeldedag(e.target.value);
+            window.location.reload();
+        };
+
+        const handleChangeSprak = (e: React.ChangeEvent<HTMLSelectElement>) => {
+            settDemoState(DemoData.SPRAK, e.target.value);
             window.location.reload();
         };
 
@@ -287,6 +293,11 @@ class DemoDashboard extends React.Component<{}> {
             6: '😬 +6 (søndag)',
             7: '🥵 +7 Siste frist (mandag)',
             8: '💸 +8 (tirsdag)',
+        };
+
+        const spraakValg = {
+            nb: 'Norsk',
+            en: 'Engelsk',
         };
 
         setFastTidspunktForIDag(hentDagRelativTilFastsattMeldedag());
@@ -446,6 +457,17 @@ class DemoDashboard extends React.Component<{}> {
                         {Object.keys(kvitteringsStatuser).map((gruppe: string) => (
                             <option key={gruppe} value={gruppe}>
                                 {kvitteringsStatuser[gruppe]}
+                            </option>
+                        ))}
+                    </Select>
+                    <Select
+                        label="Velg språk"
+                        onChange={handleChangeSprak}
+                        defaultValue={hentDemoState(DemoData.SPRAK) || 'nb'}
+                    >
+                        {Object.keys(spraakValg).map((sprak) => (
+                            <option key={sprak} value={sprak}>
+                                {spraakValg[sprak]}
                             </option>
                         ))}
                     </Select>
