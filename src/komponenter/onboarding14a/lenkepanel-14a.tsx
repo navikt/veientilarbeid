@@ -29,7 +29,7 @@ const Lenkepanel14A: React.FC<Lenkepanel14AProps> = (props) => {
     }
 
     return (
-        <LinkPanel href={props.href} onClick={handleClickInnsending} className={'fjorten-A-start-dialog-kort'}>
+        <LinkPanel href={props.href} onClick={handleClickInnsending} className={'blokk-xs'}>
             <LinkPanel.Title>Start en dialog</LinkPanel.Title>
             <LinkPanel.Description>
                 <BodyShort>{dialogTekst(props.antallUlesteDialoger)}</BodyShort>
