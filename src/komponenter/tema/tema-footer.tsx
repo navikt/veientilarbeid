@@ -1,5 +1,7 @@
 import { Next, Back } from '@navikt/ds-icons';
 import { BodyShort, Button, Link } from '@navikt/ds-react';
+import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
+import { useSprakValg } from '../../contexts/sprak';
 
 interface TemaFooterProps {
     antallSider: number;
@@ -11,6 +13,25 @@ interface TemaFooterProps {
     hoppOverLenkeTekst?: string;
     lesPaaNyttLenkeTekst?: string;
 }
+
+const TEKSTER = {
+    nb: {
+        start: 'Start introduksjonen',
+        skip: 'Hopp over introduksjonen for nå',
+        vis: 'Vis introduksjon',
+        forrige: 'Forrige',
+        neste: 'Neste',
+        ferdig: 'Fullfør',
+    },
+    en: {
+        start: 'Start introduction',
+        skip: 'Skip introduction',
+        vis: 'Show introduction',
+        forrige: 'Previous',
+        neste: 'Next',
+        ferdig: 'Finish',
+    },
+};
 
 const TemaFooter = (props: TemaFooterProps) => {
     const {
@@ -24,17 +45,19 @@ const TemaFooter = (props: TemaFooterProps) => {
         lesPaaNyttLenkeTekst,
     } = props;
 
+    const hentTekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
+
     if (antallSider <= 1) return null;
     if (antallSider >= 2) {
         if (gjeldendeKortIndex === 0) {
             return (
                 <div className="kolonne">
                     <Button variant="secondary" className={'mb-2'} onClick={nesteKort}>
-                        <span>Start introduksjonen</span>
+                        <span>{hentTekst('start')}</span>
                         <Next />
                     </Button>
                     <Link onClick={hoppOverIntro} href={'#'} className="tracking-wide">
-                        {hoppOverLenkeTekst ?? 'Hopp over introduksjonen for nå'}
+                        {hoppOverLenkeTekst ?? hentTekst('skip')}
                     </Link>
                 </div>
             );
@@ -44,7 +67,7 @@ const TemaFooter = (props: TemaFooterProps) => {
                 <div className="kolonne">
                     <BodyShort>
                         <Link onClick={handleLesIntroPaaNytt} href={'#'}>
-                            {lesPaaNyttLenkeTekst || 'Vis introduksjon'}
+                            {lesPaaNyttLenkeTekst || hentTekst('vis')}
                         </Link>
                     </BodyShort>
                 </div>
@@ -54,10 +77,10 @@ const TemaFooter = (props: TemaFooterProps) => {
             <>
                 <div className={'rad'}>
                     <Button size="small" variant="tertiary" disabled={gjeldendeKortIndex === 1} onClick={forrigeKort}>
-                        <Back /> Forrige
+                        <Back /> {hentTekst('forrige')}
                     </Button>
                     <Button size="small" variant="tertiary" onClick={nesteKort}>
-                        {gjeldendeKortIndex === antallSider - 2 ? 'Fullfør' : 'Neste'}
+                        {gjeldendeKortIndex === antallSider - 2 ? hentTekst('ferdig') : hentTekst('neste')}
                         <Next />
                     </Button>
                 </div>
