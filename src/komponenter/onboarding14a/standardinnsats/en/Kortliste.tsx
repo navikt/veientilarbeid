@@ -1,31 +1,31 @@
-import { useContext } from 'react';
-import Feedback from '../../feedback/feedback';
-import { OppfolgingContext, Servicegruppe } from '../../../contexts/oppfolging';
-import { amplitudeLogger } from '../../../metrics/amplitude-utils';
-import { useAmplitudeData } from '../../../contexts/amplitude-context';
 import { BodyShort, Detail, Heading, Link } from '@navikt/ds-react';
+import Feedback from '../../../feedback/feedback';
+import { useContext } from 'react';
+import { OppfolgingContext, Servicegruppe } from '../../../../contexts/oppfolging';
+import { useAmplitudeData } from '../../../../contexts/amplitude-context';
+import { amplitudeLogger } from '../../../../metrics/amplitude-utils';
 
 function Kort1() {
     return (
         <div className="kortflate">
             <div>
-                <Heading size="medium">Hva slags hjelp kan jeg få?</Heading>
+                <Heading size="medium">What kind of help can I get?</Heading>
                 <Detail size="small" className="blokk-xs">
-                    1 av 4
+                    1 of 4
                 </Detail>
 
                 <BodyShort className={'blokk-xs'}>
-                    NAV har gjort en vurdering av svarene dine, og det ser ut til at du har gode muligheter til å skaffe
-                    deg jobb på egenhånd.
+                    NAV has made an assesement of your answers, and it seems you have good chances of getting a job on
+                    your own.
                 </BodyShort>
 
-                <BodyShort>Vurderingen baserer seg på:</BodyShort>
+                <BodyShort>The assesement is based on:</BodyShort>
                 <ul>
-                    <li>svarene fra registreringen</li>
-                    <li>opplysningene NAV har om din situasjon</li>
+                    <li>your answers from the registration</li>
+                    <li>information NAV has about your situation</li>
                 </ul>
             </div>
-            <Feedback id={'Introkort14A-01-standard'} />
+            <Feedback id={'Introkort14A-en-01-standard'} />
         </div>
     );
 }
@@ -42,34 +42,34 @@ function Kort2() {
         });
     };
 
-    const tittel = servicegruppe === Servicegruppe.IKVAL ? 'Du har mottatt et brev' : 'Du vil motta et brev';
+    const tittel = servicegruppe === Servicegruppe.IKVAL ? 'You have received a letter' : 'You will receive a letter';
 
     return (
         <div className="kortflate">
             <div>
                 <Heading size="medium">{tittel}</Heading>
                 <Detail size="small" className="blokk-xs">
-                    2 av 4
+                    2 of 4
                 </Detail>
                 <BodyShort className={'blokk-xs'}>
                     {servicegruppe === Servicegruppe.IKVAL ? (
                         <>
-                            Du har mottatt brevet{' '}
+                            You have received the letter{' '}
                             <Link onClick={handleLesBrev} href={'https://mininnboks.nav.no/'}>
                                 «NAV har vurdert dine muligheter»
                             </Link>
                             .
                         </>
                     ) : (
-                        'Du vil i løpet av den første uken motta brevet «NAV har vurdert dine muligheter».'
+                        'You will receive the letter «NAV har vurdert dine muligheter» within a week.'
                     )}
                 </BodyShort>
 
                 <BodyShort className={'blokk-m'}>
-                    Dette brevet er ikke et svar på en eventuell søknad om dagpenger.
+                    This letter is not a response to any application for unemployment benefits.
                 </BodyShort>
             </div>
-            <Feedback id={'Introkort14A-02-standard'} />
+            <Feedback id={'Introkort14A-en-02-standard'} />
         </div>
     );
 }
@@ -89,22 +89,22 @@ function Kort3() {
     return (
         <div className="kortflate">
             <div>
-                <Heading size="medium">Hva er en veileder?</Heading>
+                <Heading size="medium">What is a counselor?</Heading>
                 <Detail size="small" className="blokk-xs">
-                    3 av 4
+                    3 of 4
                 </Detail>
                 <BodyShort className={'blokk-xs'}>
-                    En veileder sin oppgave er å besvare spørsmål, bistå rundt det å søke stillinger og tilby hjelp på
-                    veien til arbeid.
+                    The job of a counselor is to answer questions, and to offer help and support with getting you back
+                    to work.
                 </BodyShort>
 
                 <BodyShort className={'blokk-xs'}>
-                    Veiledere kan <strong>ikke</strong> svare på spørsmål om søknader, behandling av søknader eller
-                    utbetalinger av dagpenger.
+                    Counselors can <strong>not</strong> answer questions about applications, processing of applications
+                    or payments of unemployment benefits.
                 </BodyShort>
 
                 <BodyShort className={'blokk-m'}>
-                    Dersom du lurer på noe om dagpenger ber vi deg bruke{' '}
+                    If you have questions about unemployment benefits, we ask you to{' '}
                     <Link
                         href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
                         onClick={() =>
@@ -114,9 +114,9 @@ function Kort3() {
                             )
                         }
                     >
-                        skriv til oss
+                        write to us
                     </Link>{' '}
-                    eller{' '}
+                    or contact us on{' '}
                     <Link
                         href="https://www.nav.no/person/kontakt-oss/chat/"
                         onClick={() =>
@@ -131,7 +131,7 @@ function Kort3() {
                     .
                 </BodyShort>
             </div>
-            <Feedback id={'Introkort14A-03-standard'} />
+            <Feedback id={'Introkort14A-en-03-standard'} />
         </div>
     );
 }
@@ -140,22 +140,22 @@ function Kort4() {
     return (
         <div className="kortflate">
             <div>
-                <Heading size="medium">Ta kontakt om du trenger hjelp</Heading>
+                <Heading size="medium">Get in touch if you need help</Heading>
                 <Detail size="small" className="blokk-xs">
-                    4 av 4
+                    4 of 4
                 </Detail>
-                <BodyShort className={'blokk-xs'}>Du kan få hjelp fra en veileder.</BodyShort>
+                <BodyShort className={'blokk-xs'}>You can get help from a counselor.</BodyShort>
 
                 <BodyShort className={'blokk-xs'}>
-                    Da må du selv kontakte veileder ved å bruke dialogen som vises på slutten av denne introduksjonen.
+                    You will then have to reach out to a counselor by using the dialogue at the end of this
+                    introduction.
                 </BodyShort>
 
                 <BodyShort className={'blokk-m'}>
-                    Du kan gi oss beskjed om at du ønsker hjelp nå med en gang, eller se litt an hvordan du syns
-                    jobbsøkingen din går før du tar kontakt.
+                    You may contact us right away, or give it a shot on your own first.
                 </BodyShort>
             </div>
-            <Feedback id={'Introkort14A-04-standard'} />
+            <Feedback id={'Introkort14A-en-04-standard'} />
         </div>
     );
 }

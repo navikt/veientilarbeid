@@ -24,8 +24,8 @@ const TEKSTER = {
         ferdig: 'Fullfør',
     },
     en: {
-        start: 'Start introduction',
-        skip: 'Skip introduction',
+        start: 'Start the introduction',
+        skip: 'Skip the introduction',
         vis: 'Show introduction',
         forrige: 'Previous',
         neste: 'Next',

@@ -3,7 +3,7 @@ import { useOppfolgingData } from '../../contexts/oppfolging';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { KssStartkort, KssKortliste, KssSluttkort } from './kss';
-import { StandardStartkort, StandardKortliste, StandardSluttkort } from './standardinnsats';
+import lagStandardKort from './standardinnsats';
 import { UngdomsinnsatsStartkort, UngdomsinnsatsKortliste, UngdomsinnsatsSluttkort } from './ungdomsinnsats';
 import { erKSSBruker } from '../../lib/er-kss-bruker';
 import Tema from '../tema/tema';
@@ -11,7 +11,7 @@ import './14a-intro.less';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import sjekkOmBrukerErUngdomsinnsats from '../../lib/er-ungdomsinnsats';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
-import { useSprakValg } from '../../contexts/sprak';
+import { Sprak, useSprakValg } from '../../contexts/sprak';
 
 const INTRO_KEY_14A = '14a-intro';
 const AMPLITUDE_TEMA_TAG = '14a';
@@ -29,7 +29,8 @@ const TEKSTER = {
 
 function hentKortbunke(
     skalViseKssKort: boolean,
-    skalViseUngdomsinnsatsKort: boolean
+    skalViseUngdomsinnsatsKort: boolean,
+    sprak: Sprak
 ): [() => JSX.Element, JSX.Element[], () => JSX.Element] {
     if (skalViseKssKort) {
         return [KssStartkort, KssKortliste, KssSluttkort];
@@ -39,7 +40,7 @@ function hentKortbunke(
         return [UngdomsinnsatsStartkort, UngdomsinnsatsKortliste, UngdomsinnsatsSluttkort];
     }
 
-    return [StandardStartkort, StandardKortliste, StandardSluttkort];
+    return lagStandardKort(sprak);
 }
 
 function Intro14AWrapper() {
@@ -60,9 +61,10 @@ function Intro14AWrapper() {
     });
 
     const skalViseUngdomsinnsatsKort = sjekkOmBrukerErUngdomsinnsats({ brukerInfoData, featuretoggleData });
+    const sprak = useSprakValg().sprak;
+    const hentTekst = lagHentTekstForSprak(TEKSTER, sprak);
 
-    const hentTekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
-    const [Startkort, Kortliste, Sluttkort] = hentKortbunke(skalViseKssKort, skalViseUngdomsinnsatsKort);
+    const [Startkort, Kortliste, Sluttkort] = hentKortbunke(skalViseKssKort, skalViseUngdomsinnsatsKort, sprak);
 
     const innhold = (
         <Tema
