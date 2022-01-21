@@ -2,12 +2,31 @@ import * as React from 'react';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
 import { BodyShort, LinkPanel } from '@navikt/ds-react';
 import './lenkepanel-14a.less';
+import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
+import { useSprakValg } from '../../contexts/sprak';
 
 interface Lenkepanel14AProps {
     amplitudeData: AmplitudeData;
     href: string;
     antallUlesteDialoger: number;
 }
+
+const TEKSTER = {
+    nb: {
+        title: 'Start en dialog',
+        onsker_hjelp: 'om du ønsker hjelp',
+        ulest_melding: 'ulest melding',
+        uleste_meldinger: 'uleste meldinger',
+        du_har: 'Du har ',
+    },
+    en: {
+        title: 'Start a dialogue',
+        onsker_hjelp: 'if you need help',
+        ulest_melding: 'unread message',
+        uleste_meldinger: 'unread messages',
+        du_har: 'You have ',
+    },
+};
 
 const Lenkepanel14A: React.FC<Lenkepanel14AProps> = (props) => {
     const handleClickInnsending = () => {
@@ -18,19 +37,22 @@ const Lenkepanel14A: React.FC<Lenkepanel14AProps> = (props) => {
         });
     };
 
+    const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
+
     function dialogTekst(antallUlesteDialoger: number) {
-        if (antallUlesteDialoger === 0) return 'om du ønsker hjelp';
+        if (antallUlesteDialoger === 0) return tekst('onsker_hjelp');
         return (
             <>
-                Du har <span className="dialog__ulesteMeldinger">{antallUlesteDialoger}</span>{' '}
-                {antallUlesteDialoger === 1 ? 'ulest melding' : 'uleste meldinger'}
+                {tekst('du_har')}
+                <span className="dialog__ulesteMeldinger">{antallUlesteDialoger}</span>{' '}
+                {antallUlesteDialoger === 1 ? tekst('ulest_melding') : tekst('uleste meldinger')}
             </>
         );
     }
 
     return (
         <LinkPanel href={props.href} onClick={handleClickInnsending} className={'blokk-xs'}>
-            <LinkPanel.Title>Start en dialog</LinkPanel.Title>
+            <LinkPanel.Title>{tekst('title')}</LinkPanel.Title>
             <LinkPanel.Description>
                 <BodyShort>{dialogTekst(props.antallUlesteDialoger)}</BodyShort>
             </LinkPanel.Description>

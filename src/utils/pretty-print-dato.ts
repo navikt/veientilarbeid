@@ -1,3 +1,5 @@
+import { Sprak } from '../contexts/sprak';
+
 const monthNames = [
     'januar',
     'februar',
@@ -13,7 +15,11 @@ const monthNames = [
     'desember',
 ];
 
-const prettyPrintDato = (dato: string) => {
+const prettyPrintDato = (dato: string, locale?: Sprak) => {
+    if (locale === 'en') {
+        return new Date(dato).toLocaleDateString('en');
+    }
+
     const now = new Date();
     const date = new Date(dato);
     const thisYear = now.getFullYear();
