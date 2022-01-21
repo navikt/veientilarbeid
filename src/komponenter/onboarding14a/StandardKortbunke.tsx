@@ -2,7 +2,7 @@ import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useOppfolgingData } from '../../contexts/oppfolging';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
-import { KssStartkort, KssKortliste, KssSluttkort } from './kss';
+import lagKssKort from './kss';
 import lagStandardKort from './standardinnsats';
 import { UngdomsinnsatsStartkort, UngdomsinnsatsKortliste, UngdomsinnsatsSluttkort } from './ungdomsinnsats';
 import { erKSSBruker } from '../../lib/er-kss-bruker';
@@ -33,7 +33,7 @@ function hentKortbunke(
     sprak: Sprak
 ): [() => JSX.Element, JSX.Element[], () => JSX.Element] {
     if (skalViseKssKort) {
-        return [KssStartkort, KssKortliste, KssSluttkort];
+        return lagKssKort(sprak);
     }
 
     if (skalViseUngdomsinnsatsKort) {

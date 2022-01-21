@@ -1,5 +1,15 @@
 import Startkort from './Startkort';
 import Kortliste from './Kortliste';
 import Sluttkort from './Sluttkort';
+import EngelskKortliste from './en/Kortliste';
+import { Sprak } from '../../../contexts/sprak';
 
-export { Startkort as KssStartkort, Kortliste as KssKortliste, Sluttkort as KssSluttkort };
+const lagKssKort = (sprak: Sprak): [() => JSX.Element, JSX.Element[], () => JSX.Element] => {
+    if (sprak === 'en') {
+        return [Startkort, EngelskKortliste, Sluttkort];
+    }
+
+    return [Startkort, Kortliste, Sluttkort];
+};
+
+export default lagKssKort;
