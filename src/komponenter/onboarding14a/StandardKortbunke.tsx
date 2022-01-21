@@ -7,7 +7,6 @@ import lagStandardKort from './standardinnsats';
 import { UngdomsinnsatsStartkort, UngdomsinnsatsKortliste, UngdomsinnsatsSluttkort } from './ungdomsinnsats';
 import { erKSSBruker } from '../../lib/er-kss-bruker';
 import Tema from '../tema/tema';
-import './14a-intro.less';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import sjekkOmBrukerErUngdomsinnsats from '../../lib/er-ungdomsinnsats';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
