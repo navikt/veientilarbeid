@@ -47,8 +47,14 @@ type Props = OwnProps;
 
 const hentSprakValg = (): SprakValg.State => {
     const urlParams = new URLSearchParams(window.location.search);
+    const decoratorLanguageCookie = document.cookie.match(/decorator-language=([a-z]{2})/);
+    const cookieVerdi = decoratorLanguageCookie && decoratorLanguageCookie[1];
+
+    console.debug('VTA > hentSprakValg fra cookie=', cookieVerdi);
+    // document.cookie.match(/decorator-language=([a-z]{2})/)[1]
 
     return {
+        // sprak: ((cookieVerdi ? cookieVerdi : urlParams.get('lang')) || 'nb') as SprakValg.Sprak,
         sprak: (urlParams.get('lang') || 'nb') as SprakValg.Sprak,
     };
 };
