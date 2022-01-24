@@ -6,8 +6,34 @@ import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useBrowserStorage } from '../../hooks/use-browserstorage';
-
+import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
+import { useSprakValg } from '../../contexts/sprak';
 import './feedback.less';
+
+const TEKSTER = {
+    nb: {
+        varDetteNyttig: 'Var dette nyttig å lese?',
+        ja: 'Ja',
+        nei: 'Nei',
+        hvorforNei: 'Hvorfor svarte du nei?',
+        gammeltNytt: 'Visste det fra før',
+        forstodIkke: 'Forstår ikke innholdet',
+        uviktig: 'Føles ikke viktig',
+        andreGrunner: 'Andre grunner',
+        vetIkke: 'Vet ikke',
+    },
+    en: {
+        varDetteNyttig: 'Was this information useful?',
+        ja: 'Yes',
+        nei: 'No',
+        hvorforNei: 'Why did you answer No?',
+        gammeltNytt: 'I already knew this',
+        forstodIkke: 'I did not understand it',
+        uviktig: 'Felt unimportant',
+        andreGrunner: 'Other reasons',
+        vetIkke: 'Uncertain',
+    },
+};
 
 interface Props {
     id?: string;
@@ -23,6 +49,8 @@ function Feedback({ id, className }: Props) {
     const [visPopover, setVisPopover] = useState<HTMLElement | undefined>(undefined);
     const amplitudeData = useAmplitudeData();
     const featuretoggledata = useFeatureToggleData();
+
+    const hentTekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     useEffect(() => {
         const { valgt } = feedback;
@@ -69,17 +97,17 @@ function Feedback({ id, className }: Props) {
         <>
             <div className={`${className ? className : ''} feedback-container`}>
                 <Detail size="small" className="feedback-tittel">
-                    Var dette nyttig å lese?
+                    {hentTekst('varDetteNyttig')}
                 </Detail>
                 <div className={'valg'}>
                     <button onClick={() => handleFeedback('ja')} className={jaKnapp}>
-                        <Detail size="small">Ja</Detail>
+                        <Detail size="small">{hentTekst('ja')}</Detail>
                     </button>
                     <span className="feedback-space" aria-hidden="true">
                         |
                     </span>
                     <button onClick={() => handleFeedback('nei')} className={neiKnapp} id="nei-knapp">
-                        <Detail size="small">Nei</Detail>
+                        <Detail size="small">{hentTekst('nei')}</Detail>
                     </button>
                     <Popover
                         id="popover-nei"
@@ -89,27 +117,29 @@ function Feedback({ id, className }: Props) {
                         tabIndex={-1}
                         arrow={false}
                     >
-                        <BodyShort className="feedback-utdyping">Hvorfor svarte du nei?</BodyShort>
+                        <BodyShort className="feedback-utdyping">{hentTekst('hvorforNei')}</BodyShort>
                         <ul className="feedback-grunner">
                             <li>
                                 <button onClick={() => handleFeedback('nei - visste det fra før')}>
-                                    Visste det fra før
+                                    {hentTekst('gammeltNytt')}
                                 </button>
                             </li>
                             <li>
                                 <button onClick={() => handleFeedback('nei - forstår ikke innholdet')}>
                                     {' '}
-                                    Forstår ikke innholdet
+                                    {hentTekst('forstodIkke')}
                                 </button>
                             </li>
                             <li>
                                 <button onClick={() => handleFeedback('nei - føles ikke viktig')}>
                                     {' '}
-                                    Føles ikke viktig
+                                    {hentTekst('uviktig')}
                                 </button>
                             </li>
                             <li>
-                                <button onClick={() => handleFeedback('nei - andre grunner')}>Andre grunner</button>
+                                <button onClick={() => handleFeedback('nei - andre grunner')}>
+                                    {hentTekst('andreGrunner')}
+                                </button>
                             </li>
                         </ul>
                     </Popover>
@@ -117,7 +147,7 @@ function Feedback({ id, className }: Props) {
                         |
                     </span>
                     <button onClick={() => handleFeedback('vet ikke')} className={vetIkkeKnapp}>
-                        <Detail size="small">Vet ikke</Detail>
+                        <Detail size="small">{hentTekst('vetIkke')}</Detail>
                     </button>
                 </div>
             </div>
