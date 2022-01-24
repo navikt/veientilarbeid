@@ -15,7 +15,20 @@ import { useUlesteDialogerData } from '../../../contexts/ulestedialoger';
 import EgenvurderingUke12, { INTRO_KEY_12UKER } from '../egenvurdering-uke12';
 import { kanVise12UkerEgenvurdering } from '../../../lib/kan-vise-12-uker-egenvurdering';
 import { useBrukerinfoData } from '../../../contexts/bruker-info';
-import { BodyShort, Heading } from '@navikt/ds-react';
+import { Heading } from '@navikt/ds-react';
+import lagHentTekstForSprak from '../../../lib/lag-hent-tekst-for-sprak';
+import { useSprakValg } from '../../../contexts/sprak';
+
+const TEKSTER = {
+    nb: {
+        for12uker: 'Ønsker du oppfølging før 12 uker må du gi oss beskjed',
+        etter12uker: 'Ta kontakt om du ønsker hjelp',
+    },
+    en: {
+        for12uker: 'Get in touch if you need help',
+        etter12uker: 'Get in touch if you need help',
+    },
+};
 
 function Sluttkort() {
     const amplitudeData = useAmplitudeData();
@@ -30,11 +43,11 @@ function Sluttkort() {
     const featuretoggleData = useFeatureToggleData();
     const { antallUleste } = useUlesteDialogerData();
 
+    const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
+
     const registrertDato = registreringData?.registrering?.opprettetDato;
     const registrertOver12Uker = ukerRegistrert > 12;
-    const kortTittel = registrertOver12Uker
-        ? 'Ta kontakt om du ønsker hjelp'
-        : 'Ønsker du oppfølging før 12 uker må du gi oss beskjed';
+    const kortTittel = registrertOver12Uker ? tekst('etter12uker') : tekst('for12uker');
 
     const featuretoggleEgenvurderingAktivert =
         featuretoggleData && featuretoggleData['veientilarbeid.vis-egenvurdering-med-14a'];
@@ -72,14 +85,7 @@ function Sluttkort() {
                 {kortTittel}
             </Heading>
             <RegistrertTeller ukerRegistrert={ukerRegistrert} registrertDato={registrertDato} />
-
             <Lenkepanel14A amplitudeData={amplitudeData} href={dialogLenke} antallUlesteDialoger={antallUleste} />
-            {registrertOver12Uker && (
-                <BodyShort>
-                    Veilederen kan besvare spørsmål, bistå rundt det å søke stillinger og tilby hjelp på veien til
-                    arbeid.
-                </BodyShort>
-            )}
         </>
     );
 }
