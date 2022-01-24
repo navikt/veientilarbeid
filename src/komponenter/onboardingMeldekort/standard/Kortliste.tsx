@@ -1,26 +1,54 @@
 import { Heading, BodyShort, Detail } from '@navikt/ds-react';
 import Feedback from '../../feedback/feedback';
+import lagHentTekstForSprak from '../../../lib/lag-hent-tekst-for-sprak';
+import { useSprakValg } from '../../../contexts/sprak';
 
+const TEKSTER = {
+    nb: {
+        av: 'av',
+        kort1Heading: 'Send inn meldekort annenhver uke',
+        kort1Body1: 'Når du er registrert som arbeidssøker, må du sende inn et meldekort hver 14. dag.',
+        kort1Body2: 'Det er innsending av meldekort som gjør at du opprettholder status som registrert arbeidssøker.',
+        kort1Body3: 'Du må også sende meldekort i perioden du venter svar på en innsendt søknad om dagpenger.',
+        kort2Heading: 'Hva brukes meldekortet til?',
+        kort2Body1: 'Utbetaling av dagpenger beregnes ut fra opplysninger du har lagt inn på meldekortet.',
+        kort2Body2: 'Sender du inn meldekortet etter fristen, kan det føre til at du får mindre utbetalt.',
+        kort2Body3:
+            'Lar du være å sende inn meldekort, tolker NAV det som at du ikke ønsker å stå registrert som arbeidssøker.',
+        kort3Heading: 'Send meldekort før fristen går ut',
+        kort3Body1:
+            'Dersom du sender inn meldekortet for sent vil dagpengene kunne stanses, og du risikerer at arbeidsoppfølging fra NAV avsluttes.',
+        kort3Body2: 'Det er derfor viktig at du sender inn meldekortene før fristen går ut.',
+    },
+    en: {
+        av: 'of',
+        kort1Heading: 'Send in the employment status form every other week',
+        kort1Body1:
+            'When you are registered as a job seeker, you have to submit the employment status form once every 14. day',
+        kort1Body2: 'It is by submitting the employment status form you keep your status as a registered job seeker.',
+        kort1Body3: 'You also have to send in the form while having a pending application for unemployment benefits.',
+        kort2Heading: 'What is the purpose of the employment status form?',
+        kort2Body1: 'Payment of unemployment benefits is calculated from information in the employment status form.',
+        kort2Body2: 'If you submit the form after the due date, it may lead to you getting less benefits.',
+        kort2Body3:
+            'If you do not submit the employment status form, NAV will assume that you do not want to be registered as a job seeker.',
+        kort3Heading: 'Submit the employment status form before the due date',
+        kort3Body1: 'If you do not submit the employment status form, you may loose your unemployment benefits',
+        kort3Body2: 'It is important that you submit the employment status form in time.',
+    },
+};
 function Kort1() {
+    const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
     return (
         <>
             <div>
-                <Heading size="medium">Send inn meldekort annenhver uke</Heading>
+                <Heading size="medium">{tekst('kort1Heading')}</Heading>
                 <Detail size="small" className="blokk-xs">
-                    1 av 3
+                    1 {tekst('av')} 3
                 </Detail>
-
-                <BodyShort className="blokk-xs">
-                    Når du er registrert som arbeidssøker, må du sende inn et meldekort hver 14. dag.
-                </BodyShort>
-
-                <BodyShort className="blokk-xs">
-                    Det er innsending av meldekort som gjør at du opprettholder status som registrert arbeidssøker.
-                </BodyShort>
-
-                <BodyShort>
-                    Du må også sende meldekort i perioden du venter svar på en innsendt søknad om dagpenger.
-                </BodyShort>
+                <BodyShort className="blokk-xs">{tekst('kort1Body1')}</BodyShort>
+                <BodyShort className="blokk-xs">{tekst('kort1Body2')}</BodyShort>
+                <BodyShort>{tekst('kort1Body3')}</BodyShort>
             </div>
             <Feedback id={'meldekort-kort-01'} />
         </>
@@ -28,23 +56,17 @@ function Kort1() {
 }
 
 function Kort2() {
+    const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
     return (
         <>
             <div>
-                <Heading size="medium">Hva brukes meldekortet til?</Heading>
+                <Heading size="medium">{tekst('kort2Heading')}</Heading>
                 <Detail size="small" className="blokk-xs">
-                    2 av 3
+                    2 {tekst('av')} 3
                 </Detail>
-                <BodyShort className="blokk-xs">
-                    Utbetaling av dagpenger beregnes ut fra opplysninger du har lagt inn på meldekortet.
-                </BodyShort>
-                <BodyShort className="blokk-xs">
-                    Sender du inn meldekortet etter fristen, kan det føre til at du får mindre utbetalt.
-                </BodyShort>
-                <BodyShort>
-                    Lar du være å sende inn meldekort, tolker NAV det som at du ikke ønsker å stå registrert som
-                    arbeidssøker.
-                </BodyShort>
+                <BodyShort className="blokk-xs">{tekst('kort2Body1')}</BodyShort>
+                <BodyShort className="blokk-xs">{tekst('kort2Body2')}</BodyShort>
+                <BodyShort>{tekst('kort2Body3')}</BodyShort>
             </div>
             <Feedback id={'meldekort-kort-02'} />
         </>
@@ -52,19 +74,16 @@ function Kort2() {
 }
 
 function Kort3() {
+    const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
     return (
         <>
             <div>
-                <Heading size="medium">Send meldekort før fristen går ut</Heading>
+                <Heading size="medium">{tekst('kort3Heading')}</Heading>
                 <Detail size="small" className="blokk-xs">
-                    3 av 3
+                    3 {tekst('av')} 3
                 </Detail>
-                <BodyShort className="blokk-xs">
-                    Dersom du sender inn meldekortet for sent vil dagpengene kunne stanses, og du risikerer at
-                    arbeidsoppfølging fra NAV avsluttes.
-                </BodyShort>
-
-                <BodyShort>Det er derfor viktig at du sender inn meldekortene før fristen går ut.</BodyShort>
+                <BodyShort className="blokk-xs">{tekst('kort3Body1')}</BodyShort>
+                <BodyShort>{tekst('kort3Body2')}</BodyShort>
             </div>
             <Feedback id={'meldekort-kort-03'} />
         </>

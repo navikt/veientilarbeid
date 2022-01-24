@@ -10,7 +10,17 @@ import Tema from '../tema/tema';
 import { SituasjonsbestemtKortliste, SituasjonsbestemtStartkort } from './situasjonsbestemt';
 import Sluttkort from './Sluttkort';
 import { StandardKortliste, StandardStartkort } from './standard';
+import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
+import { useSprakValg } from '../../contexts/sprak';
 
+const TEKSTER = {
+    nb: {
+        header: 'Meldekort',
+    },
+    en: {
+        header: 'Employment status form',
+    },
+};
 const MeldekortOnboarding = () => {
     const registreringData = useBrukerregistreringData();
     const oppfolgingData = useOppfolgingData();
@@ -26,6 +36,8 @@ const MeldekortOnboarding = () => {
         brukerregistreringData,
         oppfolgingData,
     });
+
+    const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     if (
         !kanViseMeldekortStatus({
@@ -48,7 +60,7 @@ const MeldekortOnboarding = () => {
 
     return (
         <Tema
-            header="Meldekort"
+            header={tekst('header')}
             id={MELDEKORT_ONBOARDING_KEY}
             amplitudeTemaTag="meldekort"
             hoppOverPreState={hoppOverPreState}
