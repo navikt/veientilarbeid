@@ -45,16 +45,17 @@ interface OwnProps {
 
 type Props = OwnProps;
 
+export const hentSprakValgFraCookie = (): SprakValg.Sprak | null => {
+    const decoratorLanguageCookie = document.cookie.match(/decorator-language=([a-z]{2})/);
+    return decoratorLanguageCookie && (decoratorLanguageCookie[1] as SprakValg.Sprak);
+};
+
 const hentSprakValg = (): SprakValg.State => {
     const urlParams = new URLSearchParams(window.location.search);
-    const decoratorLanguageCookie = document.cookie.match(/decorator-language=([a-z]{2})/);
-    const cookieVerdi = decoratorLanguageCookie && decoratorLanguageCookie[1];
-
-    console.debug('VTA > hentSprakValg fra cookie=', cookieVerdi);
-    // document.cookie.match(/decorator-language=([a-z]{2})/)[1]
+    // const cookieVerdi = hentSprakValgFraCookie();
 
     return {
-        // sprak: ((cookieVerdi ? cookieVerdi : urlParams.get('lang')) || 'nb') as SprakValg.Sprak,
+        // sprak: (urlParams.get('lang')) || cookieVerdi || 'nb') as SprakValg.Sprak,
         sprak: (urlParams.get('lang') || 'nb') as SprakValg.Sprak,
     };
 };

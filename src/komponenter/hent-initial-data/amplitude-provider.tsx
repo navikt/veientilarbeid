@@ -37,6 +37,7 @@ import erSannsynligvisInaktivertStandardbruker from '../../lib/er-sannsyligvis-i
 import { useDpInnsynSoknadData } from '../../contexts/dp-innsyn-soknad';
 import { useDpInnsynVedtakData } from '../../contexts/dp-innsyn-vedtak';
 import beregnDagpengeStatus, { sorterEtterNyesteVedtak } from '../../lib/beregn-dagpenge-status';
+import { hentSprakValgFraCookie } from './data-provider';
 
 function hentDagerEtterFastsattMeldedag(
     iDag: Date,
@@ -228,6 +229,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         dagpengerDagerMellomPaabegyntSoknadOgRegistrering,
         dagpengerDagerMellomInnsendtSoknadOgRegistrering,
         dagpengerStatusBeregning: 'INGEN_DATA',
+        sprakValgFraCookie: hentSprakValgFraCookie(),
     };
 
     return <AmplitudeContext.Provider value={amplitudeData}>{props.children}</AmplitudeContext.Provider>;

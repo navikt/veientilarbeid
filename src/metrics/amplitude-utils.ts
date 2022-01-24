@@ -6,6 +6,7 @@ import { erProduksjon } from '../utils/app-state-utils';
 import { POAGruppe } from '../utils/get-poa-group';
 import { EksperimentId } from '../eksperiment/eksperimenter';
 import { DinSituasjonSvar, ForeslattInnsatsgruppe } from '../contexts/brukerregistrering';
+import * as SprakValg from '../contexts/sprak';
 
 const apiKey = erProduksjon() ? AMPLITUDE_API_KEY_PROD : AMPLITUDE_API_KEY_TEST;
 const config = {
@@ -67,6 +68,7 @@ export type AmplitudeData = {
     dagpengerDagerMellomPaabegyntSoknadOgRegistrering: number | 'INGEN_DATA';
     dagpengerDagerMellomInnsendtSoknadOgRegistrering: number | 'INGEN_DATA';
     dagpengerStatusBeregning: string;
+    sprakValgFraCookie?: SprakValg.Sprak | null;
 };
 
 export function amplitudeLogger(name: string, values?: object) {

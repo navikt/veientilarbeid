@@ -38,6 +38,7 @@ export const initialState: AmplitudeData = {
     dagpengerDagerMellomPaabegyntSoknadOgRegistrering: 'INGEN_DATA',
     dagpengerDagerMellomInnsendtSoknadOgRegistrering: 'INGEN_DATA',
     dagpengerStatusBeregning: 'INGEN_DATA',
+    sprakValgFraCookie: null,
 };
 
 const AmplitudeContext = createContext<AmplitudeData>(initialState);
