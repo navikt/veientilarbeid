@@ -1,30 +1,48 @@
 import { Sprak } from '../contexts/sprak';
 
-const monthNames = [
-    'januar',
-    'februar',
-    'mars',
-    'april',
-    'mai',
-    'juni',
-    'juli',
-    'august',
-    'september',
-    'oktober',
-    'november',
-    'desember',
-];
+const monthNames = {
+    nb: [
+        'januar',
+        'februar',
+        'mars',
+        'april',
+        'mai',
+        'juni',
+        'juli',
+        'august',
+        'september',
+        'oktober',
+        'november',
+        'desember',
+    ],
+    en: [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
+    ],
+};
 
 const prettyPrintDato = (dato: string, locale?: Sprak) => {
-    if (locale === 'en') {
-        return new Date(dato).toLocaleDateString('en');
-    }
-
     const now = new Date();
     const date = new Date(dato);
     const thisYear = now.getFullYear();
     const year = date.getFullYear();
-    const month = monthNames[date.getMonth()];
+    const valgtSprak = !locale ? 'nb' : (locale as Sprak);
+    const month = monthNames[valgtSprak][date.getMonth()];
+
+    if (valgtSprak === 'en') {
+        return `${month} ${date.getDate()}.${thisYear !== year ? ' ' + year : ''}`;
+    }
+
     return `${date.getDate()}. ${month}${thisYear !== year ? ' ' + year : ''}`;
 };
 
