@@ -22,7 +22,7 @@ const TEKSTER = {
     },
     en: {
         av: 'of',
-        kort1Heading: 'Send in the employment status form every other week',
+        kort1Heading: 'Submit the employment status form every other week',
         kort1Body1:
             'When you are registered as a job seeker, you have to submit the employment status form once every 14. day',
         kort1Body2: 'It is by submitting the employment status form you keep your status as a registered job seeker.',
@@ -34,7 +34,7 @@ const TEKSTER = {
             'If you do not submit the employment status form, NAV will assume that you do not want to be registered as a job seeker.',
         kort3Heading: 'Submit the employment status form before the due date',
         kort3Body1: 'If you do not submit the employment status form, you may loose your unemployment benefits',
-        kort3Body2: 'It is important that you submit the employment status form in time.',
+        kort3Body2: 'It is important that you submit the employment status form on time.',
     },
 };
 function Kort1() {

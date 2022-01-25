@@ -139,7 +139,7 @@ describe('tester onboarding komponenten for meldekort', () => {
         const { container } = render(<MeldekortOnboarding />, { wrapper: contextProviders(props) });
         expect(container).not.toBeEmptyDOMElement();
         expect(
-            screen.getByText(/Meldekort for uke 3 og 4 blir tilgjengelig for innsending fra lørdag 30. januar/i)
+            screen.getByText(/Meldekort for uke 3 - 4 blir tilgjengelig for innsending fra lørdag 30. januar/i)
         ).toBeInTheDocument();
         expect(screen.getByText(/Les om meldekort/i)).toBeInTheDocument();
     });
@@ -152,7 +152,7 @@ describe('tester onboarding komponenten for meldekort', () => {
         const { container } = render(<MeldekortOnboarding />, { wrapper: contextProviders(props) });
         expect(container).not.toBeEmptyDOMElement();
         expect(screen.getByText(/Du kan nå sende inn meldekort/i)).toBeInTheDocument();
-        expect(screen.getByText(/Send inn for uke 3 og 4/i)).toBeInTheDocument();
+        expect(screen.getByText(/Send inn for uke 3 - 4/i)).toBeInTheDocument();
         expect(screen.getByText(/Fristen er mandag 8. februar, klokken 23.00/i)).toBeInTheDocument();
         expect(screen.getByText(/Vis introduksjon/i)).toBeInTheDocument();
     });
@@ -165,7 +165,7 @@ describe('tester onboarding komponenten for meldekort', () => {
         const { container } = render(<MeldekortOnboarding />, { wrapper: contextProviders(props) });
         expect(container).not.toBeEmptyDOMElement();
         expect(screen.getByText(regexMatcher(/Du har 6 dager på å sende inn meldekort/i))).toBeInTheDocument();
-        expect(screen.getByText(/Send inn for uke 3 og 4/i)).toBeInTheDocument();
+        expect(screen.getByText(/Send inn for uke 3 - 4/i)).toBeInTheDocument();
         expect(screen.getByText(/Fristen er mandag 8. februar, klokken 23.00/i)).toBeInTheDocument();
         expect(screen.getByText(/Vis introduksjon/i)).toBeInTheDocument();
         expect(screen.queryByText(/Dersom du ikke sender inn meldekort/i)).not.toBeInTheDocument();
@@ -179,7 +179,7 @@ describe('tester onboarding komponenten for meldekort', () => {
         const { container } = render(<MeldekortOnboarding />, { wrapper: contextProviders(props) });
         expect(container).not.toBeEmptyDOMElement();
         expect(screen.getByText(regexMatcher(/Du har 2 dager på å sende inn meldekort/i))).toBeInTheDocument();
-        expect(screen.getByText(/Send inn for uke 3 og 4/i)).toBeInTheDocument();
+        expect(screen.getByText(/Send inn for uke 3 - 4/i)).toBeInTheDocument();
         expect(screen.getByText(/Fristen er mandag 8. februar, klokken 23.00/i)).toBeInTheDocument();
         expect(screen.getByText(/Dersom du ikke sender inn meldekort/i)).toBeInTheDocument();
     });
@@ -191,7 +191,7 @@ describe('tester onboarding komponenten for meldekort', () => {
         };
         const { container } = render(<MeldekortOnboarding />, { wrapper: contextProviders(props) });
         expect(container).not.toBeEmptyDOMElement();
-        expect(screen.getByText(/Send inn for uke 3 og 4/i)).toBeInTheDocument();
+        expect(screen.getByText(/Send inn for uke 3 - 4/i)).toBeInTheDocument();
         expect(
             screen.getByText(/Siste frist for innsending av meldekortet er i kveld klokken 23.00/i)
         ).toBeInTheDocument();
@@ -216,7 +216,7 @@ describe('tester onboarding komponenten for meldekort', () => {
         };
         const { container } = render(<MeldekortOnboarding />, { wrapper: contextProviders(props) });
         expect(container).not.toBeEmptyDOMElement();
-        expect(screen.getByText(/Send inn for uke 3 og 4/i)).toBeInTheDocument();
+        expect(screen.getByText(/Send inn for uke 3 - 4/i)).toBeInTheDocument();
         expect(screen.getByText(/Siste frist for innsending av meldekortet er i kveld/i)).toBeInTheDocument();
         expect(screen.getByText(/Dersom du ikke sender inn meldekort/i)).toBeInTheDocument();
     });
@@ -273,7 +273,7 @@ describe('tester onboarding komponenten for meldekort', () => {
             iDag: new Date('2021-02-12T12:00:00+01:00'),
         };
         render(<MeldekortOnboarding />, { wrapper: contextProviders(props) });
-        expect(screen.getByText(/Du har 2 meldekort/i)).toBeInTheDocument();
+        expect(screen.getByText(/Meldekort som kan sendes inn: 2/i)).toBeInTheDocument();
     });
 
     test('Viser boks for bruker med profil: situasjonsbestemt', () => {

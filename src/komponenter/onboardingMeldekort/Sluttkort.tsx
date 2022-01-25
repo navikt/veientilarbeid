@@ -10,11 +10,35 @@ import {
 import * as Meldekort from '../../contexts/meldekort';
 import Meldekortstatus from './meldekortstatus';
 import TemaLenkepanel from '../tema/tema-lenkepanel';
+import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
+import { useSprakValg } from '../../contexts/sprak';
+
+const TEKSTER = {
+    nb: {
+        meldekortForUke: 'Meldekort for uke',
+        blirTilgjengelig: 'blir tilgjengelig for innsending fra',
+        meldekort: 'Meldekort',
+        lesOm: 'Les om meldekort',
+        sendesInn: 'Meldekort som kan sendes inn:',
+        sendInn: 'Send inn',
+        sendInnForUke: 'Send inn for uke',
+    },
+    en: {
+        meldekortForUke: 'The employment status form for weeks',
+        blirTilgjengelig: 'is available for submission from',
+        meldekort: 'Employment status form',
+        lesOm: 'Read about employment status form',
+        sendesInn: 'Employment status forms ready for submission:',
+        sendInn: 'Submit',
+        sendInnForUke: 'Submit for weeks',
+    },
+};
 
 function Sluttkort() {
     const dato = datoUtenTid(hentIDag().toISOString());
     const meldekortData = Meldekort.useMeldekortData();
     const meldekortForLevering = hentMeldekortForLevering(dato, meldekortData);
+    const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     if (meldekortForLevering.length === 0) {
         const meldekortIkkeKlarForLevering = hentFoerstkommendeMeldekortIkkeKlarForLevering(dato, meldekortData);
@@ -24,10 +48,10 @@ function Sluttkort() {
             <>
                 <div>
                     <Heading size="medium" className="blokk-xs">
-                        {`Meldekort for uke 
-                        ${hentISOUke(meldekortIkkeKlarForLevering.meldeperiode?.fra!!)} og ${hentISOUke(
+                        {`${tekst('meldekortForUke')} 
+                        ${hentISOUke(meldekortIkkeKlarForLevering.meldeperiode?.fra!!)} - ${hentISOUke(
                             meldekortIkkeKlarForLevering.meldeperiode?.til!!
-                        )} blir tilgjengelig for innsending fra ${datoMedUkedag(
+                        )} ${tekst('blirTilgjengelig')}  ${datoMedUkedag(
                             foersteSendedagForMeldekort(meldekortIkkeKlarForLevering)
                         )}`}
                     </Heading>
@@ -36,8 +60,8 @@ function Sluttkort() {
                             href={omMeldekortLenke}
                             amplitudeTema="meldekort"
                             amplitudeHandling="Går til innsending av meldekort"
-                            tittel="Meldekort"
-                            beskrivelse="Les om meldekort"
+                            tittel={tekst('meldekort')}
+                            beskrivelse={tekst('lesOm')}
                         />
                     </div>
                 </div>
@@ -50,14 +74,14 @@ function Sluttkort() {
             <>
                 <div>
                     <Heading size="medium" className="blokk-xs">
-                        Du har {meldekortForLevering.length} meldekort som kan sendes inn.
+                        {tekst('sendesInn')} {meldekortForLevering.length}
                     </Heading>
                     <TemaLenkepanel
                         href={meldekortLenke}
                         amplitudeTema="meldekort"
                         amplitudeHandling="Går til innsending av meldekort"
-                        tittel="Meldekort"
-                        beskrivelse="Send inn"
+                        tittel={tekst('meldekort')}
+                        beskrivelse={tekst('sendInn')}
                     />
                 </div>
             </>
@@ -74,9 +98,9 @@ function Sluttkort() {
                         href={meldekortLenke}
                         amplitudeTema="meldekort"
                         amplitudeHandling="Går til innsending av meldekort"
-                        tittel="Meldekort"
-                        beskrivelse={`Send inn for uke 
-                        ${hentISOUke(foerstkommendeMeldekort.meldeperiode?.fra!!)} og ${hentISOUke(
+                        tittel={tekst('meldekort')}
+                        beskrivelse={`${tekst('sendInnForUke')}
+                        ${hentISOUke(foerstkommendeMeldekort.meldeperiode?.fra!!)} - ${hentISOUke(
                             foerstkommendeMeldekort.meldeperiode?.til!!
                         )}`}
                     />
