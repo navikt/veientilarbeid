@@ -193,6 +193,9 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         ? 'sannsynligvis standard og inaktivert'
         : 'annet';
 
+    const valgtSprak = hentSprakValgFraCookie();
+    const sprakValgFraCookie = valgtSprak || 'IKKE_VALGT';
+
     const amplitudeData: AmplitudeData = {
         gruppe: POAGruppe,
         brukergruppe: brukergruppering,
@@ -229,7 +232,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         dagpengerDagerMellomPaabegyntSoknadOgRegistrering,
         dagpengerDagerMellomInnsendtSoknadOgRegistrering,
         dagpengerStatusBeregning: 'INGEN_DATA',
-        sprakValgFraCookie: hentSprakValgFraCookie(),
+        sprakValgFraCookie,
     };
 
     return <AmplitudeContext.Provider value={amplitudeData}>{props.children}</AmplitudeContext.Provider>;

@@ -68,7 +68,7 @@ export type AmplitudeData = {
     dagpengerDagerMellomPaabegyntSoknadOgRegistrering: number | 'INGEN_DATA';
     dagpengerDagerMellomInnsendtSoknadOgRegistrering: number | 'INGEN_DATA';
     dagpengerStatusBeregning: string;
-    sprakValgFraCookie?: SprakValg.Sprak | null;
+    sprakValgFraCookie?: SprakValg.Sprak | 'IKKE_VALGT';
 };
 
 export function amplitudeLogger(name: string, values?: object) {
