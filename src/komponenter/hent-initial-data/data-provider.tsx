@@ -50,13 +50,18 @@ export const hentSprakValgFraCookie = (): SprakValg.Sprak | null => {
     return decoratorLanguageCookie && (decoratorLanguageCookie[1] as SprakValg.Sprak);
 };
 
+const setGyldigSprak = (sprak: string): SprakValg.Sprak => {
+    return (['en', 'nb'].includes(sprak) ? sprak : 'nb') as SprakValg.Sprak;
+};
+
 const hentSprakValg = (): SprakValg.State => {
     const urlParams = new URLSearchParams(window.location.search);
+    const sprakFraUrl = urlParams.get('lang') || 'nb';
     // const cookieVerdi = hentSprakValgFraCookie();
 
     return {
         // sprak: (urlParams.get('lang')) || cookieVerdi || 'nb') as SprakValg.Sprak,
-        sprak: (urlParams.get('lang') || 'nb') as SprakValg.Sprak,
+        sprak: setGyldigSprak(sprakFraUrl),
     };
 };
 
