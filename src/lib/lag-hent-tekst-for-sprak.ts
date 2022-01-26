@@ -1,16 +1,15 @@
 import { Sprak } from '../contexts/sprak';
 
-export interface Tekster<T> {
-    nb: {
-        [key: string]: T;
-    };
-    [sprak: string]: {
-        [key: string]: T;
-    };
-}
+export type Tekster<T> = { nb: Record<string, T> } & Partial<{ [P in Exclude<Sprak, 'nb'>]: Record<string, T> }>;
 
 const lagHentTekstForSprak = (tekster: Tekster<any>, sprak: Sprak) => (key: string) => {
-    return (tekster[sprak] && tekster[sprak][key]) || tekster.nb[key];
+    const tekst = tekster[sprak];
+
+    if (tekst) {
+        return tekst[key] || tekster.nb[key];
+    }
+
+    return tekster.nb[key];
 };
 
 export default lagHentTekstForSprak;
