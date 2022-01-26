@@ -1,19 +1,47 @@
+import { Panel, Heading, BodyShort, Link, Button } from '@navikt/ds-react';
+import { Close } from '@navikt/ds-icons';
+import { useEffect, useState } from 'react';
+
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { dagpengerSoknadLenke } from '../../innhold/lenker';
 import { loggAktivitet } from '../../metrics/metrics';
-import { Panel, Heading, BodyShort, Link, Button } from '@navikt/ds-react';
-import { Close } from '@navikt/ds-icons';
 
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import useVisKvittering from '../../hooks/use-vis-kvittering';
 import { fjernQueryParam } from '../../utils/query-param-utils';
-import { useEffect, useState } from 'react';
+import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
+import { useSprakValg } from '../../contexts/sprak';
+
+const TEKSTER = {
+    nb: {
+        tittel: 'Dagpenger',
+        ingress: 'Du må søke om dagpenger på nytt',
+        lukk: 'Lukk kvittering',
+        sok: 'Søk dagpenger',
+        utbetalingStoppet:
+            'Har du mottatt dagpenger vil utbetalingene være stoppet og du må derfor sende inn ny søknad.',
+        tidligstMotta: 'Du kan tidligst få dagpenger igjen fra den dagen du sender søknaden.',
+        skalIkke: 'Skal ikke søke dagpenger nå',
+    },
+    en: {
+        tittel: 'Unemployment benefits',
+        ingress: 'You will need to apply for unemployment benefits again',
+        lukk: 'Close message',
+        sok: 'Apply for unemployment benefit',
+        utbetalingStoppet:
+            'If you have received unemployment benefits, the payments will be stopped and you must therefore submit a new application.',
+        tidligstMotta:
+            'You will receive unemployment benefits at the earliest from the day you applied for unemployment benefit.',
+        skalIkke: 'I will not apply for unemployment benefit at the moment',
+    },
+};
 
 const ReaktiveringKvittering = () => {
     const amplitudeData = useAmplitudeData();
     const [visKomponent, setVisKonponent] = useState(false);
     const visKvittering = useVisKvittering('reaktivering');
+    const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     useEffect(() => {
         setVisKonponent(visKvittering);
@@ -60,27 +88,23 @@ const ReaktiveringKvittering = () => {
                 <div className="flex space-between blokk-s">
                     <div>
                         <Heading size="xsmall" level="1">
-                            Dagpenger
+                            {tekst('tittel')}
                         </Heading>
-                        <Heading size="medium">Du må søke om dagpenger på nytt</Heading>
+                        <Heading size="medium">{tekst('ingress')}</Heading>
                     </div>
                     <Button variant="tertiary" size="small" onClick={handleLukkeKvitteringKnapp}>
-                        <Close color="black" title="Lukk kvittering" />
+                        <Close color="black" title={tekst('lukk')} />
                     </Button>
                 </div>
                 <div>
-                    <BodyShort className="blokk-xs">
-                        Har du mottatt dagpenger vil utbetalingene være stoppet og du må derfor sende inn ny søknad.
-                    </BodyShort>
-                    <BodyShort className="blokk-xs">
-                        Du kan tidligst få dagpenger igjen fra den dagen du sender søknaden.
-                    </BodyShort>
+                    <BodyShort className="blokk-xs">{tekst('utbetalingStoppet')}</BodyShort>
+                    <BodyShort className="blokk-xs">{tekst('tidligstMotta')}</BodyShort>
                     <Button variant="secondary" onClick={handleSokGjenopptak} className="blokk-xs">
-                        Søk dagpenger
+                        {tekst('sok')}
                     </Button>
                     <BodyShort>
                         <Link href="#" onClick={handleIkkeSokeNaa}>
-                            Skal ikke søke dagpenger nå
+                            {tekst('skalIkke')}
                         </Link>
                     </BodyShort>
                 </div>
