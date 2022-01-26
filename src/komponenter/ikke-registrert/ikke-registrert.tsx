@@ -1,18 +1,35 @@
+import { Button, Heading, BodyShort, Panel } from '@navikt/ds-react';
+
 import { loggAktivitet } from '../../metrics/metrics';
 import './ikke-registrert.less';
 import { registreringsLenke } from '../../innhold/lenker';
 import InViewport from '../in-viewport/in-viewport';
 import ErRendret from '../er-rendret/er-rendret';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
-import { Button, Heading, BodyShort, Panel } from '@navikt/ds-react';
+import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
+import { useSprakValg } from '../../contexts/sprak';
 
 interface Props {
     skalTilRegistrering: boolean;
 }
 
+const TEKSTER = {
+    nb: {
+        header: 'Du er ikke registrert som arbeidssøker',
+        description: 'Vi kan ikke se at du er registrert som arbeidssøker hos oss.',
+        button: 'Registrer deg som arbeidssøker',
+    },
+    en: {
+        header: 'You are not registered as job seeker',
+        description: 'We can not see you are registered as a job seeker in our systems',
+        button: 'Register as job seeker',
+    },
+};
+
 const IkkeRegistrert = (props: Props) => {
     const amplitudeData = useAmplitudeData();
     const { skalTilRegistrering } = props;
+    const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     const handleButtonClick = () => {
         loggAktivitet({ aktivitet: 'Går til registrering fra IkkeRegistrert', ...amplitudeData });
@@ -34,13 +51,11 @@ const IkkeRegistrert = (props: Props) => {
             <section className="egenvurdering">
                 <div className="innhold">
                     <Heading size="medium" level="2" className="blokk-xs">
-                        Du er ikke registrert som arbeidssøker
+                        {tekst('header')}
                     </Heading>
-                    <BodyShort className="blokk-s egenvurdering__tekst">
-                        Vi kan ikke se at du er registrert som arbeidssøker hos oss.
-                    </BodyShort>
+                    <BodyShort className="blokk-s egenvurdering__tekst">{tekst('description')}</BodyShort>
                     <Button variant="primary" onClick={handleButtonClick} className="blokk-xs">
-                        Registrer deg som arbeidssøker
+                        {tekst('button')}
                     </Button>
                 </div>
             </section>
