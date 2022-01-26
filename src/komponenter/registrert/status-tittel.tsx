@@ -1,8 +1,21 @@
-import useErInnloggetArbeidssoker from '../../hooks/useErInnloggetArbeidssoker';
 import { Heading } from '@navikt/ds-react';
+
+import useErInnloggetArbeidssoker from '../../hooks/useErInnloggetArbeidssoker';
+import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
+import { useSprakValg } from '../../contexts/sprak';
+
+const TEKSTER = {
+    nb: {
+        registrert: 'Du er registrert som arbeidssøker',
+    },
+    en: {
+        registrert: 'You are registered as job seeker',
+    },
+};
 
 const StatusTittel = () => {
     const kanViseKomponent = useErInnloggetArbeidssoker();
+    const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     if (!kanViseKomponent) {
         return null;
@@ -10,7 +23,7 @@ const StatusTittel = () => {
 
     return (
         <Heading style={{ margin: 'var(--navds-font-size-medium)' }} size="medium">
-            Du er registrert som arbeidssøker
+            {tekst('registrert')}
         </Heading>
     );
 };
