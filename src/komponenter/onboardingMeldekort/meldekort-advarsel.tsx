@@ -59,7 +59,8 @@ function MeldekortAdvarsel({ dagerEtterFastsattMeldedag }: { dagerEtterFastsattM
         dagpengeVedtak,
     });
 
-    const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
+    const sprak = useSprakValg().sprak;
+    const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     if (dagerEtterFastsattMeldedag === null) return null;
 
     const dagerTilInaktivering = beregnDagerTilInaktivering(dagerEtterFastsattMeldedag);
@@ -83,7 +84,7 @@ function MeldekortAdvarsel({ dagerEtterFastsattMeldedag }: { dagerEtterFastsattM
                         {tekst('sendeInn')}
                     </Heading>
                     <BodyShort>
-                        {tekst('fristenEr')} {datoMedUkedag(inaktiveringsDato)}, {tekst('klokken23')}
+                        {tekst('fristenEr')} {datoMedUkedag(inaktiveringsDato, sprak)}, {tekst('klokken23')}
                     </BodyShort>
                 </>
             )}

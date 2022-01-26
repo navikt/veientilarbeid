@@ -20,4 +20,9 @@ describe('Hent tekst for språk', () => {
         const hentTekst = lagHentTekstForSprak(TEKSTER, 'en');
         expect(hentTekst('test2')).toBe('Test2 norsk');
     });
+
+    test('Fallbacker til norsk ved ikke-eksisterende språk', () => {
+        const hentTekst = lagHentTekstForSprak(TEKSTER, 'pl' as any);
+        expect(hentTekst('test1')).toBe('Test1 norsk');
+    });
 });

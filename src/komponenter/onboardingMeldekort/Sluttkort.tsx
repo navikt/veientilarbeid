@@ -38,7 +38,8 @@ function Sluttkort() {
     const dato = datoUtenTid(hentIDag().toISOString());
     const meldekortData = Meldekort.useMeldekortData();
     const meldekortForLevering = hentMeldekortForLevering(dato, meldekortData);
-    const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
+    const sprak = useSprakValg().sprak;
+    const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
     if (meldekortForLevering.length === 0) {
         const meldekortIkkeKlarForLevering = hentFoerstkommendeMeldekortIkkeKlarForLevering(dato, meldekortData);
@@ -52,7 +53,8 @@ function Sluttkort() {
                         ${hentISOUke(meldekortIkkeKlarForLevering.meldeperiode?.fra!!)} - ${hentISOUke(
                             meldekortIkkeKlarForLevering.meldeperiode?.til!!
                         )} ${tekst('blirTilgjengelig')}  ${datoMedUkedag(
-                            foersteSendedagForMeldekort(meldekortIkkeKlarForLevering)
+                            foersteSendedagForMeldekort(meldekortIkkeKlarForLevering),
+                            sprak
                         )}`}
                     </Heading>
                     <div>

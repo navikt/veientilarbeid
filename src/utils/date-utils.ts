@@ -1,3 +1,6 @@
+import { Sprak } from '../contexts/sprak';
+import lagHentTekstForSprak from '../lib/lag-hent-tekst-for-sprak';
+
 const virkedager = require('@alheimsins/virkedager');
 const msPerDoegn = 1000 * 60 * 60 * 24;
 const DAGPENGER_SAKSBEHANDLINGSTID = 30;
@@ -29,24 +32,46 @@ export function hentISOUke(datoMedTid: string) {
     return Math.ceil(((dato.getTime() - foersteDatoIAaret.getTime()) / msPerDoegn + 1) / 7);
 }
 
-export function datoMedUkedag(dato: Date) {
-    const dager = ['søndag', 'mandag', 'tirdag', 'onsdag', 'torsdag', 'fredag', 'lørdag'];
-
-    const maneder = [
-        'januar',
-        'februar',
-        'mars',
-        'april',
-        'mai',
-        'juni',
-        'juli',
-        'august',
-        'september',
-        'oktober',
-        'november',
-        'desember',
-    ];
-
+const TEKSTER = {
+    nb: {
+        ukeDager: ['søndag', 'mandag', 'tirdag', 'onsdag', 'torsdag', 'fredag', 'lørdag'],
+        maneder: [
+            'januar',
+            'februar',
+            'mars',
+            'april',
+            'mai',
+            'juni',
+            'juli',
+            'august',
+            'september',
+            'oktober',
+            'november',
+            'desember',
+        ],
+    },
+    en: {
+        ukeDager: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        maneder: [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December',
+        ],
+    },
+};
+export function datoMedUkedag(dato: Date, sprak: Sprak = 'nb') {
+    const tekst = lagHentTekstForSprak(TEKSTER, sprak);
+    const dager = tekst('ukeDager');
+    const maneder = tekst('maneder');
     return `${dager[dato.getDay()]} ${dato.getDate()}. ${maneder[dato.getMonth()]}`;
 }
 

@@ -33,7 +33,8 @@ const TEKSTER = {
 function Meldekortstatus() {
     const { data: meldekortData } = useContext(Meldekort.MeldekortContext);
     const { kanReaktiveres } = useContext(OppfolgingContext).data;
-    const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
+    const sprak = useSprakValg().sprak;
+    const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
     if (!meldekortData || kanReaktiveres) return null;
 
@@ -55,7 +56,7 @@ function Meldekortstatus() {
                     <Heading size="medium" className="blokk-xs">
                         {tekst('heading')}
                     </Heading>
-                    <BodyShort>{`${tekst('fristenEr')} ${datoMedUkedag(inaktiveringsDato)}, ${tekst(
+                    <BodyShort>{`${tekst('fristenEr')} ${datoMedUkedag(inaktiveringsDato, sprak)}, ${tekst(
                         'klokken23'
                     )}`}</BodyShort>
                 </>
