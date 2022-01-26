@@ -12,17 +12,17 @@ describe('Hent tekst for språk', () => {
     };
 
     test('Henter engelsk tekst', () => {
-        const hentTekst = lagHentTekstForSprak(TEKSTER, 'en');
-        expect(hentTekst('test1')).toBe('Test1 en');
+        const tekst = lagHentTekstForSprak(TEKSTER, 'en');
+        expect(tekst('test1')).toBe('Test1 en');
     });
 
     test('Fallbacker til norsk', () => {
-        const hentTekst = lagHentTekstForSprak(TEKSTER, 'en');
-        expect(hentTekst('test2')).toBe('Test2 norsk');
+        const tekst = lagHentTekstForSprak(TEKSTER, 'en');
+        expect(tekst('test2')).toBe('Test2 norsk');
     });
 
     test('Fallbacker til norsk ved ikke-eksisterende språk', () => {
-        const hentTekst = lagHentTekstForSprak(TEKSTER, 'pl' as any);
-        expect(hentTekst('test1')).toBe('Test1 norsk');
+        const tekst = lagHentTekstForSprak(TEKSTER, 'pl' as any);
+        expect(tekst('test1')).toBe('Test1 norsk');
     });
 });

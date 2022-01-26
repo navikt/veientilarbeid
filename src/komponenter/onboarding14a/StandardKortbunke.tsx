@@ -9,13 +9,13 @@ import { erKSSBruker } from '../../lib/er-kss-bruker';
 import Tema from '../tema/tema';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import sjekkOmBrukerErUngdomsinnsats from '../../lib/er-ungdomsinnsats';
-import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
+import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import { Sprak, useSprakValg } from '../../contexts/sprak';
 
 const INTRO_KEY_14A = '14a-intro';
 const AMPLITUDE_TEMA_TAG = '14a';
 
-const TEKSTER = {
+const TEKSTER: Tekster<string> = {
     nb: {
         header: 'Hjelp og støtte',
         lesPaaNyttLenkeTekst: 'Les om hva slags hjelp du kan få',
@@ -61,19 +61,19 @@ function Intro14AWrapper() {
 
     const skalViseUngdomsinnsatsKort = sjekkOmBrukerErUngdomsinnsats({ brukerInfoData, featuretoggleData });
     const sprak = useSprakValg().sprak;
-    const hentTekst = lagHentTekstForSprak(TEKSTER, sprak);
+    const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
     const [Startkort, Kortliste, Sluttkort] = hentKortbunke(skalViseKssKort, skalViseUngdomsinnsatsKort, sprak);
 
     const innhold = (
         <Tema
             innhold={[<Startkort />, ...Kortliste, <Sluttkort />]}
-            header={hentTekst('header')}
+            header={tekst('header')}
             hoppOverPreState={false}
             hoppRettTilSluttkort={!erNyregistrert}
             id={INTRO_KEY_14A}
             amplitudeTemaTag={AMPLITUDE_TEMA_TAG}
-            lesPaaNyttLenkeTekst={hentTekst('lesPaaNyttLenkeTekst')}
+            lesPaaNyttLenkeTekst={tekst('lesPaaNyttLenkeTekst')}
         />
     );
 

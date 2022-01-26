@@ -1,6 +1,6 @@
 import { Next, Back } from '@navikt/ds-icons';
 import { BodyShort, Button, Link } from '@navikt/ds-react';
-import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
+import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
 
 interface TemaFooterProps {
@@ -14,7 +14,7 @@ interface TemaFooterProps {
     lesPaaNyttLenkeTekst?: string;
 }
 
-const TEKSTER = {
+const TEKSTER: Tekster<string> = {
     nb: {
         start: 'Start introduksjonen',
         skip: 'Hopp over introduksjonen for nå',
@@ -45,7 +45,7 @@ const TemaFooter = (props: TemaFooterProps) => {
         lesPaaNyttLenkeTekst,
     } = props;
 
-    const hentTekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
+    const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     if (antallSider <= 1) return null;
     if (antallSider >= 2) {
@@ -53,11 +53,11 @@ const TemaFooter = (props: TemaFooterProps) => {
             return (
                 <div className="kolonne">
                     <Button variant="secondary" className={'mb-2'} onClick={nesteKort}>
-                        <span>{hentTekst('start')}</span>
+                        <span>{tekst('start')}</span>
                         <Next />
                     </Button>
                     <Link onClick={hoppOverIntro} href={'#'} className="tracking-wide">
-                        {hoppOverLenkeTekst ?? hentTekst('skip')}
+                        {hoppOverLenkeTekst ?? tekst('skip')}
                     </Link>
                 </div>
             );
@@ -67,7 +67,7 @@ const TemaFooter = (props: TemaFooterProps) => {
                 <div className="kolonne">
                     <BodyShort>
                         <Link onClick={handleLesIntroPaaNytt} href={'#'}>
-                            {lesPaaNyttLenkeTekst || hentTekst('vis')}
+                            {lesPaaNyttLenkeTekst || tekst('vis')}
                         </Link>
                     </BodyShort>
                 </div>
@@ -77,10 +77,10 @@ const TemaFooter = (props: TemaFooterProps) => {
             <>
                 <div className={'rad'}>
                     <Button size="small" variant="tertiary" disabled={gjeldendeKortIndex === 1} onClick={forrigeKort}>
-                        <Back /> {hentTekst('forrige')}
+                        <Back /> {tekst('forrige')}
                     </Button>
                     <Button size="small" variant="tertiary" onClick={nesteKort}>
-                        {gjeldendeKortIndex === antallSider - 2 ? hentTekst('ferdig') : hentTekst('neste')}
+                        {gjeldendeKortIndex === antallSider - 2 ? tekst('ferdig') : tekst('neste')}
                         <Next />
                     </Button>
                 </div>
