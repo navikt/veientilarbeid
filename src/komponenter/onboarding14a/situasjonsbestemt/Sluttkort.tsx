@@ -7,11 +7,29 @@ import { hentEllerSettFraBrowserStorage } from '../../../utils/browserStorage-ut
 import { HAR_MOTTATT_EGENVURDERING_KVITTERING } from '../../kvitteringer/behovsvurdering';
 import TemaLenkepanel from '../../tema/tema-lenkepanel';
 import { Heading, BodyShort } from '@navikt/ds-react';
+import lagHentTekstForSprak from '../../../lib/lag-hent-tekst-for-sprak';
+import { useSprakValg } from '../../../contexts/sprak';
+
+const TEKSTER = {
+    nb: {
+        headingEtterVedtak: 'Du har rett på å få hjelp og støtte fra en veileder',
+        ingressEtterVedtak: 'Du kan stille spørsmål til veileder ved å henvende deg via dialogen.',
+        headerForEgenvurdering: 'Du vil motta et brev som forteller hva NAV kan tilby deg av hjelp',
+        ingressForEgenvurdering: 'Til vanlig sender vi brevet innen noen uker. Tar det lengre tid vil vi ta kontakt.',
+        tekstForEgenvurdering: 'Du kan når som helst ta kontakt og fortelle oss hva du ønsker at vi hjelper deg med.',
+        tittelEgenvurdering: 'Hva trenger du hjelp til?',
+        beskrivelseEgenvurdering: 'Svar oss her',
+        defaultTittel: 'Du vil motta et brev som forteller hva NAV kan tilby deg av hjelp',
+        defaultIngress: 'Du får tilsendt brevet i løpet av noen uker. Tar det lengre tid vil vi ta kontakt.',
+        defaultTekst: 'Du kan stille spørsmål til veileder ved å henvende deg via dialogen.',
+    },
+};
 
 function Sluttkort() {
     const amplitudeData = useAmplitudeData();
     const { antallUleste } = useUlesteDialogerData();
     const { servicegruppe } = useOppfolgingData();
+    const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     const har_mottatt_egenvurdering_kvittering = hentEllerSettFraBrowserStorage(
         HAR_MOTTATT_EGENVURDERING_KVITTERING,
@@ -22,12 +40,10 @@ function Sluttkort() {
         return (
             <>
                 <Heading size="medium" className={'blokk-xs'}>
-                    Du har rett på å få hjelp og støtte fra en veileder
+                    {tekst('headingEtterVedtak')}
                 </Heading>
 
-                <BodyShort className={'blokk-xs'}>
-                    Du kan stille spørsmål til veileder ved å henvende deg via dialogen.
-                </BodyShort>
+                <BodyShort className={'blokk-xs'}>{tekst('ingressEtterVedtak')}</BodyShort>
                 <Lenkepanel14A amplitudeData={amplitudeData} href={dialogLenke} antallUlesteDialoger={antallUleste} />
             </>
         );
@@ -35,22 +51,18 @@ function Sluttkort() {
         return (
             <>
                 <Heading size="medium" className={'blokk-xs'}>
-                    Du vil motta et brev som forteller hva NAV kan tilby deg av hjelp
+                    {tekst('headerForEgenvurdering')}
                 </Heading>
 
-                <BodyShort className={'blokk-xs'}>
-                    Til vanlig sender vi brevet innen noen uker. Tar det lengre tid vil vi ta kontakt.
-                </BodyShort>
-                <BodyShort className={'blokk-xs'}>
-                    Du kan når som helst ta kontakt og fortelle oss hva du ønsker at vi hjelper deg med.
-                </BodyShort>
+                <BodyShort className={'blokk-xs'}>{tekst('ingressForEgenvurdering')}</BodyShort>
+                <BodyShort className={'blokk-xs'}>{tekst('tekstForEgenvurdering')}</BodyShort>
                 <TemaLenkepanel
                     href={`${behovsvurderingLenke}/hvilken-veiledning-trengs`}
                     amplitudeTema={'14a'}
                     amplitudeTilstand="sluttkort"
                     amplitudeHandling={'går til egenvurdering fra '}
-                    tittel="Hva trenger du hjelp til?"
-                    beskrivelse="Svar oss her"
+                    tittel={tekst('tittelEgenvurdering')}
+                    beskrivelse={tekst('beskrivelseEgenvurdering')}
                 />
             </>
         );
@@ -58,15 +70,11 @@ function Sluttkort() {
     return (
         <>
             <Heading size="medium" className={'blokk-xs'}>
-                Du vil motta et brev som forteller hva NAV kan tilby deg av hjelp
+                {tekst('defaultTittel')}
             </Heading>
 
-            <BodyShort className={'blokk-xs'}>
-                Du får tilsendt brevet i løpet av noen uker. Tar det lengre tid vil vi ta kontakt.
-            </BodyShort>
-            <BodyShort className={'blokk-xs'}>
-                Du kan stille spørsmål til veileder ved å henvende deg via dialogen.
-            </BodyShort>
+            <BodyShort className={'blokk-xs'}>{tekst('defaultIngress')}</BodyShort>
+            <BodyShort className={'blokk-xs'}>{tekst('defaultTekst')}</BodyShort>
 
             <Lenkepanel14A amplitudeData={amplitudeData} href={dialogLenke} antallUlesteDialoger={antallUleste} />
         </>

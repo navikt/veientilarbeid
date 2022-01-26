@@ -1,19 +1,28 @@
-import {
-    SituasjonsbestemtSluttkort,
-    SituasjonsbestemtKortliste,
-    SituasjonsbestemtStartkort,
-} from './situasjonsbestemt';
+import lagSituasjonsbestemtKortliste from './situasjonsbestemt';
 import Tema from '../tema/tema';
+import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
+import { useSprakValg } from '../../contexts/sprak';
 
 const AMPLITUDE_TEMA_TAG = '14a';
 
+const TEKSTER = {
+    nb: {
+        header: 'Hjelp og støtte',
+    },
+    en: {
+        header: 'Help and support',
+    },
+};
+
 const SituasjonsbestemtKortbunke = () => {
-    const innhold = [<SituasjonsbestemtStartkort />, ...SituasjonsbestemtKortliste, <SituasjonsbestemtSluttkort />];
+    const sprak = useSprakValg().sprak;
+    const [Startkort, Kortliste, Sluttkort] = lagSituasjonsbestemtKortliste(sprak);
+    const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
     return (
         <Tema
-            header="Hjelp og støtte"
-            innhold={innhold}
+            header={tekst('header')}
+            innhold={[<Startkort />, ...Kortliste, <Sluttkort />]}
             hoppOverPreState={false}
             id="14a-intro-situasjonsbestemt"
             amplitudeTemaTag={AMPLITUDE_TEMA_TAG}
