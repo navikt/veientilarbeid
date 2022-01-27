@@ -12,6 +12,19 @@ import { kanViseOnboardingDagpenger } from '../../lib/kan-vise-onboarding-dagpen
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import { hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
 import ByttKortLenke from './bytt-kort-lenke';
+import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
+import { useSprakValg } from '../../contexts/sprak';
+
+const TEKSTER: Tekster<string> = {
+    nb: {
+        header: 'Spørsmål om ytelser',
+        onboardingHeader: 'Dagpenger',
+    },
+    en: {
+        header: 'Questions about benefits',
+        onboardingHeader: 'Unemployment benefits',
+    },
+};
 
 function YtelserOnboarding() {
     const registreringData = useBrukerregistreringData();
@@ -31,6 +44,8 @@ function YtelserOnboarding() {
     const [valgtYtelserVisning, setValgtYtelserVisning] = useState<string>(
         hentFraBrowserStorage(YTELSER_TEMA_VIS_KEY) || (kanViseDagpengerKomponent ? 'dagpenger' : 'ytelser')
     );
+
+    const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     const handleByttKortKlikk = (e: React.MouseEvent) => {
         e.preventDefault();
@@ -60,7 +75,7 @@ function YtelserOnboarding() {
     if (!visOnboardingDagpenger || (kanViseYtelserKomponent && valgtYtelserVisning === 'ytelser')) {
         return (
             <Tema
-                header="Spørsmål om ytelser"
+                header={tekst('header')}
                 innhold={[
                     <>
                         <SluttkortYtelser />
@@ -81,7 +96,7 @@ function YtelserOnboarding() {
     if (visOnboardingDagpenger && kanViseDagpengerKomponent && valgtYtelserVisning === 'dagpenger') {
         return (
             <Tema
-                header="Dagpenger"
+                header={tekst('onboardingHeader')}
                 innhold={[
                     <>
                         <SluttkortDagpenger />
