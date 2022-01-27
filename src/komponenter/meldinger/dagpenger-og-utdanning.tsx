@@ -9,9 +9,11 @@ import { loggAktivitet } from '../../metrics/metrics';
 const DAGPENGAR_OG_UTDANNING_URL = 'https://www.nav.no/arbeid/utdanning';
 
 function DagpengerOgUtdanning() {
+    const sluttDato = new Date('2022-02-02');
+    const iDag = new Date();
     const { rettighetsgruppe } = useBrukerinfoData();
     const amplitudeData = useAmplitudeData();
-    const kanViseKomponent = rettighetsgruppe === 'DAGP';
+    const kanViseKomponent = rettighetsgruppe === 'DAGP' && iDag < sluttDato;
 
     function onLinkClick() {
         loggAktivitet({ aktivitet: 'Går til Dagpengar og utdanning fra infoboksen', ...amplitudeData });
