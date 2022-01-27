@@ -7,10 +7,10 @@ import { hentEllerSettFraBrowserStorage } from '../../../utils/browserStorage-ut
 import { HAR_MOTTATT_EGENVURDERING_KVITTERING } from '../../kvitteringer/behovsvurdering';
 import TemaLenkepanel from '../../tema/tema-lenkepanel';
 import { Heading, BodyShort } from '@navikt/ds-react';
-import lagHentTekstForSprak from '../../../lib/lag-hent-tekst-for-sprak';
+import lagHentTekstForSprak, { Tekster } from '../../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../../contexts/sprak';
 
-const TEKSTER = {
+const TEKSTER: Tekster<string> = {
     nb: {
         headingEtterVedtak: 'Du har rett på å få hjelp og støtte fra en veileder',
         ingressEtterVedtak: 'Du kan stille spørsmål til veileder ved å henvende deg via dialogen.',
@@ -22,6 +22,19 @@ const TEKSTER = {
         defaultTittel: 'Du vil motta et brev som forteller hva NAV kan tilby deg av hjelp',
         defaultIngress: 'Du får tilsendt brevet i løpet av noen uker. Tar det lengre tid vil vi ta kontakt.',
         defaultTekst: 'Du kan stille spørsmål til veileder ved å henvende deg via dialogen.',
+    },
+    en: {
+        headingEtterVedtak: 'You are entitled to help and support from a counselor',
+        ingressEtterVedtak: 'You can ask questions to the counselor by contacting us via the dialogue.',
+        headerForEgenvurdering: 'You will receive a letter telling you what NAV can offer you in terms of help',
+        ingressForEgenvurdering:
+            'We usually send the letter within a few weeks. If it takes longer, we will get in touch.',
+        tekstForEgenvurdering: 'You can contact us at any time and tell us what you want us to help you with.',
+        tittelEgenvurdering: 'What do you need help with?',
+        beskrivelseEgenvurdering: 'Answer here',
+        defaultTittel: 'You will receive a letter telling you what NAV can offer you in terms of help',
+        defaultIngress: 'You will receive the letter within a few weeks. If it takes longer, we will get in touch.',
+        defaultTekst: 'You can ask questions to the counselor by contacting us via the dialogue.',
     },
 };
 
