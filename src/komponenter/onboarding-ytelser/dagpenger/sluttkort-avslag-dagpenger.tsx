@@ -5,6 +5,7 @@ import { loggAktivitet } from '../../../metrics/metrics';
 import { mine_dagpenger_url } from '../../../url';
 import prettyPrintDato from '../../../utils/pretty-print-dato';
 import SkrivTilOssOgChat from './skriv-til-oss-og-chat';
+import LesOmYtelser from './les-om-ytelser';
 
 const Sluttkort = () => {
     const amplitudeData = useAmplitudeData();
@@ -48,21 +49,7 @@ const Sluttkort = () => {
             </BodyShort>
 
             <SkrivTilOssOgChat amplitudeTemaNavn='"dagpenger-tema - dagpenger avslått"' />
-
-            <BodyShort className={'blokk-xs'}>
-                Du kan også lese om de ulike ytelsene på{' '}
-                <Link
-                    href="https://www.nav.no/"
-                    onClick={() =>
-                        loggLenkeKlikk(
-                            'Går til forsiden fra  "dagpenger-tema - dagpenger avslått"',
-                            'https://www.nav.no/'
-                        )
-                    }
-                >
-                    nav.no
-                </Link>
-            </BodyShort>
+            <LesOmYtelser amplitudeTemaNavn={'"dagpenger-tema - dagpenger avslått"'} />
         </>
     );
 };

@@ -7,6 +7,7 @@ import { useDpInnsynVedtakData } from '../../../contexts/dp-innsyn-vedtak';
 import { sorterEtterNyesteVedtak } from '../../../lib/beregn-dagpenge-status';
 import SistInnsendtSoknad from './sist-innsendt-soknad';
 import SkrivTilOssOgChat from './skriv-til-oss-og-chat';
+import LesOmYtelser from './les-om-ytelser';
 
 const Sluttkort = () => {
     const amplitudeData = useAmplitudeData();
@@ -43,21 +44,7 @@ const Sluttkort = () => {
             <SistInnsendtSoknad dato={sisteVedtak?.datoFattet} komponent="mottar" />
             <PaabegynteSoknader dato={sisteVedtak?.datoFattet} komponent="mottar" />
             <SkrivTilOssOgChat amplitudeTemaNavn='"dagpenger-tema - mottar dagpenger"' />
-
-            <BodyShort className={'blokk-xs'}>
-                Du kan lese om de ulike ytelsene på{' '}
-                <Link
-                    href="https://www.nav.no/"
-                    onClick={() =>
-                        loggLenkeKlikk(
-                            'Går til forsiden fra  "dagpenger-tema - mottar dagpenger"',
-                            'https://www.nav.no/'
-                        )
-                    }
-                >
-                    nav.no
-                </Link>
-            </BodyShort>
+            <LesOmYtelser amplitudeTemaNavn={'"dagpenger-tema - mottar dagpenger"'} />
         </>
     );
 };

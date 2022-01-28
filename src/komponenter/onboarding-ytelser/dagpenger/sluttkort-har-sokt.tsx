@@ -8,6 +8,7 @@ import SistInnsendtSoknad from './sist-innsendt-soknad';
 import { usePaabegynteSoknaderData } from '../../../contexts/paabegynte-soknader';
 import PaabegynteSoknader from './paabegynte-soknader';
 import SkrivTilOssOgChat from './skriv-til-oss-og-chat';
+import LesOmYtelser from './les-om-ytelser';
 
 const Sluttkort = () => {
     const amplitudeData = useAmplitudeData();
@@ -53,21 +54,7 @@ const Sluttkort = () => {
             <PaabegynteSoknader dato={sisteInnsendteSoknad?.datoInnsendt} komponent="sokt" />
 
             <SkrivTilOssOgChat amplitudeTemaNavn='"dagpenger-tema - har søkt dagpenger"' />
-
-            <BodyShort className={'blokk-xs'}>
-                Du kan også lese om de ulike ytelsene på{' '}
-                <Link
-                    href="https://www.nav.no/"
-                    onClick={() =>
-                        loggLenkeKlikk(
-                            'Går til forsiden fra  "dagpenger-tema - har søkt dagpenger"',
-                            'https://www.nav.no/'
-                        )
-                    }
-                >
-                    nav.no
-                </Link>
-            </BodyShort>
+            <LesOmYtelser amplitudeTemaNavn={'dagpenger-tema - har søkt dagpenger'} />
         </>
     );
 };
