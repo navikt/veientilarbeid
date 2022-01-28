@@ -6,6 +6,7 @@ import PaabegynteSoknader from './paabegynte-soknader';
 import { useDpInnsynVedtakData } from '../../../contexts/dp-innsyn-vedtak';
 import { sorterEtterNyesteVedtak } from '../../../lib/beregn-dagpenge-status';
 import SistInnsendtSoknad from './sist-innsendt-soknad';
+import SkrivTilOssOgChat from './skriv-til-oss-og-chat';
 
 const Sluttkort = () => {
     const amplitudeData = useAmplitudeData();
@@ -41,34 +42,7 @@ const Sluttkort = () => {
             </BodyShort>
             <SistInnsendtSoknad dato={sisteVedtak?.datoFattet} komponent="mottar" />
             <PaabegynteSoknader dato={sisteVedtak?.datoFattet} komponent="mottar" />
-
-            <BodyShort className={'blokk-xs'}>
-                Har du spørsmål om dagpenger, må du bruke{' '}
-                <Link
-                    href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
-                    onClick={() =>
-                        loggLenkeKlikk(
-                            'Går til STO fra "dagpenger-tema - mottar dagpenger"',
-                            'https://mininnboks.nav.no/sporsmal/skriv/ARBD'
-                        )
-                    }
-                >
-                    skriv til oss
-                </Link>{' '}
-                eller{' '}
-                <Link
-                    href="https://www.nav.no/person/kontakt-oss/chat/"
-                    onClick={() =>
-                        loggLenkeKlikk(
-                            'Går til chat fra "dagpenger-tema - mottar dagpenger"',
-                            'https://www.nav.no/person/kontakt-oss/chat/'
-                        )
-                    }
-                >
-                    chat
-                </Link>
-                .
-            </BodyShort>
+            <SkrivTilOssOgChat amplitudeTemaNavn='"dagpenger-tema - mottar dagpenger"' />
 
             <BodyShort className={'blokk-xs'}>
                 Du kan lese om de ulike ytelsene på{' '}

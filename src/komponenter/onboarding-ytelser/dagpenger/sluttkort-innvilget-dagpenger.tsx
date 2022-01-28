@@ -4,6 +4,7 @@ import { useDpInnsynVedtakData, Vedtak } from '../../../contexts/dp-innsyn-vedta
 import { loggAktivitet } from '../../../metrics/metrics';
 import { mine_dagpenger_url } from '../../../url';
 import prettyPrintDato from '../../../utils/pretty-print-dato';
+import SkrivTilOssOgChat from './skriv-til-oss-og-chat';
 
 const Sluttkort = () => {
     const amplitudeData = useAmplitudeData();
@@ -46,33 +47,7 @@ const Sluttkort = () => {
                 </Link>
             </BodyShort>
 
-            <BodyShort className={'blokk-xs'}>
-                Har du spørsmål om dagpenger, må du bruke{' '}
-                <Link
-                    href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
-                    onClick={() =>
-                        loggLenkeKlikk(
-                            'Går til STO fra "dagpenger-tema - dagpenger innvilget"',
-                            'https://mininnboks.nav.no/sporsmal/skriv/ARBD'
-                        )
-                    }
-                >
-                    skriv til oss
-                </Link>{' '}
-                eller{' '}
-                <Link
-                    href="https://www.nav.no/person/kontakt-oss/chat/"
-                    onClick={() =>
-                        loggLenkeKlikk(
-                            'Går til chat fra "dagpenger-tema - dagpenger innvilget"',
-                            'https://www.nav.no/person/kontakt-oss/chat/'
-                        )
-                    }
-                >
-                    chat
-                </Link>
-                .
-            </BodyShort>
+            <SkrivTilOssOgChat amplitudeTemaNavn='"dagpenger-tema - dagpenger innvilget"' />
         </>
     );
 };

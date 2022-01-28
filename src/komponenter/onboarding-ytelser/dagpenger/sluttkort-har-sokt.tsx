@@ -7,6 +7,7 @@ import { mine_dagpenger_url } from '../../../url';
 import SistInnsendtSoknad from './sist-innsendt-soknad';
 import { usePaabegynteSoknaderData } from '../../../contexts/paabegynte-soknader';
 import PaabegynteSoknader from './paabegynte-soknader';
+import SkrivTilOssOgChat from './skriv-til-oss-og-chat';
 
 const Sluttkort = () => {
     const amplitudeData = useAmplitudeData();
@@ -51,33 +52,8 @@ const Sluttkort = () => {
 
             <PaabegynteSoknader dato={sisteInnsendteSoknad?.datoInnsendt} komponent="sokt" />
 
-            <BodyShort className={'blokk-xs'}>
-                Har du spørsmål om å søke eller motta dagpenger, må du bruke{' '}
-                <Link
-                    href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
-                    onClick={() =>
-                        loggLenkeKlikk(
-                            'Går til STO fra "dagpenger-tema - har søkt dagpenger"',
-                            'https://mininnboks.nav.no/sporsmal/skriv/ARBD'
-                        )
-                    }
-                >
-                    skriv til oss
-                </Link>{' '}
-                eller{' '}
-                <Link
-                    href="https://www.nav.no/person/kontakt-oss/chat/"
-                    onClick={() =>
-                        loggLenkeKlikk(
-                            'Går til chat fra "dagpenger-tema - har søkt dagpenger"',
-                            'https://www.nav.no/person/kontakt-oss/chat/'
-                        )
-                    }
-                >
-                    chat
-                </Link>
-                .
-            </BodyShort>
+            <SkrivTilOssOgChat amplitudeTemaNavn='"dagpenger-tema - har søkt dagpenger"' />
+
             <BodyShort className={'blokk-xs'}>
                 Du kan også lese om de ulike ytelsene på{' '}
                 <Link
