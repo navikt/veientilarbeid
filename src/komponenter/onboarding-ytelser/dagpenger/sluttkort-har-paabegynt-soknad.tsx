@@ -1,21 +1,12 @@
-import { Heading, BodyShort, Link } from '@navikt/ds-react';
-
-import { useAmplitudeData } from '../../../contexts/amplitude-context';
+import { Heading, BodyShort } from '@navikt/ds-react';
 import { usePaabegynteSoknaderData, Soknad } from '../../../contexts/paabegynte-soknader';
-import { loggAktivitet } from '../../../metrics/metrics';
-import { mine_dagpenger_url } from '../../../url';
 import prettyPrintDato from '../../../utils/pretty-print-dato';
 import TemaLenkepanel from '../../tema/tema-lenkepanel';
 import SkrivTilOssOgChat from './skriv-til-oss-og-chat';
+import SeMerInfo from './se-mer-info';
 
 const Sluttkort = () => {
-    const amplitudeData = useAmplitudeData();
     const pabegynteSoknaderData = usePaabegynteSoknaderData();
-
-    function loggLenkeKlikk(action: string, url: string) {
-        loggAktivitet({ aktivitet: action, ...amplitudeData });
-        window.location.assign(url);
-    }
 
     const sistePabegynteSoknad = pabegynteSoknaderData.soknader.sort(
         (a: Soknad, b: Soknad) => new Date(b.dato).getTime() - new Date(a.dato).getTime()
@@ -39,23 +30,7 @@ const Sluttkort = () => {
                 tittel="Fortsett på søknad"
                 beskrivelse={`Påbegynt ${prettyPrintDato(sistePabegynteSoknad.dato)}`}
             />
-
-            <BodyShort className={'blokk-xs'}>
-                Se mer info på {' '}
-                <Link
-                    className={'tracking-wide'}
-                    href={mine_dagpenger_url}
-                    onClick={() =>
-                        loggLenkeKlikk(
-                            'Går til Mine dagpenger fra "dagpenger-tema - påbegynt søknad"',
-                            mine_dagpenger_url
-                        )
-                    }
-                >
-                    Mine dagpenger
-                </Link>
-            </BodyShort>
-
+            <SeMerInfo amplitudeTemaNavn={'"dagpenger-tema - påbegynt søknad"'} />
             <SkrivTilOssOgChat amplitudeTemaNavn='"dagpenger-tema - påbegynt søknad"' />
         </>
     );

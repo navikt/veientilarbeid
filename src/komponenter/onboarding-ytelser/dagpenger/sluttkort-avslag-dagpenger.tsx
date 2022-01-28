@@ -1,20 +1,11 @@
-import { BodyShort, Heading, Link } from '@navikt/ds-react';
-import { useAmplitudeData } from '../../../contexts/amplitude-context';
+import { BodyShort, Heading } from '@navikt/ds-react';
 import { useDpInnsynVedtakData, Vedtak } from '../../../contexts/dp-innsyn-vedtak';
-import { loggAktivitet } from '../../../metrics/metrics';
-import { mine_dagpenger_url } from '../../../url';
 import prettyPrintDato from '../../../utils/pretty-print-dato';
 import SkrivTilOssOgChat from './skriv-til-oss-og-chat';
 import LesOmYtelser from './les-om-ytelser';
+import SeMerInfo from './se-mer-info';
 
 const Sluttkort = () => {
-    const amplitudeData = useAmplitudeData();
-
-    function loggLenkeKlikk(action: string, url: string) {
-        loggAktivitet({ aktivitet: action, ...amplitudeData });
-        window.location.assign(url);
-    }
-
     const vedtakData = useDpInnsynVedtakData();
     const nyesteVedtakMedAvslag = vedtakData
         .filter((vedtak) => vedtak.status === 'AVSLÅTT')
@@ -31,23 +22,7 @@ const Sluttkort = () => {
                 Vedtaket ble fattet {prettyPrintDato(nyesteVedtakMedAvslag.datoFattet)} og status er{' '}
                 <b>{nyesteVedtakMedAvslag.status.toLocaleLowerCase()}</b>.
             </BodyShort>
-
-            <BodyShort className={'blokk-xs'}>
-                Se mer info på {' '}
-                <Link
-                    className={'tracking-wide'}
-                    href={mine_dagpenger_url}
-                    onClick={() =>
-                        loggLenkeKlikk(
-                            'Går til Mine dagpenger fra "dagpenger-tema - dagpenger avslått"',
-                            mine_dagpenger_url
-                        )
-                    }
-                >
-                    Mine dagpenger
-                </Link>
-            </BodyShort>
-
+            <SeMerInfo amplitudeTemaNavn={'"dagpenger-tema - dagpenger avslått"'} />
             <SkrivTilOssOgChat amplitudeTemaNavn='"dagpenger-tema - dagpenger avslått"' />
             <LesOmYtelser amplitudeTemaNavn={'"dagpenger-tema - dagpenger avslått"'} />
         </>
