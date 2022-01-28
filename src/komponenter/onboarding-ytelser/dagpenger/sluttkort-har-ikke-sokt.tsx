@@ -55,7 +55,7 @@ const Sluttkort = () => {
             </Button>
 
             <BodyShort className={'blokk-xs'}>
-                {`${tekst('feil')} `} {' '}
+                {`${tekst('feil')} `}
                 <Link
                     className={'tracking-wide'}
                     href={mine_dagpenger_url}
