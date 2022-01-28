@@ -7,7 +7,19 @@ import PaabegynteSoknader from './paabegynte-soknader';
 import SkrivTilOssOgChat from './skriv-til-oss-og-chat';
 import LesOmYtelser from './les-om-ytelser';
 import EttersendDokumentasjon from './ettersend-dokumentasjon';
+import lagHentTekstForSprak, { Tekster } from '../../../lib/lag-hent-tekst-for-sprak';
+import { useSprakValg } from '../../../contexts/sprak';
 
+const TEKSTER: Tekster<string> = {
+    nb: {
+        harPaabegynt: 'Søknad om dagpenger og påbegynte søknader',
+        soknad: 'Søknad om dagpenger',
+    },
+    en: {
+        harPaabegynt: 'Application for unemployment benefits and started applications',
+        soknad: 'Application for unemployment benefits',
+    },
+};
 const Sluttkort = () => {
     const soknader = useDpInnsynSoknadData();
     const sisteInnsendteSoknad = soknader?.sort(sorterEtterNyesteDatoInnsendt)[0];
@@ -20,11 +32,11 @@ const Sluttkort = () => {
         new Date(sistePaabegyntSoknad.dato).getTime() > new Date(sisteInnsendteSoknad?.datoInnsendt).getTime();
 
     const amplitudeTemaNavn = '"dagpenger-tema - har søkt dagpenger"';
-
+    const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
     return (
         <>
             <Heading size="medium" className={'blokk-xs'}>
-                {harPaabegyntEtterInnsendt ? 'Søknad om dagpenger og påbegynte søknader' : 'Søknad om dagpenger'}
+                {harPaabegyntEtterInnsendt ? tekst('harPaabegynt') : tekst('soknad')}
             </Heading>
             <SistInnsendtSoknad dato={sisteInnsendteSoknad?.datoInnsendt} komponent="sokt" />
             <EttersendDokumentasjon amplitudeTemaNavn={amplitudeTemaNavn} />
