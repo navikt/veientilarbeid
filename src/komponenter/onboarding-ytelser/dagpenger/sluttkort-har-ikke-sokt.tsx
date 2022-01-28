@@ -5,9 +5,29 @@ import { loggAktivitet } from '../../../metrics/metrics';
 import { dagpengerSoknadLenke } from '../../../innhold/lenker';
 import { mine_dagpenger_url } from '../../../url';
 import SkrivTilOssOgChat from './skriv-til-oss-og-chat';
+import lagHentTekstForSprak, { Tekster } from '../../../lib/lag-hent-tekst-for-sprak';
+import { useSprakValg } from '../../../contexts/sprak';
+
+const TEKSTER: Tekster<string> = {
+    nb: {
+        heading: 'Du har ikke sendt inn søknad om dagpenger',
+        ingress: 'Du kan tidligst få dagpenger fra den dagen du sender inn søknaden.',
+        sok: 'Søk om dagpenger',
+        feil: 'Mener du dette er feil, kan du sjekke',
+        mineDagpenger: 'Mine dagpenger',
+    },
+    en: {
+        heading: 'You have not submitted an application for unemployment benefits',
+        ingress: 'You can receive unemployment benefits at the earliest from the day you submit the application.',
+        sok: 'Apply for unemployment benefits',
+        feil: 'If you think this is wrong, you can check',
+        mineDagpenger: 'My unemployment benefits',
+    },
+};
 
 const Sluttkort = () => {
     const amplitudeData = useAmplitudeData();
+    const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     function loggLenkeKlikk(action: string, url: string) {
         loggAktivitet({ aktivitet: action, ...amplitudeData });
@@ -25,19 +45,17 @@ const Sluttkort = () => {
     return (
         <>
             <Heading size="medium" className={'blokk-xs'}>
-                Du har ikke sendt inn søknad om dagpenger
+                {tekst('heading')}
             </Heading>
 
-            <BodyShort className={'blokk-xs'}>
-                Du kan tidligst få dagpenger fra den dagen du sender inn søknaden.
-            </BodyShort>
+            <BodyShort className={'blokk-xs'}>{tekst('ingress')}</BodyShort>
 
             <Button variant="primary" onClick={handleButtonClick} className="blokk-xs">
-                Søk om dagpenger
+                {tekst('sok')}
             </Button>
 
             <BodyShort className={'blokk-xs'}>
-                Mener du dette er feil, kan du sjekke {' '}
+                {`${tekst('feil')} `} {' '}
                 <Link
                     className={'tracking-wide'}
                     href={mine_dagpenger_url}
@@ -48,7 +66,7 @@ const Sluttkort = () => {
                         )
                     }
                 >
-                    Mine dagpenger
+                    {tekst('mineDagpenger')}
                 </Link>
             </BodyShort>
 
