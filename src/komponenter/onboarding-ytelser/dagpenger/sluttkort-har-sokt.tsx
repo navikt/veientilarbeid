@@ -20,6 +20,7 @@ const TEKSTER: Tekster<string> = {
         soknad: 'Application for unemployment benefits',
     },
 };
+
 const Sluttkort = () => {
     const soknader = useDpInnsynSoknadData();
     const sisteInnsendteSoknad = soknader?.sort(sorterEtterNyesteDatoInnsendt)[0];
