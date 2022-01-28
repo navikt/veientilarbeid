@@ -1,14 +1,32 @@
 import { BodyShort, Link } from '@navikt/ds-react';
+
 import { sorterEtterNyesteDatoInnsendt } from '../../../lib/beregn-dagpenge-status';
 import { useDpInnsynSoknadData } from '../../../contexts/dp-innsyn-soknad';
 import { datoForForventetSvar } from '../../../utils/date-utils';
 import prettyPrintDato from '../../../utils/pretty-print-dato';
 import { loggAktivitet } from '../../../metrics/metrics';
 import { useAmplitudeData } from '../../../contexts/amplitude-context';
+import lagHentTekstForSprak from '../../../lib/lag-hent-tekst-for-sprak';
+import { useSprakValg } from '../../../contexts/sprak';
+
+const TEKSTER = {
+    nb: {
+        siste: 'Den siste søknaden NAV har mottatt ble sendt inn',
+        svar: 'Du kan forvente svar innen',
+        saksbehandlingstider: 'Les mer om saksbehandlingstider',
+    },
+    en: {
+        siste: 'The last application NAV has received was submitted',
+        svar: 'You can expect a reply within',
+        saksbehandlingstider: 'Read more about case processing times',
+    },
+};
 
 const SistInnsendtSoknad = ({ dato, komponent }: { dato?: string; komponent: string }) => {
     const soknader = useDpInnsynSoknadData();
     const amplitudeData = useAmplitudeData();
+    const sprak = useSprakValg().sprak;
+    const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
     if (!dato) {
         return null;
@@ -32,12 +50,15 @@ const SistInnsendtSoknad = ({ dato, komponent }: { dato?: string; komponent: str
     return (
         <>
             <BodyShort className={'blokk-xs'}>
-                Den siste søkaden NAV har mottatt ble sendt inn {prettyPrintDato(sisteInnsendteSoknad.datoInnsendt)}.
+                {tekst('siste')} {prettyPrintDato(sisteInnsendteSoknad.datoInnsendt, sprak)}
             </BodyShort>
 
             <BodyShort className={'blokk-xs'}>
-                Du kan forvente svar innen{' '}
-                {prettyPrintDato(datoForForventetSvar(new Date(sisteInnsendteSoknad.datoInnsendt)).toISOString())}
+                {tekst('svar')}{' '}
+                {prettyPrintDato(
+                    datoForForventetSvar(new Date(sisteInnsendteSoknad.datoInnsendt)).toISOString(),
+                    sprak
+                )}
             </BodyShort>
 
             <Link
@@ -50,7 +71,7 @@ const SistInnsendtSoknad = ({ dato, komponent }: { dato?: string; komponent: str
                 }}
                 href="https://www.nav.no/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav"
             >
-                Les mer om saksbehandlingstider
+                {tekst('saksbehandlingstider')}
             </Link>
         </>
     );
