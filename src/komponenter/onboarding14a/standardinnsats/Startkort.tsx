@@ -2,10 +2,10 @@ import { Heading } from '@navikt/ds-react';
 
 import ErRendret from '../../er-rendret/er-rendret';
 import InViewport from '../../in-viewport/in-viewport';
-import lagHentTekstForSprak from '../../../lib/lag-hent-tekst-for-sprak';
+import lagHentTekstForSprak, { Tekster } from '../../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../../contexts/sprak';
 
-const TEKSTER = {
+const TEKSTER: Tekster<string> = {
     nb: {
         heading: 'Hva slags hjelp kan jeg få?',
     },
