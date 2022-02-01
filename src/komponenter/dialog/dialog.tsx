@@ -1,10 +1,10 @@
 import { useContext } from 'react';
+import { LinkPanel } from '@navikt/ds-react';
+
 import { loggAktivitet } from '../../metrics/metrics';
 import DialogFill from './dialog-fill';
 import DialogLine from './dialog-line';
-import './dialog.less';
 import { dialogLenke } from '../../innhold/lenker';
-import tekster from '../../tekster/tekster';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { UlesteDialogerContext } from '../../contexts/ulestedialoger';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
@@ -12,7 +12,25 @@ import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { OppfolgingContext } from '../../contexts/oppfolging';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { kanViseOnboarding14A } from '../../lib/kan-vise-onboarding14a';
-import { LinkPanel } from '@navikt/ds-react';
+import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
+import { useSprakValg } from '../../contexts/sprak';
+
+import './dialog.less';
+
+const TEKSTER = {
+    nb: {
+        tittel: 'Dialog med veilederen din',
+        sendMelding: 'Send melding hvis du lurer på noe',
+        ulest: 'ulest melding',
+        uleste: 'uleste meldinger',
+    },
+    en: {
+        tittel: 'Start a dialogue',
+        sendMelding: 'Get in touch if you have questions',
+        ulest: 'unread message',
+        uleste: 'unread messages',
+    },
+};
 
 const Dialog = () => {
     const amplitudeData = useAmplitudeData();
@@ -21,6 +39,7 @@ const Dialog = () => {
     const registreringData = useBrukerregistreringData();
     const { data: oppfolgingData } = useContext(OppfolgingContext);
     const brukerInfoData = useBrukerinfoData();
+    const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
     const ser14aStatus = kanViseOnboarding14A({
         oppfolgingData,
         brukerInfoData,
@@ -42,11 +61,11 @@ const Dialog = () => {
     const byggDialogTekst = () => {
         switch (antallUleste) {
             case 0:
-                return 'Send melding hvis du lurer på noe';
+                return tekst('sendMelding');
             case 1:
-                return antallUleste.toString() + ' ulest melding';
+                return `${antallUleste.toString()} ${tekst('ulest')}`;
             default:
-                return antallUleste.toString() + ' uleste meldinger';
+                return `${antallUleste.toString()} ${tekst('uleste')}`;
         }
     };
 
@@ -64,7 +83,7 @@ const Dialog = () => {
                     {antallUleste > 0 ? <DialogFill messagesCount={antallUleste} /> : <DialogLine />}
                 </div>
                 <div>
-                    <LinkPanel.Title>{tekster['dialog']}</LinkPanel.Title>
+                    <LinkPanel.Title>{tekst('tittel')}</LinkPanel.Title>
                     <LinkPanel.Description>{byggDialogTekst()}</LinkPanel.Description>
                 </div>
             </div>
