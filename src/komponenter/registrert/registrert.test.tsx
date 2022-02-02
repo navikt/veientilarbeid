@@ -52,7 +52,7 @@ describe('Test av registreringskomponenten', () => {
         const props: ProviderProps = providerProps;
         const { container } = render(<Registrert />, { wrapper: contextProviders({ ...props }) });
         expect(container).not.toBeEmptyDOMElement();
-        expect(screen.getByText(/Hvorfor er det viktig å sende meldekort/i)).toBeInTheDocument();
+        expect(screen.getByText(/Du må sende meldekort/i)).toBeInTheDocument();
     });
 
     test('Komponenten vises IKKE dersom man ikke har ARBS og nivå 4', () => {

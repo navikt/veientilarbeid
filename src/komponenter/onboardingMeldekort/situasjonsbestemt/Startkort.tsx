@@ -4,7 +4,7 @@ import { useSprakValg } from '../../../contexts/sprak';
 
 const TEKSTER = {
     nb: {
-        heading: 'Det viktigste du trenger å vite om meldekort',
+        heading: 'Du må sende meldekort',
     },
     en: {
         heading: 'Employment status form at a glance',

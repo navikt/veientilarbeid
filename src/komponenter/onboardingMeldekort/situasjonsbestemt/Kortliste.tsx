@@ -9,7 +9,7 @@ const TEKSTER = {
         kort1Heading: 'Hvor ofte skal jeg sende inn meldekort?',
         kort1Body1: 'For å være registrert som arbeidssøker, må du sende inn meldekortet hver 14. dag.',
         kort1Body2:
-            'Har du fått beskjed om at du skal være registrert i NAV, må du også sender inn meldekortene hver 14. dag.',
+            'Har du fått beskjed om at du skal være registrert i NAV, må du også sende inn meldekortene hver 14. dag.',
         kort2Heading: 'Hva skjer om jeg ikke sender inn meldekortet?',
         kort2Body1:
             'Lar du være å sende inn meldekort, tolker NAV det som at du ikke ønsker å stå registrert som arbeidssøker.',
