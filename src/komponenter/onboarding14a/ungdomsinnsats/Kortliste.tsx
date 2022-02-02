@@ -19,8 +19,7 @@ function Kort1() {
                 </BodyShort>
 
                 <BodyShort className={'blokk-xs'}>
-                    Det betyr at du som hovedregel skal være i arbeidsrettet aktivitet innen 8 uker etter at du
-                    registrerte deg som arbeidssøker.
+                    Arbeidssøkere under 30 år med behov for tjenester fra NAV har en særskilt prioritering.
                 </BodyShort>
             </div>
             <Feedback id={'Introkort14A-01-standard-ungdomsinnsats'} />
@@ -41,6 +40,10 @@ function Kort2() {
 
                 <BodyShort className={'blokk-xs'}>
                     Din viktigste oppgave blir å svare på henvendelsene og huske å sende inn meldekort til rett tid.
+                </BodyShort>
+
+                <BodyShort className={'blokk-xs'}>
+                    Vi har laget en kort gjennomgang av det viktigste omkring meldekort og anbefaler at den også leses.
                 </BodyShort>
             </div>
             <Feedback id={'Introkort14A-02-standard-ungdomsinnsats'} />
@@ -68,13 +71,14 @@ function Kort3() {
                     3 av 5
                 </Detail>
                 <BodyShort className={'blokk-xs'}>
-                    En veileder sin oppgave er å besvare spørsmål, bistå rundt det å søke stillinger og tilby hjelp på
-                    veien til arbeid.
+                    En veileder sin oppgave er å besvare spørsmål, være tilgjengelig, støtte og samarbeide med deg mot
+                    ditt arbeidsmål avhengig av hva du trenger. Veileder kan for eksempel bistå rundt det å søke
+                    stillinger og tilby hjelp på veien til arbeid.
                 </BodyShort>
 
                 <BodyShort className={'blokk-xs'}>
-                    Veiledere kan <strong>ikke</strong> svare på spørsmål om søknader, behandling av søknader eller
-                    utbetalinger av dagpenger.
+                    Veiledere har dessverre <strong>ikke</strong> mulighet til å besvare på spørsmål som handler om
+                    behandling av søknader eller utbetalinger av dagpenger.
                 </BodyShort>
 
                 <BodyShort className={'blokk-m'}>
@@ -138,13 +142,13 @@ function Kort4() {
                             <Link onClick={handleLesBrev} href={'https://mininnboks.nav.no/'}>
                                 «NAV har vurdert dine muligheter»
                             </Link>
-                            .
+                            . Det betyr at NAV basert på informasjonen du har gitt oss, har vurdert hvilken støtte som
+                            kan passe for deg.
                         </>
                     ) : (
-                        'Du vil i løpet av den første uken motta brevet «NAV har vurdert dine muligheter».'
+                        'Du vil i løpet av den første uken motta brevet «NAV har vurdert dine muligheter». Der vil NAV basert på informasjonen du har gitt oss, vurdere hvilken støtte som kan passe for deg.'
                     )}
                 </BodyShort>
-
                 <BodyShort className={'blokk-m'}>
                     Dette brevet er ikke et svar på en eventuell søknad om dagpenger.
                 </BodyShort>
