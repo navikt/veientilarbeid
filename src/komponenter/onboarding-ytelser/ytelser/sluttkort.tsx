@@ -62,7 +62,7 @@ const Sluttkort = () => {
                 </Link>
                 .
             </BodyShort>
-            <BodyShort className={'blokk-m'}>
+            <BodyShort>
                 {`${tekst('lesOm')} `}
                 <Link
                     href="https://www.nav.no/"
