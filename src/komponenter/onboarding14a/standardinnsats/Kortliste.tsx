@@ -15,13 +15,13 @@ function Kort1() {
                 </Detail>
 
                 <BodyShort className={'blokk-xs'}>
-                    NAV har gjort en vurdering av svarene dine, og det ser ut til at du har gode muligheter til å skaffe
-                    deg jobb på egenhånd.
+                    Vi har gjort en vurdering av svarene dine, og vi tror at du har gode muligheter til å skaffe deg
+                    jobb på egenhånd.
                 </BodyShort>
 
-                <BodyShort>Vurderingen baserer seg på:</BodyShort>
+                <BodyShort>Vår vurdering er basert på:</BodyShort>
                 <ul>
-                    <li>svarene fra registreringen</li>
+                    <li>dine svar fra registreringen</li>
                     <li>opplysningene NAV har om din situasjon</li>
                 </ul>
             </div>
@@ -54,14 +54,13 @@ function Kort2() {
                 <BodyShort className={'blokk-xs'}>
                     {servicegruppe === Servicegruppe.IKVAL ? (
                         <>
-                            Du har mottatt brevet{' '}
                             <Link onClick={handleLesBrev} href={'https://mininnboks.nav.no/'}>
-                                «NAV har vurdert dine muligheter»
-                            </Link>
-                            .
+                                Brevet
+                            </Link>{' '}
+                            inneholder vår vurdering av dine muligheter til å skaffe deg jobb på egenhånd.
                         </>
                     ) : (
-                        'Du vil i løpet av den første uken motta brevet «NAV har vurdert dine muligheter».'
+                        'Brevet inneholder vår vurdering av dine muligheter til å skaffe deg jobb på egenhånd.'
                     )}
                 </BodyShort>
 
@@ -94,13 +93,13 @@ function Kort3() {
                     3 av 4
                 </Detail>
                 <BodyShort className={'blokk-xs'}>
-                    En veileder sin oppgave er å besvare spørsmål, bistå rundt det å søke stillinger og tilby hjelp på
+                    Veilederens oppgave er å besvare spørsmål, bistå deg med å søke stillinger og tilby deg hjelp på
                     veien til arbeid.
                 </BodyShort>
 
                 <BodyShort className={'blokk-xs'}>
-                    Veiledere kan <strong>ikke</strong> svare på spørsmål om søknader, behandling av søknader eller
-                    utbetalinger av dagpenger.
+                    Veilederne kan <strong>ikke</strong> svare på spørsmål om søknad om dagpenger, behandling av
+                    dagpengesøknaden eller utbetaling av dagpenger.
                 </BodyShort>
 
                 <BodyShort className={'blokk-m'}>
