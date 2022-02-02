@@ -10,13 +10,11 @@ function Kort1() {
                     1 av 3
                 </Detail>
 
-                <BodyShort className={'blokk-xs'}>
-                    Det ser foreløpig ut til at du kan få hjelp og støtte fra en veileder.
-                </BodyShort>
+                <BodyShort className={'blokk-xs'}>Du kan få hjelp og støtte fra en veileder.</BodyShort>
 
                 <BodyShort>Vurderingen baserer seg på:</BodyShort>
                 <ul>
-                    <li>svarene fra registreringen</li>
+                    <li>dine svar fra registreringen</li>
                     <li>opplysningene NAV har om din situasjon</li>
                 </ul>
             </div>
@@ -56,18 +54,18 @@ function Kort3() {
     return (
         <div className="kortflate">
             <div>
-                <Heading size="medium">Er det noe mer i din livssituasjon du ønsker å fortelle oss?</Heading>
+                <Heading size="medium">Ønsker du å ta kontakt med oss?</Heading>
                 <Detail size="small" className="blokk-xs">
                     3 av 3
                 </Detail>
 
                 <BodyShort className={'blokk-xs'}>
                     Dersom du mener du ikke trenger hjelp, eller at du ønsker hjelp nå med en gang, kan du ta kontakt
-                    med veileder.
+                    med en veileder.
                 </BodyShort>
 
                 <BodyShort className={'blokk-xs'}>
-                    Du kan starte en dialog med veileder etter at du er har lest ferdig denne introduksjonen.
+                    Du kan starte en dialog med veilederen etter at du er har lest ferdig denne introduksjonen.
                 </BodyShort>
             </div>
             <Feedback id={'Introkort14A-03'} />

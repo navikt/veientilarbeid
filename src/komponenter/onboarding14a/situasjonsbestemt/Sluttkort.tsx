@@ -12,8 +12,8 @@ import { useSprakValg } from '../../../contexts/sprak';
 
 const TEKSTER: Tekster<string> = {
     nb: {
-        headingEtterVedtak: 'Du har rett på å få hjelp og støtte fra en veileder',
-        ingressEtterVedtak: 'Du kan stille spørsmål til veileder ved å henvende deg via dialogen.',
+        headingEtterVedtak: 'Du har rett til å få hjelp og støtte fra en veileder',
+        ingressEtterVedtak: 'Du kan stille spørsmål til veilederen ved å henvende deg via dialogen.',
         headerForEgenvurdering: 'Du vil motta et brev som forteller hva NAV kan tilby deg av hjelp',
         ingressForEgenvurdering: 'Til vanlig sender vi brevet innen noen uker. Tar det lengre tid vil vi ta kontakt.',
         tekstForEgenvurdering: 'Du kan når som helst ta kontakt og fortelle oss hva du ønsker at vi hjelper deg med.',
