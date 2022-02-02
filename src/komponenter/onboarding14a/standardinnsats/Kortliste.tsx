@@ -146,12 +146,7 @@ function Kort4() {
                 <BodyShort className={'blokk-xs'}>Du kan få hjelp fra en veileder.</BodyShort>
 
                 <BodyShort className={'blokk-xs'}>
-                    Da må du selv kontakte veileder ved å bruke dialogen som vises på slutten av denne introduksjonen.
-                </BodyShort>
-
-                <BodyShort className={'blokk-m'}>
-                    Du kan gi oss beskjed om at du ønsker hjelp nå med en gang, eller se litt an hvordan du syns
-                    jobbsøkingen din går før du tar kontakt.
+                    Du kan når som helst kontakte oss ved å bruke dialogen som vises på slutten av denne introduksjonen.
                 </BodyShort>
             </div>
             <Feedback id={'Introkort14A-04-standard'} />

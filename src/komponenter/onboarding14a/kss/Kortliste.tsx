@@ -16,14 +16,14 @@ function Kort1() {
                     1 av 4
                 </Detail>
 
-                <BodyShort className="blokk-xs">
-                    NAV har gjort en vurdering av svarene dine, og det ser ut til at du har gode muligheter til å skaffe
-                    deg jobb på egenhånd.
+                <BodyShort className={'blokk-xs'}>
+                    Vi har gjort en vurdering av svarene dine, og vi tror at du har gode muligheter til å skaffe deg
+                    jobb på egenhånd.
                 </BodyShort>
 
-                <BodyShort>Vurderingen baserer seg på:</BodyShort>
+                <BodyShort>Vår vurdering er basert på:</BodyShort>
                 <ul>
-                    <li>svarene fra registreringen</li>
+                    <li>dine svar fra registreringen</li>
                     <li>opplysningene NAV har om din situasjon</li>
                 </ul>
                 <BodyShort>
