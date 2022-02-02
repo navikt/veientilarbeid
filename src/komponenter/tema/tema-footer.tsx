@@ -17,7 +17,7 @@ interface TemaFooterProps {
 const TEKSTER: Tekster<string> = {
     nb: {
         start: 'Start introduksjonen',
-        skip: 'Hopp over introduksjonen for nå',
+        skip: 'Hopp over introduksjonen',
         vis: 'Vis introduksjon',
         forrige: 'Forrige',
         neste: 'Neste',
