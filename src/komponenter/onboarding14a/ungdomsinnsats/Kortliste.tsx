@@ -39,7 +39,8 @@ function Kort2() {
                 </Detail>
 
                 <BodyShort className={'blokk-xs'}>
-                    Din viktigste oppgave blir å svare på henvendelsene og huske å sende inn meldekort til rett tid.
+                    For å være registrert som arbeidssøker med de rettighetene det gir, så er det viktig at du svarer på
+                    henvendelsene og huske å sende inn meldekort til rett tid.
                 </BodyShort>
 
                 <BodyShort className={'blokk-xs'}>
