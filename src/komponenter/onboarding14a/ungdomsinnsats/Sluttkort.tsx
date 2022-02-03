@@ -1,3 +1,5 @@
+import { Heading } from '@navikt/ds-react';
+
 import { useBrukerregistreringData } from '../../../contexts/brukerregistrering';
 import RegistrertTeller from '../registrert-teller';
 import { dialogLenke } from '../../../innhold/lenker';
@@ -12,7 +14,17 @@ import { useOppfolgingData } from '../../../contexts/oppfolging';
 import { hentFraBrowserStorage } from '../../../utils/browserStorage-utils';
 import { useAmplitudeData } from '../../../contexts/amplitude-context';
 import { useUlesteDialogerData } from '../../../contexts/ulestedialoger';
-import { Heading } from '@navikt/ds-react';
+import lagHentTekstForSprak from '../../../lib/lag-hent-tekst-for-sprak';
+import { useSprakValg } from '../../../contexts/sprak';
+
+const TEKSTER = {
+    nb: {
+        heading: 'Om du ønsker oppfølging må du gi oss beskjed',
+    },
+    en: {
+        heading: 'Get in touch if you need help',
+    },
+};
 
 function Sluttkort() {
     const amplitudeData = useAmplitudeData();
@@ -27,8 +39,10 @@ function Sluttkort() {
 
     const { antallUleste } = useUlesteDialogerData();
 
+    const sprak = useSprakValg().sprak;
+    const tekst = lagHentTekstForSprak(TEKSTER, sprak);
+
     const registrertDato = registreringData?.registrering?.opprettetDato;
-    const kortTittel = 'Om du ønsker oppfølging må du gi oss beskjed';
 
     const featuretoggleEgenvurderingAktivert =
         featuretoggleData && featuretoggleData['veientilarbeid.vis-egenvurdering-med-14a'];
@@ -51,7 +65,7 @@ function Sluttkort() {
 
     return (
         <>
-            <Heading size="medium">{kortTittel}</Heading>
+            <Heading size="medium">{tekst('heading')}</Heading>
             <RegistrertTeller ukerRegistrert={ukerRegistrert} registrertDato={registrertDato} />
             <Lenkepanel14A amplitudeData={amplitudeData} href={dialogLenke} antallUlesteDialoger={antallUleste} />
         </>
