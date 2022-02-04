@@ -11,12 +11,10 @@ function Kort1() {
                 </Detail>
 
                 <BodyShort className={'blokk-xs'}>Du kan få hjelp og støtte fra en veileder.</BodyShort>
-
-                <BodyShort>Vurderingen baserer seg på:</BodyShort>
-                <ul>
-                    <li>dine svar fra registreringen</li>
-                    <li>opplysningene NAV har om din situasjon</li>
-                </ul>
+                <BodyShort className={'blokk-xs'}>
+                    Veilederens oppgave er å besvare spørsmål, bistå deg med å søke stillinger og tilby deg hjelp på
+                    veien til arbeid.
+                </BodyShort>
             </div>
             <Feedback id={'Introkort14A-01'} />
         </div>
@@ -33,7 +31,7 @@ function Kort2() {
                 </Detail>
 
                 <BodyShort className={'blokk-xs'}>
-                    Du har krav på en skriftlig vurdering fra NAV om hvilket behov NAV mener du har behov for.
+                    Du har krav på en skriftlig vurdering fra NAV om hva slags hjelp NAV mener du har behov for.
                 </BodyShort>
 
                 <BodyShort className={'blokk-xs'}>
@@ -54,18 +52,13 @@ function Kort3() {
     return (
         <div className="kortflate">
             <div>
-                <Heading size="medium">Ønsker du å ta kontakt med oss?</Heading>
+                <Heading size="medium">Ønsker du å kontakte oss?</Heading>
                 <Detail size="small" className="blokk-xs">
                     3 av 3
                 </Detail>
 
                 <BodyShort className={'blokk-xs'}>
-                    Dersom du mener du ikke trenger hjelp, eller at du ønsker hjelp nå med en gang, kan du ta kontakt
-                    med en veileder.
-                </BodyShort>
-
-                <BodyShort className={'blokk-xs'}>
-                    Du kan starte en dialog med veilederen etter at du er har lest ferdig denne introduksjonen.
+                    Du kan når som helst kontakte oss ved å bruke dialogen som vises på slutten av denne introduksjonen.
                 </BodyShort>
             </div>
             <Feedback id={'Introkort14A-03'} />

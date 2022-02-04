@@ -17,9 +17,7 @@ const TEKSTER = {
             'Venter du på svar på en innsendt søknad, kan du få avslag dersom du ikke har sendt inn meldekortet.',
         kort3Heading: 'Hva skjer om jeg sender inn meldekortet for sent?',
         kort3Body1:
-            'Utbetalingene av ytelser, som for eksempel dagpenger, vil kunne stanses dersom du sender meldekortet for sent.',
-        kort3Body2:
-            'Det er også viktig å vite at du kan få mindre penger utbetalt dersom du sender meldekortene for sent.',
+            'Hvis du ikke sender inn meldekortet innen fristen vil vi kunne redusere eller stanse ytelser, som for eksempel dagpengene dine, og avslutte arbeidsoppfølgingen.',
     },
     en: {
         av: 'of',
@@ -34,7 +32,6 @@ const TEKSTER = {
         kort3Heading: 'What will happen if I submit the employment status form to late?',
         kort3Body1:
             'Payment of unemployment benefits may stop if you submit the employment status form after the due date.',
-        kort3Body2: ' ',
     },
 };
 function Kort1() {
@@ -81,7 +78,6 @@ function Kort3() {
                     3 {tekst('av')} 3
                 </Detail>
                 <BodyShort className="blokk-xs">{tekst('kort3Body1')}</BodyShort>
-                <BodyShort>{tekst('kort3Body2')}</BodyShort>
             </div>
             <Feedback id={'meldekort-kort-03'} />
         </>

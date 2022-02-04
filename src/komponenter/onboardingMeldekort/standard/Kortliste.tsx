@@ -16,7 +16,8 @@ const TEKSTER = {
         kort3Heading: 'Send meldekort før fristen går ut',
         kort3Body1:
             'Hvis du ikke sender inn meldekortet innen fristen vil vi kunne redusere eller stanse dagpengene dine, og avslutte arbeidsoppfølgingen.',
-        kort3Body2: 'Det er derfor viktig at du sender inn meldekortene før fristen går ut.',
+        kort3Body2:
+            'Det er derfor viktig at du sender inn meldekortene før fristen går ut. Fullfør for å se neste frist.',
     },
     en: {
         av: 'of',
