@@ -8,12 +8,11 @@ const TEKSTER = {
         av: 'av',
         kort1Heading: 'Send inn meldekort annenhver uke',
         kort1Body1: 'Når du er registrert som arbeidssøker, må du sende inn et meldekort hver 14. dag.',
-        kort1Body2: 'Du må også sende meldekort mens du venter svar på søknaden din om dagpenger.',
-        kort1Body3: 'Det er innsendingen av meldekort som gjør at du står registrert som arbeidssøker.',
+        kort1Body2: 'Det er innsendingen av meldekort som gjør at du fortsetter å stå registrert som arbeidssøker.',
+        kort1Body3: 'Hvis du har søkt dagpenger, må du sende meldekort mens du venter på svar.',
         kort2Heading: 'Hva brukes meldekortet til?',
         kort2Body1: 'Utbetaling av dagpenger beregnes ut fra opplysningene du har lagt inn på meldekortet.',
-        kort2Body2:
-            'Lar du være å sende inn meldekort, tolker NAV det som at du ikke ønsker å stå registrert som arbeidssøker.',
+        kort2Body2: 'Når du sender inn meldekortet, tolker NAV det som at du ønsker å stå registrert som arbeidssøker.',
         kort3Heading: 'Send meldekort før fristen går ut',
         kort3Body1:
             'Hvis du ikke sender inn meldekortet innen fristen vil vi kunne redusere eller stanse dagpengene dine, og avslutte arbeidsoppfølgingen.',
