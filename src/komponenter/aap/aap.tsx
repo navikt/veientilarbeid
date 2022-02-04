@@ -1,16 +1,17 @@
 import * as React from 'react';
+import { Heading, Panel, Button, BodyShort, Accordion } from '@navikt/ds-react';
+
 import RettPaAapInnhold from './rett-pa-aap-innhold';
 import SoketidspunktInnhold from './soketidspunkt-innhold';
 
-import './aap.less';
 import { aapSoknadLenke } from '../../innhold/lenker';
-import tekster from '../../tekster/tekster';
 import { useAutentiseringData, InnloggingsNiva } from '../../contexts/autentisering';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import { FeaturetoggleContext } from '../../contexts/feature-toggles';
 import Rad from '../../innhold/rad';
-import { Heading, Panel, Button, BodyShort, Accordion } from '@navikt/ds-react';
+
+import './aap.less';
 
 const handleButtonClick = () => {
     window.location.href = aapSoknadLenke;
@@ -31,24 +32,27 @@ const Aap = () => {
         <Rad>
             <div className="aap">
                 <Heading size="medium" className="blokk-s aap--tittel">
-                    {tekster['aap-rad-tittel']}
+                    Når du ikke lenger har rett på sykepenger
                 </Heading>
                 <div className="tokol">
                     <div className="kolonne blokk-m">
                         <Panel border className="panelramme">
                             <Heading size="small" className="blokk-s">
-                                {tekster['aap-rad-ingress-tittel']}
+                                Arbeidsavklaringspenger (AAP)
                             </Heading>
-                            <BodyShort className="blokk-s">{tekster['aap-rad-ingress']}</BodyShort>
+                            <BodyShort className="blokk-s">
+                                Arbeidsavklaringspenger erstatter delvis inntekt når du ikke kan jobbe på grunn av
+                                sykdom eller skade.
+                            </BodyShort>
                             <Button onClick={handleButtonClick} className="blokk-xs">
-                                {tekster['aap-rad-til-soknad-knapp-tekst']}
+                                Til søknad
                             </Button>
                         </Panel>
                     </div>
                     <div className="kolonne blokk-m">
                         <Accordion className="blokk-xs" style={{ background: 'white', borderRadius: '5px' }}>
                             <Accordion.Item>
-                                <Accordion.Header>{tekster['aap-rad-rett-pa-aap-panel-tittel']}</Accordion.Header>
+                                <Accordion.Header>Har jeg rett på arbeidsavklaringspenger?</Accordion.Header>
                                 <Accordion.Content>
                                     <RettPaAapInnhold />
                                 </Accordion.Content>
@@ -56,7 +60,7 @@ const Aap = () => {
                         </Accordion>
                         <Accordion className="blokk-xs" style={{ background: 'white', borderRadius: '5px' }}>
                             <Accordion.Item>
-                                <Accordion.Header>{tekster['aap-rad-soketidspunkt-panel-tittel']}</Accordion.Header>
+                                <Accordion.Header>Når bør jeg søke om arbeidsavklaringspenger?</Accordion.Header>
                                 <Accordion.Content>
                                     <SoketidspunktInnhold />
                                 </Accordion.Content>
