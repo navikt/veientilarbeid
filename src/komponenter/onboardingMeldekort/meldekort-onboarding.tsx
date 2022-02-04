@@ -16,9 +16,11 @@ import { useSprakValg } from '../../contexts/sprak';
 const TEKSTER = {
     nb: {
         header: 'Meldekort',
+        startTekst: 'Les mer om hvorfor',
     },
     en: {
         header: 'Employment status form',
+        startTekst: 'Start the introduction',
     },
 };
 const MeldekortOnboarding = () => {
@@ -66,6 +68,7 @@ const MeldekortOnboarding = () => {
             hoppOverPreState={hoppOverPreState}
             hoppRettTilSluttkort={!erNyregistrert}
             innhold={introKort}
+            startTekst={tekst('startTekst')}
         />
     );
 };

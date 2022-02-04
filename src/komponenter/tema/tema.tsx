@@ -30,6 +30,7 @@ interface TemaProps {
     hoppRettTilSluttkort?: boolean;
     hoppOverLenkeTekst?: string;
     lesPaaNyttLenkeTekst?: string;
+    startTekst?: string;
 }
 
 const Tema = (props: TemaProps) => {
@@ -42,6 +43,7 @@ const Tema = (props: TemaProps) => {
         hoppOverLenkeTekst,
         lesPaaNyttLenkeTekst,
         amplitudeTemaTag,
+        startTekst,
     } = props;
     const ONBOARDING_KEY = id;
     const amplitudeData = useAmplitudeData();
@@ -135,6 +137,7 @@ const Tema = (props: TemaProps) => {
                                 handleLesIntroPaaNytt={handleLesIntroPaaNytt}
                                 hoppOverLenkeTekst={hoppOverLenkeTekst}
                                 lesPaaNyttLenkeTekst={lesPaaNyttLenkeTekst}
+                                startTekst={startTekst}
                             />
                         </div>
                     )}

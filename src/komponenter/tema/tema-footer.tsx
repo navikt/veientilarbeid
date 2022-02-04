@@ -12,6 +12,7 @@ interface TemaFooterProps {
     handleLesIntroPaaNytt: (e: React.MouseEvent) => void;
     hoppOverLenkeTekst?: string;
     lesPaaNyttLenkeTekst?: string;
+    startTekst?: string;
 }
 
 const TEKSTER: Tekster<string> = {
@@ -43,6 +44,7 @@ const TemaFooter = (props: TemaFooterProps) => {
         handleLesIntroPaaNytt,
         hoppOverLenkeTekst,
         lesPaaNyttLenkeTekst,
+        startTekst,
     } = props;
 
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
@@ -53,7 +55,7 @@ const TemaFooter = (props: TemaFooterProps) => {
             return (
                 <div className="kolonne">
                     <Button variant="secondary" className={'mb-2'} onClick={nesteKort}>
-                        <span>{tekst('start')}</span>
+                        <span>{startTekst || tekst('start')}</span>
                         <Next />
                     </Button>
                     <Link onClick={hoppOverIntro} href={'#'} className="tracking-wide">
