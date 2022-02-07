@@ -1,27 +1,39 @@
 # Veien til arbeid
 
-Veien til arbeid
+Veien til arbeid er en del av "Arbeidsflate for innlogget arbeidssøker".
 
-# For å kjøre lokalt
--   `npm ci`
+Den vises som en del av DittNAV dersom du er arbeidssøker under oppfølging.
+
+Innholdet skal i størst mulig grad gjenspeile arbeidssøker situasjon.
+
+# Utvikling
+
+-   Bruk Node.js v14
+-   Klon [repoet](https://github.com/navikt/veientilarbeid)
+-   Installer avhengigheter `npm ci`
+
+## For å kjøre lokalt
+
 -   `npm start`
+-   besøk [http://localhost:3002/demo/index.html](http://localhost:3002/demo/index.html) for en versjon hvor du kan endre parameter for innlogget arbeidssøker
 
-Dersom testene feiler etter oppdatering av f.eks. Node versjon kan det være lurt å tømme cachen `npm run test -- --clearCache`
+## Som mikrofrontend på Ditt NAV lokalt
 
-# Som mikrofrontend på Ditt NAV lokalt
-
+-   Hent en utgave av [DittNAV](https://github.com/navikt/dittnav)
 -   Start veien til arbeid med `npm run start:micro`
 -   Start dittnav med `npm start`
 -   Gå til http://localhost:9002/person/dittnav
 
-# Som mikrofrontend på Ditt NAV i dev
+## Som mikrofrontend på Ditt NAV i dev
 
 1. Start naisdevice
 2. Gå til https://www.dev.nav.no/person/dittnav/
 3. Velg IDPorten (ver 2)
 4. Logg inn med en bruker som er under arbeidsrettet oppfølging i dev
 
-For å gå over til demovisning gå til [/demo/index.html](http://localhost:3002/demo/index.html)
+### Tips
+
+Dersom testene feiler etter oppdatering av f.eks. Node versjon kan det være lurt å tømme cachen `npm run test -- --clearCache`
 
 # Muligheter med HotJar
 
@@ -46,4 +58,4 @@ Spørsmål knyttet til koden eller prosjektet kan stilles via issues her på git
 
 # For NAV-ansatte
 
-Interne henvendelser kan sendes via Slack i kanalen [#område-arbeid-tech](https://nav-it.slack.com/archives/CLTFAEW75)
+Interne henvendelser kan sendes via Slack i kanalen [#område-arbeid-paw](https://nav-it.slack.com/archives/CK0RPQ5QB)
