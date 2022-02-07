@@ -17,6 +17,12 @@ Innholdet skal i størst mulig grad gjenspeile arbeidssøker situasjon.
 -   `npm start`
 -   besøk [http://localhost:3002/demo/index.html](http://localhost:3002/demo/index.html) for en versjon hvor du kan endre parameter for innlogget arbeidssøker
 
+### Testing
+
+Testmiljøet bruker [Jest](https://jestjs.io/), [Testing Library](https://testing-library.com/) og [Mock Service Worker](https://mswjs.io/)
+
+-   for å starte `npm t`
+
 ## Som mikrofrontend på Ditt NAV lokalt
 
 -   Hent en utgave av [DittNAV](https://github.com/navikt/dittnav)
