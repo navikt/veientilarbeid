@@ -10,6 +10,7 @@ import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import { kanViseMeldekortStatus } from '../../lib/kan-vise-meldekort-status';
+import tekster from '../../tekster/tekster';
 
 const Meldekort = () => {
     const amplitudeData = useAmplitudeData();
@@ -33,8 +34,8 @@ const Meldekort = () => {
         return null;
     }
 
-    const overskrift = 'meldekort-overskrift';
-    const ingress = 'meldekort-ingress';
+    const overskrift = tekster['meldekort-overskrift'];
+    const ingress = tekster['meldekort-ingress'];
 
     const handleClick = () => {
         loggAktivitet({ aktivitet: 'Går til meldekortet', ...amplitudeData });
