@@ -38,7 +38,7 @@ function Kort2() {
 
                 <BodyShort className={'blokk-xs'}>
                     In order to be registered as a jobseeker, it's important that you respond to inquiries and remember
-                    to submit the employment status form before the due date.
+                    to submit the employment status form before the deadline.
                 </BodyShort>
 
                 <BodyShort className={'blokk-xs'}>
