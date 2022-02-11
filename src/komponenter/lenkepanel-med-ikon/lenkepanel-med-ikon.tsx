@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { LinkPanel } from '@navikt/ds-react';
-import './lenkepanel-med-ikon.less';
+import './lenkepanel-med-ikon.css';
 
 interface Props {
     href: string;
