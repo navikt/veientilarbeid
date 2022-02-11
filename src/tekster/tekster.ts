@@ -82,8 +82,6 @@ const tekster = {
     'krr-melding-kulepunkt2': 'bruke aktivitetsplanen din',
     'krr-melding-kulepunkt3': 'motta digitale brev',
     'krr-melding-lenketekst': 'Jeg vil fjerne reservasjonen',
-    'meldekort-ingress': 'Send inn, endre og se innsendte meldekort.',
-    'meldekort-overskrift': 'Meldekort',
     'okonomi-rad-nodsituasjon-lenke-tekst': 'Økonomisk sosialhjelp',
     'okonomi-rad-nodsituasjon-tittel': 'Økonomisk sosialhjelp',
     'okonomi-rad-stotte-arbeidsledig-lenke-tekst': 'Les mer om dagpenger',

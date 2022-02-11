@@ -10,7 +10,19 @@ import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import { kanViseMeldekortStatus } from '../../lib/kan-vise-meldekort-status';
-import tekster from '../../tekster/tekster';
+import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
+import { useSprakValg } from '../../contexts/sprak';
+
+const TEKSTER: Tekster<string> = {
+    nb: {
+        overskrift: 'Meldekort',
+        ingress: 'Send inn, endre og se innsendte meldekort.',
+    },
+    en: {
+        overskrift: 'Employment status form',
+        ingress: 'Submit, edit and see your employment status forms.',
+    },
+};
 
 const Meldekort = () => {
     const amplitudeData = useAmplitudeData();
@@ -19,6 +31,7 @@ const Meldekort = () => {
     const { data: meldekortData } = useContext(MeldekortInnhold.MeldekortContext);
     const { data: oppfolgingData } = useContext(Oppfolging.OppfolgingContext);
     const { underOppfolging } = useContext(UnderOppfolgingContext).data;
+    const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     const { erSykmeldtMedArbeidsgiver } = brukerInfoData;
     const serMeldekortIntro = kanViseMeldekortStatus({
@@ -34,9 +47,6 @@ const Meldekort = () => {
         return null;
     }
 
-    const overskrift = tekster['meldekort-overskrift'];
-    const ingress = tekster['meldekort-ingress'];
-
     const handleClick = () => {
         loggAktivitet({ aktivitet: 'Går til meldekortet', ...amplitudeData });
     };
@@ -47,8 +57,8 @@ const Meldekort = () => {
             className="meldekort"
             alt=""
             onClick={handleClick}
-            overskrift={overskrift}
-            ingress={ingress}
+            overskrift={tekst('overskrift')}
+            ingress={tekst('ingress')}
         >
             <EmailText />
         </LenkepanelMedIkon>
