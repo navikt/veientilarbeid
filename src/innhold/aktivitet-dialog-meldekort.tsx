@@ -1,19 +1,20 @@
 import { useBrukerinfoData } from '../contexts/bruker-info';
 import Aktivitetsplan from '../komponenter/aktivitetsplan/aktivitetsplan';
-import Dialog from '../komponenter/dialog/dialog';
 import DittSykefravaer from '../komponenter/ditt-sykefravaer/ditt-sykefravaer';
 import Meldekort from '../komponenter/meldekort/meldekort';
+import { Cell, Grid } from '@navikt/ds-react';
 
 const AktivitetDialog = () => {
     const { erSykmeldtMedArbeidsgiver } = useBrukerinfoData();
     return (
-        <>
-            <Aktivitetsplan />
-            <div className="tokol">
-                <Dialog />
+        <Grid className="blokk-xs">
+            <Cell xs={12} sm={6}>
+                <Aktivitetsplan />
+            </Cell>
+            <Cell xs={12} sm={6}>
                 {erSykmeldtMedArbeidsgiver ? <DittSykefravaer /> : <Meldekort />}
-            </div>
-        </>
+            </Cell>
+        </Grid>
     );
 };
 
