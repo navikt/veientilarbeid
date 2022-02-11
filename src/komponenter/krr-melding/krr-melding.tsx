@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Alert, BodyShort, Link } from '@navikt/ds-react';
-import './krr-melding.less';
 import { difiLenke } from '../../innhold/lenker';
 import { OppfolgingContext } from '../../contexts/oppfolging';
 import { loggAktivitet } from '../../metrics/metrics';
@@ -43,7 +42,7 @@ const KrrMelding = () => {
     if (!reservasjonKRR || !kanViseKomponent) return null;
 
     return (
-        <Alert variant="warning" className="krr-melding blokk-xs">
+        <Alert variant="warning" className="blokk-xs">
             <BodyShort className="blokk-xs">{tekster('ingress')}</BodyShort>
             <BodyShort>{tekster('kulepunkt-ingress')}</BodyShort>
             <ul>
