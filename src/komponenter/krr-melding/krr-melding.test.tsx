@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import KrrMelding from './krr-melding';
-import tekster from '../../tekster/tekster';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 
 describe('Test av komponent', () => {
@@ -11,12 +10,7 @@ describe('Test av komponent', () => {
             underOppfolging: { underOppfolging: true },
         };
         render(<KrrMelding />, { wrapper: contextProviders(props) });
-        expect(screen.getByText(tekster['krr-melding-ingress'])).toBeTruthy();
-        expect(screen.getByText(tekster['krr-melding-kulepunkt-ingress'])).toBeTruthy();
-        expect(screen.getByText(tekster['krr-melding-kulepunkt1'])).toBeTruthy();
-        expect(screen.getByText(tekster['krr-melding-kulepunkt2'])).toBeTruthy();
-        expect(screen.getByText(tekster['krr-melding-kulepunkt3'])).toBeTruthy();
-        expect(screen.getByText(tekster['krr-melding-lenketekst'])).toBeTruthy();
+        expect(screen.getByText('Du er reservert mot digital kommunikasjon med det offentlige.')).toBeTruthy();
         expect(await screen.queryByText(/denne teksten finnes ikke/i)).toBeFalsy();
     });
 

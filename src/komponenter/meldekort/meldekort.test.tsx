@@ -2,7 +2,6 @@ import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import { Formidlingsgruppe, Servicegruppe } from '../../contexts/oppfolging';
-import tekster from '../../tekster/tekster';
 import Meldekort from './meldekort';
 
 const meldekort = {
