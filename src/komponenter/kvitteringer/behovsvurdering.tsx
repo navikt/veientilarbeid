@@ -6,7 +6,7 @@ import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import { settIBrowserStorage } from '../../utils/browserStorage-utils';
 import { fjernQueryParam } from '../../utils/query-param-utils';
-import { Alert, Button, Label, Heading, BodyShort, Grid, Cell } from '@navikt/ds-react';
+import { Alert, Button, Label, Heading, BodyShort, Grid, Cell, Panel } from '@navikt/ds-react';
 import { Close } from '@navikt/ds-icons';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
@@ -50,43 +50,41 @@ function Sluttkort(props: EndStateProps) {
 
     return (
         <>
-            <div className="onboarding-header">
+            <div className="paxs">
                 <Label>{tekst('egenvurdering')}</Label>
             </div>
-            <div className="onboarding-panel">
-                <div className="onboarding-body">
-                    <Grid className="blokk-xs">
-                        <Cell xs={10} style={{ alignSelf: 'center', justifySelf: 'center' }}>
-                            <Alert inline variant="success" size="medium">
-                                {/* <SuccessFilled color="currentColor" className={'mr-05 nav-oransje'} /> */}
-                                <Heading size="medium">{tekst('heading')}</Heading>
-                            </Alert>
-                        </Cell>
-                        <Cell xs={2}>
-                            <Button
-                                variant="tertiary"
-                                size="small"
-                                onClick={(e) => handleLukkeKvitteringKnapp(e, 'kryss-knapp')}
-                            >
-                                <Close color="black" />
-                            </Button>
-                        </Cell>
-                    </Grid>
+            <Panel>
+                <Grid className="blokk-xs">
+                    <Cell xs={10} style={{ alignSelf: 'center', justifySelf: 'center' }}>
+                        <Alert inline variant="success" size="medium">
+                            {/* <SuccessFilled color="currentColor" className={'mr-05 nav-oransje'} /> */}
+                            <Heading size="medium">{tekst('heading')}</Heading>
+                        </Alert>
+                    </Cell>
+                    <Cell xs={2}>
+                        <Button
+                            variant="tertiary"
+                            size="small"
+                            onClick={(e) => handleLukkeKvitteringKnapp(e, 'kryss-knapp')}
+                        >
+                            <Close color="black" />
+                        </Button>
+                    </Cell>
+                </Grid>
 
-                    {svarerJa && (
-                        <BodyShort size="small" className="blokk-xs">
-                            {tekst('svar')}
-                        </BodyShort>
-                    )}
-                    <Button
-                        variant="secondary"
-                        // style={{ padding: '0.5rem 2.5rem', width: '100%' }}
-                        onClick={(e) => handleLukkeKvitteringKnapp(e, 'ok-knapp')}
-                    >
-                        {tekst('ok')}
-                    </Button>
-                </div>
-            </div>
+                {svarerJa && (
+                    <BodyShort size="small" className="blokk-xs">
+                        {tekst('svar')}
+                    </BodyShort>
+                )}
+                <Button
+                    variant="secondary"
+                    // style={{ padding: '0.5rem 2.5rem', width: '100%' }}
+                    onClick={(e) => handleLukkeKvitteringKnapp(e, 'ok-knapp')}
+                >
+                    {tekst('ok')}
+                </Button>
+            </Panel>
         </>
     );
 }
@@ -101,13 +99,11 @@ function Kvittering({ kvittering, onClose }: { kvittering?: string; onClose: () 
     }
 
     return (
-        <div className="onboarding">
-            <div className="onboarding-container">
-                <Sluttkort lukkerKvittering={lukkerKvittering} kvittering={kvittering} />
-            </div>
+        <>
+            <Sluttkort lukkerKvittering={lukkerKvittering} kvittering={kvittering} />
             <ErRendret loggTekst="Rendrer kvittering behovsundersøkelse" />
             <InViewport loggTekst="Viser kvittering behovsundersøkelse i viewport" />
-        </div>
+        </>
     );
 }
 

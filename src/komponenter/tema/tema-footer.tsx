@@ -1,5 +1,5 @@
 import { Next, Back } from '@navikt/ds-icons';
-import { BodyShort, Button, Link } from '@navikt/ds-react';
+import { BodyShort, Button, Cell, Grid, Link } from '@navikt/ds-react';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
 
@@ -53,7 +53,7 @@ const TemaFooter = (props: TemaFooterProps) => {
     if (antallSider >= 2) {
         if (gjeldendeKortIndex === 0) {
             return (
-                <div className="kolonne">
+                <div>
                     <Button variant="secondary" className={'mb-2'} onClick={nesteKort}>
                         <span>{startTekst || tekst('start')}</span>
                         <Next />
@@ -66,27 +66,27 @@ const TemaFooter = (props: TemaFooterProps) => {
         }
         if (gjeldendeKortIndex === antallSider - 1) {
             return (
-                <div className="kolonne">
-                    <BodyShort>
-                        <Link onClick={handleLesIntroPaaNytt} href={'#'}>
-                            {lesPaaNyttLenkeTekst || tekst('vis')}
-                        </Link>
-                    </BodyShort>
-                </div>
+                <BodyShort>
+                    <Link onClick={handleLesIntroPaaNytt} href={'#'}>
+                        {lesPaaNyttLenkeTekst || tekst('vis')}
+                    </Link>
+                </BodyShort>
             );
         }
         return (
-            <>
-                <div className={'rad'}>
+            <Grid style={{ marginTop: '1rem' }}>
+                <Cell xs={6}>
                     <Button size="small" variant="tertiary" disabled={gjeldendeKortIndex === 1} onClick={forrigeKort}>
                         <Back /> {tekst('forrige')}
                     </Button>
+                </Cell>
+                <Cell xs={6} style={{ justifySelf: 'end' }}>
                     <Button size="small" variant="tertiary" onClick={nesteKort}>
                         {gjeldendeKortIndex === antallSider - 2 ? tekst('ferdig') : tekst('neste')}
                         <Next />
                     </Button>
-                </div>
-            </>
+                </Cell>
+            </Grid>
         );
     }
     return <></>;

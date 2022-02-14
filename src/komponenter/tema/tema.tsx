@@ -18,9 +18,9 @@ import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
-import { Label } from '@navikt/ds-react';
+import { Label, Panel } from '@navikt/ds-react';
+import './tema.css';
 
-import './tema.less';
 interface TemaProps {
     header: string;
     id: string;
@@ -121,27 +121,25 @@ const Tema = (props: TemaProps) => {
         <div className={`onboarding ${gjeldendeKortIndex === 0 && innhold.length > 1 ? 'onboarding_startkort' : ''}`}>
             <ErRendret loggTekst={`Rendrer tema: ${amplitudeTemaTag}`} />
             <div className="onboarding-container">
-                <div className="onboarding-header">
+                <div className="paxs">
                     <Label className="kort-heading">{header}</Label>
                 </div>
-                <div className="onboarding-panel">
-                    <div className="onboarding-body">{innhold[gjeldendeKortIndex]}</div>
+                <Panel className="onboarding-panel">
+                    <div>{innhold[gjeldendeKortIndex]}</div>
                     {innhold.length > 1 && !registrert12UkerEllerMer && (
-                        <div className="onboarding-footer">
-                            <TemaFooter
-                                antallSider={innhold.length}
-                                gjeldendeKortIndex={gjeldendeKortIndex}
-                                forrigeKort={forrigeKort}
-                                nesteKort={nesteKort}
-                                hoppOverIntro={hoppOverIntro}
-                                handleLesIntroPaaNytt={handleLesIntroPaaNytt}
-                                hoppOverLenkeTekst={hoppOverLenkeTekst}
-                                lesPaaNyttLenkeTekst={lesPaaNyttLenkeTekst}
-                                startTekst={startTekst}
-                            />
-                        </div>
+                        <TemaFooter
+                            antallSider={innhold.length}
+                            gjeldendeKortIndex={gjeldendeKortIndex}
+                            forrigeKort={forrigeKort}
+                            nesteKort={nesteKort}
+                            hoppOverIntro={hoppOverIntro}
+                            handleLesIntroPaaNytt={handleLesIntroPaaNytt}
+                            hoppOverLenkeTekst={hoppOverLenkeTekst}
+                            lesPaaNyttLenkeTekst={lesPaaNyttLenkeTekst}
+                            startTekst={startTekst}
+                        />
                     )}
-                </div>
+                </Panel>
             </div>
             <InViewport loggTekst={`Viser tema i viewport: ${amplitudeTemaTag}`} />
         </div>
