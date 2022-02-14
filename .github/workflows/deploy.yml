@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - craco-less
 env:
   IMAGE_BASE: ghcr.io/${{github.repository}}/veientilarbeid
 
@@ -72,7 +73,7 @@ jobs:
         uses: nais/deploy/actions/deploy@master
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-          DRY_RUN: false
+          DRY_RUN: true
           CLUSTER: prod-gcp
           RESOURCE: nais/nais.yaml
           VARS: nais/vars-prod.yaml
