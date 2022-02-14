@@ -3,7 +3,6 @@ import { loggAktivitet } from '../../metrics/metrics';
 import { dialogLenke } from '../../innhold/lenker';
 import { Besvarelse, Svar } from '../../contexts/brukerregistrering';
 import prettyPrintDato from '../../utils/pretty-print-dato';
-import './registreringsopplysninger.less';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import { BodyShort } from '@navikt/ds-react';
 
