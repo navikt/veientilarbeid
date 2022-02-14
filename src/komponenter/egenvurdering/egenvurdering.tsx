@@ -1,6 +1,5 @@
 import { loggAktivitet } from '../../metrics/metrics';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
-import './egenvurdering.less';
 import { behovsvurderingLenke } from '../../innhold/lenker';
 import tekster from '../../tekster/tekster';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
@@ -68,18 +67,14 @@ const Egenvurdering = () => {
     }
 
     return (
-        <Panel border className="ramme blokk-s">
-            <section className="egenvurdering">
-                <div className="innhold">
-                    <Heading level="2" size="medium" className="blokk-xs">
-                        {tekster['egenvurdering-tittel']}
-                    </Heading>
-                    <BodyShort className="blokk-s egenvurdering__tekst">{tekster['egenvurdering-tekst']}</BodyShort>
-                    <Button variant="primary" onClick={handleButtonClick} className="blokk-xs">
-                        {tekster['egenvurdering-lenke-tekst']}
-                    </Button>
-                </div>
-            </section>
+        <Panel border className="blokk-s">
+            <Heading level="2" size="medium" className="blokk-xs">
+                {tekster['egenvurdering-tittel']}
+            </Heading>
+            <BodyShort className="blokk-s egenvurdering__tekst">{tekster['egenvurdering-tekst']}</BodyShort>
+            <Button variant="primary" onClick={handleButtonClick} className="blokk-xs">
+                {tekster['egenvurdering-lenke-tekst']}
+            </Button>
         </Panel>
     );
 };
