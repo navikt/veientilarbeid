@@ -40,7 +40,7 @@ function Kort2() {
 
                 <BodyShort className={'blokk-xs'}>
                     For å være registrert som arbeidssøker med de rettighetene det gir, så er det viktig at du svarer på
-                    henvendelsene og huske å sende inn meldekort til rett tid.
+                    henvendelsene og husker å sende inn meldekort til rett tid.
                 </BodyShort>
 
                 <BodyShort className={'blokk-xs'}>

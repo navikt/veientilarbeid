@@ -4,7 +4,7 @@ import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import lagKssKort from './kss';
 import lagStandardKort from './standardinnsats';
-import { UngdomsinnsatsStartkort, UngdomsinnsatsKortliste, UngdomsinnsatsSluttkort } from './ungdomsinnsats';
+import lagUngdomsinnsatsKort from './ungdomsinnsats';
 import { erKSSBruker } from '../../lib/er-kss-bruker';
 import Tema from '../tema/tema';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
@@ -36,7 +36,7 @@ function hentKortbunke(
     }
 
     if (skalViseUngdomsinnsatsKort) {
-        return [UngdomsinnsatsStartkort, UngdomsinnsatsKortliste, UngdomsinnsatsSluttkort];
+        return lagUngdomsinnsatsKort(sprak);
     }
 
     return lagStandardKort(sprak);

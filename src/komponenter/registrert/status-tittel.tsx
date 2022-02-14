@@ -22,7 +22,7 @@ const StatusTittel = () => {
     }
 
     return (
-        <Heading style={{ margin: 'var(--navds-font-size-medium)' }} size="medium">
+        <Heading style={{ margin: 'var(--navds-font-size-medium) 0' }} size="medium">
             {tekst('registrert')}
         </Heading>
     );

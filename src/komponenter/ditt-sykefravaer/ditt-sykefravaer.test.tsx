@@ -1,7 +1,6 @@
 import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
-import tekster from '../../tekster/tekster';
 import DittSykefravaer from './ditt-sykefravaer';
 
 describe('Tester at komponenten rendres som den skal', () => {
@@ -19,8 +18,10 @@ describe('Tester at komponenten rendres som den skal', () => {
             underOppfolging: { underOppfolging: true },
         };
         render(<DittSykefravaer />, { wrapper: contextProviders(providerProps) });
-        expect(screen.getByText(tekster['ditt-sykefravaer-overskrift'])).toBeInTheDocument();
-        expect(screen.getByText(tekster['ditt-sykefravaer-ingress'])).toBeInTheDocument();
+        expect(screen.getByText(/ditt sykefravær/i)).toBeInTheDocument();
+        expect(
+            screen.getByText(/Se sykemeldingene dine og annen informasjon om sykefraværet ditt/i)
+        ).toBeInTheDocument();
         expect(await screen.queryByText(/denne teksten finnes ikke/i)).toBeFalsy();
     });
 

@@ -1,6 +1,4 @@
 import * as React from 'react';
-import './lenkepanel-med-ikon.less';
-import tekster from '../../tekster/tekster';
 import { LinkPanel } from '@navikt/ds-react';
 
 interface Props {
@@ -18,7 +16,7 @@ class LenkepanelMedIkon extends React.Component<Props> {
         const { href, onClick, overskrift, ingress, children } = this.props;
 
         return (
-            <LinkPanel href={href} onClick={onClick} className="blokk-xs">
+            <LinkPanel href={href} onClick={onClick} className="lenkepanel-med-ikon blokk-xs">
                 <div
                     style={{
                         display: 'grid',
@@ -29,8 +27,8 @@ class LenkepanelMedIkon extends React.Component<Props> {
                 >
                     {children}
                     <div>
-                        <LinkPanel.Title>{tekster[overskrift]}</LinkPanel.Title>
-                        {ingress ? <LinkPanel.Description>{tekster[ingress]}</LinkPanel.Description> : ''}
+                        <LinkPanel.Title>{overskrift}</LinkPanel.Title>
+                        {ingress ? <LinkPanel.Description>{ingress}</LinkPanel.Description> : ''}
                     </div>
                 </div>
             </LinkPanel>

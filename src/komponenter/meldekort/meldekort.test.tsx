@@ -2,7 +2,6 @@ import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import { Formidlingsgruppe, Servicegruppe } from '../../contexts/oppfolging';
-import tekster from '../../tekster/tekster';
 import Meldekort from './meldekort';
 
 const meldekort = {
@@ -41,8 +40,7 @@ describe('tester at komponenten rendrer som forventet', () => {
         };
         const { container } = render(<Meldekort />, { wrapper: contextProviders(props) });
         expect(container).not.toBeEmptyDOMElement();
-        expect(screen.getByText(tekster['meldekort-overskrift'])).toBeInTheDocument();
-        expect(screen.getByText(tekster['meldekort-ingress'])).toBeInTheDocument();
+        expect(screen.getByText('Meldekort')).toBeInTheDocument();
     });
 
     test('Komponenten rendres IKKE når bruker IKKE er under oppfølging', () => {
@@ -75,8 +73,7 @@ describe('tester at komponenten rendrer som forventet', () => {
         };
         const { container } = render(<Meldekort />, { wrapper: contextProviders(providerProps) });
         expect(container).not.toBeEmptyDOMElement();
-        expect(screen.getByText(tekster['meldekort-overskrift'])).toBeInTheDocument();
-        expect(screen.getByText(tekster['meldekort-ingress'])).toBeInTheDocument();
+        expect(screen.getByText('Meldekort')).toBeInTheDocument();
         expect(await screen.queryByText(/denne teksten finnes ikke/i)).toBeFalsy();
     });
 
