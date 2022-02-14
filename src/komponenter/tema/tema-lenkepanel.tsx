@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
-import './tema-lenkepanel.less';
 import { LinkPanel } from '@navikt/ds-react';
 
 interface TemaLenkepanelProps {
@@ -26,7 +25,7 @@ const TemaLenkepanel: React.FC<TemaLenkepanelProps> = (props) => {
     };
 
     return (
-        <LinkPanel href={props.href} onClick={handleClickInnsending} className={'tema-lenkepanel blokk-xs'}>
+        <LinkPanel href={props.href} onClick={handleClickInnsending} className={'blokk-xs'}>
             <LinkPanel.Title>{props.tittel}</LinkPanel.Title>
             {props.beskrivelse && <LinkPanel.Description>{props.beskrivelse}</LinkPanel.Description>}
         </LinkPanel>
