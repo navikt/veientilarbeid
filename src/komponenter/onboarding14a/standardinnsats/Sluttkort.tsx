@@ -64,7 +64,9 @@ function Sluttkort() {
 
     return (
         <>
-            <Heading size="medium">{tekst('heading')}</Heading>
+            <Heading className={'blokk-xs'} size="medium">
+                {tekst('heading')}
+            </Heading>
             <RegistrertTeller ukerRegistrert={ukerRegistrert} registrertDato={registrertDato} />
             <Lenkepanel14A amplitudeData={amplitudeData} href={dialogLenke} antallUlesteDialoger={antallUleste} />
         </>
