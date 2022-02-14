@@ -11,8 +11,6 @@ import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import { FeaturetoggleContext } from '../../contexts/feature-toggles';
 import Rad from '../../innhold/rad';
 
-import './aap.less';
-
 const handleButtonClick = () => {
     window.location.href = aapSoknadLenke;
 };
@@ -30,45 +28,40 @@ const Aap = () => {
 
     return !kanViseKomponent ? null : (
         <Rad>
-            <div className="aap">
-                <Heading size="medium" className="blokk-s aap--tittel">
-                    Når du ikke lenger har rett på sykepenger
+            <Heading size="medium" className="blokk-s">
+                Når du ikke lenger har rett på sykepenger
+            </Heading>
+
+            <Panel border className="blokk-xs">
+                <Heading size="small" className="blokk-s">
+                    Arbeidsavklaringspenger (AAP)
                 </Heading>
-                <div className="tokol">
-                    <div className="kolonne blokk-m">
-                        <Panel border className="panelramme">
-                            <Heading size="small" className="blokk-s">
-                                Arbeidsavklaringspenger (AAP)
-                            </Heading>
-                            <BodyShort className="blokk-s">
-                                Arbeidsavklaringspenger erstatter delvis inntekt når du ikke kan jobbe på grunn av
-                                sykdom eller skade.
-                            </BodyShort>
-                            <Button onClick={handleButtonClick} className="blokk-xs">
-                                Til søknad
-                            </Button>
-                        </Panel>
-                    </div>
-                    <div className="kolonne blokk-m">
-                        <Accordion className="blokk-xs" style={{ background: 'white', borderRadius: '5px' }}>
-                            <Accordion.Item>
-                                <Accordion.Header>Har jeg rett på arbeidsavklaringspenger?</Accordion.Header>
-                                <Accordion.Content>
-                                    <RettPaAapInnhold />
-                                </Accordion.Content>
-                            </Accordion.Item>
-                        </Accordion>
-                        <Accordion className="blokk-xs" style={{ background: 'white', borderRadius: '5px' }}>
-                            <Accordion.Item>
-                                <Accordion.Header>Når bør jeg søke om arbeidsavklaringspenger?</Accordion.Header>
-                                <Accordion.Content>
-                                    <SoketidspunktInnhold />
-                                </Accordion.Content>
-                            </Accordion.Item>
-                        </Accordion>
-                    </div>
-                </div>
-            </div>
+                <BodyShort className="blokk-s">
+                    Arbeidsavklaringspenger erstatter delvis inntekt når du ikke kan jobbe på grunn av sykdom eller
+                    skade.
+                </BodyShort>
+                <Button onClick={handleButtonClick} className="blokk-xs">
+                    Til søknad
+                </Button>
+            </Panel>
+
+            <Accordion className="blokk-xs" style={{ background: 'white', borderRadius: '5px' }}>
+                <Accordion.Item>
+                    <Accordion.Header>Har jeg rett på arbeidsavklaringspenger?</Accordion.Header>
+                    <Accordion.Content>
+                        <RettPaAapInnhold />
+                    </Accordion.Content>
+                </Accordion.Item>
+            </Accordion>
+
+            <Accordion className="blokk-xs" style={{ background: 'white', borderRadius: '5px' }}>
+                <Accordion.Item>
+                    <Accordion.Header>Når bør jeg søke om arbeidsavklaringspenger?</Accordion.Header>
+                    <Accordion.Content>
+                        <SoketidspunktInnhold />
+                    </Accordion.Content>
+                </Accordion.Item>
+            </Accordion>
         </Rad>
     );
 };
