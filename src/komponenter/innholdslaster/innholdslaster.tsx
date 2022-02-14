@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './innholdslaster.less';
+import './innholdslaster.css';
 import { DataElement, STATUS } from '../../ducks/api';
 import { Loader } from '@navikt/ds-react';
 
