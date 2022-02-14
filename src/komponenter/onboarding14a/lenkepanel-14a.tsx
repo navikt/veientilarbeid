@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
 import { BodyShort, LinkPanel } from '@navikt/ds-react';
-import './lenkepanel-14a.less';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
 
@@ -44,8 +43,8 @@ const Lenkepanel14A: React.FC<Lenkepanel14AProps> = (props) => {
         return (
             <>
                 {tekst('du_har')}
-                <span className="dialog__ulesteMeldinger">{antallUlesteDialoger}</span>{' '}
-                {antallUlesteDialoger === 1 ? tekst('ulest_melding') : tekst('uleste meldinger')}
+                <b>{antallUlesteDialoger}</b>{' '}
+                {antallUlesteDialoger === 1 ? tekst('ulest_melding') : tekst('uleste_meldinger')}
             </>
         );
     }
