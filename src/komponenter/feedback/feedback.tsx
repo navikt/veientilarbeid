@@ -8,7 +8,7 @@ import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useBrowserStorage } from '../../hooks/use-browserstorage';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
-import './feedback.less';
+import './feedback.css';
 
 const TEKSTER: Tekster<string> = {
     nb: {

@@ -1,0 +1,69 @@
+.feedback-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.feedback-container .feedback-tittel {
+    margin-right: 0.5rem;
+}
+
+.feedback-space {
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+    color: var(--navds-global-color-gray-300);
+}
+
+.feedback-knapp {
+    border: none;
+    background: none;
+    color: var(--navds-global-color-blue-500);
+    cursor: pointer;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    width: 4rem;
+}
+
+.feedback-knapp:hover {
+    background: var(--navds-global-color-blue-500);
+    color: white;
+}
+
+.valgt {
+    background-color: var(--navds-global-color-blue-600);
+    color: white;
+}
+
+.valg {
+    margin-top: 0.5rem;
+}
+
+.feedback-utdyping {
+    padding: 1rem 1rem 0 1rem;
+}
+
+.feedback-grunner {
+    list-style: none;
+    padding: 0 1rem 0 1rem;
+}
+
+.feedback-grunner > li > button {
+    background: white;
+    margin-bottom: 0.5rem;
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid black;
+}
+
+.feedback-grunner > li > button:hover {
+    background: var(--navds-global-color-blue-500);
+    color: white;
+    cursor: pointer;
+}
+
+@media (min-width: var(--vta-screen-sm-min)) {
+    .valg {
+        margin-top: 0;
+    }
+}
