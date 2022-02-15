@@ -1,6 +1,6 @@
 import * as React from 'react';
 import DittNAVFliser from './components/DittnavFliser';
-import './css/generelle-fliser.less';
+import './css/generelle-fliser.css';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import IkkeRegistrert from '../ikke-registrert/ikke-registrert';
 
