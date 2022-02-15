@@ -20,7 +20,7 @@
     justify-content: center;
 }
 
-@media (min-width: 768px) {
+@media (min-width: var(--vta-screen-sm-min)) {
     .demodashboard {
         display: flex;
         flex-direction: column;
