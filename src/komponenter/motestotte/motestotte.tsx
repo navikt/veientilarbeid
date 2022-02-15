@@ -8,7 +8,6 @@ import {
 } from '../../contexts/brukerregistrering';
 import { motestotteLenke } from '../../innhold/lenker';
 import { loggAktivitet } from '../../metrics/metrics';
-import './motestotte.less';
 import { OppfolgingContext, Servicegruppe } from '../../contexts/oppfolging';
 import { MotestotteContext } from '../../contexts/motestotte';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
@@ -74,22 +73,18 @@ const Motestotte = () => {
     if (!kanViseKomponent) return null;
 
     return (
-        <Panel border className="ramme blokk-s">
-            <section className="motestotte blokk-m">
-                <div className="innhold">
-                    <Heading size="medium" level="1" className="blokk-xs">
-                        {systemtittel}
-                    </Heading>
-                    {tekster.map((tekst) => (
-                        <BodyShort key={tekst as string} className="blokk-m motestotte__tekst">
-                            {tekst}
-                        </BodyShort>
-                    ))}
-                    <Button variant="primary" onClick={handleClick}>
-                        Start
-                    </Button>
-                </div>
-            </section>
+        <Panel border className="blokk-s">
+            <Heading size="medium" level="1" className="blokk-xs">
+                {systemtittel}
+            </Heading>
+            {tekster.map((tekst) => (
+                <BodyShort key={tekst as string} className="blokk-xs">
+                    {tekst}
+                </BodyShort>
+            ))}
+            <Button variant="primary" onClick={handleClick}>
+                Start
+            </Button>
         </Panel>
     );
 };
