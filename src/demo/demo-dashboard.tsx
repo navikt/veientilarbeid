@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { Checkbox, CheckboxGroup, Heading, Select } from '@navikt/ds-react';
+
 import {
     DemoData,
     hentAutentiseringsInfo,
@@ -41,7 +43,6 @@ import {
     settDemoState,
 } from './demo-state';
 
-import './demo-dashboard.less';
 import { DinSituasjonSvar, ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../contexts/brukerregistrering';
 import {
     hentForeslattInnsatsgruppe,
@@ -58,7 +59,8 @@ import { InnloggingsNiva } from '../contexts/autentisering';
 import { setFastTidspunktForIDag } from '../utils/chrono';
 import { datoUtenTid } from '../utils/date-utils';
 import { FeatureToggles, prettyPrintFeatureToggle } from '../contexts/feature-toggles';
-import { Checkbox, CheckboxGroup, Heading, Select } from '@navikt/ds-react';
+
+import './demo-dashboard.css';
 
 interface OpprettetRegistreringDato {
     registrertForLanseringEgenvurdering: string;
