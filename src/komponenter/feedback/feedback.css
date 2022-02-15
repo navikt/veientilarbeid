@@ -62,7 +62,7 @@
     cursor: pointer;
 }
 
-@media (min-width: var(--vta-screen-sm-min)) {
+@media (min-width: 768px) {
     .valg {
         margin-top: 0;
     }

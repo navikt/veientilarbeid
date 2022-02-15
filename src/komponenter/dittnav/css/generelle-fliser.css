@@ -1,7 +1,7 @@
 .dittnav-fliser > .navds-link-panel {
     width: 100%;
 }
-@media (min-width: var(--vta-screen-sm-min)) {
+@media (min-width: 768px) {
     .dittnav-fliser {
         display: flex;
         flex-wrap: wrap;

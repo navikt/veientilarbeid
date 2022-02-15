@@ -10,7 +10,7 @@
 
 .navds-checkbox {
     background-color: var(--navds-global-color-white);
-    border: 1px var(--navds-global-color-black) solid;
+    border: 1px #000 solid;
     margin: 0.5rem;
     padding: 0.5rem;
 }
@@ -20,7 +20,7 @@
     justify-content: center;
 }
 
-@media (min-width: var(--vta-screen-sm-min)) {
+@media (min-width: 768px) {
     .demodashboard {
         display: flex;
         flex-direction: column;
