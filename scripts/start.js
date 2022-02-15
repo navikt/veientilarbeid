@@ -1,12 +1,9 @@
 const rewire = require('rewire');
 const defaults = rewire('react-scripts/scripts/start.js');
-const { setupLessConfig } = require('./craco-less');
 
 const configFactory = defaults.__get__('configFactory');
 
-function overrideConfig(webpackConfig) {
-    const config = setupLessConfig(webpackConfig);
-
+function overrideConfig(config) {
     config.plugins.forEach((plugin) => {
         const options = plugin.options;
 
