@@ -1,4 +1,4 @@
-import './innhold.less';
+import './innhold.css';
 import Rad from './rad';
 import AapRad from '../komponenter/aap/aap';
 import ReaktiveringKort from '../komponenter/reaktivering/reaktivering-kort';

@@ -1,19 +1,14 @@
-@nodeModulesPath: './../../';
-@coreModulePath: './../../';
-
-@import '../node_modules/nav-frontend-core/less/core';
-@import "../node_modules/@navikt/ds-css";
+@import '../node_modules/@navikt/ds-css';
 
 html {
     scroll-behavior: smooth;
+}
 
-    @media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce) {
+    html {
         scroll-behavior: auto;
     }
 }
-
-@tablet-width: 760px;
-@desktop-width: 958px;
 
 .appContainer {
     height: 100%;
@@ -32,7 +27,7 @@ html {
 }
 
 .mr-05 {
-    margin-right: .5rem;
+    margin-right: 0.5rem;
 }
 
 .mb-2 {
@@ -55,7 +50,14 @@ html {
     padding: 1rem;
 }
 
-:root {
-    --vta-screen-sm-min: 768px;
-    --vta-screen-md-min: 992px;
+.blokk-xs {
+    margin-bottom: 1rem;
+}
+
+.blokk-s {
+    margin-bottom: 20px;
+}
+
+.blokk-m {
+    margin-bottom: 2rem;
 }

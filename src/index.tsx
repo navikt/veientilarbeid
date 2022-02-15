@@ -5,7 +5,7 @@ import * as ReactDOM from 'react-dom';
 import * as Sentry from '@sentry/browser';
 import App from './app';
 
-import './index.less';
+import './index.css';
 import { erDemo, erMikrofrontend, erMock, erProduksjon, erStandalone } from './utils/app-state-utils';
 import NAVSPA from './NAVSPA';
 import { redirectTilDittNav } from './komponenter/hent-initial-data/redirect-dittnav-utils';

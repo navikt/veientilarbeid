@@ -1,0 +1,31 @@
+body {
+    background-color: var(--navds-global-color-gray-100);
+}
+
+.rad {
+    width: 100%;
+    padding: 1rem 0;
+}
+
+.limit {
+    margin: 0;
+    padding: 0;
+}
+
+@media (min-width: 768px) {
+    .limit {
+        max-width: 760px;
+        margin: 0 auto;
+    }
+
+    .tokol {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+@media (min-width: 992px) {
+    .limit {
+        max-width: 958px;
+    }
+}
