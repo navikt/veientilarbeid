@@ -61,3 +61,15 @@ html {
 .blokk-m {
     margin-bottom: 2rem;
 }
+
+.flex {
+    display: flex;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.space-between {
+    justify-content: space-between;
+}
