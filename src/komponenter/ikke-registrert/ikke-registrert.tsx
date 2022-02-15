@@ -1,7 +1,6 @@
 import { Button, Heading, BodyShort, Panel } from '@navikt/ds-react';
 
 import { loggAktivitet } from '../../metrics/metrics';
-import './ikke-registrert.less';
 import { registreringsLenke } from '../../innhold/lenker';
 import InViewport from '../in-viewport/in-viewport';
 import ErRendret from '../er-rendret/er-rendret';
@@ -48,17 +47,13 @@ const IkkeRegistrert = (props: Props) => {
     return (
         <Panel border className="ramme blokk-s" id="registrering-status-informasjon">
             <ErRendret loggTekst="Rendrer IkkeRegistrert" />
-            <section className="egenvurdering">
-                <div className="innhold">
-                    <Heading size="medium" level="2" className="blokk-xs">
-                        {tekst('header')}
-                    </Heading>
-                    <BodyShort className="blokk-s egenvurdering__tekst">{tekst('description')}</BodyShort>
-                    <Button variant="primary" onClick={handleButtonClick} className="blokk-xs">
-                        {tekst('button')}
-                    </Button>
-                </div>
-            </section>
+            <Heading size="medium" level="2" className="blokk-xs">
+                {tekst('header')}
+            </Heading>
+            <BodyShort className="blokk-s">{tekst('description')}</BodyShort>
+            <Button variant="primary" onClick={handleButtonClick} className="blokk-xs">
+                {tekst('button')}
+            </Button>
             <InViewport loggTekst="Viser IkkeRegistrert i viewport" />
         </Panel>
     );
