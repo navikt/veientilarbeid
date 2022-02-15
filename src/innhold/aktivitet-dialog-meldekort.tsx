@@ -8,10 +8,10 @@ const AktivitetDialog = () => {
     const { erSykmeldtMedArbeidsgiver } = useBrukerinfoData();
     return (
         <Grid className="blokk-xs">
-            <Cell xs={12} sm={6}>
+            <Cell xs={12} md={6}>
                 <Aktivitetsplan />
             </Cell>
-            <Cell xs={12} sm={6}>
+            <Cell xs={12} md={6}>
                 {erSykmeldtMedArbeidsgiver ? <DittSykefravaer /> : <Meldekort />}
             </Cell>
         </Grid>
