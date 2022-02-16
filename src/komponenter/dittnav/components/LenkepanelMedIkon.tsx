@@ -1,14 +1,10 @@
 import * as React from 'react';
-import { trackEvent } from '../utils/googleAnalytics';
 import { LinkPanel } from '@navikt/ds-react';
 
 type PropTypes = {
     overskrift: string;
     ingress: JSX.Element | string | null;
     etikett?: string;
-    gaCategory?: string;
-    gaAction?: string;
-    gaUrl?: string;
     onClick?: () => void;
 };
 
@@ -18,9 +14,6 @@ export const LenkepanelMedIkon: React.FC<PropTypes & React.HTMLProps<HTMLAnchorE
     overskrift,
     ingress,
     etikett,
-    gaCategory,
-    gaAction,
-    gaUrl,
     children,
 }) => {
     return (
@@ -28,7 +21,6 @@ export const LenkepanelMedIkon: React.FC<PropTypes & React.HTMLProps<HTMLAnchorE
             className="blokk-xs"
             href={href}
             onClick={() => {
-                trackEvent(gaCategory, gaAction, gaUrl || href);
                 onClick && onClick();
             }}
         >
