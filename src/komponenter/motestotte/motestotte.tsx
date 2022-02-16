@@ -13,27 +13,25 @@ import { MotestotteContext } from '../../contexts/motestotte';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
-import tekster from '../../tekster/tekster';
 import { BodyShort, Button, Heading, Panel } from '@navikt/ds-react';
+import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
+import { useSprakValg } from '../../contexts/sprak';
 
 const LANSERINGSDATO_MOTESTOTTE = new Date('2020-03-12');
 
-interface MotestotteTekster {
-    systemtittel: String;
-    tekster: Array<String>;
-}
-
-function hentTekster(erSykmeldtMedArbeidsgiver: boolean): MotestotteTekster {
-    const sykmeldtStatus = erSykmeldtMedArbeidsgiver ? 'sykmeldt' : 'ikkeSykmeldt';
-    const [tittelNokkel, avsnittNokkel] = [
-        `motestotte-${sykmeldtStatus}-systemtittel`,
-        `motestotte-${sykmeldtStatus}-avsnitt`,
-    ];
-    return {
-        systemtittel: tekster[tittelNokkel],
-        tekster: tekster[avsnittNokkel],
-    };
-}
+const TEKSTER: Tekster<string> = {
+    nb: {
+        'sykmeldt-tittel': 'Du kan få mer veiledning',
+        'sykmeldt-avsnitt1':
+            'Du har svart at du trenger mer veiledning nå som retten til sykepenger nærmer seg slutten.',
+        'sykmeldt-avsnitt2':
+            'Vi ønsker å bli bedre kjent med situasjonen din, slik at du kan få veiledning som passer for deg.',
+        'ikkeSykmeldt-tittel': 'Du kan få veiledning',
+        'ikkeSykmeldt-avsnitt1': 'Du har svart at du har utfordringer som hindrer deg i å søke eller være i jobb.',
+        'ikkeSykmeldt-avsnitt2':
+            'Vi ønsker å bli bedre kjent med situasjonen din, slik at du kan få veiledning som passer for deg.',
+    },
+};
 
 const Motestotte = () => {
     const amplitudeData = useAmplitudeData();
@@ -41,7 +39,8 @@ const Motestotte = () => {
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const motestotteData = React.useContext(MotestotteContext).data;
     const { erSykmeldtMedArbeidsgiver } = useBrukerinfoData();
-    const { systemtittel, tekster } = hentTekster(erSykmeldtMedArbeidsgiver);
+    const sykmeldtStatus = erSykmeldtMedArbeidsgiver ? 'sykmeldt' : 'ikkeSykmeldt';
+    const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
     const opprettetRegistreringDatoString = selectOpprettetRegistreringDato(data);
     const opprettetRegistreringDato = opprettetRegistreringDatoString
         ? new Date(opprettetRegistreringDatoString)
@@ -75,13 +74,10 @@ const Motestotte = () => {
     return (
         <Panel border className="blokk-s">
             <Heading size="medium" level="1" className="blokk-xs">
-                {systemtittel}
+                {tekst(`${sykmeldtStatus}-tittel`)}
             </Heading>
-            {tekster.map((tekst) => (
-                <BodyShort key={tekst as string} className="blokk-xs">
-                    {tekst}
-                </BodyShort>
-            ))}
+            <BodyShort className="blokk-xs">{tekst(`${sykmeldtStatus}-avsnitt1`)}</BodyShort>
+            <BodyShort className="blokk-xs">{tekst(`${sykmeldtStatus}-avsnitt2`)}</BodyShort>
             <Button variant="primary" onClick={handleClick}>
                 Start
             </Button>

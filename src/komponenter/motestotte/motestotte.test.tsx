@@ -1,7 +1,6 @@
 import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
 import Motestotte from './motestotte';
-import tekster from '../../tekster/tekster';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import { DinSituasjonSvar, ForeslattInnsatsgruppe } from '../../contexts/brukerregistrering';
 import { Servicegruppe } from '../../contexts/oppfolging';
@@ -33,7 +32,7 @@ describe('Motestotte', () => {
             },
         };
         render(<Motestotte />, { wrapper: contextProviders(providerProps) });
-        expect(await screen.getByText(tekster['motestotte-sykmeldt-systemtittel'])).toBeTruthy();
+        expect(await screen.getByText('Du kan få mer veiledning')).toBeTruthy();
     });
 
     it('rendres IKKE når men IKKE er under oppfølging', async () => {
@@ -63,8 +62,8 @@ describe('Motestotte', () => {
             },
         };
         render(<Motestotte />, { wrapper: contextProviders(providerProps) });
-        expect(await screen.queryByText(tekster['motestotte-sykmeldt-systemtittel'])).toBeFalsy();
-        expect(await screen.queryByText(tekster['motestotte-ikkeSykmeldt-systemtittel'])).toBeTruthy();
+        expect(await screen.queryByText('Du kan få mer veiledning')).toBeFalsy();
+        expect(await screen.queryByText('Du kan få veiledning')).toBeTruthy();
     });
 
     it('rendres IKKE dersom annen servicegruppe en BKART', async () => {
@@ -78,7 +77,7 @@ describe('Motestotte', () => {
             },
         };
         render(<Motestotte />, { wrapper: contextProviders(providerProps) });
-        expect(await screen.queryByText(tekster['motestotte-sykmeldt-systemtittel'])).toBeFalsy();
+        expect(await screen.queryByText('Du kan få mer veiledning')).toBeFalsy();
     });
 
     it('rendres IKKE dersom permittert', async () => {
@@ -96,7 +95,7 @@ describe('Motestotte', () => {
             oppfolging,
         };
         render(<Motestotte />, { wrapper: contextProviders(providerProps) });
-        expect(await screen.queryByText(tekster['motestotte-sykmeldt-systemtittel'])).toBeFalsy();
+        expect(await screen.queryByText('Du kan få mer veiledning')).toBeFalsy();
     });
 
     it('rendres IKKE dersom gyldig møtestøttebesvarelse', async () => {
@@ -107,7 +106,7 @@ describe('Motestotte', () => {
             oppfolging,
         };
         render(<Motestotte />, { wrapper: contextProviders(providerProps) });
-        expect(await screen.queryByText(tekster['motestotte-sykmeldt-systemtittel'])).toBeFalsy();
+        expect(await screen.queryByText('Du kan få mer veiledning')).toBeFalsy();
     });
 
     it('rendres IKKE dersom reservasjonKrr', async () => {
@@ -121,7 +120,7 @@ describe('Motestotte', () => {
             },
         };
         render(<Motestotte />, { wrapper: contextProviders(providerProps) });
-        expect(await screen.queryByText(tekster['motestotte-sykmeldt-systemtittel'])).toBeFalsy();
+        expect(await screen.queryByText('Du kan få mer veiledning')).toBeFalsy();
     });
 
     it('rendres IKKE dersom annen foreslått innsatsgruppe', async () => {
@@ -141,6 +140,6 @@ describe('Motestotte', () => {
         };
 
         render(<Motestotte />, { wrapper: contextProviders(providerProps) });
-        expect(await screen.queryByText(tekster['motestotte-sykmeldt-systemtittel'])).toBeFalsy();
+        expect(await screen.queryByText('Du kan få mer veiledning')).toBeFalsy();
     });
 });
