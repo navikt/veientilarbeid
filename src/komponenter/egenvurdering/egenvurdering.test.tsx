@@ -3,7 +3,6 @@ import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Egenvurdering from './egenvurdering';
-import tekster from '../../tekster/tekster';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import { Servicegruppe } from '../../contexts/oppfolging';
 import { ForeslattInnsatsgruppe } from '../../contexts/brukerregistrering';
@@ -44,7 +43,7 @@ describe('Tester egenvurdering-komponenten', () => {
             },
         };
         render(<Egenvurdering />, { wrapper: contextProviders(props) as FunctionComponent });
-        expect(screen.getByText(tekster['egenvurdering-tittel'])).toBeTruthy();
+        expect(screen.getByText('Hva trenger du for å komme i jobb?')).toBeTruthy();
     });
 
     test('Komponenten rendres IKKE når bruker IKKE er under oppfølging', () => {
@@ -65,7 +64,7 @@ describe('Tester egenvurdering-komponenten', () => {
             egenvurdering: { sistOppdatert: '2020-02-01' },
         };
         render(<Egenvurdering />, { wrapper: contextProviders(props) as FunctionComponent });
-        expect(await screen.queryByText(tekster['egenvurdering-tittel'])).toBeFalsy();
+        expect(await screen.queryByText('Hva trenger du for å komme i jobb?')).toBeFalsy();
     });
 
     it('renderes ikke som standard-oppførsel', async () => {
@@ -74,7 +73,7 @@ describe('Tester egenvurdering-komponenten', () => {
         };
 
         render(<Egenvurdering />, { wrapper: contextProviders(props) as FunctionComponent });
-        expect(await screen.queryByText(tekster['egenvurdering-tittel'])).toBeFalsy();
+        expect(await screen.queryByText('Hva trenger du for å komme i jobb?')).toBeFalsy();
     });
 
     it('knapp fungerer som forventet', async () => {
@@ -93,7 +92,7 @@ describe('Tester egenvurdering-komponenten', () => {
         delete (global as any).window.location;
         global.window.location = { assign: mockLocationAssign } as unknown as Location;
 
-        const knapp = screen.getByText(tekster['egenvurdering-lenke-tekst']);
+        const knapp = screen.getByText('SVAR HER');
         knapp.onclick = mockHandleClick;
         userEvent.click(knapp);
         expect(mockHandleClick).toHaveBeenCalledTimes(1);
