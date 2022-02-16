@@ -30,26 +30,6 @@ const tekster = {
     'dagpenger-heading-tekst': 'Økonomi',
     'dagpenger.undertittel.rett-til-dagpenger.ingress':
         'Her er de viktigste kravene du må oppfylle for å ha rett på dagpenger:',
-    'aap-rad-ingress-tittel': 'Arbeidsavklaringspenger (AAP)',
-    'aap-rad-ingress':
-        'Arbeidsavklaringspenger erstatter delvis inntekt når du ikke kan jobbe på grunn av sykdom eller skade.',
-    'aap-rad-rett-pa-aap-panel-tittel': 'Har jeg rett på arbeidsavklaringspenger?',
-    'aap-rad-soketidspunkt-innhold':
-        '<p>\nDu kan når som helst søke om arbeidsavklaringspenger hvis arbeidsevnen din er redusert med minst 50 prosent. Du kan tidligst få utbetalt arbeidsavklaringspenger fra og med den dagen du søker.\n</p>\n<p>\n    Du kan være sykmeldt med sykepenger inntil ett år.\n    Hvis du fortsatt er syk ved slutten av dette sykepengeåret, kan arbeidsavklaringspenger være en aktuell ytelse.\n</p>\n<p>\n    Hvis du ikke har oversikt over hvor lenge du har vært sykmeldt,\n    må du være oppmerksom på at sykepengene dine kan ta slutt før du tror.\n    Du må selv søke om arbeidsavklaringspenger i god tid før retten din til sykepenger går ut.\n</p>\n<p>\n \n</p>',
-    'aap-rad-soketidspunkt-panel-tittel': 'Når bør jeg søke om arbeidsavklaringspenger?',
-    'aap-rad-til-soknad-knapp-tekst': 'Til søknad',
-    'aap-rad-tittel': 'Når du ikke lenger har rett på sykepenger',
-    'aap-rett-pa-relatertinnhold-innhold':
-        '<ul>\n    <li>\n        <a class="lenke" href="https://www.nav.no/no/person/arbeid/arbeidsavklaringspenger/arbeidsavklaringspenger-aap">\n            Utfyllende informasjon om AAP\n        </a>\n    </li>\n    <li>\n        <a class="lenke" href="https://www.nav.no/no/Person/Arbeid/Dagpenger+ved+arbeidsloshet+og+permittering/Meldekort+hvordan+gjor+du+det/Slik+fyller+du+ut+meldekortet+arbeidsavklaringspenger">\n            Hvordan du fyller ut meldekort når du har AAP\n        </a>\n    </li>\n</ul>',
-    'aap-rett-pa-innhold':
-        '<div class="avsnitt">\n    <h3 class="typo-element blokk-null">Medlem i folketrygden</h3>\n    <p>Du må ha vært medlem i folketrygden i minst 3 år. Har du vært helt arbeidsfør, er det nok at du har vært medlem i minst ett år.</p>\n</div>\n<div class="avsnitt">\n    <h3 class="typo-element blokk-null">Alder</h3>\n    <p>Du må være mellom 18 og 67 år.</p>\n</div>\n<div class="avsnitt">\n    <h3 class="typo-element blokk-null">Bo i Norge</h3>\n    <p>Du må bo eller oppholde deg i Norge.</p>\n</div>\n<div class="avsnitt">\n    <h3 class="typo-element blokk-null">Redusert arbeidsevne</h3>\n    <p>Arbeidsevnen din må være redusert med minst 50 prosent.</p>\n</div>\n<div class="avsnitt">\n    <h3 class="typo-element blokk-null">Behov for tiltak eller behandling</h3>\n    <p>Du må ha behov for et arbeidsrettet tiltak eller aktiv behandling.</p>\n</div>\n<div class="avsnitt">\n    <h3 class="typo-element blokk-null">Sende meldekort</h3>\n    <p>Du må sende meldekort hver 14. dag.</p>\n</div>',
-    'aap-rad-soketidspunkt-relatertinnhold-innhold':
-        '<ul>\n<li>\n<a class="lenke" href="https://www.nav.no/no/NAV+og+samfunn/Om+NAV/Saksbehandlingstider+i+NAV?kap=398578">Se saksbehandlingstider.</a>\n</li>\n<li>\n<a class="lenke" href="https://www.nav.no/no/Bedrift/Oppfolging/Sykmeldt+arbeidstaker/Overgang+til+arbeidsavklaring">Les mer om overgangen fra sykepenger til arbeidsavklaringspenger.</a>\n    </li>\n</ul>',
-    'aap-rad-soketidspunkt-relatertinnhold-tittel': 'Relatert innhold',
-    'aap-rett-pa-relatertinnhold-tittel': 'Relatert innhold',
-    'aap-rett-pa-undertittel-ingress':
-        'Her er de viktigste vilkårene du må oppfylle for å ha rett på arbeidsavklaringspenger:',
-    'aap-rett-pa-undertittel': 'Har jeg rett på AAP?',
     'aktivitetsplan-beskrivelse': 'Her holder du orden på aktiviteter du gjør i samarbeid med NAV.',
     'aktivitetsplan-lenke-ordinaer': 'Gå til aktivitetsplanen',
     'aktivitetsplan-lenke-sykmeldt': 'Gå til aktivitetsplanen',

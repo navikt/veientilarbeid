@@ -1,7 +1,6 @@
 import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
 import Aap from './aap';
-import tekster from '../../tekster/tekster';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import { InnloggingsNiva } from '../../contexts/autentisering';
 
@@ -16,7 +15,7 @@ describe('Aap', () => {
         };
 
         render(<Aap />, { wrapper: contextProviders(props) });
-        expect(await screen.getByText(tekster['aap-rad-tittel'])).toBeTruthy();
+        expect(await screen.getByText('Når du ikke lenger har rett på sykepenger')).toBeTruthy();
     });
 
     it('rendres IKKE når featureToggle veientilarbeid.rydding.skjulAAPRad  er aktivert', async () => {
