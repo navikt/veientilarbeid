@@ -1,7 +1,6 @@
 import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
 import GenerelleFliser from './generelle-fliser';
-import tekster from './utils/tekster.json';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 
 describe('Tester komponenten', () => {
@@ -27,13 +26,9 @@ describe('Tester komponenten', () => {
             underOppfolging: { underOppfolging: false },
         };
         render(<GenerelleFliser />, { wrapper: contextProviders(props) });
-        expect(screen.getByText(tekster['fliser.din.pensjon'])).toBeInTheDocument();
-        expect(screen.getByText(tekster['fliser.din.pensjon.ingress'])).toBeInTheDocument();
-        expect(screen.getByText(tekster['fliser.mistet.jobben'])).toBeInTheDocument();
-        expect(screen.getByText(tekster['fliser.mistet.jobben.ingress'])).toBeInTheDocument();
-        expect(screen.getByText(tekster['fliser.skjemaer'])).toBeInTheDocument();
-        expect(screen.getByText(tekster['fliser.skjemaer.ingress'])).toBeInTheDocument();
-        expect(screen.getByText(tekster['fliser.ditt.sykevravaer'])).toBeInTheDocument();
-        expect(screen.getByText(tekster['fliser.ditt.sykevravaer.ingress'])).toBeInTheDocument();
+        expect(screen.getByText('Din pensjon')).toBeInTheDocument();
+        expect(screen.getByText('Mistet jobben?')).toBeInTheDocument();
+        expect(screen.getByText('Skjemaer')).toBeInTheDocument();
+        expect(screen.getByText('Ditt sykefravær')).toBeInTheDocument();
     });
 });
