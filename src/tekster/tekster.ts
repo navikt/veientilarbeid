@@ -68,8 +68,6 @@ const tekster = {
     'dagpenger-tekst': 'Dagpenger skal gi deg som har blitt arbeidsledig økonomisk støtte mens du søker ny jobb.',
     'dagpenger-tittel': 'Dagpenger',
     dialog: 'Dialog med veilederen din',
-    'feil-i-systemene-beskrivelse':
-        'På grunn av en feil er ikke tjenesten tilgjengelig akkurat nå. Vennligst prøv igjen senere',
     'jobbsokertips-overskrift-har-besvarelse': 'Dine jobbsøkertips',
     'jobbsokertips-overskrift-har-ikke-besvarelse': 'Få jobbsøkertips',
     'krr-melding-ingress': 'Du er reservert mot digital kommunikasjon med det offentlige.',

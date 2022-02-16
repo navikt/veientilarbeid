@@ -1,15 +1,20 @@
 import { Alert, BodyShort } from '@navikt/ds-react';
 
-import tekster from '../../tekster/tekster';
+import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
+import { useSprakValg } from '../../contexts/sprak';
 
-interface FeilmeldingProps {
-    tekstId: string;
-}
+const TEKSTER: Tekster<string> = {
+    nb: {
+        feilmelding: 'På grunn av en feil er ikke tjenesten tilgjengelig akkurat nå. Vennligst prøv igjen senere',
+    },
+};
 
-function Feilmelding({ tekstId }: FeilmeldingProps) {
+function Feilmelding() {
+    const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
+
     return (
         <Alert variant="error" style={{ marginTop: '2rem' }}>
-            <BodyShort>{tekster[tekstId]}</BodyShort>
+            <BodyShort>{tekst('feilmelding')}</BodyShort>
         </Alert>
     );
 }

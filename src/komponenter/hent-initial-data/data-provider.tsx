@@ -163,7 +163,7 @@ const DataProvider = ({ children }: Props) => {
 
     return (
         <Innholdslaster
-            feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse" />}
+            feilmeldingKomponent={<Feilmelding />}
             storrelse="XXL"
             avhengigheter={avhengigheter}
             ventPa={ventPa}

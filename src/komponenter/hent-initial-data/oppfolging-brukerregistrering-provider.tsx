@@ -75,11 +75,7 @@ const OppfolgingBrukerregistreringProvider = ({ children }: OppfolgingProviderPr
     }
 
     return (
-        <Innholdslaster
-            feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse" />}
-            storrelse="XXL"
-            avhengigheter={avhengigheter}
-        >
+        <Innholdslaster feilmeldingKomponent={<Feilmelding />} storrelse="XXL" avhengigheter={avhengigheter}>
             <Oppfolging.OppfolgingContext.Provider value={oppfolgingState}>
                 <Meldekortstatus.MeldekortstatusContext.Provider value={meldekortstatusState}>
                     <UnderOppfolging.UnderOppfolgingContext.Provider value={underOppfolgingState}>

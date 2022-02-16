@@ -21,11 +21,7 @@ const AutentiseringsInfoFetcher = () => {
     }, []);
 
     return (
-        <Innholdslaster
-            feilmeldingKomponent={<Feilmelding tekstId="feil-i-systemene-beskrivelse" />}
-            storrelse="XXL"
-            avhengigheter={[state]}
-        >
+        <Innholdslaster feilmeldingKomponent={<Feilmelding />} storrelse="XXL" avhengigheter={[state]}>
             <Autentisering.AutentiseringContext.Provider value={state}>
                 <OppfolgingBrukerregistreringProvider>
                     <DataProvider>
