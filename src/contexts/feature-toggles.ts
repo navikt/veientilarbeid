@@ -10,7 +10,6 @@ export enum FeatureToggles {
     INTRO_DAGPENGER_TOGGLE = 'veientilarbeid.onboardingDagpenger.toggle',
     KAN_VISE_UTFRA_SITUASJON = 'veientilarbeid.kanViseUtfraSituasjon',
     VIS_EGENVURDERING_MED_14A = 'veientilarbeid.vis-egenvurdering-med-14a',
-    VIS_14A_UNGDOMSINNSATS = 'veientilarbeid.14a-ungdomsinnsats',
 }
 
 export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
@@ -31,8 +30,6 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Onboarding dagpenger';
         case FeatureToggles.INTRO_DAGPENGER_TOGGLE:
             return 'Onboarding dagpenger toggle';
-        case FeatureToggles.VIS_14A_UNGDOMSINNSATS:
-            return 'Vis 14a ungdomsinnsats';
     }
 }
 
@@ -45,7 +42,6 @@ export interface Data {
     'veientilarbeid.onboardingDagpenger.toggle': boolean;
     'veientilarbeid.kanViseUtfraSituasjon': boolean;
     'veientilarbeid.vis-egenvurdering-med-14a': boolean;
-    'veientilarbeid.14a-ungdomsinnsats': boolean;
 }
 
 export interface State extends DataElement {
@@ -62,7 +58,6 @@ export const initialState: State = {
         'veientilarbeid.onboardingDagpenger.toggle': false,
         'veientilarbeid.kanViseUtfraSituasjon': false,
         'veientilarbeid.vis-egenvurdering-med-14a': false,
-        'veientilarbeid.14a-ungdomsinnsats': false,
     },
     status: STATUS.NOT_STARTED,
 };

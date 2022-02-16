@@ -55,7 +55,6 @@ const grunndata = {
         'veientilarbeid.kanViseUtfraSituasjon': false,
         'veientilarbeid.vis-oppdatert-styling': false,
         'veientilarbeid.vis-egenvurdering-med-14a': false,
-        'veientilarbeid.14a-ungdomsinnsats': false,
     },
     amplitudeData: {
         gruppe: poagruppeKSS,
