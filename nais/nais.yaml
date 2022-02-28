@@ -55,7 +55,7 @@ spec:
   liveness:
     path: /internal/isAlive
     port: 8080
-    initialDelay: 20
+    initialDelay: 60
   port: 8080
   prometheus:
     enabled: true
@@ -63,7 +63,7 @@ spec:
   readiness:
     path: /internal/isReady
     port: 8080
-    initialDelay: 20
+    initialDelay: 60
   replicas:
     min: 2
     max: 4
