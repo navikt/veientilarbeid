@@ -18,6 +18,7 @@ bakveientilarbeid_url: http://bakveientilarbeid
 ingresses:
   - https://veientilarbeid.dev.nav.no
 externalHosts:
+  - navtestb2c.b2clogin.com
   - saksoversikt-api.dev.nav.no
   - appres-q1.nav.no
   - unleash.nais.io
