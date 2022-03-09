@@ -23,4 +23,9 @@ describe('Tester komponenten RegistrertTeller', () => {
         const { container } = render(<RegistrertTeller ukerRegistrert={24} registrertDato={undefined} />);
         expect(container).toBeEmptyDOMElement();
     });
+
+    test('Komponenten rendres IKKE uker registrert er undefined', () => {
+        const { container } = render(<RegistrertTeller ukerRegistrert={undefined} registrertDato={undefined} />);
+        expect(container).toBeEmptyDOMElement();
+    });
 });

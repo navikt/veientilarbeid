@@ -4,7 +4,7 @@ import { Sprak, useSprakValg } from '../../contexts/sprak';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 
 interface TellerProps {
-    ukerRegistrert: number | 'INGEN_DATO';
+    ukerRegistrert: number | 'INGEN_DATO' | undefined;
     registrertDato: string | undefined;
 }
 
@@ -76,10 +76,14 @@ const under23Uker = (ukerRegistrert: string, sprak: Sprak) => {
 };
 
 function RegistrertTeller({ ukerRegistrert, registrertDato }: TellerProps) {
-    const over23Uker = ukerRegistrert > 23;
+    const over23Uker = ukerRegistrert && ukerRegistrert > 23;
     const sprak = useSprakValg().sprak;
 
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
+
+    if (ukerRegistrert === undefined) {
+        return null;
+    }
 
     if (!over23Uker) {
         return <BodyShort className="blokk-xs">{under23Uker(tekst(`${ukerRegistrert}`), sprak)}</BodyShort>;
