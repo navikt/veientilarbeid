@@ -1,10 +1,10 @@
 function getEnvironment() {
     let environment = 'test';
-    if (typeof window !== undefined && /localhost/.test(window.location)) {
+    if (/localhost/.test(window.location)) {
         environment = 'dev';
-    } else if (typeof window !== undefined && /q1/.test(window.location)) {
+    } else if (/q1/.test(window.location)) {
         environment = 'q1';
-    } else if (typeof window !== undefined && !/q/.test(window.location)) {
+    } else if (!/q/.test(window.location)) {
         environment = 'prod';
     }
     return environment;
