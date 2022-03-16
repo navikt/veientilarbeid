@@ -12,6 +12,7 @@ import meldekortResponse from './meldekort-mock';
 import meldekortstatusResponse from './meldekortstatus-mock';
 import dpSoknadResonse from './dp-innsyn-soknad';
 import dpVedtakResponse from './dp-innsyn-vedtak';
+import dpPaabegynteResponse from './dp-innsyn-paabegynte';
 import paabegynteSoknaderResponse from './saksoversikt-pabegyntesoknader-mock';
 import sakstemaResponse from './saksoversikt-sakstema-mock';
 import msw_get from './msw-utils';
@@ -47,4 +48,5 @@ export const handlers = [
     msw_get(SAKSTEMA_URL, sakstemaResponse),
     msw_get(`${DP_INNSYN_URL}/soknad`, dpSoknadResonse),
     msw_get(`${DP_INNSYN_URL}/vedtak`, dpVedtakResponse),
+    msw_get(`${DP_INNSYN_URL}/paabegynte`, dpPaabegynteResponse),
 ];
