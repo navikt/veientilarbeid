@@ -29,6 +29,7 @@ import { useAutentiseringData, InnloggingsNiva } from '../../contexts/autentiser
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import * as DpInnsynSoknad from '../../contexts/dp-innsyn-soknad';
 import * as DpInnsynVedtak from '../../contexts/dp-innsyn-vedtak';
+import * as DpInnsynPaabegynt from '../../contexts/dp-innsyn-paabegynt';
 
 const skalSjekkeEgenvurderingBesvarelse = (
     foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null
@@ -85,6 +86,9 @@ const DataProvider = ({ children }: Props) => {
     const [dpInnsynVedtakState, setDpInnsynVedtakState] = React.useState<DpInnsynVedtak.State>(
         DpInnsynVedtak.initialState
     );
+    const [DpInnsynPaabegyntState, setDpInnsynPaabegyntState] = React.useState<DpInnsynPaabegynt.State>(
+        DpInnsynPaabegynt.initialState
+    );
 
     const data = useBrukerregistreringData();
     const foreslaattInnsatsgruppe = selectForeslattInnsatsgruppe(data);
@@ -114,6 +118,12 @@ const DataProvider = ({ children }: Props) => {
             dpInnsynVedtakState,
             setDpInnsynVedtakState,
             `${DP_INNSYN_URL}/vedtak`
+        );
+
+        fetchData<DpInnsynPaabegynt.State, DpInnsynPaabegynt.Data>(
+            DpInnsynPaabegyntState,
+            setDpInnsynPaabegyntState,
+            `${DP_INNSYN_URL}/paabegynte`
         );
 
         fetchData<PaabegynteSoknader.State, PaabegynteSoknader.Data>(
@@ -174,13 +184,15 @@ const DataProvider = ({ children }: Props) => {
                         <Egenvurdering.EgenvurderingContext.Provider value={egenvurderingState}>
                             <Motestotte.MotestotteContext.Provider value={motestotteState}>
                                 <PaabegynteSoknader.PaabegynteSoknaderContext.Provider value={paabegynteSoknaderState}>
-                                    <DpInnsynSoknad.DpInnsynSoknadContext.Provider value={dpInnsynSoknadState}>
-                                        <DpInnsynVedtak.DpInnsynVedtakContext.Provider value={dpInnsynVedtakState}>
-                                            <SprakValg.SprakContext.Provider value={valgtSprak}>
-                                                <AmplitudeProvider>{children}</AmplitudeProvider>
-                                            </SprakValg.SprakContext.Provider>
-                                        </DpInnsynVedtak.DpInnsynVedtakContext.Provider>
-                                    </DpInnsynSoknad.DpInnsynSoknadContext.Provider>
+                                    <DpInnsynPaabegynt.DpInnsynPaabegyntContext.Provider value={DpInnsynPaabegyntState}>
+                                        <DpInnsynSoknad.DpInnsynSoknadContext.Provider value={dpInnsynSoknadState}>
+                                            <DpInnsynVedtak.DpInnsynVedtakContext.Provider value={dpInnsynVedtakState}>
+                                                <SprakValg.SprakContext.Provider value={valgtSprak}>
+                                                    <AmplitudeProvider>{children}</AmplitudeProvider>
+                                                </SprakValg.SprakContext.Provider>
+                                            </DpInnsynVedtak.DpInnsynVedtakContext.Provider>
+                                        </DpInnsynSoknad.DpInnsynSoknadContext.Provider>
+                                    </DpInnsynPaabegynt.DpInnsynPaabegyntContext.Provider>
                                 </PaabegynteSoknader.PaabegynteSoknaderContext.Provider>
                             </Motestotte.MotestotteContext.Provider>
                         </Egenvurdering.EgenvurderingContext.Provider>
