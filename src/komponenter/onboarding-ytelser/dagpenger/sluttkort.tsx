@@ -6,9 +6,9 @@ import InnvilgetDagpenger from './sluttkort-innvilget-dagpenger';
 import AvslagDagpenger from './sluttkort-avslag-dagpenger';
 import { useBrukerinfoData } from '../../../contexts/bruker-info';
 import { useBrukerregistreringData } from '../../../contexts/brukerregistrering';
-import { usePaabegynteSoknaderData } from '../../../contexts/paabegynte-soknader';
 import { useDpInnsynSoknadData } from '../../../contexts/dp-innsyn-soknad';
 import { useDpInnsynVedtakData } from '../../../contexts/dp-innsyn-vedtak';
+import { useDpInnsynPaabegyntData } from '../../../contexts/dp-innsyn-paabegynt';
 import beregnDagpengeStatus, { DagpengeStatus } from '../../../lib/beregn-dagpenge-status';
 
 function hentAktueltSluttkort(situasjon: DagpengeStatus) {
@@ -30,7 +30,7 @@ function hentAktueltSluttkort(situasjon: DagpengeStatus) {
 function Sluttkort() {
     const brukerInfoData = useBrukerinfoData();
     const registreringData = useBrukerregistreringData();
-    const paabegynteSoknader = usePaabegynteSoknaderData().soknader;
+    const paabegynteSoknader = useDpInnsynPaabegyntData();
     const innsendteSoknader = useDpInnsynSoknadData();
     const dagpengeVedtak = useDpInnsynVedtakData();
 

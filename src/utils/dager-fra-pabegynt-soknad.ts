@@ -1,8 +1,8 @@
 import dagerFraDato from './dager-fra-dato';
-import { Soknad } from '../contexts/paabegynte-soknader';
+import { DpInnsynPaabegynt } from '../contexts/dp-innsyn-paabegynt';
 
 interface Data {
-    soknader: Soknad[];
+    soknader: DpInnsynPaabegynt[];
     registreringsDato: Date | null;
 }
 
@@ -16,7 +16,7 @@ function dagerFraPabegyntSoknad(data: Data): Resultat {
     const { soknader, registreringsDato } = data;
     if (soknader.length === 0) return 'INGEN_DATA';
     if (!registreringsDato) return 'INGEN_DATA';
-    const pabegynteSoknadsdatoer = soknader.map((soknad) => new Date(soknad.dato));
+    const pabegynteSoknadsdatoer = soknader.map((soknad) => new Date(soknad.sistEndret));
     pabegynteSoknadsdatoer.sort(datoSorteringSynkende);
     const sisteSoknadsDato = pabegynteSoknadsdatoer[0];
 

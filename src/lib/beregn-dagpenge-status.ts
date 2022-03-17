@@ -9,8 +9,9 @@
 import * as Brukerregistrering from '../contexts/brukerregistrering';
 import * as BrukerInfo from '../contexts/bruker-info';
 import { DpInnsynSoknad } from '../contexts/dp-innsyn-soknad';
+import { DpInnsynPaabegynt } from '../contexts/dp-innsyn-paabegynt';
 import { Vedtak } from '../contexts/dp-innsyn-vedtak';
-import { Soknad } from '../contexts/paabegynte-soknader';
+
 // import { plussDager } from '../utils/date-utils';
 
 export const sorterEtterNyesteDatoInnsendt = (a: DpInnsynSoknad, b: DpInnsynSoknad) =>
@@ -39,7 +40,7 @@ function beregnDagpengeStatus({
 }: {
     brukerInfoData: BrukerInfo.Data;
     registreringData: Brukerregistrering.Data | null;
-    paabegynteSoknader: Soknad[];
+    paabegynteSoknader: DpInnsynPaabegynt[];
     innsendteSoknader: DpInnsynSoknad[];
     dagpengeVedtak: Vedtak[];
 }): DagpengeStatus {
@@ -83,13 +84,14 @@ function beregnDagpengeStatus({
     }
 
     const sistPaabegynteSoknad = paabegynteSoknader.sort(
-        (a: Soknad, b: Soknad) => new Date(a.dato).getTime() - new Date(b.dato).getTime()
+        (a: DpInnsynPaabegynt, b: DpInnsynPaabegynt) =>
+            new Date(a.sistEndret).getTime() - new Date(b.sistEndret).getTime()
     )[0];
 
     const harPaabegyntEtterInnsendt =
         sistPaabegynteSoknad &&
         sistInnsendteSoknad &&
-        new Date(sistPaabegynteSoknad.dato).getTime() > new Date(sistInnsendteSoknad?.datoInnsendt).getTime();
+        new Date(sistPaabegynteSoknad.sistEndret).getTime() > new Date(sistInnsendteSoknad?.datoInnsendt).getTime();
 
     if (harPaabegyntEtterInnsendt) {
         return 'soktogpaabegynt';
