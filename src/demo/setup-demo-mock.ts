@@ -6,7 +6,6 @@ import {
     MELDEKORTSTATUS_URL,
     MOTESTOTTE_URL,
     NESTE_MELDEKORT_URL,
-    PAABEGYNTE_SOKNADER_URL,
     SAKSTEMA_URL,
     ULESTEDIALOGER_URL,
     UNDER_OPPFOLGING_URL,
@@ -32,10 +31,10 @@ import {
     hentUnderOppfolging,
     lagMeldekortData,
     randomUlesteDialoger,
-    hentDpSoknaderUnderArbeid,
     hentDpSakstema,
     hentDpInnsynVedtak,
     hentDpInnsynSoknad,
+    hentDpInnsynPaabegynte,
 } from './demo-state';
 
 import { hentBrukerRegistrering } from './demo-state-brukerregistrering';
@@ -82,10 +81,9 @@ export const demo_handlers = [
 
     msw_get(MELDEKORTSTATUS_URL, meldekortstatusResponse),
 
-    msw_get(PAABEGYNTE_SOKNADER_URL, hentDpSoknaderUnderArbeid()),
-
     msw_get(`${DP_INNSYN_URL}/vedtak`, hentDpInnsynVedtak()),
     msw_get(`${DP_INNSYN_URL}/soknad`, hentDpInnsynSoknad()),
+    msw_get(`${DP_INNSYN_URL}/paabegynte`, hentDpInnsynPaabegynte()),
 
     msw_get(SAKSTEMA_URL, hentDpSakstema()),
 ];
