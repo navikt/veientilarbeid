@@ -1,4 +1,4 @@
-import { Soknad, usePaabegynteSoknaderData } from '../../../contexts/paabegynte-soknader';
+import { DpInnsynPaabegynt, useDpInnsynPaabegyntData } from '../../../contexts/dp-innsyn-paabegynt';
 import { BodyShort, Link } from '@navikt/ds-react';
 import { loggAktivitet } from '../../../metrics/metrics';
 import { useAmplitudeData } from '../../../contexts/amplitude-context';
@@ -18,7 +18,7 @@ const TEKSTER = {
 
 const PaabegynteSoknader = ({ dato, komponent }: { dato?: string; komponent: string }) => {
     const amplitudeData = useAmplitudeData();
-    const paabegynteSoknader = usePaabegynteSoknaderData().soknader;
+    const paabegynteSoknader = useDpInnsynPaabegyntData();
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     function loggLenkeKlikk(action: string, url: string) {
@@ -31,11 +31,12 @@ const PaabegynteSoknader = ({ dato, komponent }: { dato?: string; komponent: str
     }
 
     const sistePabegynteSoknad = paabegynteSoknader.sort(
-        (a: Soknad, b: Soknad) => new Date(b.dato).getTime() - new Date(a.dato).getTime()
+        (a: DpInnsynPaabegynt, b: DpInnsynPaabegynt) =>
+            new Date(b.sistEndret).getTime() - new Date(a.sistEndret).getTime()
     )[0];
 
     const harPaabegyntSoknadNyereEnnDato =
-        sistePabegynteSoknad && new Date(sistePabegynteSoknad.dato).getTime() > new Date(dato).getTime();
+        sistePabegynteSoknad && new Date(sistePabegynteSoknad.sistEndret).getTime() > new Date(dato).getTime();
 
     if (!harPaabegyntSoknadNyereEnnDato) {
         return null;
@@ -46,11 +47,11 @@ const PaabegynteSoknader = ({ dato, komponent }: { dato?: string; komponent: str
             {tekst('pabegynt')}{' '}
             <Link
                 className={'tracking-wide'}
-                href={sistePabegynteSoknad.lenke}
+                href={sistePabegynteSoknad.behandlingsId}
                 onClick={() =>
                     loggLenkeKlikk(
                         `Fortsetter på søknad - fra "dagpenger-tema - ${komponent}"`,
-                        sistePabegynteSoknad.lenke
+                        sistePabegynteSoknad.behandlingsId
                     )
                 }
             >
