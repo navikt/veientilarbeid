@@ -7,7 +7,7 @@ import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import beregnDagpengeStatus, { DagpengeStatus } from '../../lib/beregn-dagpenge-status';
 import { useDpInnsynSoknadData } from '../../contexts/dp-innsyn-soknad';
 import { useDpInnsynVedtakData } from '../../contexts/dp-innsyn-vedtak';
-import { useDpInnsynPaabegyntData } from '../../contexts/dp-innsyn-paabegynt';
+import { useDpInnsynPaabegyntData } from '../../contexts/dp-innsyn-paabegynte-soknader';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
 

@@ -28,7 +28,7 @@ import { useAutentiseringData, InnloggingsNiva } from '../../contexts/autentiser
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import * as DpInnsynSoknad from '../../contexts/dp-innsyn-soknad';
 import * as DpInnsynVedtak from '../../contexts/dp-innsyn-vedtak';
-import * as DpInnsynPaabegynt from '../../contexts/dp-innsyn-paabegynt';
+import * as DpInnsynPaabegynt from '../../contexts/dp-innsyn-paabegynte-soknader';
 
 const skalSjekkeEgenvurderingBesvarelse = (
     foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null

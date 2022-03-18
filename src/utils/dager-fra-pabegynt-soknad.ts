@@ -1,5 +1,5 @@
 import dagerFraDato from './dager-fra-dato';
-import { DpInnsynPaabegynt } from '../contexts/dp-innsyn-paabegynt';
+import { DpInnsynPaabegynt } from '../contexts/dp-innsyn-paabegynte-soknader';
 
 interface Data {
     soknader: DpInnsynPaabegynt[];

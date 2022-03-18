@@ -7,7 +7,7 @@ import { AmplitudeContext } from '../../contexts/amplitude-context';
 import { DinSituasjonSvar, useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { OppfolgingContext } from '../../contexts/oppfolging';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
-import { useDpInnsynPaabegyntData } from '../../contexts/dp-innsyn-paabegynt';
+import { useDpInnsynPaabegyntData } from '../../contexts/dp-innsyn-paabegynte-soknader';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import grupperGeografiskTilknytning from '../../utils/grupper-geografisk-tilknytning';

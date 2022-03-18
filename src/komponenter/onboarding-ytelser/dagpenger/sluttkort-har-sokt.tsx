@@ -3,7 +3,7 @@ import { Heading } from '@navikt/ds-react';
 import { useDpInnsynSoknadData } from '../../../contexts/dp-innsyn-soknad';
 import { sorterEtterNyesteDatoInnsendt } from '../../../lib/beregn-dagpenge-status';
 import SistInnsendtSoknad from './sist-innsendt-soknad';
-import { useDpInnsynPaabegyntData } from '../../../contexts/dp-innsyn-paabegynt';
+import { useDpInnsynPaabegyntData } from '../../../contexts/dp-innsyn-paabegynte-soknader';
 import PaabegynteSoknader from './paabegynte-soknader';
 import SkrivTilOssOgChat from './skriv-til-oss-og-chat';
 import LesOmYtelser from './les-om-ytelser';

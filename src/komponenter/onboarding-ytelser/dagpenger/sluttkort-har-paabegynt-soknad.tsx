@@ -1,6 +1,6 @@
 import { Heading, BodyShort } from '@navikt/ds-react';
 
-import { useDpInnsynPaabegyntData, DpInnsynPaabegynt } from '../../../contexts/dp-innsyn-paabegynt';
+import { useDpInnsynPaabegyntData, DpInnsynPaabegynt } from '../../../contexts/dp-innsyn-paabegynte-soknader';
 import prettyPrintDato from '../../../utils/pretty-print-dato';
 import TemaLenkepanel from '../../tema/tema-lenkepanel';
 import SkrivTilOssOgChat from './skriv-til-oss-og-chat';

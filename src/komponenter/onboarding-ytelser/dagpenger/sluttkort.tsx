@@ -8,7 +8,7 @@ import { useBrukerinfoData } from '../../../contexts/bruker-info';
 import { useBrukerregistreringData } from '../../../contexts/brukerregistrering';
 import { useDpInnsynSoknadData } from '../../../contexts/dp-innsyn-soknad';
 import { useDpInnsynVedtakData } from '../../../contexts/dp-innsyn-vedtak';
-import { useDpInnsynPaabegyntData } from '../../../contexts/dp-innsyn-paabegynt';
+import { useDpInnsynPaabegyntData } from '../../../contexts/dp-innsyn-paabegynte-soknader';
 import beregnDagpengeStatus, { DagpengeStatus } from '../../../lib/beregn-dagpenge-status';
 
 function hentAktueltSluttkort(situasjon: DagpengeStatus) {

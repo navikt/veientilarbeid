@@ -1,6 +1,6 @@
 import { BodyShort, Link } from '@navikt/ds-react';
 
-import { DpInnsynPaabegynt, useDpInnsynPaabegyntData } from '../../../contexts/dp-innsyn-paabegynt';
+import { DpInnsynPaabegynt, useDpInnsynPaabegyntData } from '../../../contexts/dp-innsyn-paabegynte-soknader';
 import { loggAktivitet } from '../../../metrics/metrics';
 import { useAmplitudeData } from '../../../contexts/amplitude-context';
 import lagHentTekstForSprak from '../../../lib/lag-hent-tekst-for-sprak';
