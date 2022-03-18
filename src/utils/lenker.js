@@ -2,7 +2,9 @@ function getEnvironment() {
     let environment = 'test';
     if (/localhost/.test(window.location)) {
         environment = 'dev';
-    } else if (/.nav/.test(window.location)) {
+    } else if (/dev/.test(window.location)) {
+        environment = 'test';
+    } else if (window.location.endsWith('nav.no')) {
         environment = 'prod';
     }
     return environment;

@@ -1,4 +1,5 @@
 import { Heading, BodyShort } from '@navikt/ds-react';
+
 import { useDpInnsynPaabegyntData, DpInnsynPaabegynt } from '../../../contexts/dp-innsyn-paabegynt';
 import prettyPrintDato from '../../../utils/pretty-print-dato';
 import TemaLenkepanel from '../../tema/tema-lenkepanel';
@@ -6,6 +7,7 @@ import SkrivTilOssOgChat from './skriv-til-oss-og-chat';
 import SeMerInfo from './se-mer-info';
 import lagHentTekstForSprak, { Tekster } from '../../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../../contexts/sprak';
+import { FORTSETT_DP_SOKNAD_URL } from '../../../utils/lenker';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -45,7 +47,7 @@ const Sluttkort = () => {
             <BodyShort className={'blokk-xs'}>{tekst('ikkeSendt')}</BodyShort>
 
             <TemaLenkepanel
-                href={sistePabegynteSoknad.behandlingsId}
+                href={`${FORTSETT_DP_SOKNAD_URL}/${sistePabegynteSoknad.behandlingsId}`}
                 amplitudeHandling="Fortsetter påbegynt soknad"
                 amplitudeTema="dagpenger"
                 tittel={tekst('fortsett')}

@@ -1,9 +1,11 @@
-import { DpInnsynPaabegynt, useDpInnsynPaabegyntData } from '../../../contexts/dp-innsyn-paabegynt';
 import { BodyShort, Link } from '@navikt/ds-react';
+
+import { DpInnsynPaabegynt, useDpInnsynPaabegyntData } from '../../../contexts/dp-innsyn-paabegynt';
 import { loggAktivitet } from '../../../metrics/metrics';
 import { useAmplitudeData } from '../../../contexts/amplitude-context';
 import lagHentTekstForSprak from '../../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../../contexts/sprak';
+import { FORTSETT_DP_SOKNAD_URL } from '../../../utils/lenker';
 
 const TEKSTER = {
     nb: {
@@ -51,7 +53,7 @@ const PaabegynteSoknader = ({ dato, komponent }: { dato?: string; komponent: str
                 onClick={() =>
                     loggLenkeKlikk(
                         `Fortsetter på søknad - fra "dagpenger-tema - ${komponent}"`,
-                        sistePabegynteSoknad.behandlingsId
+                        `${FORTSETT_DP_SOKNAD_URL}/${sistePabegynteSoknad.behandlingsId}`
                     )
                 }
             >
