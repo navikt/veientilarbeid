@@ -2,7 +2,7 @@ import * as React from 'react';
 import Innholdslaster from '../innholdslaster/innholdslaster';
 import Feilmelding from '../feilmeldinger/feilmelding';
 import * as BrukerInfo from '../../contexts/bruker-info';
-import * as PaabegynteSoknader from '../../contexts/paabegynte-soknader';
+
 import {
     ForeslattInnsatsgruppe,
     selectForeslattInnsatsgruppe,
@@ -20,7 +20,6 @@ import {
     MOTESTOTTE_URL,
     NESTE_MELDEKORT_URL,
     ULESTEDIALOGER_URL,
-    PAABEGYNTE_SOKNADER_URL,
     DP_INNSYN_URL,
 } from '../../ducks/api';
 
@@ -73,9 +72,6 @@ const DataProvider = ({ children }: Props) => {
     const [meldekortState, setMeldekortState] = React.useState<Meldekort.State>(Meldekort.initialState);
     const [brukerInfoState, setBrukerInfoState] = React.useState<BrukerInfo.State>(BrukerInfo.initialState);
     const [valgtSprak, setValgtSprak] = React.useState<SprakValg.State>(SprakValg.initialState);
-    const [paabegynteSoknaderState, setPaabegynteSoknaderState] = React.useState<PaabegynteSoknader.State>(
-        PaabegynteSoknader.initialState
-    );
     const [egenvurderingState, setEgenvurderingState] = React.useState<Egenvurdering.State>(Egenvurdering.initialState);
     const [ulesteDialogerState, setUlesteDialogerState] = React.useState<UlesteDialoger.State>(
         UlesteDialoger.initialState
@@ -126,11 +122,6 @@ const DataProvider = ({ children }: Props) => {
             `${DP_INNSYN_URL}/paabegynte`
         );
 
-        fetchData<PaabegynteSoknader.State, PaabegynteSoknader.Data>(
-            paabegynteSoknaderState,
-            setPaabegynteSoknaderState,
-            PAABEGYNTE_SOKNADER_URL
-        );
         fetchData<UlesteDialoger.State, UlesteDialoger.Data>(
             ulesteDialogerState,
             setUlesteDialogerState,
@@ -183,17 +174,15 @@ const DataProvider = ({ children }: Props) => {
                     <UlesteDialoger.UlesteDialogerContext.Provider value={ulesteDialogerState}>
                         <Egenvurdering.EgenvurderingContext.Provider value={egenvurderingState}>
                             <Motestotte.MotestotteContext.Provider value={motestotteState}>
-                                <PaabegynteSoknader.PaabegynteSoknaderContext.Provider value={paabegynteSoknaderState}>
-                                    <DpInnsynPaabegynt.DpInnsynPaabegyntContext.Provider value={DpInnsynPaabegyntState}>
-                                        <DpInnsynSoknad.DpInnsynSoknadContext.Provider value={dpInnsynSoknadState}>
-                                            <DpInnsynVedtak.DpInnsynVedtakContext.Provider value={dpInnsynVedtakState}>
-                                                <SprakValg.SprakContext.Provider value={valgtSprak}>
-                                                    <AmplitudeProvider>{children}</AmplitudeProvider>
-                                                </SprakValg.SprakContext.Provider>
-                                            </DpInnsynVedtak.DpInnsynVedtakContext.Provider>
-                                        </DpInnsynSoknad.DpInnsynSoknadContext.Provider>
-                                    </DpInnsynPaabegynt.DpInnsynPaabegyntContext.Provider>
-                                </PaabegynteSoknader.PaabegynteSoknaderContext.Provider>
+                                <DpInnsynPaabegynt.DpInnsynPaabegyntContext.Provider value={DpInnsynPaabegyntState}>
+                                    <DpInnsynSoknad.DpInnsynSoknadContext.Provider value={dpInnsynSoknadState}>
+                                        <DpInnsynVedtak.DpInnsynVedtakContext.Provider value={dpInnsynVedtakState}>
+                                            <SprakValg.SprakContext.Provider value={valgtSprak}>
+                                                <AmplitudeProvider>{children}</AmplitudeProvider>
+                                            </SprakValg.SprakContext.Provider>
+                                        </DpInnsynVedtak.DpInnsynVedtakContext.Provider>
+                                    </DpInnsynSoknad.DpInnsynSoknadContext.Provider>
+                                </DpInnsynPaabegynt.DpInnsynPaabegyntContext.Provider>
                             </Motestotte.MotestotteContext.Provider>
                         </Egenvurdering.EgenvurderingContext.Provider>
                     </UlesteDialoger.UlesteDialogerContext.Provider>
