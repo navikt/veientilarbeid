@@ -1,6 +1,9 @@
 import { Heading, BodyShort } from '@navikt/ds-react';
 
-import { useDpInnsynPaabegyntData, DpInnsynPaabegynt } from '../../../contexts/dp-innsyn-paabegynte-soknader';
+import {
+    useDpInnsynPaabegynteSoknaderData,
+    DpInnsynPaabegyntSoknad,
+} from '../../../contexts/dp-innsyn-paabegynte-soknader';
 import prettyPrintDato from '../../../utils/pretty-print-dato';
 import TemaLenkepanel from '../../tema/tema-lenkepanel';
 import SkrivTilOssOgChat from './skriv-til-oss-og-chat';
@@ -27,10 +30,10 @@ const TEKSTER: Tekster<string> = {
 };
 
 const Sluttkort = () => {
-    const pabegynteSoknaderData = useDpInnsynPaabegyntData();
+    const pabegynteSoknaderData = useDpInnsynPaabegynteSoknaderData();
 
     const sistePabegynteSoknad = pabegynteSoknaderData.sort(
-        (a: DpInnsynPaabegynt, b: DpInnsynPaabegynt) =>
+        (a: DpInnsynPaabegyntSoknad, b: DpInnsynPaabegyntSoknad) =>
             new Date(b.sistEndret).getTime() - new Date(a.sistEndret).getTime()
     )[0];
 

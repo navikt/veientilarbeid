@@ -1,9 +1,9 @@
 import dagerFraPabegyntSoknad from './dager-fra-pabegynt-soknad';
-import { DpInnsynPaabegynt } from '../contexts/dp-innsyn-paabegynte-soknader';
+import { DpInnsynPaabegyntSoknad } from '../contexts/dp-innsyn-paabegynte-soknader';
 
 describe('tester funksjonen dagerFraPabegyntSoknad', () => {
     test('den returnerer INGEN_DATO når det ikke finnes søknader', () => {
-        const soknader: DpInnsynPaabegynt[] = [];
+        const soknader: DpInnsynPaabegyntSoknad[] = [];
         const registreringsDato = new Date('2021-06-02');
         const antallDagerFraPabegyntSoknad = dagerFraPabegyntSoknad({
             soknader,

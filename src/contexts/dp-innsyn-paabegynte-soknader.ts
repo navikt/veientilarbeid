@@ -5,19 +5,19 @@ export interface State extends DataElement {
     data: Data;
 }
 
-export interface DpInnsynPaabegynt {
+export interface DpInnsynPaabegyntSoknad {
     tittel: string;
     behandlingsId: string;
     sistEndret: string;
 }
 
-export type Data = DpInnsynPaabegynt[];
+export type Data = DpInnsynPaabegyntSoknad[];
 
 export const initialState: State = {
     data: [],
     status: STATUS.NOT_STARTED,
 };
 
-export const DpInnsynPaabegyntContext = createContext<State>(initialState);
+export const DpInnsynPaabegynteSoknaderContext = createContext<State>(initialState);
 
-export const useDpInnsynPaabegyntData = () => useContext(DpInnsynPaabegyntContext).data;
+export const useDpInnsynPaabegynteSoknaderData = () => useContext(DpInnsynPaabegynteSoknaderContext).data;

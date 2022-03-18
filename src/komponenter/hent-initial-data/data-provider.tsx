@@ -174,7 +174,9 @@ const DataProvider = ({ children }: Props) => {
                     <UlesteDialoger.UlesteDialogerContext.Provider value={ulesteDialogerState}>
                         <Egenvurdering.EgenvurderingContext.Provider value={egenvurderingState}>
                             <Motestotte.MotestotteContext.Provider value={motestotteState}>
-                                <DpInnsynPaabegynt.DpInnsynPaabegyntContext.Provider value={DpInnsynPaabegyntState}>
+                                <DpInnsynPaabegynt.DpInnsynPaabegynteSoknaderContext.Provider
+                                    value={DpInnsynPaabegyntState}
+                                >
                                     <DpInnsynSoknad.DpInnsynSoknadContext.Provider value={dpInnsynSoknadState}>
                                         <DpInnsynVedtak.DpInnsynVedtakContext.Provider value={dpInnsynVedtakState}>
                                             <SprakValg.SprakContext.Provider value={valgtSprak}>
@@ -182,7 +184,7 @@ const DataProvider = ({ children }: Props) => {
                                             </SprakValg.SprakContext.Provider>
                                         </DpInnsynVedtak.DpInnsynVedtakContext.Provider>
                                     </DpInnsynSoknad.DpInnsynSoknadContext.Provider>
-                                </DpInnsynPaabegynt.DpInnsynPaabegyntContext.Provider>
+                                </DpInnsynPaabegynt.DpInnsynPaabegynteSoknaderContext.Provider>
                             </Motestotte.MotestotteContext.Provider>
                         </Egenvurdering.EgenvurderingContext.Provider>
                     </UlesteDialoger.UlesteDialogerContext.Provider>

@@ -3,7 +3,7 @@ import { Heading } from '@navikt/ds-react';
 import { useDpInnsynSoknadData } from '../../../contexts/dp-innsyn-soknad';
 import { sorterEtterNyesteDatoInnsendt } from '../../../lib/beregn-dagpenge-status';
 import SistInnsendtSoknad from './sist-innsendt-soknad';
-import { useDpInnsynPaabegyntData } from '../../../contexts/dp-innsyn-paabegynte-soknader';
+import { useDpInnsynPaabegynteSoknaderData } from '../../../contexts/dp-innsyn-paabegynte-soknader';
 import PaabegynteSoknader from './paabegynte-soknader';
 import SkrivTilOssOgChat from './skriv-til-oss-og-chat';
 import LesOmYtelser from './les-om-ytelser';
@@ -25,7 +25,7 @@ const TEKSTER: Tekster<string> = {
 const Sluttkort = () => {
     const soknader = useDpInnsynSoknadData();
     const sisteInnsendteSoknad = soknader?.sort(sorterEtterNyesteDatoInnsendt)[0];
-    const paabegynteSoknader = useDpInnsynPaabegyntData();
+    const paabegynteSoknader = useDpInnsynPaabegynteSoknaderData();
     const sistePaabegyntSoknad = paabegynteSoknader.sort(
         (a, b) => new Date(b.sistEndret).getTime() - new Date(a.sistEndret).getTime()
     )[0];

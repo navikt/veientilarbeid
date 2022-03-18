@@ -1,8 +1,8 @@
 import dagerFraDato from './dager-fra-dato';
-import { DpInnsynPaabegynt } from '../contexts/dp-innsyn-paabegynte-soknader';
+import { DpInnsynPaabegyntSoknad } from '../contexts/dp-innsyn-paabegynte-soknader';
 
 interface Data {
-    soknader: DpInnsynPaabegynt[];
+    soknader: DpInnsynPaabegyntSoknad[];
     registreringsDato: Date | null;
 }
 

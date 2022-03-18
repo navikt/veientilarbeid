@@ -7,7 +7,7 @@ import { AmplitudeContext } from '../../contexts/amplitude-context';
 import { DinSituasjonSvar, useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { OppfolgingContext } from '../../contexts/oppfolging';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
-import { useDpInnsynPaabegyntData } from '../../contexts/dp-innsyn-paabegynte-soknader';
+import { useDpInnsynPaabegynteSoknaderData } from '../../contexts/dp-innsyn-paabegynte-soknader';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import grupperGeografiskTilknytning from '../../utils/grupper-geografisk-tilknytning';
@@ -64,7 +64,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const featuretoggleData = useFeatureToggleData();
     const innsendteSoknader = useDpInnsynSoknadData();
     const dagpengeVedtak = useDpInnsynVedtakData();
-    const pabegynteSoknaderData = useDpInnsynPaabegyntData();
+    const pabegynteSoknaderData = useDpInnsynPaabegynteSoknaderData();
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const brukerInfoData = useBrukerinfoData();
     const { securityLevel: nivaa } = useAutentiseringData();

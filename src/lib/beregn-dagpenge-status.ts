@@ -9,7 +9,7 @@
 import * as Brukerregistrering from '../contexts/brukerregistrering';
 import * as BrukerInfo from '../contexts/bruker-info';
 import { DpInnsynSoknad } from '../contexts/dp-innsyn-soknad';
-import { DpInnsynPaabegynt } from '../contexts/dp-innsyn-paabegynte-soknader';
+import { DpInnsynPaabegyntSoknad } from '../contexts/dp-innsyn-paabegynte-soknader';
 import { Vedtak } from '../contexts/dp-innsyn-vedtak';
 
 // import { plussDager } from '../utils/date-utils';
@@ -40,7 +40,7 @@ function beregnDagpengeStatus({
 }: {
     brukerInfoData: BrukerInfo.Data;
     registreringData: Brukerregistrering.Data | null;
-    paabegynteSoknader: DpInnsynPaabegynt[];
+    paabegynteSoknader: DpInnsynPaabegyntSoknad[];
     innsendteSoknader: DpInnsynSoknad[];
     dagpengeVedtak: Vedtak[];
 }): DagpengeStatus {
@@ -84,7 +84,7 @@ function beregnDagpengeStatus({
     }
 
     const sistPaabegynteSoknad = paabegynteSoknader.sort(
-        (a: DpInnsynPaabegynt, b: DpInnsynPaabegynt) =>
+        (a: DpInnsynPaabegyntSoknad, b: DpInnsynPaabegyntSoknad) =>
             new Date(a.sistEndret).getTime() - new Date(b.sistEndret).getTime()
     )[0];
 
