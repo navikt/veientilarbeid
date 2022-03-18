@@ -21,6 +21,5 @@ ingresses:
   - https://tjenester.nav.no/veientilarbeid
 externalHosts:
   - navnob2c.b2clogin.com
-  - saksoversikt-api.nais.oera.no
   - appres.nav.no
   - unleash.nais.io
