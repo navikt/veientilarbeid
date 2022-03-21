@@ -4,7 +4,7 @@ function getEnvironment() {
         environment = 'dev';
     } else if (/dev/.test(window.location)) {
         environment = 'test';
-    } else if (window.location.endsWith('nav.no')) {
+    } else if (window.location.toString().endsWith('nav.no')) {
         environment = 'prod';
     }
     return environment;
