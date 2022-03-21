@@ -36,8 +36,6 @@ spec:
     value: {{ arbeidssokerregistrering_url }}
   - name: VEILARBPROXY_URL
     value: {{ veilarbproxy_url }}
-  - name: SAKSOVERSIKT_API
-    value: {{ saksoversikt_api }}
   - name: FASIT_ENVIRONMENT_NAME
     value: {{ app_environment_name }}
   - name: DISABLE_FRONTEND_LOGGER
@@ -46,6 +44,8 @@ spec:
     value: 'true'
   - name: BAKVEIENTILARBEID_URL
     value: {{ bakveientilarbeid_url }}
+  - name: FORTSETT_DP_SOKNAD_URL
+    value: {{ fortsettDpSoknadUrl }}
   envFrom:
     - configmap: loginservice-idporten
   image: {{image}}

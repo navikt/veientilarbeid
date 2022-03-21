@@ -19,10 +19,6 @@ proxy:
   - contextPath: /veilarbvedtakinfo
     baseUrl: {{ VEILARBPROXY_URL }}
 
-  - contextPath: /saksoversikt-api
-    baseUrl: {{ SAKSOVERSIKT_API }}
-    pingRequestPath: /saksoversikt-api/internal/isAlive
-
   - contextPath: /bakveientilarbeid
     baseUrl: {{ BAKVEIENTILARBEID_URL }}
     pingRequestPath: /bakveientilarbeid/internal/ping

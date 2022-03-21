@@ -1,9 +1,9 @@
 import dagerFraPabegyntSoknad from './dager-fra-pabegynt-soknad';
-import { Soknad } from '../contexts/paabegynte-soknader';
+import { DpInnsynPaabegyntSoknad } from '../contexts/dp-innsyn-paabegynte-soknader';
 
 describe('tester funksjonen dagerFraPabegyntSoknad', () => {
     test('den returnerer INGEN_DATO når det ikke finnes søknader', () => {
-        const soknader: Soknad[] = [];
+        const soknader: DpInnsynPaabegyntSoknad[] = [];
         const registreringsDato = new Date('2021-06-02');
         const antallDagerFraPabegyntSoknad = dagerFraPabegyntSoknad({
             soknader,
@@ -16,9 +16,8 @@ describe('tester funksjonen dagerFraPabegyntSoknad', () => {
         const soknader = [
             {
                 tittel: 'Søknad om dagpenger (ikke permittert)',
-                lenke: 'https://tjenester-q1.nav.no/soknaddagpenger-innsending/soknad/10010WQGA',
-                dato: '2021-04-06T11:54:38.771+02:00',
-                kilde: 'HENVENDELSE',
+                behandlingsId: '10010WQGA',
+                sistEndret: '2021-04-06T11:54:38.771+02:00',
             },
         ];
         const registreringsDato = null;
@@ -33,21 +32,18 @@ describe('tester funksjonen dagerFraPabegyntSoknad', () => {
         const soknader = [
             {
                 tittel: 'Søknad om dagpenger (ikke permittert)',
-                lenke: 'https://tjenester-q1.nav.no/soknaddagpenger-innsending/soknad/10010WQGA',
-                dato: '2021-04-01T11:54:38.771+02:00',
-                kilde: 'HENVENDELSE',
+                behandlingsId: '10010WQGA',
+                sistEndret: '2021-04-01T11:54:38.771+02:00',
             },
             {
                 tittel: 'Søknad om dagpenger (ikke permittert)',
-                lenke: 'https://tjenester-q1.nav.no/soknaddagpenger-innsending/soknad/10010WQGA',
-                dato: '2021-06-01T11:54:38.771+02:00',
-                kilde: 'HENVENDELSE',
+                behandlingsId: '10010WQGA',
+                sistEndret: '2021-06-01T11:54:38.771+02:00',
             },
             {
                 tittel: 'Søknad om dagpenger (ikke permittert)',
-                lenke: 'https://tjenester-q1.nav.no/soknaddagpenger-innsending/soknad/10010WQGA',
-                dato: '2021-05-01T11:54:38.771+02:00',
-                kilde: 'HENVENDELSE',
+                behandlingsId: '10010WQGA',
+                sistEndret: '2021-05-01T11:54:38.771+02:00',
             },
         ];
         const registreringsDato = new Date('2021-06-01');
@@ -62,9 +58,8 @@ describe('tester funksjonen dagerFraPabegyntSoknad', () => {
         const soknader = [
             {
                 tittel: 'Søknad om dagpenger (ikke permittert)',
-                lenke: 'https://tjenester-q1.nav.no/soknaddagpenger-innsending/soknad/10010WQGA',
-                dato: '2021-06-02T11:54:38.771+02:00',
-                kilde: 'HENVENDELSE',
+                behandlingsId: '10010WQGA',
+                sistEndret: '2021-06-02T11:54:38.771+02:00',
             },
         ];
         const registreringsDato = new Date('2021-06-01');
@@ -79,9 +74,8 @@ describe('tester funksjonen dagerFraPabegyntSoknad', () => {
         const soknader = [
             {
                 tittel: 'Søknad om dagpenger (ikke permittert)',
-                lenke: 'https://tjenester-q1.nav.no/soknaddagpenger-innsending/soknad/10010WQGA',
-                dato: '2021-05-31T11:54:38.771+02:00',
-                kilde: 'HENVENDELSE',
+                behandlingsId: '10010WQGA',
+                sistEndret: '2021-05-31T11:54:38.771+02:00',
             },
         ];
         const registreringsDato = new Date('2021-06-01');

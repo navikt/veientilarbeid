@@ -1,9 +1,14 @@
-import { Soknad, usePaabegynteSoknaderData } from '../../../contexts/paabegynte-soknader';
 import { BodyShort, Link } from '@navikt/ds-react';
+
+import {
+    DpInnsynPaabegyntSoknad,
+    useDpInnsynPaabegynteSoknaderData,
+} from '../../../contexts/dp-innsyn-paabegynte-soknader';
 import { loggAktivitet } from '../../../metrics/metrics';
 import { useAmplitudeData } from '../../../contexts/amplitude-context';
 import lagHentTekstForSprak from '../../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../../contexts/sprak';
+import { FORTSETT_DP_SOKNAD_URL } from '../../../utils/lenker';
 
 const TEKSTER = {
     nb: {
@@ -18,7 +23,7 @@ const TEKSTER = {
 
 const PaabegynteSoknader = ({ dato, komponent }: { dato?: string; komponent: string }) => {
     const amplitudeData = useAmplitudeData();
-    const paabegynteSoknader = usePaabegynteSoknaderData().soknader;
+    const paabegynteSoknader = useDpInnsynPaabegynteSoknaderData();
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     function loggLenkeKlikk(action: string, url: string) {
@@ -31,11 +36,12 @@ const PaabegynteSoknader = ({ dato, komponent }: { dato?: string; komponent: str
     }
 
     const sistePabegynteSoknad = paabegynteSoknader.sort(
-        (a: Soknad, b: Soknad) => new Date(b.dato).getTime() - new Date(a.dato).getTime()
+        (a: DpInnsynPaabegyntSoknad, b: DpInnsynPaabegyntSoknad) =>
+            new Date(b.sistEndret).getTime() - new Date(a.sistEndret).getTime()
     )[0];
 
     const harPaabegyntSoknadNyereEnnDato =
-        sistePabegynteSoknad && new Date(sistePabegynteSoknad.dato).getTime() > new Date(dato).getTime();
+        sistePabegynteSoknad && new Date(sistePabegynteSoknad.sistEndret).getTime() > new Date(dato).getTime();
 
     if (!harPaabegyntSoknadNyereEnnDato) {
         return null;
@@ -46,11 +52,11 @@ const PaabegynteSoknader = ({ dato, komponent }: { dato?: string; komponent: str
             {tekst('pabegynt')}{' '}
             <Link
                 className={'tracking-wide'}
-                href={sistePabegynteSoknad.lenke}
+                href={sistePabegynteSoknad.behandlingsId}
                 onClick={() =>
                     loggLenkeKlikk(
                         `Fortsetter på søknad - fra "dagpenger-tema - ${komponent}"`,
-                        sistePabegynteSoknad.lenke
+                        `${FORTSETT_DP_SOKNAD_URL}/${sistePabegynteSoknad.behandlingsId}`
                     )
                 }
             >

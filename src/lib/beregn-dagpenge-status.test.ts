@@ -174,9 +174,8 @@ describe('Tester funksjonen beregnDagpengeStatus', () => {
         const soknader = [
             {
                 tittel: 'Søknad om dagpenger (ikke permittert)',
-                lenke: 'https://tjenester-q1.nav.no/soknaddagpenger-innsending/soknad/10010WQX9',
-                dato: plussDager(iDag, 1).toISOString(),
-                kilde: 'HENVENDELSE',
+                behandlingsId: '10010WQX9',
+                sistEndret: plussDager(iDag, 1).toISOString(),
             },
         ];
 
@@ -221,9 +220,8 @@ describe('Tester funksjonen beregnDagpengeStatus', () => {
         const paabegyntSoknad = [
             {
                 tittel: 'Søknad om dagpenger (ikke permittert)',
-                lenke: 'https://tjenester-q1.nav.no/soknaddagpenger-innsending/soknad/10010WQX9',
-                dato: plussDager(iDag, 2).toISOString(),
-                kilde: 'HENVENDELSE',
+                behandlingsId: '10010WQX9',
+                sistEndret: plussDager(iDag, 2).toISOString(),
             },
         ];
 

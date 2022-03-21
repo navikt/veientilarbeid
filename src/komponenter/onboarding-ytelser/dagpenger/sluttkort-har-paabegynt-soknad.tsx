@@ -1,11 +1,16 @@
 import { Heading, BodyShort } from '@navikt/ds-react';
-import { usePaabegynteSoknaderData, Soknad } from '../../../contexts/paabegynte-soknader';
+
+import {
+    useDpInnsynPaabegynteSoknaderData,
+    DpInnsynPaabegyntSoknad,
+} from '../../../contexts/dp-innsyn-paabegynte-soknader';
 import prettyPrintDato from '../../../utils/pretty-print-dato';
 import TemaLenkepanel from '../../tema/tema-lenkepanel';
 import SkrivTilOssOgChat from './skriv-til-oss-og-chat';
 import SeMerInfo from './se-mer-info';
 import lagHentTekstForSprak, { Tekster } from '../../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../../contexts/sprak';
+import { FORTSETT_DP_SOKNAD_URL } from '../../../utils/lenker';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -25,10 +30,11 @@ const TEKSTER: Tekster<string> = {
 };
 
 const Sluttkort = () => {
-    const pabegynteSoknaderData = usePaabegynteSoknaderData();
+    const pabegynteSoknaderData = useDpInnsynPaabegynteSoknaderData();
 
-    const sistePabegynteSoknad = pabegynteSoknaderData.soknader.sort(
-        (a: Soknad, b: Soknad) => new Date(b.dato).getTime() - new Date(a.dato).getTime()
+    const sistePabegynteSoknad = pabegynteSoknaderData.sort(
+        (a: DpInnsynPaabegyntSoknad, b: DpInnsynPaabegyntSoknad) =>
+            new Date(b.sistEndret).getTime() - new Date(a.sistEndret).getTime()
     )[0];
 
     const sprak = useSprakValg().sprak;
@@ -44,11 +50,11 @@ const Sluttkort = () => {
             <BodyShort className={'blokk-xs'}>{tekst('ikkeSendt')}</BodyShort>
 
             <TemaLenkepanel
-                href={sistePabegynteSoknad.lenke}
+                href={`${FORTSETT_DP_SOKNAD_URL}/${sistePabegynteSoknad.behandlingsId}`}
                 amplitudeHandling="Fortsetter påbegynt soknad"
                 amplitudeTema="dagpenger"
                 tittel={tekst('fortsett')}
-                beskrivelse={`${tekst('pabegynt')} ${prettyPrintDato(sistePabegynteSoknad.dato, sprak)}`}
+                beskrivelse={`${tekst('pabegynt')} ${prettyPrintDato(sistePabegynteSoknad.sistEndret, sprak)}`}
             />
             <SeMerInfo amplitudeTemaNavn={'"dagpenger-tema - påbegynt søknad"'} />
             <SkrivTilOssOgChat amplitudeTemaNavn='"dagpenger-tema - påbegynt søknad"' />

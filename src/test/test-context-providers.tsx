@@ -11,7 +11,6 @@ import * as BrukerInfo from '../contexts/bruker-info';
 import * as Meldekort from '../contexts/meldekort';
 import * as Motestotte from '../contexts/motestotte';
 import * as UnderOppfolging from '../contexts/under-oppfolging';
-import * as PaabegynteSoknader from '../contexts/paabegynte-soknader';
 import * as Sakstema from '../contexts/sakstema';
 import * as React from 'react';
 import { STATUS } from '../ducks/api';
@@ -35,7 +34,6 @@ export type ProviderProps = {
     meldekort?: DeepPartial<Meldekort.Data>;
     motestotte?: DeepPartial<Motestotte.Data>;
     underOppfolging?: DeepPartial<UnderOppfolging.Data>;
-    paabegynteSoknader?: DeepPartial<PaabegynteSoknader.Data>;
     sakstema?: DeepPartial<Sakstema.Data>;
     iDag?: Date;
     globaleProps?: DeepPartial<GlobaleInnstillingerProps>;
@@ -100,34 +98,25 @@ export const contextProviders = function (props: ProviderProps): React.FunctionC
                                                     <Amplitude.AmplitudeContext.Provider
                                                         value={merge(Amplitude.initialState, props.amplitude)}
                                                     >
-                                                        <PaabegynteSoknader.PaabegynteSoknaderContext.Provider
+                                                        <Sakstema.SakstemaContext.Provider
                                                             value={merge(
-                                                                PaabegynteSoknader.initialState,
-                                                                props.paabegynteSoknader && {
-                                                                    data: props.paabegynteSoknader,
+                                                                Sakstema.initialState,
+                                                                props.sakstema && {
+                                                                    data: props.sakstema,
                                                                 }
                                                             )}
                                                         >
-                                                            <Sakstema.SakstemaContext.Provider
+                                                            <FeatureToggle.FeaturetoggleContext.Provider
                                                                 value={merge(
-                                                                    Sakstema.initialState,
-                                                                    props.sakstema && {
-                                                                        data: props.sakstema,
+                                                                    FeatureToggle.initialState,
+                                                                    props.featureToggle && {
+                                                                        data: props.featureToggle,
                                                                     }
                                                                 )}
                                                             >
-                                                                <FeatureToggle.FeaturetoggleContext.Provider
-                                                                    value={merge(
-                                                                        FeatureToggle.initialState,
-                                                                        props.featureToggle && {
-                                                                            data: props.featureToggle,
-                                                                        }
-                                                                    )}
-                                                                >
-                                                                    <KanViseVTA>{children}</KanViseVTA>
-                                                                </FeatureToggle.FeaturetoggleContext.Provider>
-                                                            </Sakstema.SakstemaContext.Provider>
-                                                        </PaabegynteSoknader.PaabegynteSoknaderContext.Provider>
+                                                                <KanViseVTA>{children}</KanViseVTA>
+                                                            </FeatureToggle.FeaturetoggleContext.Provider>
+                                                        </Sakstema.SakstemaContext.Provider>
                                                     </Amplitude.AmplitudeContext.Provider>
                                                 </Motestotte.MotestotteContext.Provider>
                                             </Oppfolging.OppfolgingContext.Provider>

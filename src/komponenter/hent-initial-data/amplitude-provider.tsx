@@ -7,7 +7,7 @@ import { AmplitudeContext } from '../../contexts/amplitude-context';
 import { DinSituasjonSvar, useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { OppfolgingContext } from '../../contexts/oppfolging';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
-import { usePaabegynteSoknaderData } from '../../contexts/paabegynte-soknader';
+import { useDpInnsynPaabegynteSoknaderData } from '../../contexts/dp-innsyn-paabegynte-soknader';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import grupperGeografiskTilknytning from '../../utils/grupper-geografisk-tilknytning';
@@ -64,7 +64,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const featuretoggleData = useFeatureToggleData();
     const innsendteSoknader = useDpInnsynSoknadData();
     const dagpengeVedtak = useDpInnsynVedtakData();
-    const pabegynteSoknaderData = usePaabegynteSoknaderData();
+    const pabegynteSoknaderData = useDpInnsynPaabegynteSoknaderData();
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const brukerInfoData = useBrukerinfoData();
     const { securityLevel: nivaa } = useAutentiseringData();
@@ -140,9 +140,9 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     }, [] as string[]);
 
     const harDagpengesoknadTilBehandling = 'INGEN_DATA';
-    const antallPabegynteSoknader = pabegynteSoknaderData.soknader.length;
+    const antallPabegynteSoknader = pabegynteSoknaderData.length;
     const dagpengerDagerMellomPaabegyntSoknadOgRegistrering = dagerFraPabegyntSoknad({
-        soknader: pabegynteSoknaderData.soknader,
+        soknader: pabegynteSoknaderData,
         registreringsDato: opprettetRegistreringDato,
     });
 
@@ -170,7 +170,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const dagpengestatus = beregnDagpengeStatus({
         brukerInfoData,
         registreringData: brukerregistreringData,
-        paabegynteSoknader: pabegynteSoknaderData.soknader,
+        paabegynteSoknader: pabegynteSoknaderData,
         innsendteSoknader,
         dagpengeVedtak,
     });

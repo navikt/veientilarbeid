@@ -157,22 +157,18 @@ export function hentDagRelativTilFastsattMeldedag(): Date {
 export const hentDpStatus = () => hentDemoState(DemoData.DP_STATUS) || 'ukjent';
 export const settDpStatus = (value: string) => settDemoState(DemoData.DP_STATUS, value);
 
-export const hentDpSoknaderUnderArbeid = (): JSONValue => {
+export const hentDpInnsynPaabegynte = (): JSONValue => {
     const status = hentDpStatus();
     const paabegyntDato = plussDager(new Date(), 2);
-    const pabegyntesoknaderMock = {
-        soknader: [
-            {
-                tittel: 'Søknad om dagpenger (ikke permittert)',
-                lenke: 'https://tjenester-q1.nav.no/soknaddagpenger-innsending/soknad/10010WQX9',
-                dato: paabegyntDato.toISOString(),
-                kilde: 'HENVENDELSE',
-            },
-        ],
-        feilendeBaksystemer: [],
-    };
+    const pabegyntesoknaderMock = [
+        {
+            tittel: 'Søknad om dagpenger (ikke permittert)',
+            behandlingsId: '10010WQX9',
+            sistEndret: paabegyntDato.toISOString(),
+        },
+    ];
 
-    return ['paabegynt', 'soktogpaabegynt'].includes(status) ? pabegyntesoknaderMock : { soknader: [] };
+    return ['paabegynt', 'soktogpaabegynt'].includes(status) ? pabegyntesoknaderMock : [];
 };
 
 export const hentDpMuligeEttersendelser = (): JSONValue => {

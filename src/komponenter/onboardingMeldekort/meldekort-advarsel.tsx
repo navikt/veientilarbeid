@@ -5,9 +5,9 @@ import { datoMedUkedag, plussDager } from '../../utils/date-utils';
 import { hentIDag } from '../../utils/chrono';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import beregnDagpengeStatus, { DagpengeStatus } from '../../lib/beregn-dagpenge-status';
-import { usePaabegynteSoknaderData } from '../../contexts/paabegynte-soknader';
 import { useDpInnsynSoknadData } from '../../contexts/dp-innsyn-soknad';
 import { useDpInnsynVedtakData } from '../../contexts/dp-innsyn-vedtak';
+import { useDpInnsynPaabegynteSoknaderData } from '../../contexts/dp-innsyn-paabegynte-soknader';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
 
@@ -47,7 +47,7 @@ function MeldekortAdvarsel({ dagerEtterFastsattMeldedag }: { dagerEtterFastsattM
 
     const brukerInfoData = useBrukerinfoData();
     const registreringData = useBrukerregistreringData();
-    const paabegynteSoknader = usePaabegynteSoknaderData().soknader;
+    const paabegynteSoknader = useDpInnsynPaabegynteSoknaderData();
     const innsendteSoknader = useDpInnsynSoknadData();
     const dagpengeVedtak = useDpInnsynVedtakData();
 
