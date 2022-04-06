@@ -10,6 +10,8 @@ metadata:
     config.linkerd.io/proxy-memory-request: "128Mi"
 spec:
   env:
+  - name: APPRES_CMS_URL
+    value: {{ appres_cms_url }}
   - name: LOGINSERVICE_URL
     value: {{ loginservice_url }}
   - name: VEIENTILARBEID_URL

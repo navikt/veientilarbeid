@@ -1,5 +1,6 @@
 namespace: paw
 app_environment_name: paw
+appres_cms_url: https://dekoratoren.dev.nav.no
 loginservice_url: https://loginservice-q.nav.no/login
 veientilarbeid_url: https://veientilarbeid.dev.nav.no
 aktivitetsplan_url: https://aktivitetsplan-q1.dev-sbs.nais.io
@@ -18,4 +19,5 @@ ingresses:
   - https://veientilarbeid.dev.nav.no
 externalHosts:
   - navtestb2c.b2clogin.com
+  - dekoratoren.dev.nav.no
   - unleash.nais.io
