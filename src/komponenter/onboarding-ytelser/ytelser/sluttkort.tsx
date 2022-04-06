@@ -1,8 +1,11 @@
 import { BodyShort, Heading, Link } from '@navikt/ds-react';
+
 import { useAmplitudeData } from '../../../contexts/amplitude-context';
 import { loggAktivitet } from '../../../metrics/metrics';
 import lagHentTekstForSprak, { Tekster } from '../../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../../contexts/sprak';
+import ErRendret from '../../er-rendret/er-rendret';
+import InViewport from '../../in-viewport/in-viewport';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -38,6 +41,7 @@ const Sluttkort = () => {
 
     return (
         <>
+            <ErRendret loggTekst="Rendrer ytelser sluttkort" />
             <Heading size="medium" className={'blokk-xs'}>
                 {tekst('heading')}
             </Heading>
@@ -72,6 +76,7 @@ const Sluttkort = () => {
                 </Link>
                 {` ${tekst('av')} nav.no`}
             </BodyShort>
+            <InViewport loggTekst="Viser ytelser sluttkort i viewport" />
         </>
     );
 };
