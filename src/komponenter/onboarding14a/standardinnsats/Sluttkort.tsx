@@ -15,6 +15,8 @@ import { useUlesteDialogerData } from '../../../contexts/ulestedialoger';
 import { Heading } from '@navikt/ds-react';
 import lagHentTekstForSprak from '../../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../../contexts/sprak';
+import ErRendret from '../../er-rendret/er-rendret';
+import InViewport from '../../in-viewport/in-viewport';
 
 const TEKSTER = {
     nb: {
@@ -64,11 +66,13 @@ function Sluttkort() {
 
     return (
         <>
+            <ErRendret loggTekst="Rendrer 14a sluttkort" />
             <Heading className={'blokk-xs'} size="medium">
                 {tekst('heading')}
             </Heading>
             <RegistrertTeller ukerRegistrert={ukerRegistrert} registrertDato={registrertDato} />
             <Lenkepanel14A amplitudeData={amplitudeData} href={dialogLenke} antallUlesteDialoger={antallUleste} />
+            <InViewport loggTekst="Viser 14a sluttkort i viewport" />
         </>
     );
 }
