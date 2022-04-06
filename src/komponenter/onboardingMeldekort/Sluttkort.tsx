@@ -1,4 +1,5 @@
 import { Heading } from '@navikt/ds-react';
+
 import { omMeldekortLenke, meldekortLenke } from '../../innhold/lenker';
 import { hentIDag } from '../../utils/chrono';
 import { datoUtenTid, hentISOUke, datoMedUkedag } from '../../utils/date-utils';
@@ -12,6 +13,8 @@ import Meldekortstatus from './meldekortstatus';
 import TemaLenkepanel from '../tema/tema-lenkepanel';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
+import ErRendret from '../er-rendret/er-rendret';
+import InViewport from '../in-viewport/in-viewport';
 
 const TEKSTER = {
     nb: {
@@ -93,6 +96,7 @@ function Sluttkort() {
 
     return (
         <>
+            <ErRendret loggTekst="Rendrer meldekort sluttkort" />
             <div>
                 <Meldekortstatus />
                 <div>
@@ -108,6 +112,7 @@ function Sluttkort() {
                     />
                 </div>
             </div>
+            <InViewport loggTekst="Viser meldekort sluttkort i viewport" />
         </>
     );
 }
