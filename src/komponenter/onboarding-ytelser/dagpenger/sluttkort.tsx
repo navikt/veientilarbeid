@@ -10,6 +10,8 @@ import { useDpInnsynSoknadData } from '../../../contexts/dp-innsyn-soknad';
 import { useDpInnsynVedtakData } from '../../../contexts/dp-innsyn-vedtak';
 import { useDpInnsynPaabegynteSoknaderData } from '../../../contexts/dp-innsyn-paabegynte-soknader';
 import beregnDagpengeStatus, { DagpengeStatus } from '../../../lib/beregn-dagpenge-status';
+import ErRendret from '../../er-rendret/er-rendret';
+import InViewport from '../../in-viewport/in-viewport';
 
 function hentAktueltSluttkort(situasjon: DagpengeStatus) {
     if (situasjon === 'paabegynt') {
@@ -43,7 +45,13 @@ function Sluttkort() {
     });
 
     const AktueltSluttkort = hentAktueltSluttkort(dagpengeStatus);
-    return <AktueltSluttkort />;
+    return (
+        <>
+            <ErRendret loggTekst="Rendrer dagpenger sluttkort" />
+            <AktueltSluttkort />
+            <InViewport loggTekst="Viser dagpenger sluttkort i viewport" />
+        </>
+    );
 }
 
 export default Sluttkort;
