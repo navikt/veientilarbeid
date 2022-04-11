@@ -1,4 +1,5 @@
 import { contextpathDittNav, erMikrofrontend } from '../utils/app-state-utils';
+import { nanoid } from 'nanoid';
 
 export enum STATUS {
     OK = 'OK',
@@ -23,6 +24,8 @@ export const requestConfig: RequestInit = {
     headers: {
         'Content-Type': 'application/json',
         NAV_CSRF_PROTECTION: getCookie('NAV_CSRF_PROTECTION'),
+        'NAV-Consumer-Id': 'veientilarbeid',
+        'NAV-Call-Id': nanoid(),
     },
 };
 
