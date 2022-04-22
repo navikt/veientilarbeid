@@ -30,7 +30,7 @@
         "@sentry/browser": "6.19.2",
         "@sentry/react": "6.19.2",
         "@snyk/protect": "1.886.0",
-        "amplitude-js": "8.17.0",
+        "amplitude-js": "8.18.0",
         "classnames": "2.3.1",
         "core-js": "3.21.1",
         "intersection-observer": "0.12.0",
