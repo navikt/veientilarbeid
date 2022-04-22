@@ -25,7 +25,7 @@
         "@alheimsins/uker-fra-dato": "1.0.4",
         "@alheimsins/virkedager": "2.1.1",
         "@navikt/ds-css": "0.16.12",
-        "@navikt/ds-icons": "0.8.6",
+        "@navikt/ds-icons": "0.8.7",
         "@navikt/ds-react": "0.17.16",
         "@sentry/browser": "6.19.2",
         "@sentry/react": "6.19.2",
