@@ -23,7 +23,7 @@
     },
     "dependencies": {
         "@alheimsins/uker-fra-dato": "1.0.4",
-        "@alheimsins/virkedager": "2.1.1",
+        "@alheimsins/virkedager": "2.2.0",
         "@navikt/ds-css": "0.16.12",
         "@navikt/ds-icons": "0.8.6",
         "@navikt/ds-react": "0.17.16",
