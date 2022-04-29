@@ -29,10 +29,9 @@ export default function InnholdMetrics() {
 
 function Metrics(props: Props) {
     const oppfolgingData = useOppfolgingData();
-    const { formidlingsgruppe, servicegruppe } = oppfolgingData;
+    const { formidlingsgruppe, servicegruppe, kanReaktiveres } = oppfolgingData;
 
     const amplitudeData = useAmplitudeData();
-    const { ukerRegistrert } = amplitudeData;
 
     const registreringData = useBrukerregistreringData();
     const { alder } = useBrukerinfoData();
@@ -60,14 +59,12 @@ function Metrics(props: Props) {
     });
 
     const hotjarEksperiment = () => {
-        // Henter data fra amplitude
         const brukerregistreringData = registreringData?.registrering ?? null;
-        const erInnenfor12ukerRegistrert = ukerRegistrert !== 'INGEN_DATO' && ukerRegistrert <= 12;
         const erStandardInnsatsgruppe = sjekkOmBrukerErStandardInnsatsgruppe({
             brukerregistreringData,
             oppfolgingData,
         });
-        return erInnenfor12ukerRegistrert && erStandardInnsatsgruppe;
+        return erStandardInnsatsgruppe && kanReaktiveres;
     };
 
     React.useEffect(() => {
