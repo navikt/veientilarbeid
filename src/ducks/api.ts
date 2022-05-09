@@ -30,7 +30,6 @@ export const requestConfig: RequestInit = {
 };
 
 const contextpath = erMikrofrontend() ? contextpathDittNav : '';
-const MELDEKORT_URL = `/meldekort/meldekort-api/api`;
 export const VEILARBOPPFOLGING_URL = `${contextpath}/veilarboppfolging/api/oppfolging`,
     UNDER_OPPFOLGING_URL = `${contextpath}/veilarboppfolging/api/niva3/underoppfolging`,
     BRUKERINFO_URL = `${contextpath}/veilarbregistrering/api/startregistrering`,
@@ -39,9 +38,9 @@ export const VEILARBOPPFOLGING_URL = `${contextpath}/veilarboppfolging/api/oppfo
     EGENVURDERINGBESVARELSE_URL = `${contextpath}/veilarbvedtakinfo/api/behovsvurdering/besvarelse`,
     FEATURE_URL = `${contextpath}/api/feature`,
     MOTESTOTTE_URL = `${contextpath}/veilarbvedtakinfo/api/motestotte`,
-    NESTE_MELDEKORT_URL = `${MELDEKORT_URL}/person/meldekort`,
     PAABEGYNTE_SOKNADER_URL = `${contextpath}/saksoversikt-api/tjenester/saker/hentPaabegynteSoknader`,
     SAKSTEMA_URL = `${contextpath}/saksoversikt-api/tjenester/sakstema`,
     BAKVEIEN = `${contextpath}/bakveientilarbeid`,
     DP_INNSYN_URL = `${BAKVEIEN}/dagpenger`,
-    MELDEKORTSTATUS_URL = `${MELDEKORT_URL}/person/meldekortstatus`;
+    NESTE_MELDEKORT_URL = `${BAKVEIEN}/meldekort`,
+    MELDEKORTSTATUS_URL = `${BAKVEIEN}/meldekort/status`;
