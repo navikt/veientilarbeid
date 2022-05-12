@@ -73,3 +73,23 @@ html {
 .space-between {
     justify-content: space-between;
 }
+
+.tall-sirkel {
+    box-sizing: border-box;
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    left: 183px;
+    top: 255px;
+    background: #0067C5;
+    border: 3px solid #0067C5;
+}
+
+.tall-innhold {
+    position: absolute;
+    width: 26px;
+    height: 22px;
+    left: 183px;
+    top: 256px;
+}
+
