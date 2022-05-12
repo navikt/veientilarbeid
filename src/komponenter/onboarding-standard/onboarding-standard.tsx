@@ -1,4 +1,4 @@
-import { Heading, Panel } from '@navikt/ds-react';
+import { Heading, Panel, BodyLong } from '@navikt/ds-react';
 
 import InViewport from '../in-viewport/in-viewport';
 import ErRendret from '../er-rendret/er-rendret';
@@ -8,6 +8,7 @@ import { DinSituasjonSvar, useBrukerregistreringData } from '../../contexts/bruk
 import { useOppfolgingData } from '../../contexts/oppfolging';
 import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
+import Feedback from '../feedback/feedback';
 
 const TEKSTER = {
     nb: {
@@ -45,12 +46,10 @@ const OnboardingStandard = () => {
                 <Heading size="medium" level="2" className="blokk-xs">
                     {tekst('header')}
                 </Heading>
-                <ol className="blokk-s">
-                    {tekst('description')}
-                    <li>{tekst('trinn1')}</li>
-                    <li>{tekst('trinn2')}</li>
-                    <li>{tekst('trinn3')}</li>
-                </ol>
+                <BodyLong spacing>1. {tekst('trinn1')}</BodyLong>
+                <BodyLong spacing>2. {tekst('trinn2')}</BodyLong>
+                <BodyLong spacing>3. {tekst('trinn3')}</BodyLong>
+                <Feedback id="standard-onboarding-info" />
                 <InViewport loggTekst="Viser OnboardingStandard i viewport" />
             </Panel>
         );
