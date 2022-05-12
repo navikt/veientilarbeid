@@ -13,9 +13,9 @@ import Feedback from '../feedback/feedback';
 const TEKSTER = {
     nb: {
         header: 'Tre viktige ting fordi du nettopp har registrert deg',
-        trinn1: 'Det kan være lurt å starte på en søknad om dagpenger i dag, slik at du finner ut når du må sende inn søknaden',
+        trinn1: 'Start på en søknad om dagpenger i dag, slik at du finner ut når du må sende inn søknaden',
         trinn2: 'Les gjennom introduksjonen til meldekort',
-        trinn3: 'Finn ut om du er enig i vurderingene NAV har gjort hva gjelder ditt behov for oppfølging',
+        trinn3: 'Finn ut om du er enig i hvordan NAV har vurdert ditt behov for hjelp og støtte',
     },
     en: {},
 };
