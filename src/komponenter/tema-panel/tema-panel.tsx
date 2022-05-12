@@ -1,7 +1,8 @@
+import { Cell, Grid } from '@navikt/ds-react';
+
 import MeldekortOnboarding from '../onboardingMeldekort/meldekort-onboarding';
 import Onboarding14A from '../onboarding14a/Onboarding14a';
 import YtelserOnboarding from '../onboarding-ytelser/ytelser-onboarding';
-import { Cell, Grid } from '@navikt/ds-react';
 
 const Temapanel = () => {
     return (
