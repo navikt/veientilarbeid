@@ -7,13 +7,13 @@ const Temapanel = () => {
     return (
         <Grid>
             <Cell xs={12} md={4}>
-                <Onboarding14A />
+                <YtelserOnboarding />
             </Cell>
             <Cell xs={12} md={4}>
                 <MeldekortOnboarding />
             </Cell>
             <Cell xs={12} md={4}>
-                <YtelserOnboarding />
+                <Onboarding14A />
             </Cell>
         </Grid>
     );
