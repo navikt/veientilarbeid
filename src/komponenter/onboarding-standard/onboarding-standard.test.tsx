@@ -3,7 +3,7 @@ import { Formidlingsgruppe, Servicegruppe } from '../../contexts/oppfolging';
 import { render, screen } from '@testing-library/react';
 import { FunctionComponent } from 'react';
 import { InnloggingsNiva } from '../../contexts/autentisering';
-import { ForeslattInnsatsgruppe } from '../../contexts/brukerregistrering';
+import { DinSituasjonSvar, ForeslattInnsatsgruppe } from '../../contexts/brukerregistrering';
 import OnboardingStandard from './onboarding-standard';
 import { mockIntersectionObserver } from '../../mocks/intersection-observer-mock';
 import '@testing-library/jest-dom';
@@ -24,6 +24,15 @@ describe('OnboardingStandard-komponenten', () => {
         registrering: {
             opprettetDato: '2020-01-01',
             profilering: { innsatsgruppe: ForeslattInnsatsgruppe.STANDARD_INNSATS },
+            besvarelse: { dinSituasjon: DinSituasjonSvar.MISTET_JOBBEN },
+        },
+    };
+
+    let standardInnsatsBrukerregistreringAldriJobbet = {
+        registrering: {
+            opprettetDato: '2020-01-01',
+            profilering: { innsatsgruppe: ForeslattInnsatsgruppe.STANDARD_INNSATS },
+            besvarelse: { dinSituasjon: DinSituasjonSvar.ALDRI_HATT_JOBB },
         },
     };
 
@@ -88,6 +97,21 @@ describe('OnboardingStandard-komponenten', () => {
             underOppfolging: { underOppfolging: true },
             oppfolging: standardOppfolging,
             brukerregistrering: standardInnsatsBrukerregistrering,
+            autentisering: {
+                securityLevel: InnloggingsNiva.LEVEL_4,
+            },
+            featureToggle: {
+                'veientilarbeid.vis-onboarding-standard': false,
+            },
+        };
+        const { container } = render(<OnboardingStandard />, { wrapper: contextProviders(props) });
+        expect(container).toBeEmptyDOMElement();
+    });
+    it('rendres ikke når dinSituasjon er noe annet enn sagt opp/mistet jobben/permittert', async () => {
+        const props: ProviderProps = {
+            underOppfolging: { underOppfolging: true },
+            oppfolging: standardOppfolging,
+            brukerregistrering: standardInnsatsBrukerregistreringAldriJobbet,
             autentisering: {
                 securityLevel: InnloggingsNiva.LEVEL_4,
             },

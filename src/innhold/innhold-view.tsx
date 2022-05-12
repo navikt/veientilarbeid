@@ -13,6 +13,7 @@ import InViewport from '../komponenter/in-viewport/in-viewport';
 import StatusTittel from '../komponenter/registrert/status-tittel';
 import EkspanderbartInnsyn from '../komponenter/innsyn/ekspanderbart-innsyn';
 import ReaktiveringKvittering from '../komponenter/reaktivering/reaktivering-kvittering';
+import OnboardingStandard from '../komponenter/onboarding-standard/onboarding-standard';
 
 const InnholdView = () => {
     return (
@@ -23,6 +24,7 @@ const InnholdView = () => {
                 <ReaktiveringKort />
                 <KrrMelding />
                 <StatusTittel />
+                <OnboardingStandard />
                 <ReaktiveringKvittering />
                 <Registrert />
                 <EkspanderbartInnsyn />

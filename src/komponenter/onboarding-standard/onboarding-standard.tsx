@@ -4,7 +4,7 @@ import InViewport from '../in-viewport/in-viewport';
 import ErRendret from '../er-rendret/er-rendret';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
-import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
+import { DinSituasjonSvar, useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useOppfolgingData } from '../../contexts/oppfolging';
 import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
@@ -24,6 +24,12 @@ const OnboardingStandard = () => {
     const registreringData = useBrukerregistreringData();
     const oppfolgingData = useOppfolgingData();
     const brukerregistreringData = registreringData?.registrering ?? null;
+    const dinSituasjon = registreringData?.registrering?.besvarelse.dinSituasjon || DinSituasjonSvar.INGEN_VERDI;
+    const harRettSituasjon = [
+        DinSituasjonSvar.HAR_SAGT_OPP,
+        DinSituasjonSvar.MISTET_JOBBEN,
+        DinSituasjonSvar.ER_PERMITTERT,
+    ].includes(dinSituasjon);
     const brukerErStandard = erStandardInnsatsgruppe({
         brukerregistreringData,
         oppfolgingData,
@@ -32,7 +38,7 @@ const OnboardingStandard = () => {
     const featuretoggleData = useFeatureToggleData();
     const featuretoggleAktivert = featuretoggleData && featuretoggleData['veientilarbeid.vis-onboarding-standard'];
 
-    if (brukerErStandard && featuretoggleAktivert)
+    if (brukerErStandard && harRettSituasjon && featuretoggleAktivert)
         return (
             <Panel border className="ramme blokk-s" id="standard-onboarding">
                 <ErRendret loggTekst="Rendrer OnboardingStandard" />
