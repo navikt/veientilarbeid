@@ -75,21 +75,32 @@ html {
 }
 
 .tall-sirkel {
-    box-sizing: border-box;
-    position: absolute;
+    box-sizing: unset;
+    border-radius: 50%;
     width: 26px;
     height: 26px;
-    left: 183px;
-    top: 255px;
+    padding: 0;    
+
     background: #0067C5;
-    border: 3px solid #0067C5;
+    border: 2px solid #0067C5;
+    color: #fff;
+    text-align: center;
+    margin-right: 0.5rem;
 }
 
-.tall-innhold {
-    position: absolute;
+.tall-sirkel-inverted {
+    box-sizing: unset;
+    border-radius: 50%;
     width: 26px;
-    height: 22px;
-    left: 183px;
-    top: 256px;
+    height: 26px;
+    padding: 0;    
+
+    background: #fff;
+    border: 2px solid #0067C5;
+    color: #0067C5;
+    text-align: center;
+    margin-right: 0.5rem;
 }
+
+
 

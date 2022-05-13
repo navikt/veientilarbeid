@@ -9,6 +9,7 @@ import { useOppfolgingData } from '../../contexts/oppfolging';
 import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import Feedback from '../feedback/feedback';
+import TallSirkel from '../tall/tall';
 
 const TEKSTER = {
     nb: {
@@ -46,9 +47,15 @@ const OnboardingStandard = () => {
                 <Heading size="medium" level="2" className="blokk-xs">
                     {tekst('header')}
                 </Heading>
-                <BodyLong spacing>1. {tekst('trinn1')}</BodyLong>
-                <BodyLong spacing>2. {tekst('trinn2')}</BodyLong>
-                <BodyLong spacing>3. {tekst('trinn3')}</BodyLong>
+                <BodyLong spacing className="flex">
+                    <TallSirkel tall={1} /> {tekst('trinn1')}
+                </BodyLong>
+                <BodyLong spacing className="flex">
+                    <TallSirkel tall={2} /> {tekst('trinn2')}
+                </BodyLong>
+                <BodyLong spacing className="flex">
+                    <TallSirkel tall={3} /> {tekst('trinn3')}
+                </BodyLong>
                 <Feedback id="standard-onboarding-info" />
                 <InViewport loggTekst="Viser OnboardingStandard i viewport" />
             </Panel>
