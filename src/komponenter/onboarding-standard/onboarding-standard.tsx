@@ -4,10 +4,10 @@ import InViewport from '../in-viewport/in-viewport';
 import ErRendret from '../er-rendret/er-rendret';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
-import { DinSituasjonSvar, useBrukerregistreringData } from '../../contexts/brukerregistrering';
+import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useOppfolgingData } from '../../contexts/oppfolging';
-import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
+import { skalViseOnboardingStandard } from '../../lib/skal-vise-onboarding-standard';
 import Feedback from '../feedback/feedback';
 import TallSirkel from '../tall/tall';
 
@@ -25,22 +25,15 @@ const OnboardingStandard = () => {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
     const registreringData = useBrukerregistreringData();
     const oppfolgingData = useOppfolgingData();
-    const brukerregistreringData = registreringData?.registrering ?? null;
-    const dinSituasjon = registreringData?.registrering?.besvarelse.dinSituasjon || DinSituasjonSvar.INGEN_VERDI;
-    const harRettSituasjon = [
-        DinSituasjonSvar.HAR_SAGT_OPP,
-        DinSituasjonSvar.MISTET_JOBBEN,
-        DinSituasjonSvar.ER_PERMITTERT,
-    ].includes(dinSituasjon);
-    const brukerErStandard = erStandardInnsatsgruppe({
-        brukerregistreringData,
+    const featuretoggleData = useFeatureToggleData();
+
+    const kanViseKomponent = skalViseOnboardingStandard({
         oppfolgingData,
+        registreringData,
+        featuretoggleData,
     });
 
-    const featuretoggleData = useFeatureToggleData();
-    const featuretoggleAktivert = featuretoggleData && featuretoggleData['veientilarbeid.vis-onboarding-standard'];
-
-    if (brukerErStandard && harRettSituasjon && featuretoggleAktivert)
+    if (kanViseKomponent)
         return (
             <Panel border className="ramme blokk-s" id="standard-onboarding">
                 <ErRendret loggTekst="Rendrer OnboardingStandard" />

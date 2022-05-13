@@ -22,7 +22,15 @@ describe('OnboardingStandard-komponenten', () => {
 
     let standardInnsatsBrukerregistrering = {
         registrering: {
-            opprettetDato: '2020-01-01',
+            opprettetDato: new Date().toISOString(),
+            profilering: { innsatsgruppe: ForeslattInnsatsgruppe.STANDARD_INNSATS },
+            besvarelse: { dinSituasjon: DinSituasjonSvar.MISTET_JOBBEN },
+        },
+    };
+
+    let standardInnsatsBrukerregistreringGammel = {
+        registrering: {
+            opprettetDato: '2020-11-18',
             profilering: { innsatsgruppe: ForeslattInnsatsgruppe.STANDARD_INNSATS },
             besvarelse: { dinSituasjon: DinSituasjonSvar.MISTET_JOBBEN },
         },
@@ -30,7 +38,7 @@ describe('OnboardingStandard-komponenten', () => {
 
     let standardInnsatsBrukerregistreringAldriJobbet = {
         registrering: {
-            opprettetDato: '2020-01-01',
+            opprettetDato: new Date().toISOString(),
             profilering: { innsatsgruppe: ForeslattInnsatsgruppe.STANDARD_INNSATS },
             besvarelse: { dinSituasjon: DinSituasjonSvar.ALDRI_HATT_JOBB },
         },
@@ -77,6 +85,7 @@ describe('OnboardingStandard-komponenten', () => {
         const { container } = render(<OnboardingStandard />, { wrapper: contextProviders(props) as FunctionComponent });
         expect(container).toBeEmptyDOMElement();
     });
+
     it('rendres når featureToggle veientilarbeid.vis-onboarding-standard er aktivert', async () => {
         const props: ProviderProps = {
             underOppfolging: { underOppfolging: true },
@@ -92,6 +101,7 @@ describe('OnboardingStandard-komponenten', () => {
         render(<OnboardingStandard />, { wrapper: contextProviders(props) });
         expect(screen.getByText('Tre viktige ting fordi du nettopp har registrert deg')).toBeTruthy();
     });
+
     it('rendres ikke når featureToggle veientilarbeid.vis-onboarding-standard ikke er aktivert', async () => {
         const props: ProviderProps = {
             underOppfolging: { underOppfolging: true },
@@ -107,11 +117,28 @@ describe('OnboardingStandard-komponenten', () => {
         const { container } = render(<OnboardingStandard />, { wrapper: contextProviders(props) });
         expect(container).toBeEmptyDOMElement();
     });
+
     it('rendres ikke når dinSituasjon er noe annet enn sagt opp/mistet jobben/permittert', async () => {
         const props: ProviderProps = {
             underOppfolging: { underOppfolging: true },
             oppfolging: standardOppfolging,
             brukerregistrering: standardInnsatsBrukerregistreringAldriJobbet,
+            autentisering: {
+                securityLevel: InnloggingsNiva.LEVEL_4,
+            },
+            featureToggle: {
+                'veientilarbeid.vis-onboarding-standard': false,
+            },
+        };
+        const { container } = render(<OnboardingStandard />, { wrapper: contextProviders(props) });
+        expect(container).toBeEmptyDOMElement();
+    });
+
+    it('rendres ikke når du har vært registrert mer enn en uke', async () => {
+        const props: ProviderProps = {
+            underOppfolging: { underOppfolging: true },
+            oppfolging: standardOppfolging,
+            brukerregistrering: standardInnsatsBrukerregistreringGammel,
             autentisering: {
                 securityLevel: InnloggingsNiva.LEVEL_4,
             },
