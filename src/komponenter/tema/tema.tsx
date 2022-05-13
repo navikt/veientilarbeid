@@ -31,6 +31,7 @@ interface TemaProps {
     hoppOverLenkeTekst?: string;
     lesPaaNyttLenkeTekst?: string;
     startTekst?: string;
+    erStartkortOgSluttkort?: boolean;
 }
 
 const Tema = (props: TemaProps) => {
@@ -44,6 +45,7 @@ const Tema = (props: TemaProps) => {
         lesPaaNyttLenkeTekst,
         amplitudeTemaTag,
         startTekst,
+        erStartkortOgSluttkort,
     } = props;
     const ONBOARDING_KEY = id;
     const amplitudeData = useAmplitudeData();
@@ -117,8 +119,10 @@ const Tema = (props: TemaProps) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [harSettIntro]);
 
+    const erStartkort = gjeldendeKortIndex === 0 && (innhold.length > 1 || erStartkortOgSluttkort);
+
     return (
-        <div className={`onboarding ${gjeldendeKortIndex === 0 && innhold.length > 1 ? 'onboarding_startkort' : ''}`}>
+        <div className={`onboarding ${erStartkort ? 'onboarding_startkort' : ''}`}>
             <ErRendret loggTekst={`Rendrer tema: ${amplitudeTemaTag}`} />
             <div className="onboarding-container">
                 <div className="paxs">

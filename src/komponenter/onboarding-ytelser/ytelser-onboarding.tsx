@@ -14,6 +14,11 @@ import { hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserS
 import ByttKortLenke from './bytt-kort-lenke';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
+import beregnDagpengeStatus from '../../lib/beregn-dagpenge-status';
+import harIkkeStartetDagpengesoknad from '../../lib/har-ikke-startet-dagpengesoknad';
+import { useDpInnsynPaabegynteSoknaderData } from '../../contexts/dp-innsyn-paabegynte-soknader';
+import { useDpInnsynSoknadData } from '../../contexts/dp-innsyn-soknad';
+import { useDpInnsynVedtakData } from '../../contexts/dp-innsyn-vedtak';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -31,6 +36,9 @@ function YtelserOnboarding() {
     const oppfolgingData = useOppfolgingData();
     const featuretoggleData = useFeatureToggleData();
     const brukerInfoData = useBrukerinfoData();
+    const paabegynteSoknader = useDpInnsynPaabegynteSoknaderData();
+    const innsendteSoknader = useDpInnsynSoknadData();
+    const dagpengeVedtak = useDpInnsynVedtakData();
     const amplitudeData = useAmplitudeData();
     const YTELSER_TEMA_VIS_KEY = 'ytelser_tema_vis_key';
 
@@ -66,6 +74,14 @@ function YtelserOnboarding() {
         oppfolgingData,
         brukerInfoData,
         registreringData,
+    });
+
+    const dagpengeStatus = beregnDagpengeStatus({
+        brukerInfoData,
+        registreringData,
+        paabegynteSoknader,
+        innsendteSoknader,
+        dagpengeVedtak,
     });
 
     if (!kanViseYtelserKomponent && !kanViseDagpengerKomponent) return null;
@@ -109,6 +125,7 @@ function YtelserOnboarding() {
                 id="dagpenger"
                 hoppOverPreState={false}
                 amplitudeTemaTag="dagpenger"
+                erStartkortOgSluttkort={harIkkeStartetDagpengesoknad(dagpengeStatus)}
             />
         );
     }

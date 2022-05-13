@@ -7,6 +7,7 @@ import { mine_dagpenger_url } from '../../../url';
 import SkrivTilOssOgChat from './skriv-til-oss-og-chat';
 import lagHentTekstForSprak, { Tekster } from '../../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../../contexts/sprak';
+import { Next } from '@navikt/ds-icons';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -50,8 +51,9 @@ const Sluttkort = () => {
 
             <BodyShort className={'blokk-xs'}>{tekst('ingress')}</BodyShort>
 
-            <Button variant="primary" onClick={handleButtonClick} className="blokk-xs">
+            <Button variant="secondary" onClick={handleButtonClick} className="blokk-xs">
                 {tekst('sok')}
+                <Next />
             </Button>
 
             <BodyShort className={'blokk-xs'}>
