@@ -86,6 +86,8 @@ html {
     color: #fff;
     text-align: center;
     margin-right: 0.5rem;
+    font-size: 18px;
+    line-height: 1.50;
 }
 
 .tall-sirkel-inverted {
@@ -96,10 +98,12 @@ html {
     padding: 0;    
 
     background: #fff;
-    border: 2px solid #0067C5;
+    border: 2px solid #fff;
     color: #0067C5;
     text-align: center;
     margin-right: 0.5rem;
+    font-size: 18px;
+    line-height: 1.50;
 }
 
 

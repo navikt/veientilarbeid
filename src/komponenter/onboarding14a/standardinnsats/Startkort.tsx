@@ -20,7 +20,7 @@ function Startkort() {
     return (
         <>
             <ErRendret loggTekst="Rendrer 14a pre-state" />
-            <Heading size="large" className={'blokk-xs flex'}>
+            <Heading size="medium" className={'blokk-xs flex'}>
                 <OnboardingStandardStegnummer tall={3} inverted />
                 {tekst('heading')}
             </Heading>

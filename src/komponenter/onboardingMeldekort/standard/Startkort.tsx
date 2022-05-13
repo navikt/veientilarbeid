@@ -19,7 +19,7 @@ function Startkort() {
     return (
         <>
             <ErRendret loggTekst="Rendrer meldekort pre-state" />
-            <Heading size="large" className={'blokk-xs flex'}>
+            <Heading size="medium" className={'blokk-xs flex'}>
                 <OnboardingStandardStegnummer tall={2} inverted />
                 {tekst('heading')}
             </Heading>
