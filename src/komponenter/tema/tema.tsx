@@ -28,7 +28,7 @@ interface TemaProps {
     hoppOverPreState: boolean;
     amplitudeTemaTag: string;
     innhold: JSX.Element[];
-    fotnoterInnhold?: React.ElementType;
+    fotnoterInnhold?: JSX.Element[];
     hoppRettTilSluttkort?: boolean;
     hoppOverLenkeTekst?: string;
     lesPaaNyttLenkeTekst?: string;
@@ -152,7 +152,7 @@ const Tema = (props: TemaProps) => {
 
                 <InViewport loggTekst={`Viser tema i viewport: ${amplitudeTemaTag}`} />
             </div>
-            {innhold.length > 1 && !registrert12UkerEllerMer && (
+            {innhold.length >= 1 && !registrert12UkerEllerMer && (
                 <div>
                     <Panel>
                         <TemaFotnoter
@@ -162,7 +162,7 @@ const Tema = (props: TemaProps) => {
                             handleLesIntroPaaNytt={handleLesIntroPaaNytt}
                             hoppOverLenkeTekst={hoppOverLenkeTekst}
                             lesPaaNyttLenkeTekst={lesPaaNyttLenkeTekst}
-                            EkstraInnhold={fotnoterInnhold}
+                            ekstraInnhold={fotnoterInnhold}
                         />
                     </Panel>
                 </div>

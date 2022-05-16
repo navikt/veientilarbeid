@@ -19,6 +19,7 @@ import harIkkeStartetDagpengesoknad from '../../lib/har-ikke-startet-dagpengesok
 import { useDpInnsynPaabegynteSoknaderData } from '../../contexts/dp-innsyn-paabegynte-soknader';
 import { useDpInnsynSoknadData } from '../../contexts/dp-innsyn-soknad';
 import { useDpInnsynVedtakData } from '../../contexts/dp-innsyn-vedtak';
+import FotnoterYtelser from './fotnoter-ytelser';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -103,6 +104,11 @@ function YtelserOnboarding() {
                         )}
                     </>,
                 ]}
+                fotnoterInnhold={[
+                    <>
+                        <FotnoterYtelser />
+                    </>,
+                ]}
                 id="ytelser"
                 hoppOverPreState={false}
                 amplitudeTemaTag="ytelser"
@@ -120,6 +126,11 @@ function YtelserOnboarding() {
                             handleByttKortKlikk={handleByttKortKlikk}
                             valgtYtelserVisning={valgtYtelserVisning}
                         />
+                    </>,
+                ]}
+                fotnoterInnhold={[
+                    <>
+                        <FotnoterYtelser />
                     </>,
                 ]}
                 id="dagpenger"

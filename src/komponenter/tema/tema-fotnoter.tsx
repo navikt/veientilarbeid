@@ -10,7 +10,7 @@ interface FotnoterProps {
     handleLesIntroPaaNytt: (e: React.MouseEvent) => void;
     hoppOverLenkeTekst?: string;
     lesPaaNyttLenkeTekst?: string;
-    EkstraInnhold?: React.ElementType;
+    ekstraInnhold?: JSX.Element[];
 }
 
 const TEKSTER: Tekster<string> = {
@@ -32,12 +32,12 @@ const Fotnoter = (props: FotnoterProps) => {
         handleLesIntroPaaNytt,
         hoppOverLenkeTekst,
         lesPaaNyttLenkeTekst,
-        EkstraInnhold,
+        ekstraInnhold,
     } = props;
 
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
-    if (antallSider <= 1) return null;
+    if (antallSider <= 1 && !ekstraInnhold) return null;
     if (antallSider >= 2) {
         if (gjeldendeKortIndex === 0) {
             return (
@@ -47,7 +47,7 @@ const Fotnoter = (props: FotnoterProps) => {
                             {hoppOverLenkeTekst ?? tekst('skip')}
                         </Link>
                     </div>
-                    {EkstraInnhold && <EkstraInnhold />}
+                    {ekstraInnhold && ekstraInnhold[0]}
                 </>
             );
         }
@@ -59,12 +59,12 @@ const Fotnoter = (props: FotnoterProps) => {
                             {lesPaaNyttLenkeTekst || tekst('vis')}
                         </Link>
                     </BodyShort>
-                    {EkstraInnhold && <EkstraInnhold />}
+                    {ekstraInnhold && ekstraInnhold[0]}
                 </>
             );
         }
     }
-    return <></>;
+    return <>{ekstraInnhold && ekstraInnhold[0]}</>;
 };
 
 export default Fotnoter;
