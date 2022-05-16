@@ -11,7 +11,7 @@
  * amplitudeTemaTag - tekst som brukes for å logge ting i amplitude
  */
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TemaFooter from './tema-footer';
 import { fjernFraBrowserStorage, hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
@@ -20,6 +20,7 @@ import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import { Label, Panel } from '@navikt/ds-react';
 import './tema.css';
+import TemaFotnoter from './tema-fotnoter';
 
 interface TemaProps {
     header: string;
@@ -27,6 +28,7 @@ interface TemaProps {
     hoppOverPreState: boolean;
     amplitudeTemaTag: string;
     innhold: JSX.Element[];
+    fotnoterInnhold?: React.ElementType;
     hoppRettTilSluttkort?: boolean;
     hoppOverLenkeTekst?: string;
     lesPaaNyttLenkeTekst?: string;
@@ -40,6 +42,7 @@ const Tema = (props: TemaProps) => {
         hoppOverPreState,
         hoppRettTilSluttkort,
         innhold,
+        fotnoterInnhold,
         id,
         hoppOverLenkeTekst,
         lesPaaNyttLenkeTekst,
@@ -122,31 +125,49 @@ const Tema = (props: TemaProps) => {
     const erStartkort = gjeldendeKortIndex === 0 && (innhold.length > 1 || erStartkortOgSluttkort);
 
     return (
-        <div className={`onboarding ${erStartkort ? 'onboarding_startkort' : ''}`}>
-            <ErRendret loggTekst={`Rendrer tema: ${amplitudeTemaTag}`} />
-            <div className="onboarding-container">
-                <div className="paxs">
-                    <Label className="kort-heading">{header}</Label>
+        <>
+            <div className={`onboarding ${erStartkort ? 'onboarding_startkort' : ''}`}>
+                <ErRendret loggTekst={`Rendrer tema: ${amplitudeTemaTag}`} />
+                <div className="onboarding-container">
+                    <div className="paxs">
+                        <Label className="kort-heading">{header}</Label>
+                    </div>
+                    <Panel className="onboarding-panel">
+                        <div>{innhold[gjeldendeKortIndex]}</div>
+                        {innhold.length > 1 && !registrert12UkerEllerMer && (
+                            <TemaFooter
+                                antallSider={innhold.length}
+                                gjeldendeKortIndex={gjeldendeKortIndex}
+                                forrigeKort={forrigeKort}
+                                nesteKort={nesteKort}
+                                hoppOverIntro={hoppOverIntro}
+                                handleLesIntroPaaNytt={handleLesIntroPaaNytt}
+                                hoppOverLenkeTekst={hoppOverLenkeTekst}
+                                lesPaaNyttLenkeTekst={lesPaaNyttLenkeTekst}
+                                startTekst={startTekst}
+                            />
+                        )}
+                    </Panel>
                 </div>
-                <Panel className="onboarding-panel">
-                    <div>{innhold[gjeldendeKortIndex]}</div>
-                    {innhold.length > 1 && !registrert12UkerEllerMer && (
-                        <TemaFooter
+
+                <InViewport loggTekst={`Viser tema i viewport: ${amplitudeTemaTag}`} />
+            </div>
+            {innhold.length > 1 && !registrert12UkerEllerMer && (
+                <div>
+                    <Panel>
+                        <TemaFotnoter
                             antallSider={innhold.length}
                             gjeldendeKortIndex={gjeldendeKortIndex}
-                            forrigeKort={forrigeKort}
-                            nesteKort={nesteKort}
                             hoppOverIntro={hoppOverIntro}
                             handleLesIntroPaaNytt={handleLesIntroPaaNytt}
                             hoppOverLenkeTekst={hoppOverLenkeTekst}
                             lesPaaNyttLenkeTekst={lesPaaNyttLenkeTekst}
-                            startTekst={startTekst}
+                            EkstraInnhold={fotnoterInnhold}
                         />
-                    )}
-                </Panel>
-            </div>
-            <InViewport loggTekst={`Viser tema i viewport: ${amplitudeTemaTag}`} />
-        </div>
+                    </Panel>
+                </div>
+            )}
+        </>
     );
 };
 
