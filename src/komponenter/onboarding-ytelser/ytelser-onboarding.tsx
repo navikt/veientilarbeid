@@ -11,7 +11,6 @@ import { useOppfolgingData } from '../../contexts/oppfolging';
 import { kanViseOnboardingDagpenger } from '../../lib/kan-vise-onboarding-dagpenger';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import { hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
-import ByttKortLenke from './bytt-kort-lenke';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
 import beregnDagpengeStatus from '../../lib/beregn-dagpenge-status';
@@ -96,17 +95,15 @@ function YtelserOnboarding() {
                 innhold={[
                     <>
                         <SluttkortYtelser />
-                        {kanViseDagpengerKomponent && (
-                            <ByttKortLenke
-                                handleByttKortKlikk={handleByttKortKlikk}
-                                valgtYtelserVisning={valgtYtelserVisning}
-                            />
-                        )}
                     </>,
                 ]}
                 fotnoterInnhold={[
                     <>
-                        <FotnoterYtelser />
+                        <FotnoterYtelser
+                            valgtYtelse={valgtYtelserVisning}
+                            handleByttKortKlikk={handleByttKortKlikk}
+                            kanViseDagpengerKomponent={kanViseDagpengerKomponent}
+                        />
                     </>,
                 ]}
                 id="ytelser"
@@ -122,15 +119,15 @@ function YtelserOnboarding() {
                 innhold={[
                     <>
                         <SluttkortDagpenger />
-                        <ByttKortLenke
-                            handleByttKortKlikk={handleByttKortKlikk}
-                            valgtYtelserVisning={valgtYtelserVisning}
-                        />
                     </>,
                 ]}
                 fotnoterInnhold={[
                     <>
-                        <FotnoterYtelser />
+                        <FotnoterYtelser
+                            valgtYtelse={valgtYtelserVisning}
+                            handleByttKortKlikk={handleByttKortKlikk}
+                            kanViseDagpengerKomponent={kanViseDagpengerKomponent}
+                        />
                     </>,
                 ]}
                 id="dagpenger"
