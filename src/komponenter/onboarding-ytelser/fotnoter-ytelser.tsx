@@ -53,7 +53,6 @@ function FotnoterInnholdDagpenger(props: InnholdProps) {
             <BodyLong className={'blokk-xs'}>
                 {`${tekst('feil')} `}
                 <Link
-                    className={'tracking-wide'}
                     href={mine_dagpenger_url}
                     onClick={() =>
                         loggLenkeKlikk(

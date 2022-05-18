@@ -43,7 +43,7 @@ const Fotnoter = (props: FotnoterProps) => {
             return (
                 <>
                     <div>
-                        <Link onClick={hoppOverIntro} href={'#'} className="tracking-wide">
+                        <Link onClick={hoppOverIntro} href={'#'}>
                             {hoppOverLenkeTekst ?? tekst('skip')}
                         </Link>
                     </div>
