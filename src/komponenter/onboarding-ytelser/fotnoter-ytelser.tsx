@@ -1,12 +1,9 @@
-import { BodyLong, Link } from '@navikt/ds-react';
+import { BodyLong } from '@navikt/ds-react';
 
 import ByttKortLenke from './bytt-kort-lenke';
 import { useSprakValg } from '../../contexts/sprak';
-import { useAmplitudeData } from '../../contexts/amplitude-context';
-import { loggAktivitet } from '../../metrics/metrics';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import SkrivTilOssOgChat from './dagpenger/skriv-til-oss-og-chat';
-import { mine_dagpenger_url } from '../../url';
 import { DagpengeStatus } from '../../lib/beregn-dagpenge-status';
 
 interface Props {
@@ -21,7 +18,6 @@ interface InnholdProps {
 }
 
 function FotnoterInnholdDagpenger(props: InnholdProps) {
-    const amplitudeData = useAmplitudeData();
     const TEKSTER: Tekster<string> = {
         nb: {
             heading: 'Du har ikke sendt inn søknad om dagpenger',
@@ -40,30 +36,11 @@ function FotnoterInnholdDagpenger(props: InnholdProps) {
     };
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
-    function loggLenkeKlikk(action: string, url: string) {
-        loggAktivitet({ aktivitet: action, ...amplitudeData });
-        window.location.assign(url);
-    }
-
     if (props.dagpengeStatus !== ('ukjent' as DagpengeStatus)) return null;
 
     return (
         <>
             <BodyLong className={'blokk-xs'}>{tekst('ingress')}</BodyLong>
-            <BodyLong className={'blokk-xs'}>
-                {`${tekst('feil')} `}
-                <Link
-                    href={mine_dagpenger_url}
-                    onClick={() =>
-                        loggLenkeKlikk(
-                            'Går til Mine dagpenger fra "dagpenger-tema - ikke søkt dagpenger"',
-                            mine_dagpenger_url
-                        )
-                    }
-                >
-                    {tekst('mineDagpenger')}
-                </Link>
-            </BodyLong>
 
             <SkrivTilOssOgChat amplitudeTemaNavn='"dagpenger-tema - ikke søkt dagpenger"' />
         </>

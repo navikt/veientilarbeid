@@ -5,7 +5,6 @@ import { sorterEtterNyesteVedtak } from '../../../lib/beregn-dagpenge-status';
 import SistInnsendtSoknad from './sist-innsendt-soknad';
 import SkrivTilOssOgChat from './skriv-til-oss-og-chat';
 import LesOmYtelser from './les-om-ytelser';
-import SeMerInfo from './se-mer-info';
 import lagHentTekstForSprak, { Tekster } from '../../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../../contexts/sprak';
 
@@ -28,7 +27,6 @@ const Sluttkort = () => {
             <Heading size="medium" className={'blokk-xs'}>
                 {tekst('heading')}
             </Heading>
-            <SeMerInfo amplitudeTemaNavn={'"dagpenger-tema - mottar dagpenger"'} />
             <SistInnsendtSoknad dato={sisteVedtak?.datoFattet} komponent="mottar" />
             <PaabegynteSoknader dato={sisteVedtak?.datoFattet} komponent="mottar" />
             <SkrivTilOssOgChat amplitudeTemaNavn='"dagpenger-tema - mottar dagpenger"' />

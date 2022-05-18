@@ -7,7 +7,6 @@ import {
 import prettyPrintDato from '../../../utils/pretty-print-dato';
 import TemaLenkepanel from '../../tema/tema-lenkepanel';
 import SkrivTilOssOgChat from './skriv-til-oss-og-chat';
-import SeMerInfo from './se-mer-info';
 import lagHentTekstForSprak, { Tekster } from '../../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../../contexts/sprak';
 import { FORTSETT_DP_SOKNAD_URL } from '../../../utils/lenker';
@@ -56,7 +55,6 @@ const Sluttkort = () => {
                 tittel={tekst('fortsett')}
                 beskrivelse={`${tekst('pabegynt')} ${prettyPrintDato(sistePabegynteSoknad.sistEndret, sprak)}`}
             />
-            <SeMerInfo amplitudeTemaNavn={'"dagpenger-tema - påbegynt søknad"'} />
             <SkrivTilOssOgChat amplitudeTemaNavn='"dagpenger-tema - påbegynt søknad"' />
         </>
     );
