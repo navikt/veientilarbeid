@@ -51,7 +51,6 @@ const PaabegynteSoknader = ({ dato, komponent }: { dato?: string; komponent: str
         <BodyShort className={'blokk-xs'}>
             {tekst('pabegynt')}{' '}
             <Link
-                className={'tracking-wide'}
                 href={sistePabegynteSoknad.behandlingsId}
                 onClick={() =>
                     loggLenkeKlikk(

@@ -1,9 +1,10 @@
-import { BodyShort, Link } from '@navikt/ds-react';
+import { BodyLong, Link } from '@navikt/ds-react';
 
 import { useAmplitudeData } from '../../../contexts/amplitude-context';
 import { loggAktivitet } from '../../../metrics/metrics';
 import lagHentTekstForSprak from '../../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../../contexts/sprak';
+import { mine_dagpenger_url } from '../../../url';
 
 const TEKSTER = {
     nb: {
@@ -11,12 +12,16 @@ const TEKSTER = {
         skrivTilOss: 'skriv til oss',
         eller: 'eller',
         chat: 'chat',
+        innsyn: 'For innsyn, se',
+        mineDagpenger: 'Mine dagpenger',
     },
     en: {
         sporsmal: 'You can ask questions about unemployment benefits via',
         skrivTilOss: 'write to us',
         eller: 'or',
         chat: 'chat',
+        innsyn: 'For innsyn, se',
+        mineDagpenger: 'My unemployment benefits',
     },
 };
 
@@ -24,7 +29,7 @@ interface Props {
     amplitudeTemaNavn: string;
 }
 
-const SkrivTilOssOgChat = (props: Props) => {
+const SkrivTilOssChatOgMineDagpenger = (props: Props) => {
     const { amplitudeTemaNavn } = props;
     const amplitudeData = useAmplitudeData();
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
@@ -35,7 +40,7 @@ const SkrivTilOssOgChat = (props: Props) => {
     }
 
     return (
-        <BodyShort className={'blokk-xs'}>
+        <BodyLong className={'blokk-xs'}>
             {tekst('sporsmal')}{' '}
             <Link
                 href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
@@ -61,8 +66,17 @@ const SkrivTilOssOgChat = (props: Props) => {
                 {tekst('chat')}
             </Link>
             .
-        </BodyShort>
+            <br />
+            {`${tekst('innsyn')} `}
+            <Link
+                href={mine_dagpenger_url}
+                onClick={() => loggLenkeKlikk(`Går til Mine dagpenger fra ${amplitudeTemaNavn}`, mine_dagpenger_url)}
+            >
+                {tekst('mineDagpenger')}
+            </Link>
+            .
+        </BodyLong>
     );
 };
 
-export default SkrivTilOssOgChat;
+export default SkrivTilOssChatOgMineDagpenger;
