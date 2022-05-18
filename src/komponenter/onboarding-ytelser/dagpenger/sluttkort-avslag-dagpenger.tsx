@@ -1,9 +1,8 @@
 import { BodyShort, Heading } from '@navikt/ds-react';
 import { useDpInnsynVedtakData, Vedtak } from '../../../contexts/dp-innsyn-vedtak';
 import prettyPrintDato from '../../../utils/pretty-print-dato';
-import SkrivTilOssOgChat from './skriv-til-oss-og-chat';
+import SkrivTilOssChatOgMineDagpenger from './skriv-til-oss-chat-og-mine-dagpenger';
 import LesOmYtelser from './les-om-ytelser';
-import SeMerInfo from './se-mer-info';
 import lagHentTekstForSprak, { Tekster } from '../../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../../contexts/sprak';
 
@@ -41,8 +40,7 @@ const Sluttkort = () => {
                 {`${tekst('fattet')} ${prettyPrintDato(nyesteVedtakMedAvslag.datoFattet, sprak)} ${tekst('status')} `}
                 <b>{nyesteVedtakMedAvslag.status.toLocaleLowerCase()}</b>.
             </BodyShort>
-            <SeMerInfo amplitudeTemaNavn={'"dagpenger-tema - dagpenger avslått"'} />
-            <SkrivTilOssOgChat amplitudeTemaNavn='"dagpenger-tema - dagpenger avslått"' />
+            <SkrivTilOssChatOgMineDagpenger amplitudeTemaNavn='"dagpenger-tema - dagpenger avslått"' />
             <LesOmYtelser amplitudeTemaNavn={'"dagpenger-tema - dagpenger avslått"'} />
         </>
     );

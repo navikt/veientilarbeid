@@ -30,6 +30,10 @@ html {
     margin-right: 0.5rem;
 }
 
+.mb-1 {
+    margin-bottom: 1rem;
+}
+
 .mb-2 {
     margin-bottom: 2rem;
 }
@@ -40,10 +44,6 @@ html {
 
 .ml-2 {
     margin-left: 2rem;
-}
-
-.tracking-wide {
-    letter-spacing: 0.05em;
 }
 
 .paxs {
@@ -64,6 +64,10 @@ html {
 
 .flex {
     display: flex;
+}
+
+.align-center {
+    align-items: center;
 }
 
 .flex-column {
@@ -106,5 +110,7 @@ html {
     line-height: 1.50;
 }
 
-
-
+.fotnotepanel {
+    background-color: transparent;
+    background: transparent;
+}

@@ -11,7 +11,6 @@ import { useOppfolgingData } from '../../contexts/oppfolging';
 import { kanViseOnboardingDagpenger } from '../../lib/kan-vise-onboarding-dagpenger';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import { hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
-import ByttKortLenke from './bytt-kort-lenke';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
 import beregnDagpengeStatus from '../../lib/beregn-dagpenge-status';
@@ -19,6 +18,7 @@ import harIkkeStartetDagpengesoknad from '../../lib/har-ikke-startet-dagpengesok
 import { useDpInnsynPaabegynteSoknaderData } from '../../contexts/dp-innsyn-paabegynte-soknader';
 import { useDpInnsynSoknadData } from '../../contexts/dp-innsyn-soknad';
 import { useDpInnsynVedtakData } from '../../contexts/dp-innsyn-vedtak';
+import FotnoterYtelser from './fotnoter-ytelser';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -95,12 +95,16 @@ function YtelserOnboarding() {
                 innhold={[
                     <>
                         <SluttkortYtelser />
-                        {kanViseDagpengerKomponent && (
-                            <ByttKortLenke
-                                handleByttKortKlikk={handleByttKortKlikk}
-                                valgtYtelserVisning={valgtYtelserVisning}
-                            />
-                        )}
+                    </>,
+                ]}
+                fotnoterInnhold={[
+                    <>
+                        <FotnoterYtelser
+                            valgtYtelse={valgtYtelserVisning}
+                            handleByttKortKlikk={handleByttKortKlikk}
+                            kanViseDagpengerKomponent={kanViseDagpengerKomponent}
+                            dagpengeStatus={dagpengeStatus}
+                        />
                     </>,
                 ]}
                 id="ytelser"
@@ -116,9 +120,15 @@ function YtelserOnboarding() {
                 innhold={[
                     <>
                         <SluttkortDagpenger />
-                        <ByttKortLenke
+                    </>,
+                ]}
+                fotnoterInnhold={[
+                    <>
+                        <FotnoterYtelser
+                            valgtYtelse={valgtYtelserVisning}
                             handleByttKortKlikk={handleByttKortKlikk}
-                            valgtYtelserVisning={valgtYtelserVisning}
+                            kanViseDagpengerKomponent={kanViseDagpengerKomponent}
+                            dagpengeStatus={dagpengeStatus}
                         />
                     </>,
                 ]}

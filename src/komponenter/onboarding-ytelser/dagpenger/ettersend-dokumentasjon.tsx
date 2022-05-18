@@ -33,7 +33,6 @@ const EttersendDokumentasjon = ({ amplitudeTemaNavn }: Props) => {
         <BodyShort className={'blokk-xs'}>
             {`${tekst('ettersend')} `}
             <Link
-                className={'tracking-wide'}
                 href={mine_dagpenger_url}
                 onClick={() => loggLenkeKlikk(`Går til Mine dagpenger fra ${amplitudeTemaNavn}`, mine_dagpenger_url)}
             >

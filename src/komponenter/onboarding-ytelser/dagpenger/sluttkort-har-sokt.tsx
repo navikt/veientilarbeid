@@ -5,7 +5,7 @@ import { sorterEtterNyesteDatoInnsendt } from '../../../lib/beregn-dagpenge-stat
 import SistInnsendtSoknad from './sist-innsendt-soknad';
 import { useDpInnsynPaabegynteSoknaderData } from '../../../contexts/dp-innsyn-paabegynte-soknader';
 import PaabegynteSoknader from './paabegynte-soknader';
-import SkrivTilOssOgChat from './skriv-til-oss-og-chat';
+import SkrivTilOssChatOgMineDagpenger from './skriv-til-oss-chat-og-mine-dagpenger';
 import LesOmYtelser from './les-om-ytelser';
 import EttersendDokumentasjon from './ettersend-dokumentasjon';
 import lagHentTekstForSprak, { Tekster } from '../../../lib/lag-hent-tekst-for-sprak';
@@ -43,7 +43,7 @@ const Sluttkort = () => {
             <SistInnsendtSoknad dato={sisteInnsendteSoknad?.datoInnsendt} komponent="sokt" />
             <EttersendDokumentasjon amplitudeTemaNavn={amplitudeTemaNavn} />
             <PaabegynteSoknader dato={sisteInnsendteSoknad?.datoInnsendt} komponent="sokt" />
-            <SkrivTilOssOgChat amplitudeTemaNavn={amplitudeTemaNavn} />
+            <SkrivTilOssChatOgMineDagpenger amplitudeTemaNavn={amplitudeTemaNavn} />
             <LesOmYtelser amplitudeTemaNavn={amplitudeTemaNavn} />
         </>
     );
