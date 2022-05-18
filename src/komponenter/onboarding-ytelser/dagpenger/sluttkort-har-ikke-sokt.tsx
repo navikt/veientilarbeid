@@ -38,7 +38,7 @@ const Sluttkort = () => {
                 {tekst('heading')}
             </Heading>
 
-            <Button variant="secondary" onClick={handleButtonClick} className="blokk-xs">
+            <Button variant="secondary" onClick={handleButtonClick} className="mb-2">
                 {tekst('sok')}
                 <Next />
             </Button>

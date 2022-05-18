@@ -66,6 +66,10 @@ html {
     display: flex;
 }
 
+.align-center {
+    align-items: center;
+}
+
 .flex-column {
     flex-direction: column;
 }

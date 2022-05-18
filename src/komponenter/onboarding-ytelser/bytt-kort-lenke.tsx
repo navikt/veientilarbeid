@@ -1,6 +1,6 @@
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { ReactComponent as BytteIkon } from './bytte-ikon.svg';
-import { Cell, ContentContainer, Grid, Link } from '@navikt/ds-react';
+import { Link } from '@navikt/ds-react';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
 
@@ -23,18 +23,12 @@ const ByttKortLenke = (props: { handleByttKortKlikk: (e: React.MouseEvent) => vo
     if (!kanViseKomponent) return null;
 
     return (
-        <ContentContainer>
-            <Grid>
-                <Cell xs={1} style={{ alignSelf: 'center', justifySelf: 'center' }}>
-                    <BytteIkon />
-                </Cell>
-                <Cell xs={11}>
-                    <Link href="" onClick={props.handleByttKortKlikk}>
-                        {props.valgtYtelserVisning === 'dagpenger' ? tekst('ikkeAktuelt') : tekst('aktuelt')}
-                    </Link>
-                </Cell>
-            </Grid>
-        </ContentContainer>
+        <div className="flex align-center">
+            <BytteIkon className="mr-05" />
+            <Link href="" onClick={props.handleByttKortKlikk}>
+                {props.valgtYtelserVisning === 'dagpenger' ? tekst('ikkeAktuelt') : tekst('aktuelt')}
+            </Link>
+        </div>
     );
 };
 
