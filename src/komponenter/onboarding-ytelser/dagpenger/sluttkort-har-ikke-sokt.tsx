@@ -1,4 +1,5 @@
 import { BodyShort, Button, Heading, Link } from '@navikt/ds-react';
+import { Next } from '@navikt/ds-icons';
 
 import { useAmplitudeData } from '../../../contexts/amplitude-context';
 import { loggAktivitet } from '../../../metrics/metrics';
@@ -7,7 +8,6 @@ import { mine_dagpenger_url } from '../../../url';
 import SkrivTilOssOgChat from './skriv-til-oss-og-chat';
 import lagHentTekstForSprak, { Tekster } from '../../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../../contexts/sprak';
-import { Next } from '@navikt/ds-icons';
 import OnboardingStandardStegnummer from '../../onboarding-standard/onboarding-standard-stegnummer';
 
 const TEKSTER: Tekster<string> = {
