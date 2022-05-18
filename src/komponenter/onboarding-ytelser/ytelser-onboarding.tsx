@@ -103,6 +103,7 @@ function YtelserOnboarding() {
                             valgtYtelse={valgtYtelserVisning}
                             handleByttKortKlikk={handleByttKortKlikk}
                             kanViseDagpengerKomponent={kanViseDagpengerKomponent}
+                            dagpengeStatus={dagpengeStatus}
                         />
                     </>,
                 ]}
@@ -127,6 +128,7 @@ function YtelserOnboarding() {
                             valgtYtelse={valgtYtelserVisning}
                             handleByttKortKlikk={handleByttKortKlikk}
                             kanViseDagpengerKomponent={kanViseDagpengerKomponent}
+                            dagpengeStatus={dagpengeStatus}
                         />
                     </>,
                 ]}

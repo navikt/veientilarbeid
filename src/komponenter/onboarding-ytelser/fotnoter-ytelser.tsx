@@ -7,14 +7,20 @@ import { loggAktivitet } from '../../metrics/metrics';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import SkrivTilOssOgChat from './dagpenger/skriv-til-oss-og-chat';
 import { mine_dagpenger_url } from '../../url';
+import { DagpengeStatus } from '../../lib/beregn-dagpenge-status';
 
 interface Props {
     valgtYtelse: string;
     handleByttKortKlikk: (e: React.MouseEvent) => void;
     kanViseDagpengerKomponent: boolean;
+    dagpengeStatus: DagpengeStatus;
 }
 
-function FotnoterInnholdDagpenger() {
+interface InnholdProps {
+    dagpengeStatus: DagpengeStatus;
+}
+
+function FotnoterInnholdDagpenger(props: InnholdProps) {
     const amplitudeData = useAmplitudeData();
     const TEKSTER: Tekster<string> = {
         nb: {
@@ -38,6 +44,8 @@ function FotnoterInnholdDagpenger() {
         loggAktivitet({ aktivitet: action, ...amplitudeData });
         window.location.assign(url);
     }
+
+    if (props.dagpengeStatus !== ('ukjent' as DagpengeStatus)) return null;
 
     return (
         <>
@@ -64,10 +72,10 @@ function FotnoterInnholdDagpenger() {
 }
 
 function FotnoterYtelser(props: Props) {
-    const { valgtYtelse, handleByttKortKlikk, kanViseDagpengerKomponent } = props;
+    const { valgtYtelse, handleByttKortKlikk, kanViseDagpengerKomponent, dagpengeStatus } = props;
     return (
         <>
-            {valgtYtelse === 'dagpenger' && <FotnoterInnholdDagpenger />}
+            {valgtYtelse === 'dagpenger' && <FotnoterInnholdDagpenger dagpengeStatus={dagpengeStatus} />}
             {kanViseDagpengerKomponent && (
                 <ByttKortLenke valgtYtelserVisning={valgtYtelse} handleByttKortKlikk={handleByttKortKlikk} />
             )}
