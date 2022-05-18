@@ -154,7 +154,7 @@ const Tema = (props: TemaProps) => {
             </div>
             {innhold.length >= 1 && !registrert12UkerEllerMer && (
                 <div>
-                    <Panel>
+                    <Panel className="fotnotepanel">
                         <TemaFotnoter
                             antallSider={innhold.length}
                             gjeldendeKortIndex={gjeldendeKortIndex}
