@@ -44,7 +44,7 @@ const TemaFooter = (props: TemaFooterProps) => {
         if (gjeldendeKortIndex === 0) {
             return (
                 <div>
-                    <Button variant="secondary" className={'mb-2'} onClick={nesteKort}>
+                    <Button variant="secondary" className={'mb-1'} onClick={nesteKort}>
                         <span>{startTekst || tekst('start')}</span>
                         <Next />
                     </Button>
