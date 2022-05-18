@@ -29,7 +29,7 @@ interface Props {
     amplitudeTemaNavn: string;
 }
 
-const SkrivTilOssOgChat = (props: Props) => {
+const SkrivTilOssChatOgMineDagpenger = (props: Props) => {
     const { amplitudeTemaNavn } = props;
     const amplitudeData = useAmplitudeData();
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
@@ -79,4 +79,4 @@ const SkrivTilOssOgChat = (props: Props) => {
     );
 };
 
-export default SkrivTilOssOgChat;
+export default SkrivTilOssChatOgMineDagpenger;

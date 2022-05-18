@@ -1,7 +1,7 @@
 import { BodyShort, Heading } from '@navikt/ds-react';
 import { useDpInnsynVedtakData, Vedtak } from '../../../contexts/dp-innsyn-vedtak';
 import prettyPrintDato from '../../../utils/pretty-print-dato';
-import SkrivTilOssOgChat from './skriv-til-oss-og-chat';
+import SkrivTilOssChatOgMineDagpenger from './skriv-til-oss-chat-og-mine-dagpenger';
 import lagHentTekstForSprak, { Tekster } from '../../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../../contexts/sprak';
 
@@ -39,7 +39,7 @@ const Sluttkort = () => {
                 {`${tekst('fattet')} ${prettyPrintDato(nyesteInnvilgedeVedtak.datoFattet, sprak)} ${tekst('status')} `}
                 <b>{nyesteInnvilgedeVedtak.status.toLocaleLowerCase()}</b>.
             </BodyShort>
-            <SkrivTilOssOgChat amplitudeTemaNavn='"dagpenger-tema - dagpenger innvilget"' />
+            <SkrivTilOssChatOgMineDagpenger amplitudeTemaNavn='"dagpenger-tema - dagpenger innvilget"' />
         </>
     );
 };

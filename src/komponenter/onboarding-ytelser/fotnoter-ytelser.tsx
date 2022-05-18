@@ -3,7 +3,7 @@ import { BodyLong } from '@navikt/ds-react';
 import ByttKortLenke from './bytt-kort-lenke';
 import { useSprakValg } from '../../contexts/sprak';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
-import SkrivTilOssOgChat from './dagpenger/skriv-til-oss-og-chat';
+import SkrivTilOssChatOgMineDagpenger from './dagpenger/skriv-til-oss-chat-og-mine-dagpenger';
 import { DagpengeStatus } from '../../lib/beregn-dagpenge-status';
 
 interface Props {
@@ -42,7 +42,7 @@ function FotnoterInnholdDagpenger(props: InnholdProps) {
         <>
             <BodyLong className={'blokk-xs'}>{tekst('ingress')}</BodyLong>
 
-            <SkrivTilOssOgChat amplitudeTemaNavn='"dagpenger-tema - ikke søkt dagpenger"' />
+            <SkrivTilOssChatOgMineDagpenger amplitudeTemaNavn='"dagpenger-tema - ikke søkt dagpenger"' />
         </>
     );
 }

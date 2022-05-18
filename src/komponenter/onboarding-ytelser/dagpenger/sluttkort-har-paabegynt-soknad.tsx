@@ -6,7 +6,7 @@ import {
 } from '../../../contexts/dp-innsyn-paabegynte-soknader';
 import prettyPrintDato from '../../../utils/pretty-print-dato';
 import TemaLenkepanel from '../../tema/tema-lenkepanel';
-import SkrivTilOssOgChat from './skriv-til-oss-og-chat';
+import SkrivTilOssChatOgMineDagpenger from './skriv-til-oss-chat-og-mine-dagpenger';
 import lagHentTekstForSprak, { Tekster } from '../../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../../contexts/sprak';
 import { FORTSETT_DP_SOKNAD_URL } from '../../../utils/lenker';
@@ -55,7 +55,7 @@ const Sluttkort = () => {
                 tittel={tekst('fortsett')}
                 beskrivelse={`${tekst('pabegynt')} ${prettyPrintDato(sistePabegynteSoknad.sistEndret, sprak)}`}
             />
-            <SkrivTilOssOgChat amplitudeTemaNavn='"dagpenger-tema - påbegynt søknad"' />
+            <SkrivTilOssChatOgMineDagpenger amplitudeTemaNavn='"dagpenger-tema - påbegynt søknad"' />
         </>
     );
 };
