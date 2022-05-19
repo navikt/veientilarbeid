@@ -125,7 +125,7 @@ const Tema = (props: TemaProps) => {
     const erStartkort = gjeldendeKortIndex === 0 && (innhold.length > 1 || erStartkortOgSluttkort);
 
     return (
-        <>
+        <div className="tema-container">
             <div className={`onboarding ${erStartkort ? 'onboarding_startkort' : ''}`}>
                 <ErRendret loggTekst={`Rendrer tema: ${amplitudeTemaTag}`} />
                 <div className="onboarding-container">
@@ -167,7 +167,7 @@ const Tema = (props: TemaProps) => {
                     </Panel>
                 </div>
             )}
-        </>
+        </div>
     );
 };
 
