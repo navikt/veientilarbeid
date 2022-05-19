@@ -27,7 +27,7 @@
         "@navikt/ds-css": "0.16.13",
         "@navikt/ds-icons": "0.8.7",
         "@navikt/ds-react": "0.17.17",
-        "@sentry/browser": "6.19.2",
+        "@sentry/browser": "6.19.3",
         "@sentry/react": "6.19.2",
         "@snyk/protect": "1.886.0",
         "amplitude-js": "8.18.0",
