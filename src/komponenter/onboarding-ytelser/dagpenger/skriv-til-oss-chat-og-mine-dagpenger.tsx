@@ -12,7 +12,7 @@ const TEKSTER = {
         skrivTilOss: 'skriv til oss',
         eller: 'eller',
         chat: 'chat',
-        innsyn: 'For innsyn, se',
+        innsyn: 'For historikk, se',
         mineDagpenger: 'Mine dagpenger',
     },
     en: {
@@ -20,7 +20,7 @@ const TEKSTER = {
         skrivTilOss: 'write to us',
         eller: 'or',
         chat: 'chat',
-        innsyn: 'For innsyn, se',
+        innsyn: 'For history, visit',
         mineDagpenger: 'My unemployment benefits',
     },
 };
