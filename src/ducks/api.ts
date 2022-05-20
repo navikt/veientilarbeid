@@ -19,14 +19,16 @@ const getCookie = (name: string) => {
     return match !== null ? match[1] : '';
 };
 
-export const requestConfig: RequestInit = {
-    credentials: 'same-origin',
-    headers: {
-        'Content-Type': 'application/json',
-        NAV_CSRF_PROTECTION: getCookie('NAV_CSRF_PROTECTION'),
-        'NAV-Consumer-Id': 'veientilarbeid',
-        'NAV-Call-Id': nanoid(),
-    },
+export const requestConfig = (): RequestInit => {
+    return {
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json',
+            NAV_CSRF_PROTECTION: getCookie('NAV_CSRF_PROTECTION'),
+            'NAV-Consumer-Id': 'veientilarbeid',
+            'NAV-Call-Id': nanoid(),
+        },
+    };
 };
 
 const contextpath = erMikrofrontend() ? contextpathDittNav : '';
