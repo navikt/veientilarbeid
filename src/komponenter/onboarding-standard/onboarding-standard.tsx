@@ -17,6 +17,7 @@ const TEKSTER = {
         trinn1: 'Start på en søknad om dagpenger i dag, slik at du finner ut når du må sende inn søknaden',
         trinn2: 'Les gjennom introduksjonen til meldekort',
         trinn3: 'Finn ut om du er enig i hvordan NAV har vurdert ditt behov for hjelp og støtte',
+        feedbackSporsmal: 'Er denne oversikten nyttig?',
     },
     en: {},
 };
@@ -49,7 +50,7 @@ const OnboardingStandard = () => {
                 <BodyLong spacing className="flex">
                     <TallSirkel tall={3} /> {tekst('trinn3')}
                 </BodyLong>
-                <Feedback id="standard-onboarding-info" />
+                <Feedback id="standard-onboarding-info" sporsmal={tekst('feedbackSporsmal')} />
                 <InViewport loggTekst="Viser OnboardingStandard i viewport" />
             </Panel>
         );
