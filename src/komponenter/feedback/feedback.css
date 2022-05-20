@@ -23,6 +23,7 @@
     padding-left: 0.5rem;
     padding-right: 0.5rem;
     width: 4rem;
+    text-align: center;
 }
 
 .feedback-knapp:hover {
