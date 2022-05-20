@@ -38,9 +38,10 @@ const TEKSTER: Tekster<string> = {
 interface Props {
     id?: string;
     className?: string;
+    sporsmal?: string;
 }
 
-function Feedback({ id, className }: Props) {
+function Feedback({ id, className, sporsmal }: Props) {
     const [feedback, setFeedback] = useBrowserStorage(`vta-feedback-intro-${id}`, {
         updated: new Date(),
         valgt: '',
@@ -97,7 +98,7 @@ function Feedback({ id, className }: Props) {
         <>
             <div className={`${className ? className : ''} feedback-container`}>
                 <Detail size="small" className="feedback-tittel">
-                    {tekst('varDetteNyttig')}
+                    {sporsmal ? sporsmal : tekst('varDetteNyttig')}
                 </Detail>
                 <div className={'valg'}>
                     <button onClick={() => handleFeedback('ja')} className={jaKnapp}>

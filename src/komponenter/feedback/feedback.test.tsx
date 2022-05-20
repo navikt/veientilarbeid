@@ -39,4 +39,16 @@ describe('tester feedback komponenten', () => {
         userEvent.click(vetikkeKnapp);
         expect(vetikkeKnapp.className).toContain('valgt');
     });
+
+    test('Default spørsmålstekst vises om man ikke sender inn annet', () => {
+        const defaultTekst = 'Var dette nyttig å lese?';
+        render(<Feedback id="feedback-test" />, { wrapper: contextProviders(standardProps) });
+        expect(screen.getByText(defaultTekst)).toBeTruthy();
+    });
+
+    test('Man kan overskrive default spørsmålstekst', () => {
+        const overstyrtTekst = 'Digget du dette?';
+        render(<Feedback id="feedback-test" sporsmal={overstyrtTekst} />, { wrapper: contextProviders(standardProps) });
+        expect(screen.getByText(overstyrtTekst)).toBeTruthy();
+    });
 });
