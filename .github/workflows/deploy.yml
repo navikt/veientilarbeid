@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - nyttendepunkt-paabegynte-soknader
+      - pto-proxy
 env:
   IMAGE_BASE: ghcr.io/${{github.repository}}/veientilarbeid
 
@@ -154,4 +155,3 @@ jobs:
       - run: vc --token ${VERCEL_TOKEN} --confirm --prod
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-  
