@@ -41,12 +41,20 @@ interface Props {
     sporsmal?: string;
 }
 
+function erOppdatertForOver12TimerSiden(dato: string): Boolean {
+    if (!dato) return false;
+    const iDag = new Date().getTime();
+    const sistOppdatert = new Date(dato).getTime();
+    return iDag - sistOppdatert > 43200000;
+}
+
 function Feedback({ id, className, sporsmal }: Props) {
     const [feedback, setFeedback] = useBrowserStorage(`vta-feedback-intro-${id}`, {
         updated: new Date(),
         valgt: '',
     });
     const [valgt, setValgt] = useState('');
+    const [oppdatert, setOppdatert] = useState('');
     const [visPopover, setVisPopover] = useState<HTMLElement | undefined>(undefined);
     const amplitudeData = useAmplitudeData();
     const featuretoggledata = useFeatureToggleData();
@@ -54,12 +62,14 @@ function Feedback({ id, className, sporsmal }: Props) {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     useEffect(() => {
-        const { valgt } = feedback;
+        const { valgt, updated } = feedback;
         setValgt(valgt);
+        setOppdatert(updated);
     }, [feedback]);
 
     if (!id) return null;
     if (!featuretoggledata['veientilarbeid.feedback']) return null;
+    if (erOppdatertForOver12TimerSiden(oppdatert)) return null;
 
     const handleFeedback = (feedback: string) => {
         amplitudeLogger('veientilarbeid.feedback.intro', {
