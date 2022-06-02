@@ -30,10 +30,7 @@ const SoketidspunktInnhold = () => {
 
             <ul>
                 <li>
-                    <a
-                        className="lenke"
-                        href="https://www.nav.no/no/NAV+og+samfunn/Om+NAV/Saksbehandlingstider+i+NAV?kap=398578"
-                    >
+                    <a className="lenke" href="https://www.nav.no/saksbehandlingstider#aap">
                         Se saksbehandlingstider.
                     </a>
                 </li>
