@@ -10,7 +10,7 @@ export interface BeregnedePerioder {
 }
 
 interface Props {
-    perioder: [] | Periode[] | null;
+    arbeidssokerperioder: [] | Periode[] | null;
 }
 
 function sorterArbeidssokerperioderSisteForst(a: Periode, b: Periode) {
@@ -37,9 +37,9 @@ function beregnAntallUkerMellomSisteArbeidssokerperioder(perioder: Periode[]) {
 }
 
 function beregnArbeidssokerperioder(props: Props): BeregnedePerioder {
-    const { perioder } = props;
+    const { arbeidssokerperioder } = props;
 
-    if (perioder === null) {
+    if (arbeidssokerperioder === null) {
         return {
             harAktivArbeidssokerperiode: 'INGEN_DATA',
             antallDagerSidenSisteArbeidssokerperiode: 'INGEN_DATA',
@@ -48,7 +48,7 @@ function beregnArbeidssokerperioder(props: Props): BeregnedePerioder {
         };
     }
 
-    if (perioder.length === 0) {
+    if (arbeidssokerperioder.length === 0) {
         return {
             harAktivArbeidssokerperiode: 'N/A',
             antallDagerSidenSisteArbeidssokerperiode: 'N/A',
@@ -57,11 +57,11 @@ function beregnArbeidssokerperioder(props: Props): BeregnedePerioder {
         };
     }
 
-    perioder.sort(sorterArbeidssokerperioderSisteForst);
+    arbeidssokerperioder.sort(sorterArbeidssokerperioderSisteForst);
 
-    const aktivArbeidssokerperiode = harAktivArbeidssokerperiode(perioder);
-    const sluttDatoSistePeriode = perioder[0].tilOgMedDato ?? '';
-    const harMerEnnEnPeriode = perioder.length > 1;
+    const aktivArbeidssokerperiode = harAktivArbeidssokerperiode(arbeidssokerperioder);
+    const sluttDatoSistePeriode = arbeidssokerperioder[0].tilOgMedDato ?? '';
+    const harMerEnnEnPeriode = arbeidssokerperioder.length > 1;
 
     return {
         harAktivArbeidssokerperiode: aktivArbeidssokerperiode ? 'Ja' : 'Nei',
@@ -72,7 +72,7 @@ function beregnArbeidssokerperioder(props: Props): BeregnedePerioder {
             ? 'Ikke avsluttet'
             : beregnAntallUkerSidenSisteArbeidssokerperiode(sluttDatoSistePeriode),
         antallUkerMellomSisteArbeidssokerperioder: harMerEnnEnPeriode
-            ? beregnAntallUkerMellomSisteArbeidssokerperioder(perioder)
+            ? beregnAntallUkerMellomSisteArbeidssokerperioder(arbeidssokerperioder)
             : 'Første periode',
     };
 }

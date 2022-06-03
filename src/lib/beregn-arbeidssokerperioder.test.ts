@@ -4,7 +4,7 @@ import dagerFraDato from '../utils/dager-fra-dato';
 describe('tester funksjonen beregnArbeidssokerperioder', () => {
     test('Vi får default verdier tilbake dersom data ikke er hentet', () => {
         const data = {
-            perioder: null,
+            arbeidssokerperioder: null,
         };
         const forventetVerdi = {
             harAktivArbeidssokerperiode: 'INGEN_DATA',
@@ -19,7 +19,7 @@ describe('tester funksjonen beregnArbeidssokerperioder', () => {
 
     test('Vi får N/A verdier tilbake dersom data er tom', () => {
         const data = {
-            perioder: [] as any,
+            arbeidssokerperioder: [] as any,
         };
         const forventetVerdi = {
             harAktivArbeidssokerperiode: 'N/A',
@@ -34,7 +34,7 @@ describe('tester funksjonen beregnArbeidssokerperioder', () => {
 
     test('Vi får Ja på aktiv arbeidssøkerperiode om perioden ikke er avsluttet', () => {
         const data = {
-            perioder: [
+            arbeidssokerperioder: [
                 {
                     fraOgMedDato: '2020-01-01',
                     tilOgMedDato: null,
@@ -49,7 +49,7 @@ describe('tester funksjonen beregnArbeidssokerperioder', () => {
 
     test('Vi får Nei på aktiv arbeidssøkerperiode om perioden ikke er avsluttet', () => {
         const data = {
-            perioder: [
+            arbeidssokerperioder: [
                 {
                     fraOgMedDato: '2020-01-01',
                     tilOgMedDato: '2020-02-01',
@@ -64,7 +64,7 @@ describe('tester funksjonen beregnArbeidssokerperioder', () => {
 
     test('Vi får Ja på aktiv arbeidssøkerperiode om siste perioden ikke er avsluttet', () => {
         const data = {
-            perioder: [
+            arbeidssokerperioder: [
                 {
                     fraOgMedDato: '2020-01-01',
                     tilOgMedDato: '2020-02-01',
@@ -83,7 +83,7 @@ describe('tester funksjonen beregnArbeidssokerperioder', () => {
 
     test('Vi får Nei på aktiv arbeidssøkerperiode om perioden ikke er avsluttet', () => {
         const data = {
-            perioder: [
+            arbeidssokerperioder: [
                 {
                     fraOgMedDato: '2020-01-01',
                     tilOgMedDato: '2020-02-01',
@@ -102,7 +102,7 @@ describe('tester funksjonen beregnArbeidssokerperioder', () => {
 
     test('Vi får ikke avsluttet på dager og uker siden siste periode om det finnes aktiv arbeidssøkerperiode', () => {
         const data = {
-            perioder: [
+            arbeidssokerperioder: [
                 {
                     fraOgMedDato: '2020-01-01',
                     tilOgMedDato: '2020-02-01',
@@ -122,14 +122,14 @@ describe('tester funksjonen beregnArbeidssokerperioder', () => {
 
     test('Vi riktig antall dager på antall dager fra siste arbeidssøkerperiode', () => {
         const data = {
-            perioder: [
+            arbeidssokerperioder: [
                 {
                     fraOgMedDato: '2020-01-01',
                     tilOgMedDato: '2020-02-01',
                 },
             ],
         };
-        const forventetVerdi = dagerFraDato(new Date(data.perioder[0].tilOgMedDato));
+        const forventetVerdi = dagerFraDato(new Date(data.arbeidssokerperioder[0].tilOgMedDato));
         const verdi = beregnArbeidssokerperioder(data);
 
         expect(verdi.antallDagerSidenSisteArbeidssokerperiode).toEqual(forventetVerdi);
@@ -137,7 +137,7 @@ describe('tester funksjonen beregnArbeidssokerperioder', () => {
 
     test('Returnerer "Første periode" for uker mellom perioder dersom man kun har en periode', () => {
         const data = {
-            perioder: [
+            arbeidssokerperioder: [
                 {
                     fraOgMedDato: '2020-01-01',
                     tilOgMedDato: '2020-02-01',
@@ -152,7 +152,7 @@ describe('tester funksjonen beregnArbeidssokerperioder', () => {
 
     test('Returnerer 4 for uker mellom perioder dersom det er 4 uker mellom ;-)', () => {
         const data = {
-            perioder: [
+            arbeidssokerperioder: [
                 {
                     fraOgMedDato: '2020-01-01',
                     tilOgMedDato: '2020-02-01',

@@ -22,4 +22,4 @@ export const initialState: State = {
 
 export const ArbeidssokerperioderContext = createContext<State>(initialState);
 
-export const useArbeidssokerperioderData = () => useContext(ArbeidssokerperioderContext).data?.arbeidssokerperioder;
+export const useArbeidssokerperioderData = () => useContext(ArbeidssokerperioderContext).data;
