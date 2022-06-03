@@ -47,5 +47,5 @@ export const BAKVEIEN = `${contextpath}/bakveientilarbeid`,
     PAABEGYNTE_SOKNADER_URL = `${contextpath}/saksoversikt-api/tjenester/saker/hentPaabegynteSoknader`,
     SAKSTEMA_URL = `${contextpath}/saksoversikt-api/tjenester/sakstema`,
     DP_INNSYN_URL = `${BAKVEIEN}/dagpenger`,
-    ARBEIDSSOKERPERIODER_URL = `${BAKVEIEN}/arbeidssoker/perioder?fraOgMedDato=2020-01-01`,
+    ARBEIDSSOKERPERIODER_URL = `${BAKVEIEN}/arbeidssoker/perioder?fraOgMed=2020-01-01`,
     MELDEKORTSTATUS_URL = `${MELDEKORT_URL}/person/meldekortstatus`;
