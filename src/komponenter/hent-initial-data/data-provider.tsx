@@ -13,6 +13,8 @@ import * as Meldekort from '../../contexts/meldekort';
 import * as Egenvurdering from '../../contexts/egenvurdering';
 import * as UlesteDialoger from '../../contexts/ulestedialoger';
 import * as SprakValg from '../../contexts/sprak';
+import * as Arbeidssokerperioder from '../../contexts/arbeidssokerperioder';
+
 import { fetchData } from '../../ducks/api-utils';
 import {
     BRUKERINFO_URL,
@@ -21,11 +23,14 @@ import {
     NESTE_MELDEKORT_URL,
     ULESTEDIALOGER_URL,
     DP_INNSYN_URL,
+    ARBEIDSSOKERPERIODER_URL,
 } from '../../ducks/api';
 
 import { AmplitudeProvider } from './amplitude-provider';
 import { useAutentiseringData, InnloggingsNiva } from '../../contexts/autentisering';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
+import { useFeatureToggleData } from '../../contexts/feature-toggles';
+
 import * as DpInnsynSoknad from '../../contexts/dp-innsyn-soknad';
 import * as DpInnsynVedtak from '../../contexts/dp-innsyn-vedtak';
 import * as DpInnsynPaabegynt from '../../contexts/dp-innsyn-paabegynte-soknader';
@@ -85,9 +90,14 @@ const DataProvider = ({ children }: Props) => {
     const [DpInnsynPaabegyntState, setDpInnsynPaabegyntState] = React.useState<DpInnsynPaabegynt.State>(
         DpInnsynPaabegynt.initialState
     );
+    const [arbeidssokerperioderState, setArbeidssokerperioderState] = React.useState<Arbeidssokerperioder.State>(
+        Arbeidssokerperioder.initialState
+    );
 
     const data = useBrukerregistreringData();
     const foreslaattInnsatsgruppe = selectForeslattInnsatsgruppe(data);
+    const featuretoggles = useFeatureToggleData();
+    const skalHenteArbeidssokerperioder = featuretoggles['veientilarbeid-arbeidssokerperioder'];
 
     React.useEffect(() => {
         if (securityLevel !== InnloggingsNiva.LEVEL_4) {
@@ -100,6 +110,14 @@ const DataProvider = ({ children }: Props) => {
     React.useEffect(() => {
         if (securityLevel !== InnloggingsNiva.LEVEL_4) {
             return;
+        }
+
+        if (skalHenteArbeidssokerperioder) {
+            fetchData<Arbeidssokerperioder.State, Arbeidssokerperioder.Data>(
+                arbeidssokerperioderState,
+                setArbeidssokerperioderState,
+                ARBEIDSSOKERPERIODER_URL
+            );
         }
 
         fetchData<BrukerInfo.State, BrukerInfo.Data>(brukerInfoState, setBrukerInfoState, BRUKERINFO_URL);
@@ -142,7 +160,7 @@ const DataProvider = ({ children }: Props) => {
 
         setValgtSprak(hentSprakValg());
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [securityLevel, underOppfolging]);
+    }, [securityLevel, underOppfolging, skalHenteArbeidssokerperioder]);
 
     const avhengigheter: any[] = [];
     const ventPa: any[] = [];
@@ -180,7 +198,11 @@ const DataProvider = ({ children }: Props) => {
                                     <DpInnsynSoknad.DpInnsynSoknadContext.Provider value={dpInnsynSoknadState}>
                                         <DpInnsynVedtak.DpInnsynVedtakContext.Provider value={dpInnsynVedtakState}>
                                             <SprakValg.SprakContext.Provider value={valgtSprak}>
-                                                <AmplitudeProvider>{children}</AmplitudeProvider>
+                                                <Arbeidssokerperioder.ArbeidssokerperioderContext.Provider
+                                                    value={arbeidssokerperioderState}
+                                                >
+                                                    <AmplitudeProvider>{children}</AmplitudeProvider>
+                                                </Arbeidssokerperioder.ArbeidssokerperioderContext.Provider>
                                             </SprakValg.SprakContext.Provider>
                                         </DpInnsynVedtak.DpInnsynVedtakContext.Provider>
                                     </DpInnsynSoknad.DpInnsynSoknadContext.Provider>
