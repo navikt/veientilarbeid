@@ -6,7 +6,7 @@ export interface State extends DataElement {
     data: Data | null;
 }
 
-interface Periode {
+export interface Periode {
     fraOgMedDato: string;
     tilOgMedDato: string | null;
 }
