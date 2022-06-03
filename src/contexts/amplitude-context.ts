@@ -39,6 +39,10 @@ export const initialState: AmplitudeData = {
     dagpengerDagerMellomInnsendtSoknadOgRegistrering: 'INGEN_DATA',
     dagpengerStatusBeregning: 'INGEN_DATA',
     sprakValgFraCookie: 'IKKE_VALGT',
+    harAktivArbeidssokerperiode: 'INGEN_DATA',
+    antallDagerSidenSisteArbeidssokerperiode: 'INGEN_DATA',
+    antallUkerSidenSisteArbeidssokerperiode: 'INGEN_DATA',
+    antallUkerMellomSisteArbeidssokerperioder: 'INGEN_DATA',
 };
 
 const AmplitudeContext = createContext<AmplitudeData>(initialState);

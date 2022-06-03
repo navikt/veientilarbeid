@@ -91,6 +91,10 @@ const grunndata = {
         dagpengerDagerMellomPaabegyntSoknadOgRegistrering: 0,
         dagpengerDagerMellomInnsendtSoknadOgRegistrering: 0,
         dagpengerStatusBeregning: 'INGEN_DATA',
+        harAktivArbeidssokerperiode: 'INGEN_DATA' as 'INGEN_DATA',
+        antallDagerSidenSisteArbeidssokerperiode: 'INGEN_DATA' as 'INGEN_DATA',
+        antallUkerSidenSisteArbeidssokerperiode: 'INGEN_DATA' as 'INGEN_DATA',
+        antallUkerMellomSisteArbeidssokerperioder: 'INGEN_DATA' as 'INGEN_DATA',
     },
     sistVistFraLocalstorage: 0,
 };
