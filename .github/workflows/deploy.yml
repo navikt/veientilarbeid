@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - nyttendepunkt-paabegynte-soknader
 env:
   IMAGE_BASE: ghcr.io/${{github.repository}}/veientilarbeid
 
