@@ -97,7 +97,7 @@ const DataProvider = ({ children }: Props) => {
     const data = useBrukerregistreringData();
     const foreslaattInnsatsgruppe = selectForeslattInnsatsgruppe(data);
     const featuretoggles = useFeatureToggleData();
-    const skalHenteArbeidssokerperioder = featuretoggles['veientilarbeid-arbeidssokerperioder'];
+    const skalHenteArbeidssokerperioder = featuretoggles['veientilarbeid.logg-arbeidssokerperioder'];
 
     React.useEffect(() => {
         if (securityLevel !== InnloggingsNiva.LEVEL_4) {
