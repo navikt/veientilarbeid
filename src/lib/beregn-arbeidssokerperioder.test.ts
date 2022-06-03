@@ -3,9 +3,8 @@ import dagerFraDato from '../utils/dager-fra-dato';
 
 describe('tester funksjonen beregnArbeidssokerperioder', () => {
     test('Vi får default verdier tilbake dersom data ikke er hentet', () => {
-        const data = {
-            arbeidssokerperioder: null,
-        };
+        const data = null;
+
         const forventetVerdi = {
             harAktivArbeidssokerperiode: 'INGEN_DATA',
             antallDagerSidenSisteArbeidssokerperiode: 'INGEN_DATA',

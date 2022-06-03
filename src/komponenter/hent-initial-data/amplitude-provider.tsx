@@ -11,6 +11,7 @@ import { useDpInnsynPaabegynteSoknaderData } from '../../contexts/dp-innsyn-paab
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import grupperGeografiskTilknytning from '../../utils/grupper-geografisk-tilknytning';
+import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 
 import ukerFraDato from '../../utils/uker-fra-dato';
 import dagerFraDato from '../../utils/dager-fra-dato';
@@ -36,6 +37,7 @@ import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../../lib/er-situasjo
 import erSannsynligvisInaktivertStandardbruker from '../../lib/er-sannsyligvis-inaktivert-standard-innsatsgruppe';
 import { useDpInnsynSoknadData } from '../../contexts/dp-innsyn-soknad';
 import { useDpInnsynVedtakData } from '../../contexts/dp-innsyn-vedtak';
+import { useArbeidssokerperioderData } from '../../contexts/arbeidssokerperioder';
 import beregnDagpengeStatus, { sorterEtterNyesteVedtak } from '../../lib/beregn-dagpenge-status';
 import { hentSprakValgFraCookie } from './data-provider';
 
@@ -68,6 +70,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const brukerInfoData = useBrukerinfoData();
     const { securityLevel: nivaa } = useAutentiseringData();
+    const arbeidssokerperioder = useArbeidssokerperioderData();
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const meldekortContext = React.useContext(Meldekort.MeldekortContext);
     const meldekortStatusContext = React.useContext(Meldekortstatus.MeldekortstatusContext);
@@ -196,6 +199,13 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const valgtSprak = hentSprakValgFraCookie();
     const sprakValgFraCookie = valgtSprak || 'IKKE_VALGT';
 
+    const {
+        harAktivArbeidssokerperiode,
+        antallDagerSidenSisteArbeidssokerperiode,
+        antallUkerSidenSisteArbeidssokerperiode,
+        antallUkerMellomSisteArbeidssokerperioder,
+    } = beregnArbeidssokerperioder(arbeidssokerperioder);
+
     const amplitudeData: AmplitudeData = {
         gruppe: POAGruppe,
         brukergruppe: brukergruppering,
@@ -233,10 +243,10 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         dagpengerDagerMellomInnsendtSoknadOgRegistrering,
         dagpengerStatusBeregning: 'INGEN_DATA',
         sprakValgFraCookie,
-        harAktivArbeidssokerperiode: 'INGEN_DATA',
-        antallDagerSidenSisteArbeidssokerperiode: 'INGEN_DATA',
-        antallUkerSidenSisteArbeidssokerperiode: 'INGEN_DATA',
-        antallUkerMellomSisteArbeidssokerperioder: 'INGEN_DATA',
+        harAktivArbeidssokerperiode,
+        antallDagerSidenSisteArbeidssokerperiode,
+        antallUkerSidenSisteArbeidssokerperiode,
+        antallUkerMellomSisteArbeidssokerperioder,
     };
 
     return <AmplitudeContext.Provider value={amplitudeData}>{props.children}</AmplitudeContext.Provider>;

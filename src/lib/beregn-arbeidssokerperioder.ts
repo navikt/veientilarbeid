@@ -10,7 +10,7 @@ export interface BeregnedePerioder {
 }
 
 interface Props {
-    arbeidssokerperioder: [] | Periode[] | null;
+    arbeidssokerperioder: [] | Periode[];
 }
 
 function sorterArbeidssokerperioderSisteForst(a: Periode, b: Periode) {
@@ -36,8 +36,8 @@ function beregnAntallUkerMellomSisteArbeidssokerperioder(perioder: Periode[]) {
     return ukerFraDato(new Date(nestSistePeriode?.tilOgMedDato || '2020-01-01'), new Date(sistePeriode.fraOgMedDato));
 }
 
-function beregnArbeidssokerperioder(props: Props): BeregnedePerioder {
-    const { arbeidssokerperioder } = props;
+function beregnArbeidssokerperioder(props: Props | null): BeregnedePerioder {
+    const { arbeidssokerperioder } = props ? props : { arbeidssokerperioder: null };
 
     if (arbeidssokerperioder === null) {
         return {
