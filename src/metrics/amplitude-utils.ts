@@ -70,9 +70,9 @@ export type AmplitudeData = {
     dagpengerStatusBeregning: string;
     sprakValgFraCookie?: SprakValg.Sprak | 'IKKE_VALGT';
     harAktivArbeidssokerperiode: 'INGEN_DATA' | 'N/A' | 'Ja' | 'Nei';
-    antallDagerSidenSisteArbeidssokerperiode: number | 'INGEN_DATA' | 'N/A';
-    antallUkerSidenSisteArbeidssokerperiode: number | 'INGEN_DATA' | 'N/A';
-    antallUkerMellomSisteArbeidssokerperioder: number | 'INGEN_DATA' | 'N/A';
+    antallDagerSidenSisteArbeidssokerperiode: number | 'INGEN_DATA' | 'N/A' | 'Ikke avsluttet';
+    antallUkerSidenSisteArbeidssokerperiode: number | 'INGEN_DATA' | 'N/A' | 'Ikke avsluttet';
+    antallUkerMellomSisteArbeidssokerperioder: number | 'INGEN_DATA' | 'N/A' | 'Første periode';
 };
 
 export function amplitudeLogger(name: string, values?: object) {

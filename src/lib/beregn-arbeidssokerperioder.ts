@@ -6,7 +6,7 @@ export interface BeregnedePerioder {
     harAktivArbeidssokerperiode: 'INGEN_DATA' | 'N/A' | 'Ja' | 'Nei';
     antallDagerSidenSisteArbeidssokerperiode: number | 'Ikke avsluttet' | 'INGEN_DATA' | 'N/A';
     antallUkerSidenSisteArbeidssokerperiode: number | 'Ikke avsluttet' | 'INGEN_DATA' | 'N/A';
-    antallUkerMellomSisteArbeidssokerperioder: number | 'INGEN_DATA' | 'N/A';
+    antallUkerMellomSisteArbeidssokerperioder: number | 'INGEN_DATA' | 'N/A' | 'Første periode';
 }
 
 interface Props {
@@ -28,6 +28,12 @@ function beregnAntallDagerSidenSisteArbeidssokerperiode(dato: string) {
 
 function beregnAntallUkerSidenSisteArbeidssokerperiode(dato: string) {
     return ukerFraDato(new Date(dato));
+}
+
+function beregnAntallUkerMellomSisteArbeidssokerperioder(perioder: Periode[]) {
+    const sistePeriode = perioder[0];
+    const nestSistePeriode = perioder[1];
+    return ukerFraDato(new Date(nestSistePeriode?.tilOgMedDato || '2020-01-01'), new Date(sistePeriode.fraOgMedDato));
 }
 
 function beregnArbeidssokerperioder(props: Props): BeregnedePerioder {
@@ -55,8 +61,8 @@ function beregnArbeidssokerperioder(props: Props): BeregnedePerioder {
 
     const aktivArbeidssokerperiode = harAktivArbeidssokerperiode(perioder);
     const sluttDatoSistePeriode = perioder[0].tilOgMedDato ?? '';
+    const harMerEnnEnPeriode = perioder.length > 1;
 
-    // @ts-ignore
     return {
         harAktivArbeidssokerperiode: aktivArbeidssokerperiode ? 'Ja' : 'Nei',
         antallDagerSidenSisteArbeidssokerperiode: aktivArbeidssokerperiode
@@ -65,7 +71,9 @@ function beregnArbeidssokerperioder(props: Props): BeregnedePerioder {
         antallUkerSidenSisteArbeidssokerperiode: aktivArbeidssokerperiode
             ? 'Ikke avsluttet'
             : beregnAntallUkerSidenSisteArbeidssokerperiode(sluttDatoSistePeriode),
-        antallUkerMellomSisteArbeidssokerperioder: 'INGEN_DATA',
+        antallUkerMellomSisteArbeidssokerperioder: harMerEnnEnPeriode
+            ? beregnAntallUkerMellomSisteArbeidssokerperioder(perioder)
+            : 'Første periode',
     };
 }
 

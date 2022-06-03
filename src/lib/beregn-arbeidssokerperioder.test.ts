@@ -134,4 +134,38 @@ describe('tester funksjonen beregnArbeidssokerperioder', () => {
 
         expect(verdi.antallDagerSidenSisteArbeidssokerperiode).toEqual(forventetVerdi);
     });
+
+    test('Returnerer "Første periode" for uker mellom perioder dersom man kun har en periode', () => {
+        const data = {
+            perioder: [
+                {
+                    fraOgMedDato: '2020-01-01',
+                    tilOgMedDato: '2020-02-01',
+                },
+            ],
+        };
+        const forventetVerdi = 'Første periode';
+        const verdi = beregnArbeidssokerperioder(data);
+
+        expect(verdi.antallUkerMellomSisteArbeidssokerperioder).toEqual(forventetVerdi);
+    });
+
+    test('Returnerer 4 for uker mellom perioder dersom det er 4 uker mellom ;-)', () => {
+        const data = {
+            perioder: [
+                {
+                    fraOgMedDato: '2020-01-01',
+                    tilOgMedDato: '2020-02-01',
+                },
+                {
+                    fraOgMedDato: '2020-03-01',
+                    tilOgMedDato: null,
+                },
+            ],
+        };
+        const forventetVerdi = 4;
+        const verdi = beregnArbeidssokerperioder(data);
+
+        expect(verdi.antallUkerMellomSisteArbeidssokerperioder).toEqual(forventetVerdi);
+    });
 });
