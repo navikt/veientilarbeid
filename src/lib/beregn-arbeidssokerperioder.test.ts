@@ -1,4 +1,5 @@
 import beregnArbeidssokerperioder from './beregn-arbeidssokerperioder';
+import dagerFraDato from '../utils/dager-fra-dato';
 
 describe('tester funksjonen beregnArbeidssokerperioder', () => {
     test('Vi får default verdier tilbake dersom data ikke er hentet', () => {
@@ -97,5 +98,40 @@ describe('tester funksjonen beregnArbeidssokerperioder', () => {
         const verdi = beregnArbeidssokerperioder(data);
 
         expect(verdi.harAktivArbeidssokerperiode).toEqual(forventetVerdi);
+    });
+
+    test('Vi får ikke avsluttet på dager og uker siden siste periode om det finnes aktiv arbeidssøkerperiode', () => {
+        const data = {
+            perioder: [
+                {
+                    fraOgMedDato: '2020-01-01',
+                    tilOgMedDato: '2020-02-01',
+                },
+                {
+                    fraOgMedDato: '2021-01-01',
+                    tilOgMedDato: null,
+                },
+            ],
+        };
+        const forventetVerdi = 'Ikke avsluttet';
+        const verdi = beregnArbeidssokerperioder(data);
+
+        expect(verdi.antallDagerSidenSisteArbeidssokerperiode).toEqual(forventetVerdi);
+        expect(verdi.antallUkerSidenSisteArbeidssokerperiode).toEqual(forventetVerdi);
+    });
+
+    test('Vi riktig antall dager på antall dager fra siste arbeidssøkerperiode', () => {
+        const data = {
+            perioder: [
+                {
+                    fraOgMedDato: '2020-01-01',
+                    tilOgMedDato: '2020-02-01',
+                },
+            ],
+        };
+        const forventetVerdi = dagerFraDato(new Date(data.perioder[0].tilOgMedDato));
+        const verdi = beregnArbeidssokerperioder(data);
+
+        expect(verdi.antallDagerSidenSisteArbeidssokerperiode).toEqual(forventetVerdi);
     });
 });
