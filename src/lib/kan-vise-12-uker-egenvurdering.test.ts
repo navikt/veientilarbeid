@@ -56,6 +56,7 @@ const grunndata = {
         'veientilarbeid.vis-oppdatert-styling': false,
         'veientilarbeid.vis-egenvurdering-med-14a': false,
         'veientilarbeid.vis-onboarding-standard': false,
+        'veientilarbeid.logg-arbeidssokerperioder': false,
     },
     amplitudeData: {
         gruppe: poagruppeKSS,
