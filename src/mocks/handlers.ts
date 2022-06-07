@@ -2,7 +2,8 @@ import { AUTH_API } from '../komponenter/hent-initial-data/autentiseringsInfoFet
 import AuthResponse from './auth-mock';
 import ulesteDialogerResponse from './ulestedialoger-mock';
 import egenvurderingbesvarelseResponse from './egenvurderingbesvarelse-mock';
-import brukerRegistreringResponse from './brukerregistrering-mock';
+// import brukerRegistreringResponse from './brukerregistrering-mock';
+import brukerRegistreringResponse from './brukerregistrering-standard-mock';
 import motestotteResponse from './motestotte-mock';
 import featureTogglesResponse from './feature-toggles-mock';
 import brukerInfoResponse from './bruker-info-mock';
