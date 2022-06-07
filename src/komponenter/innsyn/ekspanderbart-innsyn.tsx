@@ -24,7 +24,7 @@ const EkspanderbartInnsyn = () => {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
     const brukerregistreringData = useBrukerregistreringData();
     const amplitudeData = useAmplitudeData();
-    const { opprettetDato, manueltRegistrertAv, besvarelse, teksterForBesvarelse } =
+    const { opprettetDato, manueltRegistrertAv, besvarelse, teksterForBesvarelse, sisteStilling } =
         brukerregistreringData?.registrering || {};
 
     const handleClickOpen = () => {
@@ -49,6 +49,7 @@ const EkspanderbartInnsyn = () => {
                             besvarelse={besvarelse}
                             teksterForBesvarelse={teksterForBesvarelse}
                             amplitudeData={amplitudeData}
+                            sisteStilling={sisteStilling}
                         />
                     </Accordion.Content>
                 </Accordion.Item>

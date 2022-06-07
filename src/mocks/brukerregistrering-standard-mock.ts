@@ -49,6 +49,11 @@ const brukerregistrering = {
                 svar: 'Nei',
             },
         ],
+        sisteStilling: {
+            label: 'Racerbilsjåfør',
+            konseptId: -1,
+            styrk08: 'X',
+        },
     },
 };
 
