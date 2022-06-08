@@ -1,5 +1,5 @@
 const brukerregistrering = {
-    type: 'ORDINAAER_REGISTRERING',
+    type: 'ORDINAER_REGISTRERING',
     registrering: {
         manueltRegistrertAv: null,
         id: 103,
@@ -40,8 +40,8 @@ const brukerregistrering = {
             },
             {
                 sporsmalId: 'sisteStilling',
-                sporsmal: '',
-                svar: 'Ikke besvart',
+                sporsmal: 'Hva er din siste jobb?',
+                svar: 'Racerbilsjåfør',
             },
             {
                 sporsmalId: 'helseHinder',

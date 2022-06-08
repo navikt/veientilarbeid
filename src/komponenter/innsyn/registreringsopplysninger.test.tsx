@@ -205,7 +205,7 @@ const registreringsopplysningerMellomperiodeUtenJobb = {
         {
             sporsmalId: 'sisteStilling',
             sporsmal: '',
-            svar: 'Ikke besvart',
+            svar: 'Har ikke vært i jobb',
         },
         {
             sporsmalId: 'helseHinder',
