@@ -32,7 +32,6 @@ export const requestConfig = (): RequestInit => {
 };
 
 const contextpath = erMikrofrontend() ? contextpathDittNav : '';
-const MELDEKORT_URL = `/meldekort/meldekort-api/api`;
 
 export const BAKVEIEN = `${contextpath}/bakveientilarbeid`,
     VEILARBOPPFOLGING_URL = `${BAKVEIEN}/oppfolging`,
@@ -43,9 +42,9 @@ export const BAKVEIEN = `${contextpath}/bakveientilarbeid`,
     EGENVURDERINGBESVARELSE_URL = `${BAKVEIEN}/vedtakinfo/besvarelse`,
     FEATURE_URL = `${contextpath}/api/feature`,
     MOTESTOTTE_URL = `${BAKVEIEN}/vedtakinfo/motestotte`,
-    NESTE_MELDEKORT_URL = `${MELDEKORT_URL}/person/meldekort`,
     PAABEGYNTE_SOKNADER_URL = `${contextpath}/saksoversikt-api/tjenester/saker/hentPaabegynteSoknader`,
     SAKSTEMA_URL = `${contextpath}/saksoversikt-api/tjenester/sakstema`,
     DP_INNSYN_URL = `${BAKVEIEN}/dagpenger`,
-    ARBEIDSSOKERPERIODER_URL = `${BAKVEIEN}/arbeidssoker/perioder?fraOgMed=2020-01-01`,
-    MELDEKORTSTATUS_URL = `${MELDEKORT_URL}/person/meldekortstatus`;
+    NESTE_MELDEKORT_URL = `${BAKVEIEN}/meldekort`,
+    MELDEKORTSTATUS_URL = `${BAKVEIEN}/meldekort/status`,
+    ARBEIDSSOKERPERIODER_URL = `${BAKVEIEN}/arbeidssoker/perioder?fraOgMed=2020-01-01`;
