@@ -13,14 +13,14 @@ import TallSirkel from '../tall/tall';
 
 const TEKSTER = {
     nb: {
-        header: 'Tre viktige ting fordi du nettopp har registrert deg',
+        header: 'Tre viktige ting i din første uke som registrert arbeidssøker',
         trinn1: 'Start på en søknad om dagpenger i dag, slik at du finner ut når du må sende inn søknaden',
         trinn2: 'Les gjennom introduksjonen til meldekort',
         trinn3: 'Finn ut om du er enig i hvordan NAV har vurdert ditt behov for hjelp og støtte',
         feedbackSporsmal: 'Er denne oversikten nyttig?',
     },
     en: {
-        header: 'Three important steps right now',
+        header: 'Three important steps in your first week as registered job seeker',
         trinn1: 'Start your application for unemployment benefits today to find out when you need to send the application',
         trinn2: 'Read the introduction for the employment status form',
         trinn3: 'Find out if you agree with how NAV has assessed your need for help and support',

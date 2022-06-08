@@ -56,6 +56,7 @@ const grunndata = {
         'veientilarbeid.vis-oppdatert-styling': false,
         'veientilarbeid.vis-egenvurdering-med-14a': false,
         'veientilarbeid.vis-onboarding-standard': false,
+        'veientilarbeid.logg-arbeidssokerperioder': false,
     },
     amplitudeData: {
         gruppe: poagruppeKSS,
@@ -91,6 +92,10 @@ const grunndata = {
         dagpengerDagerMellomPaabegyntSoknadOgRegistrering: 0,
         dagpengerDagerMellomInnsendtSoknadOgRegistrering: 0,
         dagpengerStatusBeregning: 'INGEN_DATA',
+        harAktivArbeidssokerperiode: 'INGEN_DATA' as 'INGEN_DATA',
+        antallDagerSidenSisteArbeidssokerperiode: 'INGEN_DATA' as 'INGEN_DATA',
+        antallUkerSidenSisteArbeidssokerperiode: 'INGEN_DATA' as 'INGEN_DATA',
+        antallUkerMellomSisteArbeidssokerperioder: 'INGEN_DATA' as 'INGEN_DATA',
     },
     sistVistFraLocalstorage: 0,
 };

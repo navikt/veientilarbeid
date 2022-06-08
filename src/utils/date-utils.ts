@@ -3,7 +3,7 @@ import lagHentTekstForSprak from '../lib/lag-hent-tekst-for-sprak';
 
 const virkedager = require('@alheimsins/virkedager');
 const msPerDoegn = 1000 * 60 * 60 * 24;
-const DAGPENGER_SAKSBEHANDLINGSTID = 30;
+const DAGPENGER_SAKSBEHANDLINGSTID = 35;
 
 export function datoUtenTid(dato: string) {
     return new Date(dato.substr(0, 10));

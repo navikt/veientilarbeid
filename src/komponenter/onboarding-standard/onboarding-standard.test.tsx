@@ -1,12 +1,13 @@
+import { FunctionComponent } from 'react';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import { Formidlingsgruppe, Servicegruppe } from '../../contexts/oppfolging';
-import { render, screen } from '@testing-library/react';
-import { FunctionComponent } from 'react';
 import { InnloggingsNiva } from '../../contexts/autentisering';
 import { DinSituasjonSvar, ForeslattInnsatsgruppe } from '../../contexts/brukerregistrering';
 import OnboardingStandard from './onboarding-standard';
 import { mockIntersectionObserver } from '../../mocks/intersection-observer-mock';
-import '@testing-library/jest-dom';
 
 describe('OnboardingStandard-komponenten', () => {
     const oldLocation = global.window.location;
@@ -67,7 +68,7 @@ describe('OnboardingStandard-komponenten', () => {
             },
         };
         render(<OnboardingStandard />, { wrapper: contextProviders(props) as FunctionComponent });
-        expect(screen.getByText('Tre viktige ting fordi du nettopp har registrert deg')).toBeTruthy();
+        expect(screen.getByText('Tre viktige ting i din første uke som registrert arbeidssøker')).toBeTruthy();
     });
 
     it('rendres ikke når ikke standard', async () => {
@@ -99,7 +100,7 @@ describe('OnboardingStandard-komponenten', () => {
             },
         };
         render(<OnboardingStandard />, { wrapper: contextProviders(props) });
-        expect(screen.getByText('Tre viktige ting fordi du nettopp har registrert deg')).toBeTruthy();
+        expect(screen.getByText('Tre viktige ting i din første uke som registrert arbeidssøker')).toBeTruthy();
     });
 
     it('rendres ikke når featureToggle veientilarbeid.vis-onboarding-standard ikke er aktivert', async () => {

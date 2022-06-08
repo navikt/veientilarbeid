@@ -19,28 +19,32 @@ const getCookie = (name: string) => {
     return match !== null ? match[1] : '';
 };
 
-export const requestConfig: RequestInit = {
-    credentials: 'same-origin',
-    headers: {
-        'Content-Type': 'application/json',
-        NAV_CSRF_PROTECTION: getCookie('NAV_CSRF_PROTECTION'),
-        'NAV-Consumer-Id': 'veientilarbeid',
-        'NAV-Call-Id': nanoid(),
-    },
+export const requestConfig = (): RequestInit => {
+    return {
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json',
+            NAV_CSRF_PROTECTION: getCookie('NAV_CSRF_PROTECTION'),
+            'NAV-Consumer-Id': 'veientilarbeid',
+            'NAV-Call-Id': nanoid(),
+        },
+    };
 };
 
 const contextpath = erMikrofrontend() ? contextpathDittNav : '';
-export const VEILARBOPPFOLGING_URL = `${contextpath}/veilarboppfolging/api/oppfolging`,
-    UNDER_OPPFOLGING_URL = `${contextpath}/veilarboppfolging/api/niva3/underoppfolging`,
-    BRUKERINFO_URL = `${contextpath}/veilarbregistrering/api/startregistrering`,
-    BRUKERREGISTRERING_URL = `${contextpath}/veilarbregistrering/api/registrering`,
-    ULESTEDIALOGER_URL = `${contextpath}/veilarbdialog/api/dialog/antallUleste`,
-    EGENVURDERINGBESVARELSE_URL = `${contextpath}/veilarbvedtakinfo/api/behovsvurdering/besvarelse`,
+
+export const BAKVEIEN = `${contextpath}/bakveientilarbeid`,
+    VEILARBOPPFOLGING_URL = `${BAKVEIEN}/oppfolging`,
+    UNDER_OPPFOLGING_URL = `${BAKVEIEN}/underoppfolging`,
+    BRUKERINFO_URL = `${BAKVEIEN}/startregistrering`,
+    BRUKERREGISTRERING_URL = `${BAKVEIEN}/registrering`,
+    ULESTEDIALOGER_URL = `${BAKVEIEN}/dialog/antallUleste`,
+    EGENVURDERINGBESVARELSE_URL = `${BAKVEIEN}/vedtakinfo/besvarelse`,
     FEATURE_URL = `${contextpath}/api/feature`,
-    MOTESTOTTE_URL = `${contextpath}/veilarbvedtakinfo/api/motestotte`,
+    MOTESTOTTE_URL = `${BAKVEIEN}/vedtakinfo/motestotte`,
     PAABEGYNTE_SOKNADER_URL = `${contextpath}/saksoversikt-api/tjenester/saker/hentPaabegynteSoknader`,
     SAKSTEMA_URL = `${contextpath}/saksoversikt-api/tjenester/sakstema`,
-    BAKVEIEN = `${contextpath}/bakveientilarbeid`,
     DP_INNSYN_URL = `${BAKVEIEN}/dagpenger`,
     NESTE_MELDEKORT_URL = `${BAKVEIEN}/meldekort`,
-    MELDEKORTSTATUS_URL = `${BAKVEIEN}/meldekort/status`;
+    MELDEKORTSTATUS_URL = `${BAKVEIEN}/meldekort/status`,
+    ARBEIDSSOKERPERIODER_URL = `${BAKVEIEN}/arbeidssoker/perioder?fraOgMed=2020-01-01`;

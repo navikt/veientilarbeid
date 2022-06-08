@@ -66,10 +66,10 @@ const SistInnsendtSoknad = ({ dato, komponent }: { dato?: string; komponent: str
                 onClick={() => {
                     loggLenkeKlikk(
                         `'Går til saksbehandlingstider fra "dagpenger-tema - ${komponent}"`,
-                        'https://www.nav.no/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav'
+                        'https://www.nav.no/saksbehandlingstider#dagpenger'
                     );
                 }}
-                href="https://www.nav.no/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav"
+                href="https://www.nav.no/saksbehandlingstider#dagpenger"
             >
                 {tekst('saksbehandlingstider')}
             </Link>
