@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - nyttendepunkt-paabegynte-soknader
       - meldekort-gcp
 env:
   IMAGE_BASE: ghcr.io/${{github.repository}}/veientilarbeid
@@ -34,6 +33,7 @@ jobs:
           docker push ${IMAGE}
 
   deploy-dev:
+    if: github.ref == 'refs/heads/meldekort-gcp'
     name: Deploy til dev
     needs: test-build-and-push
     runs-on: ubuntu-latest
