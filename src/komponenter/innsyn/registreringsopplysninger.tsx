@@ -8,6 +8,11 @@ import prettyPrintDato from '../../utils/pretty-print-dato';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import Feedback from '../feedback/feedback';
 
+/**
+ * Dette er en fiks fordi det en periode ble postet data fra registreringen med en litt annen signatur
+ * Den henter data fra sisteStilling og viser under teksterForBesvarelse
+ */
+
 function fiksSisteStilling(innholdStilling: string, innholdSituasjon: string, stilling: SisteStilling): Svar {
     const harAldriJobbet = innholdStilling === 'HAR_IKKE_HATT_JOBB' || innholdSituasjon === 'ALDRI_HATT_JOBB';
     const sporsmalId = 'sisteStilling';
@@ -37,6 +42,7 @@ const repackBesvarelser = (besvarelse: Besvarelse, teksterForBesvarelse: Array<S
     const sisteStillingInnhold = besvarelse['sisteStilling'] || '';
     const dinSituasjonInnhold = besvarelse['dinSituasjon'] || '';
     const tekster = teksterForBesvarelse || [];
+    // Legger data fra sisteStilling først i teksterForBesvarelse så den oppdaterte plukkes opp av find i alleSvar
     if (tekster.length > 0) {
         tekster.unshift(fiksSisteStilling(sisteStillingInnhold, dinSituasjonInnhold, sisteStilling));
     }
