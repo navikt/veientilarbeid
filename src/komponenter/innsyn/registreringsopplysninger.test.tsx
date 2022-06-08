@@ -1,8 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import '@testing-library/jest-dom/extend-expect';
+
 import Opplysninger from './registreringsopplysninger';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
-import '@testing-library/jest-dom/extend-expect';
 import { DinSituasjonSvar } from '../../contexts/brukerregistrering';
 
 const registreringsopplysninger = {
@@ -51,6 +52,118 @@ const registreringsopplysninger = {
     ],
 };
 
+const registreringsopplysningerMellomperiodeMedJobb = {
+    manueltRegistrertAv: null,
+    id: 103,
+    opprettetDato: new Date().toISOString(),
+    besvarelse: {
+        utdanning: 'HOYERE_UTDANNING_5_ELLER_MER',
+        utdanningBestatt: 'JA',
+        utdanningGodkjent: 'JA',
+        helseHinder: 'NEI',
+        andreForhold: 'NEI',
+        sisteStilling: 'INGEN_SVAR',
+        dinSituasjon: 'MISTET_JOBBEN',
+    },
+    profilering: {
+        innsatsgruppe: 'STANDARD_INNSATS',
+    },
+    teksterForBesvarelse: [
+        {
+            sporsmalId: 'dinSituasjon',
+            sporsmal: 'Velg den situasjonen som passer deg best',
+            svar: 'Har mistet eller kommer til å miste jobben',
+        },
+        {
+            sporsmalId: 'utdanning',
+            sporsmal: 'Hva er din høyeste fullførte utdanning?',
+            svar: 'Høyere utdanning (5 år eller mer)',
+        },
+        {
+            sporsmalId: 'utdanningGodkjent',
+            sporsmal: 'Er utdanningen din godkjent i Norge?',
+            svar: 'Ja',
+        },
+        { sporsmalId: 'utdanningBestatt', sporsmal: 'Er utdanningen din bestått?', svar: 'Ja' },
+        {
+            sporsmalId: 'andreForhold',
+            sporsmal: 'Har du andre problemer med å søke eller være i jobb?',
+            svar: 'Nei',
+        },
+        {
+            sporsmalId: 'sisteStilling',
+            sporsmal: '',
+            svar: 'Ikke besvart',
+        },
+        {
+            sporsmalId: 'helseHinder',
+            sporsmal: 'Har du helseproblemer som hindrer deg i å søke eller være i jobb?',
+            svar: 'Nei',
+        },
+    ],
+    sisteStilling: {
+        label: 'Racerbilsjåfør',
+        konseptId: -1,
+        styrk08: 'X',
+    },
+};
+
+const registreringsopplysningerMellomperiodeUtenJobb = {
+    manueltRegistrertAv: null,
+    id: 103,
+    opprettetDato: new Date().toISOString(),
+    besvarelse: {
+        utdanning: 'HOYERE_UTDANNING_5_ELLER_MER',
+        utdanningBestatt: 'JA',
+        utdanningGodkjent: 'JA',
+        helseHinder: 'NEI',
+        andreForhold: 'NEI',
+        sisteStilling: 'HAR_IKKE_HATT_JOBB',
+        dinSituasjon: 'MISTET_JOBBEN',
+    },
+    profilering: {
+        innsatsgruppe: 'STANDARD_INNSATS',
+    },
+    teksterForBesvarelse: [
+        {
+            sporsmalId: 'dinSituasjon',
+            sporsmal: 'Velg den situasjonen som passer deg best',
+            svar: 'Har mistet eller kommer til å miste jobben',
+        },
+        {
+            sporsmalId: 'utdanning',
+            sporsmal: 'Hva er din høyeste fullførte utdanning?',
+            svar: 'Høyere utdanning (5 år eller mer)',
+        },
+        {
+            sporsmalId: 'utdanningGodkjent',
+            sporsmal: 'Er utdanningen din godkjent i Norge?',
+            svar: 'Ja',
+        },
+        { sporsmalId: 'utdanningBestatt', sporsmal: 'Er utdanningen din bestått?', svar: 'Ja' },
+        {
+            sporsmalId: 'andreForhold',
+            sporsmal: 'Har du andre problemer med å søke eller være i jobb?',
+            svar: 'Nei',
+        },
+        {
+            sporsmalId: 'sisteStilling',
+            sporsmal: '',
+            svar: 'Ikke besvart',
+        },
+        {
+            sporsmalId: 'helseHinder',
+            sporsmal: 'Har du helseproblemer som hindrer deg i å søke eller være i jobb?',
+            svar: 'Nei',
+        },
+    ],
+    sisteStilling: {
+        label: 'Racerbilsjåfør',
+        konseptId: -1,
+        styrk08: 'X',
+    },
+};
+
 describe('Tester registreringsopplysninger komponenten', () => {
     test('Rendrer komponenten og tekstene', () => {
         const props: ProviderProps = {
@@ -65,6 +178,7 @@ describe('Tester registreringsopplysninger komponenten', () => {
         });
         expect(screen.queryAllByAltText(/denne teksten skal ikke være her/i).length).toBe(0);
     });
+
     test('Klikk på lenken fungerer', () => {
         const props: ProviderProps = {
             underOppfolging: { underOppfolging: true },
@@ -78,6 +192,26 @@ describe('Tester registreringsopplysninger komponenten', () => {
         };
         userEvent.click(knapp);
         expect(mockHandleClick).toHaveBeenCalledTimes(1);
+    });
+
+    test('Tester at fiks for visning av data fra mellomperioden fungerer - med jobb', () => {
+        const props: ProviderProps = {
+            underOppfolging: { underOppfolging: true },
+        };
+        render(<Opplysninger {...registreringsopplysningerMellomperiodeMedJobb} />, {
+            wrapper: contextProviders(props),
+        });
+        expect(screen.getByText(/racerbilsjåfør/i)).toBeTruthy();
+    });
+
+    test('Tester at fiks for visning av data fra mellomperioden fungerer - uten jobb', () => {
+        const props: ProviderProps = {
+            underOppfolging: { underOppfolging: true },
+        };
+        render(<Opplysninger {...registreringsopplysningerMellomperiodeUtenJobb} />, {
+            wrapper: contextProviders(props),
+        });
+        expect(screen.getByText(/ingen yrkeserfaring/i)).toBeTruthy();
     });
 
     test('Komponenten rendres IKKE når bruker IKKE er under oppfølging', () => {
