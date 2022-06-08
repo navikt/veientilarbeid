@@ -3,10 +3,27 @@ import { BodyShort } from '@navikt/ds-react';
 
 import { loggAktivitet } from '../../metrics/metrics';
 import { dialogLenke } from '../../innhold/lenker';
-import { Besvarelse, Svar } from '../../contexts/brukerregistrering';
+import { Besvarelse, SisteStilling, Svar } from '../../contexts/brukerregistrering';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import Feedback from '../feedback/feedback';
+
+/**
+ * Dette er en fiks fordi det en periode ble postet data fra registreringen med en litt annen signatur
+ * Den henter data fra sisteStilling og viser under teksterForBesvarelse
+ */
+
+function fiksSisteStilling(innholdStilling: string, innholdSituasjon: string, stilling: SisteStilling): Svar {
+    const harAldriJobbet = innholdStilling === 'HAR_IKKE_HATT_JOBB' || innholdSituasjon === 'ALDRI_HATT_JOBB';
+    const sporsmalId = 'sisteStilling';
+    const sporsmal = 'Hva er din siste jobb?';
+    const svar = harAldriJobbet ? 'Ingen yrkeserfaring' : stilling?.label || 'Ikke oppgitt';
+    return {
+        sporsmalId,
+        sporsmal,
+        svar,
+    };
+}
 
 const Opplysning = (props: any) => {
     const { sporsmal, svar } = props;
@@ -21,8 +38,14 @@ const Opplysning = (props: any) => {
     );
 };
 
-const repackBesvarelser = (besvarelse: Besvarelse, teksterForBesvarelse: Array<Svar>) => {
+const repackBesvarelser = (besvarelse: Besvarelse, teksterForBesvarelse: Array<Svar>, sisteStilling: SisteStilling) => {
+    const sisteStillingInnhold = besvarelse['sisteStilling'] || '';
+    const dinSituasjonInnhold = besvarelse['dinSituasjon'] || '';
     const tekster = teksterForBesvarelse || [];
+    // Legger data fra sisteStilling først i teksterForBesvarelse så den oppdaterte plukkes opp av find i alleSvar
+    if (tekster.length > 0) {
+        tekster.unshift(fiksSisteStilling(sisteStillingInnhold, dinSituasjonInnhold, sisteStilling));
+    }
     const besvarelserMedInnhold = Object.keys(besvarelse).filter((item) => besvarelse[item]);
     const alleSvar = besvarelserMedInnhold.map((item) => tekster.find((svar) => svar.sporsmalId === item));
     const svarMedInnhold = alleSvar.filter((svar) => svar !== undefined);
@@ -30,8 +53,9 @@ const repackBesvarelser = (besvarelse: Besvarelse, teksterForBesvarelse: Array<S
 };
 
 const Opplysninger = (props: any) => {
-    const { opprettetDato, manueltRegistrertAv, besvarelse, teksterForBesvarelse, amplitudeData } = props;
-    const besvarelser = repackBesvarelser(besvarelse, teksterForBesvarelse);
+    const { opprettetDato, manueltRegistrertAv, besvarelse, teksterForBesvarelse, amplitudeData, sisteStilling } =
+        props;
+    const besvarelser = repackBesvarelser(besvarelse, teksterForBesvarelse, sisteStilling);
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const kanViseKomponent = underOppfolging;
 

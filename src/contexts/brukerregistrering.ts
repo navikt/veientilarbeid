@@ -1,5 +1,6 @@
-import { DataElement, STATUS } from '../ducks/api';
 import * as React from 'react';
+
+import { DataElement, STATUS } from '../ducks/api';
 
 export enum DinSituasjonSvar {
     MISTET_JOBBEN = 'MISTET_JOBBEN',
@@ -52,12 +53,19 @@ export interface Svar {
     svar: string;
 }
 
+export interface SisteStilling {
+    konseptId: number;
+    label: string;
+    styrk08: string;
+}
+
 export interface Brukerregistrering {
     opprettetDato: string;
     manueltRegistrertAv: object | null;
     besvarelse: Besvarelse;
     teksterForBesvarelse: Array<Svar> | null;
     profilering?: Profilering;
+    sisteStilling?: SisteStilling | undefined | null;
 }
 
 export interface Data {
@@ -86,6 +94,7 @@ export const initialState: State = {
                 utdanningGodkjent: null,
             },
             teksterForBesvarelse: [],
+            sisteStilling: null,
         },
     },
 };
