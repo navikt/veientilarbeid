@@ -1,10 +1,13 @@
 import { BodyShort, Button, Heading, Link, Modal } from '@navikt/ds-react';
 import { useArbeidsledigDato } from '../../contexts/arbeidsledig-dato';
+import { useFeatureToggleData } from '../../contexts/feature-toggles';
 
 function ArbeidsledigDato(): JSX.Element | null {
     const { visModal, settLukkModal } = useArbeidsledigDato();
+    const featureToggleData = useFeatureToggleData();
+    const visKomponent = featureToggleData['veientilarbeid.vis-arbeidsledig-dato'];
 
-    if (!visModal) {
+    if (!visKomponent || !visModal) {
         return null;
     }
 
