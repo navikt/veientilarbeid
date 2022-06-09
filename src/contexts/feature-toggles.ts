@@ -12,6 +12,7 @@ export enum FeatureToggles {
     VIS_EGENVURDERING_MED_14A = 'veientilarbeid.vis-egenvurdering-med-14a',
     VIS_ONBOARDING_STANDARD = 'veientilarbeid.vis-onboarding-standard',
     LOGG_ARBEIDSSOKERPERIODER = 'veientilarbeid.logg-arbeidssokerperioder',
+    VIS_ARBEIDSLEDIG_DATO = 'veientilarbeid.vis-arbeidsledig-dato',
 }
 
 export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
@@ -36,6 +37,8 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Vis oppstartsinformasjon for standard';
         case FeatureToggles.LOGG_ARBEIDSSOKERPERIODER:
             return 'Logg arbeidssøkerperioder';
+        case FeatureToggles.VIS_ARBEIDSLEDIG_DATO:
+            return 'Arbeidsledig dato';
     }
 }
 
@@ -50,6 +53,7 @@ export interface Data {
     'veientilarbeid.vis-egenvurdering-med-14a': boolean;
     'veientilarbeid.vis-onboarding-standard': boolean;
     'veientilarbeid.logg-arbeidssokerperioder': boolean;
+    'veientilarbeid.vis-arbeidsledig-dato'?: boolean;
 }
 
 export interface State extends DataElement {
@@ -68,6 +72,7 @@ export const initialState: State = {
         'veientilarbeid.vis-egenvurdering-med-14a': false,
         'veientilarbeid.vis-onboarding-standard': false,
         'veientilarbeid.logg-arbeidssokerperioder': false,
+        'veientilarbeid.vis-arbeidsledig-dato': false,
     },
     status: STATUS.NOT_STARTED,
 };
