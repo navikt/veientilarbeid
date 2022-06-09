@@ -41,6 +41,8 @@ import {
     hentAlder,
     settAlder,
     settDemoState,
+    hentVisArbeidsledigDato,
+    settVisArbeidsledigDato,
 } from './demo-state';
 
 import { DinSituasjonSvar, ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../contexts/brukerregistrering';
@@ -93,6 +95,7 @@ const DemoDashboard = () => {
     const UNDER_OPPFOLGING = DemoData.UNDER_OPPFOLGING;
     const KAN_REAKTIVERES = DemoData.KAN_REAKTIVERES;
     const ER_UNDER_30 = DemoData.ER_UNDER_30;
+    const VIS_ARBEIDSLEDIG_DATO = DemoData.VIS_ARBEIDSLEDIG_DATO;
 
     const FEATURE_TOGGLES: string[] = Object.values(FeatureToggles);
 
@@ -183,6 +186,8 @@ const DemoDashboard = () => {
             settKanReaktiveres(element.checked);
         } else if (element.id === ER_UNDER_30) {
             settAlder(element.checked ? '25' : '42');
+        } else if (element.id === VIS_ARBEIDSLEDIG_DATO) {
+            settVisArbeidsledigDato(element.checked);
         }
         window.location.reload();
     };
@@ -550,6 +555,14 @@ const DemoDashboard = () => {
                                     onChange={handleClick}
                                 >
                                     Er under 30 år
+                                </Checkbox>
+                                <Checkbox
+                                    id={VIS_ARBEIDSLEDIG_DATO}
+                                    value={VIS_ARBEIDSLEDIG_DATO}
+                                    checked={hentVisArbeidsledigDato()}
+                                    onChange={handleClick}
+                                >
+                                    Vis arbeidsledig dato-velger
                                 </Checkbox>
                             </CheckboxGroup>
                         </Panel>

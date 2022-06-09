@@ -36,6 +36,7 @@ export enum DemoData {
     KVITTERING_STATUS = 'visKvittering',
     ER_UNDER_30 = 'erUnder30',
     SPRAK = 'lang',
+    VIS_ARBEIDSLEDIG_DATO = 'visArbeidsledigDato',
 }
 
 export const hentDemoState = (key: string): string | null => hentQueryParam(key);
@@ -108,6 +109,9 @@ export const settUnderOppfolging = (value: boolean) => settDemoState(DemoData.UN
 
 export const hentKanReaktiveres = () => hentDemoState(DemoData.KAN_REAKTIVERES) === 'true';
 export const settKanReaktiveres = (value: boolean) => settDemoState(DemoData.KAN_REAKTIVERES, value);
+
+export const hentVisArbeidsledigDato = () => hentDemoState(DemoData.VIS_ARBEIDSLEDIG_DATO) === 'true';
+export const settVisArbeidsledigDato = (value: boolean) => settDemoState(DemoData.VIS_ARBEIDSLEDIG_DATO, value);
 
 export const randomUlesteDialoger = () => {
     const min = 1;
