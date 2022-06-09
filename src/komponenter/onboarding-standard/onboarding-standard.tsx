@@ -1,4 +1,4 @@
-import { Heading, Panel, BodyLong } from '@navikt/ds-react';
+import { Heading, Panel, BodyLong, Link } from '@navikt/ds-react';
 
 import InViewport from '../in-viewport/in-viewport';
 import ErRendret from '../er-rendret/er-rendret';
@@ -10,6 +10,7 @@ import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { skalViseOnboardingStandard } from '../../lib/skal-vise-onboarding-standard';
 import Feedback from '../feedback/feedback';
 import TallSirkel from '../tall/tall';
+import { useArbeidsledigDato } from '../../contexts/arbeidsledig-dato';
 
 const TEKSTER = {
     nb: {
@@ -33,6 +34,8 @@ const OnboardingStandard = () => {
     const registreringData = useBrukerregistreringData();
     const oppfolgingData = useOppfolgingData();
     const featuretoggleData = useFeatureToggleData();
+    const { settVisModal: settVisArbeidsledigDatoModal } = useArbeidsledigDato();
+    const visArbeidsLedigDatoLenke = featuretoggleData['veientilarbeid.vis-arbeidsledig-dato'];
 
     const kanViseKomponent = skalViseOnboardingStandard({
         oppfolgingData,
@@ -58,6 +61,17 @@ const OnboardingStandard = () => {
                 </BodyLong>
                 <Feedback id="standard-onboarding-info" sporsmal={tekst('feedbackSporsmal')} />
                 <InViewport loggTekst="Viser OnboardingStandard i viewport" />
+                {visArbeidsLedigDatoLenke && (
+                    <Link
+                        href={'#'}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            settVisArbeidsledigDatoModal();
+                        }}
+                    >
+                        Velg dato
+                    </Link>
+                )}
             </Panel>
         );
     return null;
