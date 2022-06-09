@@ -34,6 +34,7 @@ import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import * as DpInnsynSoknad from '../../contexts/dp-innsyn-soknad';
 import * as DpInnsynVedtak from '../../contexts/dp-innsyn-vedtak';
 import * as DpInnsynPaabegynt from '../../contexts/dp-innsyn-paabegynte-soknader';
+import { ArbeidsledigDatoProvider } from '../../contexts/arbeidsledig-dato';
 
 const skalSjekkeEgenvurderingBesvarelse = (
     foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null
@@ -201,7 +202,9 @@ const DataProvider = ({ children }: Props) => {
                                                 <Arbeidssokerperioder.ArbeidssokerperioderContext.Provider
                                                     value={arbeidssokerperioderState}
                                                 >
-                                                    <AmplitudeProvider>{children}</AmplitudeProvider>
+                                                    <ArbeidsledigDatoProvider>
+                                                        <AmplitudeProvider>{children}</AmplitudeProvider>
+                                                    </ArbeidsledigDatoProvider>
                                                 </Arbeidssokerperioder.ArbeidssokerperioderContext.Provider>
                                             </SprakValg.SprakContext.Provider>
                                         </DpInnsynVedtak.DpInnsynVedtakContext.Provider>
