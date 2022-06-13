@@ -11,11 +11,18 @@ import { skalViseOnboardingStandard } from '../../lib/skal-vise-onboarding-stand
 import Feedback from '../feedback/feedback';
 import TallSirkel from '../tall/tall';
 import { useArbeidsledigDato } from '../../contexts/arbeidsledig-dato';
+import hentTekstnokkelForOnboardingTrinn1 from '../../lib/hent-tekstnokkel-for-onboarding-trinn1';
 
 const TEKSTER = {
     nb: {
         header: 'Tre viktige ting i din første uke som registrert arbeidssøker',
         trinn1: 'Start på en søknad om dagpenger i dag, slik at du finner ut når du må sende inn søknaden',
+        trinn1Fortid:
+            'Du bør sende inn søknad om dagpenger i dag. Om du mangler dokumentasjon, bør du heller ettersende disse senere. Det viktige nå er at du får sendt inn søknaden så raskt som mulig.',
+        trinn1Idag:
+            'Du bør sende inn søknad om dagpenger i dag. Sender du søknaden senere vil du ikke ha rett til penger for dagene frem til søknaden er sendt inn.',
+        trinn1Fremtid:
+            'Du bør sende søknaden om dagpenger tidligst 10. juni og senest 20 juni. Det er lurt starte på søknaden allerede nå, sånn at du finner ut hvilke dokumenter du må få tak i.', // TODO: fiks datoer i teksten
         trinn2: 'Les gjennom introduksjonen til meldekort',
         trinn3: 'Finn ut om du er enig i hvordan NAV har vurdert ditt behov for hjelp og støtte',
         feedbackSporsmal: 'Er denne oversikten nyttig?',
@@ -51,7 +58,7 @@ const OnboardingStandard = () => {
                     {tekst('header')}
                 </Heading>
                 <BodyLong spacing className="flex">
-                    <TallSirkel tall={1} /> {tekst('trinn1')}
+                    <TallSirkel tall={1} /> {tekst(hentTekstnokkelForOnboardingTrinn1())}
                 </BodyLong>
                 <BodyLong spacing className="flex">
                     <TallSirkel tall={2} /> {tekst('trinn2')}
