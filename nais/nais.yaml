@@ -6,8 +6,10 @@ metadata:
   labels:
     team: paw
   annotations:
-    config.linkerd.io/proxy-memory-limit: "512Mi"
-    config.linkerd.io/proxy-memory-request: "128Mi"
+    config.linkerd.io/proxy-memory-limit: "1024Mi"
+    config.linkerd.io/proxy-memory-request: "512Mi"
+    config.linkerd.io/proxy-cpu-limit: "1"
+    config.linkerd.io/proxy-cpu-request: "200m"
 spec:
   env:
   - name: APPRES_CMS_URL
