@@ -1,7 +1,7 @@
 import { requestConfig, STATUS } from './api';
 import { Dispatch, SetStateAction } from 'react';
 
-async function fetchToJson<T>(url: string, config: RequestInit): Promise<T> {
+export async function fetchToJson<T>(url: string, config: RequestInit): Promise<T> {
     const respons = await fetch(url, config);
     const gyldigRespons = sjekkStatuskode(respons);
     return toJson(gyldigRespons);

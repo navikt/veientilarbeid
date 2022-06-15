@@ -5,3 +5,9 @@ export default function msw_get(endpoint: string, response: Object | null, statu
         return res(ctx.status(statusCode), ctx.json(response ? response : {}));
     });
 }
+
+export function msw_post(endpoint: string, response: Object | null, statusCode: number = 200): any {
+    return rest.post(endpoint, (req, res, ctx) => {
+        return response ? res(ctx.status(statusCode), ctx.json(response)) : res(ctx.status(statusCode));
+    });
+}

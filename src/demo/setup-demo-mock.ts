@@ -11,6 +11,7 @@ import {
     UNDER_OPPFOLGING_URL,
     VEILARBOPPFOLGING_URL,
     DP_INNSYN_URL,
+    GJELDER_FRA_DATO_URL,
 } from '../ducks/api';
 
 import {
@@ -39,8 +40,9 @@ import {
 
 import { hentBrukerRegistrering } from './demo-state-brukerregistrering';
 import { AUTH_API } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
-import msw_get from '../mocks/msw-utils';
+import msw_get, { msw_post } from '../mocks/msw-utils';
 import meldekortstatusResponse from '../mocks/meldekortstatus-mock';
+import gjelderFraResponse from '../mocks/gjelder-fra-mock';
 
 export const demo_handlers = [
     msw_get(VEILARBOPPFOLGING_URL, {
@@ -86,4 +88,7 @@ export const demo_handlers = [
     msw_get(`${DP_INNSYN_URL}/paabegynte`, hentDpInnsynPaabegynte()),
 
     msw_get(SAKSTEMA_URL, hentDpSakstema()),
+
+    msw_get(GJELDER_FRA_DATO_URL, gjelderFraResponse),
+    msw_post(GJELDER_FRA_DATO_URL, null, 204),
 ];
