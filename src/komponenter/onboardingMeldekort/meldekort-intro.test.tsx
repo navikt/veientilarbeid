@@ -216,9 +216,12 @@ describe('tester onboarding komponenten for meldekort', () => {
         };
         const { container } = render(<MeldekortOnboarding />, { wrapper: contextProviders(props) });
         expect(container).not.toBeEmptyDOMElement();
-        expect(screen.getByText(/Send inn for uke 3 - 4/i)).toBeInTheDocument();
-        expect(screen.getByText(/Siste frist for innsending av meldekortet er i kveld/i)).toBeInTheDocument();
-        expect(screen.getByText(/Dersom du ikke sender inn meldekort/i)).toBeInTheDocument();
+        expect(screen.getByText(/fristen for innsending av meldekortet har gått ut/i)).toBeInTheDocument();
+        expect(
+            screen.getByText(
+                /dersom du ikke sender inn meldekortet, og venter med å sende inn meldekortet i mer enn 20 dager etter forrige innsendte meldekort, vil du ikke lenger være registrert som arbeidssøker/i
+            )
+        ).toBeInTheDocument();
     });
 
     test('Viser dagpenge-advarsel for brukere med rettighetsgruppe DAGP', () => {

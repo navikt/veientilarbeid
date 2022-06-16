@@ -1,4 +1,4 @@
-import { Heading, BodyShort, Label } from '@navikt/ds-react';
+import { Heading, BodyShort, Label, BodyLong } from '@navikt/ds-react';
 
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { beregnDagerTilInaktivering } from '../../utils/meldekort-utils';
@@ -26,6 +26,17 @@ const TEKSTER = {
         default: 'en eventuell søknad om dagpenger kan bli avslått',
         advarselLabel: 'Dersom du ikke sender inn meldekort vil',
         advarselBeskrivelse: 'du ikke lenger være registrert som arbeidssøker',
+        avregistrertEtter20Dager:
+            'Dersom du ikke sender inn meldekortet, og venter med å sende inn meldekortet i mer enn 20 dager etter forrige innsendte meldekort, vil du ikke lenger være registrert som arbeidssøker',
+        fristErForbiTittel: 'Fristen for innsending av meldekortet har gått ut',
+        fristErForbiDagpenger: 'Sender du inn meldekortet nå vil du få trekk i utbetalinger for neste meldekort',
+        fristForbiDagpengerFortsett:
+            'Har du fortsatt ønske om å motta dagpenger må du likevel sende inn de neste meldekortene',
+        fristForbiDagpengerIkkeRegistrert:
+            'Når du ikke lenger er registrert som arbeidssøker vil dagpengene dine stoppes helt',
+        fristForbiRegistrert: 'Sender du inn meldekortet nå vil du fortsatt være registrert som arbeidssøker',
+        fristForbiSoktIkkeRegistrert:
+            'Konsekvensen av å ikke være registrert som arbeidssøker kan være at du får avslag på søknaden om dagpenger',
     },
     en: {
         sisteFrist: 'The deadline for submitting the employment status form is tonight at 23:00',
@@ -40,6 +51,9 @@ const TEKSTER = {
         default: 'Any application of unemployment benefits may be declined',
         advarselLabel: 'If you do not submit the employment status form',
         advarselBeskrivelse: 'you will no longer be registered as a job seeker',
+        fristErForbiTittel: 'The deadline for submitting the employment status form has passed',
+        fristErForbiDagpenger: 'Sender du inn meldekortet nå vil du få trekk i utbetalinger for neste meldekort',
+        fristForbiRegistrert: 'Sender du inn meldekortet nå vil du fortsatt være registrert som arbeidssøker',
     },
 };
 
@@ -73,9 +87,14 @@ function MeldekortAdvarsel({ dagerEtterFastsattMeldedag }: { dagerEtterFastsattM
     const iDag = hentIDag();
     const inaktiveringsDato = plussDager(iDag, dagerTilInaktivering);
 
+    // Nå er vi på overtid, det er for sent å rekke fristen
+    if (dagerTilInaktivering < 0) {
+        return <ForSentVarsel rettighetsgruppe={rettighetsgruppe} dagpengeStatus={dagpengeStatus} />;
+    }
+
     return (
         <>
-            {dagerTilInaktivering <= 0 ? (
+            {dagerTilInaktivering === 0 ? (
                 <Heading size="medium">{tekst('sisteFrist')}</Heading>
             ) : (
                 <>
@@ -128,6 +147,37 @@ const LittStrengereVarsel = ({
                 )}
             </ul>
         </div>
+    );
+};
+
+const ForSentVarsel = ({
+    rettighetsgruppe,
+    dagpengeStatus,
+}: {
+    rettighetsgruppe: string;
+    dagpengeStatus: DagpengeStatus;
+}) => {
+    const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
+
+    const mottarDagpenger = rettighetsgruppe === 'DAGP';
+    const soktDagpenger = dagpengeStatus === 'sokt';
+
+    return (
+        <>
+            <Heading size="medium" className={'blokk-xs'}>
+                {tekst('fristErForbiTittel')}
+            </Heading>
+            {mottarDagpenger && (
+                <>
+                    <BodyLong className="blokk-xs">{tekst('fristErForbiDagpenger')}</BodyLong>
+                    <BodyLong className="blokk-xs">{tekst('fristForbiDagpengerFortsett')}</BodyLong>
+                </>
+            )}
+            {!mottarDagpenger && <BodyLong className="blokk-xs">{tekst('fristForbiRegistrert')}</BodyLong>}
+            <BodyLong className="blokk-xs">{tekst('avregistrertEtter20Dager')}</BodyLong>
+            {mottarDagpenger && <BodyLong className="blokk-xs">{tekst('fristForbiDagpengerIkkeRegistrert')}</BodyLong>}
+            {soktDagpenger && <BodyLong className="blokk-xs">{tekst('fristForbiSoktIkkeRegistrert')}</BodyLong>}
+        </>
     );
 };
 
