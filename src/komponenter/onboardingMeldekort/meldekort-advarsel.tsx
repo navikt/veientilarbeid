@@ -11,7 +11,7 @@ import { useDpInnsynVedtakData } from '../../contexts/dp-innsyn-vedtak';
 import { useDpInnsynPaabegynteSoknaderData } from '../../contexts/dp-innsyn-paabegynte-soknader';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
-
+// TODO - oversette alle tekster til engelsk
 const TEKSTER = {
     nb: {
         sisteFrist: 'Siste frist for innsending av meldekortet er i kveld klokken 23.00',
@@ -51,9 +51,17 @@ const TEKSTER = {
         default: 'Any application of unemployment benefits may be declined',
         advarselLabel: 'If you do not submit the employment status form',
         advarselBeskrivelse: 'you will no longer be registered as a job seeker',
-        fristErForbiTittel: 'The deadline for submitting the employment status form has passed',
+        avregistrertEtter20Dager:
+            'Dersom du ikke sender inn meldekortet, og venter med å sende inn meldekortet i mer enn 20 dager etter forrige innsendte meldekort, vil du ikke lenger være registrert som arbeidssøker',
+        fristErForbiTittel: 'Fristen for innsending av meldekortet har gått ut',
         fristErForbiDagpenger: 'Sender du inn meldekortet nå vil du få trekk i utbetalinger for neste meldekort',
+        fristForbiDagpengerFortsett:
+            'Har du fortsatt ønske om å motta dagpenger må du likevel sende inn de neste meldekortene',
+        fristForbiDagpengerIkkeRegistrert:
+            'Når du ikke lenger er registrert som arbeidssøker vil dagpengene dine stoppes helt',
         fristForbiRegistrert: 'Sender du inn meldekortet nå vil du fortsatt være registrert som arbeidssøker',
+        fristForbiSoktIkkeRegistrert:
+            'Konsekvensen av å ikke være registrert som arbeidssøker kan være at du får avslag på søknaden om dagpenger',
     },
 };
 
