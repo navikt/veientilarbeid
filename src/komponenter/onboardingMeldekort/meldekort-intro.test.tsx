@@ -166,7 +166,7 @@ describe('tester onboarding komponenten for meldekort', () => {
         expect(container).not.toBeEmptyDOMElement();
         expect(screen.getByText(regexMatcher(/Du har 6 dager på å sende inn meldekort/i))).toBeInTheDocument();
         expect(screen.getByText(/Send inn for uke 3 - 4/i)).toBeInTheDocument();
-        expect(screen.getByText(/Fristen er mandag 8. februar, klokken 23.00/i)).toBeInTheDocument();
+        expect(screen.getByText(/siste frist er mandag 8. februar, klokken 23.00/i)).toBeInTheDocument();
         expect(screen.getByText(/Vis introduksjon/i)).toBeInTheDocument();
         expect(screen.queryByText(/Dersom du ikke sender inn meldekort/i)).not.toBeInTheDocument();
     });
@@ -180,7 +180,7 @@ describe('tester onboarding komponenten for meldekort', () => {
         expect(container).not.toBeEmptyDOMElement();
         expect(screen.getByText(regexMatcher(/Du har 2 dager på å sende inn meldekort/i))).toBeInTheDocument();
         expect(screen.getByText(/Send inn for uke 3 - 4/i)).toBeInTheDocument();
-        expect(screen.getByText(/Fristen er mandag 8. februar, klokken 23.00/i)).toBeInTheDocument();
+        expect(screen.getByText(/siste frist er mandag 8. februar, klokken 23.00/i)).toBeInTheDocument();
         expect(screen.getByText(/Dersom du ikke sender inn meldekort/i)).toBeInTheDocument();
     });
 

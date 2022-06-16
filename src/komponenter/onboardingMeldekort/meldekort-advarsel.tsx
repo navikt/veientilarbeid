@@ -1,4 +1,5 @@
 import { Heading, BodyShort, Label } from '@navikt/ds-react';
+
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { beregnDagerTilInaktivering } from '../../utils/meldekort-utils';
 import { datoMedUkedag, plussDager } from '../../utils/date-utils';
@@ -18,7 +19,7 @@ const TEKSTER = {
         dager: 'dager',
         dag: 'dag',
         sendeInn: 'på å sende inn meldekort.',
-        fristenEr: 'Fristen er',
+        fristenEr: 'Siste frist er',
         klokken23: 'klokken 23.00.',
         mottar: 'utbetaling av dagpenger stoppes',
         sokt: 'din søknad om dagpenger kan bli avslått',
