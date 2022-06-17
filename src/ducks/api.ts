@@ -1,5 +1,6 @@
 import { contextpathDittNav, erMikrofrontend } from '../utils/app-state-utils';
 import { nanoid } from 'nanoid';
+import { bakveienTilArbeidUrl } from './urls';
 
 export enum STATUS {
     OK = 'OK',
@@ -33,7 +34,7 @@ export const requestConfig = (): RequestInit => {
 
 const contextpath = erMikrofrontend() ? contextpathDittNav : '';
 
-export const BAKVEIEN = `${contextpath}/bakveientilarbeid`,
+export const BAKVEIEN = `${bakveienTilArbeidUrl}`,
     VEILARBOPPFOLGING_URL = `${BAKVEIEN}/oppfolging`,
     UNDER_OPPFOLGING_URL = `${BAKVEIEN}/underoppfolging`,
     BRUKERINFO_URL = `${BAKVEIEN}/startregistrering`,
