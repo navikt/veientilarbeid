@@ -92,7 +92,8 @@ function MeldekortAdvarsel({ dagerEtterFastsattMeldedag }: { dagerEtterFastsattM
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     if (dagerEtterFastsattMeldedag === null) return null;
 
-    const dagerTilInaktivering = beregnDagerTilInaktivering(dagerEtterFastsattMeldedag);
+    const dagerTilTrekk = beregnDagerTilInaktivering(dagerEtterFastsattMeldedag);
+
     // Viser strenger melding fra dag 3 (torsdag)
     const tillegg =
         dagerEtterFastsattMeldedag > 2 ? (
@@ -103,26 +104,25 @@ function MeldekortAdvarsel({ dagerEtterFastsattMeldedag }: { dagerEtterFastsattM
             />
         ) : null;
     const iDag = hentIDag();
-    const inaktiveringsDato = plussDager(iDag, dagerTilInaktivering);
+    const trekkDato = plussDager(iDag, dagerTilTrekk);
 
     // Nå er vi på overtid, det er for sent å rekke fristen
-    if (dagerTilInaktivering < 0) {
+    if (dagerTilTrekk < 0) {
         return <ForSentVarsel rettighetsgruppe={rettighetsgruppe} dagpengeStatus={dagpengeStatus} />;
     }
 
     return (
         <>
-            {dagerTilInaktivering === 0 ? (
+            {dagerTilTrekk === 0 ? (
                 <Heading size="medium">{tekst('sisteFrist')}</Heading>
             ) : (
                 <>
                     <Heading size="medium" className={'blokk-xs'}>
-                        {tekst('duHar')} {dagerTilInaktivering}{' '}
-                        {dagerTilInaktivering === 0 || dagerTilInaktivering > 1 ? tekst('dager') : tekst('dag')}{' '}
-                        {tekst('sendeInn')}
+                        {tekst('duHar')} {dagerTilTrekk}{' '}
+                        {dagerTilTrekk === 0 || dagerTilTrekk > 1 ? tekst('dager') : tekst('dag')} {tekst('sendeInn')}
                     </Heading>
                     <BodyShort className="blokk-xs">
-                        {tekst('fristenEr')} {datoMedUkedag(inaktiveringsDato, sprak)}, {tekst('klokken23')}
+                        {tekst('fristenEr')} {datoMedUkedag(trekkDato, sprak)}, {tekst('klokken23')}
                     </BodyShort>
                 </>
             )}
