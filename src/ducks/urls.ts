@@ -1,4 +1,4 @@
-const isProduction = window.location.href.includes('www.intern.nav.no');
+const isProduction = window.location.href.includes('www.nav.no');
 const isDevelopment = window.location.href.includes('www.dev.nav.no');
 
 const getEnvironment = () => {
