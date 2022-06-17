@@ -30,7 +30,7 @@ const TEKSTER = {
         advarselTrekk:
             'Dersom du sender inn meldekortet etter fristen vil du få trekk i utbetalingen av dagpenger for neste meldekort',
         avregistrertEtter20Dager:
-            'Dersom du ikke sender inn meldekortet, og venter med å sende inn meldekortet i mer enn 20 dager etter forrige innsendte meldekort, vil du ikke lenger være registrert som arbeidssøker',
+            'Venter du med å sende inn i mer enn 20 dager etter forrige innsendte meldekort, vil du ikke lenger være registrert som arbeidssøker',
         fristErForbiTittel: 'Fristen for innsending av meldekortet har gått ut',
         fristErForbiDagpenger: 'Sender du inn meldekortet nå vil du få trekk i utbetalinger for neste meldekort',
         fristForbiDagpengerFortsett:
@@ -39,7 +39,7 @@ const TEKSTER = {
             'Når du ikke lenger er registrert som arbeidssøker vil dagpengene dine stoppes helt',
         fristForbiRegistrert: 'Sender du inn meldekortet nå vil du fortsatt være registrert som arbeidssøker',
         fristForbiSoktIkkeRegistrert:
-            'Konsekvensen av å ikke være registrert som arbeidssøker kan være at du får avslag på søknaden om dagpenger',
+            'Konsekvensen av å ikke være registrert som arbeidssøker vil være at du kan få avslag på søknaden om dagpenger',
     },
     en: {
         sisteFrist: 'The deadline for submitting the employment status form is tonight at 23:00',
@@ -58,7 +58,7 @@ const TEKSTER = {
             'Dersom du sender inn meldekortet etter fristen vil du få trekk i utbetalingen av dagpenger for neste meldekort',
         advarselBeskrivelse: 'you will no longer be registered as a job seeker',
         avregistrertEtter20Dager:
-            'Dersom du ikke sender inn meldekortet, og venter med å sende inn meldekortet i mer enn 20 dager etter forrige innsendte meldekort, vil du ikke lenger være registrert som arbeidssøker',
+            'Venter du med å sende inn meldekortet i mer enn 20 dager etter forrige innsendte meldekort, vil du ikke lenger være registrert som arbeidssøker',
         fristErForbiTittel: 'Fristen for innsending av meldekortet har gått ut',
         fristErForbiDagpenger: 'Sender du inn meldekortet nå vil du få trekk i utbetalinger for neste meldekort',
         fristForbiDagpengerFortsett:
@@ -124,6 +124,9 @@ function MeldekortAdvarsel({ dagerEtterFastsattMeldedag }: { dagerEtterFastsattM
                     <BodyShort className="blokk-xs">
                         {tekst('fristenEr')} {datoMedUkedag(trekkDato, sprak)}, {tekst('klokken23')}
                     </BodyShort>
+                    {dagerEtterFastsattMeldedag && dagerEtterFastsattMeldedag < 3 && (
+                        <BodyLong className="blokk-xs">{tekst('fortSomMulig')}</BodyLong>
+                    )}
                 </>
             )}
             {tillegg}

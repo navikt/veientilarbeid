@@ -182,7 +182,11 @@ describe('tester onboarding komponenten for meldekort', () => {
         expect(screen.getByText(regexMatcher(/Du har 2 dager på å sende inn meldekort/i))).toBeInTheDocument();
         expect(screen.getByText(/Send inn for uke 3 - 4/i)).toBeInTheDocument();
         expect(screen.getByText(/siste frist er mandag 8. februar, klokken 23.00/i)).toBeInTheDocument();
-        expect(screen.getByText(/Dersom du ikke sender inn meldekort/i)).toBeInTheDocument();
+        expect(
+            screen.getByText(
+                /venter du med å sende inn i mer enn 20 dager etter forrige innsendte meldekort, vil du ikke lenger være registrert som arbeidssøker/i
+            )
+        ).toBeInTheDocument();
     });
 
     test('Siste frist for sending av meldekort (dag 7)', () => {
@@ -196,7 +200,11 @@ describe('tester onboarding komponenten for meldekort', () => {
         expect(
             screen.getByText(/Siste frist for innsending av meldekortet er i kveld klokken 23.00/i)
         ).toBeInTheDocument();
-        expect(screen.getByText(/Dersom du ikke sender inn meldekort/i)).toBeInTheDocument();
+        expect(
+            screen.getByText(
+                /venter du med å sende inn i mer enn 20 dager etter forrige innsendte meldekort, vil du ikke lenger være registrert som arbeidssøker/i
+            )
+        ).toBeInTheDocument();
     });
 
     test('Vises ikke når fristen for å sende inn meldekortet er passert, og bruker har blitt inaktivert', () => {
@@ -220,7 +228,7 @@ describe('tester onboarding komponenten for meldekort', () => {
         expect(screen.getByText(/fristen for innsending av meldekortet har gått ut/i)).toBeInTheDocument();
         expect(
             screen.getByText(
-                /dersom du ikke sender inn meldekortet, og venter med å sende inn meldekortet i mer enn 20 dager etter forrige innsendte meldekort, vil du ikke lenger være registrert som arbeidssøker/i
+                /venter du med å sende inn i mer enn 20 dager etter forrige innsendte meldekort, vil du ikke lenger være registrert som arbeidssøker/i
             )
         ).toBeInTheDocument();
     });
@@ -250,7 +258,7 @@ describe('tester onboarding komponenten for meldekort', () => {
         expect(screen.queryByText(/utbetaling av dagpenger stoppes/i)).not.toBeInTheDocument();
         expect(
             screen.getByText(
-                /dersom du ikke sender inn meldekortet, og venter med å sende inn meldekortet i mer enn 20 dager etter forrige innsendte meldekort, vil du ikke lenger være registrert som arbeidssøker/i
+                /venter du med å sende inn i mer enn 20 dager etter forrige innsendte meldekort, vil du ikke lenger være registrert som arbeidssøker/i
             )
         ).toBeInTheDocument();
     });
