@@ -18,7 +18,7 @@ const TEKSTER = {
         duHar: 'Du har',
         dager: 'dager',
         dag: 'dag',
-        sendeInn: 'på å sende inn meldekort.',
+        sendeInn: 'på å sende inn meldekortet',
         fristenEr: 'Siste frist er',
         klokken23: 'klokken 23.00.',
         mottar: 'utbetaling av dagpenger stoppes',
