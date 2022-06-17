@@ -1,6 +1,7 @@
 import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import MeldekortOnboarding from './meldekort-onboarding';
 import { Formidlingsgruppe, Servicegruppe } from '../../contexts/oppfolging';
@@ -231,7 +232,11 @@ describe('tester onboarding komponenten for meldekort', () => {
             brukerInfo: { rettighetsgruppe: 'DAGP' },
         };
         render(<MeldekortOnboarding />, { wrapper: contextProviders(props) });
-        expect(screen.getByText(/utbetaling av dagpenger stoppes/i)).toBeInTheDocument();
+        expect(
+            screen.getByText(
+                /dersom du sender inn meldekortet etter fristen vil du få trekk i utbetalingen av dagpenger for neste meldekort/i
+            )
+        ).toBeInTheDocument();
         expect(screen.queryByText(/en eventuell søknad om dagpenger kan bli avslått/i)).not.toBeInTheDocument();
     });
 
@@ -243,7 +248,11 @@ describe('tester onboarding komponenten for meldekort', () => {
         };
         render(<MeldekortOnboarding />, { wrapper: contextProviders(props) });
         expect(screen.queryByText(/utbetaling av dagpenger stoppes/i)).not.toBeInTheDocument();
-        expect(screen.getByText(/en eventuell søknad om dagpenger kan bli avslått/i)).toBeInTheDocument();
+        expect(
+            screen.getByText(
+                /dersom du ikke sender inn meldekortet, og venter med å sende inn meldekortet i mer enn 20 dager etter forrige innsendte meldekort, vil du ikke lenger være registrert som arbeidssøker/i
+            )
+        ).toBeInTheDocument();
     });
 
     test('Mer enn ett meldekort tilgjengelig for innsending', () => {

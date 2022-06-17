@@ -1,4 +1,4 @@
-import { Heading, BodyShort, Label, BodyLong } from '@navikt/ds-react';
+import { Heading, BodyShort, BodyLong } from '@navikt/ds-react';
 
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { beregnDagerTilInaktivering } from '../../utils/meldekort-utils';
@@ -23,9 +23,12 @@ const TEKSTER = {
         klokken23: 'klokken 23.00.',
         mottar: 'utbetaling av dagpenger stoppes',
         sokt: 'din søknad om dagpenger kan bli avslått',
+        fortSomMulig: 'Du bør sende inn meldekortet så fort som mulig',
         default: 'en eventuell søknad om dagpenger kan bli avslått',
         advarselLabel: 'Dersom du ikke sender inn meldekort vil',
         advarselBeskrivelse: 'du ikke lenger være registrert som arbeidssøker',
+        advarselTrekk:
+            'Dersom du sender inn meldekortet etter fristen vil du få trekk i utbetalingen av dagpenger for neste meldekort',
         avregistrertEtter20Dager:
             'Dersom du ikke sender inn meldekortet, og venter med å sende inn meldekortet i mer enn 20 dager etter forrige innsendte meldekort, vil du ikke lenger være registrert som arbeidssøker',
         fristErForbiTittel: 'Fristen for innsending av meldekortet har gått ut',
@@ -90,7 +93,11 @@ function MeldekortAdvarsel({ dagerEtterFastsattMeldedag }: { dagerEtterFastsattM
     // Viser strenger melding fra dag 3 (torsdag)
     const tillegg =
         dagerEtterFastsattMeldedag > 2 ? (
-            <LittStrengereVarsel rettighetsgruppe={rettighetsgruppe} dagpengeStatus={dagpengeStatus} />
+            <LittStrengereVarsel
+                rettighetsgruppe={rettighetsgruppe}
+                dagpengeStatus={dagpengeStatus}
+                dagerEtterFastsattMeldedag={dagerEtterFastsattMeldedag}
+            />
         ) : null;
     const iDag = hentIDag();
     const inaktiveringsDato = plussDager(iDag, dagerTilInaktivering);
@@ -111,7 +118,7 @@ function MeldekortAdvarsel({ dagerEtterFastsattMeldedag }: { dagerEtterFastsattM
                         {dagerTilInaktivering === 0 || dagerTilInaktivering > 1 ? tekst('dager') : tekst('dag')}{' '}
                         {tekst('sendeInn')}
                     </Heading>
-                    <BodyShort>
+                    <BodyShort className="blokk-xs">
                         {tekst('fristenEr')} {datoMedUkedag(inaktiveringsDato, sprak)}, {tekst('klokken23')}
                     </BodyShort>
                 </>
@@ -124,37 +131,30 @@ function MeldekortAdvarsel({ dagerEtterFastsattMeldedag }: { dagerEtterFastsattM
 const LittStrengereVarsel = ({
     rettighetsgruppe,
     dagpengeStatus,
+    dagerEtterFastsattMeldedag,
 }: {
     rettighetsgruppe: string;
     dagpengeStatus: DagpengeStatus;
+    dagerEtterFastsattMeldedag: number | null;
 }) => {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
-    const dagpengerKonsekvensMelding = (() => {
-        switch (dagpengeStatus) {
-            case 'mottar':
-                return tekst('mottar');
-            case 'sokt':
-            case 'paabegynt':
-                return tekst('sokt');
-            default:
-                return tekst('default');
-        }
-    })();
+
+    const mottarDagpenger = rettighetsgruppe === 'DAGP';
+    const harSoktDagpenger = dagpengeStatus === 'sokt';
 
     return (
-        <div className={'strenger-varsel'}>
-            <Label>{tekst('advarselLabel')}</Label>
-            <ul className={'konsekvenser'}>
-                <li>
-                    <BodyShort>{tekst('advarselBeskrivelse')}</BodyShort>
-                </li>
-                {['DAGP', 'IYT'].includes(rettighetsgruppe) && (
-                    <li>
-                        <BodyShort>{dagpengerKonsekvensMelding}</BodyShort>
-                    </li>
-                )}
-            </ul>
-        </div>
+        <>
+            {mottarDagpenger && <BodyLong className="blokk-xs">{tekst('advarselTrekk')}</BodyLong>}
+            {dagerEtterFastsattMeldedag && dagerEtterFastsattMeldedag === 3 && (
+                <BodyLong className="blokk-xs">{tekst('fortSomMulig')}</BodyLong>
+            )}
+            {dagerEtterFastsattMeldedag && dagerEtterFastsattMeldedag > 3 && (
+                <BodyLong className="blokk-xs">{tekst('avregistrertEtter20Dager')}</BodyLong>
+            )}
+            {dagerEtterFastsattMeldedag && dagerEtterFastsattMeldedag > 3 && harSoktDagpenger && (
+                <BodyLong className="blokk-xs">{tekst('fristForbiSoktIkkeRegistrert')}</BodyLong>
+            )}
+        </>
     );
 };
 
