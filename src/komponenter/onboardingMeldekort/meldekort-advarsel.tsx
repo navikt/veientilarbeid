@@ -51,8 +51,11 @@ const TEKSTER = {
         klokken23: 'at 23:00.',
         mottar: 'payment of unemployment benefits stops',
         sokt: 'Your application of unemployment benefits may be declined',
+        fortSomMulig: 'Du bør sende inn meldekortet så fort som mulig',
         default: 'Any application of unemployment benefits may be declined',
         advarselLabel: 'If you do not submit the employment status form',
+        advarselTrekk:
+            'Dersom du sender inn meldekortet etter fristen vil du få trekk i utbetalingen av dagpenger for neste meldekort',
         advarselBeskrivelse: 'you will no longer be registered as a job seeker',
         avregistrertEtter20Dager:
             'Dersom du ikke sender inn meldekortet, og venter med å sende inn meldekortet i mer enn 20 dager etter forrige innsendte meldekort, vil du ikke lenger være registrert som arbeidssøker',
