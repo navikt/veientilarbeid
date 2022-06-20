@@ -6,7 +6,7 @@ metadata:
   labels:
     team: paw
   annotations:
-    config.linkerd.io/proxy-memory-limit: "1024Mi"
+    config.linkerd.io/proxy-memory-limit: "2048Mi"
     config.linkerd.io/proxy-memory-request: "512Mi"
     config.linkerd.io/proxy-cpu-limit: "1"
     config.linkerd.io/proxy-cpu-request: "200m"
