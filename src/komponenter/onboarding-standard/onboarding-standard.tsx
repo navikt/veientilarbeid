@@ -29,7 +29,7 @@ const TEKSTER = {
         trinn1Imorgen:
             'Du bør sende inn søknad om dagpenger i dag. Hvis du sender inn søknaden senere vil du få mindre i dagpenger på din første utbetaling',
         trinn1Fremtid:
-            'Du bør sende søknaden om dagpenger tidligst 10. juni og senest 20 juni. Det er lurt starte på søknaden allerede nå, sånn at du finner ut hvilke dokumenter du må få tak i.', // TODO: fiks datoer i teksten
+            'Du bør sende søknaden om dagpenger tidligst 10. juni og senest 20 juni. Det er lurt starte på søknaden allerede nå, sånn at du finner ut hvilke dokumenter du må få tak i', // TODO: fiks datoer i teksten
         trinn2: 'Les gjennom introduksjonen til meldekort',
         trinn3: 'Finn ut om du er enig i hvordan NAV har vurdert ditt behov for hjelp og støtte',
         feedbackSporsmal: 'Er denne oversikten nyttig?',
