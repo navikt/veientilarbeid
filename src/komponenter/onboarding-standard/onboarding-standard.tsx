@@ -3,6 +3,7 @@ import { Heading, Panel, BodyLong, Link } from '@navikt/ds-react';
 import InViewport from '../in-viewport/in-viewport';
 import ErRendret from '../er-rendret/er-rendret';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
+import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useSprakValg } from '../../contexts/sprak';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useOppfolgingData } from '../../contexts/oppfolging';
@@ -36,11 +37,34 @@ const TEKSTER = {
     },
 };
 
+function beregnUtforteTrinn(dagpengestatus: string | undefined) {
+    const trinn = [];
+    if (dagpengestatus && ['sokt', 'paabegynt'].includes(dagpengestatus)) {
+        trinn.push(1);
+    }
+    return trinn;
+}
+
+function beregnNesteTrinn(utforteTrinn: Number[]) {
+    let nesteTrinn = 0;
+    if (!utforteTrinn.includes(1)) {
+        nesteTrinn = 1;
+    }
+    if (utforteTrinn.includes(1) && !utforteTrinn.includes(2)) {
+        nesteTrinn = 2;
+    }
+    if (utforteTrinn.includes(1) && utforteTrinn.includes(2) && !utforteTrinn.includes(3)) {
+        nesteTrinn = 3;
+    }
+    return nesteTrinn;
+}
+
 const OnboardingStandard = () => {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
     const registreringData = useBrukerregistreringData();
     const oppfolgingData = useOppfolgingData();
     const featuretoggleData = useFeatureToggleData();
+    const { dagpengestatus } = useAmplitudeData();
     const { settVisModal: settVisArbeidsledigDatoModal } = useArbeidsledigDato();
     const visArbeidsLedigDatoLenke = featuretoggleData['veientilarbeid.vis-arbeidsledig-dato'];
 
@@ -50,6 +74,9 @@ const OnboardingStandard = () => {
         featuretoggleData,
     });
 
+    const utforteTrinn = beregnUtforteTrinn(dagpengestatus);
+    const nesteTrinn = beregnNesteTrinn(utforteTrinn);
+
     if (kanViseKomponent)
         return (
             <Panel border className="ramme blokk-s" id="standard-onboarding">
@@ -58,13 +85,13 @@ const OnboardingStandard = () => {
                     {tekst('header')}
                 </Heading>
                 <BodyLong spacing className="flex">
-                    <TallSirkel tall={1} /> {tekst(hentTekstnokkelForOnboardingTrinn1())}
+                    <TallSirkel tall={1} aktiv={nesteTrinn === 1} /> {tekst(hentTekstnokkelForOnboardingTrinn1())}
                 </BodyLong>
                 <BodyLong spacing className="flex">
-                    <TallSirkel tall={2} /> {tekst('trinn2')}
+                    <TallSirkel tall={2} aktiv={nesteTrinn === 2} /> {tekst('trinn2')}
                 </BodyLong>
                 <BodyLong spacing className="flex">
-                    <TallSirkel tall={3} /> {tekst('trinn3')}
+                    <TallSirkel tall={3} aktiv={nesteTrinn === 3} /> {tekst('trinn3')}
                 </BodyLong>
                 <Feedback id="standard-onboarding-info" sporsmal={tekst('feedbackSporsmal')} />
                 <InViewport loggTekst="Viser OnboardingStandard i viewport" />
