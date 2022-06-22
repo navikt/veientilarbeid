@@ -5,7 +5,7 @@ import ErRendret from '../er-rendret/er-rendret';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useSprakValg } from '../../contexts/sprak';
-import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
+import { useBrukerregistreringData, DinSituasjonSvar } from '../../contexts/brukerregistrering';
 import { useOppfolgingData } from '../../contexts/oppfolging';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { skalViseOnboardingStandard } from '../../lib/skal-vise-onboarding-standard';
@@ -77,7 +77,10 @@ const OnboardingStandard = () => {
     const featuretoggleData = useFeatureToggleData();
     const { dagpengestatus } = useAmplitudeData();
     const { settVisModal: settVisArbeidsledigDatoModal } = useArbeidsledigDato();
-    const visArbeidsLedigDatoLenke = featuretoggleData['veientilarbeid.vis-arbeidsledig-dato'];
+    const brukerregistreringData = registreringData?.registrering ?? null;
+    const dinSituasjon = brukerregistreringData?.besvarelse.dinSituasjon || DinSituasjonSvar.INGEN_VERDI;
+    const harMistetJobben = dinSituasjon === DinSituasjonSvar.MISTET_JOBBEN;
+    const visArbeidsLedigDatoLenke = featuretoggleData['veientilarbeid.vis-arbeidsledig-dato'] && harMistetJobben;
 
     const kanViseKomponent = skalViseOnboardingStandard({
         oppfolgingData,
