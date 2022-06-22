@@ -9,9 +9,10 @@ import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useOppfolgingData } from '../../contexts/oppfolging';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { skalViseOnboardingStandard } from '../../lib/skal-vise-onboarding-standard';
+import { useArbeidsledigDato } from '../../contexts/arbeidsledig-dato';
+import { hentFraBrowserStorage } from '../../utils/browserStorage-utils';
 import Feedback from '../feedback/feedback';
 import TallSirkel from '../tall/tall';
-import { useArbeidsledigDato } from '../../contexts/arbeidsledig-dato';
 import hentTekstnokkelForOnboardingTrinn1 from '../../lib/hent-tekstnokkel-for-onboarding-trinn1';
 
 const TEKSTER = {
@@ -37,10 +38,20 @@ const TEKSTER = {
     },
 };
 
-function beregnUtforteTrinn(dagpengestatus: string | undefined) {
+function beregnUtforteTrinn(
+    dagpengestatus: string | undefined,
+    harSettMeldekortIntro: string | null,
+    harSettOppfolgingIntro: string | null
+) {
     const trinn = [];
     if (dagpengestatus && ['sokt', 'paabegynt'].includes(dagpengestatus)) {
         trinn.push(1);
+    }
+    if (harSettMeldekortIntro && harSettMeldekortIntro === 'true') {
+        trinn.push(2);
+    }
+    if (harSettOppfolgingIntro && harSettOppfolgingIntro === 'true') {
+        trinn.push(3);
     }
     return trinn;
 }
@@ -74,7 +85,9 @@ const OnboardingStandard = () => {
         featuretoggleData,
     });
 
-    const utforteTrinn = beregnUtforteTrinn(dagpengestatus);
+    const harSettMeldekortIntro = hentFraBrowserStorage('meldekortintro');
+    const harSettOppfolgingIntro = hentFraBrowserStorage('14a-intro');
+    const utforteTrinn = beregnUtforteTrinn(dagpengestatus, harSettMeldekortIntro, harSettOppfolgingIntro);
     const nesteTrinn = beregnNesteTrinn(utforteTrinn);
 
     if (kanViseKomponent)
