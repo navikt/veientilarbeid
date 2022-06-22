@@ -98,13 +98,16 @@ const OnboardingStandard = () => {
                     {tekst('header')}
                 </Heading>
                 <BodyLong spacing className="flex">
-                    <TallSirkel tall={1} aktiv={nesteTrinn === 1} /> {tekst(hentTekstnokkelForOnboardingTrinn1())}
+                    <TallSirkel tall={1} aktiv={nesteTrinn === 1} inaktiv={utforteTrinn.includes(1)} />{' '}
+                    {tekst(hentTekstnokkelForOnboardingTrinn1())}
                 </BodyLong>
                 <BodyLong spacing className="flex">
-                    <TallSirkel tall={2} aktiv={nesteTrinn === 2} /> {tekst('trinn2')}
+                    <TallSirkel tall={2} aktiv={nesteTrinn === 2} inaktiv={utforteTrinn.includes(2)} />{' '}
+                    {tekst('trinn2')}
                 </BodyLong>
                 <BodyLong spacing className="flex">
-                    <TallSirkel tall={3} aktiv={nesteTrinn === 3} /> {tekst('trinn3')}
+                    <TallSirkel tall={3} aktiv={nesteTrinn === 3} inaktiv={utforteTrinn.includes(3)} />{' '}
+                    {tekst('trinn3')}
                 </BodyLong>
                 <Feedback id="standard-onboarding-info" sporsmal={tekst('feedbackSporsmal')} />
                 <InViewport loggTekst="Viser OnboardingStandard i viewport" />
