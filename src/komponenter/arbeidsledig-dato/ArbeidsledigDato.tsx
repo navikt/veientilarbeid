@@ -8,6 +8,8 @@ import { fetchToJson } from '../../ducks/api-utils';
 import { GJELDER_FRA_DATO_URL, requestConfig } from '../../ducks/api';
 import { plussDager } from '../../utils/date-utils';
 
+// TODO - legg inn amplitudedata
+
 function ArbeidsledigDato(): JSX.Element | null {
     const { visModal, settLukkModal } = useArbeidsledigDato();
     const featureToggleData = useFeatureToggleData();
@@ -60,7 +62,7 @@ function ArbeidsledigDato(): JSX.Element | null {
         <Modal open={visModal} onClose={settLukkModal} shouldCloseOnOverlayClick={false}>
             <Modal.Content>
                 <Heading spacing={true} size={'medium'} style={{ marginRight: '2em' }}>
-                    Når mistet du eller kommer du til å miste jobben?
+                    Hvilken dag er den siste dagen med lønn?
                 </Heading>
                 <BodyShort spacing={true}>
                     <input
