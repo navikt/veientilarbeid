@@ -2,9 +2,10 @@ interface Props {
     tall: Number;
     inverted?: boolean;
     aktiv?: boolean;
+    inaktiv?: boolean;
 }
 
-function hentStil(inverted?: boolean, aktiv?: boolean) {
+function hentStil(inverted?: boolean, aktiv?: boolean, inaktiv?: boolean) {
     let stil = 'tall-sirkel';
     if (inverted) {
         stil = 'tall-sirkel-inverted';
@@ -12,14 +13,17 @@ function hentStil(inverted?: boolean, aktiv?: boolean) {
     if (aktiv) {
         stil = 'tall-sirkel-aktiv';
     }
+    if (inaktiv) {
+        stil = 'tall-sirkel-inaktiv';
+    }
     return stil;
 }
 
 function TallSirkel(props: Props) {
-    const { tall, inverted, aktiv } = props;
+    const { tall, inverted, aktiv, inaktiv } = props;
     return (
         <div>
-            <div className={hentStil(inverted, aktiv)}>{tall}</div>
+            <div className={hentStil(inverted, aktiv, inaktiv)}>{tall}</div>
         </div>
     );
 }
