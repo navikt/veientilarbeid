@@ -97,15 +97,15 @@ const OnboardingStandard = () => {
                 <Heading size="medium" level="2" className="blokk-xs">
                     {tekst('header')}
                 </Heading>
-                <BodyLong spacing className="flex">
+                <BodyLong spacing className={`flex${utforteTrinn.includes(1) ? ' inaktiv' : ''}`}>
                     <TallSirkel tall={1} aktiv={nesteTrinn === 1} inaktiv={utforteTrinn.includes(1)} />{' '}
                     {tekst(hentTekstnokkelForOnboardingTrinn1())}
                 </BodyLong>
-                <BodyLong spacing className="flex">
+                <BodyLong spacing className={`flex${utforteTrinn.includes(2) ? ' inaktiv' : ''}`}>
                     <TallSirkel tall={2} aktiv={nesteTrinn === 2} inaktiv={utforteTrinn.includes(2)} />{' '}
                     {tekst('trinn2')}
                 </BodyLong>
-                <BodyLong spacing className="flex">
+                <BodyLong spacing className={`flex${utforteTrinn.includes(3) ? ' inaktiv' : ''}`}>
                     <TallSirkel tall={3} aktiv={nesteTrinn === 3} inaktiv={utforteTrinn.includes(3)} />{' '}
                     {tekst('trinn3')}
                 </BodyLong>
