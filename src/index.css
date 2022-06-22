@@ -78,7 +78,7 @@ html {
     justify-content: space-between;
 }
 
-.tall-sirkel {
+.tall-sirkel-aktiv {
     box-sizing: unset;
     border-radius: 50%;
     width: 26px;
@@ -88,6 +88,22 @@ html {
     background: #0067C5;
     border: 2px solid #0067C5;
     color: #fff;
+    text-align: center;
+    margin-right: 0.5rem;
+    font-size: 18px;
+    line-height: 1.50;
+}
+
+.tall-sirkel {
+    box-sizing: unset;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    padding: 0;    
+
+    background: #fff;
+    border: 2px solid #0067C5;
+    color: #0067C5;
     text-align: center;
     margin-right: 0.5rem;
     font-size: 18px;
