@@ -1,8 +1,11 @@
+import { useEffect, useState } from 'react';
 import { Heading, Panel, BodyLong, Link } from '@navikt/ds-react';
 
 import InViewport from '../in-viewport/in-viewport';
 import ErRendret from '../er-rendret/er-rendret';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
+import { fetchToJson } from '../../ducks/api-utils';
+import { GJELDER_FRA_DATO_URL, requestConfig } from '../../ducks/api';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useSprakValg } from '../../contexts/sprak';
 import { useBrukerregistreringData, DinSituasjonSvar } from '../../contexts/brukerregistrering';
@@ -22,7 +25,9 @@ const TEKSTER = {
         trinn1Fortid:
             'Du bør sende inn søknad om dagpenger i dag. Om du mangler dokumentasjon, bør du heller ettersende disse senere. Det viktige nå er at du får sendt inn søknaden så raskt som mulig.',
         trinn1Idag:
-            'Du bør sende inn søknad om dagpenger i dag. Sender du søknaden senere vil du ikke ha rett til penger for dagene frem til søknaden er sendt inn.',
+            'Du bør sende inn søknad om dagpenger senest i morgen. Hvis du sender inn søknaden senere vil du få mindre i dagpenger på din første utbetaling',
+        trinn1Imorgen:
+            'Du bør sende inn søknad om dagpenger i dag. Hvis du sender inn søknaden senere vil du få mindre i dagpenger på din første utbetaling',
         trinn1Fremtid:
             'Du bør sende søknaden om dagpenger tidligst 10. juni og senest 20 juni. Det er lurt starte på søknaden allerede nå, sånn at du finner ut hvilke dokumenter du må få tak i.', // TODO: fiks datoer i teksten
         trinn2: 'Les gjennom introduksjonen til meldekort',
@@ -71,6 +76,7 @@ function beregnNesteTrinn(utforteTrinn: Number[]) {
 }
 
 const OnboardingStandard = () => {
+    const [gjelderFraDato, settGjelderFraDato] = useState<string | null>(null);
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
     const registreringData = useBrukerregistreringData();
     const oppfolgingData = useOppfolgingData();
@@ -81,6 +87,15 @@ const OnboardingStandard = () => {
     const dinSituasjon = brukerregistreringData?.besvarelse.dinSituasjon || DinSituasjonSvar.INGEN_VERDI;
     const harMistetJobben = dinSituasjon === DinSituasjonSvar.MISTET_JOBBEN;
     const visArbeidsLedigDatoLenke = featuretoggleData['veientilarbeid.vis-arbeidsledig-dato'] && harMistetJobben;
+
+    const hentGjelderFraDato = async () => {
+        try {
+            const { dato } = await fetchToJson(GJELDER_FRA_DATO_URL, requestConfig());
+            settGjelderFraDato(dato);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     const kanViseKomponent = skalViseOnboardingStandard({
         oppfolgingData,
@@ -93,6 +108,12 @@ const OnboardingStandard = () => {
     const utforteTrinn = beregnUtforteTrinn(dagpengestatus, harSettMeldekortIntro, harSettOppfolgingIntro);
     const nesteTrinn = beregnNesteTrinn(utforteTrinn);
 
+    useEffect(() => {
+        if (kanViseKomponent && visArbeidsLedigDatoLenke) {
+            hentGjelderFraDato();
+        }
+    }, [kanViseKomponent, visArbeidsLedigDatoLenke]);
+
     if (kanViseKomponent)
         return (
             <Panel border className="ramme blokk-s" id="standard-onboarding">
@@ -102,7 +123,7 @@ const OnboardingStandard = () => {
                 </Heading>
                 <BodyLong spacing className={`flex${utforteTrinn.includes(1) ? ' inaktiv' : ''}`}>
                     <TallSirkel tall={1} aktiv={nesteTrinn === 1} inaktiv={utforteTrinn.includes(1)} />{' '}
-                    {tekst(hentTekstnokkelForOnboardingTrinn1())}
+                    {tekst(hentTekstnokkelForOnboardingTrinn1(gjelderFraDato))}
                 </BodyLong>
                 <BodyLong spacing className={`flex${utforteTrinn.includes(2) ? ' inaktiv' : ''}`}>
                     <TallSirkel tall={2} aktiv={nesteTrinn === 2} inaktiv={utforteTrinn.includes(2)} />{' '}

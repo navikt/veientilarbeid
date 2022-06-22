@@ -7,14 +7,16 @@ describe('hentTestnokkelForOnboardingTrinn1', () => {
     });
 
     it('returnerer "trinn1-fortid" når dato er tilbake i tid', () => {
-        expect(hentTekstnokkelForOnboardingTrinn1(plussDager(new Date(), -10))).toBe('trinn1Fortid');
+        expect(hentTekstnokkelForOnboardingTrinn1(plussDager(new Date(), -10).toISOString())).toBe('trinn1Fortid');
     });
 
     it('returnerer "trinn1-idag" når dato er idag', () => {
-        expect(hentTekstnokkelForOnboardingTrinn1(datoUtenTid(new Date().toISOString()))).toBe('trinn1Idag');
+        expect(hentTekstnokkelForOnboardingTrinn1(datoUtenTid(new Date().toISOString()).toISOString())).toBe(
+            'trinn1Idag'
+        );
     });
 
     it('returnerer "trinn1-fremtid" når dato er frem i tid', () => {
-        expect(hentTekstnokkelForOnboardingTrinn1(plussDager(new Date(), 7))).toBe('trinn1Fremtid');
+        expect(hentTekstnokkelForOnboardingTrinn1(plussDager(new Date(), 7).toISOString())).toBe('trinn1Fremtid');
     });
 });
