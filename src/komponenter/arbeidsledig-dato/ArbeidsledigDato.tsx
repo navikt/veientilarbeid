@@ -1,7 +1,9 @@
+import { useCallback, useEffect, useState } from 'react';
 import { BodyShort, Button, Heading, Link, Modal } from '@navikt/ds-react';
+
 import { useArbeidsledigDato } from '../../contexts/arbeidsledig-dato';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
-import { useCallback, useEffect, useState } from 'react';
+import { useBrukerregistreringData, DinSituasjonSvar } from '../../contexts/brukerregistrering';
 import { fetchToJson } from '../../ducks/api-utils';
 import { GJELDER_FRA_DATO_URL, requestConfig } from '../../ducks/api';
 import { plussDager } from '../../utils/date-utils';
@@ -9,8 +11,12 @@ import { plussDager } from '../../utils/date-utils';
 function ArbeidsledigDato(): JSX.Element | null {
     const { visModal, settLukkModal } = useArbeidsledigDato();
     const featureToggleData = useFeatureToggleData();
+    const registreringData = useBrukerregistreringData();
+    const brukerregistreringData = registreringData?.registrering ?? null;
+    const dinSituasjon = brukerregistreringData?.besvarelse.dinSituasjon || DinSituasjonSvar.INGEN_VERDI;
+    const harMistetJobben = dinSituasjon === DinSituasjonSvar.MISTET_JOBBEN;
 
-    const visKomponent = featureToggleData['veientilarbeid.vis-arbeidsledig-dato'];
+    const visKomponent = featureToggleData['veientilarbeid.vis-arbeidsledig-dato'] && harMistetJobben;
 
     const [gjelderFraDato, settGjelderFraDato] = useState<string | null>(null);
     const [lagrerDato, settLagrerDato] = useState<boolean>(false);
