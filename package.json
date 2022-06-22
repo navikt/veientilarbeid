@@ -15,7 +15,7 @@
         "deploy": "npm run build && gh-pages -d build",
         "prettier": "prettier --write 'src/**/*.ts' 'src/**/*.tsx' 'src/**/*.css'",
         "refresh": "rm -rf node_modules && rm package-lock.json && npm i",
-        "now-build": "cross-env REACT_APP_MOCK=true npm run build",
+        "vercel-build": "cross-env REACT_APP_MOCK=true npm run build",
         "snyk-protect": "snyk-protect",
         "prepare": "npm run snyk-protect",
         "sentry-release": "SENTRY_RELEASE=$(sentry-cli releases propose-version) node scripts/sentry-release",
