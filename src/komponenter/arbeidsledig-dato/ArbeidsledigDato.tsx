@@ -7,10 +7,13 @@ import { useBrukerregistreringData, DinSituasjonSvar } from '../../contexts/bruk
 import { fetchToJson } from '../../ducks/api-utils';
 import { GJELDER_FRA_DATO_URL, requestConfig } from '../../ducks/api';
 import { plussDager } from '../../utils/date-utils';
+import { loggAktivitet } from '../../metrics/metrics';
+import { useAmplitudeData } from '../../contexts/amplitude-context';
 
 // TODO - legg inn amplitudedata
 
 function ArbeidsledigDato(): JSX.Element | null {
+    const amplitudeData = useAmplitudeData();
     const { visModal, settLukkModal } = useArbeidsledigDato();
     const featureToggleData = useFeatureToggleData();
     const registreringData = useBrukerregistreringData();
@@ -33,6 +36,9 @@ function ArbeidsledigDato(): JSX.Element | null {
     };
 
     const onSubmit = useCallback(async () => {
+        gjelderFraDato == null
+            ? loggAktivitet({ aktivitet: 'Setter dato for siste dag med lønn', ...amplitudeData })
+            : loggAktivitet({ aktivitet: 'Endrer dato for siste dag med lønn', ...amplitudeData });
         try {
             settLagrerDato(true);
             await fetchToJson(GJELDER_FRA_DATO_URL, {
