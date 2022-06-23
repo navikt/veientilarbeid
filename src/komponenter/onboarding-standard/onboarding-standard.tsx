@@ -94,12 +94,12 @@ const LeggTilEllerEndreDato = ({
             )}
             <Link
                 href={'#'}
-                onClick={(e) => {
-                    e.preventDefault();
+                onClick={(event) => {
+                    event.preventDefault();
                     settVisArbeidsledigDatoModal();
                 }}
             >
-                {dato ? 'Endre dato' : ''}
+                {dato ? 'Endre dato' : 'En lang tekst som sier noe lurt'}
             </Link>
         </div>
     );
@@ -112,7 +112,6 @@ const OnboardingStandard = () => {
     const oppfolgingData = useOppfolgingData();
     const featuretoggleData = useFeatureToggleData();
     const { dagpengestatus } = useAmplitudeData();
-    const { settVisModal: settVisArbeidsledigDatoModal } = useArbeidsledigDato();
     const brukerregistreringData = registreringData?.registrering ?? null;
     const dinSituasjon = brukerregistreringData?.besvarelse.dinSituasjon || DinSituasjonSvar.INGEN_VERDI;
     const harMistetJobben = dinSituasjon === DinSituasjonSvar.MISTET_JOBBEN;
@@ -166,17 +165,6 @@ const OnboardingStandard = () => {
                 </BodyLong>
                 <Feedback id="standard-onboarding-info" sporsmal={tekst('feedbackSporsmal')} />
                 <InViewport loggTekst="Viser OnboardingStandard i viewport" />
-                {visArbeidsLedigDatoLenke && (
-                    <Link
-                        href={'#'}
-                        onClick={(e) => {
-                            e.preventDefault();
-                            settVisArbeidsledigDatoModal();
-                        }}
-                    >
-                        Velg dato
-                    </Link>
-                )}
             </Panel>
         );
     return null;
