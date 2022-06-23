@@ -10,11 +10,11 @@ function hentTekstnokkelForOnboardingTrinn1(arbeidsledigDato?: string | null): T
     const dato = new Date(arbeidsledigDato);
     const delta = dagerFraDato(new Date(), dato);
 
-    if (delta < 0) {
+    if (delta < -1) {
         return 'trinn1Fortid';
     } else if (delta === 0) {
         return 'trinn1Idag';
-    } else if (delta === 1) {
+    } else if (delta === -1) {
         return 'trinn1Imorgen';
     } else {
         return 'trinn1Fremtid';

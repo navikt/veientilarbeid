@@ -10,6 +10,10 @@ describe('hentTestnokkelForOnboardingTrinn1', () => {
         expect(hentTekstnokkelForOnboardingTrinn1(plussDager(new Date(), -10).toISOString())).toBe('trinn1Fortid');
     });
 
+    it('returnerer "trinn1-Imorgen" når dato er 1 dag tilbake i tid', () => {
+        expect(hentTekstnokkelForOnboardingTrinn1(plussDager(new Date(), -1).toISOString())).toBe('trinn1Imorgen');
+    });
+
     it('returnerer "trinn1-idag" når dato er idag', () => {
         expect(hentTekstnokkelForOnboardingTrinn1(datoUtenTid(new Date().toISOString()).toISOString())).toBe(
             'trinn1Idag'
