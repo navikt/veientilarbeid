@@ -89,9 +89,10 @@ const LeggTilEllerEndreDato = ({
         <div className="flex blokk-xs my-1">
             {dato && (
                 <BodyShort>
-                    Siste dag med lønn: <b>{prettyPrintDato(dato)}</b>&nbsp;
+                    Siste dag med lønn: <b>{prettyPrintDato(dato)}</b>
                 </BodyShort>
             )}
+            {dato && <div className="mr-05 ml-05">|</div>}
             <Link
                 href={'#'}
                 onClick={(event) => {
@@ -99,7 +100,7 @@ const LeggTilEllerEndreDato = ({
                     settVisArbeidsledigDatoModal();
                 }}
             >
-                {dato ? 'Endre dato' : 'En lang tekst som sier noe lurt'}
+                {dato ? 'Endre dato' : 'Trenger du veiledning om når du bør sende inn søknad om dagpenger?'}
             </Link>
         </div>
     );

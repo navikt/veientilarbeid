@@ -1,5 +1,5 @@
 const gjelderFraGetResponse = {
-    dato: '2022-08-23',
+    dato: '2022-06-30',
 };
 
 export default gjelderFraGetResponse;
