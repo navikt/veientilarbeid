@@ -45,6 +45,7 @@ function ArbeidsledigDato(): JSX.Element | null {
         } finally {
             settLagrerDato(false);
             settLukkModal();
+            //TODO: Sjekke hvordan vi oppdaterer parentkomponenten når dato blir endret
         }
     }, [gjelderFraDato, settLukkModal]);
 

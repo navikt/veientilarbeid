@@ -37,6 +37,7 @@ export enum DemoData {
     ER_UNDER_30 = 'erUnder30',
     SPRAK = 'lang',
     VIS_ARBEIDSLEDIG_DATO = 'visArbeidsledigDato',
+    GJELDER_FRA_DATO = 'gjelderFraDato',
 }
 
 export const hentDemoState = (key: string): string | null => hentQueryParam(key);
@@ -63,6 +64,9 @@ export const settRegistreringType = (value: string) => settDemoState(DemoData.RE
 
 export const hentGeografiskTilknytning = () => hentDemoState(DemoData.GEOGRAFISK_TILKNYTNING) || '3808';
 export const settGeografiskTilknytning = (value: string) => settDemoState(DemoData.GEOGRAFISK_TILKNYTNING, value);
+
+export const hentGjelderFraDato = () => hentDemoState(DemoData.GJELDER_FRA_DATO) || null;
+export const settGjelderFraDato = (value: string) => settDemoState(DemoData.GJELDER_FRA_DATO, value);
 
 export const hentUlesteDialoger = () => hentDemoState(DemoData.ULESTE_DIALOGER) === 'true';
 export const settUlesteDialoger = (value: boolean) => settDemoState(DemoData.ULESTE_DIALOGER, value);
