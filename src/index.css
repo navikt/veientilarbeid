@@ -26,6 +26,10 @@ html {
     bottom: 0;
 }
 
+.my-1 {
+    margin-top: -1rem;
+}
+
 .mr-05 {
     margin-right: 0.5rem;
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Heading, Panel, BodyLong, Link } from '@navikt/ds-react';
+import { Heading, Panel, BodyLong, Link, BodyShort } from '@navikt/ds-react';
 
 import InViewport from '../in-viewport/in-viewport';
 import ErRendret from '../er-rendret/er-rendret';
@@ -17,6 +17,7 @@ import { hentFraBrowserStorage } from '../../utils/browserStorage-utils';
 import Feedback from '../feedback/feedback';
 import TallSirkel from '../tall/tall';
 import hentTekstnokkelForOnboardingTrinn1 from '../../lib/hent-tekstnokkel-for-onboarding-trinn1';
+import prettyPrintDato from '../../utils/pretty-print-dato';
 
 const TEKSTER = {
     nb: {
@@ -75,6 +76,35 @@ function beregnNesteTrinn(utforteTrinn: Number[]) {
     return nesteTrinn;
 }
 
+const LeggTilEllerEndreDato = ({
+    kanViseKomponent,
+    dato,
+}: {
+    kanViseKomponent: boolean | undefined;
+    dato: string | null;
+}) => {
+    const { settVisModal: settVisArbeidsledigDatoModal } = useArbeidsledigDato();
+    if (!kanViseKomponent) return null;
+    return (
+        <div className="flex blokk-xs my-1">
+            {dato && (
+                <BodyShort>
+                    Siste dag med lønn: <b>{prettyPrintDato(dato)}</b>&nbsp;
+                </BodyShort>
+            )}
+            <Link
+                href={'#'}
+                onClick={(e) => {
+                    e.preventDefault();
+                    settVisArbeidsledigDatoModal();
+                }}
+            >
+                {dato ? 'Endre dato' : ''}
+            </Link>
+        </div>
+    );
+};
+
 const OnboardingStandard = () => {
     const [gjelderFraDato, settGjelderFraDato] = useState<string | null>(null);
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
@@ -121,6 +151,7 @@ const OnboardingStandard = () => {
                 <Heading size="medium" level="2" className="blokk-xs">
                     {tekst('header')}
                 </Heading>
+                <LeggTilEllerEndreDato kanViseKomponent={visArbeidsLedigDatoLenke} dato={gjelderFraDato} />
                 <BodyLong spacing className={`flex${utforteTrinn.includes(1) ? ' inaktiv' : ''}`}>
                     <TallSirkel tall={1} aktiv={nesteTrinn === 1} inaktiv={utforteTrinn.includes(1)} />{' '}
                     {tekst(hentTekstnokkelForOnboardingTrinn1(gjelderFraDato))}
