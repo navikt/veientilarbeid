@@ -18,6 +18,7 @@ import Feedback from '../feedback/feedback';
 import TallSirkel from '../tall/tall';
 import hentTekstnokkelForOnboardingTrinn1 from '../../lib/hent-tekstnokkel-for-onboarding-trinn1';
 import prettyPrintDato from '../../utils/pretty-print-dato';
+import { plussDager } from '../../utils/date-utils';
 
 const TEKSTER = {
     nb: {
@@ -26,11 +27,10 @@ const TEKSTER = {
         trinn1Fortid:
             'Du bør sende inn søknad om dagpenger i dag. Om du mangler dokumentasjon, bør du heller ettersende disse senere. Det viktige nå er at du får sendt inn søknaden så raskt som mulig.',
         trinn1Idag:
-            'Du bør sende inn søknad om dagpenger senest i morgen. Hvis du sender inn søknaden senere vil du få mindre i dagpenger på din første utbetaling',
+            'Du bør sende inn søknad om dagpenger senest i morgen ({{datoSenest}}). Hvis du sender inn søknaden senere vil du få mindre i dagpenger på din første utbetaling',
         trinn1Imorgen:
             'Du bør sende inn søknad om dagpenger i dag. Hvis du sender inn søknaden senere vil du få mindre i dagpenger på din første utbetaling',
-        trinn1Fremtid:
-            'Du bør sende søknaden om dagpenger tidligst 10. juni og senest 20 juni. Det er lurt starte på søknaden allerede nå, sånn at du finner ut hvilke dokumenter du må få tak i', // TODO: fiks datoer i teksten
+        trinn1Fremtid: `Du bør sende søknaden om dagpenger tidligst {{datoTidligst}} og senest {{datoSenest}}. Det er lurt starte på søknaden allerede nå, sånn at du finner ut hvilke dokumenter du må få tak i`, // TODO: fiks datoer i teksten
         trinn2: 'Les gjennom introduksjonen til meldekort',
         trinn3: 'Finn ut om du er enig i hvordan NAV har vurdert ditt behov for hjelp og støtte',
         feedbackSporsmal: 'Er denne oversikten nyttig?',
@@ -107,6 +107,8 @@ const LeggTilEllerEndreDato = ({
 
 const OnboardingStandard = () => {
     const [gjelderFraDato, settGjelderFraDato] = useState<string | null>(null);
+    const [datoTidligst, settDatoTidligst] = useState<string>('');
+    const [datoSenest, settDatoSenest] = useState<string>('');
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
     const registreringData = useBrukerregistreringData();
     const oppfolgingData = useOppfolgingData();
@@ -143,6 +145,15 @@ const OnboardingStandard = () => {
         }
     }, [kanViseKomponent, visArbeidsLedigDatoLenke]);
 
+    useEffect(() => {
+        if (gjelderFraDato) {
+            const datoTidligst = prettyPrintDato(plussDager(new Date(gjelderFraDato), -7).toISOString());
+            const datoSenest = prettyPrintDato(plussDager(new Date(gjelderFraDato), 1).toISOString());
+            settDatoTidligst(datoTidligst);
+            settDatoSenest(datoSenest);
+        }
+    }, [gjelderFraDato]);
+
     if (kanViseKomponent)
         return (
             <Panel border className="ramme blokk-s" id="standard-onboarding">
@@ -153,7 +164,9 @@ const OnboardingStandard = () => {
                 <LeggTilEllerEndreDato kanViseKomponent={visArbeidsLedigDatoLenke} dato={gjelderFraDato} />
                 <BodyLong spacing className={`flex${utforteTrinn.includes(1) ? ' inaktiv' : ''}`}>
                     <TallSirkel tall={1} aktiv={nesteTrinn === 1} inaktiv={utforteTrinn.includes(1)} />{' '}
-                    {tekst(hentTekstnokkelForOnboardingTrinn1(gjelderFraDato))}
+                    {tekst(hentTekstnokkelForOnboardingTrinn1(gjelderFraDato))
+                        .replace('{{datoSenest}}', datoSenest)
+                        .replace('{{datoTidligst}}', datoTidligst)}
                 </BodyLong>
                 <BodyLong spacing className={`flex${utforteTrinn.includes(2) ? ' inaktiv' : ''}`}>
                     <TallSirkel tall={2} aktiv={nesteTrinn === 2} inaktiv={utforteTrinn.includes(2)} />{' '}
