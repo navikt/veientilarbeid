@@ -26,12 +26,12 @@ const TEKSTER = {
         header: 'Tre viktige ting i din første uke som registrert arbeidssøker',
         trinn1: 'Start på søknaden om dagpenger, slik at du finner ut når du må sende inn søknaden.',
         trinn1Fortid:
-            'Du bør sende inn søknad om dagpenger i dag. Om du mangler dokumentasjon, bør du ettersende disse så snart du har fått tak i dokumentasjonen. Det viktige nå er at du får sendt inn søknaden så raskt som mulig.',
+            'Du bør sende inn søknad om dagpenger i dag.<br />Om du mangler dokumentasjon, bør du ettersende disse så snart du har fått tak i dokumentasjonen. Det viktige nå er at du får sendt inn søknaden så raskt som mulig.',
         trinn1Idag:
-            'Du bør sende inn søknad om dagpenger senest i morgen, {{datoSenest}}. Hvis du sender inn søknaden senere vil du få mindre i dagpenger på din første utbetaling',
+            'Du bør sende inn søknad om dagpenger senest i morgen, {{datoSenest}}.<br />Hvis du sender inn søknaden senere vil du få mindre i dagpenger på din første utbetaling.',
         trinn1Imorgen:
-            'Du bør sende inn søknad om dagpenger i dag. Hvis du sender inn søknaden senere vil du få mindre i dagpenger på din første utbetaling.',
-        trinn1Fremtid: `Du bør sende søknaden om dagpenger tidligst {{datoTidligst}} og senest {{datoSenest}}. Det er lurt starte på søknaden allerede nå, sånn at du finner ut hvilke dokumenter du må få tak i`,
+            'Du bør sende inn søknad om dagpenger i dag.<br />Hvis du sender inn søknaden senere vil du få mindre i dagpenger på din første utbetaling.',
+        trinn1Fremtid: `Du bør sende søknaden om dagpenger tidligst {{datoTidligst}} og senest {{datoSenest}}.<br />Det er lurt starte på søknaden allerede nå, sånn at du finner ut hvilke dokumenter du må få tak i.`,
         trinn2: 'Les gjennom introduksjonen til meldekort.',
         trinn3: 'Finn ut om du er enig i hvordan NAV har vurdert ditt behov for hjelp og støtte.',
         feedbackSporsmal: 'Er denne oversikten nyttig?',
@@ -176,9 +176,13 @@ const OnboardingStandard = () => {
                 <LeggTilEllerEndreDato kanViseKomponent={visArbeidsLedigDatoLenke} dato={gjelderFraDato} />
                 <BodyLong spacing className={`flex${utforteTrinn.includes(1) ? ' inaktiv' : ''}`}>
                     <TallSirkel tall={1} aktiv={nesteTrinn === 1} inaktiv={utforteTrinn.includes(1)} />{' '}
-                    {tekst(hentTekstnokkelForOnboardingTrinn1(gjelderFraDato))
-                        .replace('{{datoSenest}}', datoSenest)
-                        .replace('{{datoTidligst}}', datoTidligst)}
+                    <span
+                        dangerouslySetInnerHTML={{
+                            __html: tekst(hentTekstnokkelForOnboardingTrinn1(gjelderFraDato))
+                                .replace('{{datoSenest}}', datoSenest)
+                                .replace('{{datoTidligst}}', datoTidligst),
+                        }}
+                    ></span>
                 </BodyLong>
                 <BodyLong spacing className={`flex${utforteTrinn.includes(2) ? ' inaktiv' : ''}`}>
                     <TallSirkel tall={2} aktiv={nesteTrinn === 2} inaktiv={utforteTrinn.includes(2)} />{' '}
