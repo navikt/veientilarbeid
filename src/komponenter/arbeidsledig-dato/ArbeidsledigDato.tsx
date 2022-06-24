@@ -10,8 +10,6 @@ import { plussDager } from '../../utils/date-utils';
 import { loggAktivitet } from '../../metrics/metrics';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 
-// TODO - legg inn amplitudedata
-
 function ArbeidsledigDato(): JSX.Element | null {
     const amplitudeData = useAmplitudeData();
     const { visModal, settLukkModal } = useArbeidsledigDato();
@@ -46,8 +44,8 @@ function ArbeidsledigDato(): JSX.Element | null {
                 method: 'POST',
                 body: JSON.stringify({ dato: gjelderFraDato }),
             });
-        } catch (err) {
-            console.error(err);
+        } catch (error) {
+            console.error(error);
         } finally {
             settLagrerDato(false);
             settLukkModal();
@@ -85,8 +83,12 @@ function ArbeidsledigDato(): JSX.Element | null {
                 <BodyShort spacing={true}>
                     <Link
                         href={'#'}
-                        onClick={(e) => {
-                            e.preventDefault();
+                        onClick={(event) => {
+                            event.preventDefault();
+                            loggAktivitet({
+                                aktivitet: 'Ønsker ikke oppgi dato for siste dag med lønn',
+                                ...amplitudeData,
+                            });
                             settLukkModal();
                         }}
                     >
