@@ -19,6 +19,7 @@ import TallSirkel from '../tall/tall';
 import hentTekstnokkelForOnboardingTrinn1 from '../../lib/hent-tekstnokkel-for-onboarding-trinn1';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import { plussDager } from '../../utils/date-utils';
+import { loggAktivitet } from '../../metrics/metrics';
 
 const TEKSTER = {
     nb: {
@@ -84,6 +85,7 @@ const LeggTilEllerEndreDato = ({
     dato: string | null;
 }) => {
     const { settVisModal: settVisArbeidsledigDatoModal } = useArbeidsledigDato();
+    const amplitudeData = useAmplitudeData();
     if (!kanViseKomponent) return null;
     return (
         <div className="flex blokk-xs my-1">
@@ -97,6 +99,15 @@ const LeggTilEllerEndreDato = ({
                 href={'#'}
                 onClick={(event) => {
                     event.preventDefault();
+                    dato
+                        ? loggAktivitet({
+                              aktivitet: 'Arbeidssøker vil endre dato for siste dag med lønn',
+                              ...amplitudeData,
+                          })
+                        : loggAktivitet({
+                              aktivitet: 'Arbeidssøker vil registrere dato for siste dag med lønn',
+                              ...amplitudeData,
+                          });
                     settVisArbeidsledigDatoModal();
                 }}
             >
