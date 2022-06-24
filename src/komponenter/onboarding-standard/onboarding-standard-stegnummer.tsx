@@ -1,5 +1,5 @@
 import TallSirkel from '../tall/tall';
-import { skalViseOnboardingStandard } from '../../lib/skal-vise-onboarding-standard';
+import { erStandardTilknyttetArbeid } from '../../lib/er-standard-tilknyttet-arbeid';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useOppfolgingData } from '../../contexts/oppfolging';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
@@ -14,7 +14,7 @@ const OnboardingStandardStegnummer = (props: Props) => {
     const oppfolgingData = useOppfolgingData();
     const featuretoggleData = useFeatureToggleData();
 
-    const kanViseKomponent = skalViseOnboardingStandard({
+    const kanViseKomponent = erStandardTilknyttetArbeid({
         oppfolgingData,
         registreringData,
         featuretoggleData,

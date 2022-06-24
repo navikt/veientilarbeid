@@ -11,15 +11,16 @@ import { useSprakValg } from '../../contexts/sprak';
 import { useBrukerregistreringData, DinSituasjonSvar } from '../../contexts/brukerregistrering';
 import { useOppfolgingData } from '../../contexts/oppfolging';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
-import { skalViseOnboardingStandard } from '../../lib/skal-vise-onboarding-standard';
+import { erStandardTilknyttetArbeid } from '../../lib/er-standard-tilknyttet-arbeid';
 import { useArbeidsledigDato } from '../../contexts/arbeidsledig-dato';
 import { hentFraBrowserStorage } from '../../utils/browserStorage-utils';
 import Feedback from '../feedback/feedback';
 import TallSirkel from '../tall/tall';
 import hentTekstnokkelForOnboardingTrinn1 from '../../lib/hent-tekstnokkel-for-onboarding-trinn1';
 import prettyPrintDato from '../../utils/pretty-print-dato';
-import { plussDager } from '../../utils/date-utils';
+import { datoUtenTid, plussDager } from '../../utils/date-utils';
 import { loggAktivitet } from '../../metrics/metrics';
+import ukerFraDato from '../../utils/uker-fra-dato';
 
 const TEKSTER = {
     nb: {
@@ -121,6 +122,7 @@ const OnboardingStandard = () => {
     const [gjelderFraDato, settGjelderFraDato] = useState<string | null>(null);
     const [datoTidligst, settDatoTidligst] = useState<string>('');
     const [datoSenest, settDatoSenest] = useState<string>('');
+    const [kanViseKomponent, settKanViseKomponent] = useState<boolean>(false);
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
     const registreringData = useBrukerregistreringData();
     const oppfolgingData = useOppfolgingData();
@@ -130,7 +132,11 @@ const OnboardingStandard = () => {
     const dinSituasjon = brukerregistreringData?.besvarelse.dinSituasjon || DinSituasjonSvar.INGEN_VERDI;
     const harMistetJobben = dinSituasjon === DinSituasjonSvar.MISTET_JOBBEN;
     const visArbeidsLedigDatoLenke = featuretoggleData['veientilarbeid.vis-arbeidsledig-dato'] && harMistetJobben;
-
+    const opprettetRegistreringDatoString = brukerregistreringData?.opprettetDato;
+    const opprettetRegistreringDato = opprettetRegistreringDatoString
+        ? new Date(opprettetRegistreringDatoString)
+        : null;
+    const ukerRegistrert = opprettetRegistreringDato ? ukerFraDato(opprettetRegistreringDato) : 'INGEN_DATO';
     const hentGjelderFraDato = async () => {
         try {
             const { dato } = await fetchToJson(GJELDER_FRA_DATO_URL, requestConfig());
@@ -140,7 +146,7 @@ const OnboardingStandard = () => {
         }
     };
 
-    const kanViseKomponent = skalViseOnboardingStandard({
+    const erStandardAvRettType = erStandardTilknyttetArbeid({
         oppfolgingData,
         registreringData,
         featuretoggleData,
@@ -152,19 +158,26 @@ const OnboardingStandard = () => {
     const nesteTrinn = beregnNesteTrinn(utforteTrinn);
 
     useEffect(() => {
-        if (kanViseKomponent && visArbeidsLedigDatoLenke) {
+        if (erStandardAvRettType && visArbeidsLedigDatoLenke) {
             hentGjelderFraDato();
         }
-    }, [kanViseKomponent, visArbeidsLedigDatoLenke]);
+    }, [erStandardAvRettType, visArbeidsLedigDatoLenke]);
 
     useEffect(() => {
         if (gjelderFraDato) {
-            const datoTidligst = prettyPrintDato(plussDager(new Date(gjelderFraDato), -7).toISOString());
-            const datoSenest = prettyPrintDato(plussDager(new Date(gjelderFraDato), 1).toISOString());
-            settDatoTidligst(datoTidligst);
-            settDatoSenest(datoSenest);
+            const tidligsteDatoForSoknad = prettyPrintDato(plussDager(new Date(gjelderFraDato), -7).toISOString());
+            const senesteDatoForSoknad = prettyPrintDato(plussDager(new Date(gjelderFraDato), 1).toISOString());
+            settDatoTidligst(tidligsteDatoForSoknad);
+            settDatoSenest(senesteDatoForSoknad);
         }
     }, [gjelderFraDato]);
+
+    useEffect(() => {
+        if (erStandardAvRettType) {
+            const erFremdelesIArbeid = gjelderFraDato ? datoUtenTid(gjelderFraDato) > new Date(Date.now()) : false;
+            settKanViseKomponent(ukerRegistrert === 0 || erFremdelesIArbeid);
+        }
+    }, [gjelderFraDato, erStandardAvRettType, ukerRegistrert]);
 
     if (kanViseKomponent)
         return (
