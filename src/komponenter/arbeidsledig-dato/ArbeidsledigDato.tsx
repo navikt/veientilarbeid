@@ -51,7 +51,7 @@ function ArbeidsledigDato(): JSX.Element | null {
             settLukkModal();
             //TODO: Sjekke hvordan vi oppdaterer parentkomponenten når dato blir endret
         }
-    }, [gjelderFraDato, settLukkModal]);
+    }, [gjelderFraDato, settLukkModal, amplitudeData]);
 
     useEffect(() => {
         if (visModal) {
