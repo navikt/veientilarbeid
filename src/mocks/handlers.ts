@@ -3,7 +3,7 @@ import AuthResponse from './auth-mock';
 import ulesteDialogerResponse from './ulestedialoger-mock';
 import egenvurderingbesvarelseResponse from './egenvurderingbesvarelse-mock';
 // import brukerRegistreringResponse from './brukerregistrering-sykmeldt-mock';
-import gjelderFraResponse from './gjelder-fra-mock';
+import gjelderFraResponse from './gjelderfra-mock';
 import brukerRegistreringResponse from './brukerregistrering-standard-mock';
 import motestotteResponse from './motestotte-mock';
 import featureTogglesResponse from './feature-toggles-mock';

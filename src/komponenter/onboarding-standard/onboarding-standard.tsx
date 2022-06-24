@@ -1,32 +1,40 @@
-import { Heading, Panel, BodyLong, Link } from '@navikt/ds-react';
+import { useEffect, useState } from 'react';
+import { Heading, Panel, BodyLong, Link, BodyShort } from '@navikt/ds-react';
 
 import InViewport from '../in-viewport/in-viewport';
 import ErRendret from '../er-rendret/er-rendret';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
+import { fetchToJson } from '../../ducks/api-utils';
+import { GJELDER_FRA_DATO_URL, requestConfig } from '../../ducks/api';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useSprakValg } from '../../contexts/sprak';
-import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
+import { useBrukerregistreringData, DinSituasjonSvar } from '../../contexts/brukerregistrering';
 import { useOppfolgingData } from '../../contexts/oppfolging';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
-import { skalViseOnboardingStandard } from '../../lib/skal-vise-onboarding-standard';
+import { erStandardTilknyttetArbeid } from '../../lib/er-standard-tilknyttet-arbeid';
 import { useArbeidsledigDato } from '../../contexts/arbeidsledig-dato';
 import { hentFraBrowserStorage } from '../../utils/browserStorage-utils';
 import Feedback from '../feedback/feedback';
 import TallSirkel from '../tall/tall';
 import hentTekstnokkelForOnboardingTrinn1 from '../../lib/hent-tekstnokkel-for-onboarding-trinn1';
+import prettyPrintDato from '../../utils/pretty-print-dato';
+import { datoUtenTid, plussDager } from '../../utils/date-utils';
+import { loggAktivitet } from '../../metrics/metrics';
+import ukerFraDato from '../../utils/uker-fra-dato';
 
 const TEKSTER = {
     nb: {
         header: 'Tre viktige ting i din første uke som registrert arbeidssøker',
-        trinn1: 'Start på en søknad om dagpenger i dag, slik at du finner ut når du må sende inn søknaden',
+        trinn1: 'Start på søknaden om dagpenger, slik at du finner ut når du må sende inn søknaden.',
         trinn1Fortid:
-            'Du bør sende inn søknad om dagpenger i dag. Om du mangler dokumentasjon, bør du heller ettersende disse senere. Det viktige nå er at du får sendt inn søknaden så raskt som mulig.',
+            'Du bør sende inn søknad om dagpenger i dag.<br />Om du mangler dokumentasjon, bør du ettersende disse så snart du har fått tak i dokumentasjonen. Det viktige nå er at du får sendt inn søknaden så raskt som mulig.',
         trinn1Idag:
-            'Du bør sende inn søknad om dagpenger i dag. Sender du søknaden senere vil du ikke ha rett til penger for dagene frem til søknaden er sendt inn.',
-        trinn1Fremtid:
-            'Du bør sende søknaden om dagpenger tidligst 10. juni og senest 20 juni. Det er lurt starte på søknaden allerede nå, sånn at du finner ut hvilke dokumenter du må få tak i.', // TODO: fiks datoer i teksten
-        trinn2: 'Les gjennom introduksjonen til meldekort',
-        trinn3: 'Finn ut om du er enig i hvordan NAV har vurdert ditt behov for hjelp og støtte',
+            'Du bør sende inn søknad om dagpenger senest i morgen, {{datoSenest}}.<br />Hvis du sender inn søknaden senere vil du få mindre i dagpenger på din første utbetaling.',
+        trinn1Imorgen:
+            'Du bør sende inn søknad om dagpenger i dag.<br />Hvis du sender inn søknaden senere vil du få mindre i dagpenger på din første utbetaling.',
+        trinn1Fremtid: `Du bør sende søknaden om dagpenger tidligst {{datoTidligst}} og senest {{datoSenest}}.<br />Det er lurt starte på søknaden allerede nå, sånn at du finner ut hvilke dokumenter du må få tak i.`,
+        trinn2: 'Les gjennom introduksjonen til meldekort.',
+        trinn3: 'Finn ut om du er enig i hvordan NAV har vurdert ditt behov for hjelp og støtte.',
         feedbackSporsmal: 'Er denne oversikten nyttig?',
     },
     en: {
@@ -70,16 +78,75 @@ function beregnNesteTrinn(utforteTrinn: Number[]) {
     return nesteTrinn;
 }
 
+const LeggTilEllerEndreDato = ({
+    kanViseKomponent,
+    dato,
+}: {
+    kanViseKomponent: boolean | undefined;
+    dato: string | null;
+}) => {
+    const { settVisModal: settVisArbeidsledigDatoModal } = useArbeidsledigDato();
+    const amplitudeData = useAmplitudeData();
+    if (!kanViseKomponent) return null;
+    return (
+        <div className="flex blokk-xs my-1">
+            {dato && (
+                <BodyShort>
+                    Siste dag med lønn: <b>{prettyPrintDato(dato)}</b>
+                </BodyShort>
+            )}
+            {dato && <div className="mr-05 ml-05">|</div>}
+            <Link
+                href={'#'}
+                onClick={(event) => {
+                    event.preventDefault();
+                    dato
+                        ? loggAktivitet({
+                              aktivitet: 'Arbeidssøker vil endre dato for siste dag med lønn',
+                              ...amplitudeData,
+                          })
+                        : loggAktivitet({
+                              aktivitet: 'Arbeidssøker vil registrere dato for siste dag med lønn',
+                              ...amplitudeData,
+                          });
+                    settVisArbeidsledigDatoModal();
+                }}
+            >
+                {dato ? 'Endre dato' : 'Trenger du veiledning om når du bør sende inn søknad om dagpenger?'}
+            </Link>
+        </div>
+    );
+};
+
 const OnboardingStandard = () => {
+    const [gjelderFraDato, settGjelderFraDato] = useState<string | null>(null);
+    const [datoTidligst, settDatoTidligst] = useState<string>('');
+    const [datoSenest, settDatoSenest] = useState<string>('');
+    const [kanViseKomponent, settKanViseKomponent] = useState<boolean>(false);
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
     const registreringData = useBrukerregistreringData();
     const oppfolgingData = useOppfolgingData();
     const featuretoggleData = useFeatureToggleData();
     const { dagpengestatus } = useAmplitudeData();
-    const { settVisModal: settVisArbeidsledigDatoModal } = useArbeidsledigDato();
-    const visArbeidsLedigDatoLenke = featuretoggleData['veientilarbeid.vis-arbeidsledig-dato'];
+    const brukerregistreringData = registreringData?.registrering ?? null;
+    const dinSituasjon = brukerregistreringData?.besvarelse.dinSituasjon || DinSituasjonSvar.INGEN_VERDI;
+    const harMistetJobben = dinSituasjon === DinSituasjonSvar.MISTET_JOBBEN;
+    const visArbeidsLedigDatoLenke = featuretoggleData['veientilarbeid.vis-arbeidsledig-dato'] && harMistetJobben;
+    const opprettetRegistreringDatoString = brukerregistreringData?.opprettetDato;
+    const opprettetRegistreringDato = opprettetRegistreringDatoString
+        ? new Date(opprettetRegistreringDatoString)
+        : null;
+    const ukerRegistrert = opprettetRegistreringDato ? ukerFraDato(opprettetRegistreringDato) : 'INGEN_DATO';
+    const hentGjelderFraDato = async () => {
+        try {
+            const { dato } = await fetchToJson(GJELDER_FRA_DATO_URL, requestConfig());
+            settGjelderFraDato(dato);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
-    const kanViseKomponent = skalViseOnboardingStandard({
+    const erStandardAvRettType = erStandardTilknyttetArbeid({
         oppfolgingData,
         registreringData,
         featuretoggleData,
@@ -90,6 +157,28 @@ const OnboardingStandard = () => {
     const utforteTrinn = beregnUtforteTrinn(dagpengestatus, harSettMeldekortIntro, harSettOppfolgingIntro);
     const nesteTrinn = beregnNesteTrinn(utforteTrinn);
 
+    useEffect(() => {
+        if (erStandardAvRettType && visArbeidsLedigDatoLenke) {
+            hentGjelderFraDato();
+        }
+    }, [erStandardAvRettType, visArbeidsLedigDatoLenke]);
+
+    useEffect(() => {
+        if (gjelderFraDato) {
+            const tidligsteDatoForSoknad = prettyPrintDato(plussDager(new Date(gjelderFraDato), -7).toISOString());
+            const senesteDatoForSoknad = prettyPrintDato(plussDager(new Date(gjelderFraDato), 1).toISOString());
+            settDatoTidligst(tidligsteDatoForSoknad);
+            settDatoSenest(senesteDatoForSoknad);
+        }
+    }, [gjelderFraDato]);
+
+    useEffect(() => {
+        if (erStandardAvRettType) {
+            const erFremdelesIArbeid = gjelderFraDato ? datoUtenTid(gjelderFraDato) > new Date(Date.now()) : false;
+            settKanViseKomponent(ukerRegistrert === 0 || erFremdelesIArbeid);
+        }
+    }, [gjelderFraDato, erStandardAvRettType, ukerRegistrert]);
+
     if (kanViseKomponent)
         return (
             <Panel border className="ramme blokk-s" id="standard-onboarding">
@@ -97,9 +186,16 @@ const OnboardingStandard = () => {
                 <Heading size="medium" level="2" className="blokk-xs">
                     {tekst('header')}
                 </Heading>
+                <LeggTilEllerEndreDato kanViseKomponent={visArbeidsLedigDatoLenke} dato={gjelderFraDato} />
                 <BodyLong spacing className={`flex${utforteTrinn.includes(1) ? ' inaktiv' : ''}`}>
                     <TallSirkel tall={1} aktiv={nesteTrinn === 1} inaktiv={utforteTrinn.includes(1)} />{' '}
-                    {tekst(hentTekstnokkelForOnboardingTrinn1())}
+                    <span
+                        dangerouslySetInnerHTML={{
+                            __html: tekst(hentTekstnokkelForOnboardingTrinn1(gjelderFraDato))
+                                .replace('{{datoSenest}}', datoSenest)
+                                .replace('{{datoTidligst}}', datoTidligst),
+                        }}
+                    ></span>
                 </BodyLong>
                 <BodyLong spacing className={`flex${utforteTrinn.includes(2) ? ' inaktiv' : ''}`}>
                     <TallSirkel tall={2} aktiv={nesteTrinn === 2} inaktiv={utforteTrinn.includes(2)} />{' '}
@@ -111,17 +207,6 @@ const OnboardingStandard = () => {
                 </BodyLong>
                 <Feedback id="standard-onboarding-info" sporsmal={tekst('feedbackSporsmal')} />
                 <InViewport loggTekst="Viser OnboardingStandard i viewport" />
-                {visArbeidsLedigDatoLenke && (
-                    <Link
-                        href={'#'}
-                        onClick={(e) => {
-                            e.preventDefault();
-                            settVisArbeidsledigDatoModal();
-                        }}
-                    >
-                        Velg dato
-                    </Link>
-                )}
             </Panel>
         );
     return null;
