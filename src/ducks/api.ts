@@ -49,4 +49,4 @@ export const BAKVEIEN = `${bakveienTilArbeidUrl}`,
     NESTE_MELDEKORT_URL = `${BAKVEIEN}/meldekort`,
     MELDEKORTSTATUS_URL = `${BAKVEIEN}/meldekort/status`,
     ARBEIDSSOKERPERIODER_URL = `${BAKVEIEN}/arbeidssoker/perioder?fraOgMed=2020-01-01`,
-    GJELDER_FRA_DATO_URL = `${contextpath}/veilarbregistrering/api/registrering/gjelder-fra`;
+    GJELDER_FRA_DATO_URL = `${BAKVEIEN}/registrering/gjelder-fra`;
