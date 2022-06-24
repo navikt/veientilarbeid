@@ -24,16 +24,16 @@ import { loggAktivitet } from '../../metrics/metrics';
 const TEKSTER = {
     nb: {
         header: 'Tre viktige ting i din første uke som registrert arbeidssøker',
-        trinn1: 'Start på en søknad om dagpenger i dag, slik at du finner ut når du må sende inn søknaden',
+        trinn1: 'Start på søknaden om dagpenger, slik at du finner ut når du må sende inn søknaden.',
         trinn1Fortid:
-            'Du bør sende inn søknad om dagpenger i dag. Om du mangler dokumentasjon, bør du heller ettersende disse senere. Det viktige nå er at du får sendt inn søknaden så raskt som mulig.',
+            'Du bør sende inn søknad om dagpenger i dag. Om du mangler dokumentasjon, bør du ettersende disse så snart du har fått tak i dokumentasjonen. Det viktige nå er at du får sendt inn søknaden så raskt som mulig.',
         trinn1Idag:
-            'Du bør sende inn søknad om dagpenger senest i morgen ({{datoSenest}}). Hvis du sender inn søknaden senere vil du få mindre i dagpenger på din første utbetaling',
+            'Du bør sende inn søknad om dagpenger senest i morgen, {{datoSenest}}. Hvis du sender inn søknaden senere vil du få mindre i dagpenger på din første utbetaling',
         trinn1Imorgen:
-            'Du bør sende inn søknad om dagpenger i dag. Hvis du sender inn søknaden senere vil du få mindre i dagpenger på din første utbetaling',
-        trinn1Fremtid: `Du bør sende søknaden om dagpenger tidligst {{datoTidligst}} og senest {{datoSenest}}. Det er lurt starte på søknaden allerede nå, sånn at du finner ut hvilke dokumenter du må få tak i`, // TODO: fiks datoer i teksten
-        trinn2: 'Les gjennom introduksjonen til meldekort',
-        trinn3: 'Finn ut om du er enig i hvordan NAV har vurdert ditt behov for hjelp og støtte',
+            'Du bør sende inn søknad om dagpenger i dag. Hvis du sender inn søknaden senere vil du få mindre i dagpenger på din første utbetaling.',
+        trinn1Fremtid: `Du bør sende søknaden om dagpenger tidligst {{datoTidligst}} og senest {{datoSenest}}. Det er lurt starte på søknaden allerede nå, sånn at du finner ut hvilke dokumenter du må få tak i`,
+        trinn2: 'Les gjennom introduksjonen til meldekort.',
+        trinn3: 'Finn ut om du er enig i hvordan NAV har vurdert ditt behov for hjelp og støtte.',
         feedbackSporsmal: 'Er denne oversikten nyttig?',
     },
     en: {
