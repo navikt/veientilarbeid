@@ -100,6 +100,6 @@ export const demo_handlers = [
         const { dato } = req.body;
         settGjelderFraDato(dato);
         window.location.reload();
-        return res(ctx.status(204));
+        return res(ctx.status(201));
     }),
 ];

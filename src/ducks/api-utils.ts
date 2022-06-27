@@ -24,7 +24,7 @@ function sjekkStatuskode(response: Response): Response {
 }
 
 function toJson(response: Response) {
-    if (response.status === 204) {
+    if (response.status === 204 || response.headers.get('Content-Type') !== 'application/json') {
         // No content
         return null;
     }
