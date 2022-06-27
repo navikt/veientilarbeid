@@ -99,11 +99,11 @@ function Kvittering({ kvittering, onClose }: { kvittering?: string; onClose: () 
     }
 
     return (
-        <>
+        <div className="tema-container">
             <Sluttkort lukkerKvittering={lukkerKvittering} kvittering={kvittering} />
             <ErRendret loggTekst="Rendrer kvittering behovsundersøkelse" />
             <InViewport loggTekst="Viser kvittering behovsundersøkelse i viewport" />
-        </>
+        </div>
     );
 }
 
