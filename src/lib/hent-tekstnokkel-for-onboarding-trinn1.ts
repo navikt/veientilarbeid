@@ -2,12 +2,12 @@ import dagerFraDato from '../utils/dager-fra-dato';
 
 type TekstNokkel = 'trinn1' | 'trinn1Fortid' | 'trinn1Idag' | 'trinn1Imorgen' | 'trinn1Fremtid';
 
-function hentTekstnokkelForOnboardingTrinn1(arbeidsledigDato?: string | null): TekstNokkel {
-    if (!arbeidsledigDato) {
+function hentTekstnokkelForOnboardingTrinn1(gjelderFraDato?: string | null): TekstNokkel {
+    if (!gjelderFraDato) {
         return 'trinn1';
     }
 
-    const dato = new Date(arbeidsledigDato);
+    const dato = new Date(gjelderFraDato);
     const delta = dagerFraDato(new Date(), dato);
 
     if (delta < -1) {

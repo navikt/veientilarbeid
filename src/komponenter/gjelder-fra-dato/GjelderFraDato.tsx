@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { BodyShort, Button, Heading, Link, Modal } from '@navikt/ds-react';
 
-import { useArbeidsledigDato } from '../../contexts/arbeidsledig-dato';
+import { useGjelderFraDatoModal } from '../../contexts/gjelder-fra-dato-modal';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useBrukerregistreringData, DinSituasjonSvar } from '../../contexts/brukerregistrering';
 import { fetchToJson } from '../../ducks/api-utils';
@@ -10,16 +10,16 @@ import { plussDager } from '../../utils/date-utils';
 import { loggAktivitet } from '../../metrics/metrics';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 
-function ArbeidsledigDato(): JSX.Element | null {
+function GjelderFraDato(): JSX.Element | null {
     const amplitudeData = useAmplitudeData();
-    const { visModal, settLukkModal } = useArbeidsledigDato();
+    const { visModal, settLukkModal } = useGjelderFraDatoModal();
     const featureToggleData = useFeatureToggleData();
     const registreringData = useBrukerregistreringData();
     const brukerregistreringData = registreringData?.registrering ?? null;
     const dinSituasjon = brukerregistreringData?.besvarelse.dinSituasjon || DinSituasjonSvar.INGEN_VERDI;
     const harMistetJobben = dinSituasjon === DinSituasjonSvar.MISTET_JOBBEN;
 
-    const visKomponent = featureToggleData['veientilarbeid.vis-arbeidsledig-dato'] && harMistetJobben;
+    const visKomponent = featureToggleData['veientilarbeid.vis-gjelder-fra-dato'] && harMistetJobben;
 
     const [gjelderFraDato, settGjelderFraDato] = useState<string | null>(null);
     const [lagrerDato, settLagrerDato] = useState<boolean>(false);
@@ -103,4 +103,4 @@ function ArbeidsledigDato(): JSX.Element | null {
     );
 }
 
-export default ArbeidsledigDato;
+export default GjelderFraDato;

@@ -2,27 +2,27 @@ import { fjernQueryParam, hentQueryParam } from '../utils/query-param-utils';
 import { DemoData } from '../demo/demo-state';
 import { createContext, ReactNode, useCallback, useContext, useEffect, useState } from 'react';
 
-interface ArbeidsledigDatoProviderType {
+interface GjelderFraDatoModalProviderType {
     visModal: boolean;
     settVisModal: () => void;
     settLukkModal: () => void;
 }
 
-const ArbeidsledigDatoContext = createContext<ArbeidsledigDatoProviderType>({
+const GjelderFraDatoModalContext = createContext<GjelderFraDatoModalProviderType>({
     visModal: false,
     settVisModal() {},
     settLukkModal() {},
 });
 
-function ArbeidsledigDatoProvider(props: { children: ReactNode }) {
+function GjelderFraDatoModalProvider(props: { children: ReactNode }) {
     const [visModal, settVisModal] = useState<boolean>(false);
 
     useEffect(() => {
-        settVisModal(hentQueryParam(DemoData.VIS_ARBEIDSLEDIG_DATO) === 'true');
+        settVisModal(hentQueryParam(DemoData.VIS_GJELDER_FRA_DATO) === 'true');
     }, []);
 
     const onClose = useCallback(() => {
-        fjernQueryParam(DemoData.VIS_ARBEIDSLEDIG_DATO);
+        fjernQueryParam(DemoData.VIS_GJELDER_FRA_DATO);
         settVisModal(false);
     }, [settVisModal]);
 
@@ -36,17 +36,19 @@ function ArbeidsledigDatoProvider(props: { children: ReactNode }) {
         settLukkModal: onClose,
     };
 
-    return <ArbeidsledigDatoContext.Provider value={contextValue}>{props.children}</ArbeidsledigDatoContext.Provider>;
+    return (
+        <GjelderFraDatoModalContext.Provider value={contextValue}>{props.children}</GjelderFraDatoModalContext.Provider>
+    );
 }
 
-function useArbeidsledigDato() {
-    const context = useContext(ArbeidsledigDatoContext);
+function useGjelderFraDatoModal() {
+    const context = useContext(GjelderFraDatoModalContext);
 
     if (context === undefined) {
-        throw new Error('useArbeidsledigDato må brukes under en ArbeidsledigDatoProvider');
+        throw new Error('useGjelderFraDatoModal må brukes under en GjelderFraDatoModalProvider');
     }
 
     return context;
 }
 
-export { ArbeidsledigDatoProvider, useArbeidsledigDato };
+export { GjelderFraDatoModalProvider, useGjelderFraDatoModal };

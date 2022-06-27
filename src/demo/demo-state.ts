@@ -36,7 +36,7 @@ export enum DemoData {
     KVITTERING_STATUS = 'visKvittering',
     ER_UNDER_30 = 'erUnder30',
     SPRAK = 'lang',
-    VIS_ARBEIDSLEDIG_DATO = 'visArbeidsledigDato',
+    VIS_GJELDER_FRA_DATO = 'visGjelderFraDato',
     GJELDER_FRA_DATO = 'gjelderFraDato',
 }
 
@@ -114,8 +114,8 @@ export const settUnderOppfolging = (value: boolean) => settDemoState(DemoData.UN
 export const hentKanReaktiveres = () => hentDemoState(DemoData.KAN_REAKTIVERES) === 'true';
 export const settKanReaktiveres = (value: boolean) => settDemoState(DemoData.KAN_REAKTIVERES, value);
 
-export const hentVisArbeidsledigDato = () => hentDemoState(DemoData.VIS_ARBEIDSLEDIG_DATO) === 'true';
-export const settVisArbeidsledigDato = (value: boolean) => settDemoState(DemoData.VIS_ARBEIDSLEDIG_DATO, value);
+export const hentVisGjelderFraDato = () => hentDemoState(DemoData.VIS_GJELDER_FRA_DATO) === 'true';
+export const settVisGjelderFraDato = (value: boolean) => settDemoState(DemoData.VIS_GJELDER_FRA_DATO, value);
 
 export const randomUlesteDialoger = () => {
     const min = 1;

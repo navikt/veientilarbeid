@@ -14,7 +14,7 @@ import StatusTittel from '../komponenter/registrert/status-tittel';
 import EkspanderbartInnsyn from '../komponenter/innsyn/ekspanderbart-innsyn';
 import ReaktiveringKvittering from '../komponenter/reaktivering/reaktivering-kvittering';
 import OnboardingStandard from '../komponenter/onboarding-standard/onboarding-standard';
-import ArbeidsledigDato from '../komponenter/arbeidsledig-dato/ArbeidsledigDato';
+import GjelderFraDato from '../komponenter/gjelder-fra-dato/GjelderFraDato';
 
 const InnholdView = () => {
     return (
@@ -25,7 +25,7 @@ const InnholdView = () => {
                 <ReaktiveringKort />
                 <KrrMelding />
                 <StatusTittel />
-                <ArbeidsledigDato />
+                <GjelderFraDato />
                 <OnboardingStandard />
                 <ReaktiveringKvittering />
                 <Registrert />

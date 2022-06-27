@@ -12,7 +12,7 @@ import { useBrukerregistreringData, DinSituasjonSvar } from '../../contexts/bruk
 import { useOppfolgingData } from '../../contexts/oppfolging';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { erStandardTilknyttetArbeid } from '../../lib/er-standard-tilknyttet-arbeid';
-import { useArbeidsledigDato } from '../../contexts/arbeidsledig-dato';
+import { useGjelderFraDatoModal } from '../../contexts/gjelder-fra-dato-modal';
 import { hentFraBrowserStorage } from '../../utils/browserStorage-utils';
 import Feedback from '../feedback/feedback';
 import TallSirkel from '../tall/tall';
@@ -85,7 +85,7 @@ const LeggTilEllerEndreDato = ({
     kanViseKomponent: boolean | undefined;
     dato: string | null;
 }) => {
-    const { settVisModal: settVisArbeidsledigDatoModal } = useArbeidsledigDato();
+    const { settVisModal: settVisGjelderFraDatoModal } = useGjelderFraDatoModal();
     const amplitudeData = useAmplitudeData();
     if (!kanViseKomponent) return null;
     return (
@@ -109,7 +109,7 @@ const LeggTilEllerEndreDato = ({
                               aktivitet: 'Arbeidssøker vil registrere dato for siste dag med lønn',
                               ...amplitudeData,
                           });
-                    settVisArbeidsledigDatoModal();
+                    settVisGjelderFraDatoModal();
                 }}
             >
                 {dato ? 'Endre dato' : 'Trenger du veiledning om når du bør sende inn søknad om dagpenger?'}
@@ -128,12 +128,12 @@ const OnboardingStandard = () => {
     const oppfolgingData = useOppfolgingData();
     const featuretoggleData = useFeatureToggleData();
     const { dagpengestatus } = useAmplitudeData();
-    const { visModal: modalVises } = useArbeidsledigDato();
+    const { visModal: modalVises } = useGjelderFraDatoModal();
     const modalStatus = useRef(modalVises);
     const brukerregistreringData = registreringData?.registrering ?? null;
     const dinSituasjon = brukerregistreringData?.besvarelse.dinSituasjon || DinSituasjonSvar.INGEN_VERDI;
     const harMistetJobben = dinSituasjon === DinSituasjonSvar.MISTET_JOBBEN;
-    const visArbeidsLedigDatoLenke = featuretoggleData['veientilarbeid.vis-arbeidsledig-dato'] && harMistetJobben;
+    const visGjelderFraDatoLenke = featuretoggleData['veientilarbeid.vis-gjelder-fra-dato'] && harMistetJobben;
     const opprettetRegistreringDatoString = brukerregistreringData?.opprettetDato;
     const opprettetRegistreringDato = opprettetRegistreringDatoString
         ? new Date(opprettetRegistreringDatoString)
@@ -161,10 +161,10 @@ const OnboardingStandard = () => {
     const nesteTrinn = beregnNesteTrinn(utforteTrinn);
 
     useEffect(() => {
-        if (erStandardAvRettType && visArbeidsLedigDatoLenke) {
+        if (erStandardAvRettType && visGjelderFraDatoLenke) {
             hentGjelderFraDato();
         }
-    }, [erStandardAvRettType, visArbeidsLedigDatoLenke]);
+    }, [erStandardAvRettType, visGjelderFraDatoLenke]);
 
     useEffect(() => {
         if (gjelderFraDato) {
@@ -199,7 +199,7 @@ const OnboardingStandard = () => {
                 <Heading size="medium" level="2" className="blokk-xs">
                     {tekst('header')}
                 </Heading>
-                <LeggTilEllerEndreDato kanViseKomponent={visArbeidsLedigDatoLenke} dato={gjelderFraDato} />
+                <LeggTilEllerEndreDato kanViseKomponent={visGjelderFraDatoLenke} dato={gjelderFraDato} />
                 <BodyLong spacing className={`flex${utforteTrinn.includes(1) ? ' inaktiv' : ''}`}>
                     <TallSirkel tall={1} aktiv={nesteTrinn === 1} inaktiv={utforteTrinn.includes(1)} />{' '}
                     <span
