@@ -1,16 +1,20 @@
-function hentGjelderFraDato() {
-    const fallbackDato = '2022-06-30';
-    try {
-        const gjelderFraDato = new URLSearchParams(window.location.search).get('gjelderFraDato');
-        return gjelderFraDato || fallbackDato;
-    } catch (error) {
-        console.error(error);
-        return fallbackDato;
-    }
+import { ResponseComposition, RestContext, RestRequest } from 'msw';
+import { hentGjelderFraDato, settGjelderFraDato } from '../demo/demo-state';
+
+interface DatoBody {
+    dato: string;
 }
 
-const gjelderFraGetResponse = {
-    dato: hentGjelderFraDato(),
+export const gjelderFraGetResolver = (req: RestRequest, res: ResponseComposition, ctx: RestContext) => {
+    return res(
+        ctx.json({
+            dato: hentGjelderFraDato(),
+        })
+    );
 };
 
-export default gjelderFraGetResponse;
+export const gjelderFraPostResolver = (req: RestRequest<DatoBody>, res: ResponseComposition, ctx: RestContext) => {
+    const { dato } = req.body;
+    settGjelderFraDato(dato);
+    return res(ctx.status(201));
+};

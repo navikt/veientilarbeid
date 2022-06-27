@@ -2,8 +2,6 @@ import { AUTH_API } from '../komponenter/hent-initial-data/autentiseringsInfoFet
 import AuthResponse from './auth-mock';
 import ulesteDialogerResponse from './ulestedialoger-mock';
 import egenvurderingbesvarelseResponse from './egenvurderingbesvarelse-mock';
-// import brukerRegistreringResponse from './brukerregistrering-sykmeldt-mock';
-import gjelderFraResponse from './gjelderfra-mock';
 import brukerRegistreringResponse from './brukerregistrering-standard-mock';
 import motestotteResponse from './motestotte-mock';
 import featureTogglesResponse from './feature-toggles-mock';
@@ -17,7 +15,7 @@ import dpVedtakResponse from './dp-innsyn-vedtak';
 import dpPaabegynteResponse from './dp-innsyn-paabegynte';
 import paabegynteSoknaderResponse from './saksoversikt-pabegyntesoknader-mock';
 import sakstemaResponse from './saksoversikt-sakstema-mock';
-import msw_get, { msw_post } from './msw-utils';
+import msw_get from './msw-utils';
 import {
     BRUKERINFO_URL,
     BRUKERREGISTRERING_URL,
@@ -34,6 +32,8 @@ import {
     DP_INNSYN_URL,
     GJELDER_FRA_DATO_URL,
 } from '../ducks/api';
+import { gjelderFraGetResolver, gjelderFraPostResolver } from './gjelderfra-mock';
+import { rest } from 'msw';
 
 export const handlers = [
     msw_get(AUTH_API, AuthResponse),
@@ -52,6 +52,6 @@ export const handlers = [
     msw_get(`${DP_INNSYN_URL}/soknad`, dpSoknadResonse),
     msw_get(`${DP_INNSYN_URL}/vedtak`, dpVedtakResponse),
     msw_get(`${DP_INNSYN_URL}/paabegynte`, dpPaabegynteResponse),
-    msw_get(GJELDER_FRA_DATO_URL, gjelderFraResponse),
-    msw_post(GJELDER_FRA_DATO_URL, null, 204),
+    rest.get(GJELDER_FRA_DATO_URL, gjelderFraGetResolver),
+    rest.post(GJELDER_FRA_DATO_URL, gjelderFraPostResolver),
 ];
