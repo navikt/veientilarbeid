@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Heading, Panel, BodyLong, Link, BodyShort } from '@navikt/ds-react';
 
 import InViewport from '../in-viewport/in-viewport';
@@ -128,6 +128,8 @@ const OnboardingStandard = () => {
     const oppfolgingData = useOppfolgingData();
     const featuretoggleData = useFeatureToggleData();
     const { dagpengestatus } = useAmplitudeData();
+    const { visModal: modalVises } = useArbeidsledigDato();
+    const modalStatus = useRef(modalVises);
     const brukerregistreringData = registreringData?.registrering ?? null;
     const dinSituasjon = brukerregistreringData?.besvarelse.dinSituasjon || DinSituasjonSvar.INGEN_VERDI;
     const harMistetJobben = dinSituasjon === DinSituasjonSvar.MISTET_JOBBEN;
@@ -137,6 +139,7 @@ const OnboardingStandard = () => {
         ? new Date(opprettetRegistreringDatoString)
         : null;
     const ukerRegistrert = opprettetRegistreringDato ? ukerFraDato(opprettetRegistreringDato) : 'INGEN_DATO';
+
     const hentGjelderFraDato = async () => {
         try {
             const { dato } = await fetchToJson(GJELDER_FRA_DATO_URL, requestConfig());
@@ -178,6 +181,16 @@ const OnboardingStandard = () => {
             settKanViseKomponent(ukerRegistrert === 0 || erFremdelesIArbeid);
         }
     }, [gjelderFraDato, erStandardAvRettType, ukerRegistrert]);
+
+    useEffect(() => {
+        if (modalVises && !modalStatus.current) {
+            modalStatus.current = true;
+        }
+        if (!modalVises && modalStatus.current) {
+            modalStatus.current = false;
+            // Todo - funksjon for reloading
+        }
+    }, [modalVises, modalStatus]);
 
     if (kanViseKomponent)
         return (

@@ -99,7 +99,7 @@ export const demo_handlers = [
     rest.post(GJELDER_FRA_DATO_URL, (req: RestRequest<GjelderFraBody>, res, ctx) => {
         const { dato } = req.body;
         settGjelderFraDato(dato);
-        window.location.reload();
+        // window.location.reload();
         return res(ctx.status(204));
     }),
 ];
