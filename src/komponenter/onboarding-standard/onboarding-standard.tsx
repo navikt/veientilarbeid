@@ -188,7 +188,7 @@ const OnboardingStandard = () => {
         }
         if (!modalVises && modalStatus.current) {
             modalStatus.current = false;
-            // Todo - funksjon for reloading
+            hentGjelderFraDato();
         }
     }, [modalVises, modalStatus]);
 
