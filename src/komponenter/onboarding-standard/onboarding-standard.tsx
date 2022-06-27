@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Heading, Panel, BodyLong, Link, BodyShort } from '@navikt/ds-react';
 
 import InViewport from '../in-viewport/in-viewport';
@@ -129,7 +129,6 @@ const OnboardingStandard = () => {
     const featuretoggleData = useFeatureToggleData();
     const { dagpengestatus } = useAmplitudeData();
     const { visModal: modalVises } = useGjelderFraDatoModal();
-    const modalStatus = useRef(modalVises);
     const brukerregistreringData = registreringData?.registrering ?? null;
     const dinSituasjon = brukerregistreringData?.besvarelse.dinSituasjon || DinSituasjonSvar.INGEN_VERDI;
     const harMistetJobben = dinSituasjon === DinSituasjonSvar.MISTET_JOBBEN;
@@ -183,14 +182,11 @@ const OnboardingStandard = () => {
     }, [gjelderFraDato, erStandardAvRettType, ukerRegistrert]);
 
     useEffect(() => {
-        if (modalVises && !modalStatus.current) {
-            modalStatus.current = true;
-        }
-        if (!modalVises && modalStatus.current) {
-            modalStatus.current = false;
+        if (!modalVises && erStandardAvRettType && visGjelderFraDatoLenke) {
+            // fetch data på nytt hver gang modal lukkes - muligens oppdaterte data
             hentGjelderFraDato();
         }
-    }, [modalVises, modalStatus]);
+    }, [modalVises, erStandardAvRettType, visGjelderFraDatoLenke]);
 
     if (kanViseKomponent)
         return (
