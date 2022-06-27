@@ -24,10 +24,15 @@ function sjekkStatuskode(response: Response): Response {
 }
 
 function toJson(response: Response) {
-    if (response.status === 204 || response.headers.get('Content-Type') !== 'application/json') {
-        // No content
+    if (
+        response.status === 204 ||
+        (response.status === 201 && response.headers.get('Content-Type') !== 'application/jspn')
+    ) {
+        // 204 No content
+        // 201 Created med tom respons tilbake
         return null;
     }
+
     return response.json();
 }
 
