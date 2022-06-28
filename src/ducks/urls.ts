@@ -1,5 +1,5 @@
 const isProduction = window.location.href.includes('www.nav.no');
-const isDevelopment = window.location.href.includes('dev.nav.no');
+const isDevelopment = window.location.href.includes('www.dev.nav.no');
 
 const getEnvironment = () => {
     if (isProduction) {
@@ -21,7 +21,7 @@ const BAKVEIENTILARBEID_URL = {
 
 const INNLOGGINGSSTATUS_URL = {
     local: 'http://localhost:3000/auth',
-    development: 'https://innloggingsstatus.dev.nav.no/person/innloggingsstatus/auth',
+    development: 'https://www.dev.nav.no/person/innloggingsstatus/auth',
     production: 'https://www.nav.no/person/innloggingsstatus/auth',
 };
 
