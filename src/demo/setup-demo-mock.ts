@@ -34,19 +34,14 @@ import {
     hentDpInnsynVedtak,
     hentDpInnsynSoknad,
     hentDpInnsynPaabegynte,
-    settGjelderFraDato,
 } from './demo-state';
 
 import { hentBrukerRegistrering } from './demo-state-brukerregistrering';
 import { AUTH_API } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
 import msw_get from '../mocks/msw-utils';
 import meldekortstatusResponse from '../mocks/meldekortstatus-mock';
-import gjelderFraDatoMock from '../mocks/gjelderfra-mock';
-import { rest, RestRequest } from 'msw';
-
-interface GjelderFraBody {
-    dato: string;
-}
+import { rest } from 'msw';
+import { gjelderFraGetResolver, gjelderFraPostResolver } from './demo-state-gjelderfra';
 
 export const demo_handlers = [
     msw_get(VEILARBOPPFOLGING_URL, {
@@ -91,11 +86,6 @@ export const demo_handlers = [
     msw_get(`${DP_INNSYN_URL}/soknad`, hentDpInnsynSoknad()),
     msw_get(`${DP_INNSYN_URL}/paabegynte`, hentDpInnsynPaabegynte()),
 
-    msw_get(GJELDER_FRA_DATO_URL, gjelderFraDatoMock),
-    rest.post(GJELDER_FRA_DATO_URL, (req: RestRequest<GjelderFraBody>, res, ctx) => {
-        const { dato } = req.body;
-        settGjelderFraDato(dato);
-        window.location.reload();
-        return res(ctx.status(201));
-    }),
+    rest.get(GJELDER_FRA_DATO_URL, gjelderFraGetResolver),
+    rest.post(GJELDER_FRA_DATO_URL, gjelderFraPostResolver),
 ];
