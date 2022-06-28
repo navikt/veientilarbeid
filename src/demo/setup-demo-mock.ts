@@ -12,6 +12,7 @@ import {
     DP_INNSYN_URL,
     GJELDER_FRA_DATO_URL,
     AUTH_API,
+    ARBEIDSSOKERPERIODER_URL,
 } from '../ducks/api';
 
 import {
@@ -43,6 +44,7 @@ import msw_get from '../mocks/msw-utils';
 import meldekortstatusResponse from '../mocks/meldekortstatus-mock';
 import gjelderFraDatoMock from '../mocks/gjelderfra-mock';
 import { rest, RestRequest } from 'msw';
+import arbeidssokerPerioderResponse from '../mocks/arbeidssoker-perioder-mock';
 
 interface GjelderFraBody {
     dato: string;
@@ -98,4 +100,6 @@ export const demo_handlers = [
         window.location.reload();
         return res(ctx.status(201));
     }),
+
+    msw_get(ARBEIDSSOKERPERIODER_URL, arbeidssokerPerioderResponse),
 ];
