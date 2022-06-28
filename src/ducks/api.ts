@@ -1,6 +1,5 @@
 import { nanoid } from 'nanoid';
 
-import { contextpathDittNav, erMikrofrontend } from '../utils/app-state-utils';
 import { innloggingsStatusUrl, bakveienTilArbeidUrl } from './urls';
 
 export enum STATUS {
@@ -33,8 +32,6 @@ export const requestConfig = (): RequestInit => {
     };
 };
 
-const contextpath = erMikrofrontend() ? contextpathDittNav : '';
-
 export const BAKVEIEN = `${bakveienTilArbeidUrl}`,
     VEILARBOPPFOLGING_URL = `${BAKVEIEN}/oppfolging`,
     UNDER_OPPFOLGING_URL = `${BAKVEIEN}/underoppfolging`,
@@ -42,7 +39,7 @@ export const BAKVEIEN = `${bakveienTilArbeidUrl}`,
     BRUKERREGISTRERING_URL = `${BAKVEIEN}/registrering`,
     ULESTEDIALOGER_URL = `${BAKVEIEN}/dialog/antallUleste`,
     EGENVURDERINGBESVARELSE_URL = `${BAKVEIEN}/vedtakinfo/besvarelse`,
-    FEATURE_URL = `${contextpath}/api/feature`,
+    FEATURE_URL = `${BAKVEIEN}/unleash`,
     MOTESTOTTE_URL = `${BAKVEIEN}/vedtakinfo/motestotte`,
     DP_INNSYN_URL = `${BAKVEIEN}/dagpenger`,
     NESTE_MELDEKORT_URL = `${BAKVEIEN}/meldekort`,
