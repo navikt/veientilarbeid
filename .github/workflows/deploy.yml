@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - autentisering-ut-av-pusdekorator
 
 env:
   IMAGE_BASE: ghcr.io/${{github.repository}}/veientilarbeid
@@ -33,7 +34,7 @@ jobs:
           docker push ${IMAGE}
 
   deploy-dev:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/autentisering-ut-av-pusdekorator'
     name: Deploy til dev
     needs: test-build-and-push
     runs-on: ubuntu-latest
