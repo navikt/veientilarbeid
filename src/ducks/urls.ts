@@ -1,7 +1,7 @@
 const isProduction = window.location.href.includes('www.nav.no');
 const isDevelopment = window.location.href.includes('www.dev.nav.no');
 
-const getEnvironment = () => {
+export const getEnvironment = () => {
     if (isProduction) {
         return 'production';
     }
