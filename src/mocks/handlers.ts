@@ -14,7 +14,6 @@ import meldekortstatusResponse from './meldekortstatus-mock';
 import dpSoknadResonse from './dp-innsyn-soknad';
 import dpVedtakResponse from './dp-innsyn-vedtak';
 import dpPaabegynteResponse from './dp-innsyn-paabegynte';
-import sakstemaResponse from './saksoversikt-sakstema-mock';
 import msw_get, { msw_post } from './msw-utils';
 import {
     BRUKERINFO_URL,
@@ -27,7 +26,6 @@ import {
     ULESTEDIALOGER_URL,
     UNDER_OPPFOLGING_URL,
     VEILARBOPPFOLGING_URL,
-    SAKSTEMA_URL,
     DP_INNSYN_URL,
     GJELDER_FRA_DATO_URL,
 } from '../ducks/api';
@@ -44,7 +42,6 @@ export const handlers = [
     msw_get(UNDER_OPPFOLGING_URL, underOppfolgingResponse),
     msw_get(NESTE_MELDEKORT_URL, meldekortResponse),
     msw_get(MELDEKORTSTATUS_URL, meldekortstatusResponse),
-    msw_get(SAKSTEMA_URL, sakstemaResponse),
     msw_get(`${DP_INNSYN_URL}/soknad`, dpSoknadResonse),
     msw_get(`${DP_INNSYN_URL}/vedtak`, dpVedtakResponse),
     msw_get(`${DP_INNSYN_URL}/paabegynte`, dpPaabegynteResponse),

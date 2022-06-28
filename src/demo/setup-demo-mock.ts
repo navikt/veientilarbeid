@@ -6,7 +6,6 @@ import {
     MELDEKORTSTATUS_URL,
     MOTESTOTTE_URL,
     NESTE_MELDEKORT_URL,
-    SAKSTEMA_URL,
     ULESTEDIALOGER_URL,
     UNDER_OPPFOLGING_URL,
     VEILARBOPPFOLGING_URL,
@@ -32,7 +31,6 @@ import {
     hentUnderOppfolging,
     lagMeldekortData,
     randomUlesteDialoger,
-    hentDpSakstema,
     hentDpInnsynVedtak,
     hentDpInnsynSoknad,
     hentDpInnsynPaabegynte,
@@ -92,8 +90,6 @@ export const demo_handlers = [
     msw_get(`${DP_INNSYN_URL}/vedtak`, hentDpInnsynVedtak()),
     msw_get(`${DP_INNSYN_URL}/soknad`, hentDpInnsynSoknad()),
     msw_get(`${DP_INNSYN_URL}/paabegynte`, hentDpInnsynPaabegynte()),
-
-    msw_get(SAKSTEMA_URL, hentDpSakstema()),
 
     msw_get(GJELDER_FRA_DATO_URL, gjelderFraDatoMock),
     rest.post(GJELDER_FRA_DATO_URL, (req: RestRequest<GjelderFraBody>, res, ctx) => {
