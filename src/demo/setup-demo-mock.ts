@@ -11,6 +11,7 @@ import {
     VEILARBOPPFOLGING_URL,
     DP_INNSYN_URL,
     GJELDER_FRA_DATO_URL,
+    AUTH_API,
 } from '../ducks/api';
 
 import {
@@ -38,7 +39,6 @@ import {
 } from './demo-state';
 
 import { hentBrukerRegistrering } from './demo-state-brukerregistrering';
-import { AUTH_API } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
 import msw_get from '../mocks/msw-utils';
 import meldekortstatusResponse from '../mocks/meldekortstatus-mock';
 import gjelderFraDatoMock from '../mocks/gjelderfra-mock';

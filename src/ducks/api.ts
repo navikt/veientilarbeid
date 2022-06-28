@@ -1,7 +1,7 @@
 import { nanoid } from 'nanoid';
 
 import { contextpathDittNav, erMikrofrontend } from '../utils/app-state-utils';
-import { bakveienTilArbeidUrl } from './urls';
+import { innloggingsStatusUrl, bakveienTilArbeidUrl } from './urls';
 
 export enum STATUS {
     OK = 'OK',
@@ -48,4 +48,5 @@ export const BAKVEIEN = `${bakveienTilArbeidUrl}`,
     NESTE_MELDEKORT_URL = `${BAKVEIEN}/meldekort`,
     MELDEKORTSTATUS_URL = `${BAKVEIEN}/meldekort/status`,
     ARBEIDSSOKERPERIODER_URL = `${BAKVEIEN}/arbeidssoker/perioder?fraOgMed=2020-01-01`,
-    GJELDER_FRA_DATO_URL = `${BAKVEIEN}/gjelderfra`;
+    GJELDER_FRA_DATO_URL = `${BAKVEIEN}/gjelderfra`,
+    AUTH_API = innloggingsStatusUrl;

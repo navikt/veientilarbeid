@@ -1,4 +1,3 @@
-import { AUTH_API } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
 import AuthResponse from './auth-mock';
 import ulesteDialogerResponse from './ulestedialoger-mock';
 import egenvurderingbesvarelseResponse from './egenvurderingbesvarelse-mock';
@@ -28,6 +27,7 @@ import {
     VEILARBOPPFOLGING_URL,
     DP_INNSYN_URL,
     GJELDER_FRA_DATO_URL,
+    AUTH_API,
 } from '../ducks/api';
 
 export const handlers = [
