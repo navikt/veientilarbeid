@@ -18,3 +18,9 @@ export const gjelderFraPostResolver = (req: RestRequest<DatoBody>, res: Response
     settGjelderFraDato(dato);
     return res(ctx.status(201));
 };
+
+const gjelderFraGetResponse = {
+    dato: null,
+};
+
+export default gjelderFraGetResponse;
