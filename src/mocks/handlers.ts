@@ -1,7 +1,6 @@
 import AuthResponse from './auth-mock';
 import ulesteDialogerResponse from './ulestedialoger-mock';
 import egenvurderingbesvarelseResponse from './egenvurderingbesvarelse-mock';
-import gjelderFraResponse from './gjelderfra-mock';
 import brukerRegistreringResponse from './brukerregistrering-standard-mock';
 import motestotteResponse from './motestotte-mock';
 import featureTogglesResponse from './feature-toggles-mock';
@@ -31,6 +30,7 @@ import {
     AUTH_API,
     ARBEIDSSOKERPERIODER_URL,
 } from '../ducks/api';
+import gjelderFraGetResponse from './gjelderfra-mock';
 
 export const handlers = [
     msw_get(AUTH_API, AuthResponse),
@@ -47,7 +47,7 @@ export const handlers = [
     msw_get(`${DP_INNSYN_URL}/soknad`, dpSoknadResonse),
     msw_get(`${DP_INNSYN_URL}/vedtak`, dpVedtakResponse),
     msw_get(`${DP_INNSYN_URL}/paabegynte`, dpPaabegynteResponse),
-    msw_get(GJELDER_FRA_DATO_URL, gjelderFraResponse),
-    msw_post(GJELDER_FRA_DATO_URL, null, 204),
+    msw_get(GJELDER_FRA_DATO_URL, gjelderFraGetResponse),
+    msw_post(GJELDER_FRA_DATO_URL, null, 201),
     msw_get(ARBEIDSSOKERPERIODER_URL, arbeidssokerPerioderResponse),
 ];
