@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import getPoaGroup from '../../utils/get-poa-group';
 import isKSSEksperiment from '../../eksperiment/is-kss-eksperiment';
 import isKSSKontroll from '../../eksperiment/is-kss-kontroll';
@@ -74,6 +75,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
     const meldekortContext = React.useContext(Meldekort.MeldekortContext);
     const meldekortStatusContext = React.useContext(Meldekortstatus.MeldekortstatusContext);
+    const { etterregistrerteMeldekort, antallGjenstaaendeFeriedager } = meldekortStatusContext.data;
 
     const { erSykmeldtMedArbeidsgiver, alder, geografiskTilknytning, registreringType, rettighetsgruppe } =
         brukerInfoData;
@@ -228,6 +230,8 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         registreringType: registreringType || 'INGEN_VERDI',
         antallDagerEtterFastsattMeldingsdag,
         antallMeldekortKlareForLevering,
+        meldekortEtterregistrerteMeldekort: etterregistrerteMeldekort || 0,
+        meldekortAntallGjenstaaendeFeriedager: antallGjenstaaendeFeriedager || 0,
         gitVersion: process.env.REACT_APP_VERSION_HASH || 'INGEN_VERDI',
         buildTimestamp: process.env.REACT_APP_BUILD_TIMESTAMP || new Date().toISOString(),
         antallSynligeInfomeldinger: antallSynligeInfomeldinger(),
