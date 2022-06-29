@@ -11,6 +11,8 @@ import {
     VEILARBOPPFOLGING_URL,
     DP_INNSYN_URL,
     GJELDER_FRA_DATO_URL,
+    AUTH_API,
+    ARBEIDSSOKERPERIODER_URL,
 } from '../ducks/api';
 
 import {
@@ -37,11 +39,11 @@ import {
 } from './demo-state';
 
 import { hentBrukerRegistrering } from './demo-state-brukerregistrering';
-import { AUTH_API } from '../komponenter/hent-initial-data/autentiseringsInfoFetcher';
 import msw_get from '../mocks/msw-utils';
 import meldekortstatusResponse from '../mocks/meldekortstatus-mock';
 import { rest } from 'msw';
 import { gjelderFraGetResolver, gjelderFraPostResolver } from './demo-state-gjelderfra';
+import arbeidssokerPerioderResponse from '../mocks/arbeidssoker-perioder-mock';
 
 export const demo_handlers = [
     msw_get(VEILARBOPPFOLGING_URL, {
@@ -88,4 +90,6 @@ export const demo_handlers = [
 
     rest.get(GJELDER_FRA_DATO_URL, gjelderFraGetResolver),
     rest.post(GJELDER_FRA_DATO_URL, gjelderFraPostResolver),
+
+    msw_get(ARBEIDSSOKERPERIODER_URL, arbeidssokerPerioderResponse),
 ];

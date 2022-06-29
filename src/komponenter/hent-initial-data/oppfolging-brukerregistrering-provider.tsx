@@ -40,7 +40,7 @@ const OppfolgingBrukerregistreringProvider = ({ children }: OppfolgingProviderPr
     const parameters = Object.values(FeatureToggle.FeatureToggles)
         .map((element) => 'feature=' + element)
         .join('&');
-    const featureTogglesUrl = `${FEATURE_URL}/?${parameters}`;
+    const featureTogglesUrl = `${FEATURE_URL}?${parameters}`;
 
     React.useEffect(() => {
         fetchData<Meldekortstatus.State, Meldekortstatus.Data>(

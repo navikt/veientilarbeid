@@ -1,7 +1,7 @@
-import { InnloggingsNiva } from '../contexts/autentisering';
+import { InnloggingsNiva, Data } from '../contexts/autentisering';
 
-const authMock = {
-    loggedIn: true,
+const authMock: Data = {
+    authenticated: true,
     securityLevel: InnloggingsNiva.LEVEL_4,
 };
 

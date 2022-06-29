@@ -14,5 +14,3 @@ export const erProduksjon = () => {
 };
 
 export const erStandalone = () => /[&?]standalone=true/.test(url);
-
-export const contextpathDittNav = '/person/dittnav/veientilarbeid';
