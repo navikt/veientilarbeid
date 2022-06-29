@@ -1,4 +1,4 @@
-import { InnloggingsNiva } from '../contexts/autentisering';
+import { InnloggingsNiva, Data as AutentiseringsData } from '../contexts/autentisering';
 import { foerstkommendeMandag, plussDager } from '../utils/date-utils';
 import { hentQueryParam, settQueryParam } from '../utils/query-param-utils';
 import { FeatureToggles } from '../contexts/feature-toggles';
@@ -95,10 +95,11 @@ export const settFeatureToggles = (toggle: string, checked: boolean) => settDemo
 export const hentReservasjonKRR = (): boolean => hentDemoState(DemoData.RESERVASJON_KRR) === 'true';
 export const settReservasjonKRR = (value: boolean) => settDemoState(DemoData.RESERVASJON_KRR, value);
 
-export const hentAutentiseringsInfo = (): JSONObject => ({
-    securityLevel: hentDemoState(DemoData.AUTENTISERINGS_INFO) ?? InnloggingsNiva.LEVEL_4,
-    loggedIn: true,
+export const hentAutentiseringsInfo = (): AutentiseringsData => ({
+    securityLevel: (hentDemoState(DemoData.AUTENTISERINGS_INFO) ?? InnloggingsNiva.LEVEL_4) as InnloggingsNiva,
+    authenticated: true,
 });
+
 export const settAutentiseringsInfo = (innloggingsNiva: InnloggingsNiva) =>
     settDemoState(DemoData.AUTENTISERINGS_INFO, innloggingsNiva);
 
