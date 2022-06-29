@@ -19,17 +19,10 @@ RUN cp -r /source/build /micro
 
 RUN npm run build
 
+FROM nginx
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY --from=node-builder /source/build /usr/share/nginx/html
+COPY --from=node-builder /source/build/index.html /usr/share/nginx/html/demo/index.html
+COPY --from=node-builder /micro/static /usr/share/nginx/html/micro/static
 
-FROM ghcr.io/navikt/pus-decorator/pus-decorator:latest
-ENV APPLICATION_NAME=veientilarbeid
-ENV GZIP_ENABLED=true
-
-COPY --from=node-builder /source/build /app
-
-# Pus-decorator enforcer ikke autentisering på enkeltfiler. Vi utnytter den egenskapen for demo.
-COPY --from=node-builder /source/build/index.html /app/demo/index.html
-
-COPY --from=node-builder /micro /app/micro
-
-ADD decorator.yaml /decorator.yaml
-
+RUN rm /usr/share/nginx/html/index.html
