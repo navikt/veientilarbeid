@@ -26,3 +26,5 @@ COPY --from=node-builder /source/build/index.html /usr/share/nginx/html/demo/ind
 COPY --from=node-builder /micro/static /usr/share/nginx/html/micro/static
 
 RUN rm /usr/share/nginx/html/index.html
+
+EXPOSE 8080
