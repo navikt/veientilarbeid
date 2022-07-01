@@ -19,7 +19,7 @@ RUN cp -r /source/build /micro
 
 RUN npm run build
 
-FROM nginx
+FROM nginx:1.23-alpine
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=node-builder /source/build /usr/share/nginx/html
 COPY --from=node-builder /source/build/index.html /usr/share/nginx/html/demo/index.html
