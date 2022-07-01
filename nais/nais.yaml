@@ -58,15 +58,15 @@ spec:
   {{/each}}
   {{/if}}
   liveness:
-    path: /internal/isAlive
+    path: /isAlive
     port: 8080
     initialDelay: 60
   port: 8080
   prometheus:
-    enabled: true
+    enabled: false
     path: /internal/metrics
   readiness:
-    path: /internal/isReady
+    path: /isReady
     port: 8080
     initialDelay: 60
   replicas:
