@@ -6,7 +6,8 @@ import * as Autentisering from './contexts/autentisering';
 import Feilmelding from './komponenter/feilmeldinger/feilmelding';
 import { fetchData } from './ducks/api-utils';
 import { AUTH_API } from './ducks/api';
-import App from './app';
+import InnholdView from './innhold/innhold-view';
+
 import './index.css';
 
 const Mikrofrontend = () => {
@@ -22,7 +23,7 @@ const Mikrofrontend = () => {
             <Autentisering.AutentiseringContext.Provider value={state}>
                 <OppfolgingBrukerregistreringProvider>
                     <DataProvider>
-                        <App />
+                        <InnholdView />
                     </DataProvider>
                 </OppfolgingBrukerregistreringProvider>
             </Autentisering.AutentiseringContext.Provider>
