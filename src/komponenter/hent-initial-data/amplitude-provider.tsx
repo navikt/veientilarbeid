@@ -1,4 +1,5 @@
 import * as React from 'react';
+import ukerFraDato from '@alheimsins/uker-fra-dato';
 
 import getPoaGroup from '../../utils/get-poa-group';
 import isKSSEksperiment from '../../eksperiment/is-kss-eksperiment';
@@ -14,7 +15,6 @@ import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import grupperGeografiskTilknytning from '../../utils/grupper-geografisk-tilknytning';
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 
-import ukerFraDato from '../../utils/uker-fra-dato';
 import dagerFraDato from '../../utils/dager-fra-dato';
 
 import {

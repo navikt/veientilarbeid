@@ -1,6 +1,7 @@
+import ukerFraDato from '@alheimsins/uker-fra-dato';
+
 import { Periode } from '../contexts/arbeidssokerperioder';
 import dagerFraDato from '../utils/dager-fra-dato';
-import ukerFraDato from '../utils/uker-fra-dato';
 
 export interface BeregnedePerioder {
     harAktivArbeidssokerperiode: 'INGEN_DATA' | 'N/A' | 'Ja' | 'Nei';

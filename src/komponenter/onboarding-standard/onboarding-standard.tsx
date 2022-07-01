@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Heading, Panel, BodyLong, Link, BodyShort } from '@navikt/ds-react';
+import ukerFraDato from '@alheimsins/uker-fra-dato';
 
 import InViewport from '../in-viewport/in-viewport';
 import ErRendret from '../er-rendret/er-rendret';
@@ -20,7 +21,6 @@ import hentTekstnokkelForOnboardingTrinn1 from '../../lib/hent-tekstnokkel-for-o
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import { datoUtenTid, plussDager } from '../../utils/date-utils';
 import { loggAktivitet } from '../../metrics/metrics';
-import ukerFraDato from '../../utils/uker-fra-dato';
 
 const TEKSTER = {
     nb: {
