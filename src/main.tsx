@@ -1,6 +1,6 @@
 import React from 'react';
 import DataProvider from './komponenter/hent-initial-data/data-provider';
-import OppfolgingBrukerregistreringProvider from './komponenter/hent-initial-data/oppfolging-brukerregistrering-provider';
+import OppfolgingBrukerregistreringProvider from './komponenter/hent-initial-data/oppfolging-brukerregistrering-provider-esm';
 import Innholdslaster from './komponenter/innholdslaster/innholdslaster';
 import * as Autentisering from './contexts/autentisering';
 import Feilmelding from './komponenter/feilmeldinger/feilmelding';
