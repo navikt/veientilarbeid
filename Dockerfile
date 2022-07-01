@@ -19,11 +19,14 @@ RUN cp -r /source/build /micro
 
 RUN npm run build
 
+RUN npm run build:esm
+
 FROM nginx:1.23-alpine
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=node-builder /source/build /usr/share/nginx/html
 COPY --from=node-builder /source/build/index.html /usr/share/nginx/html/demo/index.html
 COPY --from=node-builder /micro/static /usr/share/nginx/html/micro/static
+COPY --from=node-builder /dist /usr/share/nginx/html/esm
 
 RUN rm /usr/share/nginx/html/index.html
 
