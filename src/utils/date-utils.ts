@@ -1,7 +1,9 @@
+import virkedager from '@alheimsins/virkedager';
+
 import { Sprak } from '../contexts/sprak';
 import lagHentTekstForSprak from '../lib/lag-hent-tekst-for-sprak';
 
-const virkedager = require('@alheimsins/virkedager');
+// const virkedager = require('@alheimsins/virkedager');
 const msPerDoegn = 1000 * 60 * 60 * 24;
 const DAGPENGER_SAKSBEHANDLINGSTID = 35;
 
