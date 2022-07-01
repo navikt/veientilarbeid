@@ -1,3 +1,0 @@
-https://${DomainName}/veientilarbeid/svg/*
-https://${DomainName}/veientilarbeid/demo
-https://${DomainName}/veientilarbeid/demo/*
