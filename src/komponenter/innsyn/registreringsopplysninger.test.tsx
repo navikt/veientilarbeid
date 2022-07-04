@@ -239,7 +239,7 @@ describe('Tester registreringsopplysninger komponenten', () => {
         const props: ProviderProps = {
             underOppfolging: { underOppfolging: true },
         };
-        const mockHandleClick = jest.fn();
+        const mockHandleClick = vi.fn();
         render(<Opplysninger {...registreringsopplysninger} />, { wrapper: contextProviders(props) });
         const knapp = screen.getByText(/gi beskjed til veilederen din/i);
         knapp.onclick = (event) => {

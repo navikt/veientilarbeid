@@ -11,7 +11,7 @@ describe('Tester at komponenten rendres slik den skal', () => {
     });
 
     test('Komponenten rendres IKKE som default', () => {
-        const mockSetReaktivering = jest.fn();
+        const mockSetReaktivering = vi.fn();
         const providerProps: ProviderProps = {};
         const { container } = render(<Reaktivering setReaktivering={mockSetReaktivering} />, {
             wrapper: contextProviders(providerProps),
@@ -20,7 +20,7 @@ describe('Tester at komponenten rendres slik den skal', () => {
     });
 
     test('Komponenten rendres dersom brukeren KAN reaktiveres og er nivå 4', async () => {
-        const mockSetReaktivering = jest.fn();
+        const mockSetReaktivering = vi.fn();
         const providerProps: ProviderProps = {
             autentisering: {
                 securityLevel: InnloggingsNiva.LEVEL_4,

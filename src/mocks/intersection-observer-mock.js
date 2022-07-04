@@ -1,7 +1,9 @@
+import { vi } from 'vitest';
+
 export const mockIntersectionObserver = function () {
-    global.IntersectionObserver = jest.fn(function () {
-        this.observe = jest.fn();
-        this.unobserve = jest.fn();
-        this.disconnect = jest.fn();
+    global.IntersectionObserver = vi.fn(function () {
+        this.observe = vi.fn();
+        this.unobserve = vi.fn();
+        this.disconnect = vi.fn();
     });
 };

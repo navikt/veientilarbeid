@@ -28,8 +28,8 @@ describe('Tester IkkeRegistrert-komponenten', () => {
 
     test('knapp fungerer som forventet', async () => {
         render(<IkkeRegistrert skalTilRegistrering={true} />);
-        const mockHandleClick = jest.fn();
-        const mockLocationAssign = jest.fn();
+        const mockHandleClick = vi.fn();
+        const mockLocationAssign = vi.fn();
 
         delete (global as any).window.location;
         global.window.location = { assign: mockLocationAssign } as unknown as Location;
