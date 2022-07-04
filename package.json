@@ -4,6 +4,7 @@
     "private": true,
     "scripts": {
         "start": "cross-env REACT_APP_MOCK=true node scripts/start.js",
+        "start-vite": "cross-env REACT_APP_MOCK=true vite",
         "start:micro": "cross-env REACT_APP_MOCK=true REACT_APP_MICRO='true' node scripts/start.js",
         "build:micro": "cross-env REACT_APP_MICRO=true npm run build",
         "build:esm": "vite build",

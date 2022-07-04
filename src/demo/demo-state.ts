@@ -1,5 +1,5 @@
 import { InnloggingsNiva, Data as AutentiseringsData } from '../contexts/autentisering';
-import { foerstkommendeMandag, plussDager } from '../utils/date-utils';
+import { datoUtenTid, foerstkommendeMandag, plussDager } from '../utils/date-utils';
 import { hentQueryParam, settQueryParam } from '../utils/query-param-utils';
 import { FeatureToggles } from '../contexts/feature-toggles';
 
@@ -8,6 +8,28 @@ type JSONValue = null | string | number | boolean | JSONObject | JSONArray;
 interface JSONArray extends Array<JSONValue> {}
 
 type JSONObject = { [member: string]: JSONValue };
+
+interface OpprettetRegistreringDato {
+    registrertForLanseringEgenvurdering: string;
+    registrertMellomLanseringEgenvurderingOgMotestotte: string;
+    registrertEtterLanseringMotestotte: string;
+    registrertIDag: string;
+    uke1: string;
+    uke2: string;
+    uke11: string;
+    uke12: string;
+}
+
+export const opprettetRegistreringDato: OpprettetRegistreringDato = {
+    registrertForLanseringEgenvurdering: '2019-05-09T12:00:00.111111+01:00',
+    registrertMellomLanseringEgenvurderingOgMotestotte: '2019-05-11T12:00:00.111111+01:00',
+    registrertEtterLanseringMotestotte: '2019-06-05T12:00:00.111111+01:00',
+    registrertIDag: datoUtenTid(new Date().toISOString()).toISOString(),
+    uke1: datoUtenTid(new Date(new Date().setDate(new Date().getDate() - 7)).toISOString()).toISOString(),
+    uke2: datoUtenTid(new Date(new Date().setDate(new Date().getDate() - 7 * 2)).toISOString()).toISOString(),
+    uke11: datoUtenTid(new Date(new Date().setDate(new Date().getDate() - 7 * 11)).toISOString()).toISOString(),
+    uke12: datoUtenTid(new Date(new Date().setDate(new Date().getDate() - 7 * 12)).toISOString()).toISOString(),
+};
 
 export enum DemoData {
     SERVICEGRUPPE = 'servicegruppe',

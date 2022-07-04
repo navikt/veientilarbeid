@@ -1,6 +1,5 @@
 import { DinSituasjonSvar, ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../contexts/brukerregistrering';
-import { DemoData, hentDemoState, settDemoState } from './demo-state';
-import { opprettetRegistreringDato } from './demo-dashboard';
+import { DemoData, hentDemoState, opprettetRegistreringDato, settDemoState } from './demo-state';
 
 const defaultFremtidigSituasjon = FremtidigSituasjonSvar.NY_ARBEIDSGIVER;
 const defaultDinSituasjon = DinSituasjonSvar.MISTET_JOBBEN;

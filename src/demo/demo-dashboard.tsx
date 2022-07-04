@@ -43,6 +43,7 @@ import {
     settDemoState,
     hentVisGjelderFraDato,
     settVisGjelderFraDato,
+    opprettetRegistreringDato,
 } from './demo-state';
 
 import { DinSituasjonSvar, ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../contexts/brukerregistrering';
@@ -58,32 +59,9 @@ import {
 } from './demo-state-brukerregistrering';
 import { InnloggingsNiva } from '../contexts/autentisering';
 import { setFastTidspunktForIDag } from '../utils/chrono';
-import { datoUtenTid } from '../utils/date-utils';
 import { FeatureToggles, prettyPrintFeatureToggle } from '../contexts/feature-toggles';
 
 import './demo-dashboard.css';
-
-interface OpprettetRegistreringDato {
-    registrertForLanseringEgenvurdering: string;
-    registrertMellomLanseringEgenvurderingOgMotestotte: string;
-    registrertEtterLanseringMotestotte: string;
-    registrertIDag: string;
-    uke1: string;
-    uke2: string;
-    uke11: string;
-    uke12: string;
-}
-
-export const opprettetRegistreringDato: OpprettetRegistreringDato = {
-    registrertForLanseringEgenvurdering: '2019-05-09T12:00:00.111111+01:00',
-    registrertMellomLanseringEgenvurderingOgMotestotte: '2019-05-11T12:00:00.111111+01:00',
-    registrertEtterLanseringMotestotte: '2019-06-05T12:00:00.111111+01:00',
-    registrertIDag: datoUtenTid(new Date().toISOString()).toISOString(),
-    uke1: datoUtenTid(new Date(new Date().setDate(new Date().getDate() - 7)).toISOString()).toISOString(),
-    uke2: datoUtenTid(new Date(new Date().setDate(new Date().getDate() - 7 * 2)).toISOString()).toISOString(),
-    uke11: datoUtenTid(new Date(new Date().setDate(new Date().getDate() - 7 * 11)).toISOString()).toISOString(),
-    uke12: datoUtenTid(new Date(new Date().setDate(new Date().getDate() - 7 * 12)).toISOString()).toISOString(),
-};
 
 const DemoDashboard = () => {
     const SYKMELDT_MED_ARBEIDSGIVER = DemoData.SYKMELDT_MED_ARBEIDSGIVER;
