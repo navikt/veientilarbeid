@@ -19,6 +19,9 @@ RUN cp -r /source/build /micro
 
 RUN npm run build
 
+RUN npm run build:esm-demo
+RUN cp -r /source/dist /esmdemo
+
 RUN npm run build:esm
 
 FROM nginx:1.23-alpine
@@ -27,7 +30,9 @@ COPY --from=node-builder /source/build /usr/share/nginx/html
 COPY --from=node-builder /source/build/index.html /usr/share/nginx/html/demo/index.html
 COPY --from=node-builder /micro/static /usr/share/nginx/html/micro/static
 COPY --from=node-builder /source/dist /usr/share/nginx/html/esm
+COPY --from=node-builder /esmdemo /usr/share/nginx/html/esm/demo
 
+RUN cp /usr/share/nginx/html/esm/demo/demo.html /usr/share/nginx/html/esm/demo/index.html
 RUN rm /usr/share/nginx/html/index.html
 
 EXPOSE 8080

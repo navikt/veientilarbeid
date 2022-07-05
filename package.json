@@ -8,6 +8,7 @@
         "start:micro": "cross-env REACT_APP_MOCK=true REACT_APP_MICRO='true' node scripts/start.js",
         "build:micro": "cross-env REACT_APP_MICRO=true npm run build",
         "build:esm": "vite build",
+        "build:esm-demo": "vite build --config vite.demo.config.ts",
         "build": "REACT_APP_SENTRY_RELEASE=$(sentry-cli releases propose-version) node scripts/build.js",
         "lint": "eslint --ext=jsx,js,ts,tsx ./src",
         "lint:fix": "eslint --ext=jsx,js,ts,tsx ./src --fix",

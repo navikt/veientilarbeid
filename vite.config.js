@@ -33,9 +33,6 @@ export default defineConfig({
             fileName: () => `bundle.js`,
         },
     },
-    // define: {
-    //     'process.env': process.env,
-    // },
     server: {
         port: 3002,
     },
