@@ -3,9 +3,9 @@ export function erDemo(): boolean {
     return path.includes('/demo/index.html');
 }
 
-export const erMikrofrontend = () => process?.env.REACT_APP_MICRO === 'true';
+export const erMikrofrontend = () => process.env.REACT_APP_MICRO === 'true';
 
-export const erMock = () => process?.env.REACT_APP_MOCK;
+export const erMock = () => process.env.REACT_APP_MOCK;
 
 const url = window && window.location && window.location.href ? window.location.href : '';
 
