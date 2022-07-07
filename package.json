@@ -89,5 +89,8 @@
     "snyk": true,
     "msw": {
         "workerDirectory": "public"
+    },
+    "engines": {
+        "node": ">=16.15.1"
     }
 }
