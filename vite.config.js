@@ -6,7 +6,7 @@ import { terser } from 'rollup-plugin-terser';
 import { resolve } from 'path';
 import svgr from 'vite-plugin-svgr';
 
-export default defineConfig({
+const config = {
     plugins: [
         svgr(),
         react(),
@@ -36,4 +36,33 @@ export default defineConfig({
     server: {
         port: 3002,
     },
+};
+
+const demoConfig = {
+    plugins: [svgr(), react(), terser(), cssInjectedByJsPlugin()],
+    build: {
+        lib: {
+            entry: resolve(__dirname, 'src/dev.tsx'),
+            name: 'veientilarbeid',
+            formats: ['es'],
+            fileName: () => 'demo.bundle.js',
+        },
+    },
+};
+
+export default defineConfig(({ command, mode }) => {
+    if (command === 'build') {
+        if (mode === 'demo') {
+            return demoConfig;
+        }
+
+        return config;
+    }
+
+    return {
+        ...config,
+        define: {
+            'process.env': process.env,
+        },
+    };
 });
