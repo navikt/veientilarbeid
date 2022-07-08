@@ -35,6 +35,7 @@ import * as DpInnsynSoknad from '../../contexts/dp-innsyn-soknad';
 import * as DpInnsynVedtak from '../../contexts/dp-innsyn-vedtak';
 import * as DpInnsynPaabegynt from '../../contexts/dp-innsyn-paabegynte-soknader';
 import { GjelderFraDatoModalProvider } from '../../contexts/gjelder-fra-dato-modal';
+import { GjelderFraDatoProvider } from '../../contexts/gjelder-fra-dato';
 
 const skalSjekkeEgenvurderingBesvarelse = (
     foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null
@@ -203,7 +204,9 @@ const DataProvider = ({ children }: Props) => {
                                                     value={arbeidssokerperioderState}
                                                 >
                                                     <GjelderFraDatoModalProvider>
-                                                        <AmplitudeProvider>{children}</AmplitudeProvider>
+                                                        <GjelderFraDatoProvider>
+                                                            <AmplitudeProvider>{children}</AmplitudeProvider>
+                                                        </GjelderFraDatoProvider>
                                                     </GjelderFraDatoModalProvider>
                                                 </Arbeidssokerperioder.ArbeidssokerperioderContext.Provider>
                                             </SprakValg.SprakContext.Provider>

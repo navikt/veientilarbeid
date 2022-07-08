@@ -4,11 +4,10 @@ import { BodyShort, Button, Heading, Link, Modal } from '@navikt/ds-react';
 import { useGjelderFraDatoModal } from '../../contexts/gjelder-fra-dato-modal';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useBrukerregistreringData, DinSituasjonSvar } from '../../contexts/brukerregistrering';
-import { fetchToJson } from '../../ducks/api-utils';
-import { GJELDER_FRA_DATO_URL, requestConfig } from '../../ducks/api';
 import { plussDager } from '../../utils/date-utils';
 import { loggAktivitet } from '../../metrics/metrics';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { useGjelderFraDato } from '../../contexts/gjelder-fra-dato';
 
 function GjelderFraDato(): JSX.Element | null {
     const amplitudeData = useAmplitudeData();
@@ -23,15 +22,7 @@ function GjelderFraDato(): JSX.Element | null {
 
     const [gjelderFraDato, settGjelderFraDato] = useState<string | null>(null);
     const [lagrerDato, settLagrerDato] = useState<boolean>(false);
-
-    const hentGjelderFraDato = async () => {
-        try {
-            const { dato } = await fetchToJson(GJELDER_FRA_DATO_URL, requestConfig());
-            settGjelderFraDato(dato);
-        } catch (err) {
-            console.error(err);
-        }
-    };
+    const { dato: lagretGjelderFraDato, lagreGjelderFraDato } = useGjelderFraDato();
 
     const onSubmit = useCallback(async () => {
         gjelderFraDato == null
@@ -39,24 +30,20 @@ function GjelderFraDato(): JSX.Element | null {
             : loggAktivitet({ aktivitet: 'Endrer dato for siste dag med lønn', ...amplitudeData });
         try {
             settLagrerDato(true);
-            await fetchToJson(GJELDER_FRA_DATO_URL, {
-                ...requestConfig(),
-                method: 'POST',
-                body: JSON.stringify({ dato: gjelderFraDato }),
-            });
+            await lagreGjelderFraDato(gjelderFraDato);
         } catch (error) {
             console.error(error);
         } finally {
             settLagrerDato(false);
             settLukkModal();
         }
-    }, [gjelderFraDato, settLukkModal, amplitudeData]);
+    }, [gjelderFraDato, amplitudeData, lagreGjelderFraDato, settLukkModal]);
 
     useEffect(() => {
         if (visModal) {
-            hentGjelderFraDato();
+            settGjelderFraDato(lagretGjelderFraDato);
         }
-    }, [visModal]);
+    }, [visModal, lagretGjelderFraDato]);
 
     if (!visKomponent || !visModal) {
         return null;

@@ -5,8 +5,6 @@ import ukerFraDato from '@alheimsins/uker-fra-dato';
 import InViewport from '../in-viewport/in-viewport';
 import ErRendret from '../er-rendret/er-rendret';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
-import { fetchToJson } from '../../ducks/api-utils';
-import { GJELDER_FRA_DATO_URL, requestConfig } from '../../ducks/api';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useSprakValg } from '../../contexts/sprak';
 import { useBrukerregistreringData, DinSituasjonSvar } from '../../contexts/brukerregistrering';
@@ -21,6 +19,7 @@ import hentTekstnokkelForOnboardingTrinn1 from '../../lib/hent-tekstnokkel-for-o
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import { datoUtenTid, plussDager } from '../../utils/date-utils';
 import { loggAktivitet } from '../../metrics/metrics';
+import { useGjelderFraDato } from '../../contexts/gjelder-fra-dato';
 
 const TEKSTER = {
     nb: {
@@ -119,7 +118,6 @@ const LeggTilEllerEndreDato = ({
 };
 
 const OnboardingStandard = () => {
-    const [gjelderFraDato, settGjelderFraDato] = useState<string | null>(null);
     const [datoTidligst, settDatoTidligst] = useState<string>('');
     const [datoSenest, settDatoSenest] = useState<string>('');
     const [kanViseKomponent, settKanViseKomponent] = useState<boolean>(false);
@@ -128,7 +126,6 @@ const OnboardingStandard = () => {
     const oppfolgingData = useOppfolgingData();
     const featuretoggleData = useFeatureToggleData();
     const { dagpengestatus } = useAmplitudeData();
-    const { visModal: modalVises } = useGjelderFraDatoModal();
     const brukerregistreringData = registreringData?.registrering ?? null;
     const dinSituasjon = brukerregistreringData?.besvarelse.dinSituasjon || DinSituasjonSvar.INGEN_VERDI;
     const harMistetJobben = dinSituasjon === DinSituasjonSvar.MISTET_JOBBEN;
@@ -138,15 +135,6 @@ const OnboardingStandard = () => {
         ? new Date(opprettetRegistreringDatoString)
         : null;
     const ukerRegistrert = opprettetRegistreringDato ? ukerFraDato(opprettetRegistreringDato) : 'INGEN_DATO';
-
-    const hentGjelderFraDato = async () => {
-        try {
-            const { dato } = await fetchToJson(GJELDER_FRA_DATO_URL, requestConfig());
-            settGjelderFraDato(dato);
-        } catch (error) {
-            console.error(error);
-        }
-    };
 
     const erStandardAvRettType = erStandardTilknyttetArbeid({
         oppfolgingData,
@@ -158,12 +146,7 @@ const OnboardingStandard = () => {
     const harSettOppfolgingIntro = hentFraBrowserStorage('14a-intro');
     const utforteTrinn = beregnUtforteTrinn(dagpengestatus, harSettMeldekortIntro, harSettOppfolgingIntro);
     const nesteTrinn = beregnNesteTrinn(utforteTrinn);
-
-    useEffect(() => {
-        if (erStandardAvRettType && visGjelderFraDatoLenke) {
-            hentGjelderFraDato();
-        }
-    }, [erStandardAvRettType, visGjelderFraDatoLenke]);
+    const gjelderFraDato = useGjelderFraDato().dato;
 
     useEffect(() => {
         if (gjelderFraDato) {
@@ -181,13 +164,6 @@ const OnboardingStandard = () => {
         }
     }, [gjelderFraDato, erStandardAvRettType, ukerRegistrert]);
 
-    useEffect(() => {
-        if (!modalVises && erStandardAvRettType && visGjelderFraDatoLenke) {
-            // fetch data på nytt hver gang modal lukkes - muligens oppdaterte data
-            hentGjelderFraDato();
-        }
-    }, [modalVises, erStandardAvRettType, visGjelderFraDatoLenke]);
-
     if (kanViseKomponent)
         return (
             <Panel border className="ramme blokk-s" id="standard-onboarding">
@@ -195,7 +171,10 @@ const OnboardingStandard = () => {
                 <Heading size="medium" level="2" className="blokk-xs">
                     {tekst('header')}
                 </Heading>
-                <LeggTilEllerEndreDato kanViseKomponent={visGjelderFraDatoLenke} dato={gjelderFraDato} />
+                <LeggTilEllerEndreDato
+                    kanViseKomponent={visGjelderFraDatoLenke && erStandardAvRettType}
+                    dato={gjelderFraDato}
+                />
                 <BodyLong spacing className={`flex${utforteTrinn.includes(1) ? ' inaktiv' : ''}`}>
                     <TallSirkel tall={1} aktiv={nesteTrinn === 1} inaktiv={utforteTrinn.includes(1)} />{' '}
                     <span
