@@ -9,7 +9,6 @@ import AktivitetDialogMeldekort from './aktivitet-dialog-meldekort';
 import InnholdMetrics from './innhold-metrics';
 import InViewport from '../komponenter/in-viewport/in-viewport';
 import StatusTittel from '../komponenter/registrert/status-tittel';
-import EkspanderbartInnsyn from '../komponenter/innsyn/ekspanderbart-innsyn';
 import ReaktiveringKvittering from '../komponenter/reaktivering/reaktivering-kvittering';
 
 const InnholdView = () => {
@@ -23,7 +22,6 @@ const InnholdView = () => {
                 <StatusTittel />
                 <ReaktiveringKvittering />
                 <Registrert />
-                <EkspanderbartInnsyn />
                 <Egenvurdering />
                 <Motestotte />
                 <AktivitetDialogMeldekort />

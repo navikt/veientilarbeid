@@ -6,7 +6,6 @@ import Registrert from '../komponenter/registrert/registrert';
 import InnholdMetrics from './innhold-metrics';
 import InViewport from '../komponenter/in-viewport/in-viewport';
 import StatusTittel from '../komponenter/registrert/status-tittel';
-import EkspanderbartInnsyn from '../komponenter/innsyn/ekspanderbart-innsyn';
 import ReaktiveringKvittering from '../komponenter/reaktivering/reaktivering-kvittering';
 import OnboardingStandard from '../komponenter/onboarding-standard/onboarding-standard';
 import GjelderFraDato from '../komponenter/gjelder-fra-dato/GjelderFraDato';
@@ -24,7 +23,6 @@ const InnholdStandard = () => {
                 <OnboardingStandard />
                 <ReaktiveringKvittering />
                 <Registrert />
-                <EkspanderbartInnsyn />
             </Rad>
             <InViewport loggTekst="Bunnen av veien til arbeid - standard i viewport" />
         </>
