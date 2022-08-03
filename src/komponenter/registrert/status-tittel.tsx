@@ -1,10 +1,11 @@
+import { createRef, useCallback, useEffect, useState } from 'react';
 import { Heading, Panel } from '@navikt/ds-react';
+import { Success, SuccessColored } from '@navikt/ds-icons';
 
 import useErInnloggetArbeidssoker from '../../hooks/useErInnloggetArbeidssoker';
+import InnsynLesMer from '../innsyn/innsyn-les-mer';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
-import { createRef, useCallback, useEffect, useState } from 'react';
-import { Success, SuccessColored } from '@navikt/ds-icons';
 
 const TEKSTER = {
     nb: {
@@ -48,6 +49,7 @@ const StatusTittel = () => {
                     </span>
                     {tekst(erNyRegistrert ? 'registrertNy' : 'registrert')}
                 </Heading>
+                <InnsynLesMer />
             </Panel>
         </div>
     );

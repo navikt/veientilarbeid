@@ -65,23 +65,25 @@ const Opplysninger = (props: any) => {
 
     return !kanViseKomponent ? null : (
         <>
-            <div className="blokk-s">
-                <BodyShort>
-                    {manueltRegistrertAv ? 'NAV' : 'Du'} registrerte deg som arbeidssøker{' '}
-                    {prettyPrintDato(opprettetDato)}.<br />
-                    Du kan endre opplysningene du ga ved å kontakte NAV.
-                    <br />
-                    Veilederen din bruker opplysningene for å vurdere hvor mye veiledning du trenger.
-                    <br />
-                    <a href={dialogLenke} onClick={handleDialogClick}>
-                        Gi beskjed til veilederen din
-                    </a>{' '}
-                    hvis situasjonen din endrer seg.
-                </BodyShort>
+            <div className="flex flex-column">
+                <div className="blokk-s">
+                    <BodyShort>
+                        {manueltRegistrertAv ? 'NAV' : 'Du'} registrerte deg som arbeidssøker{' '}
+                        {prettyPrintDato(opprettetDato)}.<br />
+                        Du kan endre opplysningene du ga ved å kontakte NAV.
+                        <br />
+                        Veilederen din bruker opplysningene for å vurdere hvor mye veiledning du trenger.
+                        <br />
+                        <a href={dialogLenke} onClick={handleDialogClick}>
+                            Gi beskjed til veilederen din
+                        </a>{' '}
+                        hvis situasjonen din endrer seg.
+                    </BodyShort>
+                </div>
+                {besvarelser.map((item, index) => (
+                    <Opplysning {...item} key={index} />
+                ))}
             </div>
-            {besvarelser.map((item, index) => (
-                <Opplysning {...item} key={index} />
-            ))}
             <Feedback id={'svar-fra-registreringen'} />
         </>
     );
