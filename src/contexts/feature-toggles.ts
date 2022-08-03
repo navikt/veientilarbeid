@@ -13,6 +13,7 @@ export enum FeatureToggles {
     VIS_ONBOARDING_STANDARD = 'veientilarbeid.vis-onboarding-standard',
     LOGG_ARBEIDSSOKERPERIODER = 'veientilarbeid.logg-arbeidssokerperioder',
     VIS_GJELDER_FRA_DATO = 'veientilarbeid.vis-gjelder-fra-dato',
+    SPLITT_STANDARD = 'veientilarbeid.splitt-standard-visning',
 }
 
 export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
@@ -39,6 +40,8 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Logg arbeidssøkerperioder';
         case FeatureToggles.VIS_GJELDER_FRA_DATO:
             return 'Gjelder fra dato';
+        case FeatureToggles.SPLITT_STANDARD:
+            return 'Splitt standard og ikke-standard';
     }
 }
 
@@ -54,6 +57,7 @@ export interface Data {
     'veientilarbeid.vis-onboarding-standard': boolean;
     'veientilarbeid.logg-arbeidssokerperioder': boolean;
     'veientilarbeid.vis-gjelder-fra-dato'?: boolean;
+    'veientilarbeid.splitt-standard-visning'?: boolean;
 }
 
 export interface State extends DataElement {
@@ -73,6 +77,7 @@ export const initialState: State = {
         'veientilarbeid.vis-onboarding-standard': false,
         'veientilarbeid.logg-arbeidssokerperioder': false,
         'veientilarbeid.vis-gjelder-fra-dato': false,
+        'veientilarbeid.splitt-standard-visning': false,
     },
     status: STATUS.NOT_STARTED,
 };
