@@ -8,12 +8,12 @@ import { Success, SuccessColored } from '@navikt/ds-icons';
 
 const TEKSTER = {
     nb: {
-        registrert: 'Du er registrert som arbeidssøker',
-        registrertNy: 'Du er nå registrert som arbeidssøker',
+        registrert: 'Jeg er registrert som arbeidssøker',
+        registrertNy: 'Jeg er nå registrert som arbeidssøker',
     },
     en: {
-        registrert: 'You are registered as job seeker',
-        registrertNy: 'You are now registered as job seeker',
+        registrert: 'I am registered as job seeker',
+        registrertNy: 'I am now registered as job seeker',
     },
 };
 
