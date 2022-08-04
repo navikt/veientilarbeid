@@ -1,9 +1,13 @@
 import './innhold.css';
 import Rad from './rad';
 import ReaktiveringKort from '../komponenter/reaktivering/reaktivering-kort';
+import Egenvurdering from '../komponenter/egenvurdering/egenvurdering';
+import Motestotte from '../komponenter/motestotte/motestotte';
 import KrrMelding from '../komponenter/krr-melding/krr-melding';
 import Registrert from '../komponenter/registrert/registrert';
+import AktivitetDialogMeldekort from './aktivitet-dialog-meldekort';
 import InnholdMetrics from './innhold-metrics';
+import GenerelleFliser from '../komponenter/dittnav/generelle-fliser';
 import InViewport from '../komponenter/in-viewport/in-viewport';
 import StatusTittel from '../komponenter/registrert/status-tittel';
 import ReaktiveringKvittering from '../komponenter/reaktivering/reaktivering-kvittering';
@@ -23,8 +27,12 @@ const InnholdStandard = () => {
                 <OnboardingStandard />
                 <ReaktiveringKvittering />
                 <Registrert />
+                <Egenvurdering />
+                <Motestotte />
+                <AktivitetDialogMeldekort />
+                <GenerelleFliser />
             </Rad>
-            <InViewport loggTekst="Bunnen av veien til arbeid - standard i viewport" />
+            <InViewport loggTekst="Bunnen av veien til arbeid i viewport" />
         </>
     );
 };
