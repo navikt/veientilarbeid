@@ -42,14 +42,23 @@ const StatusTittel = () => {
 
     return (
         <div ref={containerRef}>
-            <Panel className="blokk-xs">
-                <Heading size="medium">
-                    <span style={{ marginRight: '0.5em', position: 'relative', top: '4px' }}>
+            <Panel>
+                <div className="flex">
+                    <span
+                        style={{
+                            marginRight: '0.5em',
+                            position: 'relative',
+                            top: '6px',
+                            fontSize: 'var(--navds-font-size-heading-medium)',
+                        }}
+                    >
                         {erNyRegistrert ? <SuccessColored /> : <Success />}
                     </span>
-                    {tekst(erNyRegistrert ? 'registrertNy' : 'registrert')}
-                </Heading>
-                <InnsynLesMer />
+                    <div>
+                        <Heading size="medium">{tekst(erNyRegistrert ? 'registrertNy' : 'registrert')}</Heading>
+                        <InnsynLesMer />
+                    </div>
+                </div>
             </Panel>
         </div>
     );
