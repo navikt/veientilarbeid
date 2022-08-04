@@ -152,18 +152,16 @@ function IkkeStandard() {
 const ListeElement = (ikon: JSX.Element, innhold: JSX.Element) => {
     return (
         <li className="flex mb-2">
-            <div className="mr-05">
-                <span
-                    style={{
-                        marginRight: '0.5em',
-                        position: 'relative',
-                        top: '6px',
-                        fontSize: 'var(--navds-font-size-heading-medium)',
-                    }}
-                >
-                    {ikon}
-                </span>
-            </div>
+            <span
+                style={{
+                    marginRight: '0.5em',
+                    position: 'relative',
+                    top: '6px',
+                    fontSize: 'var(--navds-font-size-heading-medium)',
+                }}
+            >
+                {ikon}
+            </span>
             <div>{innhold}</div>
         </li>
     );
