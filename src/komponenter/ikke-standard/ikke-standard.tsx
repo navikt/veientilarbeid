@@ -80,7 +80,11 @@ function IkkeStandard() {
             <div>
                 <Heading size="medium">{tekst('meldekort.overskrift')}</Heading>
                 <BodyLong>
-                    <Link href={omMeldekortLenke} target="_blank" onClick={() => handleClick('Går til meldekort')}>
+                    <Link
+                        href={omMeldekortLenke}
+                        target="_blank"
+                        onClick={() => handleClick('Går til meldekortet fra ikke-standard')}
+                    >
                         {tekst('meldekort.ingress')}
                     </Link>{' '}
                 </BodyLong>
@@ -97,7 +101,7 @@ function IkkeStandard() {
                     <Link
                         href={sykefravaerLenke}
                         target="_blank"
-                        onClick={() => handleClick('Går til ditt sykefravær')}
+                        onClick={() => handleClick('Går til ditt sykefravær fra ikke-standard')}
                     >
                         {tekst('sykefravaer.ingress')}
                     </Link>
@@ -118,7 +122,7 @@ function IkkeStandard() {
                             <Link
                                 href={aktivitetsplanLenke}
                                 target="_blank"
-                                onClick={() => handleClick('Går til aktivitetsplanen')}
+                                onClick={() => handleClick('Går til aktivitetsplanen fra ikke-standard')}
                             >
                                 {tekst('aktivitetsplan.lenketekst')}
                             </Link>{' '}
@@ -131,7 +135,11 @@ function IkkeStandard() {
                     <Dialog />,
                     <div>
                         <Heading size="medium">{tekst('dialog.overskrift')}</Heading>
-                        <Link href={dialogLenke} target="_blank" onClick={() => handleClick('Går til dialog')}>
+                        <Link
+                            href={dialogLenke}
+                            target="_blank"
+                            onClick={() => handleClick('Går til dialogen fra ikke-standard')}
+                        >
                             {tekst('dialog.ingress')}
                         </Link>{' '}
                     </div>
@@ -144,20 +152,23 @@ function IkkeStandard() {
                             {tekst('sporsmal')}{' '}
                             <Link
                                 href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
-                                onClick={() => handleClick(`Går til STO`)}
+                                onClick={() => handleClick(`Går til STO fra ikke-standard`)}
                             >
                                 {tekst('skrivTilOss')}
                             </Link>{' '}
                             {tekst('eller')}{' '}
                             <Link
                                 href="https://www.nav.no/person/kontakt-oss/chat/"
-                                onClick={() => handleClick(`Går til chat`)}
+                                onClick={() => handleClick(`Går til chat fra ikke-standard`)}
                             >
                                 {tekst('chat')}
                             </Link>
                             {'. '}
                             {tekst('les-om-hjelp')}{' '}
-                            <Link href={'https://www.nav.no'} onClick={() => handleClick('Går til nav.no')}>
+                            <Link
+                                href={'https://www.nav.no'}
+                                onClick={() => handleClick('Går til nav.no fra ikke-standard')}
+                            >
                                 nav.no
                             </Link>
                             .
