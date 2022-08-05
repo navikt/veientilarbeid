@@ -1,22 +1,23 @@
 import { BodyLong, Heading, Link, Panel } from '@navikt/ds-react';
+import { Bandage, Dialog, Email, Laptop, Task } from '@navikt/ds-icons';
+
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
 import { aktivitetsplanLenke, dialogLenke, omMeldekortLenke, sykefravaerLenke } from '../../innhold/lenker';
 import { loggAktivitet } from '../../metrics/metrics';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
-import { Bandage, Dialog, Email, Laptop, Task } from '@navikt/ds-icons';
 
 const TEKSTER = {
     nb: {
         'aktivitetsplan.overskrift': 'Aktivitetsplanen din',
         'aktivitetsplan.bruke': 'Du kan bruke',
         'aktivitetsplan.lenketekst': 'aktivitetsplanen',
-        'aktivitetsplan.holde-orden': 'til å holde orden på aktiviteter du gjør i samarbeid med NAV.',
+        'aktivitetsplan.holde-orden': 'til å holde orden på aktiviteter du gjør i samarbeid med NAV',
         'meldekort.overskrift': 'Meldekort',
-        'meldekort.ingress': 'Send inn, endre og se innsendte meldekort.',
+        'meldekort.ingress': 'Send inn, endre og se innsendte meldekort',
         'sykefravaer.overskrift': 'Ditt sykefravær',
-        'sykefravaer.ingress': 'Se sykemeldingene dine og annen informasjon om sykefraværet ditt.',
+        'sykefravaer.ingress': 'Se sykemeldingene dine og annen informasjon om sykefraværet ditt',
         'dialog.overskrift': 'Dialog',
         'dialog.ingress': 'Gå til dialog',
         'sporsmal.overskrift': 'Har du spørsmål om å søke eller motta pengestøtte?',
@@ -28,22 +29,40 @@ const TEKSTER = {
     },
     en: {
         'aktivitetsplan.overskrift': 'Your planned activities',
-        'aktivitetsplan.bruke': 'Du kan bruke',
-        'aktivitetsplan.lenketekst': 'aktivitetsplanen',
-        'aktivitetsplan.holde-orden': 'til å holde orden på aktiviteter du gjør i samarbeid med NAV.',
-        'meldekort.overskrift': 'Meldekort',
-        'meldekort.ingress': 'Submit, edit and see your employment status forms.',
+        'aktivitetsplan.bruke': 'You can use',
+        'aktivitetsplan.lenketekst': 'your planned activities',
+        'aktivitetsplan.holde-orden': 'to track activities you do in collaboration with NAV',
+        'meldekort.overskrift': 'Employment status form',
+        'meldekort.ingress': 'Submit, edit and see your employment status forms',
         'sykefravaer.overskrift': 'Your sick leave',
         'sykefravaer.ingress': 'See information about your sick leave',
-        'dialog.overskrift': 'Dialog',
-        'dialog.ingress': 'Gå til dialog',
-        'sporsmal.overskrift': 'Har du spørsmål om å søke eller motta pengestøtte?',
-        sporsmal: 'Har du spørsmål om ytelser må du bruke',
-        skrivTilOss: 'skriv til oss',
-        eller: 'eller',
+        'dialog.overskrift': 'Dialogue',
+        'dialog.ingress': 'Go to the dialogue app',
+        'sporsmal.overskrift': 'Do you have questions about applying for or receiving financial support?',
+        sporsmal: 'You can ask questions about benefits via',
+        skrivTilOss: 'write to us',
+        eller: 'or',
         chat: 'chat',
-        'les-om-hjelp': 'Du kan lese om hva NAV kan hjelpe deg med på forsiden av',
+        'les-om-hjelp': 'You can read about situations in which NAV can help on',
     },
+};
+
+const ListeElement = (ikon: JSX.Element, innhold: JSX.Element) => {
+    return (
+        <li className="flex mb-2">
+            <span
+                style={{
+                    marginRight: '0.5em',
+                    position: 'relative',
+                    top: '6px',
+                    fontSize: 'var(--navds-font-size-heading-medium)',
+                }}
+            >
+                {ikon}
+            </span>
+            <div>{innhold}</div>
+        </li>
+    );
 };
 
 function IkkeStandard() {
@@ -141,6 +160,7 @@ function IkkeStandard() {
                             <Link href={'https://www.nav.no'} onClick={() => handleClick('Går til nav.no')}>
                                 nav.no
                             </Link>
+                            .
                         </BodyLong>
                     </div>
                 )}
@@ -148,23 +168,5 @@ function IkkeStandard() {
         </Panel>
     );
 }
-
-const ListeElement = (ikon: JSX.Element, innhold: JSX.Element) => {
-    return (
-        <li className="flex mb-2">
-            <span
-                style={{
-                    marginRight: '0.5em',
-                    position: 'relative',
-                    top: '6px',
-                    fontSize: 'var(--navds-font-size-heading-medium)',
-                }}
-            >
-                {ikon}
-            </span>
-            <div>{innhold}</div>
-        </li>
-    );
-};
 
 export default IkkeStandard;
