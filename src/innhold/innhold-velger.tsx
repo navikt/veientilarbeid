@@ -13,11 +13,7 @@ function InnholdVelger() {
         oppfolgingData,
     });
 
-    if (erStandardInnsatsgruppe) {
-        return <InnholdStandard />;
-    }
-
-    return <InnholdIkkeStandard />;
+    return erStandardInnsatsgruppe ? <InnholdStandard /> : <InnholdIkkeStandard />;
 }
 
 export default InnholdVelger;
