@@ -14,6 +14,7 @@ export enum FeatureToggles {
     LOGG_ARBEIDSSOKERPERIODER = 'veientilarbeid.logg-arbeidssokerperioder',
     VIS_GJELDER_FRA_DATO = 'veientilarbeid.vis-gjelder-fra-dato',
     SPLITT_STANDARD = 'veientilarbeid.splitt-standard-visning',
+    NY_DAGPENGEKOMPONENT = 'veientilarbeid.ny-dagpengekomponent',
 }
 
 export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
@@ -42,6 +43,8 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Gjelder fra dato';
         case FeatureToggles.SPLITT_STANDARD:
             return 'Splitt standard og ikke-standard';
+        case FeatureToggles.NY_DAGPENGEKOMPONENT:
+            return 'Bruk ny komponent for dagpenger';
     }
 }
 
@@ -58,6 +61,7 @@ export interface Data {
     'veientilarbeid.logg-arbeidssokerperioder': boolean;
     'veientilarbeid.vis-gjelder-fra-dato'?: boolean;
     'veientilarbeid.splitt-standard-visning'?: boolean;
+    'veientilarbeid.ny-dagpengekomponent'?: boolean;
 }
 
 export interface State extends DataElement {
@@ -78,6 +82,7 @@ export const initialState: State = {
         'veientilarbeid.logg-arbeidssokerperioder': false,
         'veientilarbeid.vis-gjelder-fra-dato': false,
         'veientilarbeid.splitt-standard-visning': false,
+        'veientilarbeid.ny-dagpengekomponent': false,
     },
     status: STATUS.NOT_STARTED,
 };
