@@ -8,6 +8,8 @@ import InViewport from '../komponenter/in-viewport/in-viewport';
 import StatusTittel from '../komponenter/registrert/status-tittel';
 import ReaktiveringKvittering from '../komponenter/reaktivering/reaktivering-kvittering';
 import IkkeStandard from '../komponenter/ikke-standard/ikke-standard';
+import Motestotte from '../komponenter/motestotte/motestotte';
+import Egenvurdering from '../komponenter/egenvurdering/egenvurdering';
 
 const InnholdView = () => {
     return (
@@ -20,6 +22,8 @@ const InnholdView = () => {
                 <StatusTittel />
                 <ReaktiveringKvittering />
                 <IkkeStandard />
+                <Motestotte />
+                <Egenvurdering />
                 <GenerelleFliser />
             </Rad>
             <InViewport loggTekst="Bunnen av veien til arbeid i viewport - ikke-standard" />

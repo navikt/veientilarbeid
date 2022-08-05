@@ -108,7 +108,7 @@ function IkkeStandard() {
     };
 
     return (
-        <Panel>
+        <Panel className="blokk-xs">
             <ul className={'ikke-standard-liste'}>
                 {ListeElement(
                     <Task />,
