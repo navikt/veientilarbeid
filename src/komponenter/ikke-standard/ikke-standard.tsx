@@ -26,6 +26,7 @@ const TEKSTER = {
         eller: 'eller',
         chat: 'chat',
         'les-om-hjelp': 'Du kan lese om hva NAV kan hjelpe deg med på forsiden av',
+        'ny-fane': 'åpner i ny fane',
     },
     en: {
         'aktivitetsplan.overskrift': 'Your planned activities',
@@ -44,6 +45,7 @@ const TEKSTER = {
         eller: 'or',
         chat: 'chat',
         'les-om-hjelp': 'You can read about situations in which NAV can help on',
+        'ny-fane': 'opens in new tab',
     },
 };
 
@@ -80,11 +82,7 @@ function IkkeStandard() {
             <div>
                 <Heading size="medium">{tekst('meldekort.overskrift')}</Heading>
                 <BodyLong>
-                    <Link
-                        href={omMeldekortLenke}
-                        target="_blank"
-                        onClick={() => handleClick('Går til meldekortet fra ikke-standard')}
-                    >
+                    <Link href={omMeldekortLenke} onClick={() => handleClick('Går til meldekortet fra ikke-standard')}>
                         {tekst('meldekort.ingress')}
                     </Link>{' '}
                 </BodyLong>
@@ -100,7 +98,6 @@ function IkkeStandard() {
                 <BodyLong>
                     <Link
                         href={sykefravaerLenke}
-                        target="_blank"
                         onClick={() => handleClick('Går til ditt sykefravær fra ikke-standard')}
                     >
                         {tekst('sykefravaer.ingress')}
@@ -121,7 +118,6 @@ function IkkeStandard() {
                             {tekst('aktivitetsplan.bruke')}{' '}
                             <Link
                                 href={aktivitetsplanLenke}
-                                target="_blank"
                                 onClick={() => handleClick('Går til aktivitetsplanen fra ikke-standard')}
                             >
                                 {tekst('aktivitetsplan.lenketekst')}
@@ -135,11 +131,7 @@ function IkkeStandard() {
                     <Dialog />,
                     <div>
                         <Heading size="medium">{tekst('dialog.overskrift')}</Heading>
-                        <Link
-                            href={dialogLenke}
-                            target="_blank"
-                            onClick={() => handleClick('Går til dialogen fra ikke-standard')}
-                        >
+                        <Link href={dialogLenke} onClick={() => handleClick('Går til dialogen fra ikke-standard')}>
                             {tekst('dialog.ingress')}
                         </Link>{' '}
                     </div>
@@ -167,9 +159,10 @@ function IkkeStandard() {
                             {tekst('les-om-hjelp')}{' '}
                             <Link
                                 href={'https://www.nav.no'}
+                                target="_blank"
                                 onClick={() => handleClick('Går til nav.no fra ikke-standard')}
                             >
-                                nav.no
+                                nav.no ({tekst('ny-fane')})
                             </Link>
                             .
                         </BodyLong>
