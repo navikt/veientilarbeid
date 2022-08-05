@@ -2,7 +2,6 @@ import './innhold.css';
 import Rad from './rad';
 import ReaktiveringKort from '../komponenter/reaktivering/reaktivering-kort';
 import Egenvurdering from '../komponenter/egenvurdering/egenvurdering';
-import Motestotte from '../komponenter/motestotte/motestotte';
 import KrrMelding from '../komponenter/krr-melding/krr-melding';
 import Registrert from '../komponenter/registrert/registrert';
 import AktivitetDialogMeldekort from './aktivitet-dialog-meldekort';
@@ -12,6 +11,7 @@ import StatusTittel from '../komponenter/registrert/status-tittel';
 import ReaktiveringKvittering from '../komponenter/reaktivering/reaktivering-kvittering';
 import OnboardingStandard from '../komponenter/onboarding-standard/onboarding-standard';
 import GjelderFraDato from '../komponenter/gjelder-fra-dato/GjelderFraDato';
+import Dagpenger from '../komponenter/dagpenger/dagpenger';
 
 const InnholdStandard = () => {
     return (
@@ -22,12 +22,12 @@ const InnholdStandard = () => {
                 <ReaktiveringKort />
                 <KrrMelding />
                 <StatusTittel />
+                <Dagpenger />
                 <GjelderFraDato />
                 <OnboardingStandard />
                 <ReaktiveringKvittering />
                 <Registrert />
                 <Egenvurdering />
-                <Motestotte />
                 <AktivitetDialogMeldekort />
             </Rad>
             <InViewport loggTekst="Bunnen av veien til arbeid i viewport" />
