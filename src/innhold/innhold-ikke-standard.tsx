@@ -3,7 +3,6 @@ import Rad from './rad';
 import ReaktiveringKort from '../komponenter/reaktivering/reaktivering-kort';
 import KrrMelding from '../komponenter/krr-melding/krr-melding';
 import InnholdMetrics from './innhold-metrics';
-import GenerelleFliser from '../komponenter/dittnav/generelle-fliser';
 import InViewport from '../komponenter/in-viewport/in-viewport';
 import StatusTittel from '../komponenter/registrert/status-tittel';
 import ReaktiveringKvittering from '../komponenter/reaktivering/reaktivering-kvittering';
@@ -24,7 +23,6 @@ const InnholdView = () => {
                 <IkkeStandard />
                 <Motestotte />
                 <Egenvurdering />
-                <GenerelleFliser />
             </Rad>
             <InViewport loggTekst="Bunnen av veien til arbeid i viewport - ikke-standard" />
         </>
