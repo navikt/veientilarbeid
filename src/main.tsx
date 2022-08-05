@@ -1,4 +1,5 @@
 import React from 'react';
+
 import DataProvider from './komponenter/hent-initial-data/data-provider';
 import OppfolgingBrukerregistreringProvider from './komponenter/hent-initial-data/oppfolging-brukerregistrering-provider-esm';
 import Innholdslaster from './komponenter/innholdslaster/innholdslaster';

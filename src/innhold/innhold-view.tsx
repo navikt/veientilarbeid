@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+
 import './innhold.css';
 import Rad from './rad';
 import AapRad from '../komponenter/aap/aap';
@@ -13,8 +15,13 @@ import StatusTittel from '../komponenter/registrert/status-tittel';
 import ReaktiveringKvittering from '../komponenter/reaktivering/reaktivering-kvittering';
 import OnboardingStandard from '../komponenter/onboarding-standard/onboarding-standard';
 import GjelderFraDato from '../komponenter/gjelder-fra-dato/GjelderFraDato';
+import { UnderOppfolgingContext } from '../contexts/under-oppfolging';
 
 const InnholdView = () => {
+    const { underOppfolging } = useContext(UnderOppfolgingContext).data;
+
+    if (!underOppfolging) return null;
+
     return (
         <>
             <InnholdMetrics />

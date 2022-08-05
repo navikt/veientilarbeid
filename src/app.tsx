@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as Sentry from '@sentry/react';
+
 import AutentiseringsInfoFetcher from './komponenter/hent-initial-data/autentiseringsInfoFetcher';
 import { GlobaleInnstillingerProvider } from './contexts/GlobaleInnstillinger';
 
