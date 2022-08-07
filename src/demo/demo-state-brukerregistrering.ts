@@ -15,7 +15,7 @@ const defaultBesvarelse = {
     tilbakeIArbeid: 'USIKKER',
 };
 const defaultForeslattInnsatsgruppe = ForeslattInnsatsgruppe.STANDARD_INNSATS;
-const defaultOpprettetDato = opprettetRegistreringDato.registrertEtterLanseringMotestotte;
+const defaultOpprettetDato = opprettetRegistreringDato.registrertIDag;
 const defaultTeksterForBesvarelse = [
     {
         sporsmalId: 'fremtidigSituasjon',
