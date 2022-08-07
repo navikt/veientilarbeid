@@ -62,7 +62,7 @@ function YtelserOnboarding() {
             tilstand: 'onboarding',
             tema: 'ytelser',
             handling: `Avviser dagpenger-tema`,
-            amplitudeData,
+            ...amplitudeData,
         });
         const valgtVisning = valgtYtelserVisning === 'dagpenger' ? 'ytelser' : 'dagpenger';
         setValgtYtelserVisning(valgtVisning);
