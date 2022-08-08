@@ -22,7 +22,7 @@ const TEKSTER: Tekster<string> = {
     },
 };
 
-const Sluttkort = () => {
+const DagpengerHarSokt = () => {
     const soknader = useDpInnsynSoknadData();
     const sisteInnsendteSoknad = soknader?.sort(sorterEtterNyesteDatoInnsendt)[0];
     const paabegynteSoknader = useDpInnsynPaabegynteSoknaderData();
@@ -49,4 +49,4 @@ const Sluttkort = () => {
     );
 };
 
-export default Sluttkort;
+export default DagpengerHarSokt;

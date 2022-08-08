@@ -28,7 +28,7 @@ const TEKSTER: Tekster<string> = {
     },
 };
 
-const Sluttkort = () => {
+const DagpengerHarPaabegyntSoknad = () => {
     const pabegynteSoknaderData = useDpInnsynPaabegynteSoknaderData();
 
     const sistePabegynteSoknad = pabegynteSoknaderData.sort(
@@ -60,4 +60,4 @@ const Sluttkort = () => {
     );
 };
 
-export default Sluttkort;
+export default DagpengerHarPaabegyntSoknad;

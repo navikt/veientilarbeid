@@ -19,7 +19,7 @@ const TEKSTER: Tekster<string> = {
     },
 };
 
-const Sluttkort = () => {
+const DagpengerInnvilget = () => {
     const vedtakData = useDpInnsynVedtakData();
     const nyesteInnvilgedeVedtak = vedtakData
         .filter((vedtak) => vedtak.status === 'INNVILGET')
@@ -45,4 +45,4 @@ const Sluttkort = () => {
     );
 };
 
-export default Sluttkort;
+export default DagpengerInnvilget;

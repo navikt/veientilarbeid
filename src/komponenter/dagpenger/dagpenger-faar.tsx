@@ -18,7 +18,7 @@ const TEKSTER: Tekster<string> = {
     },
 };
 
-const Sluttkort = () => {
+const DagpengerFaar = () => {
     const dagpengeVedtak = useDpInnsynVedtakData();
     const sisteVedtak = dagpengeVedtak.sort(sorterEtterNyesteVedtak)[0];
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
@@ -36,4 +36,4 @@ const Sluttkort = () => {
     );
 };
 
-export default Sluttkort;
+export default DagpengerFaar;

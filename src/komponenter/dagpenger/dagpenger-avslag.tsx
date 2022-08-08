@@ -20,7 +20,7 @@ const TEKSTER: Tekster<string> = {
     },
 };
 
-const Sluttkort = () => {
+const DagpengerAvslag = () => {
     const vedtakData = useDpInnsynVedtakData();
     const nyesteVedtakMedAvslag = vedtakData
         .filter((vedtak) => vedtak.status === 'AVSLÅTT')
@@ -47,4 +47,4 @@ const Sluttkort = () => {
     );
 };
 
-export default Sluttkort;
+export default DagpengerAvslag;
