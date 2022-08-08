@@ -39,7 +39,7 @@ const DagpengerHarIkkeSokt = () => {
                 {tekst('heading')}
             </Heading>
             <BodyLong>{tekst('ingress')}</BodyLong>
-            <SkrivTilOssChatOgMineDagpenger amplitudeTemaNavn='"dagpenger-tema - mottar dagpenger"' />
+            <SkrivTilOssChatOgMineDagpenger amplitudeTemaNavn='"dagpenger-tema - ikke søkt dagpenger"' />
 
             <Button variant="primary" onClick={handleButtonClick}>
                 {tekst('sok')}
