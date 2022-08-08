@@ -58,7 +58,7 @@ function DagpengerOgYtelserInnhold(props: Props) {
     const DagpengerInnhold = hentDagpengerInnhold(dagpengeStatus);
 
     return (
-        <Panel className="flex mb-2">
+        <Panel className="flex">
             <span
                 style={{
                     marginRight: '0.5em',

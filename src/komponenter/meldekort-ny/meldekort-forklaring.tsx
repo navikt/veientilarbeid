@@ -1,12 +1,10 @@
-import { Heading, BodyShort, Detail } from '@navikt/ds-react';
-
-import Feedback from '../feedback/feedback';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
+import { BodyLong, Heading } from '@navikt/ds-react';
+import Feedback from '../feedback/feedback';
 
 const TEKSTER = {
     nb: {
-        av: 'av',
         kort1Heading: 'Send inn meldekort annenhver uke',
         kort1Body1: 'Når du er registrert som arbeidssøker, må du sende inn et meldekort hver 14. dag.',
         kort1Body2: 'Det er innsendingen av meldekort som gjør at du fortsetter å stå registrert som arbeidssøker.',
@@ -17,11 +15,9 @@ const TEKSTER = {
         kort3Heading: 'Send meldekort før fristen går ut',
         kort3Body1:
             'Hvis du ikke sender inn meldekortet innen fristen vil vi kunne redusere eller stanse dagpengene dine, og avslutte arbeidsoppfølgingen.',
-        kort3Body2:
-            'Det er derfor viktig at du sender inn meldekortene før fristen går ut. Fullfør for å se neste frist.',
+        kort3Body2: 'Det er derfor viktig at du sender inn meldekortene før fristen går ut.',
     },
     en: {
-        av: 'of',
         kort1Heading: 'Submit the employment status form every other week',
         kort1Body1:
             'When you are registered as a job seeker, you have to submit the employment status form once every 14. day',
@@ -36,58 +32,32 @@ const TEKSTER = {
         kort3Body2: 'It is important that you submit the employment status form on time.',
     },
 };
-function Kort1() {
+
+function MeldekortForklaring() {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
+
     return (
         <>
-            <div>
-                <Heading size="medium">{tekst('kort1Heading')}</Heading>
-                <Detail size="small" className="blokk-xs">
-                    1 {tekst('av')} 3
-                </Detail>
-                <BodyShort className="blokk-xs">{tekst('kort1Body1')}</BodyShort>
-                <BodyShort className="blokk-xs">{tekst('kort1Body2')}</BodyShort>
-                <BodyShort>{tekst('kort1Body3')}</BodyShort>
+            <div className="blokk-s">
+                <Heading size="xsmall">{tekst('kort1Heading')}</Heading>
+                <BodyLong>{tekst('kort1Body1')}</BodyLong>
+                <BodyLong> {tekst('kort1Body2')}</BodyLong>
+                <BodyLong>{tekst('kort1Body3')}</BodyLong>
             </div>
-            <Feedback id={'meldekort-kort-01'} />
+            <div className="blokk-s">
+                <Heading size="xsmall">{tekst('kort2Heading')}</Heading>
+                <BodyLong>{tekst('kort2Body1')}</BodyLong>
+                <BodyLong>{tekst('kort2Body2')}</BodyLong>
+            </div>
+            <div className="blokk-s">
+                <Heading size="xsmall">{tekst('kort3Heading')}</Heading>
+                <BodyLong>
+                    {tekst('kort3Body1')} {tekst('kort3Body2')}
+                </BodyLong>
+            </div>
+            <Feedback id={'meldekort-forklaring'} />
         </>
     );
 }
 
-function Kort2() {
-    const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
-    return (
-        <>
-            <div>
-                <Heading size="medium">{tekst('kort2Heading')}</Heading>
-                <Detail size="small" className="blokk-xs">
-                    2 {tekst('av')} 3
-                </Detail>
-                <BodyShort className="blokk-xs">{tekst('kort2Body1')}</BodyShort>
-                <BodyShort>{tekst('kort2Body2')}</BodyShort>
-            </div>
-            <Feedback id={'meldekort-kort-02'} />
-        </>
-    );
-}
-
-function Kort3() {
-    const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
-    return (
-        <>
-            <div>
-                <Heading size="medium">{tekst('kort3Heading')}</Heading>
-                <Detail size="small" className="blokk-xs">
-                    3 {tekst('av')} 3
-                </Detail>
-                <BodyShort className="blokk-xs">{tekst('kort3Body1')}</BodyShort>
-                <BodyShort>{tekst('kort3Body2')}</BodyShort>
-            </div>
-            <Feedback id={'meldekort-kort-03'} />
-        </>
-    );
-}
-
-const kortliste = [<Kort1 />, <Kort2 />, <Kort3 />];
-
-export default kortliste;
+export default MeldekortForklaring;
