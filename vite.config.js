@@ -5,6 +5,18 @@ import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 import { terser } from 'rollup-plugin-terser';
 import { resolve } from 'path';
 import svgr from 'vite-plugin-svgr';
+import EnvironmentPlugin from 'vite-plugin-environment';
+
+const getEnvironmentOpts = () => ({
+    NODE_ENV: process.env.NODE_ENV || 'development',
+    SENTRY_RELEASE: process.env.SENTRY_RELEASE || '',
+    SENTRY_AUTH_TOKEN: process.env.SENTRY_AUTH_TOKEN || '',
+    REACT_APP_SENTRY_RELEASE: process.env.REACT_APP_SENTRY_RELEASE || '',
+    REACT_APP_VERSIOM_HASH: process.env.REACT_APP_VERSIOM_HASH || '',
+    REACT_APP_BUILD_TIMESTAMP: process.env.REACT_APP_BUILD_TIMESTAMP || '',
+    REACT_APP_MICRO: process.env.REACT_APP_MICRO || '',
+    REACT_APP_MOCK: process.env.REACT_APP_MOCK || '',
+});
 
 const config = {
     plugins: [
@@ -24,6 +36,7 @@ const config = {
             enforce: 'pre',
             apply: 'build',
         },
+        EnvironmentPlugin(getEnvironmentOpts()),
     ],
     build: {
         lib: {
@@ -39,7 +52,7 @@ const config = {
 };
 
 const demoConfig = {
-    plugins: [svgr(), react(), terser(), cssInjectedByJsPlugin()],
+    plugins: [svgr(), react(), terser(), cssInjectedByJsPlugin(), EnvironmentPlugin(getEnvironmentOpts())],
     build: {
         lib: {
             entry: resolve(__dirname, 'src/dev.tsx'),
@@ -50,19 +63,10 @@ const demoConfig = {
     },
 };
 
-export default defineConfig(({ command, mode }) => {
-    if (command === 'build') {
-        if (mode === 'demo') {
-            return demoConfig;
-        }
-
-        return config;
+export default defineConfig(({ mode }) => {
+    if (mode === 'demo') {
+        return demoConfig;
     }
 
-    return {
-        ...config,
-        define: {
-            'process.env': process.env,
-        },
-    };
+    return config;
 });
