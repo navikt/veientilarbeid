@@ -45,12 +45,12 @@ function MeldekortForklaring() {
                 <BodyLong>{tekst('kort1Body3')}</BodyLong>
             </div>
             <div className="blokk-s">
-                <Heading size="small">{tekst('kort2Heading')}</Heading>
+                <Heading size="xsmall">{tekst('kort2Heading')}</Heading>
                 <BodyLong>{tekst('kort2Body1')}</BodyLong>
                 <BodyLong>{tekst('kort2Body2')}</BodyLong>
             </div>
             <div className="blokk-s">
-                <Heading size="small">{tekst('kort3Heading')}</Heading>
+                <Heading size="xsmall">{tekst('kort3Heading')}</Heading>
                 <BodyLong>
                     {tekst('kort3Body1')} {tekst('kort3Body2')}
                 </BodyLong>
