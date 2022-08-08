@@ -1,3 +1,6 @@
+import { Money } from '@navikt/ds-icons';
+import { Panel } from '@navikt/ds-react';
+
 import HarIkkeSokt from './sluttkort-har-ikke-sokt';
 import HarPabegyntSoknad from './sluttkort-har-paabegynt-soknad';
 import HarSokt from './sluttkort-har-sokt';
@@ -45,12 +48,25 @@ function Sluttkort() {
     });
 
     const AktueltSluttkort = hentAktueltSluttkort(dagpengeStatus);
+
     return (
-        <>
-            <ErRendret loggTekst="Rendrer dagpenger sluttkort" />
-            <AktueltSluttkort />
-            <InViewport loggTekst="Viser dagpenger sluttkort i viewport" />
-        </>
+        <Panel className="flex mb-2">
+            <span
+                style={{
+                    marginRight: '0.5em',
+                    position: 'relative',
+                    top: '6px',
+                    fontSize: 'var(--navds-font-size-heading-medium)',
+                }}
+            >
+                <Money />
+            </span>
+            <div>
+                <ErRendret loggTekst="Rendrer dagpenger sluttkort" />
+                <AktueltSluttkort />
+                <InViewport loggTekst="Viser dagpenger sluttkort i viewport" />
+            </div>
+        </Panel>
     );
 }
 
