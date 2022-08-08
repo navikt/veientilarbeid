@@ -1,11 +1,11 @@
-import Sluttkort from './sluttkort';
+import DagpengerOgYtelserInnhold from './dagpenger-og-ytelser-innhold';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useState } from 'react';
 import { hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 
-function Dagpenger() {
+function DagpengerOgYtelser() {
     const YTELSER_TEMA_VIS_KEY = 'ytelser_tema_vis_key';
     const amplitudeData = useAmplitudeData();
 
@@ -32,7 +32,7 @@ function Dagpenger() {
 
     if (!featureToggles['veientilarbeid.ny-dagpengekomponent']) return null;
 
-    return <Sluttkort handleByttKortKlikk={handleByttKortKlikk} valgtVisning={valgtYtelserVisning} />;
+    return <DagpengerOgYtelserInnhold handleByttKortKlikk={handleByttKortKlikk} valgtVisning={valgtYtelserVisning} />;
 }
 
-export default Dagpenger;
+export default DagpengerOgYtelser;

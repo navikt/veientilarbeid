@@ -11,7 +11,7 @@ import StatusTittel from '../komponenter/registrert/status-tittel';
 import ReaktiveringKvittering from '../komponenter/reaktivering/reaktivering-kvittering';
 import OnboardingStandard from '../komponenter/onboarding-standard/onboarding-standard';
 import GjelderFraDato from '../komponenter/gjelder-fra-dato/GjelderFraDato';
-import Dagpenger from '../komponenter/dagpenger/dagpenger';
+import DagpengerOgYtelser from '../komponenter/dagpenger/dagpenger-og-ytelser';
 
 const InnholdStandard = () => {
     return (
@@ -22,7 +22,7 @@ const InnholdStandard = () => {
                 <ReaktiveringKort />
                 <KrrMelding />
                 <StatusTittel />
-                <Dagpenger />
+                <DagpengerOgYtelser />
                 <GjelderFraDato />
                 <OnboardingStandard />
                 <ReaktiveringKvittering />

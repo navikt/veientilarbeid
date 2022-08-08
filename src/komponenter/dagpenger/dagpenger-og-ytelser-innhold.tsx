@@ -17,7 +17,7 @@ import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import ByttKortLenke from './bytt-kort-lenke';
 import React from 'react';
-import SluttkortYtelser from './sluttkort-ytelser';
+import SluttkortYtelser from './ytelser';
 
 function hentAktueltSluttkort(situasjon: DagpengeStatus) {
     if (situasjon === 'paabegynt') {
@@ -40,7 +40,7 @@ interface Props {
     handleByttKortKlikk: (e: React.MouseEvent) => void;
 }
 
-function Sluttkort(props: Props) {
+function DagpengerOgYtelserInnhold(props: Props) {
     const brukerInfoData = useBrukerinfoData();
     const registreringData = useBrukerregistreringData();
     const paabegynteSoknader = useDpInnsynPaabegynteSoknaderData();
@@ -82,4 +82,4 @@ function Sluttkort(props: Props) {
     );
 }
 
-export default Sluttkort;
+export default DagpengerOgYtelserInnhold;
