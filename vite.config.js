@@ -18,7 +18,7 @@ const getEnvironmentOpts = () => ({
     REACT_APP_MOCK: process.env.REACT_APP_MOCK || '',
 });
 
-const config = {
+const getConfig = () => ({
     plugins: [
         svgr(),
         react(),
@@ -49,9 +49,9 @@ const config = {
     server: {
         port: 3002,
     },
-};
+});
 
-const demoConfig = {
+const getDemoConfig = () => ({
     plugins: [svgr(), react(), terser(), cssInjectedByJsPlugin(), EnvironmentPlugin(getEnvironmentOpts())],
     build: {
         lib: {
@@ -61,12 +61,12 @@ const demoConfig = {
             fileName: () => 'demo.bundle.js',
         },
     },
-};
+});
 
 export default defineConfig(({ mode }) => {
     if (mode === 'demo') {
-        return demoConfig;
+        return getDemoConfig();
     }
 
-    return config;
+    return getConfig();
 });
