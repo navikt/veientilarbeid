@@ -13,6 +13,7 @@ import OnboardingStandard from '../komponenter/onboarding-standard/onboarding-st
 import GjelderFraDato from '../komponenter/gjelder-fra-dato/GjelderFraDato';
 import DagpengerOgYtelser from '../komponenter/dagpenger/dagpenger-og-ytelser';
 import Meldekort from '../komponenter/meldekort-ny/meldekort';
+import HjelpOgStotte from '../komponenter/hjelp-og-stotte/hjelp-og-stotte';
 
 const InnholdStandard = () => {
     return (
@@ -25,6 +26,7 @@ const InnholdStandard = () => {
                 <StatusTittel />
                 <DagpengerOgYtelser />
                 <Meldekort />
+                <HjelpOgStotte />
                 <GjelderFraDato />
                 <OnboardingStandard />
                 <ReaktiveringKvittering />
