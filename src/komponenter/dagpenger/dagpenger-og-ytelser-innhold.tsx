@@ -70,13 +70,23 @@ function DagpengerOgYtelserInnhold(props: Props) {
                 <Money />
             </span>
             <div>
-                <ErRendret loggTekst="Rendrer dagpenger sluttkort" />
-                {props.valgtVisning === 'ytelser' ? <Ytelser /> : <DagpengerInnhold />}
+                {props.valgtVisning === 'ytelser' ? (
+                    <>
+                        <ErRendret loggTekst="Rendrer ytelser sluttkort" />
+                        <Ytelser />
+                        <InViewport loggTekst="Viser ytelser sluttkort i viewport" />
+                    </>
+                ) : (
+                    <>
+                        <ErRendret loggTekst="Rendrer dagpenger sluttkort" />
+                        <DagpengerInnhold />
+                        <InViewport loggTekst="Viser dagpenger sluttkort i viewport" />
+                    </>
+                )}
                 <ByttKortLenke
                     handleByttKortKlikk={props.handleByttKortKlikk}
                     valgtYtelserVisning={props.valgtVisning}
                 />
-                <InViewport loggTekst="Viser dagpenger sluttkort i viewport" />
             </div>
         </Panel>
     );
