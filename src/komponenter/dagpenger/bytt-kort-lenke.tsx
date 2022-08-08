@@ -1,4 +1,3 @@
-import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { ReactComponent as BytteIkon } from './bytte-ikon.svg';
 import { Link } from '@navikt/ds-react';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
@@ -16,14 +15,10 @@ const TEKSTER: Tekster<string> = {
 };
 
 const ByttKortLenke = (props: { handleByttKortKlikk: (e: React.MouseEvent) => void; valgtYtelserVisning: string }) => {
-    const featuretoggleData = useFeatureToggleData();
-    const kanViseKomponent = featuretoggleData['veientilarbeid.onboardingDagpenger.toggle'];
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
-    if (!kanViseKomponent) return null;
-
     return (
-        <div className="flex align-center">
+        <div className="flex align-center mt-1">
             <BytteIkon className="mr-05" />
             <Link href="" onClick={props.handleByttKortKlikk}>
                 {props.valgtYtelserVisning === 'dagpenger' ? tekst('ikkeAktuelt') : tekst('aktuelt')}

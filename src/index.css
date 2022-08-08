@@ -46,6 +46,14 @@ html {
     margin-bottom: 2rem;
 }
 
+.mt-1 {
+    margin-top: 1rem;
+}
+
+.mt-2 {
+    margin-top: 2rem;
+}
+
 .ml-1 {
     margin-left: 1rem;
 }
@@ -91,15 +99,15 @@ html {
     border-radius: 50%;
     width: 26px;
     height: 26px;
-    padding: 0;    
+    padding: 0;
 
-    background: #0067C5;
-    border: 2px solid #0067C5;
+    background: #0067c5;
+    border: 2px solid #0067c5;
     color: #fff;
     text-align: center;
     margin-right: 0.5rem;
     font-size: 18px;
-    line-height: 1.50;
+    line-height: 1.5;
 }
 
 .tall-sirkel-inaktiv {
@@ -107,7 +115,7 @@ html {
     border-radius: 50%;
     width: 26px;
     height: 26px;
-    padding: 0;    
+    padding: 0;
 
     background: #fff;
     border: 2px solid #707070;
@@ -115,7 +123,7 @@ html {
     text-align: center;
     margin-right: 0.5rem;
     font-size: 18px;
-    line-height: 1.50;
+    line-height: 1.5;
 }
 
 .tall-sirkel {
@@ -123,15 +131,15 @@ html {
     border-radius: 50%;
     width: 26px;
     height: 26px;
-    padding: 0;    
+    padding: 0;
 
     background: #fff;
-    border: 2px solid #0067C5;
-    color: #0067C5;
+    border: 2px solid #0067c5;
+    color: #0067c5;
     text-align: center;
     margin-right: 0.5rem;
     font-size: 18px;
-    line-height: 1.50;
+    line-height: 1.5;
 }
 
 .tall-sirkel-inverted {
@@ -139,15 +147,15 @@ html {
     border-radius: 50%;
     width: 26px;
     height: 26px;
-    padding: 0;    
+    padding: 0;
 
     background: #fff;
     border: 2px solid #fff;
-    color: #0067C5;
+    color: #0067c5;
     text-align: center;
     margin-right: 0.5rem;
     font-size: 18px;
-    line-height: 1.50;
+    line-height: 1.5;
 }
 
 .fotnotepanel {

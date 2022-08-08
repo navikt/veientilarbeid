@@ -15,6 +15,9 @@ import { useDpInnsynPaabegynteSoknaderData } from '../../contexts/dp-innsyn-paab
 import beregnDagpengeStatus, { DagpengeStatus } from '../../lib/beregn-dagpenge-status';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
+import ByttKortLenke from './bytt-kort-lenke';
+import React from 'react';
+import SluttkortYtelser from './sluttkort-ytelser';
 
 function hentAktueltSluttkort(situasjon: DagpengeStatus) {
     if (situasjon === 'paabegynt') {
@@ -32,7 +35,12 @@ function hentAktueltSluttkort(situasjon: DagpengeStatus) {
     }
 }
 
-function Sluttkort() {
+interface Props {
+    valgtVisning: string;
+    handleByttKortKlikk: (e: React.MouseEvent) => void;
+}
+
+function Sluttkort(props: Props) {
     const brukerInfoData = useBrukerinfoData();
     const registreringData = useBrukerregistreringData();
     const paabegynteSoknader = useDpInnsynPaabegynteSoknaderData();
@@ -63,7 +71,11 @@ function Sluttkort() {
             </span>
             <div>
                 <ErRendret loggTekst="Rendrer dagpenger sluttkort" />
-                <AktueltSluttkort />
+                {props.valgtVisning === 'ytelser' ? <SluttkortYtelser /> : <AktueltSluttkort />}
+                <ByttKortLenke
+                    handleByttKortKlikk={props.handleByttKortKlikk}
+                    valgtYtelserVisning={props.valgtVisning}
+                />
                 <InViewport loggTekst="Viser dagpenger sluttkort i viewport" />
             </div>
         </Panel>
