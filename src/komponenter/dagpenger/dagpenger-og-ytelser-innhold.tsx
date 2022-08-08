@@ -1,12 +1,12 @@
 import { Money } from '@navikt/ds-icons';
 import { Panel } from '@navikt/ds-react';
 
-import HarIkkeSokt from './sluttkort-har-ikke-sokt';
-import HarPabegyntSoknad from './sluttkort-har-paabegynt-soknad';
-import HarSokt from './sluttkort-har-sokt';
-import MottarDagpenger from './sluttkort-faar-dagpenger';
-import InnvilgetDagpenger from './sluttkort-innvilget-dagpenger';
-import AvslagDagpenger from './sluttkort-avslag-dagpenger';
+import HarIkkeSokt from './dagpenger-har-ikke-sokt';
+import HarPabegyntSoknad from './dagpenger-har-paabegynt-soknad';
+import HarSokt from './dagpenger-har-sokt';
+import MottarDagpenger from './dagpenger-faar';
+import InnvilgetDagpenger from './dagpenger-innvilget';
+import AvslagDagpenger from './dagpenger-avslag';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useDpInnsynSoknadData } from '../../contexts/dp-innsyn-soknad';
@@ -17,9 +17,9 @@ import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import ByttKortLenke from './bytt-kort-lenke';
 import React from 'react';
-import SluttkortYtelser from './ytelser';
+import Ytelser from './ytelser';
 
-function hentAktueltSluttkort(situasjon: DagpengeStatus) {
+function hentDagpengerInnhold(situasjon: DagpengeStatus) {
     if (situasjon === 'paabegynt') {
         return HarPabegyntSoknad;
     } else if (['sokt', 'soktogpaabegynt'].includes(situasjon)) {
@@ -55,7 +55,7 @@ function DagpengerOgYtelserInnhold(props: Props) {
         dagpengeVedtak,
     });
 
-    const AktueltSluttkort = hentAktueltSluttkort(dagpengeStatus);
+    const DagpengerInnhold = hentDagpengerInnhold(dagpengeStatus);
 
     return (
         <Panel className="flex mb-2">
@@ -71,7 +71,7 @@ function DagpengerOgYtelserInnhold(props: Props) {
             </span>
             <div>
                 <ErRendret loggTekst="Rendrer dagpenger sluttkort" />
-                {props.valgtVisning === 'ytelser' ? <SluttkortYtelser /> : <AktueltSluttkort />}
+                {props.valgtVisning === 'ytelser' ? <Ytelser /> : <DagpengerInnhold />}
                 <ByttKortLenke
                     handleByttKortKlikk={props.handleByttKortKlikk}
                     valgtYtelserVisning={props.valgtVisning}

@@ -29,7 +29,7 @@ const TEKSTER: Tekster<string> = {
         av: 'of',
     },
 };
-const Sluttkort = () => {
+const Ytelser = () => {
     const amplitudeData = useAmplitudeData();
 
     function loggLenkeKlikk(action: string, url: string) {
@@ -81,4 +81,4 @@ const Sluttkort = () => {
     );
 };
 
-export default Sluttkort;
+export default Ytelser;
