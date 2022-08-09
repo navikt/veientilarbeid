@@ -87,7 +87,7 @@ function YtelserOnboarding() {
 
     if (!kanViseYtelserKomponent && !kanViseDagpengerKomponent) return null;
 
-    if (featuretoggleData['veientilarbeid.ny-dagpengekomponent']) return null;
+    if (featuretoggleData['veientilarbeid.ny-standardvisning']) return null;
 
     const visOnboardingDagpenger = featuretoggleData['veientilarbeid.onboardingDagpenger'];
 

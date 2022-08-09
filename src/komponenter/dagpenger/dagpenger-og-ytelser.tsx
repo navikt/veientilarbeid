@@ -30,7 +30,7 @@ function DagpengerOgYtelser() {
 
     const featureToggles = useFeatureToggleData();
 
-    if (!featureToggles['veientilarbeid.ny-dagpengekomponent']) return null;
+    if (!featureToggles['veientilarbeid.ny-standardvisning']) return null;
 
     return <DagpengerOgYtelserInnhold handleByttKortKlikk={handleByttKortKlikk} valgtVisning={valgtYtelserVisning} />;
 }

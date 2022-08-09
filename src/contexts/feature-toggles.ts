@@ -14,7 +14,6 @@ export enum FeatureToggles {
     LOGG_ARBEIDSSOKERPERIODER = 'veientilarbeid.logg-arbeidssokerperioder',
     VIS_GJELDER_FRA_DATO = 'veientilarbeid.vis-gjelder-fra-dato',
     SPLITT_STANDARD = 'veientilarbeid.splitt-standard-visning',
-    NY_DAGPENGEKOMPONENT = 'veientilarbeid.ny-dagpengekomponent',
     NY_MELDEKORTKOMPONENT = 'veientilarbeid.ny-meldekortkomponent',
     NY_HJELP_OG_STOTTEKOMPONENT = 'veientilarbeid.ny-hjelp-og-stotte-komponent',
     NY_STANDARDVISNING = 'veientilarbeid.ny-standardvisning',
@@ -46,8 +45,6 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Gjelder fra dato';
         case FeatureToggles.SPLITT_STANDARD:
             return 'Splitt standard og ikke-standard';
-        case FeatureToggles.NY_DAGPENGEKOMPONENT:
-            return 'Bruk ny komponent for dagpenger';
         case FeatureToggles.NY_MELDEKORTKOMPONENT:
             return 'Bruk ny komponent for meldekort';
         case FeatureToggles.NY_HJELP_OG_STOTTEKOMPONENT:
@@ -70,7 +67,6 @@ export interface Data {
     'veientilarbeid.logg-arbeidssokerperioder': boolean;
     'veientilarbeid.vis-gjelder-fra-dato'?: boolean;
     'veientilarbeid.splitt-standard-visning'?: boolean;
-    'veientilarbeid.ny-dagpengekomponent'?: boolean;
     'veientilarbeid.ny-meldekortkomponent'?: boolean;
     'veientilarbeid.ny-hjelp-og-stotte-komponent'?: boolean;
     'veientilarbeid.ny-standardvisning'?: boolean;
@@ -94,7 +90,6 @@ export const initialState: State = {
         'veientilarbeid.logg-arbeidssokerperioder': false,
         'veientilarbeid.vis-gjelder-fra-dato': false,
         'veientilarbeid.splitt-standard-visning': false,
-        'veientilarbeid.ny-dagpengekomponent': false,
         'veientilarbeid.ny-meldekortkomponent': false,
         'veientilarbeid.ny-hjelp-og-stotte-komponent': false,
         'veientilarbeid.ny-standardvisning': false,
