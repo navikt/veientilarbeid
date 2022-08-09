@@ -14,7 +14,6 @@ export enum FeatureToggles {
     LOGG_ARBEIDSSOKERPERIODER = 'veientilarbeid.logg-arbeidssokerperioder',
     VIS_GJELDER_FRA_DATO = 'veientilarbeid.vis-gjelder-fra-dato',
     SPLITT_STANDARD = 'veientilarbeid.splitt-standard-visning',
-    NY_HJELP_OG_STOTTEKOMPONENT = 'veientilarbeid.ny-hjelp-og-stotte-komponent',
     NY_STANDARDVISNING = 'veientilarbeid.ny-standardvisning',
 }
 
@@ -44,8 +43,6 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Gjelder fra dato';
         case FeatureToggles.SPLITT_STANDARD:
             return 'Splitt standard og ikke-standard';
-        case FeatureToggles.NY_HJELP_OG_STOTTEKOMPONENT:
-            return 'Bruk ny komponent for hjelp & støtte';
         case FeatureToggles.NY_STANDARDVISNING:
             return 'Bruk nye standardkomponenter';
     }
@@ -64,7 +61,6 @@ export interface Data {
     'veientilarbeid.logg-arbeidssokerperioder': boolean;
     'veientilarbeid.vis-gjelder-fra-dato'?: boolean;
     'veientilarbeid.splitt-standard-visning'?: boolean;
-    'veientilarbeid.ny-hjelp-og-stotte-komponent'?: boolean;
     'veientilarbeid.ny-standardvisning'?: boolean;
 }
 
@@ -86,7 +82,6 @@ export const initialState: State = {
         'veientilarbeid.logg-arbeidssokerperioder': false,
         'veientilarbeid.vis-gjelder-fra-dato': false,
         'veientilarbeid.splitt-standard-visning': false,
-        'veientilarbeid.ny-hjelp-og-stotte-komponent': false,
         'veientilarbeid.ny-standardvisning': false,
     },
     status: STATUS.NOT_STARTED,

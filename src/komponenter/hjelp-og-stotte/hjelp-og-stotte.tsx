@@ -44,7 +44,7 @@ function HjelpOgStotte() {
 
     const { antallUleste } = useUlesteDialogerData();
 
-    const brukNyKomponent = featuretoggleData['veientilarbeid.ny-hjelp-og-stotte-komponent'];
+    const brukNyKomponent = featuretoggleData['veientilarbeid.ny-standardvisning'];
 
     const registrertDato = registreringData?.registrering?.opprettetDato;
 

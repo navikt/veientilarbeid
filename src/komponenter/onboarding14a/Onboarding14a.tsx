@@ -30,7 +30,7 @@ function Onboarding14a(): JSX.Element | null {
 
     const kanViseSituasjonsbestemt = erSituasjonsbestemtInnsatsgruppe;
 
-    const brukerNyKomponent = featureToggles['veientilarbeid.ny-hjelp-og-stotte-komponent'];
+    const brukerNyKomponent = featureToggles['veientilarbeid.ny-standardvisning'];
 
     const kanViseKomponent =
         kanViseOnboarding14A({
