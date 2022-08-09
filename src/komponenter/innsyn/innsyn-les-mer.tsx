@@ -11,7 +11,7 @@ import { useSprakValg } from '../../contexts/sprak';
 
 const TEKSTER = {
     nb: {
-        header: 'Mine opplysninger fra registreringen',
+        header: 'Dine opplysninger fra registreringen',
     },
     en: {
         header: 'See your answers from the registration as job seeker',
