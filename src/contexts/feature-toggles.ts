@@ -16,6 +16,7 @@ export enum FeatureToggles {
     SPLITT_STANDARD = 'veientilarbeid.splitt-standard-visning',
     NY_DAGPENGEKOMPONENT = 'veientilarbeid.ny-dagpengekomponent',
     NY_MELDEKORTKOMPONENT = 'veientilarbeid.ny-meldekortkomponent',
+    NY_HJELP_OG_STOTTEKOMPONENT = 'veientilarbeid.ny-hjelp-og-stotte-komponent',
 }
 
 export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
@@ -48,6 +49,8 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Bruk ny komponent for dagpenger';
         case FeatureToggles.NY_MELDEKORTKOMPONENT:
             return 'Bruk ny komponent for meldekort';
+        case FeatureToggles.NY_HJELP_OG_STOTTEKOMPONENT:
+            return 'Bruk ny komponent for hjelp & støtte';
     }
 }
 
@@ -66,6 +69,7 @@ export interface Data {
     'veientilarbeid.splitt-standard-visning'?: boolean;
     'veientilarbeid.ny-dagpengekomponent'?: boolean;
     'veientilarbeid.ny-meldekortkomponent'?: boolean;
+    'veientilarbeid.ny-hjelp-og-stotte-komponent'?: boolean;
 }
 
 export interface State extends DataElement {
@@ -88,6 +92,7 @@ export const initialState: State = {
         'veientilarbeid.splitt-standard-visning': false,
         'veientilarbeid.ny-dagpengekomponent': false,
         'veientilarbeid.ny-meldekortkomponent': false,
+        'veientilarbeid.ny-hjelp-og-stotte-komponent': false,
     },
     status: STATUS.NOT_STARTED,
 };
