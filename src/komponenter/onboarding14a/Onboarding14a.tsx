@@ -1,19 +1,23 @@
+import { useState, useEffect } from 'react';
+
+import { useFeatureToggleData } from '../../contexts/feature-toggles';
+import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
+import { useOppfolgingData } from '../../contexts/oppfolging';
+import { useBrukerinfoData } from '../../contexts/bruker-info';
+
 import sjekkOmBrukerErStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../../lib/er-situasjonsbestemt-innsatsgruppe';
-import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import Kortbunke from './StandardKortbunke';
 import SituasjonsbestemtKortbunke from './SituasjonsbestemtKortbunke';
 import { kanViseOnboarding14A } from '../../lib/kan-vise-onboarding14a';
-import { useOppfolgingData } from '../../contexts/oppfolging';
-import { useBrukerinfoData } from '../../contexts/bruker-info';
 import finnKvitteringstype from '../../lib/finn-kvitteringstype';
 import BehovsvurderingKvittering from '../kvitteringer/behovsvurdering';
-import { useState, useEffect } from 'react';
 
 function Onboarding14a(): JSX.Element | null {
     const registreringData = useBrukerregistreringData();
     const oppfolgingData = useOppfolgingData();
     const brukerInfoData = useBrukerinfoData();
+    const featureToggles = useFeatureToggleData();
     const [kvittering, setKvittering] = useState('');
     const [visKvittering, setVisKvittering] = useState<boolean>(finnKvitteringstype(kvittering) === 'behovsvurdering');
 
@@ -26,11 +30,14 @@ function Onboarding14a(): JSX.Element | null {
 
     const kanViseSituasjonsbestemt = erSituasjonsbestemtInnsatsgruppe;
 
-    const kanViseKomponent = kanViseOnboarding14A({
-        oppfolgingData,
-        brukerInfoData,
-        registreringData,
-    });
+    const brukerNyKomponent = featureToggles['veientilarbeid.ny-hjelp-og-stotte-komponent'];
+
+    const kanViseKomponent =
+        kanViseOnboarding14A({
+            oppfolgingData,
+            brukerInfoData,
+            registreringData,
+        }) && !brukerNyKomponent;
 
     useEffect(() => {
         setKvittering(new URLSearchParams(window.location.search).get('visKvittering') || '');
