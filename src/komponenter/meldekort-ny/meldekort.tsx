@@ -1,9 +1,9 @@
 import { Panel, ReadMore } from '@navikt/ds-react';
+import { Notes } from '@navikt/ds-icons';
 
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 
 import Sluttkort from './Sluttkort';
-import { Notes } from '@navikt/ds-icons';
 import MeldekortForklaring from './meldekort-forklaring';
 
 function Meldekort() {
