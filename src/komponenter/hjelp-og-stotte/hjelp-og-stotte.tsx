@@ -1,23 +1,25 @@
+import { Dialog } from '@navikt/ds-icons';
+
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
-import RegistrertTeller from './registrert-teller';
-import { dialogLenke } from '../../innhold/lenker';
-import Lenkepanel14A from './lenkepanel-14a';
-import EgenvurderingKort, { AVSLAATT_EGENVURDERING } from './egenvurderingIVURD';
-import { kanViseIVURDEgenvurdering } from '../../lib/kan-vise-IVURD-egenvurdering';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useUnderOppfolgingData } from '../../contexts/under-oppfolging';
 import { useAutentiseringData } from '../../contexts/autentisering';
 import { useEgenvurderingData } from '../../contexts/egenvurdering';
 import { useOppfolgingData } from '../../contexts/oppfolging';
-import { hentFraBrowserStorage } from '../../utils/browserStorage-utils';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useUlesteDialogerData } from '../../contexts/ulestedialoger';
+
+import RegistrertTeller from './registrert-teller';
+import { dialogLenke } from '../../innhold/lenker';
+import Lenkepanel14A from './lenkepanel-14a';
+import EgenvurderingKort, { AVSLAATT_EGENVURDERING } from './egenvurderingIVURD';
+import { kanViseIVURDEgenvurdering } from '../../lib/kan-vise-IVURD-egenvurdering';
+import { hentFraBrowserStorage } from '../../utils/browserStorage-utils';
 import { Heading, Panel } from '@navikt/ds-react';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
-import { Dialog } from '@navikt/ds-icons';
 
 const TEKSTER = {
     nb: {
@@ -41,6 +43,8 @@ function HjelpOgStotte() {
 
     const { antallUleste } = useUlesteDialogerData();
 
+    const brukNyKomponent = featuretoggleData['veientilarbeid.ny-hjelp-og-stotte-komponent'];
+
     const registrertDato = registreringData?.registrering?.opprettetDato;
 
     const featuretoggleEgenvurderingAktivert =
@@ -56,6 +60,8 @@ function HjelpOgStotte() {
 
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
+
+    if (!brukNyKomponent) return null;
 
     const EgenVurderingMedLesLink = () => {
         return <EgenvurderingKort />;
