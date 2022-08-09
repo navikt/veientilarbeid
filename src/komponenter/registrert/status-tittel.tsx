@@ -9,12 +9,12 @@ import { useSprakValg } from '../../contexts/sprak';
 
 const TEKSTER = {
     nb: {
-        registrert: 'Jeg er registrert som arbeidssøker',
-        registrertNy: 'Jeg er nå registrert som arbeidssøker',
+        registrert: 'Du er registrert som arbeidssøker',
+        registrertNy: 'Du er nå registrert som arbeidssøker',
     },
     en: {
-        registrert: 'I am registered as job seeker',
-        registrertNy: 'I am now registered as job seeker',
+        registrert: 'You are registered as job seeker',
+        registrertNy: 'You are now registered as job seeker',
     },
 };
 
