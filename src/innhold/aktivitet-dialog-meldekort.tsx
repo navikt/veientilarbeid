@@ -1,5 +1,5 @@
 import { useBrukerinfoData } from '../contexts/bruker-info';
-import Aktivitetsplan from '../komponenter/aktivitetsplan/aktivitetsplan';
+import AktivitetsplanLegacy from '../komponenter/aktivitetsplan/aktivitetsplan-legacy';
 import DittSykefravaer from '../komponenter/ditt-sykefravaer/ditt-sykefravaer';
 import Meldekort from '../komponenter/meldekort-legacy/meldekort';
 
@@ -7,7 +7,7 @@ const AktivitetDialog = () => {
     const { erSykmeldtMedArbeidsgiver } = useBrukerinfoData();
     return (
         <>
-            <Aktivitetsplan />
+            <AktivitetsplanLegacy />
             {erSykmeldtMedArbeidsgiver ? <DittSykefravaer /> : <Meldekort />}
         </>
     );

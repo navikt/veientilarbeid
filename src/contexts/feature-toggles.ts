@@ -17,6 +17,7 @@ export enum FeatureToggles {
     NY_DAGPENGEKOMPONENT = 'veientilarbeid.ny-dagpengekomponent',
     NY_MELDEKORTKOMPONENT = 'veientilarbeid.ny-meldekortkomponent',
     NY_HJELP_OG_STOTTEKOMPONENT = 'veientilarbeid.ny-hjelp-og-stotte-komponent',
+    NY_STANDARDVISNING = 'veientilarbeid.ny-standardvisning',
 }
 
 export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
@@ -51,6 +52,8 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Bruk ny komponent for meldekort';
         case FeatureToggles.NY_HJELP_OG_STOTTEKOMPONENT:
             return 'Bruk ny komponent for hjelp & støtte';
+        case FeatureToggles.NY_STANDARDVISNING:
+            return 'Bruk nye standardkomponenter';
     }
 }
 
@@ -70,6 +73,7 @@ export interface Data {
     'veientilarbeid.ny-dagpengekomponent'?: boolean;
     'veientilarbeid.ny-meldekortkomponent'?: boolean;
     'veientilarbeid.ny-hjelp-og-stotte-komponent'?: boolean;
+    'veientilarbeid.ny-standardvisning'?: boolean;
 }
 
 export interface State extends DataElement {
@@ -93,6 +97,7 @@ export const initialState: State = {
         'veientilarbeid.ny-dagpengekomponent': false,
         'veientilarbeid.ny-meldekortkomponent': false,
         'veientilarbeid.ny-hjelp-og-stotte-komponent': false,
+        'veientilarbeid.ny-standardvisning': false,
     },
     status: STATUS.NOT_STARTED,
 };

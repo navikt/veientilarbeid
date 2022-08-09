@@ -8,6 +8,7 @@ import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
+import { useFeatureToggleData } from '../../contexts/feature-toggles';
 
 const TEKSTER = {
     nb: {
@@ -20,15 +21,18 @@ const TEKSTER = {
     },
 };
 
-const Aktivitetsplan = () => {
+const AktivitetsplanLegacy = () => {
     const amplitudeData = useAmplitudeData();
     const { underOppfolging } = useContext(UnderOppfolgingContext).data;
     const kanViseKomponent = underOppfolging;
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
+    const featuretoggleData = useFeatureToggleData();
 
     const handleClick = () => {
         loggAktivitet({ aktivitet: 'Går til aktivitetsplanen', ...amplitudeData });
     };
+
+    if (featuretoggleData['veientilarbeid.ny-standardvisning']) return null;
 
     return !kanViseKomponent ? null : (
         <LinkPanel href={aktivitetsplanLenke} className="blokk-xs" onClick={handleClick}>
@@ -50,4 +54,4 @@ const Aktivitetsplan = () => {
     );
 };
 
-export default Aktivitetsplan;
+export default AktivitetsplanLegacy;

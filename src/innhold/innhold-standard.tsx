@@ -14,6 +14,7 @@ import GjelderFraDato from '../komponenter/gjelder-fra-dato/GjelderFraDato';
 import DagpengerOgYtelser from '../komponenter/dagpenger/dagpenger-og-ytelser';
 import Meldekort from '../komponenter/meldekort/meldekort';
 import HjelpOgStotte from '../komponenter/hjelp-og-stotte/hjelp-og-stotte';
+import Aktivitetsplan from '../komponenter/aktivitetsplan/aktivitetsplan-ny';
 
 const InnholdStandard = () => {
     return (
@@ -27,6 +28,7 @@ const InnholdStandard = () => {
                 <DagpengerOgYtelser />
                 <Meldekort />
                 <HjelpOgStotte />
+                <Aktivitetsplan />
                 <GjelderFraDato />
                 <OnboardingStandard />
                 <ReaktiveringKvittering />

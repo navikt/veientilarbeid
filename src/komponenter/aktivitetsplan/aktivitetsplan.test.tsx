@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
-import Aktivitetsplan from './aktivitetsplan';
+import AktivitetsplanLegacy from './aktivitetsplan-legacy';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 
 describe('Tester komponenten Aktivitetsplan', () => {
@@ -16,7 +16,7 @@ describe('Tester komponenten Aktivitetsplan', () => {
                 underOppfolging: true,
             },
         };
-        render(<Aktivitetsplan />, { wrapper: contextProviders(props) });
+        render(<AktivitetsplanLegacy />, { wrapper: contextProviders(props) });
         expect(screen.getByText(/aktivitetsplanen/i)).toBeTruthy();
     });
 
@@ -26,7 +26,7 @@ describe('Tester komponenten Aktivitetsplan', () => {
                 underOppfolging: false,
             },
         };
-        const { container } = render(<Aktivitetsplan />, { wrapper: contextProviders(props) });
+        const { container } = render(<AktivitetsplanLegacy />, { wrapper: contextProviders(props) });
         expect(container).toBeEmptyDOMElement();
     });
 });
