@@ -3,7 +3,7 @@ import { Notes } from '@navikt/ds-icons';
 
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 
-import Sluttkort from './Sluttkort';
+import MeldekortHovedInnhold from './meldekort-hovedinnhold';
 import MeldekortForklaring from './meldekort-forklaring';
 
 function Meldekort() {
@@ -24,7 +24,7 @@ function Meldekort() {
                 <Notes />
             </span>
             <div>
-                <Sluttkort />
+                <MeldekortHovedInnhold />
                 <ReadMore size="medium" header="Hvorfor må jeg sende meldekort?">
                     <MeldekortForklaring />
                 </ReadMore>

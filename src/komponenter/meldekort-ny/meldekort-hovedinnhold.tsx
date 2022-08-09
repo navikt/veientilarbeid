@@ -37,7 +37,7 @@ const TEKSTER = {
     },
 };
 
-function Sluttkort() {
+function MeldekortHovedInnhold() {
     const dato = datoUtenTid(hentIDag().toISOString());
     const meldekortData = Meldekort.useMeldekortData();
     const meldekortForLevering = hentMeldekortForLevering(dato, meldekortData);
@@ -117,4 +117,4 @@ function Sluttkort() {
     );
 }
 
-export default Sluttkort;
+export default MeldekortHovedInnhold;
