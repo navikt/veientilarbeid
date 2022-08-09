@@ -3,6 +3,9 @@ import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useMeldekortData } from '../../contexts/meldekort';
 import { useOppfolgingData } from '../../contexts/oppfolging';
+import { useSprakValg } from '../../contexts/sprak';
+import { useFeatureToggleData } from '../../contexts/feature-toggles';
+
 import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../../lib/er-situasjonsbestemt-innsatsgruppe';
 import { kanViseMeldekortStatus } from '../../lib/kan-vise-meldekort-status';
 import { fjernFraBrowserStorage } from '../../utils/browserStorage-utils';
@@ -11,7 +14,6 @@ import { SituasjonsbestemtKortliste, SituasjonsbestemtStartkort } from './situas
 import Sluttkort from './Sluttkort';
 import { StandardKortliste, StandardStartkort } from './standard';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
-import { useSprakValg } from '../../contexts/sprak';
 
 const TEKSTER = {
     nb: {
@@ -29,6 +31,7 @@ const MeldekortOnboarding = () => {
     const amplitudeData = useAmplitudeData();
     const meldekortData = useMeldekortData();
     const brukerInfoData = useBrukerinfoData();
+    const featureToggles = useFeatureToggleData();
 
     const MELDEKORT_ONBOARDING_KEY = 'meldekortintro';
 
@@ -40,6 +43,8 @@ const MeldekortOnboarding = () => {
     });
 
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
+
+    if (featureToggles['veientilarbeid.ny-meldekortkomponent']) return null;
 
     if (
         !kanViseMeldekortStatus({
