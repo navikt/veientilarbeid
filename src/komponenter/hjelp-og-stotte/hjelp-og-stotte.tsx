@@ -1,4 +1,5 @@
 import { Dialog } from '@navikt/ds-icons';
+import { Heading, Panel, ReadMore } from '@navikt/ds-react';
 
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
@@ -8,6 +9,7 @@ import { useEgenvurderingData } from '../../contexts/egenvurdering';
 import { useOppfolgingData } from '../../contexts/oppfolging';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useUlesteDialogerData } from '../../contexts/ulestedialoger';
+import { useSprakValg } from '../../contexts/sprak';
 
 import RegistrertTeller from './registrert-teller';
 import { dialogLenke } from '../../innhold/lenker';
@@ -15,11 +17,10 @@ import Lenkepanel14A from './lenkepanel-14a';
 import EgenvurderingKort, { AVSLAATT_EGENVURDERING } from './egenvurderingIVURD';
 import { kanViseIVURDEgenvurdering } from '../../lib/kan-vise-IVURD-egenvurdering';
 import { hentFraBrowserStorage } from '../../utils/browserStorage-utils';
-import { Heading, Panel } from '@navikt/ds-react';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
-import { useSprakValg } from '../../contexts/sprak';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
+import Forklaring from './forklaring';
 
 const TEKSTER = {
     nb: {
@@ -91,6 +92,9 @@ function HjelpOgStotte() {
                 <RegistrertTeller ukerRegistrert={ukerRegistrert} registrertDato={registrertDato} />
                 <Lenkepanel14A amplitudeData={amplitudeData} href={dialogLenke} antallUlesteDialoger={antallUleste} />
                 <InViewport loggTekst="Viser 14a sluttkort i viewport" />
+                <ReadMore size="medium" header="Er du enig i hvordan NAV har vurdert ditt behov for hjelp og støtte?">
+                    <Forklaring />
+                </ReadMore>
             </div>
         </Panel>
     );
