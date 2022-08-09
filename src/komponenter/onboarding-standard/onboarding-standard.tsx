@@ -166,7 +166,7 @@ const OnboardingStandard = () => {
 
     if (kanViseKomponent)
         return (
-            <Panel border className="ramme blokk-s" id="standard-onboarding">
+            <Panel border className="ramme blokk-s mt-1" id="standard-onboarding">
                 <ErRendret loggTekst="Rendrer OnboardingStandard" />
                 <Heading size="medium" level="2" className="blokk-xs">
                     {tekst('header')}
