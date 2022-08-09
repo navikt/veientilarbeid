@@ -176,3 +176,16 @@ html {
     margin-inline-end: 0px;
     padding-inline-start: 0px;
 }
+
+@media (min-width: 768px) {
+    .lenkepanel-standard {
+        max-width: 400px;
+    }
+}
+.lenkepanel-standard {
+    width: 100%;
+}
+
+.full-width{
+    width: 100%
+}

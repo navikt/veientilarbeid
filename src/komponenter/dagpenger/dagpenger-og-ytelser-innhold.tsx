@@ -69,7 +69,7 @@ function DagpengerOgYtelserInnhold(props: Props) {
             >
                 <Money />
             </span>
-            <div>
+            <div className="full-width">
                 {props.valgtVisning === 'ytelser' ? (
                     <>
                         <ErRendret loggTekst="Rendrer ytelser sluttkort" />

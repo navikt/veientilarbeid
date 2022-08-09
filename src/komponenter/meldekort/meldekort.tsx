@@ -23,7 +23,7 @@ function Meldekort() {
             >
                 <Notes />
             </span>
-            <div>
+            <div className="full-width">
                 <MeldekortHovedInnhold />
                 <ReadMore size="medium" header="Hvorfor må jeg sende meldekort?">
                     <MeldekortForklaring />
