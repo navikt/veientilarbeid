@@ -9,7 +9,7 @@ function Kort1Engelsk() {
     return (
         <div className="kortflate">
             <div>
-                <Heading size="medium">What kind of help can I get?</Heading>
+                <Heading size="xsmall">What kind of help can I get?</Heading>
                 <Detail size="small" className="blokk-xs">
                     1 of 4
                 </Detail>
@@ -47,7 +47,7 @@ function Kort2Engelsk() {
     return (
         <div className="kortflate">
             <div>
-                <Heading size="medium">{tittel}</Heading>
+                <Heading size="xsmall">{tittel}</Heading>
                 <Detail size="small" className="blokk-xs">
                     2 of 4
                 </Detail>
@@ -89,7 +89,7 @@ function Kort3Engelsk() {
     return (
         <div className="kortflate">
             <div>
-                <Heading size="medium">What is a counselor?</Heading>
+                <Heading size="xsmall">What is a counselor?</Heading>
                 <Detail size="small" className="blokk-xs">
                     3 of 4
                 </Detail>
@@ -140,7 +140,7 @@ function Kort4Engelsk() {
     return (
         <div className="kortflate">
             <div>
-                <Heading size="medium">Get in touch if you need help</Heading>
+                <Heading size="xsmall">Get in touch if you need help</Heading>
                 <Detail size="small" className="blokk-xs">
                     4 of 4
                 </Detail>

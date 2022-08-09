@@ -9,7 +9,7 @@ function Kort1() {
     return (
         <div className="kortflate">
             <div>
-                <Heading size="medium">Hva slags hjelp kan jeg få?</Heading>
+                <Heading size="xsmall">Hva slags hjelp kan jeg få?</Heading>
                 <BodyShort className={'blokk-xs'}>
                     Vi har gjort en vurdering av svarene dine, og vi tror at du har gode muligheter til å skaffe deg
                     jobb på egenhånd.
@@ -42,7 +42,7 @@ function Kort2() {
     return (
         <div className="kortflate">
             <div>
-                <Heading size="medium">{tittel}</Heading>
+                <Heading size="xsmall">{tittel}</Heading>
                 <BodyShort className={'blokk-xs'}>
                     {servicegruppe === Servicegruppe.IKVAL ? (
                         <>
@@ -79,7 +79,7 @@ function Kort3() {
     return (
         <div className="kortflate">
             <div>
-                <Heading size="medium">Hva er en veileder?</Heading>
+                <Heading size="xsmall">Hva er en veileder?</Heading>
                 <BodyShort className={'blokk-xs'}>
                     Veilederens oppgave er å besvare spørsmål, bistå deg med å søke stillinger og tilby deg hjelp på
                     veien til arbeid.
@@ -126,7 +126,7 @@ function Kort4() {
     return (
         <div className="kortflate">
             <div>
-                <Heading size="medium">Ta kontakt om du trenger hjelp</Heading>
+                <Heading size="xsmall">Ta kontakt om du trenger hjelp</Heading>
                 <BodyShort className={'blokk-xs'}>Du kan få hjelp fra en veileder.</BodyShort>
 
                 <BodyShort className={'blokk-xs'}>
