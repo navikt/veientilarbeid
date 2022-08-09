@@ -12,7 +12,7 @@ import ReaktiveringKvittering from '../komponenter/reaktivering/reaktivering-kvi
 import OnboardingStandard from '../komponenter/onboarding-standard/onboarding-standard';
 import GjelderFraDato from '../komponenter/gjelder-fra-dato/GjelderFraDato';
 import DagpengerOgYtelser from '../komponenter/dagpenger/dagpenger-og-ytelser';
-import Meldekort from '../komponenter/meldekort-ny/meldekort';
+import Meldekort from '../komponenter/meldekort/meldekort';
 import HjelpOgStotte from '../komponenter/hjelp-og-stotte/hjelp-og-stotte';
 
 const InnholdStandard = () => {
