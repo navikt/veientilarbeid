@@ -12,11 +12,11 @@ const TEKSTER: Tekster<string> = {
     nb: {
         heading: 'Du har ikke sendt inn søknad om dagpenger',
         ingress: 'Du kan tidligst få dagpenger fra den dagen du sender inn søknaden.',
-
         sok: 'Søk om dagpenger',
     },
     en: {
         heading: 'You have not submitted an application for unemployment benefits',
+        ingress: 'You can receive unemployment benefits at the earliest from the day you submit the application.',
         sok: 'Apply for unemployment benefits',
     },
 };

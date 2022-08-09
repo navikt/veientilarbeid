@@ -25,9 +25,11 @@ import Forklaring from './forklaring';
 const TEKSTER = {
     nb: {
         heading: 'Om du ønsker oppfølging må du gi oss beskjed',
+        readMoreHeading: 'Er du enig i hvordan NAV har vurdert ditt behov for hjelp og støtte?',
     },
     en: {
         heading: 'Get in touch if you need help',
+        readMoreHeading: 'Do you agree with how NAV has assessed your need for help and support?',
     },
 };
 
@@ -92,7 +94,7 @@ function HjelpOgStotte() {
                 <RegistrertTeller ukerRegistrert={ukerRegistrert} registrertDato={registrertDato} />
                 <Lenkepanel14A amplitudeData={amplitudeData} href={dialogLenke} antallUlesteDialoger={antallUleste} />
                 <InViewport loggTekst="Viser 14a sluttkort i viewport" />
-                <ReadMore size="medium" header="Er du enig i hvordan NAV har vurdert ditt behov for hjelp og støtte?">
+                <ReadMore size="medium" header={tekst('readMoreHeading')}>
                     <Forklaring />
                 </ReadMore>
             </div>

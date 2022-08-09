@@ -20,7 +20,7 @@ const TEKSTER = {
     en: {
         kort1Heading: 'Submit the employment status form every other week',
         kort1Body1:
-            'When you are registered as a job seeker, you have to submit the employment status form once every 14. day',
+            'When you are registered as a job seeker, you have to submit the employment status form once every 14. day.',
         kort1Body2: 'It is by submitting the employment status form you keep your status as a registered job seeker.',
         kort1Body3: 'You also have to send in the form while having a pending application for unemployment benefits.',
         kort2Heading: 'What is the purpose of the employment status form?',
