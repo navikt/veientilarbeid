@@ -9,7 +9,7 @@ import MeldekortForklaring from './meldekort-forklaring';
 function Meldekort() {
     const featureToggles = useFeatureToggleData();
 
-    if (!featureToggles['veientilarbeid.ny-meldekortkomponent']) return null;
+    if (!featureToggles['veientilarbeid.ny-standardvisning']) return null;
 
     return (
         <Panel className="flex">

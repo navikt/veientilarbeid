@@ -44,7 +44,7 @@ const MeldekortOnboarding = () => {
 
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
-    if (featureToggles['veientilarbeid.ny-meldekortkomponent']) return null;
+    if (featureToggles['veientilarbeid.ny-standardvisning']) return null;
 
     if (
         !kanViseMeldekortStatus({
