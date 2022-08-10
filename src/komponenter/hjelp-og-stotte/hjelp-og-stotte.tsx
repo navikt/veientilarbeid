@@ -1,5 +1,5 @@
 import { Dialog } from '@navikt/ds-icons';
-import { Heading, Panel, ReadMore } from '@navikt/ds-react';
+import { Detail, Heading, Panel, ReadMore } from '@navikt/ds-react';
 
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
@@ -87,6 +87,9 @@ function HjelpOgStotte() {
                 <Dialog />
             </span>
             <div>
+                <Detail uppercase style={{ marginTop: '-1rem' }}>
+                    Hjelp og støtte
+                </Detail>
                 <ErRendret loggTekst="Rendrer 14a sluttkort" />
                 <Heading className={'blokk-xs'} size="medium">
                     {tekst('heading')}
