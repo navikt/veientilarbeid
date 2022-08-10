@@ -1,12 +1,12 @@
-import { Panel, ReadMore } from '@navikt/ds-react';
+import { Detail, Panel, ReadMore } from '@navikt/ds-react';
 import { Notes } from '@navikt/ds-icons';
 
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
+import { useSprakValg } from '../../contexts/sprak';
 
 import MeldekortHovedInnhold from './meldekort-hovedinnhold';
 import MeldekortForklaring from './meldekort-forklaring';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
-import { useSprakValg } from '../../contexts/sprak';
 
 const TEKSTER = {
     nb: {
@@ -37,6 +37,9 @@ function Meldekort() {
                 <Notes />
             </span>
             <div className="full-width">
+                <Detail uppercase style={{ marginTop: '-1rem' }}>
+                    Meldekort/meldeplikt
+                </Detail>
                 <MeldekortHovedInnhold />
                 <ReadMore size="medium" header={tekst('overskrift')}>
                     <MeldekortForklaring />
