@@ -86,7 +86,7 @@ function HjelpOgStotte() {
             >
                 <Dialog />
             </span>
-            <div>
+            <div className="full-width">
                 <Detail uppercase style={{ marginTop: '-1rem' }}>
                     Hjelp og støtte
                 </Detail>
