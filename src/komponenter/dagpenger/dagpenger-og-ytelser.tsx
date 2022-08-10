@@ -1,9 +1,11 @@
-import DagpengerOgYtelserInnhold from './dagpenger-og-ytelser-innhold';
-import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useState } from 'react';
+
+import { useFeatureToggleData } from '../../contexts/feature-toggles';
+import { useAmplitudeData } from '../../contexts/amplitude-context';
+
+import DagpengerOgYtelserInnhold from './dagpenger-og-ytelser-innhold';
 import { hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
-import { useAmplitudeData } from '../../contexts/amplitude-context';
 
 function DagpengerOgYtelser() {
     const YTELSER_TEMA_VIS_KEY = 'ytelser_tema_vis_key';
