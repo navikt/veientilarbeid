@@ -24,7 +24,7 @@ import Forklaring from './forklaring';
 
 const TEKSTER = {
     nb: {
-        heading: 'Om du ønsker oppfølging må du gi oss beskjed',
+        heading: 'Om du ønsker hjelp fra oss må du gi beskjed',
         readMoreHeading: 'Hva slags hjelp kan jeg få?',
     },
     en: {

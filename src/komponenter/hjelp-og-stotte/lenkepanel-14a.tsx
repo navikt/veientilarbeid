@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { BodyShort, Button } from '@navikt/ds-react';
+import { Next } from '@navikt/ds-icons';
+
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
-import { BodyShort, LinkPanel } from '@navikt/ds-react';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
 
@@ -12,10 +14,10 @@ interface Lenkepanel14AProps {
 
 const TEKSTER = {
     nb: {
-        title: 'Start en dialog',
-        onsker_hjelp: 'om du ønsker hjelp',
-        ulest_melding: 'ulest melding',
-        uleste_meldinger: 'uleste meldinger',
+        title: 'Gå til dialog med veilederen din',
+        onsker_hjelp: 'Om du ønsker hjelp kan du kontakte oss gjennom dialogen',
+        ulest_melding: 'ulest melding.',
+        uleste_meldinger: 'uleste meldinger.',
         du_har: 'Du har ',
     },
     en: {
@@ -39,7 +41,7 @@ const Lenkepanel14A: React.FC<Lenkepanel14AProps> = (props) => {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     function dialogTekst(antallUlesteDialoger: number) {
-        if (antallUlesteDialoger === 0) return tekst('onsker_hjelp');
+        if (antallUlesteDialoger === 0) return null;
         return (
             <>
                 {tekst('du_har')}
@@ -50,12 +52,14 @@ const Lenkepanel14A: React.FC<Lenkepanel14AProps> = (props) => {
     }
 
     return (
-        <LinkPanel href={props.href} onClick={handleClickInnsending} className={'blokk-xs lenkepanel-standard'}>
-            <LinkPanel.Title>{tekst('title')}</LinkPanel.Title>
-            <LinkPanel.Description>
+        <div>
+            {props.antallUlesteDialoger && props.antallUlesteDialoger > 0 ? (
                 <BodyShort>{dialogTekst(props.antallUlesteDialoger)}</BodyShort>
-            </LinkPanel.Description>
-        </LinkPanel>
+            ) : null}
+            <Button onClick={handleClickInnsending} className="mt-1 mb-1" variant="secondary">
+                {tekst('title')} <Next />
+            </Button>
+        </div>
     );
 };
 
