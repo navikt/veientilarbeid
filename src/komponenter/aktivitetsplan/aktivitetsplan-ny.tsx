@@ -34,7 +34,7 @@ const Aktivitetsplan = () => {
     if (!featuretoggleData['veientilarbeid.ny-standardvisning']) return null;
 
     return (
-        <Panel className="flex">
+        <Panel className="flex pb-2">
             <span
                 style={{
                     marginRight: '0.5em',

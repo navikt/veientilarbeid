@@ -75,7 +75,7 @@ function HjelpOgStotte() {
         return <EgenVurderingMedLesLink />;
 
     return (
-        <Panel className="flex">
+        <Panel className="flex px-1_5">
             <span
                 style={{
                     marginRight: '0.5em',

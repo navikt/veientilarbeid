@@ -66,6 +66,24 @@ html {
     padding: 1rem;
 }
 
+.px-1 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.px-1_5 {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.pb-1 {
+    padding-bottom: 1rem;
+}
+
+.pb-2 {
+    padding-bottom: 2rem;
+}
+
 .blokk-xs {
     margin-bottom: 1rem;
 }
@@ -186,6 +204,6 @@ html {
     width: 100%;
 }
 
-.full-width{
-    width: 100%
+.full-width {
+    width: 100%;
 }

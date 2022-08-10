@@ -42,8 +42,8 @@ const StatusTittel = () => {
 
     return (
         <div ref={containerRef}>
-            <Panel>
-                <div className="flex">
+            <Panel className="px-1_5">
+                <div className="flex ">
                     <span
                         style={{
                             marginRight: '0.5em',
