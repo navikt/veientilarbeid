@@ -13,7 +13,7 @@ import { useSprakValg } from '../../contexts/sprak';
 
 import RegistrertTeller from './registrert-teller';
 import { dialogLenke } from '../../innhold/lenker';
-import Lenkepanel14A from './lenkepanel-14a';
+import DialogKnapp from './dialog-knapp';
 import EgenvurderingKort, { AVSLAATT_EGENVURDERING } from './egenvurderingIVURD';
 import { kanViseIVURDEgenvurdering } from '../../lib/kan-vise-IVURD-egenvurdering';
 import { hentFraBrowserStorage } from '../../utils/browserStorage-utils';
@@ -95,7 +95,7 @@ function HjelpOgStotte() {
                     {tekst('heading')}
                 </Heading>
                 <RegistrertTeller ukerRegistrert={ukerRegistrert} registrertDato={registrertDato} />
-                <Lenkepanel14A amplitudeData={amplitudeData} href={dialogLenke} antallUlesteDialoger={antallUleste} />
+                <DialogKnapp amplitudeData={amplitudeData} href={dialogLenke} antallUlesteDialoger={antallUleste} />
                 <InViewport loggTekst="Viser 14a sluttkort i viewport" />
                 <ReadMore size="medium" header={tekst('readMoreHeading')}>
                     <Forklaring />
