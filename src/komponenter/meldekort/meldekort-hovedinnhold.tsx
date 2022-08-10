@@ -10,11 +10,11 @@ import {
 } from '../../utils/meldekort-utils';
 import * as Meldekort from '../../contexts/meldekort';
 import Meldekortstatus from './meldekortstatus';
-import TemaLenkepanel from '../tema/tema-lenkepanel';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
+import MeldekortKnapp from './meldekort-knapp';
 
 const TEKSTER = {
     nb: {
@@ -23,8 +23,8 @@ const TEKSTER = {
         meldekort: 'Meldekort',
         lesOm: 'Les om meldekort',
         sendesInn: 'Meldekort som kan sendes inn:',
-        sendInn: 'Send inn',
-        sendInnForUke: 'Send inn for uke',
+        sendInn: 'Send inn meldekort',
+        sendInnForUke: 'Send inn meldekort for uke',
     },
     en: {
         meldekortForUke: 'The employment status form for weeks',
@@ -32,8 +32,8 @@ const TEKSTER = {
         meldekort: 'Employment status form',
         lesOm: 'Read about employment status form',
         sendesInn: 'Employment status forms ready for submission:',
-        sendInn: 'Submit',
-        sendInnForUke: 'Submit for weeks',
+        sendInn: 'Submit employment status form',
+        sendInnForUke: 'Submit employment status form for weeks',
     },
 };
 
@@ -61,12 +61,12 @@ function MeldekortHovedInnhold() {
                         )}`}
                     </Heading>
                     <div>
-                        <TemaLenkepanel
+                        <MeldekortKnapp
                             href={omMeldekortLenke}
                             amplitudeTema="meldekort"
                             amplitudeHandling="Går til innsending av meldekort"
-                            tittel={tekst('meldekort')}
-                            beskrivelse={tekst('lesOm')}
+                            tittel={tekst('lesOm')}
+                            variant="secondary"
                         />
                     </div>
                 </div>
@@ -81,12 +81,12 @@ function MeldekortHovedInnhold() {
                     <Heading size="medium" className="blokk-xs">
                         {tekst('sendesInn')} {meldekortForLevering.length}
                     </Heading>
-                    <TemaLenkepanel
+                    <MeldekortKnapp
                         href={meldekortLenke}
                         amplitudeTema="meldekort"
                         amplitudeHandling="Går til innsending av meldekort"
-                        tittel={tekst('meldekort')}
-                        beskrivelse={tekst('sendInn')}
+                        tittel={tekst('sendInn')}
+                        variant="primary"
                     />
                 </div>
             </>
@@ -100,15 +100,15 @@ function MeldekortHovedInnhold() {
             <div>
                 <Meldekortstatus />
                 <div>
-                    <TemaLenkepanel
+                    <MeldekortKnapp
                         href={meldekortLenke}
                         amplitudeTema="meldekort"
                         amplitudeHandling="Går til innsending av meldekort"
-                        tittel={tekst('meldekort')}
-                        beskrivelse={`${tekst('sendInnForUke')}
+                        tittel={`${tekst('sendInnForUke')}
                         ${hentISOUke(foerstkommendeMeldekort.meldeperiode?.fra!!)} - ${hentISOUke(
                             foerstkommendeMeldekort.meldeperiode?.til!!
                         )}`}
+                        variant="primary"
                     />
                 </div>
             </div>
