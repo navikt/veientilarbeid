@@ -25,7 +25,7 @@ import Forklaring from './forklaring';
 const TEKSTER = {
     nb: {
         heading: 'Om du ønsker oppfølging må du gi oss beskjed',
-        readMoreHeading: 'Er du enig i hvordan NAV har vurdert ditt behov for hjelp og støtte?',
+        readMoreHeading: 'Hva slags hjelp kan jeg få?',
     },
     en: {
         heading: 'Get in touch if you need help',

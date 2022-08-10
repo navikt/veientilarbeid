@@ -9,10 +9,8 @@ function Kort1() {
     return (
         <div className="kortflate">
             <div>
-                <Heading size="xsmall">Hva slags hjelp kan jeg få?</Heading>
                 <BodyShort className={'blokk-xs'}>
-                    Vi har gjort en vurdering av svarene dine, og vi tror at du har gode muligheter til å skaffe deg
-                    jobb på egenhånd.
+                    Vi tror at du har gode muligheter til å skaffe deg jobb på egenhånd.
                 </BodyShort>
 
                 <BodyShort>Vår vurdering er basert på:</BodyShort>
