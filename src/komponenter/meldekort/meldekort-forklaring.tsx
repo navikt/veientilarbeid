@@ -5,7 +5,6 @@ import Feedback from '../feedback/feedback';
 
 const TEKSTER = {
     nb: {
-        kort1Heading: 'Send inn meldekort annenhver uke',
         kort1Body1: 'Når du er registrert som arbeidssøker, må du sende inn et meldekort hver 14. dag.',
         kort1Body2: 'Det er innsendingen av meldekort som gjør at du fortsetter å stå registrert som arbeidssøker.',
         kort1Body3: 'Hvis du har søkt dagpenger, må du sende meldekort mens du venter på svar.',
@@ -18,7 +17,6 @@ const TEKSTER = {
         kort3Body2: 'Det er derfor viktig at du sender inn meldekortene før fristen går ut.',
     },
     en: {
-        kort1Heading: 'Submit the employment status form every other week',
         kort1Body1:
             'When you are registered as a job seeker, you have to submit the employment status form once every 14. day.',
         kort1Body2: 'It is by submitting the employment status form you keep your status as a registered job seeker.',
@@ -39,7 +37,6 @@ function MeldekortForklaring() {
     return (
         <>
             <div className="blokk-s">
-                <Heading size="xsmall">{tekst('kort1Heading')}</Heading>
                 <BodyLong>{tekst('kort1Body1')}</BodyLong>
                 <BodyLong> {tekst('kort1Body2')}</BodyLong>
                 <BodyLong>{tekst('kort1Body3')}</BodyLong>
