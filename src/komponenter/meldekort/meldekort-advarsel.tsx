@@ -114,7 +114,9 @@ function MeldekortAdvarsel({ dagerEtterFastsattMeldedag }: { dagerEtterFastsattM
     return (
         <>
             {dagerTilTrekk === 0 ? (
-                <Heading size="medium">{tekst('sisteFrist')}</Heading>
+                <Heading size="medium" className={'blokk-xs'}>
+                    {tekst('sisteFrist')}
+                </Heading>
             ) : (
                 <>
                     <Heading size="medium" className={'blokk-xs'}>
@@ -125,7 +127,7 @@ function MeldekortAdvarsel({ dagerEtterFastsattMeldedag }: { dagerEtterFastsattM
                         {tekst('fristenEr')} {datoMedUkedag(trekkDato, sprak)}, {tekst('klokken23')}
                     </BodyShort>
                     {dagerEtterFastsattMeldedag && dagerEtterFastsattMeldedag < 3 && (
-                        <BodyLong className="blokk-xs">{tekst('fortSomMulig')}</BodyLong>
+                        <BodyLong>{tekst('fortSomMulig')}</BodyLong>
                     )}
                 </>
             )}
@@ -150,15 +152,15 @@ const LittStrengereVarsel = ({
 
     return (
         <>
-            {mottarDagpenger && <BodyLong className="blokk-xs">{tekst('advarselTrekk')}</BodyLong>}
+            {mottarDagpenger && <BodyLong>{tekst('advarselTrekk')}</BodyLong>}
             {dagerEtterFastsattMeldedag && dagerEtterFastsattMeldedag === 3 && (
-                <BodyLong className="blokk-xs">{tekst('fortSomMulig')}</BodyLong>
+                <BodyLong>{tekst('fortSomMulig')}</BodyLong>
             )}
             {dagerEtterFastsattMeldedag && dagerEtterFastsattMeldedag > 3 && (
-                <BodyLong className="blokk-xs">{tekst('avregistrertEtter20Dager')}</BodyLong>
+                <BodyLong>{tekst('avregistrertEtter20Dager')}</BodyLong>
             )}
             {dagerEtterFastsattMeldedag && dagerEtterFastsattMeldedag > 3 && harSoktDagpenger && (
-                <BodyLong className="blokk-xs">{tekst('fristForbiSoktIkkeRegistrert')}</BodyLong>
+                <BodyLong>{tekst('fristForbiSoktIkkeRegistrert')}</BodyLong>
             )}
         </>
     );
@@ -187,10 +189,10 @@ const ForSentVarsel = ({
                     <BodyLong className="blokk-xs">{tekst('fristForbiDagpengerFortsett')}</BodyLong>
                 </>
             )}
-            {!mottarDagpenger && <BodyLong className="blokk-xs">{tekst('fristForbiRegistrert')}</BodyLong>}
-            <BodyLong className="blokk-xs">{tekst('avregistrertEtter20Dager')}</BodyLong>
-            {mottarDagpenger && <BodyLong className="blokk-xs">{tekst('fristForbiDagpengerIkkeRegistrert')}</BodyLong>}
-            {soktDagpenger && <BodyLong className="blokk-xs">{tekst('fristForbiSoktIkkeRegistrert')}</BodyLong>}
+            {!mottarDagpenger && <BodyLong>{tekst('fristForbiRegistrert')}</BodyLong>}
+            <BodyLong>{tekst('avregistrertEtter20Dager')}</BodyLong>
+            {mottarDagpenger && <BodyLong className="mt-1">{tekst('fristForbiDagpengerIkkeRegistrert')}</BodyLong>}
+            {soktDagpenger && <BodyLong>{tekst('fristForbiSoktIkkeRegistrert')}</BodyLong>}
         </>
     );
 };

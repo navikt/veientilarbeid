@@ -50,7 +50,7 @@ function Meldekortstatus() {
     const dagerTilInaktivering = beregnDagerTilInaktivering(dagerEtterFastsattMeldedag);
     const inaktiveringsDato = plussDager(iDag, dagerTilInaktivering);
     return (
-        <div className={'blokk-xs'}>
+        <div>
             {etterFoersteMeldedag ? (
                 <MeldekortAdvarsel dagerEtterFastsattMeldedag={dagerEtterFastsattMeldedag} />
             ) : (
@@ -61,7 +61,7 @@ function Meldekortstatus() {
                     <BodyLong className="blokk-xs">
                         {`${tekst('fristenEr')} ${datoMedUkedag(inaktiveringsDato, sprak)}, ${tekst('klokken23')}`}
                     </BodyLong>
-                    <BodyLong spacing>{tekst('sendIDag')}</BodyLong>
+                    <BodyLong>{tekst('sendIDag')}</BodyLong>
                 </>
             )}
         </div>
