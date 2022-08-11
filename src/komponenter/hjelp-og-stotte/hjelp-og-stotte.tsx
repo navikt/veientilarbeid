@@ -23,6 +23,10 @@ import { loggAktivitet } from '../../metrics/metrics';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import Forklaring from './forklaring';
+import EgenvurderingUke12, { INTRO_KEY_12UKER } from './egenvurdering-uke12';
+import { kanVise12UkerEgenvurdering } from '../../lib/kan-vise-12-uker-egenvurdering';
+import { useBrukerinfoData } from '../../contexts/bruker-info';
+import { erKSSBruker } from '../../lib/er-kss-bruker';
 
 const TEKSTER = {
     nb: {
@@ -46,6 +50,7 @@ function HjelpOgStotte() {
     const autentiseringData = useAutentiseringData();
     const egenvurderingData = useEgenvurderingData();
     const oppfolgingData = useOppfolgingData();
+    const brukerInfoData = useBrukerinfoData();
 
     const { antallUleste } = useUlesteDialogerData();
 
@@ -68,11 +73,27 @@ function HjelpOgStotte() {
 
     if (!brukNyKomponent) return null;
 
-    const EgenVurderingMedLesLink = () => {
-        return <EgenvurderingKort />;
-    };
+    const skalViseKssInnhold = erKSSBruker({
+        amplitudeData,
+        featuretoggleData,
+        oppfolgingData,
+        brukerInfoData,
+        registreringData,
+    });
 
-    const skalViseEgenvurdering = kanViseIVURDEgenvurdering({
+    const sistSettEgenvurdering = Number(hentFraBrowserStorage(INTRO_KEY_12UKER)) ?? 0;
+
+    const skalViseEgenvurderingsUke12 = kanVise12UkerEgenvurdering({
+        brukerInfoData,
+        egenvurderingData,
+        oppfolgingData,
+        registreringData,
+        amplitudeData,
+        featuretoggleData,
+        sistVistFraLocalstorage: sistSettEgenvurdering,
+    });
+
+    const skalViseEgenvurderingNyregistrert = kanViseIVURDEgenvurdering({
         underOppfolgingData,
         registreringData,
         autentiseringData,
@@ -82,7 +103,20 @@ function HjelpOgStotte() {
     const harAvslattEgenvurdering = hentFraBrowserStorage(AVSLAATT_EGENVURDERING);
 
     const skalViseEgenvurderingIVURD =
-        featuretoggleEgenvurderingAktivert && skalViseEgenvurdering && !harAvslattEgenvurdering;
+        featuretoggleEgenvurderingAktivert && skalViseEgenvurderingNyregistrert && !harAvslattEgenvurdering;
+
+    const skalViseEgenvurdering = skalViseEgenvurderingIVURD || (skalViseEgenvurderingsUke12 && skalViseKssInnhold);
+
+    const EgenVurderingMedLesLink = () => {
+        if (skalViseEgenvurderingIVURD) {
+            return <EgenvurderingKort />;
+        }
+        if (skalViseEgenvurderingsUke12) {
+            return <EgenvurderingUke12 />;
+        }
+
+        return null;
+    };
 
     const DefaultInnhold = () => {
         return (
@@ -113,7 +147,7 @@ function HjelpOgStotte() {
                 <Detail uppercase style={{ marginTop: '-1rem' }}>
                     Hjelp og støtte
                 </Detail>
-                {skalViseEgenvurderingIVURD ? <EgenVurderingMedLesLink /> : <DefaultInnhold />}
+                {skalViseEgenvurdering ? <EgenVurderingMedLesLink /> : <DefaultInnhold />}
                 <ReadMore size="medium" header={tekst('readMoreHeading')} onClick={handleClickLesMer}>
                     <Forklaring />
                 </ReadMore>
