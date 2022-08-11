@@ -147,6 +147,7 @@ const OnboardingStandard = () => {
     const utforteTrinn = beregnUtforteTrinn(dagpengestatus, harSettMeldekortIntro, harSettOppfolgingIntro);
     const nesteTrinn = beregnNesteTrinn(utforteTrinn);
     const gjelderFraDato = useGjelderFraDato().dato;
+    const brukerNyVisningForStandard = featuretoggleData['veientilarbeid.ny-standardvisning'];
 
     useEffect(() => {
         if (gjelderFraDato) {
@@ -158,7 +159,7 @@ const OnboardingStandard = () => {
     }, [gjelderFraDato]);
 
     useEffect(() => {
-        if (erStandardAvRettType) {
+        if (erStandardAvRettType && !brukerNyVisningForStandard) {
             const erFremdelesIArbeid = gjelderFraDato ? datoUtenTid(gjelderFraDato) > new Date(Date.now()) : false;
             settKanViseKomponent(ukerRegistrert === 0 || erFremdelesIArbeid);
         }
