@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Dialog } from '@navikt/ds-icons';
 import { Detail, Heading, Panel, ReadMore } from '@navikt/ds-react';
 
@@ -18,6 +19,7 @@ import EgenvurderingKort, { AVSLAATT_EGENVURDERING } from './egenvurderingIVURD'
 import { kanViseIVURDEgenvurdering } from '../../lib/kan-vise-IVURD-egenvurdering';
 import { hentFraBrowserStorage } from '../../utils/browserStorage-utils';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
+import { loggAktivitet } from '../../metrics/metrics';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import Forklaring from './forklaring';
@@ -34,6 +36,7 @@ const TEKSTER = {
 };
 
 function HjelpOgStotte() {
+    const [clickedLesMer, setClickedLesMer] = useState(false);
     const amplitudeData = useAmplitudeData();
     const { ukerRegistrert } = amplitudeData;
 
@@ -63,6 +66,13 @@ function HjelpOgStotte() {
 
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
+
+    const handleClickLesMer = () => {
+        if (!clickedLesMer) {
+            loggAktivitet({ aktivitet: 'Leser forklaringen for hjelp og støtte', ...amplitudeData });
+            setClickedLesMer(true);
+        }
+    };
 
     if (!brukNyKomponent) return null;
 
@@ -97,7 +107,7 @@ function HjelpOgStotte() {
                 <RegistrertTeller ukerRegistrert={ukerRegistrert} registrertDato={registrertDato} />
                 <DialogKnapp amplitudeData={amplitudeData} href={dialogLenke} antallUlesteDialoger={antallUleste} />
                 <InViewport loggTekst="Viser 14a sluttkort i viewport" />
-                <ReadMore size="medium" header={tekst('readMoreHeading')}>
+                <ReadMore size="medium" header={tekst('readMoreHeading')} onClick={handleClickLesMer}>
                     <Forklaring />
                 </ReadMore>
             </div>
