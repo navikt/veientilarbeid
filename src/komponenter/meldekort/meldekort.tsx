@@ -1,12 +1,15 @@
+import { useState } from 'react';
 import { Detail, Panel, ReadMore } from '@navikt/ds-react';
 import { Notes } from '@navikt/ds-icons';
 
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useSprakValg } from '../../contexts/sprak';
+import { useAmplitudeData } from '../../contexts/amplitude-context';
 
 import MeldekortHovedInnhold from './meldekort-hovedinnhold';
 import MeldekortForklaring from './meldekort-forklaring';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
+import { loggAktivitet } from '../../metrics/metrics';
 
 const TEKSTER = {
     nb: {
@@ -18,9 +21,18 @@ const TEKSTER = {
 };
 
 function Meldekort() {
+    const [clickedLesMer, setClickedLesMer] = useState(false);
+    const amplitudeData = useAmplitudeData();
     const featureToggles = useFeatureToggleData();
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
+
+    const handleClickLesMer = () => {
+        if (!clickedLesMer) {
+            loggAktivitet({ aktivitet: 'Leser forklaringen for meldekort', ...amplitudeData });
+            setClickedLesMer(true);
+        }
+    };
 
     if (!featureToggles['veientilarbeid.ny-standardvisning']) return null;
 
@@ -41,7 +53,7 @@ function Meldekort() {
                     Meldekort/meldeplikt
                 </Detail>
                 <MeldekortHovedInnhold />
-                <ReadMore size="medium" header={tekst('overskrift')}>
+                <ReadMore size="medium" header={tekst('overskrift')} onClick={handleClickLesMer}>
                     <MeldekortForklaring />
                 </ReadMore>
             </div>
