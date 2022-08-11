@@ -163,7 +163,7 @@ const OnboardingStandard = () => {
             const erFremdelesIArbeid = gjelderFraDato ? datoUtenTid(gjelderFraDato) > new Date(Date.now()) : false;
             settKanViseKomponent(ukerRegistrert === 0 || erFremdelesIArbeid);
         }
-    }, [gjelderFraDato, erStandardAvRettType, ukerRegistrert]);
+    }, [gjelderFraDato, erStandardAvRettType, ukerRegistrert, brukerNyVisningForStandard]);
 
     if (kanViseKomponent)
         return (
