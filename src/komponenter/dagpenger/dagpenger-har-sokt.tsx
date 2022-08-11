@@ -1,15 +1,16 @@
 import { Heading } from '@navikt/ds-react';
 
 import { useDpInnsynSoknadData } from '../../contexts/dp-innsyn-soknad';
+import { useDpInnsynPaabegynteSoknaderData } from '../../contexts/dp-innsyn-paabegynte-soknader';
+import { useSprakValg } from '../../contexts/sprak';
+
 import { sorterEtterNyesteDatoInnsendt } from '../../lib/beregn-dagpenge-status';
 import SistInnsendtSoknad from './sist-innsendt-soknad';
-import { useDpInnsynPaabegynteSoknaderData } from '../../contexts/dp-innsyn-paabegynte-soknader';
 import PaabegynteSoknader from './paabegynte-soknader';
 import SkrivTilOssChatOgMineDagpenger from './skriv-til-oss-chat-og-mine-dagpenger';
 import LesOmYtelser from './les-om-ytelser';
 import EttersendDokumentasjon from './ettersend-dokumentasjon';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
-import { useSprakValg } from '../../contexts/sprak';
 
 const TEKSTER: Tekster<string> = {
     nb: {

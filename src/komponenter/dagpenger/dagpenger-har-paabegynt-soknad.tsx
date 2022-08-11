@@ -1,14 +1,17 @@
-import { Heading, BodyShort } from '@navikt/ds-react';
+import { Button, Heading, BodyShort } from '@navikt/ds-react';
+import { Next } from '@navikt/ds-icons';
 
 import {
     useDpInnsynPaabegynteSoknaderData,
     DpInnsynPaabegyntSoknad,
 } from '../../contexts/dp-innsyn-paabegynte-soknader';
+import { useSprakValg } from '../../contexts/sprak';
+import { useAmplitudeData } from '../../contexts/amplitude-context';
+
+import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import prettyPrintDato from '../../utils/pretty-print-dato';
-import TemaLenkepanel from '../tema/tema-lenkepanel';
 import SkrivTilOssChatOgMineDagpenger from './skriv-til-oss-chat-og-mine-dagpenger';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
-import { useSprakValg } from '../../contexts/sprak';
 import { FORTSETT_DP_SOKNAD_URL } from '../../utils/lenker';
 
 const TEKSTER: Tekster<string> = {
@@ -17,19 +20,20 @@ const TEKSTER: Tekster<string> = {
         ingress: 'Du kan tidligst få dagpenger fra den dagen du har søkt.',
         ikkeSendt: 'Du har ikke sendt inn søknaden.',
         fortsett: 'Fortsett på søknaden',
-        pabegynt: 'Påbegynt',
+        pabegynt: 'du startet',
     },
     en: {
         heading: 'You have started on an application for unemployment benefits',
         ingress: 'You can receive unemployment benefits at the earliest from the day you have applied.',
         ikkeSendt: 'You have not submitted the application.',
         fortsett: 'Continue on the application',
-        pabegynt: 'Started on',
+        pabegynt: 'you started on',
     },
 };
 
 const DagpengerHarPaabegyntSoknad = () => {
     const pabegynteSoknaderData = useDpInnsynPaabegynteSoknaderData();
+    const amplitudeData = useAmplitudeData();
 
     const sistePabegynteSoknad = pabegynteSoknaderData.sort(
         (a: DpInnsynPaabegyntSoknad, b: DpInnsynPaabegyntSoknad) =>
@@ -38,6 +42,17 @@ const DagpengerHarPaabegyntSoknad = () => {
 
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
+
+    const handleClickFortsett = () => {
+        amplitudeLogger('veientilarbeid.tema', {
+            tema: 'dagpenger',
+            tilstand: '',
+            handling: 'Fortsetter påbegynt soknad',
+            ...amplitudeData,
+        });
+        window.location.href = `${FORTSETT_DP_SOKNAD_URL}/${sistePabegynteSoknad.behandlingsId}`;
+    };
+
     if (!sistePabegynteSoknad) return null;
 
     return (
@@ -46,15 +61,13 @@ const DagpengerHarPaabegyntSoknad = () => {
                 {tekst('heading')}
             </Heading>
             <BodyShort className={'blokk-xs'}>{tekst('ingress')}</BodyShort>
-            <BodyShort className={'blokk-xs'}>{tekst('ikkeSendt')}</BodyShort>
+            <BodyShort>{tekst('ikkeSendt')}</BodyShort>
 
-            <TemaLenkepanel
-                href={`${FORTSETT_DP_SOKNAD_URL}/${sistePabegynteSoknad.behandlingsId}`}
-                amplitudeHandling="Fortsetter påbegynt soknad"
-                amplitudeTema="dagpenger"
-                tittel={tekst('fortsett')}
-                beskrivelse={`${tekst('pabegynt')} ${prettyPrintDato(sistePabegynteSoknad.sistEndret, sprak)}`}
-            />
+            <Button onClick={handleClickFortsett} className="mt-1 mb-1">
+                {tekst('fortsett')} {`${tekst('pabegynt')} ${prettyPrintDato(sistePabegynteSoknad.sistEndret, sprak)}`}{' '}
+                <Next />
+            </Button>
+
             <SkrivTilOssChatOgMineDagpenger amplitudeTemaNavn='"dagpenger-tema - påbegynt søknad"' />
         </>
     );
