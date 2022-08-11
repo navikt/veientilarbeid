@@ -86,15 +86,11 @@ function RegistrertTeller({ ukerRegistrert, registrertDato }: TellerProps) {
     }
 
     if (!over23Uker) {
-        return <BodyShort className="blokk-xs">{under23Uker(tekst(`${ukerRegistrert}`), sprak)}</BodyShort>;
+        return <BodyShort>{under23Uker(tekst(`${ukerRegistrert}`), sprak)}</BodyShort>;
     }
 
     if (over23Uker && registrertDato) {
-        return (
-            <BodyShort className="blokk-xs">
-                {`${tekst('over23Uker')} ${prettyPrintDato(registrertDato, sprak)}`}
-            </BodyShort>
-        );
+        return <BodyShort>{`${tekst('over23Uker')} ${prettyPrintDato(registrertDato, sprak)}`}</BodyShort>;
     }
 
     return null;
