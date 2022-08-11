@@ -50,7 +50,7 @@ const EgenvurderingIVURD = () => {
                 {tekst('heading')}
             </Heading>
             <BodyShort className="blokk-xs ">{tekst('beskrivelse')}</BodyShort>
-            <Button variant="primary" size="small" onClick={handleButtonClick} className="blokk-xs">
+            <Button variant="primary" onClick={handleButtonClick} className="blokk-xs">
                 <span>{tekst('svar')}</span>
                 <Next />
             </Button>

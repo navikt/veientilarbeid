@@ -56,20 +56,12 @@ function HjelpOgStotte() {
     const featuretoggleEgenvurderingAktivert =
         featuretoggleData && featuretoggleData['veientilarbeid.vis-egenvurdering-med-14a'];
 
-    const skalViseEgenvurdering = kanViseIVURDEgenvurdering({
-        underOppfolgingData,
-        registreringData,
-        autentiseringData,
-        egenvurderingData,
-        oppfolgingData,
-    });
-
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
     const handleClickLesMer = () => {
         if (!clickedLesMer) {
-            loggAktivitet({ aktivitet: 'Leser forklaringen for hjelp og støtte', ...amplitudeData });
+            loggAktivitet({ aktivitet: 'Åpner forklaringen for hjelp og støtte', ...amplitudeData });
             setClickedLesMer(true);
         }
     };
@@ -80,12 +72,33 @@ function HjelpOgStotte() {
         return <EgenvurderingKort />;
     };
 
+    const skalViseEgenvurdering = kanViseIVURDEgenvurdering({
+        underOppfolgingData,
+        registreringData,
+        autentiseringData,
+        egenvurderingData,
+        oppfolgingData,
+    });
     const harAvslattEgenvurdering = hentFraBrowserStorage(AVSLAATT_EGENVURDERING);
-    if (featuretoggleEgenvurderingAktivert && skalViseEgenvurdering && !harAvslattEgenvurdering)
-        return <EgenVurderingMedLesLink />;
+
+    const skalViseEgenvurderingIVURD =
+        featuretoggleEgenvurderingAktivert && skalViseEgenvurdering && !harAvslattEgenvurdering;
+
+    const DefaultInnhold = () => {
+        return (
+            <>
+                <Heading className={'blokk-xs'} size="medium">
+                    {tekst('heading')}
+                </Heading>
+                <RegistrertTeller ukerRegistrert={ukerRegistrert} registrertDato={registrertDato} />
+                <DialogKnapp amplitudeData={amplitudeData} href={dialogLenke} antallUlesteDialoger={antallUleste} />
+            </>
+        );
+    };
 
     return (
         <Panel className="flex px-1_5">
+            <ErRendret loggTekst="Rendrer hjelp og støtte-komponent" />
             <span
                 style={{
                     marginRight: '0.5em',
@@ -100,17 +113,12 @@ function HjelpOgStotte() {
                 <Detail uppercase style={{ marginTop: '-1rem' }}>
                     Hjelp og støtte
                 </Detail>
-                <ErRendret loggTekst="Rendrer 14a sluttkort" />
-                <Heading className={'blokk-xs'} size="medium">
-                    {tekst('heading')}
-                </Heading>
-                <RegistrertTeller ukerRegistrert={ukerRegistrert} registrertDato={registrertDato} />
-                <DialogKnapp amplitudeData={amplitudeData} href={dialogLenke} antallUlesteDialoger={antallUleste} />
-                <InViewport loggTekst="Viser 14a sluttkort i viewport" />
+                {skalViseEgenvurderingIVURD ? <EgenVurderingMedLesLink /> : <DefaultInnhold />}
                 <ReadMore size="medium" header={tekst('readMoreHeading')} onClick={handleClickLesMer}>
                     <Forklaring />
                 </ReadMore>
             </div>
+            <InViewport loggTekst="Viser hjelp og støtte-komponent i viewport" />
         </Panel>
     );
 }
