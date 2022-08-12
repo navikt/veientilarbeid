@@ -172,13 +172,23 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         oppfolgingData,
     });
 
+    const beregnedeArbeidssokerPerioder = beregnArbeidssokerperioder(arbeidssokerperioder);
+
     const dagpengestatus = beregnDagpengeStatus({
         brukerInfoData,
         registreringData: brukerregistreringData,
         paabegynteSoknader: pabegynteSoknaderData,
         innsendteSoknader,
         dagpengeVedtak,
+        arbeidssokerperioder: beregnedeArbeidssokerPerioder,
     });
+
+    const {
+        harAktivArbeidssokerperiode,
+        antallDagerSidenSisteArbeidssokerperiode,
+        antallUkerSidenSisteArbeidssokerperiode,
+        antallUkerMellomSisteArbeidssokerperioder,
+    } = beregnedeArbeidssokerPerioder;
 
     const sisteDagpengevedtak = dagpengeVedtak
         .filter((vedtak) => vedtak.status === 'INNVILGET')
@@ -200,13 +210,6 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
 
     const valgtSprak = hentSprakValgFraCookie();
     const sprakValgFraCookie = valgtSprak || 'IKKE_VALGT';
-
-    const {
-        harAktivArbeidssokerperiode,
-        antallDagerSidenSisteArbeidssokerperiode,
-        antallUkerSidenSisteArbeidssokerperiode,
-        antallUkerMellomSisteArbeidssokerperioder,
-    } = beregnArbeidssokerperioder(arbeidssokerperioder);
 
     const amplitudeData: AmplitudeData = {
         gruppe: POAGruppe,

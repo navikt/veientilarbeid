@@ -3,23 +3,26 @@ import { useState } from 'react';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
+import { useOppfolgingData } from '../../contexts/oppfolging';
+import { useSprakValg } from '../../contexts/sprak';
+import { useDpInnsynPaabegynteSoknaderData } from '../../contexts/dp-innsyn-paabegynte-soknader';
+import { useDpInnsynSoknadData } from '../../contexts/dp-innsyn-soknad';
+import { useDpInnsynVedtakData } from '../../contexts/dp-innsyn-vedtak';
+import { useArbeidssokerperioderData } from '../../contexts/arbeidssokerperioder';
+
 import { kanViseOnboardingYtelser } from '../../lib/kan-vise-ytelser';
 import SluttkortYtelser from './ytelser/sluttkort';
 import SluttkortDagpenger from './dagpenger/sluttkort';
 import Tema from '../tema/tema';
-import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
-import { useOppfolgingData } from '../../contexts/oppfolging';
 import { kanViseOnboardingDagpenger } from '../../lib/kan-vise-onboarding-dagpenger';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import { hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
-import { useSprakValg } from '../../contexts/sprak';
 import beregnDagpengeStatus from '../../lib/beregn-dagpenge-status';
 import harIkkeStartetDagpengesoknad from '../../lib/har-ikke-startet-dagpengesoknad';
-import { useDpInnsynPaabegynteSoknaderData } from '../../contexts/dp-innsyn-paabegynte-soknader';
-import { useDpInnsynSoknadData } from '../../contexts/dp-innsyn-soknad';
-import { useDpInnsynVedtakData } from '../../contexts/dp-innsyn-vedtak';
 import FotnoterYtelser from './fotnoter-ytelser';
+import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -42,6 +45,8 @@ function YtelserOnboarding() {
     const dagpengeVedtak = useDpInnsynVedtakData();
     const amplitudeData = useAmplitudeData();
     const YTELSER_TEMA_VIS_KEY = 'ytelser_tema_vis_key';
+    const arbeidssokerperioderData = useArbeidssokerperioderData();
+    const arbeidssokerperioder = beregnArbeidssokerperioder(arbeidssokerperioderData);
 
     const kanViseDagpengerKomponent = kanViseOnboardingDagpenger({
         featuretoggleData,
@@ -83,6 +88,7 @@ function YtelserOnboarding() {
         paabegynteSoknader,
         innsendteSoknader,
         dagpengeVedtak,
+        arbeidssokerperioder,
     });
 
     if (!kanViseYtelserKomponent && !kanViseDagpengerKomponent) return null;

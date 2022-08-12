@@ -11,6 +11,13 @@ const grunndata = {
         alder: 42,
         erSykmeldtMedArbeidsgiver: false,
     },
+    arbeidssokerperioder: {
+        harAktivArbeidssokerperiode: 'INGEN_DATA',
+        aktivPeriodeStart: 'INGEN_DATA',
+        antallDagerSidenSisteArbeidssokerperiode: 'INGEN_DATA',
+        antallUkerSidenSisteArbeidssokerperiode: 'INGEN_DATA',
+        antallUkerMellomSisteArbeidssokerperioder: 'INGEN_DATA',
+    },
     registreringData: {
         registrering: {
             opprettetDato: iDag.toISOString(),
@@ -30,6 +37,7 @@ const grunndata = {
         },
     },
 };
+
 describe('Tester funksjonen beregnDagpengeStatus', () => {
     test('returnerer "mottar" når bruker mottar dagpenger', () => {
         const testData = JSON.parse(JSON.stringify(grunndata));
