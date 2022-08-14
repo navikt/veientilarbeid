@@ -33,24 +33,22 @@ function Avsnitt2() {
         });
     };
 
-    const tittel = servicegruppe === Servicegruppe.IKVAL ? 'Du har mottatt et brev' : 'Du vil motta et brev';
+    const harMottattBrev = servicegruppe === Servicegruppe.IKVAL;
 
+    function BrevLink() {
+        return (
+            <Link onClick={handleLesBrev} href={'https://mininnboks.nav.no/'}>
+                Brevet
+            </Link>
+        );
+    }
     return (
         <div>
-            <Heading size="xsmall">{tittel}</Heading>
+            <Heading size="xsmall">{harMottattBrev ? 'Du har mottatt et brev' : 'Du vil motta et brev'}</Heading>
             <BodyShort className={'blokk-xs'}>
-                {servicegruppe === Servicegruppe.IKVAL ? (
-                    <>
-                        <Link onClick={handleLesBrev} href={'https://mininnboks.nav.no/'}>
-                            Brevet
-                        </Link>{' '}
-                        inneholder vår vurdering av dine muligheter til å skaffe deg jobb på egenhånd.
-                    </>
-                ) : (
-                    'Brevet inneholder vår vurdering av dine muligheter til å skaffe deg jobb på egenhånd.'
-                )}
+                {harMottattBrev ? <BrevLink /> : 'Brevet'} inneholder vår vurdering av dine muligheter til å skaffe deg
+                jobb på egenhånd.
             </BodyShort>
-
             <BodyShort className={'blokk-m'}>
                 Dette brevet er ikke et svar på en eventuell søknad om dagpenger.
             </BodyShort>
