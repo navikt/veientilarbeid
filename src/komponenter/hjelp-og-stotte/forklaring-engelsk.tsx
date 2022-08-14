@@ -121,11 +121,6 @@ function Avsnitt4Engelsk() {
         <div>
             <Heading size="xsmall">Get in touch if you need help</Heading>
             <BodyShort className={'blokk-xs'}>You can get help from a counselor.</BodyShort>
-
-            <BodyShort className={'blokk-xs'}>
-                You will then have to reach out to a counselor by using the dialogue at the end of this introduction.
-            </BodyShort>
-
             <BodyShort className={'blokk-m'}>
                 You may contact us right away, or give it a shot on your own first.
             </BodyShort>

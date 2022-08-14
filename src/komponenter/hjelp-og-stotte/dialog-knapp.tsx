@@ -21,7 +21,7 @@ const TEKSTER = {
         du_har: 'Du har ',
     },
     en: {
-        title: 'Start a dialogue',
+        title: 'Start a dialogue with your counselor',
         onsker_hjelp: 'if you need help',
         ulest_melding: 'unread message',
         uleste_meldinger: 'unread messages',
