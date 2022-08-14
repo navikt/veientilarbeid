@@ -25,7 +25,6 @@ function Kort1Engelsk() {
                     <li>information NAV has about your situation</li>
                 </ul>
             </div>
-            <Feedback id={'Introkort14A-en-01-standard'} />
         </div>
     );
 }
@@ -69,7 +68,6 @@ function Kort2Engelsk() {
                     This letter is not a response to any application for unemployment benefits.
                 </BodyShort>
             </div>
-            <Feedback id={'Introkort14A-en-02-standard'} />
         </div>
     );
 }
@@ -131,7 +129,6 @@ function Kort3Engelsk() {
                     .
                 </BodyShort>
             </div>
-            <Feedback id={'Introkort14A-en-03-standard'} />
         </div>
     );
 }
@@ -155,7 +152,6 @@ function Kort4Engelsk() {
                     You may contact us right away, or give it a shot on your own first.
                 </BodyShort>
             </div>
-            <Feedback id={'Introkort14A-en-04-standard'} />
         </div>
     );
 }
@@ -166,7 +162,7 @@ function ForklaringEngelsk() {
             <Kort2Engelsk />
             <Kort3Engelsk />
             <Kort4Engelsk />
-            <Feedback id={'hjelp-og-stotte-forklaring'} className="mt-2" />
+            <Feedback id={'hjelp-og-stotte-forklaring-engelsk'} className="mt-2" />
         </>
     );
 }
