@@ -5,7 +5,7 @@ import { OppfolgingContext, Servicegruppe } from '../../contexts/oppfolging';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 
-function Kort1Engelsk() {
+function Avsnitt1Engelsk() {
     return (
         <div>
             <Heading size="xsmall">What kind of help can I get?</Heading>
@@ -27,7 +27,7 @@ function Kort1Engelsk() {
     );
 }
 
-function Kort2Engelsk() {
+function Avsnitt2Engelsk() {
     const { servicegruppe } = useContext(OppfolgingContext).data;
     const amplitudeData = useAmplitudeData();
 
@@ -68,7 +68,7 @@ function Kort2Engelsk() {
     );
 }
 
-function Kort3Engelsk() {
+function Avsnitt3Engelsk() {
     const amplitudeData = useAmplitudeData();
 
     function loggLenkeKlikk(handling: string, url: string) {
@@ -127,7 +127,7 @@ function Kort3Engelsk() {
     );
 }
 
-function Kort4Engelsk() {
+function Avsnitt4Engelsk() {
     return (
         <div>
             <Heading size="xsmall">Get in touch if you need help</Heading>
@@ -149,10 +149,10 @@ function Kort4Engelsk() {
 function ForklaringEngelsk() {
     return (
         <>
-            <Kort1Engelsk />
-            <Kort2Engelsk />
-            <Kort3Engelsk />
-            <Kort4Engelsk />
+            <Avsnitt1Engelsk />
+            <Avsnitt2Engelsk />
+            <Avsnitt3Engelsk />
+            <Avsnitt4Engelsk />
             <Feedback id={'hjelp-og-stotte-forklaring-engelsk'} className="mt-2" />
         </>
     );
