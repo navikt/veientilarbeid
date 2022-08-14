@@ -1,4 +1,4 @@
-import { BodyShort, Detail, Heading, Link } from '@navikt/ds-react';
+import { BodyShort, Heading, Link } from '@navikt/ds-react';
 import Feedback from '../feedback/feedback';
 import { useContext } from 'react';
 import { OppfolgingContext, Servicegruppe } from '../../contexts/oppfolging';
@@ -9,16 +9,13 @@ function Avsnitt1Engelsk() {
     return (
         <div>
             <Heading size="xsmall">What kind of help can I get?</Heading>
-            <Detail size="small" className="blokk-xs">
-                1 of 4
-            </Detail>
 
             <BodyShort className={'blokk-xs'}>
                 NAV has made an assesement of your answers, and it seems you have good chances of getting a job on your
                 own.
             </BodyShort>
 
-            <BodyShort>The assesement is based on:</BodyShort>
+            <BodyShort>The assessment is based on:</BodyShort>
             <ul>
                 <li>your answers from the registration</li>
                 <li>information NAV has about your situation</li>
@@ -44,9 +41,6 @@ function Avsnitt2Engelsk() {
     return (
         <div>
             <Heading size="xsmall">{tittel}</Heading>
-            <Detail size="small" className="blokk-xs">
-                2 of 4
-            </Detail>
             <BodyShort className={'blokk-xs'}>
                 {servicegruppe === Servicegruppe.IKVAL ? (
                     <>
@@ -83,9 +77,6 @@ function Avsnitt3Engelsk() {
     return (
         <div>
             <Heading size="xsmall">What is a counselor?</Heading>
-            <Detail size="small" className="blokk-xs">
-                3 of 4
-            </Detail>
             <BodyShort className={'blokk-xs'}>
                 The job of a counselor is to answer questions, and to offer help and support with getting you back to
                 work.
@@ -131,9 +122,6 @@ function Avsnitt4Engelsk() {
     return (
         <div>
             <Heading size="xsmall">Get in touch if you need help</Heading>
-            <Detail size="small" className="blokk-xs">
-                4 of 4
-            </Detail>
             <BodyShort className={'blokk-xs'}>You can get help from a counselor.</BodyShort>
 
             <BodyShort className={'blokk-xs'}>
