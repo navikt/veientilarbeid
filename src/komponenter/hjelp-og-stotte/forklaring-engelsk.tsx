@@ -50,9 +50,9 @@ function Avsnitt2Engelsk() {
                     </>
                 ) : (
                     'You will receive the letter «NAV har vurdert dine muligheter» within a week.'
-                )}
+                )}{' '}
+                The letter contains our assessment of your chances of getting a job on your own.
             </BodyShort>
-
             <BodyShort className={'blokk-m'}>
                 This letter is not a response to any application for unemployment benefits.
             </BodyShort>
