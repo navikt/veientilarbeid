@@ -8,10 +8,8 @@ import { amplitudeLogger } from '../../metrics/amplitude-utils';
 function Avsnitt1Engelsk() {
     return (
         <div>
-            <Heading size="xsmall">What kind of help can I get?</Heading>
-
             <BodyShort className={'blokk-xs'}>
-                NAV has made an assesement of your answers, and it seems you have good chances of getting a job on your
+                NAV has made an assessment of your answers, and it seems you have good chances of getting a job on your
                 own.
             </BodyShort>
 

@@ -35,7 +35,7 @@ const TEKSTER = {
     },
     en: {
         heading: 'Get in touch if you need help',
-        readMoreHeading: 'How can NAV help me?',
+        readMoreHeading: 'What kind of help can I get?',
     },
 };
 
