@@ -68,6 +68,38 @@ function Avsnitt3() {
         window.location.assign(url);
     }
 
+    function SkrivTilOss() {
+        return (
+            <Link
+                href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
+                onClick={() =>
+                    loggLenkeKlikk(
+                        'Går til STO fra 14a onboarding kort',
+                        'https://mininnboks.nav.no/sporsmal/skriv/ARBD'
+                    )
+                }
+            >
+                skriv til oss
+            </Link>
+        );
+    }
+
+    function Chat() {
+        return (
+            <Link
+                href="https://www.nav.no/person/kontakt-oss/chat/"
+                onClick={() =>
+                    loggLenkeKlikk(
+                        'Går til Chat fra 14a onboarding kort',
+                        'https://www.nav.no/person/kontakt-oss/chat/'
+                    )
+                }
+            >
+                chat
+            </Link>
+        );
+    }
+
     return (
         <div>
             <Heading size="xsmall">Hva er en veileder?</Heading>
@@ -82,31 +114,7 @@ function Avsnitt3() {
             </BodyShort>
 
             <BodyShort className={'blokk-m'}>
-                Dersom du lurer på noe om dagpenger ber vi deg bruke{' '}
-                <Link
-                    href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
-                    onClick={() =>
-                        loggLenkeKlikk(
-                            'Går til STO fra 14a onboarding kort',
-                            'https://mininnboks.nav.no/sporsmal/skriv/ARBD'
-                        )
-                    }
-                >
-                    skriv til oss
-                </Link>{' '}
-                eller{' '}
-                <Link
-                    href="https://www.nav.no/person/kontakt-oss/chat/"
-                    onClick={() =>
-                        loggLenkeKlikk(
-                            'Går til Chat fra 14a onboarding kort',
-                            'https://www.nav.no/person/kontakt-oss/chat/'
-                        )
-                    }
-                >
-                    chat
-                </Link>
-                .
+                Dersom du lurer på noe om dagpenger ber vi deg bruke <SkrivTilOss /> eller <Chat />.
             </BodyShort>
         </div>
     );
