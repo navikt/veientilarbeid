@@ -18,7 +18,7 @@ import AvslagDagpenger from './dagpenger-avslag';
 import beregnDagpengeStatus, { DagpengeStatus } from '../../lib/beregn-dagpenge-status';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
-import ByttKortLenke from './bytt-kort-lenke';
+import ByttVisningLenke from './bytt-visning-lenke';
 import Ytelser from './ytelser';
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 
@@ -40,7 +40,7 @@ function hentDagpengerInnhold(situasjon: DagpengeStatus) {
 
 interface Props {
     valgtVisning: string;
-    handleByttKortKlikk: (e: React.MouseEvent) => void;
+    handleByttVisningKlikk: (e: React.MouseEvent) => void;
 }
 
 function DagpengerOgYtelserInnhold(props: Props) {
@@ -92,8 +92,8 @@ function DagpengerOgYtelserInnhold(props: Props) {
                         <InViewport loggTekst="Viser dagpenger sluttkort i viewport" />
                     </>
                 )}
-                <ByttKortLenke
-                    handleByttKortKlikk={props.handleByttKortKlikk}
+                <ByttVisningLenke
+                    handleByttVisningKlikk={props.handleByttVisningKlikk}
                     valgtYtelserVisning={props.valgtVisning}
                 />
             </div>

@@ -14,17 +14,20 @@ const TEKSTER: Tekster<string> = {
     },
 };
 
-const ByttKortLenke = (props: { handleByttKortKlikk: (e: React.MouseEvent) => void; valgtYtelserVisning: string }) => {
+const ByttVisningLenke = (props: {
+    handleByttVisningKlikk: (e: React.MouseEvent) => void;
+    valgtYtelserVisning: string;
+}) => {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     return (
         <div className="flex align-center mt-1">
             <BytteIkon className="mr-05" />
-            <Link href="" onClick={props.handleByttKortKlikk}>
+            <Link href="" onClick={props.handleByttVisningKlikk}>
                 {props.valgtYtelserVisning === 'dagpenger' ? tekst('ikkeAktuelt') : tekst('aktuelt')}
             </Link>
         </div>
     );
 };
 
-export default ByttKortLenke;
+export default ByttVisningLenke;
