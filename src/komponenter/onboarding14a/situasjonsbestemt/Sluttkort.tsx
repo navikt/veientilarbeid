@@ -4,7 +4,7 @@ import { useAmplitudeData } from '../../../contexts/amplitude-context';
 import { useUlesteDialogerData } from '../../../contexts/ulestedialoger';
 import { behovsvurderingLenke, dialogLenke } from '../../../innhold/lenker';
 import { hentEllerSettFraBrowserStorage } from '../../../utils/browserStorage-utils';
-import { HAR_MOTTATT_EGENVURDERING_KVITTERING } from '../../kvitteringer/behovsvurdering';
+import { HAR_MOTTATT_EGENVURDERING_KVITTERING } from '../../kvitteringer/behovsvurdering-legacy';
 import TemaLenkepanel from '../../tema/tema-lenkepanel';
 import { Heading, BodyShort } from '@navikt/ds-react';
 import lagHentTekstForSprak, { Tekster } from '../../../lib/lag-hent-tekst-for-sprak';

@@ -11,7 +11,7 @@ import Kortbunke from './StandardKortbunke';
 import SituasjonsbestemtKortbunke from './SituasjonsbestemtKortbunke';
 import { kanViseOnboarding14A } from '../../lib/kan-vise-onboarding14a';
 import finnKvitteringstype from '../../lib/finn-kvitteringstype';
-import BehovsvurderingKvittering from '../kvitteringer/behovsvurdering';
+import BehovsvurderingKvittering from '../kvitteringer/behovsvurdering-legacy';
 
 function Onboarding14a(): JSX.Element | null {
     const registreringData = useBrukerregistreringData();

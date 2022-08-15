@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
 
-import BehovsvurderingKvittering from './behovsvurdering';
+import BehovsvurderingKvittering from './behovsvurdering-legacy';
 import { mockIntersectionObserver } from '../../mocks/intersection-observer-mock';
 
 describe('tester komponenten for kvittering for behovsvurdering', () => {
