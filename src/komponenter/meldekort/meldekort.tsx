@@ -50,7 +50,7 @@ function Meldekort() {
             </span>
             <div className="full-width">
                 <Detail uppercase style={{ marginTop: '-1rem' }}>
-                    Meldekort/meldeplikt
+                    Meldekort og meldeplikt
                 </Detail>
                 <MeldekortHovedInnhold />
                 <ReadMore size="medium" header={tekst('overskrift')} onClick={handleClickLesMer}>

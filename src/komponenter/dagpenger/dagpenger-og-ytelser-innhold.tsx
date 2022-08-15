@@ -21,6 +21,8 @@ import InViewport from '../in-viewport/in-viewport';
 import ByttVisningLenke from './bytt-visning-lenke';
 import Ytelser from './ytelser';
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
+import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
+import { useSprakValg } from '../../contexts/sprak';
 
 function hentDagpengerInnhold(situasjon: DagpengeStatus) {
     if (situasjon === 'paabegynt') {
@@ -43,6 +45,15 @@ interface Props {
     handleByttVisningKlikk: (e: React.MouseEvent) => void;
 }
 
+const TEKSTER = {
+    nb: {
+        tittel: 'Pengestøtte',
+    },
+    en: {
+        tittel: 'Unemployment benefits',
+    },
+};
+
 function DagpengerOgYtelserInnhold(props: Props) {
     const brukerInfoData = useBrukerinfoData();
     const registreringData = useBrukerregistreringData();
@@ -63,6 +74,8 @@ function DagpengerOgYtelserInnhold(props: Props) {
 
     const DagpengerInnhold = hentDagpengerInnhold(dagpengeStatus);
 
+    const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
+
     return (
         <Panel className="flex px-1_5">
             <span
@@ -77,7 +90,7 @@ function DagpengerOgYtelserInnhold(props: Props) {
             </span>
             <div className="full-width">
                 <Detail uppercase style={{ marginTop: '-1rem' }}>
-                    Dagpenger/pengestøtte
+                    {tekst('tittel')}
                 </Detail>
                 {props.valgtVisning === 'ytelser' ? (
                     <>
