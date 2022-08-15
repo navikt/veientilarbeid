@@ -134,7 +134,7 @@ function ForklaringEngelsk() {
             <Avsnitt2Engelsk />
             <Avsnitt3Engelsk />
             <Avsnitt4Engelsk />
-            <Feedback id={'hjelp-og-stotte-forklaring-engelsk'} className="mt-2" />
+            <Feedback id={'hjelp-og-stotte-forklaring'} className="mt-2" />
         </>
     );
 }
