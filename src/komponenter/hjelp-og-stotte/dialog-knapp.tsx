@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '@navikt/ds-react';
+import { BodyShort, Button } from '@navikt/ds-react';
 import { Next } from '@navikt/ds-icons';
 
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
@@ -15,14 +15,12 @@ interface DialogKnappProps {
 const TEKSTER = {
     nb: {
         title: 'Gå til dialog med veilederen din',
-        onsker_hjelp: 'Om du ønsker hjelp kan du kontakte oss gjennom dialogen',
         ulest_melding: 'ulest melding',
         uleste_meldinger: 'uleste meldinger',
         du_har: 'Du har ',
     },
     en: {
         title: 'Start a dialogue with your counselor',
-        onsker_hjelp: 'if you need help',
         ulest_melding: 'unread message',
         uleste_meldinger: 'unread messages',
         du_har: 'You have ',
@@ -43,22 +41,23 @@ const DialogKnapp: React.FC<DialogKnappProps> = (props) => {
     const variant = props.antallUlesteDialoger > 0 ? 'primary' : 'secondary';
 
     function dialogTekst(antallUlesteDialoger: number) {
-        if (antallUlesteDialoger === 0) return null;
         return (
             <>
-                {' ('}
                 {tekst('du_har')}
                 <b>{antallUlesteDialoger}</b>{' '}
                 {antallUlesteDialoger === 1 ? tekst('ulest_melding') : tekst('uleste_meldinger')}
-                {') '}
+                {'.'}
             </>
         );
     }
 
     return (
         <div>
+            {props.antallUlesteDialoger !== 0 && (
+                <BodyShort className="mt-1">{dialogTekst(props.antallUlesteDialoger)}</BodyShort>
+            )}
             <Button onClick={handleClickInnsending} className="mt-1 mb-1" variant={variant}>
-                {tekst('title')} {dialogTekst(props.antallUlesteDialoger)}
+                {tekst('title')}
                 <Next />
             </Button>
         </div>
