@@ -15,6 +15,7 @@ import DagpengerOgYtelser from '../komponenter/dagpenger/dagpenger-og-ytelser';
 import Meldekort from '../komponenter/meldekort/meldekort';
 import HjelpOgStotte from '../komponenter/hjelp-og-stotte/hjelp-og-stotte';
 import Aktivitetsplan from '../komponenter/aktivitetsplan/aktivitetsplan-ny';
+import KvitteringEgenvurdering from '../komponenter/kvitteringer/kvittering-egenvurdering';
 
 const InnholdStandard = () => {
     return (
@@ -25,6 +26,7 @@ const InnholdStandard = () => {
                 <ReaktiveringKort />
                 <KrrMelding />
                 <ReaktiveringKvittering />
+                <KvitteringEgenvurdering />
                 <StatusTittel />
                 <DagpengerOgYtelser />
                 <Meldekort />
