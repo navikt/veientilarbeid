@@ -15,7 +15,7 @@ function DagpengerOgYtelser() {
         hentFraBrowserStorage(YTELSER_TEMA_VIS_KEY) || 'dagpenger'
     );
 
-    const handleByttKortKlikk = (e: React.MouseEvent) => {
+    const handleByttVisningKlikk = (e: React.MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
         amplitudeLogger('veientilarbeid.tema', {
@@ -34,7 +34,9 @@ function DagpengerOgYtelser() {
 
     if (!featureToggles['veientilarbeid.ny-standardvisning']) return null;
 
-    return <DagpengerOgYtelserInnhold handleByttKortKlikk={handleByttKortKlikk} valgtVisning={valgtYtelserVisning} />;
+    return (
+        <DagpengerOgYtelserInnhold handleByttVisningKlikk={handleByttVisningKlikk} valgtVisning={valgtYtelserVisning} />
+    );
 }
 
 export default DagpengerOgYtelser;

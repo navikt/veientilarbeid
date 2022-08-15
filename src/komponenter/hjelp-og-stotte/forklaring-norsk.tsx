@@ -5,25 +5,23 @@ import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import Feedback from '../feedback/feedback';
 
-function Kort1() {
+function Avsnitt1() {
     return (
-        <div className="kortflate">
-            <div>
-                <BodyShort className={'blokk-xs'}>
-                    Vi tror at du har gode muligheter til å skaffe deg jobb på egenhånd.
-                </BodyShort>
+        <div>
+            <BodyShort className={'blokk-xs'}>
+                Vi tror at du har gode muligheter til å skaffe deg jobb på egenhånd.
+            </BodyShort>
 
-                <BodyShort>Vår vurdering er basert på:</BodyShort>
-                <ul>
-                    <li>dine svar fra registreringen</li>
-                    <li>opplysningene NAV har om din situasjon</li>
-                </ul>
-            </div>
+            <BodyShort>Vår vurdering er basert på:</BodyShort>
+            <ul>
+                <li>dine svar fra registreringen</li>
+                <li>opplysningene NAV har om din situasjon</li>
+            </ul>
         </div>
     );
 }
 
-function Kort2() {
+function Avsnitt2() {
     const { servicegruppe } = useContext(OppfolgingContext).data;
     const amplitudeData = useAmplitudeData();
 
@@ -35,34 +33,30 @@ function Kort2() {
         });
     };
 
-    const tittel = servicegruppe === Servicegruppe.IKVAL ? 'Du har mottatt et brev' : 'Du vil motta et brev';
+    const harMottattBrev = servicegruppe === Servicegruppe.IKVAL;
 
+    function BrevLink() {
+        return (
+            <Link onClick={handleLesBrev} href={'https://mininnboks.nav.no/'}>
+                Brevet
+            </Link>
+        );
+    }
     return (
-        <div className="kortflate">
-            <div>
-                <Heading size="xsmall">{tittel}</Heading>
-                <BodyShort className={'blokk-xs'}>
-                    {servicegruppe === Servicegruppe.IKVAL ? (
-                        <>
-                            <Link onClick={handleLesBrev} href={'https://mininnboks.nav.no/'}>
-                                Brevet
-                            </Link>{' '}
-                            inneholder vår vurdering av dine muligheter til å skaffe deg jobb på egenhånd.
-                        </>
-                    ) : (
-                        'Brevet inneholder vår vurdering av dine muligheter til å skaffe deg jobb på egenhånd.'
-                    )}
-                </BodyShort>
-
-                <BodyShort className={'blokk-m'}>
-                    Dette brevet er ikke et svar på en eventuell søknad om dagpenger.
-                </BodyShort>
-            </div>
+        <div>
+            <Heading size="xsmall">{harMottattBrev ? 'Du har mottatt et brev' : 'Du vil motta et brev'}</Heading>
+            <BodyShort className={'blokk-xs'}>
+                {harMottattBrev ? <BrevLink /> : 'Brevet'} inneholder vår vurdering av dine muligheter til å skaffe deg
+                jobb på egenhånd.
+            </BodyShort>
+            <BodyShort className={'blokk-m'}>
+                Dette brevet er ikke et svar på en eventuell søknad om dagpenger.
+            </BodyShort>
         </div>
     );
 }
 
-function Kort3() {
+function Avsnitt3() {
     const amplitudeData = useAmplitudeData();
 
     function loggLenkeKlikk(handling: string, url: string) {
@@ -74,63 +68,67 @@ function Kort3() {
         window.location.assign(url);
     }
 
+    function SkrivTilOss() {
+        return (
+            <Link
+                href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
+                onClick={() =>
+                    loggLenkeKlikk(
+                        'Går til STO fra 14a onboarding kort',
+                        'https://mininnboks.nav.no/sporsmal/skriv/ARBD'
+                    )
+                }
+            >
+                skriv til oss
+            </Link>
+        );
+    }
+
+    function Chat() {
+        return (
+            <Link
+                href="https://www.nav.no/person/kontakt-oss/chat/"
+                onClick={() =>
+                    loggLenkeKlikk(
+                        'Går til Chat fra 14a onboarding kort',
+                        'https://www.nav.no/person/kontakt-oss/chat/'
+                    )
+                }
+            >
+                chat
+            </Link>
+        );
+    }
+
     return (
-        <div className="kortflate">
-            <div>
-                <Heading size="xsmall">Hva er en veileder?</Heading>
-                <BodyShort className={'blokk-xs'}>
-                    Veilederens oppgave er å besvare spørsmål, bistå deg med å søke stillinger og tilby deg hjelp på
-                    veien til arbeid.
-                </BodyShort>
+        <div>
+            <Heading size="xsmall">Hva er en veileder?</Heading>
+            <BodyShort className={'blokk-xs'}>
+                Veilederens oppgave er å besvare spørsmål, bistå deg med å søke stillinger og tilby deg hjelp på veien
+                til arbeid.
+            </BodyShort>
 
-                <BodyShort className={'blokk-xs'}>
-                    Veilederne kan <strong>ikke</strong> svare på spørsmål om søknad om dagpenger, behandling av
-                    dagpengesøknaden eller utbetaling av dagpenger.
-                </BodyShort>
+            <BodyShort className={'blokk-xs'}>
+                Veilederne kan <strong>ikke</strong> svare på spørsmål om søknad om dagpenger, behandling av
+                dagpengesøknaden eller utbetaling av dagpenger.
+            </BodyShort>
 
-                <BodyShort className={'blokk-m'}>
-                    Dersom du lurer på noe om dagpenger ber vi deg bruke{' '}
-                    <Link
-                        href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
-                        onClick={() =>
-                            loggLenkeKlikk(
-                                'Går til STO fra 14a onboarding kort',
-                                'https://mininnboks.nav.no/sporsmal/skriv/ARBD'
-                            )
-                        }
-                    >
-                        skriv til oss
-                    </Link>{' '}
-                    eller{' '}
-                    <Link
-                        href="https://www.nav.no/person/kontakt-oss/chat/"
-                        onClick={() =>
-                            loggLenkeKlikk(
-                                'Går til Chat fra 14a onboarding kort',
-                                'https://www.nav.no/person/kontakt-oss/chat/'
-                            )
-                        }
-                    >
-                        chat
-                    </Link>
-                    .
-                </BodyShort>
-            </div>
+            <BodyShort className={'blokk-m'}>
+                Dersom du lurer på noe om dagpenger ber vi deg bruke <SkrivTilOss /> eller <Chat />.
+            </BodyShort>
         </div>
     );
 }
 
-function Kort4() {
+function Avsnitt4() {
     return (
-        <div className="kortflate">
-            <div>
-                <Heading size="xsmall">Ta kontakt om du trenger hjelp</Heading>
-                <BodyShort className={'blokk-xs'}>Du kan få hjelp fra en veileder.</BodyShort>
+        <div>
+            <Heading size="xsmall">Ta kontakt om du trenger hjelp</Heading>
+            <BodyShort className={'blokk-xs'}>Du kan få hjelp fra en veileder.</BodyShort>
 
-                <BodyShort className={'blokk-xs'}>
-                    Du kan når som helst kontakte oss ved å bruke dialogløsningen ovenfor.
-                </BodyShort>
-            </div>
+            <BodyShort className={'blokk-xs'}>
+                Du kan når som helst kontakte oss ved å bruke dialogløsningen ovenfor.
+            </BodyShort>
         </div>
     );
 }
@@ -138,10 +136,10 @@ function Kort4() {
 function ForklaringNorsk() {
     return (
         <>
-            <Kort1 />
-            <Kort2 />
-            <Kort3 />
-            <Kort4 />
+            <Avsnitt1 />
+            <Avsnitt2 />
+            <Avsnitt3 />
+            <Avsnitt4 />
             <Feedback id={'hjelp-og-stotte-forklaring'} className="mt-2" />
         </>
     );

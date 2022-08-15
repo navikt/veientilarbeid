@@ -25,13 +25,13 @@ const InnholdStandard = () => {
                 <ReaktiveringKort />
                 <KrrMelding />
                 <StatusTittel />
+                <ReaktiveringKvittering />
                 <DagpengerOgYtelser />
                 <Meldekort />
                 <HjelpOgStotte />
                 <Aktivitetsplan />
                 <GjelderFraDato />
                 <OnboardingStandard />
-                <ReaktiveringKvittering />
                 <Registrert />
                 <Egenvurdering />
                 <AktivitetDialogMeldekort />
