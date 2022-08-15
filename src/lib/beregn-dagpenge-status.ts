@@ -11,6 +11,7 @@ import * as BrukerInfo from '../contexts/bruker-info';
 import { DpInnsynSoknad } from '../contexts/dp-innsyn-soknad';
 import { DpInnsynPaabegyntSoknad } from '../contexts/dp-innsyn-paabegynte-soknader';
 import { Vedtak } from '../contexts/dp-innsyn-vedtak';
+import { BeregnedePerioder } from './beregn-arbeidssokerperioder';
 
 // import { plussDager } from '../utils/date-utils';
 
@@ -37,24 +38,31 @@ function beregnDagpengeStatus({
     paabegynteSoknader,
     innsendteSoknader,
     dagpengeVedtak,
+    arbeidssokerperioder,
 }: {
     brukerInfoData: BrukerInfo.Data;
     registreringData: Brukerregistrering.Data | null;
     paabegynteSoknader: DpInnsynPaabegyntSoknad[];
     innsendteSoknader: DpInnsynSoknad[];
     dagpengeVedtak: Vedtak[];
+    arbeidssokerperioder: BeregnedePerioder;
 }): DagpengeStatus {
     const { rettighetsgruppe } = brukerInfoData;
+    const { aktivPeriodeStart, harAktivArbeidssokerperiode } = arbeidssokerperioder;
+    const erIaktivPeriode = harAktivArbeidssokerperiode === 'Ja';
+    const harOpprettetDato = registreringData?.registrering?.opprettetDato;
 
     if (rettighetsgruppe === 'DAGP') {
         return 'mottar';
     }
 
-    if (!registreringData?.registrering?.opprettetDato) {
+    if (!harOpprettetDato && !erIaktivPeriode) {
         return 'ukjent';
     }
 
-    const registreringsDato = new Date(registreringData?.registrering!.opprettetDato);
+    const registreringsDato = harOpprettetDato
+        ? new Date(registreringData?.registrering!.opprettetDato)
+        : new Date(aktivPeriodeStart);
     const sistInnsendteSoknad = innsendteSoknader.sort(sorterEtterNyesteDatoInnsendt)[0];
     const sisteDagpengevedtak = dagpengeVedtak.sort(sorterEtterNyesteVedtak)[0];
 

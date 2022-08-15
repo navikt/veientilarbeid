@@ -11,6 +11,13 @@ const grunndata = {
         alder: 42,
         erSykmeldtMedArbeidsgiver: false,
     },
+    arbeidssokerperioder: {
+        harAktivArbeidssokerperiode: 'INGEN_DATA',
+        aktivPeriodeStart: 'INGEN_DATA',
+        antallDagerSidenSisteArbeidssokerperiode: 'INGEN_DATA',
+        antallUkerSidenSisteArbeidssokerperiode: 'INGEN_DATA',
+        antallUkerMellomSisteArbeidssokerperioder: 'INGEN_DATA',
+    },
     registreringData: {
         registrering: {
             opprettetDato: iDag.toISOString(),
@@ -30,6 +37,7 @@ const grunndata = {
         },
     },
 };
+
 describe('Tester funksjonen beregnDagpengeStatus', () => {
     test('returnerer "mottar" når bruker mottar dagpenger', () => {
         const testData = JSON.parse(JSON.stringify(grunndata));
@@ -45,7 +53,7 @@ describe('Tester funksjonen beregnDagpengeStatus', () => {
         ).toBe('mottar');
     });
 
-    test('returnerer "ukjent" hvis ingen registreringsdato', () => {
+    test('returnerer "ukjent" hvis ingen registreringsdato og ingen arbeidssøkerperioder', () => {
         const testData = JSON.parse(JSON.stringify(grunndata));
         delete testData.registreringData.registrering.opprettetDato;
 
@@ -171,6 +179,35 @@ describe('Tester funksjonen beregnDagpengeStatus', () => {
 
     test('returnerer "paabegynt" når det eksisterer påbegynte søknader', () => {
         const testData = JSON.parse(JSON.stringify(grunndata));
+        const soknader = [
+            {
+                tittel: 'Søknad om dagpenger (ikke permittert)',
+                behandlingsId: '10010WQX9',
+                sistEndret: plussDager(iDag, 1).toISOString(),
+            },
+        ];
+
+        return expect(
+            beregnDagpengeStatus({
+                ...testData,
+                paabegynteSoknader: soknader,
+                innsendteSoknader: [],
+                dagpengeVedtak: [],
+            })
+        ).toBe('paabegynt');
+    });
+
+    test('returnerer "paabegynt" når det eksisterer påbegynte søknader også for de som er registrert før ny løsning', () => {
+        const testData = JSON.parse(JSON.stringify(grunndata));
+        delete testData.registreringData.registrering.opprettetDato;
+        testData.arbeidssokerperioder = {
+            harAktivArbeidssokerperiode: 'Ja',
+            aktivPeriodeStart: '2018-06-26',
+            antallDagerSidenSisteArbeidssokerperiode: 'INGEN_DATA',
+            antallUkerSidenSisteArbeidssokerperiode: 'INGEN_DATA',
+            antallUkerMellomSisteArbeidssokerperioder: 'INGEN_DATA',
+        };
+
         const soknader = [
             {
                 tittel: 'Søknad om dagpenger (ikke permittert)',

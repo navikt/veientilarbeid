@@ -1,6 +1,9 @@
+import * as React from 'react';
 import merge from 'merge-deep';
+
 import * as Amplitude from '../contexts/amplitude-context';
 import { AmplitudeData } from '../metrics/amplitude-utils';
+import * as Arbeidssokerperioder from '../contexts/arbeidssokerperioder';
 import * as Autentisering from '../contexts/autentisering';
 import * as Brukerregistrering from '../contexts/brukerregistrering';
 import * as FeatureToggle from '../contexts/feature-toggles';
@@ -12,7 +15,6 @@ import * as Meldekort from '../contexts/meldekort';
 import * as Motestotte from '../contexts/motestotte';
 import * as UnderOppfolging from '../contexts/under-oppfolging';
 import * as Sakstema from '../contexts/sakstema';
-import * as React from 'react';
 import { STATUS } from '../ducks/api';
 import { setFastTidspunktForIDag } from '../utils/chrono';
 import { GlobaleInnstillingerProps, GlobaleInnstillingerProvider } from '../contexts/GlobaleInnstillinger';
@@ -25,6 +27,7 @@ type DeepPartial<T> = {
 export type ProviderProps = {
     autentisering?: DeepPartial<Autentisering.Data>;
     amplitude?: DeepPartial<AmplitudeData>;
+    arbeidssokerperioder?: DeepPartial<Arbeidssokerperioder.Data>;
     brukerregistrering?: DeepPartial<Brukerregistrering.Data> | null;
     featureToggle?: DeepPartial<FeatureToggle.Data>;
     egenvurdering?: DeepPartial<Egenvurdering.Data>;
@@ -114,7 +117,16 @@ export const contextProviders = function (props: ProviderProps): React.FunctionC
                                                                     }
                                                                 )}
                                                             >
-                                                                <KanViseVTA>{children}</KanViseVTA>
+                                                                <Arbeidssokerperioder.ArbeidssokerperioderContext.Provider
+                                                                    value={merge(
+                                                                        Arbeidssokerperioder.initialState,
+                                                                        props.arbeidssokerperioder && {
+                                                                            data: props.arbeidssokerperioder,
+                                                                        }
+                                                                    )}
+                                                                >
+                                                                    <KanViseVTA>{children}</KanViseVTA>
+                                                                </Arbeidssokerperioder.ArbeidssokerperioderContext.Provider>
                                                             </FeatureToggle.FeaturetoggleContext.Provider>
                                                         </Sakstema.SakstemaContext.Provider>
                                                     </Amplitude.AmplitudeContext.Provider>

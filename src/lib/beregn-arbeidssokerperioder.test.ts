@@ -7,6 +7,7 @@ describe('tester funksjonen beregnArbeidssokerperioder', () => {
 
         const forventetVerdi = {
             harAktivArbeidssokerperiode: 'INGEN_DATA',
+            aktivPeriodeStart: 'INGEN_DATA',
             antallDagerSidenSisteArbeidssokerperiode: 'INGEN_DATA',
             antallUkerSidenSisteArbeidssokerperiode: 'INGEN_DATA',
             antallUkerMellomSisteArbeidssokerperioder: 'INGEN_DATA',
@@ -22,6 +23,7 @@ describe('tester funksjonen beregnArbeidssokerperioder', () => {
         };
         const forventetVerdi = {
             harAktivArbeidssokerperiode: 'N/A',
+            aktivPeriodeStart: 'N/A',
             antallDagerSidenSisteArbeidssokerperiode: 'N/A',
             antallUkerSidenSisteArbeidssokerperiode: 'N/A',
             antallUkerMellomSisteArbeidssokerperioder: 'N/A',
@@ -44,6 +46,36 @@ describe('tester funksjonen beregnArbeidssokerperioder', () => {
         const verdi = beregnArbeidssokerperioder(data);
 
         expect(verdi.harAktivArbeidssokerperiode).toEqual(forventetVerdi);
+    });
+
+    test('Vi får aktivPeriodeStart lik fraOgMedDato perioden ikke er avsluttet', () => {
+        const data = {
+            arbeidssokerperioder: [
+                {
+                    fraOgMedDato: '2020-01-01',
+                    tilOgMedDato: null,
+                },
+            ],
+        };
+        const forventetVerdi = '2020-01-01';
+        const verdi = beregnArbeidssokerperioder(data);
+
+        expect(verdi.aktivPeriodeStart).toEqual(forventetVerdi);
+    });
+
+    test('Vi får "Ingen aktive perioder" på aktivPeriodeStart dersom siste periode er avsluttet', () => {
+        const data = {
+            arbeidssokerperioder: [
+                {
+                    fraOgMedDato: '2020-01-01',
+                    tilOgMedDato: '2020-05-05',
+                },
+            ],
+        };
+        const forventetVerdi = 'Ingen aktive perioder';
+        const verdi = beregnArbeidssokerperioder(data);
+
+        expect(verdi.aktivPeriodeStart).toEqual(forventetVerdi);
     });
 
     test('Vi får Nei på aktiv arbeidssøkerperiode om perioden ikke er avsluttet', () => {

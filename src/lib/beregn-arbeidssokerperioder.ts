@@ -5,6 +5,7 @@ import dagerFraDato from '../utils/dager-fra-dato';
 
 export interface BeregnedePerioder {
     harAktivArbeidssokerperiode: 'INGEN_DATA' | 'N/A' | 'Ja' | 'Nei';
+    aktivPeriodeStart: 'INGEN_DATA' | 'N/A' | string | 'Ingen aktive perioder';
     antallDagerSidenSisteArbeidssokerperiode: number | 'Ikke avsluttet' | 'INGEN_DATA' | 'N/A';
     antallUkerSidenSisteArbeidssokerperiode: number | 'Ikke avsluttet' | 'INGEN_DATA' | 'N/A';
     antallUkerMellomSisteArbeidssokerperioder: number | 'INGEN_DATA' | 'N/A' | 'Første periode';
@@ -43,6 +44,7 @@ function beregnArbeidssokerperioder(props: Props | null): BeregnedePerioder {
     if (arbeidssokerperioder === null) {
         return {
             harAktivArbeidssokerperiode: 'INGEN_DATA',
+            aktivPeriodeStart: 'INGEN_DATA',
             antallDagerSidenSisteArbeidssokerperiode: 'INGEN_DATA',
             antallUkerSidenSisteArbeidssokerperiode: 'INGEN_DATA',
             antallUkerMellomSisteArbeidssokerperioder: 'INGEN_DATA',
@@ -52,6 +54,7 @@ function beregnArbeidssokerperioder(props: Props | null): BeregnedePerioder {
     if (arbeidssokerperioder.length === 0) {
         return {
             harAktivArbeidssokerperiode: 'N/A',
+            aktivPeriodeStart: 'N/A',
             antallDagerSidenSisteArbeidssokerperiode: 'N/A',
             antallUkerSidenSisteArbeidssokerperiode: 'N/A',
             antallUkerMellomSisteArbeidssokerperioder: 'N/A',
@@ -66,6 +69,9 @@ function beregnArbeidssokerperioder(props: Props | null): BeregnedePerioder {
 
     return {
         harAktivArbeidssokerperiode: aktivArbeidssokerperiode ? 'Ja' : 'Nei',
+        aktivPeriodeStart: aktivArbeidssokerperiode
+            ? new Date(arbeidssokerperioder[0].fraOgMedDato).toISOString().substring(0, 10)
+            : 'Ingen aktive perioder',
         antallDagerSidenSisteArbeidssokerperiode: aktivArbeidssokerperiode
             ? 'Ikke avsluttet'
             : beregnAntallDagerSidenSisteArbeidssokerperiode(sluttDatoSistePeriode),
