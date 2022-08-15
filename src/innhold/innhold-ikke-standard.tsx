@@ -18,8 +18,8 @@ const InnholdView = () => {
             <Rad>
                 <ReaktiveringKort />
                 <KrrMelding />
-                <StatusTittel />
                 <ReaktiveringKvittering />
+                <StatusTittel />
                 <IkkeStandard />
                 <Motestotte />
                 <Egenvurdering />

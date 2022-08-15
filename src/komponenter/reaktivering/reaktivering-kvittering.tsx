@@ -1,6 +1,6 @@
-import { Panel, Heading, BodyShort, Link, Button } from '@navikt/ds-react';
-import { Close } from '@navikt/ds-icons';
-import { useEffect, useState } from 'react';
+import { Panel, Heading, BodyShort, Link, Button, Detail } from '@navikt/ds-react';
+import { Close, Money } from '@navikt/ds-icons';
+import React, { useEffect, useState } from 'react';
 
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { dagpengerSoknadLenke } from '../../innhold/lenker';
@@ -84,29 +84,41 @@ const ReaktiveringKvittering = () => {
 
     return (
         <>
-            <Panel className={'blokk-s'} border>
-                <div className="flex space-between blokk-s">
-                    <div>
-                        <Heading size="xsmall" level="1">
-                            {tekst('tittel')}
-                        </Heading>
-                        <Heading size="medium">{tekst('ingress')}</Heading>
+            <Panel className={'blokk-s flex px-1_5 '}>
+                <span
+                    style={{
+                        marginRight: '0.5em',
+                        position: 'relative',
+                        top: '6px',
+                        fontSize: 'var(--navds-font-size-heading-medium)',
+                    }}
+                >
+                    <Money />
+                </span>
+                <div className="full-width">
+                    <div className="flex space-between blokk-s">
+                        <div>
+                            <Detail uppercase style={{ marginTop: '-1rem' }}>
+                                {tekst('tittel')}
+                            </Detail>
+                            <Heading size="medium">{tekst('ingress')}</Heading>
+                        </div>
+                        <Button variant="tertiary" size="small" onClick={handleLukkeKvitteringKnapp}>
+                            <Close color="black" title={tekst('lukk')} />
+                        </Button>
                     </div>
-                    <Button variant="tertiary" size="small" onClick={handleLukkeKvitteringKnapp}>
-                        <Close color="black" title={tekst('lukk')} />
-                    </Button>
-                </div>
-                <div>
-                    <BodyShort className="blokk-xs">{tekst('utbetalingStoppet')}</BodyShort>
-                    <BodyShort className="blokk-xs">{tekst('tidligstMotta')}</BodyShort>
-                    <Button variant="secondary" onClick={handleSokGjenopptak} className="blokk-xs">
-                        {tekst('sok')}
-                    </Button>
-                    <BodyShort>
-                        <Link href="#" onClick={handleIkkeSokeNaa}>
-                            {tekst('skalIkke')}
-                        </Link>
-                    </BodyShort>
+                    <div>
+                        <BodyShort className="blokk-xs">{tekst('utbetalingStoppet')}</BodyShort>
+                        <BodyShort className="blokk-xs">{tekst('tidligstMotta')}</BodyShort>
+                        <Button variant="secondary" onClick={handleSokGjenopptak} className="blokk-xs">
+                            {tekst('sok')}
+                        </Button>
+                        <BodyShort>
+                            <Link href="#" onClick={handleIkkeSokeNaa}>
+                                {tekst('skalIkke')}
+                            </Link>
+                        </BodyShort>
+                    </div>
                 </div>
             </Panel>
             <ErRendret loggTekst="Rendrer kvittering etter reaktivering" />

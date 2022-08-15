@@ -24,8 +24,8 @@ const InnholdStandard = () => {
             <Rad>
                 <ReaktiveringKort />
                 <KrrMelding />
-                <StatusTittel />
                 <ReaktiveringKvittering />
+                <StatusTittel />
                 <DagpengerOgYtelser />
                 <Meldekort />
                 <HjelpOgStotte />
