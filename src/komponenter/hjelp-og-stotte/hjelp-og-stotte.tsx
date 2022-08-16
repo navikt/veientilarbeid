@@ -83,38 +83,40 @@ function HjelpOgStotte() {
 
     const sistSettEgenvurdering = Number(hentFraBrowserStorage(INTRO_KEY_12UKER)) ?? 0;
 
-    const skalViseEgenvurderingsUke12 = kanVise12UkerEgenvurdering({
-        brukerInfoData,
-        egenvurderingData,
-        oppfolgingData,
-        registreringData,
-        amplitudeData,
-        featuretoggleData,
-        sistVistFraLocalstorage: sistSettEgenvurdering,
-    });
-
-    const skalViseEgenvurderingNyregistrert = kanViseIVURDEgenvurdering({
-        underOppfolgingData,
-        registreringData,
-        autentiseringData,
-        egenvurderingData,
-        oppfolgingData,
-    });
     const harAvslattEgenvurdering = hentFraBrowserStorage(AVSLAATT_EGENVURDERING);
 
-    const skalViseEgenvurderingIVURD =
-        featuretoggleEgenvurderingAktivert && skalViseEgenvurderingNyregistrert && !harAvslattEgenvurdering;
+    const skalViseEgenvurderingInnsatsgruppeIkkeFastsatt =
+        featuretoggleEgenvurderingAktivert &&
+        !harAvslattEgenvurdering &&
+        kanViseIVURDEgenvurdering({
+            underOppfolgingData,
+            registreringData,
+            autentiseringData,
+            egenvurderingData,
+            oppfolgingData,
+        });
 
-    const skalViseEgenvurdering = skalViseEgenvurderingIVURD || (skalViseEgenvurderingsUke12 && skalViseKssInnhold);
+    const skalViseEgenvurderingUke12 =
+        skalViseKssInnhold &&
+        kanVise12UkerEgenvurdering({
+            brukerInfoData,
+            egenvurderingData,
+            oppfolgingData,
+            registreringData,
+            amplitudeData,
+            featuretoggleData,
+            sistVistFraLocalstorage: sistSettEgenvurdering,
+        });
 
-    const EgenVurderingMedLesLink = () => {
-        if (skalViseEgenvurderingIVURD) {
+    const skalViseEgenvurdering = skalViseEgenvurderingInnsatsgruppeIkkeFastsatt || skalViseEgenvurderingUke12;
+
+    const Egenvurdering = () => {
+        if (skalViseEgenvurderingInnsatsgruppeIkkeFastsatt) {
             return <EgenvurderingKort />;
         }
-        if (skalViseEgenvurderingsUke12) {
+        if (skalViseEgenvurderingUke12) {
             return <EgenvurderingUke12 />;
         }
-
         return null;
     };
 
@@ -147,7 +149,7 @@ function HjelpOgStotte() {
                 <Detail uppercase style={{ marginTop: '-1rem' }}>
                     Hjelp og støtte
                 </Detail>
-                {skalViseEgenvurdering ? <EgenVurderingMedLesLink /> : <DefaultInnhold />}
+                {skalViseEgenvurdering ? <Egenvurdering /> : <DefaultInnhold />}
                 <ReadMore size="medium" header={tekst('readMoreHeading')} onClick={handleClickLesMer}>
                     <Forklaring />
                 </ReadMore>
