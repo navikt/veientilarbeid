@@ -15,6 +15,7 @@ export enum FeatureToggles {
     VIS_GJELDER_FRA_DATO = 'veientilarbeid.vis-gjelder-fra-dato',
     SPLITT_STANDARD = 'veientilarbeid.splitt-standard-visning',
     NY_STANDARDVISNING = 'veientilarbeid.ny-standardvisning',
+    BRUK_PROFIL = 'veientilarbeid.bruk-profil',
 }
 
 export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
@@ -45,6 +46,8 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Splitt standard og ikke-standard';
         case FeatureToggles.NY_STANDARDVISNING:
             return 'Bruk nye standardkomponenter';
+        case FeatureToggles.BRUK_PROFIL:
+            return 'Bruk profil';
     }
 }
 
@@ -62,6 +65,7 @@ export interface Data {
     'veientilarbeid.vis-gjelder-fra-dato'?: boolean;
     'veientilarbeid.splitt-standard-visning'?: boolean;
     'veientilarbeid.ny-standardvisning'?: boolean;
+    'veientilarbeid.bruk-profil'?: boolean;
 }
 
 export interface State extends DataElement {
@@ -83,6 +87,7 @@ export const initialState: State = {
         'veientilarbeid.vis-gjelder-fra-dato': false,
         'veientilarbeid.splitt-standard-visning': false,
         'veientilarbeid.ny-standardvisning': false,
+        'veientilarbeid.bruk-profil': false,
     },
     status: STATUS.NOT_STARTED,
 };
