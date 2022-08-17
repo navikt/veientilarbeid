@@ -1,3 +1,5 @@
+import { rest } from 'msw';
+
 import {
     BRUKERINFO_URL,
     BRUKERREGISTRERING_URL,
@@ -13,6 +15,7 @@ import {
     GJELDER_FRA_DATO_URL,
     AUTH_API,
     ARBEIDSSOKERPERIODER_URL,
+    PROFIL_URL,
 } from '../ducks/api';
 
 import {
@@ -41,8 +44,8 @@ import {
 import { hentBrukerRegistrering } from './demo-state-brukerregistrering';
 import msw_get from '../mocks/msw-utils';
 import meldekortstatusResponse from '../mocks/meldekortstatus-mock';
-import { rest } from 'msw';
 import { gjelderFraGetResolver, gjelderFraPostResolver } from './demo-state-gjelderfra';
+import { brukerProfilGetResolver, brukerProfilPostResolver } from './demo-state-profil';
 import arbeidssokerPerioderResponse from '../mocks/arbeidssoker-perioder-mock';
 
 export const demo_handlers = [
@@ -92,4 +95,7 @@ export const demo_handlers = [
     rest.post(GJELDER_FRA_DATO_URL, gjelderFraPostResolver),
 
     msw_get(ARBEIDSSOKERPERIODER_URL, arbeidssokerPerioderResponse),
+
+    rest.get(PROFIL_URL, brukerProfilGetResolver),
+    rest.post(PROFIL_URL, brukerProfilPostResolver),
 ];

@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import Innholdslaster from '../innholdslaster/innholdslaster';
 import Feilmelding from '../feilmeldinger/feilmelding';
 import * as BrukerInfo from '../../contexts/bruker-info';
@@ -36,6 +37,7 @@ import * as DpInnsynVedtak from '../../contexts/dp-innsyn-vedtak';
 import * as DpInnsynPaabegynt from '../../contexts/dp-innsyn-paabegynte-soknader';
 import { GjelderFraDatoModalProvider } from '../../contexts/gjelder-fra-dato-modal';
 import { GjelderFraDatoProvider } from '../../contexts/gjelder-fra-dato';
+import { ProfilProvider } from '../../contexts/profil';
 
 const skalSjekkeEgenvurderingBesvarelse = (
     foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null
@@ -205,7 +207,9 @@ const DataProvider = ({ children }: Props) => {
                                                 >
                                                     <GjelderFraDatoModalProvider>
                                                         <GjelderFraDatoProvider>
-                                                            <AmplitudeProvider>{children}</AmplitudeProvider>
+                                                            <ProfilProvider>
+                                                                <AmplitudeProvider>{children}</AmplitudeProvider>
+                                                            </ProfilProvider>
                                                         </GjelderFraDatoProvider>
                                                     </GjelderFraDatoModalProvider>
                                                 </Arbeidssokerperioder.ArbeidssokerperioderContext.Provider>
