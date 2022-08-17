@@ -37,13 +37,12 @@ function ProfilProvider(props: { children: ReactNode }) {
             await fetchToJson(PROFIL_URL, {
                 ...requestConfig(),
                 method: 'POST',
-                body: JSON.stringify({ profil }),
+                body: JSON.stringify({ ...profil }),
             });
+            settProfil(profil);
         } catch (error) {
             console.error(error);
             throw error;
-        } finally {
-            await hentProfil();
         }
     };
 
