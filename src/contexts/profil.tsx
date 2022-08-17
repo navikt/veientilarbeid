@@ -4,10 +4,11 @@ import { useFeatureToggleData } from './feature-toggles';
 
 import { fetchToJson } from '../ducks/api-utils';
 import { PROFIL_URL, requestConfig } from '../ducks/api';
+import { Profil } from '../profil';
 
 interface ProfilProviderType {
-    profil: string | null;
-    lagreProfil: (profil: string | null) => Promise<void>;
+    profil: Profil | null;
+    lagreProfil: (profil: Profil | null) => Promise<void>;
 }
 
 const ProfilContext = createContext<ProfilProviderType>({
@@ -16,20 +17,22 @@ const ProfilContext = createContext<ProfilProviderType>({
 });
 
 function ProfilProvider(props: { children: ReactNode }) {
-    const [profil, settProfil] = useState<string | null>(null);
+    const [profil, settProfil] = useState<Profil | null>(null);
     const featureToggles = useFeatureToggleData();
     const skalBrukeProfil = featureToggles['veientilarbeid.bruk-profil'];
 
     const hentProfil = async () => {
         try {
-            const { profil } = await fetchToJson(PROFIL_URL, requestConfig());
-            settProfil(profil);
+            const profil = await fetchToJson(PROFIL_URL, requestConfig());
+            if (profil) {
+                settProfil(profil as Profil);
+            }
         } catch (err) {
             console.error(err);
         }
     };
 
-    const lagreProfil = async (profil: string | null) => {
+    const lagreProfil = async (profil: Profil | null) => {
         try {
             await fetchToJson(PROFIL_URL, {
                 ...requestConfig(),
