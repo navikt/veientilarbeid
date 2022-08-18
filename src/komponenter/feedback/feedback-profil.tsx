@@ -82,7 +82,7 @@ function Feedback({ id, className, sporsmal }: Props) {
 
         const oppdatertProfil = {
             ...brukerProfil,
-            id: {
+            [id]: {
                 updated: oppdatertFeedbackDato,
                 valgt: feedback,
             },

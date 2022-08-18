@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { OppfolgingContext, Servicegruppe } from '../../contexts/oppfolging';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
-import Feedback from '../feedback/feedback-legacy';
+import Feedback from '../feedback/feedback';
 
 function Avsnitt1() {
     return (
