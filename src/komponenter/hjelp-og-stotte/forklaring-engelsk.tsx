@@ -1,8 +1,10 @@
-import { BodyShort, Heading, Link } from '@navikt/ds-react';
-import Feedback from '../feedback/feedback-legacy';
 import { useContext } from 'react';
-import { OppfolgingContext, Servicegruppe } from '../../contexts/oppfolging';
+import { BodyShort, Heading, Link } from '@navikt/ds-react';
+
 import { useAmplitudeData } from '../../contexts/amplitude-context';
+
+import Feedback from '../feedback/feedback';
+import { OppfolgingContext, Servicegruppe } from '../../contexts/oppfolging';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 
 function Avsnitt1Engelsk() {
