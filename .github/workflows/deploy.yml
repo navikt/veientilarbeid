@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - feedback-med-profil
 
 env:
   IMAGE_BASE: ghcr.io/${{github.repository}}/veientilarbeid
