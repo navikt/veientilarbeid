@@ -1,7 +1,7 @@
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
 import { BodyLong, Heading } from '@navikt/ds-react';
-import Feedback from '../feedback/feedback';
+import Feedback from '../feedback/feedback-legacy';
 
 const TEKSTER = {
     nb: {

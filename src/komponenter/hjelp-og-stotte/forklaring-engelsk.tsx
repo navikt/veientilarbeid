@@ -1,5 +1,5 @@
 import { BodyShort, Heading, Link } from '@navikt/ds-react';
-import Feedback from '../feedback/feedback';
+import Feedback from '../feedback/feedback-legacy';
 import { useContext } from 'react';
 import { OppfolgingContext, Servicegruppe } from '../../contexts/oppfolging';
 import { useAmplitudeData } from '../../contexts/amplitude-context';

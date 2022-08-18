@@ -6,7 +6,7 @@ import { dialogLenke } from '../../innhold/lenker';
 import { Besvarelse, SisteStilling, Svar } from '../../contexts/brukerregistrering';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
-import Feedback from '../feedback/feedback';
+import Feedback from '../feedback/feedback-legacy';
 
 /**
  * Dette er en fiks fordi det en periode ble postet data fra registreringen med en litt annen signatur

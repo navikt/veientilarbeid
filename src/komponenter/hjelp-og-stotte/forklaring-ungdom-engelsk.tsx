@@ -3,7 +3,7 @@ import { BodyShort, Heading, Link } from '@navikt/ds-react';
 
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 
-import Feedback from '../feedback/feedback';
+import Feedback from '../feedback/feedback-legacy';
 import { OppfolgingContext, Servicegruppe } from '../../contexts/oppfolging';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 
