@@ -33,7 +33,7 @@ jobs:
           docker push ${IMAGE}
 
   deploy-dev:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/feedback-med-profil'
     name: Deploy til dev
     needs: test-build-and-push
     runs-on: ubuntu-latest
