@@ -117,7 +117,6 @@ function Feedback({ id, className, sporsmal }: Props) {
 
     return (
         <>
-            <h1>Feedback med profil</h1>
             <div className={`${className ? className : ''} feedback-container`}>
                 <Detail size="small" className="feedback-tittel">
                     {sporsmal ? sporsmal : tekst('varDetteNyttig')}
