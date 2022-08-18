@@ -65,7 +65,7 @@ function Feedback({ id, className, sporsmal }: Props) {
             setValgt(valgt || '');
             setOppdatert(updated || new Date().toISOString());
         }
-    }, [profil]);
+    }, [profil, id]);
 
     if (!featuretoggledata['veientilarbeid.feedback']) return null;
     if (erOppdatertForOver12TimerSiden(oppdatert)) return null;
@@ -117,6 +117,7 @@ function Feedback({ id, className, sporsmal }: Props) {
 
     return (
         <>
+            <h1>Feedback med profil</h1>
             <div className={`${className ? className : ''} feedback-container`}>
                 <Detail size="small" className="feedback-tittel">
                     {sporsmal ? sporsmal : tekst('varDetteNyttig')}
