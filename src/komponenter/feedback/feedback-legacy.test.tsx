@@ -2,7 +2,7 @@ import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import Feedback from './feedback';
+import Feedback from './feedback-legacy';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 
 describe('tester feedback komponenten', () => {

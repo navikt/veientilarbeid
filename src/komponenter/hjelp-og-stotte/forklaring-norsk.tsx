@@ -1,7 +1,9 @@
-import { BodyShort, Heading, Link } from '@navikt/ds-react';
 import { useContext } from 'react';
-import { OppfolgingContext, Servicegruppe } from '../../contexts/oppfolging';
+import { BodyShort, Heading, Link } from '@navikt/ds-react';
+
 import { useAmplitudeData } from '../../contexts/amplitude-context';
+
+import { OppfolgingContext, Servicegruppe } from '../../contexts/oppfolging';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import Feedback from '../feedback/feedback';
 

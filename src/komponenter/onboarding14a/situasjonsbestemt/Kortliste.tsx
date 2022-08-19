@@ -1,5 +1,5 @@
 import { Heading, Detail, BodyShort } from '@navikt/ds-react';
-import Feedback from '../../feedback/feedback';
+import Feedback from '../../feedback/feedback-legacy';
 
 function Kort1() {
     return (

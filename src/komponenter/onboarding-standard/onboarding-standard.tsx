@@ -13,7 +13,7 @@ import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { erStandardTilknyttetArbeid } from '../../lib/er-standard-tilknyttet-arbeid';
 import { useGjelderFraDatoModal } from '../../contexts/gjelder-fra-dato-modal';
 import { hentFraBrowserStorage } from '../../utils/browserStorage-utils';
-import Feedback from '../feedback/feedback';
+import Feedback from '../feedback/feedback-legacy';
 import TallSirkel from '../tall/tall';
 import hentTekstnokkelForOnboardingTrinn1 from '../../lib/hent-tekstnokkel-for-onboarding-trinn1';
 import prettyPrintDato from '../../utils/pretty-print-dato';
