@@ -27,6 +27,8 @@ import EgenvurderingUke12, { INTRO_KEY_12UKER } from './egenvurdering-uke12';
 import { kanVise12UkerEgenvurdering } from '../../lib/kan-vise-12-uker-egenvurdering';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { erKSSBruker } from '../../lib/er-kss-bruker';
+import { useProfil } from '../../contexts/profil';
+import { hentProfilnokkelFraLocalStorage } from '../../utils/profil-id-mapper';
 
 const TEKSTER = {
     nb: {
@@ -51,13 +53,13 @@ function HjelpOgStotte() {
     const egenvurderingData = useEgenvurderingData();
     const oppfolgingData = useOppfolgingData();
     const brukerInfoData = useBrukerinfoData();
-
     const { antallUleste } = useUlesteDialogerData();
-
-    const brukNyKomponent = featuretoggleData['veientilarbeid.ny-standardvisning'];
+    const { profil } = useProfil();
 
     const registrertDato = registreringData?.registrering?.opprettetDato;
 
+    const brukProfil = featuretoggleData['veientilarbeid.bruk-profil'];
+    const brukNyKomponent = featuretoggleData['veientilarbeid.ny-standardvisning'];
     const featuretoggleEgenvurderingAktivert =
         featuretoggleData && featuretoggleData['veientilarbeid.vis-egenvurdering-med-14a'];
 
@@ -81,9 +83,20 @@ function HjelpOgStotte() {
         registreringData,
     });
 
-    const sistSettEgenvurdering = Number(hentFraBrowserStorage(INTRO_KEY_12UKER)) ?? 0;
+    const sistSettEgenvurderingUke12Browserstorage = hentFraBrowserStorage(INTRO_KEY_12UKER);
 
-    const harAvslattEgenvurdering = hentFraBrowserStorage(AVSLAATT_EGENVURDERING);
+    const sistSettEgenvurderingUke12Profil = brukProfil
+        ? profil?.[hentProfilnokkelFraLocalStorage(INTRO_KEY_12UKER)]
+        : null;
+
+    const sistSettEgenvurderingUke12 =
+        sistSettEgenvurderingUke12Profil ?? sistSettEgenvurderingUke12Browserstorage ?? 0;
+
+    const harAvslattEgenvurderingProfil = brukProfil
+        ? profil?.[hentProfilnokkelFraLocalStorage(AVSLAATT_EGENVURDERING)]
+        : null;
+
+    const harAvslattEgenvurdering = harAvslattEgenvurderingProfil ?? hentFraBrowserStorage(AVSLAATT_EGENVURDERING);
 
     const skalViseEgenvurderingInnsatsgruppeIkkeFastsatt =
         featuretoggleEgenvurderingAktivert &&
@@ -105,7 +118,7 @@ function HjelpOgStotte() {
             registreringData,
             amplitudeData,
             featuretoggleData,
-            sistVistFraLocalstorage: sistSettEgenvurdering,
+            sistVistFraLocalstorage: Number(sistSettEgenvurderingUke12),
         });
 
     const skalViseEgenvurdering = skalViseEgenvurderingInnsatsgruppeIkkeFastsatt || skalViseEgenvurderingUke12;
