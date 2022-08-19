@@ -8,7 +8,7 @@ import { Profil } from '../profil';
 
 interface ProfilProviderType {
     profil: Profil | null;
-    lagreProfil: (profil: Profil | null) => Promise<void>;
+    lagreProfil: (profil: Profil) => Promise<void>;
 }
 
 const ProfilContext = createContext<ProfilProviderType>({
@@ -32,8 +32,11 @@ function ProfilProvider(props: { children: ReactNode }) {
         }
     };
 
-    const lagreProfil = async (profil: Profil | null) => {
+    const lagreProfil = async (profilOppdateringer: Profil) => {
         try {
+            const lagretProfil = ((await fetchToJson(PROFIL_URL, requestConfig())) as Profil) || {};
+            const profil = { ...lagretProfil, ...profilOppdateringer };
+
             await fetchToJson(PROFIL_URL, {
                 ...requestConfig(),
                 method: 'POST',

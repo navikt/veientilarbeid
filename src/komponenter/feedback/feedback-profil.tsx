@@ -77,11 +77,9 @@ function Feedback({ id, className, sporsmal }: Props) {
             ...amplitudeData,
         });
 
-        const brukerProfil = profil || {};
         const oppdatertFeedbackDato = new Date().toISOString();
 
         const oppdatertProfil = {
-            ...brukerProfil,
             [id]: {
                 updated: oppdatertFeedbackDato,
                 valgt: feedback,
