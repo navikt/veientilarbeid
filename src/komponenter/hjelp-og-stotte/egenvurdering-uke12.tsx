@@ -6,6 +6,9 @@ import { behovsvurderingLenke } from '../../innhold/lenker';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
 import { Next } from '@navikt/ds-icons';
+import { useFeatureToggleData } from '../../contexts/feature-toggles';
+import { useProfil } from '../../contexts/profil';
+import { hentProfilnokkelFraLocalStorage } from '../../utils/profil-id-mapper';
 
 export const INTRO_KEY_12UKER = '12uker-egenvurdering';
 
@@ -31,14 +34,29 @@ const TEKSTER = {
 function EgenvurderingUke12() {
     const amplitudeData = useAmplitudeData();
     const { ukerRegistrert } = amplitudeData;
+    const featureToggles = useFeatureToggleData();
+    const brukProfil = featureToggles['veientilarbeid.bruk-profil'];
+    const { lagreProfil } = useProfil();
+
+    const lagreEgenvurderingDato = () => {
+        const datoNaa = Date.now().toString();
+        const egenvurderingProfilId = hentProfilnokkelFraLocalStorage(INTRO_KEY_12UKER);
+
+        settIBrowserStorage(INTRO_KEY_12UKER, datoNaa);
+        if (brukProfil) {
+            lagreProfil({
+                [egenvurderingProfilId]: datoNaa,
+            });
+        }
+    };
 
     function avslaarEgenvurdering() {
-        settIBrowserStorage(INTRO_KEY_12UKER, Date.now().toString());
+        lagreEgenvurderingDato();
         loggAktivitet({ aktivitet: 'Avslår 12 ukers egenvurdering fra lenke', ...amplitudeData });
     }
 
     function sendTilEgenvurdering() {
-        settIBrowserStorage(INTRO_KEY_12UKER, Date.now().toString());
+        lagreEgenvurderingDato();
         loggAktivitet({ aktivitet: 'Går til 12 ukers egenvurdering', ...amplitudeData });
         window.location.assign(`${behovsvurderingLenke}/hvilken-veiledning-trengs`);
     }

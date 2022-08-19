@@ -8,6 +8,9 @@ import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
+import { useFeatureToggleData } from '../../contexts/feature-toggles';
+import { hentProfilnokkelFraLocalStorage } from '../../utils/profil-id-mapper';
+import { useProfil } from '../../contexts/profil';
 
 export const AVSLAATT_EGENVURDERING = 'egenvurdering-avslaatt';
 
@@ -30,15 +33,30 @@ const TEKSTER = {
 
 const EgenvurderingIVURD = () => {
     const amplitudeData = useAmplitudeData();
+    const featureToggles = useFeatureToggleData();
+    const brukProfil = featureToggles['veientilarbeid.bruk-profil'];
+    const { lagreProfil } = useProfil();
+
+    const lagreEgenvurderingDato = () => {
+        const datoNaa = Date.now().toString();
+        const egenvurderingProfilId = hentProfilnokkelFraLocalStorage(AVSLAATT_EGENVURDERING);
+
+        settIBrowserStorage(AVSLAATT_EGENVURDERING, datoNaa);
+        if (brukProfil) {
+            lagreProfil({
+                [egenvurderingProfilId]: datoNaa,
+            });
+        }
+    };
 
     const handleButtonClick = () => {
-        settIBrowserStorage(AVSLAATT_EGENVURDERING, Date.now().toString());
+        lagreEgenvurderingDato();
         loggAktivitet({ aktivitet: 'Går til egenvurdering fra sluttkort', ...amplitudeData });
         window.location.assign(behovsvurderingLenke);
     };
 
     function avslaarEgenvurdering() {
-        settIBrowserStorage(AVSLAATT_EGENVURDERING, Date.now().toString());
+        lagreEgenvurderingDato();
         loggAktivitet({ aktivitet: 'Avslår egenvurdering fra sluttkort', ...amplitudeData });
     }
 
