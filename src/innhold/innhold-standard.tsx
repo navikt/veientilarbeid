@@ -4,7 +4,6 @@ import ReaktiveringKort from '../komponenter/reaktivering/reaktivering-kort';
 import Egenvurdering from '../komponenter/egenvurdering/egenvurdering';
 import KrrMelding from '../komponenter/krr-melding/krr-melding';
 import Registrert from '../komponenter/registrert/registrert';
-import AktivitetDialogMeldekort from './aktivitet-dialog-meldekort';
 import InnholdMetrics from './innhold-metrics';
 import InViewport from '../komponenter/in-viewport/in-viewport';
 import StatusTittel from '../komponenter/registrert/status-tittel';
@@ -36,7 +35,6 @@ const InnholdStandard = () => {
                 <OnboardingStandard />
                 <Registrert />
                 <Egenvurdering />
-                <AktivitetDialogMeldekort />
             </Rad>
             <InViewport loggTekst="Bunnen av veien til arbeid i viewport" />
         </>
