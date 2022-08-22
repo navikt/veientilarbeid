@@ -1,5 +1,4 @@
 import './innhold.css';
-import Rad from './rad';
 import ReaktiveringKort from '../komponenter/reaktivering/reaktivering-kort';
 import Egenvurdering from '../komponenter/egenvurdering/egenvurdering';
 import KrrMelding from '../komponenter/krr-melding/krr-melding';
@@ -21,7 +20,7 @@ const InnholdStandard = () => {
         <>
             <InnholdMetrics />
             <InViewport loggTekst="Veien til arbeid i viewport" />
-            <Rad>
+            <div className="limit">
                 <ReaktiveringKort />
                 <KrrMelding />
                 <ReaktiveringKvittering />
@@ -35,7 +34,7 @@ const InnholdStandard = () => {
                 <OnboardingStandard />
                 <Registrert />
                 <Egenvurdering />
-            </Rad>
+            </div>
             <InViewport loggTekst="Bunnen av veien til arbeid i viewport" />
         </>
     );
