@@ -1,7 +1,6 @@
 import { useFeatureToggleData } from '../contexts/feature-toggles';
 import InnholdView from './innhold-view';
 import InnholdVelger from './innhold-velger';
-import Rad from './rad';
 import GenerelleFliser from '../komponenter/dittnav/generelle-fliser';
 
 function InnholdWrapper() {
@@ -12,9 +11,7 @@ function InnholdWrapper() {
         return (
             <>
                 <InnholdVelger />
-                <Rad>
-                    <GenerelleFliser />
-                </Rad>
+                <GenerelleFliser />
             </>
         );
     }
@@ -22,9 +19,7 @@ function InnholdWrapper() {
     return (
         <>
             <InnholdView />
-            <Rad>
-                <GenerelleFliser />
-            </Rad>
+            <GenerelleFliser />
         </>
     );
 }
