@@ -47,6 +47,7 @@ function MeldekortHovedInnhold() {
     if (meldekortData === null) {
         return (
             <>
+                <ErRendret loggTekst="Rendrer feilmelding for meldekort" />
                 <Alert variant={'warning'} className={'mb-1 mt-1'} fullWidth={false}>
                     <BodyLong>{tekst('feilmelding')}</BodyLong>
                 </Alert>
