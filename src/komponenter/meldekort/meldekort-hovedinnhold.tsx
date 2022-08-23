@@ -1,4 +1,4 @@
-import { Heading } from '@navikt/ds-react';
+import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 
 import { omMeldekortLenke, meldekortLenke } from '../../innhold/lenker';
 import { hentIDag } from '../../utils/chrono';
@@ -25,6 +25,7 @@ const TEKSTER = {
         sendesInn: 'Meldekort som kan sendes inn:',
         sendInn: 'Send inn meldekort',
         sendInnForUke: 'Send inn meldekort for uke',
+        feilmelding: 'Vi får ikke hentet informasjon om dine meldekort akkurat nå.',
     },
     en: {
         meldekortForUke: 'The employment status form for weeks',
@@ -34,15 +35,36 @@ const TEKSTER = {
         sendesInn: 'Employment status forms ready for submission:',
         sendInn: 'Submit employment status form',
         sendInnForUke: 'Submit employment status form for weeks',
+        feilmelding: 'Vi får ikke hentet informasjon om dine meldekort akkurat nå.',
     },
 };
 
 function MeldekortHovedInnhold() {
-    const dato = datoUtenTid(hentIDag().toISOString());
     const meldekortData = Meldekort.useMeldekortData();
-    const meldekortForLevering = hentMeldekortForLevering(dato, meldekortData);
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
+
+    if (meldekortData === null) {
+        return (
+            <>
+                <Alert variant={'warning'} className={'mb-1 mt-1'} fullWidth={false}>
+                    <BodyLong>{tekst('feilmelding')}</BodyLong>
+                </Alert>
+                <div>
+                    <MeldekortKnapp
+                        href={omMeldekortLenke}
+                        amplitudeTema="meldekort"
+                        amplitudeHandling="Går til innsending av meldekort"
+                        tittel={tekst('lesOm')}
+                        variant="secondary"
+                    />
+                </div>
+            </>
+        );
+    }
+
+    const dato = datoUtenTid(hentIDag().toISOString());
+    const meldekortForLevering = hentMeldekortForLevering(dato, meldekortData);
 
     if (meldekortForLevering.length === 0) {
         const meldekortIkkeKlarForLevering = hentFoerstkommendeMeldekortIkkeKlarForLevering(dato, meldekortData);
