@@ -60,7 +60,7 @@ function Feedback({ id, className, sporsmal }: Props) {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     useEffect(() => {
-        if (profil) {
+        if (profil && profil[id]) {
             const { valgt, updated } = profil[id];
             setValgt(valgt || '');
             setOppdatert(updated || new Date().toISOString());
