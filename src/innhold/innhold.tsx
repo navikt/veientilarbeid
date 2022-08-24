@@ -22,7 +22,7 @@ function InnholdVelger() {
     return erStandardInnsatsgruppe ? <InnholdStandard /> : <InnholdIkkeStandard />;
 }
 
-function InnholdWrapper() {
+function Innhold() {
     return (
         <>
             <InnholdVelger />
@@ -31,4 +31,4 @@ function InnholdWrapper() {
     );
 }
 
-export default InnholdWrapper;
+export default Innhold;

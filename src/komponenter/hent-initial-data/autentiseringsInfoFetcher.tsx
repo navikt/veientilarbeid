@@ -5,7 +5,7 @@ import { fetchData } from '../../ducks/api-utils';
 import DataProvider from './data-provider';
 import OppfolgingBrukerregistreringProvider from './oppfolging-brukerregistrering-provider';
 import * as Autentisering from '../../contexts/autentisering';
-import InnholdWrapper from '../../innhold/innhold-wrapper';
+import Innhold from '../../innhold/innhold';
 import { AUTH_API } from '../../ducks/api';
 
 const AutentiseringsInfoFetcher = () => {
@@ -21,7 +21,7 @@ const AutentiseringsInfoFetcher = () => {
             <Autentisering.AutentiseringContext.Provider value={state}>
                 <OppfolgingBrukerregistreringProvider>
                     <DataProvider>
-                        <InnholdWrapper />
+                        <Innhold />
                     </DataProvider>
                 </OppfolgingBrukerregistreringProvider>
             </Autentisering.AutentiseringContext.Provider>
