@@ -22,17 +22,20 @@ describe('Tester IkkeRegistrert-komponenten', () => {
     });
 
     test('VISES når den skal', async () => {
+        delete (global as any).window.location;
+        global.window.location = { search: '?goTo=registrering' } as unknown as Location;
         render(<IkkeRegistrert />);
         expect(screen.getByText(/du er ikke registrert som arbeidssøker/i)).toBeTruthy();
     });
 
     test('knapp fungerer som forventet', async () => {
-        render(<IkkeRegistrert />);
         const mockHandleClick = vi.fn();
         const mockLocationAssign = vi.fn();
 
         delete (global as any).window.location;
-        global.window.location = { assign: mockLocationAssign } as unknown as Location;
+        global.window.location = { assign: mockLocationAssign, search: '?goTo=registrering' } as unknown as Location;
+
+        render(<IkkeRegistrert />);
 
         const knapp = screen.getByText(/registrer deg som arbeidssøker/i);
         knapp.onclick = mockHandleClick;
