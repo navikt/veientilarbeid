@@ -17,17 +17,17 @@ describe('Tester IkkeRegistrert-komponenten', () => {
     });
 
     test('SKJULES når man ikke skal se registrering', async () => {
-        const { container } = render(<IkkeRegistrert skalTilRegistrering={false} />);
+        const { container } = render(<IkkeRegistrert />);
         expect(container).toBeEmptyDOMElement();
     });
 
     test('VISES når den skal', async () => {
-        render(<IkkeRegistrert skalTilRegistrering={true} />);
+        render(<IkkeRegistrert />);
         expect(screen.getByText(/du er ikke registrert som arbeidssøker/i)).toBeTruthy();
     });
 
     test('knapp fungerer som forventet', async () => {
-        render(<IkkeRegistrert skalTilRegistrering={true} />);
+        render(<IkkeRegistrert />);
         const mockHandleClick = vi.fn();
         const mockLocationAssign = vi.fn();
 

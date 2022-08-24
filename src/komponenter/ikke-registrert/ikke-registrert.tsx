@@ -7,10 +7,9 @@ import ErRendret from '../er-rendret/er-rendret';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
-
-interface Props {
-    skalTilRegistrering: boolean;
-}
+import * as React from 'react';
+import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
+import Rad from '../../innhold/rad';
 
 const TEKSTER = {
     nb: {
@@ -25,9 +24,12 @@ const TEKSTER = {
     },
 };
 
-const IkkeRegistrert = (props: Props) => {
+const IkkeRegistrert = () => {
+    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
+    const goto = new URLSearchParams(window.location.search).get('goTo');
+    const skalTilRegistrering = goto === 'registrering';
+
     const amplitudeData = useAmplitudeData();
-    const { skalTilRegistrering } = props;
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     const handleButtonClick = () => {
@@ -35,7 +37,8 @@ const IkkeRegistrert = (props: Props) => {
         window.location.assign(registreringsLenke);
     };
 
-    const kanViseKomponent = skalTilRegistrering;
+    const kanViseKomponent = skalTilRegistrering && !underOppfolging;
+
     const infoboks = document.getElementById('registrering-status-informasjon');
 
     if (!kanViseKomponent) return null;
@@ -45,17 +48,19 @@ const IkkeRegistrert = (props: Props) => {
     }
 
     return (
-        <Panel border className="ramme blokk-s" id="registrering-status-informasjon">
-            <ErRendret loggTekst="Rendrer IkkeRegistrert" />
-            <Heading size="medium" level="2" className="blokk-xs">
-                {tekst('header')}
-            </Heading>
-            <BodyShort className="blokk-s">{tekst('description')}</BodyShort>
-            <Button variant="primary" onClick={handleButtonClick} className="blokk-xs">
-                {tekst('button')}
-            </Button>
-            <InViewport loggTekst="Viser IkkeRegistrert i viewport" />
-        </Panel>
+        <Rad>
+            <Panel border className="ramme blokk-s" id="registrering-status-informasjon">
+                <ErRendret loggTekst="Rendrer IkkeRegistrert" />
+                <Heading size="medium" level="2" className="blokk-xs">
+                    {tekst('header')}
+                </Heading>
+                <BodyShort className="blokk-s">{tekst('description')}</BodyShort>
+                <Button variant="primary" onClick={handleButtonClick} className="blokk-xs">
+                    {tekst('button')}
+                </Button>
+                <InViewport loggTekst="Viser IkkeRegistrert i viewport" />
+            </Panel>
+        </Rad>
     );
 };
 
