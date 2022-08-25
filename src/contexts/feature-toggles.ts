@@ -13,7 +13,6 @@ export enum FeatureToggles {
     VIS_ONBOARDING_STANDARD = 'veientilarbeid.vis-onboarding-standard',
     LOGG_ARBEIDSSOKERPERIODER = 'veientilarbeid.logg-arbeidssokerperioder',
     VIS_GJELDER_FRA_DATO = 'veientilarbeid.vis-gjelder-fra-dato',
-    SPLITT_STANDARD = 'veientilarbeid.splitt-standard-visning',
     NY_STANDARDVISNING = 'veientilarbeid.ny-standardvisning',
     BRUK_PROFIL = 'veientilarbeid.bruk-profil',
 }
@@ -42,8 +41,6 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Logg arbeidssøkerperioder';
         case FeatureToggles.VIS_GJELDER_FRA_DATO:
             return 'Gjelder fra dato';
-        case FeatureToggles.SPLITT_STANDARD:
-            return 'Splitt standard og ikke-standard';
         case FeatureToggles.NY_STANDARDVISNING:
             return 'Bruk nye standardkomponenter';
         case FeatureToggles.BRUK_PROFIL:
@@ -63,7 +60,6 @@ export interface Data {
     'veientilarbeid.vis-onboarding-standard': boolean;
     'veientilarbeid.logg-arbeidssokerperioder': boolean;
     'veientilarbeid.vis-gjelder-fra-dato'?: boolean;
-    'veientilarbeid.splitt-standard-visning'?: boolean;
     'veientilarbeid.ny-standardvisning'?: boolean;
     'veientilarbeid.bruk-profil'?: boolean;
 }
@@ -85,7 +81,6 @@ export const initialState: State = {
         'veientilarbeid.vis-onboarding-standard': false,
         'veientilarbeid.logg-arbeidssokerperioder': false,
         'veientilarbeid.vis-gjelder-fra-dato': false,
-        'veientilarbeid.splitt-standard-visning': false,
         'veientilarbeid.ny-standardvisning': false,
         'veientilarbeid.bruk-profil': false,
     },
