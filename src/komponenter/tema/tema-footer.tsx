@@ -44,9 +44,14 @@ const TemaFooter = (props: TemaFooterProps) => {
         if (gjeldendeKortIndex === 0) {
             return (
                 <div>
-                    <Button variant="secondary" className={'mb-1'} onClick={nesteKort}>
+                    <Button
+                        variant="secondary"
+                        className={'mb-1'}
+                        onClick={nesteKort}
+                        icon={<Next />}
+                        iconPosition="right"
+                    >
                         <span>{startTekst || tekst('start')}</span>
-                        <Next />
                     </Button>
                 </div>
             );
@@ -60,14 +65,20 @@ const TemaFooter = (props: TemaFooterProps) => {
                             variant="tertiary"
                             disabled={gjeldendeKortIndex === 1}
                             onClick={forrigeKort}
+                            icon={<Back />}
                         >
-                            <Back /> {tekst('forrige')}
+                            {tekst('forrige')}
                         </Button>
                     </Cell>
                     <Cell xs={6} style={{ justifySelf: 'end' }}>
-                        <Button size="small" variant="tertiary" onClick={nesteKort}>
+                        <Button
+                            size="small"
+                            variant="tertiary"
+                            onClick={nesteKort}
+                            icon={<Next />}
+                            iconPosition="right"
+                        >
                             {gjeldendeKortIndex === antallSider - 2 ? tekst('ferdig') : tekst('neste')}
-                            <Next />
                         </Button>
                     </Cell>
                 </Grid>

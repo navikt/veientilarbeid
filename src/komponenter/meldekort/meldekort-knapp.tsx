@@ -27,8 +27,14 @@ const MeldekortKnapp: React.FC<TemaLenkepanelProps> = (props) => {
     };
 
     return (
-        <Button variant={props.variant} onClick={handleClickInnsending} className="mb-1 mt-1">
-            {props.tittel} <Next />
+        <Button
+            variant={props.variant}
+            onClick={handleClickInnsending}
+            className="mb-1 mt-1"
+            icon={<Next />}
+            iconPosition="right"
+        >
+            {props.tittel}
         </Button>
     );
 };

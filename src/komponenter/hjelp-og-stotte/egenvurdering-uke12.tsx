@@ -69,8 +69,14 @@ function EgenvurderingUke12() {
                 {`${tekst('heading')} ${ukerRegistrert} ${tekst('uker')}`}
             </Heading>
             <BodyShort className="blokk-xs">{tekst('beskrivelse')}</BodyShort>
-            <Button variant="primary" onClick={sendTilEgenvurdering} className="blokk-s">
-                {tekst('hjelp')} <Next />
+            <Button
+                variant="primary"
+                onClick={sendTilEgenvurdering}
+                className="blokk-s"
+                icon={<Next />}
+                iconPosition="right"
+            >
+                {tekst('hjelp')}
             </Button>
             <BodyShort className="mb-1">
                 <Link href="" onClick={avslaarEgenvurdering}>

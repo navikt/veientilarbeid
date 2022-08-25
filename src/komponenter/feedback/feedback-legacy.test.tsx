@@ -4,8 +4,10 @@ import userEvent from '@testing-library/user-event';
 
 import Feedback from './feedback-legacy';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
+import { mockResizeObserver } from '../../mocks/resize-observer-mock';
 
 describe('tester feedback komponenten', () => {
+    mockResizeObserver();
     const standardProps: ProviderProps = {
         featureToggle: { 'veientilarbeid.feedback': true },
     };

@@ -56,9 +56,14 @@ const DialogKnapp: React.FC<DialogKnappProps> = (props) => {
             {props.antallUlesteDialoger !== 0 && (
                 <BodyShort className="mt-1">{dialogTekst(props.antallUlesteDialoger)}</BodyShort>
             )}
-            <Button onClick={handleClickInnsending} className="mt-1 mb-1" variant={variant}>
+            <Button
+                onClick={handleClickInnsending}
+                className="mt-1 mb-1"
+                variant={variant}
+                icon={<Next />}
+                iconPosition="right"
+            >
                 {tekst('title')}
-                <Next />
             </Button>
         </div>
     );

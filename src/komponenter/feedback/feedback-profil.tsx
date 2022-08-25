@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { BodyShort, Detail, Popover } from '@navikt/ds-react';
 
@@ -54,6 +54,7 @@ function Feedback({ id, className, sporsmal }: Props) {
     const [valgt, setValgt] = useState('');
     const [oppdatert, setOppdatert] = useState('');
     const [visPopover, setVisPopover] = useState<HTMLElement | undefined>(undefined);
+    const feedbackNeiKnappRef = useRef(null);
     const amplitudeData = useAmplitudeData();
     const featuretoggledata = useFeatureToggleData();
 
@@ -126,42 +127,49 @@ function Feedback({ id, className, sporsmal }: Props) {
                     <span className="feedback-space" aria-hidden="true">
                         |
                     </span>
-                    <button onClick={() => handleFeedback('nei')} className={neiKnapp} id="nei-knapp">
+                    <button
+                        onClick={() => handleFeedback('nei')}
+                        className={neiKnapp}
+                        id="nei-knapp"
+                        ref={feedbackNeiKnappRef}
+                    >
                         <Detail size="small">{tekst('nei')}</Detail>
                     </button>
                     <Popover
                         id="popover-nei"
-                        anchorEl={visPopover || null}
+                        anchorEl={feedbackNeiKnappRef.current}
                         onClose={() => setVisPopover(undefined)}
                         open={visPopover !== undefined}
                         tabIndex={-1}
                         arrow={false}
                     >
-                        <BodyShort className="feedback-utdyping">{tekst('hvorforNei')}</BodyShort>
-                        <ul className="feedback-grunner">
-                            <li>
-                                <button onClick={() => handleFeedback('nei - visste det fra før')}>
-                                    {tekst('gammeltNytt')}
-                                </button>
-                            </li>
-                            <li>
-                                <button onClick={() => handleFeedback('nei - forstår ikke innholdet')}>
-                                    {' '}
-                                    {tekst('forstodIkke')}
-                                </button>
-                            </li>
-                            <li>
-                                <button onClick={() => handleFeedback('nei - føles ikke viktig')}>
-                                    {' '}
-                                    {tekst('uviktig')}
-                                </button>
-                            </li>
-                            <li>
-                                <button onClick={() => handleFeedback('nei - andre grunner')}>
-                                    {tekst('andreGrunner')}
-                                </button>
-                            </li>
-                        </ul>
+                        <Popover.Content>
+                            <BodyShort className="feedback-utdyping">{tekst('hvorforNei')}</BodyShort>
+                            <ul className="feedback-grunner">
+                                <li>
+                                    <button onClick={() => handleFeedback('nei - visste det fra før')}>
+                                        {tekst('gammeltNytt')}
+                                    </button>
+                                </li>
+                                <li>
+                                    <button onClick={() => handleFeedback('nei - forstår ikke innholdet')}>
+                                        {' '}
+                                        {tekst('forstodIkke')}
+                                    </button>
+                                </li>
+                                <li>
+                                    <button onClick={() => handleFeedback('nei - føles ikke viktig')}>
+                                        {' '}
+                                        {tekst('uviktig')}
+                                    </button>
+                                </li>
+                                <li>
+                                    <button onClick={() => handleFeedback('nei - andre grunner')}>
+                                        {tekst('andreGrunner')}
+                                    </button>
+                                </li>
+                            </ul>
+                        </Popover.Content>
                     </Popover>
                     <span className="feedback-space" aria-hidden="true">
                         |

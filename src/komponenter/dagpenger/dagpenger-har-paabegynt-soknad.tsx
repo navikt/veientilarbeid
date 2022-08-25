@@ -63,9 +63,8 @@ const DagpengerHarPaabegyntSoknad = () => {
             <BodyShort className={'blokk-xs'}>{tekst('ingress')}</BodyShort>
             <BodyShort>{tekst('ikkeSendt')}</BodyShort>
 
-            <Button onClick={handleClickFortsett} className="mt-1 mb-1">
+            <Button onClick={handleClickFortsett} className="mt-1 mb-1" icon={<Next />} iconPosition="right">
                 {tekst('fortsett')} {`${tekst('pabegynt')} ${prettyPrintDato(sistePabegynteSoknad.sistEndret, sprak)}`}{' '}
-                <Next />
             </Button>
 
             <SkrivTilOssChatOgMineDagpenger amplitudeTemaNavn='"dagpenger-tema - påbegynt søknad"' />
