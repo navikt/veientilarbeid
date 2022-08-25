@@ -4,11 +4,14 @@ export type Profil = {
     aiaFeedbackHjelpOgStotteForklaring?: Feedback;
     aiaFeedbackHjelpOgStotteForklaringUngdom?: Feedback;
     aiaFeedbackSvarFraRegistreringen?: Feedback;
-    aiaAvslaattEgenvurdering?: Date;
-    aiaAvslaattEgenvurderingUke12?: Date;
+    aiaAvslaattEgenvurdering?: string;
+    aiaAvslaattEgenvurderingUke12?: string;
     aiaValgtPengestotteVisning?: PengestotteVisning;
+    aiaReaktiveringVisning?: JaEllerNei;
 };
 
 type PengestotteVisning = 'dagpenger' | 'ytelser';
 
-type Feedback = { updated: Date; valgt: string };
+export type JaEllerNei = { oppdatert: string; valg: 'ja' | 'nei' };
+
+type Feedback = { updated: string; valgt: string };
