@@ -60,8 +60,6 @@ function HjelpOgStotte() {
 
     const brukProfil = featuretoggleData['veientilarbeid.bruk-profil'];
     const brukNyKomponent = featuretoggleData['veientilarbeid.ny-standardvisning'];
-    const featuretoggleEgenvurderingAktivert =
-        featuretoggleData && featuretoggleData['veientilarbeid.vis-egenvurdering-med-14a'];
 
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
@@ -99,7 +97,6 @@ function HjelpOgStotte() {
     const harAvslattEgenvurdering = harAvslattEgenvurderingProfil ?? hentFraBrowserStorage(AVSLAATT_EGENVURDERING);
 
     const skalViseEgenvurderingInnsatsgruppeIkkeFastsatt =
-        featuretoggleEgenvurderingAktivert &&
         !harAvslattEgenvurdering &&
         kanViseIVURDEgenvurdering({
             underOppfolgingData,

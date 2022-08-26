@@ -1,16 +1,18 @@
 import { Next } from '@navikt/ds-icons/cjs';
 import { Heading, BodyShort, Button, Link } from '@navikt/ds-react';
+
 import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { useSprakValg } from '../../contexts/sprak';
+import { useFeatureToggleData } from '../../contexts/feature-toggles';
+import { useProfil } from '../../contexts/profil';
+
 import { loggAktivitet } from '../../metrics/metrics';
 import { behovsvurderingLenke } from '../../innhold/lenker';
 import { settIBrowserStorage } from '../../utils/browserStorage-utils';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
-import { useSprakValg } from '../../contexts/sprak';
-import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { hentProfilnokkelFraLocalStorage } from '../../utils/profil-id-mapper';
-import { useProfil } from '../../contexts/profil';
 
 export const AVSLAATT_EGENVURDERING = 'egenvurdering-avslaatt';
 

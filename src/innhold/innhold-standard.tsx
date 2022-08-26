@@ -1,5 +1,4 @@
 import './innhold.css';
-import Egenvurdering from '../komponenter/egenvurdering/egenvurdering';
 import KrrMelding from '../komponenter/krr-melding/krr-melding';
 import Registrert from '../komponenter/registrert/registrert';
 import InnholdMetrics from './innhold-metrics';
@@ -33,7 +32,6 @@ const InnholdStandard = () => {
                 <GjelderFraDato />
                 <OnboardingStandard />
                 <Registrert />
-                <Egenvurdering />
             </div>
             <InViewport loggTekst="Bunnen av veien til arbeid i viewport" />
         </>
