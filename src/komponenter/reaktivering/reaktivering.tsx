@@ -10,30 +10,31 @@ import { loggAktivitet } from '../../metrics/metrics';
 import { dialogLenke, reaktiveringLenke } from '../../innhold/lenker';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 
-function getDagerMellom(datoStart: string, datoSlutt: Date): number {
-    const start = new Date(new Date(datoStart).toISOString().substr(0, 10));
-    const slutt = new Date(datoSlutt.toISOString().substr(0, 10));
-    const millis = slutt.getMilliseconds() - start.getMilliseconds();
-    const dager = millis > 0 ? Math.floor(millis / 86400000) : 1;
-    return dager;
+function valgAvVisningErUtdatert(valgtVisning: JaEllerNei): boolean {
+    // Hvis man velger at man ikke har behov for å være registrert lenger, skal dette bare være gyldig i 28 dager,
+    // sånn at det gamle valget ikke blir stående hvis man havner i den samme situasjonen på nytt senere.
+    const valgtVisningDato = new Date(new Date(valgtVisning.oppdatert).toISOString().substr(0, 10));
+    const datoNaa = new Date(new Date().toISOString().substr(0, 10));
+    const millis = datoNaa.getMilliseconds() - valgtVisningDato.getMilliseconds();
+    const dagerSidenValg = millis > 0 ? Math.floor(millis / 86400000) : 1;
+
+    return dagerSidenValg >= 28;
 }
 
-function getReaktiveringsState(variant: JaEllerNei): string {
-    const { oppdatert, valg } = variant;
-    const dagerMellom = getDagerMellom(oppdatert, new Date());
-    return dagerMellom >= 28 ? 'ja' : valg;
+function bestemReaktiveringVisning(valgtVisning: JaEllerNei): string {
+    return valgAvVisningErUtdatert(valgtVisning) ? 'ja' : valgtVisning.valg;
 }
 
 const Reaktivering = () => {
     const { profil, lagreProfil } = useProfil();
 
-    const reaktiveringVariant: JaEllerNei = profil?.['aiaReaktiveringVisning'] ?? {
+    const valgtReaktiveringVisning: JaEllerNei = profil?.['aiaReaktiveringVisning'] ?? {
         oppdatert: new Date().toISOString(),
         valg: 'ja',
     };
 
-    const initialReaktiveringState = getReaktiveringsState(reaktiveringVariant);
-    const [reaktiveringsState, setReaktiveringsstate] = React.useState(initialReaktiveringState);
+    const reaktiveringVisning = bestemReaktiveringVisning(valgtReaktiveringVisning);
+    const [visReaktiveringAdvarsel, setVisReaktiveringAdvarsel] = React.useState(reaktiveringVisning);
 
     const amplitudeData = useAmplitudeData();
     const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
@@ -58,7 +59,7 @@ const Reaktivering = () => {
         const reaktiveringsvalg = { oppdatert: new Date().toISOString(), valg: 'nei' } as JaEllerNei;
 
         lagreProfil({ aiaReaktiveringVisning: reaktiveringsvalg });
-        setReaktiveringsstate(reaktiveringsvalg.valg);
+        setVisReaktiveringAdvarsel(reaktiveringsvalg.valg);
     };
 
     if (!kanViseKomponent) {
@@ -68,11 +69,11 @@ const Reaktivering = () => {
     return (
         <section className="blokk-m">
             <ErRendret loggTekst="Rendrer tema: kan reaktiveres" />
-            <Alert variant={reaktiveringsState === 'ja' ? 'warning' : 'info'}>
+            <Alert variant={visReaktiveringAdvarsel === 'ja' ? 'warning' : 'info'}>
                 <Heading size="small" level="2" className="blokk-xs">
                     Du er ikke lenger registrert som arbeidssøker hos NAV
                 </Heading>
-                {reaktiveringsState === 'ja' ? (
+                {visReaktiveringAdvarsel === 'ja' ? (
                     <div>
                         <BodyShort className="blokk-xs">
                             Har du mottatt dagpenger vil utbetalingene nå være stoppet. Du må registrere deg på nytt og
