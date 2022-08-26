@@ -8,6 +8,7 @@ import IkkeStandard from '../komponenter/ikke-standard/ikke-standard';
 import Motestotte from '../komponenter/motestotte/motestotte';
 import Egenvurdering from '../komponenter/egenvurdering/egenvurdering';
 import ReaktiveringWrapper from '../komponenter/reaktivering/reaktivering-wrapper';
+import KvitteringEgenvurdering from '../komponenter/kvitteringer/kvittering-egenvurdering';
 
 const InnholdView = () => {
     return (
@@ -18,6 +19,7 @@ const InnholdView = () => {
                 <ReaktiveringWrapper />
                 <KrrMelding />
                 <ReaktiveringKvittering />
+                <KvitteringEgenvurdering />
                 <StatusTittel />
                 <IkkeStandard />
                 <Motestotte />
