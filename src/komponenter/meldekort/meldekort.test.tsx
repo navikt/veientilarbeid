@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 import Meldekort from './meldekort';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 
-describe('Tester komponenten Aktivitetsplan', () => {
+describe('Tester komponenten Meldekort', () => {
     test('Komponenten VISES om featuretoggle er aktiv', async () => {
         const props: ProviderProps = {
             featureToggle: {
