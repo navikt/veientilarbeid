@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { useProfil } from '../../contexts/profil';
 
 import DagpengerOgYtelserInnhold from './dagpenger-og-ytelser-innhold';
 import { hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
-import { useProfil } from '../../contexts/profil';
 import { hentProfilnokkelFraLocalStorage } from '../../utils/profil-id-mapper';
 
 function DagpengerOgYtelser() {
