@@ -1,13 +1,7 @@
-/**
- * Viser faresignal siste uken - viktigst
- *
- * dato for neste, dato for frist
- *
- * link til meldekort
- */
-
 import { useContext } from 'react';
 import { Heading, BodyLong } from '@navikt/ds-react';
+
+import { useSprakValg } from '../../contexts/sprak';
 
 import MeldekortAdvarsel from './meldekort-advarsel';
 import * as Meldekort from '../../contexts/meldekort';
@@ -16,7 +10,6 @@ import { OppfolgingContext } from '../../contexts/oppfolging';
 import { hentIDag } from '../../utils/chrono';
 import { datoMedUkedag, datoUtenTid, plussDager } from '../../utils/date-utils';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
-import { useSprakValg } from '../../contexts/sprak';
 
 const TEKSTER = {
     nb: {

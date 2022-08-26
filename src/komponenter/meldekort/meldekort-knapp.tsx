@@ -1,8 +1,10 @@
 import * as React from 'react';
-import { amplitudeLogger } from '../../metrics/amplitude-utils';
-import { useAmplitudeData } from '../../contexts/amplitude-context';
-import { Button } from '@navikt/ds-react';
 import { Next } from '@navikt/ds-icons';
+import { Button } from '@navikt/ds-react';
+
+import { useAmplitudeData } from '../../contexts/amplitude-context';
+
+import { amplitudeLogger } from '../../metrics/amplitude-utils';
 
 interface TemaLenkepanelProps {
     href: string;
