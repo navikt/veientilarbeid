@@ -1,12 +1,13 @@
 import { BodyLong, Heading, Link, Panel } from '@navikt/ds-react';
+import { Task } from '@navikt/ds-icons';
+
+import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { useSprakValg } from '../../contexts/sprak';
+import { useFeatureToggleData } from '../../contexts/feature-toggles';
 
 import { loggAktivitet } from '../../metrics/metrics';
 import { aktivitetsplanLenke } from '../../innhold/lenker';
-import { useAmplitudeData } from '../../contexts/amplitude-context';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
-import { useSprakValg } from '../../contexts/sprak';
-import { Task } from '@navikt/ds-icons';
-import { useFeatureToggleData } from '../../contexts/feature-toggles';
 
 const TEKSTER = {
     nb: {
