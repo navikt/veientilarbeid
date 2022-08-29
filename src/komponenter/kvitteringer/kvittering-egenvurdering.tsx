@@ -15,7 +15,7 @@ import { useSprakValg } from '../../contexts/sprak';
 
 export const HAR_MOTTATT_EGENVURDERING_KVITTERING = 'har_mottatt_egenvurdering_kvittering';
 
-interface EndStateProps {
+interface KvitteringProps {
     lukkerKvittering: (loggTekst: string) => void;
     kvittering?: string;
 }
@@ -35,7 +35,7 @@ const TEKSTER: Tekster<string> = {
     },
 };
 
-function Sluttkort(props: EndStateProps) {
+function Kvittering(props: KvitteringProps) {
     const svarerJa = props.kvittering && props.kvittering === 'behovsvurderingJa';
 
     function handleLukkeKvitteringKnapp(event: React.SyntheticEvent, fraKnapp: string) {
@@ -113,7 +113,7 @@ function KvitteringEgenvurdering() {
 
     return (
         <div>
-            <Sluttkort lukkerKvittering={lukkerKvittering} kvittering={kvittering} />
+            <Kvittering lukkerKvittering={lukkerKvittering} kvittering={kvittering} />
             <ErRendret loggTekst="Rendrer kvittering behovsundersøkelse" />
             <InViewport loggTekst="Viser kvittering behovsundersøkelse i viewport" />
         </div>

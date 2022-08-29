@@ -2,7 +2,7 @@ import './innhold.css';
 import KrrMelding from '../komponenter/krr-melding/krr-melding';
 import InnholdMetrics from './innhold-metrics';
 import InViewport from '../komponenter/in-viewport/in-viewport';
-import StatusTittel from '../komponenter/registrert/status-tittel';
+import RegistrertTittel from '../komponenter/registrert-tittel/registrert-tittel';
 import ReaktiveringKvittering from '../komponenter/reaktivering/reaktivering-kvittering';
 import GjelderFraDato from '../komponenter/gjelder-fra-dato/GjelderFraDato';
 import DagpengerOgYtelser from '../komponenter/dagpenger/dagpenger-og-ytelser';
@@ -22,7 +22,7 @@ const InnholdStandard = () => {
                 <KrrMelding />
                 <ReaktiveringKvittering />
                 <KvitteringEgenvurdering />
-                <StatusTittel />
+                <RegistrertTittel />
                 <DagpengerOgYtelser />
                 <Meldekort />
                 <HjelpOgStotte />
