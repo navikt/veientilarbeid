@@ -2,7 +2,7 @@ import './innhold.css';
 import KrrMelding from '../komponenter/krr-melding/krr-melding';
 import InnholdMetrics from './innhold-metrics';
 import InViewport from '../komponenter/in-viewport/in-viewport';
-import StatusTittel from '../komponenter/registrert/status-tittel';
+import RegistrertTittel from '../komponenter/registrert-tittel/registrert-tittel';
 import ReaktiveringKvittering from '../komponenter/reaktivering/reaktivering-kvittering';
 import IkkeStandard from '../komponenter/ikke-standard/ikke-standard';
 import Motestotte from '../komponenter/motestotte/motestotte';
@@ -20,7 +20,7 @@ const InnholdView = () => {
                 <KrrMelding />
                 <ReaktiveringKvittering />
                 <KvitteringEgenvurdering />
-                <StatusTittel />
+                <RegistrertTittel />
                 <IkkeStandard />
                 <Motestotte />
                 <Egenvurdering />

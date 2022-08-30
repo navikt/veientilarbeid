@@ -18,7 +18,7 @@ const TEKSTER = {
     },
 };
 
-const StatusTittel = () => {
+const RegistrertTittel = () => {
     const kanViseKomponent = useErInnloggetArbeidssoker();
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
     const containerRef = createRef<HTMLDivElement>();
@@ -64,4 +64,4 @@ const StatusTittel = () => {
     );
 };
 
-export default StatusTittel;
+export default RegistrertTittel;
