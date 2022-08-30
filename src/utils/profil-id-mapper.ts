@@ -1,5 +1,4 @@
 const ids = {
-    har_mottatt_egenvurdering_kvittering: 'aiaHarMottattEgenvurderingKvittering',
     'meldekort-forklaring': 'aiaFeedbackMeldekortForklaring',
     'hjelp-og-stotte-forklaring': 'aiaFeedbackHjelpOgStotteForklaring',
     'hjelp-og-stotte-forklaring-ungdom': 'aiaFeedbackHjelpOgStotteForklaringUngdom',

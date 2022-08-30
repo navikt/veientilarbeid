@@ -40,7 +40,7 @@ const EgenvurderingIVURD = () => {
     const { lagreProfil } = useProfil();
 
     const lagreEgenvurderingDato = () => {
-        const datoNaa = Date.now().toString();
+        const datoNaa = new Date().toISOString();
         const egenvurderingProfilId = hentProfilnokkelFraLocalStorage(AVSLAATT_EGENVURDERING);
 
         settIBrowserStorage(AVSLAATT_EGENVURDERING, datoNaa);

@@ -1,5 +1,4 @@
 export type Profil = {
-    aiaHarMottattEgenvurderingKvittering?: boolean;
     aiaFeedbackMeldekortForklaring?: Feedback;
     aiaFeedbackHjelpOgStotteForklaring?: Feedback;
     aiaFeedbackHjelpOgStotteForklaringUngdom?: Feedback;

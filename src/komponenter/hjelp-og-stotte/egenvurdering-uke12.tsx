@@ -39,7 +39,7 @@ function EgenvurderingUke12() {
     const { lagreProfil } = useProfil();
 
     const lagreEgenvurderingDato = () => {
-        const datoNaa = Date.now().toString();
+        const datoNaa = new Date().toISOString();
         const egenvurderingProfilId = hentProfilnokkelFraLocalStorage(INTRO_KEY_12UKER);
 
         settIBrowserStorage(INTRO_KEY_12UKER, datoNaa);
