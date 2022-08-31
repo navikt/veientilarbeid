@@ -19,6 +19,8 @@ import { STATUS } from '../ducks/api';
 import { setFastTidspunktForIDag } from '../utils/chrono';
 import { GlobaleInnstillingerProps, GlobaleInnstillingerProvider } from '../contexts/GlobaleInnstillinger';
 import KanViseVTA from '../komponenter/kan-vise-vta/kan-vise-vta';
+import { Profil } from '../profil';
+import { ProfilContext } from '../contexts/profil';
 
 type DeepPartial<T> = {
     [K in keyof T]?: T[K] extends object ? DeepPartial<T[K]> : T[K];
@@ -39,6 +41,7 @@ export type ProviderProps = {
     underOppfolging?: DeepPartial<UnderOppfolging.Data>;
     sakstema?: DeepPartial<Sakstema.Data>;
     iDag?: Date;
+    profil?: Profil;
     globaleProps?: DeepPartial<GlobaleInnstillingerProps>;
 };
 
@@ -117,16 +120,23 @@ export const contextProviders = function (props: ProviderProps): React.FunctionC
                                                                     }
                                                                 )}
                                                             >
-                                                                <Arbeidssokerperioder.ArbeidssokerperioderContext.Provider
-                                                                    value={merge(
-                                                                        Arbeidssokerperioder.initialState,
-                                                                        props.arbeidssokerperioder && {
-                                                                            data: props.arbeidssokerperioder,
-                                                                        }
-                                                                    )}
+                                                                <ProfilContext.Provider
+                                                                    value={{
+                                                                        profil: props.profil || null,
+                                                                        lagreProfil: () => Promise.resolve(),
+                                                                    }}
                                                                 >
-                                                                    <KanViseVTA>{children}</KanViseVTA>
-                                                                </Arbeidssokerperioder.ArbeidssokerperioderContext.Provider>
+                                                                    <Arbeidssokerperioder.ArbeidssokerperioderContext.Provider
+                                                                        value={merge(
+                                                                            Arbeidssokerperioder.initialState,
+                                                                            props.arbeidssokerperioder && {
+                                                                                data: props.arbeidssokerperioder,
+                                                                            }
+                                                                        )}
+                                                                    >
+                                                                        <KanViseVTA>{children}</KanViseVTA>
+                                                                    </Arbeidssokerperioder.ArbeidssokerperioderContext.Provider>
+                                                                </ProfilContext.Provider>
                                                             </FeatureToggle.FeaturetoggleContext.Provider>
                                                         </Sakstema.SakstemaContext.Provider>
                                                     </Amplitude.AmplitudeContext.Provider>

@@ -11,7 +11,7 @@ interface ProfilProviderType {
     lagreProfil: (profil: Profil) => Promise<void>;
 }
 
-const ProfilContext = createContext<ProfilProviderType>({
+export const ProfilContext = createContext<ProfilProviderType>({
     profil: null,
     lagreProfil: () => Promise.resolve(),
 });
