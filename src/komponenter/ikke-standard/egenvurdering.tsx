@@ -1,18 +1,17 @@
-import { loggAktivitet } from '../../metrics/metrics';
+import { BodyShort, Button, Heading, Panel } from '@navikt/ds-react';
+
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
-import { behovsvurderingLenke } from '../../innhold/lenker';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useAutentiseringData } from '../../contexts/autentisering';
 import { useOppfolgingData } from '../../contexts/oppfolging';
 import { useEgenvurderingData } from '../../contexts/egenvurdering';
 import { useUnderOppfolgingData } from '../../contexts/under-oppfolging';
-import { kanViseIVURDEgenvurdering } from '../../lib/kan-vise-IVURD-egenvurdering';
-import { useFeatureToggleData } from '../../contexts/feature-toggles';
-import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
-import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../../lib/er-situasjonsbestemt-innsatsgruppe';
-import { BodyShort, Button, Heading, Panel } from '@navikt/ds-react';
-import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
+
+import { loggAktivitet } from '../../metrics/metrics';
+import { behovsvurderingLenke } from '../../innhold/lenker';
+import { kanViseIVURDEgenvurdering } from '../../lib/kan-vise-IVURD-egenvurdering';
+import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -23,13 +22,6 @@ const TEKSTER: Tekster<string> = {
     },
 };
 
-export const antallTimerMellomAOgBRundetOpp = (a: Date, b: Date): number => {
-    if (!a || !b) {
-        return 0;
-    }
-    return Math.ceil((b.getTime() - a.getTime()) / 36e5);
-};
-
 const Egenvurdering = () => {
     const amplitudeData = useAmplitudeData();
     const registreringData = useBrukerregistreringData();
@@ -37,7 +29,6 @@ const Egenvurdering = () => {
     const oppfolgingData = useOppfolgingData();
     const autentiseringData = useAutentiseringData();
     const underOppfolgingData = useUnderOppfolgingData();
-    const featuretoggleData = useFeatureToggleData();
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     const skalViseEgenvurderingLenke = kanViseIVURDEgenvurdering({
@@ -48,28 +39,12 @@ const Egenvurdering = () => {
         oppfolgingData,
     });
 
-    const featuretoggleAktivert = featuretoggleData && featuretoggleData['veientilarbeid.vis-egenvurdering-med-14a'];
-
     const handleButtonClick = () => {
         loggAktivitet({ aktivitet: 'Går til egenvurdering', ...amplitudeData });
         window.location.assign(behovsvurderingLenke);
     };
 
-    const brukerregistreringData = registreringData?.registrering ?? null;
-    const brukerErStandard = erStandardInnsatsgruppe({
-        brukerregistreringData,
-        oppfolgingData,
-    });
-    const brukerErSituasjonsbestemt = sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe({
-        brukerregistreringData,
-        oppfolgingData,
-    });
-
-    if (
-        !skalViseEgenvurderingLenke ||
-        (featuretoggleAktivert && brukerErStandard) ||
-        (featuretoggleAktivert && brukerErSituasjonsbestemt)
-    ) {
+    if (!skalViseEgenvurderingLenke) {
         return null;
     }
 

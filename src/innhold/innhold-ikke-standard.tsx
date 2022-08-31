@@ -6,7 +6,7 @@ import RegistrertTittel from '../komponenter/registrert-tittel/registrert-tittel
 import ReaktiveringKvittering from '../komponenter/reaktivering/reaktivering-kvittering';
 import IkkeStandard from '../komponenter/ikke-standard/ikke-standard';
 import Motestotte from '../komponenter/motestotte/motestotte';
-import Egenvurdering from '../komponenter/egenvurdering/egenvurdering';
+import Egenvurdering from '../komponenter/ikke-standard/egenvurdering';
 import ReaktiveringWrapper from '../komponenter/reaktivering/reaktivering-wrapper';
 import KvitteringEgenvurdering from '../komponenter/kvitteringer/kvittering-egenvurdering';
 
