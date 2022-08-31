@@ -15,7 +15,7 @@ import { useSprakValg } from '../../contexts/sprak';
 import RegistrertTeller from './registrert-teller';
 import { dialogLenke } from '../../innhold/lenker';
 import DialogKnapp from './dialog-knapp';
-import EgenvurderingKort, { AVSLAATT_EGENVURDERING } from './egenvurderingIVURD';
+import EgenvurderingIVURD, { AVSLAATT_EGENVURDERING } from './egenvurderingIVURD';
 import { kanViseIVURDEgenvurdering } from '../../lib/kan-vise-IVURD-egenvurdering';
 import { hentFraBrowserStorage } from '../../utils/browserStorage-utils';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
@@ -122,7 +122,7 @@ function HjelpOgStotte() {
 
     const Egenvurdering = () => {
         if (skalViseEgenvurderingInnsatsgruppeIkkeFastsatt) {
-            return <EgenvurderingKort />;
+            return <EgenvurderingIVURD />;
         }
         if (skalViseEgenvurderingUke12) {
             return <EgenvurderingUke12 />;

@@ -7,7 +7,7 @@ import Feedback from '../feedback/feedback';
 import { OppfolgingContext, Servicegruppe } from '../../contexts/oppfolging';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 
-function Kort1() {
+function Avsnitt1() {
     return (
         <div>
             <BodyShort className={'blokk-xs'}>
@@ -21,7 +21,7 @@ function Kort1() {
     );
 }
 
-function Kort2() {
+function Avsnitt2() {
     return (
         <div>
             <Heading size="xsmall">
@@ -40,7 +40,7 @@ function Kort2() {
     );
 }
 
-function Kort3() {
+function Avsnitt3() {
     const amplitudeData = useAmplitudeData();
 
     function loggLenkeKlikk(handling: string, url: string) {
@@ -97,7 +97,7 @@ function Kort3() {
     );
 }
 
-function Kort4() {
+function Avsnitt4() {
     const { servicegruppe } = useContext(OppfolgingContext).data;
     const amplitudeData = useAmplitudeData();
 
@@ -138,10 +138,10 @@ function Kort4() {
 function Forklaring() {
     return (
         <>
-            <Kort1 />
-            <Kort2 />
-            <Kort3 />
-            <Kort4 />
+            <Avsnitt1 />
+            <Avsnitt2 />
+            <Avsnitt3 />
+            <Avsnitt4 />
             <Feedback id={'hjelp-og-stotte-forklaring-ungdom'} />
         </>
     );
