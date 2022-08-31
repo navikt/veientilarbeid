@@ -8,12 +8,9 @@ import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { loggAktivitet } from '../../metrics/metrics';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
-import { settIBrowserStorage } from '../../utils/browserStorage-utils';
 import { fjernQueryParam } from '../../utils/query-param-utils';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
-
-export const HAR_MOTTATT_EGENVURDERING_KVITTERING = 'har_mottatt_egenvurdering_kvittering';
 
 interface KvitteringProps {
     lukkerKvittering: (loggTekst: string) => void;
@@ -43,10 +40,6 @@ function Kvittering(props: KvitteringProps) {
         event.stopPropagation();
         props.lukkerKvittering(`Lukker kvittering fra behovsvurderingen: ${fraKnapp}`);
     }
-
-    useEffect(() => {
-        settIBrowserStorage(HAR_MOTTATT_EGENVURDERING_KVITTERING, 'true');
-    }, []);
 
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
