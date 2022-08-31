@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
+
 import Motestotte from './motestotte';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import { DinSituasjonSvar, ForeslattInnsatsgruppe } from '../../contexts/brukerregistrering';

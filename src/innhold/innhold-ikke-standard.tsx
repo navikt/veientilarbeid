@@ -5,7 +5,7 @@ import InViewport from '../komponenter/in-viewport/in-viewport';
 import RegistrertTittel from '../komponenter/registrert-tittel/registrert-tittel';
 import ReaktiveringKvittering from '../komponenter/reaktivering/reaktivering-kvittering';
 import IkkeStandard from '../komponenter/ikke-standard/ikke-standard';
-import Motestotte from '../komponenter/motestotte/motestotte';
+import Motestotte from '../komponenter/ikke-standard/motestotte';
 import Egenvurdering from '../komponenter/ikke-standard/egenvurdering';
 import ReaktiveringWrapper from '../komponenter/reaktivering/reaktivering-wrapper';
 import KvitteringEgenvurdering from '../komponenter/kvitteringer/kvittering-egenvurdering';

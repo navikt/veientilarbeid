@@ -1,4 +1,10 @@
 import * as React from 'react';
+import { BodyShort, Button, Heading, Panel } from '@navikt/ds-react';
+
+import { useBrukerinfoData } from '../../contexts/bruker-info';
+import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { useSprakValg } from '../../contexts/sprak';
+
 import {
     ForeslattInnsatsgruppe,
     selectDinSituasjonSvar,
@@ -10,12 +16,8 @@ import { motestotteLenke } from '../../innhold/lenker';
 import { loggAktivitet } from '../../metrics/metrics';
 import { OppfolgingContext, Servicegruppe } from '../../contexts/oppfolging';
 import { MotestotteContext } from '../../contexts/motestotte';
-import { useBrukerinfoData } from '../../contexts/bruker-info';
-import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
-import { BodyShort, Button, Heading, Panel } from '@navikt/ds-react';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
-import { useSprakValg } from '../../contexts/sprak';
 
 const LANSERINGSDATO_MOTESTOTTE = new Date('2020-03-12');
 
