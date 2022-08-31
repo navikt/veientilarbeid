@@ -13,6 +13,7 @@ import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { hentProfilnokkelFraLocalStorage } from '../../utils/profil-id-mapper';
+import * as React from 'react';
 
 export const AVSLAATT_EGENVURDERING = 'egenvurdering-avslaatt';
 
@@ -57,7 +58,8 @@ const EgenvurderingIVURD = () => {
         window.location.assign(behovsvurderingLenke);
     };
 
-    function avslaarEgenvurdering() {
+    function avslaarEgenvurdering(event: React.SyntheticEvent) {
+        event.preventDefault();
         lagreEgenvurderingDato();
         loggAktivitet({ aktivitet: 'Avslår egenvurdering fra sluttkort', ...amplitudeData });
     }

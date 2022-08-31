@@ -9,6 +9,7 @@ import { Next } from '@navikt/ds-icons';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useProfil } from '../../contexts/profil';
 import { hentProfilnokkelFraLocalStorage } from '../../utils/profil-id-mapper';
+import * as React from 'react';
 
 export const INTRO_KEY_12UKER = '12uker-egenvurdering';
 
@@ -50,7 +51,8 @@ function EgenvurderingUke12() {
         }
     };
 
-    function avslaarEgenvurdering() {
+    function avslaarEgenvurdering(event: React.SyntheticEvent) {
+        event.preventDefault();
         lagreEgenvurderingDato();
         loggAktivitet({ aktivitet: 'Avslår 12 ukers egenvurdering fra lenke', ...amplitudeData });
     }
