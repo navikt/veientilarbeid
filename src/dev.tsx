@@ -1,5 +1,4 @@
 import 'core-js';
-import 'react-app-polyfill/ie11';
 import 'intersection-observer';
 import * as ReactDOM from 'react-dom';
 import App from './main';
