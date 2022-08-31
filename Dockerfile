@@ -25,4 +25,6 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=node-builder /source/dist /usr/share/nginx/html/esm
 COPY --from=node-builder /demo /usr/share/nginx/html/esm/demo
 
+RUN cp /usr/share/nginx/html/esm/mockServiceWorker.js /usr/share/nginx/html/mockServiceWorker.js
+
 EXPOSE 8080
