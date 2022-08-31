@@ -17,6 +17,7 @@ ENV REACT_APP_BUILD_TIMESTAMP=$REACT_APP_BUILD_TIMESTAMP
 RUN npm run build:demo
 RUN cp -r /source/dist /demo
 
+ENV REACT_APP_MICRO="true"
 RUN npm run build
 
 FROM nginx:1.23-alpine

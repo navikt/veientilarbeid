@@ -9,13 +9,9 @@ import EnvironmentPlugin from 'vite-plugin-environment';
 
 const getEnvironmentOpts = () => ({
     NODE_ENV: process.env.NODE_ENV || 'development',
-    SENTRY_RELEASE: process.env.SENTRY_RELEASE || '',
-    SENTRY_AUTH_TOKEN: process.env.SENTRY_AUTH_TOKEN || '',
-    REACT_APP_SENTRY_RELEASE: process.env.REACT_APP_SENTRY_RELEASE || '',
     REACT_APP_VERSION_HASH: process.env.REACT_APP_VERSIOM_HASH || '',
     REACT_APP_BUILD_TIMESTAMP: process.env.REACT_APP_BUILD_TIMESTAMP || '',
     REACT_APP_MICRO: process.env.REACT_APP_MICRO || '',
-    REACT_APP_MOCK: process.env.REACT_APP_MOCK || '',
 });
 
 const getConfig = () => ({
