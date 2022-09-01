@@ -24,8 +24,8 @@ FROM nginx:1.23-alpine
 COPY nginx.conf /etc/nginx/nginx.conf
 
 COPY --from=node-builder /source/dist /usr/share/nginx/html/esm
-COPY --from=node-builder /demo /usr/share/nginx/html/esm/demo
+COPY --from=node-builder /demo /usr/share/nginx/html/demo
 
-RUN cp /usr/share/nginx/html/esm/mockServiceWorker.js /usr/share/nginx/html/mockServiceWorker.js
+RUN cp /usr/share/nginx/html/demo/mockServiceWorker.js /usr/share/nginx/html/mockServiceWorker.js
 
 EXPOSE 8080

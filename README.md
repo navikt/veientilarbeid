@@ -23,12 +23,12 @@ Testmiljøet bruker [Jest](https://jestjs.io/), [Testing Library](https://testin
 
 -   for å starte `npm t`
 
-## Som mikrofrontend på Ditt NAV lokalt
-
--   Hent en utgave av [DittNAV](https://github.com/navikt/dittnav)
--   Start veien til arbeid med `npm run start:micro`
--   Start dittnav med `npm start`
--   Gå til http://localhost:9002/person/dittnav
+[//]: # '## Som mikrofrontend på Ditt NAV lokalt'
+[//]: #
+[//]: # '-   Hent en utgave av [DittNAV](https://github.com/navikt/dittnav)'
+[//]: # '-   Start veien til arbeid med `npm run start:micro`'
+[//]: # '-   Start dittnav med `npm start`'
+[//]: # '-   Gå til http://localhost:9002/person/dittnav'
 
 ## Som mikrofrontend på Min side i dev
 
@@ -36,6 +36,11 @@ Testmiljøet bruker [Jest](https://jestjs.io/), [Testing Library](https://testin
 2. Gå til https://www.dev.nav.no/minside
 3. TestID
 4. Logg inn med en bruker som er under arbeidsrettet oppfølging i dev
+
+## Som demo i dev
+
+1. Start naisdevice
+2. Gå til https://veientilarbeid.dev.nav.no/demo/
 
 ### Tips
 
