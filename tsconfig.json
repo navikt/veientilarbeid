@@ -27,5 +27,5 @@
         "types": ["vitest/globals"]
     },
     "exclude": ["node_modules", "src/test/**/*", "build", "scripts", "acceptance-tests", "webpack", "jest"],
-    "include": ["src"]
+    "include": ["src", "types"]
 }
