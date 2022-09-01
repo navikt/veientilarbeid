@@ -8,14 +8,14 @@ Innholdet skal i størst mulig grad gjenspeile arbeidssøker situasjon.
 
 # Utvikling
 
--   Bruk Node.js v14
+-   Bruk Node.js v16
 -   Klon [repoet](https://github.com/navikt/veientilarbeid)
 -   Installer avhengigheter `npm ci`
 
 ## For å kjøre lokalt
 
 -   `npm start`
--   besøk [http://localhost:3002/demo/index.html](http://localhost:3002/demo/index.html) for en versjon hvor du kan endre parameter for innlogget arbeidssøker
+-   besøk [http://localhost:3002/demo/](http://localhost:3002/demo/) for en versjon hvor du kan endre parameter for innlogget arbeidssøker
 
 ### Testing
 
@@ -30,11 +30,11 @@ Testmiljøet bruker [Jest](https://jestjs.io/), [Testing Library](https://testin
 -   Start dittnav med `npm start`
 -   Gå til http://localhost:9002/person/dittnav
 
-## Som mikrofrontend på Ditt NAV i dev
+## Som mikrofrontend på Min side i dev
 
 1. Start naisdevice
-2. Gå til https://www.dev.nav.no/person/dittnav/
-3. Velg IDPorten (ver 2)
+2. Gå til https://www.dev.nav.no/minside
+3. TestID
 4. Logg inn med en bruker som er under arbeidsrettet oppfølging i dev
 
 ### Tips
