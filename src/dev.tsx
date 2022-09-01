@@ -1,5 +1,4 @@
 import 'core-js';
-import 'react-app-polyfill/ie11';
 import 'intersection-observer';
 import * as ReactDOM from 'react-dom';
 import App from './main';
@@ -8,11 +7,7 @@ import './index.css';
 
 import { mock_worker } from './mocks/browser';
 import { demo_worker } from './mocks/browser';
-
-function erDemo(): boolean {
-    const path: string = window.location.pathname;
-    return path.includes('/demo/');
-}
+import { erDemo } from './utils/app-state-utils';
 
 function startDev() {
     console.log('==========================');
