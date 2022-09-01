@@ -101,14 +101,3 @@ jobs:
           release_name: Release ${{ env.TAG }} to prod
           prerelease: false
 
-  deploy-demo:
-    if: github.ref == 'refs/heads/main'
-    name: Deploy demo
-    needs: test-build-and-push
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-        name: Checkout
-      - run: vc --token ${VERCEL_TOKEN} --confirm --prod
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
