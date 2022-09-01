@@ -10,7 +10,6 @@ export enum FeatureToggles {
     INTRO_DAGPENGER_TOGGLE = 'veientilarbeid.onboardingDagpenger.toggle',
     KAN_VISE_UTFRA_SITUASJON = 'veientilarbeid.kanViseUtfraSituasjon',
     VIS_EGENVURDERING_MED_14A = 'veientilarbeid.vis-egenvurdering-med-14a',
-    VIS_ONBOARDING_STANDARD = 'veientilarbeid.vis-onboarding-standard',
     LOGG_ARBEIDSSOKERPERIODER = 'veientilarbeid.logg-arbeidssokerperioder',
     VIS_GJELDER_FRA_DATO = 'veientilarbeid.vis-gjelder-fra-dato',
     NY_STANDARDVISNING = 'veientilarbeid.ny-standardvisning',
@@ -35,8 +34,6 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Onboarding dagpenger';
         case FeatureToggles.INTRO_DAGPENGER_TOGGLE:
             return 'Onboarding dagpenger toggle';
-        case FeatureToggles.VIS_ONBOARDING_STANDARD:
-            return 'Vis oppstartsinformasjon for standard';
         case FeatureToggles.LOGG_ARBEIDSSOKERPERIODER:
             return 'Logg arbeidssøkerperioder';
         case FeatureToggles.VIS_GJELDER_FRA_DATO:
@@ -57,7 +54,6 @@ export interface Data {
     'veientilarbeid.onboardingDagpenger.toggle': boolean;
     'veientilarbeid.kanViseUtfraSituasjon': boolean;
     'veientilarbeid.vis-egenvurdering-med-14a': boolean;
-    'veientilarbeid.vis-onboarding-standard': boolean;
     'veientilarbeid.logg-arbeidssokerperioder': boolean;
     'veientilarbeid.vis-gjelder-fra-dato'?: boolean;
     'veientilarbeid.ny-standardvisning'?: boolean;
@@ -78,7 +74,6 @@ export const initialState: State = {
         'veientilarbeid.onboardingDagpenger.toggle': false,
         'veientilarbeid.kanViseUtfraSituasjon': false,
         'veientilarbeid.vis-egenvurdering-med-14a': false,
-        'veientilarbeid.vis-onboarding-standard': false,
         'veientilarbeid.logg-arbeidssokerperioder': false,
         'veientilarbeid.vis-gjelder-fra-dato': false,
         'veientilarbeid.ny-standardvisning': false,
