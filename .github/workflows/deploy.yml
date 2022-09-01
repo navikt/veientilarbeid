@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - esm
 
 env:
   IMAGE_BASE: ghcr.io/${{github.repository}}/veientilarbeid
@@ -34,7 +33,7 @@ jobs:
           docker push ${IMAGE}
 
   deploy-dev:
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/esm'
+    if: github.ref == 'refs/heads/main'
     name: Deploy til dev
     needs: test-build-and-push
     runs-on: ubuntu-latest
