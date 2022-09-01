@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
+
 import KrrMelding from './krr-melding';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 
