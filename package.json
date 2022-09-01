@@ -16,7 +16,6 @@
         "refresh": "rm -rf node_modules && rm package-lock.json && npm i",
         "snyk-protect": "snyk-protect",
         "prepare": "npm run snyk-protect",
-        "sentry-release": "SENTRY_RELEASE=$(sentry-cli releases propose-version) node scripts/sentry-release",
         "postinstall": "husky install"
     },
     "dependencies": {
