@@ -50,8 +50,6 @@ function DagpengerOgYtelser() {
         settIBrowserStorage(YTELSER_TEMA_VIS_KEY, valgtVisning);
     };
 
-    if (!featureToggles['veientilarbeid.ny-standardvisning']) return null;
-
     return (
         <DagpengerOgYtelserInnhold handleByttVisningKlikk={handleByttVisningKlikk} valgtVisning={valgtYtelserVisning} />
     );

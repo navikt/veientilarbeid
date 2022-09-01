@@ -3,7 +3,6 @@ import * as React from 'react';
 import { Close, SuccessColored } from '@navikt/ds-icons';
 import { Button, Detail, Heading, BodyShort, Panel } from '@navikt/ds-react';
 
-import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { loggAktivitet } from '../../metrics/metrics';
 import ErRendret from '../er-rendret/er-rendret';
@@ -85,7 +84,6 @@ function Kvittering(props: KvitteringProps) {
 }
 
 function KvitteringEgenvurdering() {
-    const featureToggles = useFeatureToggleData();
     const amplitudeData = useAmplitudeData();
     const [kvittering, setKvittering] = useState('');
     const [visKomponent, setVisKomponent] = useState(true);
@@ -101,7 +99,6 @@ function KvitteringEgenvurdering() {
     }
 
     if (!visKomponent) return null;
-    if (!featureToggles['veientilarbeid.ny-standardvisning']) return null;
     if (!['behovsvurderingJa', 'behovsvurderingNei'].includes(kvittering)) return null;
 
     return (

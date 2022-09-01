@@ -3,7 +3,6 @@ import { Task } from '@navikt/ds-icons';
 
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useSprakValg } from '../../contexts/sprak';
-import { useFeatureToggleData } from '../../contexts/feature-toggles';
 
 import { loggAktivitet } from '../../metrics/metrics';
 import { aktivitetsplanLenke } from '../../innhold/lenker';
@@ -26,13 +25,10 @@ const TEKSTER = {
 const Aktivitetsplan = () => {
     const amplitudeData = useAmplitudeData();
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
-    const featuretoggleData = useFeatureToggleData();
 
     const handleClick = () => {
         loggAktivitet({ aktivitet: 'Går til aktivitetsplanen', ...amplitudeData });
     };
-
-    if (!featuretoggleData['veientilarbeid.ny-standardvisning']) return null;
 
     return (
         <Panel className="flex pb-2">

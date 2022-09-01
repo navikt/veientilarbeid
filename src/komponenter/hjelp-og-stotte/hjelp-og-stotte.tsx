@@ -59,7 +59,6 @@ function HjelpOgStotte() {
     const registrertDato = registreringData?.registrering?.opprettetDato;
 
     const brukProfil = featuretoggleData['veientilarbeid.bruk-profil'];
-    const brukNyKomponent = featuretoggleData['veientilarbeid.ny-standardvisning'];
 
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
@@ -70,8 +69,6 @@ function HjelpOgStotte() {
             setClickedLesMer(true);
         }
     };
-
-    if (!brukNyKomponent) return null;
 
     const skalViseKssInnhold = erKSSBruker({
         amplitudeData,

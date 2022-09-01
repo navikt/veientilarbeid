@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Detail, Panel, ReadMore } from '@navikt/ds-react';
 import { Notes } from '@navikt/ds-icons';
 
-import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useSprakValg } from '../../contexts/sprak';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 
@@ -23,7 +22,6 @@ const TEKSTER = {
 function Meldekort() {
     const [clickedLesMer, setClickedLesMer] = useState(false);
     const amplitudeData = useAmplitudeData();
-    const featureToggles = useFeatureToggleData();
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
@@ -33,8 +31,6 @@ function Meldekort() {
             setClickedLesMer(true);
         }
     };
-
-    if (!featureToggles['veientilarbeid.ny-standardvisning']) return null;
 
     return (
         <Panel className="flex px-1_5">

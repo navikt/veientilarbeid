@@ -12,7 +12,6 @@ export enum FeatureToggles {
     VIS_EGENVURDERING_MED_14A = 'veientilarbeid.vis-egenvurdering-med-14a',
     LOGG_ARBEIDSSOKERPERIODER = 'veientilarbeid.logg-arbeidssokerperioder',
     VIS_GJELDER_FRA_DATO = 'veientilarbeid.vis-gjelder-fra-dato',
-    NY_STANDARDVISNING = 'veientilarbeid.ny-standardvisning',
     BRUK_PROFIL = 'veientilarbeid.bruk-profil',
 }
 
@@ -37,8 +36,6 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
         case FeatureToggles.LOGG_ARBEIDSSOKERPERIODER:
             return 'Logg arbeidssøkerperioder';
         case FeatureToggles.VIS_GJELDER_FRA_DATO:
-            return 'Gjelder fra dato';
-        case FeatureToggles.NY_STANDARDVISNING:
             return 'Bruk nye standardkomponenter';
         case FeatureToggles.BRUK_PROFIL:
             return 'Bruk profil';
@@ -56,7 +53,6 @@ export interface Data {
     'veientilarbeid.vis-egenvurdering-med-14a': boolean;
     'veientilarbeid.logg-arbeidssokerperioder': boolean;
     'veientilarbeid.vis-gjelder-fra-dato'?: boolean;
-    'veientilarbeid.ny-standardvisning'?: boolean;
     'veientilarbeid.bruk-profil'?: boolean;
 }
 
@@ -76,7 +72,6 @@ export const initialState: State = {
         'veientilarbeid.vis-egenvurdering-med-14a': false,
         'veientilarbeid.logg-arbeidssokerperioder': false,
         'veientilarbeid.vis-gjelder-fra-dato': false,
-        'veientilarbeid.ny-standardvisning': false,
         'veientilarbeid.bruk-profil': false,
     },
     status: STATUS.NOT_STARTED,
