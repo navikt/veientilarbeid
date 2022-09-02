@@ -5,7 +5,6 @@ export enum FeatureToggles {
     INTRO_FEEDBACK = 'veientilarbeid.feedback',
     INTRO_14A = 'veientilarbeid.14a-intro',
     EGENVURDERING_UKE12 = 'veientilarbeid.egenvurderinguke12',
-    RYDDING_SKJUL_AAP_RAD = 'veientilarbeid.rydding.skjulAAPRad',
     INTRO_DAGPENGER = 'veientilarbeid.onboardingDagpenger',
     INTRO_DAGPENGER_TOGGLE = 'veientilarbeid.onboardingDagpenger.toggle',
     KAN_VISE_UTFRA_SITUASJON = 'veientilarbeid.kanViseUtfraSituasjon',
@@ -23,8 +22,6 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Intro feedback';
         case FeatureToggles.EGENVURDERING_UKE12:
             return 'Egenvurdering uke 12';
-        case FeatureToggles.RYDDING_SKJUL_AAP_RAD:
-            return 'Skjul AAP rad';
         case FeatureToggles.KAN_VISE_UTFRA_SITUASJON:
             return 'Vis VTA fra situasjon';
         case FeatureToggles.VIS_EGENVURDERING_MED_14A:
@@ -46,7 +43,6 @@ export interface Data {
     'veientilarbeid.feedback': boolean;
     'veientilarbeid.14a-intro': boolean;
     'veientilarbeid.egenvurderinguke12': boolean;
-    'veientilarbeid.rydding.skjulAAPRad': boolean;
     'veientilarbeid.onboardingDagpenger': boolean;
     'veientilarbeid.onboardingDagpenger.toggle': boolean;
     'veientilarbeid.kanViseUtfraSituasjon': boolean;
@@ -65,7 +61,6 @@ export const initialState: State = {
         'veientilarbeid.feedback': false,
         'veientilarbeid.14a-intro': false,
         'veientilarbeid.egenvurderinguke12': false,
-        'veientilarbeid.rydding.skjulAAPRad': false,
         'veientilarbeid.onboardingDagpenger': false,
         'veientilarbeid.onboardingDagpenger.toggle': false,
         'veientilarbeid.kanViseUtfraSituasjon': false,

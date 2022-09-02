@@ -55,9 +55,6 @@ const grunndata = {
         'veientilarbeid.feedback': false,
         'veientilarbeid.14a-intro': true,
         'veientilarbeid.egenvurderinguke12': true,
-        'veientilarbeid.rydding.skjulJobbBoks': false,
-        'veientilarbeid.rydding.skjulOkonomiBoks': false,
-        'veientilarbeid.rydding.skjulAAPRad': false,
     },
     amplitudeData: {
         geografiskTilknytning: 'INGEN_VERDI',

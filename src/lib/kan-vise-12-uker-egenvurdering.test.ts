@@ -49,7 +49,6 @@ const grunndata = {
         'veientilarbeid.feedback': false,
         'veientilarbeid.14a-intro': true,
         'veientilarbeid.egenvurderinguke12': true,
-        'veientilarbeid.rydding.skjulAAPRad': false,
         'veientilarbeid.onboardingDagpenger': false,
         'veientilarbeid.onboardingDagpenger.toggle': false,
         'veientilarbeid.kanViseUtfraSituasjon': false,
