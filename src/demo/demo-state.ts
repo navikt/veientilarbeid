@@ -126,9 +126,12 @@ export const hentAutentiseringsInfo = (): AutentiseringsData => ({
 export const settAutentiseringsInfo = (innloggingsNiva: InnloggingsNiva) =>
     settDemoState(DemoData.AUTENTISERINGS_INFO, innloggingsNiva);
 
-export const hentUnderOppfolging = (): JSONObject => ({
-    underOppfolging: hentDemoState(DemoData.UNDER_OPPFOLGING) === 'true',
-});
+export const hentUnderOppfolging = (): JSONObject => {
+    const queryParam = hentDemoState(DemoData.UNDER_OPPFOLGING);
+    return {
+        underOppfolging: queryParam ? queryParam === 'true' : true,
+    };
+};
 export const settUnderOppfolging = (value: boolean) => settDemoState(DemoData.UNDER_OPPFOLGING, value);
 
 export const hentKanReaktiveres = () => hentDemoState(DemoData.KAN_REAKTIVERES) === 'true';
