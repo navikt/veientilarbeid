@@ -36,7 +36,7 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
         case FeatureToggles.LOGG_ARBEIDSSOKERPERIODER:
             return 'Logg arbeidssøkerperioder';
         case FeatureToggles.VIS_GJELDER_FRA_DATO:
-            return 'Bruk nye standardkomponenter';
+            return 'Gjelder fra dato';
         case FeatureToggles.BRUK_PROFIL:
             return 'Bruk profil';
     }
