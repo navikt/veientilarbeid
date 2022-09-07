@@ -1,34 +1,27 @@
-import { useContext } from 'react';
-
 import { useBrukerregistreringData } from '../contexts/brukerregistrering';
 import { useOppfolgingData } from '../contexts/oppfolging';
 import sjekkOmBrukerErStandardInnsatsgruppe from '../lib/er-standard-innsatsgruppe';
 import InnholdStandard from './innhold-standard';
 import InnholdIkkeStandard from './innhold-ikke-standard';
-import { UnderOppfolgingContext } from '../contexts/under-oppfolging';
 import IkkeRegistrert from '../komponenter/ikke-registrert/ikke-registrert';
+import { useArbeidssoker } from '../contexts/arbeidssoker';
 
-function InnholdVelger() {
-    const oppfolgingData = useOppfolgingData();
+function RegistrertInnhold() {
     const registreringData = useBrukerregistreringData();
-    const { underOppfolging } = useContext(UnderOppfolgingContext).data;
+    const oppfolgingData = useOppfolgingData();
     const brukerregistreringData = registreringData?.registrering ?? null;
     const erStandardInnsatsgruppe = sjekkOmBrukerErStandardInnsatsgruppe({
         brukerregistreringData,
         oppfolgingData,
     });
-
-    if (!underOppfolging) return null;
     return erStandardInnsatsgruppe ? <InnholdStandard /> : <InnholdIkkeStandard />;
 }
 
 function Innhold() {
-    return (
-        <>
-            <InnholdVelger />
-            <IkkeRegistrert />
-        </>
-    );
+    const arbeidssoker = useArbeidssoker();
+    const underOppfolging = arbeidssoker?.underoppfolging.underoppfolging;
+
+    return underOppfolging ? <RegistrertInnhold /> : <IkkeRegistrert />;
 }
 
 export default Innhold;

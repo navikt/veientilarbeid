@@ -15,7 +15,6 @@ import * as Egenvurdering from '../../contexts/egenvurdering';
 import * as UlesteDialoger from '../../contexts/ulestedialoger';
 import * as SprakValg from '../../contexts/sprak';
 import * as Arbeidssokerperioder from '../../contexts/arbeidssokerperioder';
-import * as Arbeidssoker from '../../contexts/arbeidssoker';
 
 import { fetchData } from '../../ducks/api-utils';
 import {
@@ -26,7 +25,6 @@ import {
     ULESTEDIALOGER_URL,
     DP_INNSYN_URL,
     ARBEIDSSOKERPERIODER_URL,
-    ARBEIDSSOKER_NIVA3_URL,
 } from '../../ducks/api';
 
 import { AmplitudeProvider } from './amplitude-provider';
@@ -99,7 +97,6 @@ const DataProvider = ({ children }: Props) => {
     const [arbeidssokerperioderState, setArbeidssokerperioderState] = React.useState<Arbeidssokerperioder.State>(
         Arbeidssokerperioder.initialState
     );
-    const [arbeidssokerState, setArbeidssokerState] = React.useState<Arbeidssoker.State>(Arbeidssoker.initialState);
 
     const data = useBrukerregistreringData();
     const foreslaattInnsatsgruppe = selectForeslattInnsatsgruppe(data);
@@ -169,14 +166,6 @@ const DataProvider = ({ children }: Props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [securityLevel, underOppfolging, skalHenteArbeidssokerperioder]);
 
-    React.useEffect(() => {
-        fetchData<Arbeidssoker.State, Arbeidssoker.Data>(
-            arbeidssokerState,
-            setArbeidssokerState,
-            ARBEIDSSOKER_NIVA3_URL
-        );
-    }, []);
-
     const avhengigheter: any[] = [];
     const ventPa: any[] = [];
 
@@ -219,11 +208,7 @@ const DataProvider = ({ children }: Props) => {
                                                     <GjelderFraDatoModalProvider>
                                                         <GjelderFraDatoProvider>
                                                             <ProfilProvider>
-                                                                <Arbeidssoker.ArbeidssokerContext.Provider
-                                                                    value={arbeidssokerState}
-                                                                >
-                                                                    <AmplitudeProvider>{children}</AmplitudeProvider>
-                                                                </Arbeidssoker.ArbeidssokerContext.Provider>
+                                                                <AmplitudeProvider>{children}</AmplitudeProvider>
                                                             </ProfilProvider>
                                                         </GjelderFraDatoProvider>
                                                     </GjelderFraDatoModalProvider>
