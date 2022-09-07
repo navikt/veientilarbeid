@@ -105,7 +105,6 @@ const DataProvider = ({ children }: Props) => {
     const foreslaattInnsatsgruppe = selectForeslattInnsatsgruppe(data);
     const featuretoggles = useFeatureToggleData();
     const skalHenteArbeidssokerperioder = featuretoggles['veientilarbeid.logg-arbeidssokerperioder'];
-    const skalBrukeArbeidssokerNiva3Api = featuretoggles['veientilarbeid.arbeidssoker-niva3'];
 
     React.useEffect(() => {
         if (securityLevel !== InnloggingsNiva.LEVEL_4) {
@@ -171,15 +170,12 @@ const DataProvider = ({ children }: Props) => {
     }, [securityLevel, underOppfolging, skalHenteArbeidssokerperioder]);
 
     React.useEffect(() => {
-        if (skalBrukeArbeidssokerNiva3Api) {
-            fetchData<Arbeidssoker.State, Arbeidssoker.Data>(
-                arbeidssokerState,
-                setArbeidssokerState,
-                ARBEIDSSOKER_NIVA3_URL
-            );
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [skalBrukeArbeidssokerNiva3Api]);
+        fetchData<Arbeidssoker.State, Arbeidssoker.Data>(
+            arbeidssokerState,
+            setArbeidssokerState,
+            ARBEIDSSOKER_NIVA3_URL
+        );
+    }, []);
 
     const avhengigheter: any[] = [];
     const ventPa: any[] = [];
