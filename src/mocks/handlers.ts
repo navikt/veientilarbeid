@@ -29,8 +29,10 @@ import {
     GJELDER_FRA_DATO_URL,
     AUTH_API,
     ARBEIDSSOKERPERIODER_URL,
+    ARBEIDSSOKER_NIVA3_URL,
 } from '../ducks/api';
 import gjelderFraGetResponse from './gjelderfra-mock';
+import arbeidssokerNiva3Response from './arbeidssoker-niva3-mock';
 
 export const handlers = [
     msw_get(AUTH_API, AuthResponse),
@@ -50,4 +52,5 @@ export const handlers = [
     msw_get(GJELDER_FRA_DATO_URL, gjelderFraGetResponse),
     msw_post(GJELDER_FRA_DATO_URL, null, 201),
     msw_get(ARBEIDSSOKERPERIODER_URL, arbeidssokerPerioderResponse),
+    msw_get(ARBEIDSSOKER_NIVA3_URL, arbeidssokerNiva3Response),
 ];

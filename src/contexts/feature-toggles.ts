@@ -10,6 +10,7 @@ export enum FeatureToggles {
     LOGG_ARBEIDSSOKERPERIODER = 'veientilarbeid.logg-arbeidssokerperioder',
     VIS_GJELDER_FRA_DATO = 'veientilarbeid.vis-gjelder-fra-dato',
     BRUK_PROFIL = 'veientilarbeid.bruk-profil',
+    ARBEIDSSOKER_NIVA3 = 'veientilarbeid.arbeidssoker-niva3',
 }
 
 export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
@@ -30,6 +31,8 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Gjelder fra dato';
         case FeatureToggles.BRUK_PROFIL:
             return 'Bruk profil';
+        case FeatureToggles.ARBEIDSSOKER_NIVA3:
+            return 'Bruk arbeidssoker nivå3 api';
     }
 }
 
@@ -42,6 +45,7 @@ export interface Data {
     'veientilarbeid.logg-arbeidssokerperioder': boolean;
     'veientilarbeid.vis-gjelder-fra-dato'?: boolean;
     'veientilarbeid.bruk-profil'?: boolean;
+    'veientilarbeid.arbeidssoker-niva3'?: boolean;
 }
 
 export interface State extends DataElement {
@@ -58,6 +62,7 @@ export const initialState: State = {
         'veientilarbeid.logg-arbeidssokerperioder': false,
         'veientilarbeid.vis-gjelder-fra-dato': false,
         'veientilarbeid.bruk-profil': false,
+        'veientilarbeid.arbeidssoker-niva3': false,
     },
     status: STATUS.NOT_STARTED,
 };

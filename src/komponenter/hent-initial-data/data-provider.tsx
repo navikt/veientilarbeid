@@ -15,6 +15,7 @@ import * as Egenvurdering from '../../contexts/egenvurdering';
 import * as UlesteDialoger from '../../contexts/ulestedialoger';
 import * as SprakValg from '../../contexts/sprak';
 import * as Arbeidssokerperioder from '../../contexts/arbeidssokerperioder';
+import * as Arbeidssoker from '../../contexts/arbeidssoker';
 
 import { fetchData } from '../../ducks/api-utils';
 import {
@@ -25,6 +26,7 @@ import {
     ULESTEDIALOGER_URL,
     DP_INNSYN_URL,
     ARBEIDSSOKERPERIODER_URL,
+    ARBEIDSSOKER_NIVA3_URL,
 } from '../../ducks/api';
 
 import { AmplitudeProvider } from './amplitude-provider';
@@ -97,11 +99,13 @@ const DataProvider = ({ children }: Props) => {
     const [arbeidssokerperioderState, setArbeidssokerperioderState] = React.useState<Arbeidssokerperioder.State>(
         Arbeidssokerperioder.initialState
     );
+    const [arbeidssokerState, setArbeidssokerState] = React.useState<Arbeidssoker.State>(Arbeidssoker.initialState);
 
     const data = useBrukerregistreringData();
     const foreslaattInnsatsgruppe = selectForeslattInnsatsgruppe(data);
     const featuretoggles = useFeatureToggleData();
     const skalHenteArbeidssokerperioder = featuretoggles['veientilarbeid.logg-arbeidssokerperioder'];
+    const skalBrukeArbeidssokerNiva3Api = featuretoggles['veientilarbeid.arbeidssoker-niva3'];
 
     React.useEffect(() => {
         if (securityLevel !== InnloggingsNiva.LEVEL_4) {
@@ -166,6 +170,17 @@ const DataProvider = ({ children }: Props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [securityLevel, underOppfolging, skalHenteArbeidssokerperioder]);
 
+    React.useEffect(() => {
+        if (skalBrukeArbeidssokerNiva3Api) {
+            fetchData<Arbeidssoker.State, Arbeidssoker.Data>(
+                arbeidssokerState,
+                setArbeidssokerState,
+                ARBEIDSSOKER_NIVA3_URL
+            );
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [skalBrukeArbeidssokerNiva3Api]);
+
     const avhengigheter: any[] = [];
     const ventPa: any[] = [];
 
@@ -208,7 +223,11 @@ const DataProvider = ({ children }: Props) => {
                                                     <GjelderFraDatoModalProvider>
                                                         <GjelderFraDatoProvider>
                                                             <ProfilProvider>
-                                                                <AmplitudeProvider>{children}</AmplitudeProvider>
+                                                                <Arbeidssoker.ArbeidssokerContext.Provider
+                                                                    value={arbeidssokerState}
+                                                                >
+                                                                    <AmplitudeProvider>{children}</AmplitudeProvider>
+                                                                </Arbeidssoker.ArbeidssokerContext.Provider>
                                                             </ProfilProvider>
                                                         </GjelderFraDatoProvider>
                                                     </GjelderFraDatoModalProvider>
