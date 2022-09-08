@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - arbeidssoker-api
 
 env:
   IMAGE_BASE: ghcr.io/${{github.repository}}/veientilarbeid
