@@ -27,6 +27,7 @@ const Mikrofrontend = () => {
             setArbeidssokerState,
             ARBEIDSSOKER_NIVA3_URL
         );
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
