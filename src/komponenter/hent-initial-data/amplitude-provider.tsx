@@ -8,7 +8,6 @@ import { useAutentiseringData } from '../../contexts/autentisering';
 import { AmplitudeContext } from '../../contexts/amplitude-context';
 import { DinSituasjonSvar, useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { OppfolgingContext } from '../../contexts/oppfolging';
-import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import { useDpInnsynPaabegynteSoknaderData } from '../../contexts/dp-innsyn-paabegynte-soknader';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
@@ -41,6 +40,7 @@ import { useDpInnsynVedtakData } from '../../contexts/dp-innsyn-vedtak';
 import { useArbeidssokerperioderData } from '../../contexts/arbeidssokerperioder';
 import beregnDagpengeStatus, { sorterEtterNyesteVedtak } from '../../lib/beregn-dagpenge-status';
 import { hentSprakValgFraCookie } from './data-provider';
+import { useUnderOppfolging } from '../../contexts/arbeidssoker';
 
 function hentDagerEtterFastsattMeldedag(
     iDag: Date,
@@ -72,7 +72,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const brukerInfoData = useBrukerinfoData();
     const { securityLevel: nivaa } = useAutentiseringData();
     const arbeidssokerperioder = useArbeidssokerperioderData();
-    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
+    const underOppfolging = useUnderOppfolging()?.underoppfolging;
     const meldekortContext = React.useContext(Meldekort.MeldekortContext);
     const meldekortStatusContext = React.useContext(Meldekortstatus.MeldekortstatusContext);
     const { etterregistrerteMeldekort, antallGjenstaaendeFeriedager } = meldekortStatusContext.data;

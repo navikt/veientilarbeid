@@ -222,7 +222,10 @@ const registreringsopplysningerMellomperiodeUtenJobb = {
 describe('Tester registreringsopplysninger komponenten', () => {
     test('Rendrer komponenten og tekstene', () => {
         const props: ProviderProps = {
-            underOppfolging: { underOppfolging: true },
+            arbeidssoker: {
+                arbeidssokerperioder: { status: 200, arbeidssokerperioder: [] },
+                underoppfolging: { status: 200, underoppfolging: true },
+            },
         };
         render(<Opplysninger {...registreringsopplysninger} />, { wrapper: contextProviders(props) });
         expect(screen.getByText(/du kan endre opplysningene du ga ved å kontakte nav./i)).toBeTruthy();
@@ -236,7 +239,10 @@ describe('Tester registreringsopplysninger komponenten', () => {
 
     test('Klikk på lenken fungerer', () => {
         const props: ProviderProps = {
-            underOppfolging: { underOppfolging: true },
+            arbeidssoker: {
+                arbeidssokerperioder: { status: 200, arbeidssokerperioder: [] },
+                underoppfolging: { status: 200, underoppfolging: true },
+            },
         };
         const mockHandleClick = vi.fn();
         render(<Opplysninger {...registreringsopplysninger} />, { wrapper: contextProviders(props) });
@@ -251,7 +257,10 @@ describe('Tester registreringsopplysninger komponenten', () => {
 
     test('Tester at fiks for visning av data fra mellomperioden fungerer - med jobb', () => {
         const props: ProviderProps = {
-            underOppfolging: { underOppfolging: true },
+            arbeidssoker: {
+                arbeidssokerperioder: { status: 200, arbeidssokerperioder: [] },
+                underoppfolging: { status: 200, underoppfolging: true },
+            },
         };
         render(<Opplysninger {...registreringsopplysningerMellomperiodeMedJobb} />, {
             wrapper: contextProviders(props),
@@ -261,7 +270,10 @@ describe('Tester registreringsopplysninger komponenten', () => {
 
     test('Tester at fiks for visning av data fra mellomperioden fungerer - med jobb uten label', () => {
         const props: ProviderProps = {
-            underOppfolging: { underOppfolging: true },
+            arbeidssoker: {
+                arbeidssokerperioder: { status: 200, arbeidssokerperioder: [] },
+                underoppfolging: { status: 200, underoppfolging: true },
+            },
         };
         render(<Opplysninger {...registreringsopplysningerMellomperiodeMedJobbUtenLabel} />, {
             wrapper: contextProviders(props),
@@ -271,7 +283,10 @@ describe('Tester registreringsopplysninger komponenten', () => {
 
     test('Tester at fiks for visning av data fra mellomperioden fungerer - uten jobb', () => {
         const props: ProviderProps = {
-            underOppfolging: { underOppfolging: true },
+            arbeidssoker: {
+                arbeidssokerperioder: { status: 200, arbeidssokerperioder: [] },
+                underoppfolging: { status: 200, underoppfolging: true },
+            },
         };
         render(<Opplysninger {...registreringsopplysningerMellomperiodeUtenJobb} />, {
             wrapper: contextProviders(props),
@@ -281,7 +296,10 @@ describe('Tester registreringsopplysninger komponenten', () => {
 
     test('Komponenten rendres IKKE når bruker IKKE er under oppfølging', () => {
         const props: ProviderProps = {
-            underOppfolging: { underOppfolging: false },
+            arbeidssoker: {
+                arbeidssokerperioder: { status: 200, arbeidssokerperioder: [] },
+                underoppfolging: { status: 200, underoppfolging: false },
+            },
         };
         const { container } = render(<Opplysninger {...registreringsopplysninger} />, {
             wrapper: contextProviders(props),

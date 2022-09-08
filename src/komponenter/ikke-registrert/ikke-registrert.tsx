@@ -7,9 +7,8 @@ import ErRendret from '../er-rendret/er-rendret';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
-import * as React from 'react';
-import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import Rad from '../../innhold/rad';
+import { useArbeidssoker } from '../../contexts/arbeidssoker';
 
 const TEKSTER = {
     nb: {
@@ -25,7 +24,8 @@ const TEKSTER = {
 };
 
 const IkkeRegistrert = () => {
-    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
+    const arbeidssoker = useArbeidssoker();
+    const underOppfolging = arbeidssoker?.underoppfolging.underoppfolging;
     const goto = new URLSearchParams(window.location.search).get('goTo');
     const skalTilRegistrering = goto === 'registrering';
 

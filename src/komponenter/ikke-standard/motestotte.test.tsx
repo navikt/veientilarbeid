@@ -27,8 +27,9 @@ describe('Motestotte', () => {
             brukerregistrering,
             motestotte,
             oppfolging,
-            underOppfolging: {
-                underOppfolging: true,
+            arbeidssoker: {
+                arbeidssokerperioder: { status: 200, arbeidssokerperioder: [] },
+                underoppfolging: { status: 200, underoppfolging: true },
             },
         };
         render(<Motestotte />, { wrapper: contextProviders(providerProps) });
@@ -41,8 +42,9 @@ describe('Motestotte', () => {
             brukerregistrering,
             motestotte,
             oppfolging,
-            underOppfolging: {
-                underOppfolging: false,
+            arbeidssoker: {
+                arbeidssokerperioder: { status: 200, arbeidssokerperioder: [] },
+                underoppfolging: { status: 200, underoppfolging: false },
             },
         };
         const { container } = render(<Motestotte />, { wrapper: contextProviders(providerProps) });
@@ -57,8 +59,9 @@ describe('Motestotte', () => {
             brukerregistrering,
             motestotte,
             oppfolging,
-            underOppfolging: {
-                underOppfolging: true,
+            arbeidssoker: {
+                arbeidssokerperioder: { status: 200, arbeidssokerperioder: [] },
+                underoppfolging: { status: 200, underoppfolging: true },
             },
         };
         render(<Motestotte />, { wrapper: contextProviders(providerProps) });

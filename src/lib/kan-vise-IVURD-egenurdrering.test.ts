@@ -28,9 +28,7 @@ const grunndata = {
         securityLevel: InnloggingsNiva.LEVEL_4,
         loggedIn: true,
     },
-    underOppfolgingData: {
-        underOppfolging: true,
-    },
+    underOppfolging: true,
 };
 
 describe('Tester funksjonen kanViseIVURDEgenvurdering', () => {
@@ -54,7 +52,7 @@ describe('Tester funksjonen kanViseIVURDEgenvurdering', () => {
 
     test('Nei hvis bruker IKKE er under oppfølging', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
-        testdata.underOppfolgingData.underOppfolging = false;
+        testdata.underOppfolging = false;
         expect(kanViseIVURDEgenvurdering(testdata)).toBe(false);
     });
 

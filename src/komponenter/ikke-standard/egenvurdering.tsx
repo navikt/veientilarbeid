@@ -5,13 +5,13 @@ import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useAutentiseringData } from '../../contexts/autentisering';
 import { useOppfolgingData } from '../../contexts/oppfolging';
 import { useEgenvurderingData } from '../../contexts/egenvurdering';
-import { useUnderOppfolgingData } from '../../contexts/under-oppfolging';
 import { useSprakValg } from '../../contexts/sprak';
 
 import { loggAktivitet } from '../../metrics/metrics';
 import { behovsvurderingLenke } from '../../innhold/lenker';
 import { kanViseIVURDEgenvurdering } from '../../lib/kan-vise-IVURD-egenvurdering';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
+import { useArbeidssoker } from '../../contexts/arbeidssoker';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -28,11 +28,12 @@ const Egenvurdering = () => {
     const egenvurderingData = useEgenvurderingData();
     const oppfolgingData = useOppfolgingData();
     const autentiseringData = useAutentiseringData();
-    const underOppfolgingData = useUnderOppfolgingData();
+    const arbeidssokerData = useArbeidssoker();
+    const underOppfolging = arbeidssokerData?.underoppfolging.underoppfolging;
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     const skalViseEgenvurderingLenke = kanViseIVURDEgenvurdering({
-        underOppfolgingData,
+        underOppfolging,
         registreringData,
         autentiseringData,
         egenvurderingData,

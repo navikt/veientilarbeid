@@ -4,7 +4,6 @@ import { Detail, Heading, Panel, ReadMore } from '@navikt/ds-react';
 
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
-import { useUnderOppfolgingData } from '../../contexts/under-oppfolging';
 import { useAutentiseringData } from '../../contexts/autentisering';
 import { useEgenvurderingData } from '../../contexts/egenvurdering';
 import { useOppfolgingData } from '../../contexts/oppfolging';
@@ -29,6 +28,7 @@ import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { erKSSBruker } from '../../lib/er-kss-bruker';
 import { useProfil } from '../../contexts/profil';
 import { hentProfilnokkelFraLocalStorage } from '../../utils/profil-id-mapper';
+import { useArbeidssoker } from '../../contexts/arbeidssoker';
 
 const TEKSTER = {
     nb: {
@@ -48,7 +48,7 @@ function HjelpOgStotte() {
 
     const registreringData = useBrukerregistreringData();
     const featuretoggleData = useFeatureToggleData();
-    const underOppfolgingData = useUnderOppfolgingData();
+    const arbeidssokerData = useArbeidssoker();
     const autentiseringData = useAutentiseringData();
     const egenvurderingData = useEgenvurderingData();
     const oppfolgingData = useOppfolgingData();
@@ -57,6 +57,7 @@ function HjelpOgStotte() {
     const { profil } = useProfil();
 
     const registrertDato = registreringData?.registrering?.opprettetDato;
+    const underOppfolging = arbeidssokerData?.underoppfolging.underoppfolging;
 
     const brukProfil = featuretoggleData['veientilarbeid.bruk-profil'];
 
@@ -96,7 +97,7 @@ function HjelpOgStotte() {
     const skalViseEgenvurderingInnsatsgruppeIkkeFastsatt =
         !harAvslattEgenvurdering &&
         kanViseIVURDEgenvurdering({
-            underOppfolgingData,
+            underOppfolging,
             registreringData,
             autentiseringData,
             egenvurderingData,

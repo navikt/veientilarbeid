@@ -1,12 +1,11 @@
-import * as React from 'react';
 import { BodyShort } from '@navikt/ds-react';
 
 import { loggAktivitet } from '../../metrics/metrics';
 import { dialogLenke } from '../../innhold/lenker';
 import { Besvarelse, SisteStilling, Svar } from '../../contexts/brukerregistrering';
 import prettyPrintDato from '../../utils/pretty-print-dato';
-import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import Feedback from '../feedback/feedback';
+import { useUnderOppfolging } from '../../contexts/arbeidssoker';
 
 /**
  * Dette er en fiks fordi det en periode ble postet data fra registreringen med en litt annen signatur
@@ -56,8 +55,8 @@ const Opplysninger = (props: any) => {
     const { opprettetDato, manueltRegistrertAv, besvarelse, teksterForBesvarelse, amplitudeData, sisteStilling } =
         props;
     const besvarelser = repackBesvarelser(besvarelse, teksterForBesvarelse, sisteStilling);
-    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
-    const kanViseKomponent = underOppfolging;
+    const underoppfolging = useUnderOppfolging()?.underoppfolging;
+    const kanViseKomponent = underoppfolging;
 
     const handleDialogClick = () => {
         loggAktivitet({ aktivitet: 'Går til endre registreringsopplysninger', ...amplitudeData });

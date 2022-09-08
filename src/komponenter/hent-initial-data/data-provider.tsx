@@ -29,7 +29,6 @@ import {
 
 import { AmplitudeProvider } from './amplitude-provider';
 import { useAutentiseringData, InnloggingsNiva } from '../../contexts/autentisering';
-import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 
 import * as DpInnsynSoknad from '../../contexts/dp-innsyn-soknad';
@@ -38,6 +37,7 @@ import * as DpInnsynPaabegynt from '../../contexts/dp-innsyn-paabegynte-soknader
 import { GjelderFraDatoModalProvider } from '../../contexts/gjelder-fra-dato-modal';
 import { GjelderFraDatoProvider } from '../../contexts/gjelder-fra-dato';
 import { ProfilProvider } from '../../contexts/profil';
+import { useUnderOppfolging } from '../../contexts/arbeidssoker';
 
 const skalSjekkeEgenvurderingBesvarelse = (
     foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null
@@ -76,7 +76,7 @@ const hentSprakValg = (): SprakValg.State => {
 
 const DataProvider = ({ children }: Props) => {
     const { securityLevel } = useAutentiseringData();
-    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
+    const underOppfolging = useUnderOppfolging()?.underoppfolging;
     const [motestotteState, setMotestotteState] = React.useState<Motestotte.State>(Motestotte.initialState);
     const [meldekortState, setMeldekortState] = React.useState<Meldekort.State>(Meldekort.initialState);
     const [brukerInfoState, setBrukerInfoState] = React.useState<BrukerInfo.State>(BrukerInfo.initialState);

@@ -25,9 +25,12 @@ describe('Tester egenvurdering-komponenten', () => {
 
     it('vises ikke når brukerregistrering ikke finnes', async () => {
         const props: ProviderProps = {
-            underOppfolging: { underOppfolging: false },
             oppfolging: { servicegruppe: Servicegruppe.IVURD },
             brukerregistrering: null,
+            arbeidssoker: {
+                arbeidssokerperioder: { status: 200, arbeidssokerperioder: [] },
+                underoppfolging: { status: 200, underoppfolging: false },
+            },
         };
         const { container } = render(<Egenvurdering />, { wrapper: contextProviders(props) as FunctionComponent });
         expect(container).toBeEmptyDOMElement();
@@ -35,7 +38,10 @@ describe('Tester egenvurdering-komponenten', () => {
 
     it('renderes når den skal', async () => {
         const props: ProviderProps = {
-            underOppfolging: { underOppfolging: true },
+            arbeidssoker: {
+                arbeidssokerperioder: { status: 200, arbeidssokerperioder: [] },
+                underoppfolging: { status: 200, underoppfolging: true },
+            },
             oppfolging: { servicegruppe: Servicegruppe.IVURD },
             brukerregistrering: standardInnsatsBrukerregistrering,
             autentisering: {
@@ -48,7 +54,10 @@ describe('Tester egenvurdering-komponenten', () => {
 
     test('Komponenten rendres IKKE når bruker IKKE er under oppfølging', () => {
         const props: ProviderProps = {
-            underOppfolging: { underOppfolging: false },
+            arbeidssoker: {
+                arbeidssokerperioder: { status: 200, arbeidssokerperioder: [] },
+                underoppfolging: { status: 200, underoppfolging: false },
+            },
             oppfolging: { servicegruppe: Servicegruppe.IVURD },
             brukerregistrering: standardInnsatsBrukerregistrering,
         };
@@ -58,7 +67,10 @@ describe('Tester egenvurdering-komponenten', () => {
 
     it('rendres ikke med gyldig levert egenvurdering', async () => {
         const props: ProviderProps = {
-            underOppfolging: { underOppfolging: true },
+            arbeidssoker: {
+                arbeidssokerperioder: { status: 200, arbeidssokerperioder: [] },
+                underoppfolging: { status: 200, underoppfolging: true },
+            },
             oppfolging: { servicegruppe: Servicegruppe.IVURD },
             brukerregistrering: standardInnsatsBrukerregistrering,
             egenvurdering: { sistOppdatert: '2020-02-01' },
@@ -69,7 +81,10 @@ describe('Tester egenvurdering-komponenten', () => {
 
     it('renderes ikke som standard-oppførsel', async () => {
         const props: ProviderProps = {
-            underOppfolging: { underOppfolging: true },
+            arbeidssoker: {
+                arbeidssokerperioder: { status: 200, arbeidssokerperioder: [] },
+                underoppfolging: { status: 200, underoppfolging: true },
+            },
         };
 
         render(<Egenvurdering />, { wrapper: contextProviders(props) as FunctionComponent });
@@ -78,7 +93,10 @@ describe('Tester egenvurdering-komponenten', () => {
 
     it('knapp fungerer som forventet', async () => {
         const props: ProviderProps = {
-            underOppfolging: { underOppfolging: true },
+            arbeidssoker: {
+                arbeidssokerperioder: { status: 200, arbeidssokerperioder: [] },
+                underoppfolging: { status: 200, underoppfolging: true },
+            },
             oppfolging: { servicegruppe: Servicegruppe.IVURD },
             brukerregistrering: standardInnsatsBrukerregistrering,
             autentisering: {

@@ -1,17 +1,16 @@
-import * as UnderOppfolging from '../contexts/under-oppfolging';
 import * as Brukerregistrering from '../contexts/brukerregistrering';
 import * as Autentisering from '../contexts/autentisering';
 import * as Egenvurdering from '../contexts/egenvurdering';
 import * as Oppfolging from '../contexts/oppfolging';
 
 export function kanViseIVURDEgenvurdering({
-    underOppfolgingData,
+    underOppfolging,
     registreringData,
     autentiseringData,
     egenvurderingData,
     oppfolgingData,
 }: {
-    underOppfolgingData: UnderOppfolging.Data;
+    underOppfolging?: boolean;
     registreringData: Brukerregistrering.Data | null;
     autentiseringData: Autentisering.Data;
     egenvurderingData: Egenvurdering.Data | null;
@@ -19,7 +18,6 @@ export function kanViseIVURDEgenvurdering({
 }): boolean {
     const LANSERINGSDATO_EGENVURDERING = new Date(2019, 4, 10);
     const { securityLevel } = autentiseringData;
-    const { underOppfolging } = underOppfolgingData;
     const foreslattInnsatsgruppe = Brukerregistrering.selectForeslattInnsatsgruppe(registreringData)!; // Komponent blir rendret kun hvis foreslått innsatsgruppe er satt
     const dinSituasjon = registreringData?.registrering?.besvarelse?.dinSituasjon || 'INGEN_VERDI';
     const harEgenvurderingbesvarelse = egenvurderingData !== null;
@@ -39,7 +37,7 @@ export function kanViseIVURDEgenvurdering({
     };
 
     const kanViseEgenvurdering =
-        underOppfolging &&
+        (underOppfolging ?? false) &&
         isLevel4 &&
         dinSituasjon !== 'ER_PERMITTERT' &&
         oppfolgingData.servicegruppe === Oppfolging.Servicegruppe.IVURD &&
