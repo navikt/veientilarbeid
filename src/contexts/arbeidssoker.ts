@@ -6,7 +6,7 @@ export interface State extends DataElement {
     data: Data | null;
 }
 
-interface Periode {
+export interface Periode {
     fraOgMedDato: string;
     tilOgMedDato: string | null;
 }
@@ -32,3 +32,4 @@ export const ArbeidssokerContext = createContext<State>(initialState);
 export const useArbeidssoker = () => useContext(ArbeidssokerContext).data;
 
 export const useUnderOppfolging = () => useContext(ArbeidssokerContext).data?.underoppfolging;
+export const useArbeidssokerPerioder = () => useContext(ArbeidssokerContext).data?.arbeidssokerperioder;

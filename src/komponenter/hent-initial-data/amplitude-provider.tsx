@@ -37,10 +37,9 @@ import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../../lib/er-situasjo
 import erSannsynligvisInaktivertStandardbruker from '../../lib/er-sannsyligvis-inaktivert-standard-innsatsgruppe';
 import { useDpInnsynSoknadData } from '../../contexts/dp-innsyn-soknad';
 import { useDpInnsynVedtakData } from '../../contexts/dp-innsyn-vedtak';
-import { useArbeidssokerperioderData } from '../../contexts/arbeidssokerperioder';
 import beregnDagpengeStatus, { sorterEtterNyesteVedtak } from '../../lib/beregn-dagpenge-status';
 import { hentSprakValgFraCookie } from './data-provider';
-import { useUnderOppfolging } from '../../contexts/arbeidssoker';
+import { useArbeidssokerPerioder, useUnderOppfolging } from '../../contexts/arbeidssoker';
 
 function hentDagerEtterFastsattMeldedag(
     iDag: Date,
@@ -71,7 +70,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const oppfolgingData = React.useContext(OppfolgingContext).data;
     const brukerInfoData = useBrukerinfoData();
     const { securityLevel: nivaa } = useAutentiseringData();
-    const arbeidssokerperioder = useArbeidssokerperioderData();
+    const arbeidssokerperioder = useArbeidssokerPerioder();
     const underOppfolging = useUnderOppfolging()?.underoppfolging;
     const meldekortContext = React.useContext(Meldekort.MeldekortContext);
     const meldekortStatusContext = React.useContext(Meldekortstatus.MeldekortstatusContext);

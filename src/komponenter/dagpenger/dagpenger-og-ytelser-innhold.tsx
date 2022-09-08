@@ -7,7 +7,6 @@ import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useDpInnsynSoknadData } from '../../contexts/dp-innsyn-soknad';
 import { useDpInnsynVedtakData } from '../../contexts/dp-innsyn-vedtak';
 import { useDpInnsynPaabegynteSoknaderData } from '../../contexts/dp-innsyn-paabegynte-soknader';
-import { useArbeidssokerperioderData } from '../../contexts/arbeidssokerperioder';
 
 import HarIkkeSokt from './dagpenger-har-ikke-sokt';
 import HarPabegyntSoknad from './dagpenger-har-paabegynt-soknad';
@@ -23,6 +22,7 @@ import Ytelser from './ytelser';
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
+import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
 
 function hentDagpengerInnhold(situasjon: DagpengeStatus) {
     if (situasjon === 'paabegynt') {
@@ -60,7 +60,7 @@ function DagpengerOgYtelserInnhold(props: Props) {
     const paabegynteSoknader = useDpInnsynPaabegynteSoknaderData();
     const innsendteSoknader = useDpInnsynSoknadData();
     const dagpengeVedtak = useDpInnsynVedtakData();
-    const arbeidssokerperioderData = useArbeidssokerperioderData();
+    const arbeidssokerperioderData = useArbeidssokerPerioder();
     const arbeidssokerperioder = beregnArbeidssokerperioder(arbeidssokerperioderData);
 
     const dagpengeStatus = beregnDagpengeStatus({
