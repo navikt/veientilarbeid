@@ -11,7 +11,7 @@ import { loggAktivitet } from '../../metrics/metrics';
 import { behovsvurderingLenke } from '../../innhold/lenker';
 import { kanViseIVURDEgenvurdering } from '../../lib/kan-vise-IVURD-egenvurdering';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
-import { useArbeidssoker } from '../../contexts/arbeidssoker';
+import { useUnderOppfolging } from '../../contexts/arbeidssoker';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -28,8 +28,7 @@ const Egenvurdering = () => {
     const egenvurderingData = useEgenvurderingData();
     const oppfolgingData = useOppfolgingData();
     const autentiseringData = useAutentiseringData();
-    const arbeidssokerData = useArbeidssoker();
-    const underOppfolging = arbeidssokerData?.underoppfolging.underoppfolging;
+    const underOppfolging = useUnderOppfolging()?.underoppfolging;
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     const skalViseEgenvurderingLenke = kanViseIVURDEgenvurdering({

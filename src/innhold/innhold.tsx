@@ -4,7 +4,7 @@ import sjekkOmBrukerErStandardInnsatsgruppe from '../lib/er-standard-innsatsgrup
 import InnholdStandard from './innhold-standard';
 import InnholdIkkeStandard from './innhold-ikke-standard';
 import IkkeRegistrert from '../komponenter/ikke-registrert/ikke-registrert';
-import { useArbeidssoker } from '../contexts/arbeidssoker';
+import { useUnderOppfolging } from '../contexts/arbeidssoker';
 
 function RegistrertInnhold() {
     const registreringData = useBrukerregistreringData();
@@ -18,8 +18,7 @@ function RegistrertInnhold() {
 }
 
 function Innhold() {
-    const arbeidssoker = useArbeidssoker();
-    const underOppfolging = arbeidssoker?.underoppfolging.underoppfolging;
+    const underOppfolging = useUnderOppfolging()?.underoppfolging;
 
     return underOppfolging ? <RegistrertInnhold /> : <IkkeRegistrert />;
 }

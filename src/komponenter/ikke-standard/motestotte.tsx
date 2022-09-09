@@ -17,7 +17,7 @@ import { loggAktivitet } from '../../metrics/metrics';
 import { OppfolgingContext, Servicegruppe } from '../../contexts/oppfolging';
 import { MotestotteContext } from '../../contexts/motestotte';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
-import { useArbeidssoker } from '../../contexts/arbeidssoker';
+import { useUnderOppfolging } from '../../contexts/arbeidssoker';
 
 const LANSERINGSDATO_MOTESTOTTE = new Date('2020-03-12');
 
@@ -49,8 +49,7 @@ const Motestotte = () => {
         : null;
     const foreslattInnsatsgruppe = selectForeslattInnsatsgruppe(data)!; // Komponent blir rendret kun hvis foreslått innsatsgruppe er satt
     const dinSituasjon = selectDinSituasjonSvar(data) || 'INGEN_VERDI';
-    const arbeidssokerData = useArbeidssoker();
-    const underOppfolging = arbeidssokerData?.underoppfolging.underoppfolging;
+    const underOppfolging = useUnderOppfolging()?.underoppfolging;
 
     const harGyldigMotestottebesvarelse = (): boolean => {
         if (!opprettetRegistreringDato || !motestotteData) return false;

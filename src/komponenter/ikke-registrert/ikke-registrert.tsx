@@ -8,7 +8,7 @@ import { useAmplitudeData } from '../../contexts/amplitude-context';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
 import Rad from '../../innhold/rad';
-import { useArbeidssoker } from '../../contexts/arbeidssoker';
+import { useUnderOppfolging } from '../../contexts/arbeidssoker';
 
 const TEKSTER = {
     nb: {
@@ -24,8 +24,7 @@ const TEKSTER = {
 };
 
 const IkkeRegistrert = () => {
-    const arbeidssoker = useArbeidssoker();
-    const underOppfolging = arbeidssoker?.underoppfolging.underoppfolging;
+    const underOppfolging = useUnderOppfolging()?.underoppfolging;
     const goto = new URLSearchParams(window.location.search).get('goTo');
     const skalTilRegistrering = goto === 'registrering';
 

@@ -28,7 +28,7 @@ import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { erKSSBruker } from '../../lib/er-kss-bruker';
 import { useProfil } from '../../contexts/profil';
 import { hentProfilnokkelFraLocalStorage } from '../../utils/profil-id-mapper';
-import { useArbeidssoker } from '../../contexts/arbeidssoker';
+import { useUnderOppfolging } from '../../contexts/arbeidssoker';
 
 const TEKSTER = {
     nb: {
@@ -48,7 +48,6 @@ function HjelpOgStotte() {
 
     const registreringData = useBrukerregistreringData();
     const featuretoggleData = useFeatureToggleData();
-    const arbeidssokerData = useArbeidssoker();
     const autentiseringData = useAutentiseringData();
     const egenvurderingData = useEgenvurderingData();
     const oppfolgingData = useOppfolgingData();
@@ -57,7 +56,7 @@ function HjelpOgStotte() {
     const { profil } = useProfil();
 
     const registrertDato = registreringData?.registrering?.opprettetDato;
-    const underOppfolging = arbeidssokerData?.underoppfolging.underoppfolging;
+    const underOppfolging = useUnderOppfolging()?.underoppfolging;
 
     const brukProfil = featuretoggleData['veientilarbeid.bruk-profil'];
 

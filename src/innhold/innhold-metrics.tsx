@@ -14,14 +14,13 @@ import { erMikrofrontend } from '../utils/app-state-utils';
 import { hotjarTrigger } from '../hotjar';
 import { InnloggingsNiva, useAutentiseringData } from '../contexts/autentisering';
 import sjekkOmBrukerErStandardInnsatsgruppe from '../lib/er-standard-innsatsgruppe';
-import { useArbeidssoker } from '../contexts/arbeidssoker';
+import { useUnderOppfolging } from '../contexts/arbeidssoker';
 
 type Props = {};
 
 export default function InnholdMetrics() {
     const { securityLevel } = useAutentiseringData();
-    const arbeidssokerData = useArbeidssoker();
-    const underOppfolging = arbeidssokerData?.underoppfolging.underoppfolging;
+    const underOppfolging = useUnderOppfolging()?.underoppfolging;
 
     if (!underOppfolging || securityLevel === InnloggingsNiva.LEVEL_3) return null;
 
