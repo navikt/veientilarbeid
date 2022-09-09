@@ -42,6 +42,12 @@ const ARBEIDSSOKERREGISTRERING_URL = {
     production: 'https://www.nav.no/arbeid/registrering',
 };
 
+const OM_MELDEKORT_URL = {
+    local: 'https://meldekort-frontend-q1.dev.nav.no/meldekort/send-meldekort#',
+    development: 'https://meldekort-frontend-q1.dev.nav.no/meldekort/send-meldekort#',
+    production: 'https://www.nav.no/meldekort/om-meldekort',
+};
+
 export const aktivitetsplanLenke = AKTIVITETSPLAN_URL[getEnvironment()];
 export const dialogLenke = DIALOG_URL[getEnvironment()];
 export const stillingLenke = `${ARBEIDSPLASSEN_URL[getEnvironment()]}/stillinger`;
@@ -57,6 +63,6 @@ export const registreringsLenke = `${ARBEIDSSOKERREGISTRERING_URL[getEnvironment
 export const sykepengerLenke =
     'https://www.nav.no/no/Person/Arbeid/Sykmeldt%2C+arbeidsavklaringspenger+og+yrkesskade/Sykepenger/Sykepenger+til+arbeidstakere#chapter-7';
 export const meldekortLenke = 'https://www.nav.no/meldekort';
-export const omMeldekortLenke = `${meldekortLenke}/om-meldekort`;
+export const omMeldekortLenke = OM_MELDEKORT_URL[getEnvironment()];
 export const aapSoknadLenke = 'https://www.nav.no/soknader/nb/person/arbeid/arbeidsavklaringspenger';
 export const difiLenke = 'https://brukerprofil.difi.no/minprofil/';
