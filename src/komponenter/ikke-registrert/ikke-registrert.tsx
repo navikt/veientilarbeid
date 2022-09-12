@@ -8,7 +8,7 @@ import { useAmplitudeData } from '../../contexts/amplitude-context';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
 import Rad from '../../innhold/rad';
-import { useUnderOppfolging } from '../../contexts/arbeidssoker';
+import { useRef } from 'react';
 
 const TEKSTER = {
     nb: {
@@ -24,9 +24,9 @@ const TEKSTER = {
 };
 
 const IkkeRegistrert = () => {
-    const underOppfolging = useUnderOppfolging()?.underoppfolging;
     const goto = new URLSearchParams(window.location.search).get('goTo');
-    const skalTilRegistrering = goto === 'registrering';
+    const harRegistreringUrlParameter = goto === 'registrering';
+    const infoBoksRef = useRef<HTMLDivElement>(null);
 
     const amplitudeData = useAmplitudeData();
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
@@ -36,19 +36,17 @@ const IkkeRegistrert = () => {
         window.location.assign(registreringsLenke);
     };
 
-    const kanViseKomponent = skalTilRegistrering && !underOppfolging;
-
-    const infoboks = document.getElementById('registrering-status-informasjon');
+    const kanViseKomponent = harRegistreringUrlParameter;
 
     if (!kanViseKomponent) return null;
 
-    if (kanViseKomponent && infoboks) {
-        infoboks.scrollIntoView({ block: 'end', inline: 'nearest' });
+    if (kanViseKomponent && infoBoksRef.current) {
+        infoBoksRef.current.scrollIntoView({ block: 'end', inline: 'nearest' });
     }
 
     return (
         <Rad>
-            <Panel border className="ramme blokk-s" id="registrering-status-informasjon">
+            <Panel border className="ramme blokk-s" ref={infoBoksRef}>
                 <ErRendret loggTekst="Rendrer IkkeRegistrert" />
                 <Heading size="medium" level="2" className="blokk-xs">
                     {tekst('header')}
