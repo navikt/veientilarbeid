@@ -48,4 +48,5 @@ export const BAKVEIEN = `${bakveienTilArbeidUrl}`,
     ARBEIDSSOKERPERIODER_URL = `${BAKVEIEN}/arbeidssoker/perioder?fraOgMed=2020-01-01`,
     GJELDER_FRA_DATO_URL = `${BAKVEIEN}/gjelderfra`,
     AUTH_API = innloggingsStatusUrl,
-    ARBEIDSSOKER_NIVA3_URL = `${BAKVEIEN}/arbeidssoker?fraOgMed=2020-01-01`;
+    ARBEIDSSOKER_NIVA3_URL = `${BAKVEIEN}/arbeidssoker?fraOgMed=2020-01-01`,
+    ER_STANDARD_INNSATSGRUPPE_URL = `${BAKVEIEN}/standard-innsats`;

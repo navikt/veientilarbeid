@@ -1,26 +1,14 @@
-import { useBrukerregistreringData } from '../contexts/brukerregistrering';
-import { useOppfolgingData } from '../contexts/oppfolging';
-import sjekkOmBrukerErStandardInnsatsgruppe from '../lib/er-standard-innsatsgruppe';
-import InnholdStandard from './innhold-standard';
-import InnholdIkkeStandard from './innhold-ikke-standard';
-import IkkeRegistrert from '../komponenter/ikke-registrert/ikke-registrert';
-import { useUnderOppfolging } from '../contexts/arbeidssoker';
-
-function RegistrertInnhold() {
-    const registreringData = useBrukerregistreringData();
-    const oppfolgingData = useOppfolgingData();
-    const brukerregistreringData = registreringData?.registrering ?? null;
-    const erStandardInnsatsgruppe = sjekkOmBrukerErStandardInnsatsgruppe({
-        brukerregistreringData,
-        oppfolgingData,
-    });
-    return erStandardInnsatsgruppe ? <InnholdStandard /> : <InnholdIkkeStandard />;
-}
+import { useArbeidssokerPerioder } from '../contexts/arbeidssoker';
+import beregnArbeidssokerperioder from '../lib/beregn-arbeidssokerperioder';
+import ArbeidssokerInnhold from './arbeidssoker-innhold';
+import IkkeArbeidssokerInnhold from './ikke-arbeidssoker-innhold';
 
 function Innhold() {
-    const underOppfolging = useUnderOppfolging()?.underoppfolging;
+    const arbeidssokerperioderData = useArbeidssokerPerioder();
+    const arbeidssokerperioder = beregnArbeidssokerperioder(arbeidssokerperioderData);
+    const harAktivArbeidssokerperiode = arbeidssokerperioder.harAktivArbeidssokerperiode === 'Ja';
 
-    return underOppfolging ? <RegistrertInnhold /> : <IkkeRegistrert />;
+    return harAktivArbeidssokerperiode ? <ArbeidssokerInnhold /> : <IkkeArbeidssokerInnhold />;
 }
 
 export default Innhold;
