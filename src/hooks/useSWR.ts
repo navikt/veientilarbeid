@@ -21,8 +21,8 @@ export const fetcher = async (path: string, opts?: RequestInit & { onError?: (re
     }
 };
 
-const useSWR = (url: string) => {
-    return useSwr(url, fetcher);
-};
+function useSWR<T>(url: string) {
+    return useSwr<T, any>(url, fetcher);
+}
 
 export default useSWR;

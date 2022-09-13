@@ -4,9 +4,9 @@ import { Detail, Panel } from '@navikt/ds-react';
 
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
-import { useDpInnsynSoknadData } from '../../contexts/dp-innsyn-soknad';
-import { useDpInnsynVedtakData } from '../../contexts/dp-innsyn-vedtak';
-import { useDpInnsynPaabegynteSoknaderData } from '../../contexts/dp-innsyn-paabegynte-soknader';
+import { DpInnsynSoknad } from '../../contexts/dp-innsyn-soknad';
+import { Vedtak } from '../../contexts/dp-innsyn-vedtak';
+import { DpInnsynPaabegyntSoknad } from '../../contexts/dp-innsyn-paabegynte-soknader';
 
 import HarIkkeSokt from './dagpenger-har-ikke-sokt';
 import HarPabegyntSoknad from './dagpenger-har-paabegynt-soknad';
@@ -23,6 +23,8 @@ import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
 import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
+import useSWR from '../../hooks/useSWR';
+import { DP_INNSYN_URL } from '../../ducks/api';
 
 function hentDagpengerInnhold(situasjon: DagpengeStatus) {
     if (situasjon === 'paabegynt') {
@@ -57,11 +59,11 @@ const TEKSTER = {
 function DagpengerOgYtelserInnhold(props: Props) {
     const brukerInfoData = useBrukerinfoData();
     const registreringData = useBrukerregistreringData();
-    const paabegynteSoknader = useDpInnsynPaabegynteSoknaderData();
-    const innsendteSoknader = useDpInnsynSoknadData();
-    const dagpengeVedtak = useDpInnsynVedtakData();
     const arbeidssokerperioderData = useArbeidssokerPerioder();
     const arbeidssokerperioder = beregnArbeidssokerperioder(arbeidssokerperioderData);
+    const { data: paabegynteSoknader = [] } = useSWR<DpInnsynPaabegyntSoknad[]>(`${DP_INNSYN_URL}/paabegynte`);
+    const { data: innsendteSoknader = [] } = useSWR<DpInnsynSoknad[]>(`${DP_INNSYN_URL}/soknad`);
+    const { data: dagpengeVedtak = [] } = useSWR<Vedtak[]>(`${DP_INNSYN_URL}/vedtak`);
 
     const dagpengeStatus = beregnDagpengeStatus({
         brukerInfoData,
