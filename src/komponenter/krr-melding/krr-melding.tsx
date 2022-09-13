@@ -1,7 +1,6 @@
-import * as React from 'react';
 import { Alert, BodyShort, Link } from '@navikt/ds-react';
 import { difiLenke } from '../../innhold/lenker';
-import { OppfolgingContext } from '../../contexts/oppfolging';
+import { useOppfolgingData } from '../../contexts/oppfolging';
 import { loggAktivitet } from '../../metrics/metrics';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
@@ -28,7 +27,7 @@ const TEKSTER: Tekster<string> = {
 };
 
 const KrrMelding = () => {
-    const oppfolgingData = React.useContext(OppfolgingContext).data;
+    const oppfolgingData = useOppfolgingData();
     const { reservasjonKRR } = oppfolgingData;
     const amplitudeData = useAmplitudeData();
     const underoppfolging = useUnderOppfolging()?.underoppfolging;
