@@ -14,6 +14,8 @@ import Feilmelding from '../komponenter/feilmeldinger/feilmelding';
 import { ProfilProvider } from '../contexts/profil';
 import * as BrukerInfo from '../contexts/bruker-info';
 import { useEffect } from 'react';
+import { GjelderFraDatoModalProvider } from '../contexts/gjelder-fra-dato-modal';
+import { GjelderFraDatoProvider } from '../contexts/gjelder-fra-dato';
 
 interface Props {
     children: React.ReactElement<any>;
@@ -51,7 +53,11 @@ const ArbeidssokerDataProvider = (props: Props) => {
                 <Brukerregistrering.BrukerregistreringContext.Provider value={brukerregistreringState}>
                     <Egenvurdering.EgenvurderingContext.Provider value={egenvurderingState}>
                         <BrukerInfo.BrukerInfoContext.Provider value={brukerInfoState}>
-                            <ProfilProvider>{props.children}</ProfilProvider>
+                            <ProfilProvider>
+                                <GjelderFraDatoModalProvider>
+                                    <GjelderFraDatoProvider>{props.children}</GjelderFraDatoProvider>
+                                </GjelderFraDatoModalProvider>
+                            </ProfilProvider>
                         </BrukerInfo.BrukerInfoContext.Provider>
                     </Egenvurdering.EgenvurderingContext.Provider>
                 </Brukerregistrering.BrukerregistreringContext.Provider>
