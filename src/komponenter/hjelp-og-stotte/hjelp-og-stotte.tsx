@@ -74,7 +74,6 @@ function HjelpOgStotte() {
     };
 
     const skalViseKssInnhold = erKSSBruker({
-        amplitudeData,
         featuretoggleData,
         oppfolgingData,
         brukerInfoData,

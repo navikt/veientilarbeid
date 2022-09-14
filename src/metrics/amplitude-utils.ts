@@ -3,8 +3,6 @@ import amplitude from 'amplitude-js';
 import { AMPLITUDE_API_KEY_PROD, AMPLITUDE_API_KEY_TEST, AMPLITUDE_ENDPOINT } from '../utils/konstanter';
 import { InnloggingsNiva } from '../contexts/autentisering';
 import { erProduksjon } from '../utils/app-state-utils';
-import { POAGruppe } from '../utils/get-poa-group';
-import { EksperimentId } from '../eksperiment/eksperimenter';
 import { DinSituasjonSvar, ForeslattInnsatsgruppe } from '../contexts/brukerregistrering';
 import * as SprakValg from '../contexts/sprak';
 
@@ -33,14 +31,8 @@ export type BrukergruppeType =
     | 'ukjent';
 
 export type AmplitudeData = {
-    gruppe: POAGruppe;
     brukergruppe: BrukergruppeType;
-    dagpengestatus?: string;
-    dagerSidenDagpengerStanset?: number;
     geografiskTilknytning: string;
-    isKSSX: string;
-    isKSSK: string;
-    erSamarbeidskontor: string;
     ukerRegistrert: number | 'INGEN_DATO';
     dagerRegistrert: number | 'INGEN_DATO';
     nivaa: InnloggingsNiva;
@@ -49,27 +41,14 @@ export type AmplitudeData = {
     servicegruppe: string;
     foreslattInnsatsgruppe: ForeslattInnsatsgruppe | 'INGEN_VERDI';
     rettighetsgruppe: string;
-    meldegruppe: string;
     registreringType: string;
     underOppfolging: string;
-    antallDagerEtterFastsattMeldingsdag: string;
-    antallMeldekortKlareForLevering: number;
-    meldekortEtterregistrerteMeldekort: number;
-    meldekortAntallGjenstaaendeFeriedager: number;
     gitVersion: string;
     buildTimestamp: string;
-    antallSynligeInfomeldinger: number;
     erSykmeldtMedArbeidsgiver: string;
     dinSituasjon: DinSituasjonSvar;
     reservasjonKRR: string;
-    eksperimenter: EksperimentId[];
     aktiveFeatureToggles: string[];
-    dagpengerVedleggEttersendes: number | 'INGEN_DATA';
-    dagpengerSoknadMellomlagret: number | 'INGEN_DATA';
-    dagpengerSoknadVenterPaSvar: 'ja' | 'nei' | 'INGEN_DATA';
-    dagpengerDagerMellomPaabegyntSoknadOgRegistrering: number | 'INGEN_DATA';
-    dagpengerDagerMellomInnsendtSoknadOgRegistrering: number | 'INGEN_DATA';
-    dagpengerStatusBeregning: string;
     sprakValgFraCookie?: SprakValg.Sprak | 'IKKE_VALGT';
     harAktivArbeidssokerperiode: 'INGEN_DATA' | 'N/A' | 'Ja' | 'Nei';
     antallDagerSidenSisteArbeidssokerperiode: number | 'INGEN_DATA' | 'N/A' | 'Ikke avsluttet';

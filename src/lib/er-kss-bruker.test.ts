@@ -91,12 +91,6 @@ describe('Tester funksjonen erKSSBruker', () => {
         expect(erKSSBruker(testdata)).toBe(false);
     });
 
-    test('NEI hvis ikke eksperiment', () => {
-        const testdata = JSON.parse(JSON.stringify(grunndata));
-        testdata.amplitudeData.eksperimenter = [];
-        expect(erKSSBruker(testdata)).toBe(false);
-    });
-
     test('NEI hvis ikke innefor aldersgruppe', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
         testdata.brukerInfoData.alder = 56;

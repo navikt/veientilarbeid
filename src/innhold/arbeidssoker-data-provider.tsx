@@ -16,6 +16,7 @@ import * as BrukerInfo from '../contexts/bruker-info';
 import { useEffect } from 'react';
 import { GjelderFraDatoModalProvider } from '../contexts/gjelder-fra-dato-modal';
 import { GjelderFraDatoProvider } from '../contexts/gjelder-fra-dato';
+import { AmplitudeProvider } from '../komponenter/hent-initial-data/amplitude-provider';
 
 interface Props {
     children: React.ReactElement<any>;
@@ -55,7 +56,9 @@ const ArbeidssokerDataProvider = (props: Props) => {
                         <BrukerInfo.BrukerInfoContext.Provider value={brukerInfoState}>
                             <ProfilProvider>
                                 <GjelderFraDatoModalProvider>
-                                    <GjelderFraDatoProvider>{props.children}</GjelderFraDatoProvider>
+                                    <GjelderFraDatoProvider>
+                                        <AmplitudeProvider>{props.children}</AmplitudeProvider>
+                                    </GjelderFraDatoProvider>
                                 </GjelderFraDatoModalProvider>
                             </ProfilProvider>
                         </BrukerInfo.BrukerInfoContext.Provider>
