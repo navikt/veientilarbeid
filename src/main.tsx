@@ -10,11 +10,13 @@ import Innhold from './innhold/innhold';
 import './index.css';
 import * as Arbeidssoker from './contexts/arbeidssoker';
 import * as FeatureToggle from './contexts/feature-toggles';
+import * as SprakValg from './contexts/sprak';
 
 const Mikrofrontend = () => {
     const [state, setState] = React.useState<Autentisering.State>(Autentisering.initialState);
     const [arbeidssokerState, setArbeidssokerState] = React.useState<Arbeidssoker.State>(Arbeidssoker.initialState);
     const [featureToggleState, setFeatureToggleState] = React.useState<FeatureToggle.State>(FeatureToggle.initialState);
+    const [valgtSprak, setValgtSprak] = React.useState<SprakValg.State>(SprakValg.initialState);
 
     const parameters = Object.values(FeatureToggle.FeatureToggles)
         .map((element) => 'feature=' + element)
@@ -33,6 +35,7 @@ const Mikrofrontend = () => {
             setFeatureToggleState,
             featureTogglesUrl
         );
+        setValgtSprak(SprakValg.hentSprakValgFraUrl());
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -45,7 +48,9 @@ const Mikrofrontend = () => {
             <Autentisering.AutentiseringContext.Provider value={state}>
                 <Arbeidssoker.ArbeidssokerContext.Provider value={arbeidssokerState}>
                     <FeatureToggle.FeaturetoggleContext.Provider value={featureToggleState}>
-                        <Innhold />
+                        <SprakValg.SprakContext.Provider value={valgtSprak}>
+                            <Innhold />
+                        </SprakValg.SprakContext.Provider>
                     </FeatureToggle.FeaturetoggleContext.Provider>
                 </Arbeidssoker.ArbeidssokerContext.Provider>
             </Autentisering.AutentiseringContext.Provider>
