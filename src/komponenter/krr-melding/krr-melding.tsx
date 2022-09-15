@@ -1,12 +1,11 @@
-import * as React from 'react';
 import { Alert, BodyShort, Link } from '@navikt/ds-react';
 import { difiLenke } from '../../innhold/lenker';
-import { OppfolgingContext } from '../../contexts/oppfolging';
+import { useOppfolgingData } from '../../contexts/oppfolging';
 import { loggAktivitet } from '../../metrics/metrics';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
-import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
+import { useUnderOppfolging } from '../../contexts/arbeidssoker';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -28,11 +27,11 @@ const TEKSTER: Tekster<string> = {
 };
 
 const KrrMelding = () => {
-    const oppfolgingData = React.useContext(OppfolgingContext).data;
+    const oppfolgingData = useOppfolgingData();
     const { reservasjonKRR } = oppfolgingData;
     const amplitudeData = useAmplitudeData();
-    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
-    const kanViseKomponent = underOppfolging;
+    const underoppfolging = useUnderOppfolging()?.underoppfolging;
+    const kanViseKomponent = underoppfolging;
     const tekster = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     const handleLenkeKlikk = () => {

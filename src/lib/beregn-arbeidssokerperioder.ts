@@ -1,7 +1,7 @@
 import ukerFraDato from '@alheimsins/uker-fra-dato';
 
-import { Periode } from '../contexts/arbeidssokerperioder';
 import dagerFraDato from '../utils/dager-fra-dato';
+import { Periode } from '../contexts/arbeidssoker';
 
 export interface BeregnedePerioder {
     harAktivArbeidssokerperiode: 'INGEN_DATA' | 'N/A' | 'Ja' | 'Nei';
@@ -13,6 +13,7 @@ export interface BeregnedePerioder {
 
 interface Props {
     arbeidssokerperioder: [] | Periode[];
+    status: number;
 }
 
 function sorterArbeidssokerperioderSisteForst(a: Periode, b: Periode) {
@@ -38,7 +39,7 @@ function beregnAntallUkerMellomSisteArbeidssokerperioder(perioder: Periode[]) {
     return ukerFraDato(new Date(nestSistePeriode?.tilOgMedDato || '2020-01-01'), new Date(sistePeriode.fraOgMedDato));
 }
 
-function beregnArbeidssokerperioder(props: Props | null): BeregnedePerioder {
+function beregnArbeidssokerperioder(props: Props | null | undefined): BeregnedePerioder {
     const { arbeidssokerperioder } = props ? props : { arbeidssokerperioder: null };
 
     if (arbeidssokerperioder === null) {

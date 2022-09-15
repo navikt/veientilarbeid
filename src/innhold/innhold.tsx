@@ -1,34 +1,14 @@
-import { useContext } from 'react';
-
-import { useBrukerregistreringData } from '../contexts/brukerregistrering';
-import { useOppfolgingData } from '../contexts/oppfolging';
-import sjekkOmBrukerErStandardInnsatsgruppe from '../lib/er-standard-innsatsgruppe';
-import InnholdStandard from './innhold-standard';
-import InnholdIkkeStandard from './innhold-ikke-standard';
-import { UnderOppfolgingContext } from '../contexts/under-oppfolging';
-import IkkeRegistrert from '../komponenter/ikke-registrert/ikke-registrert';
-
-function InnholdVelger() {
-    const oppfolgingData = useOppfolgingData();
-    const registreringData = useBrukerregistreringData();
-    const { underOppfolging } = useContext(UnderOppfolgingContext).data;
-    const brukerregistreringData = registreringData?.registrering ?? null;
-    const erStandardInnsatsgruppe = sjekkOmBrukerErStandardInnsatsgruppe({
-        brukerregistreringData,
-        oppfolgingData,
-    });
-
-    if (!underOppfolging) return null;
-    return erStandardInnsatsgruppe ? <InnholdStandard /> : <InnholdIkkeStandard />;
-}
+import { useArbeidssokerPerioder } from '../contexts/arbeidssoker';
+import beregnArbeidssokerperioder from '../lib/beregn-arbeidssokerperioder';
+import IkkeArbeidssokerInnhold from './ikke-arbeidssoker-innhold';
+import ArbeidssokerInnholdWrapper from './arbeidssoker-innhold-wrapper';
 
 function Innhold() {
-    return (
-        <>
-            <InnholdVelger />
-            <IkkeRegistrert />
-        </>
-    );
+    const arbeidssokerperioderData = useArbeidssokerPerioder();
+    const arbeidssokerperioder = beregnArbeidssokerperioder(arbeidssokerperioderData);
+    const harAktivArbeidssokerperiode = arbeidssokerperioder.harAktivArbeidssokerperiode === 'Ja';
+
+    return harAktivArbeidssokerperiode ? <ArbeidssokerInnholdWrapper /> : <IkkeArbeidssokerInnhold />;
 }
 
 export default Innhold;

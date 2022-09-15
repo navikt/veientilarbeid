@@ -1,4 +1,4 @@
-import { Heading, BodyShort, BodyLong } from '@navikt/ds-react';
+import { BodyLong, BodyShort, Heading } from '@navikt/ds-react';
 
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
@@ -6,7 +6,6 @@ import { useDpInnsynSoknadData } from '../../contexts/dp-innsyn-soknad';
 import { useDpInnsynVedtakData } from '../../contexts/dp-innsyn-vedtak';
 import { useDpInnsynPaabegynteSoknaderData } from '../../contexts/dp-innsyn-paabegynte-soknader';
 import { useSprakValg } from '../../contexts/sprak';
-import { useArbeidssokerperioderData } from '../../contexts/arbeidssokerperioder';
 
 import { beregnDagerTilInaktivering } from '../../utils/meldekort-utils';
 import { datoMedUkedag, plussDager } from '../../utils/date-utils';
@@ -14,6 +13,7 @@ import { hentIDag } from '../../utils/chrono';
 import beregnDagpengeStatus, { DagpengeStatus } from '../../lib/beregn-dagpenge-status';
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
+import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
 // TODO - oversette alle tekster til engelsk
 const TEKSTER = {
     nb: {
@@ -82,7 +82,7 @@ function MeldekortAdvarsel({ dagerEtterFastsattMeldedag }: { dagerEtterFastsattM
     const paabegynteSoknader = useDpInnsynPaabegynteSoknaderData();
     const innsendteSoknader = useDpInnsynSoknadData();
     const dagpengeVedtak = useDpInnsynVedtakData();
-    const arbeidssokerperioderData = useArbeidssokerperioderData();
+    const arbeidssokerperioderData = useArbeidssokerPerioder();
     const arbeidssokerperioder = beregnArbeidssokerperioder(arbeidssokerperioderData);
 
     const dagpengeStatus = beregnDagpengeStatus({

@@ -26,8 +26,7 @@ export function kanVise12UkerEgenvurdering({
     featuretoggleData: FeaturetoggleData;
     sistVistFraLocalstorage: number;
 }): boolean {
-    const { ukerRegistrert, eksperimenter } = amplitudeData;
-    const skalSeEksperiment = eksperimenter.includes('onboarding14a');
+    const { ukerRegistrert } = amplitudeData;
     const erRegistrertUke11 = ukerRegistrert === 11;
     const erAAP = brukerInfoData.rettighetsgruppe === 'AAP';
     const brukerregistreringData = registreringData?.registrering ?? null;
@@ -60,7 +59,6 @@ export function kanVise12UkerEgenvurdering({
         erRegistrertUke11 &&
         aldersgruppeUtenForsterketInnsats &&
         !erAAP &&
-        skalSeEksperiment &&
         erStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData }) &&
         !oppfolgingData.kanReaktiveres &&
         !harEgenvurderingEtter11Uker() &&

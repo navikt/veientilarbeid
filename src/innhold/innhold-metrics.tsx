@@ -13,14 +13,14 @@ import { loggVisning } from '../metrics/metrics';
 import { erMikrofrontend } from '../utils/app-state-utils';
 import { hotjarTrigger } from '../hotjar';
 import { InnloggingsNiva, useAutentiseringData } from '../contexts/autentisering';
-import { useUnderOppfolgingData } from '../contexts/under-oppfolging';
 import sjekkOmBrukerErStandardInnsatsgruppe from '../lib/er-standard-innsatsgruppe';
+import { useUnderOppfolging } from '../contexts/arbeidssoker';
 
 type Props = {};
 
 export default function InnholdMetrics() {
     const { securityLevel } = useAutentiseringData();
-    const { underOppfolging } = useUnderOppfolgingData();
+    const underOppfolging = useUnderOppfolging()?.underoppfolging;
 
     if (!underOppfolging || securityLevel === InnloggingsNiva.LEVEL_3) return null;
 

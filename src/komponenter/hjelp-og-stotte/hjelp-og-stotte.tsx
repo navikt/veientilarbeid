@@ -4,12 +4,11 @@ import { Detail, Heading, Panel, ReadMore } from '@navikt/ds-react';
 
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
-import { useUnderOppfolgingData } from '../../contexts/under-oppfolging';
 import { useAutentiseringData } from '../../contexts/autentisering';
 import { useEgenvurderingData } from '../../contexts/egenvurdering';
 import { useOppfolgingData } from '../../contexts/oppfolging';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
-import { useUlesteDialogerData } from '../../contexts/ulestedialoger';
+import * as UlesteDialoger from '../../contexts/ulestedialoger';
 import { useSprakValg } from '../../contexts/sprak';
 
 import RegistrertTeller from './registrert-teller';
@@ -29,6 +28,9 @@ import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { erKSSBruker } from '../../lib/er-kss-bruker';
 import { useProfil } from '../../contexts/profil';
 import { hentProfilnokkelFraLocalStorage } from '../../utils/profil-id-mapper';
+import { useUnderOppfolging } from '../../contexts/arbeidssoker';
+import useSWR from '../../hooks/useSWR';
+import { ULESTEDIALOGER_URL } from '../../ducks/api';
 
 const TEKSTER = {
     nb: {
@@ -48,15 +50,16 @@ function HjelpOgStotte() {
 
     const registreringData = useBrukerregistreringData();
     const featuretoggleData = useFeatureToggleData();
-    const underOppfolgingData = useUnderOppfolgingData();
     const autentiseringData = useAutentiseringData();
     const egenvurderingData = useEgenvurderingData();
     const oppfolgingData = useOppfolgingData();
     const brukerInfoData = useBrukerinfoData();
-    const { antallUleste } = useUlesteDialogerData();
+    const { data: antallUlesteData } = useSWR<UlesteDialoger.Data>(ULESTEDIALOGER_URL);
+    const antallUleste = antallUlesteData?.antallUleste || 0;
     const { profil } = useProfil();
 
     const registrertDato = registreringData?.registrering?.opprettetDato;
+    const underOppfolging = useUnderOppfolging()?.underoppfolging;
 
     const brukProfil = featuretoggleData['veientilarbeid.bruk-profil'];
 
@@ -71,7 +74,6 @@ function HjelpOgStotte() {
     };
 
     const skalViseKssInnhold = erKSSBruker({
-        amplitudeData,
         featuretoggleData,
         oppfolgingData,
         brukerInfoData,
@@ -96,7 +98,7 @@ function HjelpOgStotte() {
     const skalViseEgenvurderingInnsatsgruppeIkkeFastsatt =
         !harAvslattEgenvurdering &&
         kanViseIVURDEgenvurdering({
-            underOppfolgingData,
+            underOppfolging,
             registreringData,
             autentiseringData,
             egenvurderingData,

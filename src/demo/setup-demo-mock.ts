@@ -17,6 +17,7 @@ import {
     ARBEIDSSOKERPERIODER_URL,
     PROFIL_URL,
     ARBEIDSSOKER_NIVA3_URL,
+    ER_STANDARD_INNSATSGRUPPE_URL,
 } from '../ducks/api';
 
 import {
@@ -49,6 +50,7 @@ import { gjelderFraGetResolver, gjelderFraPostResolver } from './demo-state-gjel
 import { brukerProfilGetResolver, brukerProfilPostResolver } from './demo-state-profil';
 import arbeidssokerPerioderResponse from '../mocks/arbeidssoker-perioder-mock';
 import arbeidssokerNiva3Response from '../mocks/arbeidssoker-niva3-mock';
+import { erStandardInnsatsgruppe } from '../mocks/er-standard-innsatsgruppe';
 
 export const demo_handlers = [
     msw_get(VEILARBOPPFOLGING_URL, {
@@ -108,4 +110,5 @@ export const demo_handlers = [
     rest.post(PROFIL_URL, brukerProfilPostResolver),
 
     msw_get(ARBEIDSSOKER_NIVA3_URL, arbeidssokerNiva3Response),
+    msw_get(ER_STANDARD_INNSATSGRUPPE_URL, erStandardInnsatsgruppe),
 ];

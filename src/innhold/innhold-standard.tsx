@@ -10,7 +10,6 @@ import Meldekort from '../komponenter/meldekort/meldekort';
 import HjelpOgStotte from '../komponenter/hjelp-og-stotte/hjelp-og-stotte';
 import Aktivitetsplan from '../komponenter/aktivitetsplan/aktivitetsplan';
 import KvitteringEgenvurdering from '../komponenter/kvitteringer/kvittering-egenvurdering';
-import ReaktiveringWrapper from '../komponenter/reaktivering/reaktivering-wrapper';
 
 const InnholdStandard = () => {
     return (
@@ -18,7 +17,6 @@ const InnholdStandard = () => {
             <InnholdMetrics />
             <InViewport loggTekst="Veien til arbeid i viewport" />
             <div className="limit">
-                <ReaktiveringWrapper />
                 <KrrMelding />
                 <ReaktiveringKvittering />
                 <KvitteringEgenvurdering />

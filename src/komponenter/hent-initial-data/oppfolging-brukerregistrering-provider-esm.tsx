@@ -2,19 +2,12 @@ import * as React from 'react';
 
 import Innholdslaster from '../innholdslaster/innholdslaster';
 import * as Oppfolging from '../../contexts/oppfolging';
-import * as UnderOppfolging from '../../contexts/under-oppfolging';
 import Feilmelding from '../feilmeldinger/feilmelding';
 import * as Brukerregistrering from '../../contexts/brukerregistrering';
 import * as FeatureToggle from '../../contexts/feature-toggles';
 import * as Meldekortstatus from '../../contexts/meldekortstatus';
 import { fetchData } from '../../ducks/api-utils';
-import {
-    BRUKERREGISTRERING_URL,
-    FEATURE_URL,
-    MELDEKORTSTATUS_URL,
-    UNDER_OPPFOLGING_URL,
-    VEILARBOPPFOLGING_URL,
-} from '../../ducks/api';
+import { BRUKERREGISTRERING_URL, FEATURE_URL, MELDEKORTSTATUS_URL, VEILARBOPPFOLGING_URL } from '../../ducks/api';
 import { useAutentiseringData, InnloggingsNiva } from '../../contexts/autentisering';
 
 interface OwnProps {
@@ -33,9 +26,6 @@ const OppfolgingBrukerregistreringProvider = ({ children }: OppfolgingProviderPr
         Brukerregistrering.initialState
     );
     const [oppfolgingState, setOppfolgingState] = React.useState<Oppfolging.State>(Oppfolging.initialState);
-    const [underOppfolgingState, setUnderOppfolgingState] = React.useState<UnderOppfolging.State>(
-        UnderOppfolging.initialState
-    );
     const [featureToggleState, setFeatureToggleState] = React.useState<FeatureToggle.State>(FeatureToggle.initialState);
     const parameters = Object.values(FeatureToggle.FeatureToggles)
         .map((element) => 'feature=' + element)
@@ -47,11 +37,6 @@ const OppfolgingBrukerregistreringProvider = ({ children }: OppfolgingProviderPr
             meldekortstatusState,
             setMeldekortstatusState,
             MELDEKORTSTATUS_URL
-        );
-        fetchData<UnderOppfolging.State, UnderOppfolging.Data>(
-            underOppfolgingState,
-            setUnderOppfolgingState,
-            UNDER_OPPFOLGING_URL
         );
         fetchData<FeatureToggle.State, FeatureToggle.Data>(
             featureToggleState,
@@ -69,7 +54,7 @@ const OppfolgingBrukerregistreringProvider = ({ children }: OppfolgingProviderPr
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [securityLevel]);
 
-    const avhengigheter: any[] = [underOppfolgingState];
+    const avhengigheter: any[] = [];
     if (securityLevel === InnloggingsNiva.LEVEL_4) {
         avhengigheter.push(oppfolgingState, brukerregistreringState);
     }
@@ -78,13 +63,11 @@ const OppfolgingBrukerregistreringProvider = ({ children }: OppfolgingProviderPr
         <Innholdslaster feilmeldingKomponent={<Feilmelding />} storrelse="XXL" avhengigheter={avhengigheter}>
             <Oppfolging.OppfolgingContext.Provider value={oppfolgingState}>
                 <Meldekortstatus.MeldekortstatusContext.Provider value={meldekortstatusState}>
-                    <UnderOppfolging.UnderOppfolgingContext.Provider value={underOppfolgingState}>
-                        <Brukerregistrering.BrukerregistreringContext.Provider value={brukerregistreringState}>
-                            <FeatureToggle.FeaturetoggleContext.Provider value={featureToggleState}>
-                                {children}
-                            </FeatureToggle.FeaturetoggleContext.Provider>
-                        </Brukerregistrering.BrukerregistreringContext.Provider>
-                    </UnderOppfolging.UnderOppfolgingContext.Provider>
+                    <Brukerregistrering.BrukerregistreringContext.Provider value={brukerregistreringState}>
+                        <FeatureToggle.FeaturetoggleContext.Provider value={featureToggleState}>
+                            {children}
+                        </FeatureToggle.FeaturetoggleContext.Provider>
+                    </Brukerregistrering.BrukerregistreringContext.Provider>
                 </Meldekortstatus.MeldekortstatusContext.Provider>
             </Oppfolging.OppfolgingContext.Provider>
         </Innholdslaster>

@@ -14,25 +14,19 @@ import * as Meldekort from '../../contexts/meldekort';
 import * as Egenvurdering from '../../contexts/egenvurdering';
 import * as UlesteDialoger from '../../contexts/ulestedialoger';
 import * as SprakValg from '../../contexts/sprak';
-import * as Arbeidssokerperioder from '../../contexts/arbeidssokerperioder';
-import * as Arbeidssoker from '../../contexts/arbeidssoker';
 
 import { fetchData } from '../../ducks/api-utils';
 import {
     BRUKERINFO_URL,
+    DP_INNSYN_URL,
     EGENVURDERINGBESVARELSE_URL,
     MOTESTOTTE_URL,
     NESTE_MELDEKORT_URL,
     ULESTEDIALOGER_URL,
-    DP_INNSYN_URL,
-    ARBEIDSSOKERPERIODER_URL,
-    ARBEIDSSOKER_NIVA3_URL,
 } from '../../ducks/api';
 
 import { AmplitudeProvider } from './amplitude-provider';
-import { useAutentiseringData, InnloggingsNiva } from '../../contexts/autentisering';
-import { UnderOppfolgingContext } from '../../contexts/under-oppfolging';
-import { useFeatureToggleData } from '../../contexts/feature-toggles';
+import { InnloggingsNiva, useAutentiseringData } from '../../contexts/autentisering';
 
 import * as DpInnsynSoknad from '../../contexts/dp-innsyn-soknad';
 import * as DpInnsynVedtak from '../../contexts/dp-innsyn-vedtak';
@@ -40,6 +34,7 @@ import * as DpInnsynPaabegynt from '../../contexts/dp-innsyn-paabegynte-soknader
 import { GjelderFraDatoModalProvider } from '../../contexts/gjelder-fra-dato-modal';
 import { GjelderFraDatoProvider } from '../../contexts/gjelder-fra-dato';
 import { ProfilProvider } from '../../contexts/profil';
+import { useUnderOppfolging } from '../../contexts/arbeidssoker';
 
 const skalSjekkeEgenvurderingBesvarelse = (
     foreslaattInnsatsgruppe: ForeslattInnsatsgruppe | undefined | null
@@ -78,7 +73,7 @@ const hentSprakValg = (): SprakValg.State => {
 
 const DataProvider = ({ children }: Props) => {
     const { securityLevel } = useAutentiseringData();
-    const { underOppfolging } = React.useContext(UnderOppfolgingContext).data;
+    const underOppfolging = useUnderOppfolging()?.underoppfolging;
     const [motestotteState, setMotestotteState] = React.useState<Motestotte.State>(Motestotte.initialState);
     const [meldekortState, setMeldekortState] = React.useState<Meldekort.State>(Meldekort.initialState);
     const [brukerInfoState, setBrukerInfoState] = React.useState<BrukerInfo.State>(BrukerInfo.initialState);
@@ -96,16 +91,9 @@ const DataProvider = ({ children }: Props) => {
     const [DpInnsynPaabegyntState, setDpInnsynPaabegyntState] = React.useState<DpInnsynPaabegynt.State>(
         DpInnsynPaabegynt.initialState
     );
-    const [arbeidssokerperioderState, setArbeidssokerperioderState] = React.useState<Arbeidssokerperioder.State>(
-        Arbeidssokerperioder.initialState
-    );
-    const [arbeidssokerState, setArbeidssokerState] = React.useState<Arbeidssoker.State>(Arbeidssoker.initialState);
 
     const data = useBrukerregistreringData();
     const foreslaattInnsatsgruppe = selectForeslattInnsatsgruppe(data);
-    const featuretoggles = useFeatureToggleData();
-    const skalHenteArbeidssokerperioder = featuretoggles['veientilarbeid.logg-arbeidssokerperioder'];
-    const skalBrukeArbeidssokerNiva3Api = featuretoggles['veientilarbeid.arbeidssoker-niva3'];
 
     React.useEffect(() => {
         if (securityLevel !== InnloggingsNiva.LEVEL_4) {
@@ -118,14 +106,6 @@ const DataProvider = ({ children }: Props) => {
     React.useEffect(() => {
         if (securityLevel !== InnloggingsNiva.LEVEL_4) {
             return;
-        }
-
-        if (skalHenteArbeidssokerperioder) {
-            fetchData<Arbeidssokerperioder.State, Arbeidssokerperioder.Data>(
-                arbeidssokerperioderState,
-                setArbeidssokerperioderState,
-                ARBEIDSSOKERPERIODER_URL
-            );
         }
 
         fetchData<BrukerInfo.State, BrukerInfo.Data>(brukerInfoState, setBrukerInfoState, BRUKERINFO_URL);
@@ -168,18 +148,7 @@ const DataProvider = ({ children }: Props) => {
 
         setValgtSprak(hentSprakValg());
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [securityLevel, underOppfolging, skalHenteArbeidssokerperioder]);
-
-    React.useEffect(() => {
-        if (skalBrukeArbeidssokerNiva3Api) {
-            fetchData<Arbeidssoker.State, Arbeidssoker.Data>(
-                arbeidssokerState,
-                setArbeidssokerState,
-                ARBEIDSSOKER_NIVA3_URL
-            );
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [skalBrukeArbeidssokerNiva3Api]);
+    }, [securityLevel, underOppfolging]);
 
     const avhengigheter: any[] = [];
     const ventPa: any[] = [];
@@ -217,21 +186,13 @@ const DataProvider = ({ children }: Props) => {
                                     <DpInnsynSoknad.DpInnsynSoknadContext.Provider value={dpInnsynSoknadState}>
                                         <DpInnsynVedtak.DpInnsynVedtakContext.Provider value={dpInnsynVedtakState}>
                                             <SprakValg.SprakContext.Provider value={valgtSprak}>
-                                                <Arbeidssokerperioder.ArbeidssokerperioderContext.Provider
-                                                    value={arbeidssokerperioderState}
-                                                >
-                                                    <GjelderFraDatoModalProvider>
-                                                        <GjelderFraDatoProvider>
-                                                            <ProfilProvider>
-                                                                <Arbeidssoker.ArbeidssokerContext.Provider
-                                                                    value={arbeidssokerState}
-                                                                >
-                                                                    <AmplitudeProvider>{children}</AmplitudeProvider>
-                                                                </Arbeidssoker.ArbeidssokerContext.Provider>
-                                                            </ProfilProvider>
-                                                        </GjelderFraDatoProvider>
-                                                    </GjelderFraDatoModalProvider>
-                                                </Arbeidssokerperioder.ArbeidssokerperioderContext.Provider>
+                                                <GjelderFraDatoModalProvider>
+                                                    <GjelderFraDatoProvider>
+                                                        <ProfilProvider>
+                                                            <AmplitudeProvider>{children}</AmplitudeProvider>
+                                                        </ProfilProvider>
+                                                    </GjelderFraDatoProvider>
+                                                </GjelderFraDatoModalProvider>
                                             </SprakValg.SprakContext.Provider>
                                         </DpInnsynVedtak.DpInnsynVedtakContext.Provider>
                                     </DpInnsynSoknad.DpInnsynSoknadContext.Provider>

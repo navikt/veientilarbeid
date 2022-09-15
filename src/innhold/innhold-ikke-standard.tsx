@@ -7,7 +7,6 @@ import ReaktiveringKvittering from '../komponenter/reaktivering/reaktivering-kvi
 import IkkeStandard from '../komponenter/ikke-standard/ikke-standard';
 import Motestotte from '../komponenter/ikke-standard/motestotte';
 import Egenvurdering from '../komponenter/ikke-standard/egenvurdering';
-import ReaktiveringWrapper from '../komponenter/reaktivering/reaktivering-wrapper';
 import KvitteringEgenvurdering from '../komponenter/kvitteringer/kvittering-egenvurdering';
 
 const InnholdView = () => {
@@ -16,7 +15,6 @@ const InnholdView = () => {
             <InnholdMetrics />
             <InViewport loggTekst="Veien til arbeid i viewport - ikke-standard" />
             <div className="limit">
-                <ReaktiveringWrapper />
                 <KrrMelding />
                 <ReaktiveringKvittering />
                 <KvitteringEgenvurdering />

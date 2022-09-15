@@ -1,7 +1,5 @@
 import { useProfil } from '../../contexts/profil';
 import * as React from 'react';
-import { OppfolgingContext } from '../../contexts/oppfolging';
-import { InnloggingsNiva, useAutentiseringData } from '../../contexts/autentisering';
 import ErRendret from '../er-rendret/er-rendret';
 import { Alert, BodyShort, Button, Heading, Link } from '@navikt/ds-react';
 import InViewport from '../in-viewport/in-viewport';
@@ -37,10 +35,6 @@ const Reaktivering = () => {
     const [visReaktiveringAdvarsel, setVisReaktiveringAdvarsel] = React.useState(reaktiveringVisning);
 
     const amplitudeData = useAmplitudeData();
-    const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
-    const { securityLevel } = useAutentiseringData();
-    const isLevel4 = securityLevel === InnloggingsNiva.LEVEL_4;
-    const kanViseKomponent = isLevel4 && kanReaktiveres;
 
     const handleReaktivering = (aktivitet: string) => {
         loggAktivitet({ aktivitet: aktivitet, ...amplitudeData });
@@ -62,12 +56,8 @@ const Reaktivering = () => {
         setVisReaktiveringAdvarsel(reaktiveringsvalg.valg);
     };
 
-    if (!kanViseKomponent) {
-        return null;
-    }
-
     return (
-        <section className="blokk-m">
+        <section className="limit blokk-m">
             <ErRendret loggTekst="Rendrer tema: kan reaktiveres" />
             <Alert variant={visReaktiveringAdvarsel === 'ja' ? 'warning' : 'info'}>
                 <Heading size="small" level="2" className="blokk-xs">
