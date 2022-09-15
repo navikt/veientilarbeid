@@ -2,6 +2,9 @@ import useSwr from 'swr';
 
 export const fetcher = async (path: string, opts?: RequestInit & { onError?: (response: any) => void }) => {
     const response = await fetch(path, {
+        headers: {
+            'Content-Type': 'application/json',
+        },
         ...opts,
         credentials: 'include',
     });
