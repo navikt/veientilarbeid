@@ -1,23 +1,14 @@
-import { useArbeidssokerPerioder, useUnderOppfolging } from '../contexts/arbeidssoker';
+import { useArbeidssokerPerioder } from '../contexts/arbeidssoker';
 import beregnArbeidssokerperioder from '../lib/beregn-arbeidssokerperioder';
-import ArbeidssokerInnhold from './arbeidssoker-innhold';
 import IkkeArbeidssokerInnhold from './ikke-arbeidssoker-innhold';
-import ArbeidssokerDataProvider from './arbeidssoker-data-provider';
+import ArbeidssokerInnholdWrapper from './arbeidssoker-innhold-wrapper';
 
 function Innhold() {
     const arbeidssokerperioderData = useArbeidssokerPerioder();
-    const underOppfolgingData = useUnderOppfolging();
     const arbeidssokerperioder = beregnArbeidssokerperioder(arbeidssokerperioderData);
-    const erArbeidssoker =
-        arbeidssokerperioder.harAktivArbeidssokerperiode === 'Ja' || underOppfolgingData?.underoppfolging;
+    const harAktivArbeidssokerperiode = arbeidssokerperioder.harAktivArbeidssokerperiode === 'Ja';
 
-    return erArbeidssoker ? (
-        <ArbeidssokerDataProvider>
-            <ArbeidssokerInnhold />
-        </ArbeidssokerDataProvider>
-    ) : (
-        <IkkeArbeidssokerInnhold />
-    );
+    return harAktivArbeidssokerperiode ? <ArbeidssokerInnholdWrapper /> : <IkkeArbeidssokerInnhold />;
 }
 
 export default Innhold;
