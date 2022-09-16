@@ -18,10 +18,7 @@ export const fetcher = async (path: string, opts?: RequestInit & { onError?: (re
         throw new Error(response.statusText);
     }
 
-    const contentType = response.headers.get('Content-Type');
-    if (contentType && /application\/json/.test(contentType)) {
-        return await response.json();
-    }
+    return await response.json();
 };
 
 function useSWR<T>(url: string) {
