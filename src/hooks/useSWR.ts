@@ -1,4 +1,5 @@
 import useSwr from 'swr';
+import useSwrImmutable from 'swr/immutable';
 
 export const fetcher = async (path: string, opts?: RequestInit & { onError?: (response: any) => void }) => {
     const response = await fetch(path, {
@@ -25,4 +26,8 @@ function useSWR<T>(url: string) {
     return useSwr<T, any>(url, fetcher);
 }
 
-export default useSWR;
+function useSWRImmutable<T>(url: string) {
+    return useSwrImmutable(url, fetcher);
+}
+
+export { useSWR, useSWRImmutable };

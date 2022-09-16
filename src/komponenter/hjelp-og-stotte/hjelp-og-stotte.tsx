@@ -29,7 +29,7 @@ import { erKSSBruker } from '../../lib/er-kss-bruker';
 import { useProfil } from '../../contexts/profil';
 import { hentProfilnokkelFraLocalStorage } from '../../utils/profil-id-mapper';
 import { useUnderOppfolging } from '../../contexts/arbeidssoker';
-import useSWR from '../../hooks/useSWR';
+import { useSWR } from '../../hooks/useSWR';
 import { ULESTEDIALOGER_URL } from '../../ducks/api';
 
 const TEKSTER = {
