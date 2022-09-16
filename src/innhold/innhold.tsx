@@ -7,7 +7,7 @@ function Innhold() {
     const arbeidssokerperioderData = useArbeidssokerPerioder();
     const arbeidssokerperioder = beregnArbeidssokerperioder(arbeidssokerperioderData);
     const harAktivArbeidssokerperiode = arbeidssokerperioder.harAktivArbeidssokerperiode === 'Ja';
-    console.log('aia - <Innhold> harAktivArbeidssokerperiode=', harAktivArbeidssokerperiode);
+
     return harAktivArbeidssokerperiode ? <ArbeidssokerInnholdWrapper /> : <IkkeArbeidssokerInnhold />;
 }
 
