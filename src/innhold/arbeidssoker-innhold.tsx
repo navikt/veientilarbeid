@@ -10,7 +10,7 @@ function ArbeidssokerInnhold() {
     const innloggingsnivaa = useAutentiseringData().securityLevel;
     const { data: erStandard, error } = useSWRImmutable(ER_STANDARD_INNSATSGRUPPE_URL);
 
-    if (erStandard === null && !error) return null;
+    if (erStandard === undefined && !error) return null;
 
     if (underOppfolging && innloggingsnivaa === InnloggingsNiva.LEVEL_4 && erStandard) {
         return <InnholdStandard />;
