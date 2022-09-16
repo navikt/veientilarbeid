@@ -19,6 +19,10 @@ export const fetcher = async (path: string, opts?: RequestInit & { onError?: (re
         throw new Error(response.statusText);
     }
 
+    if (response.status === 204) {
+        return null;
+    }
+
     return await response.json();
 };
 

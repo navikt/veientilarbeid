@@ -43,12 +43,12 @@ const TEKSTER = {
 };
 
 function MeldekortHovedInnhold() {
-    const { data: meldekortData = null } = useSWR<Meldekort.Data>(NESTE_MELDEKORT_URL);
+    const { data: meldekortData = null, error } = useSWR<Meldekort.Data>(NESTE_MELDEKORT_URL);
 
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
-    if (meldekortData === null) {
+    if (error) {
         return (
             <>
                 <ErRendret loggTekst="Rendrer feilmelding for meldekort" />
