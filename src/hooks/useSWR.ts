@@ -26,7 +26,7 @@ function useSWR<T>(url: string) {
     return useSwr<T, any>(url, fetcher);
 }
 
-function useSWRImmutable<T>(url: string) {
+function useSWRImmutable(url: string) {
     return useSwrImmutable(url, fetcher);
 }
 
