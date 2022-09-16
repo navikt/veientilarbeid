@@ -23,7 +23,7 @@ import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
 import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
-import useSWR from '../../hooks/useSWR';
+import { useSWR } from '../../hooks/useSWR';
 import { DP_INNSYN_URL } from '../../ducks/api';
 
 function hentDagpengerInnhold(situasjon: DagpengeStatus) {

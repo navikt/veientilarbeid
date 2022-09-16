@@ -1,4 +1,5 @@
 import useSwr from 'swr';
+import useSwrImmutable from 'swr/immutable';
 
 export const fetcher = async (path: string, opts?: RequestInit & { onError?: (response: any) => void }) => {
     const response = await fetch(path, {
@@ -18,14 +19,19 @@ export const fetcher = async (path: string, opts?: RequestInit & { onError?: (re
         throw new Error(response.statusText);
     }
 
-    const contentType = response.headers.get('Content-Type');
-    if (contentType && /application\/json/.test(contentType)) {
-        return await response.json();
+    if (response.status === 204) {
+        return null;
     }
+
+    return await response.json();
 };
 
 function useSWR<T>(url: string) {
     return useSwr<T, any>(url, fetcher);
 }
 
-export default useSWR;
+function useSWRImmutable(url: string) {
+    return useSwrImmutable(url, fetcher);
+}
+
+export { useSWR, useSWRImmutable };
