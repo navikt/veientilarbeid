@@ -8,7 +8,9 @@ import { useSWRImmutable } from '../hooks/useSWR';
 function ArbeidssokerInnhold() {
     const underOppfolging = useUnderOppfolging()?.underoppfolging;
     const innloggingsnivaa = useAutentiseringData().securityLevel;
-    const { data: erStandard } = useSWRImmutable(ER_STANDARD_INNSATSGRUPPE_URL);
+    const { data: erStandard, error } = useSWRImmutable(ER_STANDARD_INNSATSGRUPPE_URL);
+
+    if (erStandard === null && !error) return null;
 
     if (underOppfolging && innloggingsnivaa === InnloggingsNiva.LEVEL_4 && erStandard) {
         return <InnholdStandard />;
