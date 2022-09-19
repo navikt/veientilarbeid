@@ -2,21 +2,21 @@
     background-color: var(--navds-global-color-green-300);
 }
 
-.demo-heading {
+.demoHeading {
     text-align: center;
     padding-top: 10px;
     padding-bottom: 10px;
 }
 
-.demodashboard-innhold {
+.demodashboardInnhold {
     background-color: var(--navds-global-color-green-200);
     padding: 20px;
 }
 
-.demo-featuretoggles {
+.demoFeaturetoggles {
     background-color: var(--navds-global-color-green-100);
 }
 
-.demo-checkboxpanel {
+.demoCheckboxpanel {
     background-color: var(--navds-global-color-green-200);
 }

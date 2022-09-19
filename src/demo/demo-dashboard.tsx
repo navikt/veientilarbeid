@@ -61,7 +61,7 @@ import { InnloggingsNiva } from '../contexts/autentisering';
 import { setFastTidspunktForIDag } from '../utils/chrono';
 import { FeatureToggles, prettyPrintFeatureToggle } from '../contexts/feature-toggles';
 
-import './demo-dashboard.css';
+import styles from './demo-dashboard.module.css';
 
 const DemoDashboard = () => {
     const SYKMELDT_MED_ARBEIDSGIVER = DemoData.SYKMELDT_MED_ARBEIDSGIVER;
@@ -289,11 +289,11 @@ const DemoDashboard = () => {
         return null;
     }
     return (
-        <section className="demodashboard">
-            <Heading size="xlarge" className="demo-heading">
+        <section className={styles.demodashboard}>
+            <Heading size="xlarge" className={styles.demoHeading}>
                 Demo av Veien til arbeid
             </Heading>
-            <Panel className="demodashboard-innhold">
+            <Panel className={styles.demodashboardInnhold}>
                 <Grid>
                     <Cell xs={12} md={6} lg={3}>
                         <Select
@@ -457,7 +457,7 @@ const DemoDashboard = () => {
                         </Select>
                     </Cell>
                     <Cell xs={6} md={6} lg={3}>
-                        <Panel className="demo-checkboxpanel">
+                        <Panel className={styles.demoCheckboxpanel}>
                             <CheckboxGroup
                                 // onChange={handleClick}
                                 legend=""
@@ -546,7 +546,7 @@ const DemoDashboard = () => {
                         </Panel>
                     </Cell>
                     <Cell xs={6} md={6} lg={3}>
-                        <Panel className="demo-featuretoggles">
+                        <Panel className={styles.demoFeaturetoggles}>
                             <CheckboxGroup legend={'Featuretoggles'}>
                                 {Object.values(FeatureToggles).map((toggle) => {
                                     return (
