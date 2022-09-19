@@ -7,6 +7,7 @@ import { JaEllerNei } from '../../profil';
 import { loggAktivitet } from '../../metrics/metrics';
 import { dialogLenke, reaktiveringLenke } from '../../innhold/lenker';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
+import styles from '../../innhold/innhold.module.css';
 
 function valgAvVisningErUtdatert(valgtVisning: JaEllerNei): boolean {
     // Hvis man velger at man ikke har behov for å være registrert lenger, skal dette bare være gyldig i 28 dager,
@@ -57,7 +58,7 @@ const Reaktivering = () => {
     };
 
     return (
-        <section className="limit blokk-m">
+        <section className={`${styles.limit} blokk-m`}>
             <ErRendret loggTekst="Rendrer tema: kan reaktiveres" />
             <Alert variant={visReaktiveringAdvarsel === 'ja' ? 'warning' : 'info'}>
                 <Heading size="small" level="2" className="blokk-xs">

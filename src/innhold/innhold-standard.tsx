@@ -1,4 +1,4 @@
-import './innhold.css';
+import styles from './innhold.module.css';
 import KrrMelding from '../komponenter/krr-melding/krr-melding';
 import InnholdMetrics from './innhold-metrics';
 import InViewport from '../komponenter/in-viewport/in-viewport';
@@ -16,7 +16,7 @@ const InnholdStandard = () => {
         <>
             <InnholdMetrics />
             <InViewport loggTekst="Veien til arbeid i viewport" />
-            <div className="limit">
+            <div className={styles.limit}>
                 <KrrMelding />
                 <ReaktiveringKvittering />
                 <KvitteringEgenvurdering />
