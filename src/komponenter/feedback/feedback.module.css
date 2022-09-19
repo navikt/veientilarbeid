@@ -1,21 +1,21 @@
-.feedback-container {
+.feedbackContainer {
     display: flex;
     flex-direction: column;
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
 
-.feedback-container .feedback-tittel {
+.feedbackContainer .feedbackTittel {
     margin-right: 0.5rem;
 }
 
-.feedback-space {
+.feedbackSpace {
     margin-right: 0.5rem;
     margin-left: 0.5rem;
     color: var(--navds-global-color-gray-300);
 }
 
-.feedback-knapp {
+.feedbackKnapp {
     border: none;
     background: none;
     color: var(--navds-global-color-blue-500);
@@ -26,7 +26,7 @@
     text-align: center;
 }
 
-.feedback-knapp:hover {
+.feedbackKnapp:hover {
     background: var(--navds-global-color-blue-500);
     color: white;
 }
@@ -40,11 +40,11 @@
     margin-top: 0.5rem;
 }
 
-.feedback-utdyping {
+.feedbackUtdyping {
     padding: 1rem 1rem 0 1rem;
 }
 
-.feedback-grunner {
+.feedbackGrunner {
     list-style: none;
     padding: 0 1rem 0 1rem;
 }
@@ -57,7 +57,7 @@
     border: 1px solid black;
 }
 
-.feedback-grunner > li > button:hover {
+.feedbackGrunner > li > button:hover {
     background: var(--navds-global-color-blue-500);
     color: white;
     cursor: pointer;

@@ -8,7 +8,7 @@ import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useBrowserStorage } from '../../hooks/use-browserstorage';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
-import './feedback.css';
+import styles from './feedback.module.css';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -91,31 +91,31 @@ function Feedback({ id, className, sporsmal }: Props) {
     };
 
     const jaKnapp = classNames({
-        valgt: valgt === 'ja',
-        'feedback-knapp': true,
+        [styles.valgt]: valgt === 'ja',
+        [styles.feedbackKnapp]: true,
     });
 
     const neiKnapp = classNames({
-        valgt: /nei/.test(valgt),
-        'feedback-knapp': true,
+        [styles.valgt]: /nei/.test(valgt),
+        [styles.feedbackKnapp]: true,
     });
 
     const vetIkkeKnapp = classNames({
-        valgt: valgt === 'vet ikke',
-        'feedback-knapp': true,
+        [styles.valgt]: valgt === 'vet ikke',
+        [styles.feedbackKnapp]: true,
     });
 
     return (
         <>
-            <div className={`${className ? className : ''} feedback-container`}>
-                <Detail size="small" className="feedback-tittel">
+            <div className={`${className ? className : ''} ${styles.feedbackContainer}`}>
+                <Detail size="small" className={styles.feedbackTittel}>
                     {sporsmal ? sporsmal : tekst('varDetteNyttig')}
                 </Detail>
-                <div className={'valg'}>
+                <div className={styles.valg}>
                     <button onClick={() => handleFeedback('ja')} className={jaKnapp}>
                         <Detail size="small">{tekst('ja')}</Detail>
                     </button>
-                    <span className="feedback-space" aria-hidden="true">
+                    <span className={styles.feedbackSpace} aria-hidden="true">
                         |
                     </span>
                     <button
@@ -135,8 +135,8 @@ function Feedback({ id, className, sporsmal }: Props) {
                         arrow={false}
                     >
                         <Popover.Content>
-                            <BodyShort className="feedback-utdyping">{tekst('hvorforNei')}</BodyShort>
-                            <ul className="feedback-grunner">
+                            <BodyShort className={styles.feedbackUtdyping}>{tekst('hvorforNei')}</BodyShort>
+                            <ul className={styles.feedbackGrunner}>
                                 <li>
                                     <button onClick={() => handleFeedback('nei - visste det fra før')}>
                                         {tekst('gammeltNytt')}
@@ -162,7 +162,7 @@ function Feedback({ id, className, sporsmal }: Props) {
                             </ul>
                         </Popover.Content>
                     </Popover>
-                    <span className="feedback-space" aria-hidden="true">
+                    <span className={styles.feedbackSpace} aria-hidden="true">
                         |
                     </span>
                     <button onClick={() => handleFeedback('vet ikke')} className={vetIkkeKnapp}>
