@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './innholdslaster.css';
+import styles from './innholdslaster.module.css';
 import { DataElement, STATUS } from '../../ducks/api';
 import { Loader } from '@navikt/ds-react';
 
@@ -85,10 +85,10 @@ class Innholdslaster extends React.Component<InnholdslasterProps, Innholdslaster
             return this.renderChildren();
         } else if (noenHarFeil(avhengigheterFiltrert)) {
             this.clearTimer();
-            return <div className="innholdslaster-feilmelding">{feilmeldingKomponent}</div>;
+            return <div className={styles.innholdslasterFeilmelding}>{feilmeldingKomponent}</div>;
         }
         return (
-            <div className="innholdslaster-laster">
+            <div className={styles.innholdslasterLaster}>
                 <Loader transparent size="2xlarge" />
             </div>
         );
