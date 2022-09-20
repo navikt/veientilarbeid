@@ -1,3 +1,5 @@
+import styles from './tall.module.css';
+
 interface Props {
     tall: Number;
     inverted?: boolean;
@@ -6,15 +8,15 @@ interface Props {
 }
 
 function hentStil(inverted?: boolean, aktiv?: boolean, inaktiv?: boolean) {
-    let stil = 'tall-sirkel';
+    let stil = styles.tallSirkel;
     if (inverted) {
-        stil = 'tall-sirkel-inverted';
+        stil = styles.tallSirkelInverted;
     }
     if (aktiv) {
-        stil = 'tall-sirkel-aktiv';
+        stil = styles.tallSirkelAktiv;
     }
     if (inaktiv) {
-        stil = 'tall-sirkel-inaktiv';
+        stil = styles.tallSirkelInaktiv;
     }
     return stil;
 }
