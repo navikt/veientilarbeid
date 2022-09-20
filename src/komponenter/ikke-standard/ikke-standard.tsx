@@ -1,6 +1,7 @@
 import { BodyLong, Heading, Link, Panel } from '@navikt/ds-react';
 import { Bandage, Dialog, Email, Laptop, Task } from '@navikt/ds-icons';
 import spacingStyles from '../../spacing.module.css';
+import flexStyles from '../../flex.module.css';
 
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
@@ -52,7 +53,7 @@ const TEKSTER = {
 
 const ListeElement = (ikon: JSX.Element, innhold: JSX.Element) => {
     return (
-        <li className={`flex ${spacingStyles.mb2}`}>
+        <li className={`${flexStyles.flex} ${spacingStyles.mb2}`}>
             <span
                 style={{
                     marginRight: '0.5em',

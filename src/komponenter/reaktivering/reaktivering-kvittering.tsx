@@ -2,6 +2,7 @@ import { Panel, Heading, BodyShort, Link, Button, Detail } from '@navikt/ds-reac
 import { Close, Money } from '@navikt/ds-icons';
 import React, { useEffect, useState } from 'react';
 import spacingStyles from '../../spacing.module.css';
+import flexStyles from '../../flex.module.css';
 
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { dagpengerSoknadLenke } from '../../innhold/lenker';
@@ -85,7 +86,7 @@ const ReaktiveringKvittering = () => {
 
     return (
         <>
-            <Panel className={`flex ${spacingStyles.blokkS} ${spacingStyles.px1_5}`}>
+            <Panel className={`${flexStyles.flex} ${spacingStyles.blokkS} ${spacingStyles.px1_5}`}>
                 <span
                     style={{
                         marginRight: '0.5em',
@@ -97,7 +98,7 @@ const ReaktiveringKvittering = () => {
                     <Money />
                 </span>
                 <div className="full-width">
-                    <div className={`flex space-between ${spacingStyles.blokkS}`}>
+                    <div className={`${flexStyles.flex} ${flexStyles.spaceBetween} ${spacingStyles.blokkS}`}>
                         <div>
                             <Detail uppercase style={{ marginTop: '-1rem' }}>
                                 {tekst('tittel')}

@@ -2,6 +2,7 @@ import React from 'react';
 import { Money } from '@navikt/ds-icons';
 import { Detail, Panel } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
+import flexStyles from '../../flex.module.css';
 
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
@@ -80,7 +81,7 @@ function DagpengerOgYtelserInnhold(props: Props) {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     return (
-        <Panel className={`flex ${spacingStyles.px1_5}`}>
+        <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
             <span
                 style={{
                     marginRight: '0.5em',

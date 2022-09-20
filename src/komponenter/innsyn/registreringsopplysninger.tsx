@@ -1,5 +1,6 @@
 import { BodyShort } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
+import flexStyles from '../../flex.module.css';
 
 import { loggAktivitet } from '../../metrics/metrics';
 import { dialogLenke } from '../../innhold/lenker';
@@ -64,7 +65,7 @@ const Opplysninger = (props: any) => {
     };
 
     return !kanViseKomponent ? null : (
-        <div className="flex flex-column">
+        <div className={`${flexStyles.flex} ${flexStyles.flexColumn}`}>
             <div className={spacingStyles.blokkS}>
                 <BodyShort>
                     {manueltRegistrertAv ? 'NAV' : 'Du'} registrerte deg som arbeidssøker{' '}

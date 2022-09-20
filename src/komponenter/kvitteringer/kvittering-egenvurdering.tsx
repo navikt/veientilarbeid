@@ -3,6 +3,7 @@ import * as React from 'react';
 import { Close, SuccessColored } from '@navikt/ds-icons';
 import { Button, Detail, Heading, BodyShort, Panel } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
+import flexStyles from '../../flex.module.css';
 
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { loggAktivitet } from '../../metrics/metrics';
@@ -45,7 +46,7 @@ function Kvittering(props: KvitteringProps) {
 
     return (
         <>
-            <Panel className={`flex ${spacingStyles.blokkS} ${spacingStyles.px1_5}`}>
+            <Panel className={`${flexStyles.flex} ${spacingStyles.blokkS} ${spacingStyles.px1_5}`}>
                 <span
                     style={{
                         marginRight: '0.5em',
@@ -57,7 +58,7 @@ function Kvittering(props: KvitteringProps) {
                     <SuccessColored />
                 </span>
                 <div className="full-width">
-                    <div className={`flex space-between ${spacingStyles.blokkXs}`}>
+                    <div className={`${flexStyles.flex} ${flexStyles.spaceBetween} ${spacingStyles.blokkXs}`}>
                         <div>
                             <Detail uppercase style={{ marginTop: '-1rem' }}>
                                 {tekst('egenvurdering')}

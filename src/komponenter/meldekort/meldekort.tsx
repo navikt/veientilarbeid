@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Detail, Panel, ReadMore } from '@navikt/ds-react';
 import { Notes } from '@navikt/ds-icons';
 import spacingStyles from '../../spacing.module.css';
+import flexStyles from '../../flex.module.css';
 
 import { useSprakValg } from '../../contexts/sprak';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
@@ -34,7 +35,7 @@ function Meldekort() {
     };
 
     return (
-        <Panel className={`flex ${spacingStyles.px1_5}`}>
+        <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
             <span
                 style={{
                     marginRight: '0.5em',

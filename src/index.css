@@ -10,22 +10,6 @@ html {
     }
 }
 
-.flex {
-    display: flex;
-}
-
-.align-center {
-    align-items: center;
-}
-
-.flex-column {
-    flex-direction: column;
-}
-
-.space-between {
-    justify-content: space-between;
-}
-
 .inaktiv {
     color: #707070;
 }

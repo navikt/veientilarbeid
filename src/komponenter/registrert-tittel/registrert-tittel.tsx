@@ -2,6 +2,7 @@ import { createRef, useCallback, useEffect, useState } from 'react';
 import { Heading, Panel } from '@navikt/ds-react';
 import { Success, SuccessColored } from '@navikt/ds-icons';
 import spacingStyles from '../../spacing.module.css';
+import flexStyles from '../../flex.module.css';
 
 import useErInnloggetArbeidssoker from '../../hooks/useErInnloggetArbeidssoker';
 import InnsynLesMer from '../innsyn/innsyn-les-mer';
@@ -44,7 +45,7 @@ const RegistrertTittel = () => {
     return (
         <div ref={containerRef}>
             <Panel className={spacingStyles.px1_5}>
-                <div className="flex">
+                <div className={flexStyles.flex}>
                     <span
                         style={{
                             marginRight: '0.5em',
