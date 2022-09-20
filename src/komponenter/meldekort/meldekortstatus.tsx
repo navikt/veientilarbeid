@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { Heading, BodyLong } from '@navikt/ds-react';
+import spacingStyles from '../../spacing.module.css';
 
 import { useSprakValg } from '../../contexts/sprak';
 
@@ -48,10 +49,10 @@ function Meldekortstatus() {
                 <MeldekortAdvarsel dagerEtterFastsattMeldedag={dagerEtterFastsattMeldedag} />
             ) : (
                 <>
-                    <Heading size="medium" className="blokk-xs">
+                    <Heading size="medium" className={spacingStyles.blokkXs}>
                         {tekst('heading')}
                     </Heading>
-                    <BodyLong className="blokk-xs">
+                    <BodyLong className={spacingStyles.blokkXs}>
                         {`${tekst('fristenEr')} ${datoMedUkedag(inaktiveringsDato, sprak)}, ${tekst('klokken23')}`}
                     </BodyLong>
                     <BodyLong>{tekst('sendIDag')}</BodyLong>

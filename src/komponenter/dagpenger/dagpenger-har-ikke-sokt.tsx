@@ -1,5 +1,6 @@
 import { BodyLong, Button, Heading } from '@navikt/ds-react';
 import { Next } from '@navikt/ds-icons';
+import spacingStyles from '../../spacing.module.css';
 
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { loggAktivitet } from '../../metrics/metrics';
@@ -35,7 +36,7 @@ const DagpengerHarIkkeSokt = () => {
 
     return (
         <>
-            <Heading size="medium" className={'blokk-xs flex'}>
+            <Heading size="medium" className={`flex ${spacingStyles.blokkXs}`}>
                 {tekst('heading')}
             </Heading>
             <BodyLong>{tekst('ingress')}</BodyLong>

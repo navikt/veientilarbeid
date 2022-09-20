@@ -1,4 +1,5 @@
 import { BodyShort, Link } from '@navikt/ds-react';
+import spacingStyles from '../../spacing.module.css';
 
 import { mine_dagpenger_url } from '../../url';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
@@ -31,7 +32,7 @@ const EttersendDokumentasjon = ({ amplitudeTemaNavn }: Props) => {
     }
 
     return (
-        <BodyShort className={'blokk-xs'}>
+        <BodyShort className={spacingStyles.blokkXs}>
             {`${tekst('ettersend')} `}
             <Link
                 href={mine_dagpenger_url}

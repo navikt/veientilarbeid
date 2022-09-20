@@ -1,4 +1,5 @@
 import { BodyShort } from '@navikt/ds-react';
+import spacingStyles from '../../spacing.module.css';
 
 import { loggAktivitet } from '../../metrics/metrics';
 import { dialogLenke } from '../../innhold/lenker';
@@ -27,7 +28,7 @@ function fiksSisteStilling(innholdStilling: string, innholdSituasjon: string, st
 const Opplysning = (props: any) => {
     const { sporsmal, svar } = props;
     return (
-        <div className="blokk-s">
+        <div className={spacingStyles.blokkS}>
             <BodyShort>
                 {sporsmal}
                 <br />
@@ -64,7 +65,7 @@ const Opplysninger = (props: any) => {
 
     return !kanViseKomponent ? null : (
         <div className="flex flex-column">
-            <div className="blokk-s">
+            <div className={spacingStyles.blokkS}>
                 <BodyShort>
                     {manueltRegistrertAv ? 'NAV' : 'Du'} registrerte deg som arbeidssøker{' '}
                     {prettyPrintDato(opprettetDato)}.<br />

@@ -1,4 +1,5 @@
 import { BodyShort, Link } from '@navikt/ds-react';
+import spacingStyles from '../../spacing.module.css';
 
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
@@ -28,7 +29,7 @@ const LesOmYtelser = ({ amplitudeTemaNavn }: Props) => {
     }
 
     return (
-        <BodyShort className={'blokk-xs'}>
+        <BodyShort className={spacingStyles.blokkXs}>
             {`${tekst('lesOm')} `}
             <Link
                 href="https://www.nav.no/"

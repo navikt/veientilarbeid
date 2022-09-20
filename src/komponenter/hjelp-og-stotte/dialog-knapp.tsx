@@ -1,6 +1,7 @@
 import React from 'react';
 import { BodyShort, Button } from '@navikt/ds-react';
 import { Next } from '@navikt/ds-icons';
+import spacingStyles from '../../spacing.module.css';
 
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
@@ -54,11 +55,11 @@ const DialogKnapp: React.FC<DialogKnappProps> = (props) => {
     return (
         <div>
             {props.antallUlesteDialoger !== 0 && (
-                <BodyShort className="mt-1">{dialogTekst(props.antallUlesteDialoger)}</BodyShort>
+                <BodyShort className={spacingStyles.mt1}>{dialogTekst(props.antallUlesteDialoger)}</BodyShort>
             )}
             <Button
                 onClick={handleClickInnsending}
-                className="mt-1 mb-1"
+                className={`${spacingStyles.mt1} ${spacingStyles.mb1}`}
                 variant={variant}
                 icon={<Next />}
                 iconPosition="right"

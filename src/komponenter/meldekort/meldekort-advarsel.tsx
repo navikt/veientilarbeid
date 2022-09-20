@@ -1,4 +1,5 @@
 import { BodyLong, BodyShort, Heading } from '@navikt/ds-react';
+import spacingStyles from '../../spacing.module.css';
 
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
@@ -120,16 +121,16 @@ function MeldekortAdvarsel({ dagerEtterFastsattMeldedag }: { dagerEtterFastsattM
     return (
         <>
             {dagerTilTrekk === 0 ? (
-                <Heading size="medium" className={'blokk-xs'}>
+                <Heading size="medium" className={spacingStyles.blokkXs}>
                     {tekst('sisteFrist')}
                 </Heading>
             ) : (
                 <>
-                    <Heading size="medium" className={'blokk-xs'}>
+                    <Heading size="medium" className={spacingStyles.blokkXs}>
                         {tekst('duHar')} {dagerTilTrekk}{' '}
                         {dagerTilTrekk === 0 || dagerTilTrekk > 1 ? tekst('dager') : tekst('dag')} {tekst('sendeInn')}
                     </Heading>
-                    <BodyShort className="blokk-xs">
+                    <BodyShort className={spacingStyles.blokkXs}>
                         {tekst('fristenEr')} {datoMedUkedag(trekkDato, sprak)}, {tekst('klokken23')}
                     </BodyShort>
                     {dagerEtterFastsattMeldedag && dagerEtterFastsattMeldedag < 3 && (
@@ -186,18 +187,20 @@ const ForSentVarsel = ({
 
     return (
         <>
-            <Heading size="medium" className={'blokk-xs'}>
+            <Heading size="medium" className={spacingStyles.blokkXs}>
                 {tekst('fristErForbiTittel')}
             </Heading>
             {mottarDagpenger && (
                 <>
-                    <BodyLong className="blokk-xs">{tekst('fristErForbiDagpenger')}</BodyLong>
-                    <BodyLong className="blokk-xs">{tekst('fristForbiDagpengerFortsett')}</BodyLong>
+                    <BodyLong className={spacingStyles.blokkXs}>{tekst('fristErForbiDagpenger')}</BodyLong>
+                    <BodyLong className={spacingStyles.blokkXs}>{tekst('fristForbiDagpengerFortsett')}</BodyLong>
                 </>
             )}
             {!mottarDagpenger && <BodyLong>{tekst('fristForbiRegistrert')}</BodyLong>}
             <BodyLong>{tekst('avregistrertEtter20Dager')}</BodyLong>
-            {mottarDagpenger && <BodyLong className="mt-1">{tekst('fristForbiDagpengerIkkeRegistrert')}</BodyLong>}
+            {mottarDagpenger && (
+                <BodyLong className={spacingStyles.mt1}>{tekst('fristForbiDagpengerIkkeRegistrert')}</BodyLong>
+            )}
             {soktDagpenger && <BodyLong>{tekst('fristForbiSoktIkkeRegistrert')}</BodyLong>}
         </>
     );

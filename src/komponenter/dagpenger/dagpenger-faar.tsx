@@ -1,4 +1,5 @@
 import { Heading } from '@navikt/ds-react';
+import spacingStyles from '../../spacing.module.css';
 
 import PaabegynteSoknader from './paabegynte-soknader';
 import { useDpInnsynVedtakData } from '../../contexts/dp-innsyn-vedtak';
@@ -25,7 +26,7 @@ const DagpengerFaar = () => {
 
     return (
         <>
-            <Heading size="medium" className={'blokk-xs'}>
+            <Heading size="medium" className={spacingStyles.blokkXs}>
                 {tekst('heading')}
             </Heading>
             <SistInnsendtSoknad dato={sisteVedtak?.datoFattet} komponent="mottar" />

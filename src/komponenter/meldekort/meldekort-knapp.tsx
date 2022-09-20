@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Next } from '@navikt/ds-icons';
 import { Button } from '@navikt/ds-react';
+import spacingStyles from '../../spacing.module.css';
 
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 
@@ -32,7 +33,7 @@ const MeldekortKnapp: React.FC<TemaLenkepanelProps> = (props) => {
         <Button
             variant={props.variant}
             onClick={handleClickInnsending}
-            className="mb-1 mt-1"
+            className={`${spacingStyles.mb1} ${spacingStyles.mt1}`}
             icon={<Next />}
             iconPosition="right"
         >

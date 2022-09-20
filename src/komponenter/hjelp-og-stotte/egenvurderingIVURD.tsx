@@ -1,5 +1,6 @@
 import { Next } from '@navikt/ds-icons/cjs';
 import { Heading, BodyShort, Button, Link } from '@navikt/ds-react';
+import spacingStyles from '../../spacing.module.css';
 
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useSprakValg } from '../../contexts/sprak';
@@ -68,20 +69,20 @@ const EgenvurderingIVURD = () => {
     return (
         <>
             <ErRendret loggTekst="Rendrer egenvurdering på sluttkort" />
-            <Heading level="2" size="medium" className="blokk-xs">
+            <Heading level="2" size="medium" className={spacingStyles.blokkXs}>
                 {tekst('heading')}
             </Heading>
-            <BodyShort className="blokk-xs ">{tekst('beskrivelse')}</BodyShort>
+            <BodyShort className={spacingStyles.blokkXs}>{tekst('beskrivelse')}</BodyShort>
             <Button
                 variant="primary"
                 onClick={handleButtonClick}
-                className="blokk-xs"
+                className={spacingStyles.blokkXs}
                 icon={<Next />}
                 iconPosition="right"
             >
                 <span>{tekst('svar')}</span>
             </Button>
-            <BodyShort className={'blokk-xs'}>
+            <BodyShort className={spacingStyles.blokkXs}>
                 <Link href={''} onClick={avslaarEgenvurdering}>
                     {tekst('kss')}
                 </Link>

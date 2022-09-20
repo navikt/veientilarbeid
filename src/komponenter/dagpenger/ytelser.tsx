@@ -1,4 +1,5 @@
 import { BodyShort, Heading, Link } from '@navikt/ds-react';
+import spacingStyles from '../../spacing.module.css';
 
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { loggAktivitet } from '../../metrics/metrics';
@@ -39,10 +40,10 @@ const Ytelser = () => {
 
     return (
         <>
-            <Heading size="medium" className={'blokk-xs'}>
+            <Heading size="medium" className={spacingStyles.blokkXs}>
                 {tekst('heading')}
             </Heading>
-            <BodyShort className={'blokk-xs'}>
+            <BodyShort className={spacingStyles.blokkXs}>
                 {`${tekst('stillSporsmal')} `}
                 <Link
                     href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"

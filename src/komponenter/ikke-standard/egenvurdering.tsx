@@ -1,5 +1,5 @@
 import { BodyShort, Button, Heading, Panel } from '@navikt/ds-react';
-
+import spacingStyles from '../../spacing.module.css';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useAutentiseringData } from '../../contexts/autentisering';
@@ -49,12 +49,12 @@ const Egenvurdering = () => {
     }
 
     return (
-        <Panel border className="blokk-s">
-            <Heading level="2" size="medium" className="blokk-xs">
+        <Panel border className={spacingStyles.blokkS}>
+            <Heading level="2" size="medium" className={spacingStyles.blokkXs}>
                 {tekst('tittel')}
             </Heading>
-            <BodyShort className="blokk-s">{tekst('innhold')}</BodyShort>
-            <Button variant="primary" onClick={handleButtonClick} className="blokk-xs">
+            <BodyShort className={spacingStyles.blokkS}>{tekst('innhold')}</BodyShort>
+            <Button variant="primary" onClick={handleButtonClick} className={spacingStyles.blokkXs}>
                 {tekst('lenke-tekst')}
             </Button>
         </Panel>

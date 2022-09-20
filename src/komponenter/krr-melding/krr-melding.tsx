@@ -6,6 +6,7 @@ import { useAmplitudeData } from '../../contexts/amplitude-context';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
 import { useUnderOppfolging } from '../../contexts/arbeidssoker';
+import spacingStyles from '../../spacing.module.css';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -41,8 +42,8 @@ const KrrMelding = () => {
     if (!reservasjonKRR || !kanViseKomponent) return null;
 
     return (
-        <Alert variant="warning" className="blokk-xs">
-            <BodyShort className="blokk-xs">{tekster('ingress')}</BodyShort>
+        <Alert variant="warning" className={spacingStyles.blokkXs}>
+            <BodyShort className={spacingStyles.blokkXs}>{tekster('ingress')}</BodyShort>
             <BodyShort>{tekster('kulepunkt-ingress')}</BodyShort>
             <ul>
                 <li>{tekster('kulepunkt1')}</li>

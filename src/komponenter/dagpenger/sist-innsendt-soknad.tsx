@@ -1,4 +1,5 @@
 import { BodyShort, Link } from '@navikt/ds-react';
+import spacingStyles from '../../spacing.module.css';
 
 import { sorterEtterNyesteDatoInnsendt } from '../../lib/beregn-dagpenge-status';
 import { useDpInnsynSoknadData } from '../../contexts/dp-innsyn-soknad';
@@ -49,11 +50,11 @@ const SistInnsendtSoknad = ({ dato, komponent }: { dato?: string; komponent: str
 
     return (
         <>
-            <BodyShort className={'blokk-xs'}>
+            <BodyShort className={spacingStyles.blokkXs}>
                 {tekst('siste')} {prettyPrintDato(sisteInnsendteSoknad.datoInnsendt, sprak)}
             </BodyShort>
 
-            <BodyShort className={'blokk-xs'}>
+            <BodyShort className={spacingStyles.blokkXs}>
                 {tekst('svar')}{' '}
                 {prettyPrintDato(
                     datoForForventetSvar(new Date(sisteInnsendteSoknad.datoInnsendt)).toISOString(),
@@ -62,7 +63,7 @@ const SistInnsendtSoknad = ({ dato, komponent }: { dato?: string; komponent: str
             </BodyShort>
 
             <Link
-                className={'blokk-xs'}
+                className={spacingStyles.blokkXs}
                 onClick={() => {
                     loggLenkeKlikk(
                         `'Går til saksbehandlingstider fra "dagpenger-tema - ${komponent}"`,

@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { BodyShort, Heading, Link } from '@navikt/ds-react';
+import spacingStyles from '../../spacing.module.css';
 
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 
@@ -10,11 +11,11 @@ import { amplitudeLogger } from '../../metrics/amplitude-utils';
 function Avsnitt1() {
     return (
         <div>
-            <BodyShort className={'blokk-xs'}>
+            <BodyShort className={spacingStyles.blokkXs}>
                 På grunn av din alder omfattes du av NAV forsterkede ungdomsinnsats.
             </BodyShort>
 
-            <BodyShort className={'blokk-xs'}>
+            <BodyShort className={spacingStyles.blokkXs}>
                 Arbeidssøkere under 30 år med behov for tjenester fra NAV har en særskilt prioritering.
             </BodyShort>
         </div>
@@ -28,12 +29,12 @@ function Avsnitt2() {
                 I løpet av den første tiden vil du jobbe tett sammen med en veileder fra NAV.
             </Heading>
 
-            <BodyShort className={'blokk-xs'}>
+            <BodyShort className={spacingStyles.blokkXs}>
                 For å være registrert som arbeidssøker med de rettighetene det gir, så er det viktig at du svarer på
                 henvendelsene og husker å sende inn meldekort til rett tid.
             </BodyShort>
 
-            <BodyShort className={'blokk-xs'}>
+            <BodyShort className={spacingStyles.blokkXs}>
                 Vi har laget en kort gjennomgang av det viktigste omkring meldekort og anbefaler at den også leses.
             </BodyShort>
         </div>
@@ -55,18 +56,18 @@ function Avsnitt3() {
     return (
         <div>
             <Heading size="xsmall">Hva er en veileder?</Heading>
-            <BodyShort className={'blokk-xs'}>
+            <BodyShort className={spacingStyles.blokkXs}>
                 En veileder sin oppgave er å besvare spørsmål, være tilgjengelig, støtte og samarbeide med deg mot ditt
                 arbeidsmål avhengig av hva du trenger. Veileder kan for eksempel bistå rundt det å søke stillinger og
                 tilby hjelp på veien til arbeid.
             </BodyShort>
 
-            <BodyShort className={'blokk-xs'}>
+            <BodyShort className={spacingStyles.blokkXs}>
                 Veiledere har dessverre <strong>ikke</strong> mulighet til å besvare på spørsmål som handler om
                 behandling av søknader eller utbetalinger av dagpenger.
             </BodyShort>
 
-            <BodyShort className={'blokk-m'}>
+            <BodyShort className={spacingStyles.blokkM}>
                 Dersom du lurer på noe om dagpenger ber vi deg bruke{' '}
                 <Link
                     href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
@@ -114,7 +115,7 @@ function Avsnitt4() {
     return (
         <div>
             <Heading size="xsmall">{tittel}</Heading>
-            <BodyShort className={'blokk-xs'}>
+            <BodyShort className={spacingStyles.blokkXs}>
                 {servicegruppe === Servicegruppe.IKVAL ? (
                     <>
                         Du har mottatt brevet{' '}
@@ -128,7 +129,7 @@ function Avsnitt4() {
                     'Du vil i løpet av den første uken motta brevet «NAV har vurdert dine muligheter». Der vil NAV basert på informasjonen du har gitt oss, vurdere hvilken støtte som kan passe for deg.'
                 )}
             </BodyShort>
-            <BodyShort className={'blokk-m'}>
+            <BodyShort className={spacingStyles.blokkM}>
                 Dette brevet er ikke et svar på en eventuell søknad om dagpenger.
             </BodyShort>
         </div>

@@ -1,6 +1,7 @@
 import { Panel, Heading, BodyShort, Link, Button, Detail } from '@navikt/ds-react';
 import { Close, Money } from '@navikt/ds-icons';
 import React, { useEffect, useState } from 'react';
+import spacingStyles from '../../spacing.module.css';
 
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { dagpengerSoknadLenke } from '../../innhold/lenker';
@@ -84,7 +85,7 @@ const ReaktiveringKvittering = () => {
 
     return (
         <>
-            <Panel className={'blokk-s flex px-1_5 '}>
+            <Panel className={`flex ${spacingStyles.blokkS} ${spacingStyles.px1_5}`}>
                 <span
                     style={{
                         marginRight: '0.5em',
@@ -96,7 +97,7 @@ const ReaktiveringKvittering = () => {
                     <Money />
                 </span>
                 <div className="full-width">
-                    <div className="flex space-between blokk-s">
+                    <div className={`flex space-between ${spacingStyles.blokkS}`}>
                         <div>
                             <Detail uppercase style={{ marginTop: '-1rem' }}>
                                 {tekst('tittel')}
@@ -108,9 +109,9 @@ const ReaktiveringKvittering = () => {
                         </Button>
                     </div>
                     <div>
-                        <BodyShort className="blokk-xs">{tekst('utbetalingStoppet')}</BodyShort>
-                        <BodyShort className="blokk-xs">{tekst('tidligstMotta')}</BodyShort>
-                        <Button variant="secondary" onClick={handleSokGjenopptak} className="blokk-xs">
+                        <BodyShort className={spacingStyles.blokkXs}>{tekst('utbetalingStoppet')}</BodyShort>
+                        <BodyShort className={spacingStyles.blokkXs}>{tekst('tidligstMotta')}</BodyShort>
+                        <Button variant="secondary" onClick={handleSokGjenopptak} className={spacingStyles.blokkXs}>
                             {tekst('sok')}
                         </Button>
                         <BodyShort>

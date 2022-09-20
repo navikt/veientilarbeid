@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Dialog } from '@navikt/ds-icons';
 import { Detail, Heading, Panel, ReadMore } from '@navikt/ds-react';
+import spacingStyles from '../../spacing.module.css';
 
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
@@ -132,7 +133,7 @@ function HjelpOgStotte() {
     const DefaultInnhold = () => {
         return (
             <>
-                <Heading className={'blokk-xs'} size="medium">
+                <Heading className={spacingStyles.blokkXs} size="medium">
                     {tekst('heading')}
                 </Heading>
                 <RegistrertTeller ukerRegistrert={ukerRegistrert} registrertDato={registrertDato} />
@@ -142,7 +143,7 @@ function HjelpOgStotte() {
     };
 
     return (
-        <Panel className="flex px-1_5">
+        <Panel className={`flex ${spacingStyles.px1_5}`}>
             <ErRendret loggTekst="Rendrer hjelp og støtte-komponent" />
             <span
                 style={{

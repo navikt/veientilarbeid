@@ -1,5 +1,6 @@
 import { BodyLong, Heading, Link, Panel } from '@navikt/ds-react';
 import { Task } from '@navikt/ds-icons';
+import spacingStyles from '../../spacing.module.css';
 
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useSprakValg } from '../../contexts/sprak';
@@ -31,7 +32,7 @@ const Aktivitetsplan = () => {
     };
 
     return (
-        <Panel className="flex pb-2">
+        <Panel className={`flex ${spacingStyles.pb2}`}>
             <span
                 style={{
                     marginRight: '0.5em',

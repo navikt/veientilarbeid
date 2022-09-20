@@ -1,4 +1,5 @@
 import { Heading } from '@navikt/ds-react';
+import spacingStyles from '../../spacing.module.css';
 
 import { useDpInnsynSoknadData } from '../../contexts/dp-innsyn-soknad';
 import { useDpInnsynPaabegynteSoknaderData } from '../../contexts/dp-innsyn-paabegynte-soknader';
@@ -38,7 +39,7 @@ const DagpengerHarSokt = () => {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
     return (
         <>
-            <Heading size="medium" className={'blokk-xs'}>
+            <Heading size="medium" className={spacingStyles.blokkXs}>
                 {harPaabegyntEtterInnsendt ? tekst('harPaabegynt') : tekst('soknad')}
             </Heading>
             <SistInnsendtSoknad dato={sisteInnsendteSoknad?.datoInnsendt} komponent="sokt" />

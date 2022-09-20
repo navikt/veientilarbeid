@@ -8,6 +8,7 @@ import { loggAktivitet } from '../../metrics/metrics';
 import { dialogLenke, reaktiveringLenke } from '../../innhold/lenker';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import styles from '../../innhold/innhold.module.css';
+import spacingStyles from '../../spacing.module.css';
 
 function valgAvVisningErUtdatert(valgtVisning: JaEllerNei): boolean {
     // Hvis man velger at man ikke har behov for å være registrert lenger, skal dette bare være gyldig i 28 dager,
@@ -58,25 +59,25 @@ const Reaktivering = () => {
     };
 
     return (
-        <section className={`${styles.limit} blokk-m`}>
+        <section className={`${styles.limit} ${spacingStyles.blokkM}`}>
             <ErRendret loggTekst="Rendrer tema: kan reaktiveres" />
             <Alert variant={visReaktiveringAdvarsel === 'ja' ? 'warning' : 'info'}>
-                <Heading size="small" level="2" className="blokk-xs">
+                <Heading size="small" level="2" className={spacingStyles.blokkXs}>
                     Du er ikke lenger registrert som arbeidssøker hos NAV
                 </Heading>
                 {visReaktiveringAdvarsel === 'ja' ? (
                     <div>
-                        <BodyShort className="blokk-xs">
+                        <BodyShort className={spacingStyles.blokkXs}>
                             Har du mottatt dagpenger vil utbetalingene nå være stoppet. Du må registrere deg på nytt og
                             sende inn ny søknad om dagpenger.
                         </BodyShort>
-                        <BodyShort className="blokk-xs">
+                        <BodyShort className={spacingStyles.blokkXs}>
                             Dersom du har søkt eller ønsker å søke om dagpenger må du være registrert som arbeidssøker.
                         </BodyShort>
-                        <BodyShort className="blokk-xs">
+                        <BodyShort className={spacingStyles.blokkXs}>
                             Dersom du ønsker arbeidsrettet oppfølging fra NAV, må du være registrert som arbeidssøker.
                         </BodyShort>
-                        <BodyShort className="blokk-s">
+                        <BodyShort className={spacingStyles.blokkS}>
                             <Button variant="secondary" onClick={() => handleReaktivering('Går til reaktivering')}>
                                 Registrer deg som arbeidssøker
                             </Button>
@@ -84,7 +85,7 @@ const Reaktivering = () => {
                         <BodyShort>
                             Er du usikker på om din situasjon betyr at du bør være registrert som arbeidssøker?
                         </BodyShort>
-                        <BodyShort className="blokk-xs">
+                        <BodyShort className={spacingStyles.blokkXs}>
                             <Link
                                 href={dialogLenke}
                                 onClick={() => handleDialog('Går til dialog fra reaktiveringskortet')}
@@ -92,7 +93,7 @@ const Reaktivering = () => {
                                 Ta kontakt med veilederen din i dialogtjenesten
                             </Link>
                         </BodyShort>
-                        <BodyShort className="blokk-xs">
+                        <BodyShort className={spacingStyles.blokkXs}>
                             <Link href={dialogLenke} onClick={handleIkkeReaktivering}>
                                 Jeg har ikke lenger behov for å være registrert som arbeidssøker hos NAV
                             </Link>
@@ -100,7 +101,7 @@ const Reaktivering = () => {
                     </div>
                 ) : (
                     <div>
-                        <BodyShort className="blokk-s">
+                        <BodyShort className={spacingStyles.blokkS}>
                             <Button
                                 variant="secondary"
                                 onClick={() => handleReaktivering('Går til reaktivering fra reaktivering ikke aktuelt')}
@@ -111,7 +112,7 @@ const Reaktivering = () => {
                         <BodyShort>
                             Er du usikker på om din situasjon betyr at du bør være registrert som arbeidssøker?
                         </BodyShort>
-                        <BodyShort className="blokk-xs">
+                        <BodyShort className={spacingStyles.blokkXs}>
                             <Link
                                 href={dialogLenke}
                                 onClick={() => handleDialog('Går til dialog fra reaktivering ikke aktuelt')}

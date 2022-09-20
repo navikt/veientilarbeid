@@ -1,4 +1,5 @@
 import { Button, Heading, BodyShort, Panel } from '@navikt/ds-react';
+import spacingStyles from '../../spacing.module.css';
 
 import { loggAktivitet } from '../../metrics/metrics';
 import { registreringsLenke } from '../../innhold/lenker';
@@ -46,13 +47,13 @@ const IkkeRegistrert = () => {
 
     return (
         <Rad>
-            <Panel border className="ramme blokk-s" ref={infoBoksRef}>
+            <Panel border className={spacingStyles.blokkS} ref={infoBoksRef}>
                 <ErRendret loggTekst="Rendrer IkkeRegistrert" />
-                <Heading size="medium" level="2" className="blokk-xs">
+                <Heading size="medium" level="2" className={spacingStyles.blokkXs}>
                     {tekst('header')}
                 </Heading>
-                <BodyShort className="blokk-s">{tekst('description')}</BodyShort>
-                <Button variant="primary" onClick={handleButtonClick} className="blokk-xs">
+                <BodyShort className={spacingStyles.blokkS}>{tekst('description')}</BodyShort>
+                <Button variant="primary" onClick={handleButtonClick} className={spacingStyles.blokkXs}>
                     {tekst('button')}
                 </Button>
                 <InViewport loggTekst="Viser IkkeRegistrert i viewport" />

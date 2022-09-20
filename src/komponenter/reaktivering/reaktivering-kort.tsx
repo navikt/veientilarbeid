@@ -7,6 +7,7 @@ import ReaktiveringIkkeAktueltMelding from './reaktivering-ikke-aktuelt-melding'
 import { useBrowserStorage } from '../../hooks/use-browserstorage';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
+import spacingStyles from '../../spacing.module.css';
 
 interface Variant {
     updated: string;
@@ -48,10 +49,10 @@ const ReaktiveringKort = () => {
     }
 
     return (
-        <section className="blokk-m">
+        <section className={spacingStyles.blokkM}>
             <ErRendret loggTekst="Rendrer tema: kan reaktiveres" />
             <Alert variant={reaktiveringsState ? 'warning' : 'info'}>
-                <Heading size="small" level="2" className="blokk-xs">
+                <Heading size="small" level="2" className={spacingStyles.blokkXs}>
                     Du er ikke lenger registrert som arbeidssøker hos NAV
                 </Heading>
                 {reaktiveringsState ? (

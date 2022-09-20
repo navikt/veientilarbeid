@@ -18,6 +18,7 @@ import InViewport from '../in-viewport/in-viewport';
 import MeldekortKnapp from './meldekort-knapp';
 import { useSWR } from '../../hooks/useSWR';
 import { NESTE_MELDEKORT_URL } from '../../ducks/api';
+import spacingStyles from '../../spacing.module.css';
 
 const TEKSTER = {
     nb: {
@@ -52,7 +53,7 @@ function MeldekortHovedInnhold() {
         return (
             <>
                 <ErRendret loggTekst="Rendrer feilmelding for meldekort" />
-                <Alert variant={'warning'} className={'mb-1 mt-1'} fullWidth={false}>
+                <Alert variant={'warning'} className={`${spacingStyles.mb1} ${spacingStyles.mt1}`} fullWidth={false}>
                     <BodyLong>{tekst('feilmelding')}</BodyLong>
                 </Alert>
                 <div>
@@ -78,7 +79,7 @@ function MeldekortHovedInnhold() {
         return (
             <>
                 <div>
-                    <Heading size="medium" className="blokk-xs">
+                    <Heading size="medium" className={spacingStyles.blokkXs}>
                         {`${tekst('meldekortForUke')} 
                         ${hentISOUke(meldekortIkkeKlarForLevering.meldeperiode?.fra!!)} - ${hentISOUke(
                             meldekortIkkeKlarForLevering.meldeperiode?.til!!
@@ -105,7 +106,7 @@ function MeldekortHovedInnhold() {
         return (
             <>
                 <div>
-                    <Heading size="medium" className="blokk-xs">
+                    <Heading size="medium" className={spacingStyles.blokkXs}>
                         {tekst('sendesInn')} {meldekortForLevering.length}
                     </Heading>
                     <MeldekortKnapp

@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { BodyShort, Heading, Link } from '@navikt/ds-react';
+import spacingStyles from '../../spacing.module.css';
 
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 
@@ -10,7 +11,7 @@ import Feedback from '../feedback/feedback';
 function Avsnitt1() {
     return (
         <div>
-            <BodyShort className={'blokk-xs'}>
+            <BodyShort className={spacingStyles.blokkXs}>
                 Vi tror at du har gode muligheter til å skaffe deg jobb på egenhånd.
             </BodyShort>
 
@@ -47,11 +48,11 @@ function Avsnitt2() {
     return (
         <div>
             <Heading size="xsmall">{harMottattBrev ? 'Du har mottatt et brev' : 'Du vil motta et brev'}</Heading>
-            <BodyShort className={'blokk-xs'}>
+            <BodyShort className={spacingStyles.blokkXs}>
                 {harMottattBrev ? <BrevLink /> : 'Brevet'} inneholder vår vurdering av dine muligheter til å skaffe deg
                 jobb på egenhånd.
             </BodyShort>
-            <BodyShort className={'blokk-m'}>
+            <BodyShort className={spacingStyles.blokkM}>
                 Dette brevet er ikke et svar på en eventuell søknad om dagpenger.
             </BodyShort>
         </div>
@@ -105,17 +106,17 @@ function Avsnitt3() {
     return (
         <div>
             <Heading size="xsmall">Hva er en veileder?</Heading>
-            <BodyShort className={'blokk-xs'}>
+            <BodyShort className={spacingStyles.blokkXs}>
                 Veilederens oppgave er å besvare spørsmål, bistå deg med å søke stillinger og tilby deg hjelp på veien
                 til arbeid.
             </BodyShort>
 
-            <BodyShort className={'blokk-xs'}>
+            <BodyShort className={spacingStyles.blokkXs}>
                 Veilederne kan <strong>ikke</strong> svare på spørsmål om søknad om dagpenger, behandling av
                 dagpengesøknaden eller utbetaling av dagpenger.
             </BodyShort>
 
-            <BodyShort className={'blokk-m'}>
+            <BodyShort className={spacingStyles.blokkM}>
                 Dersom du lurer på noe om dagpenger ber vi deg bruke <SkrivTilOss /> eller <Chat />.
             </BodyShort>
         </div>
@@ -126,9 +127,9 @@ function Avsnitt4() {
     return (
         <div>
             <Heading size="xsmall">Ta kontakt om du trenger hjelp</Heading>
-            <BodyShort className={'blokk-xs'}>Du kan få hjelp fra en veileder.</BodyShort>
+            <BodyShort className={spacingStyles.blokkXs}>Du kan få hjelp fra en veileder.</BodyShort>
 
-            <BodyShort className={'blokk-xs'}>
+            <BodyShort className={spacingStyles.blokkXs}>
                 Du kan når som helst kontakte oss ved å bruke dialogløsningen ovenfor.
             </BodyShort>
         </div>
@@ -142,7 +143,7 @@ function ForklaringNorsk() {
             <Avsnitt2 />
             <Avsnitt3 />
             <Avsnitt4 />
-            <Feedback id={'hjelp-og-stotte-forklaring'} className="mt-2" />
+            <Feedback id={'hjelp-og-stotte-forklaring'} className={spacingStyles.mt2} />
         </>
     );
 }

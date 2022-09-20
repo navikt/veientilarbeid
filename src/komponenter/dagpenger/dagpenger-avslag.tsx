@@ -1,4 +1,5 @@
 import { BodyShort, Heading } from '@navikt/ds-react';
+import spacingStyles from '../../spacing.module.css';
 
 import { useDpInnsynVedtakData, Vedtak } from '../../contexts/dp-innsyn-vedtak';
 import prettyPrintDato from '../../utils/pretty-print-dato';
@@ -33,11 +34,11 @@ const DagpengerAvslag = () => {
 
     return (
         <>
-            <Heading size="medium" className={'blokk-xs'}>
+            <Heading size="medium" className={spacingStyles.blokkXs}>
                 {tekst('heading')}
             </Heading>
 
-            <BodyShort className={'blokk-xs'}>
+            <BodyShort className={spacingStyles.blokkXs}>
                 {`${tekst('fattet')} ${prettyPrintDato(nyesteVedtakMedAvslag.datoFattet, sprak)} ${tekst('status')} `}
                 <b>{nyesteVedtakMedAvslag.status.toLocaleLowerCase()}</b>.
             </BodyShort>

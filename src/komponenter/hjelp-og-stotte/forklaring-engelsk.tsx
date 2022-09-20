@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { BodyShort, Heading, Link } from '@navikt/ds-react';
-
+import spacingStyles from '../../spacing.module.css';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 
 import Feedback from '../feedback/feedback';
@@ -10,7 +10,7 @@ import { amplitudeLogger } from '../../metrics/amplitude-utils';
 function Avsnitt1Engelsk() {
     return (
         <div>
-            <BodyShort className={'blokk-xs'}>
+            <BodyShort className={spacingStyles.blokkXs}>
                 NAV has made an assessment of your answers, and it seems you have good chances of getting a job on your
                 own.
             </BodyShort>
@@ -41,7 +41,7 @@ function Avsnitt2Engelsk() {
     return (
         <div>
             <Heading size="xsmall">{tittel}</Heading>
-            <BodyShort className={'blokk-xs'}>
+            <BodyShort className={spacingStyles.blokkXs}>
                 {servicegruppe === Servicegruppe.IKVAL ? (
                     <>
                         You have received the letter{' '}
@@ -55,7 +55,7 @@ function Avsnitt2Engelsk() {
                 )}{' '}
                 The letter contains our assessment of your chances of getting a job on your own.
             </BodyShort>
-            <BodyShort className={'blokk-m'}>
+            <BodyShort className={spacingStyles.blokkM}>
                 This letter is not a response to any application for unemployment benefits.
             </BodyShort>
         </div>
@@ -77,17 +77,17 @@ function Avsnitt3Engelsk() {
     return (
         <div>
             <Heading size="xsmall">What is a counselor?</Heading>
-            <BodyShort className={'blokk-xs'}>
+            <BodyShort className={spacingStyles.blokkXs}>
                 The job of a counselor is to answer questions, and to offer help and support with getting you back to
                 work.
             </BodyShort>
 
-            <BodyShort className={'blokk-xs'}>
+            <BodyShort className={spacingStyles.blokkXs}>
                 Counselors can <strong>not</strong> answer questions about applications, processing of applications or
                 payments of unemployment benefits.
             </BodyShort>
 
-            <BodyShort className={'blokk-m'}>
+            <BodyShort className={spacingStyles.blokkM}>
                 If you have questions about unemployment benefits, we ask you to{' '}
                 <Link
                     href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
@@ -122,8 +122,8 @@ function Avsnitt4Engelsk() {
     return (
         <div>
             <Heading size="xsmall">Get in touch if you need help</Heading>
-            <BodyShort className={'blokk-xs'}>You can get help from a counselor.</BodyShort>
-            <BodyShort className={'blokk-m'}>
+            <BodyShort className={spacingStyles.blokkXs}>You can get help from a counselor.</BodyShort>
+            <BodyShort className={spacingStyles.blokkM}>
                 You may contact us right away, or give it a shot on your own first.
             </BodyShort>
         </div>
@@ -136,7 +136,7 @@ function ForklaringEngelsk() {
             <Avsnitt2Engelsk />
             <Avsnitt3Engelsk />
             <Avsnitt4Engelsk />
-            <Feedback id={'hjelp-og-stotte-forklaring'} className="mt-2" />
+            <Feedback id={'hjelp-og-stotte-forklaring'} className={spacingStyles.mt2} />
         </>
     );
 }

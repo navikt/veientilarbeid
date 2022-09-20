@@ -10,6 +10,7 @@ import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useProfil } from '../../contexts/profil';
 import { hentProfilnokkelFraLocalStorage } from '../../utils/profil-id-mapper';
 import * as React from 'react';
+import spacingStyles from '../../spacing.module.css';
 
 export const INTRO_KEY_12UKER = '12uker-egenvurdering';
 
@@ -67,20 +68,20 @@ function EgenvurderingUke12() {
 
     return (
         <>
-            <Heading level="2" size="medium" className="blokk-xs">
+            <Heading level="2" size="medium" className={spacingStyles.blokkXs}>
                 {`${tekst('heading')} ${ukerRegistrert} ${tekst('uker')}`}
             </Heading>
-            <BodyShort className="blokk-xs">{tekst('beskrivelse')}</BodyShort>
+            <BodyShort className={spacingStyles.blokkXs}>{tekst('beskrivelse')}</BodyShort>
             <Button
                 variant="primary"
                 onClick={sendTilEgenvurdering}
-                className="blokk-s"
+                className={spacingStyles.blokkS}
                 icon={<Next />}
                 iconPosition="right"
             >
                 {tekst('hjelp')}
             </Button>
-            <BodyShort className="mb-1">
+            <BodyShort className={spacingStyles.mb1}>
                 <Link href="" onClick={avslaarEgenvurdering}>
                     {tekst('kss')}
                 </Link>

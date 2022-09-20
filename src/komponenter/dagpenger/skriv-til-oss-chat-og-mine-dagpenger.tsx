@@ -1,4 +1,5 @@
 import { BodyLong, Link } from '@navikt/ds-react';
+import spacingStyles from '../../spacing.module.css';
 
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { loggAktivitet } from '../../metrics/metrics';
@@ -40,7 +41,7 @@ const SkrivTilOssChatOgMineDagpenger = (props: Props) => {
     }
 
     return (
-        <BodyLong className={'blokk-xs'}>
+        <BodyLong className={spacingStyles.blokkXs}>
             {tekst('sporsmal')}{' '}
             <Link
                 href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"

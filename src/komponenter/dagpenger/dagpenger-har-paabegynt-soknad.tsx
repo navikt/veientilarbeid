@@ -1,6 +1,6 @@
 import { Button, Heading, BodyShort } from '@navikt/ds-react';
 import { Next } from '@navikt/ds-icons';
-
+import spacingStyles from '../../spacing.module.css';
 import {
     useDpInnsynPaabegynteSoknaderData,
     DpInnsynPaabegyntSoknad,
@@ -57,13 +57,18 @@ const DagpengerHarPaabegyntSoknad = () => {
 
     return (
         <>
-            <Heading size="medium" className={'blokk-xs'}>
+            <Heading size="medium" className={spacingStyles.blokkXs}>
                 {tekst('heading')}
             </Heading>
-            <BodyShort className={'blokk-xs'}>{tekst('ingress')}</BodyShort>
+            <BodyShort className={spacingStyles.blokkXs}>{tekst('ingress')}</BodyShort>
             <BodyShort>{tekst('ikkeSendt')}</BodyShort>
 
-            <Button onClick={handleClickFortsett} className="mt-1 mb-1" icon={<Next />} iconPosition="right">
+            <Button
+                onClick={handleClickFortsett}
+                className={`${spacingStyles.mt1} ${spacingStyles.mb1}`}
+                icon={<Next />}
+                iconPosition="right"
+            >
                 {tekst('fortsett')} {`${tekst('pabegynt')} ${prettyPrintDato(sistePabegynteSoknad.sistEndret, sprak)}`}{' '}
             </Button>
 

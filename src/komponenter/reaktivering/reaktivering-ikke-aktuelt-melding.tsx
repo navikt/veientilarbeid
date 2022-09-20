@@ -5,6 +5,7 @@ import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useAutentiseringData, InnloggingsNiva } from '../../contexts/autentisering';
 import { OppfolgingContext } from '../../contexts/oppfolging';
 import { BodyShort, Button, Link } from '@navikt/ds-react';
+import spacingStyles from '../../spacing.module.css';
 
 const ReaktiveringIkkeAktueltMelding = () => {
     const amplitudeData = useAmplitudeData();
@@ -37,13 +38,13 @@ const ReaktiveringIkkeAktueltMelding = () => {
 
     return (
         <div>
-            <BodyShort className="blokk-s">
+            <BodyShort className={spacingStyles.blokkS}>
                 <Button variant="secondary" onClick={handleReaktivering}>
                     Registrer deg som arbeidssøker
                 </Button>
             </BodyShort>
             <BodyShort>Er du usikker på om din situasjon betyr at du bør være registrert som arbeidssøker?</BodyShort>
-            <BodyShort className="blokk-xs">
+            <BodyShort className={spacingStyles.blokkXs}>
                 <Link href={dialogLenke} onClick={handleDialog}>
                     Ta kontakt med veilederen din i dialogtjenesten
                 </Link>

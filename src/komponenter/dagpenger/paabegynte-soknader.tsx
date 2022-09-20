@@ -1,4 +1,5 @@
 import { BodyShort, Link } from '@navikt/ds-react';
+import spacingStyles from '../../spacing.module.css';
 
 import {
     DpInnsynPaabegyntSoknad,
@@ -48,7 +49,7 @@ const PaabegynteSoknader = ({ dato, komponent }: { dato?: string; komponent: str
     }
 
     return (
-        <BodyShort className={'blokk-xs'}>
+        <BodyShort className={spacingStyles.blokkXs}>
             {tekst('pabegynt')}{' '}
             <Link
                 href={sistePabegynteSoknad.behandlingsId}

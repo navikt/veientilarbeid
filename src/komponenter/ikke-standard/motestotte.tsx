@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { BodyShort, Button, Heading, Panel } from '@navikt/ds-react';
+import spacingStyles from '../../spacing.module.css';
 
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
@@ -74,12 +75,12 @@ const Motestotte = () => {
     if (!kanViseKomponent) return null;
 
     return (
-        <Panel border className="blokk-s">
-            <Heading size="medium" level="1" className="blokk-xs">
+        <Panel border className={spacingStyles.blokkS}>
+            <Heading size="medium" level="1" className={spacingStyles.blokkXs}>
                 {tekst(`${sykmeldtStatus}-tittel`)}
             </Heading>
-            <BodyShort className="blokk-xs">{tekst(`${sykmeldtStatus}-avsnitt1`)}</BodyShort>
-            <BodyShort className="blokk-xs">{tekst(`${sykmeldtStatus}-avsnitt2`)}</BodyShort>
+            <BodyShort className={spacingStyles.blokkXs}>{tekst(`${sykmeldtStatus}-avsnitt1`)}</BodyShort>
+            <BodyShort className={spacingStyles.blokkXs}>{tekst(`${sykmeldtStatus}-avsnitt2`)}</BodyShort>
             <Button variant="primary" onClick={handleClick}>
                 Start
             </Button>
