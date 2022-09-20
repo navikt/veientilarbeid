@@ -10,26 +10,6 @@ html {
     }
 }
 
-.appContainer {
-    height: 100%;
-}
-
-.pagewrapper {
-    min-height: 100%;
-    height: auto;
-    margin-bottom: -200px;
-    padding-bottom: 200px;
-}
-
-.hodefot-footer {
-    width: 100%;
-    bottom: 0;
-}
-
-.my-1 {
-    margin-top: -1rem;
-}
-
 .mr-05 {
     margin-right: 0.5rem;
 }
@@ -54,18 +34,6 @@ html {
     margin-top: 2rem;
 }
 
-.ml-1 {
-    margin-left: 1rem;
-}
-
-.ml-2 {
-    margin-left: 2rem;
-}
-
-.paxs {
-    padding: 1rem;
-}
-
 .px-1 {
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -74,10 +42,6 @@ html {
 .px-1_5 {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
-}
-
-.pb-1 {
-    padding-bottom: 1rem;
 }
 
 .pb-2 {
@@ -112,11 +76,6 @@ html {
     justify-content: space-between;
 }
 
-.fotnotepanel {
-    background-color: transparent;
-    background: transparent;
-}
-
 .inaktiv {
     color: #707070;
 }
@@ -129,15 +88,6 @@ html {
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     padding-inline-start: 0px;
-}
-
-@media (min-width: 768px) {
-    .lenkepanel-standard {
-        max-width: 400px;
-    }
-}
-.lenkepanel-standard {
-    width: 100%;
 }
 
 .full-width {
