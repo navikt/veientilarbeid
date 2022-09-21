@@ -44,6 +44,8 @@ import {
     hentVisGjelderFraDato,
     settVisGjelderFraDato,
     opprettetRegistreringDato,
+    settArbeidssokerPeriode,
+    hentArbeidssokerPeriode,
 } from './demo-state';
 
 import { DinSituasjonSvar, ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../contexts/brukerregistrering';
@@ -109,6 +111,11 @@ const DemoDashboard = () => {
 
     const handleChangeRettighetsgruppe = (e: React.ChangeEvent<HTMLSelectElement>) => {
         settRettighetsgruppe(e.target.value);
+        window.location.reload();
+    };
+
+    const handleChangeArbeidssokerPeriode = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        settArbeidssokerPeriode(e.target.value);
         window.location.reload();
     };
 
@@ -223,6 +230,13 @@ const DemoDashboard = () => {
         IYT: 'IYT',
     };
 
+    const arbeidssokerPerioder = {
+        aktiv: 'Aktiv',
+        'nylig-utløpt': 'Nylig utløpt (mindre enn 28 dager)',
+        gammel: 'Utløpt (mer enn 28 dager)',
+        ingen: 'Ingen',
+    };
+
     const fremtidigeSituasjoner = {
         SAMME_ARBEIDSGIVER: 'Samme arbeidsgiver',
         SAMME_ARBEIDSGIVER_NY_STILLING: 'Samme arbeidsgiver, ny stilling',
@@ -317,6 +331,18 @@ const DemoDashboard = () => {
                             {Object.keys(rettighetsgrupper).map((gruppe: string) => (
                                 <option key={gruppe} value={gruppe}>
                                     {rettighetsgrupper[gruppe]}
+                                </option>
+                            ))}
+                        </Select>
+                        <Select
+                            label={'Velg arbeidssøker perioder'}
+                            onChange={handleChangeArbeidssokerPeriode}
+                            id="velg-arbeidssokerperiode"
+                            defaultValue={hentArbeidssokerPeriode()}
+                        >
+                            {Object.keys(arbeidssokerPerioder).map((periode: string) => (
+                                <option key={periode} value={periode}>
+                                    {arbeidssokerPerioder[periode]}
                                 </option>
                             ))}
                         </Select>

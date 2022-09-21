@@ -45,6 +45,7 @@ export enum DemoData {
     REGISTRERING_TYPE = 'registreringType',
     ALDER = 'alder',
     RETTIGHETSGRUPPE = 'rettighetsgruppe',
+    ARBEIDSSOKER_PERIODE = 'arbeidssokerPeriode',
     FEATURE_TOGGLES = 'featureToggles',
     UNDER_OPPFOLGING = 'underOppfolging',
     KAN_REAKTIVERES = 'kanReaktiveres',
@@ -74,6 +75,9 @@ export const settFormidlingsgruppe = (value: string) => settDemoState(DemoData.F
 
 export const hentRettighetsgruppe = () => hentDemoState(DemoData.RETTIGHETSGRUPPE) || 'INGEN_VERDI';
 export const settRettighetsgruppe = (value: string) => settDemoState(DemoData.RETTIGHETSGRUPPE, value);
+
+export const hentArbeidssokerPeriode = () => hentDemoState(DemoData.ARBEIDSSOKER_PERIODE) || 'aktiv';
+export const settArbeidssokerPeriode = (value: string) => settDemoState(DemoData.ARBEIDSSOKER_PERIODE, value);
 
 export const hentAlder = () => parseInt(hentDemoState(DemoData.ALDER) ?? '32');
 export const settAlder = (value: string) => settDemoState(DemoData.ALDER, value);

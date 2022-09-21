@@ -1,16 +1,24 @@
-const arbeidssoker = {
-    underoppfolging: {
-        status: 200,
-        underoppfolging: true,
-    },
-    arbeidssokerperioder: {
-        status: 200,
-        arbeidssokerperioder: [
-            { fraOgMedDato: '2022-09-11', tilOgMedDato: null },
-            // {"fraOgMedDato": "2021-09-11", "tilOgMedDato": "2022-01-01"},
-            // {"fraOgMedDato": "2022-09-11", "tilOgMedDato": "2022-09-12"},
-        ],
-    },
-};
+export type ArbeidssokerPeriode = 'aktiv' | 'ingen' | 'nylig-utløpt' | 'gammel';
+const identity = (i: any) => i;
 
-export default arbeidssoker;
+export default (underOppfolging: boolean, periode: ArbeidssokerPeriode | null) => {
+    console.log('periode!', periode);
+    return {
+        underoppfolging: {
+            status: 200,
+            underoppfolging: underOppfolging,
+        },
+        arbeidssokerperioder: {
+            status: 200,
+            arbeidssokerperioder: [
+                (periode === 'aktiv' || periode === null) && { fraOgMedDato: '2022-09-11', tilOgMedDato: null },
+                periode === 'nylig-utløpt' && {
+                    fraOgMedDato: '2022-09-11',
+                    tilOgMedDato: new Date().toISOString().substring(0, 10),
+                },
+                periode === 'gammel' && { fraOgMedDato: '2020-09-11', tilOgMedDato: '2022-01-01' },
+                periode === 'ingen' && undefined,
+            ].filter(identity),
+        },
+    };
+};

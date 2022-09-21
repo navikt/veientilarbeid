@@ -49,7 +49,7 @@ import meldekortstatusResponse from '../mocks/meldekortstatus-mock';
 import { gjelderFraGetResolver, gjelderFraPostResolver } from './demo-state-gjelderfra';
 import { brukerProfilGetResolver, brukerProfilPostResolver } from './demo-state-profil';
 import arbeidssokerPerioderResponse from '../mocks/arbeidssoker-perioder-mock';
-import arbeidssokerNiva3Response from '../mocks/arbeidssoker-niva3-mock';
+import arbeidssokerNiva3Response, { ArbeidssokerPeriode } from '../mocks/arbeidssoker-niva3-mock';
 import { erStandardInnsatsgruppe } from '../mocks/er-standard-innsatsgruppe';
 
 export const demo_handlers = [
@@ -109,6 +109,14 @@ export const demo_handlers = [
     rest.get(PROFIL_URL, brukerProfilGetResolver),
     rest.post(PROFIL_URL, brukerProfilPostResolver),
 
-    msw_get(ARBEIDSSOKER_NIVA3_URL, arbeidssokerNiva3Response),
+    rest.get(ARBEIDSSOKER_NIVA3_URL, (req, res, ctx) => {
+        // eslint-disable-next-line no-restricted-globals
+        const searchParams = new URLSearchParams(location.search);
+
+        return res(
+            ctx.json(arbeidssokerNiva3Response(true, searchParams.get('arbeidssokerPeriode') as ArbeidssokerPeriode))
+        );
+    }),
+
     msw_get(ER_STANDARD_INNSATSGRUPPE_URL, erStandardInnsatsgruppe),
 ];
