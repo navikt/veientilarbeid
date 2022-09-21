@@ -1,42 +1,42 @@
 .mr05 {
-    margin-right: 0.5rem;
+    margin-right: 0.5rem!important;
 }
 
 .mb1 {
-    margin-bottom: 1rem;
+    margin-bottom: 1rem!important;
 }
 
 .mb2 {
-    margin-bottom: 2rem;
+    margin-bottom: 2rem!important;
 }
 
 .mt1 {
-    margin-top: 1rem;
+    margin-top: 1rem!important;
 }
 
 .mt2 {
-    margin-top: 2rem;
+    margin-top: 2rem!important;
 }
 
 .px1_5 {
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
+    padding-top: 1.5rem!important;
+    padding-bottom: 1.5rem!important;
 }
 
 .pb2 {
-    padding-bottom: 2rem;
+    padding-bottom: 2rem!important;
 }
 
 .blokkXs {
-    margin-bottom: 1rem;
+    margin-bottom: 1rem!important;
 }
 
 .blokkS {
-    margin-bottom: 20px;
+    margin-bottom: 20px!important;
 }
 
 .blokkM {
-    margin-bottom: 2rem;
+    margin-bottom: 2rem!important;
 }
 
 .fullWidth {
