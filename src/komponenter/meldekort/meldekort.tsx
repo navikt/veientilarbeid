@@ -46,7 +46,7 @@ function Meldekort() {
             >
                 <Notes />
             </span>
-            <div className="full-width">
+            <div className={spacingStyles.fullWidth}>
                 <Detail uppercase style={{ marginTop: '-1rem' }}>
                     Meldekort og meldeplikt
                 </Detail>

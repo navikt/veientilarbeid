@@ -92,7 +92,7 @@ function DagpengerOgYtelserInnhold(props: Props) {
             >
                 <Money />
             </span>
-            <div className="full-width">
+            <div className={spacingStyles.fullWidth}>
                 <Detail uppercase style={{ marginTop: '-1rem' }}>
                     {tekst('tittel')}
                 </Detail>

@@ -57,7 +57,7 @@ function Kvittering(props: KvitteringProps) {
                 >
                     <SuccessColored />
                 </span>
-                <div className="full-width">
+                <div className={spacingStyles.fullWidth}>
                     <div className={`${flexStyles.flex} ${flexStyles.spaceBetween} ${spacingStyles.blokkXs}`}>
                         <div>
                             <Detail uppercase style={{ marginTop: '-1rem' }}>

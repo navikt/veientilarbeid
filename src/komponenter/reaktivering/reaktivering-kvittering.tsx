@@ -97,7 +97,7 @@ const ReaktiveringKvittering = () => {
                 >
                     <Money />
                 </span>
-                <div className="full-width">
+                <div className={spacingStyles.fullWidth}>
                     <div className={`${flexStyles.flex} ${flexStyles.spaceBetween} ${spacingStyles.blokkS}`}>
                         <div>
                             <Detail uppercase style={{ marginTop: '-1rem' }}>
