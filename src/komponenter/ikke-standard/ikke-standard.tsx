@@ -2,6 +2,7 @@ import { BodyLong, Heading, Link, Panel } from '@navikt/ds-react';
 import { Bandage, Dialog, Email, Laptop, Task } from '@navikt/ds-icons';
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
+import styles from './ikke-standard.module.css';
 
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
@@ -111,7 +112,7 @@ function IkkeStandard() {
 
     return (
         <Panel className={spacingStyles.blokkXs}>
-            <ul className={'ikke-standard-liste'}>
+            <ul className={styles.ikkeStandardListe}>
                 {ListeElement(
                     <Task />,
                     <div>
