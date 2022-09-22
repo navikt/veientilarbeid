@@ -6,3 +6,7 @@ const authMock: Data = {
 };
 
 export default authMock;
+
+export const authenticatedMock = (securityLevel?: InnloggingsNiva) => {
+    return { authenticated: true, securityLevel: securityLevel ? securityLevel : InnloggingsNiva.LEVEL_4 };
+};
