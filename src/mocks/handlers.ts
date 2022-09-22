@@ -32,7 +32,6 @@ import {
 } from '../ducks/api';
 import gjelderFraGetResponse from './gjelderfra-mock';
 import arbeidssokerNiva3Response from './arbeidssoker-niva3-mock';
-import { erStandardInnsatsgruppe } from './er-standard-innsatsgruppe';
 
 export const handlers = [
     msw_get(AUTH_API, AuthResponse),
@@ -52,5 +51,5 @@ export const handlers = [
     msw_post(GJELDER_FRA_DATO_URL, null, 201),
     msw_get(ARBEIDSSOKERPERIODER_URL, arbeidssokerPerioderResponse),
     msw_get(ARBEIDSSOKER_NIVA3_URL, arbeidssokerNiva3Response(true, null)),
-    msw_get(ER_STANDARD_INNSATSGRUPPE_URL, erStandardInnsatsgruppe),
+    msw_get(ER_STANDARD_INNSATSGRUPPE_URL, true),
 ];

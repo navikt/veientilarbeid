@@ -40,6 +40,7 @@ import {
     hentDpInnsynVedtak,
     hentDpInnsynSoknad,
     hentDpInnsynPaabegynte,
+    hentStandardInnsatsgruppe,
 } from './demo-state';
 
 import { hentBrukerRegistrering } from './demo-state-brukerregistrering';
@@ -49,7 +50,6 @@ import { gjelderFraGetResolver, gjelderFraPostResolver } from './demo-state-gjel
 import { brukerProfilGetResolver, brukerProfilPostResolver } from './demo-state-profil';
 import arbeidssokerPerioderResponse from '../mocks/arbeidssoker-perioder-mock';
 import arbeidssokerNiva3Response, { ArbeidssokerPeriode } from '../mocks/arbeidssoker-niva3-mock';
-import { erStandardInnsatsgruppe } from '../mocks/er-standard-innsatsgruppe';
 
 export const demo_handlers = [
     msw_get(VEILARBOPPFOLGING_URL, {
@@ -121,5 +121,5 @@ export const demo_handlers = [
         );
     }),
 
-    msw_get(ER_STANDARD_INNSATSGRUPPE_URL, erStandardInnsatsgruppe),
+    msw_get(ER_STANDARD_INNSATSGRUPPE_URL, hentStandardInnsatsgruppe().standardInnsatsgruppe),
 ];

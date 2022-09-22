@@ -48,6 +48,7 @@ export enum DemoData {
     ARBEIDSSOKER_PERIODE = 'arbeidssokerPeriode',
     FEATURE_TOGGLES = 'featureToggles',
     UNDER_OPPFOLGING = 'underOppfolging',
+    STANDARD_INNSATSGRUPPE = 'standardInnsatsgruppe',
     KAN_REAKTIVERES = 'kanReaktiveres',
     FREMTIDIG_SITUASJON = 'fremtidigSituasjon',
     DIN_SITUASJON = 'dinSituasjon',
@@ -137,6 +138,14 @@ export const hentUnderOppfolging = () => {
     };
 };
 export const settUnderOppfolging = (value: boolean) => settDemoState(DemoData.UNDER_OPPFOLGING, value);
+
+export const hentStandardInnsatsgruppe = () => {
+    const queryParam = hentDemoState(DemoData.STANDARD_INNSATSGRUPPE);
+    return {
+        standardInnsatsgruppe: queryParam ? queryParam === 'true' : true,
+    };
+};
+export const settStandardInnsatsgruppe = (value: boolean) => settDemoState(DemoData.STANDARD_INNSATSGRUPPE, value);
 
 export const hentKanReaktiveres = () => hentDemoState(DemoData.KAN_REAKTIVERES) === 'true';
 export const settKanReaktiveres = (value: boolean) => settDemoState(DemoData.KAN_REAKTIVERES, value);
