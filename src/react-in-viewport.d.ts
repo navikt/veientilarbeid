@@ -1,6 +1,4 @@
 declare module 'react-in-viewport' {
-    import { ReactNode } from 'react';
-    import { P } from 'vitest/dist/global-d05ffb3f';
     import { Props } from 'react-in-viewport/dist/types/lib/types';
     export type ViewportConfig = {
         disconnectOnLeave?: boolean;
