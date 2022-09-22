@@ -9,7 +9,6 @@ import {
     MOTESTOTTE_URL,
     NESTE_MELDEKORT_URL,
     ULESTEDIALOGER_URL,
-    UNDER_OPPFOLGING_URL,
     VEILARBOPPFOLGING_URL,
     DP_INNSYN_URL,
     GJELDER_FRA_DATO_URL,
@@ -85,8 +84,6 @@ export const demo_handlers = [
 
     msw_get(AUTH_API, hentAutentiseringsInfo()),
 
-    msw_get(UNDER_OPPFOLGING_URL, hentUnderOppfolging()),
-
     msw_get(NESTE_MELDEKORT_URL, lagMeldekortData()),
     //rest.get(NESTE_MELDEKORT_URL, async (req, res, ctx) => {
     //    return res(ctx.status(401));
@@ -112,9 +109,15 @@ export const demo_handlers = [
     rest.get(ARBEIDSSOKER_NIVA3_URL, (req, res, ctx) => {
         // eslint-disable-next-line no-restricted-globals
         const searchParams = new URLSearchParams(location.search);
+        const { underOppfolging } = hentUnderOppfolging();
 
         return res(
-            ctx.json(arbeidssokerNiva3Response(true, searchParams.get('arbeidssokerPeriode') as ArbeidssokerPeriode))
+            ctx.json(
+                arbeidssokerNiva3Response(
+                    underOppfolging,
+                    searchParams.get('arbeidssokerPeriode') as ArbeidssokerPeriode
+                )
+            )
         );
     }),
 

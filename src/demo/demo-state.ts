@@ -130,7 +130,7 @@ export const hentAutentiseringsInfo = (): AutentiseringsData => ({
 export const settAutentiseringsInfo = (innloggingsNiva: InnloggingsNiva) =>
     settDemoState(DemoData.AUTENTISERINGS_INFO, innloggingsNiva);
 
-export const hentUnderOppfolging = (): JSONObject => {
+export const hentUnderOppfolging = () => {
     const queryParam = hentDemoState(DemoData.UNDER_OPPFOLGING);
     return {
         underOppfolging: queryParam ? queryParam === 'true' : true,

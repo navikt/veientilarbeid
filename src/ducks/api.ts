@@ -34,7 +34,6 @@ export const requestConfig = (): RequestInit => {
 
 export const BAKVEIEN = `${bakveienTilArbeidUrl}`,
     VEILARBOPPFOLGING_URL = `${BAKVEIEN}/oppfolging`,
-    UNDER_OPPFOLGING_URL = `${BAKVEIEN}/underoppfolging`,
     BRUKERINFO_URL = `${BAKVEIEN}/startregistrering`,
     BRUKERREGISTRERING_URL = `${BAKVEIEN}/registrering`,
     PROFIL_URL = `${BAKVEIEN}/profil`,
