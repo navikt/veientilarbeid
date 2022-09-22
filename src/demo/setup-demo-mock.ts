@@ -13,7 +13,6 @@ import {
     DP_INNSYN_URL,
     GJELDER_FRA_DATO_URL,
     AUTH_API,
-    ARBEIDSSOKERPERIODER_URL,
     PROFIL_URL,
     ARBEIDSSOKER_NIVA3_URL,
     ER_STANDARD_INNSATSGRUPPE_URL,
@@ -48,7 +47,6 @@ import msw_get from '../mocks/msw-utils';
 import meldekortstatusResponse from '../mocks/meldekortstatus-mock';
 import { gjelderFraGetResolver, gjelderFraPostResolver } from './demo-state-gjelderfra';
 import { brukerProfilGetResolver, brukerProfilPostResolver } from './demo-state-profil';
-import arbeidssokerPerioderResponse from '../mocks/arbeidssoker-perioder-mock';
 import arbeidssokerNiva3Response, { ArbeidssokerPeriode } from '../mocks/arbeidssoker-niva3-mock';
 
 export const demo_handlers = [
@@ -100,8 +98,6 @@ export const demo_handlers = [
 
     rest.get(GJELDER_FRA_DATO_URL, gjelderFraGetResolver),
     rest.post(GJELDER_FRA_DATO_URL, gjelderFraPostResolver),
-
-    msw_get(ARBEIDSSOKERPERIODER_URL, arbeidssokerPerioderResponse),
 
     rest.get(PROFIL_URL, brukerProfilGetResolver),
     rest.post(PROFIL_URL, brukerProfilPostResolver),

@@ -11,7 +11,6 @@ import meldekortstatusResponse from './meldekortstatus-mock';
 import dpSoknadResonse from './dp-innsyn-soknad';
 import dpVedtakResponse from './dp-innsyn-vedtak';
 import dpPaabegynteResponse from './dp-innsyn-paabegynte';
-import arbeidssokerPerioderResponse from './arbeidssoker-perioder-mock';
 import msw_get, { msw_post } from './msw-utils';
 import {
     BRUKERINFO_URL,
@@ -26,7 +25,6 @@ import {
     DP_INNSYN_URL,
     GJELDER_FRA_DATO_URL,
     AUTH_API,
-    ARBEIDSSOKERPERIODER_URL,
     ARBEIDSSOKER_NIVA3_URL,
     ER_STANDARD_INNSATSGRUPPE_URL,
 } from '../ducks/api';
@@ -49,7 +47,6 @@ export const handlers = [
     msw_get(`${DP_INNSYN_URL}/paabegynte`, dpPaabegynteResponse),
     msw_get(GJELDER_FRA_DATO_URL, gjelderFraGetResponse),
     msw_post(GJELDER_FRA_DATO_URL, null, 201),
-    msw_get(ARBEIDSSOKERPERIODER_URL, arbeidssokerPerioderResponse),
     msw_get(ARBEIDSSOKER_NIVA3_URL, arbeidssokerNiva3Response(true, null)),
     msw_get(ER_STANDARD_INNSATSGRUPPE_URL, true),
 ];
