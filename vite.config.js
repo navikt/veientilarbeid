@@ -24,8 +24,8 @@ const getConfig = () => ({
             ...rollupImportMapPlugin([
                 {
                     imports: {
-                        react: 'https://www.nav.no/tms-min-side-assets/react/17/esm/index.js',
-                        'react-dom': 'https://www.nav.no/tms-min-side-assets/react-dom/17/esm/index.js',
+                        react: 'https://www.nav.no/tms-min-side-assets/react/18/esm/index.js',
+                        'react-dom': 'https://www.nav.no/tms-min-side-assets/react-dom/18/esm/index.js',
                     },
                 },
             ]),
