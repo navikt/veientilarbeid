@@ -2,7 +2,6 @@ export type ArbeidssokerPeriode = 'aktiv' | 'ingen' | 'nylig-utløpt' | 'gammel'
 const identity = (i: any) => i;
 
 export default (underOppfolging: boolean, periode: ArbeidssokerPeriode | null) => {
-    console.log('periode!', periode);
     return {
         underoppfolging: {
             status: 200,
