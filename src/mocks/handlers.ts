@@ -54,6 +54,6 @@ export const handlers = [
     msw_get(GJELDER_FRA_DATO_URL, gjelderFraGetResponse),
     msw_post(GJELDER_FRA_DATO_URL, null, 201),
     msw_get(ARBEIDSSOKERPERIODER_URL, arbeidssokerPerioderResponse),
-    msw_get(ARBEIDSSOKER_NIVA3_URL, arbeidssokerNiva3Response),
+    msw_get(ARBEIDSSOKER_NIVA3_URL, arbeidssokerNiva3Response(true, null)),
     msw_get(ER_STANDARD_INNSATSGRUPPE_URL, erStandardInnsatsgruppe),
 ];
