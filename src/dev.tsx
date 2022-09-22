@@ -1,6 +1,6 @@
 import 'core-js';
 import 'intersection-observer';
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import App from './main';
 import DemoDashboard from './demo/demo-dashboard';
 import './index.css';
@@ -9,13 +9,15 @@ import { mock_worker } from './mocks/browser';
 import { demo_worker } from './mocks/browser';
 import { erDemo } from './utils/app-state-utils';
 
+const root = createRoot(document.getElementById('maincontent') as HTMLElement);
+
 function startDev() {
     console.log('==========================');
     console.log('======= DEVELOPMENT ======');
     console.log('==========================');
 
     mock_worker.start();
-    ReactDOM.render(<App />, document.getElementById('maincontent') as HTMLElement);
+    root.render(<App />);
 }
 
 function startDemo() {
@@ -23,9 +25,11 @@ function startDemo() {
     console.log('======= DEMO ======');
     console.log('==========================');
 
+    const demo = createRoot(document.getElementById('demo') as HTMLElement);
+
     demo_worker.start();
-    ReactDOM.render(<DemoDashboard />, document.getElementById('demo') as HTMLElement);
-    ReactDOM.render(<App />, document.getElementById('maincontent') as HTMLElement);
+    demo.render(<DemoDashboard />);
+    root.render(<App />);
 }
 
 if (erDemo()) {

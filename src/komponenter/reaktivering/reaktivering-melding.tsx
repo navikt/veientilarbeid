@@ -17,7 +17,7 @@ type Props = {
     setReaktivering: (reaktivering: any) => void;
 };
 
-const ReaktiveringMelding = (props: Props & ViewportProps) => {
+const ReaktiveringMelding = (props: Props & ViewportProps): JSX.Element | null => {
     const amplitudeData = useAmplitudeData();
     const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
     const { securityLevel } = useAutentiseringData();

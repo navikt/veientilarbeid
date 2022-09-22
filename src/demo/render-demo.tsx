@@ -1,6 +1,6 @@
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import DemoDashboard from './demo-dashboard';
 
 const Demo = () => <DemoDashboard />;
-
-ReactDOM.render(<Demo />, document.getElementById('demo') as HTMLElement);
+const root = createRoot(document.getElementById('demo') as HTMLElement);
+root.render(<Demo />);
