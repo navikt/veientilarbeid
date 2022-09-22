@@ -5,9 +5,9 @@ import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { loggAktivitet } from '../../metrics/metrics';
 import Opplysninger from './registreringsopplysninger';
-import useErInnloggetArbeidssoker from '../../hooks/useErInnloggetArbeidssoker';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
+import { InnloggingsNiva, useAutentiseringData } from '../../contexts/autentisering';
 
 const TEKSTER = {
     nb: {
@@ -27,7 +27,8 @@ const InnsynLesMer = () => {
         brukerregistreringData?.registrering || {};
 
     const visOpplysninger = opprettetDato && besvarelse && teksterForBesvarelse;
-    const kanViseKomponent = useErInnloggetArbeidssoker() && visOpplysninger;
+    const autentiseringData = useAutentiseringData();
+    const kanViseKomponent = autentiseringData.securityLevel === InnloggingsNiva.LEVEL_4 && visOpplysninger;
 
     const handleClickOpen = () => {
         if (!clickedInnsyn) {
