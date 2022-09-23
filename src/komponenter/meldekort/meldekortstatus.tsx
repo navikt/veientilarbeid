@@ -1,4 +1,3 @@
-import { useContext } from 'react';
 import { Heading, BodyLong } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
 
@@ -11,6 +10,9 @@ import { OppfolgingContext } from '../../contexts/oppfolging';
 import { hentIDag } from '../../utils/chrono';
 import { datoMedUkedag, datoUtenTid, plussDager } from '../../utils/date-utils';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
+import { useSWR } from '../../hooks/useSWR';
+import { NESTE_MELDEKORT_URL } from '../../ducks/api';
+import { useContext } from 'react';
 
 const TEKSTER = {
     nb: {
@@ -27,7 +29,7 @@ const TEKSTER = {
     },
 };
 function Meldekortstatus() {
-    const { data: meldekortData } = useContext(Meldekort.MeldekortContext);
+    const { data: meldekortData = null } = useSWR<Meldekort.Data>(NESTE_MELDEKORT_URL);
     const { kanReaktiveres } = useContext(OppfolgingContext).data;
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
