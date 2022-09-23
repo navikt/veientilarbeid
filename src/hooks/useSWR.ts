@@ -1,5 +1,6 @@
 import useSwr from 'swr';
 import useSwrImmutable from 'swr/immutable';
+import { SWRConfiguration } from 'swr/dist/types';
 
 export const fetcher = async (path: string, opts?: RequestInit & { onError?: (response: any) => void }) => {
     const response = await fetch(path, {
@@ -26,12 +27,12 @@ export const fetcher = async (path: string, opts?: RequestInit & { onError?: (re
     return await response.json();
 };
 
-function useSWR<T>(url: string) {
-    return useSwr<T, any>(url, fetcher);
+function useSWR<T>(url: string, options?: SWRConfiguration) {
+    return useSwr<T, any>(url, fetcher, options);
 }
 
-function useSWRImmutable(url: string) {
-    return useSwrImmutable(url, fetcher);
+function useSWRImmutable(url: string, options?: SWRConfiguration) {
+    return useSwrImmutable(url, fetcher, options);
 }
 
 export { useSWR, useSWRImmutable };
