@@ -2,7 +2,8 @@ import { useArbeidssokerPerioder, useUnderOppfolging } from '../contexts/arbeids
 import beregnArbeidssokerperioder from '../lib/beregn-arbeidssokerperioder';
 import IkkeRegistrert from '../komponenter/ikke-registrert/ikke-registrert';
 import ReaktiveringWrapper from '../komponenter/reaktivering/reaktivering-wrapper';
-import ArbeidssokerInnholdWrapper from './arbeidssoker-innhold-wrapper';
+import ArbeidssokerDataProvider from './arbeidssoker-data-provider';
+import InnholdIkkeStandard from './innhold-ikke-standard';
 
 function IkkeArbeidssokerInnhold() {
     const arbeidssokerperioderData = useArbeidssokerPerioder();
@@ -12,7 +13,11 @@ function IkkeArbeidssokerInnhold() {
     if (arbeidssokerperioder.antallDagerSidenSisteArbeidssokerperiode < 28) {
         return <ReaktiveringWrapper />;
     } else if (underOppfolging) {
-        return <ArbeidssokerInnholdWrapper />;
+        return (
+            <ArbeidssokerDataProvider>
+                <InnholdIkkeStandard />
+            </ArbeidssokerDataProvider>
+        );
     }
 
     return <IkkeRegistrert />;
