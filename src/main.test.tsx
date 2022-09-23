@@ -1,16 +1,16 @@
 import { screen, waitForElementToBeRemoved } from '@testing-library/react';
-import { mockIntersectionObserver } from '../mocks/intersection-observer-mock';
+import { mockIntersectionObserver } from './mocks/intersection-observer-mock';
 import { setupServer } from 'msw/native';
-import Mikrofrontend from '../main';
+import Mikrofrontend from './main';
 
-import * as useSWR from '../hooks/useSWR';
-import { ARBEIDSSOKER_NIVA3_URL, AUTH_API, DP_INNSYN_URL } from '../ducks/api';
-import msw_get from '../mocks/msw-utils';
-import { render } from '../utils/test-utils';
-import arbeidssoker from '../mocks/arbeidssoker-niva3-mock';
-import { InnloggingsNiva } from '../contexts/autentisering';
-import { authenticatedMock } from '../mocks/auth-mock';
-import { standardHandlers, ikkeStandardHandlers, initielleKallHandlers } from '../test/test-handlers';
+import * as useSWR from './hooks/useSWR';
+import { ARBEIDSSOKER_NIVA3_URL, AUTH_API, DP_INNSYN_URL } from './ducks/api';
+import msw_get from './mocks/msw-utils';
+import { render } from './utils/test-utils';
+import arbeidssoker from './mocks/arbeidssoker-niva3-mock';
+import { InnloggingsNiva } from './contexts/autentisering';
+import { authenticatedMock } from './mocks/auth-mock';
+import { standardHandlers, ikkeStandardHandlers, initielleKallHandlers } from './test/test-handlers';
 
 describe('Tester at main rendrer riktig', () => {
     const swrSpy = vi.spyOn(useSWR, 'useSWR');
