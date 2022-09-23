@@ -15,7 +15,7 @@ type Props = {
 
 const WrappedViewport: React.ComponentType<Props> = handleViewport(InViewport);
 
-function InViewport(props: Props & ViewportProps) {
+function InViewport(props: Props & ViewportProps): JSX.Element {
     const [harVistTilBruker, setHarVistTilBruker] = useState<boolean>(false);
     const amplitudeData = useAmplitudeData();
 

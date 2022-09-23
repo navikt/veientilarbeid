@@ -21,8 +21,9 @@ interface InnholdslasterProps {
     avhengigheter: DataElement[];
     ventPa?: DataElement[];
     betingelser?: boolean[];
-    feilmeldingKomponent?: React.ReactNode | React.ReactChild;
+    feilmeldingKomponent?: React.ReactNode;
     storrelse?: 'XXS' | 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
+    children?: React.ReactNode | Function;
 }
 
 interface InnholdslasterState {

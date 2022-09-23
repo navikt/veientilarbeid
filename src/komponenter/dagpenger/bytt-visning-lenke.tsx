@@ -1,9 +1,9 @@
-import { ReactComponent as BytteIkon } from './bytte-ikon.svg';
 import { Link } from '@navikt/ds-react';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
+import { Cancel } from '@navikt/ds-icons';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -24,8 +24,15 @@ const ByttVisningLenke = (props: {
 
     return (
         <div className={`${flexStyles.flex} ${flexStyles.alignCenter} ${spacingStyles.mt1}`}>
-            <BytteIkon className={spacingStyles.mr05} />
             <Link href="" onClick={props.handleByttVisningKlikk}>
+                <Cancel
+                    className={spacingStyles.mr05}
+                    title={
+                        props.valgtYtelserVisning === 'dagpenger'
+                            ? 'Ikke vis informasjon om dagpenger'
+                            : 'Vis informasjon om dagpenger'
+                    }
+                />
                 {props.valgtYtelserVisning === 'dagpenger' ? tekst('ikkeAktuelt') : tekst('aktuelt')}
             </Link>
         </div>

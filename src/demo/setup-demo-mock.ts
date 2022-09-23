@@ -9,12 +9,10 @@ import {
     MOTESTOTTE_URL,
     NESTE_MELDEKORT_URL,
     ULESTEDIALOGER_URL,
-    UNDER_OPPFOLGING_URL,
     VEILARBOPPFOLGING_URL,
     DP_INNSYN_URL,
     GJELDER_FRA_DATO_URL,
     AUTH_API,
-    ARBEIDSSOKERPERIODER_URL,
     PROFIL_URL,
     ARBEIDSSOKER_NIVA3_URL,
     ER_STANDARD_INNSATSGRUPPE_URL,
@@ -41,6 +39,7 @@ import {
     hentDpInnsynVedtak,
     hentDpInnsynSoknad,
     hentDpInnsynPaabegynte,
+    hentStandardInnsatsgruppe,
 } from './demo-state';
 
 import { hentBrukerRegistrering } from './demo-state-brukerregistrering';
@@ -48,9 +47,7 @@ import msw_get from '../mocks/msw-utils';
 import meldekortstatusResponse from '../mocks/meldekortstatus-mock';
 import { gjelderFraGetResolver, gjelderFraPostResolver } from './demo-state-gjelderfra';
 import { brukerProfilGetResolver, brukerProfilPostResolver } from './demo-state-profil';
-import arbeidssokerPerioderResponse from '../mocks/arbeidssoker-perioder-mock';
 import arbeidssokerNiva3Response, { ArbeidssokerPeriode } from '../mocks/arbeidssoker-niva3-mock';
-import { erStandardInnsatsgruppe } from '../mocks/er-standard-innsatsgruppe';
 
 export const demo_handlers = [
     msw_get(VEILARBOPPFOLGING_URL, {
@@ -85,8 +82,6 @@ export const demo_handlers = [
 
     msw_get(AUTH_API, hentAutentiseringsInfo()),
 
-    msw_get(UNDER_OPPFOLGING_URL, hentUnderOppfolging()),
-
     msw_get(NESTE_MELDEKORT_URL, lagMeldekortData()),
     //rest.get(NESTE_MELDEKORT_URL, async (req, res, ctx) => {
     //    return res(ctx.status(401));
@@ -104,19 +99,23 @@ export const demo_handlers = [
     rest.get(GJELDER_FRA_DATO_URL, gjelderFraGetResolver),
     rest.post(GJELDER_FRA_DATO_URL, gjelderFraPostResolver),
 
-    msw_get(ARBEIDSSOKERPERIODER_URL, arbeidssokerPerioderResponse),
-
     rest.get(PROFIL_URL, brukerProfilGetResolver),
     rest.post(PROFIL_URL, brukerProfilPostResolver),
 
     rest.get(ARBEIDSSOKER_NIVA3_URL, (req, res, ctx) => {
         // eslint-disable-next-line no-restricted-globals
         const searchParams = new URLSearchParams(location.search);
+        const { underOppfolging } = hentUnderOppfolging();
 
         return res(
-            ctx.json(arbeidssokerNiva3Response(true, searchParams.get('arbeidssokerPeriode') as ArbeidssokerPeriode))
+            ctx.json(
+                arbeidssokerNiva3Response(
+                    underOppfolging,
+                    searchParams.get('arbeidssokerPeriode') as ArbeidssokerPeriode
+                )
+            )
         );
     }),
 
-    msw_get(ER_STANDARD_INNSATSGRUPPE_URL, erStandardInnsatsgruppe),
+    msw_get(ER_STANDARD_INNSATSGRUPPE_URL, hentStandardInnsatsgruppe().standardInnsatsgruppe),
 ];

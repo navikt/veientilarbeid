@@ -46,6 +46,8 @@ import {
     opprettetRegistreringDato,
     settArbeidssokerPeriode,
     hentArbeidssokerPeriode,
+    hentStandardInnsatsgruppe,
+    settStandardInnsatsgruppe,
 } from './demo-state';
 
 import { DinSituasjonSvar, ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../contexts/brukerregistrering';
@@ -73,6 +75,7 @@ const DemoDashboard = () => {
     const RESERVASJON_KRR = DemoData.RESERVASJON_KRR;
     const AUTENTISERINGS_INFO = DemoData.AUTENTISERINGS_INFO;
     const UNDER_OPPFOLGING = DemoData.UNDER_OPPFOLGING;
+    const STANDARD_INNSATSGRUPPE = DemoData.STANDARD_INNSATSGRUPPE;
     const KAN_REAKTIVERES = DemoData.KAN_REAKTIVERES;
     const ER_UNDER_30 = DemoData.ER_UNDER_30;
     const VIS_GJELDER_FRA_DATO = DemoData.VIS_GJELDER_FRA_DATO;
@@ -173,6 +176,8 @@ const DemoDashboard = () => {
             settAlder(element.checked ? '25' : '42');
         } else if (element.id === VIS_GJELDER_FRA_DATO) {
             settVisGjelderFraDato(element.checked);
+        } else if (element.id === STANDARD_INNSATSGRUPPE) {
+            settStandardInnsatsgruppe(element.checked);
         }
         window.location.reload();
     };
@@ -543,6 +548,14 @@ const DemoDashboard = () => {
                                     onChange={handleClick}
                                 >
                                     Under oppfølging
+                                </Checkbox>
+                                <Checkbox
+                                    id={STANDARD_INNSATSGRUPPE}
+                                    value={STANDARD_INNSATSGRUPPE}
+                                    checked={hentStandardInnsatsgruppe().standardInnsatsgruppe === true}
+                                    onChange={handleClick}
+                                >
+                                    Standard innsatsgruppe
                                 </Checkbox>
                                 <Checkbox
                                     id={KAN_REAKTIVERES}

@@ -1,7 +1,7 @@
 import styles from './tall.module.css';
 
 interface Props {
-    tall: Number;
+    tall: number;
     inverted?: boolean;
     aktiv?: boolean;
     inaktiv?: boolean;
