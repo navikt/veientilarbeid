@@ -4,16 +4,19 @@ import InnholdStandard from './innhold-standard';
 import InnholdIkkeStandard from './innhold-ikke-standard';
 import { ER_STANDARD_INNSATSGRUPPE_URL } from '../ducks/api';
 import { useSWRImmutable } from '../hooks/useSWR';
-import { Suspense } from 'react';
 
 function ArbeidssokerInnhold() {
     const underOppfolging = useUnderOppfolging()?.underoppfolging;
     const innloggingsnivaa = useAutentiseringData().securityLevel;
-    const { data: erStandard } = useSWRImmutable(ER_STANDARD_INNSATSGRUPPE_URL, { suspense: true });
+    const { data: erStandard, error } = useSWRImmutable(ER_STANDARD_INNSATSGRUPPE_URL);
 
-    const visStandard = underOppfolging && innloggingsnivaa === InnloggingsNiva.LEVEL_4 && erStandard;
+    if (erStandard === undefined && !error) return null;
 
-    return <Suspense>{visStandard ? <InnholdStandard /> : <InnholdIkkeStandard />}</Suspense>;
+    if (underOppfolging && innloggingsnivaa === InnloggingsNiva.LEVEL_4 && erStandard) {
+        return <InnholdStandard />;
+    }
+
+    return <InnholdIkkeStandard />;
 }
 
 export default ArbeidssokerInnhold;
