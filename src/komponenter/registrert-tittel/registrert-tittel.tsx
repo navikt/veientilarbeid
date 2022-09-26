@@ -1,12 +1,16 @@
 import { createRef, useCallback, useEffect, useState } from 'react';
 import { Heading, Panel } from '@navikt/ds-react';
 import { Success, SuccessColored } from '@navikt/ds-icons';
-import spacingStyles from '../../spacing.module.css';
-import flexStyles from '../../flex.module.css';
+
+import { useSprakValg } from '../../contexts/sprak';
+import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
 
 import InnsynLesMer from '../innsyn/innsyn-les-mer';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
-import { useSprakValg } from '../../contexts/sprak';
+import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
+
+import spacingStyles from '../../spacing.module.css';
+import flexStyles from '../../flex.module.css';
 
 const TEKSTER = {
     nb: {
@@ -23,6 +27,9 @@ const RegistrertTittel = () => {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
     const containerRef = createRef<HTMLDivElement>();
     const [erNyRegistrert, settErNyRegistrert] = useState<boolean>(false);
+    const arbeidssokerperioderData = useArbeidssokerPerioder();
+    const arbeidssokerperioder = beregnArbeidssokerperioder(arbeidssokerperioderData);
+    const harAktivArbeidssokerperiode = arbeidssokerperioder.harAktivArbeidssokerperiode === 'Ja';
 
     const scrollToRegistrering = useCallback(() => {
         const goto = new URLSearchParams(window.location.search).get('goTo');
@@ -35,6 +42,8 @@ const RegistrertTittel = () => {
     useEffect(() => {
         scrollToRegistrering();
     }, [scrollToRegistrering]);
+
+    if (!harAktivArbeidssokerperiode) return null;
 
     return (
         <div ref={containerRef}>
