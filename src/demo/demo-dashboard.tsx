@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { Checkbox, CheckboxGroup, Heading, Select, Grid, Cell, Panel } from '@navikt/ds-react';
+import { Checkbox, CheckboxGroup, Heading, Select, Grid, Cell, Panel, Accordion } from '@navikt/ds-react';
+import spacingStyles from '../spacing.module.css';
+import flexStyles from '../flex.module.css';
 
 import {
     DemoData,
@@ -313,34 +315,10 @@ const DemoDashboard = () => {
                 Demo av Veien til arbeid
             </Heading>
             <Panel className={styles.demodashboardInnhold}>
-                <Grid>
-                    <Cell xs={12} md={6} lg={3}>
+                <div className={`${spacingStyles.mb2} ${flexStyles.flex}`}>
+                    <div>
                         <Select
-                            label={'Velg geografisk tilknytning'}
-                            onChange={handleChangeGeografiskTilknytning}
-                            id="velg-geografisktilknytning"
-                            defaultValue={hentGeografiskTilknytning()}
-                        >
-                            {Object.keys(geografiskeTilknytninger).map((gruppe: string) => (
-                                <option key={gruppe} value={gruppe}>
-                                    {geografiskeTilknytninger[gruppe]}
-                                </option>
-                            ))}
-                        </Select>
-                        <Select
-                            label={'Velg rettighetsgruppe'}
-                            onChange={handleChangeRettighetsgruppe}
-                            id="velg-rettighetsgruppe"
-                            defaultValue={hentRettighetsgruppe()}
-                        >
-                            {Object.keys(rettighetsgrupper).map((gruppe: string) => (
-                                <option key={gruppe} value={gruppe}>
-                                    {rettighetsgrupper[gruppe]}
-                                </option>
-                            ))}
-                        </Select>
-                        <Select
-                            label={'Velg arbeidssøker perioder'}
+                            label={'Velg arbeidssøkerperiode'}
                             onChange={handleChangeArbeidssokerPeriode}
                             id="velg-arbeidssokerperiode"
                             defaultValue={hentArbeidssokerPeriode()}
@@ -348,42 +326,6 @@ const DemoDashboard = () => {
                             {Object.keys(arbeidssokerPerioder).map((periode: string) => (
                                 <option key={periode} value={periode}>
                                     {arbeidssokerPerioder[periode]}
-                                </option>
-                            ))}
-                        </Select>
-                        <Select
-                            label={'Velg registreringstype'}
-                            onChange={handleChangeRegistreringType}
-                            id="velg-registreringtype"
-                            defaultValue={hentRegistreringType()}
-                        >
-                            {Object.keys(registreringTyper).map((gruppe: string) => (
-                                <option key={gruppe} value={gruppe}>
-                                    {registreringTyper[gruppe]}
-                                </option>
-                            ))}
-                        </Select>
-                        <Select
-                            label={'Velg innsatsgruppe'}
-                            onChange={handleChangeServicegruppe}
-                            id="velg-bruker"
-                            defaultValue={hentServicegruppe()}
-                        >
-                            {Object.keys(servicegrupper).map((gruppe: string) => (
-                                <option key={gruppe} value={gruppe}>
-                                    {servicegrupper[gruppe]}
-                                </option>
-                            ))}
-                        </Select>
-                        <Select
-                            label={'Velg formidlingsgruppe'}
-                            onChange={handleChangeFormidlingsgruppe}
-                            id="velg-formidlingsgruppe"
-                            defaultValue={hentFormidlingsgruppe()}
-                        >
-                            {Object.keys(formidlingsgrupper).map((gruppe: string) => (
-                                <option key={gruppe} value={gruppe}>
-                                    {formidlingsgrupper[gruppe]}
                                 </option>
                             ))}
                         </Select>
@@ -396,56 +338,6 @@ const DemoDashboard = () => {
                             {Object.keys(dagpengeStatuser).map((gruppe: string) => (
                                 <option key={gruppe} value={gruppe}>
                                     {dagpengeStatuser[gruppe]}
-                                </option>
-                            ))}
-                        </Select>
-                    </Cell>
-                    <Cell xs={12} md={6} lg={3}>
-                        <Select
-                            label={'Velg fremtidig situasjon'}
-                            onChange={handleChangeBrukerregistrering}
-                            id="velg-fremtidig-situasjon"
-                            defaultValue={hentFremtidigSituasjon()}
-                        >
-                            {Object.keys(FremtidigSituasjonSvar).map((svar: string) => (
-                                <option key={svar} value={svar}>
-                                    {fremtidigeSituasjoner[svar]}
-                                </option>
-                            ))}
-                        </Select>
-                        <Select
-                            label="Velg dinSituasjon"
-                            onChange={handleChangeDinSituasjon}
-                            id="velg-din-situasjon"
-                            defaultValue={hentDinSituasjon()}
-                        >
-                            {Object.keys(DinSituasjonSvar).map((svar: string) => (
-                                <option key={svar} value={svar}>
-                                    {dineSituasjoner[svar]}
-                                </option>
-                            ))}
-                        </Select>
-                        <Select
-                            label={'Velg foreslått innsatsgruppe'}
-                            onChange={handleChangeForeslaattInnsatsgruppe}
-                            id="velg-foreslaatt-innsatsgruppe"
-                            defaultValue={hentForeslattInnsatsgruppe()}
-                        >
-                            {Object.keys(foreslattInnsatsgrupper).map((svar: string) => (
-                                <option key={svar} value={svar}>
-                                    {foreslattInnsatsgrupper[svar]}
-                                </option>
-                            ))}
-                        </Select>
-                        <Select
-                            label={'Velg registreringsdato'}
-                            onChange={handleChangeOpprettetRegistreringDato}
-                            id="velg-opprettetdato"
-                            defaultValue={hentOpprettetDato()}
-                        >
-                            {Object.keys(opprettetRegistreringDato).map((key: string) => (
-                                <option key={key} value={opprettetRegistreringDato[key]}>
-                                    {opprettetRegistreringDatoLabels[key]}
                                 </option>
                             ))}
                         </Select>
@@ -463,147 +355,277 @@ const DemoDashboard = () => {
                                     </option>
                                 ))}
                         </Select>
-                        <Select
-                            label={'Velg kvitteringstatus'}
-                            onChange={handleChangeKvitteringStatus}
-                            id="velg-kvitteringstatus"
-                            defaultValue={hentKvitteringStatus()}
+                    </div>
+                    <Panel className={styles.demoCheckboxpanel}>
+                        <CheckboxGroup
+                            // onChange={handleClick}
+                            legend=""
                         >
-                            {Object.keys(kvitteringsStatuser).map((gruppe: string) => (
-                                <option key={gruppe} value={gruppe}>
-                                    {kvitteringsStatuser[gruppe]}
-                                </option>
-                            ))}
-                        </Select>
-                        <Select
-                            label="Velg språk"
-                            onChange={handleChangeSprak}
-                            defaultValue={hentDemoState(DemoData.SPRAK) || 'nb'}
-                        >
-                            {Object.keys(spraakValg).map((sprak) => (
-                                <option key={sprak} value={sprak}>
-                                    {spraakValg[sprak]}
-                                </option>
-                            ))}
-                        </Select>
-                    </Cell>
-                    <Cell xs={6} md={6} lg={3}>
-                        <Panel className={styles.demoCheckboxpanel}>
-                            <CheckboxGroup
-                                // onChange={handleClick}
-                                legend=""
+                            <Checkbox
+                                id={STANDARD_INNSATSGRUPPE}
+                                value={STANDARD_INNSATSGRUPPE}
+                                checked={hentStandardInnsatsgruppe().standardInnsatsgruppe === true}
+                                onChange={handleClick}
                             >
-                                <Checkbox
-                                    id={SYKMELDT_MED_ARBEIDSGIVER}
-                                    value={SYKMELDT_MED_ARBEIDSGIVER}
-                                    checked={hentSykmeldtMedArbeidsgiver()}
-                                    onChange={handleClick}
-                                >
-                                    Sykmelding
-                                </Checkbox>
-                                <Checkbox
-                                    id={ULESTE_DIALOGER}
-                                    value={ULESTE_DIALOGER}
-                                    checked={hentUlesteDialoger()}
-                                    onChange={handleClick}
-                                >
-                                    Uleste dialoger
-                                </Checkbox>
-                                <Checkbox
-                                    id={RESERVASJON_KRR}
-                                    value={RESERVASJON_KRR}
-                                    checked={hentReservasjonKRR()}
-                                    onChange={handleClick}
-                                >
-                                    Reservasjon KRR
-                                </Checkbox>
-                                <Checkbox
-                                    id={EGENVURDERING}
-                                    value={EGENVURDERING}
-                                    checked={!!hentEgenvurdering()}
-                                    onChange={handleClick}
-                                >
-                                    Lagret egenvurdering
-                                </Checkbox>
-                                <Checkbox
-                                    id={MOTESTOTTE}
-                                    value={MOTESTOTTE}
-                                    checked={!!hentMotestotte()}
-                                    onChange={handleClick}
-                                >
-                                    Møtestøtte gjennomført
-                                </Checkbox>
-                                <Checkbox
-                                    id={AUTENTISERINGS_INFO}
-                                    value={AUTENTISERINGS_INFO}
-                                    checked={hentAutentiseringsInfo().securityLevel === InnloggingsNiva.LEVEL_3}
-                                    onChange={handleClick}
-                                >
-                                    Nivå 3
-                                </Checkbox>
-                                <Checkbox
-                                    id={UNDER_OPPFOLGING}
-                                    value={UNDER_OPPFOLGING}
-                                    checked={hentUnderOppfolging().underOppfolging === true}
-                                    onChange={handleClick}
-                                >
-                                    Under oppfølging
-                                </Checkbox>
-                                <Checkbox
-                                    id={STANDARD_INNSATSGRUPPE}
-                                    value={STANDARD_INNSATSGRUPPE}
-                                    checked={hentStandardInnsatsgruppe().standardInnsatsgruppe === true}
-                                    onChange={handleClick}
-                                >
-                                    Standard innsatsgruppe
-                                </Checkbox>
-                                <Checkbox
-                                    id={KAN_REAKTIVERES}
-                                    value={KAN_REAKTIVERES}
-                                    checked={hentKanReaktiveres()}
-                                    onChange={handleClick}
-                                >
-                                    Kan reaktiveres
-                                </Checkbox>
-                                <Checkbox
-                                    id={ER_UNDER_30}
-                                    value={ER_UNDER_30}
-                                    checked={hentAlder() < 30}
-                                    onChange={handleClick}
-                                >
-                                    Er under 30 år
-                                </Checkbox>
-                                <Checkbox
-                                    id={VIS_GJELDER_FRA_DATO}
-                                    value={VIS_GJELDER_FRA_DATO}
-                                    checked={hentVisGjelderFraDato()}
-                                    onChange={handleClick}
-                                >
-                                    Vis gjelder fra dato-velger
-                                </Checkbox>
-                            </CheckboxGroup>
-                        </Panel>
-                    </Cell>
-                    <Cell xs={6} md={6} lg={3}>
-                        <Panel className={styles.demoFeaturetoggles}>
-                            <CheckboxGroup legend={'Featuretoggles'}>
-                                {Object.values(FeatureToggles).map((toggle) => {
-                                    return (
-                                        <Checkbox
-                                            checked={hentDemoState(toggle) === 'true'}
-                                            key={toggle}
-                                            id={toggle}
-                                            value={toggle}
-                                            onChange={handleClick}
+                                Standard innsatsgruppe
+                            </Checkbox>
+                            <Checkbox
+                                id={UNDER_OPPFOLGING}
+                                value={UNDER_OPPFOLGING}
+                                checked={hentUnderOppfolging().underOppfolging === true}
+                                onChange={handleClick}
+                            >
+                                Under oppfølging
+                            </Checkbox>
+                        </CheckboxGroup>
+                    </Panel>
+                </div>
+                <Accordion>
+                    <Accordion.Item>
+                        <Accordion.Header>Flere valg</Accordion.Header>
+                        <Accordion.Content>
+                            <Grid>
+                                <Cell xs={12} md={6} lg={3}>
+                                    <Select
+                                        label={'Velg geografisk tilknytning'}
+                                        onChange={handleChangeGeografiskTilknytning}
+                                        id="velg-geografisktilknytning"
+                                        defaultValue={hentGeografiskTilknytning()}
+                                    >
+                                        {Object.keys(geografiskeTilknytninger).map((gruppe: string) => (
+                                            <option key={gruppe} value={gruppe}>
+                                                {geografiskeTilknytninger[gruppe]}
+                                            </option>
+                                        ))}
+                                    </Select>
+                                    <Select
+                                        label={'Velg rettighetsgruppe'}
+                                        onChange={handleChangeRettighetsgruppe}
+                                        id="velg-rettighetsgruppe"
+                                        defaultValue={hentRettighetsgruppe()}
+                                    >
+                                        {Object.keys(rettighetsgrupper).map((gruppe: string) => (
+                                            <option key={gruppe} value={gruppe}>
+                                                {rettighetsgrupper[gruppe]}
+                                            </option>
+                                        ))}
+                                    </Select>
+                                    <Select
+                                        label={'Velg registreringstype'}
+                                        onChange={handleChangeRegistreringType}
+                                        id="velg-registreringtype"
+                                        defaultValue={hentRegistreringType()}
+                                    >
+                                        {Object.keys(registreringTyper).map((gruppe: string) => (
+                                            <option key={gruppe} value={gruppe}>
+                                                {registreringTyper[gruppe]}
+                                            </option>
+                                        ))}
+                                    </Select>
+                                    <Select
+                                        label={'Velg innsatsgruppe'}
+                                        onChange={handleChangeServicegruppe}
+                                        id="velg-bruker"
+                                        defaultValue={hentServicegruppe()}
+                                    >
+                                        {Object.keys(servicegrupper).map((gruppe: string) => (
+                                            <option key={gruppe} value={gruppe}>
+                                                {servicegrupper[gruppe]}
+                                            </option>
+                                        ))}
+                                    </Select>
+                                    <Select
+                                        label={'Velg formidlingsgruppe'}
+                                        onChange={handleChangeFormidlingsgruppe}
+                                        id="velg-formidlingsgruppe"
+                                        defaultValue={hentFormidlingsgruppe()}
+                                    >
+                                        {Object.keys(formidlingsgrupper).map((gruppe: string) => (
+                                            <option key={gruppe} value={gruppe}>
+                                                {formidlingsgrupper[gruppe]}
+                                            </option>
+                                        ))}
+                                    </Select>
+                                </Cell>
+                                <Cell xs={12} md={6} lg={3}>
+                                    <Select
+                                        label={'Velg fremtidig situasjon'}
+                                        onChange={handleChangeBrukerregistrering}
+                                        id="velg-fremtidig-situasjon"
+                                        defaultValue={hentFremtidigSituasjon()}
+                                    >
+                                        {Object.keys(FremtidigSituasjonSvar).map((svar: string) => (
+                                            <option key={svar} value={svar}>
+                                                {fremtidigeSituasjoner[svar]}
+                                            </option>
+                                        ))}
+                                    </Select>
+                                    <Select
+                                        label="Velg dinSituasjon"
+                                        onChange={handleChangeDinSituasjon}
+                                        id="velg-din-situasjon"
+                                        defaultValue={hentDinSituasjon()}
+                                    >
+                                        {Object.keys(DinSituasjonSvar).map((svar: string) => (
+                                            <option key={svar} value={svar}>
+                                                {dineSituasjoner[svar]}
+                                            </option>
+                                        ))}
+                                    </Select>
+                                    <Select
+                                        label={'Velg foreslått innsatsgruppe'}
+                                        onChange={handleChangeForeslaattInnsatsgruppe}
+                                        id="velg-foreslaatt-innsatsgruppe"
+                                        defaultValue={hentForeslattInnsatsgruppe()}
+                                    >
+                                        {Object.keys(foreslattInnsatsgrupper).map((svar: string) => (
+                                            <option key={svar} value={svar}>
+                                                {foreslattInnsatsgrupper[svar]}
+                                            </option>
+                                        ))}
+                                    </Select>
+                                    <Select
+                                        label={'Velg registreringsdato'}
+                                        onChange={handleChangeOpprettetRegistreringDato}
+                                        id="velg-opprettetdato"
+                                        defaultValue={hentOpprettetDato()}
+                                    >
+                                        {Object.keys(opprettetRegistreringDato).map((key: string) => (
+                                            <option key={key} value={opprettetRegistreringDato[key]}>
+                                                {opprettetRegistreringDatoLabels[key]}
+                                            </option>
+                                        ))}
+                                    </Select>
+                                    <Select
+                                        label={'Velg kvitteringstatus'}
+                                        onChange={handleChangeKvitteringStatus}
+                                        id="velg-kvitteringstatus"
+                                        defaultValue={hentKvitteringStatus()}
+                                    >
+                                        {Object.keys(kvitteringsStatuser).map((gruppe: string) => (
+                                            <option key={gruppe} value={gruppe}>
+                                                {kvitteringsStatuser[gruppe]}
+                                            </option>
+                                        ))}
+                                    </Select>
+                                    <Select
+                                        label="Velg språk"
+                                        onChange={handleChangeSprak}
+                                        defaultValue={hentDemoState(DemoData.SPRAK) || 'nb'}
+                                    >
+                                        {Object.keys(spraakValg).map((sprak) => (
+                                            <option key={sprak} value={sprak}>
+                                                {spraakValg[sprak]}
+                                            </option>
+                                        ))}
+                                    </Select>
+                                </Cell>
+                                <Cell xs={6} md={6} lg={3}>
+                                    <Panel className={styles.demoCheckboxpanel}>
+                                        <CheckboxGroup
+                                            // onChange={handleClick}
+                                            legend=""
                                         >
-                                            {prettyPrintFeatureToggle(toggle)}
-                                        </Checkbox>
-                                    );
-                                })}
-                            </CheckboxGroup>
-                        </Panel>
-                    </Cell>
-                </Grid>
+                                            <Checkbox
+                                                id={SYKMELDT_MED_ARBEIDSGIVER}
+                                                value={SYKMELDT_MED_ARBEIDSGIVER}
+                                                checked={hentSykmeldtMedArbeidsgiver()}
+                                                onChange={handleClick}
+                                            >
+                                                Sykmelding
+                                            </Checkbox>
+                                            <Checkbox
+                                                id={ULESTE_DIALOGER}
+                                                value={ULESTE_DIALOGER}
+                                                checked={hentUlesteDialoger()}
+                                                onChange={handleClick}
+                                            >
+                                                Uleste dialoger
+                                            </Checkbox>
+                                            <Checkbox
+                                                id={RESERVASJON_KRR}
+                                                value={RESERVASJON_KRR}
+                                                checked={hentReservasjonKRR()}
+                                                onChange={handleClick}
+                                            >
+                                                Reservasjon KRR
+                                            </Checkbox>
+                                            <Checkbox
+                                                id={EGENVURDERING}
+                                                value={EGENVURDERING}
+                                                checked={!!hentEgenvurdering()}
+                                                onChange={handleClick}
+                                            >
+                                                Lagret egenvurdering
+                                            </Checkbox>
+                                            <Checkbox
+                                                id={MOTESTOTTE}
+                                                value={MOTESTOTTE}
+                                                checked={!!hentMotestotte()}
+                                                onChange={handleClick}
+                                            >
+                                                Møtestøtte gjennomført
+                                            </Checkbox>
+                                            <Checkbox
+                                                id={AUTENTISERINGS_INFO}
+                                                value={AUTENTISERINGS_INFO}
+                                                checked={
+                                                    hentAutentiseringsInfo().securityLevel === InnloggingsNiva.LEVEL_3
+                                                }
+                                                onChange={handleClick}
+                                            >
+                                                Nivå 3
+                                            </Checkbox>
+                                            <Checkbox
+                                                id={KAN_REAKTIVERES}
+                                                value={KAN_REAKTIVERES}
+                                                checked={hentKanReaktiveres()}
+                                                onChange={handleClick}
+                                            >
+                                                Kan reaktiveres
+                                            </Checkbox>
+                                            <Checkbox
+                                                id={ER_UNDER_30}
+                                                value={ER_UNDER_30}
+                                                checked={hentAlder() < 30}
+                                                onChange={handleClick}
+                                            >
+                                                Er under 30 år
+                                            </Checkbox>
+                                            <Checkbox
+                                                id={VIS_GJELDER_FRA_DATO}
+                                                value={VIS_GJELDER_FRA_DATO}
+                                                checked={hentVisGjelderFraDato()}
+                                                onChange={handleClick}
+                                            >
+                                                Vis gjelder fra dato-velger
+                                            </Checkbox>
+                                        </CheckboxGroup>
+                                    </Panel>
+                                </Cell>
+                                <Cell xs={6} md={6} lg={3}>
+                                    <Panel className={styles.demoFeaturetoggles}>
+                                        <CheckboxGroup legend={'Featuretoggles'}>
+                                            {Object.values(FeatureToggles).map((toggle) => {
+                                                return (
+                                                    <Checkbox
+                                                        checked={hentDemoState(toggle) === 'true'}
+                                                        key={toggle}
+                                                        id={toggle}
+                                                        value={toggle}
+                                                        onChange={handleClick}
+                                                    >
+                                                        {prettyPrintFeatureToggle(toggle)}
+                                                    </Checkbox>
+                                                );
+                                            })}
+                                        </CheckboxGroup>
+                                    </Panel>
+                                </Cell>
+                            </Grid>
+                        </Accordion.Content>
+                    </Accordion.Item>
+                </Accordion>
             </Panel>
         </section>
     );
