@@ -15,6 +15,8 @@ import { standardHandlers, ikkeStandardHandlers, initielleKallHandlers } from '.
 describe('Tester at main rendrer riktig', () => {
     const swrSpy = vi.spyOn(useSWR, 'useSWR');
     const server = setupServer(...initielleKallHandlers);
+    // Stripp query params for å slippe syting og klaging i loggen
+    const ARBEIDSSOKER_NIVA3_URL_UTEN_QUERY_PARAMS = ARBEIDSSOKER_NIVA3_URL.split('?')[0];
 
     beforeEach(() => {
         mockIntersectionObserver();
@@ -52,7 +54,10 @@ describe('Tester at main rendrer riktig', () => {
     });
 
     test('Rendrer riktig innhold for standard arbeidssøker som ikke er under oppfølging', async () => {
-        server.use(...standardHandlers, msw_get(ARBEIDSSOKER_NIVA3_URL, arbeidssoker(false, 'aktiv')));
+        server.use(
+            ...standardHandlers,
+            msw_get(ARBEIDSSOKER_NIVA3_URL_UTEN_QUERY_PARAMS, arbeidssoker(false, 'aktiv'))
+        );
         render(<Mikrofrontend />);
 
         expect(await screen.findByText('Du er registrert som arbeidssøker')).toBeInTheDocument();
@@ -63,7 +68,7 @@ describe('Tester at main rendrer riktig', () => {
         const avsluttetDato = new Date();
         avsluttetDato.setDate(avsluttetDato.getDate() - 2);
 
-        server.use(msw_get(ARBEIDSSOKER_NIVA3_URL, arbeidssoker(false, 'nylig-utløpt')));
+        server.use(msw_get(ARBEIDSSOKER_NIVA3_URL_UTEN_QUERY_PARAMS, arbeidssoker(false, 'nylig-utløpt')));
 
         const { container } = render(<Mikrofrontend />);
 
@@ -75,7 +80,7 @@ describe('Tester at main rendrer riktig', () => {
     });
 
     test('Viser ingenting når bruker ikke har vært arbeidssøker nylig', async () => {
-        server.use(msw_get(ARBEIDSSOKER_NIVA3_URL, arbeidssoker(false, 'gammel')));
+        server.use(msw_get(ARBEIDSSOKER_NIVA3_URL_UTEN_QUERY_PARAMS, arbeidssoker(false, 'gammel')));
         const { container } = render(<Mikrofrontend />);
         await waitForElementToBeRemoved(() => screen.queryByText('venter...'));
 
