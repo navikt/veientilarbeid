@@ -1,7 +1,5 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
-import { useFeatureToggleData } from './feature-toggles';
-
 import { fetchToJson } from '../ducks/api-utils';
 import { PROFIL_URL, requestConfig } from '../ducks/api';
 import { Profil } from '../profil';
@@ -18,8 +16,6 @@ export const ProfilContext = createContext<ProfilProviderType>({
 
 function ProfilProvider(props: { children: ReactNode }) {
     const [profil, settProfil] = useState<Profil | null>(null);
-    const featureToggles = useFeatureToggleData();
-    const skalBrukeProfil = featureToggles['veientilarbeid.bruk-profil'];
 
     const hentProfil = async () => {
         try {
@@ -50,10 +46,8 @@ function ProfilProvider(props: { children: ReactNode }) {
     };
 
     useEffect(() => {
-        if (skalBrukeProfil) {
-            hentProfil();
-        }
-    }, [skalBrukeProfil]);
+        hentProfil();
+    }, []);
 
     const contextValue = {
         profil,

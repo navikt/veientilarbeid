@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-
-import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useProfil } from '../../contexts/profil';
 
@@ -14,10 +12,7 @@ function DagpengerOgYtelser() {
     const YTELSER_VISNING_PROFIL_KEY = hentProfilnokkelFraLocalStorage(YTELSER_TEMA_VIS_KEY);
 
     const amplitudeData = useAmplitudeData();
-    const featureToggles = useFeatureToggleData();
     const { profil, lagreProfil } = useProfil();
-
-    const brukProfil = featureToggles['veientilarbeid.bruk-profil'];
 
     const valgtVisningFraProfil = profil?.[YTELSER_VISNING_PROFIL_KEY];
     const valgtVisningFraBrowserStorage = hentFraBrowserStorage(YTELSER_TEMA_VIS_KEY);
@@ -44,9 +39,7 @@ function DagpengerOgYtelser() {
 
         const valgtVisning = valgtYtelserVisning === 'dagpenger' ? 'ytelser' : 'dagpenger';
         setValgtYtelserVisning(valgtVisning);
-        if (brukProfil) {
-            lagreProfil({ [YTELSER_VISNING_PROFIL_KEY]: valgtVisning });
-        }
+        lagreProfil({ [YTELSER_VISNING_PROFIL_KEY]: valgtVisning });
         settIBrowserStorage(YTELSER_TEMA_VIS_KEY, valgtVisning);
     };
 

@@ -1,10 +1,9 @@
 import { Next } from '@navikt/ds-icons/cjs';
-import { Heading, BodyShort, Button, Link } from '@navikt/ds-react';
+import { BodyShort, Button, Heading, Link } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
 
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useSprakValg } from '../../contexts/sprak';
-import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useProfil } from '../../contexts/profil';
 
 import { loggAktivitet } from '../../metrics/metrics';
@@ -37,8 +36,6 @@ const TEKSTER = {
 
 const EgenvurderingIVURD = () => {
     const amplitudeData = useAmplitudeData();
-    const featureToggles = useFeatureToggleData();
-    const brukProfil = featureToggles['veientilarbeid.bruk-profil'];
     const { lagreProfil } = useProfil();
 
     const lagreEgenvurderingDato = () => {
@@ -46,11 +43,9 @@ const EgenvurderingIVURD = () => {
         const egenvurderingProfilId = hentProfilnokkelFraLocalStorage(AVSLAATT_EGENVURDERING);
 
         settIBrowserStorage(AVSLAATT_EGENVURDERING, datoNaa);
-        if (brukProfil) {
-            lagreProfil({
-                [egenvurderingProfilId]: datoNaa,
-            });
-        }
+        lagreProfil({
+            [egenvurderingProfilId]: datoNaa,
+        });
     };
 
     const handleButtonClick = () => {

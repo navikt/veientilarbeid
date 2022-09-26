@@ -8,7 +8,6 @@ export enum FeatureToggles {
     KAN_VISE_UTFRA_SITUASJON = 'veientilarbeid.kanViseUtfraSituasjon',
     VIS_EGENVURDERING_MED_14A = 'veientilarbeid.vis-egenvurdering-med-14a',
     VIS_GJELDER_FRA_DATO = 'veientilarbeid.vis-gjelder-fra-dato',
-    BRUK_PROFIL = 'veientilarbeid.bruk-profil',
 }
 
 export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
@@ -25,8 +24,6 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Vis egenvurdering med 14a';
         case FeatureToggles.VIS_GJELDER_FRA_DATO:
             return 'Gjelder fra dato';
-        case FeatureToggles.BRUK_PROFIL:
-            return 'Bruk profil';
     }
 }
 
@@ -37,7 +34,6 @@ export interface Data {
     'veientilarbeid.kanViseUtfraSituasjon': boolean;
     'veientilarbeid.vis-egenvurdering-med-14a': boolean;
     'veientilarbeid.vis-gjelder-fra-dato'?: boolean;
-    'veientilarbeid.bruk-profil'?: boolean;
 }
 
 export interface State extends DataElement {
@@ -52,7 +48,6 @@ export const initialState: State = {
         'veientilarbeid.kanViseUtfraSituasjon': false,
         'veientilarbeid.vis-egenvurdering-med-14a': false,
         'veientilarbeid.vis-gjelder-fra-dato': false,
-        'veientilarbeid.bruk-profil': false,
     },
     status: STATUS.NOT_STARTED,
 };

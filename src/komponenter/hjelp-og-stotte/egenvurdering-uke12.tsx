@@ -1,4 +1,4 @@
-import { Link, Heading, BodyShort, Button } from '@navikt/ds-react';
+import { BodyShort, Button, Heading, Link } from '@navikt/ds-react';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { settIBrowserStorage } from '../../utils/browserStorage-utils';
 import { loggAktivitet } from '../../metrics/metrics';
@@ -6,7 +6,6 @@ import { behovsvurderingLenke } from '../../innhold/lenker';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
 import { Next } from '@navikt/ds-icons';
-import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useProfil } from '../../contexts/profil';
 import { hentProfilnokkelFraLocalStorage } from '../../utils/profil-id-mapper';
 import * as React from 'react';
@@ -36,8 +35,6 @@ const TEKSTER = {
 function EgenvurderingUke12() {
     const amplitudeData = useAmplitudeData();
     const { ukerRegistrert } = amplitudeData;
-    const featureToggles = useFeatureToggleData();
-    const brukProfil = featureToggles['veientilarbeid.bruk-profil'];
     const { lagreProfil } = useProfil();
 
     const lagreEgenvurderingDato = () => {
@@ -45,11 +42,9 @@ function EgenvurderingUke12() {
         const egenvurderingProfilId = hentProfilnokkelFraLocalStorage(INTRO_KEY_12UKER);
 
         settIBrowserStorage(INTRO_KEY_12UKER, datoNaa);
-        if (brukProfil) {
-            lagreProfil({
-                [egenvurderingProfilId]: datoNaa,
-            });
-        }
+        lagreProfil({
+            [egenvurderingProfilId]: datoNaa,
+        });
     };
 
     function avslaarEgenvurdering(event: React.SyntheticEvent) {

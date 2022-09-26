@@ -63,8 +63,6 @@ function HjelpOgStotte() {
     const registrertDato = registreringData?.registrering?.opprettetDato;
     const underOppfolging = useUnderOppfolging()?.underoppfolging;
 
-    const brukProfil = featuretoggleData['veientilarbeid.bruk-profil'];
-
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
@@ -84,16 +82,12 @@ function HjelpOgStotte() {
 
     const sistSettEgenvurderingUke12Browserstorage = hentFraBrowserStorage(INTRO_KEY_12UKER);
 
-    const sistSettEgenvurderingUke12Profil = brukProfil
-        ? profil?.[hentProfilnokkelFraLocalStorage(INTRO_KEY_12UKER)]
-        : null;
+    const sistSettEgenvurderingUke12Profil = profil?.[hentProfilnokkelFraLocalStorage(INTRO_KEY_12UKER)];
 
     const sistSettEgenvurderingUke12 =
         sistSettEgenvurderingUke12Profil ?? sistSettEgenvurderingUke12Browserstorage ?? 0;
 
-    const harAvslattEgenvurderingProfil = brukProfil
-        ? profil?.[hentProfilnokkelFraLocalStorage(AVSLAATT_EGENVURDERING)]
-        : null;
+    const harAvslattEgenvurderingProfil = profil?.[hentProfilnokkelFraLocalStorage(AVSLAATT_EGENVURDERING)];
 
     const harAvslattEgenvurdering = harAvslattEgenvurderingProfil ?? hentFraBrowserStorage(AVSLAATT_EGENVURDERING);
 
