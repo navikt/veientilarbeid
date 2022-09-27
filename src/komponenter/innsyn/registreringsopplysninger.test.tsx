@@ -5,6 +5,8 @@ import Opplysninger from './registreringsopplysninger';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import { DinSituasjonSvar } from '../../contexts/brukerregistrering';
 
+const user = userEvent.setup();
+
 const registreringsopplysninger = {
     manueltRegistrertAv: null,
     opprettetDato: '2020-01-03T11:53:05.486686+01:00',
@@ -237,7 +239,7 @@ describe('Tester registreringsopplysninger komponenten', () => {
         expect(screen.queryAllByAltText(/denne teksten skal ikke være her/i).length).toBe(0);
     });
 
-    test('Klikk på lenken fungerer', () => {
+    test('Klikk på lenken fungerer', async () => {
         const props: ProviderProps = {
             arbeidssoker: {
                 arbeidssokerperioder: { status: 200, arbeidssokerperioder: [] },
@@ -251,7 +253,7 @@ describe('Tester registreringsopplysninger komponenten', () => {
             event.preventDefault();
             mockHandleClick();
         };
-        userEvent.click(knapp);
+        await user.click(knapp);
         expect(mockHandleClick).toHaveBeenCalledTimes(1);
     });
 

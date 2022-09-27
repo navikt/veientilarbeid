@@ -1,12 +1,14 @@
 import { FunctionComponent } from 'react';
-
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
 import Egenvurdering from './egenvurdering';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import { Servicegruppe } from '../../contexts/oppfolging';
 import { ForeslattInnsatsgruppe } from '../../contexts/brukerregistrering';
 import { InnloggingsNiva } from '../../contexts/autentisering';
+
+const user = userEvent.setup();
 
 describe('Tester egenvurdering-komponenten', () => {
     const oldLocation = global.window.location;
@@ -112,7 +114,7 @@ describe('Tester egenvurdering-komponenten', () => {
 
         const knapp = screen.getByText('SVAR HER');
         knapp.onclick = mockHandleClick;
-        userEvent.click(knapp);
+        await user.click(knapp);
         expect(mockHandleClick).toHaveBeenCalledTimes(1);
         expect(mockLocationAssign).toHaveBeenCalledTimes(1);
     });
