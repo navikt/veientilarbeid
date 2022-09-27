@@ -4,6 +4,8 @@ import userEvent from '@testing-library/user-event';
 import IkkeRegistrert from './ikke-registrert';
 import { mockIntersectionObserver } from '../../mocks/intersection-observer-mock';
 
+const user = userEvent.setup();
+
 describe('Tester IkkeRegistrert-komponenten', () => {
     const oldLocation = global.window.location;
 
@@ -39,7 +41,7 @@ describe('Tester IkkeRegistrert-komponenten', () => {
 
         const knapp = screen.getByText(/registrer deg som arbeidssøker/i);
         knapp.onclick = mockHandleClick;
-        userEvent.click(knapp);
+        await user.click(knapp);
         expect(mockHandleClick).toHaveBeenCalledTimes(1);
         expect(mockLocationAssign).toHaveBeenCalledTimes(1);
     });

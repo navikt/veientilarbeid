@@ -18,7 +18,7 @@ function GjelderFraDatoProvider(props: { children: ReactNode }) {
 
     const hentGjelderFraDato = async () => {
         try {
-            const { dato } = await fetchToJson(GJELDER_FRA_DATO_URL, requestConfig());
+            const { dato } = await fetchToJson<{ dato: string | null }>(GJELDER_FRA_DATO_URL, requestConfig());
             settDato(dato);
         } catch (err) {
             console.error(err);
