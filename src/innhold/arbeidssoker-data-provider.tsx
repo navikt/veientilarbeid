@@ -56,6 +56,7 @@ const ArbeidssokerDataProvider = (props: Props) => {
         if (foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING) {
             fetchData<Motestotte.State, Motestotte.Data>(motestotteState, setMotestotteState, MOTESTOTTE_URL);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [brukerregistreringState]);
 
     const avhengigheter = [oppfolgingState, brukerregistreringState, egenvurderingState];

@@ -3,7 +3,7 @@ import beregnArbeidssokerperioder from '../lib/beregn-arbeidssokerperioder';
 import IkkeRegistrert from '../komponenter/ikke-registrert/ikke-registrert';
 import ReaktiveringWrapper from '../komponenter/reaktivering/reaktivering-wrapper';
 import ArbeidssokerDataProvider from './arbeidssoker-data-provider';
-import InnholdIkkeStandard from './innhold-ikke-standard';
+import InnholdUnderOppfolgingUtenPeriode from './innhold-under-oppfolging-uten-periode';
 
 function IkkeArbeidssokerInnhold() {
     const arbeidssokerperioderData = useArbeidssokerPerioder();
@@ -15,7 +15,7 @@ function IkkeArbeidssokerInnhold() {
     } else if (underOppfolging) {
         return (
             <ArbeidssokerDataProvider>
-                <InnholdIkkeStandard />
+                <InnholdUnderOppfolgingUtenPeriode />
             </ArbeidssokerDataProvider>
         );
     }
