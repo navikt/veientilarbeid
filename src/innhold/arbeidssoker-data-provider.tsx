@@ -7,6 +7,7 @@ import {
     BRUKERINFO_URL,
     BRUKERREGISTRERING_URL,
     EGENVURDERINGBESVARELSE_URL,
+    MOTESTOTTE_URL,
     VEILARBOPPFOLGING_URL,
 } from '../ducks/api';
 import Innholdslaster from '../komponenter/innholdslaster/innholdslaster';
@@ -17,6 +18,8 @@ import { useEffect } from 'react';
 import { GjelderFraDatoModalProvider } from '../contexts/gjelder-fra-dato-modal';
 import { GjelderFraDatoProvider } from '../contexts/gjelder-fra-dato';
 import { AmplitudeProvider } from '../komponenter/hent-initial-data/amplitude-provider';
+import * as Motestotte from '../contexts/motestotte';
+import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe } from '../contexts/brukerregistrering';
 
 interface Props {
     children: React.ReactElement<any>;
@@ -29,6 +32,7 @@ const ArbeidssokerDataProvider = (props: Props) => {
     const [oppfolgingState, setOppfolgingState] = React.useState<Oppfolging.State>(Oppfolging.initialState);
     const [egenvurderingState, setEgenvurderingState] = React.useState<Egenvurdering.State>(Egenvurdering.initialState);
     const [brukerInfoState, setBrukerInfoState] = React.useState<BrukerInfo.State>(BrukerInfo.initialState);
+    const [motestotteState, setMotestotteState] = React.useState<Motestotte.State>(Motestotte.initialState);
 
     useEffect(() => {
         fetchData<Oppfolging.State, Oppfolging.Data>(oppfolgingState, setOppfolgingState, VEILARBOPPFOLGING_URL);
@@ -46,6 +50,14 @@ const ArbeidssokerDataProvider = (props: Props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    useEffect(() => {
+        const foreslaattInnsatsgruppe = selectForeslattInnsatsgruppe(brukerregistreringState.data);
+
+        if (foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING) {
+            fetchData<Motestotte.State, Motestotte.Data>(motestotteState, setMotestotteState, MOTESTOTTE_URL);
+        }
+    }, [brukerregistreringState]);
+
     const avhengigheter = [oppfolgingState, brukerregistreringState, egenvurderingState];
 
     return (
@@ -54,13 +66,15 @@ const ArbeidssokerDataProvider = (props: Props) => {
                 <Brukerregistrering.BrukerregistreringContext.Provider value={brukerregistreringState}>
                     <Egenvurdering.EgenvurderingContext.Provider value={egenvurderingState}>
                         <BrukerInfo.BrukerInfoContext.Provider value={brukerInfoState}>
-                            <ProfilProvider>
-                                <GjelderFraDatoModalProvider>
-                                    <GjelderFraDatoProvider>
-                                        <AmplitudeProvider>{props.children}</AmplitudeProvider>
-                                    </GjelderFraDatoProvider>
-                                </GjelderFraDatoModalProvider>
-                            </ProfilProvider>
+                            <Motestotte.MotestotteContext.Provider value={motestotteState}>
+                                <ProfilProvider>
+                                    <GjelderFraDatoModalProvider>
+                                        <GjelderFraDatoProvider>
+                                            <AmplitudeProvider>{props.children}</AmplitudeProvider>
+                                        </GjelderFraDatoProvider>
+                                    </GjelderFraDatoModalProvider>
+                                </ProfilProvider>
+                            </Motestotte.MotestotteContext.Provider>
                         </BrukerInfo.BrukerInfoContext.Provider>
                     </Egenvurdering.EgenvurderingContext.Provider>
                 </Brukerregistrering.BrukerregistreringContext.Provider>
