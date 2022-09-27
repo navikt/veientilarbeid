@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { BodyShort, Button, Heading, Panel } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
 
@@ -15,8 +14,8 @@ import {
 } from '../../contexts/brukerregistrering';
 import { motestotteLenke } from '../../innhold/lenker';
 import { loggAktivitet } from '../../metrics/metrics';
-import { OppfolgingContext, Servicegruppe } from '../../contexts/oppfolging';
-import { MotestotteContext } from '../../contexts/motestotte';
+import { Servicegruppe, useOppfolgingData } from '../../contexts/oppfolging';
+import { useMotestotteData } from '../../contexts/motestotte';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import { useUnderOppfolging } from '../../contexts/arbeidssoker';
 
@@ -39,8 +38,8 @@ const TEKSTER: Tekster<string> = {
 const Motestotte = () => {
     const amplitudeData = useAmplitudeData();
     const data = useBrukerregistreringData();
-    const oppfolgingData = React.useContext(OppfolgingContext).data;
-    const motestotteData = React.useContext(MotestotteContext).data;
+    const oppfolgingData = useOppfolgingData();
+    const motestotteData = useMotestotteData();
     const { erSykmeldtMedArbeidsgiver } = useBrukerinfoData();
     const sykmeldtStatus = erSykmeldtMedArbeidsgiver ? 'sykmeldt' : 'ikkeSykmeldt';
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
