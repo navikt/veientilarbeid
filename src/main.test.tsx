@@ -12,7 +12,7 @@ import { InnloggingsNiva } from './contexts/autentisering';
 import { authenticatedMock } from './mocks/auth-mock';
 import { standardHandlers, ikkeStandardHandlers, initielleKallHandlers } from './test/test-handlers';
 
-describe('Tester at main rendrer riktig', () => {
+describe('Tester at main rendrer riktig innhold', () => {
     const swrSpy = vi.spyOn(useSWR, 'useSWR');
     const server = setupServer(...initielleKallHandlers);
     // Stripp query params for å slippe syting og klaging i loggen
@@ -23,68 +23,83 @@ describe('Tester at main rendrer riktig', () => {
     });
 
     beforeAll(() => server.listen());
+    afterAll(() => server.close());
     afterEach(() => {
         server.resetHandlers();
         vitest.clearAllMocks();
     });
-    afterAll(() => server.close());
 
-    test('Rendrer riktig innhold for arbeidssøker med standard innsatsgruppe', async () => {
-        server.use(...standardHandlers);
-        render(<Mikrofrontend />);
+    describe('for arbeidssøker', () => {
+        test('med standard innsatsgruppe', async () => {
+            server.use(...standardHandlers);
+            render(<Mikrofrontend />);
 
-        expect(await screen.findByText('Du er registrert som arbeidssøker')).toBeInTheDocument();
-        expect(swrSpy).toHaveBeenCalledWith(`${DP_INNSYN_URL}/soknad`);
+            expect(await screen.findByText('Du er registrert som arbeidssøker')).toBeInTheDocument();
+            expect(swrSpy).toHaveBeenCalledWith(`${DP_INNSYN_URL}/soknad`);
+        });
+
+        test('med standard innsatsgruppe og nivå 3-innlogging', async () => {
+            server.use(...standardHandlers, msw_get(AUTH_API, authenticatedMock(InnloggingsNiva.LEVEL_3)));
+            render(<Mikrofrontend />);
+
+            expect(await screen.findByText('Du er registrert som arbeidssøker')).toBeInTheDocument();
+            expect(swrSpy).not.toHaveBeenCalledWith(`${DP_INNSYN_URL}/soknad`);
+        });
+
+        test('med standard innsatsgruppe som ikke er under oppfølging', async () => {
+            server.use(
+                ...standardHandlers,
+                msw_get(ARBEIDSSOKER_NIVA3_URL_UTEN_QUERY_PARAMS, arbeidssoker(false, 'aktiv'))
+            );
+            render(<Mikrofrontend />);
+
+            expect(await screen.findByText('Du er registrert som arbeidssøker')).toBeInTheDocument();
+            expect(swrSpy).not.toHaveBeenCalledWith(`${DP_INNSYN_URL}/soknad`);
+        });
+
+        test('uten standard innsatsgruppe', async () => {
+            server.use(...ikkeStandardHandlers);
+            render(<Mikrofrontend />);
+
+            expect(await screen.findByText('Du er registrert som arbeidssøker')).toBeInTheDocument();
+            expect(swrSpy).not.toHaveBeenCalledWith(`${DP_INNSYN_URL}/soknad`);
+        });
     });
 
-    test('Rendrer riktig innhold for arbeidssøker uten standard innsatsgruppe', async () => {
-        server.use(...ikkeStandardHandlers);
-        render(<Mikrofrontend />);
+    describe('for bruker som ikke er arbeidssøker', () => {
+        test(', men er under oppfølging', async () => {
+            server.use(
+                ...ikkeStandardHandlers,
+                msw_get(ARBEIDSSOKER_NIVA3_URL_UTEN_QUERY_PARAMS, arbeidssoker(true, 'ingen'))
+            );
+            render(<Mikrofrontend />);
 
-        expect(await screen.findByText('Du er registrert som arbeidssøker')).toBeInTheDocument();
-        expect(swrSpy).not.toHaveBeenCalledWith(`${DP_INNSYN_URL}/soknad`);
-    });
+            expect(await screen.findByText('Dialog')).toBeInTheDocument();
+            expect(await screen.queryByText('Du er registrert som arbeidssøker')).not.toBeInTheDocument();
+            expect(swrSpy).not.toHaveBeenCalledWith(`${DP_INNSYN_URL}/soknad`);
+        });
 
-    test('Rendrer riktig innhold for standard arbeidssøker med nivå 3-innlogging ', async () => {
-        server.use(...standardHandlers, msw_get(AUTH_API, authenticatedMock(InnloggingsNiva.LEVEL_3)));
-        render(<Mikrofrontend />);
+        test(', men nylig har vært arbeidssøker (viser reaktiveringskomponent)', async () => {
+            server.use(msw_get(ARBEIDSSOKER_NIVA3_URL_UTEN_QUERY_PARAMS, arbeidssoker(false, 'nylig-utløpt')));
 
-        expect(await screen.findByText('Du er registrert som arbeidssøker')).toBeInTheDocument();
-        expect(swrSpy).not.toHaveBeenCalledWith(`${DP_INNSYN_URL}/soknad`);
-    });
+            const { container } = render(<Mikrofrontend />);
 
-    test('Rendrer riktig innhold for standard arbeidssøker som ikke er under oppfølging', async () => {
-        server.use(
-            ...standardHandlers,
-            msw_get(ARBEIDSSOKER_NIVA3_URL_UTEN_QUERY_PARAMS, arbeidssoker(false, 'aktiv'))
-        );
-        render(<Mikrofrontend />);
+            await waitForElementToBeRemoved(() => screen.queryByText('venter...'));
 
-        expect(await screen.findByText('Du er registrert som arbeidssøker')).toBeInTheDocument();
-        expect(swrSpy).not.toHaveBeenCalledWith(`${DP_INNSYN_URL}/soknad`);
-    });
+            expect(swrSpy).not.toHaveBeenCalledWith('ER_STANDARD_INNSATSGRUPPE_URL');
+            expect(container).not.toBeEmptyDOMElement();
+            expect(
+                await screen.findByText('Du er ikke lenger registrert som arbeidssøker hos NAV')
+            ).toBeInTheDocument();
+        });
 
-    test('Viser reaktiveringskomponent hvis bruker nylig har vært arbeidssøker', async () => {
-        const avsluttetDato = new Date();
-        avsluttetDato.setDate(avsluttetDato.getDate() - 2);
+        test(', ikke har vært arbeidssøker nylig og ikke er under oppfølging (viser ingenting)', async () => {
+            server.use(msw_get(ARBEIDSSOKER_NIVA3_URL_UTEN_QUERY_PARAMS, arbeidssoker(false, 'gammel')));
+            const { container } = render(<Mikrofrontend />);
+            await waitForElementToBeRemoved(() => screen.queryByText('venter...'));
 
-        server.use(msw_get(ARBEIDSSOKER_NIVA3_URL_UTEN_QUERY_PARAMS, arbeidssoker(false, 'nylig-utløpt')));
-
-        const { container } = render(<Mikrofrontend />);
-
-        await waitForElementToBeRemoved(() => screen.queryByText('venter...'));
-
-        expect(swrSpy).not.toHaveBeenCalledWith('ER_STANDARD_INNSATSGRUPPE_URL');
-        expect(container).not.toBeEmptyDOMElement();
-        expect(await screen.findByText('Du er ikke lenger registrert som arbeidssøker hos NAV')).toBeInTheDocument();
-    });
-
-    test('Viser ingenting når bruker ikke har vært arbeidssøker nylig', async () => {
-        server.use(msw_get(ARBEIDSSOKER_NIVA3_URL_UTEN_QUERY_PARAMS, arbeidssoker(false, 'gammel')));
-        const { container } = render(<Mikrofrontend />);
-        await waitForElementToBeRemoved(() => screen.queryByText('venter...'));
-
-        expect(swrSpy).not.toHaveBeenCalledWith('ER_STANDARD_INNSATSGRUPPE_URL');
-        expect(container).toBeEmptyDOMElement();
+            expect(swrSpy).not.toHaveBeenCalledWith('ER_STANDARD_INNSATSGRUPPE_URL');
+            expect(container).toBeEmptyDOMElement();
+        });
     });
 });

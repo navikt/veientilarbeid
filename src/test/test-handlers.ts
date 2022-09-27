@@ -66,5 +66,5 @@ export const ikkeStandardHandlers = [
     msw_get(BRUKERREGISTRERING_URL, brukerRegistreringResponse),
     msw_get(BRUKERINFO_URL, brukerInfoResponse),
     msw_get(VEILARBOPPFOLGING_URL, oppfolgingResponse),
-    msw_get('http://localhost:3000/bakveientilarbeid/gjelderfra', gjelderFraGetResponse),
+    msw_get(GJELDER_FRA_DATO_URL, gjelderFraGetResponse),
 ];
