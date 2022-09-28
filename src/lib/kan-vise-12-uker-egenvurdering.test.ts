@@ -1,5 +1,5 @@
 import { Formidlingsgruppe, Servicegruppe } from '../contexts/oppfolging';
-import { DinSituasjonSvar, FremtidigSituasjonSvar, ForeslattInnsatsgruppe } from '../contexts/brukerregistrering';
+import { DinSituasjonSvar, ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../contexts/brukerregistrering';
 import { InnloggingsNiva } from '../contexts/autentisering';
 import { plussDager } from '../utils/date-utils';
 import { POAGruppe } from '../utils/get-poa-group';
@@ -49,9 +49,6 @@ const grunndata = {
         'veientilarbeid.feedback': false,
         'veientilarbeid.14a-intro': true,
         'veientilarbeid.egenvurderinguke12': true,
-        'veientilarbeid.vis-oppdatert-styling': false,
-        'veientilarbeid.vis-egenvurdering-med-14a': false,
-        'veientilarbeid.logg-arbeidssokerperioder': false,
     },
     amplitudeData: {
         gruppe: poagruppeKSS,

@@ -5,7 +5,6 @@ export enum FeatureToggles {
     INTRO_FEEDBACK = 'veientilarbeid.feedback',
     INTRO_14A = 'veientilarbeid.14a-intro',
     EGENVURDERING_UKE12 = 'veientilarbeid.egenvurderinguke12',
-    VIS_EGENVURDERING_MED_14A = 'veientilarbeid.vis-egenvurdering-med-14a',
     VIS_GJELDER_FRA_DATO = 'veientilarbeid.vis-gjelder-fra-dato',
 }
 
@@ -17,8 +16,6 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Intro feedback';
         case FeatureToggles.EGENVURDERING_UKE12:
             return 'Egenvurdering uke 12';
-        case FeatureToggles.VIS_EGENVURDERING_MED_14A:
-            return 'Vis egenvurdering med 14a';
         case FeatureToggles.VIS_GJELDER_FRA_DATO:
             return 'Gjelder fra dato';
     }
@@ -28,7 +25,6 @@ export interface Data {
     'veientilarbeid.feedback': boolean;
     'veientilarbeid.14a-intro': boolean;
     'veientilarbeid.egenvurderinguke12': boolean;
-    'veientilarbeid.vis-egenvurdering-med-14a': boolean;
     'veientilarbeid.vis-gjelder-fra-dato'?: boolean;
 }
 
@@ -41,7 +37,6 @@ export const initialState: State = {
         'veientilarbeid.feedback': false,
         'veientilarbeid.14a-intro': false,
         'veientilarbeid.egenvurderinguke12': false,
-        'veientilarbeid.vis-egenvurdering-med-14a': false,
         'veientilarbeid.vis-gjelder-fra-dato': false,
     },
     status: STATUS.NOT_STARTED,
