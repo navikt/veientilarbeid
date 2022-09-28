@@ -45,8 +45,6 @@ const grunndata = {
         sistOppdatert: plussDager(new Date(), -78).toISOString(),
     },
     featuretoggleData: {
-        'veientilarbeid.feedback': false,
-        'veientilarbeid.14a-intro': true,
         'veientilarbeid.egenvurderinguke12': true,
     },
     amplitudeData: {
@@ -113,7 +111,6 @@ describe('Tester funksjonen erKSSBruker', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
         testdata.amplitudeData.eksperimenter = [eksperiment];
         testdata.brukerInfoData.alder = 45;
-        testdata.featuretoggleData['veientilarbeid.14a-intro'] = true;
         testdata.oppfolgingData.kanReaktiveres = false;
         testdata.oppfolgingData.servicegruppe = 'IKVAL';
         testdata.oppfolgingData.formidlingsgruppe = 'ARBS';

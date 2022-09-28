@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import { BodyShort, Detail, Popover } from '@navikt/ds-react';
 
 import { useAmplitudeData } from '../../contexts/amplitude-context';
-import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useSprakValg } from '../../contexts/sprak';
 import { useProfil } from '../../contexts/profil';
 
@@ -56,7 +55,6 @@ function Feedback({ id, className, sporsmal }: Props) {
     const [visPopover, setVisPopover] = useState<HTMLElement | undefined>(undefined);
     const feedbackNeiKnappRef = useRef(null);
     const amplitudeData = useAmplitudeData();
-    const featuretoggledata = useFeatureToggleData();
 
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
@@ -68,7 +66,6 @@ function Feedback({ id, className, sporsmal }: Props) {
         }
     }, [profil, id]);
 
-    if (!featuretoggledata['veientilarbeid.feedback']) return null;
     if (erOppdatertForOver12TimerSiden(oppdatert)) return null;
 
     const handleFeedback = (feedback: string) => {

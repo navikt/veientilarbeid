@@ -234,7 +234,7 @@ describe('Tester registreringsopplysninger komponenten', () => {
         const { teksterForBesvarelse } = registreringsopplysninger;
         teksterForBesvarelse.forEach(({ sporsmal, svar }) => {
             expect(screen.getByText(sporsmal)).toBeTruthy();
-            expect(screen.getByText(svar)).toBeTruthy();
+            expect(screen.getAllByText(svar)).toBeTruthy();
         });
         expect(screen.queryAllByAltText(/denne teksten skal ikke være her/i).length).toBe(0);
     });

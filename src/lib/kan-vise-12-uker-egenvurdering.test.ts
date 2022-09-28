@@ -46,8 +46,6 @@ const grunndata = {
         sistOppdatert: plussDager(new Date(), -78).toISOString(),
     },
     featuretoggleData: {
-        'veientilarbeid.feedback': false,
-        'veientilarbeid.14a-intro': true,
         'veientilarbeid.egenvurderinguke12': true,
     },
     amplitudeData: {
