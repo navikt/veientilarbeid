@@ -10,7 +10,7 @@ import { render } from './utils/test-utils';
 import arbeidssoker from './mocks/arbeidssoker-niva3-mock';
 import { InnloggingsNiva } from './contexts/autentisering';
 import { authenticatedMock } from './mocks/auth-mock';
-import { standardHandlers, ikkeStandardHandlers, initielleKallHandlers } from './test/test-handlers';
+import { ikkeStandardHandlers, initielleKallHandlers, standardHandlers } from './test/test-handlers';
 
 describe('Tester at main rendrer riktig innhold', () => {
     const swrSpy = vi.spyOn(useSWR, 'useSWR');
@@ -25,7 +25,7 @@ describe('Tester at main rendrer riktig innhold', () => {
     beforeAll(() => server.listen());
     afterAll(() => server.close());
     afterEach(() => {
-        server.resetHandlers();
+        server.restoreHandlers();
         vitest.clearAllMocks();
     });
 
