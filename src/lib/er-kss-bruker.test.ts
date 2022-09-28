@@ -97,12 +97,6 @@ describe('Tester funksjonen erKSSBruker', () => {
         expect(erKSSBruker(testdata)).toBe(false);
     });
 
-    test('NEI hvis ikke featureToggle', () => {
-        const testdata = JSON.parse(JSON.stringify(grunndata));
-        testdata.featuretoggleData['veientilarbeid.14a-intro'] = false;
-        expect(erKSSBruker(testdata)).toBe(false);
-    });
-
     test('NEI hvis ikke bruker kan reaktveres', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
         testdata.oppfolgingData.kanReaktiveres = true;
