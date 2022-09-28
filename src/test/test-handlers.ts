@@ -40,6 +40,8 @@ export const initielleKallHandlers = [
     msw_post(AMPLITUDE_ENDPOINT, ''),
     msw_get(PROFIL_URL, {}),
     msw_post('https://amplitude.nav.no/collect', {}),
+    msw_get(GJELDER_FRA_DATO_URL, gjelderFraGetResponse),
+    msw_post(GJELDER_FRA_DATO_URL, null, 201),
 ];
 
 export const standardHandlers = [
@@ -55,8 +57,6 @@ export const standardHandlers = [
     msw_get(`${DP_INNSYN_URL}/soknad`, dpSoknadResonse),
     msw_get(`${DP_INNSYN_URL}/vedtak`, dpVedtakResponse),
     msw_get(`${DP_INNSYN_URL}/paabegynte`, dpPaabegynteResponse),
-    msw_get(GJELDER_FRA_DATO_URL, gjelderFraGetResponse),
-    msw_post(GJELDER_FRA_DATO_URL, null, 201),
 ];
 
 export const ikkeStandardHandlers = [
@@ -66,5 +66,4 @@ export const ikkeStandardHandlers = [
     msw_get(BRUKERREGISTRERING_URL, brukerRegistreringResponse),
     msw_get(BRUKERINFO_URL, brukerInfoResponse),
     msw_get(VEILARBOPPFOLGING_URL, oppfolgingResponse),
-    msw_get(GJELDER_FRA_DATO_URL, gjelderFraGetResponse),
 ];

@@ -25,7 +25,7 @@ describe('Tester at main rendrer riktig innhold', () => {
     beforeAll(() => server.listen());
     afterAll(() => server.close());
     afterEach(() => {
-        server.restoreHandlers();
+        server.resetHandlers();
         vitest.clearAllMocks();
     });
 
