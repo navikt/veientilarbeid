@@ -1,6 +1,7 @@
 # Dokumentasjon av Amplitude i AiA
 
-Aktivitetene i AiA logges til `veientilarbeid.`. Hvilke aktiviteter som logges og hvilke ekstra data som sendes med varierer.
+Aktivitetene i AiA logges til `veientilarbeid.` i PO Arbeid - prod prosjektet.
+Hvilke aktiviteter som logges og hvilke ekstra data som sendes med varierer.
 
 ## veientilarbeid.visning
 
@@ -16,6 +17,12 @@ Den kan for eksempel trigges av en knapp som er trykket på eller en ReadMore so
 -   `aktivitet` Beskrivelse av hva arbeissøkeren prøve å oppnå gjennom handlingen som er utført
 
 ## veientilarbeid.rendring
+
+Brukes for å logge når en komponent har blitt rendret for arbeidsssøkeren.
+I motsetning til `visning` har ikke denne et krav til at komponenten faktisk har vært i arbeidssøkerens viewPort.
+Det er i enkelte tilfeller å kunne sammenstille hvor mange som kunne sett komponenten holdt opp mot hvor mange som faktisk har sett den.
+
+-   `rendrer` Beskrivelse an komponenten som rendres
 
 ## veientilarbeid.tema
 
