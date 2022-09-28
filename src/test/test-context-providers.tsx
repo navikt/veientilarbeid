@@ -17,7 +17,6 @@ import * as Arbeidssoker from '../contexts/arbeidssoker';
 import { STATUS } from '../ducks/api';
 import { setFastTidspunktForIDag } from '../utils/chrono';
 import { GlobaleInnstillingerProps, GlobaleInnstillingerProvider } from '../contexts/GlobaleInnstillinger';
-import KanViseVTA from '../komponenter/kan-vise-vta/kan-vise-vta';
 import { Profil } from '../profil';
 import { ProfilContext } from '../contexts/profil';
 
@@ -121,7 +120,7 @@ export const contextProviders = function (props: ProviderProps): React.FunctionC
                                                                         lagreProfil: () => Promise.resolve(),
                                                                     }}
                                                                 >
-                                                                    <KanViseVTA>{children}</KanViseVTA>
+                                                                    {children}
                                                                 </ProfilContext.Provider>
                                                             </FeatureToggle.FeaturetoggleContext.Provider>
                                                         </Sakstema.SakstemaContext.Provider>

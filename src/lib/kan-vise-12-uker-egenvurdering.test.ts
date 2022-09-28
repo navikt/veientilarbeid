@@ -49,7 +49,6 @@ const grunndata = {
         'veientilarbeid.feedback': false,
         'veientilarbeid.14a-intro': true,
         'veientilarbeid.egenvurderinguke12': true,
-        'veientilarbeid.kanViseUtfraSituasjon': false,
         'veientilarbeid.vis-oppdatert-styling': false,
         'veientilarbeid.vis-egenvurdering-med-14a': false,
         'veientilarbeid.logg-arbeidssokerperioder': false,
