@@ -1,3 +1,3 @@
 # Dokumentasjon av flyten i AiA
 
--   Oversikt i [mural](https://app.mural.co/invitation/mural/navdesign3580/1662641134906?sender=geirgasodden5758&key=514bf6aa-7110-4ae6-91ae-21e2f4cbf924)
+-   Oversikt i [mural](https://app.mural.co/t/navdesign3580/m/navdesign3580/1662641134906/cd937ae5e47cb7acffede9a18782ba861363516b?sender=geirgasodden5758)
