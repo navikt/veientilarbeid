@@ -58,8 +58,8 @@ export const dagpengerSoknadLenke = 'https://www.nav.no/arbeid/dagpenger/soknad-
 export const dagpengerStartSoknadLenke = 'https://tjenester.nav.no/soknaddagpenger/utslagskriterier/start#/';
 export const behovsvurderingLenke = BEHOVSVURDERING_URL[getEnvironment()];
 export const motestotteLenke = START_SAMTALE_URL[getEnvironment()];
-export const reaktiveringLenke = `${ARBEIDSSOKERREGISTRERING_URL[getEnvironment()]}/start`;
-export const registreringsLenke = `${ARBEIDSSOKERREGISTRERING_URL[getEnvironment()]}/start`;
+export const reaktiveringLenke = `${ARBEIDSSOKERREGISTRERING_URL[getEnvironment()]}/`;
+export const registreringsLenke = `${ARBEIDSSOKERREGISTRERING_URL[getEnvironment()]}/`;
 export const sykepengerLenke =
     'https://www.nav.no/no/Person/Arbeid/Sykmeldt%2C+arbeidsavklaringspenger+og+yrkesskade/Sykepenger/Sykepenger+til+arbeidstakere#chapter-7';
 export const meldekortLenke = 'https://www.nav.no/meldekort';
