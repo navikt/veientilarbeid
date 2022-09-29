@@ -236,6 +236,7 @@ const DemoDashboard = () => {
         aktiv: 'Aktiv',
         'nylig-utløpt': 'Nylig utløpt (mindre enn 28 dager)',
         gammel: 'Utløpt (mer enn 28 dager)',
+        'aktiv-legacy': 'Aktiv - registrert før høst 2018',
         ingen: 'Ingen',
     };
 
