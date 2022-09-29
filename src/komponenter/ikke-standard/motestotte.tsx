@@ -62,7 +62,6 @@ const Motestotte = () => {
         !harGyldigMotestottebesvarelse() &&
         opprettetRegistreringDato !== null &&
         opprettetRegistreringDato >= LANSERINGSDATO_MOTESTOTTE &&
-        !oppfolgingData.reservasjonKRR &&
         foreslattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING &&
         underOppfolging;
 

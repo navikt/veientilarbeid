@@ -44,7 +44,6 @@ export function kanViseIVURDEgenvurdering({
         (!harEgenvurderingbesvarelse || !egenvurderingsbesvarelseValid()) &&
         opprettetRegistreringDato !== null &&
         opprettetRegistreringDato >= LANSERINGSDATO_EGENVURDERING &&
-        !oppfolgingData.reservasjonKRR &&
         (foreslattInnsatsgruppe === Brukerregistrering.ForeslattInnsatsgruppe.STANDARD_INNSATS ||
             foreslattInnsatsgruppe === Brukerregistrering.ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS);
 

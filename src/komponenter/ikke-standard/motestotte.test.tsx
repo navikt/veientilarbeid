@@ -112,20 +112,6 @@ describe('Motestotte', () => {
         expect(await screen.queryByText('Du kan få mer veiledning')).toBeFalsy();
     });
 
-    it('rendres IKKE dersom reservasjonKrr', async () => {
-        const providerProps: ProviderProps = {
-            brukerInfo,
-            brukerregistrering,
-            motestotte,
-            oppfolging: {
-                ...oppfolging,
-                reservasjonKRR: true,
-            },
-        };
-        render(<Motestotte />, { wrapper: contextProviders(providerProps) });
-        expect(await screen.queryByText('Du kan få mer veiledning')).toBeFalsy();
-    });
-
     it('rendres IKKE dersom annen foreslått innsatsgruppe', async () => {
         const providerProps: ProviderProps = {
             brukerInfo,

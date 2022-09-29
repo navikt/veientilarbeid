@@ -1,65 +1,63 @@
 import * as React from 'react';
-import { Checkbox, CheckboxGroup, Heading, Select, Grid, Cell, Panel, Accordion } from '@navikt/ds-react';
+import { Accordion, Cell, Checkbox, CheckboxGroup, Grid, Heading, Panel, Select } from '@navikt/ds-react';
 import spacingStyles from '../spacing.module.css';
 import flexStyles from '../flex.module.css';
 
 import {
     DemoData,
+    hentAlder,
+    hentArbeidssokerPeriode,
     hentAutentiseringsInfo,
     hentDagerEtterFastsattMeldedag,
     hentDagRelativTilFastsattMeldedag,
     hentDemoState,
+    hentDpStatus,
     hentEgenvurdering,
     hentFormidlingsgruppe,
     hentGeografiskTilknytning,
     hentKanReaktiveres,
+    hentKvitteringStatus,
     hentMotestotte,
     hentRegistreringType,
-    hentReservasjonKRR,
     hentRettighetsgruppe,
     hentServicegruppe,
+    hentStandardInnsatsgruppe,
     hentSykmeldtMedArbeidsgiver,
     hentUlesteDialoger,
     hentUnderOppfolging,
-    hentDpStatus,
-    hentKvitteringStatus,
+    hentVisGjelderFraDato,
+    opprettetRegistreringDato,
+    settAlder,
     settAntallDagerEtterFastsattMeldedag,
+    settArbeidssokerPeriode,
     settAutentiseringsInfo,
+    settDemoState,
+    settDpStatus,
     settEgenvurdering,
     settFeatureToggles,
     settFormidlingsgruppe,
     settGeografiskTilknytning,
     settKanReaktiveres,
+    settKvitteringStatus,
     settMotestotte,
     settRegistreringType,
-    settReservasjonKRR,
     settRettighetsgruppe,
     settServicegruppe,
+    settStandardInnsatsgruppe,
     settSykmeldtMedArbeidsgiver,
     settUlesteDialoger,
     settUnderOppfolging,
-    settDpStatus,
-    settKvitteringStatus,
-    hentAlder,
-    settAlder,
-    settDemoState,
-    hentVisGjelderFraDato,
     settVisGjelderFraDato,
-    opprettetRegistreringDato,
-    settArbeidssokerPeriode,
-    hentArbeidssokerPeriode,
-    hentStandardInnsatsgruppe,
-    settStandardInnsatsgruppe,
 } from './demo-state';
 
 import { DinSituasjonSvar, ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../contexts/brukerregistrering';
 import {
-    hentForeslattInnsatsgruppe,
     hentDinSituasjon,
+    hentForeslattInnsatsgruppe,
     hentFremtidigSituasjon,
     hentOpprettetDato,
-    settForeslattInnsatsgruppe,
     settDinSituasjon,
+    settForeslattInnsatsgruppe,
     settFremtidigSituasjon,
     settOpprettetDato,
 } from './demo-state-brukerregistrering';
@@ -74,7 +72,6 @@ const DemoDashboard = () => {
     const EGENVURDERING = DemoData.EGENVURDERING;
     const MOTESTOTTE = DemoData.MOTESTOTTE;
     const ULESTE_DIALOGER = DemoData.ULESTE_DIALOGER;
-    const RESERVASJON_KRR = DemoData.RESERVASJON_KRR;
     const AUTENTISERINGS_INFO = DemoData.AUTENTISERINGS_INFO;
     const UNDER_OPPFOLGING = DemoData.UNDER_OPPFOLGING;
     const STANDARD_INNSATSGRUPPE = DemoData.STANDARD_INNSATSGRUPPE;
@@ -166,8 +163,6 @@ const DemoDashboard = () => {
             settFeatureToggles(element.id, element.checked);
         } else if (element.id === ULESTE_DIALOGER) {
             settUlesteDialoger(element.checked);
-        } else if (element.id === RESERVASJON_KRR) {
-            settReservasjonKRR(element.checked);
         } else if (element.id === AUTENTISERINGS_INFO) {
             settAutentiseringsInfo(element.checked ? InnloggingsNiva.LEVEL_3 : InnloggingsNiva.LEVEL_4);
         } else if (element.id === UNDER_OPPFOLGING) {
@@ -541,14 +536,6 @@ const DemoDashboard = () => {
                                                 onChange={handleClick}
                                             >
                                                 Uleste dialoger
-                                            </Checkbox>
-                                            <Checkbox
-                                                id={RESERVASJON_KRR}
-                                                value={RESERVASJON_KRR}
-                                                checked={hentReservasjonKRR()}
-                                                onChange={handleClick}
-                                            >
-                                                Reservasjon KRR
                                             </Checkbox>
                                             <Checkbox
                                                 id={EGENVURDERING}

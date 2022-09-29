@@ -56,12 +56,6 @@ describe('Tester funksjonen kanViseIVURDEgenvurdering', () => {
         expect(kanViseIVURDEgenvurdering(testdata)).toBe(false);
     });
 
-    test('Nei hvis bruker har reservert seg fra KRR', () => {
-        const testdata = JSON.parse(JSON.stringify(grunndata));
-        testdata.oppfolgingData.reservasjonKRR = true;
-        expect(kanViseIVURDEgenvurdering(testdata)).toBe(false);
-    });
-
     test('Nei hvis bruker IKKE er foreslatt innsatsgruppe standard eller situasjonsbestemt eller undefind', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
         testdata.registreringData.registrering.profilering.innsatsgruppe =

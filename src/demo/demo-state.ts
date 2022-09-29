@@ -120,9 +120,6 @@ export const hentFeatureToggles = () => {
 
 export const settFeatureToggles = (toggle: string, checked: boolean) => settDemoState(toggle, checked);
 
-export const hentReservasjonKRR = (): boolean => hentDemoState(DemoData.RESERVASJON_KRR) === 'true';
-export const settReservasjonKRR = (value: boolean) => settDemoState(DemoData.RESERVASJON_KRR, value);
-
 export const hentAutentiseringsInfo = (): AutentiseringsData => ({
     securityLevel: (hentDemoState(DemoData.AUTENTISERINGS_INFO) ?? InnloggingsNiva.LEVEL_4) as InnloggingsNiva,
     authenticated: true,

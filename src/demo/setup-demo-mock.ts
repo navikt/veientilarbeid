@@ -28,7 +28,6 @@ import {
     hentKanReaktiveres,
     hentMotestotte,
     hentRegistreringType,
-    hentReservasjonKRR,
     hentRettighetsgruppe,
     hentServicegruppe,
     hentSykmeldtMedArbeidsgiver,
@@ -53,7 +52,7 @@ export const demo_handlers = [
     msw_get(VEILARBOPPFOLGING_URL, {
         underOppfolging: true,
         kanReaktiveres: hentKanReaktiveres(),
-        reservasjonKRR: hentReservasjonKRR(),
+        reservasjonKRR: false,
         servicegruppe: hentServicegruppe(),
         formidlingsgruppe: hentFormidlingsgruppe(),
         registreringType: 'INGEN_VERDI',
