@@ -67,7 +67,7 @@ export const demo_handlers = [
         alder: hentAlder(),
     }),
 
-    msw_get(BRUKERREGISTRERING_URL, hentBrukerRegistrering()),
+    // msw_get(BRUKERREGISTRERING_URL, hentBrukerRegistrering()),
 
     msw_get(ULESTEDIALOGER_URL, {
         antallUleste: hentUlesteDialoger() ? randomUlesteDialoger() : 0,
@@ -114,6 +114,18 @@ export const demo_handlers = [
                 )
             )
         );
+    }),
+
+    rest.get(BRUKERREGISTRERING_URL, (req, res, ctx) => {
+        // eslint-disable-next-line no-restricted-globals
+        const searchParams = new URLSearchParams(location.search);
+        const erRegistrertLegacy = searchParams.get('arbeidssokerPeriode') === 'aktiv-legacy';
+
+        if (erRegistrertLegacy) {
+            return res(ctx.json({ registrering: null }));
+        }
+
+        return res(ctx.json(hentBrukerRegistrering()));
     }),
 
     msw_get(ER_STANDARD_INNSATSGRUPPE_URL, hentStandardInnsatsgruppe().standardInnsatsgruppe),
