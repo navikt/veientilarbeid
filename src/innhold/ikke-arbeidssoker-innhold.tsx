@@ -10,17 +10,18 @@ function IkkeArbeidssokerInnhold() {
     const underOppfolging = useUnderOppfolging()?.underoppfolging;
     const arbeidssokerperioder = beregnArbeidssokerperioder(arbeidssokerperioderData);
 
-    if (arbeidssokerperioder.antallDagerSidenSisteArbeidssokerperiode < 28) {
-        return <ReaktiveringWrapper />;
-    } else if (underOppfolging) {
-        return (
-            <ArbeidssokerDataProvider>
-                <InnholdUnderOppfolgingUtenPeriode />
-            </ArbeidssokerDataProvider>
-        );
-    }
-
-    return <IkkeRegistrert />;
+    return (
+        <>
+            {arbeidssokerperioder.antallDagerSidenSisteArbeidssokerperiode < 28 && <ReaktiveringWrapper />}
+            {underOppfolging ? (
+                <ArbeidssokerDataProvider>
+                    <InnholdUnderOppfolgingUtenPeriode />
+                </ArbeidssokerDataProvider>
+            ) : (
+                <IkkeRegistrert />
+            )}
+        </>
+    );
 }
 
 export default IkkeArbeidssokerInnhold;
