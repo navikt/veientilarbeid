@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Accordion, Cell, Checkbox, CheckboxGroup, Grid, Heading, Panel, Select } from '@navikt/ds-react';
+
 import spacingStyles from '../spacing.module.css';
 import flexStyles from '../flex.module.css';
 
@@ -68,6 +69,7 @@ import { FeatureToggles, prettyPrintFeatureToggle } from '../contexts/feature-to
 import styles from './demo-dashboard.module.css';
 
 const DemoDashboard = () => {
+    const [flerevalgOpen, setFlerevalgOpen] = React.useState(false);
     const SYKMELDT_MED_ARBEIDSGIVER = DemoData.SYKMELDT_MED_ARBEIDSGIVER;
     const EGENVURDERING = DemoData.EGENVURDERING;
     const MOTESTOTTE = DemoData.MOTESTOTTE;
@@ -150,6 +152,11 @@ const DemoDashboard = () => {
         settDemoState(DemoData.SPRAK, e.target.value);
         window.location.reload();
     };
+
+    function handleFlereValgToggle() {
+        setFlerevalgOpen(!flerevalgOpen);
+        console.log(flerevalgOpen);
+    }
 
     const handleClick = (e: React.SyntheticEvent<EventTarget, Event>) => {
         const element = e.currentTarget as HTMLInputElement;
@@ -305,6 +312,7 @@ const DemoDashboard = () => {
     if (hentDemoState(DemoData.SKJUL_DEMO)) {
         return null;
     }
+
     return (
         <section className={styles.demodashboard}>
             <Heading size="xlarge" className={styles.demoHeading}>
@@ -377,8 +385,8 @@ const DemoDashboard = () => {
                     </Panel>
                 </div>
                 <Accordion>
-                    <Accordion.Item>
-                        <Accordion.Header>Flere valg</Accordion.Header>
+                    <Accordion.Item open={flerevalgOpen}>
+                        <Accordion.Header onClick={handleFlereValgToggle}>Flere valg</Accordion.Header>
                         <Accordion.Content>
                             <Grid>
                                 <Cell xs={12} md={6} lg={3}>
