@@ -13,7 +13,6 @@ import {
     hentEgenvurdering,
     hentFormidlingsgruppe,
     hentGeografiskTilknytning,
-    hentKanReaktiveres,
     hentKvitteringStatus,
     hentMotestotte,
     hentRegistreringType,
@@ -35,7 +34,6 @@ import {
     settFeatureToggles,
     settFormidlingsgruppe,
     settGeografiskTilknytning,
-    settKanReaktiveres,
     settKvitteringStatus,
     settMotestotte,
     settRegistreringType,
@@ -77,7 +75,6 @@ const DemoDashboard = () => {
     const AUTENTISERINGS_INFO = DemoData.AUTENTISERINGS_INFO;
     const UNDER_OPPFOLGING = DemoData.UNDER_OPPFOLGING;
     const STANDARD_INNSATSGRUPPE = DemoData.STANDARD_INNSATSGRUPPE;
-    const KAN_REAKTIVERES = DemoData.KAN_REAKTIVERES;
     const ER_UNDER_30 = DemoData.ER_UNDER_30;
     const VIS_GJELDER_FRA_DATO = DemoData.VIS_GJELDER_FRA_DATO;
 
@@ -179,8 +176,6 @@ const DemoDashboard = () => {
             settAutentiseringsInfo(element.checked ? InnloggingsNiva.LEVEL_3 : InnloggingsNiva.LEVEL_4);
         } else if (element.id === UNDER_OPPFOLGING) {
             settUnderOppfolging(element.checked);
-        } else if (element.id === KAN_REAKTIVERES) {
-            settKanReaktiveres(element.checked);
         } else if (element.id === ER_UNDER_30) {
             settAlder(element.checked ? '25' : '42');
         } else if (element.id === VIS_GJELDER_FRA_DATO) {
@@ -582,14 +577,6 @@ const DemoDashboard = () => {
                                                 onChange={handleClick}
                                             >
                                                 Nivå 3
-                                            </Checkbox>
-                                            <Checkbox
-                                                id={KAN_REAKTIVERES}
-                                                value={KAN_REAKTIVERES}
-                                                checked={hentKanReaktiveres()}
-                                                onChange={handleClick}
-                                            >
-                                                Kan reaktiveres
                                             </Checkbox>
                                             <Checkbox
                                                 id={ER_UNDER_30}

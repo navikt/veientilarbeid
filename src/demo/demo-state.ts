@@ -49,7 +49,6 @@ export enum DemoData {
     FEATURE_TOGGLES = 'featureToggles',
     UNDER_OPPFOLGING = 'underOppfolging',
     STANDARD_INNSATSGRUPPE = 'standardInnsatsgruppe',
-    KAN_REAKTIVERES = 'kanReaktiveres',
     FREMTIDIG_SITUASJON = 'fremtidigSituasjon',
     DIN_SITUASJON = 'dinSituasjon',
     FORESLATT_INNSATSGRUPPE = 'foreslattInnsatsgruppe',
@@ -143,9 +142,6 @@ export const hentStandardInnsatsgruppe = () => {
     };
 };
 export const settStandardInnsatsgruppe = (value: boolean) => settDemoState(DemoData.STANDARD_INNSATSGRUPPE, value);
-
-export const hentKanReaktiveres = () => hentDemoState(DemoData.KAN_REAKTIVERES) === 'true';
-export const settKanReaktiveres = (value: boolean) => settDemoState(DemoData.KAN_REAKTIVERES, value);
 
 export const hentVisGjelderFraDato = () => hentDemoState(DemoData.VIS_GJELDER_FRA_DATO) === 'true';
 export const settVisGjelderFraDato = (value: boolean) => settDemoState(DemoData.VIS_GJELDER_FRA_DATO, value);

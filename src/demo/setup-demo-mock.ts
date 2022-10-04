@@ -25,7 +25,6 @@ import {
     hentFeatureToggles,
     hentFormidlingsgruppe,
     hentGeografiskTilknytning,
-    hentKanReaktiveres,
     hentMotestotte,
     hentRegistreringType,
     hentRettighetsgruppe,
@@ -51,7 +50,7 @@ import arbeidssokerNiva3Response, { ArbeidssokerPeriode } from '../mocks/arbeids
 export const demo_handlers = [
     msw_get(VEILARBOPPFOLGING_URL, {
         underOppfolging: true,
-        kanReaktiveres: hentKanReaktiveres(),
+        kanReaktiveres: false,
         reservasjonKRR: false,
         servicegruppe: hentServicegruppe(),
         formidlingsgruppe: hentFormidlingsgruppe(),
