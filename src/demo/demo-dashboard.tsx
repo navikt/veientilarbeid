@@ -1,9 +1,6 @@
 import * as React from 'react';
 import { Accordion, Cell, Checkbox, CheckboxGroup, Grid, Heading, Panel, Select } from '@navikt/ds-react';
 
-import spacingStyles from '../spacing.module.css';
-import flexStyles from '../flex.module.css';
-
 import {
     DemoData,
     hentAlder,
@@ -65,8 +62,11 @@ import {
 import { InnloggingsNiva } from '../contexts/autentisering';
 import { setFastTidspunktForIDag } from '../utils/chrono';
 import { FeatureToggles, prettyPrintFeatureToggle } from '../contexts/feature-toggles';
+import { hentQueryParam, fjernQueryParam, settQueryParam } from '../utils/query-param-utils';
 
 import styles from './demo-dashboard.module.css';
+import spacingStyles from '../spacing.module.css';
+import flexStyles from '../flex.module.css';
 
 const DemoDashboard = () => {
     const [flerevalgOpen, setFlerevalgOpen] = React.useState(false);
@@ -154,8 +154,13 @@ const DemoDashboard = () => {
     };
 
     function handleFlereValgToggle() {
-        setFlerevalgOpen(!flerevalgOpen);
-        console.log(flerevalgOpen);
+        const nyStatus = !flerevalgOpen;
+        setFlerevalgOpen(nyStatus);
+        if (nyStatus) {
+            settQueryParam('flerevalgErOpen', 'true');
+        } else {
+            fjernQueryParam('flerevalgErOpen');
+        }
     }
 
     const handleClick = (e: React.SyntheticEvent<EventTarget, Event>) => {
@@ -308,6 +313,12 @@ const DemoDashboard = () => {
     };
 
     setFastTidspunktForIDag(hentDagRelativTilFastsattMeldedag());
+
+    React.useEffect(() => {
+        if (hentQueryParam('flerevalgErOpen')) {
+            setFlerevalgOpen(true);
+        }
+    }, []);
 
     if (hentDemoState(DemoData.SKJUL_DEMO)) {
         return null;
