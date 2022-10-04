@@ -41,7 +41,6 @@ export enum DemoData {
     AUTENTISERINGS_INFO = 'autentiseringsInfo',
     MELDEKORT = 'meldekort',
     MOTESTOTTE = 'motestotte',
-    GEOGRAFISK_TILKNYTNING = 'geografiskTilknytning',
     REGISTRERING_TYPE = 'registreringType',
     ALDER = 'alder',
     RETTIGHETSGRUPPE = 'rettighetsgruppe',
@@ -87,9 +86,6 @@ export const settSykmeldtMedArbeidsgiver = (value: boolean) => settDemoState(Dem
 
 export const hentRegistreringType = () => hentDemoState(DemoData.REGISTRERING_TYPE) || 'ORDINAER_REGISTRERING';
 export const settRegistreringType = (value: string) => settDemoState(DemoData.REGISTRERING_TYPE, value);
-
-export const hentGeografiskTilknytning = () => hentDemoState(DemoData.GEOGRAFISK_TILKNYTNING) || '3808';
-export const settGeografiskTilknytning = (value: string) => settDemoState(DemoData.GEOGRAFISK_TILKNYTNING, value);
 
 export const hentUlesteDialoger = () => hentDemoState(DemoData.ULESTE_DIALOGER) === 'true';
 export const settUlesteDialoger = (value: boolean) => settDemoState(DemoData.ULESTE_DIALOGER, value);

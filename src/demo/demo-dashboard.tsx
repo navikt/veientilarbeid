@@ -12,7 +12,6 @@ import {
     hentDpStatus,
     hentEgenvurdering,
     hentFormidlingsgruppe,
-    hentGeografiskTilknytning,
     hentKvitteringStatus,
     hentMotestotte,
     hentRegistreringType,
@@ -33,7 +32,6 @@ import {
     settEgenvurdering,
     settFeatureToggles,
     settFormidlingsgruppe,
-    settGeografiskTilknytning,
     settKvitteringStatus,
     settMotestotte,
     settRegistreringType,
@@ -102,11 +100,6 @@ const DemoDashboard = () => {
 
     const handleChangeRegistreringType = (e: React.ChangeEvent<HTMLSelectElement>) => {
         settRegistreringType(e.target.value);
-        window.location.reload();
-    };
-
-    const handleChangeGeografiskTilknytning = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        settGeografiskTilknytning(e.target.value);
         window.location.reload();
     };
 
@@ -223,13 +216,6 @@ const DemoDashboard = () => {
         ALLEREDE_REGISTRERT: 'ALLEREDE_REGISTRERT',
         SYKMELDT_REGISTRERING: 'SYKMELDT_REGISTRERING',
         ORDINAER_REGISTRERING: 'ORDINAER_REGISTRERING',
-    };
-
-    const geografiskeTilknytninger = {
-        '3808': 'Notodden',
-        '010302': 'Grünerløkka',
-        '110302': 'Tasta',
-        '3422': 'Åmot',
     };
 
     const rettighetsgrupper = {
@@ -396,18 +382,6 @@ const DemoDashboard = () => {
                         <Accordion.Content>
                             <Grid>
                                 <Cell xs={12} md={6} lg={3}>
-                                    <Select
-                                        label={'Velg geografisk tilknytning'}
-                                        onChange={handleChangeGeografiskTilknytning}
-                                        id="velg-geografisktilknytning"
-                                        defaultValue={hentGeografiskTilknytning()}
-                                    >
-                                        {Object.keys(geografiskeTilknytninger).map((gruppe: string) => (
-                                            <option key={gruppe} value={gruppe}>
-                                                {geografiskeTilknytninger[gruppe]}
-                                            </option>
-                                        ))}
-                                    </Select>
                                     <Select
                                         label={'Velg rettighetsgruppe'}
                                         onChange={handleChangeRettighetsgruppe}

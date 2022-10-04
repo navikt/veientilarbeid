@@ -24,7 +24,6 @@ import {
     hentEgenvurdering,
     hentFeatureToggles,
     hentFormidlingsgruppe,
-    hentGeografiskTilknytning,
     hentMotestotte,
     hentRegistreringType,
     hentRettighetsgruppe,
@@ -58,9 +57,17 @@ export const demo_handlers = [
         geografiskTilknytning: '010302',
     }),
 
+    /**
+     *    const geografiskeTilknytninger = {
+        '3808': 'Notodden',
+        '010302': 'Grünerløkka',
+        '110302': 'Tasta',
+        '3422': 'Åmot',
+    };
+     */
     msw_get(BRUKERINFO_URL, {
         erSykmeldtMedArbeidsgiver: hentSykmeldtMedArbeidsgiver(),
-        geografiskTilknytning: hentGeografiskTilknytning(),
+        geografiskTilknytning: '3808',
         registreringType: hentRegistreringType(),
         rettighetsgruppe: hentRettighetsgruppe(),
         alder: hentAlder(),
