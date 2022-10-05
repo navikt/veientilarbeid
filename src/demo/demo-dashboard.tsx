@@ -325,6 +325,20 @@ const DemoDashboard = () => {
                                 </option>
                             ))}
                         </Select>
+                        {hentDemoState(DemoData.ARBEIDSSOKER_PERIODE)?.includes('aktiv') && (
+                            <Select
+                                label={'Velg registreringsdato'}
+                                onChange={handleChangeOpprettetRegistreringDato}
+                                id="velg-opprettetdato"
+                                defaultValue={hentOpprettetDato()}
+                            >
+                                {Object.keys(opprettetRegistreringDato).map((key: string) => (
+                                    <option key={key} value={opprettetRegistreringDato[key]}>
+                                        {opprettetRegistreringDatoLabels[key]}
+                                    </option>
+                                ))}
+                            </Select>
+                        )}
                         <Select
                             label={'Velg dagpengestatus'}
                             onChange={handleChangeDagpengeStatus}
@@ -465,18 +479,6 @@ const DemoDashboard = () => {
                                         {Object.keys(foreslattInnsatsgrupper).map((svar: string) => (
                                             <option key={svar} value={svar}>
                                                 {foreslattInnsatsgrupper[svar]}
-                                            </option>
-                                        ))}
-                                    </Select>
-                                    <Select
-                                        label={'Velg registreringsdato'}
-                                        onChange={handleChangeOpprettetRegistreringDato}
-                                        id="velg-opprettetdato"
-                                        defaultValue={hentOpprettetDato()}
-                                    >
-                                        {Object.keys(opprettetRegistreringDato).map((key: string) => (
-                                            <option key={key} value={opprettetRegistreringDato[key]}>
-                                                {opprettetRegistreringDatoLabels[key]}
                                             </option>
                                         ))}
                                     </Select>
