@@ -1,15 +1,14 @@
 import { BodyShort, Link } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
 
-import {
-    DpInnsynPaabegyntSoknad,
-    useDpInnsynPaabegynteSoknaderData,
-} from '../../contexts/dp-innsyn-paabegynte-soknader';
+import { DpInnsynPaabegyntSoknad } from '../../contexts/dp-innsyn-paabegynte-soknader';
 import { loggAktivitet } from '../../metrics/metrics';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
 import { FORTSETT_DP_SOKNAD_URL } from '../../utils/lenker';
+import { useSWR } from '../../hooks/useSWR';
+import { DP_INNSYN_URL } from '../../ducks/api';
 
 const TEKSTER = {
     nb: {
@@ -24,7 +23,7 @@ const TEKSTER = {
 
 const PaabegynteSoknader = ({ dato, komponent }: { dato?: string; komponent: string }) => {
     const amplitudeData = useAmplitudeData();
-    const paabegynteSoknader = useDpInnsynPaabegynteSoknaderData();
+    const { data: paabegynteSoknader = [] } = useSWR<DpInnsynPaabegyntSoknad[]>(`${DP_INNSYN_URL}/paabegynte`);
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     function loggLenkeKlikk(action: string, url: string) {

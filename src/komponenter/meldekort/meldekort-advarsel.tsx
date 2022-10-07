@@ -3,9 +3,9 @@ import spacingStyles from '../../spacing.module.css';
 
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
-import { useDpInnsynSoknadData } from '../../contexts/dp-innsyn-soknad';
-import { useDpInnsynVedtakData } from '../../contexts/dp-innsyn-vedtak';
-import { useDpInnsynPaabegynteSoknaderData } from '../../contexts/dp-innsyn-paabegynte-soknader';
+import { DpInnsynSoknad } from '../../contexts/dp-innsyn-soknad';
+import { Vedtak } from '../../contexts/dp-innsyn-vedtak';
+import { DpInnsynPaabegyntSoknad } from '../../contexts/dp-innsyn-paabegynte-soknader';
 import { useSprakValg } from '../../contexts/sprak';
 
 import { beregnDagerTilInaktivering } from '../../utils/meldekort-utils';
@@ -15,6 +15,8 @@ import beregnDagpengeStatus, { DagpengeStatus } from '../../lib/beregn-dagpenge-
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
+import { useSWR } from '../../hooks/useSWR';
+import { DP_INNSYN_URL } from '../../ducks/api';
 // TODO - oversette alle tekster til engelsk
 const TEKSTER = {
     nb: {
@@ -80,9 +82,9 @@ function MeldekortAdvarsel({ dagerEtterFastsattMeldedag }: { dagerEtterFastsattM
 
     const brukerInfoData = useBrukerinfoData();
     const registreringData = useBrukerregistreringData();
-    const paabegynteSoknader = useDpInnsynPaabegynteSoknaderData();
-    const innsendteSoknader = useDpInnsynSoknadData();
-    const dagpengeVedtak = useDpInnsynVedtakData();
+    const { data: paabegynteSoknader = [] } = useSWR<DpInnsynPaabegyntSoknad[]>(`${DP_INNSYN_URL}/paabegynte`);
+    const { data: innsendteSoknader = [] } = useSWR<DpInnsynSoknad[]>(`${DP_INNSYN_URL}/soknad`);
+    const { data: dagpengeVedtak = [] } = useSWR<Vedtak[]>(`${DP_INNSYN_URL}/vedtak`);
     const arbeidssokerperioderData = useArbeidssokerPerioder();
     const arbeidssokerperioder = beregnArbeidssokerperioder(arbeidssokerperioderData);
 

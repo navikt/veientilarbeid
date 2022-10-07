@@ -2,13 +2,15 @@ import { Heading } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
 
 import PaabegynteSoknader from './paabegynte-soknader';
-import { useDpInnsynVedtakData } from '../../contexts/dp-innsyn-vedtak';
+import { Vedtak } from '../../contexts/dp-innsyn-vedtak';
 import { sorterEtterNyesteVedtak } from '../../lib/beregn-dagpenge-status';
 import SistInnsendtSoknad from './sist-innsendt-soknad';
 import SkrivTilOssChatOgMineDagpenger from './skriv-til-oss-chat-og-mine-dagpenger';
 import LesOmYtelser from './les-om-ytelser';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
+import { useSWR } from '../../hooks/useSWR';
+import { DP_INNSYN_URL } from '../../ducks/api';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -20,7 +22,7 @@ const TEKSTER: Tekster<string> = {
 };
 
 const DagpengerFaar = () => {
-    const dagpengeVedtak = useDpInnsynVedtakData();
+    const { data: dagpengeVedtak = [] } = useSWR<Vedtak[]>(`${DP_INNSYN_URL}/vedtak`);
     const sisteVedtak = dagpengeVedtak.sort(sorterEtterNyesteVedtak)[0];
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 

@@ -1,10 +1,7 @@
 import { Button, Heading, BodyShort } from '@navikt/ds-react';
 import { Next } from '@navikt/ds-icons';
 import spacingStyles from '../../spacing.module.css';
-import {
-    useDpInnsynPaabegynteSoknaderData,
-    DpInnsynPaabegyntSoknad,
-} from '../../contexts/dp-innsyn-paabegynte-soknader';
+import { DpInnsynPaabegyntSoknad } from '../../contexts/dp-innsyn-paabegynte-soknader';
 import { useSprakValg } from '../../contexts/sprak';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 
@@ -13,6 +10,8 @@ import prettyPrintDato from '../../utils/pretty-print-dato';
 import SkrivTilOssChatOgMineDagpenger from './skriv-til-oss-chat-og-mine-dagpenger';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import { FORTSETT_DP_SOKNAD_URL } from '../../utils/lenker';
+import { useSWR } from '../../hooks/useSWR';
+import { DP_INNSYN_URL } from '../../ducks/api';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -32,10 +31,10 @@ const TEKSTER: Tekster<string> = {
 };
 
 const DagpengerHarPaabegyntSoknad = () => {
-    const pabegynteSoknaderData = useDpInnsynPaabegynteSoknaderData();
+    const { data: paabegynteSoknaderData = [] } = useSWR<DpInnsynPaabegyntSoknad[]>(`${DP_INNSYN_URL}/paabegynte`);
     const amplitudeData = useAmplitudeData();
 
-    const sistePabegynteSoknad = pabegynteSoknaderData.sort(
+    const sistePabegynteSoknad = paabegynteSoknaderData.sort(
         (a: DpInnsynPaabegyntSoknad, b: DpInnsynPaabegyntSoknad) =>
             new Date(b.sistEndret).getTime() - new Date(a.sistEndret).getTime()
     )[0];

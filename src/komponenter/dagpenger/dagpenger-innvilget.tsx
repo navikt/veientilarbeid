@@ -1,11 +1,13 @@
 import { BodyShort, Heading } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
 
-import { useDpInnsynVedtakData, Vedtak } from '../../contexts/dp-innsyn-vedtak';
+import { Vedtak } from '../../contexts/dp-innsyn-vedtak';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import SkrivTilOssChatOgMineDagpenger from './skriv-til-oss-chat-og-mine-dagpenger';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
+import { useSWR } from '../../hooks/useSWR';
+import { DP_INNSYN_URL } from '../../ducks/api';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -21,7 +23,7 @@ const TEKSTER: Tekster<string> = {
 };
 
 const DagpengerInnvilget = () => {
-    const vedtakData = useDpInnsynVedtakData();
+    const { data: vedtakData = [] } = useSWR<Vedtak[]>(`${DP_INNSYN_URL}/vedtak`);
     const nyesteInnvilgedeVedtak = vedtakData
         .filter((vedtak) => vedtak.status === 'INNVILGET')
         .sort((a: Vedtak, b: Vedtak) => new Date(b.datoFattet).getTime() - new Date(a.datoFattet).getTime())[0];

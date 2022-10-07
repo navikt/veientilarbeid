@@ -2,13 +2,15 @@ import { BodyShort, Link } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
 
 import { sorterEtterNyesteDatoInnsendt } from '../../lib/beregn-dagpenge-status';
-import { useDpInnsynSoknadData } from '../../contexts/dp-innsyn-soknad';
+import { DpInnsynSoknad } from '../../contexts/dp-innsyn-soknad';
 import { datoForForventetSvar } from '../../utils/date-utils';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import { loggAktivitet } from '../../metrics/metrics';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
+import { useSWR } from '../../hooks/useSWR';
+import { DP_INNSYN_URL } from '../../ducks/api';
 
 const TEKSTER = {
     nb: {
@@ -24,7 +26,7 @@ const TEKSTER = {
 };
 
 const SistInnsendtSoknad = ({ dato, komponent }: { dato?: string; komponent: string }) => {
-    const soknader = useDpInnsynSoknadData();
+    const { data: soknader = [] } = useSWR<DpInnsynSoknad[]>(`${DP_INNSYN_URL}/soknad`);
     const amplitudeData = useAmplitudeData();
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
