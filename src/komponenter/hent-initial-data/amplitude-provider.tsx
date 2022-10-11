@@ -14,8 +14,13 @@ import { AmplitudeData } from '../../metrics/amplitude-utils';
 import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
 import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../../lib/er-situasjonsbestemt-innsatsgruppe';
 import erSannsynligvisInaktivertStandardbruker from '../../lib/er-sannsyligvis-inaktivert-standard-innsatsgruppe';
-import { hentSprakValgFraCookie } from './data-provider';
 import { useArbeidssokerPerioder, useUnderOppfolging } from '../../contexts/arbeidssoker';
+import * as SprakValg from '../../contexts/sprak';
+
+const hentSprakValgFraCookie = (): SprakValg.Sprak | null => {
+    const decoratorLanguageCookie = document.cookie.match(/decorator-language=([a-z]{2})/);
+    return decoratorLanguageCookie && (decoratorLanguageCookie[1] as SprakValg.Sprak);
+};
 
 export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const brukerregistreringData = useBrukerregistreringData();
