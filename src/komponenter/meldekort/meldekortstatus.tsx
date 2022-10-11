@@ -4,15 +4,13 @@ import spacingStyles from '../../spacing.module.css';
 import { useSprakValg } from '../../contexts/sprak';
 
 import MeldekortAdvarsel from './meldekort-advarsel';
-import * as Meldekort from '../../contexts/meldekort';
 import { beregnDagerEtterFastsattMeldedag, beregnDagerTilInaktivering } from '../../utils/meldekort-utils';
 import { OppfolgingContext } from '../../contexts/oppfolging';
 import { hentIDag } from '../../utils/chrono';
 import { datoMedUkedag, datoUtenTid, plussDager } from '../../utils/date-utils';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
-import { useSWR } from '../../hooks/useSWR';
-import { NESTE_MELDEKORT_URL } from '../../ducks/api';
 import { useContext } from 'react';
+import { useMeldekortData } from '../../contexts/meldekort';
 
 const TEKSTER = {
     nb: {
@@ -29,7 +27,7 @@ const TEKSTER = {
     },
 };
 function Meldekortstatus() {
-    const { data: meldekortData = null } = useSWR<Meldekort.Data>(NESTE_MELDEKORT_URL);
+    const { meldekortData = null } = useMeldekortData();
     const { kanReaktiveres } = useContext(OppfolgingContext).data;
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);

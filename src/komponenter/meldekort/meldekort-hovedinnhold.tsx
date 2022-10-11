@@ -10,15 +10,13 @@ import {
     hentFoerstkommendeMeldekortIkkeKlarForLevering,
     foersteSendedagForMeldekort,
 } from '../../utils/meldekort-utils';
-import * as Meldekort from '../../contexts/meldekort';
 import Meldekortstatus from './meldekortstatus';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import MeldekortKnapp from './meldekort-knapp';
-import { useSWR } from '../../hooks/useSWR';
-import { NESTE_MELDEKORT_URL } from '../../ducks/api';
 import spacingStyles from '../../spacing.module.css';
+import { useMeldekortData } from '../../contexts/meldekort';
 
 const TEKSTER = {
     nb: {
@@ -44,12 +42,12 @@ const TEKSTER = {
 };
 
 function MeldekortHovedInnhold() {
-    const { data: meldekortData = null, error } = useSWR<Meldekort.Data>(NESTE_MELDEKORT_URL);
+    const { meldekortData = null, isError } = useMeldekortData();
 
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
-    if (error) {
+    if (isError) {
         return (
             <>
                 <ErRendret loggTekst="Rendrer feilmelding for meldekort" />
