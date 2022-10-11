@@ -10,7 +10,7 @@ import { hentIDag } from '../../utils/chrono';
 import { datoMedUkedag, datoUtenTid, plussDager } from '../../utils/date-utils';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useContext } from 'react';
-import { useMeldekortData } from '../../contexts/meldekort';
+import { useMeldekortData } from '../../hooks/use-meldekortdata';
 
 const TEKSTER = {
     nb: {

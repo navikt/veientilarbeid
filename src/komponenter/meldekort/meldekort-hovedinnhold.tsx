@@ -16,7 +16,7 @@ import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import MeldekortKnapp from './meldekort-knapp';
 import spacingStyles from '../../spacing.module.css';
-import { useMeldekortData } from '../../contexts/meldekort';
+import { useMeldekortData } from '../../hooks/use-meldekortdata';
 
 const TEKSTER = {
     nb: {

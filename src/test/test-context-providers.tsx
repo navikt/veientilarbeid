@@ -10,7 +10,7 @@ import * as Egenvurdering from '../contexts/egenvurdering';
 import * as Oppfolging from '../contexts/oppfolging';
 import * as UlesteDialoger from '../contexts/ulestedialoger';
 import * as BrukerInfo from '../contexts/bruker-info';
-import * as Meldekort from '../contexts/meldekort';
+import * as Meldekort from '../hooks/use-meldekortdata';
 import * as Motestotte from '../contexts/motestotte';
 import * as Sakstema from '../contexts/sakstema';
 import * as Arbeidssoker from '../contexts/arbeidssoker';
@@ -55,83 +55,79 @@ export const contextProviders = function (props: ProviderProps): React.FunctionC
                     <GlobaleInnstillingerProvider
                         kreverStandardInnsatsgruppe={props.globaleProps?.kreverStandardInnsatsgruppe}
                     >
-                        <Meldekort.MeldekortContext.Provider
-                            value={merge(Meldekort.initialState, props.meldekort && { data: props.meldekort })}
+                        <BrukerInfo.BrukerInfoContext.Provider
+                            value={merge(BrukerInfo.initialState, props.brukerInfo && { data: props.brukerInfo })}
                         >
-                            <BrukerInfo.BrukerInfoContext.Provider
-                                value={merge(BrukerInfo.initialState, props.brukerInfo && { data: props.brukerInfo })}
+                            <Brukerregistrering.BrukerregistreringContext.Provider
+                                value={
+                                    props.brukerregistrering === null
+                                        ? { data: null, status: STATUS.OK }
+                                        : merge(
+                                              Brukerregistrering.initialState,
+                                              props.brukerregistrering && { data: props.brukerregistrering }
+                                          )
+                                }
                             >
-                                <Brukerregistrering.BrukerregistreringContext.Provider
-                                    value={
-                                        props.brukerregistrering === null
-                                            ? { data: null, status: STATUS.OK }
-                                            : merge(
-                                                  Brukerregistrering.initialState,
-                                                  props.brukerregistrering && { data: props.brukerregistrering }
-                                              )
-                                    }
+                                <UlesteDialoger.UlesteDialogerContext.Provider
+                                    value={merge(
+                                        UlesteDialoger.initialState,
+                                        props.ulesteDialoger && { data: props.ulesteDialoger }
+                                    )}
                                 >
-                                    <UlesteDialoger.UlesteDialogerContext.Provider
+                                    <Egenvurdering.EgenvurderingContext.Provider
                                         value={merge(
-                                            UlesteDialoger.initialState,
-                                            props.ulesteDialoger && { data: props.ulesteDialoger }
+                                            Egenvurdering.initialState,
+                                            props.egenvurdering && { data: props.egenvurdering }
                                         )}
                                     >
-                                        <Egenvurdering.EgenvurderingContext.Provider
+                                        <Oppfolging.OppfolgingContext.Provider
                                             value={merge(
-                                                Egenvurdering.initialState,
-                                                props.egenvurdering && { data: props.egenvurdering }
+                                                Oppfolging.initialState,
+                                                props.oppfolging && { data: props.oppfolging }
                                             )}
                                         >
-                                            <Oppfolging.OppfolgingContext.Provider
+                                            <Motestotte.MotestotteContext.Provider
                                                 value={merge(
-                                                    Oppfolging.initialState,
-                                                    props.oppfolging && { data: props.oppfolging }
+                                                    Motestotte.initialState,
+                                                    props.motestotte && { data: props.motestotte }
                                                 )}
                                             >
-                                                <Motestotte.MotestotteContext.Provider
-                                                    value={merge(
-                                                        Motestotte.initialState,
-                                                        props.motestotte && { data: props.motestotte }
-                                                    )}
+                                                <Amplitude.AmplitudeContext.Provider
+                                                    value={merge(Amplitude.initialState, props.amplitude)}
                                                 >
-                                                    <Amplitude.AmplitudeContext.Provider
-                                                        value={merge(Amplitude.initialState, props.amplitude)}
+                                                    <Sakstema.SakstemaContext.Provider
+                                                        value={merge(
+                                                            Sakstema.initialState,
+                                                            props.sakstema && {
+                                                                data: props.sakstema,
+                                                            }
+                                                        )}
                                                     >
-                                                        <Sakstema.SakstemaContext.Provider
+                                                        <FeatureToggle.FeaturetoggleContext.Provider
                                                             value={merge(
-                                                                Sakstema.initialState,
-                                                                props.sakstema && {
-                                                                    data: props.sakstema,
+                                                                FeatureToggle.initialState,
+                                                                props.featureToggle && {
+                                                                    data: props.featureToggle,
                                                                 }
                                                             )}
                                                         >
-                                                            <FeatureToggle.FeaturetoggleContext.Provider
-                                                                value={merge(
-                                                                    FeatureToggle.initialState,
-                                                                    props.featureToggle && {
-                                                                        data: props.featureToggle,
-                                                                    }
-                                                                )}
+                                                            <ProfilContext.Provider
+                                                                value={{
+                                                                    profil: props.profil || null,
+                                                                    lagreProfil: () => Promise.resolve(),
+                                                                }}
                                                             >
-                                                                <ProfilContext.Provider
-                                                                    value={{
-                                                                        profil: props.profil || null,
-                                                                        lagreProfil: () => Promise.resolve(),
-                                                                    }}
-                                                                >
-                                                                    {children}
-                                                                </ProfilContext.Provider>
-                                                            </FeatureToggle.FeaturetoggleContext.Provider>
-                                                        </Sakstema.SakstemaContext.Provider>
-                                                    </Amplitude.AmplitudeContext.Provider>
-                                                </Motestotte.MotestotteContext.Provider>
-                                            </Oppfolging.OppfolgingContext.Provider>
-                                        </Egenvurdering.EgenvurderingContext.Provider>
-                                    </UlesteDialoger.UlesteDialogerContext.Provider>
-                                </Brukerregistrering.BrukerregistreringContext.Provider>
-                            </BrukerInfo.BrukerInfoContext.Provider>
-                        </Meldekort.MeldekortContext.Provider>
+                                                                {children}
+                                                            </ProfilContext.Provider>
+                                                        </FeatureToggle.FeaturetoggleContext.Provider>
+                                                    </Sakstema.SakstemaContext.Provider>
+                                                </Amplitude.AmplitudeContext.Provider>
+                                            </Motestotte.MotestotteContext.Provider>
+                                        </Oppfolging.OppfolgingContext.Provider>
+                                    </Egenvurdering.EgenvurderingContext.Provider>
+                                </UlesteDialoger.UlesteDialogerContext.Provider>
+                            </Brukerregistrering.BrukerregistreringContext.Provider>
+                        </BrukerInfo.BrukerInfoContext.Provider>
                     </GlobaleInnstillingerProvider>
                 </Arbeidssoker.ArbeidssokerContext.Provider>
             </Autentisering.AutentiseringContext.Provider>

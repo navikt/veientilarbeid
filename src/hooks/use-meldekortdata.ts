@@ -1,5 +1,5 @@
 import { DataElement, NESTE_MELDEKORT_URL } from '../ducks/api';
-import { useSWR } from '../hooks/useSWR';
+import { useSWR } from './useSWR';
 
 export interface State extends DataElement {
     data: Data | null;
