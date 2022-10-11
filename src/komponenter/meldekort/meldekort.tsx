@@ -23,7 +23,7 @@ const TEKSTER = {
 
 function Meldekort() {
     const [clickedLesMer, setClickedLesMer] = useState(false);
-    const amplitudeData = useAmplitudeData();
+    const { amplitudeData } = useAmplitudeData();
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 

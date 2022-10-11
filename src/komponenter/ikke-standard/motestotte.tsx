@@ -36,7 +36,7 @@ const TEKSTER: Tekster<string> = {
 };
 
 const Motestotte = () => {
-    const amplitudeData = useAmplitudeData();
+    const { amplitudeData } = useAmplitudeData();
     const data = useBrukerregistreringData();
     const oppfolgingData = useOppfolgingData();
     const motestotteData = useMotestotteData();

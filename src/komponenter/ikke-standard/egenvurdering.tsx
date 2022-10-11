@@ -23,7 +23,7 @@ const TEKSTER: Tekster<string> = {
 };
 
 const Egenvurdering = () => {
-    const amplitudeData = useAmplitudeData();
+    const { amplitudeData } = useAmplitudeData();
     const registreringData = useBrukerregistreringData();
     const egenvurderingData = useEgenvurderingData();
     const oppfolgingData = useOppfolgingData();

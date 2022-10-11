@@ -40,7 +40,7 @@ const TEKSTER = {
 };
 
 const ReaktiveringKvittering = () => {
-    const amplitudeData = useAmplitudeData();
+    const { amplitudeData } = useAmplitudeData();
     const [visKomponent, setVisKonponent] = useState(false);
     const visKvittering = useVisKvittering('reaktivering');
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);

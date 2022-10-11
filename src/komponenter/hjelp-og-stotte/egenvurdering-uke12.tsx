@@ -33,7 +33,7 @@ const TEKSTER = {
 };
 
 function EgenvurderingUke12() {
-    const amplitudeData = useAmplitudeData();
+    const { amplitudeData } = useAmplitudeData();
     const { ukerRegistrert } = amplitudeData;
     const { lagreProfil } = useProfil();
 

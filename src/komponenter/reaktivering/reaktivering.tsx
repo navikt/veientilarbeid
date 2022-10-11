@@ -36,7 +36,7 @@ const Reaktivering = () => {
     const reaktiveringVisning = bestemReaktiveringVisning(valgtReaktiveringVisning);
     const [visReaktiveringAdvarsel, setVisReaktiveringAdvarsel] = React.useState(reaktiveringVisning);
 
-    const amplitudeData = useAmplitudeData();
+    const { amplitudeData } = useAmplitudeData();
 
     const handleReaktivering = (aktivitet: string) => {
         loggAktivitet({ aktivitet: aktivitet, ...amplitudeData });

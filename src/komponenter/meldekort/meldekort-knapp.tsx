@@ -4,7 +4,6 @@ import { Button } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
 
 import { useAmplitudeData } from '../../contexts/amplitude-context';
-
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 
 interface TemaLenkepanelProps {
@@ -17,7 +16,7 @@ interface TemaLenkepanelProps {
 }
 
 const MeldekortKnapp: React.FC<TemaLenkepanelProps> = (props) => {
-    const amplitudeData = useAmplitudeData();
+    const { amplitudeData } = useAmplitudeData();
 
     const handleClickInnsending = () => {
         amplitudeLogger('veientilarbeid.tema', {

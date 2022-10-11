@@ -22,7 +22,7 @@ const TEKSTER = {
 };
 
 const PaabegynteSoknader = ({ dato, komponent }: { dato?: string; komponent: string }) => {
-    const amplitudeData = useAmplitudeData();
+    const { amplitudeData } = useAmplitudeData();
     const { data: paabegynteSoknader = [] } = useSWR<DpInnsynPaabegyntSoknad[]>(`${DP_INNSYN_URL}/paabegynte`);
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 

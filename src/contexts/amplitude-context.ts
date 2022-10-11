@@ -2,8 +2,9 @@ import { createContext, useContext } from 'react';
 import { AmplitudeData } from '../metrics/amplitude-utils';
 import { InnloggingsNiva } from './autentisering';
 import { DinSituasjonSvar } from './brukerregistrering';
+import { Data as MeldekortData } from '../hooks/use-meldekortdata';
 
-export const initialState: AmplitudeData = {
+export const initialAmplitudeData: AmplitudeData = {
     brukergruppe: 'ukjent',
     geografiskTilknytning: 'INGEN_VERDI',
     ukerRegistrert: 'INGEN_DATO',
@@ -27,9 +28,14 @@ export const initialState: AmplitudeData = {
     antallDagerSidenSisteArbeidssokerperiode: 'INGEN_DATA',
     antallUkerSidenSisteArbeidssokerperiode: 'INGEN_DATA',
     antallUkerMellomSisteArbeidssokerperioder: 'INGEN_DATA',
+    meldegruppe: 'INGEN_VERDI',
+    antallMeldekortKlareForLevering: 0,
 };
 
-const AmplitudeContext = createContext<AmplitudeData>(initialState);
+const AmplitudeContext = createContext({
+    amplitudeData: initialAmplitudeData,
+    setMeldekortData: (meldekortData: MeldekortData) => {},
+});
 
 function useAmplitudeData() {
     const context = useContext(AmplitudeContext);

@@ -27,7 +27,7 @@ const TEKSTER = {
 
 const SistInnsendtSoknad = ({ dato, komponent }: { dato?: string; komponent: string }) => {
     const { data: soknader = [] } = useSWR<DpInnsynSoknad[]>(`${DP_INNSYN_URL}/soknad`);
-    const amplitudeData = useAmplitudeData();
+    const { amplitudeData } = useAmplitudeData();
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 

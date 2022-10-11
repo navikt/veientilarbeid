@@ -23,7 +23,7 @@ const TEKSTER: Tekster<string> = {
 };
 
 const EttersendDokumentasjon = ({ amplitudeTemaNavn }: Props) => {
-    const amplitudeData = useAmplitudeData();
+    const { amplitudeData } = useAmplitudeData();
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     function loggLenkeKlikk(action: string, url: string) {

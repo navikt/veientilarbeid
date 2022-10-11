@@ -25,7 +25,7 @@ const TEKSTER = {
     },
 };
 const Aktivitetsplan = () => {
-    const amplitudeData = useAmplitudeData();
+    const { amplitudeData } = useAmplitudeData();
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     const handleClick = () => {

@@ -32,7 +32,7 @@ interface Props {
 
 const SkrivTilOssChatOgMineDagpenger = (props: Props) => {
     const { amplitudeTemaNavn } = props;
-    const amplitudeData = useAmplitudeData();
+    const { amplitudeData } = useAmplitudeData();
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     function loggLenkeKlikk(action: string, url: string) {

@@ -54,7 +54,7 @@ function Feedback({ id, className, sporsmal }: Props) {
     const [oppdatert, setOppdatert] = useState('');
     const [visPopover, setVisPopover] = useState<HTMLElement | undefined>(undefined);
     const feedbackNeiKnappRef = useRef(null);
-    const amplitudeData = useAmplitudeData();
+    const { amplitudeData } = useAmplitudeData();
 
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 

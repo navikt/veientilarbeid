@@ -29,7 +29,7 @@ const TEKSTER: Tekster<string> = {
     },
 };
 const Ytelser = () => {
-    const amplitudeData = useAmplitudeData();
+    const { amplitudeData } = useAmplitudeData();
 
     function loggLenkeKlikk(action: string, url: string) {
         loggAktivitet({ aktivitet: action, ...amplitudeData });

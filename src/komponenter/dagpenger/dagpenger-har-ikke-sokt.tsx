@@ -24,7 +24,7 @@ const TEKSTER: Tekster<string> = {
 };
 
 const DagpengerHarIkkeSokt = () => {
-    const amplitudeData = useAmplitudeData();
+    const { amplitudeData } = useAmplitudeData();
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     const handleButtonClick = () => {

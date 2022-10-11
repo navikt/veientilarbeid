@@ -35,7 +35,7 @@ const TEKSTER = {
 };
 
 const EgenvurderingIVURD = () => {
-    const amplitudeData = useAmplitudeData();
+    const { amplitudeData } = useAmplitudeData();
     const { lagreProfil } = useProfil();
 
     const lagreEgenvurderingDato = () => {

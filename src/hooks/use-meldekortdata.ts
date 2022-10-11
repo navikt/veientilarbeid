@@ -1,5 +1,7 @@
 import { DataElement, NESTE_MELDEKORT_URL } from '../ducks/api';
 import { useSWR } from './useSWR';
+import { useAmplitudeData } from '../contexts/amplitude-context';
+import { useEffect } from 'react';
 
 export interface State extends DataElement {
     data: Data | null;
@@ -25,6 +27,14 @@ export interface Data {
 
 export function useMeldekortData() {
     const { data, error } = useSWR<Data>(NESTE_MELDEKORT_URL);
+    const { setMeldekortData } = useAmplitudeData();
+
+    useEffect(() => {
+        if (data) {
+            setMeldekortData(data);
+        }
+    }, [data]);
+
     return {
         meldekortData: data,
         isLoading: !error && !data,
