@@ -72,7 +72,7 @@ const ListeElement = (ikon: JSX.Element, innhold: JSX.Element) => {
 
 function IkkeStandard() {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
-    const amplitudeData = useAmplitudeData();
+    const { amplitudeData } = useAmplitudeData();
     const { erSykmeldtMedArbeidsgiver } = useBrukerinfoData();
 
     const handleClick = (action: string) => {

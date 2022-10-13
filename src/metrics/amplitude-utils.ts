@@ -54,6 +54,8 @@ export type AmplitudeData = {
     antallDagerSidenSisteArbeidssokerperiode: number | 'INGEN_DATA' | 'N/A' | 'Ikke avsluttet';
     antallUkerSidenSisteArbeidssokerperiode: number | 'INGEN_DATA' | 'N/A' | 'Ikke avsluttet';
     antallUkerMellomSisteArbeidssokerperioder: number | 'INGEN_DATA' | 'N/A' | 'Første periode';
+    meldegruppe: string;
+    antallMeldekortKlareForLevering: number;
 };
 
 export function amplitudeLogger(name: string, values?: object) {

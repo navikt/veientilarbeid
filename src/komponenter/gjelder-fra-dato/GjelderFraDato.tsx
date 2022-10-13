@@ -10,7 +10,7 @@ import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useGjelderFraDato } from '../../contexts/gjelder-fra-dato';
 
 function GjelderFraDato(): JSX.Element | null {
-    const amplitudeData = useAmplitudeData();
+    const { amplitudeData } = useAmplitudeData();
     const { visModal, settLukkModal } = useGjelderFraDatoModal();
     const featureToggleData = useFeatureToggleData();
     const registreringData = useBrukerregistreringData();

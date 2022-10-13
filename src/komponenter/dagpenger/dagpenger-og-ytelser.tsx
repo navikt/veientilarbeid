@@ -11,7 +11,7 @@ function DagpengerOgYtelser() {
     const YTELSER_TEMA_VIS_KEY = 'ytelser_tema_vis_key';
     const YTELSER_VISNING_PROFIL_KEY = hentProfilnokkelFraLocalStorage(YTELSER_TEMA_VIS_KEY);
 
-    const amplitudeData = useAmplitudeData();
+    const { amplitudeData } = useAmplitudeData();
     const { profil, lagreProfil } = useProfil();
 
     const valgtVisningFraProfil = profil?.[YTELSER_VISNING_PROFIL_KEY];

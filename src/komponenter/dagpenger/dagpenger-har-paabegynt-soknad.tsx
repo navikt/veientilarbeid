@@ -32,7 +32,7 @@ const TEKSTER: Tekster<string> = {
 
 const DagpengerHarPaabegyntSoknad = () => {
     const { data: paabegynteSoknaderData = [] } = useSWR<DpInnsynPaabegyntSoknad[]>(`${DP_INNSYN_URL}/paabegynte`);
-    const amplitudeData = useAmplitudeData();
+    const { amplitudeData } = useAmplitudeData();
 
     const sistePabegynteSoknad = paabegynteSoknaderData.sort(
         (a: DpInnsynPaabegyntSoknad, b: DpInnsynPaabegyntSoknad) =>

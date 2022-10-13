@@ -41,7 +41,7 @@ function Avsnitt2() {
 }
 
 function Avsnitt3() {
-    const amplitudeData = useAmplitudeData();
+    const { amplitudeData } = useAmplitudeData();
 
     function loggLenkeKlikk(handling: string, url: string) {
         amplitudeLogger('veientilarbeid.intro', {
@@ -99,7 +99,7 @@ function Avsnitt3() {
 
 function Avsnitt4() {
     const { servicegruppe } = useContext(OppfolgingContext).data;
-    const amplitudeData = useAmplitudeData();
+    const { amplitudeData } = useAmplitudeData();
 
     const handleLesBrev = () => {
         amplitudeLogger('veientilarbeid.intro', {

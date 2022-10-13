@@ -27,7 +27,7 @@ const InnsynLesMer = () => {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
     const brukerregistreringData = useBrukerregistreringData();
     const arbeidssokerperiodeData = useArbeidssokerPerioder();
-    const amplitudeData = useAmplitudeData();
+    const { amplitudeData } = useAmplitudeData();
     const { harAktivArbeidssokerperiode, aktivPeriodeStart } = beregnArbeidssokerperioder(arbeidssokerperiodeData);
     const { opprettetDato, manueltRegistrertAv, besvarelse, teksterForBesvarelse, sisteStilling } =
         brukerregistreringData?.registrering || {};

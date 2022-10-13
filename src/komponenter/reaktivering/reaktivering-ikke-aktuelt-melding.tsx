@@ -8,7 +8,7 @@ import { BodyShort, Button, Link } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
 
 const ReaktiveringIkkeAktueltMelding = () => {
-    const amplitudeData = useAmplitudeData();
+    const { amplitudeData } = useAmplitudeData();
     const { kanReaktiveres } = React.useContext(OppfolgingContext).data;
     const { securityLevel } = useAutentiseringData();
     const isLevel4 = securityLevel === InnloggingsNiva.LEVEL_4;

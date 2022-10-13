@@ -26,7 +26,7 @@ function Avsnitt1Engelsk() {
 
 function Avsnitt2Engelsk() {
     const { servicegruppe } = useContext(OppfolgingContext).data;
-    const amplitudeData = useAmplitudeData();
+    const { amplitudeData } = useAmplitudeData();
 
     const handleLesBrev = () => {
         amplitudeLogger('veientilarbeid.intro', {
@@ -63,7 +63,7 @@ function Avsnitt2Engelsk() {
 }
 
 function Avsnitt3Engelsk() {
-    const amplitudeData = useAmplitudeData();
+    const { amplitudeData } = useAmplitudeData();
 
     function loggLenkeKlikk(handling: string, url: string) {
         amplitudeLogger('veientilarbeid.intro', {

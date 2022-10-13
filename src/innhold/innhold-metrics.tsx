@@ -31,7 +31,7 @@ function Metrics(props: Props) {
     const oppfolgingData = useOppfolgingData();
     const { formidlingsgruppe, servicegruppe, kanReaktiveres } = oppfolgingData;
 
-    const amplitudeData = useAmplitudeData();
+    const { amplitudeData } = useAmplitudeData();
 
     const registreringData = useBrukerregistreringData();
     const { alder } = useBrukerinfoData();

@@ -47,7 +47,7 @@ const TEKSTER = {
 
 function HjelpOgStotte() {
     const [clickedLesMer, setClickedLesMer] = useState(false);
-    const amplitudeData = useAmplitudeData();
+    const { amplitudeData } = useAmplitudeData();
     const { ukerRegistrert } = amplitudeData;
 
     const registreringData = useBrukerregistreringData();

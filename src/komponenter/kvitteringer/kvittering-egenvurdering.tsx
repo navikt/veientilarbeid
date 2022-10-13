@@ -86,7 +86,7 @@ function Kvittering(props: KvitteringProps) {
 }
 
 function KvitteringEgenvurdering() {
-    const amplitudeData = useAmplitudeData();
+    const { amplitudeData } = useAmplitudeData();
     const [kvittering, setKvittering] = useState('');
     const [visKomponent, setVisKomponent] = useState(true);
 

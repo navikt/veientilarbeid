@@ -29,7 +29,7 @@ const IkkeRegistrert = () => {
     const harRegistreringUrlParameter = goto === 'registrering';
     const infoBoksRef = useRef<HTMLDivElement>(null);
 
-    const amplitudeData = useAmplitudeData();
+    const { amplitudeData } = useAmplitudeData();
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     const handleButtonClick = () => {

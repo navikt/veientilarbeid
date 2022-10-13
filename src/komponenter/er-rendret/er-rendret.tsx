@@ -8,7 +8,7 @@ type Props = {
 };
 
 function ErRendret(props: Props) {
-    const amplitudeData = useAmplitudeData();
+    const { amplitudeData } = useAmplitudeData();
 
     useEffect(() => {
         loggRendring({ rendrer: props.loggTekst, ...amplitudeData });
