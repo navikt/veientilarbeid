@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
 
-import { innloggingsStatusUrl, bakveienTilArbeidUrl } from './urls';
+import { innloggingsStatusUrl, bakveienTilArbeidUrl, aiaBackendUrl } from './urls';
 
 export enum STATUS {
     OK = 'OK',
@@ -32,19 +32,20 @@ export const requestConfig = (): RequestInit => {
     };
 };
 
-export const BAKVEIEN = `${bakveienTilArbeidUrl}`,
-    VEILARBOPPFOLGING_URL = `${BAKVEIEN}/oppfolging`,
-    BRUKERINFO_URL = `${BAKVEIEN}/startregistrering`,
-    BRUKERREGISTRERING_URL = `${BAKVEIEN}/registrering`,
+export const AIA_BACKEND = aiaBackendUrl,
+    BAKVEIEN = bakveienTilArbeidUrl,
+    VEILARBOPPFOLGING_URL = `${AIA_BACKEND}/oppfolging`,
+    BRUKERINFO_URL = `${AIA_BACKEND}/startregistrering`,
+    BRUKERREGISTRERING_URL = `${AIA_BACKEND}/registrering`,
     PROFIL_URL = `${BAKVEIEN}/profil`,
-    ULESTEDIALOGER_URL = `${BAKVEIEN}/dialog/antallUleste`,
-    EGENVURDERINGBESVARELSE_URL = `${BAKVEIEN}/vedtakinfo/besvarelse`,
-    FEATURE_URL = `${BAKVEIEN}/unleash`,
-    MOTESTOTTE_URL = `${BAKVEIEN}/vedtakinfo/motestotte`,
-    DP_INNSYN_URL = `${BAKVEIEN}/dagpenger`,
-    NESTE_MELDEKORT_URL = `${BAKVEIEN}/meldekort`,
-    MELDEKORTSTATUS_URL = `${BAKVEIEN}/meldekort/status`,
-    GJELDER_FRA_DATO_URL = `${BAKVEIEN}/gjelderfra`,
+    ULESTEDIALOGER_URL = `${AIA_BACKEND}/dialog/antallUleste`,
+    EGENVURDERINGBESVARELSE_URL = `${AIA_BACKEND}/vedtakinfo/besvarelse`,
+    FEATURE_URL = `${AIA_BACKEND}/unleash`,
+    MOTESTOTTE_URL = `${AIA_BACKEND}/vedtakinfo/motestotte`,
+    DP_INNSYN_URL = `${AIA_BACKEND}/dagpenger`,
+    NESTE_MELDEKORT_URL = `${AIA_BACKEND}/meldekort`,
+    MELDEKORTSTATUS_URL = `${AIA_BACKEND}/meldekort/status`,
+    GJELDER_FRA_DATO_URL = `${AIA_BACKEND}/gjelderfra`,
     AUTH_API = innloggingsStatusUrl,
-    ARBEIDSSOKER_NIVA3_URL = `${BAKVEIEN}/arbeidssoker?fraOgMed=2020-01-01`,
-    ER_STANDARD_INNSATSGRUPPE_URL = `${BAKVEIEN}/standard-innsats`;
+    ARBEIDSSOKER_NIVA3_URL = `${AIA_BACKEND}/arbeidssoker?fraOgMed=2020-01-01`,
+    ER_STANDARD_INNSATSGRUPPE_URL = `${AIA_BACKEND}/standard-innsats`;
