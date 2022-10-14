@@ -2,7 +2,7 @@ import { Heading } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
 
 import { DpInnsynSoknad } from '../../contexts/dp-innsyn-soknad';
-import { DpInnsynPaabegyntSoknad } from '../../contexts/dp-innsyn-paabegynte-soknader';
+import { useDpInnsynPaabegynteSoknaderData } from '../../contexts/dp-innsyn-paabegynte-soknader';
 import { useSprakValg } from '../../contexts/sprak';
 
 import { sorterEtterNyesteDatoInnsendt } from '../../lib/beregn-dagpenge-status';
@@ -29,7 +29,7 @@ const TEKSTER: Tekster<string> = {
 const DagpengerHarSokt = () => {
     const { data: soknader = [] } = useSWR<DpInnsynSoknad[]>(`${DP_INNSYN_URL}/soknad`);
     const sisteInnsendteSoknad = soknader?.sort(sorterEtterNyesteDatoInnsendt)[0];
-    const { data: paabegynteSoknader = [] } = useSWR<DpInnsynPaabegyntSoknad[]>(`${DP_INNSYN_URL}/paabegynte`);
+    const { paabegynteSoknader = [] } = useDpInnsynPaabegynteSoknaderData();
     const sistePaabegyntSoknad = paabegynteSoknader.sort(
         (a, b) => new Date(b.sistEndret).getTime() - new Date(a.sistEndret).getTime()
     )[0];

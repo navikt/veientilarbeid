@@ -5,7 +5,7 @@ import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { DpInnsynSoknad } from '../../contexts/dp-innsyn-soknad';
 import { Vedtak } from '../../contexts/dp-innsyn-vedtak';
-import { DpInnsynPaabegyntSoknad } from '../../contexts/dp-innsyn-paabegynte-soknader';
+import { useDpInnsynPaabegynteSoknaderData } from '../../contexts/dp-innsyn-paabegynte-soknader';
 import { useSprakValg } from '../../contexts/sprak';
 
 import { beregnDagerTilInaktivering } from '../../utils/meldekort-utils';
@@ -82,7 +82,7 @@ function MeldekortAdvarsel({ dagerEtterFastsattMeldedag }: { dagerEtterFastsattM
 
     const brukerInfoData = useBrukerinfoData();
     const registreringData = useBrukerregistreringData();
-    const { data: paabegynteSoknader = [] } = useSWR<DpInnsynPaabegyntSoknad[]>(`${DP_INNSYN_URL}/paabegynte`);
+    const { paabegynteSoknader = [] } = useDpInnsynPaabegynteSoknaderData();
     const { data: innsendteSoknader = [] } = useSWR<DpInnsynSoknad[]>(`${DP_INNSYN_URL}/soknad`);
     const { data: dagpengeVedtak = [] } = useSWR<Vedtak[]>(`${DP_INNSYN_URL}/vedtak`);
     const arbeidssokerperioderData = useArbeidssokerPerioder();
