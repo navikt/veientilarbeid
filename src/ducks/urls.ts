@@ -19,6 +19,12 @@ const BAKVEIENTILARBEID_URL = {
     production: 'https://www.nav.no/bakveientilarbeid',
 };
 
+const AIA_BACKEND_URL = {
+    local: 'http://localhost:3000/aia-backend',
+    development: 'https://www.dev.nav.no/aia-backend',
+    production: 'https://www.nav.no/aia-backend',
+};
+
 const INNLOGGINGSSTATUS_URL = {
     local: 'http://localhost:3000/auth',
     development: 'https://www.dev.nav.no/person/innloggingsstatus/auth',
@@ -27,3 +33,4 @@ const INNLOGGINGSSTATUS_URL = {
 
 export const bakveienTilArbeidUrl = BAKVEIENTILARBEID_URL[getEnvironment()];
 export const innloggingsStatusUrl = INNLOGGINGSSTATUS_URL[getEnvironment()];
+export const aiaBackendUrl = AIA_BACKEND_URL[getEnvironment()];
