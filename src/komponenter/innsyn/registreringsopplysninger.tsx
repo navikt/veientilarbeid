@@ -9,6 +9,9 @@ import prettyPrintDato from '../../utils/pretty-print-dato';
 import Feedback from '../feedback/feedback';
 import { useUnderOppfolging } from '../../contexts/arbeidssoker';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
+import React, { useState } from 'react';
+import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
+import { useSprakValg } from '../../contexts/sprak';
 /**
  * Dette er en fiks fordi det en periode ble postet data fra registreringen med en litt annen signatur
  * Den henter data fra sisteStilling og viser under teksterForBesvarelse
@@ -39,23 +42,77 @@ const Opplysning = (props: any) => {
     );
 };
 
-const Oppfolging = (props: { svar: string }) => {
+const TEKSTER = {
+    nb: {
+        'oppfolging.klare_seg_selv': 'Jeg ønsker å klare meg selv',
+        'oppfolging.onsker_oppfolging': 'Jeg ønsker oppfølging fra NAV',
+        'oppfolging.ikke_besvart': 'Ikke besvart',
+    },
+    en: {
+        'oppfolging.klare_seg_selv': 'Jeg ønsker å klare meg selv',
+        'oppfolging.onsker_oppfolging': 'Jeg ønsker oppfølging fra NAV',
+        'oppfolging.ikke_besvart': 'Ikke besvart',
+    },
+};
+
+type OppfolgingValg = 'klare_seg_selv' | 'onsker_oppfolging' | 'ikke_besvart';
+
+const Oppfolging = (props: { svar: OppfolgingValg; lagreSvar: (svar: OppfolgingValg) => void }) => {
+    const [visSelect, setVisSelect] = useState(false);
+    const [selectedVerdi, setSelectedVerdi] = useState<OppfolgingValg>(props.svar);
+    const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
+
+    const aapneSelect = () => {
+        setVisSelect(true);
+    };
+
+    const setSelected = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedVerdi(e.target.value as OppfolgingValg);
+    };
+
+    const handleLagreClick = () => {
+        setVisSelect(false);
+        props.lagreSvar(selectedVerdi as OppfolgingValg);
+    };
+
+    const OppfolgingOption = (props: { value: OppfolgingValg }) => {
+        return (
+            <option value={props.value} selected={selectedVerdi === props.value}>
+                {tekst(`oppfolging.${props.value}`)}
+            </option>
+        );
+    };
+
     return (
-        <div className={`${flexStyles.flex} ${flexStyles.spaceBetween}`}>
-            <div className={spacingStyles.blokkS}>
-                <div className={`${spacingStyles.mb1} ${spacingStyles.fitContent}`}>
-                    <Select label="Hva slags oppfølging ønsker du?">
-                        <option value="">{props.svar}</option>
-                        <option value="klare-seg-selv">Jeg ønsker å klare meg selv</option>
-                        <option value="oppfolging">Jeg ønsker oppfølging fra NAV</option>
-                    </Select>
-                </div>
-                <Button variant={'secondary'}>Lagre endring</Button>
+        <div className={`${spacingStyles.blokkS}`}>
+            <div className={`${flexStyles.flex}`}>
+                <strong className={spacingStyles.mr05}>Hva slags oppfølging ønsker du?</strong>
+                <HelpText title="Hva betyr dette?">
+                    Her kan du velge om du ønsker oppfølging og veiledning fra NAV i forbindelse med jobbsøking eller om
+                    du ønsker å klare deg selv.
+                </HelpText>
             </div>
-            <HelpText placement={'right-start'} title="Hva betyr dette?">
-                Her kan du velge om du ønsker oppfølging og veiledning fra NAV i forbindelse med jobbsøking eller om du
-                ønsker å klare deg selv.
-            </HelpText>
+            <div className={`${flexStyles.flex} ${flexStyles.alignCenter}`}>
+                <div className={spacingStyles.mr05}>
+                    {visSelect ? (
+                        <Select
+                            label="Hva slags oppfølging ønsker du?"
+                            hideLabel
+                            onChange={setSelected}
+                            defaultValue={selectedVerdi}
+                        >
+                            {selectedVerdi === 'ikke_besvart' && <OppfolgingOption value={'ikke_besvart'} />}
+                            <OppfolgingOption value={'klare_seg_selv'} />
+                            <OppfolgingOption value={'onsker_oppfolging'} />
+                        </Select>
+                    ) : (
+                        tekst(`oppfolging.${props.svar}`)
+                    )}
+                </div>
+                <Button variant={'secondary'} onClick={visSelect ? handleLagreClick : aapneSelect}>
+                    {visSelect ? 'Lagre svar' : 'Endre'}
+                </Button>
+            </div>
         </div>
     );
 };
@@ -82,6 +139,11 @@ const Opplysninger = (props: any) => {
     const kanViseKomponent = underoppfolging;
     const featuretoggles = useFeatureToggleData();
     const visKlareSegSelvSporsmal = featuretoggles['veientilarbeid.bruk-klarer-seg-selv'];
+    const [oppfolgingSvar, setOppfolgingSvar] = useState<OppfolgingValg>('ikke_besvart');
+
+    const lagreSvar = (svar: OppfolgingValg) => {
+        setOppfolgingSvar(svar);
+    };
 
     const handleDialogClick = () => {
         loggAktivitet({ aktivitet: 'Går til endre registreringsopplysninger', ...amplitudeData });
@@ -103,7 +165,7 @@ const Opplysninger = (props: any) => {
                     hvis situasjonen din endrer seg.
                 </BodyShort>
             </div>
-            {visKlareSegSelvSporsmal && <Oppfolging svar={'Ikke besvart'} />}
+            {visKlareSegSelvSporsmal && <Oppfolging svar={oppfolgingSvar} lagreSvar={lagreSvar} />}
             {besvarelser.map((item, index) => (
                 <Opplysning {...item} key={index} />
             ))}
