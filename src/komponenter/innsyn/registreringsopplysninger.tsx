@@ -31,9 +31,9 @@ const Opplysning = (props: any) => {
     return (
         <div className={spacingStyles.blokkS}>
             <BodyShort>
-                {sporsmal}
+                <strong>{sporsmal}</strong>
                 <br />
-                <strong>{svar}</strong>
+                {svar}
             </BodyShort>
         </div>
     );
