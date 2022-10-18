@@ -1,4 +1,4 @@
-import { BodyShort } from '@navikt/ds-react';
+import { BodyShort, Select } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
 
@@ -8,7 +8,7 @@ import { Besvarelse, SisteStilling, Svar } from '../../contexts/brukerregistreri
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import Feedback from '../feedback/feedback';
 import { useUnderOppfolging } from '../../contexts/arbeidssoker';
-
+import { useFeatureToggleData } from '../../contexts/feature-toggles';
 /**
  * Dette er en fiks fordi det en periode ble postet data fra registreringen med en litt annen signatur
  * Den henter data fra sisteStilling og viser under teksterForBesvarelse
@@ -39,6 +39,20 @@ const Opplysning = (props: any) => {
     );
 };
 
+const Oppfolging = (props: { svar: string }) => {
+    return (
+        <div className={spacingStyles.blokkS}>
+            <BodyShort>
+                <Select label="Hva slags oppfølging ønsker du?">
+                    <option value="">{props.svar}</option>
+                    <option value="klare-seg-selv">Jeg ønsker å klare meg selv</option>
+                    <option value="oppfolging">Jeg ønsker oppfølging fra NAV</option>
+                </Select>
+            </BodyShort>
+        </div>
+    );
+};
+
 const repackBesvarelser = (besvarelse: Besvarelse, teksterForBesvarelse: Array<Svar>, sisteStilling: SisteStilling) => {
     const sisteStillingInnhold = besvarelse['sisteStilling'] || '';
     const dinSituasjonInnhold = besvarelse['dinSituasjon'] || '';
@@ -59,6 +73,8 @@ const Opplysninger = (props: any) => {
     const besvarelser = repackBesvarelser(besvarelse, teksterForBesvarelse, sisteStilling);
     const underoppfolging = useUnderOppfolging()?.underoppfolging;
     const kanViseKomponent = underoppfolging;
+    const featuretoggles = useFeatureToggleData();
+    const visKlareSegSelvSporsmal = featuretoggles['veientilarbeid.bruk-klarer-seg-selv'];
 
     const handleDialogClick = () => {
         loggAktivitet({ aktivitet: 'Går til endre registreringsopplysninger', ...amplitudeData });
@@ -80,6 +96,7 @@ const Opplysninger = (props: any) => {
                     hvis situasjonen din endrer seg.
                 </BodyShort>
             </div>
+            {visKlareSegSelvSporsmal && <Oppfolging svar={'Ikke besvart'} />}
             {besvarelser.map((item, index) => (
                 <Opplysning {...item} key={index} />
             ))}
