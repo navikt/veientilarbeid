@@ -1,4 +1,4 @@
-import { BodyShort, Select } from '@navikt/ds-react';
+import { BodyShort, Button, Select } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
 
@@ -42,13 +42,14 @@ const Opplysning = (props: any) => {
 const Oppfolging = (props: { svar: string }) => {
     return (
         <div className={spacingStyles.blokkS}>
-            <BodyShort>
+            <div className={`${spacingStyles.mb1} ${spacingStyles.fitContent}`}>
                 <Select label="Hva slags oppfølging ønsker du?">
                     <option value="">{props.svar}</option>
                     <option value="klare-seg-selv">Jeg ønsker å klare meg selv</option>
                     <option value="oppfolging">Jeg ønsker oppfølging fra NAV</option>
                 </Select>
-            </BodyShort>
+            </div>
+            <Button variant={'secondary'}>Lagre endring</Button>
         </div>
     );
 };
