@@ -1,4 +1,4 @@
-import { BodyShort, Button, Select } from '@navikt/ds-react';
+import { BodyShort, Button, HelpText, Select } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
 
@@ -41,15 +41,21 @@ const Opplysning = (props: any) => {
 
 const Oppfolging = (props: { svar: string }) => {
     return (
-        <div className={spacingStyles.blokkS}>
-            <div className={`${spacingStyles.mb1} ${spacingStyles.fitContent}`}>
-                <Select label="Hva slags oppfølging ønsker du?">
-                    <option value="">{props.svar}</option>
-                    <option value="klare-seg-selv">Jeg ønsker å klare meg selv</option>
-                    <option value="oppfolging">Jeg ønsker oppfølging fra NAV</option>
-                </Select>
+        <div className={`${flexStyles.flex} ${flexStyles.spaceBetween}`}>
+            <div className={spacingStyles.blokkS}>
+                <div className={`${spacingStyles.mb1} ${spacingStyles.fitContent}`}>
+                    <Select label="Hva slags oppfølging ønsker du?">
+                        <option value="">{props.svar}</option>
+                        <option value="klare-seg-selv">Jeg ønsker å klare meg selv</option>
+                        <option value="oppfolging">Jeg ønsker oppfølging fra NAV</option>
+                    </Select>
+                </div>
+                <Button variant={'secondary'}>Lagre endring</Button>
             </div>
-            <Button variant={'secondary'}>Lagre endring</Button>
+            <HelpText placement={'right-start'} title="Hva betyr dette?">
+                Her kan du velge om du ønsker oppfølging og veiledning fra NAV i forbindelse med jobbsøking eller om du
+                ønsker å klare deg selv.
+            </HelpText>
         </div>
     );
 };
