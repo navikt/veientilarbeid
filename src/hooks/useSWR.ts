@@ -1,4 +1,6 @@
 import useSwr from 'swr';
+import { nanoid } from 'nanoid';
+
 import useSwrImmutable from 'swr/immutable';
 import { SWRConfiguration } from 'swr/dist/types';
 
@@ -6,6 +8,7 @@ export const fetcher = async (path: string, opts?: RequestInit & { onError?: (re
     const response = await fetch(path, {
         headers: {
             'Content-Type': 'application/json',
+            'NAV-Call-Id': nanoid(),
         },
         ...opts,
         credentials: 'include',
