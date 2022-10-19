@@ -96,36 +96,34 @@ const Oppfolging = () => {
                     du ønsker å klare deg selv.
                 </HelpText>
             </div>
-            <div className={`${flexStyles.flex} ${flexStyles.alignCenter}`}>
-                <div className={spacingStyles.mr05}>
-                    {visSelect ? (
-                        <form onSubmit={handleSubmit}>
-                            <div className={`${spacingStyles.mb1} ${flexStyles.flex}`}>
-                                <Select
-                                    label="Hva slags oppfølging ønsker du?"
-                                    hideLabel
-                                    onChange={setSelected}
-                                    defaultValue={selectedVerdi}
-                                    className={spacingStyles.mr05}
-                                >
-                                    {selectedVerdi === 'ikke_besvart' && <OppfolgingOption value={'ikke_besvart'} />}
-                                    <OppfolgingOption value={'klare_seg_selv'} />
-                                    <OppfolgingOption value={'onsker_oppfolging'} />
-                                </Select>
-                                <Button variant={'secondary'} type={'submit'}>
-                                    Lagre svar
-                                </Button>
-                            </div>
-                        </form>
-                    ) : (
-                        <div className={`${flexStyles.flex} ${flexStyles.alignCenter}`}>
-                            <div className={spacingStyles.mr05}> {tekst(`oppfolging.${lagretSvar}`)}</div>
-                            <Button variant={'secondary'} onClick={aapneSelect}>
-                                Endre
+            <div>
+                {visSelect ? (
+                    <form onSubmit={handleSubmit}>
+                        <div className={flexStyles.flex}>
+                            <Select
+                                label="Hva slags oppfølging ønsker du?"
+                                hideLabel
+                                onChange={setSelected}
+                                defaultValue={selectedVerdi}
+                                className={spacingStyles.mr05}
+                            >
+                                {selectedVerdi === 'ikke_besvart' && <OppfolgingOption value={'ikke_besvart'} />}
+                                <OppfolgingOption value={'klare_seg_selv'} />
+                                <OppfolgingOption value={'onsker_oppfolging'} />
+                            </Select>
+                            <Button variant={'secondary'} type={'submit'}>
+                                Lagre svar
                             </Button>
                         </div>
-                    )}
-                </div>
+                    </form>
+                ) : (
+                    <div className={`${flexStyles.flex} ${flexStyles.alignCenter}`}>
+                        <div className={spacingStyles.mr05}> {tekst(`oppfolging.${lagretSvar}`)}</div>
+                        <Button variant={'secondary'} onClick={aapneSelect}>
+                            Endre
+                        </Button>
+                    </div>
+                )}
             </div>
         </div>
     );
