@@ -48,4 +48,5 @@ export const AIA_BACKEND = aiaBackendUrl,
     GJELDER_FRA_DATO_URL = `${AIA_BACKEND}/gjelderfra`,
     AUTH_API = innloggingsStatusUrl,
     ARBEIDSSOKER_NIVA3_URL = `${AIA_BACKEND}/arbeidssoker?fraOgMed=2020-01-01`,
-    ER_STANDARD_INNSATSGRUPPE_URL = `${AIA_BACKEND}/standard-innsats`;
+    ER_STANDARD_INNSATSGRUPPE_URL = `${AIA_BACKEND}/standard-innsats`,
+    BEHOV_FOR_VEILEDNING_URL = `${AIA_BACKEND}/behov-for-veiledning`;
