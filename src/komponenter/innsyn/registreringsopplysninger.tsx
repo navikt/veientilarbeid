@@ -12,6 +12,7 @@ import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import React, { useState } from 'react';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
+import { BehovForVeiledning } from '../../contexts/behov-for-veiledning';
 /**
  * Dette er en fiks fordi det en periode ble postet data fra registreringen med en litt annen signatur
  * Den henter data fra sisteStilling og viser under teksterForBesvarelse
@@ -44,32 +45,30 @@ const Opplysning = (props: any) => {
 
 const TEKSTER = {
     nb: {
-        'oppfolging.klare_seg_selv': 'Jeg ønsker å klare meg selv',
-        'oppfolging.onsker_oppfolging': 'Jeg ønsker oppfølging fra NAV',
-        'oppfolging.ikke_besvart': 'Ikke besvart',
+        'oppfolging.KLARE_SEG_SELV': 'Jeg ønsker å klare meg selv',
+        'oppfolging.ONSKER_OPPFOLGING': 'Jeg ønsker oppfølging fra NAV',
+        'oppfolging.IKKE_BESVART': 'Ikke besvart',
     },
     en: {
-        'oppfolging.klare_seg_selv': 'Jeg ønsker å klare meg selv',
-        'oppfolging.onsker_oppfolging': 'Jeg ønsker oppfølging fra NAV',
-        'oppfolging.ikke_besvart': 'Ikke besvart',
+        'oppfolging.KLARE_SEG_SELV': 'Jeg ønsker å klare meg selv',
+        'oppfolging.ONSKER_OPPFOLGING': 'Jeg ønsker oppfølging fra NAV',
+        'oppfolging.IKKE_BESVART': 'Ikke besvart',
     },
 };
-
-type OppfolgingValg = 'klare_seg_selv' | 'onsker_oppfolging' | 'ikke_besvart';
 
 const Oppfolging = () => {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     const [visSelect, setVisSelect] = useState(false);
-    const [selectedVerdi, setSelectedVerdi] = useState<OppfolgingValg>('ikke_besvart');
-    const [lagretSvar, setLagretSvar] = useState<OppfolgingValg>('ikke_besvart');
+    const [selectedVerdi, setSelectedVerdi] = useState<BehovForVeiledning>('IKKE_BESVART');
+    const [lagretSvar, setLagretSvar] = useState<BehovForVeiledning>('IKKE_BESVART');
 
     const aapneSelect = () => {
         setVisSelect(true);
     };
 
     const setSelected = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setSelectedVerdi(e.target.value as OppfolgingValg);
+        setSelectedVerdi(e.target.value as BehovForVeiledning);
     };
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -79,7 +78,7 @@ const Oppfolging = () => {
         //TODO: lagre svar
     };
 
-    const OppfolgingOption = (props: { value: OppfolgingValg }) => {
+    const OppfolgingOption = (props: { value: BehovForVeiledning }) => {
         return (
             <option value={props.value} selected={selectedVerdi === props.value}>
                 {tekst(`oppfolging.${props.value}`)}
@@ -107,9 +106,9 @@ const Oppfolging = () => {
                                 defaultValue={selectedVerdi}
                                 className={spacingStyles.mr05}
                             >
-                                {selectedVerdi === 'ikke_besvart' && <OppfolgingOption value={'ikke_besvart'} />}
-                                <OppfolgingOption value={'klare_seg_selv'} />
-                                <OppfolgingOption value={'onsker_oppfolging'} />
+                                {selectedVerdi === 'IKKE_BESVART' && <OppfolgingOption value={'IKKE_BESVART'} />}
+                                <OppfolgingOption value={'KLARE_SEG_SELV'} />
+                                <OppfolgingOption value={'ONSKER_OPPFOLGING'} />
                             </Select>
                             <Button variant={'secondary'} type={'submit'}>
                                 Lagre svar
