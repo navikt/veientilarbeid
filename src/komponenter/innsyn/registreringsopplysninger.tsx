@@ -57,10 +57,12 @@ const TEKSTER = {
 
 type OppfolgingValg = 'klare_seg_selv' | 'onsker_oppfolging' | 'ikke_besvart';
 
-const Oppfolging = (props: { svar: OppfolgingValg; lagreSvar: (svar: OppfolgingValg) => void }) => {
-    const [visSelect, setVisSelect] = useState(false);
-    const [selectedVerdi, setSelectedVerdi] = useState<OppfolgingValg>(props.svar);
+const Oppfolging = () => {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
+
+    const [visSelect, setVisSelect] = useState(false);
+    const [selectedVerdi, setSelectedVerdi] = useState<OppfolgingValg>('ikke_besvart');
+    const [lagretSvar, setLagretSvar] = useState<OppfolgingValg>('ikke_besvart');
 
     const aapneSelect = () => {
         setVisSelect(true);
@@ -70,9 +72,11 @@ const Oppfolging = (props: { svar: OppfolgingValg; lagreSvar: (svar: OppfolgingV
         setSelectedVerdi(e.target.value as OppfolgingValg);
     };
 
-    const handleLagreClick = () => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         setVisSelect(false);
-        props.lagreSvar(selectedVerdi as OppfolgingValg);
+        setLagretSvar(selectedVerdi);
+        //TODO: lagre svar
     };
 
     const OppfolgingOption = (props: { value: OppfolgingValg }) => {
@@ -95,23 +99,33 @@ const Oppfolging = (props: { svar: OppfolgingValg; lagreSvar: (svar: OppfolgingV
             <div className={`${flexStyles.flex} ${flexStyles.alignCenter}`}>
                 <div className={spacingStyles.mr05}>
                     {visSelect ? (
-                        <Select
-                            label="Hva slags oppfølging ønsker du?"
-                            hideLabel
-                            onChange={setSelected}
-                            defaultValue={selectedVerdi}
-                        >
-                            {selectedVerdi === 'ikke_besvart' && <OppfolgingOption value={'ikke_besvart'} />}
-                            <OppfolgingOption value={'klare_seg_selv'} />
-                            <OppfolgingOption value={'onsker_oppfolging'} />
-                        </Select>
+                        <form onSubmit={handleSubmit}>
+                            <div className={`${spacingStyles.mb1} ${flexStyles.flex}`}>
+                                <Select
+                                    label="Hva slags oppfølging ønsker du?"
+                                    hideLabel
+                                    onChange={setSelected}
+                                    defaultValue={selectedVerdi}
+                                    className={spacingStyles.mr05}
+                                >
+                                    {selectedVerdi === 'ikke_besvart' && <OppfolgingOption value={'ikke_besvart'} />}
+                                    <OppfolgingOption value={'klare_seg_selv'} />
+                                    <OppfolgingOption value={'onsker_oppfolging'} />
+                                </Select>
+                                <Button variant={'secondary'} type={'submit'}>
+                                    Lagre svar
+                                </Button>
+                            </div>
+                        </form>
                     ) : (
-                        tekst(`oppfolging.${props.svar}`)
+                        <div className={`${flexStyles.flex} ${flexStyles.alignCenter}`}>
+                            <div className={spacingStyles.mr05}> {tekst(`oppfolging.${lagretSvar}`)}</div>
+                            <Button variant={'secondary'} onClick={aapneSelect}>
+                                Endre
+                            </Button>
+                        </div>
                     )}
                 </div>
-                <Button variant={'secondary'} onClick={visSelect ? handleLagreClick : aapneSelect}>
-                    {visSelect ? 'Lagre svar' : 'Endre'}
-                </Button>
             </div>
         </div>
     );
@@ -139,11 +153,6 @@ const Opplysninger = (props: any) => {
     const kanViseKomponent = underoppfolging;
     const featuretoggles = useFeatureToggleData();
     const visKlareSegSelvSporsmal = featuretoggles['veientilarbeid.bruk-klarer-seg-selv'];
-    const [oppfolgingSvar, setOppfolgingSvar] = useState<OppfolgingValg>('ikke_besvart');
-
-    const lagreSvar = (svar: OppfolgingValg) => {
-        setOppfolgingSvar(svar);
-    };
 
     const handleDialogClick = () => {
         loggAktivitet({ aktivitet: 'Går til endre registreringsopplysninger', ...amplitudeData });
@@ -165,7 +174,7 @@ const Opplysninger = (props: any) => {
                     hvis situasjonen din endrer seg.
                 </BodyShort>
             </div>
-            {visKlareSegSelvSporsmal && <Oppfolging svar={oppfolgingSvar} lagreSvar={lagreSvar} />}
+            {visKlareSegSelvSporsmal && <Oppfolging />}
             {besvarelser.map((item, index) => (
                 <Opplysning {...item} key={index} />
             ))}
