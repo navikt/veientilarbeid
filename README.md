@@ -36,7 +36,12 @@ main deployes til dev og prod når man pusher.
 
 ### Deploy kun til dev
 
-For å opprette en branch som skal deployes til dev, prefixer du branchnavnet med "dev-", f.eks. "dev-min-testbranch".
+For å opprette en branch som skal deployes til dev, prefixer du branchnavnet med `dev/`, f.eks. `dev/min-testbranch`
+
+```
+git checkout -b dev/<navn på branch>
+```
+
 Branchen blir da deployet til dev når man pusher.
 
 ## Som mikrofrontend på Min side i dev
