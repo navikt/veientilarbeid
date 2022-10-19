@@ -79,11 +79,7 @@ const Oppfolging = () => {
     };
 
     const OppfolgingOption = (props: { value: BehovForVeiledning }) => {
-        return (
-            <option value={props.value} selected={selectedVerdi === props.value}>
-                {tekst(`oppfolging.${props.value}`)}
-            </option>
-        );
+        return <option value={props.value}>{tekst(`oppfolging.${props.value}`)}</option>;
     };
 
     return (
@@ -103,7 +99,7 @@ const Oppfolging = () => {
                                 label="Hva slags oppfølging ønsker du?"
                                 hideLabel
                                 onChange={setSelected}
-                                defaultValue={selectedVerdi}
+                                value={selectedVerdi}
                                 className={spacingStyles.mr05}
                             >
                                 {selectedVerdi === 'IKKE_BESVART' && <OppfolgingOption value={'IKKE_BESVART'} />}
