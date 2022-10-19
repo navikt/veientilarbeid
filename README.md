@@ -30,6 +30,15 @@ Testmiljøet bruker [Jest](https://jestjs.io/), [Testing Library](https://testin
 [//]: # '-   Start dittnav med `npm start`'
 [//]: # '-   Gå til http://localhost:9002/person/dittnav'
 
+## Deploy
+
+main deployes til dev og prod når man pusher.
+
+### Deploy kun til dev
+
+For å opprette en branch som skal deployes til dev, prefixer du branchnavnet med "dev-", f.eks. "dev-min-testbranch".
+Branchen blir da deployet til dev når man pusher.
+
 ## Som mikrofrontend på Min side i dev
 
 1. Start naisdevice
