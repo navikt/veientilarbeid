@@ -13,6 +13,20 @@ import React, { useState } from 'react';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
 import { BehovForVeiledning } from '../../contexts/behov-for-veiledning';
+
+const TEKSTER = {
+    nb: {
+        'oppfolging.KLARE_SEG_SELV': 'Jeg ønsker å klare meg selv',
+        'oppfolging.ONSKER_OPPFOLGING': 'Jeg ønsker oppfølging fra NAV',
+        'oppfolging.IKKE_BESVART': 'Ikke besvart',
+    },
+    en: {
+        'oppfolging.KLARE_SEG_SELV': 'Jeg ønsker å klare meg selv',
+        'oppfolging.ONSKER_OPPFOLGING': 'Jeg ønsker oppfølging fra NAV',
+        'oppfolging.IKKE_BESVART': 'Ikke besvart',
+    },
+};
+
 /**
  * Dette er en fiks fordi det en periode ble postet data fra registreringen med en litt annen signatur
  * Den henter data fra sisteStilling og viser under teksterForBesvarelse
@@ -41,19 +55,6 @@ const Opplysning = (props: any) => {
             </BodyShort>
         </div>
     );
-};
-
-const TEKSTER = {
-    nb: {
-        'oppfolging.KLARE_SEG_SELV': 'Jeg ønsker å klare meg selv',
-        'oppfolging.ONSKER_OPPFOLGING': 'Jeg ønsker oppfølging fra NAV',
-        'oppfolging.IKKE_BESVART': 'Ikke besvart',
-    },
-    en: {
-        'oppfolging.KLARE_SEG_SELV': 'Jeg ønsker å klare meg selv',
-        'oppfolging.ONSKER_OPPFOLGING': 'Jeg ønsker oppfølging fra NAV',
-        'oppfolging.IKKE_BESVART': 'Ikke besvart',
-    },
 };
 
 const Oppfolging = () => {
