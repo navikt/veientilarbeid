@@ -1,18 +1,20 @@
+import React, { useState } from 'react';
 import { BodyShort, Button, HelpText, Select } from '@navikt/ds-react';
-import spacingStyles from '../../spacing.module.css';
-import flexStyles from '../../flex.module.css';
+
+import { useUnderOppfolging } from '../../contexts/arbeidssoker';
+import { useFeatureToggleData } from '../../contexts/feature-toggles';
+import { useSprakValg } from '../../contexts/sprak';
+import { BehovForVeiledningValg, useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
 
 import { loggAktivitet } from '../../metrics/metrics';
 import { dialogLenke } from '../../innhold/lenker';
 import { Besvarelse, SisteStilling, Svar } from '../../contexts/brukerregistrering';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import Feedback from '../feedback/feedback';
-import { useUnderOppfolging } from '../../contexts/arbeidssoker';
-import { useFeatureToggleData } from '../../contexts/feature-toggles';
-import React, { useState } from 'react';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
-import { useSprakValg } from '../../contexts/sprak';
-import { BehovForVeiledning, useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
+
+import spacingStyles from '../../spacing.module.css';
+import flexStyles from '../../flex.module.css';
 
 const TEKSTER = {
     nb: {
@@ -61,17 +63,15 @@ const Oppfolging = () => {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     const [visSelect, setVisSelect] = useState(false);
-    const [selectedVerdi, setSelectedVerdi] = useState<BehovForVeiledning>('IKKE_BESVART');
+    const [selectedVerdi, setSelectedVerdi] = useState<BehovForVeiledningValg>('IKKE_BESVART');
     const { behovForVeiledning, lagreBehovForVeiledning } = useBehovForVeiledning();
-
-    console.log('Behov for veiledning:', behovForVeiledning);
 
     const aapneSelect = () => {
         setVisSelect(true);
     };
 
     const setSelected = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setSelectedVerdi(e.target.value as BehovForVeiledning);
+        setSelectedVerdi(e.target.value as BehovForVeiledningValg);
     };
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -81,7 +81,7 @@ const Oppfolging = () => {
         lagreBehovForVeiledning(selectedVerdi);
     };
 
-    const OppfolgingOption = (props: { value: BehovForVeiledning }) => {
+    const OppfolgingOption = (props: { value: BehovForVeiledningValg }) => {
         return <option value={props.value}>{tekst(`oppfolging.${props.value}`)}</option>;
     };
 
@@ -116,7 +116,10 @@ const Oppfolging = () => {
                     </form>
                 ) : (
                     <div className={`${flexStyles.flex} ${flexStyles.alignCenter}`}>
-                        <div className={spacingStyles.mr05}> {tekst(`oppfolging.${behovForVeiledning}`)}</div>
+                        <div className={spacingStyles.mr05}>
+                            {' '}
+                            {tekst(`oppfolging.${behovForVeiledning?.oppfolging || 'IKKE_BESVART'}`)}
+                        </div>
                         <Button variant={'secondary'} onClick={aapneSelect}>
                             Endre
                         </Button>

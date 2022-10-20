@@ -4,41 +4,49 @@ import { fetchToJson } from '../ducks/api-utils';
 import { BEHOV_FOR_VEILEDNING_URL, requestConfig } from '../ducks/api';
 import { useFeatureToggleData } from './feature-toggles';
 
-export type BehovForVeiledning = 'KLARE_SEG_SELV' | 'ONSKER_OPPFOLGING' | 'IKKE_BESVART';
+export type BehovForVeiledningValg = 'KLARE_SEG_SELV' | 'ONSKER_OPPFOLGING' | 'IKKE_BESVART';
+
+export type BehovForVeiledningData = {
+    dato?: string;
+    oppfolging: BehovForVeiledningValg;
+} | null;
 
 interface BehovForVeiledningProviderType {
-    behovForVeiledning: BehovForVeiledning;
-    lagreBehovForVeiledning: (behovForVeiledning: BehovForVeiledning) => Promise<void>;
+    behovForVeiledning: BehovForVeiledningData;
+    lagreBehovForVeiledning: (behovForVeiledning: BehovForVeiledningValg) => Promise<void>;
 }
 
 export const BehovForVeiledningContext = createContext<BehovForVeiledningProviderType>({
-    behovForVeiledning: 'IKKE_BESVART',
+    behovForVeiledning: null,
     lagreBehovForVeiledning: () => Promise.resolve(),
 });
 
 function BehovForVeiledningProvider(props: { children: ReactNode }) {
-    const [behovForVeiledning, settBehovForVeiledning] = useState<BehovForVeiledning>('IKKE_BESVART');
+    const [behovForVeiledning, settBehovForVeiledning] = useState<BehovForVeiledningData>(null);
     const featureToggleData = useFeatureToggleData();
 
     const hentBehovForVeiledning = async () => {
         try {
             const behovForVeiledning = await fetchToJson(BEHOV_FOR_VEILEDNING_URL, requestConfig());
             if (behovForVeiledning) {
-                settBehovForVeiledning(behovForVeiledning as BehovForVeiledning);
+                settBehovForVeiledning(behovForVeiledning as BehovForVeiledningData);
             }
-        } catch (err) {
-            console.error(err);
+        } catch (error) {
+            console.error(error);
         }
     };
 
-    const lagreBehovForVeiledning = async (behovForVeiledningOppdatering: BehovForVeiledning) => {
+    const lagreBehovForVeiledning = async (behovForVeiledningOppdatering: BehovForVeiledningValg) => {
         try {
             await fetchToJson(BEHOV_FOR_VEILEDNING_URL, {
                 ...requestConfig(),
                 method: 'POST',
                 body: JSON.stringify({ oppfolging: behovForVeiledningOppdatering }),
             });
-            settBehovForVeiledning(behovForVeiledningOppdatering);
+            settBehovForVeiledning({
+                dato: new Date().toISOString(),
+                oppfolging: behovForVeiledningOppdatering,
+            });
         } catch (error) {
             console.error(error);
             throw error;

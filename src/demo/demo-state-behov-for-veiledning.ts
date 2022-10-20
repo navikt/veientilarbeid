@@ -1,10 +1,11 @@
 import { ResponseComposition, RestContext, RestRequest } from 'msw';
 
 import { DemoData, hentDemoState, settDemoState } from './demo-state';
-import { BehovForVeiledning } from '../contexts/behov-for-veiledning';
+import { BehovForVeiledningData, BehovForVeiledningValg } from '../contexts/behov-for-veiledning';
 
 const hentBehovForVeiledning = () => hentDemoState(DemoData.BEHOV_FOR_VEILEDNING) || null;
-const settBehovForVeiledning = (value: string) => settDemoState(DemoData.BEHOV_FOR_VEILEDNING, value);
+const settBehovForVeiledning = (value: BehovForVeiledningData) =>
+    settDemoState(DemoData.BEHOV_FOR_VEILEDNING, JSON.stringify(value));
 
 export const behovForVeiledningGetResolver = (req: RestRequest, res: ResponseComposition, ctx: RestContext) => {
     const behovForVeiledning = hentBehovForVeiledning();
@@ -12,10 +13,10 @@ export const behovForVeiledningGetResolver = (req: RestRequest, res: ResponseCom
 };
 
 export const behovForVeiledningPostResolver = (
-    req: RestRequest<BehovForVeiledning>,
+    req: RestRequest<BehovForVeiledningValg>,
     res: ResponseComposition,
     ctx: RestContext
 ) => {
-    settBehovForVeiledning(JSON.stringify(req.body));
+    settBehovForVeiledning({ dato: new Date().toISOString(), oppfolging: req.body as BehovForVeiledningValg });
     return res(ctx.status(201));
 };
