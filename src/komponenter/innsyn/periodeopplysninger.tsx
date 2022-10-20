@@ -32,7 +32,7 @@ const PeriodeOpplysninger = (props: any) => {
                     hvis situasjonen din har endret seg.
                 </BodyShort>
             </div>
-            <Feedback id={'svar-fra-arbeidssokerperioder'} />
+            <Feedback id={'svar-fra-registreringen'} />
         </div>
     );
 };
