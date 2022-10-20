@@ -20,6 +20,7 @@ import { GjelderFraDatoProvider } from '../contexts/gjelder-fra-dato';
 import { AmplitudeProvider } from '../komponenter/hent-initial-data/amplitude-provider';
 import * as Motestotte from '../contexts/motestotte';
 import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe } from '../contexts/brukerregistrering';
+import { BehovForVeiledningProvider } from '../contexts/behov-for-veiledning';
 
 interface Props {
     children: React.ReactElement<any>;
@@ -69,11 +70,13 @@ const ArbeidssokerDataProvider = (props: Props) => {
                         <BrukerInfo.BrukerInfoContext.Provider value={brukerInfoState}>
                             <Motestotte.MotestotteContext.Provider value={motestotteState}>
                                 <ProfilProvider>
-                                    <GjelderFraDatoModalProvider>
-                                        <GjelderFraDatoProvider>
-                                            <AmplitudeProvider>{props.children}</AmplitudeProvider>
-                                        </GjelderFraDatoProvider>
-                                    </GjelderFraDatoModalProvider>
+                                    <BehovForVeiledningProvider>
+                                        <GjelderFraDatoModalProvider>
+                                            <GjelderFraDatoProvider>
+                                                <AmplitudeProvider>{props.children}</AmplitudeProvider>
+                                            </GjelderFraDatoProvider>
+                                        </GjelderFraDatoModalProvider>
+                                    </BehovForVeiledningProvider>
                                 </ProfilProvider>
                             </Motestotte.MotestotteContext.Provider>
                         </BrukerInfo.BrukerInfoContext.Provider>

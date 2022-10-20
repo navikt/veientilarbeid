@@ -60,6 +60,7 @@ export enum DemoData {
     VIS_GJELDER_FRA_DATO = 'visGjelderFraDato',
     GJELDER_FRA_DATO = 'gjelderFraDato',
     PROFIL = 'profil',
+    BEHOV_FOR_VEILEDNING = 'behovForVeiledning',
 }
 
 export const hentDemoState = (key: string): string | null => hentQueryParam(key);

@@ -16,6 +16,7 @@ import {
     PROFIL_URL,
     ARBEIDSSOKER_NIVA3_URL,
     ER_STANDARD_INNSATSGRUPPE_URL,
+    BEHOV_FOR_VEILEDNING_URL,
 } from '../ducks/api';
 
 import {
@@ -45,6 +46,7 @@ import meldekortstatusResponse from '../mocks/meldekortstatus-mock';
 import { gjelderFraGetResolver, gjelderFraPostResolver } from './demo-state-gjelderfra';
 import { brukerProfilGetResolver, brukerProfilPostResolver } from './demo-state-profil';
 import arbeidssokerNiva3Response, { ArbeidssokerPeriode } from '../mocks/arbeidssoker-niva3-mock';
+import { behovForVeiledningGetResolver, behovForVeiledningPostResolver } from './demo-state-behov-for-veiledning';
 
 export const demo_handlers = [
     msw_get(VEILARBOPPFOLGING_URL, {
@@ -106,6 +108,9 @@ export const demo_handlers = [
 
     rest.get(PROFIL_URL, brukerProfilGetResolver),
     rest.post(PROFIL_URL, brukerProfilPostResolver),
+
+    rest.get(BEHOV_FOR_VEILEDNING_URL, behovForVeiledningGetResolver),
+    rest.post(BEHOV_FOR_VEILEDNING_URL, behovForVeiledningPostResolver),
 
     rest.get(ARBEIDSSOKER_NIVA3_URL, (req, res, ctx) => {
         // eslint-disable-next-line no-restricted-globals

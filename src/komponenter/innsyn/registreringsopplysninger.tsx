@@ -12,7 +12,7 @@ import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import React, { useState } from 'react';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
-import { BehovForVeiledning } from '../../contexts/behov-for-veiledning';
+import { BehovForVeiledning, useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
 
 const TEKSTER = {
     nb: {
@@ -62,7 +62,9 @@ const Oppfolging = () => {
 
     const [visSelect, setVisSelect] = useState(false);
     const [selectedVerdi, setSelectedVerdi] = useState<BehovForVeiledning>('IKKE_BESVART');
-    const [lagretSvar, setLagretSvar] = useState<BehovForVeiledning>('IKKE_BESVART');
+    const { behovForVeiledning, lagreBehovForVeiledning } = useBehovForVeiledning();
+
+    console.log('Behov for veiledning:', behovForVeiledning);
 
     const aapneSelect = () => {
         setVisSelect(true);
@@ -75,8 +77,8 @@ const Oppfolging = () => {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setVisSelect(false);
-        setLagretSvar(selectedVerdi);
-        //TODO: lagre svar
+        setSelectedVerdi(selectedVerdi);
+        lagreBehovForVeiledning(selectedVerdi);
     };
 
     const OppfolgingOption = (props: { value: BehovForVeiledning }) => {
@@ -114,7 +116,7 @@ const Oppfolging = () => {
                     </form>
                 ) : (
                     <div className={`${flexStyles.flex} ${flexStyles.alignCenter}`}>
-                        <div className={spacingStyles.mr05}> {tekst(`oppfolging.${lagretSvar}`)}</div>
+                        <div className={spacingStyles.mr05}> {tekst(`oppfolging.${behovForVeiledning}`)}</div>
                         <Button variant={'secondary'} onClick={aapneSelect}>
                             Endre
                         </Button>

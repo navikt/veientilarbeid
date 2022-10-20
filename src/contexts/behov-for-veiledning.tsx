@@ -2,21 +2,23 @@ import { createContext, ReactNode, useContext, useEffect, useState } from 'react
 
 import { fetchToJson } from '../ducks/api-utils';
 import { BEHOV_FOR_VEILEDNING_URL, requestConfig } from '../ducks/api';
+import { useFeatureToggleData } from './feature-toggles';
 
 export type BehovForVeiledning = 'KLARE_SEG_SELV' | 'ONSKER_OPPFOLGING' | 'IKKE_BESVART';
 
 interface BehovForVeiledningProviderType {
-    behovForVeiledning: BehovForVeiledning | null;
+    behovForVeiledning: BehovForVeiledning;
     lagreBehovForVeiledning: (behovForVeiledning: BehovForVeiledning) => Promise<void>;
 }
 
 export const BehovForVeiledningContext = createContext<BehovForVeiledningProviderType>({
-    behovForVeiledning: null,
+    behovForVeiledning: 'IKKE_BESVART',
     lagreBehovForVeiledning: () => Promise.resolve(),
 });
 
 function BehovForVeiledningProvider(props: { children: ReactNode }) {
-    const [behovForVeiledning, settBehovForVeiledning] = useState<BehovForVeiledning | null>(null);
+    const [behovForVeiledning, settBehovForVeiledning] = useState<BehovForVeiledning>('IKKE_BESVART');
+    const featureToggleData = useFeatureToggleData();
 
     const hentBehovForVeiledning = async () => {
         try {
@@ -31,16 +33,12 @@ function BehovForVeiledningProvider(props: { children: ReactNode }) {
 
     const lagreBehovForVeiledning = async (behovForVeiledningOppdatering: BehovForVeiledning) => {
         try {
-            const lagretBehovForVeiledning =
-                ((await fetchToJson(BEHOV_FOR_VEILEDNING_URL, requestConfig())) as BehovForVeiledning) || {};
-            const behovForVeiledning = lagretBehovForVeiledning;
-
             await fetchToJson(BEHOV_FOR_VEILEDNING_URL, {
                 ...requestConfig(),
                 method: 'POST',
                 body: JSON.stringify({ oppfolging: behovForVeiledningOppdatering }),
             });
-            settBehovForVeiledning(behovForVeiledning);
+            settBehovForVeiledning(behovForVeiledningOppdatering);
         } catch (error) {
             console.error(error);
             throw error;
@@ -48,8 +46,10 @@ function BehovForVeiledningProvider(props: { children: ReactNode }) {
     };
 
     useEffect(() => {
-        hentBehovForVeiledning();
-    }, []);
+        if (featureToggleData['veientilarbeid.bruk-klarer-seg-selv']) {
+            hentBehovForVeiledning();
+        }
+    }, [featureToggleData]);
 
     const contextValue = {
         behovForVeiledning,
