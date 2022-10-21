@@ -9,14 +9,16 @@ const settBehovForVeiledning = (value: BehovForVeiledningData) =>
 
 export const behovForVeiledningGetResolver = (req: RestRequest, res: ResponseComposition, ctx: RestContext) => {
     const behovForVeiledning = hentBehovForVeiledning();
+    console.log('behovforveiledning', behovForVeiledning);
     return behovForVeiledning ? res(ctx.json(JSON.parse(behovForVeiledning))) : res(ctx.status(204));
 };
 
 export const behovForVeiledningPostResolver = (
-    req: RestRequest<BehovForVeiledningValg>,
+    req: RestRequest<{ oppfolging: BehovForVeiledningValg }>,
     res: ResponseComposition,
     ctx: RestContext
 ) => {
-    settBehovForVeiledning({ dato: new Date().toISOString(), oppfolging: req.body as BehovForVeiledningValg });
+    const behov = req.body;
+    settBehovForVeiledning({ dato: new Date().toISOString(), ...behov });
     return res(ctx.status(201));
 };

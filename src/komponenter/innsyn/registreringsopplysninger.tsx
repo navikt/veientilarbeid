@@ -61,10 +61,12 @@ const Opplysning = (props: any) => {
 
 const Oppfolging = () => {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
+    const { behovForVeiledning, lagreBehovForVeiledning } = useBehovForVeiledning();
 
     const [visSelect, setVisSelect] = useState(false);
-    const [selectedVerdi, setSelectedVerdi] = useState<BehovForVeiledningValg>('IKKE_BESVART');
-    const { behovForVeiledning, lagreBehovForVeiledning } = useBehovForVeiledning();
+    const [selectedVerdi, setSelectedVerdi] = useState<BehovForVeiledningValg>(
+        behovForVeiledning?.oppfolging || 'IKKE_BESVART'
+    );
 
     const aapneSelect = () => {
         setVisSelect(true);
