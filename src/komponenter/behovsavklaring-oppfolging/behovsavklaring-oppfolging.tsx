@@ -1,5 +1,5 @@
 import { Dialog } from '@navikt/ds-icons';
-import { Detail, Panel } from '@navikt/ds-react';
+import { BodyLong, BodyShort, Button, Detail, Heading, Panel } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
 
@@ -13,7 +13,11 @@ import flexStyles from '../../flex.module.css';
 const TEKSTER = {
     nb: {
         overskrift: 'Hjelp og støtte',
-        heading: 'Om du ønsker hjelp fra oss må du gi beskjed',
+        heading: 'Hva slags veiledning ønsker du?',
+        beskrivelse:
+            'Vi tror du har gode muligheter til å søke og skaffe seg jobb på egenhånd - uten hjelp fra veileder.',
+        hvaTenkerDu: 'Hva tenker du?',
+        klareDegSelv: 'Ønsker du å klare deg selv?',
         readMoreHeading: 'Hva slags hjelp kan jeg få?',
     },
     en: {
@@ -28,7 +32,7 @@ function Behovsavklaring() {
 
     return (
         <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
-            <ErRendret loggTekst="Rendrer behovsavklaring komponent" />
+            <ErRendret loggTekst="Rendrer behovsavklaringkomponent" />
             <span
                 style={{
                     marginRight: '0.5em',
@@ -43,8 +47,20 @@ function Behovsavklaring() {
                 <Detail uppercase style={{ marginTop: '-1rem' }}>
                     {tekst('overskrift')}
                 </Detail>
+                <Heading className={spacingStyles.blokkXs} size="medium">
+                    {tekst('heading')}
+                </Heading>
+                <BodyLong className={`${spacingStyles.mb1}`}>{tekst('beskrivelse')}</BodyLong>
+                <BodyShort className={`${spacingStyles.mb1}`}>{tekst('hvaTenkerDu')}</BodyShort>
+                <BodyShort className={`${spacingStyles.mb1}`}>{tekst('klareDegSelv')}</BodyShort>
+                <div className={`${flexStyles.flex} ${flexStyles.flexColumn}`}>
+                    <Button>Ja, jeg ønsker å klare meg selv</Button>
+                    <Button variant="secondary" className={`${spacingStyles.mt1}`}>
+                        Nei, jeg har behov for veiledning
+                    </Button>
+                </div>
             </div>
-            <InViewport loggTekst="Viser behovsavklaring viewport" />
+            <InViewport loggTekst="Viser behovsavklaringkomponent i viewport" />
         </Panel>
     );
 }
