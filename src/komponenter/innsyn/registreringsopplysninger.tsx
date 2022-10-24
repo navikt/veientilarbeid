@@ -106,7 +106,6 @@ const Oppfolging = () => {
                                 onChange={setSelected}
                                 value={selectedVerdi}
                                 className={`${spacing.mr05} ${spacing.mb05}`}
-                                style={{ flex: '0 0 auto' }}
                             >
                                 {selectedVerdi === 'IKKE_BESVART' && <OppfolgingOption value={'IKKE_BESVART'} />}
                                 <OppfolgingOption value={'KLARE_SEG_SELV'} />
