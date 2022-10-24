@@ -13,7 +13,7 @@ import prettyPrintDato from '../../utils/pretty-print-dato';
 import Feedback from '../feedback/feedback';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 
-import spacingStyles from '../../spacing.module.css';
+import spacing from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
 
 const TEKSTER = {
@@ -49,7 +49,7 @@ function fiksSisteStilling(innholdStilling: string, innholdSituasjon: string, st
 const Opplysning = (props: any) => {
     const { sporsmal, svar } = props;
     return (
-        <div className={spacingStyles.blokkS}>
+        <div className={spacing.blokkS}>
             <BodyShort>
                 <strong>{sporsmal}</strong>
                 <br />
@@ -88,9 +88,9 @@ const Oppfolging = () => {
     };
 
     return (
-        <div className={`${spacingStyles.blokkS}`}>
+        <div className={`${spacing.blokkS}`}>
             <div className={`${flexStyles.flex}`}>
-                <strong className={spacingStyles.mr05}>Hva slags oppfølging ønsker du?</strong>
+                <strong className={spacing.mr05}>Hva slags oppfølging ønsker du?</strong>
                 <HelpText title="Hva betyr dette?">
                     Her kan du velge om du ønsker oppfølging og veiledning fra NAV i forbindelse med jobbsøking eller om
                     du ønsker å klare deg selv.
@@ -99,30 +99,30 @@ const Oppfolging = () => {
             <div>
                 {visSelect ? (
                     <form onSubmit={handleSubmit}>
-                        <div className={flexStyles.flex}>
+                        <div className={`${flexStyles.flex} ${flexStyles.wrap}`}>
                             <Select
                                 label="Hva slags oppfølging ønsker du?"
                                 hideLabel
                                 onChange={setSelected}
                                 value={selectedVerdi}
-                                className={spacingStyles.mr05}
+                                className={`${spacing.mr05} ${spacing.mb05}`}
+                                style={{ flex: '0 0 auto' }}
                             >
                                 {selectedVerdi === 'IKKE_BESVART' && <OppfolgingOption value={'IKKE_BESVART'} />}
                                 <OppfolgingOption value={'KLARE_SEG_SELV'} />
                                 <OppfolgingOption value={'ONSKER_OPPFOLGING'} />
                             </Select>
-                            <Button variant={'secondary'} type={'submit'}>
+                            <Button variant={'secondary'} type={'submit'} className={spacing.mb05}>
                                 Lagre svar
                             </Button>
                         </div>
                     </form>
                 ) : (
-                    <div className={`${flexStyles.flex} ${flexStyles.alignCenter}`}>
-                        <div className={spacingStyles.mr05}>
-                            {' '}
+                    <div className={`${flexStyles.flex} ${flexStyles.alignCenter} ${flexStyles.wrap}`}>
+                        <div className={`${spacing.mr05} ${spacing.mb05}`}>
                             {tekst(`oppfolging.${behovForVeiledning?.oppfolging || 'IKKE_BESVART'}`)}
                         </div>
-                        <Button variant={'secondary'} onClick={aapneSelect}>
+                        <Button variant={'secondary'} onClick={aapneSelect} className={spacing.mb05}>
                             Endre
                         </Button>
                     </div>
@@ -161,7 +161,7 @@ const Opplysninger = (props: any) => {
 
     return !kanViseKomponent ? null : (
         <div className={`${flexStyles.flex} ${flexStyles.flexColumn}`}>
-            <div className={spacingStyles.blokkS}>
+            <div className={spacing.blokkS}>
                 <BodyShort>
                     {manueltRegistrertAv ? 'NAV' : 'Du'} registrerte deg som arbeidssøker{' '}
                     {prettyPrintDato(opprettetDato)}.<br />
