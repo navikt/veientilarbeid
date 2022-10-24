@@ -27,7 +27,7 @@ const TEKSTER = {
     },
 };
 
-function SvartPaaBehovsavklaring() {
+function SvartOnskerOppfolgingPaaBehovsavklaring() {
     const { behovForVeiledning } = useBehovForVeiledning();
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
@@ -58,4 +58,4 @@ function SvartPaaBehovsavklaring() {
     );
 }
 
-export default SvartPaaBehovsavklaring;
+export default SvartOnskerOppfolgingPaaBehovsavklaring;
