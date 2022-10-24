@@ -1,4 +1,5 @@
-import styles from './innhold.module.css';
+import { useFeatureToggleData } from '../contexts/feature-toggles';
+
 import InnholdMetrics from './innhold-metrics';
 import InViewport from '../komponenter/in-viewport/in-viewport';
 import RegistrertTittel from '../komponenter/registrert-tittel/registrert-tittel';
@@ -9,8 +10,14 @@ import Meldekort from '../komponenter/meldekort/meldekort';
 import HjelpOgStotte from '../komponenter/hjelp-og-stotte/hjelp-og-stotte';
 import Aktivitetsplan from '../komponenter/aktivitetsplan/aktivitetsplan';
 import KvitteringEgenvurdering from '../komponenter/kvitteringer/kvittering-egenvurdering';
+import Behovsavklaring from '../komponenter/behovsavklaring-oppfolging/behovsavklaring-oppfolging';
+
+import styles from './innhold.module.css';
 
 const InnholdStandard = () => {
+    const features = useFeatureToggleData();
+    const visBehovsAvklaring = features['veientilarbeid.bruk-klarer-seg-selv'];
+
     return (
         <>
             <InnholdMetrics />
@@ -21,7 +28,7 @@ const InnholdStandard = () => {
                 <RegistrertTittel />
                 <DagpengerOgYtelser />
                 <Meldekort />
-                <HjelpOgStotte />
+                {visBehovsAvklaring ? <Behovsavklaring /> : <HjelpOgStotte />}
                 <Aktivitetsplan />
                 <GjelderFraDato />
             </div>
