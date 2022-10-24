@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import { createContext, ReactNode, useContext, useState } from 'react';
 
 import { fetchToJson } from '../ducks/api-utils';
 import { GJELDER_FRA_DATO_URL, requestConfig } from '../ducks/api';
@@ -40,9 +40,10 @@ function GjelderFraDatoProvider(props: { children: ReactNode }) {
         }
     };
 
-    useEffect(() => {
-        hentGjelderFraDato();
-    }, []);
+    // TODO: Kommenter inn når vi begynner å bruke Gjelder fra datp
+    // useEffect(() => {
+    //     hentGjelderFraDato();
+    // }, []);
 
     const contextValue = {
         dato,
