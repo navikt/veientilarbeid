@@ -1,5 +1,5 @@
 import { Dialog } from '@navikt/ds-icons';
-import { BodyLong, BodyShort, Button, Detail, Heading, Panel, ReadMore } from '@navikt/ds-react';
+import { BodyLong, BodyShort, Button, Detail, Heading, Panel } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
 import { BehovForVeiledningValg, useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
@@ -13,6 +13,7 @@ import InViewport from '../in-viewport/in-viewport';
 
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
+import ReadMoreVurdering from './readmore-vurdering';
 
 const TEKSTER = {
     nb: {
@@ -76,13 +77,7 @@ function IkkeSvartPaaBehovsavklaring() {
                         Nei, jeg har behov for veiledning
                     </Button>
                 </div>
-                <ReadMore size="medium" header="Hvordan vurderer vi mulighetene dine?">
-                    <BodyShort>Vår vurdering er basert på:</BodyShort>
-                    <ul>
-                        <li>dine svar fra registreringen</li>
-                        <li>opplysningene NAV har om din situasjon</li>
-                    </ul>
-                </ReadMore>
+                <ReadMoreVurdering />
                 <ReadMoreVeileder />
             </div>
             <InViewport loggTekst="Viser behovsavklaringkomponent ikke besvart i viewport" />

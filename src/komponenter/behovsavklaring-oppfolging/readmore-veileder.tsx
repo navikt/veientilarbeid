@@ -75,7 +75,7 @@ function Innhold(props: Props) {
     );
 }
 
-function ForklaringNorsk() {
+function ReadMoreVeileder() {
     const { amplitudeData } = useAmplitudeData();
     const [clickedInnsyn, setClickedInnsyn] = useState(false);
 
@@ -97,4 +97,4 @@ function ForklaringNorsk() {
     );
 }
 
-export default ForklaringNorsk;
+export default ReadMoreVeileder;
