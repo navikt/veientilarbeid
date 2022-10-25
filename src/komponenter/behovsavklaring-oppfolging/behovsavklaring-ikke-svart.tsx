@@ -7,6 +7,7 @@ import { useAmplitudeData } from '../../contexts/amplitude-context';
 
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { loggAktivitet } from '../../metrics/metrics';
+import ReadMoreVeileder from './readmore-veileder';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 
@@ -63,7 +64,7 @@ function IkkeSvartPaaBehovsavklaring() {
                 <BodyLong className={`${spacingStyles.mb1}`}>{tekst('beskrivelse')}</BodyLong>
                 <BodyShort className={`${spacingStyles.mb1}`}>{tekst('hvaTenkerDu')}</BodyShort>
                 <BodyShort className={`${spacingStyles.mb1}`}>{tekst('klareDegSelv')}</BodyShort>
-                <div className={`${flexStyles.flex} ${flexStyles.flexColumn}`}>
+                <div className={`${flexStyles.flex} ${flexStyles.flexColumn} ${spacingStyles.mb1}`}>
                     <Button onClick={() => handleBehovForVeiledning('KLARE_SEG_SELV')}>
                         Ja, jeg ønsker å klare meg selv
                     </Button>
@@ -75,6 +76,7 @@ function IkkeSvartPaaBehovsavklaring() {
                         Nei, jeg har behov for veiledning
                     </Button>
                 </div>
+                <ReadMoreVeileder />
             </div>
             <InViewport loggTekst="Viser behovsavklaringkomponent ikke besvart i viewport" />
         </Panel>

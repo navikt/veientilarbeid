@@ -4,6 +4,7 @@ import { Detail, Heading, Panel, ReadMore } from '@navikt/ds-react';
 import { useSprakValg } from '../../contexts/sprak';
 
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
+import ReadMoreVeileder from './readmore-veileder';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 
@@ -46,9 +47,10 @@ function SvartKlareSegSelvPaaBehovsavklaring() {
                 <Heading className={spacingStyles.blokkXs} size="medium">
                     {tekst('heading')}
                 </Heading>
-                <ReadMore size="medium" header={tekst('readMoreHeading')}>
+                <ReadMore size="medium" header={tekst('readMoreHeading')} className={spacingStyles.mb1}>
                     Her kommer kanskje en dialog?
                 </ReadMore>
+                <ReadMoreVeileder />
             </div>
             <InViewport loggTekst="Viser behovsavklaringkomponent i viewport" />
         </Panel>
