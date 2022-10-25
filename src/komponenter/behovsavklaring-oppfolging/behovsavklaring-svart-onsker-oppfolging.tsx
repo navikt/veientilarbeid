@@ -1,10 +1,10 @@
 import { Dialog } from '@navikt/ds-icons';
-import { Detail, Heading, Panel } from '@navikt/ds-react';
+import { BodyLong, Detail, Heading, Panel } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
-import { useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
 
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
+import ReadMoreVeileder from './readmore-veileder';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 
@@ -14,7 +14,7 @@ import flexStyles from '../../flex.module.css';
 const TEKSTER = {
     nb: {
         overskrift: 'Hjelp og støtte',
-        heading: 'Hva slags veiledning ønsker du?',
+        heading: 'Du har sagt at du ønsker hjelp',
         beskrivelse:
             'Vi tror du har gode muligheter til å søke og skaffe seg jobb på egenhånd - uten hjelp fra veileder.',
         hvaTenkerDu: 'Hva tenker du?',
@@ -28,7 +28,6 @@ const TEKSTER = {
 };
 
 function SvartOnskerOppfolgingPaaBehovsavklaring() {
-    const { behovForVeiledning } = useBehovForVeiledning();
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
@@ -50,8 +49,17 @@ function SvartOnskerOppfolgingPaaBehovsavklaring() {
                     {tekst('overskrift')}
                 </Detail>
                 <Heading className={spacingStyles.blokkXs} size="medium">
-                    {tekst('heading')} {behovForVeiledning?.oppfolging}
+                    {tekst('heading')}
                 </Heading>
+                <BodyLong className={spacingStyles.mb1}>
+                    En veileder vil ta stilling til om du kan få den hjelpen du etterspør.
+                </BodyLong>
+                <BodyLong className={spacingStyles.mb1}>Du finner det du skrev til veileder i dialogen.</BodyLong>
+                <BodyLong className={spacingStyles.mb1}>
+                    Om du har flere ting du tenker du vil si fra om kan du skrive mer i dialogen.
+                </BodyLong>
+                <BodyLong className={spacingStyles.mb1}>[Gå til dialogen]</BodyLong>
+                <ReadMoreVeileder />
             </div>
             <InViewport loggTekst="Viser behovsavklaringkomponent i viewport" />
         </Panel>

@@ -48,7 +48,7 @@ function SvartKlareSegSelvPaaBehovsavklaring() {
                     {tekst('heading')}
                 </Heading>
                 <ReadMore size="medium" header={tekst('readMoreHeading')} className={spacingStyles.mb1}>
-                    Her kommer kanskje en dialog?
+                    [Gå til dialogen]
                 </ReadMore>
                 <ReadMoreVeileder />
             </div>
