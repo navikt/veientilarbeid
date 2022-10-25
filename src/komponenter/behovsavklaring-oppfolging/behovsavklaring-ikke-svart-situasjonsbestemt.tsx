@@ -21,7 +21,7 @@ const TEKSTER = {
         heading: 'Ønsker du hjelp fra en veileder?',
         beskrivelse: 'Vi tror du vil trenge hjelp fra en veileder for å nå ditt mål om arbeid.',
         hvaTenkerDu: 'Hva tenker du?',
-        klareDegSelv: 'Ønsker du å hjelp fra en veileder?',
+        klareDegSelv: 'Ønsker du å få hjelp fra en veileder?',
         readMoreHeading: 'Hva slags hjelp kan jeg få?',
     },
     en: {
