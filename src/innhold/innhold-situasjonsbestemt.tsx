@@ -1,3 +1,6 @@
+import { useFeatureToggleData } from '../contexts/feature-toggles';
+import { useOppfolgingData, Servicegruppe } from '../contexts/oppfolging';
+
 import InnholdMetrics from './innhold-metrics';
 import InViewport from '../komponenter/in-viewport/in-viewport';
 import RegistrertTittel from '../komponenter/registrert-tittel/registrert-tittel';
@@ -9,6 +12,12 @@ import KvitteringEgenvurdering from '../komponenter/kvitteringer/kvittering-egen
 import styles from './innhold.module.css';
 
 const InnholdView = () => {
+    const features = useFeatureToggleData();
+    const { servicegruppe } = useOppfolgingData();
+    const harIkke14aVedtak = servicegruppe === Servicegruppe.IVURD;
+    const brukBehovsAvklaring = features['veientilarbeid.bruk-klarer-seg-selv'];
+    const visBehovsAvklaring = brukBehovsAvklaring && harIkke14aVedtak;
+
     return (
         <>
             <InnholdMetrics />
@@ -18,7 +27,7 @@ const InnholdView = () => {
                 <KvitteringEgenvurdering />
                 <RegistrertTittel />
                 <IkkeStandard />
-                <Egenvurdering />
+                {!visBehovsAvklaring && <Egenvurdering />}
             </div>
             <InViewport loggTekst="Bunnen av veien til arbeid i viewport - situasjonsbestemt" />
         </>
