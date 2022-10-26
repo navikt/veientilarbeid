@@ -11,7 +11,7 @@ import KvitteringEgenvurdering from '../komponenter/kvitteringer/kvittering-egen
 
 import styles from './innhold.module.css';
 
-const InnholdView = () => {
+const InnholdSituasjonsbestemt = () => {
     const features = useFeatureToggleData();
     const { servicegruppe } = useOppfolgingData();
     const harIkke14aVedtak = servicegruppe === Servicegruppe.IVURD;
@@ -34,4 +34,4 @@ const InnholdView = () => {
     );
 };
 
-export default InnholdView;
+export default InnholdSituasjonsbestemt;
