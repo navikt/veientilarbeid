@@ -9,7 +9,7 @@ import InnholdMetrics from './innhold-metrics';
 import InViewport from '../komponenter/in-viewport/in-viewport';
 import IkkeStandard from '../komponenter/ikke-standard/ikke-standard';
 import Motestotte from '../komponenter/ikke-standard/motestotte';
-import Egenvurdering from '../komponenter/ikke-standard/egenvurdering';
+import Egenvurdering from '../komponenter/situasjonsbestemt/egenvurdering';
 
 import styles from './innhold.module.css';
 

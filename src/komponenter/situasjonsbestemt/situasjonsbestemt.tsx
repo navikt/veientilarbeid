@@ -3,11 +3,15 @@ import { Bandage, Dialog, Email, Laptop, Task } from '@navikt/ds-icons';
 
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
+import { useFeatureToggleData } from '../../contexts/feature-toggles';
+import { useOppfolgingData, Servicegruppe } from '../../contexts/oppfolging';
+import { useSprakValg } from '../../contexts/sprak';
 
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
-import { useSprakValg } from '../../contexts/sprak';
 import { aktivitetsplanLenke, dialogLenke, omMeldekortLenke, sykefravaerLenke } from '../../innhold/lenker';
 import { loggAktivitet } from '../../metrics/metrics';
+import Behovsavklaring from '../behovsavklaring-oppfolging/behovsavklaring-oppfolging';
+import Egenvurdering from '../situasjonsbestemt/egenvurdering';
 
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
@@ -76,6 +80,11 @@ function Situasjonsbestemt() {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
     const { amplitudeData } = useAmplitudeData();
     const { erSykmeldtMedArbeidsgiver } = useBrukerinfoData();
+    const features = useFeatureToggleData();
+    const { servicegruppe } = useOppfolgingData();
+    const harIkke14aVedtak = servicegruppe === Servicegruppe.IVURD;
+    const brukBehovsAvklaring = features['veientilarbeid.bruk-klarer-seg-selv'];
+    const visBehovsAvklaring = brukBehovsAvklaring && harIkke14aVedtak;
 
     const handleClick = (action: string) => {
         loggAktivitet({ aktivitet: action, ...amplitudeData });
@@ -112,69 +121,76 @@ function Situasjonsbestemt() {
         );
     };
 
+    const DialogPanel = () => {
+        return ListeElement(
+            <Dialog />,
+            <div>
+                <Heading size="medium">{tekst('dialog.overskrift')}</Heading>
+                <Link href={dialogLenke} onClick={() => handleClick('Går til dialogen fra ikke-standard')}>
+                    {tekst('dialog.ingress')}
+                </Link>{' '}
+            </div>
+        );
+    };
+
     return (
-        <Panel className={spacingStyles.blokkXs}>
-            <ul className={styles.ikkeStandardListe}>
-                {ListeElement(
-                    <Task />,
-                    <div>
-                        <Heading size="medium">{tekst('aktivitetsplan.overskrift')}</Heading>
-                        <BodyLong>
-                            {tekst('aktivitetsplan.bruke')}{' '}
-                            <Link
-                                href={aktivitetsplanLenke}
-                                onClick={() => handleClick('Går til aktivitetsplanen fra ikke-standard')}
-                            >
-                                {tekst('aktivitetsplan.lenketekst')}
-                            </Link>{' '}
-                            {tekst('aktivitetsplan.holde-orden')}
-                        </BodyLong>
-                    </div>
-                )}
-                {erSykmeldtMedArbeidsgiver ? <DittSykefravaer /> : <Meldekort />}
-                {ListeElement(
-                    <Dialog />,
-                    <div>
-                        <Heading size="medium">{tekst('dialog.overskrift')}</Heading>
-                        <Link href={dialogLenke} onClick={() => handleClick('Går til dialogen fra ikke-standard')}>
-                            {tekst('dialog.ingress')}
-                        </Link>{' '}
-                    </div>
-                )}
-                {ListeElement(
-                    <Laptop />,
-                    <div>
-                        <Heading size="medium">{tekst('sporsmal.overskrift')}</Heading>
-                        <BodyLong>
-                            {tekst('sporsmal')}{' '}
-                            <Link
-                                href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
-                                onClick={() => handleClick(`Går til STO fra ikke-standard`)}
-                            >
-                                {tekst('skrivTilOss')}
-                            </Link>{' '}
-                            {tekst('eller')}{' '}
-                            <Link
-                                href="https://www.nav.no/person/kontakt-oss/chat/"
-                                onClick={() => handleClick(`Går til chat fra ikke-standard`)}
-                            >
-                                {tekst('chat')}
-                            </Link>
-                            {'. '}
-                            {tekst('les-om-hjelp')}{' '}
-                            <Link
-                                href={'https://www.nav.no'}
-                                target="_blank"
-                                onClick={() => handleClick('Går til nav.no fra ikke-standard')}
-                            >
-                                nav.no ({tekst('ny-fane')})
-                            </Link>
-                            .
-                        </BodyLong>
-                    </div>
-                )}
-            </ul>
-        </Panel>
+        <>
+            <Panel className={spacingStyles.blokkXs}>
+                <ul className={styles.ikkeStandardListe}>
+                    {ListeElement(
+                        <Task />,
+                        <div>
+                            <Heading size="medium">{tekst('aktivitetsplan.overskrift')}</Heading>
+                            <BodyLong>
+                                {tekst('aktivitetsplan.bruke')}{' '}
+                                <Link
+                                    href={aktivitetsplanLenke}
+                                    onClick={() => handleClick('Går til aktivitetsplanen fra ikke-standard')}
+                                >
+                                    {tekst('aktivitetsplan.lenketekst')}
+                                </Link>{' '}
+                                {tekst('aktivitetsplan.holde-orden')}
+                            </BodyLong>
+                        </div>
+                    )}
+                    {erSykmeldtMedArbeidsgiver ? <DittSykefravaer /> : <Meldekort />}
+                    {visBehovsAvklaring ? <Behovsavklaring /> : <DialogPanel />}
+                    {ListeElement(
+                        <Laptop />,
+                        <div>
+                            <Heading size="medium">{tekst('sporsmal.overskrift')}</Heading>
+                            <BodyLong>
+                                {tekst('sporsmal')}{' '}
+                                <Link
+                                    href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
+                                    onClick={() => handleClick(`Går til STO fra ikke-standard`)}
+                                >
+                                    {tekst('skrivTilOss')}
+                                </Link>{' '}
+                                {tekst('eller')}{' '}
+                                <Link
+                                    href="https://www.nav.no/person/kontakt-oss/chat/"
+                                    onClick={() => handleClick(`Går til chat fra ikke-standard`)}
+                                >
+                                    {tekst('chat')}
+                                </Link>
+                                {'. '}
+                                {tekst('les-om-hjelp')}{' '}
+                                <Link
+                                    href={'https://www.nav.no'}
+                                    target="_blank"
+                                    onClick={() => handleClick('Går til nav.no fra ikke-standard')}
+                                >
+                                    nav.no ({tekst('ny-fane')})
+                                </Link>
+                                .
+                            </BodyLong>
+                        </div>
+                    )}
+                </ul>
+            </Panel>
+            {!visBehovsAvklaring && <Egenvurdering />}
+        </>
     );
 }
 

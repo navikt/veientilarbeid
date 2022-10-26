@@ -1,17 +1,19 @@
 import { BodyShort, Button, Heading, Panel } from '@navikt/ds-react';
-import spacingStyles from '../../spacing.module.css';
+
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useAutentiseringData } from '../../contexts/autentisering';
 import { useOppfolgingData } from '../../contexts/oppfolging';
 import { useEgenvurderingData } from '../../contexts/egenvurdering';
 import { useSprakValg } from '../../contexts/sprak';
+import { useUnderOppfolging } from '../../contexts/arbeidssoker';
 
 import { loggAktivitet } from '../../metrics/metrics';
 import { behovsvurderingLenke } from '../../innhold/lenker';
 import { kanViseIVURDEgenvurdering } from '../../lib/kan-vise-IVURD-egenvurdering';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
-import { useUnderOppfolging } from '../../contexts/arbeidssoker';
+
+import spacingStyles from '../../spacing.module.css';
 
 const TEKSTER: Tekster<string> = {
     nb: {
