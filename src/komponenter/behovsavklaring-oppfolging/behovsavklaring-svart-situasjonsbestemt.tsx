@@ -19,13 +19,17 @@ const TEKSTER = {
         headingUenig: 'Du ønsker å klare deg selv',
         beskrivelseUenig:
             'Enn så lenge er du satt opp til å motta veiledning for å nå arbeidsmålene dine. En veileder vil vurdere det du har gitt av innspill og kanskje ta kontakt så dere kan vurdere dette sammen.',
-        hvaTenkerDu: 'Hva tenker du?',
-        klareDegSelv: 'Ønsker du å klare deg selv?',
-        readMoreHeading: 'Hva slags hjelp kan jeg få?',
+        dialog: 'Gå til dialogen',
+        aktivitetsplan: 'Gå til din aktivitetsplan',
     },
     en: {
-        heading: 'Get in touch if you need help',
-        readMoreHeading: 'What kind of help can I get?',
+        overskrift: 'Hjelp og støtte',
+        headingEnig: 'Dine samhandlingsverktøy mellom deg og din veileder',
+        headingUenig: 'Du ønsker å klare deg selv',
+        beskrivelseUenig:
+            'Enn så lenge er du satt opp til å motta veiledning for å nå arbeidsmålene dine. En veileder vil vurdere det du har gitt av innspill og kanskje ta kontakt så dere kan vurdere dette sammen.',
+        dialog: 'Gå til dialogen',
+        aktivitetsplan: 'Gå til din aktivitetsplan',
     },
 };
 
@@ -35,7 +39,7 @@ function EnigMedProfilering() {
 
     return (
         <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
-            <ErRendret loggTekst="Rendrer behovsavklaringkomponent" />
+            <ErRendret loggTekst="Rendrer behovsavklaringkomponent - svart - enig - situasjonsbestemt" />
             <span
                 style={{
                     marginRight: '0.5em',
@@ -53,11 +57,11 @@ function EnigMedProfilering() {
                 <Heading className={spacingStyles.blokkXs} size="medium">
                     {tekst('headingEnig')}
                 </Heading>
-                <BodyLong className={spacingStyles.mb1}>[Gå til dialogen]</BodyLong>
-                <BodyLong className={spacingStyles.mb1}>[Gå til din aktivitetsplan]</BodyLong>
+                <BodyLong className={spacingStyles.mb1}>[{tekst('dialog')}]</BodyLong>
+                <BodyLong className={spacingStyles.mb1}>[{tekst('aktivitetsplan')}]</BodyLong>
                 <ReadMoreVeileder />
             </div>
-            <InViewport loggTekst="Viser behovsavklaringkomponent i viewport" />
+            <InViewport loggTekst="Viser behovsavklaringkomponent - svart - enig - situasjonsbestemt i viewport" />
         </Panel>
     );
 }
@@ -68,7 +72,7 @@ function UenigMedProfilering() {
 
     return (
         <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
-            <ErRendret loggTekst="Rendrer behovsavklaringkomponent" />
+            <ErRendret loggTekst="Rendrer behovsavklaringkomponent  - svart - uenig - situasjonsbestemt" />
             <span
                 style={{
                     marginRight: '0.5em',
@@ -87,11 +91,11 @@ function UenigMedProfilering() {
                     {tekst('headingUenig')}
                 </Heading>
                 <BodyLong className={spacingStyles.mb1}>{tekst('beskrivelseUenig')}</BodyLong>
-                <BodyLong className={spacingStyles.mb1}>[Gå til dialogen]</BodyLong>
-                <BodyLong className={spacingStyles.mb1}>[Gå til din aktivitetsplan]</BodyLong>
+                <BodyLong className={spacingStyles.mb1}>[{tekst('dialog')}]</BodyLong>
+                <BodyLong className={spacingStyles.mb1}>[{tekst('aktivitetsplan')}]</BodyLong>
                 <ReadMoreVeileder />
             </div>
-            <InViewport loggTekst="Viser behovsavklaringkomponent i viewport" />
+            <InViewport loggTekst="Viser behovsavklaringkomponent - svart - uenig - situasjonsbestemt i viewport" />
         </Panel>
     );
 }

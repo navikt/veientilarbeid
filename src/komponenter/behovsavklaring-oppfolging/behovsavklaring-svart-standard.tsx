@@ -35,7 +35,7 @@ function EnigMedProfilering() {
 
     return (
         <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
-            <ErRendret loggTekst="Rendrer behovsavklaringkomponent" />
+            <ErRendret loggTekst="Rendrer behovsavklaringkomponent - svart - enig - standard" />
             <span
                 style={{
                     marginRight: '0.5em',
@@ -58,7 +58,7 @@ function EnigMedProfilering() {
                 </ReadMore>
                 <ReadMoreVeileder />
             </div>
-            <InViewport loggTekst="Viser behovsavklaringkomponent i viewport" />
+            <InViewport loggTekst="Viser behovsavklaringkomponent  - svart - enig - standard i viewport" />
         </Panel>
     );
 }
@@ -69,7 +69,7 @@ function UenigMedProfilering() {
 
     return (
         <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
-            <ErRendret loggTekst="Rendrer behovsavklaringkomponent" />
+            <ErRendret loggTekst="Rendrer behovsavklaringkomponent - svart - uenig - standard" />
             <span
                 style={{
                     marginRight: '0.5em',
@@ -97,7 +97,7 @@ function UenigMedProfilering() {
                 <BodyLong className={spacingStyles.mb1}>[Gå til dialogen]</BodyLong>
                 <ReadMoreVeileder />
             </div>
-            <InViewport loggTekst="Viser behovsavklaringkomponent i viewport" />
+            <InViewport loggTekst="Viser behovsavklaringkomponent - svart - uenig - standard i viewport" />
         </Panel>
     );
 }

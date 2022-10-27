@@ -44,7 +44,7 @@ function IkkeSvartPaaBehovsavklaringStandardInnsats() {
 
     return (
         <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
-            <ErRendret loggTekst="Rendrer behovsavklaringkomponent ikke besvart" />
+            <ErRendret loggTekst="Rendrer behovsavklaringkomponent - ikke svart - standard" />
             <span
                 style={{
                     marginRight: '0.5em',
@@ -80,7 +80,7 @@ function IkkeSvartPaaBehovsavklaringStandardInnsats() {
                 <ReadMoreVurdering />
                 <ReadMoreVeileder />
             </div>
-            <InViewport loggTekst="Viser behovsavklaringkomponent ikke besvart i viewport" />
+            <InViewport loggTekst="Viser behovsavklaringkomponent - ikke svart - standard i viewport" />
         </Panel>
     );
 }
