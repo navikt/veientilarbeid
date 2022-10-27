@@ -1,5 +1,5 @@
 import { Dialog } from '@navikt/ds-icons';
-import { BodyLong, Detail, Heading, Panel, ReadMore } from '@navikt/ds-react';
+import { BodyLong, Detail, Heading, Panel } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
 import { useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
@@ -17,8 +17,8 @@ const TEKSTER = {
         overskrift: 'Hjelp og støtte',
         headingEnig: 'Dine samhandlingsverktøy mellom deg og din veileder',
         headingUenig: 'Du ønsker å klare deg selv',
-        beskrivelse:
-            'Vi tror du har gode muligheter til å søke og skaffe seg jobb på egenhånd - uten hjelp fra veileder.',
+        beskrivelseUenig:
+            'Enn så lenge er du satt opp til å motta veiledning for å nå arbeidsmålene dine. En veileder vil vurdere det du har gitt av innspill og kanskje ta kontakt så dere kan vurdere dette sammen.',
         hvaTenkerDu: 'Hva tenker du?',
         klareDegSelv: 'Ønsker du å klare deg selv?',
         readMoreHeading: 'Hva slags hjelp kan jeg få?',
@@ -53,9 +53,8 @@ function EnigMedProfilering() {
                 <Heading className={spacingStyles.blokkXs} size="medium">
                     {tekst('headingEnig')}
                 </Heading>
-                <ReadMore size="medium" header={tekst('readMoreHeading')} className={spacingStyles.mb1}>
-                    [Gå til dialogen]
-                </ReadMore>
+                <BodyLong className={spacingStyles.mb1}>[Gå til dialogen]</BodyLong>
+                <BodyLong className={spacingStyles.mb1}>[Gå til din aktivitetsplan]</BodyLong>
                 <ReadMoreVeileder />
             </div>
             <InViewport loggTekst="Viser behovsavklaringkomponent i viewport" />
@@ -87,14 +86,9 @@ function UenigMedProfilering() {
                 <Heading className={spacingStyles.blokkXs} size="medium">
                     {tekst('headingUenig')}
                 </Heading>
-                <BodyLong className={spacingStyles.mb1}>
-                    En veileder vil ta stilling til om du kan få den hjelpen du etterspør.
-                </BodyLong>
-                <BodyLong className={spacingStyles.mb1}>Du finner det du skrev til veileder i dialogen.</BodyLong>
-                <BodyLong className={spacingStyles.mb1}>
-                    Om du har flere ting du tenker du vil si fra om kan du skrive mer i dialogen.
-                </BodyLong>
+                <BodyLong className={spacingStyles.mb1}>{tekst('beskrivelseUenig')}</BodyLong>
                 <BodyLong className={spacingStyles.mb1}>[Gå til dialogen]</BodyLong>
+                <BodyLong className={spacingStyles.mb1}>[Gå til din aktivitetsplan]</BodyLong>
                 <ReadMoreVeileder />
             </div>
             <InViewport loggTekst="Viser behovsavklaringkomponent i viewport" />
