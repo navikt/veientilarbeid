@@ -88,10 +88,8 @@ function HjelpOgStotte() {
 
     const harAvslattEgenvurderingProfil = profil?.[hentProfilnokkelFraLocalStorage(AVSLAATT_EGENVURDERING)];
 
-    const harAvslattEgenvurdering = harAvslattEgenvurderingProfil ?? hentFraBrowserStorage(AVSLAATT_EGENVURDERING);
-
     const skalViseEgenvurderingInnsatsgruppeIkkeFastsatt =
-        !harAvslattEgenvurdering &&
+        !harAvslattEgenvurderingProfil &&
         kanViseIVURDEgenvurdering({
             underOppfolging,
             registreringData,

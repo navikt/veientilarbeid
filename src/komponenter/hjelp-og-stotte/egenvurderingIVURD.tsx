@@ -8,7 +8,6 @@ import { useProfil } from '../../contexts/profil';
 
 import { loggAktivitet } from '../../metrics/metrics';
 import { behovsvurderingLenke } from '../../innhold/lenker';
-import { settIBrowserStorage } from '../../utils/browserStorage-utils';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
@@ -42,7 +41,6 @@ const EgenvurderingIVURD = () => {
         const datoNaa = new Date().toISOString();
         const egenvurderingProfilId = hentProfilnokkelFraLocalStorage(AVSLAATT_EGENVURDERING);
 
-        settIBrowserStorage(AVSLAATT_EGENVURDERING, datoNaa);
         lagreProfil({
             [egenvurderingProfilId]: datoNaa,
         });
