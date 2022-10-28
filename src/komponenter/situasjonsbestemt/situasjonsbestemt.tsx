@@ -58,7 +58,7 @@ const TEKSTER = {
     },
 };
 
-const ListeElement = (ikon: JSX.Element, innhold: JSX.Element) => {
+export const ListeElement = (ikon: JSX.Element, innhold: JSX.Element) => {
     return (
         <li className={`${flexStyles.flex} ${spacingStyles.mb2}`}>
             <span
