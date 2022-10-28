@@ -57,7 +57,7 @@ function Innhold(props: Props) {
     }
 
     return (
-        <div>
+        <div className={spacingStyles.mt1}>
             <BodyShort className={spacingStyles.blokkXs}>
                 Veilederens oppgave er å besvare spørsmål, bistå deg med å søke stillinger og tilby deg hjelp på veien
                 til arbeid.

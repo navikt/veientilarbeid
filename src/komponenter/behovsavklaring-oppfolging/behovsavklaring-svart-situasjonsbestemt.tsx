@@ -1,5 +1,5 @@
 import { Dialog } from '@navikt/ds-icons';
-import { BodyLong, Heading } from '@navikt/ds-react';
+import { BodyLong, Heading, Link } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
 import { useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
@@ -14,11 +14,15 @@ const TEKSTER = {
     nb: {
         overskrift: 'Hjelp og støtte',
         headingEnig: 'Dine samhandlingsverktøy mellom deg og din veileder',
-        headingUenig: 'Du ønsker å klare deg selv',
-        beskrivelseUenig:
-            'Enn så lenge er du satt opp til å motta veiledning for å nå arbeidsmålene dine. En veileder vil vurdere det du har gitt av innspill og kanskje ta kontakt så dere kan vurdere dette sammen.',
-        dialog: 'Gå til dialogen',
-        aktivitetsplan: 'Gå til din aktivitetsplan',
+        headingUenig: 'Du har sagt at du vil klare deg selv',
+        beskrivelseEnigDialog: 'Du kan skrive til din veileder i ',
+        beskrivelseEnigAktivitetsplan: ' og du kan planlegge arbeidsrettede aktiviteter i',
+        beskrivelseUenig: 'En veileder vil ta stilling til ønsket ditt. Du vil få et vedtaksbrev om dette.',
+        beskrivelseUenigDialog: 'Om du ønsker å skrive til veilederen, kan du gjøre det via ',
+        dialog: 'dialogen',
+        aktivitetsplan: 'aktivitetsplanen',
+        gaTilDialog: 'Gå til dialogen',
+        gaTilAktivitetsplan: 'Gå til din aktivitetsplan',
     },
     en: {
         overskrift: 'Hjelp og støtte',
@@ -41,9 +45,17 @@ function EnigMedProfilering() {
             <Heading className={spacingStyles.blokkXs} size="medium">
                 {tekst('headingEnig')}
             </Heading>
-            <BodyLong className={spacingStyles.mb1}>[{tekst('dialog')}]</BodyLong>
-            <BodyLong className={spacingStyles.mb1}>[{tekst('aktivitetsplan')}]</BodyLong>
+            <BodyLong className={spacingStyles.mb1}>
+                {tekst('beskrivelseEnigDialog')} <Link>{tekst('dialog')}</Link> {tekst('beskrivelseEnigAktivitetsplan')}{' '}
+                <Link>{tekst('aktivitetsplan')}</Link>.
+            </BodyLong>
             <ReadMoreVeileder />
+            <BodyLong className={spacingStyles.mt1}>
+                <Link href="https://www.vg.no">{tekst('gaTilDialog')}</Link>
+            </BodyLong>
+            <BodyLong className={spacingStyles.mt1}>
+                <Link href="https://www.dagbladet.no">{tekst('gaTilAktivitetsplan')}</Link>
+            </BodyLong>
         </div>
     );
 }
@@ -59,9 +71,16 @@ function UenigMedProfilering() {
                 {tekst('headingUenig')}
             </Heading>
             <BodyLong className={spacingStyles.mb1}>{tekst('beskrivelseUenig')}</BodyLong>
-            <BodyLong className={spacingStyles.mb1}>[{tekst('dialog')}]</BodyLong>
-            <BodyLong className={spacingStyles.mb1}>[{tekst('aktivitetsplan')}]</BodyLong>
+            <BodyLong className={spacingStyles.mb1}>
+                {tekst('beskrivelseUenigDialog')} <Link>{tekst('dialog')}</Link>.
+            </BodyLong>
             <ReadMoreVeileder />
+            <BodyLong className={spacingStyles.mt1}>
+                <Link href="https://www.vg.no">{tekst('gaTilDialog')}</Link>
+            </BodyLong>
+            <BodyLong className={spacingStyles.mt1}>
+                <Link href="https://www.dagbladet.no">{tekst('gaTilAktivitetsplan')}</Link>
+            </BodyLong>
         </div>
     );
 }
