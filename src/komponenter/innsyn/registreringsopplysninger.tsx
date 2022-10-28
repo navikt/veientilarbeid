@@ -80,7 +80,7 @@ const Oppfolging = () => {
         e.preventDefault();
         setVisSelect(false);
         setSelectedVerdi(selectedVerdi);
-        lagreBehovForVeiledning(selectedVerdi);
+        lagreBehovForVeiledning({ oppfolging: selectedVerdi });
     };
 
     const OppfolgingOption = (props: { value: BehovForVeiledningValg }) => {

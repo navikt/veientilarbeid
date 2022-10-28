@@ -1,19 +1,24 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
 import { fetchToJson } from '../ducks/api-utils';
-import { BEHOV_FOR_VEILEDNING_URL, requestConfig } from '../ducks/api';
+import { BEHOV_FOR_VEILEDNING_URL, OPPRETT_DIALOG_URL, requestConfig } from '../ducks/api';
 import { useFeatureToggleData } from './feature-toggles';
 
 export type BehovForVeiledningValg = 'KLARE_SEG_SELV' | 'ONSKER_OPPFOLGING' | 'IKKE_BESVART';
-
-export type BehovForVeiledningData = {
+export type BehovForVeiledningRequest = {
+    oppfolging: BehovForVeiledningValg;
+    tekst?: string;
+    overskrift?: string;
+};
+export type BehovForVeiledningResponse = {
     dato?: string;
     oppfolging: BehovForVeiledningValg;
+    dialogId?: string;
 } | null;
 
 interface BehovForVeiledningProviderType {
-    behovForVeiledning: BehovForVeiledningData;
-    lagreBehovForVeiledning: (behovForVeiledning: BehovForVeiledningValg) => Promise<void>;
+    behovForVeiledning: BehovForVeiledningResponse;
+    lagreBehovForVeiledning: (behovForVeiledning: BehovForVeiledningRequest) => Promise<void>;
 }
 
 export const BehovForVeiledningContext = createContext<BehovForVeiledningProviderType>({
@@ -21,32 +26,45 @@ export const BehovForVeiledningContext = createContext<BehovForVeiledningProvide
     lagreBehovForVeiledning: () => Promise.resolve(),
 });
 
+async function opprettDialog(data: { tekst?: string; overskrift?: string }): Promise<null | { id: string }> {
+    if (!data.tekst && !data.overskrift) {
+        return Promise.resolve(null);
+    }
+
+    return fetchToJson(OPPRETT_DIALOG_URL, {
+        ...requestConfig(),
+        method: 'POST',
+        body: JSON.stringify({
+            tekst: data.tekst,
+            overskrift: data.overskrift,
+        }),
+    });
+}
 function BehovForVeiledningProvider(props: { children: ReactNode }) {
-    const [behovForVeiledning, settBehovForVeiledning] = useState<BehovForVeiledningData>(null);
+    const [behovForVeiledning, settBehovForVeiledning] = useState<BehovForVeiledningResponse>(null);
     const featureToggleData = useFeatureToggleData();
 
     const hentBehovForVeiledning = async () => {
         try {
             const behovForVeiledning = await fetchToJson(BEHOV_FOR_VEILEDNING_URL, requestConfig());
             if (behovForVeiledning) {
-                settBehovForVeiledning(behovForVeiledning as BehovForVeiledningData);
+                settBehovForVeiledning(behovForVeiledning as BehovForVeiledningResponse);
             }
         } catch (error) {
             console.error(error);
         }
     };
 
-    const lagreBehovForVeiledning = async (behovForVeiledningOppdatering: BehovForVeiledningValg) => {
+    const lagreBehovForVeiledning = async (data: BehovForVeiledningRequest) => {
         try {
-            await fetchToJson(BEHOV_FOR_VEILEDNING_URL, {
-                ...requestConfig(),
-                method: 'POST',
-                body: JSON.stringify({ oppfolging: behovForVeiledningOppdatering }),
-            });
-            settBehovForVeiledning({
-                dato: new Date().toISOString(),
-                oppfolging: behovForVeiledningOppdatering,
-            });
+            const dialog = await opprettDialog(data);
+            settBehovForVeiledning(
+                await fetchToJson(BEHOV_FOR_VEILEDNING_URL, {
+                    ...requestConfig(),
+                    method: 'POST',
+                    body: JSON.stringify({ oppfolging: data.oppfolging, dialogId: dialog?.id }),
+                })
+            );
         } catch (error) {
             console.error(error);
             throw error;

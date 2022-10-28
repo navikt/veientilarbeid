@@ -1,10 +1,10 @@
 import { ResponseComposition, RestContext, RestRequest } from 'msw';
 
 import { DemoData, hentDemoState, settDemoState } from './demo-state';
-import { BehovForVeiledningData, BehovForVeiledningValg } from '../contexts/behov-for-veiledning';
+import { BehovForVeiledningResponse, BehovForVeiledningValg } from '../contexts/behov-for-veiledning';
 
 const hentBehovForVeiledning = () => hentDemoState(DemoData.BEHOV_FOR_VEILEDNING) || null;
-const settBehovForVeiledning = (value: BehovForVeiledningData) =>
+const settBehovForVeiledning = (value: BehovForVeiledningResponse) =>
     settDemoState(DemoData.BEHOV_FOR_VEILEDNING, JSON.stringify(value));
 
 export const behovForVeiledningGetResolver = (req: RestRequest, res: ResponseComposition, ctx: RestContext) => {
@@ -19,6 +19,10 @@ export const behovForVeiledningPostResolver = (
     ctx: RestContext
 ) => {
     const behov = req.body;
-    settBehovForVeiledning({ dato: new Date().toISOString(), ...behov });
+    settBehovForVeiledning({ dato: new Date().toISOString(), dialogId: undefined, ...behov });
     return res(ctx.status(201));
+};
+
+export const opprettDialogPostResolver = (req: RestRequest, res: ResponseComposition, ctx: RestContext) => {
+    return res(ctx.json({ id: 'dialog-123' }));
 };

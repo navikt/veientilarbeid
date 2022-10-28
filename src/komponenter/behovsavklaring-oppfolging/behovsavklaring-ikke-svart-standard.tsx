@@ -38,7 +38,7 @@ function IkkeSvartPaaBehovsavklaringStandardInnsats() {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
     function handleBehovForVeiledning(behov: BehovForVeiledningValg) {
-        lagreBehovForVeiledning(behov);
+        lagreBehovForVeiledning({ oppfolging: behov });
         loggAktivitet({ ...amplitudeData, aktivitet: `Velger ${behov} fra behovsavklaringkomponent` });
     }
 

@@ -17,6 +17,7 @@ import {
     ARBEIDSSOKER_NIVA3_URL,
     ER_STANDARD_INNSATSGRUPPE_URL,
     BEHOV_FOR_VEILEDNING_URL,
+    OPPRETT_DIALOG_URL,
 } from '../ducks/api';
 
 import {
@@ -46,7 +47,11 @@ import meldekortstatusResponse from '../mocks/meldekortstatus-mock';
 import { gjelderFraGetResolver, gjelderFraPostResolver } from './demo-state-gjelderfra';
 import { brukerProfilGetResolver, brukerProfilPostResolver } from './demo-state-profil';
 import arbeidssokerNiva3Response, { ArbeidssokerPeriode } from '../mocks/arbeidssoker-niva3-mock';
-import { behovForVeiledningGetResolver, behovForVeiledningPostResolver } from './demo-state-behov-for-veiledning';
+import {
+    behovForVeiledningGetResolver,
+    behovForVeiledningPostResolver,
+    opprettDialogPostResolver,
+} from './demo-state-behov-for-veiledning';
 
 export const demo_handlers = [
     msw_get(VEILARBOPPFOLGING_URL, {
@@ -109,6 +114,7 @@ export const demo_handlers = [
     rest.get(PROFIL_URL, brukerProfilGetResolver),
     rest.post(PROFIL_URL, brukerProfilPostResolver),
 
+    rest.post(OPPRETT_DIALOG_URL, opprettDialogPostResolver),
     rest.get(BEHOV_FOR_VEILEDNING_URL, behovForVeiledningGetResolver),
     rest.post(BEHOV_FOR_VEILEDNING_URL, behovForVeiledningPostResolver),
 
