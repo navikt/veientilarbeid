@@ -440,7 +440,6 @@ const DemoDashboard = () => {
                                 defaultValue={behovForVeiledningState?.oppfolging}
                                 onChange={(val: any) => handleChangeBehovForVeiledning(val)}
                             >
-                                <Radio value="IKKE_BESVART">Ikke besvart</Radio>
                                 <Radio value="KLARE_SEG_SELV">Klare seg selv</Radio>
                                 <Radio value="ONSKER_OPPFOLGING">Ønsker hjelp</Radio>
                             </RadioGroup>
