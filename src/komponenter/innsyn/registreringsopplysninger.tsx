@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BodyShort, Button, HelpText, Select } from '@navikt/ds-react';
+import { BodyShort, Button, Select } from '@navikt/ds-react';
 
 import { useUnderOppfolging } from '../../contexts/arbeidssoker';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
@@ -68,9 +68,9 @@ const Oppfolging = () => {
         behovForVeiledning?.oppfolging || 'IKKE_BESVART'
     );
 
-    const aapneSelect = () => {
-        setVisSelect(true);
-    };
+    // const aapneSelect = () => {
+    //     setVisSelect(true);
+    // };
 
     const setSelected = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedVerdi(e.target.value as BehovForVeiledningValg);
@@ -91,10 +91,10 @@ const Oppfolging = () => {
         <div className={`${spacing.blokkS}`}>
             <div className={`${flexStyles.flex}`}>
                 <strong className={spacing.mr05}>Hva slags oppfølging ønsker du?</strong>
-                <HelpText title="Hva betyr dette?">
-                    Her kan du velge om du ønsker oppfølging og veiledning fra NAV i forbindelse med jobbsøking eller om
-                    du ønsker å klare deg selv.
-                </HelpText>
+                {/*<HelpText title="Hva betyr dette?">*/}
+                {/*    Her kan du velge om du ønsker oppfølging og veiledning fra NAV i forbindelse med jobbsøking eller om*/}
+                {/*    du ønsker å klare deg selv.*/}
+                {/*</HelpText>*/}
             </div>
             <div>
                 {visSelect ? (
@@ -121,9 +121,9 @@ const Oppfolging = () => {
                         <div className={`${spacing.mr05} ${spacing.mb05}`}>
                             {tekst(`oppfolging.${behovForVeiledning?.oppfolging || 'IKKE_BESVART'}`)}
                         </div>
-                        <Button variant={'secondary'} onClick={aapneSelect} className={spacing.mb05}>
-                            Endre
-                        </Button>
+                        {/*<Button variant={'secondary'} onClick={aapneSelect} className={spacing.mb05}>*/}
+                        {/*    Endre*/}
+                        {/*</Button>*/}
                     </div>
                 )}
             </div>
