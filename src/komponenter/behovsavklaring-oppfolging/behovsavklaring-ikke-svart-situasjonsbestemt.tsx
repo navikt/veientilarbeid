@@ -26,9 +26,9 @@ const TEKSTER = {
         readMoreHeading: 'Hva slags hjelp kan jeg få?',
         behovOverskrift: 'Mitt behov for veiledning',
         behovSvarEnig:
-            'Mitt svar: Jeg ønsker hjelp fra en veileder\n\nForeslått behov: Situasjonsbestemt\n\nDette er en automatisk generert melding',
+            'Spørsmål: Ønsker du å få hjelp fra en veileder?\n\nMitt svar: Ja, jeg ønsker hjelp\n\nDette er en automatisk generert melding',
         behovSvarUenig:
-            'Mitt svar: Jeg ønsker ikke hjelp fra en veileder\n\nForeslått behov: Situasjonsbestemt\n\nDette er en automatisk generert melding',
+            'Spørsmål: Ønsker du å få hjelp fra en veileder?\n\nMitt svar: Nei, jeg vil gjerne klare meg selv\n\nDette er en automatisk generert melding',
     },
     en: {
         heading: 'Get in touch if you need help',
