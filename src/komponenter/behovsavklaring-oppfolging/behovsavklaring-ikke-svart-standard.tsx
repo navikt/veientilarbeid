@@ -74,10 +74,10 @@ function IkkeSvartPaaBehovsavklaringStandardInnsats() {
                 <BodyLong className={`${spacingStyles.mb1}`}>{tekst('beskrivelse')}</BodyLong>
                 <BodyShort className={`${spacingStyles.mb1}`}>{tekst('hvaTenkerDu')}</BodyShort>
                 <BodyShort className={`${spacingStyles.mb1}`}>{tekst('klareDegSelv')}</BodyShort>
-                <div className={`${flexStyles.flex} ${flexStyles.flexColumn} ${spacingStyles.mb1}`}>
-                    <Button onClick={() => handleBehovForVeiledning('KLARE_SEG_SELV')}>
-                        Ja, jeg ønsker å klare meg selv
-                    </Button>
+                <Button onClick={() => handleBehovForVeiledning('KLARE_SEG_SELV')}>
+                    Ja, jeg ønsker å klare meg selv
+                </Button>
+                <div>
                     <Button
                         onClick={() => handleBehovForVeiledning('ONSKER_OPPFOLGING')}
                         variant="secondary"
