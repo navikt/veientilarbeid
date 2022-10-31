@@ -19,7 +19,7 @@ function ReadMoreVurdering() {
     return (
         <ReadMore
             size="medium"
-            header="Hvordan vurderer vi mulighetene dine?"
+            header="Hvordan vurderer vi ditt behov for veiledning?"
             onClick={handleClickOpenReadMoreVeileder}
         >
             <BodyShort>Vår vurdering er basert på:</BodyShort>

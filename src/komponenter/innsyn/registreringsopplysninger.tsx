@@ -90,7 +90,7 @@ const Oppfolging = () => {
     return (
         <div className={`${spacing.blokkS}`}>
             <div className={`${flexStyles.flex}`}>
-                <strong className={spacing.mr05}>Hva slags oppfølging ønsker du?</strong>
+                <strong className={spacing.mr05}>Hva slags veiledning ønsker du?</strong>
                 {/*<HelpText title="Hva betyr dette?">*/}
                 {/*    Her kan du velge om du ønsker oppfølging og veiledning fra NAV i forbindelse med jobbsøking eller om*/}
                 {/*    du ønsker å klare deg selv.*/}
