@@ -4,7 +4,7 @@ import { DemoData, hentDemoState, settDemoState } from './demo-state';
 import { BehovForVeiledningResponse, BehovForVeiledningValg } from '../contexts/behov-for-veiledning';
 
 const hentBehovForVeiledning = () => hentDemoState(DemoData.BEHOV_FOR_VEILEDNING) || null;
-const settBehovForVeiledning = (value: BehovForVeiledningResponse) =>
+export const settBehovForVeiledning = (value: BehovForVeiledningResponse) =>
     settDemoState(DemoData.BEHOV_FOR_VEILEDNING, JSON.stringify(value));
 
 export const behovForVeiledningGetResolver = (req: RestRequest, res: ResponseComposition, ctx: RestContext) => {

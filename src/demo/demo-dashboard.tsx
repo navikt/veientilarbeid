@@ -1,5 +1,16 @@
 import * as React from 'react';
-import { Accordion, Cell, Checkbox, CheckboxGroup, Grid, Heading, Panel, Select } from '@navikt/ds-react';
+import {
+    Accordion,
+    Cell,
+    Checkbox,
+    CheckboxGroup,
+    Grid,
+    Heading,
+    Panel,
+    Radio,
+    RadioGroup,
+    Select,
+} from '@navikt/ds-react';
 
 import {
     DemoData,
@@ -63,6 +74,8 @@ import { hentQueryParam, fjernQueryParam, settQueryParam } from '../utils/query-
 import styles from './demo-dashboard.module.css';
 import spacingStyles from '../spacing.module.css';
 import flexStyles from '../flex.module.css';
+import { settBehovForVeiledning } from './demo-state-behov-for-veiledning';
+import { BehovForVeiledningValg } from '../contexts/behov-for-veiledning';
 
 const DemoDashboard = () => {
     const [flerevalgOpen, setFlerevalgOpen] = React.useState(false);
@@ -152,6 +165,11 @@ const DemoDashboard = () => {
             fjernQueryParam('flerevalgErOpen');
         }
     }
+
+    const handleChangeBehovForVeiledning = (oppfolging: string) => {
+        settBehovForVeiledning({ oppfolging: oppfolging as BehovForVeiledningValg });
+        window.location.reload();
+    };
 
     const handleClick = (e: React.SyntheticEvent<EventTarget, Event>) => {
         const element = e.currentTarget as HTMLInputElement;
@@ -293,6 +311,9 @@ const DemoDashboard = () => {
         en: 'Engelsk',
     };
 
+    const behovForVeiledningQueryParam = hentDemoState('behovForVeiledning');
+    const behovForVeiledningState = behovForVeiledningQueryParam ? JSON.parse(behovForVeiledningQueryParam) : null;
+
     setFastTidspunktForIDag(hentDagRelativTilFastsattMeldedag());
 
     React.useEffect(() => {
@@ -311,8 +332,8 @@ const DemoDashboard = () => {
                 Demo av Veien til arbeid
             </Heading>
             <Panel className={styles.demodashboardInnhold}>
-                <div className={`${spacingStyles.mb2} ${flexStyles.flex}`}>
-                    <div>
+                <div className={`${spacingStyles.mb2} ${flexStyles.flex} ${flexStyles.wrap}`}>
+                    <Panel className={styles.demoCheckboxpanel}>
                         <Select
                             label={'Velg arbeidssøkerperiode'}
                             onChange={handleChangeArbeidssokerPeriode}
@@ -365,8 +386,6 @@ const DemoDashboard = () => {
                                     </option>
                                 ))}
                         </Select>
-                    </div>
-                    <Panel className={styles.demoCheckboxpanel}>
                         <CheckboxGroup
                             // onChange={handleClick}
                             legend=""
@@ -389,7 +408,63 @@ const DemoDashboard = () => {
                             </Checkbox>
                         </CheckboxGroup>
                     </Panel>
+                    <Panel className={styles.demoCheckboxpanel}>
+                        <Select
+                            label={'Velg innsatsgruppe'}
+                            onChange={handleChangeServicegruppe}
+                            id="velg-bruker"
+                            defaultValue={hentServicegruppe()}
+                        >
+                            {Object.keys(servicegrupper).map((gruppe: string) => (
+                                <option key={gruppe} value={gruppe}>
+                                    {servicegrupper[gruppe]}
+                                </option>
+                            ))}
+                        </Select>
+                        <Select
+                            label={'Velg foreslått innsatsgruppe'}
+                            onChange={handleChangeForeslaattInnsatsgruppe}
+                            id="velg-foreslaatt-innsatsgruppe"
+                            defaultValue={hentForeslattInnsatsgruppe()}
+                        >
+                            {Object.keys(foreslattInnsatsgrupper).map((svar: string) => (
+                                <option key={svar} value={svar}>
+                                    {foreslattInnsatsgrupper[svar]}
+                                </option>
+                            ))}
+                        </Select>
+
+                        <Panel className={styles.demoCheckboxpanel}>
+                            <RadioGroup
+                                legend="Behov for veiledning-valg"
+                                defaultValue={behovForVeiledningState?.oppfolging}
+                                onChange={(val: any) => handleChangeBehovForVeiledning(val)}
+                            >
+                                <Radio value="IKKE_BESVART">Ikke besvart</Radio>
+                                <Radio value="KLARE_SEG_SELV">Klare seg selv</Radio>
+                                <Radio value="ONSKER_OPPFOLGING">Ønsker hjelp</Radio>
+                            </RadioGroup>
+                        </Panel>
+                    </Panel>
+                    <Panel className={styles.demoFeaturetoggles}>
+                        <CheckboxGroup legend={'Featuretoggles'}>
+                            {Object.values(FeatureToggles).map((toggle) => {
+                                return (
+                                    <Checkbox
+                                        checked={hentDemoState(toggle) === 'true'}
+                                        key={toggle}
+                                        id={toggle}
+                                        value={toggle}
+                                        onChange={handleClick}
+                                    >
+                                        {prettyPrintFeatureToggle(toggle)}
+                                    </Checkbox>
+                                );
+                            })}
+                        </CheckboxGroup>
+                    </Panel>
                 </div>
+
                 <Accordion>
                     <Accordion.Item open={flerevalgOpen}>
                         <Accordion.Header onClick={handleFlereValgToggle}>Flere valg</Accordion.Header>
@@ -417,18 +492,6 @@ const DemoDashboard = () => {
                                         {Object.keys(registreringTyper).map((gruppe: string) => (
                                             <option key={gruppe} value={gruppe}>
                                                 {registreringTyper[gruppe]}
-                                            </option>
-                                        ))}
-                                    </Select>
-                                    <Select
-                                        label={'Velg innsatsgruppe'}
-                                        onChange={handleChangeServicegruppe}
-                                        id="velg-bruker"
-                                        defaultValue={hentServicegruppe()}
-                                    >
-                                        {Object.keys(servicegrupper).map((gruppe: string) => (
-                                            <option key={gruppe} value={gruppe}>
-                                                {servicegrupper[gruppe]}
                                             </option>
                                         ))}
                                     </Select>
@@ -467,18 +530,6 @@ const DemoDashboard = () => {
                                         {Object.keys(DinSituasjonSvar).map((svar: string) => (
                                             <option key={svar} value={svar}>
                                                 {dineSituasjoner[svar]}
-                                            </option>
-                                        ))}
-                                    </Select>
-                                    <Select
-                                        label={'Velg foreslått innsatsgruppe'}
-                                        onChange={handleChangeForeslaattInnsatsgruppe}
-                                        id="velg-foreslaatt-innsatsgruppe"
-                                        defaultValue={hentForeslattInnsatsgruppe()}
-                                    >
-                                        {Object.keys(foreslattInnsatsgrupper).map((svar: string) => (
-                                            <option key={svar} value={svar}>
-                                                {foreslattInnsatsgrupper[svar]}
                                             </option>
                                         ))}
                                     </Select>
