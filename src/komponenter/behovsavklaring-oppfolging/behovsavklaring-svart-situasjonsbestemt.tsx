@@ -7,6 +7,8 @@ import { useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import ReadMoreVeileder from './readmore-veileder';
 import { ListeElement } from '../situasjonsbestemt/situasjonsbestemt';
+import ErRendret from '../er-rendret/er-rendret';
+import InViewport from '../in-viewport/in-viewport';
 
 import spacingStyles from '../../spacing.module.css';
 
@@ -42,6 +44,7 @@ function EnigMedProfilering() {
     return ListeElement(
         <Dialog />,
         <div>
+            <ErRendret loggTekst="Rendrer behovsavklaringkomponent - svart - enig - situasjonsbestemt" />
             <Heading className={spacingStyles.blokkXs} size="medium">
                 {tekst('headingEnig')}
             </Heading>
@@ -56,6 +59,7 @@ function EnigMedProfilering() {
             <BodyLong className={spacingStyles.mt1}>
                 <Link href="https://www.dagbladet.no">{tekst('gaTilAktivitetsplan')}</Link>
             </BodyLong>
+            <InViewport loggTekst="Viser behovsavklaringkomponent - svart - enig - situasjonsbestemt i viewport" />
         </div>
     );
 }
@@ -67,6 +71,7 @@ function UenigMedProfilering() {
     return ListeElement(
         <Dialog />,
         <div className={spacingStyles.fullWidth}>
+            <ErRendret loggTekst="Rendrer behovsavklaringkomponent - svart - uenig - situasjonsbestemt" />
             <Heading className={spacingStyles.blokkXs} size="medium">
                 {tekst('headingUenig')}
             </Heading>
@@ -81,6 +86,7 @@ function UenigMedProfilering() {
             <BodyLong className={spacingStyles.mt1}>
                 <Link href="https://www.dagbladet.no">{tekst('gaTilAktivitetsplan')}</Link>
             </BodyLong>
+            <InViewport loggTekst="Viser behovsavklaringkomponent - svart - uenig - situasjonsbestemt i viewport" />
         </div>
     );
 }
