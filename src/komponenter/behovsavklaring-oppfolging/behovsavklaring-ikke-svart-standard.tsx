@@ -77,7 +77,7 @@ function IkkeSvartPaaBehovsavklaringStandardInnsats() {
                 <Button onClick={() => handleBehovForVeiledning('KLARE_SEG_SELV')}>
                     Ja, jeg ønsker å klare meg selv
                 </Button>
-                <div>
+                <div className={spacingStyles.mb1}>
                     <Button
                         onClick={() => handleBehovForVeiledning('ONSKER_OPPFOLGING')}
                         variant="secondary"

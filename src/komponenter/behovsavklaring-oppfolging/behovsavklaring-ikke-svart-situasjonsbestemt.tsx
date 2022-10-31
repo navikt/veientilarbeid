@@ -74,7 +74,7 @@ function IkkeSvartPaaBehovsavklaringSituasjonsbestemt() {
                 <BodyShort className={`${spacingStyles.mb1}`}>{tekst('hvaTenkerDu')}</BodyShort>
                 <BodyShort className={`${spacingStyles.mb1}`}>{tekst('klareDegSelv')}</BodyShort>
                 <Button onClick={() => handleBehovForVeiledning('ONSKER_OPPFOLGING')}>Ja, jeg ønsker hjelp</Button>
-                <div>
+                <div className={spacingStyles.mb1}>
                     <Button
                         onClick={() => handleBehovForVeiledning('KLARE_SEG_SELV')}
                         variant="secondary"
