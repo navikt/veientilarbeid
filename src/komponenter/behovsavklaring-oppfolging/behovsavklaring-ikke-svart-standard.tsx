@@ -10,10 +10,10 @@ import { loggAktivitet } from '../../metrics/metrics';
 import ReadMoreVeileder from './readmore-veileder';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
+import ReadMoreVurdering from './readmore-vurdering';
 
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
-import ReadMoreVurdering from './readmore-vurdering';
 
 const TEKSTER = {
     nb: {
@@ -39,7 +39,7 @@ function IkkeSvartPaaBehovsavklaringStandardInnsats() {
 
     function handleBehovForVeiledning(behov: BehovForVeiledningValg) {
         lagreBehovForVeiledning({ oppfolging: behov });
-        loggAktivitet({ ...amplitudeData, aktivitet: `Velger ${behov} fra behovsavklaringkomponent` });
+        loggAktivitet({ ...amplitudeData, aktivitet: `Velger ${behov} fra behovsavklaringkomponent standard` });
     }
 
     return (

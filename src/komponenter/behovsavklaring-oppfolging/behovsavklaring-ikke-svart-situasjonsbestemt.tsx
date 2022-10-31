@@ -9,10 +9,12 @@ import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { loggAktivitet } from '../../metrics/metrics';
 import ReadMoreVeileder from './readmore-veileder';
 import { ListeElement } from '../situasjonsbestemt/situasjonsbestemt';
+import ReadMoreVurdering from './readmore-vurdering';
+import ErRendret from '../er-rendret/er-rendret';
+import InViewport from '../in-viewport/in-viewport';
 
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
-import ReadMoreVurdering from './readmore-vurdering';
 
 const TEKSTER = {
     nb: {
@@ -37,12 +39,16 @@ function IkkeSvartPaaBehovsavklaringSituasjonsbestemt() {
 
     function handleBehovForVeiledning(behov: BehovForVeiledningValg) {
         lagreBehovForVeiledning({ oppfolging: behov });
-        loggAktivitet({ ...amplitudeData, aktivitet: `Velger ${behov} fra behovsavklaringkomponent` });
+        loggAktivitet({
+            ...amplitudeData,
+            aktivitet: `Velger ${behov} fra behovsavklaringkomponent situasjonsbestemt`,
+        });
     }
 
     return ListeElement(
         <Dialog />,
         <div>
+            <ErRendret loggTekst="Rendrer behovsavklaringkomponent - ikke svart - situasjonsbestemt" />
             <Heading className={spacingStyles.blokkXs} size="medium">
                 {tekst('heading')}
             </Heading>
@@ -61,6 +67,7 @@ function IkkeSvartPaaBehovsavklaringSituasjonsbestemt() {
             </div>
             <ReadMoreVurdering />
             <ReadMoreVeileder />
+            <InViewport loggTekst="Viser behovsavklaringkomponent - ikke svart - situasjonsbestemt i viewport" />
         </div>
     );
 }

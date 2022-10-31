@@ -163,14 +163,14 @@ function Situasjonsbestemt() {
                                 {tekst('sporsmal')}{' '}
                                 <Link
                                     href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
-                                    onClick={() => handleClick(`Går til STO fra ikke-standard`)}
+                                    onClick={() => handleClick(`Går til STO fra situasjonsbestemt`)}
                                 >
                                     {tekst('skrivTilOss')}
                                 </Link>{' '}
                                 {tekst('eller')}{' '}
                                 <Link
                                     href="https://www.nav.no/person/kontakt-oss/chat/"
-                                    onClick={() => handleClick(`Går til chat fra ikke-standard`)}
+                                    onClick={() => handleClick(`Går til chat fra fra situasjonsbestemt`)}
                                 >
                                     {tekst('chat')}
                                 </Link>
@@ -179,7 +179,7 @@ function Situasjonsbestemt() {
                                 <Link
                                     href={'https://www.nav.no'}
                                     target="_blank"
-                                    onClick={() => handleClick('Går til nav.no fra ikke-standard')}
+                                    onClick={() => handleClick('Går til nav.no fra fra situasjonsbestemt')}
                                 >
                                     nav.no ({tekst('ny-fane')})
                                 </Link>
