@@ -19,8 +19,9 @@ export const behovForVeiledningPostResolver = (
     ctx: RestContext
 ) => {
     const behov = req.body;
-    settBehovForVeiledning({ dato: new Date().toISOString(), dialogId: undefined, ...behov });
-    return res(ctx.status(201));
+    const response = { dato: new Date().toISOString(), dialogId: undefined, ...behov };
+    settBehovForVeiledning(response);
+    return res(ctx.status(201), ctx.json(response));
 };
 
 export const opprettDialogPostResolver = (req: RestRequest, res: ResponseComposition, ctx: RestContext) => {
