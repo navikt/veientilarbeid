@@ -24,6 +24,11 @@ const TEKSTER = {
         hvaTenkerDu: 'Hva tenker du?',
         klareDegSelv: 'Ønsker du å klare deg selv?',
         readMoreHeading: 'Hva slags hjelp kan jeg få?',
+        behovOverskrift: 'Mitt behov for veiledning',
+        behovSvarEnig:
+            'Mitt svar: Jeg ønsker å klare meg selv\n\nForeslått behov: Gode muligheter\n\nDette er en automatisk generert melding',
+        behovSvarUenig:
+            'Mitt svar: Jeg ønsker hjelp fra en veileder\n\nForeslått behov: Gode muligheter\n\nDette er en automatisk generert melding',
     },
     en: {
         heading: 'Get in touch if you need help',
@@ -38,7 +43,11 @@ function IkkeSvartPaaBehovsavklaringStandardInnsats() {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
     function handleBehovForVeiledning(behov: BehovForVeiledningValg) {
-        lagreBehovForVeiledning({ oppfolging: behov });
+        lagreBehovForVeiledning({
+            oppfolging: behov,
+            overskrift: tekst('behovOverskrift'),
+            tekst: tekst(behov === 'KLARE_SEG_SELV' ? 'behovSvarEnig' : 'behovSvarUenig'),
+        });
         loggAktivitet({ ...amplitudeData, aktivitet: `Velger ${behov} fra behovsavklaringkomponent standard` });
     }
 
