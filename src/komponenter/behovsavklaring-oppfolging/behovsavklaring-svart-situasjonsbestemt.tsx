@@ -9,6 +9,7 @@ import ReadMoreVeileder from './readmore-veileder';
 import { ListeElement } from '../situasjonsbestemt/situasjonsbestemt';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
+import { aktivitetsplanLenke, dialogLenke } from '../../innhold/lenker';
 
 import spacingStyles from '../../spacing.module.css';
 
@@ -54,10 +55,10 @@ function EnigMedProfilering() {
             </BodyLong>
             <ReadMoreVeileder />
             <BodyLong className={spacingStyles.mt1}>
-                <Link href="https://www.vg.no">{tekst('gaTilDialog')}</Link>
+                <Link href={dialogLenke}>{tekst('gaTilDialog')}</Link>
             </BodyLong>
             <BodyLong className={spacingStyles.mt1}>
-                <Link href="https://www.dagbladet.no">{tekst('gaTilAktivitetsplan')}</Link>
+                <Link href={aktivitetsplanLenke}>{tekst('gaTilAktivitetsplan')}</Link>
             </BodyLong>
             <InViewport loggTekst="Viser behovsavklaringkomponent - svart - enig - situasjonsbestemt i viewport" />
         </div>
@@ -81,10 +82,10 @@ function UenigMedProfilering() {
             </BodyLong>
             <ReadMoreVeileder />
             <BodyLong className={spacingStyles.mt1}>
-                <Link href="https://www.vg.no">{tekst('gaTilDialog')}</Link>
+                <Link href={dialogLenke}>{tekst('gaTilDialog')}</Link>
             </BodyLong>
             <BodyLong className={spacingStyles.mt1}>
-                <Link href="https://www.dagbladet.no">{tekst('gaTilAktivitetsplan')}</Link>
+                <Link href={aktivitetsplanLenke}>{tekst('gaTilAktivitetsplan')}</Link>
             </BodyLong>
             <InViewport loggTekst="Viser behovsavklaringkomponent - svart - uenig - situasjonsbestemt i viewport" />
         </div>
