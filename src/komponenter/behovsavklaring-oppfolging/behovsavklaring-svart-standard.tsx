@@ -131,7 +131,7 @@ function UenigMedProfilering() {
 
 function BehovsavklaringSvartStandard() {
     const { behovForVeiledning } = useBehovForVeiledning();
-    return behovForVeiledning!.oppfolging === ForeslattInnsatsgruppe.STANDARD_INNSATS ? (
+    return !behovForVeiledning || behovForVeiledning?.oppfolging === ForeslattInnsatsgruppe.STANDARD_INNSATS ? (
         <EnigMedProfilering />
     ) : (
         <UenigMedProfilering />

@@ -95,10 +95,11 @@ function UenigMedProfilering() {
 
 function BehovsavklaringSvartSituasjonsbestemt() {
     const { behovForVeiledning } = useBehovForVeiledning();
-    return behovForVeiledning!.oppfolging === ForeslattInnsatsgruppe.STANDARD_INNSATS ? (
-        <UenigMedProfilering />
-    ) : (
+    return !behovForVeiledning ||
+        behovForVeiledning?.oppfolging === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS ? (
         <EnigMedProfilering />
+    ) : (
+        <UenigMedProfilering />
     );
 }
 
