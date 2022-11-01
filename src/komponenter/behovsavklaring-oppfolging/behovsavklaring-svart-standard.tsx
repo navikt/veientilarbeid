@@ -83,6 +83,10 @@ function UenigMedProfilering() {
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
+    function handleDialogKnapp() {
+        window.location.href = dialogLenke;
+    }
+
     return (
         <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - svart - uenig - standard" />
@@ -104,14 +108,21 @@ function UenigMedProfilering() {
                     {tekst('headingUenig')}
                 </Heading>
                 <BodyLong className={spacingStyles.mb1}>
-                    En veileder vil ta stilling til om du kan få den hjelpen du etterspør.
+                    En veileder vil ta stilling til hva slags hjelp du kan få. Du vil få et vedtaksbrev om dette.
                 </BodyLong>
-                <BodyLong className={spacingStyles.mb1}>Du finner det du skrev til veileder i dialogen.</BodyLong>
                 <BodyLong className={spacingStyles.mb1}>
-                    Om du har flere ting du tenker du vil si fra om kan du skrive mer i dialogen.
+                    Om du ønsker å skrive til veilederen om det du ønsker hjelp til kan du gjøre det via dialogen.
                 </BodyLong>
-                <BodyLong className={spacingStyles.mb1}>[Gå til dialogen]</BodyLong>
+                <BodyLong className={spacingStyles.mb1}>
+                    <Button onClick={handleDialogKnapp}>{tekst('gaTilDialog')}</Button>
+                </BodyLong>
                 <ReadMoreVeileder />
+                <BodyLong className={spacingStyles.mt1}>
+                    <Link href={dialogLenke}>{tekst('gaTilDialog')}</Link>
+                </BodyLong>
+                <BodyLong className={spacingStyles.mt1}>
+                    <Link href={aktivitetsplanLenke}>{tekst('gaTilAktivitetsplan')}</Link>
+                </BodyLong>
             </div>
             <InViewport loggTekst="Viser behovsavklaringkomponent - svart - uenig - standard i viewport" />
         </Panel>
