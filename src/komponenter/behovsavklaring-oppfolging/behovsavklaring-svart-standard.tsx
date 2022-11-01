@@ -36,9 +36,11 @@ const TEKSTER = {
 function EnigMedProfilering() {
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
+    const { behovForVeiledning } = useBehovForVeiledning();
 
     function handleDialogKnapp() {
-        window.location.href = dialogLenke;
+        const dialogId = behovForVeiledning?.dialogId ? `/${behovForVeiledning?.dialogId}` : '';
+        window.location.href = `${dialogLenke}${dialogId}`;
     }
 
     return (

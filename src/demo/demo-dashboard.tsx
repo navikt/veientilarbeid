@@ -166,7 +166,7 @@ const DemoDashboard = () => {
     }
 
     const handleChangeBehovForVeiledning = (oppfolging: string) => {
-        settBehovForVeiledning({ oppfolging: oppfolging as ForeslattInnsatsgruppe });
+        settBehovForVeiledning({ oppfolging: oppfolging as ForeslattInnsatsgruppe, dialogId: 'dialog-123' });
         window.location.reload();
     };
 
