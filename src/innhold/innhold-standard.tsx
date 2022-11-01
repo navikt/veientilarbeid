@@ -30,9 +30,9 @@ const InnholdStandard = () => {
                 <ReaktiveringKvittering />
                 <KvitteringEgenvurdering />
                 <RegistrertTittel />
+                {visBehovsAvklaring ? <Behovsavklaring /> : <HjelpOgStotte />}
                 <DagpengerOgYtelser />
                 <Meldekort />
-                {visBehovsAvklaring ? <Behovsavklaring /> : <HjelpOgStotte />}
                 <Aktivitetsplan />
                 <GjelderFraDato />
             </div>
