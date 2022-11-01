@@ -33,7 +33,7 @@ const TEKSTER = {
     },
 };
 
-function handleDialogKnapp(behovForVeiledning: BehovForVeiledningResponse) {
+export function handleDialogKnapp(behovForVeiledning: BehovForVeiledningResponse) {
     return () => {
         const dialogId = behovForVeiledning?.dialogId ? `/${behovForVeiledning?.dialogId}` : '';
         window.location.href = `${dialogLenke}${dialogId}`;
