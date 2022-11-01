@@ -1,7 +1,8 @@
 import { ResponseComposition, RestContext, RestRequest } from 'msw';
 
 import { DemoData, hentDemoState, settDemoState } from './demo-state';
-import { BehovForVeiledningResponse, BehovForVeiledningValg } from '../contexts/behov-for-veiledning';
+import { BehovForVeiledningResponse } from '../contexts/behov-for-veiledning';
+import { ForeslattInnsatsgruppe } from '../contexts/brukerregistrering';
 
 const hentBehovForVeiledning = () => hentDemoState(DemoData.BEHOV_FOR_VEILEDNING) || null;
 export const settBehovForVeiledning = (value: BehovForVeiledningResponse) =>
@@ -14,7 +15,7 @@ export const behovForVeiledningGetResolver = (req: RestRequest, res: ResponseCom
 };
 
 export const behovForVeiledningPostResolver = (
-    req: RestRequest<{ oppfolging: BehovForVeiledningValg }>,
+    req: RestRequest<{ oppfolging: ForeslattInnsatsgruppe }>,
     res: ResponseComposition,
     ctx: RestContext
 ) => {

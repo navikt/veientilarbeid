@@ -2,7 +2,7 @@ import { Dialog } from '@navikt/ds-icons';
 import { BodyLong, BodyShort, Button, Heading, Panel } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
-import { BehovForVeiledningValg, useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
+import { useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
@@ -11,6 +11,7 @@ import ReadMoreVeileder from './readmore-veileder';
 import ReadMoreVurdering from './readmore-vurdering';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
+import { ForeslattInnsatsgruppe } from '../../contexts/brukerregistrering';
 
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
@@ -41,11 +42,13 @@ function IkkeSvartPaaBehovsavklaringSituasjonsbestemt() {
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
-    function handleBehovForVeiledning(behov: BehovForVeiledningValg) {
+    function handleBehovForVeiledning(behov: ForeslattInnsatsgruppe) {
         lagreBehovForVeiledning({
             oppfolging: behov,
             overskrift: tekst('behovOverskrift'),
-            tekst: tekst(behov === 'ONSKER_OPPFOLGING' ? 'behovSvarEnig' : 'behovSvarUenig'),
+            tekst: tekst(
+                behov === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS ? 'behovSvarEnig' : 'behovSvarUenig'
+            ),
         });
         loggAktivitet({
             ...amplitudeData,
@@ -73,10 +76,12 @@ function IkkeSvartPaaBehovsavklaringSituasjonsbestemt() {
                 <BodyLong className={`${spacingStyles.mb1}`}>{tekst('beskrivelse')}</BodyLong>
                 <BodyShort className={`${spacingStyles.mb1}`}>{tekst('hvaTenkerDu')}</BodyShort>
                 <BodyShort className={`${spacingStyles.mb1}`}>{tekst('klareDegSelv')}</BodyShort>
-                <Button onClick={() => handleBehovForVeiledning('ONSKER_OPPFOLGING')}>Ja, jeg ønsker hjelp</Button>
+                <Button onClick={() => handleBehovForVeiledning(ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS)}>
+                    Ja, jeg ønsker hjelp
+                </Button>
                 <div className={spacingStyles.mb1}>
                     <Button
-                        onClick={() => handleBehovForVeiledning('KLARE_SEG_SELV')}
+                        onClick={() => handleBehovForVeiledning(ForeslattInnsatsgruppe.STANDARD_INNSATS)}
                         variant="secondary"
                         className={`${spacingStyles.mt1}`}
                     >

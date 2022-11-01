@@ -75,7 +75,6 @@ import styles from './demo-dashboard.module.css';
 import spacingStyles from '../spacing.module.css';
 import flexStyles from '../flex.module.css';
 import { settBehovForVeiledning } from './demo-state-behov-for-veiledning';
-import { BehovForVeiledningValg } from '../contexts/behov-for-veiledning';
 
 const DemoDashboard = () => {
     const [flerevalgOpen, setFlerevalgOpen] = React.useState(false);
@@ -167,7 +166,7 @@ const DemoDashboard = () => {
     }
 
     const handleChangeBehovForVeiledning = (oppfolging: string) => {
-        settBehovForVeiledning({ oppfolging: oppfolging as BehovForVeiledningValg });
+        settBehovForVeiledning({ oppfolging: oppfolging as ForeslattInnsatsgruppe });
         window.location.reload();
     };
 
@@ -440,8 +439,8 @@ const DemoDashboard = () => {
                                 defaultValue={behovForVeiledningState?.oppfolging}
                                 onChange={(val: any) => handleChangeBehovForVeiledning(val)}
                             >
-                                <Radio value="KLARE_SEG_SELV">Klare seg selv</Radio>
-                                <Radio value="ONSKER_OPPFOLGING">Ønsker hjelp</Radio>
+                                <Radio value={ForeslattInnsatsgruppe.STANDARD_INNSATS}>Klare seg selv</Radio>
+                                <Radio value={ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS}>Ønsker hjelp</Radio>
                             </RadioGroup>
                         </Panel>
                     </Panel>

@@ -10,6 +10,7 @@ import { ListeElement } from '../situasjonsbestemt/situasjonsbestemt';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import { aktivitetsplanLenke, dialogLenke } from '../../innhold/lenker';
+import { ForeslattInnsatsgruppe } from '../../contexts/brukerregistrering';
 
 import spacingStyles from '../../spacing.module.css';
 
@@ -94,7 +95,11 @@ function UenigMedProfilering() {
 
 function BehovsavklaringSvartSituasjonsbestemt() {
     const { behovForVeiledning } = useBehovForVeiledning();
-    return behovForVeiledning!.oppfolging === 'KLARE_SEG_SELV' ? <UenigMedProfilering /> : <EnigMedProfilering />;
+    return behovForVeiledning!.oppfolging === ForeslattInnsatsgruppe.STANDARD_INNSATS ? (
+        <UenigMedProfilering />
+    ) : (
+        <EnigMedProfilering />
+    );
 }
 
 export default BehovsavklaringSvartSituasjonsbestemt;

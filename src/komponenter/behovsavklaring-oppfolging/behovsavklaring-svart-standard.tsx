@@ -8,6 +8,7 @@ import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import ReadMoreVeileder from './readmore-veileder';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
+import { ForeslattInnsatsgruppe } from '../../contexts/brukerregistrering';
 
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
@@ -104,7 +105,11 @@ function UenigMedProfilering() {
 
 function BehovsavklaringSvartStandard() {
     const { behovForVeiledning } = useBehovForVeiledning();
-    return behovForVeiledning!.oppfolging === 'KLARE_SEG_SELV' ? <EnigMedProfilering /> : <UenigMedProfilering />;
+    return behovForVeiledning!.oppfolging === ForeslattInnsatsgruppe.STANDARD_INNSATS ? (
+        <EnigMedProfilering />
+    ) : (
+        <UenigMedProfilering />
+    );
 }
 
 export default BehovsavklaringSvartStandard;

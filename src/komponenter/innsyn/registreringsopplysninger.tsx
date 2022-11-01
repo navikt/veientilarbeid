@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-import { BodyShort, Button, Select } from '@navikt/ds-react';
+import { BodyShort } from '@navikt/ds-react';
 
 import { useUnderOppfolging } from '../../contexts/arbeidssoker';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useSprakValg } from '../../contexts/sprak';
-import { BehovForVeiledningValg, useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
+import { useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
 
 import { loggAktivitet } from '../../metrics/metrics';
 import { dialogLenke } from '../../innhold/lenker';
@@ -18,13 +17,13 @@ import flexStyles from '../../flex.module.css';
 
 const TEKSTER = {
     nb: {
-        'oppfolging.KLARE_SEG_SELV': 'Jeg ønsker å klare meg selv',
-        'oppfolging.ONSKER_OPPFOLGING': 'Jeg ønsker oppfølging fra NAV',
+        'oppfolging.STANDARD_INNSATS': 'Jeg ønsker å klare meg selv',
+        'oppfolging.SITUASJONSBESTEMT_INNSATS': 'Jeg ønsker oppfølging fra NAV',
         'oppfolging.IKKE_BESVART': 'Ikke besvart',
     },
     en: {
-        'oppfolging.KLARE_SEG_SELV': 'Jeg ønsker å klare meg selv',
-        'oppfolging.ONSKER_OPPFOLGING': 'Jeg ønsker oppfølging fra NAV',
+        'oppfolging.STANDARD_INNSATS': 'Jeg ønsker å klare meg selv',
+        'oppfolging.SITUASJONSBESTEMT_INNSATS': 'Jeg ønsker oppfølging fra NAV',
         'oppfolging.IKKE_BESVART': 'Ikke besvart',
     },
 };
@@ -61,71 +60,19 @@ const Opplysning = (props: any) => {
 
 const Oppfolging = () => {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
-    const { behovForVeiledning, lagreBehovForVeiledning } = useBehovForVeiledning();
-
-    const [visSelect, setVisSelect] = useState(false);
-    const [selectedVerdi, setSelectedVerdi] = useState<BehovForVeiledningValg>(
-        behovForVeiledning?.oppfolging || 'IKKE_BESVART'
-    );
-
-    // const aapneSelect = () => {
-    //     setVisSelect(true);
-    // };
-
-    const setSelected = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setSelectedVerdi(e.target.value as BehovForVeiledningValg);
-    };
-
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setVisSelect(false);
-        setSelectedVerdi(selectedVerdi);
-        lagreBehovForVeiledning({ oppfolging: selectedVerdi });
-    };
-
-    const OppfolgingOption = (props: { value: BehovForVeiledningValg }) => {
-        return <option value={props.value}>{tekst(`oppfolging.${props.value}`)}</option>;
-    };
+    const { behovForVeiledning } = useBehovForVeiledning();
 
     return (
         <div className={`${spacing.blokkS}`}>
             <div className={`${flexStyles.flex}`}>
                 <strong className={spacing.mr05}>Hva slags veiledning ønsker du?</strong>
-                {/*<HelpText title="Hva betyr dette?">*/}
-                {/*    Her kan du velge om du ønsker oppfølging og veiledning fra NAV i forbindelse med jobbsøking eller om*/}
-                {/*    du ønsker å klare deg selv.*/}
-                {/*</HelpText>*/}
             </div>
             <div>
-                {visSelect ? (
-                    <form onSubmit={handleSubmit}>
-                        <div className={`${flexStyles.flex} ${flexStyles.wrap}`}>
-                            <Select
-                                label="Hva slags oppfølging ønsker du?"
-                                hideLabel
-                                onChange={setSelected}
-                                value={selectedVerdi}
-                                className={`${spacing.mr05} ${spacing.mb05}`}
-                            >
-                                {selectedVerdi === 'IKKE_BESVART' && <OppfolgingOption value={'IKKE_BESVART'} />}
-                                <OppfolgingOption value={'KLARE_SEG_SELV'} />
-                                <OppfolgingOption value={'ONSKER_OPPFOLGING'} />
-                            </Select>
-                            <Button variant={'secondary'} type={'submit'} className={spacing.mb05}>
-                                Lagre svar
-                            </Button>
-                        </div>
-                    </form>
-                ) : (
-                    <div className={`${flexStyles.flex} ${flexStyles.alignCenter} ${flexStyles.wrap}`}>
-                        <div className={`${spacing.mr05} ${spacing.mb05}`}>
-                            {tekst(`oppfolging.${behovForVeiledning?.oppfolging || 'IKKE_BESVART'}`)}
-                        </div>
-                        {/*<Button variant={'secondary'} onClick={aapneSelect} className={spacing.mb05}>*/}
-                        {/*    Endre*/}
-                        {/*</Button>*/}
+                <div className={`${flexStyles.flex} ${flexStyles.alignCenter} ${flexStyles.wrap}`}>
+                    <div className={`${spacing.mr05} ${spacing.mb05}`}>
+                        {tekst(`oppfolging.${behovForVeiledning?.oppfolging || 'IKKE_BESVART'}`)}
                     </div>
-                )}
+                </div>
             </div>
         </div>
     );

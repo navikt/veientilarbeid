@@ -1,18 +1,20 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
-import { fetchToJson } from '../ducks/api-utils';
-import { BEHOV_FOR_VEILEDNING_URL, OPPRETT_DIALOG_URL, requestConfig } from '../ducks/api';
 import { useFeatureToggleData } from './feature-toggles';
 
-export type BehovForVeiledningValg = 'KLARE_SEG_SELV' | 'ONSKER_OPPFOLGING' | 'IKKE_BESVART';
+import { fetchToJson } from '../ducks/api-utils';
+import { BEHOV_FOR_VEILEDNING_URL, OPPRETT_DIALOG_URL, requestConfig } from '../ducks/api';
+import { ForeslattInnsatsgruppe } from './brukerregistrering';
+
 export type BehovForVeiledningRequest = {
-    oppfolging: BehovForVeiledningValg;
+    oppfolging: ForeslattInnsatsgruppe;
     tekst?: string;
     overskrift?: string;
 };
+
 export type BehovForVeiledningResponse = {
     dato?: string;
-    oppfolging: BehovForVeiledningValg;
+    oppfolging: ForeslattInnsatsgruppe;
     dialogId?: string;
 } | null;
 
