@@ -409,7 +409,7 @@ const DemoDashboard = () => {
                     </Panel>
                     <Panel className={styles.demoCheckboxpanel}>
                         <Select
-                            label={'Velg innsatsgruppe'}
+                            label={'Velg 14a vedtak'}
                             onChange={handleChangeServicegruppe}
                             id="velg-bruker"
                             defaultValue={hentServicegruppe()}
@@ -421,7 +421,7 @@ const DemoDashboard = () => {
                             ))}
                         </Select>
                         <Select
-                            label={'Velg foreslått innsatsgruppe'}
+                            label={'Velg profilering'}
                             onChange={handleChangeForeslaattInnsatsgruppe}
                             id="velg-foreslaatt-innsatsgruppe"
                             defaultValue={hentForeslattInnsatsgruppe()}
@@ -435,7 +435,7 @@ const DemoDashboard = () => {
 
                         <Panel className={styles.demoCheckboxpanel}>
                             <RadioGroup
-                                legend="Behov for veiledning-valg"
+                                legend="Velg brukers valg"
                                 defaultValue={behovForVeiledningState?.oppfolging}
                                 onChange={(val: any) => handleChangeBehovForVeiledning(val)}
                             >
