@@ -26,6 +26,7 @@ function ReadMoreVurdering() {
             <ul>
                 <li>dine svar fra registreringen</li>
                 <li>opplysningene NAV har om din situasjon</li>
+                <li>det du selv mener</li>
             </ul>
         </ReadMore>
     );
