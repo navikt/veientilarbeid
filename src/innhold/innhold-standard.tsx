@@ -1,5 +1,4 @@
 import { useFeatureToggleData } from '../contexts/feature-toggles';
-import { useOppfolgingData, Servicegruppe } from '../contexts/oppfolging';
 
 import InnholdMetrics from './innhold-metrics';
 import InViewport from '../komponenter/in-viewport/in-viewport';
@@ -17,10 +16,7 @@ import styles from './innhold.module.css';
 
 const InnholdStandard = () => {
     const features = useFeatureToggleData();
-    const { servicegruppe } = useOppfolgingData();
-    const harIkke14aVedtak = servicegruppe === Servicegruppe.IVURD;
-    const brukBehovsAvklaring = features['veientilarbeid.bruk-klarer-seg-selv'];
-    const visBehovsAvklaring = brukBehovsAvklaring && harIkke14aVedtak;
+    const visBehovsAvklaring = features['veientilarbeid.bruk-klarer-seg-selv'];
 
     return (
         <>

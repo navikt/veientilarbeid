@@ -4,7 +4,6 @@ import { Bandage, Dialog, Email, Laptop, Task } from '@navikt/ds-icons';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
-import { useOppfolgingData, Servicegruppe } from '../../contexts/oppfolging';
 import { useSprakValg } from '../../contexts/sprak';
 
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
@@ -81,10 +80,7 @@ function Situasjonsbestemt() {
     const { amplitudeData } = useAmplitudeData();
     const { erSykmeldtMedArbeidsgiver } = useBrukerinfoData();
     const features = useFeatureToggleData();
-    const { servicegruppe } = useOppfolgingData();
-    const harIkke14aVedtak = servicegruppe === Servicegruppe.IVURD;
-    const brukBehovsAvklaring = features['veientilarbeid.bruk-klarer-seg-selv'];
-    const visBehovsAvklaring = brukBehovsAvklaring && harIkke14aVedtak;
+    const visBehovsAvklaring = features['veientilarbeid.bruk-klarer-seg-selv'];
 
     const handleClick = (action: string) => {
         loggAktivitet({ aktivitet: action, ...amplitudeData });
