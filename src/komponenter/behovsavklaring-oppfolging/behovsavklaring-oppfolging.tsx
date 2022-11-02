@@ -13,6 +13,8 @@ function Behovsavklaring() {
         return <BehovsavklaringAvklart servicegruppe={servicegruppe} />;
     }
 
+    //TODO: sjekke at dato for svar er senere enn start på løpende arbeidssøkerperiode
+
     return !behovForVeiledning ? <IkkeSvartPaaBehovsavklaring /> : <SvartPaaBehovsavklaring />;
 }
 
