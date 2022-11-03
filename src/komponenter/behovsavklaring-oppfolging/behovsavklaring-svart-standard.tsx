@@ -1,8 +1,8 @@
 import { Dialog } from '@navikt/ds-icons';
-import { BodyLong, Button, Detail, Heading, Panel, ReadMore, Link } from '@navikt/ds-react';
+import { BodyLong, Button, Detail, Heading, Link, Panel, ReadMore } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
-import { BehovForVeiledningResponse, useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
+import { useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
 
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import ReadMoreVeileder from './readmore-veileder';
@@ -13,6 +13,8 @@ import { aktivitetsplanLenke, dialogLenke } from '../../innhold/lenker';
 
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
+import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { loggLenkeKlikkTilAmplitude, onClickDialogKnapp } from './behovsavklaring-avklart-standard';
 
 const TEKSTER = {
     nb: {
@@ -33,17 +35,11 @@ const TEKSTER = {
     },
 };
 
-export function handleDialogKnapp(behovForVeiledning: BehovForVeiledningResponse) {
-    return () => {
-        const dialogId = behovForVeiledning?.dialogId ? `/${behovForVeiledning?.dialogId}` : '';
-        window.location.href = `${dialogLenke}${dialogId}`;
-    };
-}
-
 function EnigMedProfilering() {
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const { behovForVeiledning } = useBehovForVeiledning();
+    const { amplitudeData } = useAmplitudeData();
 
     return (
         <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
@@ -68,7 +64,9 @@ function EnigMedProfilering() {
                 <BodyLong className={spacingStyles.blokkXs}>{tekst('beskrivelseEnig')}</BodyLong>
                 <ReadMore size="medium" header={tekst('readMoreHeadingEnig')} className={spacingStyles.mb1}>
                     <BodyLong className={spacingStyles.blokkXs}>{tekst('readMoreInnholdEnig')}</BodyLong>
-                    <Button onClick={handleDialogKnapp(behovForVeiledning)}>{tekst('gaTilDialog')}</Button>
+                    <Button onClick={onClickDialogKnapp(behovForVeiledning, amplitudeData)}>
+                        {tekst('gaTilDialog')}
+                    </Button>
                 </ReadMore>
                 <ReadMoreVeileder />
                 <BodyLong className={spacingStyles.mt1}>
@@ -87,6 +85,7 @@ function UenigMedProfilering() {
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const { behovForVeiledning } = useBehovForVeiledning();
+    const { amplitudeData } = useAmplitudeData();
 
     return (
         <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
@@ -115,14 +114,32 @@ function UenigMedProfilering() {
                     Om du ønsker å skrive til veilederen om det du ønsker hjelp til kan du gjøre det via dialogen.
                 </BodyLong>
                 <BodyLong className={spacingStyles.mb1}>
-                    <Button onClick={handleDialogKnapp(behovForVeiledning)}>{tekst('gaTilDialog')}</Button>
+                    <Button onClick={onClickDialogKnapp(behovForVeiledning, amplitudeData)}>
+                        {tekst('gaTilDialog')}
+                    </Button>
                 </BodyLong>
                 <ReadMoreVeileder />
                 <BodyLong className={spacingStyles.mt1}>
-                    <Link href={dialogLenke}>{tekst('gaTilDialog')}</Link>
+                    <Link
+                        href={dialogLenke}
+                        onClick={loggLenkeKlikkTilAmplitude({
+                            aktivitet: 'Behovsavklaring - svart - standard - trykker på dialog-lenke',
+                            ...amplitudeData,
+                        })}
+                    >
+                        {tekst('gaTilDialog')}
+                    </Link>
                 </BodyLong>
                 <BodyLong className={spacingStyles.mt1}>
-                    <Link href={aktivitetsplanLenke}>{tekst('gaTilAktivitetsplan')}</Link>
+                    <Link
+                        href={aktivitetsplanLenke}
+                        onClick={loggLenkeKlikkTilAmplitude({
+                            aktivitet: 'Behovsavklaring - svart - standard - trykker på aktivitetsplan-lenke',
+                            ...amplitudeData,
+                        })}
+                    >
+                        {tekst('gaTilAktivitetsplan')}
+                    </Link>
                 </BodyLong>
             </div>
             <InViewport loggTekst="Viser behovsavklaringkomponent - svart - uenig - standard i viewport" />

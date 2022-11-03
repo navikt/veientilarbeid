@@ -43,7 +43,7 @@ function IkkeSvartPaaBehovsavklaringStandardInnsats() {
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
-    function handleBehovForVeiledning(behov: ForeslattInnsatsgruppe) {
+    function onClickBehovForVeiledning(behov: ForeslattInnsatsgruppe) {
         lagreBehovForVeiledning({
             oppfolging: behov,
             overskrift: tekst('behovOverskrift'),
@@ -78,12 +78,12 @@ function IkkeSvartPaaBehovsavklaringStandardInnsats() {
                 <BodyLong className={`${spacingStyles.mb1}`}>{tekst('beskrivelse')}</BodyLong>
                 <BodyShort className={`${spacingStyles.mb1}`}>{tekst('hvaTenkerDu')}</BodyShort>
                 <BodyShort className={`${spacingStyles.mb1}`}>{tekst('klareDegSelv')}</BodyShort>
-                <Button onClick={() => handleBehovForVeiledning(ForeslattInnsatsgruppe.STANDARD_INNSATS)}>
+                <Button onClick={() => onClickBehovForVeiledning(ForeslattInnsatsgruppe.STANDARD_INNSATS)}>
                     Ja, jeg ønsker å klare meg selv
                 </Button>
                 <div className={spacingStyles.mb1}>
                     <Button
-                        onClick={() => handleBehovForVeiledning(ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS)}
+                        onClick={() => onClickBehovForVeiledning(ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS)}
                         variant="secondary"
                         className={`${spacingStyles.mt1}`}
                     >

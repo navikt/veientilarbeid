@@ -11,6 +11,8 @@ import { aktivitetsplanLenke, dialogLenke } from '../../innhold/lenker';
 import { ListeElement } from '../situasjonsbestemt/situasjonsbestemt';
 
 import spacingStyles from '../../spacing.module.css';
+import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { loggLenkeKlikkTilAmplitude } from './behovsavklaring-avklart-standard';
 
 const TEKSTER = {
     nb: {
@@ -40,6 +42,7 @@ const TEKSTER = {
 function BehovsavklaringAvklartSituasjonsbestemt() {
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
+    const { amplitudeData } = useAmplitudeData();
 
     return ListeElement(
         <Dialog />,
@@ -51,10 +54,26 @@ function BehovsavklaringAvklartSituasjonsbestemt() {
             <BodyLong className={spacingStyles.mb1}>{tekst('beskrivelseEnigDialog')}.</BodyLong>
             <ReadMoreVeileder />
             <BodyLong className={spacingStyles.mt1}>
-                <Link href={dialogLenke}>{tekst('gaTilDialog')}</Link>
+                <Link
+                    href={dialogLenke}
+                    onClick={loggLenkeKlikkTilAmplitude({
+                        aktivitet: 'Behovsavklaring - avklart - situasjonsbestemt - trykker på dialog-lenke',
+                        ...amplitudeData,
+                    })}
+                >
+                    {tekst('gaTilDialog')}
+                </Link>
             </BodyLong>
             <BodyLong className={spacingStyles.mt1}>
-                <Link href={aktivitetsplanLenke}>{tekst('gaTilAktivitetsplan')}</Link>
+                <Link
+                    href={aktivitetsplanLenke}
+                    onClick={loggLenkeKlikkTilAmplitude({
+                        aktivitet: 'Behovsavklaring - avklart - situasjonsbestemt - trykker på aktivitetsplan-lenke',
+                        ...amplitudeData,
+                    })}
+                >
+                    {tekst('gaTilAktivitetsplan')}
+                </Link>
             </BodyLong>
             <InViewport loggTekst="Viser behovsavklaringkomponent - avklart - situasjonsbestemt i viewport" />
         </div>

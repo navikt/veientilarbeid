@@ -39,7 +39,7 @@ const TEKSTER = {
 export function onClickDialogKnapp(behovForVeiledning: BehovForVeiledningResponse, amplitudeData: AmplitudeData) {
     return () => {
         loggAktivitet({
-            aktivitet: `Trykker på gå til dialog-knapo - ${behovForVeiledning?.oppfolging}`,
+            aktivitet: `Trykker på gå til dialog-knapp - ${behovForVeiledning?.oppfolging}`,
             ...amplitudeData,
         });
         const dialogId = behovForVeiledning?.dialogId ? `/${behovForVeiledning?.dialogId}` : '';
