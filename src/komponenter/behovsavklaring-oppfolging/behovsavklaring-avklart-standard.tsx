@@ -12,6 +12,10 @@ import { aktivitetsplanLenke, dialogLenke } from '../../innhold/lenker';
 
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
+import { AmplitudeStandardAktivitetsData, loggAktivitet } from '../../metrics/metrics';
+import { AmplitudeData } from '../../metrics/amplitude-utils';
+import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { MouseEventHandler } from 'react';
 
 const TEKSTER = {
     nb: {
@@ -32,10 +36,24 @@ const TEKSTER = {
     },
 };
 
-export function handleDialogKnapp(behovForVeiledning: BehovForVeiledningResponse) {
+export function onClickDialogKnapp(behovForVeiledning: BehovForVeiledningResponse, amplitudeData: AmplitudeData) {
     return () => {
+        loggAktivitet({
+            aktivitet: `Trykker på gå til dialog-knapo - ${behovForVeiledning?.oppfolging}`,
+            ...amplitudeData,
+        });
         const dialogId = behovForVeiledning?.dialogId ? `/${behovForVeiledning?.dialogId}` : '';
         window.location.href = `${dialogLenke}${dialogId}`;
+    };
+}
+
+export function loggLenkeKlikkTilAmplitude(
+    data: AmplitudeStandardAktivitetsData
+): MouseEventHandler<HTMLAnchorElement> {
+    return (e) => {
+        e.preventDefault();
+        loggAktivitet(data);
+        window.location.href = (e.target as HTMLAnchorElement).href;
     };
 }
 
@@ -43,6 +61,7 @@ function BehovsavklaringAvklartStandard() {
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const { behovForVeiledning } = useBehovForVeiledning();
+    const { amplitudeData } = useAmplitudeData();
 
     return (
         <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
@@ -67,14 +86,32 @@ function BehovsavklaringAvklartStandard() {
                 <BodyLong className={spacingStyles.blokkXs}>{tekst('beskrivelseEnig')}</BodyLong>
                 <ReadMore size="medium" header={tekst('readMoreHeadingEnig')} className={spacingStyles.mb1}>
                     <BodyLong className={spacingStyles.blokkXs}>{tekst('readMoreInnholdEnig')}</BodyLong>
-                    <Button onClick={handleDialogKnapp(behovForVeiledning)}>{tekst('gaTilDialog')}</Button>
+                    <Button onClick={onClickDialogKnapp(behovForVeiledning, amplitudeData)}>
+                        {tekst('gaTilDialog')}
+                    </Button>
                 </ReadMore>
                 <ReadMoreVeileder />
                 <BodyLong className={spacingStyles.mt1}>
-                    <Link href={dialogLenke}>{tekst('gaTilDialog')}</Link>
+                    <Link
+                        href={dialogLenke}
+                        onClick={loggLenkeKlikkTilAmplitude({
+                            aktivitet: 'Behovsavklaring - avklart - standard - trykker på dialog-lenke',
+                            ...amplitudeData,
+                        })}
+                    >
+                        {tekst('gaTilDialog')}
+                    </Link>
                 </BodyLong>
                 <BodyLong className={spacingStyles.mt1}>
-                    <Link href={aktivitetsplanLenke}>{tekst('gaTilAktivitetsplan')}</Link>
+                    <Link
+                        href={aktivitetsplanLenke}
+                        onClick={loggLenkeKlikkTilAmplitude({
+                            aktivitet: 'Behovsavklaring - avklart - standard - trykker på aktivitetsplan-lenke',
+                            ...amplitudeData,
+                        })}
+                    >
+                        {tekst('gaTilAktivitetsplan')}
+                    </Link>
                 </BodyLong>
             </div>
             <InViewport loggTekst="Viser behovsavklaringkomponent - avklart - standard i viewport" />
