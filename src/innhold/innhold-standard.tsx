@@ -1,4 +1,4 @@
-import { useFeatureToggleData } from '../contexts/feature-toggles';
+import { FeatureToggles, useFeatureToggleData } from '../contexts/feature-toggles';
 import { useEgenvurderingData } from '../contexts/egenvurdering';
 import { useArbeidssokerPerioder } from '../contexts/arbeidssoker';
 
@@ -30,7 +30,7 @@ const InnholdStandard = () => {
     const harPeriodeStart = harAktivArbeidssokerperiode === 'Ja' ? new Date(aktivPeriodeStart) : null;
     const harGyldigEgenvurderingsbesvarelse = harSistSvartDato && harPeriodeStart && harSistSvartDato > harPeriodeStart;
 
-    const visBehovsAvklaring = features['veientilarbeid.bruk-klarer-seg-selv'] && !harGyldigEgenvurderingsbesvarelse;
+    const visBehovsAvklaring = features[FeatureToggles.BRUK_NY_BEHOVSVURDERING] && !harGyldigEgenvurderingsbesvarelse;
 
     return (
         <>

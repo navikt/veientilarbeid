@@ -1,7 +1,7 @@
 import { BodyShort } from '@navikt/ds-react';
 
 import { useUnderOppfolging } from '../../contexts/arbeidssoker';
-import { useFeatureToggleData } from '../../contexts/feature-toggles';
+import { FeatureToggles, useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useSprakValg } from '../../contexts/sprak';
 import { useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
 
@@ -99,7 +99,7 @@ const Opplysninger = (props: any) => {
     const underoppfolging = useUnderOppfolging()?.underoppfolging;
     const kanViseKomponent = underoppfolging;
     const featuretoggles = useFeatureToggleData();
-    const visKlareSegSelvSporsmal = featuretoggles['veientilarbeid.bruk-klarer-seg-selv'];
+    const visKlareSegSelvSporsmal = featuretoggles[FeatureToggles.BRUK_NY_BEHOVSVURDERING];
 
     const handleDialogClick = () => {
         loggAktivitet({ aktivitet: 'Går til endre registreringsopplysninger', ...amplitudeData });

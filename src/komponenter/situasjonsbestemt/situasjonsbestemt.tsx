@@ -3,7 +3,7 @@ import { Bandage, Dialog, Email, Laptop, Task } from '@navikt/ds-icons';
 
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
-import { useFeatureToggleData } from '../../contexts/feature-toggles';
+import { FeatureToggles, useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useEgenvurderingData } from '../../contexts/egenvurdering';
 import { useSprakValg } from '../../contexts/sprak';
 import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
@@ -94,7 +94,7 @@ function Situasjonsbestemt() {
     const harPeriodeStart = harAktivArbeidssokerperiode === 'Ja' ? new Date(aktivPeriodeStart) : null;
     const harGyldigEgenvurderingsbesvarelse = harSistSvartDato && harPeriodeStart && harSistSvartDato > harPeriodeStart;
 
-    const visBehovsAvklaring = features['veientilarbeid.bruk-klarer-seg-selv'] && !harGyldigEgenvurderingsbesvarelse;
+    const visBehovsAvklaring = features[FeatureToggles.BRUK_NY_BEHOVSVURDERING] && !harGyldigEgenvurderingsbesvarelse;
 
     const handleClick = (action: string) => {
         loggAktivitet({ aktivitet: action, ...amplitudeData });

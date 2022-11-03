@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
-import { useFeatureToggleData } from './feature-toggles';
+import { FeatureToggles, useFeatureToggleData } from './feature-toggles';
 
 import { fetchToJson } from '../ducks/api-utils';
 import { BEHOV_FOR_VEILEDNING_URL, OPPRETT_DIALOG_URL, requestConfig } from '../ducks/api';
@@ -74,7 +74,7 @@ function BehovForVeiledningProvider(props: { children: ReactNode }) {
     };
 
     useEffect(() => {
-        if (featureToggleData['veientilarbeid.bruk-klarer-seg-selv']) {
+        if (featureToggleData[FeatureToggles.BRUK_NY_BEHOVSVURDERING]) {
             hentBehovForVeiledning();
         }
     }, [featureToggleData]);
