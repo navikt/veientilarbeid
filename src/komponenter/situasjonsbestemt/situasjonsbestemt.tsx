@@ -4,13 +4,16 @@ import { Bandage, Dialog, Email, Laptop, Task } from '@navikt/ds-icons';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
+import { useEgenvurderingData } from '../../contexts/egenvurdering';
 import { useSprakValg } from '../../contexts/sprak';
+import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
 
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { aktivitetsplanLenke, dialogLenke, omMeldekortLenke, sykefravaerLenke } from '../../innhold/lenker';
 import { loggAktivitet } from '../../metrics/metrics';
 import Behovsavklaring from '../behovsavklaring-oppfolging/behovsavklaring-oppfolging';
 import Egenvurdering from '../situasjonsbestemt/egenvurdering';
+import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
@@ -79,8 +82,19 @@ function Situasjonsbestemt() {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
     const { amplitudeData } = useAmplitudeData();
     const { erSykmeldtMedArbeidsgiver } = useBrukerinfoData();
+    const egenvurderingData = useEgenvurderingData();
     const features = useFeatureToggleData();
-    const visBehovsAvklaring = features['veientilarbeid.bruk-klarer-seg-selv'];
+    const arbeidssokerperioderData = useArbeidssokerPerioder();
+    const harEgenvurderingbesvarelse = egenvurderingData !== null;
+    const { harAktivArbeidssokerperiode, aktivPeriodeStart } = beregnArbeidssokerperioder(arbeidssokerperioderData);
+    const harSistSvartDato =
+        harEgenvurderingbesvarelse && egenvurderingData.sistOppdatert
+            ? new Date(egenvurderingData.sistOppdatert)
+            : null;
+    const harPeriodeStart = harAktivArbeidssokerperiode === 'Ja' ? new Date(aktivPeriodeStart) : null;
+    const harGyldigEgenvurderingsbesvarelse = harSistSvartDato && harPeriodeStart && harSistSvartDato > harPeriodeStart;
+
+    const visBehovsAvklaring = features['veientilarbeid.bruk-klarer-seg-selv'] && !harGyldigEgenvurderingsbesvarelse;
 
     const handleClick = (action: string) => {
         loggAktivitet({ aktivitet: action, ...amplitudeData });
