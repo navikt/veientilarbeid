@@ -45,7 +45,7 @@ function EnigMedProfilering() {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
     return (
-        <Panel className={`${flexStyles.flex}`}>
+        <Panel className={`${flexStyles.flex}  ${spacingStyles.px1_5}`}>
             <span
                 style={{
                     marginRight: '0.5em',
@@ -80,7 +80,7 @@ function UenigMedProfilering() {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const { behovForVeiledning } = useBehovForVeiledning();
     return (
-        <Panel className={`${flexStyles.flex}`}>
+        <Panel className={`${flexStyles.flex}  ${spacingStyles.px1_5}`}>
             <span
                 style={{
                     marginRight: '0.5em',
