@@ -54,7 +54,7 @@ function BehovsavklaringAvklartSituasjonsbestemt() {
                 <Dialog />
             </span>
             <div>
-                <ErRendret loggTekst="Rendrer behovsavklaringkomponent - svart - enig - situasjonsbestemt" />
+                <ErRendret loggTekst="Rendrer behovsavklaringkomponent - avklart - situasjonsbestemt" />
                 <Heading className={spacingStyles.blokkXs} size="medium">
                     {tekst('headingEnig')}
                 </Heading>
@@ -66,7 +66,7 @@ function BehovsavklaringAvklartSituasjonsbestemt() {
                 <BodyLong className={spacingStyles.mt1}>
                     <Link href={aktivitetsplanLenke}>{tekst('gaTilAktivitetsplan')}</Link>
                 </BodyLong>
-                <InViewport loggTekst="Viser behovsavklaringkomponent - svart - enig - situasjonsbestemt i viewport" />
+                <InViewport loggTekst="Viser behovsavklaringkomponent - avklart - situasjonsbestemt i viewport" />
             </div>
         </Panel>
     );

@@ -49,7 +49,10 @@ function IkkeSvartPaaBehovsavklaringStandardInnsats() {
             overskrift: tekst('behovOverskrift'),
             tekst: tekst(behov === ForeslattInnsatsgruppe.STANDARD_INNSATS ? 'behovSvarEnig' : 'behovSvarUenig'),
         });
-        loggAktivitet({ ...amplitudeData, aktivitet: `Velger ${behov} fra behovsavklaringkomponent standard` });
+        loggAktivitet({
+            ...amplitudeData,
+            aktivitet: `Velger ${behov} fra behovsavklaringkomponent - ikke svart - standard`,
+        });
     }
 
     return (

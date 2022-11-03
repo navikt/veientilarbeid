@@ -52,7 +52,7 @@ function IkkeSvartPaaBehovsavklaringSituasjonsbestemt() {
         });
         loggAktivitet({
             ...amplitudeData,
-            aktivitet: `Velger ${behov} fra behovsavklaringkomponent situasjonsbestemt`,
+            aktivitet: `Velger ${behov} fra behovsavklaringkomponent - ikke svart - situasjonsbestemt`,
         });
     }
 

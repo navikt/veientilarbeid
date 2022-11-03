@@ -46,7 +46,7 @@ function BehovsavklaringAvklartStandard() {
 
     return (
         <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
-            <ErRendret loggTekst="Rendrer behovsavklaringkomponent - svart - enig - standard" />
+            <ErRendret loggTekst="Rendrer behovsavklaringkomponent - avklart - standard" />
             <span
                 style={{
                     marginRight: '0.5em',
@@ -77,7 +77,7 @@ function BehovsavklaringAvklartStandard() {
                     <Link href={aktivitetsplanLenke}>{tekst('gaTilAktivitetsplan')}</Link>
                 </BodyLong>
             </div>
-            <InViewport loggTekst="Viser behovsavklaringkomponent  - svart - enig - standard i viewport" />
+            <InViewport loggTekst="Viser behovsavklaringkomponent - avklart - standard i viewport" />
         </Panel>
     );
 }

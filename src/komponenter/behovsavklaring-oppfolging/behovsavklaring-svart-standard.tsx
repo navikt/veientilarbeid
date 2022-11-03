@@ -78,7 +78,7 @@ function EnigMedProfilering() {
                     <Link href={aktivitetsplanLenke}>{tekst('gaTilAktivitetsplan')}</Link>
                 </BodyLong>
             </div>
-            <InViewport loggTekst="Viser behovsavklaringkomponent  - svart - enig - standard i viewport" />
+            <InViewport loggTekst="Viser behovsavklaringkomponent - svart - enig - standard i viewport" />
         </Panel>
     );
 }
