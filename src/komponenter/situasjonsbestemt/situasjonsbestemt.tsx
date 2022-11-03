@@ -145,7 +145,7 @@ function Situasjonsbestemt() {
 
     return (
         <>
-            <Panel className={spacingStyles.blokkXs}>
+            <Panel className={styles.mtn1}>
                 <ul className={styles.ikkeStandardListe}>
                     {visBehovsAvklaring ? <Behovsavklaring /> : <DialogPanel />}
                     {ListeElement(
