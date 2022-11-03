@@ -1,5 +1,5 @@
 import { Dialog } from '@navikt/ds-icons';
-import { BodyLong, BodyShort, Button, Heading, Panel } from '@navikt/ds-react';
+import { BodyLong, BodyShort, Button, Heading } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
 import { useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
@@ -12,9 +12,9 @@ import ReadMoreVurdering from './readmore-vurdering';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import { ForeslattInnsatsgruppe } from '../../contexts/brukerregistrering';
+import { ListeElement } from '../situasjonsbestemt/situasjonsbestemt';
 
 import spacingStyles from '../../spacing.module.css';
-import flexStyles from '../../flex.module.css';
 
 const TEKSTER = {
     nb: {
@@ -56,43 +56,32 @@ function IkkeSvartPaaBehovsavklaringSituasjonsbestemt() {
         });
     }
 
-    return (
-        <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
-            <span
-                style={{
-                    marginRight: '0.5em',
-                    position: 'relative',
-                    top: '6px',
-                    fontSize: 'var(--navds-font-size-heading-medium)',
-                }}
-            >
-                <Dialog />
-            </span>
-            <div className={spacingStyles.fullWidth}>
-                <ErRendret loggTekst="Rendrer behovsavklaringkomponent - ikke svart - situasjonsbestemt" />
-                <Heading className={spacingStyles.blokkXs} size="medium">
-                    {tekst('heading')}
-                </Heading>
-                <BodyLong className={`${spacingStyles.mb1}`}>{tekst('beskrivelse')}</BodyLong>
-                <BodyShort className={`${spacingStyles.mb1}`}>{tekst('hvaTenkerDu')}</BodyShort>
-                <BodyShort className={`${spacingStyles.mb1}`}>{tekst('klareDegSelv')}</BodyShort>
-                <Button onClick={() => handleBehovForVeiledning(ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS)}>
-                    Ja, jeg ønsker hjelp
+    return ListeElement(
+        <Dialog />,
+        <div className={spacingStyles.fullWidth}>
+            <ErRendret loggTekst="Rendrer behovsavklaringkomponent - ikke svart - situasjonsbestemt" />
+            <Heading className={spacingStyles.blokkXs} size="medium">
+                {tekst('heading')}
+            </Heading>
+            <BodyLong className={`${spacingStyles.mb1}`}>{tekst('beskrivelse')}</BodyLong>
+            <BodyShort className={`${spacingStyles.mb1}`}>{tekst('hvaTenkerDu')}</BodyShort>
+            <BodyShort className={`${spacingStyles.mb1}`}>{tekst('klareDegSelv')}</BodyShort>
+            <Button onClick={() => handleBehovForVeiledning(ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS)}>
+                Ja, jeg ønsker hjelp
+            </Button>
+            <div className={spacingStyles.mb1}>
+                <Button
+                    onClick={() => handleBehovForVeiledning(ForeslattInnsatsgruppe.STANDARD_INNSATS)}
+                    variant="secondary"
+                    className={`${spacingStyles.mt1}`}
+                >
+                    Nei, jeg vil gjerne klare meg selv
                 </Button>
-                <div className={spacingStyles.mb1}>
-                    <Button
-                        onClick={() => handleBehovForVeiledning(ForeslattInnsatsgruppe.STANDARD_INNSATS)}
-                        variant="secondary"
-                        className={`${spacingStyles.mt1}`}
-                    >
-                        Nei, jeg vil gjerne klare meg selv
-                    </Button>
-                </div>
-                <ReadMoreVurdering />
-                <ReadMoreVeileder />
-                <InViewport loggTekst="Viser behovsavklaringkomponent - ikke svart - situasjonsbestemt i viewport" />
             </div>
-        </Panel>
+            <ReadMoreVurdering />
+            <ReadMoreVeileder />
+            <InViewport loggTekst="Viser behovsavklaringkomponent - ikke svart - situasjonsbestemt i viewport" />
+        </div>
     );
 }
 
