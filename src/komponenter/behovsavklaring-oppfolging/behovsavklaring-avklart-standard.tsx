@@ -16,7 +16,7 @@ import flexStyles from '../../flex.module.css';
 const TEKSTER = {
     nb: {
         overskrift: 'Hjelp og støtte',
-        headingEnig: 'Du har gode muligheter',
+        headingEnig: 'Du har gode muligheter til å klare deg selv',
         headingUenig: 'Du har sagt at du ønsker hjelp',
         beskrivelseEnig: 'Du har ansvar for å aktivt lete etter jobber og å søke på relevante stillinger på egenhånd.',
         hvaTenkerDu: 'Hva tenker du?',
