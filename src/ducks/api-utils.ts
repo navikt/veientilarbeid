@@ -26,7 +26,7 @@ function sjekkStatuskode(response: Response): Response {
 function toJson(response: Response) {
     if (
         response.status === 204 ||
-        (response.status === 201 && /application\/json/.test(response.headers.get('Content-Type')!))
+        (response.status === 201 && !/application\/json/.test(response.headers.get('Content-Type')!))
     ) {
         // 204 No content
         // 201 Created med tom respons tilbake
