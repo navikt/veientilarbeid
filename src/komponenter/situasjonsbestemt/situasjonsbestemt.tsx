@@ -145,7 +145,7 @@ function Situasjonsbestemt() {
 
     return (
         <>
-            <Panel className={styles.mtn1}>
+            <Panel className={`${styles.mtn1} ${spacingStyles.mb1}`}>
                 <ul className={styles.ikkeStandardListe}>
                     {visBehovsAvklaring ? <Behovsavklaring /> : <DialogPanel />}
                     {ListeElement(
@@ -156,7 +156,7 @@ function Situasjonsbestemt() {
                                 {tekst('aktivitetsplan.bruke')}{' '}
                                 <Link
                                     href={aktivitetsplanLenke}
-                                    onClick={() => handleClick('Går til aktivitetsplanen fra ikke-standard')}
+                                    onClick={() => handleClick('Går til aktivitetsplanen fra situasjonsbestemt')}
                                 >
                                     {tekst('aktivitetsplan.lenketekst')}
                                 </Link>{' '}
