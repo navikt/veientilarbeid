@@ -81,7 +81,7 @@ function ReadMoreVeileder() {
 
     const handleClickOpenReadMoreVeileder = () => {
         if (!clickedInnsyn) {
-            loggAktivitet({ aktivitet: 'Ser ReadMore om veileder', ...amplitudeData });
+            loggAktivitet({ aktivitet: 'Åpner ReadMore om veileder', ...amplitudeData });
             setClickedInnsyn(true);
         }
     };

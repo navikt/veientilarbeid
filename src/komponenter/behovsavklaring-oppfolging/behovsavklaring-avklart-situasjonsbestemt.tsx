@@ -48,7 +48,7 @@ function BehovsavklaringAvklartSituasjonsbestemt() {
         <Dialog />,
         <div>
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - avklart - situasjonsbestemt" />
-            <Heading className={spacingStyles.blokkXs} size="medium">
+            <Heading className={spacingStyles.mb1} size="medium">
                 {tekst('headingEnig')}
             </Heading>
             <BodyLong className={spacingStyles.mb1}>{tekst('beskrivelseEnigDialog')}.</BodyLong>
@@ -57,7 +57,7 @@ function BehovsavklaringAvklartSituasjonsbestemt() {
                 <Link
                     href={dialogLenke}
                     onClick={loggLenkeKlikkTilAmplitude({
-                        aktivitet: 'Behovsavklaring - avklart - situasjonsbestemt - trykker på dialog-lenke',
+                        aktivitet: 'Behovsavklaring - avklart - situasjonsbestemt - går til dialogen',
                         ...amplitudeData,
                     })}
                 >
@@ -68,7 +68,7 @@ function BehovsavklaringAvklartSituasjonsbestemt() {
                 <Link
                     href={aktivitetsplanLenke}
                     onClick={loggLenkeKlikkTilAmplitude({
-                        aktivitet: 'Behovsavklaring - avklart - situasjonsbestemt - trykker på aktivitetsplan-lenke',
+                        aktivitet: 'Behovsavklaring - avklart - situasjonsbestemt - går til aktivitetsplanen',
                         ...amplitudeData,
                     })}
                 >

@@ -80,10 +80,10 @@ function BehovsavklaringAvklartStandard() {
                 <Detail uppercase style={{ marginTop: '-1rem' }}>
                     {tekst('overskrift')}
                 </Detail>
-                <Heading className={spacingStyles.blokkXs} size="medium">
+                <Heading className={spacingStyles.mb1} size="medium">
                     {tekst('headingEnig')}
                 </Heading>
-                <BodyLong className={spacingStyles.blokkXs}>{tekst('beskrivelseEnig')}</BodyLong>
+                <BodyLong className={spacingStyles.mb1}>{tekst('beskrivelseEnig')}</BodyLong>
                 <ReadMore size="medium" header={tekst('readMoreHeadingEnig')} className={spacingStyles.mb1}>
                     <BodyLong className={spacingStyles.blokkXs}>{tekst('readMoreInnholdEnig')}</BodyLong>
                     <Button onClick={onClickDialogKnapp(behovForVeiledning, amplitudeData)}>
@@ -95,7 +95,7 @@ function BehovsavklaringAvklartStandard() {
                     <Link
                         href={dialogLenke}
                         onClick={loggLenkeKlikkTilAmplitude({
-                            aktivitet: 'Behovsavklaring - avklart - standard - trykker på dialog-lenke',
+                            aktivitet: 'Behovsavklaring - avklart - standard - går til dialogen',
                             ...amplitudeData,
                         })}
                     >
@@ -106,7 +106,7 @@ function BehovsavklaringAvklartStandard() {
                     <Link
                         href={aktivitetsplanLenke}
                         onClick={loggLenkeKlikkTilAmplitude({
-                            aktivitet: 'Behovsavklaring - avklart - standard - trykker på aktivitetsplan-lenke',
+                            aktivitet: 'Behovsavklaring - avklart - standard - går til aktivitetsplanen',
                             ...amplitudeData,
                         })}
                     >

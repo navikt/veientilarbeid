@@ -50,7 +50,7 @@ function EnigMedProfilering() {
         <Dialog />,
         <div>
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - svart - enig - situasjonsbestemt" />
-            <Heading className={spacingStyles.blokkXs} size="medium">
+            <Heading className={spacingStyles.mb1} size="medium">
                 {tekst('headingEnig')}
             </Heading>
             <BodyLong className={spacingStyles.mb1}>{tekst('beskrivelseEnigDialog')}.</BodyLong>
@@ -59,7 +59,7 @@ function EnigMedProfilering() {
                 <Link
                     href={dialogLenke}
                     onClick={loggLenkeKlikkTilAmplitude({
-                        aktivitet: 'Behovsavklaring - svart - situasjonsbestemt - trykker på dialog-lenke',
+                        aktivitet: 'Behovsavklaring - svart - situasjonsbestemt - enig - går til dialogen',
                         ...amplitudeData,
                     })}
                 >
@@ -70,7 +70,7 @@ function EnigMedProfilering() {
                 <Link
                     href={aktivitetsplanLenke}
                     onClick={loggLenkeKlikkTilAmplitude({
-                        aktivitet: 'Behovsavklaring - svart - situasjonsbestemt - trykker på aktivitetsplan-lenke',
+                        aktivitet: 'Behovsavklaring - svart - situasjonsbestemt - enig - går til aktivitetsplanen',
                         ...amplitudeData,
                     })}
                 >
@@ -91,7 +91,7 @@ function UenigMedProfilering() {
         <Dialog />,
         <div className={spacingStyles.fullWidth}>
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - svart - uenig - situasjonsbestemt" />
-            <Heading className={spacingStyles.blokkXs} size="medium">
+            <Heading className={spacingStyles.mb1} size="medium">
                 {tekst('headingUenig')}
             </Heading>
             <BodyLong className={spacingStyles.mb1}>{tekst('beskrivelseUenig')}</BodyLong>
@@ -106,7 +106,7 @@ function UenigMedProfilering() {
                 <Link
                     href={dialogLenke}
                     onClick={loggLenkeKlikkTilAmplitude({
-                        aktivitet: 'Behovsavklaring - svart - situasjonsbestemt - trykker på dialog-lenke',
+                        aktivitet: 'Behovsavklaring - svart - situasjonsbestemt - uenig - går til dialogen',
                         ...amplitudeData,
                     })}
                 >
@@ -117,7 +117,7 @@ function UenigMedProfilering() {
                 <Link
                     href={aktivitetsplanLenke}
                     onClick={loggLenkeKlikkTilAmplitude({
-                        aktivitet: 'Behovsavklaring - svart - situasjonsbestemt - trykker på aktivitetsplan-lenke',
+                        aktivitet: 'Behovsavklaring - svart - situasjonsbestemt - uenig - går til aktivitetsplanen',
                         ...amplitudeData,
                     })}
                 >

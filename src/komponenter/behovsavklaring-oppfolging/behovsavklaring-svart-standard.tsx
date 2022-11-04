@@ -58,22 +58,38 @@ function EnigMedProfilering() {
                 <Detail uppercase style={{ marginTop: '-1rem' }}>
                     {tekst('overskrift')}
                 </Detail>
-                <Heading className={spacingStyles.blokkXs} size="medium">
+                <Heading className={spacingStyles.mb1} size="medium">
                     {tekst('headingEnig')}
                 </Heading>
-                <BodyLong className={spacingStyles.blokkXs}>{tekst('beskrivelseEnig')}</BodyLong>
+                <BodyLong className={spacingStyles.mb1}>{tekst('beskrivelseEnig')}</BodyLong>
                 <ReadMore size="medium" header={tekst('readMoreHeadingEnig')} className={spacingStyles.mb1}>
-                    <BodyLong className={spacingStyles.blokkXs}>{tekst('readMoreInnholdEnig')}</BodyLong>
+                    <BodyLong className={spacingStyles.mb1}>{tekst('readMoreInnholdEnig')}</BodyLong>
                     <Button onClick={onClickDialogKnapp(behovForVeiledning, amplitudeData)}>
                         {tekst('gaTilDialog')}
                     </Button>
                 </ReadMore>
                 <ReadMoreVeileder />
                 <BodyLong className={spacingStyles.mt1}>
-                    <Link href={dialogLenke}>{tekst('gaTilDialog')}</Link>
+                    <Link
+                        href={dialogLenke}
+                        onClick={loggLenkeKlikkTilAmplitude({
+                            aktivitet: 'Behovsavklaring - svart - standard - enig - går til dialogen',
+                            ...amplitudeData,
+                        })}
+                    >
+                        {tekst('gaTilDialog')}
+                    </Link>
                 </BodyLong>
                 <BodyLong className={spacingStyles.mt1}>
-                    <Link href={aktivitetsplanLenke}>{tekst('gaTilAktivitetsplan')}</Link>
+                    <Link
+                        href={aktivitetsplanLenke}
+                        onClick={loggLenkeKlikkTilAmplitude({
+                            aktivitet: 'Behovsavklaring - svart - standard - enig - går til aktivitetsplanen',
+                            ...amplitudeData,
+                        })}
+                    >
+                        {tekst('gaTilAktivitetsplan')}
+                    </Link>
                 </BodyLong>
             </div>
             <InViewport loggTekst="Viser behovsavklaringkomponent - svart - enig - standard i viewport" />
@@ -123,7 +139,7 @@ function UenigMedProfilering() {
                     <Link
                         href={dialogLenke}
                         onClick={loggLenkeKlikkTilAmplitude({
-                            aktivitet: 'Behovsavklaring - svart - standard - trykker på dialog-lenke',
+                            aktivitet: 'Behovsavklaring - svart - standard uenig - går til dialogen',
                             ...amplitudeData,
                         })}
                     >
@@ -134,7 +150,7 @@ function UenigMedProfilering() {
                     <Link
                         href={aktivitetsplanLenke}
                         onClick={loggLenkeKlikkTilAmplitude({
-                            aktivitet: 'Behovsavklaring - svart - standard - trykker på aktivitetsplan-lenke',
+                            aktivitet: 'Behovsavklaring - svart - standard - uenig - går til aktivitetsplanen',
                             ...amplitudeData,
                         })}
                     >

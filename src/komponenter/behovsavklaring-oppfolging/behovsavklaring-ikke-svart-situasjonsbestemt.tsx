@@ -60,7 +60,7 @@ function IkkeSvartPaaBehovsavklaringSituasjonsbestemt() {
         <Dialog />,
         <div className={spacingStyles.fullWidth}>
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - ikke svart - situasjonsbestemt" />
-            <Heading className={spacingStyles.blokkXs} size="medium">
+            <Heading className={spacingStyles.mb1} size="medium">
                 {tekst('heading')}
             </Heading>
             <BodyLong className={`${spacingStyles.mb1}`}>{tekst('beskrivelse')}</BodyLong>

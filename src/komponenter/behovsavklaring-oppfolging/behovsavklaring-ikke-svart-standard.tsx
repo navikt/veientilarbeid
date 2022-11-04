@@ -72,7 +72,7 @@ function IkkeSvartPaaBehovsavklaringStandardInnsats() {
                 <Detail uppercase style={{ marginTop: '-1rem' }}>
                     {tekst('overskrift')}
                 </Detail>
-                <Heading className={spacingStyles.blokkXs} size="medium">
+                <Heading className={spacingStyles.mb1} size="medium">
                     {tekst('heading')}
                 </Heading>
                 <BodyLong className={`${spacingStyles.mb1}`}>{tekst('beskrivelse')}</BodyLong>
