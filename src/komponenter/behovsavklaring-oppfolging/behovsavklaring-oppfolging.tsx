@@ -8,14 +8,15 @@ import BehovsavklaringAvklart from './behovsavklaring-avklart';
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 
 function Behovsavklaring() {
-    const { behovForVeiledning } = useBehovForVeiledning();
+    const behov = useBehovForVeiledning();
+    const { behovForVeiledning } = behov;
     const { servicegruppe } = useOppfolgingData();
     const arbeidssokerperioderData = useArbeidssokerPerioder();
     const { harAktivArbeidssokerperiode, aktivPeriodeStart } = beregnArbeidssokerperioder(arbeidssokerperioderData);
     const harSistSvartDato = behovForVeiledning && behovForVeiledning.dato ? new Date(behovForVeiledning.dato) : null;
     const harPeriodeStart = harAktivArbeidssokerperiode === 'Ja' ? new Date(aktivPeriodeStart) : null;
 
-    console.log('<Behovsavklaring>', behovForVeiledning);
+    console.log('<Behovsavklaring>', behovForVeiledning, behov);
 
     if (servicegruppe !== Servicegruppe.IVURD) {
         return <BehovsavklaringAvklart servicegruppe={servicegruppe} />;

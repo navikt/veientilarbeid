@@ -65,6 +65,7 @@ function BehovForVeiledningProvider(props: { children: ReactNode }) {
                 method: 'POST',
                 body: JSON.stringify({ oppfolging: data.oppfolging, dialogId: dialog?.id }),
             });
+            console.log('lagreBehovForVeiledning =>', behov);
             settBehovForVeiledning(behov as BehovForVeiledningResponse);
         } catch (error) {
             console.error(error);
