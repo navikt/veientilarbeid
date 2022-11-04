@@ -60,13 +60,12 @@ function BehovForVeiledningProvider(props: { children: ReactNode }) {
     const lagreBehovForVeiledning = async (data: BehovForVeiledningRequest) => {
         try {
             const dialog = await opprettDialog(data);
-            settBehovForVeiledning(
-                await fetchToJson(BEHOV_FOR_VEILEDNING_URL, {
-                    ...requestConfig(),
-                    method: 'POST',
-                    body: JSON.stringify({ oppfolging: data.oppfolging, dialogId: dialog?.id }),
-                })
-            );
+            const behov = await fetchToJson(BEHOV_FOR_VEILEDNING_URL, {
+                ...requestConfig(),
+                method: 'POST',
+                body: JSON.stringify({ oppfolging: data.oppfolging, dialogId: dialog?.id }),
+            });
+            settBehovForVeiledning(behov as BehovForVeiledningResponse);
         } catch (error) {
             console.error(error);
             throw error;
