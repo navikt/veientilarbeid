@@ -16,8 +16,6 @@ function Behovsavklaring() {
     const harSistSvartDato = behovForVeiledning && behovForVeiledning.dato ? new Date(behovForVeiledning.dato) : null;
     const harPeriodeStart = harAktivArbeidssokerperiode === 'Ja' ? new Date(aktivPeriodeStart) : null;
 
-    console.log('<Behovsavklaring>', behovForVeiledning, behov);
-
     if (servicegruppe !== Servicegruppe.IVURD) {
         return <BehovsavklaringAvklart servicegruppe={servicegruppe} />;
     }
