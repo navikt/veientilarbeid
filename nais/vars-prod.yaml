@@ -15,6 +15,7 @@ arbeidssokerregistrering_url: https://www.nav.no/arbeid/registrering
 veilarbproxy_url: http://pto-proxy.pto.svc.cluster.local/proxy
 bakveientilarbeid_url: http://bakveientilarbeid
 fortsettDpSoknadUrl: https://tjenester.nav.no/soknaddagpenger-innsending/soknad
+fortsettNyDpSoknadUrl: https://nav.no/dagpenger/soknad
 ingresses:
   - https://veientilarbeid.intern.nav.no
   - https://veientilarbeid.nav.no/

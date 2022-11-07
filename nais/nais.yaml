@@ -48,6 +48,8 @@ spec:
     value: {{ bakveientilarbeid_url }}
   - name: FORTSETT_DP_SOKNAD_URL
     value: {{ fortsettDpSoknadUrl }}
+  - name: FORTSETT_NY_DP_SOKNAD_URL
+    value: {{ fortsettNyDpSoknadUrl }}
   envFrom:
     - configmap: loginservice-idporten
   image: {{image}}
