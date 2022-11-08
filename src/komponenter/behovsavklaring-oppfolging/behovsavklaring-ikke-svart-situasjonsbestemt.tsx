@@ -15,6 +15,7 @@ import { ForeslattInnsatsgruppe } from '../../contexts/brukerregistrering';
 import { ListeElement } from '../situasjonsbestemt/situasjonsbestemt';
 
 import spacingStyles from '../../spacing.module.css';
+import { useState } from 'react';
 
 const TEKSTER = {
     nb: {
@@ -41,19 +42,25 @@ function IkkeSvartPaaBehovsavklaringSituasjonsbestemt() {
     const { amplitudeData } = useAmplitudeData();
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
+    const [pendingRequest, settPendingRequest] = useState<ForeslattInnsatsgruppe | null>(null);
 
-    function handleBehovForVeiledning(behov: ForeslattInnsatsgruppe) {
-        lagreBehovForVeiledning({
-            oppfolging: behov,
-            overskrift: tekst('behovOverskrift'),
-            tekst: tekst(
-                behov === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS ? 'behovSvarEnig' : 'behovSvarUenig'
-            ),
-        });
-        loggAktivitet({
-            ...amplitudeData,
-            aktivitet: `Velger ${behov} fra behovsavklaringkomponent - ikke svart - situasjonsbestemt`,
-        });
+    async function handleBehovForVeiledning(behov: ForeslattInnsatsgruppe) {
+        settPendingRequest(behov);
+        try {
+            await lagreBehovForVeiledning({
+                oppfolging: behov,
+                overskrift: tekst('behovOverskrift'),
+                tekst: tekst(
+                    behov === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS ? 'behovSvarEnig' : 'behovSvarUenig'
+                ),
+            });
+            loggAktivitet({
+                ...amplitudeData,
+                aktivitet: `Velger ${behov} fra behovsavklaringkomponent - ikke svart - situasjonsbestemt`,
+            });
+        } finally {
+            settPendingRequest(null);
+        }
     }
 
     return ListeElement(
@@ -66,12 +73,18 @@ function IkkeSvartPaaBehovsavklaringSituasjonsbestemt() {
             <BodyLong className={`${spacingStyles.mb1}`}>{tekst('beskrivelse')}</BodyLong>
             <BodyShort className={`${spacingStyles.mb1}`}>{tekst('hvaTenkerDu')}</BodyShort>
             <BodyShort className={`${spacingStyles.mb1}`}>{tekst('klareDegSelv')}</BodyShort>
-            <Button onClick={() => handleBehovForVeiledning(ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS)}>
+            <Button
+                onClick={() => handleBehovForVeiledning(ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS)}
+                disabled={pendingRequest !== null}
+                loading={pendingRequest === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS}
+            >
                 Ja, jeg ønsker hjelp
             </Button>
             <div className={spacingStyles.mb1}>
                 <Button
                     onClick={() => handleBehovForVeiledning(ForeslattInnsatsgruppe.STANDARD_INNSATS)}
+                    disabled={pendingRequest !== null}
+                    loading={pendingRequest === ForeslattInnsatsgruppe.STANDARD_INNSATS}
                     variant="secondary"
                     className={`${spacingStyles.mt1}`}
                 >
