@@ -5,11 +5,12 @@ import {
     DpInnsynPaabegyntSoknad,
     useDpInnsynPaabegynteSoknaderData,
 } from '../../contexts/dp-innsyn-paabegynte-soknader';
-import { loggAktivitet } from '../../metrics/metrics';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
-import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
-import { FORTSETT_DP_SOKNAD_URL } from '../../utils/lenker';
+
+import { loggAktivitet } from '../../metrics/metrics';
+import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
+import { FORTSETT_DP_SOKNAD_URL, FORTSETT_NY_DP_SOKNAD_URL } from '../../utils/lenker';
 
 const TEKSTER = {
     nb: {
@@ -41,6 +42,9 @@ const PaabegynteSoknader = ({ dato, komponent }: { dato?: string; komponent: str
             new Date(b.sistEndret).getTime() - new Date(a.sistEndret).getTime()
     )[0];
 
+    const FORSETT_SOKNAD_URL =
+        sistePabegynteSoknad?.erNySøknadsdialog === true ? FORTSETT_NY_DP_SOKNAD_URL : FORTSETT_DP_SOKNAD_URL;
+
     const harPaabegyntSoknadNyereEnnDato =
         sistePabegynteSoknad && new Date(sistePabegynteSoknad.sistEndret).getTime() > new Date(dato).getTime();
 
@@ -56,7 +60,7 @@ const PaabegynteSoknader = ({ dato, komponent }: { dato?: string; komponent: str
                 onClick={() =>
                     loggLenkeKlikk(
                         `Fortsetter på søknad - fra "dagpenger-tema - ${komponent}"`,
-                        `${FORTSETT_DP_SOKNAD_URL}/${sistePabegynteSoknad.behandlingsId}`
+                        `${FORSETT_SOKNAD_URL}/${sistePabegynteSoknad.behandlingsId}`
                     )
                 }
             >

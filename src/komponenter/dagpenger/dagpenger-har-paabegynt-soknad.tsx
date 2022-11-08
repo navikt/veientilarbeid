@@ -1,6 +1,6 @@
 import { Button, Heading, BodyShort } from '@navikt/ds-react';
 import { Next } from '@navikt/ds-icons';
-import spacingStyles from '../../spacing.module.css';
+
 import {
     DpInnsynPaabegyntSoknad,
     useDpInnsynPaabegynteSoknaderData,
@@ -12,7 +12,9 @@ import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import SkrivTilOssChatOgMineDagpenger from './skriv-til-oss-chat-og-mine-dagpenger';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
-import { FORTSETT_DP_SOKNAD_URL } from '../../utils/lenker';
+import { FORTSETT_DP_SOKNAD_URL, FORTSETT_NY_DP_SOKNAD_URL } from '../../utils/lenker';
+
+import spacingStyles from '../../spacing.module.css';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -40,6 +42,9 @@ const DagpengerHarPaabegyntSoknad = () => {
             new Date(b.sistEndret).getTime() - new Date(a.sistEndret).getTime()
     )[0];
 
+    const FORSETT_SOKNAD_URL =
+        sistePabegynteSoknad?.erNySøknadsdialog === true ? FORTSETT_NY_DP_SOKNAD_URL : FORTSETT_DP_SOKNAD_URL;
+
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
@@ -50,7 +55,7 @@ const DagpengerHarPaabegyntSoknad = () => {
             handling: 'Fortsetter påbegynt soknad',
             ...amplitudeData,
         });
-        window.location.href = `${FORTSETT_DP_SOKNAD_URL}/${sistePabegynteSoknad.behandlingsId}`;
+        window.location.href = `${FORSETT_SOKNAD_URL}/${sistePabegynteSoknad.behandlingsId}`;
     };
 
     if (!sistePabegynteSoknad) return null;
