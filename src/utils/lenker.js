@@ -16,3 +16,6 @@ export const FORTSETT_DP_SOKNAD_URL =
     env === 'test'
         ? 'https://arbeid.dev.nav.no/arbeid/dagpenger/soknad-innsending/soknad'
         : 'https://tjenester.nav.no/soknaddagpenger-innsending/soknad';
+
+export const FORTSETT_NY_DP_SOKNAD_URL =
+    env === 'test' ? 'https://arbeid.dev.nav.no/dagpenger/soknad' : 'https://nav.no/dagpenger/soknad';
