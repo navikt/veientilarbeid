@@ -6,6 +6,7 @@ export interface DpInnsynPaabegyntSoknad {
     behandlingsId: string;
     sistEndret: string;
     erNySøknadsdialog?: boolean;
+    endreLenke?: string;
 }
 
 export function useDpInnsynPaabegynteSoknaderData() {

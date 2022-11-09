@@ -10,7 +10,6 @@ import { useSprakValg } from '../../contexts/sprak';
 
 import { loggAktivitet } from '../../metrics/metrics';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
-import { FORTSETT_DP_SOKNAD_URL, FORTSETT_NY_DP_SOKNAD_URL } from '../../utils/lenker';
 
 const TEKSTER = {
     nb: {
@@ -42,9 +41,6 @@ const PaabegynteSoknader = ({ dato, komponent }: { dato?: string; komponent: str
             new Date(b.sistEndret).getTime() - new Date(a.sistEndret).getTime()
     )[0];
 
-    const FORSETT_SOKNAD_URL =
-        sistePabegynteSoknad?.erNySøknadsdialog === true ? FORTSETT_NY_DP_SOKNAD_URL : FORTSETT_DP_SOKNAD_URL;
-
     const harPaabegyntSoknadNyereEnnDato =
         sistePabegynteSoknad && new Date(sistePabegynteSoknad.sistEndret).getTime() > new Date(dato).getTime();
 
@@ -56,11 +52,11 @@ const PaabegynteSoknader = ({ dato, komponent }: { dato?: string; komponent: str
         <BodyShort className={spacingStyles.blokkXs}>
             {tekst('pabegynt')}{' '}
             <Link
-                href={sistePabegynteSoknad.behandlingsId}
+                href={sistePabegynteSoknad.endreLenke}
                 onClick={() =>
                     loggLenkeKlikk(
                         `Fortsetter på søknad - fra "dagpenger-tema - ${komponent}"`,
-                        `${FORSETT_SOKNAD_URL}/${sistePabegynteSoknad.behandlingsId}`
+                        `${sistePabegynteSoknad.endreLenke}`
                     )
                 }
             >
