@@ -1,21 +1,16 @@
 import { Dialog } from '@navikt/ds-icons';
-import { BodyLong, Button, Detail, Heading, Panel, ReadMore, Link } from '@navikt/ds-react';
+import { BodyLong, Detail, Heading, Panel, ReadMore } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
-import { BehovForVeiledningResponse, useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
 
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import ReadMoreVeileder from './readmore-veileder';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
-import { aktivitetsplanLenke, dialogLenke } from '../../innhold/lenker';
 
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
-import { AmplitudeStandardAktivitetsData, loggAktivitet } from '../../metrics/metrics';
-import { AmplitudeData } from '../../metrics/amplitude-utils';
-import { useAmplitudeData } from '../../contexts/amplitude-context';
-import { MouseEventHandler } from 'react';
+import { AktivitetsplanLenke, DialogLenke, GaaTilDialogKnapp } from './lenker';
 
 const TEKSTER = {
     nb: {
@@ -27,8 +22,6 @@ const TEKSTER = {
         klareDegSelv: 'Ønsker du å klare deg selv?',
         readMoreHeadingEnig: 'Gi beskjed dersom du likevel ønsker veiledning',
         readMoreInnholdEnig: 'Du kan når som helst ta kontakt for å starte samhandling med en veileder.',
-        gaTilDialog: 'Gå til dialogen',
-        gaTilAktivitetsplan: 'Gå til din aktivitetsplan',
     },
     en: {
         heading: 'Get in touch if you need help',
@@ -36,32 +29,9 @@ const TEKSTER = {
     },
 };
 
-export function onClickDialogKnapp(behovForVeiledning: BehovForVeiledningResponse, amplitudeData: AmplitudeData) {
-    return () => {
-        loggAktivitet({
-            aktivitet: `Trykker på gå til dialog-knapp - ${behovForVeiledning?.oppfolging}`,
-            ...amplitudeData,
-        });
-        const dialogId = behovForVeiledning?.dialogId ? `/${behovForVeiledning?.dialogId}` : '';
-        window.location.href = `${dialogLenke}${dialogId}`;
-    };
-}
-
-export function loggLenkeKlikkTilAmplitude(
-    data: AmplitudeStandardAktivitetsData
-): MouseEventHandler<HTMLAnchorElement> {
-    return (e) => {
-        e.preventDefault();
-        loggAktivitet(data);
-        window.location.href = (e.target as HTMLAnchorElement).href;
-    };
-}
-
 function BehovsavklaringAvklartStandard() {
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
-    const { behovForVeiledning } = useBehovForVeiledning();
-    const { amplitudeData } = useAmplitudeData();
 
     return (
         <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
@@ -86,32 +56,16 @@ function BehovsavklaringAvklartStandard() {
                 <BodyLong className={spacingStyles.mb1}>{tekst('beskrivelseEnig')}</BodyLong>
                 <ReadMore size="medium" header={tekst('readMoreHeadingEnig')} className={spacingStyles.mb1}>
                     <BodyLong className={spacingStyles.blokkXs}>{tekst('readMoreInnholdEnig')}</BodyLong>
-                    <Button onClick={onClickDialogKnapp(behovForVeiledning, amplitudeData)}>
-                        {tekst('gaTilDialog')}
-                    </Button>
+                    <GaaTilDialogKnapp />
                 </ReadMore>
                 <ReadMoreVeileder />
                 <BodyLong className={spacingStyles.mt1}>
-                    <Link
-                        href={dialogLenke}
-                        onClick={loggLenkeKlikkTilAmplitude({
-                            aktivitet: 'Behovsavklaring - avklart - standard - går til dialogen',
-                            ...amplitudeData,
-                        })}
-                    >
-                        {tekst('gaTilDialog')}
-                    </Link>
+                    <DialogLenke aktivitet={'Behovsavklaring - avklart - standard - går til dialogen'} />
                 </BodyLong>
                 <BodyLong className={spacingStyles.mt1}>
-                    <Link
-                        href={aktivitetsplanLenke}
-                        onClick={loggLenkeKlikkTilAmplitude({
-                            aktivitet: 'Behovsavklaring - avklart - standard - går til aktivitetsplanen',
-                            ...amplitudeData,
-                        })}
-                    >
-                        {tekst('gaTilAktivitetsplan')}
-                    </Link>
+                    <AktivitetsplanLenke
+                        aktivitet={'Behovsavklaring - avklart - standard - går til aktivitetsplanen'}
+                    />
                 </BodyLong>
             </div>
             <InViewport loggTekst="Viser behovsavklaringkomponent - avklart - standard i viewport" />

@@ -44,7 +44,7 @@ function IkkeSvartPaaBehovsavklaringSituasjonsbestemt() {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const [pendingRequest, settPendingRequest] = useState<ForeslattInnsatsgruppe | null>(null);
 
-    async function handleBehovForVeiledning(behov: ForeslattInnsatsgruppe) {
+    async function onLagreBehovForVeiledning(behov: ForeslattInnsatsgruppe) {
         settPendingRequest(behov);
         try {
             await lagreBehovForVeiledning({
@@ -74,7 +74,7 @@ function IkkeSvartPaaBehovsavklaringSituasjonsbestemt() {
             <BodyShort className={`${spacingStyles.mb1}`}>{tekst('hvaTenkerDu')}</BodyShort>
             <BodyShort className={`${spacingStyles.mb1}`}>{tekst('klareDegSelv')}</BodyShort>
             <Button
-                onClick={() => handleBehovForVeiledning(ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS)}
+                onClick={() => onLagreBehovForVeiledning(ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS)}
                 disabled={pendingRequest !== null}
                 loading={pendingRequest === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS}
             >
@@ -82,7 +82,7 @@ function IkkeSvartPaaBehovsavklaringSituasjonsbestemt() {
             </Button>
             <div className={spacingStyles.mb1}>
                 <Button
-                    onClick={() => handleBehovForVeiledning(ForeslattInnsatsgruppe.STANDARD_INNSATS)}
+                    onClick={() => onLagreBehovForVeiledning(ForeslattInnsatsgruppe.STANDARD_INNSATS)}
                     disabled={pendingRequest !== null}
                     loading={pendingRequest === ForeslattInnsatsgruppe.STANDARD_INNSATS}
                     variant="secondary"
