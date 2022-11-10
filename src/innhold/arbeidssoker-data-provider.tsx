@@ -8,6 +8,7 @@ import {
     BRUKERREGISTRERING_URL,
     EGENVURDERINGBESVARELSE_URL,
     MOTESTOTTE_URL,
+    ULESTEDIALOGER_URL,
     VEILARBOPPFOLGING_URL,
 } from '../ducks/api';
 import Innholdslaster from '../komponenter/innholdslaster/innholdslaster';
@@ -19,6 +20,7 @@ import { GjelderFraDatoModalProvider } from '../contexts/gjelder-fra-dato-modal'
 import { GjelderFraDatoProvider } from '../contexts/gjelder-fra-dato';
 import { AmplitudeProvider } from '../komponenter/hent-initial-data/amplitude-provider';
 import * as Motestotte from '../contexts/motestotte';
+import * as UlesteDialoger from '../contexts/ulestedialoger';
 import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe } from '../contexts/brukerregistrering';
 import { BehovForVeiledningProvider } from '../contexts/behov-for-veiledning';
 
@@ -34,6 +36,9 @@ const ArbeidssokerDataProvider = (props: Props) => {
     const [egenvurderingState, setEgenvurderingState] = React.useState<Egenvurdering.State>(Egenvurdering.initialState);
     const [brukerInfoState, setBrukerInfoState] = React.useState<BrukerInfo.State>(BrukerInfo.initialState);
     const [motestotteState, setMotestotteState] = React.useState<Motestotte.State>(Motestotte.initialState);
+    const [ulesteDialogerState, setUlesteDialogerState] = React.useState<UlesteDialoger.State>(
+        UlesteDialoger.initialState
+    );
 
     useEffect(() => {
         fetchData<Oppfolging.State, Oppfolging.Data>(oppfolgingState, setOppfolgingState, VEILARBOPPFOLGING_URL);
@@ -48,6 +53,11 @@ const ArbeidssokerDataProvider = (props: Props) => {
             EGENVURDERINGBESVARELSE_URL
         );
         fetchData<BrukerInfo.State, BrukerInfo.Data>(brukerInfoState, setBrukerInfoState, BRUKERINFO_URL);
+        fetchData<UlesteDialoger.State, UlesteDialoger.Data>(
+            ulesteDialogerState,
+            setUlesteDialogerState,
+            ULESTEDIALOGER_URL
+        );
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -69,15 +79,17 @@ const ArbeidssokerDataProvider = (props: Props) => {
                     <Egenvurdering.EgenvurderingContext.Provider value={egenvurderingState}>
                         <BrukerInfo.BrukerInfoContext.Provider value={brukerInfoState}>
                             <Motestotte.MotestotteContext.Provider value={motestotteState}>
-                                <ProfilProvider>
-                                    <BehovForVeiledningProvider>
-                                        <GjelderFraDatoModalProvider>
-                                            <GjelderFraDatoProvider>
-                                                <AmplitudeProvider>{props.children}</AmplitudeProvider>
-                                            </GjelderFraDatoProvider>
-                                        </GjelderFraDatoModalProvider>
-                                    </BehovForVeiledningProvider>
-                                </ProfilProvider>
+                                <UlesteDialoger.UlesteDialogerContext.Provider value={ulesteDialogerState}>
+                                    <ProfilProvider>
+                                        <BehovForVeiledningProvider>
+                                            <GjelderFraDatoModalProvider>
+                                                <GjelderFraDatoProvider>
+                                                    <AmplitudeProvider>{props.children}</AmplitudeProvider>
+                                                </GjelderFraDatoProvider>
+                                            </GjelderFraDatoModalProvider>
+                                        </BehovForVeiledningProvider>
+                                    </ProfilProvider>
+                                </UlesteDialoger.UlesteDialogerContext.Provider>
                             </Motestotte.MotestotteContext.Provider>
                         </BrukerInfo.BrukerInfoContext.Provider>
                     </Egenvurdering.EgenvurderingContext.Provider>

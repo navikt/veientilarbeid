@@ -10,7 +10,7 @@ import { useAutentiseringData } from '../../contexts/autentisering';
 import { useEgenvurderingData } from '../../contexts/egenvurdering';
 import { useOppfolgingData } from '../../contexts/oppfolging';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
-import * as UlesteDialoger from '../../contexts/ulestedialoger';
+import { useUlesteDialogerData } from '../../contexts/ulestedialoger';
 import { useSprakValg } from '../../contexts/sprak';
 
 import RegistrertTeller from './registrert-teller';
@@ -31,8 +31,6 @@ import { erKSSBruker } from '../../lib/er-kss-bruker';
 import { useProfil } from '../../contexts/profil';
 import { hentProfilnokkelFraLocalStorage } from '../../utils/profil-id-mapper';
 import { useUnderOppfolging } from '../../contexts/arbeidssoker';
-import { useSWR } from '../../hooks/useSWR';
-import { ULESTEDIALOGER_URL } from '../../ducks/api';
 
 const TEKSTER = {
     nb: {
@@ -56,8 +54,7 @@ function HjelpOgStotte() {
     const egenvurderingData = useEgenvurderingData();
     const oppfolgingData = useOppfolgingData();
     const brukerInfoData = useBrukerinfoData();
-    const { data: antallUlesteData } = useSWR<UlesteDialoger.Data>(ULESTEDIALOGER_URL);
-    const antallUleste = antallUlesteData?.antallUleste || 0;
+    const { antallUleste } = useUlesteDialogerData();
     const { profil } = useProfil();
 
     const registrertDato = registreringData?.registrering?.opprettetDato;

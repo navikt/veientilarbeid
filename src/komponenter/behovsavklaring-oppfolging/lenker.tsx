@@ -7,11 +7,20 @@ import { AmplitudeStandardAktivitetsData, loggAktivitet } from '../../metrics/me
 import { MouseEventHandler } from 'react';
 import { BehovForVeiledningResponse, useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
 import { AmplitudeData } from '../../metrics/amplitude-utils';
+import { useUlesteDialogerData } from '../../contexts/ulestedialoger';
+import spacingStyles from '../../spacing.module.css';
 
 const TEKSTER = {
     nb: {
         gaTilDialog: 'Gå til dialogen',
         gaTilAktivitetsplan: 'Gå til din aktivitetsplan',
+        ulest_melding: 'ulest melding',
+        uleste_meldinger: 'uleste meldinger',
+    },
+    en: {
+        gaTilDialog: 'Go to dialogue with your counselor',
+        ulest_melding: 'unread message',
+        uleste_meldinger: 'unread messages',
     },
 };
 
@@ -48,16 +57,27 @@ export const DialogLenke = (props: LenkeProps) => {
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const { amplitudeData } = useAmplitudeData();
+    const { antallUleste } = useUlesteDialogerData();
+
+    const ulesteMeldingerTekst = antallUleste === 1 ? tekst('ulest_melding') : tekst('uleste_meldinger');
+
     return (
-        <Link
-            href={dialogLenke}
-            onClick={loggLenkeKlikkTilAmplitude({
-                aktivitet: props.aktivitet,
-                ...amplitudeData,
-            })}
-        >
-            {tekst('gaTilDialog')}
-        </Link>
+        <>
+            <Link
+                href={dialogLenke}
+                onClick={loggLenkeKlikkTilAmplitude({
+                    aktivitet: props.aktivitet,
+                    ...amplitudeData,
+                })}
+            >
+                {tekst('gaTilDialog')}
+            </Link>
+            {antallUleste > 0 && (
+                <span className={`${spacingStyles.ml05} navds-body-short navds-body-short--small`}>
+                    <b>{antallUleste}</b> {ulesteMeldingerTekst}
+                </span>
+            )}
+        </>
     );
 };
 
