@@ -13,7 +13,6 @@ behovsvurdering_url: https://behovsvurdering-q1.dev-sbs.nais.io
 start_samtale_url: https://pto.dev.nav.no/arbeid/start-samtale
 arbeidssokerregistrering_url: https://arbeid.dev.nav.no/arbeid/registrering
 veilarbproxy_url: http://pto-proxy.pto.svc.cluster.local/proxy
-bakveientilarbeid_url: http://bakveientilarbeid
 fortsettDpSoknadUrl: https://arbeid.dev.nav.no/arbeid/dagpenger/soknad-innsending/soknad
 fortsettNyDpSoknadUrl: https://arbeid.dev.nav.no/dagpenger/soknad
 ingresses:

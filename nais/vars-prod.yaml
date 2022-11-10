@@ -13,7 +13,6 @@ behovsvurdering_url: https://behovsvurdering.nav.no/
 start_samtale_url: https://nav.no/arbeid/start-samtale
 arbeidssokerregistrering_url: https://www.nav.no/arbeid/registrering
 veilarbproxy_url: http://pto-proxy.pto.svc.cluster.local/proxy
-bakveientilarbeid_url: http://bakveientilarbeid
 fortsettDpSoknadUrl: https://tjenester.nav.no/soknaddagpenger-innsending/soknad
 fortsettNyDpSoknadUrl: https://nav.no/dagpenger/soknad
 ingresses:

@@ -13,12 +13,6 @@ export const getEnvironment = () => {
     return 'local';
 };
 
-const BAKVEIENTILARBEID_URL = {
-    local: 'http://localhost:3000/bakveientilarbeid',
-    development: 'https://www.dev.nav.no/bakveientilarbeid',
-    production: 'https://www.nav.no/bakveientilarbeid',
-};
-
 const AIA_BACKEND_URL = {
     local: 'http://localhost:3000/aia-backend',
     development: 'https://www.dev.nav.no/aia-backend',
@@ -31,6 +25,5 @@ const INNLOGGINGSSTATUS_URL = {
     production: 'https://www.nav.no/person/innloggingsstatus/auth',
 };
 
-export const bakveienTilArbeidUrl = BAKVEIENTILARBEID_URL[getEnvironment()];
 export const innloggingsStatusUrl = INNLOGGINGSSTATUS_URL[getEnvironment()];
 export const aiaBackendUrl = AIA_BACKEND_URL[getEnvironment()];

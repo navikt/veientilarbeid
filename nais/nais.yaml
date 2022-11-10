@@ -44,8 +44,6 @@ spec:
     value: 'true'
   - name: DISABLE_SENSU_METRICS
     value: 'true'
-  - name: BAKVEIENTILARBEID_URL
-    value: {{ bakveientilarbeid_url }}
   - name: FORTSETT_DP_SOKNAD_URL
     value: {{ fortsettDpSoknadUrl }}
   - name: FORTSETT_NY_DP_SOKNAD_URL
@@ -88,7 +86,6 @@ spec:
       rules:
         - application: pto-proxy
           namespace: pto
-        - application: bakveientilarbeid
       external:
       {{#each externalHosts as |host|}}
          - host: {{host}}

@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
 
-import { innloggingsStatusUrl, bakveienTilArbeidUrl, aiaBackendUrl } from './urls';
+import { aiaBackendUrl, innloggingsStatusUrl } from './urls';
 
 export enum STATUS {
     OK = 'OK',
@@ -33,7 +33,6 @@ export const requestConfig = (): RequestInit => {
 };
 
 export const AIA_BACKEND = aiaBackendUrl,
-    BAKVEIEN = bakveienTilArbeidUrl,
     VEILARBOPPFOLGING_URL = `${AIA_BACKEND}/oppfolging`,
     BRUKERINFO_URL = `${AIA_BACKEND}/startregistrering`,
     BRUKERREGISTRERING_URL = `${AIA_BACKEND}/registrering`,
