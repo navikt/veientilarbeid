@@ -43,7 +43,7 @@ const InnholdStandard = () => {
                 {visBehovsAvklaring ? <Behovsavklaring /> : <HjelpOgStotte />}
                 <DagpengerOgYtelser />
                 <Meldekort />
-                <Aktivitetsplan />
+                {visBehovsAvklaring ? null : <Aktivitetsplan />}
                 <GjelderFraDato />
             </div>
             <InViewport loggTekst="Bunnen av veien til arbeid i viewport" />

@@ -148,22 +148,23 @@ function Situasjonsbestemt() {
             <Panel className={`${styles.mtn1} ${spacingStyles.mb1}`}>
                 <ul className={styles.ikkeStandardListe}>
                     {visBehovsAvklaring ? <Behovsavklaring /> : <DialogPanel />}
-                    {ListeElement(
-                        <Task />,
-                        <div>
-                            <Heading size="medium">{tekst('aktivitetsplan.overskrift')}</Heading>
-                            <BodyLong>
-                                {tekst('aktivitetsplan.bruke')}{' '}
-                                <Link
-                                    href={aktivitetsplanLenke}
-                                    onClick={() => handleClick('Går til aktivitetsplanen fra situasjonsbestemt')}
-                                >
-                                    {tekst('aktivitetsplan.lenketekst')}
-                                </Link>{' '}
-                                {tekst('aktivitetsplan.holde-orden')}
-                            </BodyLong>
-                        </div>
-                    )}
+                    {!visBehovsAvklaring &&
+                        ListeElement(
+                            <Task />,
+                            <div>
+                                <Heading size="medium">{tekst('aktivitetsplan.overskrift')}</Heading>
+                                <BodyLong>
+                                    {tekst('aktivitetsplan.bruke')}{' '}
+                                    <Link
+                                        href={aktivitetsplanLenke}
+                                        onClick={() => handleClick('Går til aktivitetsplanen fra situasjonsbestemt')}
+                                    >
+                                        {tekst('aktivitetsplan.lenketekst')}
+                                    </Link>{' '}
+                                    {tekst('aktivitetsplan.holde-orden')}
+                                </BodyLong>
+                            </div>
+                        )}
                     {erSykmeldtMedArbeidsgiver ? <DittSykefravaer /> : <Meldekort />}
                     {ListeElement(
                         <Laptop />,
