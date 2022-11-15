@@ -5,7 +5,7 @@ import { useFeatureToggleData } from './feature-toggles';
 import { fetchToJson } from '../ducks/api-utils';
 import { MELDEPLIKT_URL, requestConfig } from '../ducks/api';
 
-export type MeldeKortType = 'MANUELL_ARENA';
+export type MeldeKortType = 'ELEKTRONISK' | 'AAP' | 'MANUELL_ARENA' | 'ORDINAER_MANUELL' | 'KORRIGERT_ELEKTRONISK';
 
 export type Meldeplikt = {
     erArbeidssokerNestePeriode: boolean;
@@ -16,7 +16,7 @@ export type Meldeplikt = {
 };
 
 interface MeldpliktProviderType {
-    meldeplikt: Meldeplikt[] | null;
+    meldeplikt: Meldeplikt | null;
 }
 
 export const MeldepliktContext = createContext<MeldpliktProviderType>({
@@ -26,13 +26,14 @@ export const MeldepliktContext = createContext<MeldpliktProviderType>({
 function MeldepliktProvider(props: { children: ReactNode }) {
     const featureToggleData = useFeatureToggleData();
     const brukMeldeplikt = featureToggleData['veientilarbeid.bruk-meldeplikt-hendelser'];
-    const [meldeplikt, settMeldeplikt] = useState<Meldeplikt[] | null>(null);
+    const [meldeplikt, settMeldeplikt] = useState<Meldeplikt | null>(null);
 
     const hentMeldeplikt = async () => {
+        const sisteMeldekortUrl = `${MELDEPLIKT_URL}/siste`;
         try {
-            const meldeplikt = await fetchToJson(MELDEPLIKT_URL, requestConfig());
+            const meldeplikt = await fetchToJson(sisteMeldekortUrl, requestConfig());
             if (meldeplikt) {
-                settMeldeplikt(meldeplikt as Meldeplikt[]);
+                settMeldeplikt(meldeplikt as Meldeplikt);
             }
         } catch (error) {
             console.error(error);
