@@ -1,4 +1,5 @@
 import { createContext, useContext } from 'react';
+
 import { AmplitudeData } from '../metrics/amplitude-utils';
 import { InnloggingsNiva } from './autentisering';
 import { DinSituasjonSvar } from './brukerregistrering';
@@ -30,11 +31,13 @@ export const initialAmplitudeData: AmplitudeData = {
     antallUkerMellomSisteArbeidssokerperioder: 'INGEN_DATA',
     meldegruppe: 'INGEN_VERDI',
     antallMeldekortKlareForLevering: 0,
+    vilFortsattVaereRegistrert: 'INGEN_DATA',
 };
 
 const AmplitudeContext = createContext({
     amplitudeData: initialAmplitudeData,
     setMeldekortData: (meldekortData: MeldekortData) => {},
+    oppdaterAmplitudeData: (data: Partial<AmplitudeData>) => {},
 });
 
 function useAmplitudeData() {

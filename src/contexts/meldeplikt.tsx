@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
 import { useFeatureToggleData } from './feature-toggles';
+import { useAmplitudeData } from './amplitude-context';
 
 import { fetchToJson } from '../ducks/api-utils';
 import { MELDEPLIKT_URL, requestConfig } from '../ducks/api';
@@ -25,15 +26,19 @@ export const MeldepliktContext = createContext<MeldpliktProviderType>({
 
 function MeldepliktProvider(props: { children: ReactNode }) {
     const featureToggleData = useFeatureToggleData();
+    const { oppdaterAmplitudeData } = useAmplitudeData();
     const brukMeldeplikt = featureToggleData['veientilarbeid.bruk-meldeplikt-hendelser'];
     const [meldeplikt, settMeldeplikt] = useState<Meldeplikt | null>(null);
 
     const hentMeldeplikt = async () => {
         const sisteMeldekortUrl = `${MELDEPLIKT_URL}/siste`;
         try {
-            const meldeplikt = await fetchToJson(sisteMeldekortUrl, requestConfig());
+            const meldeplikt: Meldeplikt = await fetchToJson(sisteMeldekortUrl, requestConfig());
             if (meldeplikt) {
-                settMeldeplikt(meldeplikt as Meldeplikt);
+                settMeldeplikt(meldeplikt);
+                oppdaterAmplitudeData({
+                    vilFortsattVaereRegistrert: meldeplikt.erArbeidssokerNestePeriode ? 'Ja' : 'Nei',
+                });
             }
         } catch (error) {
             console.error(error);

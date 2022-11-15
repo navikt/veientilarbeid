@@ -125,6 +125,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         antallUkerMellomSisteArbeidssokerperioder,
         meldegruppe: 'INGEN_VERDI',
         antallMeldekortKlareForLevering: 0,
+        vilFortsattVaereRegistrert: 'INGEN_DATA',
     };
 
     const [amplitudeData, setAmplitudeData] = React.useState(data);
@@ -141,8 +142,15 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         });
     };
 
+    const oppdaterAmplitudeData = (data: Partial<AmplitudeData>) => {
+        setAmplitudeData({
+            ...amplitudeData,
+            ...data,
+        });
+    };
+
     return (
-        <AmplitudeContext.Provider value={{ amplitudeData, setMeldekortData }}>
+        <AmplitudeContext.Provider value={{ amplitudeData, setMeldekortData, oppdaterAmplitudeData }}>
             {props.children}
         </AmplitudeContext.Provider>
     );
