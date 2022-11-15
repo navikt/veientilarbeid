@@ -5,6 +5,7 @@ import { useAmplitudeData } from './amplitude-context';
 
 import { fetchToJson } from '../ducks/api-utils';
 import { MELDEPLIKT_URL, requestConfig } from '../ducks/api';
+import { InnloggingsNiva, useAutentiseringData } from './autentisering';
 
 export type MeldeKortType = 'ELEKTRONISK' | 'AAP' | 'MANUELL_ARENA' | 'ORDINAER_MANUELL' | 'KORRIGERT_ELEKTRONISK';
 
@@ -26,6 +27,7 @@ export const MeldepliktContext = createContext<MeldpliktProviderType>({
 
 function MeldepliktProvider(props: { children: ReactNode }) {
     const featureToggleData = useFeatureToggleData();
+    const { securityLevel } = useAutentiseringData();
     const { oppdaterAmplitudeData } = useAmplitudeData();
     const brukMeldeplikt = featureToggleData['veientilarbeid.bruk-meldeplikt-hendelser'];
     const [meldeplikt, settMeldeplikt] = useState<Meldeplikt | null>(null);
@@ -46,10 +48,10 @@ function MeldepliktProvider(props: { children: ReactNode }) {
     };
 
     useEffect(() => {
-        if (brukMeldeplikt) {
+        if (brukMeldeplikt && securityLevel === InnloggingsNiva.LEVEL_4) {
             hentMeldeplikt();
         }
-    }, [brukMeldeplikt]);
+    }, [brukMeldeplikt, securityLevel]);
 
     const contextValue = {
         meldeplikt,
