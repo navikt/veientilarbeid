@@ -37,7 +37,7 @@ function MeldepliktProvider(props: { children: ReactNode }) {
             if (meldeplikt) {
                 settMeldeplikt(meldeplikt);
                 oppdaterAmplitudeData({
-                    vilFortsattVaereRegistrert: meldeplikt.erArbeidssokerNestePeriode ? 'Ja' : 'Nei',
+                    vilFortsattVaereRegistrert: meldeplikt?.erArbeidssokerNestePeriode ? 'Ja' : 'Nei',
                 });
             }
         } catch (error) {
