@@ -18,6 +18,7 @@ import {
     ER_STANDARD_INNSATSGRUPPE_URL,
     BEHOV_FOR_VEILEDNING_URL,
     OPPRETT_DIALOG_URL,
+    MELDEPLIKT_URL,
 } from '../ducks/api';
 
 import {
@@ -52,6 +53,7 @@ import {
     behovForVeiledningPostResolver,
     opprettDialogPostResolver,
 } from './demo-state-behov-for-veiledning';
+import levertMeldekortMock from '../mocks/meldeplikt-hendelser.mock';
 
 export const demo_handlers = [
     msw_get(VEILARBOPPFOLGING_URL, {
@@ -146,4 +148,5 @@ export const demo_handlers = [
     }),
 
     msw_get(ER_STANDARD_INNSATSGRUPPE_URL, hentStandardInnsatsgruppe().standardInnsatsgruppe),
+    msw_get(`${MELDEPLIKT_URL}/siste`, levertMeldekortMock),
 ];
