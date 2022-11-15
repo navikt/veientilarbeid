@@ -3,7 +3,6 @@ import { createContext, useContext } from 'react';
 import { AmplitudeData } from '../metrics/amplitude-utils';
 import { InnloggingsNiva } from './autentisering';
 import { DinSituasjonSvar } from './brukerregistrering';
-import { Data as MeldekortData } from '../hooks/use-meldekortdata';
 
 export const initialAmplitudeData: AmplitudeData = {
     brukergruppe: 'ukjent',
@@ -36,7 +35,6 @@ export const initialAmplitudeData: AmplitudeData = {
 
 const AmplitudeContext = createContext({
     amplitudeData: initialAmplitudeData,
-    setMeldekortData: (meldekortData: MeldekortData) => {},
     oppdaterAmplitudeData: (data: Partial<AmplitudeData>) => {},
 });
 

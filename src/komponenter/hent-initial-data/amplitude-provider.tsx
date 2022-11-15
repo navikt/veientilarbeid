@@ -8,7 +8,6 @@ import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import grupperGeografiskTilknytning from '../../utils/grupper-geografisk-tilknytning';
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
-import { datoUtenTid } from '../../utils/date-utils';
 import dagerFraDato from '../../utils/dager-fra-dato';
 import { AmplitudeData } from '../../metrics/amplitude-utils';
 import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
@@ -16,8 +15,6 @@ import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../../lib/er-situasjo
 import erSannsynligvisInaktivertStandardbruker from '../../lib/er-sannsyligvis-inaktivert-standard-innsatsgruppe';
 import { useArbeidssokerPerioder, useUnderOppfolging } from '../../contexts/arbeidssoker';
 import * as SprakValg from '../../contexts/sprak';
-import * as Meldekort from '../../hooks/use-meldekortdata';
-import { hentMeldegruppeForNesteMeldekort, hentMeldekortForLevering } from '../../utils/meldekort-utils';
 
 const hentSprakValgFraCookie = (): SprakValg.Sprak | null => {
     const decoratorLanguageCookie = document.cookie.match(/decorator-language=([a-z]{2})/);
@@ -130,18 +127,6 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
 
     const [amplitudeData, setAmplitudeData] = React.useState(data);
 
-    const setMeldekortData = (data: Meldekort.Data) => {
-        const iDag = datoUtenTid(new Date().toISOString());
-        const antallMeldekortKlareForLevering = hentMeldekortForLevering(iDag, data).length;
-        const meldegruppe = data ? hentMeldegruppeForNesteMeldekort(data) : null;
-
-        setAmplitudeData({
-            ...amplitudeData,
-            meldegruppe: meldegruppe ? meldegruppe : 'INGEN_VERDI',
-            antallMeldekortKlareForLevering: antallMeldekortKlareForLevering,
-        });
-    };
-
     const oppdaterAmplitudeData = (data: Partial<AmplitudeData>) => {
         setAmplitudeData({
             ...amplitudeData,
@@ -150,7 +135,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     };
 
     return (
-        <AmplitudeContext.Provider value={{ amplitudeData, setMeldekortData, oppdaterAmplitudeData }}>
+        <AmplitudeContext.Provider value={{ amplitudeData, oppdaterAmplitudeData }}>
             {props.children}
         </AmplitudeContext.Provider>
     );

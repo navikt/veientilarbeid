@@ -2,6 +2,8 @@ import { DataElement, NESTE_MELDEKORT_URL } from '../ducks/api';
 import { useSWR } from './useSWR';
 import { useAmplitudeData } from '../contexts/amplitude-context';
 import { useEffect } from 'react';
+import { datoUtenTid } from '../utils/date-utils';
+import { hentMeldegruppeForNesteMeldekort, hentMeldekortForLevering } from '../utils/meldekort-utils';
 
 export interface State extends DataElement {
     data: Data | null;
@@ -27,7 +29,18 @@ export interface Data {
 
 export function useMeldekortData() {
     const { data, error } = useSWR<Data>(NESTE_MELDEKORT_URL);
-    const { setMeldekortData } = useAmplitudeData();
+    const { oppdaterAmplitudeData } = useAmplitudeData();
+
+    const setMeldekortData = (data: Data) => {
+        const iDag = datoUtenTid(new Date().toISOString());
+        const antallMeldekortKlareForLevering = hentMeldekortForLevering(iDag, data).length;
+        const meldegruppe = data ? hentMeldegruppeForNesteMeldekort(data) : null;
+
+        oppdaterAmplitudeData({
+            meldegruppe: meldegruppe ? meldegruppe : 'INGEN_VERDI',
+            antallMeldekortKlareForLevering: antallMeldekortKlareForLevering,
+        });
+    };
 
     useEffect(() => {
         if (data) {
