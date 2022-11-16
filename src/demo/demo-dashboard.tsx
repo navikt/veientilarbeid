@@ -174,6 +174,11 @@ const DemoDashboard = () => {
         window.location.reload();
     };
 
+    const handleChangeArbeidssokerNestePeriode = (valg: string) => {
+        settDemoState(DemoData.ARBEIDSSOKER_NESTE_PERIODE, valg);
+        window.location.reload();
+    };
+
     const handleClick = (e: React.SyntheticEvent<EventTarget, Event>) => {
         const element = e.currentTarget as HTMLInputElement;
         if (element.id === SYKMELDT_MED_ARBEIDSGIVER) {
@@ -445,6 +450,17 @@ const DemoDashboard = () => {
                             >
                                 <Radio value={ForeslattInnsatsgruppe.STANDARD_INNSATS}>Klare seg selv</Radio>
                                 <Radio value={ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS}>Ønsker hjelp</Radio>
+                            </RadioGroup>
+                        </Panel>
+
+                        <Panel className={styles.demoCheckboxpanel}>
+                            <RadioGroup
+                                legend="Vil være arbeidssøker neste periode"
+                                defaultValue={hentDemoState(DemoData.ARBEIDSSOKER_NESTE_PERIODE) || 'Ja'}
+                                onChange={(val: any) => handleChangeArbeidssokerNestePeriode(val)}
+                            >
+                                <Radio value={'Ja'}>Ja</Radio>
+                                <Radio value={'Nei'}>Nei</Radio>
                             </RadioGroup>
                         </Panel>
                     </Panel>

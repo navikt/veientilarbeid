@@ -51,5 +51,5 @@ export const handlers = [
     msw_post(GJELDER_FRA_DATO_URL, null, 201),
     msw_get(ARBEIDSSOKER_NIVA3_URL, arbeidssokerNiva3Response(true, null)),
     msw_get(ER_STANDARD_INNSATSGRUPPE_URL, true),
-    msw_get(`${MELDEPLIKT_URL}/siste`, levertMeldekortMock),
+    msw_get(`${MELDEPLIKT_URL}/siste`, levertMeldekortMock(true)),
 ];

@@ -61,6 +61,7 @@ export enum DemoData {
     GJELDER_FRA_DATO = 'gjelderFraDato',
     PROFIL = 'profil',
     BEHOV_FOR_VEILEDNING = 'behovForVeiledning',
+    ARBEIDSSOKER_NESTE_PERIODE = 'arbeidssokerNestePeriode',
 }
 
 export const hentDemoState = (key: string): string | null => hentQueryParam(key);

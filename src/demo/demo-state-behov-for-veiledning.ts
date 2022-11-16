@@ -10,7 +10,6 @@ export const settBehovForVeiledning = (value: BehovForVeiledningResponse) =>
 
 export const behovForVeiledningGetResolver = (req: RestRequest, res: ResponseComposition, ctx: RestContext) => {
     const behovForVeiledning = hentBehovForVeiledning();
-    console.log('behovforveiledning', behovForVeiledning);
     return behovForVeiledning ? res(ctx.json(JSON.parse(behovForVeiledning))) : res(ctx.status(204));
 };
 

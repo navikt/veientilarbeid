@@ -8,7 +8,6 @@ const settBrukerProfil = (value: string) => settDemoState(DemoData.PROFIL, value
 
 export const brukerProfilGetResolver = (req: RestRequest, res: ResponseComposition, ctx: RestContext) => {
     const profil = hentBrukerProfil();
-    console.log('profil', profil);
     return profil ? res(ctx.json(JSON.parse(profil))) : res(ctx.status(204));
 };
 

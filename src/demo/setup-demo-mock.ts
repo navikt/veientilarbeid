@@ -40,6 +40,8 @@ import {
     hentDpInnsynSoknad,
     hentDpInnsynPaabegynte,
     hentStandardInnsatsgruppe,
+    hentDemoState,
+    DemoData,
 } from './demo-state';
 
 import { hentBrukerRegistrering } from './demo-state-brukerregistrering';
@@ -148,5 +150,11 @@ export const demo_handlers = [
     }),
 
     msw_get(ER_STANDARD_INNSATSGRUPPE_URL, hentStandardInnsatsgruppe().standardInnsatsgruppe),
-    msw_get(`${MELDEPLIKT_URL}/siste`, levertMeldekortMock),
+    rest.get(`${MELDEPLIKT_URL}/siste`, (req, res, ctx) => {
+        // eslint-disable-next-line no-restricted-globals
+        const valg = hentDemoState(DemoData.ARBEIDSSOKER_NESTE_PERIODE);
+        const erArbeidssokerNestePeriode = valg ? valg === 'Ja' : true;
+
+        return res(ctx.json(levertMeldekortMock(erArbeidssokerNestePeriode)));
+    }),
 ];
