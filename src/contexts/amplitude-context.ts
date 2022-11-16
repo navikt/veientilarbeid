@@ -31,6 +31,7 @@ export const initialAmplitudeData: AmplitudeData = {
     meldegruppe: 'INGEN_VERDI',
     antallMeldekortKlareForLevering: 0,
     vilFortsattVaereRegistrert: 'INGEN_DATA',
+    antallDagerSidenSisteMeldeperiode: 'INGEN_DATA',
 };
 
 const AmplitudeContext = createContext({

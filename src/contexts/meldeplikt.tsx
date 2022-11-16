@@ -6,6 +6,7 @@ import { useAmplitudeData } from './amplitude-context';
 import { fetchToJson } from '../ducks/api-utils';
 import { MELDEPLIKT_URL, requestConfig } from '../ducks/api';
 import { InnloggingsNiva, useAutentiseringData } from './autentisering';
+import dagerFraDato from '../utils/dager-fra-dato';
 
 export type MeldeKortType = 'ELEKTRONISK' | 'AAP' | 'MANUELL_ARENA' | 'ORDINAER_MANUELL' | 'KORRIGERT_ELEKTRONISK';
 
@@ -32,22 +33,23 @@ function MeldepliktProvider(props: { children: ReactNode }) {
     const brukMeldeplikt = featureToggleData['veientilarbeid.bruk-meldeplikt-hendelser'];
     const [meldeplikt, settMeldeplikt] = useState<Meldeplikt | null>(null);
 
-    const hentMeldeplikt = async () => {
-        const sisteMeldekortUrl = `${MELDEPLIKT_URL}/siste`;
-        try {
-            const meldeplikt: Meldeplikt = await fetchToJson(sisteMeldekortUrl, requestConfig());
-            if (meldeplikt) {
-                settMeldeplikt(meldeplikt);
-                oppdaterAmplitudeData({
-                    vilFortsattVaereRegistrert: meldeplikt?.erArbeidssokerNestePeriode ? 'Ja' : 'Nei',
-                });
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
     useEffect(() => {
+        const hentMeldeplikt = async () => {
+            const sisteMeldekortUrl = `${MELDEPLIKT_URL}/siste`;
+            try {
+                const meldeplikt: Meldeplikt = await fetchToJson(sisteMeldekortUrl, requestConfig());
+                if (meldeplikt) {
+                    settMeldeplikt(meldeplikt);
+                    oppdaterAmplitudeData({
+                        vilFortsattVaereRegistrert: meldeplikt.erArbeidssokerNestePeriode ? 'Ja' : 'Nei',
+                        antallDagerSidenSisteMeldeperiode: dagerFraDato(new Date(meldeplikt.periodeTil)),
+                    });
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
         if (brukMeldeplikt && securityLevel === InnloggingsNiva.LEVEL_4) {
             hentMeldeplikt();
         }

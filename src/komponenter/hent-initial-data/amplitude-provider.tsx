@@ -123,6 +123,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         meldegruppe: 'INGEN_VERDI',
         antallMeldekortKlareForLevering: 0,
         vilFortsattVaereRegistrert: 'INGEN_DATA',
+        antallDagerSidenSisteMeldeperiode: 'INGEN_DATA',
     };
 
     const [amplitudeData, setAmplitudeData] = React.useState(data);
