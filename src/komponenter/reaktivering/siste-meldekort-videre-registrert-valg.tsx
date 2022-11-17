@@ -11,7 +11,7 @@ function SisteMeldekortVidereRegistrertValg({ meldeplikt }: { meldeplikt: Meldep
     return (
         <BodyLong className={spacingStyles.mb1}>
             Du sa at du ønsket å{meldeplikt.erArbeidssokerNestePeriode ? ' fortsatt ' : ' ikke '}være registrert som
-            arbeidssøker på meldekortet som ble levert {prettyPrintDato(meldeplikt.eventOpprettet)}
+            arbeidssøker på meldekortet som ble levert {prettyPrintDato(meldeplikt.eventOpprettet)}.
         </BodyLong>
     );
 }
