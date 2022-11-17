@@ -31,24 +31,24 @@ const ReaktiveringKanskjeAktuelt = () => {
                     Du er ikke lenger registrert som arbeidssøker hos NAV
                 </Heading>
                 <div>
-                    <BodyShort className={spacingStyles.blokkS}>
-                        <Button
-                            variant="secondary"
-                            onClick={() => handleReaktivering('Går til reaktivering fra reaktivering ikke aktuelt')}
-                        >
-                            Registrer deg som arbeidssøker
-                        </Button>
-                    </BodyShort>
                     <BodyShort>
                         Er du usikker på om din situasjon betyr at du bør være registrert som arbeidssøker?
                     </BodyShort>
-                    <BodyShort className={spacingStyles.blokkXs}>
+                    <BodyShort className={spacingStyles.mb1}>
                         <Link
                             href={dialogLenke}
                             onClick={() => handleDialog('Går til dialog fra reaktivering ikke aktuelt')}
                         >
                             Ta kontakt med veilederen din i dialogtjenesten
                         </Link>
+                    </BodyShort>
+                    <BodyShort className={spacingStyles.mb1}>
+                        <Button
+                            variant="secondary"
+                            onClick={() => handleReaktivering('Går til reaktivering fra reaktivering ikke aktuelt')}
+                        >
+                            Registrer deg som arbeidssøker
+                        </Button>
                     </BodyShort>
                     <InViewport loggTekst="Reaktivering ikke aktuelt" />
                 </div>
