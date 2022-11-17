@@ -1,7 +1,8 @@
-import * as React from 'react';
+import { useEffect, useState, SyntheticEvent } from 'react';
 
 import { useProfil } from '../../contexts/profil';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { useMeldeplikt, Meldeplikt } from '../../contexts/meldeplikt';
 
 import { JaEllerNei } from '../../profil';
 import { loggAktivitet } from '../../metrics/metrics';
@@ -19,24 +20,48 @@ function valgAvVisningErUtdatert(valgtVisning: JaEllerNei): boolean {
     return dagerSidenValg >= 28;
 }
 
-function bestemReaktiveringVisning(valgtVisning: JaEllerNei): string {
-    return valgAvVisningErUtdatert(valgtVisning) ? 'ja' : valgtVisning.valg;
+function beregnReaktiveringVisningOgSkalViseDato(
+    valgtReaktiveringVisning: JaEllerNei | undefined,
+    meldeplikt: Meldeplikt | null
+) {
+    let reaktiveringVisning = 'ja';
+    let skalViseDato = true;
+
+    if (valgtReaktiveringVisning && meldeplikt) {
+        const meldepliktDate = new Date(meldeplikt.eventOpprettet);
+        const valgtVisningDato = new Date(valgtReaktiveringVisning.oppdatert);
+
+        if (meldepliktDate > valgtVisningDato) {
+            reaktiveringVisning = meldeplikt.erArbeidssokerNestePeriode === true ? 'ja' : 'nei';
+        } else {
+            reaktiveringVisning = valgAvVisningErUtdatert(valgtReaktiveringVisning)
+                ? 'ja'
+                : valgtReaktiveringVisning.valg;
+            skalViseDato = false;
+        }
+    } else if (meldeplikt) {
+        reaktiveringVisning = meldeplikt.erArbeidssokerNestePeriode === true ? 'ja' : 'nei';
+    } else if (valgtReaktiveringVisning) {
+        reaktiveringVisning = valgAvVisningErUtdatert(valgtReaktiveringVisning) ? 'ja' : valgtReaktiveringVisning.valg;
+    }
+
+    return { reaktiveringVisning, skalViseDato };
 }
 
 const Reaktivering = () => {
     const { profil, lagreProfil } = useProfil();
-
-    const valgtReaktiveringVisning: JaEllerNei = profil?.['aiaReaktiveringVisning'] ?? {
-        oppdatert: new Date().toISOString(),
-        valg: 'ja',
-    };
-
-    const reaktiveringVisning = bestemReaktiveringVisning(valgtReaktiveringVisning);
-    const [visReaktiveringAdvarsel, setVisReaktiveringAdvarsel] = React.useState(reaktiveringVisning);
-
+    const { meldeplikt } = useMeldeplikt();
     const { amplitudeData } = useAmplitudeData();
 
-    const handleIkkeReaktivering = (event: React.SyntheticEvent) => {
+    const valgtReaktiveringVisning: JaEllerNei | undefined = profil?.['aiaReaktiveringVisning'];
+    const { reaktiveringVisning, skalViseDato } = beregnReaktiveringVisningOgSkalViseDato(
+        valgtReaktiveringVisning,
+        meldeplikt
+    );
+
+    const [visReaktiveringAdvarsel, setVisReaktiveringAdvarsel] = useState(reaktiveringVisning);
+
+    const handleIkkeReaktivering = (event: SyntheticEvent) => {
         event.preventDefault();
         loggAktivitet({ aktivitet: 'Velger ikke vis reaktivering', ...amplitudeData });
 
@@ -46,10 +71,14 @@ const Reaktivering = () => {
         setVisReaktiveringAdvarsel(reaktiveringsvalg.valg);
     };
 
+    useEffect(() => {
+        setVisReaktiveringAdvarsel(reaktiveringVisning);
+    }, [reaktiveringVisning]);
+
     return visReaktiveringAdvarsel === 'ja' ? (
         <ReaktiveringAktuelt handleIkkeReaktivering={handleIkkeReaktivering} />
     ) : (
-        <ReaktiveringKanskjeAktuelt />
+        <ReaktiveringKanskjeAktuelt skalViseDato={skalViseDato} />
     );
 };
 

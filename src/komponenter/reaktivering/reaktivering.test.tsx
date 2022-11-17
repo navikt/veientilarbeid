@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import Reaktivering from './reaktivering';
 import { mockIntersectionObserver } from '../../mocks/intersection-observer-mock';
