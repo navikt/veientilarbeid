@@ -19,6 +19,7 @@ import { setFastTidspunktForIDag } from '../utils/chrono';
 import { GlobaleInnstillingerProps, GlobaleInnstillingerProvider } from '../contexts/GlobaleInnstillinger';
 import { Profil } from '../profil';
 import { ProfilContext } from '../contexts/profil';
+import { MeldepliktContext, Meldeplikt } from '../contexts/meldeplikt';
 
 type DeepPartial<T> = {
     [K in keyof T]?: T[K] extends object ? DeepPartial<T[K]> : T[K];
@@ -40,6 +41,7 @@ export type ProviderProps = {
     profil?: Profil;
     globaleProps?: DeepPartial<GlobaleInnstillingerProps>;
     arbeidssoker?: Arbeidssoker.Data;
+    meldeplikt?: Meldeplikt | null;
 };
 
 export const contextProviders = function (props: ProviderProps): React.FunctionComponent {
@@ -117,7 +119,11 @@ export const contextProviders = function (props: ProviderProps): React.FunctionC
                                                                     lagreProfil: () => Promise.resolve(),
                                                                 }}
                                                             >
-                                                                {children}
+                                                                <MeldepliktContext.Provider
+                                                                    value={{ meldeplikt: props.meldeplikt || null }}
+                                                                >
+                                                                    {children}
+                                                                </MeldepliktContext.Provider>
                                                             </ProfilContext.Provider>
                                                         </FeatureToggle.FeaturetoggleContext.Provider>
                                                     </Sakstema.SakstemaContext.Provider>
