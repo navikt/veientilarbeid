@@ -1,7 +1,8 @@
-import * as React from 'react';
+import { useEffect, useState, SyntheticEvent } from 'react';
 
 import { useProfil } from '../../contexts/profil';
 import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { useMeldeplikt, Meldeplikt } from '../../contexts/meldeplikt';
 
 import { JaEllerNei } from '../../profil';
 import { loggAktivitet } from '../../metrics/metrics';
@@ -19,24 +20,27 @@ function valgAvVisningErUtdatert(valgtVisning: JaEllerNei): boolean {
     return dagerSidenValg >= 28;
 }
 
-function bestemReaktiveringVisning(valgtVisning: JaEllerNei): string {
+function bestemReaktiveringVisning(valgtVisning: JaEllerNei, meldeplikt: Meldeplikt | null): string {
+    if (meldeplikt) {
+        return meldeplikt.erArbeidssokerNestePeriode === true ? 'ja' : 'nei';
+    }
     return valgAvVisningErUtdatert(valgtVisning) ? 'ja' : valgtVisning.valg;
 }
 
 const Reaktivering = () => {
     const { profil, lagreProfil } = useProfil();
+    const { meldeplikt } = useMeldeplikt();
+    const { amplitudeData } = useAmplitudeData();
 
     const valgtReaktiveringVisning: JaEllerNei = profil?.['aiaReaktiveringVisning'] ?? {
         oppdatert: new Date().toISOString(),
         valg: 'ja',
     };
 
-    const reaktiveringVisning = bestemReaktiveringVisning(valgtReaktiveringVisning);
-    const [visReaktiveringAdvarsel, setVisReaktiveringAdvarsel] = React.useState(reaktiveringVisning);
+    const reaktiveringVisning = bestemReaktiveringVisning(valgtReaktiveringVisning, meldeplikt);
+    const [visReaktiveringAdvarsel, setVisReaktiveringAdvarsel] = useState(reaktiveringVisning);
 
-    const { amplitudeData } = useAmplitudeData();
-
-    const handleIkkeReaktivering = (event: React.SyntheticEvent) => {
+    const handleIkkeReaktivering = (event: SyntheticEvent) => {
         event.preventDefault();
         loggAktivitet({ aktivitet: 'Velger ikke vis reaktivering', ...amplitudeData });
 
@@ -45,6 +49,10 @@ const Reaktivering = () => {
         lagreProfil({ aiaReaktiveringVisning: reaktiveringsvalg });
         setVisReaktiveringAdvarsel(reaktiveringsvalg.valg);
     };
+
+    useEffect(() => {
+        setVisReaktiveringAdvarsel(reaktiveringVisning);
+    }, [reaktiveringVisning]);
 
     return visReaktiveringAdvarsel === 'ja' ? (
         <ReaktiveringAktuelt handleIkkeReaktivering={handleIkkeReaktivering} />
