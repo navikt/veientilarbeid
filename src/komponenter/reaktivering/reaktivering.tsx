@@ -1,14 +1,12 @@
-import { useProfil } from '../../contexts/profil';
 import * as React from 'react';
-import ErRendret from '../er-rendret/er-rendret';
-import { Alert, BodyShort, Button, Heading, Link } from '@navikt/ds-react';
-import InViewport from '../in-viewport/in-viewport';
+
+import { useProfil } from '../../contexts/profil';
+import { useAmplitudeData } from '../../contexts/amplitude-context';
+
 import { JaEllerNei } from '../../profil';
 import { loggAktivitet } from '../../metrics/metrics';
-import { dialogLenke, reaktiveringLenke } from '../../innhold/lenker';
-import { useAmplitudeData } from '../../contexts/amplitude-context';
-import styles from '../../innhold/innhold.module.css';
-import spacingStyles from '../../spacing.module.css';
+import ReaktiveringAktuelt from './reaktivering-aktuelt';
+import ReaktiveringKanskjeAktuelt from './reaktivering-kanskje-aktuelt';
 
 function valgAvVisningErUtdatert(valgtVisning: JaEllerNei): boolean {
     // Hvis man velger at man ikke har behov for å være registrert lenger, skal dette bare være gyldig i 28 dager,
@@ -38,16 +36,6 @@ const Reaktivering = () => {
 
     const { amplitudeData } = useAmplitudeData();
 
-    const handleReaktivering = (aktivitet: string) => {
-        loggAktivitet({ aktivitet: aktivitet, ...amplitudeData });
-        window.location.assign(reaktiveringLenke);
-    };
-
-    const handleDialog = (aktivitet: string) => {
-        loggAktivitet({ aktivitet: aktivitet, ...amplitudeData });
-        window.location.assign(dialogLenke);
-    };
-
     const handleIkkeReaktivering = (event: React.SyntheticEvent) => {
         event.preventDefault();
         loggAktivitet({ aktivitet: 'Velger ikke vis reaktivering', ...amplitudeData });
@@ -58,74 +46,10 @@ const Reaktivering = () => {
         setVisReaktiveringAdvarsel(reaktiveringsvalg.valg);
     };
 
-    return (
-        <section className={`${styles.limit} ${spacingStyles.blokkM}`}>
-            <ErRendret loggTekst="Rendrer tema: kan reaktiveres" />
-            <Alert variant={visReaktiveringAdvarsel === 'ja' ? 'warning' : 'info'}>
-                <Heading size="small" level="2" className={spacingStyles.blokkXs}>
-                    Du er ikke lenger registrert som arbeidssøker hos NAV
-                </Heading>
-                {visReaktiveringAdvarsel === 'ja' ? (
-                    <div>
-                        <BodyShort className={spacingStyles.blokkXs}>
-                            Har du mottatt dagpenger vil utbetalingene nå være stoppet. Du må registrere deg på nytt og
-                            sende inn ny søknad om dagpenger.
-                        </BodyShort>
-                        <BodyShort className={spacingStyles.blokkXs}>
-                            Dersom du har søkt eller ønsker å søke om dagpenger må du være registrert som arbeidssøker.
-                        </BodyShort>
-                        <BodyShort className={spacingStyles.blokkXs}>
-                            Dersom du ønsker arbeidsrettet oppfølging fra NAV, må du være registrert som arbeidssøker.
-                        </BodyShort>
-                        <BodyShort className={spacingStyles.blokkS}>
-                            <Button variant="secondary" onClick={() => handleReaktivering('Går til reaktivering')}>
-                                Registrer deg som arbeidssøker
-                            </Button>
-                        </BodyShort>
-                        <BodyShort>
-                            Er du usikker på om din situasjon betyr at du bør være registrert som arbeidssøker?
-                        </BodyShort>
-                        <BodyShort className={spacingStyles.blokkXs}>
-                            <Link
-                                href={dialogLenke}
-                                onClick={() => handleDialog('Går til dialog fra reaktiveringskortet')}
-                            >
-                                Ta kontakt med veilederen din i dialogtjenesten
-                            </Link>
-                        </BodyShort>
-                        <BodyShort className={spacingStyles.blokkXs}>
-                            <Link href={dialogLenke} onClick={handleIkkeReaktivering}>
-                                Jeg har ikke lenger behov for å være registrert som arbeidssøker hos NAV
-                            </Link>
-                        </BodyShort>
-                    </div>
-                ) : (
-                    <div>
-                        <BodyShort className={spacingStyles.blokkS}>
-                            <Button
-                                variant="secondary"
-                                onClick={() => handleReaktivering('Går til reaktivering fra reaktivering ikke aktuelt')}
-                            >
-                                Registrer deg som arbeidssøker
-                            </Button>
-                        </BodyShort>
-                        <BodyShort>
-                            Er du usikker på om din situasjon betyr at du bør være registrert som arbeidssøker?
-                        </BodyShort>
-                        <BodyShort className={spacingStyles.blokkXs}>
-                            <Link
-                                href={dialogLenke}
-                                onClick={() => handleDialog('Går til dialog fra reaktivering ikke aktuelt')}
-                            >
-                                Ta kontakt med veilederen din i dialogtjenesten
-                            </Link>
-                        </BodyShort>
-                        <InViewport loggTekst="Reaktivering ikke aktuelt" />
-                    </div>
-                )}
-                <InViewport loggTekst="Viser tema i viewport: kan reaktiveres" />
-            </Alert>
-        </section>
+    return visReaktiveringAdvarsel === 'ja' ? (
+        <ReaktiveringAktuelt handleIkkeReaktivering={handleIkkeReaktivering} />
+    ) : (
+        <ReaktiveringKanskjeAktuelt />
     );
 };
 
