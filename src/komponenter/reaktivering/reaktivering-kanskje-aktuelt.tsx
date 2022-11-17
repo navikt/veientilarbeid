@@ -12,9 +12,14 @@ import SisteMeldekortVidereRegistrertValg from './siste-meldekort-videre-registr
 import styles from '../../innhold/innhold.module.css';
 import spacingStyles from '../../spacing.module.css';
 
-const ReaktiveringKanskjeAktuelt = () => {
+interface ReaktiveringKanskjeAktueltProps {
+    skalViseDato: boolean;
+}
+
+const ReaktiveringKanskjeAktuelt = (props: ReaktiveringKanskjeAktueltProps) => {
     const { amplitudeData } = useAmplitudeData();
     const { meldeplikt } = useMeldeplikt();
+    const { skalViseDato } = props;
 
     const handleReaktivering = (aktivitet: string) => {
         loggAktivitet({ aktivitet: aktivitet, ...amplitudeData });
@@ -34,7 +39,7 @@ const ReaktiveringKanskjeAktuelt = () => {
                     Du er ikke lenger registrert som arbeidssøker hos NAV
                 </Heading>
                 <div>
-                    <SisteMeldekortVidereRegistrertValg meldeplikt={meldeplikt} />
+                    {skalViseDato && <SisteMeldekortVidereRegistrertValg meldeplikt={meldeplikt} />}
                     <BodyShort>
                         Er du usikker på om din situasjon betyr at du bør være registrert som arbeidssøker?
                     </BodyShort>

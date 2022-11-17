@@ -20,11 +20,32 @@ function valgAvVisningErUtdatert(valgtVisning: JaEllerNei): boolean {
     return dagerSidenValg >= 28;
 }
 
-function bestemReaktiveringVisning(valgtVisning: JaEllerNei, meldeplikt: Meldeplikt | null): string {
-    if (meldeplikt) {
-        return meldeplikt.erArbeidssokerNestePeriode === true ? 'ja' : 'nei';
+function beregnReaktiveringVisningOgSkalViseDato(
+    valgtReaktiveringVisning: JaEllerNei | undefined,
+    meldeplikt: Meldeplikt | null
+) {
+    let reaktiveringVisning = 'ja';
+    let skalViseDato = true;
+
+    if (valgtReaktiveringVisning && meldeplikt) {
+        const meldepliktDate = new Date(meldeplikt.eventOpprettet);
+        const valgtVisningDato = new Date(valgtReaktiveringVisning.oppdatert);
+
+        if (meldepliktDate > valgtVisningDato) {
+            reaktiveringVisning = meldeplikt.erArbeidssokerNestePeriode === true ? 'ja' : 'nei';
+        } else {
+            reaktiveringVisning = valgAvVisningErUtdatert(valgtReaktiveringVisning)
+                ? 'ja'
+                : valgtReaktiveringVisning.valg;
+            skalViseDato = false;
+        }
+    } else if (meldeplikt) {
+        reaktiveringVisning = meldeplikt.erArbeidssokerNestePeriode === true ? 'ja' : 'nei';
+    } else if (valgtReaktiveringVisning) {
+        reaktiveringVisning = valgAvVisningErUtdatert(valgtReaktiveringVisning) ? 'ja' : valgtReaktiveringVisning.valg;
     }
-    return valgAvVisningErUtdatert(valgtVisning) ? 'ja' : valgtVisning.valg;
+
+    return { reaktiveringVisning, skalViseDato };
 }
 
 const Reaktivering = () => {
@@ -32,12 +53,12 @@ const Reaktivering = () => {
     const { meldeplikt } = useMeldeplikt();
     const { amplitudeData } = useAmplitudeData();
 
-    const valgtReaktiveringVisning: JaEllerNei = profil?.['aiaReaktiveringVisning'] ?? {
-        oppdatert: new Date().toISOString(),
-        valg: 'ja',
-    };
+    const valgtReaktiveringVisning: JaEllerNei | undefined = profil?.['aiaReaktiveringVisning'];
+    const { reaktiveringVisning, skalViseDato } = beregnReaktiveringVisningOgSkalViseDato(
+        valgtReaktiveringVisning,
+        meldeplikt
+    );
 
-    const reaktiveringVisning = bestemReaktiveringVisning(valgtReaktiveringVisning, meldeplikt);
     const [visReaktiveringAdvarsel, setVisReaktiveringAdvarsel] = useState(reaktiveringVisning);
 
     const handleIkkeReaktivering = (event: SyntheticEvent) => {
@@ -57,7 +78,7 @@ const Reaktivering = () => {
     return visReaktiveringAdvarsel === 'ja' ? (
         <ReaktiveringAktuelt handleIkkeReaktivering={handleIkkeReaktivering} />
     ) : (
-        <ReaktiveringKanskjeAktuelt />
+        <ReaktiveringKanskjeAktuelt skalViseDato={skalViseDato} />
     );
 };
 
