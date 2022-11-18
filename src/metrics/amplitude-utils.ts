@@ -5,6 +5,7 @@ import { InnloggingsNiva } from '../contexts/autentisering';
 import { erProduksjon } from '../utils/app-state-utils';
 import { DinSituasjonSvar, ForeslattInnsatsgruppe } from '../contexts/brukerregistrering';
 import * as SprakValg from '../contexts/sprak';
+import { DagpengeStatus } from '../lib/beregn-dagpenge-status';
 
 const apiKey = erProduksjon() ? AMPLITUDE_API_KEY_PROD : AMPLITUDE_API_KEY_TEST;
 const config = {
@@ -58,6 +59,7 @@ export type AmplitudeData = {
     antallMeldekortKlareForLevering: number;
     vilFortsattVaereRegistrert: 'INGEN_DATA' | 'Ja' | 'Nei';
     antallDagerSidenSisteMeldeperiode: number | 'INGEN_DATA' | 'N/A';
+    dagpengerStatus: 'INGEN_DATA' | DagpengeStatus;
 };
 
 export function amplitudeLogger(name: string, values?: object) {

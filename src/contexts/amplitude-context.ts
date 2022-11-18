@@ -32,6 +32,7 @@ export const initialAmplitudeData: AmplitudeData = {
     antallMeldekortKlareForLevering: 0,
     vilFortsattVaereRegistrert: 'INGEN_DATA',
     antallDagerSidenSisteMeldeperiode: 'INGEN_DATA',
+    dagpengerStatus: 'INGEN_DATA',
 };
 
 const AmplitudeContext = createContext({
