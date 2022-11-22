@@ -8,7 +8,9 @@ import { fetchToJson } from '../ducks/api-utils';
 import { DagpengeStatus } from '../lib/beregn-dagpenge-status';
 
 type DagpengerStatus = DagpengeStatus;
-
+type DagpengerStatusResponse = {
+    dagpengerStatus: DagpengerStatus;
+};
 interface DagpengerStatusProviderType {
     dagpengerStatus: DagpengerStatus | null;
 }
@@ -28,10 +30,10 @@ function DagpengerStatusProvider(props: { children: ReactNode }) {
     useEffect(() => {
         const hentDagpengerStatus = async () => {
             try {
-                const dpStatus: DagpengerStatus = await fetchToJson(DAGPENGER_STATUS, requestConfig());
-                settDagpengerStatus(dpStatus);
+                const response: DagpengerStatusResponse = await fetchToJson(DAGPENGER_STATUS, requestConfig());
+                settDagpengerStatus(response.dagpengerStatus);
                 oppdaterAmplitudeData({
-                    dagpengerStatus: dpStatus,
+                    dagpengerStatus: response.dagpengerStatus,
                 });
             } catch (err) {}
         };

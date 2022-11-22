@@ -158,5 +158,5 @@ export const demo_handlers = [
 
         return res(ctx.json(levertMeldekortMock(erArbeidssokerNestePeriode)));
     }),
-    msw_get(DAGPENGER_STATUS, 'ukjent'),
+    msw_get(DAGPENGER_STATUS, { dagpengerStatus: 'ukjent' }),
 ];
