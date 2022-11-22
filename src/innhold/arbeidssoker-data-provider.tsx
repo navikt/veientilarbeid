@@ -23,6 +23,7 @@ import * as Motestotte from '../contexts/motestotte';
 import * as UlesteDialoger from '../contexts/ulestedialoger';
 import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe } from '../contexts/brukerregistrering';
 import { BehovForVeiledningProvider } from '../contexts/behov-for-veiledning';
+import { DagpengerStatusProvider } from '../contexts/dagpenger-status';
 
 interface Props {
     children: React.ReactElement<any>;
@@ -84,7 +85,9 @@ const ArbeidssokerDataProvider = (props: Props) => {
                                         <BehovForVeiledningProvider>
                                             <GjelderFraDatoModalProvider>
                                                 <GjelderFraDatoProvider>
-                                                    <AmplitudeProvider>{props.children}</AmplitudeProvider>
+                                                    <DagpengerStatusProvider>
+                                                        <AmplitudeProvider>{props.children}</AmplitudeProvider>
+                                                    </DagpengerStatusProvider>
                                                 </GjelderFraDatoProvider>
                                             </GjelderFraDatoModalProvider>
                                         </BehovForVeiledningProvider>
