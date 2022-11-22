@@ -28,6 +28,7 @@ import {
     ARBEIDSSOKER_NIVA3_URL,
     ER_STANDARD_INNSATSGRUPPE_URL,
     MELDEPLIKT_URL,
+    DAGPENGER_STATUS,
 } from '../ducks/api';
 import gjelderFraGetResponse from './gjelderfra-mock';
 import arbeidssokerNiva3Response from './arbeidssoker-niva3-mock';
@@ -52,4 +53,5 @@ export const handlers = [
     msw_get(ARBEIDSSOKER_NIVA3_URL, arbeidssokerNiva3Response(true, null)),
     msw_get(ER_STANDARD_INNSATSGRUPPE_URL, true),
     msw_get(`${MELDEPLIKT_URL}/siste`, levertMeldekortMock(true)),
+    msw_get(DAGPENGER_STATUS, 'ukjent'),
 ];

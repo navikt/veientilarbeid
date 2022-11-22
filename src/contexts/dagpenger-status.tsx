@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
-import { useFeatureToggleData } from './feature-toggles';
+import { FeatureToggles, useFeatureToggleData } from './feature-toggles';
 import { useAmplitudeData } from './amplitude-context';
 import { InnloggingsNiva, useAutentiseringData } from './autentisering';
 import { DAGPENGER_STATUS, requestConfig } from '../ducks/api';
@@ -21,7 +21,7 @@ function DagpengerStatusProvider(props: { children: ReactNode }) {
     const featureToggleData = useFeatureToggleData();
     const { securityLevel } = useAutentiseringData();
     const { oppdaterAmplitudeData } = useAmplitudeData();
-    const brukDagpengerStatus = featureToggleData['veientilarbeid.bruk-dagpenger-status'];
+    const brukDagpengerStatus = featureToggleData[FeatureToggles.BRUK_DAGPENGER_STATUS];
 
     const [dagpengerStatus, settDagpengerStatus] = useState<DagpengerStatus | null>(null);
 

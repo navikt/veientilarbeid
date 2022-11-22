@@ -19,6 +19,7 @@ import {
     BEHOV_FOR_VEILEDNING_URL,
     OPPRETT_DIALOG_URL,
     MELDEPLIKT_URL,
+    DAGPENGER_STATUS,
 } from '../ducks/api';
 
 import {
@@ -157,4 +158,5 @@ export const demo_handlers = [
 
         return res(ctx.json(levertMeldekortMock(erArbeidssokerNestePeriode)));
     }),
+    msw_get(DAGPENGER_STATUS, 'ukjent'),
 ];
