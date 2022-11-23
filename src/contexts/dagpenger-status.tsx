@@ -8,9 +8,13 @@ import { fetchToJson } from '../ducks/api-utils';
 import { DagpengeStatus } from '../lib/beregn-dagpenge-status';
 
 type DagpengerStatus = DagpengeStatus;
+type AntallDagerSidenDagpengerStanset = number | 'N/A';
+
 type DagpengerStatusResponse = {
     dagpengerStatus: DagpengerStatus;
+    antallDagerSidenDagpengerStanset: AntallDagerSidenDagpengerStanset;
 };
+
 interface DagpengerStatusProviderType {
     dagpengerStatus: DagpengerStatus | null;
 }
@@ -34,6 +38,7 @@ function DagpengerStatusProvider(props: { children: ReactNode }) {
                 settDagpengerStatus(response.dagpengerStatus);
                 oppdaterAmplitudeData({
                     dagpengerStatus: response.dagpengerStatus,
+                    antallDagerSidenDagpengerStanset: response.antallDagerSidenDagpengerStanset,
                 });
             } catch (err) {}
         };

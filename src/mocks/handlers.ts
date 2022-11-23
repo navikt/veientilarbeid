@@ -53,5 +53,5 @@ export const handlers = [
     msw_get(ARBEIDSSOKER_NIVA3_URL, arbeidssokerNiva3Response(true, null)),
     msw_get(ER_STANDARD_INNSATSGRUPPE_URL, true),
     msw_get(`${MELDEPLIKT_URL}/siste`, levertMeldekortMock(true)),
-    msw_get(DAGPENGER_STATUS, { dagpengerStatus: 'ukjent' }),
+    msw_get(DAGPENGER_STATUS, { dagpengerStatus: 'ukjent', antallDagerSidenDagpengerStanset: 'N/A' }),
 ];

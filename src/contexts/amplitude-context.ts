@@ -33,6 +33,7 @@ export const initialAmplitudeData: AmplitudeData = {
     vilFortsattVaereRegistrert: 'INGEN_DATA',
     antallDagerSidenSisteMeldeperiode: 'INGEN_DATA',
     dagpengerStatus: 'INGEN_DATA',
+    antallDagerSidenDagpengerStanset: 'INGEN_DATA',
 };
 
 const AmplitudeContext = createContext({

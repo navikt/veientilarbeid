@@ -125,6 +125,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         vilFortsattVaereRegistrert: 'INGEN_DATA',
         antallDagerSidenSisteMeldeperiode: 'INGEN_DATA',
         dagpengerStatus: 'INGEN_DATA',
+        antallDagerSidenDagpengerStanset: 'INGEN_DATA',
     };
 
     const [amplitudeData, setAmplitudeData] = React.useState(data);
