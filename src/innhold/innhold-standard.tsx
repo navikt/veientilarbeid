@@ -35,7 +35,7 @@ const InnholdStandard = () => {
     return (
         <>
             <InnholdMetrics />
-            <InViewport loggTekst="Veien til arbeid i viewport" />
+            <InViewport loggTekst="AiA i viewport" />
             <div className={styles.limit}>
                 <ReaktiveringKvittering />
                 <KvitteringEgenvurdering />
@@ -46,7 +46,7 @@ const InnholdStandard = () => {
                 {visBehovsAvklaring ? null : <Aktivitetsplan />}
                 <GjelderFraDato />
             </div>
-            <InViewport loggTekst="Bunnen av veien til arbeid i viewport" />
+            <InViewport loggTekst="Bunnen av AiA i viewport" />
         </>
     );
 };

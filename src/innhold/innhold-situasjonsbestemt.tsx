@@ -11,14 +11,14 @@ const InnholdSituasjonsbestemt = () => {
     return (
         <>
             <InnholdMetrics />
-            <InViewport loggTekst="Veien til arbeid i viewport - situasjonsbestemt" />
+            <InViewport loggTekst="AiA i viewport" />
             <div className={styles.limit}>
                 <ReaktiveringKvittering />
                 <KvitteringEgenvurdering />
                 <RegistrertTittel />
                 <Situasjonsbestemt />
             </div>
-            <InViewport loggTekst="Bunnen av veien til arbeid i viewport - situasjonsbestemt" />
+            <InViewport loggTekst="Bunnen av AiA i viewport" />
         </>
     );
 };

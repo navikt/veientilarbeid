@@ -69,7 +69,7 @@ function Metrics(props: Props) {
 
     React.useEffect(() => {
         hotjarTrigger(erMikrofrontend(), POAGruppe, hotjarEksperiment());
-        loggVisning({ viser: 'Viser veien til arbeid', ...amplitudeData });
+        loggVisning({ viser: 'Viser AiA', ...amplitudeData });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

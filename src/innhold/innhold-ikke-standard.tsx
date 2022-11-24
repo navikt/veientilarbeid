@@ -11,14 +11,14 @@ const InnholdView = () => {
     return (
         <>
             <InnholdMetrics />
-            <InViewport loggTekst="Veien til arbeid i viewport - ikke-standard" />
+            <InViewport loggTekst="AiA i viewport" />
             <div className={styles.limit}>
                 <ReaktiveringKvittering />
                 <RegistrertTittel />
                 <IkkeStandard />
                 <Motestotte />
             </div>
-            <InViewport loggTekst="Bunnen av veien til arbeid i viewport - ikke-standard" />
+            <InViewport loggTekst="Bunnen av AiA i viewport" />
         </>
     );
 };

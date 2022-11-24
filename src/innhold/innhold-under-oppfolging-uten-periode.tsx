@@ -27,14 +27,14 @@ const InnholdUnderOppfolgingUtenPeriode = () => {
     return (
         <>
             <InnholdMetrics />
-            <InViewport loggTekst="Veien til arbeid i viewport - under oppfølging - uten arbeidssøkerperiode" />
+            <InViewport loggTekst="AiA i viewport" />
             <div className={styles.limit}>
                 {skalViseReaktivering && <ReaktiveringWrapper />}
                 <IkkeStandard />
                 <Motestotte />
                 <Egenvurdering />
             </div>
-            <InViewport loggTekst="Bunnen av veien til arbeid i viewport -  under oppfølging - uten arbeidssøkerperiode" />
+            <InViewport loggTekst="Bunnen av AiA i viewport" />
         </>
     );
 };
