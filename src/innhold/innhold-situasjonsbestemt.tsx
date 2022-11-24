@@ -18,7 +18,7 @@ const InnholdSituasjonsbestemt = () => {
                 <RegistrertTittel />
                 <Situasjonsbestemt />
             </div>
-            <InViewport loggTekst="Bunnen av AiA i viewport" />
+            <InViewport loggTekst="AiA i viewport - bunnen" />
         </>
     );
 };

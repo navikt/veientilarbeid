@@ -46,7 +46,7 @@ const InnholdStandard = () => {
                 {visBehovsAvklaring ? null : <Aktivitetsplan />}
                 <GjelderFraDato />
             </div>
-            <InViewport loggTekst="Bunnen av AiA i viewport" />
+            <InViewport loggTekst="AiA i viewport - bunnen" />
         </>
     );
 };
