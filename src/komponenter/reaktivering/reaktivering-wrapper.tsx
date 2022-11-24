@@ -7,15 +7,13 @@ import { AmplitudeProvider } from '../hent-initial-data/amplitude-provider';
 const ReaktiveringWrapper = () => {
     return (
         <ProfilProvider>
-            <MeldepliktProvider>
-                <DagpengerStatusProvider>
-                    <AmplitudeProvider>
-                        <DagpengerStatusProvider>
-                            <Reaktivering />
-                        </DagpengerStatusProvider>
-                    </AmplitudeProvider>
-                </DagpengerStatusProvider>
-            </MeldepliktProvider>
+            <AmplitudeProvider>
+                <MeldepliktProvider>
+                    <DagpengerStatusProvider>
+                        <Reaktivering />
+                    </DagpengerStatusProvider>
+                </MeldepliktProvider>
+            </AmplitudeProvider>
         </ProfilProvider>
     );
 };
