@@ -85,9 +85,11 @@ const ArbeidssokerDataProvider = (props: Props) => {
                                         <BehovForVeiledningProvider>
                                             <GjelderFraDatoModalProvider>
                                                 <GjelderFraDatoProvider>
-                                                    <DagpengerStatusProvider>
-                                                        <AmplitudeProvider>{props.children}</AmplitudeProvider>
-                                                    </DagpengerStatusProvider>
+                                                    <AmplitudeProvider>
+                                                        <DagpengerStatusProvider>
+                                                            {props.children}
+                                                        </DagpengerStatusProvider>
+                                                    </AmplitudeProvider>
                                                 </GjelderFraDatoProvider>
                                             </GjelderFraDatoModalProvider>
                                         </BehovForVeiledningProvider>

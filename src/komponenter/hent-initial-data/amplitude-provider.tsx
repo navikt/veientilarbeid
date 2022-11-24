@@ -130,12 +130,15 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
 
     const [amplitudeData, setAmplitudeData] = React.useState(data);
 
-    const oppdaterAmplitudeData = (data: Partial<AmplitudeData>) => {
-        setAmplitudeData({
-            ...amplitudeData,
-            ...data,
-        });
-    };
+    const oppdaterAmplitudeData = React.useCallback(
+        (data: Partial<AmplitudeData>) => {
+            setAmplitudeData({
+                ...amplitudeData,
+                ...data,
+            });
+        },
+        [amplitudeData]
+    );
 
     return (
         <AmplitudeContext.Provider value={{ amplitudeData, oppdaterAmplitudeData }}>
