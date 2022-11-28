@@ -34,6 +34,7 @@ export const initialAmplitudeData: AmplitudeData = {
     antallDagerSidenSisteMeldeperiode: 'INGEN_DATA',
     dagpengerStatus: 'INGEN_DATA',
     antallDagerSidenDagpengerStanset: 'INGEN_DATA',
+    villeBlittReaktivertAutomatisk: 'INGEN_DATA',
 };
 
 const AmplitudeContext = createContext({

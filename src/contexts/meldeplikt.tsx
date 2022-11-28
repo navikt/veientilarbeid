@@ -7,6 +7,7 @@ import { fetchToJson } from '../ducks/api-utils';
 import { MELDEPLIKT_URL, requestConfig } from '../ducks/api';
 import { InnloggingsNiva, useAutentiseringData } from './autentisering';
 import dagerFraDato from '../utils/dager-fra-dato';
+import { plussDager } from '../utils/date-utils';
 
 export type MeldeKortType = 'ELEKTRONISK' | 'AAP' | 'MANUELL_ARENA' | 'ORDINAER_MANUELL' | 'KORRIGERT_ELEKTRONISK';
 
@@ -40,9 +41,13 @@ function MeldepliktProvider(props: { children: ReactNode }) {
                 const meldeplikt: Meldeplikt = await fetchToJson(sisteMeldekortUrl, requestConfig());
                 if (meldeplikt) {
                     settMeldeplikt(meldeplikt);
+                    const vilVaereRegistrertTilOgMed = plussDager(new Date(meldeplikt.eventOpprettet), 21);
+                    const iDag = new Date();
                     oppdaterAmplitudeData({
                         vilFortsattVaereRegistrert: meldeplikt.erArbeidssokerNestePeriode ? 'Ja' : 'Nei',
                         antallDagerSidenSisteMeldeperiode: dagerFraDato(new Date(meldeplikt.periodeTil)),
+                        villeBlittReaktivertAutomatisk:
+                            iDag < vilVaereRegistrertTilOgMed && meldeplikt.erArbeidssokerNestePeriode ? 'Ja' : 'Nei',
                     });
                 }
             } catch (error) {
