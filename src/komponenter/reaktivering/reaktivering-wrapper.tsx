@@ -3,6 +3,7 @@ import { ProfilProvider } from '../../contexts/profil';
 import { MeldepliktProvider } from '../../contexts/meldeplikt';
 import { DagpengerStatusProvider } from '../../contexts/dagpenger-status';
 import { AmplitudeProvider } from '../hent-initial-data/amplitude-provider';
+import { AntattInaktiveringsgrunnProvider } from '../../contexts/antatt-inaktiveringsgrunn';
 
 const ReaktiveringWrapper = () => {
     return (
@@ -10,7 +11,9 @@ const ReaktiveringWrapper = () => {
             <AmplitudeProvider>
                 <MeldepliktProvider>
                     <DagpengerStatusProvider>
-                        <Reaktivering />
+                        <AntattInaktiveringsgrunnProvider>
+                            <Reaktivering />
+                        </AntattInaktiveringsgrunnProvider>
                     </DagpengerStatusProvider>
                 </MeldepliktProvider>
             </AmplitudeProvider>

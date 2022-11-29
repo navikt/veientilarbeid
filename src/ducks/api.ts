@@ -51,4 +51,5 @@ export const AIA_BACKEND = aiaBackendUrl,
     ARBEIDSSOKER_NIVA3_URL = `${AIA_BACKEND}/arbeidssoker?fraOgMed=2020-01-01`,
     ER_STANDARD_INNSATSGRUPPE_URL = `${AIA_BACKEND}/standard-innsats`,
     BEHOV_FOR_VEILEDNING_URL = `${AIA_BACKEND}/behov-for-veiledning`,
-    DAGPENGER_STATUS = `${AIA_BACKEND}/dagpenger-status`;
+    DAGPENGER_STATUS = `${AIA_BACKEND}/dagpenger-status`,
+    ANTATT_INAKTIVERINGSGRUNN = `${AIA_BACKEND}/data/meldekort-inaktivering`;

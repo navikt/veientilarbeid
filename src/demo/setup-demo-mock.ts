@@ -20,6 +20,7 @@ import {
     OPPRETT_DIALOG_URL,
     MELDEPLIKT_URL,
     DAGPENGER_STATUS,
+    ANTATT_INAKTIVERINGSGRUNN,
 } from '../ducks/api';
 
 import {
@@ -159,4 +160,5 @@ export const demo_handlers = [
         return res(ctx.json(levertMeldekortMock(erArbeidssokerNestePeriode)));
     }),
     msw_get(DAGPENGER_STATUS, { dagpengerStatus: 'ukjent', antallDagerSidenDagpengerStanset: 'N/A' }),
+    msw_get(ANTATT_INAKTIVERINGSGRUNN, { meldekortStatus: 'N/A' }),
 ];

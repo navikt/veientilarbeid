@@ -29,6 +29,7 @@ import {
     ER_STANDARD_INNSATSGRUPPE_URL,
     MELDEPLIKT_URL,
     DAGPENGER_STATUS,
+    ANTATT_INAKTIVERINGSGRUNN,
 } from '../ducks/api';
 import gjelderFraGetResponse from './gjelderfra-mock';
 import arbeidssokerNiva3Response from './arbeidssoker-niva3-mock';
@@ -54,4 +55,5 @@ export const handlers = [
     msw_get(ER_STANDARD_INNSATSGRUPPE_URL, true),
     msw_get(`${MELDEPLIKT_URL}/siste`, levertMeldekortMock(true)),
     msw_get(DAGPENGER_STATUS, { dagpengerStatus: 'ukjent', antallDagerSidenDagpengerStanset: 'N/A' }),
+    msw_get(ANTATT_INAKTIVERINGSGRUNN, { meldekortStatus: 'N/A' }),
 ];

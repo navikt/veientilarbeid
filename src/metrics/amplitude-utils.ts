@@ -6,6 +6,7 @@ import { erProduksjon } from '../utils/app-state-utils';
 import { DinSituasjonSvar, ForeslattInnsatsgruppe } from '../contexts/brukerregistrering';
 import * as SprakValg from '../contexts/sprak';
 import { DagpengeStatus } from '../lib/beregn-dagpenge-status';
+import { AntattInaktiveringsgrunn } from '../contexts/antatt-inaktiveringsgrunn';
 
 const apiKey = erProduksjon() ? AMPLITUDE_API_KEY_PROD : AMPLITUDE_API_KEY_TEST;
 const config = {
@@ -63,6 +64,7 @@ export type AmplitudeData = {
     antallDagerSidenDagpengerStanset: 'INGEN_DATA' | number | 'N/A';
     villeBlittReaktivertAutomatisk: 'INGEN_DATA' | 'Ja' | 'Nei';
     antallDagerSidenSistInnsendtMeldekort: 'INGEN_DATA' | number;
+    antattInaktiveringsgrunn: 'INGEN_DATA' | AntattInaktiveringsgrunn;
 };
 
 export function amplitudeLogger(name: string, values?: object) {
