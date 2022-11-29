@@ -127,6 +127,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         dagpengerStatus: 'INGEN_DATA',
         antallDagerSidenDagpengerStanset: 'INGEN_DATA',
         villeBlittReaktivertAutomatisk: 'INGEN_DATA',
+        antallDagerSidenSistInnsendtMeldekort: 'INGEN_DATA',
     };
 
     const [amplitudeData, setAmplitudeData] = React.useState(data);

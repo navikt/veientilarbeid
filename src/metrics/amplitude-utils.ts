@@ -62,6 +62,7 @@ export type AmplitudeData = {
     dagpengerStatus: 'INGEN_DATA' | DagpengeStatus;
     antallDagerSidenDagpengerStanset: 'INGEN_DATA' | number | 'N/A';
     villeBlittReaktivertAutomatisk: 'INGEN_DATA' | 'Ja' | 'Nei';
+    antallDagerSidenSistInnsendtMeldekort: 'INGEN_DATA' | number;
 };
 
 export function amplitudeLogger(name: string, values?: object) {
