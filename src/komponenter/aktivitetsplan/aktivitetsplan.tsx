@@ -39,7 +39,7 @@ const Aktivitetsplan = () => {
                     marginRight: '0.5em',
                     position: 'relative',
                     top: '6px',
-                    fontSize: 'var(--navds-font-size-heading-medium)',
+                    fontSize: 'var(--a-font-size-heading-medium)',
                 }}
             >
                 <Task />

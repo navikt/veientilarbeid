@@ -1,5 +1,5 @@
 .demodashboard {
-    background-color: var(--navds-global-color-green-300);
+    background-color: var(--a-green-300);
 }
 
 .demoHeading {
@@ -9,14 +9,14 @@
 }
 
 .demodashboardInnhold {
-    background-color: var(--navds-global-color-green-200);
+    background-color: var(--a-green-200);
     padding: 20px;
 }
 
 .demoFeaturetoggles {
-    background-color: var(--navds-global-color-green-100);
+    background-color: var(--a-green-100);
 }
 
 .demoCheckboxpanel {
-    background-color: var(--navds-global-color-green-200);
+    background-color: var(--a-green-200);
 }
