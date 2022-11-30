@@ -48,6 +48,7 @@ function MeldepliktProvider(props: { children: ReactNode }) {
                         antallDagerSidenSisteMeldeperiode: dagerFraDato(new Date(meldeplikt.periodeTil)),
                         villeBlittReaktivertAutomatisk:
                             iDag < vilVaereRegistrertTilOgMed && meldeplikt.erArbeidssokerNestePeriode ? 'Ja' : 'Nei',
+                        antallDagerSidenSistInnsendtMeldekort: dagerFraDato(new Date(meldeplikt.eventOpprettet)),
                     });
                 }
             } catch (error) {
