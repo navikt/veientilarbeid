@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import { BodyShort, Link, ReadMore } from '@navikt/ds-react';
 
-import { useAmplitudeData } from '../../contexts/amplitude-context';
-
 import { amplitudeLogger, AmplitudeData } from '../../metrics/amplitude-utils';
 import { loggAktivitet } from '../../metrics/metrics';
 
 import spacingStyles from '../../spacing.module.css';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 
 interface Props {
     amplitudeData: AmplitudeData;

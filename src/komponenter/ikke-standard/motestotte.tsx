@@ -2,7 +2,7 @@ import { BodyShort, Button, Heading, Panel } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
 
 import { useBrukerinfoData } from '../../contexts/bruker-info';
-import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { useSprakValg } from '../../contexts/sprak';
 
 import {

@@ -5,7 +5,7 @@ import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
 
 import { useSprakValg } from '../../contexts/sprak';
-import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 
 import MeldekortHovedInnhold from './meldekort-hovedinnhold';
 import MeldekortForklaring from './meldekort-forklaring';

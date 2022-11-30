@@ -1,9 +1,9 @@
 import { DataElement, NESTE_MELDEKORT_URL } from '../ducks/api';
 import { useSWR } from './useSWR';
-import { useAmplitudeData } from '../contexts/amplitude-context';
 import { useEffect } from 'react';
 import { datoUtenTid } from '../utils/date-utils';
 import { hentMeldegruppeForNesteMeldekort, hentMeldekortForLevering } from '../utils/meldekort-utils';
+import { useAmplitudeData } from '../komponenter/hent-initial-data/amplitude-provider';
 
 export interface State extends DataElement {
     data: Data | null;

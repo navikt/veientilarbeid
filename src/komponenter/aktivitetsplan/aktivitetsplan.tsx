@@ -3,12 +3,12 @@ import { Task } from '@navikt/ds-icons';
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
 
-import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useSprakValg } from '../../contexts/sprak';
 
 import { loggAktivitet } from '../../metrics/metrics';
 import { aktivitetsplanLenke } from '../../innhold/lenker';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 
 const TEKSTER = {
     nb: {

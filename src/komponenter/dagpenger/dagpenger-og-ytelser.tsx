@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useProfil } from '../../contexts/profil';
 
 import DagpengerOgYtelserInnhold from './dagpenger-og-ytelser-innhold';
 import { hentFraBrowserStorage, settIBrowserStorage } from '../../utils/browserStorage-utils';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import { hentProfilnokkelFraLocalStorage } from '../../utils/profil-id-mapper';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 
 function DagpengerOgYtelser() {
     const YTELSER_TEMA_VIS_KEY = 'ytelser_tema_vis_key';

@@ -3,7 +3,6 @@ import { BodyLong, BodyShort, Button, Heading } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
 import { useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
-import { useAmplitudeData } from '../../contexts/amplitude-context';
 
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { loggAktivitet } from '../../metrics/metrics';
@@ -16,6 +15,7 @@ import { ListeElement } from '../situasjonsbestemt/situasjonsbestemt';
 
 import spacingStyles from '../../spacing.module.css';
 import { useState } from 'react';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 
 const TEKSTER = {
     nb: {

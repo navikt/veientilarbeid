@@ -4,7 +4,7 @@ import spacingStyles from '../../spacing.module.css';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
 import { loggAktivitet } from '../../metrics/metrics';
-import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 
 interface Props {
     amplitudeTemaNavn: string;

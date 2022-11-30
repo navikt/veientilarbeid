@@ -8,7 +8,7 @@ import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
 import { aktivitetsplanLenke, dialogLenke, omMeldekortLenke, sykefravaerLenke } from '../../innhold/lenker';
 import { loggAktivitet } from '../../metrics/metrics';
-import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 
 const TEKSTER = {

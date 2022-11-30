@@ -1,7 +1,7 @@
 import * as React from 'react';
 import merge from 'merge-deep';
 
-import * as Amplitude from '../contexts/amplitude-context';
+import * as Amplitude from '../komponenter/hent-initial-data/amplitude-provider';
 import { AmplitudeData } from '../metrics/amplitude-utils';
 import * as Autentisering from '../contexts/autentisering';
 import * as Brukerregistrering from '../contexts/brukerregistrering';

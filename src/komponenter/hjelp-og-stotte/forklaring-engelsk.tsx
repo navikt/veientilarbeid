@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { BodyShort, Heading, Link } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
-import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 
 import Feedback from '../feedback/feedback';
 import { OppfolgingContext, Servicegruppe } from '../../contexts/oppfolging';

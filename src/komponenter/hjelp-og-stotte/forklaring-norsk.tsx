@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { BodyShort, Heading, Link } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
 
-import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 
 import { OppfolgingContext, Servicegruppe } from '../../contexts/oppfolging';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';

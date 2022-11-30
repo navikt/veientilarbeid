@@ -9,7 +9,7 @@ import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useAutentiseringData } from '../../contexts/autentisering';
 import { useEgenvurderingData } from '../../contexts/egenvurdering';
 import { useOppfolgingData } from '../../contexts/oppfolging';
-import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { useUlesteDialogerData } from '../../contexts/ulestedialoger';
 import { useSprakValg } from '../../contexts/sprak';
 

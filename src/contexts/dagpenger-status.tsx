@@ -1,11 +1,11 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
 import { FeatureToggles, useFeatureToggleData } from './feature-toggles';
-import { useAmplitudeData } from './amplitude-context';
 import { InnloggingsNiva, useAutentiseringData } from './autentisering';
 import { DAGPENGER_STATUS, requestConfig } from '../ducks/api';
 import { fetchToJson } from '../ducks/api-utils';
 import { DagpengeStatus } from '../lib/beregn-dagpenge-status';
+import { useAmplitudeData } from '../komponenter/hent-initial-data/amplitude-provider';
 
 type DagpengerStatus = DagpengeStatus;
 type AntallDagerSidenDagpengerStanset = number | 'N/A';

@@ -5,7 +5,7 @@ import { Button, Detail, Heading, BodyShort, Panel } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
 
-import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { loggAktivitet } from '../../metrics/metrics';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';

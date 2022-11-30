@@ -1,5 +1,5 @@
 import { BodyShort, Button, Heading, Link } from '@navikt/ds-react';
-import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { settIBrowserStorage } from '../../utils/browserStorage-utils';
 import { loggAktivitet } from '../../metrics/metrics';
 import { behovsvurderingLenke } from '../../innhold/lenker';

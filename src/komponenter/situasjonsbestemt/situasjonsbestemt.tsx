@@ -1,7 +1,7 @@
 import { BodyLong, Heading, Link, Panel } from '@navikt/ds-react';
 import { Bandage, Dialog, Email, Laptop, Task } from '@navikt/ds-icons';
 
-import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { FeatureToggles, useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useEgenvurderingData } from '../../contexts/egenvurdering';

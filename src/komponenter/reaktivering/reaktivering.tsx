@@ -1,13 +1,13 @@
 import { useEffect, useState, SyntheticEvent } from 'react';
 
 import { useProfil } from '../../contexts/profil';
-import { useAmplitudeData } from '../../contexts/amplitude-context';
 import { useMeldeplikt, Meldeplikt } from '../../contexts/meldeplikt';
 
 import { JaEllerNei } from '../../profil';
 import { loggAktivitet } from '../../metrics/metrics';
 import ReaktiveringAktuelt from './reaktivering-aktuelt';
 import ReaktiveringKanskjeAktuelt from './reaktivering-kanskje-aktuelt';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 
 function valgAvVisningErUtdatert(valgtVisning: JaEllerNei): boolean {
     // Hvis man velger at man ikke har behov for å være registrert lenger, skal dette bare være gyldig i 28 dager,

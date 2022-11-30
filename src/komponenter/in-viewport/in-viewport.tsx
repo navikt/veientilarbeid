@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import handleViewport from 'react-in-viewport';
 
-import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { loggVisning } from '../../metrics/metrics';
 
 interface ViewportProps {

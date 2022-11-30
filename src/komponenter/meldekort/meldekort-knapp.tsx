@@ -3,7 +3,7 @@ import { Next } from '@navikt/ds-icons';
 import { Button } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
 
-import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 
 interface TemaLenkepanelProps {

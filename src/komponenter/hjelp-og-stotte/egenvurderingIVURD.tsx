@@ -2,7 +2,7 @@ import { Next } from '@navikt/ds-icons/cjs';
 import { BodyShort, Button, Heading, Link } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
 
-import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { useSprakValg } from '../../contexts/sprak';
 import { useProfil } from '../../contexts/profil';
 

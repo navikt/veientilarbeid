@@ -1,7 +1,7 @@
 import { BodyShort, Heading, Link } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
 
-import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { loggAktivitet } from '../../metrics/metrics';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';

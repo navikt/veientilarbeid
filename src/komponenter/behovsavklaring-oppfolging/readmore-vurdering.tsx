@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { BodyShort, ReadMore } from '@navikt/ds-react';
 
-import { useAmplitudeData } from '../../contexts/amplitude-context';
-
 import { loggAktivitet } from '../../metrics/metrics';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 
 function ReadMoreVurdering() {
     const { amplitudeData } = useAmplitudeData();

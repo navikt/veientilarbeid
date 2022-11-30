@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ReadMore } from '@navikt/ds-react';
 
-import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useSprakValg } from '../../contexts/sprak';
 import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';

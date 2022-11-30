@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
 
-import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { dagpengerSoknadLenke } from '../../innhold/lenker';
 import { loggAktivitet } from '../../metrics/metrics';
 

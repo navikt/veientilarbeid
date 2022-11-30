@@ -1,13 +1,13 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
 import { useFeatureToggleData } from './feature-toggles';
-import { useAmplitudeData } from './amplitude-context';
 
 import { fetchToJson } from '../ducks/api-utils';
 import { MELDEPLIKT_URL, requestConfig } from '../ducks/api';
 import { InnloggingsNiva, useAutentiseringData } from './autentisering';
 import dagerFraDato from '../utils/dager-fra-dato';
 import { plussDager } from '../utils/date-utils';
+import { useAmplitudeData } from '../komponenter/hent-initial-data/amplitude-provider';
 
 export type MeldeKortType = 'ELEKTRONISK' | 'AAP' | 'MANUELL_ARENA' | 'ORDINAER_MANUELL' | 'KORRIGERT_ELEKTRONISK';
 

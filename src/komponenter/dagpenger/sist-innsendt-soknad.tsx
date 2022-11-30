@@ -6,7 +6,7 @@ import { DpInnsynSoknad } from '../../contexts/dp-innsyn-soknad';
 import { datoForForventetSvar } from '../../utils/date-utils';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import { loggAktivitet } from '../../metrics/metrics';
-import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
 import { useSWR } from '../../hooks/useSWR';

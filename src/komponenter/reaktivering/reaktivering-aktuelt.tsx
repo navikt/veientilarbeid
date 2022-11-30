@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Alert, BodyShort, Button, Heading, Link } from '@navikt/ds-react';
 
-import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { useMeldeplikt } from '../../contexts/meldeplikt';
 
 import ErRendret from '../er-rendret/er-rendret';

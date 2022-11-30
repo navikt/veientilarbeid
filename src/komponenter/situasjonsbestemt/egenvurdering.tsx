@@ -1,7 +1,7 @@
 import { BodyShort, Button, Heading, Panel } from '@navikt/ds-react';
 
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
-import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { useAutentiseringData } from '../../contexts/autentisering';
 import { useOppfolgingData } from '../../contexts/oppfolging';
 import { useEgenvurderingData } from '../../contexts/egenvurdering';

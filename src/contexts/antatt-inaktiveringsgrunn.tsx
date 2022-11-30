@@ -1,8 +1,8 @@
 import { createContext, ReactNode, useEffect, useState } from 'react';
 import { InnloggingsNiva, useAutentiseringData } from './autentisering';
-import { useAmplitudeData } from './amplitude-context';
 import { fetchToJson } from '../ducks/api-utils';
 import { ANTATT_INAKTIVERINGSGRUNN, requestConfig } from '../ducks/api';
+import { useAmplitudeData } from '../komponenter/hent-initial-data/amplitude-provider';
 
 export type AntattInaktiveringsgrunn =
     | 'INGEN_INNSENDT'

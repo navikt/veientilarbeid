@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { loggRendring } from '../../metrics/metrics';
 
 type Props = {

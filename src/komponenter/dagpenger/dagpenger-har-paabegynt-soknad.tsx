@@ -6,7 +6,6 @@ import {
     useDpInnsynPaabegynteSoknaderData,
 } from '../../contexts/dp-innsyn-paabegynte-soknader';
 import { useSprakValg } from '../../contexts/sprak';
-import { useAmplitudeData } from '../../contexts/amplitude-context';
 
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import prettyPrintDato from '../../utils/pretty-print-dato';
@@ -14,6 +13,7 @@ import SkrivTilOssChatOgMineDagpenger from './skriv-til-oss-chat-og-mine-dagpeng
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 
 import spacingStyles from '../../spacing.module.css';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 
 const TEKSTER: Tekster<string> = {
     nb: {

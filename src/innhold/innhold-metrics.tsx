@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useAmplitudeData } from '../contexts/amplitude-context';
 import {
     selectDinSituasjonSvar,
     selectForeslattInnsatsgruppe,
@@ -15,6 +14,7 @@ import { hotjarTrigger } from '../hotjar';
 import { InnloggingsNiva, useAutentiseringData } from '../contexts/autentisering';
 import sjekkOmBrukerErStandardInnsatsgruppe from '../lib/er-standard-innsatsgruppe';
 import { useUnderOppfolging } from '../contexts/arbeidssoker';
+import { useAmplitudeData } from '../komponenter/hent-initial-data/amplitude-provider';
 
 type Props = {};
 

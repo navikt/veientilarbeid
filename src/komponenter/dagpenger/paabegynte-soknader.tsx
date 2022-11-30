@@ -5,7 +5,7 @@ import {
     DpInnsynPaabegyntSoknad,
     useDpInnsynPaabegynteSoknaderData,
 } from '../../contexts/dp-innsyn-paabegynte-soknader';
-import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { useSprakValg } from '../../contexts/sprak';
 
 import { loggAktivitet } from '../../metrics/metrics';

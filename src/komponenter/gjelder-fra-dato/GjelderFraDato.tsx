@@ -6,7 +6,7 @@ import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useBrukerregistreringData, DinSituasjonSvar } from '../../contexts/brukerregistrering';
 import { plussDager } from '../../utils/date-utils';
 import { loggAktivitet } from '../../metrics/metrics';
-import { useAmplitudeData } from '../../contexts/amplitude-context';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { useGjelderFraDato } from '../../contexts/gjelder-fra-dato';
 
 function GjelderFraDato(): JSX.Element | null {
