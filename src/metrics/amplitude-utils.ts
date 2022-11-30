@@ -57,7 +57,7 @@ export type AmplitudeData = {
     antallUkerSidenSisteArbeidssokerperiode: number | 'INGEN_DATA' | 'N/A' | 'Ikke avsluttet';
     antallUkerMellomSisteArbeidssokerperioder: number | 'INGEN_DATA' | 'N/A' | 'Første periode';
     meldegruppe: string;
-    antallMeldekortKlareForLevering: number;
+    antallMeldekortKlareForLevering: number | 'INGEN_DATA';
     vilFortsattVaereRegistrert: 'INGEN_DATA' | 'Ja' | 'Nei';
     antallDagerSidenSisteMeldeperiode: number | 'INGEN_DATA' | 'N/A';
     dagpengerStatus: 'INGEN_DATA' | DagpengeStatus;

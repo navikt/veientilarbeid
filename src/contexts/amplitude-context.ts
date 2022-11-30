@@ -29,7 +29,7 @@ export const initialAmplitudeData: AmplitudeData = {
     antallUkerSidenSisteArbeidssokerperiode: 'INGEN_DATA',
     antallUkerMellomSisteArbeidssokerperioder: 'INGEN_DATA',
     meldegruppe: 'INGEN_VERDI',
-    antallMeldekortKlareForLevering: 0,
+    antallMeldekortKlareForLevering: 'INGEN_DATA',
     vilFortsattVaereRegistrert: 'INGEN_DATA',
     antallDagerSidenSisteMeldeperiode: 'INGEN_DATA',
     dagpengerStatus: 'INGEN_DATA',

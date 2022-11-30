@@ -121,7 +121,7 @@ export const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         antallUkerSidenSisteArbeidssokerperiode,
         antallUkerMellomSisteArbeidssokerperioder,
         meldegruppe: 'INGEN_VERDI',
-        antallMeldekortKlareForLevering: 0,
+        antallMeldekortKlareForLevering: 'INGEN_DATA',
         vilFortsattVaereRegistrert: 'INGEN_DATA',
         antallDagerSidenSisteMeldeperiode: 'INGEN_DATA',
         dagpengerStatus: 'INGEN_DATA',
