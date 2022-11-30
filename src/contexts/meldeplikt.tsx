@@ -33,7 +33,8 @@ function MeldepliktProvider(props: { children: ReactNode }) {
     const featureToggleData = useFeatureToggleData();
     const { securityLevel } = useAutentiseringData();
     const arbeidssokerperioderData = useArbeidssokerPerioder();
-    const { antallDagerSidenSisteArbeidssokerperiode } = beregnArbeidssokerperioder(arbeidssokerperioderData);
+    const { antallDagerSidenSisteArbeidssokerperiode: antallDagerSidenSisteArbeidssokerperiodeBleAvsluttet } =
+        beregnArbeidssokerperioder(arbeidssokerperioderData);
     const { oppdaterAmplitudeData } = useAmplitudeData();
     const brukMeldeplikt = featureToggleData['veientilarbeid.bruk-meldeplikt-hendelser'];
     const [meldeplikt, settMeldeplikt] = useState<Meldeplikt | null>(null);
@@ -49,8 +50,8 @@ function MeldepliktProvider(props: { children: ReactNode }) {
                     const iDag = new Date();
                     const antallDagerSidenSistInnsendtMeldekort = dagerFraDato(new Date(meldeplikt.eventOpprettet));
                     const levertMeldekortEtterInaktvering =
-                        typeof antallDagerSidenSisteArbeidssokerperiode === 'number' &&
-                        antallDagerSidenSisteArbeidssokerperiode > antallDagerSidenSistInnsendtMeldekort
+                        typeof antallDagerSidenSisteArbeidssokerperiodeBleAvsluttet === 'number' &&
+                        antallDagerSidenSisteArbeidssokerperiodeBleAvsluttet > antallDagerSidenSistInnsendtMeldekort
                             ? 'Ja'
                             : 'Nei';
                     oppdaterAmplitudeData({
