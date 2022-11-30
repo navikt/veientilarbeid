@@ -1,13 +1,15 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
 import { useFeatureToggleData } from './feature-toggles';
+import { useArbeidssokerPerioder } from './arbeidssoker';
+import { useAmplitudeData } from '../komponenter/hent-initial-data/amplitude-provider';
 
 import { fetchToJson } from '../ducks/api-utils';
 import { MELDEPLIKT_URL, requestConfig } from '../ducks/api';
 import { InnloggingsNiva, useAutentiseringData } from './autentisering';
 import dagerFraDato from '../utils/dager-fra-dato';
 import { plussDager } from '../utils/date-utils';
-import { useAmplitudeData } from '../komponenter/hent-initial-data/amplitude-provider';
+import beregnArbeidssokerperioder from '../lib/beregn-arbeidssokerperioder';
 
 export type MeldeKortType = 'ELEKTRONISK' | 'AAP' | 'MANUELL_ARENA' | 'ORDINAER_MANUELL' | 'KORRIGERT_ELEKTRONISK';
 
@@ -30,6 +32,8 @@ export const MeldepliktContext = createContext<MeldpliktProviderType>({
 function MeldepliktProvider(props: { children: ReactNode }) {
     const featureToggleData = useFeatureToggleData();
     const { securityLevel } = useAutentiseringData();
+    const arbeidssokerperioderData = useArbeidssokerPerioder();
+    const { antallDagerSidenSisteArbeidssokerperiode } = beregnArbeidssokerperioder(arbeidssokerperioderData);
     const { oppdaterAmplitudeData } = useAmplitudeData();
     const brukMeldeplikt = featureToggleData['veientilarbeid.bruk-meldeplikt-hendelser'];
     const [meldeplikt, settMeldeplikt] = useState<Meldeplikt | null>(null);
@@ -43,12 +47,19 @@ function MeldepliktProvider(props: { children: ReactNode }) {
                     settMeldeplikt(meldeplikt);
                     const vilVaereRegistrertTilOgMed = plussDager(new Date(meldeplikt.eventOpprettet), 21);
                     const iDag = new Date();
+                    const antallDagerSidenSistInnsendtMeldekort = dagerFraDato(new Date(meldeplikt.eventOpprettet));
+                    const levertMeldekortEtterInaktvering =
+                        typeof antallDagerSidenSisteArbeidssokerperiode === 'number' &&
+                        antallDagerSidenSisteArbeidssokerperiode > antallDagerSidenSistInnsendtMeldekort
+                            ? 'Ja'
+                            : 'Nei';
                     oppdaterAmplitudeData({
                         vilFortsattVaereRegistrert: meldeplikt.erArbeidssokerNestePeriode ? 'Ja' : 'Nei',
                         antallDagerSidenSisteMeldeperiode: dagerFraDato(new Date(meldeplikt.periodeTil)),
                         villeBlittReaktivertAutomatisk:
                             iDag < vilVaereRegistrertTilOgMed && meldeplikt.erArbeidssokerNestePeriode ? 'Ja' : 'Nei',
-                        antallDagerSidenSistInnsendtMeldekort: dagerFraDato(new Date(meldeplikt.eventOpprettet)),
+                        antallDagerSidenSistInnsendtMeldekort,
+                        levertMeldekortEtterInaktvering,
                     });
                 }
             } catch (error) {

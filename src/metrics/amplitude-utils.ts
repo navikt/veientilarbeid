@@ -65,6 +65,7 @@ export type AmplitudeData = {
     villeBlittReaktivertAutomatisk: 'INGEN_DATA' | 'Ja' | 'Nei';
     antallDagerSidenSistInnsendtMeldekort: 'INGEN_DATA' | number;
     antattInaktiveringsgrunn: 'INGEN_DATA' | AntattInaktiveringsgrunn;
+    levertMeldekortEtterInaktvering: 'INGEN_DATA' | 'Ja' | 'Nei';
 };
 
 export function amplitudeLogger(name: string, values?: object) {

@@ -54,6 +54,7 @@ export const initialAmplitudeData: AmplitudeData = {
     villeBlittReaktivertAutomatisk: 'INGEN_DATA',
     antallDagerSidenSistInnsendtMeldekort: 'INGEN_DATA',
     antattInaktiveringsgrunn: 'INGEN_DATA',
+    levertMeldekortEtterInaktvering: 'INGEN_DATA',
 };
 
 const AmplitudeContext = createContext({
