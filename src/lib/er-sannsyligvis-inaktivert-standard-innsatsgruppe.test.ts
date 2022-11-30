@@ -1,6 +1,6 @@
 import { FremtidigSituasjonSvar } from '../contexts/brukerregistrering';
 import { Servicegruppe, Formidlingsgruppe } from '../contexts/oppfolging';
-import erSannsynligvisInaktivertStandardbruker from './er-sannsyligvis-inaktivert-standard-innsatsgruppe';
+import { erSannsynligvisInaktivertStandardbruker } from './er-sannsyligvis-inaktivert-standard-innsatsgruppe';
 
 const grunnData = {
     brukerregistreringData: {

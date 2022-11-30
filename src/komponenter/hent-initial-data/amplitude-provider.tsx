@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { createContext, useContext } from 'react';
 import ukerFraDato from '@alheimsins/uker-fra-dato';
 import { InnloggingsNiva, useAutentiseringData } from '../../contexts/autentisering';
 import { DinSituasjonSvar, useBrukerregistreringData } from '../../contexts/brukerregistrering';
@@ -9,12 +10,9 @@ import grupperGeografiskTilknytning from '../../utils/grupper-geografisk-tilknyt
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 import dagerFraDato from '../../utils/dager-fra-dato';
 import { AmplitudeData } from '../../metrics/amplitude-utils';
-import erStandardInnsatsgruppe from '../../lib/er-standard-innsatsgruppe';
-import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../../lib/er-situasjonsbestemt-innsatsgruppe';
-import erSannsynligvisInaktivertStandardbruker from '../../lib/er-sannsyligvis-inaktivert-standard-innsatsgruppe';
 import { useArbeidssokerPerioder, useUnderOppfolging } from '../../contexts/arbeidssoker';
 import * as SprakValg from '../../contexts/sprak';
-import { createContext, useContext } from 'react';
+import beregnBrukergruppe from '../../lib/beregn-brukergruppe';
 
 const hentSprakValgFraCookie = (): SprakValg.Sprak | null => {
     const decoratorLanguageCookie = document.cookie.match(/decorator-language=([a-z]{2})/);
@@ -79,8 +77,7 @@ const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const arbeidssokerperioder = useArbeidssokerPerioder();
     const underOppfolging = useUnderOppfolging()?.underoppfolging;
 
-    const { erSykmeldtMedArbeidsgiver, alder, geografiskTilknytning, registreringType, rettighetsgruppe } =
-        brukerInfoData;
+    const { erSykmeldtMedArbeidsgiver, geografiskTilknytning, registreringType, rettighetsgruppe } = brukerInfoData;
     const { servicegruppe, formidlingsgruppe, kanReaktiveres, reservasjonKRR } = oppfolgingData;
     const opprettetRegistreringDatoString = brukerregistreringData?.registrering?.opprettetDato;
     const dinSituasjon = brukerregistreringData?.registrering?.besvarelse.dinSituasjon || DinSituasjonSvar.INGEN_VERDI;
@@ -95,8 +92,6 @@ const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         brukerregistreringData?.registrering?.profilering?.innsatsgruppe || 'INGEN_VERDI';
     const formidlingsgruppeOrIngenVerdi = formidlingsgruppe || 'INGEN_VERDI';
 
-    const forsterketUngdomsinnsats = alder < 30;
-
     const aktiveFeatureToggles = Object.keys(featuretoggleData).reduce((toggles, current) => {
         if (featuretoggleData[current]) {
             toggles.push(current);
@@ -105,23 +100,6 @@ const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     }, [] as string[]);
 
     const brukerregistreringDataEllerNull = brukerregistreringData?.registrering ?? null;
-
-    const brukerErStandardInnsatsgruppe = erStandardInnsatsgruppe({
-        brukerregistreringData: brukerregistreringDataEllerNull,
-        oppfolgingData,
-    });
-
-    const brukerErUngMedStandardInnsatsgruppe = brukerErStandardInnsatsgruppe && forsterketUngdomsinnsats;
-
-    const brukerErSituasjonsbestemtInnsatsgruppe = sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe({
-        brukerregistreringData: brukerregistreringDataEllerNull,
-        oppfolgingData,
-    });
-
-    const sannsynligvisInaktivertStandardbruker = erSannsynligvisInaktivertStandardbruker({
-        brukerregistreringData: brukerregistreringDataEllerNull,
-        oppfolgingData,
-    });
 
     const beregnedeArbeidssokerPerioder = beregnArbeidssokerperioder(arbeidssokerperioder);
 
@@ -132,22 +110,16 @@ const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         antallUkerMellomSisteArbeidssokerperioder,
     } = beregnedeArbeidssokerPerioder;
 
-    const brukergruppering = brukerErUngMedStandardInnsatsgruppe
-        ? 'standard og ungdomsinnsats'
-        : brukerErStandardInnsatsgruppe
-        ? 'standard'
-        : brukerErSituasjonsbestemtInnsatsgruppe
-        ? 'situasjonsbestemt'
-        : sannsynligvisInaktivertStandardbruker
-        ? 'sannsynligvis standard og inaktivert'
-        : 'annet';
-
     const valgtSprak = hentSprakValgFraCookie();
     const sprakValgFraCookie = valgtSprak || 'IKKE_VALGT';
 
     const data: AmplitudeData = {
         ...initialAmplitudeData,
-        brukergruppe: brukergruppering,
+        brukergruppe: beregnBrukergruppe({
+            brukerregistreringData: brukerregistreringDataEllerNull,
+            oppfolgingData,
+            brukerInfoData,
+        }),
         geografiskTilknytning: grupperGeografiskTilknytning(geografiskTilknytningOrIngenVerdi),
         ukerRegistrert,
         dagerRegistrert,

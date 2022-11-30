@@ -12,13 +12,11 @@ function sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe(data: DataGrunnlag): bool
     const { servicegruppe, formidlingsgruppe } = oppfolgingData;
 
     if (servicegruppe === 'BFORM' && formidlingsgruppe === 'ARBS') return true;
-    if (
+    return (
         servicegruppe === 'IVURD' &&
         formidlingsgruppe === 'ARBS' &&
         foreslattInnsatsgruppe === 'SITUASJONSBESTEMT_INNSATS'
-    )
-        return true;
-    return false;
+    );
 }
 
 export default sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe;

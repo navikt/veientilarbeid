@@ -14,11 +14,8 @@ function erStandardInnsatsgruppe(data: DataGrunnlag): boolean {
     if (servicegruppe === 'IVURD' && formidlingsgruppe === 'ARBS' && foreslattInnsatsgruppe === 'STANDARD_INNSATS') {
         return true;
     }
-    if (servicegruppe === 'IKVAL' && formidlingsgruppe === 'ARBS') {
-        return true;
-    }
 
-    return false;
+    return servicegruppe === 'IKVAL' && formidlingsgruppe === 'ARBS';
 }
 
 export default erStandardInnsatsgruppe;

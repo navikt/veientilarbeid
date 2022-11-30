@@ -10,11 +10,14 @@ function erSannsynligvisInaktivertStandardbruker(data: DataGrunnlag): boolean {
     const { oppfolgingData } = data;
     const { servicegruppe, formidlingsgruppe, kanReaktiveres } = oppfolgingData;
 
-    if (servicegruppe === 'IKVAL' && formidlingsgruppe === 'ISERV' && kanReaktiveres === true) {
-        return true;
-    }
-
-    return false;
+    return servicegruppe === 'IKVAL' && formidlingsgruppe === 'ISERV' && kanReaktiveres === true;
 }
 
-export default erSannsynligvisInaktivertStandardbruker;
+function erSannsynligvisInaktivertSituasjonsbestemtBruker(data: DataGrunnlag): boolean {
+    const { oppfolgingData } = data;
+    const { servicegruppe, formidlingsgruppe, kanReaktiveres } = oppfolgingData;
+
+    return servicegruppe === 'BFORM' && formidlingsgruppe === 'ISERV' && kanReaktiveres === true;
+}
+
+export { erSannsynligvisInaktivertStandardbruker, erSannsynligvisInaktivertSituasjonsbestemtBruker };

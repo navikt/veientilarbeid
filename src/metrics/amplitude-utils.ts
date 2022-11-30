@@ -29,6 +29,7 @@ export type BrukergruppeType =
     | 'standard'
     | 'situasjonsbestemt'
     | 'sannsynligvis standard og inaktivert'
+    | 'sannsynligvis situasjonsbestemt og inaktivert'
     | 'annet'
     | 'ukjent';
 
