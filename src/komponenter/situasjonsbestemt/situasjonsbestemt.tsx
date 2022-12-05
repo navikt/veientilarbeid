@@ -3,7 +3,6 @@ import { Bandage, Dialog, Email, Laptop, Task } from '@navikt/ds-icons';
 
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
-import { FeatureToggles, useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useEgenvurderingData } from '../../contexts/egenvurdering';
 import { useSprakValg } from '../../contexts/sprak';
 import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
@@ -83,7 +82,6 @@ function Situasjonsbestemt() {
     const { amplitudeData } = useAmplitudeData();
     const { erSykmeldtMedArbeidsgiver } = useBrukerinfoData();
     const egenvurderingData = useEgenvurderingData();
-    const features = useFeatureToggleData();
     const arbeidssokerperioderData = useArbeidssokerPerioder();
     const harEgenvurderingbesvarelse = egenvurderingData !== null;
     const { harAktivArbeidssokerperiode, aktivPeriodeStart } = beregnArbeidssokerperioder(arbeidssokerperioderData);
@@ -94,7 +92,7 @@ function Situasjonsbestemt() {
     const harPeriodeStart = harAktivArbeidssokerperiode === 'Ja' ? new Date(aktivPeriodeStart) : null;
     const harGyldigEgenvurderingsbesvarelse = harSistSvartDato && harPeriodeStart && harSistSvartDato > harPeriodeStart;
 
-    const visBehovsAvklaring = features[FeatureToggles.BRUK_NY_BEHOVSVURDERING] && !harGyldigEgenvurderingsbesvarelse;
+    const visBehovsAvklaring = !harGyldigEgenvurderingsbesvarelse;
 
     const handleClick = (action: string) => {
         loggAktivitet({ aktivitet: action, ...amplitudeData });

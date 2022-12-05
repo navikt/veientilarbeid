@@ -1,7 +1,5 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
-import { FeatureToggles, useFeatureToggleData } from './feature-toggles';
-
 import { fetchToJson } from '../ducks/api-utils';
 import { BEHOV_FOR_VEILEDNING_URL, OPPRETT_DIALOG_URL, requestConfig } from '../ducks/api';
 import { ForeslattInnsatsgruppe } from './brukerregistrering';
@@ -44,7 +42,6 @@ async function opprettDialog(data: { tekst?: string; overskrift?: string }): Pro
 }
 function BehovForVeiledningProvider(props: { children: ReactNode }) {
     const [behovForVeiledning, settBehovForVeiledning] = useState<BehovForVeiledningResponse>(null);
-    const featureToggleData = useFeatureToggleData();
 
     const hentBehovForVeiledning = async () => {
         try {
@@ -73,10 +70,8 @@ function BehovForVeiledningProvider(props: { children: ReactNode }) {
     };
 
     useEffect(() => {
-        if (featureToggleData[FeatureToggles.BRUK_NY_BEHOVSVURDERING]) {
-            hentBehovForVeiledning();
-        }
-    }, [featureToggleData]);
+        hentBehovForVeiledning();
+    }, []);
 
     const contextValue = {
         behovForVeiledning,

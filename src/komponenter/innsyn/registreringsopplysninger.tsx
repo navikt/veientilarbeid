@@ -1,7 +1,6 @@
 import { BodyShort } from '@navikt/ds-react';
 
 import { useUnderOppfolging } from '../../contexts/arbeidssoker';
-import { FeatureToggles, useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useSprakValg } from '../../contexts/sprak';
 import { useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
 
@@ -98,8 +97,6 @@ const Opplysninger = (props: any) => {
     const besvarelser = repackBesvarelser(besvarelse, teksterForBesvarelse, sisteStilling);
     const underoppfolging = useUnderOppfolging()?.underoppfolging;
     const kanViseKomponent = underoppfolging;
-    const featuretoggles = useFeatureToggleData();
-    const visKlareSegSelvSporsmal = featuretoggles[FeatureToggles.BRUK_NY_BEHOVSVURDERING];
 
     const handleDialogClick = () => {
         loggAktivitet({ aktivitet: 'Går til endre registreringsopplysninger', ...amplitudeData });
@@ -121,7 +118,7 @@ const Opplysninger = (props: any) => {
                     hvis situasjonen din endrer seg.
                 </BodyShort>
             </div>
-            {visKlareSegSelvSporsmal && <Oppfolging />}
+            <Oppfolging />
             {besvarelser.map((item, index) => (
                 <Opplysning {...item} key={index} />
             ))}
