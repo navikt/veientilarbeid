@@ -5,7 +5,6 @@ export enum FeatureToggles {
     EGENVURDERING_UKE12 = 'veientilarbeid.egenvurderinguke12',
     VIS_GJELDER_FRA_DATO = 'veientilarbeid.vis-gjelder-fra-dato',
     BRUK_NY_BEHOVSVURDERING = 'veientilarbeid.bruk-ny-behovsvurdering',
-    BRUK_MELDEPLIKT_HENDELSER = 'veientilarbeid.bruk-meldeplikt-hendelser',
 }
 
 export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
@@ -16,8 +15,6 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Gjelder fra dato';
         case FeatureToggles.BRUK_NY_BEHOVSVURDERING:
             return 'Bruk ny behovsvurdering';
-        case FeatureToggles.BRUK_MELDEPLIKT_HENDELSER:
-            return 'Bruk meldeplikt hendelser';
     }
 }
 
@@ -25,7 +22,6 @@ export interface Data {
     'veientilarbeid.egenvurderinguke12': boolean;
     'veientilarbeid.vis-gjelder-fra-dato'?: boolean;
     'veientilarbeid.bruk-ny-behovsvurdering'?: boolean;
-    'veientilarbeid.bruk-meldeplikt-hendelser'?: boolean;
 }
 
 export interface State extends DataElement {
@@ -37,7 +33,6 @@ export const initialState: State = {
         'veientilarbeid.egenvurderinguke12': false,
         'veientilarbeid.vis-gjelder-fra-dato': false,
         'veientilarbeid.bruk-ny-behovsvurdering': false,
-        'veientilarbeid.bruk-meldeplikt-hendelser': false,
     },
     status: STATUS.NOT_STARTED,
 };

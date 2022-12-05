@@ -1,6 +1,4 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
-
-import { useFeatureToggleData } from './feature-toggles';
 import { useArbeidssokerPerioder } from './arbeidssoker';
 import { useAmplitudeData } from '../komponenter/hent-initial-data/amplitude-provider';
 
@@ -30,13 +28,11 @@ export const MeldepliktContext = createContext<MeldpliktProviderType>({
 });
 
 function MeldepliktProvider(props: { children: ReactNode }) {
-    const featureToggleData = useFeatureToggleData();
     const { securityLevel } = useAutentiseringData();
     const arbeidssokerperioderData = useArbeidssokerPerioder();
     const { antallDagerSidenSisteArbeidssokerperiode: antallDagerSidenSisteArbeidssokerperiodeBleAvsluttet } =
         beregnArbeidssokerperioder(arbeidssokerperioderData);
     const { oppdaterAmplitudeData } = useAmplitudeData();
-    const brukMeldeplikt = featureToggleData['veientilarbeid.bruk-meldeplikt-hendelser'];
     const [meldeplikt, settMeldeplikt] = useState<Meldeplikt | null>(null);
 
     useEffect(() => {
@@ -68,10 +64,10 @@ function MeldepliktProvider(props: { children: ReactNode }) {
             }
         };
 
-        if (brukMeldeplikt && securityLevel === InnloggingsNiva.LEVEL_4) {
+        if (securityLevel === InnloggingsNiva.LEVEL_4) {
             hentMeldeplikt();
         }
-    }, [brukMeldeplikt, securityLevel]);
+    }, [securityLevel]);
 
     const contextValue = {
         meldeplikt,
