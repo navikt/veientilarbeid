@@ -5,7 +5,6 @@ import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
 
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
-import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useAutentiseringData } from '../../contexts/autentisering';
 import { useEgenvurderingData } from '../../contexts/egenvurdering';
 import { useOppfolgingData } from '../../contexts/oppfolging';
@@ -49,7 +48,6 @@ function HjelpOgStotte() {
     const { ukerRegistrert } = amplitudeData;
 
     const registreringData = useBrukerregistreringData();
-    const featuretoggleData = useFeatureToggleData();
     const autentiseringData = useAutentiseringData();
     const egenvurderingData = useEgenvurderingData();
     const oppfolgingData = useOppfolgingData();
@@ -103,7 +101,6 @@ function HjelpOgStotte() {
             oppfolgingData,
             registreringData,
             amplitudeData,
-            featuretoggleData,
             sistVistFraLocalstorage: Number(sistSettEgenvurderingUke12),
         });
 

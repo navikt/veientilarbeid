@@ -2,8 +2,13 @@ import { render, screen } from '@testing-library/react';
 
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import Situasjonsbestemt from './situasjonsbestemt';
+import { mockIntersectionObserver } from '../../mocks/intersection-observer-mock';
 
 describe('tester at komponenten ikke-standard fungerer som forventet', () => {
+    beforeEach(() => {
+        mockIntersectionObserver();
+    });
+
     test('Komponenten viser  meldekort når arbeidssøker IKKE er sykmeldt med arbeidsgiver', () => {
         const props: ProviderProps = {
             brukerInfo: {

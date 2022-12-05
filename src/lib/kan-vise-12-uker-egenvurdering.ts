@@ -3,7 +3,6 @@ import * as Brukerregistrering from '../contexts/brukerregistrering';
 import * as Oppfolging from '../contexts/oppfolging';
 import * as BrukerInfo from '../contexts/bruker-info';
 import { AmplitudeData } from '../metrics/amplitude-utils';
-import { Data as FeaturetoggleData } from '../contexts/feature-toggles';
 import { plussDager } from '../utils/date-utils';
 import erStandardInnsatsgruppe from './er-standard-innsatsgruppe';
 
@@ -15,7 +14,6 @@ export function kanVise12UkerEgenvurdering({
     oppfolgingData,
     registreringData,
     amplitudeData,
-    featuretoggleData,
     sistVistFraLocalstorage,
 }: {
     brukerInfoData: BrukerInfo.Data;
@@ -23,14 +21,12 @@ export function kanVise12UkerEgenvurdering({
     oppfolgingData: Oppfolging.Data;
     registreringData: Brukerregistrering.Data | null;
     amplitudeData: AmplitudeData;
-    featuretoggleData: FeaturetoggleData;
     sistVistFraLocalstorage: number;
 }): boolean {
     const { ukerRegistrert } = amplitudeData;
     const erRegistrertUke11 = ukerRegistrert === 11;
     const erAAP = brukerInfoData.rettighetsgruppe === 'AAP';
     const brukerregistreringData = registreringData?.registrering ?? null;
-    const featuretoggleAktivert = featuretoggleData && featuretoggleData['veientilarbeid.egenvurderinguke12'];
 
     const egenvurderingbesvarelseDato = egenvurderingData ? new Date(egenvurderingData.sistOppdatert) : null;
     const opprettetRegistreringDatoString = registreringData?.registrering?.opprettetDato;
@@ -55,7 +51,6 @@ export function kanVise12UkerEgenvurdering({
             : Date.now() > sistVistFraLocalstorage + ANTALL_DAGER_COOL_DOWN * 24 * 60 * 60;
 
     return (
-        featuretoggleAktivert &&
         erRegistrertUke11 &&
         aldersgruppeUtenForsterketInnsats &&
         !erAAP &&
