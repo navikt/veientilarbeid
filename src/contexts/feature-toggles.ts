@@ -3,17 +3,21 @@ import { DataElement, STATUS } from '../ducks/api';
 
 export enum FeatureToggles {
     VIS_GJELDER_FRA_DATO = 'veientilarbeid.vis-gjelder-fra-dato',
+    BRUK_BEKREFT_REAKTIVERING = 'veientilarbeid.bruk-bekreft-reaktivering',
 }
 
 export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
     switch (toggle) {
         case FeatureToggles.VIS_GJELDER_FRA_DATO:
             return 'Gjelder fra dato';
+        case FeatureToggles.BRUK_BEKREFT_REAKTIVERING:
+            return 'Bruk bekreft reaktivering';
     }
 }
 
 export interface Data {
     'veientilarbeid.vis-gjelder-fra-dato'?: boolean;
+    'veientilarbeid.bruk-bekreft-reaktivering'?: boolean;
 }
 
 export interface State extends DataElement {
@@ -23,6 +27,7 @@ export interface State extends DataElement {
 export const initialState: State = {
     data: {
         'veientilarbeid.vis-gjelder-fra-dato': false,
+        'veientilarbeid.bruk-bekreft-reaktivering': false,
     },
     status: STATUS.NOT_STARTED,
 };
