@@ -26,6 +26,7 @@ const ByttVisningLenke = (props: {
         <div className={`${flexStyles.flex} ${flexStyles.alignCenter} ${spacingStyles.mt1}`}>
             <Link href="" onClick={props.handleByttVisningKlikk}>
                 <Cancel
+                    aria-hidden="true"
                     className={spacingStyles.mr05}
                     title={
                         props.valgtYtelserVisning === 'dagpenger'

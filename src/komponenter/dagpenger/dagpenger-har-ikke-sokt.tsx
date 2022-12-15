@@ -43,7 +43,12 @@ const DagpengerHarIkkeSokt = () => {
             <BodyLong>{tekst('ingress')}</BodyLong>
             <SkrivTilOssChatOgMineDagpenger amplitudeTemaNavn='"dagpenger-tema - ikke søkt dagpenger"' />
 
-            <Button variant="primary" onClick={handleButtonClick} icon={<Next />} iconPosition="right">
+            <Button
+                variant="primary"
+                onClick={handleButtonClick}
+                icon={<Next aria-hidden="true" />}
+                iconPosition="right"
+            >
                 {tekst('sok')}
             </Button>
         </>

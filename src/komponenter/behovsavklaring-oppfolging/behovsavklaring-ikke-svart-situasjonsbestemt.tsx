@@ -64,7 +64,7 @@ function IkkeSvartPaaBehovsavklaringSituasjonsbestemt() {
     }
 
     return ListeElement(
-        <Dialog />,
+        <Dialog aria-hidden="true" />,
         <div className={spacingStyles.fullWidth}>
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - ikke svart - situasjonsbestemt" />
             <Heading className={spacingStyles.mb1} size="medium">

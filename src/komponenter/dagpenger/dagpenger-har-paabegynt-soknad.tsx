@@ -67,7 +67,7 @@ const DagpengerHarPaabegyntSoknad = () => {
             <Button
                 onClick={handleClickFortsett}
                 className={`${spacingStyles.mt1} ${spacingStyles.mb1}`}
-                icon={<Next />}
+                icon={<Next aria-hidden="true" />}
                 iconPosition="right"
             >
                 {tekst('fortsett')} {`${tekst('pabegynt')} ${prettyPrintDato(sistePabegynteSoknad.sistEndret, sprak)}`}{' '}

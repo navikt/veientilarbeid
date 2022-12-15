@@ -40,7 +40,7 @@ function BehovsavklaringAvklartSituasjonsbestemt() {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
     return ListeElement(
-        <Dialog />,
+        <Dialog aria-hidden="true" />,
         <div>
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - avklart - situasjonsbestemt" />
             <Heading className={spacingStyles.mb1} size="medium">

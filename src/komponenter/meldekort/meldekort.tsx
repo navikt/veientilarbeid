@@ -44,7 +44,7 @@ function Meldekort() {
                     fontSize: 'var(--a-font-size-heading-medium)',
                 }}
             >
-                <Notes />
+                <Notes aria-hidden="true" />
             </span>
             <div className={spacingStyles.fullWidth}>
                 <Detail uppercase style={{ marginTop: '-1rem' }}>

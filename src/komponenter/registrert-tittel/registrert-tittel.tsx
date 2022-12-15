@@ -58,7 +58,7 @@ const RegistrertTittel = () => {
                             fontSize: 'var(--a-font-size-heading-medium)',
                         }}
                     >
-                        {erNyRegistrert ? <SuccessColored /> : <Success />}
+                        {erNyRegistrert ? <SuccessColored aria-hidden="true" /> : <Success aria-hidden="true" />}
                     </span>
                     <div>
                         <Heading size="medium">{tekst(erNyRegistrert ? 'registrertNy' : 'registrert')}</Heading>

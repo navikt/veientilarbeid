@@ -33,7 +33,7 @@ const MeldekortKnapp: React.FC<TemaLenkepanelProps> = (props) => {
             variant={props.variant}
             onClick={handleClickInnsending}
             className={`${spacingStyles.mb1} ${spacingStyles.mt1}`}
-            icon={<Next />}
+            icon={<Next aria-hidden="true" />}
             iconPosition="right"
         >
             {props.tittel}

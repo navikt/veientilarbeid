@@ -42,7 +42,7 @@ function EnigMedProfilering() {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
     return ListeElement(
-        <Dialog />,
+        <Dialog aria-hidden="true" />,
         <div>
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - svart - enig - situasjonsbestemt" />
             <Heading className={spacingStyles.mb1} size="medium">

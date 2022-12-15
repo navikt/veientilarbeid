@@ -90,7 +90,7 @@ function UenigMedProfilering() {
                     fontSize: 'var(--a-font-size-heading-medium)',
                 }}
             >
-                <Dialog />
+                <Dialog aria-hidden="true" />
             </span>
             <div className={spacingStyles.fullWidth}>
                 <Detail uppercase style={{ marginTop: '-1rem' }}>
