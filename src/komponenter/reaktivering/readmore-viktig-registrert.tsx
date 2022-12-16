@@ -11,28 +11,26 @@ function Innhold() {
     return (
         <div className={spacingStyles.mt1}>
             <BodyShort className={spacingStyles.mb1}>
-                Du sendte inn ett eller flere meldekort for sent/etter fristen.
+                For å motta dagpenger må du være registrert som arbeidssøker.
             </BodyShort>
+
             <BodyShort className={spacingStyles.mb1}>
-                Du må sende inn meldekortet hver 14. dag for å fortsatt være registrert som arbeidssøker hos NAV.
+                Du må passe på at du er registrert som arbeidssøker fra du sender inn søknaden og helt frem til den
+                siste dagen du ønsker å få dagpenger.
             </BodyShort>
+
             <BodyShort className={spacingStyles.mb1}>
-                Dersom du lar være å sende inn meldekort hver 14. dag eller sender meldekort etter fristen vil NAV gå ut
-                fra at du ikke lenger ønsker å være registrert som arbeidssøker og at du da heller ikke har behov for å
-                motta dagpenger, eller tiltakspenger.
-            </BodyShort>
-            <BodyShort className={spacingStyles.mb1}>
-                Husk derfor på å sende inn meldekortene innen fristen hver 14. dag.
+                Det er kun de dagene du er registrert som arbeidssøker du kan få dagpenger for.
             </BodyShort>
         </div>
     );
 }
 
-function ReadMoreInaktivering() {
+function ReadMoreViktigRegistrert() {
     const { amplitudeData } = useAmplitudeData();
     const [clickedInnsyn, setClickedInnsyn] = useState(false);
 
-    const handleClickOpenReadMoreInaktivering = () => {
+    const handleClickOpenReadMoreViktigRegistrert = () => {
         if (!clickedInnsyn) {
             loggAktivitet({ aktivitet: 'Åpner ReadMore om inaktivering', ...amplitudeData });
             setClickedInnsyn(true);
@@ -42,12 +40,12 @@ function ReadMoreInaktivering() {
     return (
         <ReadMore
             size="medium"
-            header="Hvorfor ble arbeidssøkerperioden min avsluttet?"
-            onClick={handleClickOpenReadMoreInaktivering}
+            header="Hvorfor er det viktig at jeg er registrert som arbeidssøker?"
+            onClick={handleClickOpenReadMoreViktigRegistrert}
         >
             <Innhold />
         </ReadMore>
     );
 }
 
-export { ReadMoreInaktivering };
+export { ReadMoreViktigRegistrert };
