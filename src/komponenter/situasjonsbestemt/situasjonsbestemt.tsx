@@ -100,7 +100,7 @@ function Situasjonsbestemt() {
 
     const Meldekort = () => {
         return ListeElement(
-            <Email />,
+            <Email aria-hidden="true" />,
             <div>
                 <Heading size="medium">{tekst('meldekort.overskrift')}</Heading>
                 <BodyLong>
@@ -114,7 +114,7 @@ function Situasjonsbestemt() {
 
     const DittSykefravaer = () => {
         return ListeElement(
-            <Bandage />,
+            <Bandage aria-hidden="true" />,
             <div>
                 <Heading size="medium">{tekst('sykefravaer.overskrift')}</Heading>
                 <BodyLong>
@@ -131,7 +131,7 @@ function Situasjonsbestemt() {
 
     const DialogPanel = () => {
         return ListeElement(
-            <Dialog />,
+            <Dialog aria-hidden="true" />,
             <div>
                 <Heading size="medium">{tekst('dialog.overskrift')}</Heading>
                 <Link href={dialogLenke} onClick={() => handleClick('Går til dialogen fra ikke-standard')}>
@@ -148,7 +148,7 @@ function Situasjonsbestemt() {
                     {visBehovsAvklaring ? <Behovsavklaring /> : <DialogPanel />}
                     {!visBehovsAvklaring &&
                         ListeElement(
-                            <Task />,
+                            <Task aria-hidden="true" />,
                             <div>
                                 <Heading size="medium">{tekst('aktivitetsplan.overskrift')}</Heading>
                                 <BodyLong>
@@ -165,7 +165,7 @@ function Situasjonsbestemt() {
                         )}
                     {erSykmeldtMedArbeidsgiver ? <DittSykefravaer /> : <Meldekort />}
                     {ListeElement(
-                        <Laptop />,
+                        <Laptop aria-hidden="true" />,
                         <div>
                             <Heading size="medium">{tekst('sporsmal.overskrift')}</Heading>
                             <BodyLong>

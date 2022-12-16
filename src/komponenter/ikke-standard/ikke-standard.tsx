@@ -81,7 +81,7 @@ function IkkeStandard() {
 
     const Meldekort = () => {
         return ListeElement(
-            <Email />,
+            <Email aria-hidden="true" />,
             <div>
                 <Heading size="medium">{tekst('meldekort.overskrift')}</Heading>
                 <BodyLong>
@@ -95,7 +95,7 @@ function IkkeStandard() {
 
     const DittSykefravaer = () => {
         return ListeElement(
-            <Bandage />,
+            <Bandage aria-hidden="true" />,
             <div>
                 <Heading size="medium">{tekst('sykefravaer.overskrift')}</Heading>
                 <BodyLong>
@@ -114,7 +114,7 @@ function IkkeStandard() {
         <Panel className={spacingStyles.blokkXs}>
             <ul className={styles.ikkeStandardListe}>
                 {ListeElement(
-                    <Task />,
+                    <Task aria-hidden="true" />,
                     <div>
                         <Heading size="medium">{tekst('aktivitetsplan.overskrift')}</Heading>
                         <BodyLong>
@@ -131,7 +131,7 @@ function IkkeStandard() {
                 )}
                 {erSykmeldtMedArbeidsgiver ? <DittSykefravaer /> : <Meldekort />}
                 {ListeElement(
-                    <Dialog />,
+                    <Dialog aria-hidden="true" />,
                     <div>
                         <Heading size="medium">{tekst('dialog.overskrift')}</Heading>
                         <Link href={dialogLenke} onClick={() => handleClick('Går til dialogen fra ikke-standard')}>
@@ -140,7 +140,7 @@ function IkkeStandard() {
                     </div>
                 )}
                 {ListeElement(
-                    <Laptop />,
+                    <Laptop aria-hidden="true" />,
                     <div>
                         <Heading size="medium">{tekst('sporsmal.overskrift')}</Heading>
                         <BodyLong>
