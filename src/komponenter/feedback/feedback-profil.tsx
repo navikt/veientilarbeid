@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, SyntheticEvent } from 'react';
 import classNames from 'classnames';
 import { BodyShort, Detail, Popover } from '@navikt/ds-react';
+import { nanoid } from 'nanoid';
 
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { useSprakValg } from '../../contexts/sprak';
@@ -58,6 +59,8 @@ function Feedback({ id, className, sporsmal }: Props) {
 
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
+    const neiId = nanoid();
+
     useEffect(() => {
         if (profil && profil[id]) {
             const { valgt, updated } = profil[id];
@@ -68,7 +71,7 @@ function Feedback({ id, className, sporsmal }: Props) {
 
     if (erOppdatertForOver12TimerSiden(oppdatert)) return null;
 
-    const handleFeedback = (feedback: string) => {
+    const handleFeedback = (feedback: string, event: SyntheticEvent) => {
         amplitudeLogger('veientilarbeid.feedback.intro', {
             kort: id,
             feedback,
@@ -89,7 +92,7 @@ function Feedback({ id, className, sporsmal }: Props) {
         setOppdatert(oppdatertFeedbackDato);
 
         if (feedback === 'nei') {
-            const neiKnapp = document.getElementById('nei-knapp');
+            const neiKnapp = document.getElementById(event.currentTarget.id);
             setVisPopover(neiKnapp || undefined);
         } else {
             setVisPopover(undefined);
@@ -112,71 +115,67 @@ function Feedback({ id, className, sporsmal }: Props) {
     });
 
     return (
-        <>
-            <div className={`${className ? className : ''} ${styles.feedbackContainer}`}>
-                <Detail size="small" className={styles.feedbackTittel}>
-                    {sporsmal ? sporsmal : tekst('varDetteNyttig')}
-                </Detail>
-                <div className={styles.valg}>
-                    <button onClick={() => handleFeedback('ja')} className={jaKnapp}>
-                        <Detail size="small">{tekst('ja')}</Detail>
-                    </button>
-                    <span className={styles.feedbackSpace} aria-hidden="true">
-                        |
-                    </span>
-                    <button
-                        onClick={() => handleFeedback('nei')}
-                        className={neiKnapp}
-                        id="nei-knapp"
-                        ref={feedbackNeiKnappRef}
-                    >
-                        <Detail size="small">{tekst('nei')}</Detail>
-                    </button>
-                    <Popover
-                        id="popover-nei"
-                        anchorEl={feedbackNeiKnappRef.current}
-                        onClose={() => setVisPopover(undefined)}
-                        open={visPopover !== undefined}
-                        tabIndex={-1}
-                        arrow={false}
-                    >
-                        <Popover.Content>
-                            <BodyShort className={styles.feedbackUtdyping}>{tekst('hvorforNei')}</BodyShort>
-                            <ul className={styles.feedbackGrunner}>
-                                <li>
-                                    <button onClick={() => handleFeedback('nei - visste det fra før')}>
-                                        {tekst('gammeltNytt')}
-                                    </button>
-                                </li>
-                                <li>
-                                    <button onClick={() => handleFeedback('nei - forstår ikke innholdet')}>
-                                        {' '}
-                                        {tekst('forstodIkke')}
-                                    </button>
-                                </li>
-                                <li>
-                                    <button onClick={() => handleFeedback('nei - føles ikke viktig')}>
-                                        {' '}
-                                        {tekst('uviktig')}
-                                    </button>
-                                </li>
-                                <li>
-                                    <button onClick={() => handleFeedback('nei - andre grunner')}>
-                                        {tekst('andreGrunner')}
-                                    </button>
-                                </li>
-                            </ul>
-                        </Popover.Content>
-                    </Popover>
-                    <span className={styles.feedbackSpace} aria-hidden="true">
-                        |
-                    </span>
-                    <button onClick={() => handleFeedback('vet ikke')} className={vetIkkeKnapp}>
-                        <Detail size="small">{tekst('vetIkke')}</Detail>
-                    </button>
-                </div>
+        <div className={`${className ? className : ''} ${styles.feedbackContainer}`}>
+            <Detail className={styles.feedbackTittel}>{sporsmal ? sporsmal : tekst('varDetteNyttig')}</Detail>
+            <div className={styles.valg}>
+                <button onClick={(event) => handleFeedback('ja', event)} className={jaKnapp}>
+                    <Detail>{tekst('ja')}</Detail>
+                </button>
+                <span className={styles.feedbackSpace} aria-hidden="true">
+                    |
+                </span>
+                <button
+                    onClick={(event) => handleFeedback('nei', event)}
+                    id={neiId}
+                    className={neiKnapp}
+                    ref={feedbackNeiKnappRef}
+                >
+                    <Detail>{tekst('nei')}</Detail>
+                </button>
+                <Popover
+                    id={`popover-${neiId}`}
+                    anchorEl={feedbackNeiKnappRef.current}
+                    onClose={() => setVisPopover(undefined)}
+                    open={visPopover !== undefined}
+                    tabIndex={-1}
+                    arrow={false}
+                >
+                    <Popover.Content>
+                        <BodyShort className={styles.feedbackUtdyping}>{tekst('hvorforNei')}</BodyShort>
+                        <ul className={styles.feedbackGrunner}>
+                            <li>
+                                <button onClick={(event) => handleFeedback('nei - visste det fra før', event)}>
+                                    {tekst('gammeltNytt')}
+                                </button>
+                            </li>
+                            <li>
+                                <button onClick={(event) => handleFeedback('nei - forstår ikke innholdet', event)}>
+                                    {' '}
+                                    {tekst('forstodIkke')}
+                                </button>
+                            </li>
+                            <li>
+                                <button onClick={(event) => handleFeedback('nei - føles ikke viktig', event)}>
+                                    {' '}
+                                    {tekst('uviktig')}
+                                </button>
+                            </li>
+                            <li>
+                                <button onClick={(event) => handleFeedback('nei - andre grunner', event)}>
+                                    {tekst('andreGrunner')}
+                                </button>
+                            </li>
+                        </ul>
+                    </Popover.Content>
+                </Popover>
+                <span className={styles.feedbackSpace} aria-hidden="true">
+                    |
+                </span>
+                <button onClick={(event) => handleFeedback('vet ikke', event)} className={vetIkkeKnapp}>
+                    <Detail>{tekst('vetIkke')}</Detail>
+                </button>
             </div>
-        </>
+        </div>
     );
 }
 
