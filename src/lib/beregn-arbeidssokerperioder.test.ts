@@ -1,6 +1,5 @@
 import beregnArbeidssokerperioder from './beregn-arbeidssokerperioder';
 import dagerFraDato from '../utils/dager-fra-dato';
-import { Periode } from '../contexts/arbeidssoker';
 
 describe('tester funksjonen beregnArbeidssokerperioder', () => {
     test('Vi får default verdier tilbake dersom data ikke er hentet', () => {
