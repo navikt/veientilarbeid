@@ -2,17 +2,24 @@ import { BodyLong, Button, Heading, Panel } from '@navikt/ds-react';
 import { InformationColored } from '@navikt/ds-icons';
 
 import { useFeatureToggleData, FeatureToggles } from '../../contexts/feature-toggles';
+import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
+import { useReaktivering } from '../../contexts/reaktivering';
 
 import { ReadMoreInaktivering } from './readmore-derfor-ble-du-inaktivert';
 import { ReadMoreViktigRegistrert } from './readmore-viktig-registrert';
 import InViewport from '../in-viewport/in-viewport';
+import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
+import prettyPrintDato from '../../utils/pretty-print-dato';
 
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
 
 function AutomatiskReaktivert() {
     const featureToggleData = useFeatureToggleData();
-    const kanViseKomponent = featureToggleData[FeatureToggles.BRUK_BEKREFT_REAKTIVERING];
+    const arbeidssokerperioderData = useArbeidssokerPerioder();
+    const { reaktivering } = useReaktivering();
+    const arbeidssokerperioder = beregnArbeidssokerperioder(arbeidssokerperioderData);
+    const kanViseKomponent = featureToggleData[FeatureToggles.BRUK_BEKREFT_REAKTIVERING] && reaktivering;
 
     if (!kanViseKomponent) return null;
 
@@ -32,11 +39,12 @@ function AutomatiskReaktivert() {
                 <div>
                     <Heading size="medium">Du har blitt registrert som arbeidssøker på nytt!</Heading>
                     <BodyLong className={spacingStyles.mb1}>
-                        18. november ble arbeidssøkerperioden din avsluttet.
+                        {prettyPrintDato(arbeidssokerperioder.forrigePeriodeAvsluttetDato)} ble arbeidssøkerperioden din
+                        avsluttet.
                     </BodyLong>
                     <BodyLong className={spacingStyles.mb1}>
-                        29. november sendte du inn et meldekort der du svarte at du ønsker å være registrert som
-                        arbeidssøker.
+                        {prettyPrintDato(reaktivering.opprettetDato)} sendte du inn et meldekort der du svarte at du
+                        ønsker å være registrert som arbeidssøker.
                     </BodyLong>
                     <BodyLong className={spacingStyles.mb1}>Derfor ble du registrert på nytt.</BodyLong>
                     <ReadMoreInaktivering />
