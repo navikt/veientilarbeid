@@ -1,5 +1,6 @@
 import beregnArbeidssokerperioder from './beregn-arbeidssokerperioder';
 import dagerFraDato from '../utils/dager-fra-dato';
+import { Periode } from '../contexts/arbeidssoker';
 
 describe('tester funksjonen beregnArbeidssokerperioder', () => {
     test('Vi får default verdier tilbake dersom data ikke er hentet', () => {
@@ -11,7 +12,9 @@ describe('tester funksjonen beregnArbeidssokerperioder', () => {
             antallDagerSidenSisteArbeidssokerperiode: 'INGEN_DATA',
             antallUkerSidenSisteArbeidssokerperiode: 'INGEN_DATA',
             antallUkerMellomSisteArbeidssokerperioder: 'INGEN_DATA',
+            forrigePeriodeAvsluttetDato: 'INGEN_DATA',
         };
+
         const verdi = beregnArbeidssokerperioder(data);
 
         expect(verdi).toEqual(forventetVerdi);
@@ -19,7 +22,7 @@ describe('tester funksjonen beregnArbeidssokerperioder', () => {
 
     test('Vi får N/A verdier tilbake dersom data er tom', () => {
         const data = {
-            arbeidssokerperioder: [] as any,
+            arbeidssokerperioder: [],
         };
         const forventetVerdi = {
             harAktivArbeidssokerperiode: 'N/A',
@@ -27,6 +30,7 @@ describe('tester funksjonen beregnArbeidssokerperioder', () => {
             antallDagerSidenSisteArbeidssokerperiode: 'N/A',
             antallUkerSidenSisteArbeidssokerperiode: 'N/A',
             antallUkerMellomSisteArbeidssokerperioder: 'N/A',
+            forrigePeriodeAvsluttetDato: 'N/A',
         };
         const verdi = beregnArbeidssokerperioder(data);
 
@@ -198,5 +202,24 @@ describe('tester funksjonen beregnArbeidssokerperioder', () => {
         const verdi = beregnArbeidssokerperioder(data);
 
         expect(verdi.antallUkerMellomSisteArbeidssokerperioder).toEqual(forventetVerdi);
+    });
+
+    test('Returnerer forventet dato for avsluttet forrige periode', () => {
+        const data = {
+            arbeidssokerperioder: [
+                {
+                    fraOgMedDato: '2020-01-01',
+                    tilOgMedDato: '2020-02-01',
+                },
+                {
+                    fraOgMedDato: '2020-03-01',
+                    tilOgMedDato: null,
+                },
+            ],
+        };
+        const forventetVerdi = '2020-02-01';
+        const verdi = beregnArbeidssokerperioder(data);
+
+        expect(verdi.forrigePeriodeAvsluttetDato).toEqual(forventetVerdi);
     });
 });

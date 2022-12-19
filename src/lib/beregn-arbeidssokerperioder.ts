@@ -9,11 +9,12 @@ export interface BeregnedePerioder {
     antallDagerSidenSisteArbeidssokerperiode: number | 'Ikke avsluttet' | 'INGEN_DATA' | 'N/A';
     antallUkerSidenSisteArbeidssokerperiode: number | 'Ikke avsluttet' | 'INGEN_DATA' | 'N/A';
     antallUkerMellomSisteArbeidssokerperioder: number | 'INGEN_DATA' | 'N/A' | 'Første periode';
+    forrigePeriodeAvsluttetDato: 'INGEN_DATA' | 'N/A' | string | 'Første periode';
 }
 
 interface Props {
     arbeidssokerperioder: [] | Periode[];
-    status: number;
+    status?: number;
 }
 
 function sorterArbeidssokerperioderSisteForst(a: Periode, b: Periode) {
@@ -39,6 +40,11 @@ function beregnAntallUkerMellomSisteArbeidssokerperioder(perioder: Periode[]) {
     return ukerFraDato(new Date(nestSistePeriode?.tilOgMedDato || '2020-01-01'), new Date(sistePeriode.fraOgMedDato));
 }
 
+function hentForrigePeriodeAvsluttetDato(perioder: Periode[]) {
+    const forrigePeriode = perioder[1] || {};
+    return forrigePeriode.tilOgMedDato || 'Første periode';
+}
+
 function beregnArbeidssokerperioder(props: Props | null | undefined): BeregnedePerioder {
     const { arbeidssokerperioder } = props ? props : { arbeidssokerperioder: null };
 
@@ -49,6 +55,7 @@ function beregnArbeidssokerperioder(props: Props | null | undefined): BeregnedeP
             antallDagerSidenSisteArbeidssokerperiode: 'INGEN_DATA',
             antallUkerSidenSisteArbeidssokerperiode: 'INGEN_DATA',
             antallUkerMellomSisteArbeidssokerperioder: 'INGEN_DATA',
+            forrigePeriodeAvsluttetDato: 'INGEN_DATA',
         };
     }
 
@@ -59,6 +66,7 @@ function beregnArbeidssokerperioder(props: Props | null | undefined): BeregnedeP
             antallDagerSidenSisteArbeidssokerperiode: 'N/A',
             antallUkerSidenSisteArbeidssokerperiode: 'N/A',
             antallUkerMellomSisteArbeidssokerperioder: 'N/A',
+            forrigePeriodeAvsluttetDato: 'N/A',
         };
     }
 
@@ -81,6 +89,9 @@ function beregnArbeidssokerperioder(props: Props | null | undefined): BeregnedeP
             : beregnAntallUkerSidenSisteArbeidssokerperiode(sluttDatoSistePeriode),
         antallUkerMellomSisteArbeidssokerperioder: harMerEnnEnPeriode
             ? beregnAntallUkerMellomSisteArbeidssokerperioder(arbeidssokerperioder)
+            : 'Første periode',
+        forrigePeriodeAvsluttetDato: harMerEnnEnPeriode
+            ? hentForrigePeriodeAvsluttetDato(arbeidssokerperioder)
             : 'Første periode',
     };
 }
