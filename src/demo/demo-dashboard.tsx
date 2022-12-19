@@ -257,6 +257,7 @@ const DemoDashboard = () => {
         gammel: 'Utløpt (mer enn 28 dager)',
         'aktiv-legacy': 'Aktiv - registrert før høst 2018',
         ingen: 'Ingen',
+        'aktiv-reaktivert': 'Aktiv - automatisk reaktivert',
     };
 
     const fremtidigeSituasjoner = {
