@@ -3,13 +3,15 @@ import { InformationColored } from '@navikt/ds-icons';
 
 import { useFeatureToggleData, FeatureToggles } from '../../contexts/feature-toggles';
 import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
-import { useReaktivering } from '../../contexts/reaktivering';
+import { useReaktivering, ReaktiveringSvarAlternativer } from '../../contexts/reaktivering';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 
 import { ReadMoreInaktivering } from './readmore-derfor-ble-du-inaktivert';
 import { ReadMoreViktigRegistrert } from './readmore-viktig-registrert';
 import InViewport from '../in-viewport/in-viewport';
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 import prettyPrintDato from '../../utils/pretty-print-dato';
+import { loggAktivitet } from '../../metrics/metrics';
 
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
@@ -17,9 +19,16 @@ import flexStyles from '../../flex.module.css';
 function AutomatiskReaktivert() {
     const featureToggleData = useFeatureToggleData();
     const arbeidssokerperioderData = useArbeidssokerPerioder();
-    const { reaktivering } = useReaktivering();
+    const { reaktivering, lagreReaktiveringSvar } = useReaktivering();
+    const { amplitudeData } = useAmplitudeData();
+
     const arbeidssokerperioder = beregnArbeidssokerperioder(arbeidssokerperioderData);
     const kanViseKomponent = featureToggleData[FeatureToggles.BRUK_BEKREFT_REAKTIVERING] && reaktivering;
+
+    async function handleReaktiveringSvar(svar: ReaktiveringSvarAlternativer) {
+        await lagreReaktiveringSvar(svar);
+        loggAktivitet({ aktivitet: `Svarer ${svar} på reaktiveringsbekreftelsen`, ...amplitudeData });
+    }
 
     if (!kanViseKomponent) return null;
 
@@ -53,8 +62,12 @@ function AutomatiskReaktivert() {
                         <Heading size="small" spacing>
                             Ønsker du å være registrert?
                         </Heading>
-                        <Button className={spacingStyles.mb1}>Ja, jeg ønsker å være registrert</Button>
-                        <Button variant="secondary">Nei, jeg ønsker ikke å være registrert</Button>
+                        <Button className={spacingStyles.mb1} onClick={() => handleReaktiveringSvar('ja')}>
+                            Ja, jeg ønsker å være registrert
+                        </Button>
+                        <Button variant="secondary" onClick={() => handleReaktiveringSvar('nei')}>
+                            Nei, jeg ønsker ikke å være registrert
+                        </Button>
                     </div>
                 </div>
             </div>

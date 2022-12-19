@@ -12,7 +12,7 @@ export type Reaktivering = {
 
 type ReaktiveringSvar = { opprettetDato: string; svar: ReaktiveringSvarAlternativer };
 
-type ReaktiveringSvarAlternativer = 'ja' | 'nei';
+export type ReaktiveringSvarAlternativer = 'ja' | 'nei';
 
 interface ReaktiveringProviderType {
     reaktivering: Reaktivering | null;
