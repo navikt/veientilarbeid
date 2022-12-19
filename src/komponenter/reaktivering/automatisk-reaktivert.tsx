@@ -22,8 +22,9 @@ function AutomatiskReaktivert() {
     const { reaktivering, lagreReaktiveringSvar } = useReaktivering();
     const { amplitudeData } = useAmplitudeData();
 
+    const harUbesvartReaktivering = reaktivering && reaktivering.svar === null;
     const arbeidssokerperioder = beregnArbeidssokerperioder(arbeidssokerperioderData);
-    const kanViseKomponent = featureToggleData[FeatureToggles.BRUK_BEKREFT_REAKTIVERING] && reaktivering;
+    const kanViseKomponent = featureToggleData[FeatureToggles.BRUK_BEKREFT_REAKTIVERING] && harUbesvartReaktivering;
 
     async function handleReaktiveringSvar(svar: ReaktiveringSvarAlternativer) {
         await lagreReaktiveringSvar(svar);
