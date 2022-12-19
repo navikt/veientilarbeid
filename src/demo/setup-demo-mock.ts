@@ -52,6 +52,7 @@ import msw_get from '../mocks/msw-utils';
 import meldekortstatusResponse from '../mocks/meldekortstatus-mock';
 import { gjelderFraGetResolver, gjelderFraPostResolver } from './demo-state-gjelderfra';
 import { brukerProfilGetResolver, brukerProfilPostResolver } from './demo-state-profil';
+import { reaktiveringGetResolver, reaktiveringPostResolver } from './demo-state-reaktivering';
 import arbeidssokerNiva3Response, { ArbeidssokerPeriode } from '../mocks/arbeidssoker-niva3-mock';
 import {
     behovForVeiledningGetResolver,
@@ -162,5 +163,7 @@ export const demo_handlers = [
     }),
     msw_get(DAGPENGER_STATUS, { dagpengerStatus: 'ukjent', antallDagerSidenDagpengerStanset: 'N/A' }),
     msw_get(ANTATT_INAKTIVERINGSGRUNN, { meldekortStatus: 'N/A' }),
-    msw_get(REAKTIVERING_URL, { opprettetDato: '2022-12-19', svar: null }),
+
+    rest.get(REAKTIVERING_URL, reaktiveringGetResolver),
+    rest.post(REAKTIVERING_URL, reaktiveringPostResolver),
 ];
