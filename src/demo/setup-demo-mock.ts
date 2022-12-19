@@ -21,6 +21,7 @@ import {
     MELDEPLIKT_URL,
     DAGPENGER_STATUS,
     ANTATT_INAKTIVERINGSGRUNN,
+    REAKTIVERING_URL,
 } from '../ducks/api';
 
 import {
@@ -161,4 +162,5 @@ export const demo_handlers = [
     }),
     msw_get(DAGPENGER_STATUS, { dagpengerStatus: 'ukjent', antallDagerSidenDagpengerStanset: 'N/A' }),
     msw_get(ANTATT_INAKTIVERINGSGRUNN, { meldekortStatus: 'N/A' }),
+    msw_get(REAKTIVERING_URL, { opprettetDato: '2022-12-19', svar: null }),
 ];
