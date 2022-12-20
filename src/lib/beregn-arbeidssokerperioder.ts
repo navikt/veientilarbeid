@@ -18,7 +18,15 @@ interface Props {
 }
 
 function sorterArbeidssokerperioderSisteForst(a: Periode, b: Periode) {
-    return new Date(b.fraOgMedDato).getTime() - new Date(a.fraOgMedDato).getTime();
+    const delta = new Date(b.fraOgMedDato).getTime() - new Date(a.fraOgMedDato).getTime();
+    if (delta === 0) {
+        if (b.tilOgMedDato === null) {
+            return 1;
+        } else if (a.tilOgMedDato === null) {
+            return -1;
+        }
+    }
+    return delta;
 }
 
 function harAktivArbeidssokerperiode(perioder: Periode[]) {

@@ -51,6 +51,25 @@ describe('tester funksjonen beregnArbeidssokerperioder', () => {
         expect(verdi.harAktivArbeidssokerperiode).toEqual(forventetVerdi);
     });
 
+    test('Vi får Ja på aktiv arbeidssøkerperiode om perioden ikke er avsluttet', () => {
+        const data = {
+            arbeidssokerperioder: [
+                {
+                    fraOgMedDato: '2020-01-01',
+                    tilOgMedDato: '2020-01-01',
+                },
+                {
+                    fraOgMedDato: '2020-01-01',
+                    tilOgMedDato: null,
+                },
+            ],
+        };
+        const forventetVerdi = 'Ja';
+        const verdi = beregnArbeidssokerperioder(data);
+
+        expect(verdi.harAktivArbeidssokerperiode).toEqual(forventetVerdi);
+    });
+
     test('Vi får aktivPeriodeStart lik fraOgMedDato perioden ikke er avsluttet', () => {
         const data = {
             arbeidssokerperioder: [
