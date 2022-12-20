@@ -1,5 +1,7 @@
 import { useEgenvurderingData } from '../contexts/egenvurdering';
 import { useArbeidssokerPerioder } from '../contexts/arbeidssoker';
+import { useFeatureToggleData } from '../contexts/feature-toggles';
+import { useReaktivering } from '../contexts/reaktivering';
 
 import InnholdMetrics from './innhold-metrics';
 import InViewport from '../komponenter/in-viewport/in-viewport';
@@ -14,12 +16,16 @@ import KvitteringEgenvurdering from '../komponenter/kvitteringer/kvittering-egen
 import Behovsavklaring from '../komponenter/behovsavklaring-oppfolging/behovsavklaring-oppfolging';
 import beregnArbeidssokerperioder from '../lib/beregn-arbeidssokerperioder';
 import { AutomatiskReaktivert } from '../komponenter/reaktivering/automatisk-reaktivert';
+import { visAutomatiskReaktiveringsKort } from '../lib/vis-automatisk-reaktiverings-kort';
 
 import styles from './innhold.module.css';
 
 const InnholdStandard = () => {
     const arbeidssokerperioderData = useArbeidssokerPerioder();
     const egenvurderingData = useEgenvurderingData();
+    const featureToggleData = useFeatureToggleData();
+    const { reaktivering } = useReaktivering();
+
     const harEgenvurderingbesvarelse = egenvurderingData !== null;
     const { harAktivArbeidssokerperiode, aktivPeriodeStart } = beregnArbeidssokerperioder(arbeidssokerperioderData);
     const harSistSvartDato =
@@ -31,20 +37,27 @@ const InnholdStandard = () => {
 
     const visBehovsAvklaring = !harGyldigEgenvurderingsbesvarelse;
 
+    const skalViseReaktiveringsKort = visAutomatiskReaktiveringsKort(featureToggleData, reaktivering);
+
     return (
         <>
             <InnholdMetrics />
             <InViewport loggTekst="AiA i viewport" />
             <div className={styles.limit}>
-                <AutomatiskReaktivert />
-                <ReaktiveringKvittering />
-                <KvitteringEgenvurdering />
-                <RegistrertTittel />
-                {visBehovsAvklaring ? <Behovsavklaring /> : <HjelpOgStotte />}
-                <DagpengerOgYtelser />
-                <Meldekort />
-                {visBehovsAvklaring ? null : <Aktivitetsplan />}
-                <GjelderFraDato />
+                {skalViseReaktiveringsKort ? (
+                    <AutomatiskReaktivert />
+                ) : (
+                    <>
+                        <ReaktiveringKvittering />
+                        <KvitteringEgenvurdering />
+                        <RegistrertTittel />
+                        {visBehovsAvklaring ? <Behovsavklaring /> : <HjelpOgStotte />}
+                        <DagpengerOgYtelser />
+                        <Meldekort />
+                        {visBehovsAvklaring ? null : <Aktivitetsplan />}
+                        <GjelderFraDato />
+                    </>
+                )}
             </div>
             <InViewport loggTekst="AiA i viewport - bunnen" />
         </>
