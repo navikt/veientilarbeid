@@ -1,6 +1,8 @@
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
+import { useReaktivering } from '../../contexts/reaktivering';
+import { useMeldekortData } from '../../hooks/use-meldekortdata';
 
 import { omMeldekortLenke, meldekortLenke } from '../../innhold/lenker';
 import { hentIDag } from '../../utils/chrono';
@@ -15,8 +17,9 @@ import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import MeldekortKnapp from './meldekort-knapp';
+import { vilUtmeldes } from '../../lib/vil-utmeldes';
+
 import spacingStyles from '../../spacing.module.css';
-import { useMeldekortData } from '../../hooks/use-meldekortdata';
 
 const TEKSTER = {
     nb: {
@@ -28,6 +31,8 @@ const TEKSTER = {
         sendInn: 'Send inn meldekort',
         sendInnForUke: 'Send inn meldekort for uke',
         feilmelding: 'Vi får ikke hentet informasjon om dine meldekort akkurat nå.',
+        utmelding:
+            'Dersom du ikke lenger ønsker å være registrert må du svare "Nei" på spørsmålet "Ønsker du fortsatt å være registrert hos NAV de neste 14 dagene?" i meldekortet.',
     },
     en: {
         meldekortForUke: 'The employment status form for weeks',
@@ -38,14 +43,27 @@ const TEKSTER = {
         sendInn: 'Submit employment status form',
         sendInnForUke: 'Submit employment status form for weeks',
         feilmelding: 'Vi får ikke hentet informasjon om dine meldekort akkurat nå.',
+        utmelding:
+            'Dersom du ikke lenger ønsker å være registrert må du svare "Nei" på spørsmålet "Ønsker du fortsatt å være registrert hos NAV de neste 14 dagene?" i meldekortet.',
     },
 };
 
 function MeldekortHovedInnhold() {
     const { meldekortData = null, isError } = useMeldekortData();
+    const { reaktivering } = useReaktivering();
+    const visUtmelding = vilUtmeldes(reaktivering);
 
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
+
+    function Utmeldingsinformasjon({ visUtmeldingsInformasjon }: { visUtmeldingsInformasjon: boolean }) {
+        if (!visUtmeldingsInformasjon) return null;
+        return (
+            <BodyLong spacing className={spacingStyles.mt1}>
+                {tekst('utmelding')}
+            </BodyLong>
+        );
+    }
 
     if (isError) {
         return (
@@ -54,6 +72,7 @@ function MeldekortHovedInnhold() {
                 <Alert variant={'warning'} className={`${spacingStyles.mb1} ${spacingStyles.mt1}`} fullWidth={false}>
                     <BodyLong>{tekst('feilmelding')}</BodyLong>
                 </Alert>
+                <Utmeldingsinformasjon visUtmeldingsInformasjon={visUtmelding} />
                 <div>
                     <MeldekortKnapp
                         href={omMeldekortLenke}
@@ -86,6 +105,7 @@ function MeldekortHovedInnhold() {
                             sprak
                         )}`}
                     </Heading>
+                    <Utmeldingsinformasjon visUtmeldingsInformasjon={visUtmelding} />
                     <div>
                         <MeldekortKnapp
                             href={omMeldekortLenke}
@@ -107,6 +127,7 @@ function MeldekortHovedInnhold() {
                     <Heading size="medium" className={spacingStyles.blokkXs}>
                         {tekst('sendesInn')} {meldekortForLevering.length}
                     </Heading>
+                    <Utmeldingsinformasjon visUtmeldingsInformasjon={visUtmelding} />
                     <MeldekortKnapp
                         href={meldekortLenke}
                         amplitudeTema="meldekort"
@@ -125,6 +146,7 @@ function MeldekortHovedInnhold() {
             <ErRendret loggTekst="Rendrer meldekort sluttkort" />
             <div>
                 <Meldekortstatus />
+                <Utmeldingsinformasjon visUtmeldingsInformasjon={visUtmelding} />
                 <div>
                     <MeldekortKnapp
                         href={meldekortLenke}
