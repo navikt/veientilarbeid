@@ -11,16 +11,16 @@ function Innhold() {
     return (
         <div className={spacingStyles.mt1}>
             <BodyShort className={spacingStyles.mb1}>
-                For å motta dagpenger må du være registrert som arbeidssøker.
+                Noen av ytelsene fra NAV, for eksempel dagpenger og tiltakspenger, kan du bare motta hvis du er
+                registrert som arbeidssøker.
             </BodyShort>
-
             <BodyShort className={spacingStyles.mb1}>
-                Du må passe på at du er registrert som arbeidssøker fra du sender inn søknaden og helt frem til den
-                siste dagen du ønsker å få dagpenger.
+                NAV ønsker også at de som skal motta arbeidsrettet oppfølging er regisrert som arbeidssøker.
             </BodyShort>
-
             <BodyShort className={spacingStyles.mb1}>
-                Det er kun de dagene du er registrert som arbeidssøker du kan få dagpenger for.
+                Du må være registrert som arbeidssøker fra du sender inn søknad om ytelse og helt frem til den siste
+                dagen du ønsker å motta pengestøtten. Det er kun de dagene du er registrert som arbeidssøker du kan få
+                utbetalt ytelse for.
             </BodyShort>
         </div>
     );

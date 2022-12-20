@@ -11,18 +11,24 @@ function Innhold() {
     return (
         <div className={spacingStyles.mt1}>
             <BodyShort className={spacingStyles.mb1}>
-                Du sendte inn ett eller flere meldekort for sent/etter fristen.
+                Vanligste årsak til dette er
+                <ul>
+                    <li>at du har sendt inn ett eller flere meldekort for sent</li>
+                    <li>
+                        at du på et meldekort har svart nei på om du fortsatt ønsker å være registrert som arbeidssøker.
+                    </li>
+                </ul>
             </BodyShort>
             <BodyShort className={spacingStyles.mb1}>
-                Du må sende inn meldekortet hver 14. dag for å fortsatt være registrert som arbeidssøker hos NAV.
+                Dersom du ønsker å være registrert som arbeidssøker må du
+                <ul>
+                    <li>sende inn meldekortet innen fristen hver 14. dag</li>
+                    <li>svare ja på at du fortsatt ønsker å være registrert som arbeidssøker</li>
+                </ul>
             </BodyShort>
             <BodyShort className={spacingStyles.mb1}>
-                Dersom du lar være å sende inn meldekort hver 14. dag eller sender meldekort etter fristen vil NAV gå ut
-                fra at du ikke lenger ønsker å være registrert som arbeidssøker og at du da heller ikke har behov for å
-                motta dagpenger, eller tiltakspenger.
-            </BodyShort>
-            <BodyShort className={spacingStyles.mb1}>
-                Husk derfor på å sende inn meldekortene innen fristen hver 14. dag.
+                Gjør du ikke dette vil NAV gå ut fra at du ikke ønsker å være registrert som arbeidssøker og at du
+                heller ikke har behov for å motta dagpenger eller tiltakspenger.
             </BodyShort>
         </div>
     );
