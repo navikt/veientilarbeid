@@ -4,6 +4,7 @@ import { useFeatureToggleData, FeatureToggles } from './feature-toggles';
 
 import { fetchToJson } from '../ducks/api-utils';
 import { REAKTIVERING_URL, requestConfig } from '../ducks/api';
+import { useAmplitudeData } from '../komponenter/hent-initial-data/amplitude-provider';
 
 export type Reaktivering = {
     opprettetDato: string;
@@ -27,12 +28,18 @@ export const ReaktiveringContext = createContext<ReaktiveringProviderType>({
 function ReaktiveringProvider(props: { children: ReactNode }) {
     const [reaktivering, settReaktivering] = useState<Reaktivering | null>(null);
     const featureToggles = useFeatureToggleData();
+    const { oppdaterAmplitudeData } = useAmplitudeData();
 
     const hentReaktivering = async () => {
         try {
             const reaktivering = await fetchToJson(REAKTIVERING_URL, requestConfig());
             if (reaktivering) {
-                settReaktivering(reaktivering as Reaktivering);
+                const r = reaktivering as Reaktivering;
+                settReaktivering(r);
+                oppdaterAmplitudeData({
+                    automatiskReaktivert: 'Ja',
+                    automatiskReaktivertSvar: r.svar === null ? 'Ikke svart' : r.svar!.svar,
+                });
             }
         } catch (error) {
             console.error(error);

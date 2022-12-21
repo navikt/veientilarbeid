@@ -53,6 +53,8 @@ export const initialAmplitudeData: AmplitudeData = {
     antallDagerSidenSistInnsendtMeldekort: 'INGEN_DATA',
     antattInaktiveringsgrunn: 'INGEN_DATA',
     levertMeldekortEtterInaktvering: 'INGEN_DATA',
+    automatiskReaktivert: 'INGEN_DATA',
+    automatiskReaktivertSvar: 'INGEN_DATA',
 };
 
 const AmplitudeContext = createContext({
