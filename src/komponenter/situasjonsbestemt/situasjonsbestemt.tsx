@@ -1,5 +1,5 @@
 import { BodyLong, Heading, Link, Panel } from '@navikt/ds-react';
-import { Bandage, Dialog, Email, Laptop, Task } from '@navikt/ds-icons';
+import { Bandage, Dialog, Laptop, Notes, Task } from '@navikt/ds-icons';
 
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
@@ -8,7 +8,7 @@ import { useSprakValg } from '../../contexts/sprak';
 import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
 
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
-import { aktivitetsplanLenke, dialogLenke, omMeldekortLenke, sykefravaerLenke } from '../../innhold/lenker';
+import { aktivitetsplanLenke, dialogLenke, sykefravaerLenke } from '../../innhold/lenker';
 import { loggAktivitet } from '../../metrics/metrics';
 import Behovsavklaring from '../behovsavklaring-oppfolging/behovsavklaring-oppfolging';
 import Egenvurdering from '../situasjonsbestemt/egenvurdering';
@@ -17,6 +17,7 @@ import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
 import styles from './situasjonsbestemt.module.css';
+import MeldekortHovedInnhold from '../meldekort/meldekort-hovedinnhold';
 
 const TEKSTER = {
     nb: {
@@ -98,20 +99,6 @@ function Situasjonsbestemt() {
         loggAktivitet({ aktivitet: action, ...amplitudeData });
     };
 
-    const Meldekort = () => {
-        return ListeElement(
-            <Email aria-hidden="true" />,
-            <div>
-                <Heading size="medium">{tekst('meldekort.overskrift')}</Heading>
-                <BodyLong>
-                    <Link href={omMeldekortLenke} onClick={() => handleClick('Går til meldekortet fra ikke-standard')}>
-                        {tekst('meldekort.ingress')}
-                    </Link>{' '}
-                </BodyLong>
-            </div>
-        );
-    };
-
     const DittSykefravaer = () => {
         return ListeElement(
             <Bandage aria-hidden="true" />,
@@ -163,7 +150,11 @@ function Situasjonsbestemt() {
                                 </BodyLong>
                             </div>
                         )}
-                    {erSykmeldtMedArbeidsgiver ? <DittSykefravaer /> : <Meldekort />}
+                    {erSykmeldtMedArbeidsgiver ? (
+                        <DittSykefravaer />
+                    ) : (
+                        ListeElement(<Notes aria-hidden="true" />, <MeldekortHovedInnhold />)
+                    )}
                     {ListeElement(
                         <Laptop aria-hidden="true" />,
                         <div>
