@@ -66,6 +66,9 @@ function ReaktiveringProvider(props: { children: ReactNode }) {
                 });
 
                 settReaktivering(oppdatertReaktiveringSvar);
+                oppdaterAmplitudeData({
+                    automatiskReaktivertSvar: svar,
+                });
             }
         } catch (error) {
             console.error(error);
