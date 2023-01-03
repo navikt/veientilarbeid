@@ -1,8 +1,7 @@
-import useSwr from 'swr';
+import useSwr, { SWRConfiguration } from 'swr';
 import { nanoid } from 'nanoid';
 
 import useSwrImmutable from 'swr/immutable';
-import { SWRConfiguration } from 'swr/dist/types';
 
 export const fetcher = async (path: string, opts?: RequestInit & { onError?: (response: any) => void }) => {
     const response = await fetch(path, {
