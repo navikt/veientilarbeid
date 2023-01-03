@@ -9,8 +9,8 @@
         "build:demo": "vite build --mode demo",
         "lint": "eslint --ext=jsx,js,ts,tsx ./src",
         "lint:fix": "eslint --ext=jsx,js,ts,tsx ./src --fix",
-        "test": "npm run lint && vitest dev",
-        "test-ci": "npm run lint && CI=true vitest run",
+        "test": "npm run lint && cross-env NODE_OPTIONS=--no-experimental-fetch vitest dev",
+        "test-ci": "npm run lint && cross-env NODE_OPTIONS=--no-experimental-fetch CI=true vitest run",
         "test:coverage": "vitest run --coverage",
         "deploy": "npm run build && gh-pages -d build",
         "prettier": "prettier --write 'src/**/*.ts' 'src/**/*.tsx' 'src/**/*.css'",
@@ -86,6 +86,6 @@
         "workerDirectory": "public"
     },
     "engines": {
-        "node": ">=16.19.0"
+        "node": ">=18.12.1"
     }
 }
