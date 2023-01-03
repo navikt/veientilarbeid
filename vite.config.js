@@ -2,7 +2,7 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import { rollupImportMapPlugin } from 'rollup-plugin-import-map';
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
-import { terser } from 'rollup-plugin-terser';
+import terser from '@rollup/plugin-terser';
 import { resolve } from 'path';
 import svgr from 'vite-plugin-svgr';
 import EnvironmentPlugin from 'vite-plugin-environment';
