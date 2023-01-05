@@ -1,5 +1,6 @@
 import { BodyLong, Button, Heading, Panel } from '@navikt/ds-react';
 import { InformationColored } from '@navikt/ds-icons';
+import { useState } from 'react';
 
 import { useFeatureToggleData, FeatureToggles } from '../../contexts/feature-toggles';
 import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
@@ -13,6 +14,7 @@ import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import { loggAktivitet } from '../../metrics/metrics';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
+import { Sprak } from '../../contexts/sprak';
 
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
@@ -25,6 +27,7 @@ const TEKSTER = {
         registrertSporsmal: 'Ønsker du å være registrert?',
         registrertJa: 'Ja, jeg ønsker å være registrert',
         registrertNei: 'Nei, jeg ønsker ikke å være registrert',
+        sprak: 'Read in english',
     },
     en: {
         tittel: 'Du har blitt registrert som arbeidssøker på nytt!',
@@ -33,16 +36,19 @@ const TEKSTER = {
         registrertSporsmal: 'Ønsker du å være registrert?',
         registrertJa: 'Ja, jeg ønsker å være registrert',
         registrertNei: 'Nei, jeg ønsker ikke å være registrert',
+        sprak: 'Les på norsk',
     },
 };
 
 function AutomatiskReaktivert() {
+    const defaultSprak = 'nb' as Sprak;
+    const [valgtSprak, setValgtSprak] = useState(defaultSprak);
     const featureToggleData = useFeatureToggleData();
     const arbeidssokerperioderData = useArbeidssokerPerioder();
     const { reaktivering, lagreReaktiveringSvar } = useReaktivering();
     const { amplitudeData } = useAmplitudeData();
 
-    const tekst = lagHentTekstForSprak(TEKSTER, 'nb');
+    const tekst = lagHentTekstForSprak(TEKSTER, valgtSprak as Sprak);
     const harUbesvartReaktivering = reaktivering && reaktivering.svar === null;
     const arbeidssokerperioder = beregnArbeidssokerperioder(arbeidssokerperioderData);
     const kanViseKomponent = featureToggleData[FeatureToggles.BRUK_BEKREFT_REAKTIVERING] && harUbesvartReaktivering;
@@ -52,10 +58,20 @@ function AutomatiskReaktivert() {
         loggAktivitet({ aktivitet: `Svarer ${svar} på reaktiveringsbekreftelsen`, ...amplitudeData });
     }
 
+    function toggleByttSprak() {
+        loggAktivitet({ aktivitet: `Bytter språk på reaktiveringsbekreftelsen`, ...amplitudeData });
+        setValgtSprak(valgtSprak === 'en' ? 'nb' : 'en');
+    }
+
     if (!kanViseKomponent) return null;
 
     return (
         <Panel className={spacingStyles.px1_5}>
+            <div className={flexStyles.flex}>
+                <Button variant="tertiary" onClick={toggleByttSprak}>
+                    {tekst('sprak')}
+                </Button>
+            </div>
             <div className={flexStyles.flex}>
                 <span
                     style={{
@@ -76,8 +92,8 @@ function AutomatiskReaktivert() {
                         {prettyPrintDato(reaktivering.opprettetDato)} {tekst('meldekortInnsendt')}
                     </BodyLong>
                     <BodyLong className={spacingStyles.mb1}>Derfor ble du registrert på nytt.</BodyLong>
-                    <ReadMoreInaktivering />
-                    <ReadMoreViktigRegistrert />
+                    <ReadMoreInaktivering sprak={valgtSprak} />
+                    <ReadMoreViktigRegistrert sprak={valgtSprak} />
                     <div className={`${spacingStyles.mt1} ${flexStyles.flex} ${flexStyles.flexColumn}`}>
                         <Heading size="small" spacing>
                             {tekst('registrertSporsmal')}

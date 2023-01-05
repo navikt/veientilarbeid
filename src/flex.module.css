@@ -10,6 +10,10 @@
     align-items: center;
 }
 
+.flexEnd {
+    align-items: flex-end;
+}
+
 .flexColumn {
     flex-direction: column;
 }

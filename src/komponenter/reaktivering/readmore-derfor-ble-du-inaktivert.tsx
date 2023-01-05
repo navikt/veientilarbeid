@@ -5,6 +5,7 @@ import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 
 import { loggAktivitet } from '../../metrics/metrics';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
+import { Sprak } from '../../contexts/sprak';
 
 import spacingStyles from '../../spacing.module.css';
 
@@ -33,8 +34,12 @@ const TEKSTER = {
     },
 };
 
-function Innhold() {
-    const tekst = lagHentTekstForSprak(TEKSTER, 'nb');
+interface Props {
+    sprak: Sprak;
+}
+
+function Innhold(props: Props) {
+    const tekst = lagHentTekstForSprak(TEKSTER, props.sprak);
 
     return (
         <div className={spacingStyles.mt1}>
@@ -57,11 +62,11 @@ function Innhold() {
     );
 }
 
-function ReadMoreInaktivering() {
+function ReadMoreInaktivering(props: Props) {
     const { amplitudeData } = useAmplitudeData();
     const [clickedInnsyn, setClickedInnsyn] = useState(false);
 
-    const tekst = lagHentTekstForSprak(TEKSTER, 'nb');
+    const tekst = lagHentTekstForSprak(TEKSTER, props.sprak);
 
     const handleClickOpenReadMoreInaktivering = () => {
         if (!clickedInnsyn) {
@@ -72,7 +77,7 @@ function ReadMoreInaktivering() {
 
     return (
         <ReadMore size="medium" header={tekst('header')} onClick={handleClickOpenReadMoreInaktivering}>
-            <Innhold />
+            <Innhold sprak={props.sprak} />
         </ReadMore>
     );
 }
