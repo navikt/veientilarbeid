@@ -51,6 +51,7 @@ function AutomatiskReaktivert() {
     const tekst = lagHentTekstForSprak(TEKSTER, valgtSprak as Sprak);
     const harUbesvartReaktivering = reaktivering && reaktivering.svar === null;
     const arbeidssokerperioder = beregnArbeidssokerperioder(arbeidssokerperioderData);
+    const visSprakvelger = featureToggleData[FeatureToggles.BRUK_SPRAKVELGER];
     const kanViseKomponent = featureToggleData[FeatureToggles.BRUK_BEKREFT_REAKTIVERING] && harUbesvartReaktivering;
 
     async function handleReaktiveringSvar(svar: ReaktiveringSvarAlternativer) {
@@ -67,11 +68,13 @@ function AutomatiskReaktivert() {
 
     return (
         <Panel className={spacingStyles.px1_5}>
-            <div className={flexStyles.flex}>
-                <Button variant="tertiary" onClick={toggleByttSprak}>
-                    {tekst('sprak')}
-                </Button>
-            </div>
+            {visSprakvelger && (
+                <div className={flexStyles.flex}>
+                    <Button variant="tertiary" onClick={toggleByttSprak}>
+                        {tekst('sprak')}
+                    </Button>
+                </div>
+            )}
             <div className={flexStyles.flex}>
                 <span
                     style={{
