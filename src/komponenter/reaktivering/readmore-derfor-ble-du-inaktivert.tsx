@@ -14,23 +14,25 @@ const TEKSTER = {
         header: 'Hvorfor ble arbeidssøkerperioden min avsluttet?',
         vanligsteGrunn: 'Vanligste årsak til dette er',
         meldekortSent: 'at du har sendt inn ett eller flere meldekort for sent',
-        meldekortNei: 'at du på et meldekort har svart nei på om du fortsatt ønsker å være registrert som arbeidssøker',
+        meldekortNei:
+            'at du på et meldekort har svart "nei" på om du fortsatt ønsker å være registrert som arbeidssøker',
         fortsattRegistrert: 'Dersom du ønsker å være registrert som arbeidssøker må du',
         sendMeldekort: 'sende inn meldekortet innen fristen hver 14. dag',
-        svarJa: 'svare ja på at du fortsatt ønsker å være registrert som arbeidssøker',
+        svarJa: 'svare "ja" på at du fortsatt ønsker å være registrert som arbeidssøker',
         konsekvens:
             'Gjør du ikke dette vil NAV gå ut fra at du ikke ønsker å være registrert som arbeidssøker og at du heller ikke har behov for å motta dagpenger eller tiltakspenger.',
     },
     en: {
-        header: 'Hvorfor ble arbeidssøkerperioden min avsluttet?',
-        vanligsteGrunn: 'Vanligste årsak til dette er',
-        meldekortSent: 'at du har sendt inn ett eller flere meldekort for sent',
-        meldekortNei: 'at du på et meldekort har svart nei på om du fortsatt ønsker å være registrert som arbeidssøker',
-        fortsattRegistrert: 'Dersom du ønsker å være registrert som arbeidssøker må du',
-        sendMeldekort: 'sende inn meldekortet innen fristen hver 14. dag',
-        svarJa: 'svare ja på at du fortsatt ønsker å være registrert som arbeidssøker',
+        header: 'Why did my job search period end?',
+        vanligsteGrunn: 'The most common reasons for this are',
+        meldekortSent: 'that you have submitted one or more registration cards too late',
+        meldekortNei:
+            'that you have answered "no" on a registration card to whether you still wish to be registered as a job seeker',
+        fortsattRegistrert: 'If you wish to be registered as a job seeker, you must',
+        sendMeldekort: 'submit the registration card by the deadline every 14 days',
+        svarJa: 'answer "yes" to the question regarding that you still want to be registered as a job seeker',
         konsekvens:
-            'Gjør du ikke dette vil NAV gå ut fra at du ikke ønsker å være registrert som arbeidssøker og at du heller ikke har behov for å motta dagpenger eller tiltakspenger.',
+            'If you do not do this, NAV will assume that you do not wish to be registered as a job seeker and that you also have no need to receive unemployment benefit or measure allowance.',
     },
 };
 

@@ -24,18 +24,21 @@ const TEKSTER = {
         tittel: 'Du har blitt registrert som arbeidssøker på nytt!',
         periodeAvsluttet: 'ble arbeidssøkerperioden din avsluttet.',
         meldekortInnsendt: 'sendte du inn et meldekort der du svarte at du ønsker å være registrert som arbeidssøker.',
+        derfor: 'Derfor ble du registrert på nytt.',
         registrertSporsmal: 'Ønsker du å være registrert?',
         registrertJa: 'Ja, jeg ønsker å være registrert',
         registrertNei: 'Nei, jeg ønsker ikke å være registrert',
         sprak: 'Read in english',
     },
     en: {
-        tittel: 'Du har blitt registrert som arbeidssøker på nytt!',
-        periodeAvsluttet: 'ble arbeidssøkerperioden din avsluttet.',
-        meldekortInnsendt: 'sendte du inn et meldekort der du svarte at du ønsker å være registrert som arbeidssøker.',
-        registrertSporsmal: 'Ønsker du å være registrert?',
-        registrertJa: 'Ja, jeg ønsker å være registrert',
-        registrertNei: 'Nei, jeg ønsker ikke å være registrert',
+        tittel: 'You have been registered as a job seeker again!',
+        periodeAvsluttet: 'your job search period has ended.',
+        meldekortInnsendt:
+            'you sent in a registration card in which you replied that you want to be registered as a job seeker.',
+        derfor: "That's why you were registered again.",
+        registrertSporsmal: 'Do you want to be registered?',
+        registrertJa: 'Yes, I want to be registered',
+        registrertNei: 'No, I do not wish to be registered',
         sprak: 'Les på norsk',
     },
 };
@@ -94,7 +97,7 @@ function AutomatiskReaktivert() {
                     <BodyLong className={spacingStyles.mb1}>
                         {prettyPrintDato(reaktivering.opprettetDato)} {tekst('meldekortInnsendt')}
                     </BodyLong>
-                    <BodyLong className={spacingStyles.mb1}>Derfor ble du registrert på nytt.</BodyLong>
+                    <BodyLong className={spacingStyles.mb1}>{tekst('derfor')}</BodyLong>
                     <ReadMoreInaktivering sprak={valgtSprak} />
                     <ReadMoreViktigRegistrert sprak={valgtSprak} />
                     <div className={`${spacingStyles.mt1} ${flexStyles.flex} ${flexStyles.flexColumn}`}>

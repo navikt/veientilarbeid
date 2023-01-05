@@ -18,11 +18,11 @@ const TEKSTER = {
         soknad: 'Du må være registrert som arbeidssøker fra du sender inn søknad om ytelse og helt frem til den siste dagen du ønsker å motta pengestøtten. Det er kun de dagene du er registrert som arbeidssøker du kan få utbetalt ytelse for.',
     },
     en: {
-        header: 'Hvorfor er det viktig at jeg er registrert som arbeidssøker?',
+        header: 'Why is it important that I am registered as a job seeker?',
         ytelser:
-            'Noen av ytelsene fra NAV, for eksempel dagpenger og tiltakspenger, kan du bare motta hvis du er registrert som arbeidssøker.',
-        oppfolging: 'NAV ønsker også at de som skal motta arbeidsrettet oppfølging er regisrert som arbeidssøker.',
-        soknad: 'Du må være registrert som arbeidssøker fra du sender inn søknad om ytelse og helt frem til den siste dagen du ønsker å motta pengestøtten. Det er kun de dagene du er registrert som arbeidssøker du kan få utbetalt ytelse for.',
+            'You can only receive some of the benefits from NAV, such as unemployment benefit and measure allowance, if you are registered as a job seeker.',
+        oppfolging: 'NAV also wants those who are to receive work-oriented follow-up to be registered as jobseekers.',
+        soknad: 'You must be registered as a job seeker from the time you submit your application for benefits until the last day you wish to receive the financial support. You can only receive benefits for the days you are registered as a job seeker.',
     },
 };
 
