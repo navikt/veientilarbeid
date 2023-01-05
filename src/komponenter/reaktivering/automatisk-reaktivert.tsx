@@ -92,10 +92,11 @@ function AutomatiskReaktivert() {
                 <div>
                     <Heading size="medium">{tekst('tittel')}</Heading>
                     <BodyLong className={spacingStyles.mb1}>
-                        {prettyPrintDato(arbeidssokerperioder.forrigePeriodeAvsluttetDato)} {tekst('periodeAvsluttet')}
+                        {prettyPrintDato(arbeidssokerperioder.forrigePeriodeAvsluttetDato, valgtSprak)}{' '}
+                        {tekst('periodeAvsluttet')}
                     </BodyLong>
                     <BodyLong className={spacingStyles.mb1}>
-                        {prettyPrintDato(reaktivering.opprettetDato)} {tekst('meldekortInnsendt')}
+                        {prettyPrintDato(reaktivering.opprettetDato, valgtSprak)} {tekst('meldekortInnsendt')}
                     </BodyLong>
                     <BodyLong className={spacingStyles.mb1}>{tekst('derfor')}</BodyLong>
                     <ReadMoreInaktivering sprak={valgtSprak} />
