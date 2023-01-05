@@ -4,24 +4,35 @@ import { BodyShort, ReadMore } from '@navikt/ds-react';
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 
 import { loggAktivitet } from '../../metrics/metrics';
+import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 
 import spacingStyles from '../../spacing.module.css';
 
+const TEKSTER = {
+    nb: {
+        header: 'Hvorfor er det viktig at jeg er registrert som arbeidssøker?',
+        ytelser:
+            'Noen av ytelsene fra NAV, for eksempel dagpenger og tiltakspenger, kan du bare motta hvis du er registrert som arbeidssøker.',
+        oppfolging: 'NAV ønsker også at de som skal motta arbeidsrettet oppfølging er regisrert som arbeidssøker.',
+        soknad: 'Du må være registrert som arbeidssøker fra du sender inn søknad om ytelse og helt frem til den siste dagen du ønsker å motta pengestøtten. Det er kun de dagene du er registrert som arbeidssøker du kan få utbetalt ytelse for.',
+    },
+    en: {
+        header: 'Hvorfor er det viktig at jeg er registrert som arbeidssøker?',
+        ytelser:
+            'Noen av ytelsene fra NAV, for eksempel dagpenger og tiltakspenger, kan du bare motta hvis du er registrert som arbeidssøker.',
+        oppfolging: 'NAV ønsker også at de som skal motta arbeidsrettet oppfølging er regisrert som arbeidssøker.',
+        soknad: 'Du må være registrert som arbeidssøker fra du sender inn søknad om ytelse og helt frem til den siste dagen du ønsker å motta pengestøtten. Det er kun de dagene du er registrert som arbeidssøker du kan få utbetalt ytelse for.',
+    },
+};
+
 function Innhold() {
+    const tekst = lagHentTekstForSprak(TEKSTER, 'nb');
+
     return (
         <div className={spacingStyles.mt1}>
-            <BodyShort className={spacingStyles.mb1}>
-                Noen av ytelsene fra NAV, for eksempel dagpenger og tiltakspenger, kan du bare motta hvis du er
-                registrert som arbeidssøker.
-            </BodyShort>
-            <BodyShort className={spacingStyles.mb1}>
-                NAV ønsker også at de som skal motta arbeidsrettet oppfølging er regisrert som arbeidssøker.
-            </BodyShort>
-            <BodyShort className={spacingStyles.mb1}>
-                Du må være registrert som arbeidssøker fra du sender inn søknad om ytelse og helt frem til den siste
-                dagen du ønsker å motta pengestøtten. Det er kun de dagene du er registrert som arbeidssøker du kan få
-                utbetalt ytelse for.
-            </BodyShort>
+            <BodyShort className={spacingStyles.mb1}>{tekst('ytelser')}</BodyShort>
+            <BodyShort className={spacingStyles.mb1}>{tekst('oppfolging')}</BodyShort>
+            <BodyShort className={spacingStyles.mb1}>{tekst('soknad')}</BodyShort>
         </div>
     );
 }
@@ -29,6 +40,8 @@ function Innhold() {
 function ReadMoreViktigRegistrert() {
     const { amplitudeData } = useAmplitudeData();
     const [clickedInnsyn, setClickedInnsyn] = useState(false);
+
+    const tekst = lagHentTekstForSprak(TEKSTER, 'nb');
 
     const handleClickOpenReadMoreViktigRegistrert = () => {
         if (!clickedInnsyn) {
@@ -38,11 +51,7 @@ function ReadMoreViktigRegistrert() {
     };
 
     return (
-        <ReadMore
-            size="medium"
-            header="Hvorfor er det viktig at jeg er registrert som arbeidssøker?"
-            onClick={handleClickOpenReadMoreViktigRegistrert}
-        >
+        <ReadMore size="medium" header={tekst('header')} onClick={handleClickOpenReadMoreViktigRegistrert}>
             <Innhold />
         </ReadMore>
     );
