@@ -25,14 +25,14 @@ const TEKSTER = {
     en: {
         header: 'Why did my job search period end?',
         vanligsteGrunn: 'The most common reasons for this are',
-        meldekortSent: 'that you have submitted one or more registration cards too late',
+        meldekortSent: 'that you have submitted one or more employment status forms too late',
         meldekortNei:
-            'that you have answered "no" on a registration card to whether you still wish to be registered as a job seeker',
+            'that you have answered "no" on a employment status form to whether you still wish to be registered as a job seeker',
         fortsattRegistrert: 'If you wish to be registered as a job seeker, you must',
-        sendMeldekort: 'submit the registration card by the deadline every 14 days',
+        sendMeldekort: 'submit the employment status form by the deadline every 14 days',
         svarJa: 'answer "yes" to the question regarding that you still want to be registered as a job seeker',
         konsekvens:
-            'If you do not do this, NAV will assume that you do not wish to be registered as a job seeker and that you also have no need to receive unemployment benefit or measure allowance.',
+            'If you do not do this, NAV will assume that you do not wish to be registered as a job seeker and that you also have no need to receive unemployment benefit, work assessment allowance or employment scheme benefits.',
     },
 };
 

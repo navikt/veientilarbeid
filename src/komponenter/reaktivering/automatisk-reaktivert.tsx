@@ -32,9 +32,9 @@ const TEKSTER = {
     },
     en: {
         tittel: 'You have been registered as a job seeker again!',
-        periodeAvsluttet: 'your job search period has ended.',
+        periodeAvsluttet: 'your job seeker period has ended.',
         meldekortInnsendt:
-            'you sent in a registration card in which you replied that you want to be registered as a job seeker.',
+            'you sent in a employment status form in which you replied "yes" to that you want to be registered as a job seeker.',
         derfor: "That's why you were registered again.",
         registrertSporsmal: 'Do you want to be registered?',
         registrertJa: 'Yes, I want to be registered',

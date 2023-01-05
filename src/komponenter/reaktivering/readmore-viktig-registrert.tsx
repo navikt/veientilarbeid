@@ -20,7 +20,7 @@ const TEKSTER = {
     en: {
         header: 'Why is it important that I am registered as a job seeker?',
         ytelser:
-            'You can only receive some of the benefits from NAV, such as unemployment benefit and measure allowance, if you are registered as a job seeker.',
+            'You can only receive some of the benefits from NAV, such as unemployment benefit, work assessment allowance or employment scheme benefits, if you are registered as a job seeker.',
         oppfolging: 'NAV also wants those who are to receive work-oriented follow-up to be registered as jobseekers.',
         soknad: 'You must be registered as a job seeker from the time you submit your application for benefits until the last day you wish to receive the financial support. You can only receive benefits for the days you are registered as a job seeker.',
     },
