@@ -28,7 +28,7 @@ const TEKSTER = {
         registrertSporsmal: 'Ønsker du å være registrert?',
         registrertJa: 'Ja, jeg ønsker å være registrert',
         registrertNei: 'Nei, jeg ønsker ikke å være registrert',
-        sprak: 'Read in english',
+        sprak: 'Read in English',
     },
     en: {
         tittel: 'You have been registered as a job seeker again!',
@@ -72,7 +72,7 @@ function AutomatiskReaktivert() {
     return (
         <Panel className={spacingStyles.px1_5}>
             {visSprakvelger && (
-                <div className={flexStyles.flex}>
+                <div className={`${flexStyles.flex} ${flexStyles.flexEnd}`}>
                     <Button variant="tertiary" onClick={toggleByttSprak}>
                         {tekst('sprak')}
                     </Button>
