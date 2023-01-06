@@ -72,11 +72,9 @@ function AutomatiskReaktivert() {
     return (
         <Panel className={spacingStyles.px1_5}>
             {visSprakvelger && (
-                <div className={`${flexStyles.flex} ${flexStyles.flexEnd}`}>
-                    <Button variant="tertiary" onClick={toggleByttSprak}>
-                        {tekst('sprak')}
-                    </Button>
-                </div>
+                <Button variant="tertiary" size="xsmall" className={spacingStyles.ml1_75} onClick={toggleByttSprak}>
+                    {tekst('sprak')}
+                </Button>
             )}
             <div className={flexStyles.flex}>
                 <span
