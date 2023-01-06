@@ -1,15 +1,18 @@
 import { BodyLong, Heading, Link, Panel } from '@navikt/ds-react';
 import { Bandage, Dialog, Email, Laptop, Task } from '@navikt/ds-icons';
+
+import { useSprakValg } from '../../contexts/sprak';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
+import { useBrukerinfoData } from '../../contexts/bruker-info';
+
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
 import styles from './ikke-standard.module.css';
 
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
-import { useSprakValg } from '../../contexts/sprak';
-import { aktivitetsplanLenke, dialogLenke, omMeldekortLenke, sykefravaerLenke } from '../../innhold/lenker';
+import { aktivitetsplanLenke, dialogLenke, sykefravaerLenke } from '../../innhold/lenker';
 import { loggAktivitet } from '../../metrics/metrics';
-import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
-import { useBrukerinfoData } from '../../contexts/bruker-info';
+import MeldekortHovedInnhold from '../meldekort/meldekort-hovedinnhold';
 
 const TEKSTER = {
     nb: {
@@ -80,17 +83,7 @@ function IkkeStandard() {
     };
 
     const Meldekort = () => {
-        return ListeElement(
-            <Email aria-hidden="true" />,
-            <div>
-                <Heading size="medium">{tekst('meldekort.overskrift')}</Heading>
-                <BodyLong>
-                    <Link href={omMeldekortLenke} onClick={() => handleClick('Går til meldekortet fra ikke-standard')}>
-                        {tekst('meldekort.ingress')}
-                    </Link>{' '}
-                </BodyLong>
-            </div>
-        );
+        return ListeElement(<Email aria-hidden="true" />, <MeldekortHovedInnhold />);
     };
 
     const DittSykefravaer = () => {

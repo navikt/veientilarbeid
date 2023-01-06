@@ -4,7 +4,7 @@ import { contextProviders, ProviderProps } from '../../test/test-context-provide
 import IkkeStandard from './ikke-standard';
 
 describe('tester at komponenten ikke-standard fungerer som forventet', () => {
-    test('Komponenten viser  meldekort når arbeidssøker IKKE er sykmeldt med arbeidsgiver', () => {
+    test('Viser ikke sykmeldt når bruker IKKE er sykmeldt med arbeidsgiver', async () => {
         const props: ProviderProps = {
             brukerInfo: {
                 erSykmeldtMedArbeidsgiver: false,
@@ -13,7 +13,7 @@ describe('tester at komponenten ikke-standard fungerer som forventet', () => {
         };
         const { container } = render(<IkkeStandard />, { wrapper: contextProviders(props) });
         expect(container).not.toBeEmptyDOMElement();
-        expect(screen.getByText('Meldekort')).toBeInTheDocument();
+        expect(await screen.queryByText('Ditt sykefravær')).not.toBeInTheDocument();
     });
 
     test('Komponenten viser IKKE meldekort man ER sykmeldt med arbeidsgiver', async () => {

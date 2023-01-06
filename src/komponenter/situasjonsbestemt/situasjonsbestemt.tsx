@@ -13,11 +13,11 @@ import { loggAktivitet } from '../../metrics/metrics';
 import Behovsavklaring from '../behovsavklaring-oppfolging/behovsavklaring-oppfolging';
 import Egenvurdering from '../situasjonsbestemt/egenvurdering';
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
+import MeldekortHovedInnhold from '../meldekort/meldekort-hovedinnhold';
 
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
 import styles from './situasjonsbestemt.module.css';
-import MeldekortHovedInnhold from '../meldekort/meldekort-hovedinnhold';
 
 const TEKSTER = {
     nb: {
