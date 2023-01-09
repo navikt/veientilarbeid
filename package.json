@@ -25,7 +25,7 @@
         "@navikt/ds-css": "2.0.11",
         "@navikt/ds-icons": "2.0.11",
         "@navikt/ds-react": "2.0.11",
-        "@snyk/protect": "1.1080.0",
+        "@snyk/protect": "1.1082.0",
         "amplitude-js": "8.21.3",
         "classnames": "2.3.2",
         "core-js": "3.27.1",
