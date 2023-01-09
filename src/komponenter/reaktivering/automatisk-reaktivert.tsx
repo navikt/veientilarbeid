@@ -10,6 +10,7 @@ import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { ReadMoreInaktivering } from './readmore-derfor-ble-du-inaktivert';
 import { ReadMoreViktigRegistrert } from './readmore-viktig-registrert';
 import InViewport from '../in-viewport/in-viewport';
+import ErRendret from '../er-rendret/er-rendret';
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import { loggAktivitet } from '../../metrics/metrics';
@@ -71,6 +72,7 @@ function AutomatiskReaktivert() {
 
     return (
         <Panel className={spacingStyles.px1_5}>
+            <ErRendret loggTekst="Rendrer automatisk reaktivert" />
             {visSprakvelger && (
                 <Button variant="tertiary" size="xsmall" className={spacingStyles.ml1_75} onClick={toggleByttSprak}>
                     {tekst('sprak')}
