@@ -9,8 +9,9 @@ type Props = {
 };
 
 function ErRendret(props: Props) {
+    const { amplitudeData } = useAmplitudeData();
+
     function loggTilAmplitude() {
-        const { amplitudeData } = useAmplitudeData();
         loggRendring({ rendrer: props.loggTekst, ...amplitudeData });
     }
 
