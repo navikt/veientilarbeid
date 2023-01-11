@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
+
 import { loggRendring } from '../../metrics/metrics';
 
 type Props = {
@@ -8,11 +9,14 @@ type Props = {
 };
 
 function ErRendret(props: Props) {
-    const { amplitudeData } = useAmplitudeData();
+    function loggTilAmplitude() {
+        const { amplitudeData } = useAmplitudeData();
+        loggRendring({ rendrer: props.loggTekst, ...amplitudeData });
+    }
 
     useEffect(() => {
-        loggRendring({ rendrer: props.loggTekst, ...amplitudeData });
-    }, [amplitudeData, props.loggTekst]);
+        setTimeout(loggTilAmplitude, 2000);
+    }, []);
 
     return null;
 }
