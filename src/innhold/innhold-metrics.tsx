@@ -8,7 +8,7 @@ import {
 import { useOppfolgingData } from '../contexts/oppfolging';
 import { useBrukerinfoData } from '../contexts/bruker-info';
 import getPoaGroup from '../utils/get-poa-group';
-import { loggVisning } from '../metrics/metrics';
+import { loggRendring } from '../metrics/metrics';
 import { erMikrofrontend } from '../utils/app-state-utils';
 import { hotjarTrigger } from '../hotjar';
 import { InnloggingsNiva, useAutentiseringData } from '../contexts/autentisering';
@@ -69,7 +69,7 @@ function Metrics(props: Props) {
 
     React.useEffect(() => {
         hotjarTrigger(erMikrofrontend(), POAGruppe, hotjarEksperiment());
-        loggVisning({ viser: 'Viser AiA', ...amplitudeData });
+        loggRendring({ rendrer: 'AiA', ...amplitudeData });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
