@@ -23,11 +23,15 @@ function InViewport(props: Props & ViewportProps): JSX.Element {
         setHarVistTilBruker(true);
     }
 
-    useEffect(() => {
+    function loggTilAmplitude() {
         if (harVistTilBruker) {
             loggVisning({ viser: props.loggTekst, ...amplitudeData });
         }
-    }, [amplitudeData, harVistTilBruker, props.loggTekst]);
+    }
+
+    useEffect(() => {
+        setTimeout(loggTilAmplitude, 2000);
+    }, []);
 
     return <span ref={props.forwardedRef}></span>;
 }
