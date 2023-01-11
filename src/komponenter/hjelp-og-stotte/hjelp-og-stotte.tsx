@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { Dialog } from '@navikt/ds-icons';
 import { Detail, Heading, Panel, ReadMore } from '@navikt/ds-react';
-import spacingStyles from '../../spacing.module.css';
-import flexStyles from '../../flex.module.css';
 
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useAutentiseringData } from '../../contexts/autentisering';
@@ -11,6 +9,9 @@ import { useOppfolgingData } from '../../contexts/oppfolging';
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { useUlesteDialogerData } from '../../contexts/ulestedialoger';
 import { useSprakValg } from '../../contexts/sprak';
+import { useProfil } from '../../contexts/profil';
+import { useBrukerinfoData } from '../../contexts/bruker-info';
+import { useUnderOppfolging } from '../../contexts/arbeidssoker';
 
 import RegistrertTeller from './registrert-teller';
 import { dialogLenke } from '../../innhold/lenker';
@@ -20,16 +21,15 @@ import { kanViseIVURDEgenvurdering } from '../../lib/kan-vise-IVURD-egenvurderin
 import { hentFraBrowserStorage } from '../../utils/browserStorage-utils';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { loggAktivitet } from '../../metrics/metrics';
-import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import Forklaring from './forklaring';
 import EgenvurderingUke12, { INTRO_KEY_12UKER } from './egenvurdering-uke12';
 import { kanVise12UkerEgenvurdering } from '../../lib/kan-vise-12-uker-egenvurdering';
-import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { erKSSBruker } from '../../lib/er-kss-bruker';
-import { useProfil } from '../../contexts/profil';
 import { hentProfilnokkelFraLocalStorage } from '../../utils/profil-id-mapper';
-import { useUnderOppfolging } from '../../contexts/arbeidssoker';
+
+import spacingStyles from '../../spacing.module.css';
+import flexStyles from '../../flex.module.css';
 
 const TEKSTER = {
     nb: {
@@ -130,7 +130,6 @@ function HjelpOgStotte() {
 
     return (
         <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
-            <ErRendret loggTekst="Rendrer hjelp og støtte-komponent" />
             <span
                 style={{
                     marginRight: '0.5em',

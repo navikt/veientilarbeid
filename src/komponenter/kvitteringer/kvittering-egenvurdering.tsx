@@ -1,17 +1,18 @@
-import { useEffect, useState } from 'react';
 import * as React from 'react';
+import { useEffect, useState } from 'react';
 import { Close, SuccessColored } from '@navikt/ds-icons';
 import { Button, Detail, Heading, BodyShort, Panel } from '@navikt/ds-react';
-import spacingStyles from '../../spacing.module.css';
-import flexStyles from '../../flex.module.css';
 
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
+import { useSprakValg } from '../../contexts/sprak';
+
 import { loggAktivitet } from '../../metrics/metrics';
-import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import { fjernQueryParam } from '../../utils/query-param-utils';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
-import { useSprakValg } from '../../contexts/sprak';
+
+import spacingStyles from '../../spacing.module.css';
+import flexStyles from '../../flex.module.css';
 
 interface KvitteringProps {
     lukkerKvittering: (loggTekst: string) => void;
@@ -106,7 +107,6 @@ function KvitteringEgenvurdering() {
     return (
         <div>
             <Kvittering lukkerKvittering={lukkerKvittering} kvittering={kvittering} />
-            <ErRendret loggTekst="Rendrer kvittering behovsundersøkelse" />
             <InViewport loggTekst="Viser kvittering behovsundersøkelse i viewport" />
         </div>
     );

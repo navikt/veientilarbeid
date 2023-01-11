@@ -1,6 +1,6 @@
+import * as React from 'react';
 import { Next } from '@navikt/ds-icons/cjs';
 import { BodyShort, Button, Heading, Link } from '@navikt/ds-react';
-import spacingStyles from '../../spacing.module.css';
 
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { useSprakValg } from '../../contexts/sprak';
@@ -8,11 +8,11 @@ import { useProfil } from '../../contexts/profil';
 
 import { loggAktivitet } from '../../metrics/metrics';
 import { behovsvurderingLenke } from '../../innhold/lenker';
-import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { hentProfilnokkelFraLocalStorage } from '../../utils/profil-id-mapper';
-import * as React from 'react';
+
+import spacingStyles from '../../spacing.module.css';
 
 export const AVSLAATT_EGENVURDERING = 'egenvurdering-avslaatt';
 
@@ -61,7 +61,6 @@ const EgenvurderingIVURD = () => {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
     return (
         <>
-            <ErRendret loggTekst="Rendrer egenvurdering på sluttkort" />
             <Heading level="2" size="medium" className={spacingStyles.blokkXs}>
                 {tekst('heading')}
             </Heading>
