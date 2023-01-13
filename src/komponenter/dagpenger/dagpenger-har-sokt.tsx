@@ -12,7 +12,7 @@ import SkrivTilOssChatOgMineDagpenger from './skriv-til-oss-chat-og-mine-dagpeng
 import LesOmYtelser from './les-om-ytelser';
 import EttersendDokumentasjon from './ettersend-dokumentasjon';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
-import { useSWR } from '../../hooks/useSWR';
+import { useSWRImmutable } from '../../hooks/useSWR';
 import { DP_INNSYN_URL } from '../../ducks/api';
 
 const TEKSTER: Tekster<string> = {
@@ -27,7 +27,7 @@ const TEKSTER: Tekster<string> = {
 };
 
 const DagpengerHarSokt = () => {
-    const { data: soknader = [] } = useSWR<DpInnsynSoknad[]>(`${DP_INNSYN_URL}/soknad`);
+    const { data: soknader = [] } = useSWRImmutable<DpInnsynSoknad[]>(`${DP_INNSYN_URL}/soknad`);
     const sisteInnsendteSoknad = soknader?.sort(sorterEtterNyesteDatoInnsendt)[0];
     const { paabegynteSoknader = [] } = useDpInnsynPaabegynteSoknaderData();
     const sistePaabegyntSoknad = paabegynteSoknader.sort(

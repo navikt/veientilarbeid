@@ -15,7 +15,7 @@ import beregnDagpengeStatus, { DagpengeStatus } from '../../lib/beregn-dagpenge-
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
-import { useSWR } from '../../hooks/useSWR';
+import { useSWRImmutable } from '../../hooks/useSWR';
 import { DP_INNSYN_URL } from '../../ducks/api';
 // TODO - oversette alle tekster til engelsk
 const TEKSTER = {
@@ -83,8 +83,8 @@ function MeldekortAdvarsel({ dagerEtterFastsattMeldedag }: { dagerEtterFastsattM
     const brukerInfoData = useBrukerinfoData();
     const registreringData = useBrukerregistreringData();
     const { paabegynteSoknader = [] } = useDpInnsynPaabegynteSoknaderData();
-    const { data: innsendteSoknader = [] } = useSWR<DpInnsynSoknad[]>(`${DP_INNSYN_URL}/soknad`);
-    const { data: dagpengeVedtak = [] } = useSWR<Vedtak[]>(`${DP_INNSYN_URL}/vedtak`);
+    const { data: innsendteSoknader = [] } = useSWRImmutable<DpInnsynSoknad[]>(`${DP_INNSYN_URL}/soknad`);
+    const { data: dagpengeVedtak = [] } = useSWRImmutable<Vedtak[]>(`${DP_INNSYN_URL}/vedtak`);
     const arbeidssokerperioderData = useArbeidssokerPerioder();
     const arbeidssokerperioder = beregnArbeidssokerperioder(arbeidssokerperioderData);
 

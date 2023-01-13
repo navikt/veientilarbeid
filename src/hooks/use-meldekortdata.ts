@@ -1,5 +1,5 @@
 import { DataElement, NESTE_MELDEKORT_URL } from '../ducks/api';
-import { useSWR } from './useSWR';
+import { useSWRImmutable } from './useSWR';
 import { useEffect } from 'react';
 import { datoUtenTid } from '../utils/date-utils';
 import { hentMeldegruppeForNesteMeldekort, hentMeldekortForLevering } from '../utils/meldekort-utils';
@@ -28,7 +28,7 @@ export interface Data {
 }
 
 export function useMeldekortData() {
-    const { data, error } = useSWR<Data>(NESTE_MELDEKORT_URL);
+    const { data, error } = useSWRImmutable<Data>(NESTE_MELDEKORT_URL);
     const { oppdaterAmplitudeData } = useAmplitudeData();
 
     const setMeldekortData = (data: Data) => {
@@ -44,6 +44,7 @@ export function useMeldekortData() {
 
     useEffect(() => {
         if (data) {
+            console.log('SetMeldekortData!');
             setMeldekortData(data);
         }
     }, [data]);

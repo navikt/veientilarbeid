@@ -1,5 +1,5 @@
 import { DP_INNSYN_URL } from '../ducks/api';
-import { useSWR } from '../hooks/useSWR';
+import { useSWRImmutable } from '../hooks/useSWR';
 
 export interface DpInnsynPaabegyntSoknad {
     tittel: string;
@@ -10,7 +10,7 @@ export interface DpInnsynPaabegyntSoknad {
 }
 
 export function useDpInnsynPaabegynteSoknaderData() {
-    const { data, error } = useSWR<DpInnsynPaabegyntSoknad[]>(`${DP_INNSYN_URL}/paabegynte`);
+    const { data, error } = useSWRImmutable<DpInnsynPaabegyntSoknad[]>(`${DP_INNSYN_URL}/paabegynte`);
 
     return {
         paabegynteSoknader: data,

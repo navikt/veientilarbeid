@@ -7,7 +7,7 @@ import SkrivTilOssChatOgMineDagpenger from './skriv-til-oss-chat-og-mine-dagpeng
 import LesOmYtelser from './les-om-ytelser';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
-import { useSWR } from '../../hooks/useSWR';
+import { useSWRImmutable } from '../../hooks/useSWR';
 import { DP_INNSYN_URL } from '../../ducks/api';
 
 const TEKSTER: Tekster<string> = {
@@ -24,7 +24,7 @@ const TEKSTER: Tekster<string> = {
 };
 
 const DagpengerAvslag = () => {
-    const { data: vedtakData = [] } = useSWR<Vedtak[]>(`${DP_INNSYN_URL}/vedtak`);
+    const { data: vedtakData = [] } = useSWRImmutable<Vedtak[]>(`${DP_INNSYN_URL}/vedtak`);
     const nyesteVedtakMedAvslag = vedtakData
         .filter((vedtak) => vedtak.status === 'AVSLÅTT')
         .sort((a: Vedtak, b: Vedtak) => new Date(b.datoFattet).getTime() - new Date(a.datoFattet).getTime())[0];

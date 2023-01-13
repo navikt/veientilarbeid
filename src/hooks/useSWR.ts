@@ -1,4 +1,4 @@
-import useSwr, { SWRConfiguration } from 'swr';
+import { SWRConfiguration } from 'swr';
 import { nanoid } from 'nanoid';
 
 import useSwrImmutable from 'swr/immutable';
@@ -29,12 +29,8 @@ export const fetcher = async (path: string, opts?: RequestInit & { onError?: (re
     return await response.json();
 };
 
-function useSWR<T>(url: string, options?: SWRConfiguration) {
-    return useSwr<T, any>(url, fetcher, options);
+function useSWRImmutable<T>(url: string, options?: SWRConfiguration) {
+    return useSwrImmutable<T, any>(url, fetcher, options);
 }
 
-function useSWRImmutable(url: string, options?: SWRConfiguration) {
-    return useSwrImmutable(url, fetcher, options);
-}
-
-export { useSWR, useSWRImmutable };
+export { useSWRImmutable };

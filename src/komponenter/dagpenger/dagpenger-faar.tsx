@@ -9,7 +9,7 @@ import SkrivTilOssChatOgMineDagpenger from './skriv-til-oss-chat-og-mine-dagpeng
 import LesOmYtelser from './les-om-ytelser';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
-import { useSWR } from '../../hooks/useSWR';
+import { useSWRImmutable } from '../../hooks/useSWR';
 import { DP_INNSYN_URL } from '../../ducks/api';
 
 const TEKSTER: Tekster<string> = {
@@ -22,7 +22,7 @@ const TEKSTER: Tekster<string> = {
 };
 
 const DagpengerFaar = () => {
-    const { data: dagpengeVedtak = [] } = useSWR<Vedtak[]>(`${DP_INNSYN_URL}/vedtak`);
+    const { data: dagpengeVedtak = [] } = useSWRImmutable<Vedtak[]>(`${DP_INNSYN_URL}/vedtak`);
     const sisteVedtak = dagpengeVedtak.sort(sorterEtterNyesteVedtak)[0];
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
