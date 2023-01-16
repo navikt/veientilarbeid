@@ -1,5 +1,5 @@
 import { BodyLong, Heading, Link, Panel } from '@navikt/ds-react';
-import { Bandage, Dialog, Email, Laptop, Task } from '@navikt/ds-icons';
+import { Bandage, Dialog, Laptop, Notes, Task } from '@navikt/ds-icons';
 
 import { useSprakValg } from '../../contexts/sprak';
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
@@ -10,9 +10,9 @@ import flexStyles from '../../flex.module.css';
 import styles from './ikke-standard.module.css';
 
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
-import { aktivitetsplanLenke, dialogLenke, omMeldekortLenke, sykefravaerLenke } from '../../innhold/lenker';
+import { aktivitetsplanLenke, dialogLenke, sykefravaerLenke } from '../../innhold/lenker';
 import { loggAktivitet } from '../../metrics/metrics';
-// import MeldekortHovedInnhold from '../meldekort/meldekort-hovedinnhold';
+import MeldekortHovedInnhold from '../meldekort/meldekort-hovedinnhold';
 
 const TEKSTER = {
     nb: {
@@ -82,29 +82,6 @@ function IkkeStandard() {
         loggAktivitet({ aktivitet: action, ...amplitudeData });
     };
 
-    /*
-    const Meldekort = () => {
-        return ListeElement(<Email aria-hidden="true" />, <MeldekortHovedInnhold />);
-    };
-    */
-
-    const Meldekort = () => {
-        return ListeElement(
-            <Email aria-hidden="true" />,
-            <div>
-                <Heading size="medium">{tekst('meldekort.overskrift')}</Heading>
-                <BodyLong>
-                    <Link
-                        href={omMeldekortLenke}
-                        onClick={() => handleClick('Går til ditt meldekort fra ikke-standard')}
-                    >
-                        {tekst('meldekort.ingress')}
-                    </Link>
-                </BodyLong>
-            </div>
-        );
-    };
-
     const DittSykefravaer = () => {
         return ListeElement(
             <Bandage aria-hidden="true" />,
@@ -141,7 +118,11 @@ function IkkeStandard() {
                         </BodyLong>
                     </div>
                 )}
-                {erSykmeldtMedArbeidsgiver ? <DittSykefravaer /> : <Meldekort />}
+                {erSykmeldtMedArbeidsgiver ? (
+                    <DittSykefravaer />
+                ) : (
+                    ListeElement(<Notes aria-hidden="true" />, <MeldekortHovedInnhold />)
+                )}
                 {ListeElement(
                     <Dialog aria-hidden="true" />,
                     <div>

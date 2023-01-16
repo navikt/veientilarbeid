@@ -44,7 +44,6 @@ export function useMeldekortData() {
 
     useEffect(() => {
         if (data) {
-            console.log('SetMeldekortData!');
             setMeldekortData(data);
         }
     }, [data]);
