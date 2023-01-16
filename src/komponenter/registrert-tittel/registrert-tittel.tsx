@@ -8,7 +8,6 @@ import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
 import InnsynLesMer from '../innsyn/innsyn-les-mer';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
-import InViewport from '../in-viewport/in-viewport';
 
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
@@ -65,7 +64,6 @@ const RegistrertTittel = () => {
                         <InnsynLesMer />
                     </div>
                 </div>
-                <InViewport loggTekst="Viser registreringstittel i viewport" />
             </Panel>
         </div>
     );
