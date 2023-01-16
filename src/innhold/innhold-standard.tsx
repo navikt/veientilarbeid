@@ -4,7 +4,6 @@ import { useFeatureToggleData } from '../contexts/feature-toggles';
 import { useReaktivering } from '../contexts/reaktivering';
 
 import InnholdMetrics from './innhold-metrics';
-import InViewport from '../komponenter/in-viewport/in-viewport';
 import RegistrertTittel from '../komponenter/registrert-tittel/registrert-tittel';
 import ReaktiveringKvittering from '../komponenter/reaktivering/reaktivering-kvittering';
 import GjelderFraDato from '../komponenter/gjelder-fra-dato/GjelderFraDato';
@@ -42,7 +41,6 @@ const InnholdStandard = () => {
     return (
         <>
             <InnholdMetrics />
-            <InViewport loggTekst="AiA i viewport" />
             <div className={styles.limit}>
                 {skalViseReaktiveringsKort ? (
                     <AutomatiskReaktivert />
@@ -59,7 +57,6 @@ const InnholdStandard = () => {
                     </>
                 )}
             </div>
-            <InViewport loggTekst="AiA i viewport - bunnen" />
         </>
     );
 };

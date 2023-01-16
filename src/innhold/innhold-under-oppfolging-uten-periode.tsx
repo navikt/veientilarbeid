@@ -6,7 +6,6 @@ import beregnArbeidssokerperioder from '../lib/beregn-arbeidssokerperioder';
 import ReaktiveringWrapper from '../komponenter/reaktivering/reaktivering-wrapper';
 import { Servicegruppe } from '../contexts/oppfolging';
 import InnholdMetrics from './innhold-metrics';
-import InViewport from '../komponenter/in-viewport/in-viewport';
 import IkkeStandard from '../komponenter/ikke-standard/ikke-standard';
 import Motestotte from '../komponenter/ikke-standard/motestotte';
 import Egenvurdering from '../komponenter/situasjonsbestemt/egenvurdering';
@@ -27,14 +26,12 @@ const InnholdUnderOppfolgingUtenPeriode = () => {
     return (
         <>
             <InnholdMetrics />
-            <InViewport loggTekst="AiA i viewport" />
             <div className={styles.limit}>
                 {skalViseReaktivering && <ReaktiveringWrapper />}
                 <IkkeStandard />
                 <Motestotte />
                 <Egenvurdering />
             </div>
-            <InViewport loggTekst="AiA i viewport - bunnen" />
         </>
     );
 };

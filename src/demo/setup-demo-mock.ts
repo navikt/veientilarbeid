@@ -103,14 +103,17 @@ export const demo_handlers = [
     msw_get(AUTH_API, hentAutentiseringsInfo()),
 
     msw_get(NESTE_MELDEKORT_URL, lagMeldekortData()),
-    //rest.get(NESTE_MELDEKORT_URL, async (req, res, ctx) => {
-    //    return res(ctx.status(401));
-    //}),
-
+    /*
+    rest.get(NESTE_MELDEKORT_URL, async (req, res, ctx) => {
+        return res(ctx.status(401));
+    }),
+    */
     msw_get(MELDEKORTSTATUS_URL, meldekortstatusResponse),
-    //rest.get(MELDEKORTSTATUS_URL, async (req, res, ctx) => {
-    //    return res(ctx.status(401));
-    //}),
+    /*
+    rest.get(MELDEKORTSTATUS_URL, async (req, res, ctx) => {
+        return res(ctx.status(401));
+    }),
+    */
 
     msw_get(`${DP_INNSYN_URL}/vedtak`, hentDpInnsynVedtak()),
     msw_get(`${DP_INNSYN_URL}/soknad`, hentDpInnsynSoknad()),
