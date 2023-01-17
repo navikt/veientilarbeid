@@ -7,6 +7,9 @@ ADD / /source
 ENV CI=true
 WORKDIR /source
 
+# npm run build har blitt kjørt på github før docker build
+RUN cp -r /source/dist /cdn
+
 RUN npm ci
 
 ARG REACT_APP_VERSION_HASH
@@ -25,6 +28,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 COPY --from=node-builder /source/dist /usr/share/nginx/html/esm
 COPY --from=node-builder /demo /usr/share/nginx/html/demo
+COPY --from=node-builder /cdn /usr/share/nginx/html/cdn
 
 RUN cp /usr/share/nginx/html/demo/mockServiceWorker.js /usr/share/nginx/html/mockServiceWorker.js
 
