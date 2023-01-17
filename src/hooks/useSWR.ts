@@ -30,7 +30,8 @@ export const fetcher = async (path: string, opts?: RequestInit & { onError?: (re
 };
 
 function useSWRImmutable<T>(url: string, options?: SWRConfiguration) {
-    return useSwrImmutable<T, any>(url, fetcher, options);
+    const opts = { shouldRetryOnError: false, ...(options ? options : {}) };
+    return useSwrImmutable<T, any>(url, fetcher, opts);
 }
 
 export { useSWRImmutable };
