@@ -22,10 +22,10 @@
     "dependencies": {
         "@alheimsins/uker-fra-dato": "1.0.4",
         "@alheimsins/virkedager": "2.2.0",
-        "@navikt/ds-css": "2.0.11",
-        "@navikt/ds-icons": "2.0.11",
-        "@navikt/ds-react": "2.0.11",
-        "@snyk/protect": "1.1082.0",
+        "@navikt/ds-css": "2.0.14",
+        "@navikt/ds-icons": "2.0.14",
+        "@navikt/ds-react": "2.0.14",
+        "@snyk/protect": "1.1087.0",
         "amplitude-js": "8.21.3",
         "classnames": "2.3.2",
         "core-js": "3.27.1",
@@ -33,7 +33,7 @@
         "nanoid": "4.0.0",
         "react": "18.2.0",
         "react-dom": "18.2.0",
-        "react-in-viewport": "1.0.0-alpha.28",
+        "react-in-viewport": "1.0.0-alpha.29",
         "swr": "2.0.0"
     },
     "devDependencies": {
