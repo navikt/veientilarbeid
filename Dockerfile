@@ -17,6 +17,9 @@ ENV REACT_APP_BUILD_TIMESTAMP=$REACT_APP_BUILD_TIMESTAMP
 RUN npm run build:demo
 RUN cp -r /source/dist /demo
 
+RUN npm run build:cdn
+RUN cp -r /source/dist /cdn
+
 ENV REACT_APP_MICRO="true"
 RUN npm run build
 
@@ -25,6 +28,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 COPY --from=node-builder /source/dist /usr/share/nginx/html/esm
 COPY --from=node-builder /demo /usr/share/nginx/html/demo
+COPY --from=node-builder /cdn /usr/share/nginx/html/cdn
 
 RUN cp /usr/share/nginx/html/demo/mockServiceWorker.js /usr/share/nginx/html/mockServiceWorker.js
 

@@ -14,8 +14,8 @@ const getEnvironmentOpts = () => ({
     REACT_APP_MICRO: process.env.REACT_APP_MICRO || '',
 });
 
-const getConfig = () => ({
-    plugins: [
+const getPlugins = () => {
+    return [
         svgr(),
         react(),
         terser(),
@@ -33,7 +33,11 @@ const getConfig = () => ({
             apply: 'build',
         },
         EnvironmentPlugin(getEnvironmentOpts()),
-    ],
+    ];
+};
+
+const getConfig = () => ({
+    plugins: getPlugins(),
     build: {
         lib: {
             entry: resolve(__dirname, 'src/main.tsx'),
@@ -44,6 +48,23 @@ const getConfig = () => ({
     },
     server: {
         port: 3002,
+    },
+});
+
+const getCdnConfig = () => ({
+    plugins: getPlugins(),
+    build: {
+        manifest: true,
+        rollupOptions: {
+            input: {
+                bundle: resolve(__dirname, 'src/main.tsx'),
+            },
+            preserveEntrySignatures: 'exports-only',
+            output: {
+                entryFileNames: 'aia.[hash].js',
+                format: 'esm',
+            },
+        },
     },
 });
 
@@ -62,6 +83,10 @@ const getDemoConfig = () => ({
 export default defineConfig(({ mode }) => {
     if (mode === 'demo') {
         return getDemoConfig();
+    }
+
+    if (mode === 'cdn') {
+        return getCdnConfig();
     }
 
     return getConfig();

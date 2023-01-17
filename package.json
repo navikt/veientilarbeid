@@ -7,6 +7,7 @@
         "start": "vite",
         "build": "vite build",
         "build:demo": "vite build --mode demo",
+        "build:cdn": "vite build --mode cdn",
         "lint": "eslint --ext=jsx,js,ts,tsx ./src",
         "lint:fix": "eslint --ext=jsx,js,ts,tsx ./src --fix",
         "test": "npm run lint && cross-env NODE_OPTIONS=--no-experimental-fetch vitest dev",
