@@ -7,6 +7,9 @@ ADD / /source
 ENV CI=true
 WORKDIR /source
 
+# npm run build har blitt kjørt på github før docker build
+RUN cp -r /source/dist /cdn
+
 RUN npm ci
 
 ARG REACT_APP_VERSION_HASH
@@ -16,9 +19,6 @@ ENV REACT_APP_BUILD_TIMESTAMP=$REACT_APP_BUILD_TIMESTAMP
 
 RUN npm run build:demo
 RUN cp -r /source/dist /demo
-
-RUN npm run build:cdn
-RUN cp -r /source/dist /cdn
 
 ENV REACT_APP_MICRO="true"
 RUN npm run build

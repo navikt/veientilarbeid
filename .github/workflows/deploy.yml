@@ -11,11 +11,25 @@ env:
 
 jobs:
   test-build-and-push:
-    name: Test, build and push
+    name: Build, cdn-upload, docker push
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-        name: Checkout
+      - uses: 'actions/checkout@v3'
+      - uses: 'actions/setup-node@v3'
+        with:
+          node-version: '18'
+          cache: 'npm'
+      - name: 'Install dependencies'
+        run: 'npm ci'
+      - name: 'Build application'
+        run: 'npm run build:cdn'
+
+      - name: cdn-upload
+        uses: navikt/frontend/actions/cdn-upload/v1@main
+        with:
+          cdn-team-name: paw
+          source: ./dist/js
+          destination: '/aia/'
 
       - name: Lag tag for image
         run: echo "TAG=$(git log -1 --pretty='%ad_%h' --date=format:'%Y%m%d%H%M%S')" >> $GITHUB_ENV
