@@ -10,8 +10,8 @@ env:
   IMAGE_BASE: ghcr.io/${{github.repository}}/veientilarbeid
 
 jobs:
-  cdn:
-    name: Bygg og last opp til CDN
+  build-cdn-docker:
+    name: Build, CDN & Docker
     runs-on: ubuntu-latest
 
     permissions:
@@ -41,20 +41,6 @@ jobs:
           source: ./dist/js
           destination: '/aia/'
 
-  docker:
-    name: Bygg & push Docker
-    runs-on: ubuntu-latest
-    needs: cdn
-
-    permissions:
-      contents: 'read'
-      packages: 'write'
-      id-token: 'write'
-
-    steps:
-      - uses: 'actions/checkout@v1'
-        name: Checkout
-
       - name: Lag tag for image
         run: echo "TAG=$(git log -1 --pretty='%ad_%h' --date=format:'%Y%m%d%H%M%S')" >> $GITHUB_ENV
 
@@ -74,7 +60,7 @@ jobs:
   deploy-dev:
     if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/dev')
     name: Deploy til dev
-    needs: docker
+    needs: build-cdn-docker
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
