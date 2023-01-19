@@ -61,7 +61,7 @@ const getCdnConfig = () => ({
             },
             preserveEntrySignatures: 'exports-only',
             output: {
-                entryFileNames: 'bundle.js',
+                entryFileNames: 'aia.[hash].js',
                 format: 'esm',
             },
         },
