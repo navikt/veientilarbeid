@@ -38,14 +38,14 @@ const getPlugins = () => {
 
 const getConfig = () => ({
     plugins: getPlugins(),
-    build: {
-        lib: {
-            entry: resolve(__dirname, 'src/main.tsx'),
-            name: 'veientilarbeid',
-            formats: ['es'],
-            fileName: () => `bundle.js`,
-        },
-    },
+    // build: {
+    //     lib: {
+    //         entry: resolve(__dirname, 'src/main.tsx'),
+    //         name: 'veientilarbeid',
+    //         formats: ['es'],
+    //         fileName: () => `bundle.js`,
+    //     },
+    // },
     server: {
         port: 3002,
     },
@@ -61,7 +61,7 @@ const getCdnConfig = () => ({
             },
             preserveEntrySignatures: 'exports-only',
             output: {
-                entryFileNames: 'aia.[hash].js',
+                entryFileNames: 'js/aia.[hash].js',
                 format: 'esm',
             },
         },
