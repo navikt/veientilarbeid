@@ -10,9 +10,10 @@ env:
   IMAGE_BASE: ghcr.io/${{github.repository}}/veientilarbeid
 
 jobs:
-  push-to-cdn:
+  build-and-push-to-cdn:
     name: Build, cdn-upload
     runs-on: ubuntu-latest
+
     permissions:
       contents: 'read'
       packages: 'write'
@@ -42,7 +43,7 @@ jobs:
   build-and-push-docker:
     name: Build and push docker image
     runs-on: ubuntu-latest
-    needs: push-to-cdn
+    needs: build-and-push-to-cdn
 
     permissions:
       contents: 'read'
