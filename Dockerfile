@@ -7,6 +7,9 @@ ADD / /source
 ENV CI=true
 WORKDIR /source
 
+# npm run build har blitt kjørt på github før docker build
+# RUN cp -r /source/dist /cdn
+
 RUN npm ci
 
 ARG REACT_APP_VERSION_HASH
@@ -18,7 +21,7 @@ RUN npm run build:demo
 RUN cp -r /source/dist /demo
 
 ENV REACT_APP_MICRO="true"
-RUN npm run build
+RUN npm run build:cdn
 
 FROM nginx:1.23-alpine
 COPY nginx.conf /etc/nginx/nginx.conf
