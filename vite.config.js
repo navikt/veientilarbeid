@@ -8,7 +8,6 @@ import svgr from 'vite-plugin-svgr';
 import EnvironmentPlugin from 'vite-plugin-environment';
 
 const getEnvironmentOpts = () => ({
-    NODE_ENV: process.env.NODE_ENV || 'development',
     REACT_APP_VERSION_HASH: process.env.REACT_APP_VERSIOM_HASH || '',
     REACT_APP_BUILD_TIMESTAMP: process.env.REACT_APP_BUILD_TIMESTAMP || '',
     REACT_APP_MICRO: process.env.REACT_APP_MICRO || '',
@@ -38,14 +37,6 @@ const getPlugins = () => {
 
 const getConfig = () => ({
     plugins: getPlugins(),
-    build: {
-        lib: {
-            entry: resolve(__dirname, 'src/main.tsx'),
-            name: 'veientilarbeid',
-            formats: ['es'],
-            fileName: () => `bundle.js`,
-        },
-    },
     server: {
         port: 3002,
     },
@@ -61,7 +52,7 @@ const getCdnConfig = () => ({
             },
             preserveEntrySignatures: 'exports-only',
             output: {
-                entryFileNames: 'aia.[hash].js',
+                entryFileNames: 'js/aia.[hash].js',
                 format: 'esm',
             },
         },

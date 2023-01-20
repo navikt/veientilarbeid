@@ -1,9 +1,11 @@
+import { erProduksjon } from './utils/app-state-utils';
+
 function getEnvironment() {
-    let environment = 'development';
-    if (process.env.NODE_ENV === 'production') {
-        environment = 'production';
+    if (erProduksjon()) {
+        return 'production';
     }
-    return environment;
+
+    return 'development';
 }
 
 const MINE_DAGPENGER_URL = {
