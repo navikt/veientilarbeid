@@ -37,14 +37,6 @@ const getPlugins = () => {
 
 const getConfig = () => ({
     plugins: getPlugins(),
-    // build: {
-    //     lib: {
-    //         entry: resolve(__dirname, 'src/main.tsx'),
-    //         name: 'veientilarbeid',
-    //         formats: ['es'],
-    //         fileName: () => `bundle.js`,
-    //     },
-    // },
     server: {
         port: 3002,
     },
