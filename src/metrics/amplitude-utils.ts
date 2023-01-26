@@ -31,7 +31,8 @@ export type BrukergruppeType =
     | 'sannsynligvis standard og inaktivert'
     | 'sannsynligvis situasjonsbestemt og inaktivert'
     | 'annet'
-    | 'ukjent';
+    | 'ukjent'
+    | 'standard og ukjent alder';
 
 export type AmplitudeData = {
     brukergruppe: BrukergruppeType;

@@ -30,6 +30,9 @@ function beregnBrukergruppe({
 
     const brukerErUngMedStandardInnsatsgruppe = brukerErStandardInnsatsgruppe && forsterketUngdomsinnsats;
 
+    const brukerHarUkjentAlderMenStandardInnsatsgruppe =
+        brukerErStandardInnsatsgruppe && (alder === 0 || alder === null);
+
     const brukerErSituasjonsbestemtInnsatsgruppe = sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe({
         brukerregistreringData,
         oppfolgingData,
@@ -44,7 +47,9 @@ function beregnBrukergruppe({
         oppfolgingData,
     });
 
-    if (brukerErUngMedStandardInnsatsgruppe) {
+    if (brukerHarUkjentAlderMenStandardInnsatsgruppe) {
+        return 'standard og ukjent alder';
+    } else if (brukerErUngMedStandardInnsatsgruppe) {
         return 'standard og ungdomsinnsats';
     } else if (brukerErStandardInnsatsgruppe) {
         return 'standard';
