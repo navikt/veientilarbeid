@@ -71,7 +71,7 @@ const ArbeidssokerDataProvider = (props: Props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [brukerregistreringState]);
 
-    const avhengigheter = [oppfolgingState, brukerregistreringState, egenvurderingState];
+    const avhengigheter = [oppfolgingState, brukerregistreringState, egenvurderingState, brukerInfoState];
 
     return (
         <Innholdslaster feilmeldingKomponent={<Feilmelding />} storrelse="XXL" avhengigheter={avhengigheter}>
