@@ -56,13 +56,17 @@ const Motestotte = () => {
         return opprettetRegistreringDato <= new Date(motestotteData.dato);
     };
 
+    const harBehovForArbeidsevnevurdering =
+        oppfolgingData.servicegruppe === Servicegruppe.BKART ||
+        (foreslattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING &&
+            oppfolgingData.servicegruppe === Servicegruppe.IVURD);
+
     const kanViseKomponent =
         dinSituasjon !== 'ER_PERMITTERT' &&
-        oppfolgingData.servicegruppe === Servicegruppe.BKART &&
+        harBehovForArbeidsevnevurdering &&
         !harGyldigMotestottebesvarelse() &&
         opprettetRegistreringDato !== null &&
         opprettetRegistreringDato >= LANSERINGSDATO_MOTESTOTTE &&
-        foreslattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING &&
         underOppfolging;
 
     const handleClick = () => {
