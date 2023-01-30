@@ -20,11 +20,12 @@ import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 const TEKSTER = {
     nb: {
         overskrift: 'Hjelp og støtte',
-        heading: 'Hva slags veiledning ønsker du?',
+        heading: 'Klarer du å komme i arbeid uten hjelp fra NAV?',
         beskrivelse:
-            'Vi tror du har gode muligheter til å nå ditt mål om arbeid på egenhånd - uten hjelp fra veileder.',
+            'Vi tror du har gode muligheter til å komme i jobb uten arbeidsrettede tiltak fra NAV eller oppfølging fra en veileder.',
         hvaTenkerDu: 'Hva tenker du?',
-        klareDegSelv: 'Ønsker du å klare deg selv?',
+        klareDegSelv:
+            'En veileder kan gi arbeidsrettet oppfølging, men ikke svare på spørsmål om dagpenger eller meldekort.',
         readMoreHeading: 'Hva slags hjelp kan jeg få?',
         behovOverskrift: 'Mitt behov for veiledning',
         behovSvarEnig:
@@ -83,14 +84,14 @@ function IkkeSvartPaaBehovsavklaringStandardInnsats() {
                     {tekst('heading')}
                 </Heading>
                 <BodyLong className={`${spacingStyles.mb1}`}>{tekst('beskrivelse')}</BodyLong>
-                <BodyShort className={`${spacingStyles.mb1}`}>{tekst('hvaTenkerDu')}</BodyShort>
                 <BodyShort className={`${spacingStyles.mb1}`}>{tekst('klareDegSelv')}</BodyShort>
+                <BodyShort className={`${spacingStyles.mb1}`}>{tekst('hvaTenkerDu')}</BodyShort>
                 <Button
                     onClick={() => onClickBehovForVeiledning(ForeslattInnsatsgruppe.STANDARD_INNSATS)}
                     disabled={pendingRequest !== null}
                     loading={pendingRequest === ForeslattInnsatsgruppe.STANDARD_INNSATS}
                 >
-                    Ja, jeg ønsker å klare meg selv
+                    Ja, jeg tror jeg kan finne meg jobb uten en veileder
                 </Button>
                 <div className={spacingStyles.mb1}>
                     <Button
@@ -100,7 +101,7 @@ function IkkeSvartPaaBehovsavklaringStandardInnsats() {
                         variant="secondary"
                         className={`${spacingStyles.mt1}`}
                     >
-                        Nei, jeg har behov for veiledning
+                        Nei, jeg trenger veiledning for å komme i arbeid
                     </Button>
                 </div>
                 <ReadMoreVurdering />
