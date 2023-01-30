@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { Dialog } from '@navikt/ds-icons';
-import { BodyLong, BodyShort, Button, Detail, Heading, Panel } from '@navikt/ds-react';
+import { BodyLong, Button, Detail, Heading, Panel } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
 import { useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { loggAktivitet } from '../../metrics/metrics';
@@ -14,18 +16,14 @@ import { ForeslattInnsatsgruppe } from '../../contexts/brukerregistrering';
 
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
-import { useState } from 'react';
-import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 
 const TEKSTER = {
     nb: {
         overskrift: 'Hjelp og støtte',
-        heading: 'Klarer du å komme i arbeid uten hjelp fra NAV?',
-        beskrivelse:
-            'Vi tror du har gode muligheter til å komme i jobb uten arbeidsrettede tiltak fra NAV eller oppfølging fra en veileder.',
+        heading: 'Vi tror du har gode muligheter til å komme i jobb uten en veileder eller tiltak fra NAV',
+        beskrivelse: 'En veileder kan hjelpe deg med å søke stillinger og finne aktuelle tiltak på veien til arbeid.',
         hvaTenkerDu: 'Hva tenker du?',
-        klareDegSelv:
-            'En veileder kan gi arbeidsrettet oppfølging, men ikke svare på spørsmål om dagpenger eller meldekort.',
+        veilederKanIkke: 'En veileder kan ikke svare på spørsmål om dagpenger eller meldekort.',
         readMoreHeading: 'Hva slags hjelp kan jeg få?',
         behovOverskrift: 'Mitt behov for veiledning',
         behovSvarEnig:
@@ -84,8 +82,7 @@ function IkkeSvartPaaBehovsavklaringStandardInnsats() {
                     {tekst('heading')}
                 </Heading>
                 <BodyLong className={`${spacingStyles.mb1}`}>{tekst('beskrivelse')}</BodyLong>
-                <BodyShort className={`${spacingStyles.mb1}`}>{tekst('klareDegSelv')}</BodyShort>
-                <BodyShort className={`${spacingStyles.mb1}`}>{tekst('hvaTenkerDu')}</BodyShort>
+                <BodyLong className={`${spacingStyles.mb1}`}>{tekst('veilederKanIkke')}</BodyLong>
                 <Button
                     onClick={() => onClickBehovForVeiledning(ForeslattInnsatsgruppe.STANDARD_INNSATS)}
                     disabled={pendingRequest !== null}
