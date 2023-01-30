@@ -21,7 +21,8 @@ const TEKSTER = {
     nb: {
         overskrift: 'Hjelp og støtte',
         heading: 'Vi tror du har gode muligheter til å komme i jobb uten en veileder eller tiltak fra NAV',
-        beskrivelse: 'En veileder kan hjelpe deg med å søke stillinger og finne aktuelle tiltak på veien til arbeid.',
+        beskrivelse:
+            'En veileders oppgave er å hjelpe deg med å søke stillinger og finne aktuelle tiltak på veien til arbeid.',
         hvaTenkerDu: 'Hva tenker du?',
         veilederKanIkke: 'En veileder kan ikke svare på spørsmål om dagpenger eller meldekort.',
         readMoreHeading: 'Hva slags hjelp kan jeg få?',
