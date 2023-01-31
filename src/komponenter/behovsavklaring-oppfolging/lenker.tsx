@@ -12,7 +12,8 @@ import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 
 const TEKSTER = {
     nb: {
-        gaTilDialog: 'Skriv til veilederen',
+        gaTilDialogKnapp: 'Skriv til veilederen',
+        gaTilDialogLenke: 'Gå til dialogen',
         gaTilAktivitetsplan: 'Gå til din aktivitetsplan',
         ulest_melding: 'ulest melding',
         uleste_meldinger: 'uleste meldinger',
@@ -70,7 +71,7 @@ export const DialogLenke = (props: LenkeProps) => {
                     ...amplitudeData,
                 })}
             >
-                {tekst('gaTilDialog')}
+                {tekst('gaTilDialogLenke')}
             </Link>
             {antallUleste > 0 && (
                 <span className={`${spacingStyles.ml05} navds-body-short navds-body-short--small`}>
@@ -102,7 +103,7 @@ export const GaaTilDialogKnapp = (props: GaaTilDialogKnappProps) => {
     const { behovForVeiledning } = useBehovForVeiledning();
     return (
         <Button onClick={onClickDialogKnapp(behovForVeiledning, amplitudeData)}>
-            {props.tekst || tekst('gaTilDialog')}
+            {props.tekst || tekst('gaTilDialogKnapp')}
         </Button>
     );
 };
