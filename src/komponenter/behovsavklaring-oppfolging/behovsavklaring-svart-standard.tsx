@@ -19,7 +19,7 @@ const TEKSTER = {
         overskrift: 'Hjelp og støtte',
         headingEnig: 'Du ønsker å klare deg selv',
         headingUenig: 'Du har sagt at du ønsker hjelp fra en veileder',
-        beskrivelseEnig: 'Du har ansvar for å aktivt lete etter jobber og å søke på relevante stillinger på egenhånd.',
+        beskrivelseEnig: 'Du har ansvar for å aktivt lete etter jobber og å søke på relevante stillinger på egen hånd.',
         behovForVeiledningLikevel: 'Gi beskjed i dialogen dersom du likevel har behov for veiledning.',
     },
     en: {

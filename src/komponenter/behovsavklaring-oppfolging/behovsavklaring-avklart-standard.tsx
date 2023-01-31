@@ -1,5 +1,5 @@
 import { Dialog } from '@navikt/ds-icons';
-import { BodyLong, Detail, Heading, Panel, ReadMore } from '@navikt/ds-react';
+import { BodyLong, Detail, Heading, Panel } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
 
@@ -10,18 +10,17 @@ import InViewport from '../in-viewport/in-viewport';
 
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
-import { AktivitetsplanLenke, DialogLenke, GaaTilDialogKnapp } from './lenker';
+import { AktivitetsplanLenke, GaaTilDialogKnapp } from './lenker';
 
 const TEKSTER = {
     nb: {
         overskrift: 'Hjelp og støtte',
         headingEnig: 'Du har gode muligheter til å klare deg selv',
         headingUenig: 'Du har sagt at du ønsker hjelp',
-        beskrivelseEnig: 'Du har ansvar for å aktivt lete etter jobber og å søke på relevante stillinger på egenhånd.',
+        beskrivelseEnig: 'Du har ansvar for å aktivt lete etter jobber og å søke på relevante stillinger på egen hånd.',
         hvaTenkerDu: 'Hva tenker du?',
         klareDegSelv: 'Ønsker du å klare deg selv?',
-        readMoreHeadingEnig: 'Gi beskjed dersom du likevel ønsker veiledning',
-        readMoreInnholdEnig: 'Du kan når som helst ta kontakt for å starte samhandling med en veileder.',
+        behovForVeiledningLikevel: 'Gi beskjed i dialogen dersom du likevel har behov for veiledning.',
     },
     en: {
         heading: 'Get in touch if you need help',
@@ -54,14 +53,11 @@ function BehovsavklaringAvklartStandard() {
                     {tekst('headingEnig')}
                 </Heading>
                 <BodyLong className={spacingStyles.mb1}>{tekst('beskrivelseEnig')}</BodyLong>
-                <ReadMore size="medium" header={tekst('readMoreHeadingEnig')} className={spacingStyles.mb1}>
-                    <BodyLong className={spacingStyles.blokkXs}>{tekst('readMoreInnholdEnig')}</BodyLong>
-                    <GaaTilDialogKnapp />
-                </ReadMore>
-                <ReadMoreVeileder />
-                <BodyLong className={spacingStyles.mt1}>
-                    <DialogLenke aktivitet={'Behovsavklaring - avklart - standard - går til dialogen'} />
-                </BodyLong>
+                <BodyLong className={spacingStyles.blokkXs}>{tekst('behovForVeiledningLikevel')}</BodyLong>
+                <GaaTilDialogKnapp variant={'secondary'} />
+                <div className={spacingStyles.mt1}>
+                    <ReadMoreVeileder />
+                </div>
                 <BodyLong className={spacingStyles.mt1}>
                     <AktivitetsplanLenke
                         aktivitet={'Behovsavklaring - avklart - standard - går til aktivitetsplanen'}
