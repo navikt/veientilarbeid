@@ -1,60 +1,19 @@
 import { useState } from 'react';
-import { BodyShort, Link, ReadMore } from '@navikt/ds-react';
+import { BodyShort, ReadMore } from '@navikt/ds-react';
 
-import { amplitudeLogger, AmplitudeData } from '../../metrics/amplitude-utils';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
+
+import { AmplitudeData } from '../../metrics/amplitude-utils';
 import { loggAktivitet } from '../../metrics/metrics';
+import STOogChat from './sto-og-chat';
 
 import spacingStyles from '../../spacing.module.css';
-import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 
 interface Props {
     amplitudeData: AmplitudeData;
 }
 
 function Innhold(props: Props) {
-    const { amplitudeData } = props;
-
-    function loggLenkeKlikk(handling: string, url: string) {
-        amplitudeLogger('veientilarbeid.intro', {
-            intro: '14a',
-            handling,
-            ...amplitudeData,
-        });
-        window.location.assign(url);
-    }
-
-    function SkrivTilOss() {
-        return (
-            <Link
-                href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
-                onClick={() =>
-                    loggLenkeKlikk(
-                        'Går til STO fra 14a onboarding kort',
-                        'https://mininnboks.nav.no/sporsmal/skriv/ARBD'
-                    )
-                }
-            >
-                skriv til oss
-            </Link>
-        );
-    }
-
-    function Chat() {
-        return (
-            <Link
-                href="https://www.nav.no/person/kontakt-oss/chat/"
-                onClick={() =>
-                    loggLenkeKlikk(
-                        'Går til Chat fra 14a onboarding kort',
-                        'https://www.nav.no/person/kontakt-oss/chat/'
-                    )
-                }
-            >
-                chat
-            </Link>
-        );
-    }
-
     return (
         <div className={spacingStyles.mt1}>
             <BodyShort className={spacingStyles.blokkXs}>
@@ -64,12 +23,10 @@ function Innhold(props: Props) {
 
             <BodyShort className={spacingStyles.blokkXs}>
                 Veilederne kan <strong>ikke</strong> svare på spørsmål om søknad om dagpenger, behandling av
-                dagpengesøknaden eller utbetaling av dagpenger.
+                dagpengesøknaden, utbetaling av dagpenger eller utfylling av meldekort.
             </BodyShort>
 
-            <BodyShort className={spacingStyles.blokkM}>
-                Dersom du lurer på noe om dagpenger ber vi deg bruke <SkrivTilOss /> eller <Chat />.
-            </BodyShort>
+            <STOogChat />
         </div>
     );
 }
