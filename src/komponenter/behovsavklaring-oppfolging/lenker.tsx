@@ -95,6 +95,7 @@ function onClickDialogKnapp(behovForVeiledning: BehovForVeiledningResponse, ampl
 
 interface GaaTilDialogKnappProps {
     tekst?: string;
+    variant?: 'primary' | 'secondary';
 }
 export const GaaTilDialogKnapp = (props: GaaTilDialogKnappProps) => {
     const sprak = useSprakValg().sprak;
@@ -102,7 +103,7 @@ export const GaaTilDialogKnapp = (props: GaaTilDialogKnappProps) => {
     const { amplitudeData } = useAmplitudeData();
     const { behovForVeiledning } = useBehovForVeiledning();
     return (
-        <Button onClick={onClickDialogKnapp(behovForVeiledning, amplitudeData)}>
+        <Button variant={props.variant} onClick={onClickDialogKnapp(behovForVeiledning, amplitudeData)}>
             {props.tekst || tekst('gaTilDialogKnapp')}
         </Button>
     );
