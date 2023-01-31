@@ -21,6 +21,9 @@ const TEKSTER = {
         headingUenig: 'Du har sagt at du ønsker hjelp fra en veileder',
         beskrivelseEnig: 'Du har ansvar for å aktivt lete etter jobber og å søke på relevante stillinger på egen hånd.',
         behovForVeiledningLikevel: 'Gi beskjed i dialogen dersom du likevel har behov for veiledning.',
+        fortellMer: 'Vi vil gjerne at du forteller oss mer om hva du trenger hjelp til.',
+        hjelpOgVedtak:
+            'Etterpå vil vi ta stilling til hva slags hjelp vi kan tilby. Du vil få et vedtaksbrev om dette.',
     },
     en: {
         heading: 'Get in touch if you need help',
@@ -93,15 +96,11 @@ function UenigMedProfilering() {
                 <Heading className={spacingStyles.blokkXs} size="medium">
                     {tekst('headingUenig')}
                 </Heading>
-                <BodyLong className={spacingStyles.mb1}>
-                    Vi vil gjerne at du forteller oss mer om hva du trenger hjelp til.
-                </BodyLong>
+                <BodyLong className={spacingStyles.mb1}>{tekst('fortellMer')}</BodyLong>
                 <BodyLong className={spacingStyles.mb1}>
                     <GaaTilDialogKnapp />
                 </BodyLong>
-                <BodyLong className={spacingStyles.mb1}>
-                    Etterpå vil vi ta stilling til hva slags hjelp vi kan tilby. Du vil få et vedtaksbrev om dette.
-                </BodyLong>
+                <BodyLong className={spacingStyles.mb1}>{tekst('hjelpOgVedtak')}</BodyLong>
                 <ReadMoreVeileder />
                 <BodyLong className={spacingStyles.mt1}>
                     <AktivitetsplanLenke
