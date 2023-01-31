@@ -22,6 +22,7 @@ function beregnBrukergruppe({
 }: BeregnBrukergruppeData): BrukergruppeType {
     const { alder } = brukerInfoData;
     const forsterketUngdomsinnsats = alder < 30;
+    const over55 = alder > 55;
 
     const brukerErStandardInnsatsgruppe = erStandardInnsatsgruppe({
         brukerregistreringData,
@@ -29,6 +30,8 @@ function beregnBrukergruppe({
     });
 
     const brukerErUngMedStandardInnsatsgruppe = brukerErStandardInnsatsgruppe && forsterketUngdomsinnsats;
+
+    const brukerErOver55MedStandardInnsatsgruppe = brukerErStandardInnsatsgruppe && over55;
 
     const brukerHarUkjentAlderMenStandardInnsatsgruppe =
         brukerErStandardInnsatsgruppe && (alder === 0 || alder === null);
@@ -51,6 +54,8 @@ function beregnBrukergruppe({
         return 'standard og ukjent alder';
     } else if (brukerErUngMedStandardInnsatsgruppe) {
         return 'standard og ungdomsinnsats';
+    } else if (brukerErOver55MedStandardInnsatsgruppe) {
+        return 'standard og over 55 år';
     } else if (brukerErStandardInnsatsgruppe) {
         return 'standard';
     } else if (brukerErSituasjonsbestemtInnsatsgruppe) {
