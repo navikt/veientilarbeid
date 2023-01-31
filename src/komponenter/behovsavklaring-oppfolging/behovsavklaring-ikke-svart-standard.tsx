@@ -89,7 +89,7 @@ function IkkeSvartPaaBehovsavklaringStandardInnsats() {
                     disabled={pendingRequest !== null}
                     loading={pendingRequest === ForeslattInnsatsgruppe.STANDARD_INNSATS}
                 >
-                    Ja, jeg tror jeg kan finne meg jobb uten en veileder
+                    Jeg klarer meg uten veileder
                 </Button>
                 <div className={spacingStyles.mb1}>
                     <Button
@@ -99,7 +99,7 @@ function IkkeSvartPaaBehovsavklaringStandardInnsats() {
                         variant="secondary"
                         className={`${spacingStyles.mt1}`}
                     >
-                        Nei, jeg trenger veiledning for å komme i arbeid
+                        Jeg trenger en veileder for å komme i arbeid
                     </Button>
                 </div>
                 <ReadMoreVurdering />
