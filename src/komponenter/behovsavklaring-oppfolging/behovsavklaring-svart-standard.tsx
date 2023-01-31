@@ -9,16 +9,16 @@ import ReadMoreVeileder from './readmore-veileder';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import { ForeslattInnsatsgruppe } from '../../contexts/brukerregistrering';
+import { AktivitetsplanLenke, DialogLenke, GaaTilDialogKnapp } from './lenker';
 
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
-import { AktivitetsplanLenke, DialogLenke, GaaTilDialogKnapp } from './lenker';
 
 const TEKSTER = {
     nb: {
         overskrift: 'Hjelp og støtte',
         headingEnig: 'Du ønsker å klare deg selv',
-        headingUenig: 'Du har sagt at du ønsker hjelp',
+        headingUenig: 'Du har sagt at du ønsker hjelp fra en veileder',
         beskrivelseEnig: 'Du har ansvar for å aktivt lete etter jobber og å søke på relevante stillinger på egenhånd.',
         hvaTenkerDu: 'Hva tenker du?',
         klareDegSelv: 'Ønsker du å klare deg selv?',
@@ -100,18 +100,15 @@ function UenigMedProfilering() {
                     {tekst('headingUenig')}
                 </Heading>
                 <BodyLong className={spacingStyles.mb1}>
-                    En veileder vil ta stilling til hva slags hjelp du kan få. Du vil få et vedtaksbrev om dette.
-                </BodyLong>
-                <BodyLong className={spacingStyles.mb1}>
-                    Om du ønsker å skrive til veilederen om det du ønsker hjelp til kan du gjøre det via dialogen.
+                    Vi vil gjerne at du forteller oss mer om hva du trenger hjelp til.
                 </BodyLong>
                 <BodyLong className={spacingStyles.mb1}>
                     <GaaTilDialogKnapp />
                 </BodyLong>
-                <ReadMoreVeileder />
-                <BodyLong className={spacingStyles.mt1}>
-                    <DialogLenke aktivitet={'Behovsavklaring - svart - standard uenig - går til dialogen'} />
+                <BodyLong className={spacingStyles.mb1}>
+                    Etterpå vil vi ta stilling til hva slags hjelp vi kan tilby. Du vil få et vedtaksbrev om dette.
                 </BodyLong>
+                <ReadMoreVeileder />
                 <BodyLong className={spacingStyles.mt1}>
                     <AktivitetsplanLenke
                         aktivitet={'Behovsavklaring - svart - standard - uenig - går til aktivitetsplanen'}
