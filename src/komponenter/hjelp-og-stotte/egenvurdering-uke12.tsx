@@ -18,7 +18,7 @@ const TEKSTER = {
         heading: 'Du har vært registrert i',
         uker: 'uker',
         beskrivelse:
-            'Har du fortsatt tro på at du greier å skaffe deg jobb på egenhånd, eller tenker du det er behov for hjelp og støtte fra en veileder ved NAV-kontoret ditt?',
+            'Har du fortsatt tro på at du greier å skaffe deg jobb på egen hånd, eller tenker du det er behov for hjelp og støtte fra en veileder ved NAV-kontoret ditt?',
         hjelp: 'Jeg ønsker hjelp',
         kss: 'Jeg klarer meg fint selv',
     },
