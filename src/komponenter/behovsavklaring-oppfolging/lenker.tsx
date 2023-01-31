@@ -12,7 +12,7 @@ import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 
 const TEKSTER = {
     nb: {
-        gaTilDialog: 'Gå til dialogen',
+        gaTilDialog: 'Skriv til veilederen',
         gaTilAktivitetsplan: 'Gå til din aktivitetsplan',
         ulest_melding: 'ulest melding',
         uleste_meldinger: 'uleste meldinger',
