@@ -17,13 +17,11 @@ import flexStyles from '../../flex.module.css';
 const TEKSTER = {
     nb: {
         overskrift: 'Hjelp og støtte',
-        headingEnig: 'Du ønsker å klare deg selv',
+        headingEnig: 'Du ønsker å klare deg uten veileder',
         headingUenig: 'Du har sagt at du ønsker hjelp fra en veileder',
         beskrivelseEnig: 'Du har ansvar for å aktivt lete etter jobber og å søke på relevante stillinger på egen hånd.',
         behovForVeiledningLikevel: 'Gi beskjed i dialogen dersom du likevel har behov for veiledning.',
-        fortellMer: 'Vi vil gjerne at du forteller oss mer om hva du trenger hjelp til.',
-        hjelpOgVedtak:
-            'Etterpå vil vi ta stilling til hva slags hjelp vi kan tilby. Du vil få et vedtaksbrev om dette.',
+        fortellMer: 'Fortell oss hva du trenger hjelp til for å komme i arbeid.',
     },
     en: {
         heading: 'Get in touch if you need help',

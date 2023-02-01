@@ -15,7 +15,7 @@ import { AktivitetsplanLenke, GaaTilDialogKnapp } from './lenker';
 const TEKSTER = {
     nb: {
         overskrift: 'Hjelp og støtte',
-        headingEnig: 'Du har gode muligheter til å klare deg selv',
+        headingEnig: 'Du har gode muligheter til å komme i jobb uten en veileder eller tiltak fra NAV',
         headingUenig: 'Du har sagt at du ønsker hjelp',
         beskrivelseEnig: 'Du har ansvar for å aktivt lete etter jobber og å søke på relevante stillinger på egen hånd.',
         hvaTenkerDu: 'Hva tenker du?',
