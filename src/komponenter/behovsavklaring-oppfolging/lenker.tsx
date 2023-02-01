@@ -1,14 +1,17 @@
+import { MouseEventHandler } from 'react';
 import { Button, Link } from '@navikt/ds-react';
-import { aktivitetsplanLenke, dialogLenke } from '../../innhold/lenker';
+
 import { useSprakValg } from '../../contexts/sprak';
+import { useUlesteDialogerData } from '../../contexts/ulestedialoger';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
+
+import { aktivitetsplanLenke, dialogLenke } from '../../innhold/lenker';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { AmplitudeStandardAktivitetsData, loggAktivitet } from '../../metrics/metrics';
-import { MouseEventHandler } from 'react';
 import { BehovForVeiledningResponse, useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
 import { AmplitudeData } from '../../metrics/amplitude-utils';
-import { useUlesteDialogerData } from '../../contexts/ulestedialoger';
+
 import spacingStyles from '../../spacing.module.css';
-import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 
 const TEKSTER = {
     nb: {
