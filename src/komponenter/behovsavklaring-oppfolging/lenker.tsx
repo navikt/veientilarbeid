@@ -1,18 +1,22 @@
+import { MouseEventHandler } from 'react';
 import { Button, Link } from '@navikt/ds-react';
-import { aktivitetsplanLenke, dialogLenke } from '../../innhold/lenker';
+
 import { useSprakValg } from '../../contexts/sprak';
+import { useUlesteDialogerData } from '../../contexts/ulestedialoger';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
+
+import { aktivitetsplanLenke, dialogLenke } from '../../innhold/lenker';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { AmplitudeStandardAktivitetsData, loggAktivitet } from '../../metrics/metrics';
-import { MouseEventHandler } from 'react';
 import { BehovForVeiledningResponse, useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
 import { AmplitudeData } from '../../metrics/amplitude-utils';
-import { useUlesteDialogerData } from '../../contexts/ulestedialoger';
+
 import spacingStyles from '../../spacing.module.css';
-import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 
 const TEKSTER = {
     nb: {
-        gaTilDialog: 'Gå til dialogen',
+        gaTilDialogKnapp: 'Skriv til veilederen',
+        gaTilDialogLenke: 'Gå til dialogen',
         gaTilAktivitetsplan: 'Gå til din aktivitetsplan',
         ulest_melding: 'ulest melding',
         uleste_meldinger: 'uleste meldinger',
@@ -70,7 +74,7 @@ export const DialogLenke = (props: LenkeProps) => {
                     ...amplitudeData,
                 })}
             >
-                {tekst('gaTilDialog')}
+                {tekst('gaTilDialogLenke')}
             </Link>
             {antallUleste > 0 && (
                 <span className={`${spacingStyles.ml05} navds-body-short navds-body-short--small`}>
@@ -94,6 +98,7 @@ function onClickDialogKnapp(behovForVeiledning: BehovForVeiledningResponse, ampl
 
 interface GaaTilDialogKnappProps {
     tekst?: string;
+    variant?: 'primary' | 'secondary';
 }
 export const GaaTilDialogKnapp = (props: GaaTilDialogKnappProps) => {
     const sprak = useSprakValg().sprak;
@@ -101,8 +106,8 @@ export const GaaTilDialogKnapp = (props: GaaTilDialogKnappProps) => {
     const { amplitudeData } = useAmplitudeData();
     const { behovForVeiledning } = useBehovForVeiledning();
     return (
-        <Button onClick={onClickDialogKnapp(behovForVeiledning, amplitudeData)}>
-            {props.tekst || tekst('gaTilDialog')}
+        <Button variant={props.variant} onClick={onClickDialogKnapp(behovForVeiledning, amplitudeData)}>
+            {props.tekst || tekst('gaTilDialogKnapp')}
         </Button>
     );
 };

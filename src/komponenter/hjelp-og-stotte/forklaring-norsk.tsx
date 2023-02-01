@@ -12,7 +12,7 @@ function Avsnitt1() {
     return (
         <div>
             <BodyShort className={spacingStyles.blokkXs}>
-                Vi tror at du har gode muligheter til å skaffe deg jobb på egenhånd.
+                Vi tror at du har gode muligheter til å skaffe deg jobb på egen hånd.
             </BodyShort>
 
             <BodyShort>Vår vurdering er basert på:</BodyShort>
@@ -50,7 +50,7 @@ function Avsnitt2() {
             <Heading size="xsmall">{harMottattBrev ? 'Du har mottatt et brev' : 'Du vil motta et brev'}</Heading>
             <BodyShort className={spacingStyles.blokkXs}>
                 {harMottattBrev ? <BrevLink /> : 'Brevet'} inneholder vår vurdering av dine muligheter til å skaffe deg
-                jobb på egenhånd.
+                jobb på egen hånd.
             </BodyShort>
             <BodyShort className={spacingStyles.blokkM}>
                 Dette brevet er ikke et svar på en eventuell søknad om dagpenger.
