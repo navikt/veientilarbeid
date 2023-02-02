@@ -26,11 +26,15 @@ const TEKSTER = {
         hvaTenkerDu: 'Hva tenker du?',
         veilederKanIkke: 'En veileder kan ikke svare på spørsmål om dagpenger eller meldekort.',
         readMoreHeading: 'Hva slags hjelp kan jeg få?',
-        behovOverskrift: 'Mitt behov for veiledning',
-        behovSvarEnig:
-            'Spørsmål: Ønsker du å klare deg selv?\n\nMitt svar: Ja, jeg ønsker å klare meg selv\n\nDette er en automatisk generert melding',
-        behovSvarUenig:
-            'Spørsmål: Ønsker du å klare deg selv?\n\nMitt svar: Nei, jeg har behov for veiledning\n\nDette er en automatisk generert melding',
+        behovOverskrift: 'Behov for veiledning',
+        svarEnigKnappetekst: 'Jeg klarer meg uten veileder',
+        svarUenigKnappetekst: 'Jeg trenger en veileder for å komme i arbeid',
+        dialogtekstNavSinVurdering:
+            'NAV sin vurdering: Vi tror du har gode muligheter til å komme i jobb uten en veileder eller tiltak fra NAV.',
+        dialogtekstMinVurdering: 'Min vurdering: ',
+        dialogtekstSvarEnig: 'Jeg klarer meg uten veileder',
+        dialogtekstSvarUenig: 'Jeg trenger en veileder for å komme i arbeid',
+        dialogtekstAutomatiskGenerert: 'Dette er en automatisk generert melding.',
     },
     en: {
         heading: 'Get in touch if you need help',
@@ -46,12 +50,23 @@ function IkkeSvartPaaBehovsavklaringStandardInnsats() {
     const [pendingRequest, settPendingRequest] = useState<ForeslattInnsatsgruppe | null>(null);
 
     async function onClickBehovForVeiledning(behov: ForeslattInnsatsgruppe) {
+        // Dialogmeldingen skal gjenspeile svarene fra knappevalgene, endres det ene bør det andre også endres
+        const dialogmelding =
+            tekst('dialogtekstNavSinVurdering') +
+            '\n\n' +
+            tekst('dialogtekstMinVurdering') +
+            (behov === ForeslattInnsatsgruppe.STANDARD_INNSATS
+                ? tekst('dialogtekstSvarEnig')
+                : tekst('dialogtekstSvarUenig')) +
+            '.\n\n' +
+            tekst('dialogtekstAutomatiskGenerert');
+
         settPendingRequest(behov);
         try {
             await lagreBehovForVeiledning({
                 oppfolging: behov,
                 overskrift: tekst('behovOverskrift'),
-                tekst: tekst(behov === ForeslattInnsatsgruppe.STANDARD_INNSATS ? 'behovSvarEnig' : 'behovSvarUenig'),
+                tekst: dialogmelding,
             });
             loggAktivitet({
                 ...amplitudeData,
@@ -89,7 +104,7 @@ function IkkeSvartPaaBehovsavklaringStandardInnsats() {
                     disabled={pendingRequest !== null}
                     loading={pendingRequest === ForeslattInnsatsgruppe.STANDARD_INNSATS}
                 >
-                    Jeg klarer meg uten veileder
+                    {tekst('svarEnigKnappetekst')}
                 </Button>
                 <div className={spacingStyles.mb1}>
                     <Button
@@ -99,7 +114,7 @@ function IkkeSvartPaaBehovsavklaringStandardInnsats() {
                         variant="secondary"
                         className={`${spacingStyles.mt1}`}
                     >
-                        Jeg trenger en veileder for å komme i arbeid
+                        {tekst('svarUenigKnappetekst')}
                     </Button>
                 </div>
                 <ReadMoreVurdering />
