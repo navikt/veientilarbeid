@@ -27,14 +27,14 @@ const TEKSTER = {
         veilederKanIkke: 'En veileder kan ikke svare på spørsmål om dagpenger eller meldekort.',
         readMoreHeading: 'Hva slags hjelp kan jeg få?',
         behovOverskrift: 'Behov for veiledning',
-        navSinVurdering:
-            'NAV sin vurdering: Vi tror du har gode muligheter til å komme i jobb uten en veileder eller tiltak fra NAV.',
-        minVurdering: 'Min vurdering: ',
         svarEnigKnappetekst: 'Jeg klarer meg uten veileder',
-        svarEnigDialogtekst: 'Jeg klarer meg uten veileder',
         svarUenigKnappetekst: 'Jeg trenger en veileder for å komme i arbeid',
-        svarUenigDialogtekst: 'Jeg trenger en veileder for å komme i arbeid',
-        automatiskGenerert: 'Dette er en automatisk generert melding.',
+        dialogtekstNavSinVurdering:
+            'NAV sin vurdering: Vi tror du har gode muligheter til å komme i jobb uten en veileder eller tiltak fra NAV.',
+        dialogtekstMinVurdering: 'Min vurdering: ',
+        dialogtekstSvarEnig: 'Jeg klarer meg uten veileder',
+        dialogtekstSvarUenig: 'Jeg trenger en veileder for å komme i arbeid',
+        dialogtekstAutomatiskGenerert: 'Dette er en automatisk generert melding.',
     },
     en: {
         heading: 'Get in touch if you need help',
@@ -50,15 +50,16 @@ function IkkeSvartPaaBehovsavklaringStandardInnsats() {
     const [pendingRequest, settPendingRequest] = useState<ForeslattInnsatsgruppe | null>(null);
 
     async function onClickBehovForVeiledning(behov: ForeslattInnsatsgruppe) {
+        // Dialogmeldingen skal gjenspeile svarene fra knappevalgene, endres det ene bør det andre også endres
         const dialogmelding =
-            tekst('navSinVurdering') +
+            tekst('dialogtekstNavSinVurdering') +
             '\n\n' +
-            tekst('minVurdering') +
+            tekst('dialogtekstMinVurdering') +
             (behov === ForeslattInnsatsgruppe.STANDARD_INNSATS
-                ? tekst('svarEnigDialogtekst')
-                : tekst('svarUenigDialogtekst')) +
+                ? tekst('dialogtekstSvarEnig')
+                : tekst('dialogtekstSvarUenig')) +
             '.\n\n' +
-            tekst('automatiskGenerert');
+            tekst('dialogtekstAutomatiskGenerert');
 
         settPendingRequest(behov);
         try {
