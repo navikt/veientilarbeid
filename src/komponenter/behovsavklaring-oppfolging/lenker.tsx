@@ -88,7 +88,9 @@ export const DialogLenke = (props: LenkeProps) => {
 function onClickDialogKnapp(behovForVeiledning: BehovForVeiledningResponse, amplitudeData: AmplitudeData) {
     return () => {
         loggAktivitet({
-            aktivitet: `Trykker på gå til dialog-knapp - ${behovForVeiledning?.oppfolging}`,
+            aktivitet: `Trykker på gå til dialog-knapp - ${
+                behovForVeiledning?.oppfolging || 'IKKE_SVART_PÅ_BEHOVSVURDERING'
+            }`,
             ...amplitudeData,
         });
         const dialogId = behovForVeiledning?.dialogId ? `/${behovForVeiledning?.dialogId}` : '';
