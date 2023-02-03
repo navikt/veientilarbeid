@@ -117,8 +117,8 @@ function IkkeSvartPaaBehovsavklaringStandardInnsats() {
                         {tekst('svarUenigKnappetekst')}
                     </Button>
                 </div>
-                <ReadMoreVurdering />
                 <ReadMoreVeileder />
+                <ReadMoreVurdering />
             </div>
             <InViewport loggTekst="Viser behovsavklaringkomponent - ikke svart - standard i viewport" />
         </Panel>

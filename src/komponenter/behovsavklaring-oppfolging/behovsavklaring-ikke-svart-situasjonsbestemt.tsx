@@ -91,8 +91,8 @@ function IkkeSvartPaaBehovsavklaringSituasjonsbestemt() {
                     Nei, jeg vil gjerne klare meg selv
                 </Button>
             </div>
-            <ReadMoreVurdering />
             <ReadMoreVeileder />
+            <ReadMoreVurdering />
             <InViewport loggTekst="Viser behovsavklaringkomponent - ikke svart - situasjonsbestemt i viewport" />
         </div>
     );
