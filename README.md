@@ -60,22 +60,17 @@ Branchen blir da deployet til dev når man pusher.
 
 Dersom testene feiler etter oppdatering av f.eks. Node versjon kan det være lurt å tømme cachen `npm run test -- --clearCache`
 
-# Muligheter med HotJar
-
-Veien til arbeid kan nås på to måter. Som standalone app eller inkludert under dittNAV.
-Vi grupperer også brukere i 2 grupper kss (klare seg selv) og boo (bistand og oppfølging).
-
-Det ligger også en funksjon `hotjarEksperiment` i [innhold-logik-niva4](src/innhold/innhold-logikk-niva4.tsx) hvor du kan sette opp forutsetninger for et eksperiment.
+# Slik bruker du HotJar i AiA
 
 For å bruke HotJar må du benytte "JavaScript trigger" som du finner under punktet "Behavior" og fanen "Pages".
-Innholdet i trigger avgjør hvem som får vist undersøkelsen. Du kan ha flere triggere pr undersøkelse.
+Du må sette denne triggeren `aia-hotjar` for at den skal kunne kjøres fra AiA.
 
--   `vta-kss` - Veien til arbeid standalone kss bruker
--   `vta-boo` - Veien til arbeid standalone boo bruker
--   `vta-dittnav-kss` - Veien til arbeid under dittNAV kss bruker
--   `vta-dittnav-boo` - Veien til arbeid under dittNAV boo bruker
--   `vta-eksperiment` - Veien til arbeid standalone hvor kriteriene satt i `hotjarEksperiment` matcher
--   `vta-dittnav-eksperiment` - Veien til arbeid under dittNAV hvor kriteriene satt i `hotjarEksperiment` matcher
+Det er i tillegg satt opp en feature toggle på unleash som styrer om HotJar skal brukes.
+Den heter `` og må være på for at HotJar skal kunne trigges.
+
+## Begrense undersøkelser til spesielle brukergrupper
+
+Dersom du ønsker at undersøkelsene fra HotJar kun skal treffe visse brukergrupper kan du legge logikk for dette i funksjonen `hotjarKriterierErOppfylt` i filen [innhold-metrics.tsx](/src/innhold/innhold-metrics.tsx)
 
 # Henvendelser
 
