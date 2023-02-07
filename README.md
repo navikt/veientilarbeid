@@ -62,15 +62,21 @@ Dersom testene feiler etter oppdatering av f.eks. Node versjon kan det være lur
 
 # Slik bruker du HotJar i AiA
 
-For å bruke HotJar må du benytte "JavaScript trigger" som du finner under punktet "Behavior" og fanen "Pages".
-Du må sette denne triggeren `aia-hotjar` for at den skal kunne kjøres fra AiA.
+For å bruke HotJar må du benytte "Event" som du finner i nedtrekksmenyen under punktet "Targeting" når du velger "Specific pages" fra radiovalget.
+
+Du må sette eventet til `aia-hotjar` for at den skal kunne kjøres fra AiA.
 
 Det er i tillegg satt opp en feature toggle på unleash som styrer om HotJar skal brukes.
-Den heter `` og må være på for at HotJar skal kunne trigges.
+Den heter `aia.bruk-hotjar` og må være på for at HotJar skal kunne trigges av eventer.
 
 ## Begrense undersøkelser til spesielle brukergrupper
 
 Dersom du ønsker at undersøkelsene fra HotJar kun skal treffe visse brukergrupper kan du legge logikk for dette i funksjonen `hotjarKriterierErOppfylt` i filen [innhold-metrics.tsx](/src/innhold/innhold-metrics.tsx)
+
+## Bruke andre eventnavn
+
+Funksjonen `hotjarTriggerEvent` tar inn hva enn for et navn du sender inn på eventen.
+Så dersom du vil utvikle funksjonalitet for andre navn er det mulig.
 
 # Henvendelser
 

@@ -6,7 +6,7 @@ import { useFeatureToggleData, FeatureToggles } from '../contexts/feature-toggle
 import { InnloggingsNiva, useAutentiseringData } from '../contexts/autentisering';
 
 import { loggRendring } from '../metrics/metrics';
-import { hotjarTrigger } from '../hotjar';
+import { hotjarTriggerEvent } from '../hotjar';
 
 type Props = {};
 
@@ -33,7 +33,7 @@ function Metrics(props: Props) {
     const brukHotJar = hotjarErToggletPaa && hotjarKriterierErOppfylt();
 
     React.useEffect(() => {
-        hotjarTrigger(brukHotJar);
+        hotjarTriggerEvent(brukHotJar, 'aia-hotjar');
         loggRendring({ rendrer: 'AiA', ...amplitudeData });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
