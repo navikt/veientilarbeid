@@ -1,20 +1,12 @@
 import * as React from 'react';
-import {
-    selectDinSituasjonSvar,
-    selectForeslattInnsatsgruppe,
-    selectOpprettetRegistreringDato,
-    useBrukerregistreringData,
-} from '../contexts/brukerregistrering';
-import { useOppfolgingData } from '../contexts/oppfolging';
-import { useBrukerinfoData } from '../contexts/bruker-info';
-import getPoaGroup from '../utils/get-poa-group';
-import { loggRendring } from '../metrics/metrics';
-import { erMikrofrontend } from '../utils/app-state-utils';
-import { hotjarTrigger } from '../hotjar';
-import { InnloggingsNiva, useAutentiseringData } from '../contexts/autentisering';
-import sjekkOmBrukerErStandardInnsatsgruppe from '../lib/er-standard-innsatsgruppe';
+
 import { useUnderOppfolging } from '../contexts/arbeidssoker';
 import { useAmplitudeData } from '../komponenter/hent-initial-data/amplitude-provider';
+import { useFeatureToggleData, FeatureToggles } from '../contexts/feature-toggles';
+import { InnloggingsNiva, useAutentiseringData } from '../contexts/autentisering';
+
+import { loggRendring } from '../metrics/metrics';
+import { hotjarTrigger } from '../hotjar';
 
 type Props = {};
 
@@ -28,47 +20,20 @@ export default function InnholdMetrics() {
 }
 
 function Metrics(props: Props) {
-    const oppfolgingData = useOppfolgingData();
-    const { formidlingsgruppe, servicegruppe, kanReaktiveres } = oppfolgingData;
-
     const { amplitudeData } = useAmplitudeData();
+    const featureToggles = useFeatureToggleData();
 
-    const registreringData = useBrukerregistreringData();
-    const { alder } = useBrukerinfoData();
+    const hotjarErToggletPaa = featureToggles[FeatureToggles.BRUK_HOTJAR] || false;
 
-    const opprettetRegistreringDatoString = selectOpprettetRegistreringDato(registreringData);
-    const foreslattInnsatsgruppe = selectForeslattInnsatsgruppe(registreringData);
-
-    const opprettetRegistreringDato = opprettetRegistreringDatoString
-        ? new Date(opprettetRegistreringDatoString)
-        : null;
-
-    const foreslattInnsatsgruppeOrIngenVerdi = foreslattInnsatsgruppe ? foreslattInnsatsgruppe : 'INGEN_VERDI';
-    const formidlingsgruppeOrIngenVerdi = formidlingsgruppe ? formidlingsgruppe : 'INGEN_VERDI';
-    const servicegruppeOrIVURD = servicegruppe ? servicegruppe : 'IVURD';
-
-    const dinSituasjon = selectDinSituasjonSvar(registreringData);
-
-    const POAGruppe = getPoaGroup({
-        dinSituasjon,
-        formidlingsgruppe: formidlingsgruppeOrIngenVerdi,
-        innsatsgruppe: foreslattInnsatsgruppeOrIngenVerdi,
-        alder,
-        servicegruppe: servicegruppeOrIVURD,
-        opprettetRegistreringDato,
-    });
-
-    const hotjarEksperiment = () => {
-        const brukerregistreringData = registreringData?.registrering ?? null;
-        const erStandardInnsatsgruppe = sjekkOmBrukerErStandardInnsatsgruppe({
-            brukerregistreringData,
-            oppfolgingData,
-        });
-        return erStandardInnsatsgruppe && kanReaktiveres;
+    const hotjarKriterierErOppfylt = (): boolean => {
+        // Her legges kriterier om du vil bruke HotJar mot en gitt brukergruppe
+        return true;
     };
 
+    const brukHotJar = hotjarErToggletPaa && hotjarKriterierErOppfylt();
+
     React.useEffect(() => {
-        hotjarTrigger(erMikrofrontend(), POAGruppe, hotjarEksperiment());
+        hotjarTrigger(brukHotJar);
         loggRendring({ rendrer: 'AiA', ...amplitudeData });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
