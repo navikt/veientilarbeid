@@ -67,7 +67,7 @@ function IkkeSvartPaaBehovsavklaringStandardInnsats() {
                 oppfolging: behov,
                 overskrift: tekst('behovOverskrift'),
                 tekst: dialogmelding,
-                settTilFerdigBehandlet: erStandard,
+                venterPaaSvarFraNav: !erStandard,
             });
             loggAktivitet({
                 ...amplitudeData,

@@ -8,7 +8,7 @@ export type BehovForVeiledningRequest = {
     oppfolging: ForeslattInnsatsgruppe;
     tekst?: string;
     overskrift?: string;
-    settTilFerdigBehandlet?: boolean;
+    venterPaaSvarFraNav?: boolean;
 };
 
 export type BehovForVeiledningResponse = {
@@ -30,20 +30,19 @@ export const BehovForVeiledningContext = createContext<BehovForVeiledningProvide
 async function opprettDialog(data: {
     tekst?: string;
     overskrift?: string;
-    settTilFerdigBehandlet?: boolean;
+    venterPaaSvarFraNav?: boolean;
 }): Promise<null | { id: string }> {
     if (!data.tekst && !data.overskrift) {
         return Promise.resolve(null);
     }
 
-    const dialogUrl = data.settTilFerdigBehandlet ? `${OPPRETT_DIALOG_URL}/egenvurdering` : OPPRETT_DIALOG_URL;
-
-    return fetchToJson(dialogUrl, {
+    return fetchToJson(OPPRETT_DIALOG_URL, {
         ...requestConfig(),
         method: 'POST',
         body: JSON.stringify({
             tekst: data.tekst,
             overskrift: data.overskrift,
+            venterPaaSvarFraNav: data.venterPaaSvarFraNav,
         }),
     });
 }
