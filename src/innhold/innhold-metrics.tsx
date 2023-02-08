@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import { useUnderOppfolging } from '../contexts/arbeidssoker';
 import { useAmplitudeData } from '../komponenter/hent-initial-data/amplitude-provider';
-import { useFeatureToggleData, FeatureToggles } from '../contexts/feature-toggles';
 import { InnloggingsNiva, useAutentiseringData } from '../contexts/autentisering';
 
 import { loggRendring } from '../metrics/metrics';
@@ -21,19 +20,9 @@ export default function InnholdMetrics() {
 
 function Metrics(props: Props) {
     const { amplitudeData } = useAmplitudeData();
-    const featureToggles = useFeatureToggleData();
-
-    const hotjarErToggletPaa = featureToggles[FeatureToggles.BRUK_HOTJAR] || false;
-
-    const hotjarKriterierErOppfylt = (): boolean => {
-        // Her legges kriterier om du vil bruke HotJar mot en gitt brukergruppe
-        return true;
-    };
-
-    const brukHotJar = hotjarErToggletPaa && hotjarKriterierErOppfylt();
 
     React.useEffect(() => {
-        hotjarTriggerEvent(brukHotJar, 'aia-hotjar');
+        hotjarTriggerEvent('aia-hotjar');
         loggRendring({ rendrer: 'AiA', ...amplitudeData });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
