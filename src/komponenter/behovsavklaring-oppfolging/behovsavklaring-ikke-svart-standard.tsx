@@ -50,14 +50,14 @@ function IkkeSvartPaaBehovsavklaringStandardInnsats() {
     const [pendingRequest, settPendingRequest] = useState<ForeslattInnsatsgruppe | null>(null);
 
     async function onClickBehovForVeiledning(behov: ForeslattInnsatsgruppe) {
+        const erStandard = behov === ForeslattInnsatsgruppe.STANDARD_INNSATS;
+
         // Dialogmeldingen skal gjenspeile svarene fra knappevalgene, endres det ene bør det andre også endres
         const dialogmelding =
             tekst('dialogtekstNavSinVurdering') +
             '\n\n' +
             tekst('dialogtekstMinVurdering') +
-            (behov === ForeslattInnsatsgruppe.STANDARD_INNSATS
-                ? tekst('dialogtekstSvarEnig')
-                : tekst('dialogtekstSvarUenig')) +
+            (erStandard ? tekst('dialogtekstSvarEnig') : tekst('dialogtekstSvarUenig')) +
             '.\n\n' +
             tekst('dialogtekstAutomatiskGenerert');
 
@@ -67,6 +67,7 @@ function IkkeSvartPaaBehovsavklaringStandardInnsats() {
                 oppfolging: behov,
                 overskrift: tekst('behovOverskrift'),
                 tekst: dialogmelding,
+                settTilFerdigBehandlet: erStandard,
             });
             loggAktivitet({
                 ...amplitudeData,

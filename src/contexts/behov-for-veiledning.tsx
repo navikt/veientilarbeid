@@ -8,6 +8,7 @@ export type BehovForVeiledningRequest = {
     oppfolging: ForeslattInnsatsgruppe;
     tekst?: string;
     overskrift?: string;
+    settTilFerdigBehandlet?: boolean;
 };
 
 export type BehovForVeiledningResponse = {
@@ -26,12 +27,18 @@ export const BehovForVeiledningContext = createContext<BehovForVeiledningProvide
     lagreBehovForVeiledning: () => Promise.resolve(),
 });
 
-async function opprettDialog(data: { tekst?: string; overskrift?: string }): Promise<null | { id: string }> {
+async function opprettDialog(data: {
+    tekst?: string;
+    overskrift?: string;
+    settTilFerdigBehandlet?: boolean;
+}): Promise<null | { id: string }> {
     if (!data.tekst && !data.overskrift) {
         return Promise.resolve(null);
     }
 
-    return fetchToJson(OPPRETT_DIALOG_URL, {
+    const dialogUrl = data.settTilFerdigBehandlet ? `${OPPRETT_DIALOG_URL}/egenvurdering` : OPPRETT_DIALOG_URL;
+
+    return fetchToJson(dialogUrl, {
         ...requestConfig(),
         method: 'POST',
         body: JSON.stringify({
@@ -40,6 +47,7 @@ async function opprettDialog(data: { tekst?: string; overskrift?: string }): Pro
         }),
     });
 }
+
 function BehovForVeiledningProvider(props: { children: ReactNode }) {
     const [behovForVeiledning, settBehovForVeiledning] = useState<BehovForVeiledningResponse>(null);
 
