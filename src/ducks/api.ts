@@ -26,7 +26,7 @@ export const requestConfig = (): RequestInit => {
         headers: {
             'Content-Type': 'application/json',
             NAV_CSRF_PROTECTION: getCookie('NAV_CSRF_PROTECTION'),
-            'NAV-Consumer-Id': 'veientilarbeid',
+            'Nav-Consumer-Id': 'veientilarbeid',
             'NAV-Call-Id': nanoid(),
         },
     };
