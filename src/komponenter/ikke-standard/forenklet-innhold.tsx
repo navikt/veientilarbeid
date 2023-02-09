@@ -73,7 +73,7 @@ const ListeElement = (ikon: JSX.Element, innhold: JSX.Element) => {
     );
 };
 
-function IkkeStandard() {
+function ForenkletInnhold() {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
     const { amplitudeData } = useAmplitudeData();
     const { erSykmeldtMedArbeidsgiver } = useBrukerinfoData();
@@ -169,4 +169,4 @@ function IkkeStandard() {
     );
 }
 
-export default IkkeStandard;
+export default ForenkletInnhold;

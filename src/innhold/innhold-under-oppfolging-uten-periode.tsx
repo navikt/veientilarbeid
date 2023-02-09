@@ -6,7 +6,7 @@ import beregnArbeidssokerperioder from '../lib/beregn-arbeidssokerperioder';
 import ReaktiveringWrapper from '../komponenter/reaktivering/reaktivering-wrapper';
 import { Servicegruppe } from '../contexts/oppfolging';
 import InnholdMetrics from './innhold-metrics';
-import IkkeStandard from '../komponenter/ikke-standard/ikke-standard';
+import ForenkletInnhold from '../komponenter/ikke-standard/forenklet-innhold';
 import Motestotte from '../komponenter/ikke-standard/motestotte';
 import Egenvurdering from '../komponenter/situasjonsbestemt/egenvurdering';
 
@@ -28,7 +28,7 @@ const InnholdUnderOppfolgingUtenPeriode = () => {
             <InnholdMetrics />
             <div className={styles.limit}>
                 {skalViseReaktivering && <ReaktiveringWrapper />}
-                <IkkeStandard />
+                <ForenkletInnhold />
                 <Motestotte />
                 <Egenvurdering />
             </div>

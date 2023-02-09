@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
-import IkkeStandard from './ikke-standard';
+import ForenkletInnhold from './forenklet-innhold';
 
-describe('tester at komponenten ikke-standard fungerer som forventet', () => {
+describe('tester at komponenten forenklet-innhold fungerer som forventet', () => {
     test('Viser ikke sykmeldt når bruker IKKE er sykmeldt med arbeidsgiver', async () => {
         const props: ProviderProps = {
             brukerInfo: {
@@ -11,7 +11,7 @@ describe('tester at komponenten ikke-standard fungerer som forventet', () => {
             },
             underOppfolging: { underOppfolging: true },
         };
-        const { container } = render(<IkkeStandard />, { wrapper: contextProviders(props) });
+        const { container } = render(<ForenkletInnhold />, { wrapper: contextProviders(props) });
         expect(container).not.toBeEmptyDOMElement();
         expect(await screen.queryByText('Ditt sykefravær')).not.toBeInTheDocument();
     });
@@ -23,7 +23,7 @@ describe('tester at komponenten ikke-standard fungerer som forventet', () => {
             },
             underOppfolging: { underOppfolging: true },
         };
-        const { container } = render(<IkkeStandard />, { wrapper: contextProviders(providerProps) });
+        const { container } = render(<ForenkletInnhold />, { wrapper: contextProviders(providerProps) });
         expect(container).not.toBeEmptyDOMElement();
         expect(screen.getByText('Ditt sykefravær')).toBeInTheDocument();
         expect(await screen.queryByText(/Meldekort/i)).toBeFalsy();
