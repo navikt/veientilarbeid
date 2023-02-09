@@ -4,7 +4,7 @@ import { useReaktivering } from '../contexts/reaktivering';
 import InnholdMetrics from './innhold-metrics';
 import RegistrertTittel from '../komponenter/registrert-tittel/registrert-tittel';
 import ReaktiveringKvittering from '../komponenter/reaktivering/reaktivering-kvittering';
-import IkkeStandard from '../komponenter/ikke-standard/ikke-standard';
+import ForenkletInnhold from '../komponenter/ikke-standard/forenklet-innhold';
 import Motestotte from '../komponenter/ikke-standard/motestotte';
 import { AutomatiskReaktivert } from '../komponenter/reaktivering/automatisk-reaktivert';
 import { visAutomatiskReaktiveringsKort } from '../lib/vis-automatisk-reaktiverings-kort';
@@ -27,7 +27,7 @@ const InnholdView = () => {
                     <>
                         <ReaktiveringKvittering />
                         <RegistrertTittel />
-                        <IkkeStandard />
+                        <ForenkletInnhold />
                         <Motestotte />
                     </>
                 )}

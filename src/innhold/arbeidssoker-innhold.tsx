@@ -5,7 +5,7 @@ import { useBrukerregistreringData } from '../contexts/brukerregistrering';
 import { useOppfolgingData } from '../contexts/oppfolging';
 
 import InnholdStandard from './innhold-standard';
-import InnholdIkkeStandard from './innhold-ikke-standard';
+import InnholdArbeidssokerForenklet from './innhold-arbeidssoker-forenklet';
 import InnholdSituasjonsbestemt from './innhold-situasjonsbestemt';
 import { ER_STANDARD_INNSATSGRUPPE_URL } from '../ducks/api';
 import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../lib/er-situasjonsbestemt-innsatsgruppe';
@@ -32,7 +32,7 @@ function ArbeidssokerInnhold() {
         return <InnholdSituasjonsbestemt />;
     }
 
-    return <InnholdIkkeStandard />;
+    return <InnholdArbeidssokerForenklet />;
 }
 
 export default ArbeidssokerInnhold;
