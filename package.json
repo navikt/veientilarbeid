@@ -23,19 +23,19 @@
     "dependencies": {
         "@alheimsins/uker-fra-dato": "1.0.4",
         "@alheimsins/virkedager": "2.2.0",
-        "@navikt/ds-css": "2.1.6",
-        "@navikt/ds-icons": "2.1.6",
-        "@navikt/ds-react": "2.1.6",
-        "@snyk/protect": "1.1096.0",
-        "amplitude-js": "8.21.4",
+        "@navikt/ds-css": "2.4.0",
+        "@navikt/ds-icons": "2.4.0",
+        "@navikt/ds-react": "2.4.0",
+        "@snyk/protect": "1.1109.0",
+        "amplitude-js": "8.21.5",
         "classnames": "2.3.2",
-        "core-js": "3.27.2",
+        "core-js": "3.29.0",
         "intersection-observer": "0.12.2",
         "nanoid": "4.0.1",
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "react-in-viewport": "1.0.0-alpha.29",
-        "swr": "2.0.3"
+        "swr": "2.0.4"
     },
     "devDependencies": {
         "@rollup/plugin-terser": "0.4.0",
