@@ -87,6 +87,6 @@
         "workerDirectory": "public"
     },
     "engines": {
-        "node": ">=18.14.1"
+        "node": ">=18.14.2"
     }
 }
