@@ -45,20 +45,16 @@ function Innhold(props: Props) {
 
     return (
         <div className={spacingStyles.mt1}>
-            <BodyShort className={spacingStyles.mb1}>
-                {tekst('vanligsteGrunn')}
-                <ul>
-                    <li>{tekst('meldekortSent')}</li>
-                    <li>{tekst('meldekortNei')}</li>
-                </ul>
-            </BodyShort>
-            <BodyShort className={spacingStyles.mb1}>
-                {tekst('fortsattRegistrert')}
-                <ul>
-                    <li>{tekst('sendMeldekort')}</li>
-                    <li>{tekst('svarJa')}</li>
-                </ul>
-            </BodyShort>
+            <BodyShort className={spacingStyles.mb1}>{tekst('vanligsteGrunn')}</BodyShort>
+            <ul>
+                <li>{tekst('meldekortSent')}</li>
+                <li>{tekst('meldekortNei')}</li>
+            </ul>
+            <BodyShort className={spacingStyles.mb1}>{tekst('fortsattRegistrert')}</BodyShort>
+            <ul>
+                <li>{tekst('sendMeldekort')}</li>
+                <li>{tekst('svarJa')}</li>
+            </ul>
             <BodyShort className={spacingStyles.mb1}>{tekst('konsekvens')}</BodyShort>
         </div>
     );
