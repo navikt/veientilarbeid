@@ -114,7 +114,7 @@ function AutomatiskReaktivert() {
                     </div>
                 </div>
             </div>
-            <AiAInViewport loggTekst="Viser automatisk reaktivert i viewport" />
+            <AiAInViewport loggTekst="Automatisk reaktivert" />
         </Panel>
     );
 }
