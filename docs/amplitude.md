@@ -1,9 +1,15 @@
 # Dokumentasjon av Amplitude i AiA
 
-Aktivitetene i AiA logges til `veientilarbeid.` i PO Arbeid - prod prosjektet.
+Aktivitetene i AiA logges dels til `aia.` og dels til `veientilarbeid.` i PO Arbeid - prod prosjektet.
 Hvilke aktiviteter som logges og hvilke ekstra data som sendes med varierer.
 
 [Dashboard for overordnede metrikker](https://analytics.eu.amplitude.com/nav/dashboard/e-1h7ss35)
+
+## aia.visning
+
+Brukes for å logge når en komponent har blitt vist (synlig i viewPort).
+
+-   `viser` Komponenten som er vist
 
 ## veientilarbeid.visning
 
