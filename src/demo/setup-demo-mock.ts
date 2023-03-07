@@ -169,4 +169,8 @@ export const demo_handlers = [
 
     rest.get(REAKTIVERING_URL, reaktiveringGetResolver),
     rest.post(REAKTIVERING_URL, reaktiveringPostResolver),
+
+    rest.post('https://amplitude.nav.no/collect', (req, res, ctx) => {
+        return res(ctx.status(200));
+    }),
 ];
