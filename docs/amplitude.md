@@ -11,6 +11,8 @@ Brukes for å logge når en komponent har blitt vist (synlig i viewPort).
 
 -   `viser` Komponenten som er vist
 
+Komponenten som sørger for rapporteringen bør alltid legges nederst i komponentenen den skal rapportere på slik at vi sikrer at hele komponenten vises før vi logger til Amplitude
+
 ## veientilarbeid.visning
 
 Brukes for å logge når en komponent har blitt vist (synlig i viewPort).
