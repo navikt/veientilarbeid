@@ -17,21 +17,19 @@ const WrappedViewport: React.ComponentType<Props> = handleViewport(AiAInViewport
 
 function AiAInViewport(props: Props & ViewportProps): JSX.Element {
     const [harVistTilBruker, setHarVistTilBruker] = useState<boolean>(false);
+    const [harLoggetVisning, setHarLoggetVisning] = useState<boolean>(false);
     const { amplitudeData } = useAmplitudeData();
 
     if (props.inViewport && !harVistTilBruker) {
         setHarVistTilBruker(true);
     }
 
-    function loggTilAmplitude() {
-        if (harVistTilBruker) {
-            loggAiAVisning({ viser: props.loggTekst, ...amplitudeData });
-        }
-    }
-
     useEffect(() => {
-        setTimeout(loggTilAmplitude, 2000);
-    }, []);
+        if (harVistTilBruker && !harLoggetVisning) {
+            loggAiAVisning({ viser: props.loggTekst, ...amplitudeData });
+            setHarLoggetVisning(true);
+        }
+    }, [amplitudeData, harVistTilBruker, harLoggetVisning, props.loggTekst]);
 
     return <span ref={props.forwardedRef}></span>;
 }

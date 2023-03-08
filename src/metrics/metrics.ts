@@ -30,7 +30,7 @@ export const loggVisning = (data: AmplitudeStandardVisningsData) => {
 
 // Brukes for å beskrive hva brukerene ser i viewport
 export const loggAiAVisning = (data: AmplitudeStandardVisningsData) => {
-    amplitudeLogger(`aia.visning`, data);
+    amplitudeLogger('aia.visning', data);
 };
 
 export type RendringsMetrikkData = {
