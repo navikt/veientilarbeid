@@ -26,7 +26,7 @@ function AiAInViewport(props: Props & ViewportProps): JSX.Element {
 
     useEffect(() => {
         if (harVistTilBruker && !harLoggetVisning) {
-            loggAiAVisning({ viser: props.loggTekst, ...amplitudeData });
+            loggAiAVisning({ komponent: props.loggTekst, ...amplitudeData });
             setHarLoggetVisning(true);
         }
     }, [amplitudeData, harVistTilBruker, harLoggetVisning, props.loggTekst]);

@@ -21,7 +21,13 @@ export type VisningsMetrikkData = {
     viser: string;
 };
 
+export type InViewportMetrikkData = {
+    komponent: string;
+};
+
 export type AmplitudeStandardVisningsData = VisningsMetrikkData & AmplitudeData;
+
+export type AmplitudeStandardInViewportData = InViewportMetrikkData & AmplitudeData;
 
 // Brukes for å beskrive hva brukerene ser i viewport
 export const loggVisning = (data: AmplitudeStandardVisningsData) => {
@@ -29,8 +35,8 @@ export const loggVisning = (data: AmplitudeStandardVisningsData) => {
 };
 
 // Brukes for å beskrive hva brukerene ser i viewport
-export const loggAiAVisning = (data: AmplitudeStandardVisningsData) => {
-    amplitudeLogger('aia.visning', data);
+export const loggAiAVisning = (data: AmplitudeStandardInViewportData) => {
+    amplitudeLogger('aia.inviewport', data);
 };
 
 export type RendringsMetrikkData = {
