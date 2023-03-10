@@ -16,7 +16,7 @@ veilarbproxy_url: http://pto-proxy.pto.svc.cluster.local/proxy
 fortsettDpSoknadUrl: https://arbeid.dev.nav.no/arbeid/dagpenger/soknad-innsending/soknad
 fortsettNyDpSoknadUrl: https://arbeid.dev.nav.no/dagpenger/soknad
 ingresses:
-  - https://veientilarbeid.dev.nav.no
+  - https://veientilarbeid.intern.dev.nav.no
 externalHosts:
   - navtestb2c.b2clogin.com
   - dekoratoren.dev.nav.no
