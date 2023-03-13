@@ -54,6 +54,8 @@ jobs:
     needs: build-cdn-docker
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Deploy
         uses: nais/deploy/actions/deploy@v1
         env:
@@ -69,6 +71,8 @@ jobs:
     needs: [build-cdn-docker, deploy-dev]
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Deploy
         uses: nais/deploy/actions/deploy@v1
         env:
