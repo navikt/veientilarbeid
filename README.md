@@ -8,7 +8,7 @@ Innholdet skal i størst mulig grad gjenspeile arbeidssøker situasjon.
 
 # Utvikling
 
--   Bruk Node.js v18
+-   Bruk Node.js v18 `nvm use`
 -   Klon [repoet](https://github.com/navikt/veientilarbeid)
 -   Installer avhengigheter `npm ci`
 
