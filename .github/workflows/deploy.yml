@@ -80,26 +80,5 @@ jobs:
           DRY_RUN: false
           CLUSTER: prod-gcp
           RESOURCE: .nais/nais.yaml
+          VAR: image=${{ needs.build-cdn-docker.outputs.image }}
           VARS: .nais/vars-prod.yaml
-
-#  release:
-#    if: github.ref == 'refs/heads/main'
-#    name: Tag and release
-#    needs: deploy-prod
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v1
-#        name: Checkout
-#
-#      - name: Lag tag for image
-#        run: echo "TAG=$(git log -1 --pretty='%ad_%h' --date=format:'%Y%m%d%H%M%S')" >> $GITHUB_ENV
-#
-#      - name: Create release
-#        uses: actions/create-release@v1
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#        with:
-#          tag_name: release/prod@${{ env.TAG }}
-#          release_name: Release ${{ env.TAG }} to prod
-#          prerelease: false
-
