@@ -41,21 +41,15 @@ jobs:
           source: ./dist/js
           destination: '/aia/'
 
-      - name: Lag tag for image
-        run: echo "TAG=$(git log -1 --pretty='%ad_%h' --date=format:'%Y%m%d%H%M%S')" >> $GITHUB_ENV
-
-      - name: Lag full image referanse
-        run: echo "IMAGE=$IMAGE_BASE:$TAG" >> $GITHUB_ENV
-
-      - name: Build app and publish Docker image
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          echo ${GITHUB_TOKEN} | docker login ghcr.io -u ${GITHUB_REPOSITORY} --password-stdin
-          docker build --tag ${IMAGE} . \
-            --build-arg REACT_APP_VERSION_HASH=${{ github.sha }} \
-            --build-arg REACT_APP_BUILD_TIMESTAMP=$(date +'%Y-%m-%dT%H:%M:%S')
-          docker push ${IMAGE}
+      - name: docker-build-push
+        uses: nais/docker-build-push@v0
+        id: docker-build-push
+        with:
+          team: paw
+          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
+    outputs:
+      image: ${{ steps.docker-build-push.outputs.image }}
 
   deploy-dev:
     if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/dev')
@@ -63,38 +57,21 @@ jobs:
     needs: build-cdn-docker
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-        name: Checkout
-
-      - name: Lag tag for image
-        run: echo "TAG=$(git log -1 --pretty='%ad_%h' --date=format:'%Y%m%d%H%M%S')" >> $GITHUB_ENV
-
-      - name: Lag full image referanse
-        run: echo "IMAGE=$IMAGE_BASE:$TAG" >> $GITHUB_ENV
-
       - name: Deploy
         uses: nais/deploy/actions/deploy@master
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: dev-gcp
           RESOURCE: nais/nais.yaml
+          VAR: image=${{ needs.build-cdn-docker.outputs.image }}
           VARS: nais/vars-dev.yaml
 
   deploy-prod:
     if: github.ref == 'refs/heads/main'
     name: Deploy til prod
-    needs: deploy-dev
+    needs: [build-cdn-docker, deploy-dev]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-        name: Checkout
-
-      - name: Lag tag for image
-        run: echo "TAG=$(git log -1 --pretty='%ad_%h' --date=format:'%Y%m%d%H%M%S')" >> $GITHUB_ENV
-
-      - name: Lag full image referanse
-        run: echo "IMAGE=$IMAGE_BASE:$TAG" >> $GITHUB_ENV
-
       - name: Deploy
         uses: nais/deploy/actions/deploy@master
         env:
@@ -104,24 +81,24 @@ jobs:
           RESOURCE: nais/nais.yaml
           VARS: nais/vars-prod.yaml
 
-  release:
-    if: github.ref == 'refs/heads/main'
-    name: Tag and release
-    needs: deploy-prod
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-        name: Checkout
-
-      - name: Lag tag for image
-        run: echo "TAG=$(git log -1 --pretty='%ad_%h' --date=format:'%Y%m%d%H%M%S')" >> $GITHUB_ENV
-
-      - name: Create release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: release/prod@${{ env.TAG }}
-          release_name: Release ${{ env.TAG }} to prod
-          prerelease: false
+#  release:
+#    if: github.ref == 'refs/heads/main'
+#    name: Tag and release
+#    needs: deploy-prod
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v1
+#        name: Checkout
+#
+#      - name: Lag tag for image
+#        run: echo "TAG=$(git log -1 --pretty='%ad_%h' --date=format:'%Y%m%d%H%M%S')" >> $GITHUB_ENV
+#
+#      - name: Create release
+#        uses: actions/create-release@v1
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        with:
+#          tag_name: release/prod@${{ env.TAG }}
+#          release_name: Release ${{ env.TAG }} to prod
+#          prerelease: false
 
