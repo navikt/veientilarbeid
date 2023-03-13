@@ -59,9 +59,9 @@ jobs:
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: dev-gcp
-          RESOURCE: nais/nais.yaml
+          RESOURCE: .nais/nais.yaml
           VAR: image=${{ needs.build-cdn-docker.outputs.image }}
-          VARS: nais/vars-dev.yaml
+          VARS: .nais/vars-dev.yaml
 
   deploy-prod:
     if: github.ref == 'refs/heads/main'
@@ -75,8 +75,8 @@ jobs:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           DRY_RUN: false
           CLUSTER: prod-gcp
-          RESOURCE: nais/nais.yaml
-          VARS: nais/vars-prod.yaml
+          RESOURCE: .nais/nais.yaml
+          VARS: .nais/vars-prod.yaml
 
 #  release:
 #    if: github.ref == 'refs/heads/main'
