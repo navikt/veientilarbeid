@@ -33,7 +33,7 @@ export type BrukergruppeType =
     | 'annet'
     | 'ukjent'
     | 'standard og ukjent alder'
-    | 'standard og over 55 år';
+    | 'standard og over 59 år';
 
 export type AmplitudeData = {
     brukergruppe: BrukergruppeType;
