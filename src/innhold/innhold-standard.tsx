@@ -1,7 +1,7 @@
-import { useEgenvurderingData } from '../contexts/egenvurdering';
 import { useArbeidssokerPerioder } from '../contexts/arbeidssoker';
 import { useFeatureToggleData } from '../contexts/feature-toggles';
 import { useReaktivering } from '../contexts/reaktivering';
+import { useBehovForVeiledning } from '../contexts/behov-for-veiledning';
 
 import InnholdMetrics from './innhold-metrics';
 import RegistrertTittel from '../komponenter/registrert-tittel/registrert-tittel';
@@ -11,7 +11,6 @@ import DagpengerOgYtelser from '../komponenter/dagpenger/dagpenger-og-ytelser';
 import Meldekort from '../komponenter/meldekort/meldekort';
 import HjelpOgStotte from '../komponenter/hjelp-og-stotte/hjelp-og-stotte';
 import Aktivitetsplan from '../komponenter/aktivitetsplan/aktivitetsplan';
-import KvitteringEgenvurdering from '../komponenter/kvitteringer/kvittering-egenvurdering';
 import Behovsavklaring from '../komponenter/behovsavklaring-oppfolging/behovsavklaring-oppfolging';
 import beregnArbeidssokerperioder from '../lib/beregn-arbeidssokerperioder';
 import { AutomatiskReaktivert } from '../komponenter/reaktivering/automatisk-reaktivert';
@@ -21,20 +20,16 @@ import styles from './innhold.module.css';
 
 const InnholdStandard = () => {
     const arbeidssokerperioderData = useArbeidssokerPerioder();
-    const egenvurderingData = useEgenvurderingData();
     const featureToggleData = useFeatureToggleData();
     const { reaktivering } = useReaktivering();
+    const behov = useBehovForVeiledning();
 
-    const harEgenvurderingbesvarelse = egenvurderingData !== null;
+    const { behovForVeiledning } = behov;
     const { harAktivArbeidssokerperiode, aktivPeriodeStart } = beregnArbeidssokerperioder(arbeidssokerperioderData);
-    const harSistSvartDato =
-        harEgenvurderingbesvarelse && egenvurderingData.sistOppdatert
-            ? new Date(egenvurderingData.sistOppdatert)
-            : null;
+    const harSistSvartDato = behovForVeiledning && behovForVeiledning.dato ? new Date(behovForVeiledning.dato) : null;
     const harPeriodeStart = harAktivArbeidssokerperiode === 'Ja' ? new Date(aktivPeriodeStart) : null;
-    const harGyldigEgenvurderingsbesvarelse = harSistSvartDato && harPeriodeStart && harSistSvartDato > harPeriodeStart;
 
-    const visBehovsAvklaring = !harGyldigEgenvurderingsbesvarelse;
+    const harGyldigBehovsvurdering = harSistSvartDato && harPeriodeStart && harSistSvartDato > harPeriodeStart;
 
     const skalViseReaktiveringsKort = visAutomatiskReaktiveringsKort(featureToggleData, reaktivering);
 
@@ -47,12 +42,11 @@ const InnholdStandard = () => {
                 ) : (
                     <>
                         <ReaktiveringKvittering />
-                        <KvitteringEgenvurdering />
                         <RegistrertTittel />
-                        {visBehovsAvklaring ? <Behovsavklaring /> : <HjelpOgStotte />}
+                        {harGyldigBehovsvurdering ? <HjelpOgStotte /> : <Behovsavklaring />}
                         <DagpengerOgYtelser />
                         <Meldekort />
-                        {visBehovsAvklaring ? null : <Aktivitetsplan />}
+                        {harGyldigBehovsvurdering ? <Aktivitetsplan /> : null}
                         <GjelderFraDato />
                     </>
                 )}
