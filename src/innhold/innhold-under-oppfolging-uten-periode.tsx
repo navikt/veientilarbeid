@@ -8,7 +8,6 @@ import { Servicegruppe } from '../contexts/oppfolging';
 import InnholdMetrics from './innhold-metrics';
 import ForenkletInnhold from '../komponenter/ikke-standard/forenklet-innhold';
 import Motestotte from '../komponenter/ikke-standard/motestotte';
-import Egenvurdering from '../komponenter/situasjonsbestemt/egenvurdering';
 
 import styles from './innhold.module.css';
 
@@ -30,7 +29,6 @@ const InnholdUnderOppfolgingUtenPeriode = () => {
                 {skalViseReaktivering && <ReaktiveringWrapper />}
                 <ForenkletInnhold />
                 <Motestotte />
-                <Egenvurdering />
             </div>
         </>
     );

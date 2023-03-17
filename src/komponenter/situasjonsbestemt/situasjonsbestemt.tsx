@@ -3,7 +3,7 @@ import { Bandage, Dialog, Laptop, Notes, Task } from '@navikt/ds-icons';
 
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
-import { useEgenvurderingData } from '../../contexts/egenvurdering';
+import { useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
 import { useSprakValg } from '../../contexts/sprak';
 import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
 
@@ -11,7 +11,6 @@ import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { aktivitetsplanLenke, dialogLenke, sykefravaerLenke } from '../../innhold/lenker';
 import { loggAktivitet } from '../../metrics/metrics';
 import Behovsavklaring from '../behovsavklaring-oppfolging/behovsavklaring-oppfolging';
-import Egenvurdering from '../situasjonsbestemt/egenvurdering';
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 import MeldekortHovedInnhold from '../meldekort/meldekort-hovedinnhold';
 
@@ -82,18 +81,14 @@ function Situasjonsbestemt() {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
     const { amplitudeData } = useAmplitudeData();
     const { erSykmeldtMedArbeidsgiver } = useBrukerinfoData();
-    const egenvurderingData = useEgenvurderingData();
     const arbeidssokerperioderData = useArbeidssokerPerioder();
-    const harEgenvurderingbesvarelse = egenvurderingData !== null;
+    const behov = useBehovForVeiledning();
+    const { behovForVeiledning } = behov;
     const { harAktivArbeidssokerperiode, aktivPeriodeStart } = beregnArbeidssokerperioder(arbeidssokerperioderData);
-    const harSistSvartDato =
-        harEgenvurderingbesvarelse && egenvurderingData.sistOppdatert
-            ? new Date(egenvurderingData.sistOppdatert)
-            : null;
+    const harSistSvartDato = behovForVeiledning && behovForVeiledning.dato ? new Date(behovForVeiledning.dato) : null;
     const harPeriodeStart = harAktivArbeidssokerperiode === 'Ja' ? new Date(aktivPeriodeStart) : null;
-    const harGyldigEgenvurderingsbesvarelse = harSistSvartDato && harPeriodeStart && harSistSvartDato > harPeriodeStart;
 
-    const visBehovsAvklaring = !harGyldigEgenvurderingsbesvarelse;
+    const harGyldigBehovsvurdering = harSistSvartDato && harPeriodeStart && harSistSvartDato > harPeriodeStart;
 
     const handleClick = (action: string) => {
         loggAktivitet({ aktivitet: action, ...amplitudeData });
@@ -132,8 +127,8 @@ function Situasjonsbestemt() {
         <>
             <Panel className={`${styles.mtn1} ${spacingStyles.mb1}`}>
                 <ul className={styles.ikkeStandardListe}>
-                    {visBehovsAvklaring ? <Behovsavklaring /> : <DialogPanel />}
-                    {!visBehovsAvklaring &&
+                    {harGyldigBehovsvurdering ? <DialogPanel /> : <Behovsavklaring />}
+                    {harGyldigBehovsvurdering &&
                         ListeElement(
                             <Task aria-hidden="true" />,
                             <div>
@@ -189,7 +184,6 @@ function Situasjonsbestemt() {
                     )}
                 </ul>
             </Panel>
-            {!visBehovsAvklaring && <Egenvurdering />}
         </>
     );
 }
