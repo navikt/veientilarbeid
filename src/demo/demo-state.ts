@@ -37,7 +37,6 @@ export enum DemoData {
     SYKMELDT_MED_ARBEIDSGIVER = 'sykmeldtMedArbeidsGiver',
     ULESTE_DIALOGER = 'ulesteDialoger',
     RESERVASJON_KRR = 'reservasjonKRR',
-    EGENVURDERING = 'egenvurdering',
     AUTENTISERINGS_INFO = 'autentiseringsInfo',
     MELDEKORT = 'meldekort',
     MOTESTOTTE = 'motestotte',
@@ -92,10 +91,6 @@ export const settRegistreringType = (value: string) => settDemoState(DemoData.RE
 
 export const hentUlesteDialoger = () => hentDemoState(DemoData.ULESTE_DIALOGER) === 'true';
 export const settUlesteDialoger = (value: boolean) => settDemoState(DemoData.ULESTE_DIALOGER, value);
-
-export const hentEgenvurdering = (): JSONObject | null =>
-    hentDemoState(DemoData.EGENVURDERING) === 'true' ? { sistOppdatert: '2019-05-12T09:39:01.635+02:00' } : null;
-export const settEgenvurdering = (value: boolean) => settDemoState(DemoData.EGENVURDERING, value);
 
 export const hentMotestotte = (): JSONObject | null =>
     hentDemoState(DemoData.MOTESTOTTE) === 'true' ? { dato: '2019-06-06T09:39:01.635+02:00' } : null;

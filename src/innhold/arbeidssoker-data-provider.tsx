@@ -1,12 +1,10 @@
 import * as React from 'react';
 import * as Oppfolging from '../contexts/oppfolging';
-import * as Egenvurdering from '../contexts/egenvurdering';
 import * as Brukerregistrering from '../contexts/brukerregistrering';
 import { fetchData } from '../ducks/api-utils';
 import {
     BRUKERINFO_URL,
     BRUKERREGISTRERING_URL,
-    EGENVURDERINGBESVARELSE_URL,
     MOTESTOTTE_URL,
     ULESTEDIALOGER_URL,
     VEILARBOPPFOLGING_URL,
@@ -34,7 +32,6 @@ const ArbeidssokerDataProvider = (props: Props) => {
         Brukerregistrering.initialState
     );
     const [oppfolgingState, setOppfolgingState] = React.useState<Oppfolging.State>(Oppfolging.initialState);
-    const [egenvurderingState, setEgenvurderingState] = React.useState<Egenvurdering.State>(Egenvurdering.initialState);
     const [brukerInfoState, setBrukerInfoState] = React.useState<BrukerInfo.State>(BrukerInfo.initialState);
     const [motestotteState, setMotestotteState] = React.useState<Motestotte.State>(Motestotte.initialState);
     const [ulesteDialogerState, setUlesteDialogerState] = React.useState<UlesteDialoger.State>(
@@ -47,11 +44,6 @@ const ArbeidssokerDataProvider = (props: Props) => {
             brukerregistreringState,
             setBrukerregistreringState,
             BRUKERREGISTRERING_URL
-        );
-        fetchData<Egenvurdering.State, Egenvurdering.Data>(
-            egenvurderingState,
-            setEgenvurderingState,
-            EGENVURDERINGBESVARELSE_URL
         );
         fetchData<BrukerInfo.State, BrukerInfo.Data>(brukerInfoState, setBrukerInfoState, BRUKERINFO_URL);
         fetchData<UlesteDialoger.State, UlesteDialoger.Data>(
@@ -71,33 +63,29 @@ const ArbeidssokerDataProvider = (props: Props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [brukerregistreringState]);
 
-    const avhengigheter = [oppfolgingState, brukerregistreringState, egenvurderingState, brukerInfoState];
+    const avhengigheter = [oppfolgingState, brukerregistreringState, brukerInfoState];
 
     return (
         <Innholdslaster feilmeldingKomponent={<Feilmelding />} storrelse="XXL" avhengigheter={avhengigheter}>
             <Oppfolging.OppfolgingContext.Provider value={oppfolgingState}>
                 <Brukerregistrering.BrukerregistreringContext.Provider value={brukerregistreringState}>
-                    <Egenvurdering.EgenvurderingContext.Provider value={egenvurderingState}>
-                        <BrukerInfo.BrukerInfoContext.Provider value={brukerInfoState}>
-                            <Motestotte.MotestotteContext.Provider value={motestotteState}>
-                                <UlesteDialoger.UlesteDialogerContext.Provider value={ulesteDialogerState}>
-                                    <ProfilProvider>
-                                        <BehovForVeiledningProvider>
-                                            <GjelderFraDatoModalProvider>
-                                                <GjelderFraDatoProvider>
-                                                    <AmplitudeProvider>
-                                                        <DagpengerStatusProvider>
-                                                            {props.children}
-                                                        </DagpengerStatusProvider>
-                                                    </AmplitudeProvider>
-                                                </GjelderFraDatoProvider>
-                                            </GjelderFraDatoModalProvider>
-                                        </BehovForVeiledningProvider>
-                                    </ProfilProvider>
-                                </UlesteDialoger.UlesteDialogerContext.Provider>
-                            </Motestotte.MotestotteContext.Provider>
-                        </BrukerInfo.BrukerInfoContext.Provider>
-                    </Egenvurdering.EgenvurderingContext.Provider>
+                    <BrukerInfo.BrukerInfoContext.Provider value={brukerInfoState}>
+                        <Motestotte.MotestotteContext.Provider value={motestotteState}>
+                            <UlesteDialoger.UlesteDialogerContext.Provider value={ulesteDialogerState}>
+                                <ProfilProvider>
+                                    <BehovForVeiledningProvider>
+                                        <GjelderFraDatoModalProvider>
+                                            <GjelderFraDatoProvider>
+                                                <AmplitudeProvider>
+                                                    <DagpengerStatusProvider>{props.children}</DagpengerStatusProvider>
+                                                </AmplitudeProvider>
+                                            </GjelderFraDatoProvider>
+                                        </GjelderFraDatoModalProvider>
+                                    </BehovForVeiledningProvider>
+                                </ProfilProvider>
+                            </UlesteDialoger.UlesteDialogerContext.Provider>
+                        </Motestotte.MotestotteContext.Provider>
+                    </BrukerInfo.BrukerInfoContext.Provider>
                 </Brukerregistrering.BrukerregistreringContext.Provider>
             </Oppfolging.OppfolgingContext.Provider>
         </Innholdslaster>

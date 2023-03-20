@@ -3,7 +3,6 @@ import { rest } from 'msw';
 import {
     BRUKERINFO_URL,
     BRUKERREGISTRERING_URL,
-    EGENVURDERINGBESVARELSE_URL,
     FEATURE_URL,
     MELDEKORTSTATUS_URL,
     MOTESTOTTE_URL,
@@ -27,7 +26,6 @@ import {
 import {
     hentAlder,
     hentAutentiseringsInfo,
-    hentEgenvurdering,
     hentFeatureToggles,
     hentFormidlingsgruppe,
     hentMotestotte,
@@ -93,8 +91,6 @@ export const demo_handlers = [
     msw_get(ULESTEDIALOGER_URL, {
         antallUleste: hentUlesteDialoger() ? randomUlesteDialoger() : 0,
     }),
-
-    msw_get(EGENVURDERINGBESVARELSE_URL, hentEgenvurdering()),
 
     msw_get(MOTESTOTTE_URL, hentMotestotte()),
 

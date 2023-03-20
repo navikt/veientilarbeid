@@ -5,7 +5,6 @@ import InnholdMetrics from './innhold-metrics';
 import RegistrertTittel from '../komponenter/registrert-tittel/registrert-tittel';
 import ReaktiveringKvittering from '../komponenter/reaktivering/reaktivering-kvittering';
 import Situasjonsbestemt from '../komponenter/situasjonsbestemt/situasjonsbestemt';
-import KvitteringEgenvurdering from '../komponenter/kvitteringer/kvittering-egenvurdering';
 import { AutomatiskReaktivert } from '../komponenter/reaktivering/automatisk-reaktivert';
 import { visAutomatiskReaktiveringsKort } from '../lib/vis-automatisk-reaktiverings-kort';
 
@@ -26,7 +25,6 @@ const InnholdSituasjonsbestemt = () => {
                 ) : (
                     <>
                         <ReaktiveringKvittering />
-                        <KvitteringEgenvurdering />
                         <RegistrertTittel />
                         <Situasjonsbestemt />
                     </>

@@ -21,7 +21,6 @@ import {
     hentDagRelativTilFastsattMeldedag,
     hentDemoState,
     hentDpStatus,
-    hentEgenvurdering,
     hentFormidlingsgruppe,
     hentKvitteringStatus,
     hentMotestotte,
@@ -40,7 +39,6 @@ import {
     settAutentiseringsInfo,
     settDemoState,
     settDpStatus,
-    settEgenvurdering,
     settFeatureToggles,
     settFormidlingsgruppe,
     settKvitteringStatus,
@@ -79,7 +77,6 @@ import { settBehovForVeiledning } from './demo-state-behov-for-veiledning';
 const DemoDashboard = () => {
     const [flerevalgOpen, setFlerevalgOpen] = React.useState(false);
     const SYKMELDT_MED_ARBEIDSGIVER = DemoData.SYKMELDT_MED_ARBEIDSGIVER;
-    const EGENVURDERING = DemoData.EGENVURDERING;
     const MOTESTOTTE = DemoData.MOTESTOTTE;
     const ULESTE_DIALOGER = DemoData.ULESTE_DIALOGER;
     const AUTENTISERINGS_INFO = DemoData.AUTENTISERINGS_INFO;
@@ -183,8 +180,6 @@ const DemoDashboard = () => {
         const element = e.currentTarget as HTMLInputElement;
         if (element.id === SYKMELDT_MED_ARBEIDSGIVER) {
             settSykmeldtMedArbeidsgiver(element.checked);
-        } else if (element.id === EGENVURDERING) {
-            settEgenvurdering(element.checked);
         } else if (element.id === MOTESTOTTE) {
             settMotestotte(element.checked);
         } else if (FEATURE_TOGGLES.includes(element.id)) {
@@ -597,14 +592,6 @@ const DemoDashboard = () => {
                                                 onChange={handleClick}
                                             >
                                                 Uleste dialoger
-                                            </Checkbox>
-                                            <Checkbox
-                                                id={EGENVURDERING}
-                                                value={EGENVURDERING}
-                                                checked={!!hentEgenvurdering()}
-                                                onChange={handleClick}
-                                            >
-                                                Lagret egenvurdering
                                             </Checkbox>
                                             <Checkbox
                                                 id={MOTESTOTTE}
