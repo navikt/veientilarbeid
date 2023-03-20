@@ -1,6 +1,5 @@
 import AuthResponse from './auth-mock';
 import ulesteDialogerResponse from './ulestedialoger-mock';
-import egenvurderingbesvarelseResponse from './egenvurderingbesvarelse-mock';
 import brukerRegistreringResponse from './brukerregistrering-standard-mock';
 import motestotteResponse from './motestotte-mock';
 import featureTogglesResponse from './feature-toggles-mock';
@@ -15,7 +14,6 @@ import msw_get, { msw_post } from './msw-utils';
 import {
     BRUKERINFO_URL,
     BRUKERREGISTRERING_URL,
-    EGENVURDERINGBESVARELSE_URL,
     FEATURE_URL,
     MELDEKORTSTATUS_URL,
     MOTESTOTTE_URL,
@@ -42,7 +40,6 @@ export const handlers = [
     msw_get(AUTH_API, AuthResponse),
     msw_get(MOTESTOTTE_URL, motestotteResponse, 204),
     msw_get(FEATURE_URL, featureTogglesResponse),
-    msw_get(EGENVURDERINGBESVARELSE_URL, egenvurderingbesvarelseResponse),
     msw_get(BRUKERREGISTRERING_URL, brukerRegistreringResponse),
     msw_get(ULESTEDIALOGER_URL, ulesteDialogerResponse),
     msw_get(BRUKERINFO_URL, brukerInfoResponse),

@@ -5,7 +5,6 @@ import {
     BRUKERINFO_URL,
     BRUKERREGISTRERING_URL,
     DP_INNSYN_URL,
-    EGENVURDERINGBESVARELSE_URL,
     ER_STANDARD_INNSATSGRUPPE_URL,
     FEATURE_URL,
     GJELDER_FRA_DATO_URL,
@@ -22,7 +21,6 @@ import { InnloggingsNiva } from '../contexts/autentisering';
 import arbeidssoker from '../mocks/arbeidssoker-niva3-mock';
 import { AMPLITUDE_ENDPOINT } from '../utils/konstanter';
 import motestotteResponse from '../mocks/motestotte-mock';
-import egenvurderingbesvarelseResponse from '../mocks/egenvurderingbesvarelse-mock';
 import brukerRegistreringResponse from '../mocks/brukerregistrering-standard-mock';
 import ulesteDialogerResponse from '../mocks/ulestedialoger-mock';
 import brukerInfoResponse from '../mocks/bruker-info-mock';
@@ -48,7 +46,6 @@ export const initielleKallHandlers = [
 export const standardHandlers = [
     msw_get(ER_STANDARD_INNSATSGRUPPE_URL, true),
     msw_get(MOTESTOTTE_URL, motestotteResponse, 204),
-    msw_get(EGENVURDERINGBESVARELSE_URL, egenvurderingbesvarelseResponse),
     msw_get(BRUKERREGISTRERING_URL, brukerRegistreringResponse),
     msw_get(ULESTEDIALOGER_URL, ulesteDialogerResponse),
     msw_get(BRUKERINFO_URL, brukerInfoResponse),
@@ -64,7 +61,6 @@ export const standardHandlers = [
 export const ikkeStandardHandlers = [
     msw_get(ER_STANDARD_INNSATSGRUPPE_URL, false),
     msw_get(MOTESTOTTE_URL, motestotteResponse, 204),
-    msw_get(EGENVURDERINGBESVARELSE_URL, egenvurderingbesvarelseResponse),
     msw_get(BRUKERREGISTRERING_URL, brukerRegistreringResponse),
     msw_get(BRUKERINFO_URL, brukerInfoResponse),
     msw_get(VEILARBOPPFOLGING_URL, oppfolgingResponse),

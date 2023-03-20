@@ -6,7 +6,6 @@ import { AmplitudeData } from '../metrics/amplitude-utils';
 import * as Autentisering from '../contexts/autentisering';
 import * as Brukerregistrering from '../contexts/brukerregistrering';
 import * as FeatureToggle from '../contexts/feature-toggles';
-import * as Egenvurdering from '../contexts/egenvurdering';
 import * as Oppfolging from '../contexts/oppfolging';
 import * as UlesteDialoger from '../contexts/ulestedialoger';
 import * as BrukerInfo from '../contexts/bruker-info';
@@ -28,7 +27,6 @@ export type ProviderProps = {
     amplitude?: DeepPartial<AmplitudeData>;
     brukerregistrering?: DeepPartial<Brukerregistrering.Data> | null;
     featureToggle?: DeepPartial<FeatureToggle.Data>;
-    egenvurdering?: DeepPartial<Egenvurdering.Data>;
     oppfolging?: DeepPartial<Oppfolging.Data>;
     ulesteDialoger?: DeepPartial<UlesteDialoger.Data>;
     brukerInfo?: DeepPartial<BrukerInfo.Data>;
@@ -69,58 +67,48 @@ export const contextProviders = function (props: ProviderProps): React.FunctionC
                                     props.ulesteDialoger && { data: props.ulesteDialoger }
                                 )}
                             >
-                                <Egenvurdering.EgenvurderingContext.Provider
+                                <Oppfolging.OppfolgingContext.Provider
                                     value={merge(
-                                        Egenvurdering.initialState,
-                                        props.egenvurdering && { data: props.egenvurdering }
+                                        Oppfolging.initialState,
+                                        props.oppfolging && { data: props.oppfolging }
                                     )}
                                 >
-                                    <Oppfolging.OppfolgingContext.Provider
+                                    <Motestotte.MotestotteContext.Provider
                                         value={merge(
-                                            Oppfolging.initialState,
-                                            props.oppfolging && { data: props.oppfolging }
+                                            Motestotte.initialState,
+                                            props.motestotte && { data: props.motestotte }
                                         )}
                                     >
-                                        <Motestotte.MotestotteContext.Provider
-                                            value={merge(
-                                                Motestotte.initialState,
-                                                props.motestotte && { data: props.motestotte }
-                                            )}
+                                        <Amplitude.AmplitudeContext.Provider
+                                            value={{
+                                                amplitudeData: merge(Amplitude.initialAmplitudeData, props.amplitude),
+                                                oppdaterAmplitudeData: () => {},
+                                            }}
                                         >
-                                            <Amplitude.AmplitudeContext.Provider
-                                                value={{
-                                                    amplitudeData: merge(
-                                                        Amplitude.initialAmplitudeData,
-                                                        props.amplitude
-                                                    ),
-                                                    oppdaterAmplitudeData: () => {},
-                                                }}
+                                            <FeatureToggle.FeaturetoggleContext.Provider
+                                                value={merge(
+                                                    FeatureToggle.initialState,
+                                                    props.featureToggle && {
+                                                        data: props.featureToggle,
+                                                    }
+                                                )}
                                             >
-                                                <FeatureToggle.FeaturetoggleContext.Provider
-                                                    value={merge(
-                                                        FeatureToggle.initialState,
-                                                        props.featureToggle && {
-                                                            data: props.featureToggle,
-                                                        }
-                                                    )}
+                                                <ProfilContext.Provider
+                                                    value={{
+                                                        profil: props.profil || null,
+                                                        lagreProfil: () => Promise.resolve(),
+                                                    }}
                                                 >
-                                                    <ProfilContext.Provider
-                                                        value={{
-                                                            profil: props.profil || null,
-                                                            lagreProfil: () => Promise.resolve(),
-                                                        }}
+                                                    <MeldepliktContext.Provider
+                                                        value={{ meldeplikt: props.meldeplikt || null }}
                                                     >
-                                                        <MeldepliktContext.Provider
-                                                            value={{ meldeplikt: props.meldeplikt || null }}
-                                                        >
-                                                            {children}
-                                                        </MeldepliktContext.Provider>
-                                                    </ProfilContext.Provider>
-                                                </FeatureToggle.FeaturetoggleContext.Provider>
-                                            </Amplitude.AmplitudeContext.Provider>
-                                        </Motestotte.MotestotteContext.Provider>
-                                    </Oppfolging.OppfolgingContext.Provider>
-                                </Egenvurdering.EgenvurderingContext.Provider>
+                                                        {children}
+                                                    </MeldepliktContext.Provider>
+                                                </ProfilContext.Provider>
+                                            </FeatureToggle.FeaturetoggleContext.Provider>
+                                        </Amplitude.AmplitudeContext.Provider>
+                                    </Motestotte.MotestotteContext.Provider>
+                                </Oppfolging.OppfolgingContext.Provider>
                             </UlesteDialoger.UlesteDialogerContext.Provider>
                         </Brukerregistrering.BrukerregistreringContext.Provider>
                     </BrukerInfo.BrukerInfoContext.Provider>
