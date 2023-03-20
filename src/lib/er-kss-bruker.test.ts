@@ -41,9 +41,6 @@ const grunndata = {
             teksterForBesvarelse: [],
         },
     },
-    egenvurderingData: {
-        sistOppdatert: plussDager(new Date(), -78).toISOString(),
-    },
     featuretoggleData: {
         'veientilarbeid.egenvurderinguke12': true,
     },
