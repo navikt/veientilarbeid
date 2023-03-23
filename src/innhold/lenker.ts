@@ -37,8 +37,8 @@ const START_SAMTALE_URL = {
 };
 
 const ARBEIDSSOKERREGISTRERING_URL = {
-    local: 'https://arbeid.dev.nav.no/arbeid/registrering',
-    development: 'https://arbeid.dev.nav.no/arbeid/registrering',
+    local: 'https://arbeid.intern.dev.nav.no/arbeid/registrering',
+    development: 'https://arbeid.intern.dev.nav.no/arbeid/registrering',
     production: 'https://www.nav.no/arbeid/registrering',
 };
 
