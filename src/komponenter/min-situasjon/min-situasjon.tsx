@@ -1,5 +1,5 @@
-import { SelfService } from '@navikt/ds-icons';
-import { Detail, Panel } from '@navikt/ds-react';
+import { Calender } from '@navikt/ds-icons';
+import { Detail, Heading, Panel } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
 
@@ -11,12 +11,12 @@ import flexStyles from '../../flex.module.css';
 
 const TEKSTER = {
     nb: {
-        heading: 'Min situasjon',
-        readMoreHeading: 'Hva slags hjelp kan jeg få?',
+        detail: 'Min situasjon',
+        heading: 'Min arbeidssøkersituasjon',
     },
     en: {
-        heading: 'My situation',
-        readMoreHeading: 'What kind of help can I get?',
+        detail: 'My situation',
+        heading: 'My situation as job seeker',
     },
 };
 
@@ -34,12 +34,15 @@ function MinSituasjon(props: any) {
                     fontSize: 'var(--a-font-size-heading-medium)',
                 }}
             >
-                <SelfService aria-hidden="true" />
+                <Calender aria-hidden="true" />
             </span>
             <div className={spacingStyles.fullWidth}>
                 <Detail uppercase style={{ marginTop: '-1rem' }}>
-                    {tekst('heading')}
+                    {tekst('detail')}
                 </Detail>
+                <Heading className={spacingStyles.blokkXs} size="medium">
+                    {tekst('heading')}
+                </Heading>
                 <InnsynLesMer />
             </div>
         </Panel>
