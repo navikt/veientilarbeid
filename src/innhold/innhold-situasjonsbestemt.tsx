@@ -7,6 +7,7 @@ import ReaktiveringKvittering from '../komponenter/reaktivering/reaktivering-kvi
 import Situasjonsbestemt from '../komponenter/situasjonsbestemt/situasjonsbestemt';
 import { AutomatiskReaktivert } from '../komponenter/reaktivering/automatisk-reaktivert';
 import { visAutomatiskReaktiveringsKort } from '../lib/vis-automatisk-reaktiverings-kort';
+import MinSituasjon from '../komponenter/min-situasjon/min-situasjon';
 
 import styles from './innhold.module.css';
 
@@ -26,6 +27,7 @@ const InnholdSituasjonsbestemt = () => {
                     <>
                         <ReaktiveringKvittering />
                         <RegistrertTittel />
+                        <MinSituasjon />
                         <Situasjonsbestemt />
                     </>
                 )}

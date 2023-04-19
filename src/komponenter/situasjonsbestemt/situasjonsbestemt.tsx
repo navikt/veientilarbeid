@@ -124,67 +124,65 @@ function Situasjonsbestemt() {
     };
 
     return (
-        <>
-            <Panel className={`${styles.mtn1} ${spacingStyles.mb1}`}>
-                <ul className={styles.ikkeStandardListe}>
-                    {harGyldigBehovsvurdering ? <DialogPanel /> : <Behovsavklaring />}
-                    {harGyldigBehovsvurdering &&
-                        ListeElement(
-                            <Task aria-hidden="true" />,
-                            <div>
-                                <Heading size="medium">{tekst('aktivitetsplan.overskrift')}</Heading>
-                                <BodyLong>
-                                    {tekst('aktivitetsplan.bruke')}{' '}
-                                    <Link
-                                        href={aktivitetsplanLenke}
-                                        onClick={() => handleClick('Går til aktivitetsplanen fra situasjonsbestemt')}
-                                    >
-                                        {tekst('aktivitetsplan.lenketekst')}
-                                    </Link>{' '}
-                                    {tekst('aktivitetsplan.holde-orden')}
-                                </BodyLong>
-                            </div>
-                        )}
-                    {erSykmeldtMedArbeidsgiver ? (
-                        <DittSykefravaer />
-                    ) : (
-                        ListeElement(<Notes aria-hidden="true" />, <MeldekortHovedInnhold />)
-                    )}
-                    {ListeElement(
-                        <Laptop aria-hidden="true" />,
+        <Panel className={`${styles.mtn1} ${spacingStyles.mb1}`}>
+            <ul className={styles.ikkeStandardListe}>
+                {harGyldigBehovsvurdering ? <DialogPanel /> : <Behovsavklaring />}
+                {harGyldigBehovsvurdering &&
+                    ListeElement(
+                        <Task aria-hidden="true" />,
                         <div>
-                            <Heading size="medium">{tekst('sporsmal.overskrift')}</Heading>
+                            <Heading size="medium">{tekst('aktivitetsplan.overskrift')}</Heading>
                             <BodyLong>
-                                {tekst('sporsmal')}{' '}
+                                {tekst('aktivitetsplan.bruke')}{' '}
                                 <Link
-                                    href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
-                                    onClick={() => handleClick(`Går til STO fra situasjonsbestemt`)}
+                                    href={aktivitetsplanLenke}
+                                    onClick={() => handleClick('Går til aktivitetsplanen fra situasjonsbestemt')}
                                 >
-                                    {tekst('skrivTilOss')}
+                                    {tekst('aktivitetsplan.lenketekst')}
                                 </Link>{' '}
-                                {tekst('eller')}{' '}
-                                <Link
-                                    href="https://www.nav.no/person/kontakt-oss/chat/"
-                                    onClick={() => handleClick(`Går til chat fra fra situasjonsbestemt`)}
-                                >
-                                    {tekst('chat')}
-                                </Link>
-                                {'. '}
-                                {tekst('les-om-hjelp')}{' '}
-                                <Link
-                                    href={'https://www.nav.no'}
-                                    target="_blank"
-                                    onClick={() => handleClick('Går til nav.no fra fra situasjonsbestemt')}
-                                >
-                                    nav.no ({tekst('ny-fane')})
-                                </Link>
-                                .
+                                {tekst('aktivitetsplan.holde-orden')}
                             </BodyLong>
                         </div>
                     )}
-                </ul>
-            </Panel>
-        </>
+                {erSykmeldtMedArbeidsgiver ? (
+                    <DittSykefravaer />
+                ) : (
+                    ListeElement(<Notes aria-hidden="true" />, <MeldekortHovedInnhold />)
+                )}
+                {ListeElement(
+                    <Laptop aria-hidden="true" />,
+                    <div>
+                        <Heading size="medium">{tekst('sporsmal.overskrift')}</Heading>
+                        <BodyLong>
+                            {tekst('sporsmal')}{' '}
+                            <Link
+                                href="https://mininnboks.nav.no/sporsmal/skriv/ARBD"
+                                onClick={() => handleClick(`Går til STO fra situasjonsbestemt`)}
+                            >
+                                {tekst('skrivTilOss')}
+                            </Link>{' '}
+                            {tekst('eller')}{' '}
+                            <Link
+                                href="https://www.nav.no/person/kontakt-oss/chat/"
+                                onClick={() => handleClick(`Går til chat fra fra situasjonsbestemt`)}
+                            >
+                                {tekst('chat')}
+                            </Link>
+                            {'. '}
+                            {tekst('les-om-hjelp')}{' '}
+                            <Link
+                                href={'https://www.nav.no'}
+                                target="_blank"
+                                onClick={() => handleClick('Går til nav.no fra fra situasjonsbestemt')}
+                            >
+                                nav.no ({tekst('ny-fane')})
+                            </Link>
+                            .
+                        </BodyLong>
+                    </div>
+                )}
+            </ul>
+        </Panel>
     );
 }
 
