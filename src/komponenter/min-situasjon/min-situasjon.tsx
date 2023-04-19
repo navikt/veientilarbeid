@@ -5,6 +5,7 @@ import { useSprakValg } from '../../contexts/sprak';
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
+import { InnloggingsNiva, useAutentiseringData } from '../../contexts/autentisering';
 
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import Sammendrag from './sammendrag';
@@ -43,12 +44,16 @@ function MinSituasjon(props: any) {
     const brukerregistreringData = useBrukerregistreringData();
     const arbeidssokerperiodeData = useArbeidssokerPerioder();
     const { amplitudeData } = useAmplitudeData();
+    const autentiseringData = useAutentiseringData();
 
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const { aktivPeriodeStart } = beregnArbeidssokerperioder(arbeidssokerperiodeData);
     const { opprettetDato, manueltRegistrertAv, besvarelse } = brukerregistreringData?.registrering || {};
     const minSituasjon = (besvarelse && besvarelse['dinSituasjon']) || 'DEFAULT';
+    const kanViseKomponent = autentiseringData.securityLevel === InnloggingsNiva.LEVEL_4;
+
+    if (!kanViseKomponent) return null;
 
     return (
         <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
