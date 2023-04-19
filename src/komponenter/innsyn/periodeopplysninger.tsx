@@ -22,7 +22,7 @@ const PeriodeOpplysninger = (props: any) => {
         <div className={`${flexStyles.flex} ${flexStyles.flexColumn}`}>
             <div className={spacingStyles.blokkS}>
                 <BodyShort>
-                    Du ble registrerte som arbeidssøker {prettyPrintDato(aktivPeriodeStart)}.<br />
+                    Du ble registrert som arbeidssøker {prettyPrintDato(aktivPeriodeStart)}.<br />
                     Siden du registrerte deg før høsten 2018 har vi ikke muligheten til å vise opplysningene du oppga på
                     registreringstidspunktet
                     <br />

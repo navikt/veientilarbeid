@@ -9,6 +9,7 @@ import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import Sammendrag from './sammendrag';
 import InnsynLesMer from '../innsyn/innsyn-les-mer';
+import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
@@ -45,6 +46,7 @@ function MinSituasjon(props: any) {
 
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
+    const { aktivPeriodeStart } = beregnArbeidssokerperioder(arbeidssokerperiodeData);
     const { opprettetDato, manueltRegistrertAv, besvarelse } = brukerregistreringData?.registrering || {};
     const minSituasjon = (besvarelse && besvarelse['dinSituasjon']) || 'DEFAULT';
 
@@ -68,9 +70,8 @@ function MinSituasjon(props: any) {
                     {besvarelse ? situasjon[minSituasjon] : tekst('heading')}
                 </Heading>
                 <Sammendrag
-                    opprettetDato={opprettetDato}
+                    startDato={opprettetDato || aktivPeriodeStart}
                     manueltRegistrertAv={manueltRegistrertAv}
-                    arbeidssokerperiodeData={arbeidssokerperiodeData}
                     amplitudeData={amplitudeData}
                 />
                 <InnsynLesMer />

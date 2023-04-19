@@ -10,7 +10,7 @@ import spacing from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
 
 const Sammendrag = (props: any) => {
-    const { opprettetDato, manueltRegistrertAv, amplitudeData } = props;
+    const { startDato, manueltRegistrertAv, amplitudeData } = props;
     const underoppfolging = useUnderOppfolging()?.underoppfolging;
     const kanViseKomponent = underoppfolging;
 
@@ -21,13 +21,11 @@ const Sammendrag = (props: any) => {
     return !kanViseKomponent ? null : (
         <div className={`${flexStyles.flex} ${flexStyles.flexColumn}`}>
             <div className={spacing.blokkS}>
+                <BodyShort className={spacing.mb1}>
+                    {manueltRegistrertAv ? 'NAV' : 'Du'} registrerte deg som arbeidssøker {prettyPrintDato(startDato)}.
+                    <br />
+                </BodyShort>
                 <BodyShort>
-                    {manueltRegistrertAv ? 'NAV' : 'Du'} registrerte deg som arbeidssøker{' '}
-                    {prettyPrintDato(opprettetDato)}.<br />
-                    Du kan endre opplysningene du ga ved å kontakte NAV.
-                    <br />
-                    Veilederen din bruker opplysningene for å vurdere hvor mye veiledning du trenger.
-                    <br />
                     <a href={dialogLenke} onClick={handleDialogClick}>
                         Gi beskjed til veilederen din
                     </a>{' '}
