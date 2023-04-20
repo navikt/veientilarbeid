@@ -15,7 +15,11 @@ const Sammendrag = (props: any) => {
     const kanViseKomponent = underoppfolging;
 
     const handleDialogClick = () => {
-        loggAktivitet({ aktivitet: 'Går til endre registreringsopplysninger', ...amplitudeData });
+        loggAktivitet({
+            aktivitet: 'Går til endre registreringsopplysninger',
+            komponent: 'Min situasjon',
+            ...amplitudeData,
+        });
     };
 
     return !kanViseKomponent ? null : (
