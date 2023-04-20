@@ -4,8 +4,6 @@ import { useUnderOppfolging } from '../../contexts/arbeidssoker';
 import { useSprakValg } from '../../contexts/sprak';
 import { useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
 
-import { loggAktivitet } from '../../metrics/metrics';
-import { dialogLenke } from '../../innhold/lenker';
 import { Besvarelse, SisteStilling, Svar } from '../../contexts/brukerregistrering';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import Feedback from '../feedback/feedback';
@@ -92,31 +90,32 @@ const repackBesvarelser = (besvarelse: Besvarelse, teksterForBesvarelse: Array<S
 };
 
 const Opplysninger = (props: any) => {
-    const { opprettetDato, manueltRegistrertAv, besvarelse, teksterForBesvarelse, amplitudeData, sisteStilling } =
-        props;
+    const { opprettetDato, manueltRegistrertAv, besvarelse, teksterForBesvarelse, sisteStilling } = props;
     const besvarelser = repackBesvarelser(besvarelse, teksterForBesvarelse, sisteStilling);
     const underoppfolging = useUnderOppfolging()?.underoppfolging;
     const kanViseKomponent = underoppfolging;
-
-    const handleDialogClick = () => {
-        loggAktivitet({ aktivitet: 'Går til endre registreringsopplysninger', ...amplitudeData });
-    };
 
     return !kanViseKomponent ? null : (
         <div className={`${flexStyles.flex} ${flexStyles.flexColumn}`}>
             <div className={spacing.blokkS}>
                 <BodyShort>
-                    {manueltRegistrertAv ? 'NAV' : 'Du'} registrerte deg som arbeidssøker{' '}
-                    {prettyPrintDato(opprettetDato)}.<br />
                     Du kan endre opplysningene du ga ved å kontakte NAV.
                     <br />
                     Veilederen din bruker opplysningene for å vurdere hvor mye veiledning du trenger.
-                    <br />
-                    <a href={dialogLenke} onClick={handleDialogClick}>
-                        Gi beskjed til veilederen din
-                    </a>{' '}
-                    hvis situasjonen din endrer seg.
                 </BodyShort>
+            </div>
+            <div className={`${spacing.blokkS}`}>
+                <div className={`${flexStyles.flex}`}>
+                    <strong className={spacing.mr05}>Registrering</strong>
+                </div>
+                <div>
+                    <div className={`${flexStyles.flex} ${flexStyles.alignCenter} ${flexStyles.wrap}`}>
+                        <div className={`${spacing.mr05} ${spacing.mb05}`}>
+                            {manueltRegistrertAv ? 'NAV' : 'Du'} registrerte deg som arbeidssøker{' '}
+                            {prettyPrintDato(opprettetDato)}
+                        </div>
+                    </div>
+                </div>
             </div>
             <Oppfolging />
             {besvarelser.map((item, index) => (
