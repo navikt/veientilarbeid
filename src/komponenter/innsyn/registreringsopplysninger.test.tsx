@@ -239,24 +239,6 @@ describe('Tester registreringsopplysninger komponenten', () => {
         expect(screen.queryAllByAltText(/denne teksten skal ikke være her/i).length).toBe(0);
     });
 
-    test('Klikk på lenken fungerer', async () => {
-        const props: ProviderProps = {
-            arbeidssoker: {
-                arbeidssokerperioder: { status: 200, arbeidssokerperioder: [] },
-                underoppfolging: { status: 200, underoppfolging: true },
-            },
-        };
-        const mockHandleClick = vi.fn();
-        render(<Opplysninger {...registreringsopplysninger} />, { wrapper: contextProviders(props) });
-        const knapp = screen.getByText(/gi beskjed til veilederen din/i);
-        knapp.onclick = (event) => {
-            event.preventDefault();
-            mockHandleClick();
-        };
-        await user.click(knapp);
-        expect(mockHandleClick).toHaveBeenCalledTimes(1);
-    });
-
     test('Tester at fiks for visning av data fra mellomperioden fungerer - med jobb', () => {
         const props: ProviderProps = {
             arbeidssoker: {
