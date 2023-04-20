@@ -5,7 +5,6 @@ import { Success, SuccessColored } from '@navikt/ds-icons';
 import { useSprakValg } from '../../contexts/sprak';
 import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
 
-import InnsynLesMer from '../innsyn/innsyn-les-mer';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 
@@ -61,7 +60,6 @@ const RegistrertTittel = () => {
                     </span>
                     <div>
                         <Heading size="medium">{tekst(erNyRegistrert ? 'registrertNy' : 'registrert')}</Heading>
-                        <InnsynLesMer />
                     </div>
                 </div>
             </Panel>

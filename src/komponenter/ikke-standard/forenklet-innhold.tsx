@@ -100,7 +100,7 @@ function ForenkletInnhold() {
     };
 
     return (
-        <Panel className={spacingStyles.blokkXs}>
+        <Panel className={`${styles.mtn1} ${spacingStyles.mb1}`}>
             <ul className={styles.ikkeStandardListe}>
                 {ListeElement(
                     <Task aria-hidden="true" />,

@@ -5,6 +5,7 @@ import { useBehovForVeiledning } from '../contexts/behov-for-veiledning';
 
 import InnholdMetrics from './innhold-metrics';
 import RegistrertTittel from '../komponenter/registrert-tittel/registrert-tittel';
+import MinSituasjon from '../komponenter/min-situasjon/min-situasjon';
 import ReaktiveringKvittering from '../komponenter/reaktivering/reaktivering-kvittering';
 import GjelderFraDato from '../komponenter/gjelder-fra-dato/GjelderFraDato';
 import DagpengerOgYtelser from '../komponenter/dagpenger/dagpenger-og-ytelser';
@@ -43,6 +44,7 @@ const InnholdStandard = () => {
                     <>
                         <ReaktiveringKvittering />
                         <RegistrertTittel />
+                        <MinSituasjon />
                         {harGyldigBehovsvurdering ? <HjelpOgStotte /> : <Behovsavklaring />}
                         <DagpengerOgYtelser />
                         <Meldekort />
