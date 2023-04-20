@@ -40,7 +40,7 @@ function MinSituasjon(props: any) {
     if (!kanViseKomponent) return null;
 
     return (
-        <Panel className={spacingStyles.ml2_39}>
+        <Panel className={`${spacingStyles.ml2_39} ${spacingStyles.mtn1_5}`}>
             <Sammendrag
                 startDato={opprettetDato || aktivPeriodeStart}
                 manueltRegistrertAv={manueltRegistrertAv}
