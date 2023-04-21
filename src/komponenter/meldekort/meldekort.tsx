@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import { Detail, Panel, ReadMore } from '@navikt/ds-react';
 import { Notes } from '@navikt/ds-icons';
-import spacingStyles from '../../spacing.module.css';
-import flexStyles from '../../flex.module.css';
 
 import { useSprakValg } from '../../contexts/sprak';
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
+import { useFeatureToggleData } from '../../contexts/feature-toggles';
 
 import MeldekortHovedInnhold from './meldekort-hovedinnhold';
 import MeldekortForklaring from './meldekort-forklaring';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { loggAktivitet } from '../../metrics/metrics';
+
+import spacingStyles from '../../spacing.module.css';
+import flexStyles from '../../flex.module.css';
 
 const TEKSTER = {
     nb: {
@@ -26,6 +28,8 @@ function Meldekort() {
     const { amplitudeData } = useAmplitudeData();
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
+    const featureToggleData = useFeatureToggleData();
+    const brukTabsDemo = featureToggleData['aia.bruk-tabs-demo'];
 
     const handleClickLesMer = () => {
         if (!clickedLesMer) {
@@ -47,9 +51,11 @@ function Meldekort() {
                 <Notes aria-hidden="true" />
             </span>
             <div className={spacingStyles.fullWidth}>
-                <Detail uppercase style={{ marginTop: '-1rem' }}>
-                    Meldekort og meldeplikt
-                </Detail>
+                {!brukTabsDemo && (
+                    <Detail uppercase style={{ marginTop: '-1rem' }}>
+                        Meldekort og meldeplikt
+                    </Detail>
+                )}
                 <MeldekortHovedInnhold />
                 <ReadMore size="medium" header={tekst('overskrift')} onClick={handleClickLesMer}>
                     <MeldekortForklaring />
