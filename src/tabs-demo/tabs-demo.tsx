@@ -3,6 +3,8 @@ import { BodyShort, Heading, Panel, Tabs } from '@navikt/ds-react';
 import RegistrertTittel from '../komponenter/registrert-tittel/registrert-tittel';
 import MinSituasjon from '../komponenter/min-situasjon/min-situasjon';
 import HjelpOgStotte from '../komponenter/hjelp-og-stotte/hjelp-og-stotte';
+import DagpengerOgYtelser from '../komponenter/dagpenger/dagpenger-og-ytelser';
+import Meldekort from '../komponenter/meldekort/meldekort';
 
 import styles from '../innhold/innhold.module.css';
 import tabStyles from './tabs.module.css';
@@ -37,7 +39,7 @@ const HjelpOgStotteTab = () => {
 const YtelseTab = () => {
     return (
         <Tabs.Panel value="ytelse" className="h-24  w-full bg-gray-50 p-4">
-            Pengestøtte-tab
+            <DagpengerOgYtelser />
         </Tabs.Panel>
     );
 };
@@ -45,7 +47,7 @@ const YtelseTab = () => {
 const MeldekortTab = () => {
     return (
         <Tabs.Panel value="meldekort" className="h-24  w-full bg-gray-50 p-4">
-            Meldekort-tab
+            <Meldekort />
         </Tabs.Panel>
     );
 };
