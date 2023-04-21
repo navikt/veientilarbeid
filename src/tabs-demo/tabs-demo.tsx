@@ -2,7 +2,7 @@ import { BodyShort, Heading, Panel, Tabs } from '@navikt/ds-react';
 
 import RegistrertTittel from '../komponenter/registrert-tittel/registrert-tittel';
 import MinSituasjon from '../komponenter/min-situasjon/min-situasjon';
-import HjelpOgStotte from '../komponenter/hjelp-og-stotte/hjelp-og-stotte';
+import Behovsavklaring from '../komponenter/behovsavklaring-oppfolging/behovsavklaring-oppfolging';
 import DagpengerOgYtelser from '../komponenter/dagpenger/dagpenger-og-ytelser';
 import Meldekort from '../komponenter/meldekort/meldekort';
 
@@ -31,7 +31,7 @@ const MinSituasjonTab = () => {
 const HjelpOgStotteTab = () => {
     return (
         <Tabs.Panel value="hjelp" className="h-24 w-full bg-gray-50 p-4">
-            <HjelpOgStotte />
+            <Behovsavklaring />
         </Tabs.Panel>
     );
 };
