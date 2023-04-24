@@ -5,6 +5,7 @@ import { BodyLong, Button, Detail, Heading, Panel } from '@navikt/ds-react';
 import { useSprakValg } from '../../contexts/sprak';
 import { useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
+import { useFeatureToggleData } from '../../contexts/feature-toggles';
 
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { loggAktivitet } from '../../metrics/metrics';
@@ -47,6 +48,8 @@ function IkkeSvartPaaBehovsavklaringStandardInnsats() {
     const { amplitudeData } = useAmplitudeData();
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
+    const featureToggleData = useFeatureToggleData();
+    const brukTabsDemo = featureToggleData['aia.bruk-tabs-demo'];
     const [pendingRequest, settPendingRequest] = useState<ForeslattInnsatsgruppe | null>(null);
 
     async function onClickBehovForVeiledning(behov: ForeslattInnsatsgruppe) {
@@ -92,9 +95,11 @@ function IkkeSvartPaaBehovsavklaringStandardInnsats() {
                 <Dialog aria-hidden="true" />
             </span>
             <div className={spacingStyles.fullWidth}>
-                <Detail uppercase style={{ marginTop: '-1rem' }}>
-                    {tekst('overskrift')}
-                </Detail>
+                {!brukTabsDemo && (
+                    <Detail uppercase style={{ marginTop: '-1rem' }}>
+                        {tekst('overskrift')}
+                    </Detail>
+                )}
                 <Heading className={spacingStyles.mb1} size="medium">
                     {tekst('heading')}
                 </Heading>

@@ -3,6 +3,7 @@ import { BodyLong, Detail, Heading, Panel } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
 import { useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
+import { useFeatureToggleData } from '../../contexts/feature-toggles';
 
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import ReadMoreVeileder from './readmore-veileder';
@@ -32,6 +33,8 @@ const TEKSTER = {
 function EnigMedProfilering() {
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
+    const featureToggleData = useFeatureToggleData();
+    const brukTabsDemo = featureToggleData['aia.bruk-tabs-demo'];
 
     return (
         <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
@@ -47,9 +50,11 @@ function EnigMedProfilering() {
                 <Dialog />
             </span>
             <div className={spacingStyles.fullWidth}>
-                <Detail uppercase style={{ marginTop: '-1rem' }}>
-                    {tekst('overskrift')}
-                </Detail>
+                {!brukTabsDemo && (
+                    <Detail uppercase style={{ marginTop: '-1rem' }}>
+                        {tekst('overskrift')}
+                    </Detail>
+                )}
                 <Heading className={spacingStyles.mb1} size="medium">
                     {tekst('headingEnig')}
                 </Heading>
