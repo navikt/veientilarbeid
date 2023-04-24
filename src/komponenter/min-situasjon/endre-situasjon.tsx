@@ -1,6 +1,6 @@
 import flexStyles from '../../flex.module.css';
 import spacing from '../../spacing.module.css';
-import { BodyShort, Button, Select } from '@navikt/ds-react';
+import { BodyShort, Button, Panel, Select, UNSAFE_DatePicker, UNSAFE_useDatepicker } from '@navikt/ds-react';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import { DinSituasjonSvar } from '../../contexts/brukerregistrering';
 import { useState } from 'react';
@@ -27,6 +27,11 @@ function EndreSituasjon(props: Props) {
     const { startDato, manueltRegistrertAv } = props;
     const [valgtSituasjon, settValgtSituasjon] = useState<string>(DinSituasjonSvar.ER_PERMITTERT);
 
+    const { datepickerProps, inputProps, selectedDay } = UNSAFE_useDatepicker({
+        fromDate: new Date('Jan 01 2022'),
+        onDateChange: (dato) => console.log('Permisjonsdato: ', dato),
+    });
+
     return (
         <div className={`${flexStyles.flex} ${flexStyles.flexColumn}`}>
             <div className={spacing.blokkS}>
@@ -36,23 +41,26 @@ function EndreSituasjon(props: Props) {
                     <br />
                     Dersom du ikke lengre er permitert kan du endre det her.
                 </BodyShort>
-                <BodyShort>
-                    <Select
-                        className={spacing.mb1}
-                        label={'Velg situasjonen som passer deg best'}
-                        defaultValue={DinSituasjonSvar.ER_PERMITTERT}
-                        onChange={(e) => settValgtSituasjon(e.target.value)}
-                    >
-                        {Object.keys(dinSituasjonTekster).map((situasjon) => (
-                            <option key={situasjon} value={situasjon}>
-                                {dinSituasjonTekster[situasjon]}
-                            </option>
-                        ))}
-                    </Select>
-                    <Button variant={'primary'} onClick={() => console.log('Valgt situasjon', valgtSituasjon)}>
-                        Lagre endring i situasjon
-                    </Button>
-                </BodyShort>
+                <Select
+                    className={spacing.mb1}
+                    label={'Velg situasjonen som passer deg best'}
+                    defaultValue={DinSituasjonSvar.ER_PERMITTERT}
+                    onChange={(e) => settValgtSituasjon(e.target.value)}
+                >
+                    {Object.keys(dinSituasjonTekster).map((situasjon) => (
+                        <option key={situasjon} value={situasjon}>
+                            {dinSituasjonTekster[situasjon]}
+                        </option>
+                    ))}
+                </Select>
+                <Panel style={{ background: 'var(--a-blue-50)' }} className={spacing.mb1}>
+                    <UNSAFE_DatePicker {...datepickerProps}>
+                        <UNSAFE_DatePicker.Input {...inputProps} label="Hvilken dato blir eller ble du permitert?" />
+                    </UNSAFE_DatePicker>
+                </Panel>
+                <Button variant={'primary'} onClick={() => console.log('Valgt situasjon', valgtSituasjon, selectedDay)}>
+                    Lagre endring i situasjon
+                </Button>
             </div>
         </div>
     );
