@@ -21,8 +21,8 @@ const AIA_BACKEND_URL = {
 
 const INNLOGGINGSSTATUS_URL = {
     local: 'http://localhost:3000/auth',
-    development: 'https://www.dev.nav.no/person/innloggingsstatus/auth',
-    production: 'https://www.nav.no/person/innloggingsstatus/auth',
+    development: 'https://www.dev.nav.no/person/nav-dekoratoren-api/auth',
+    production: 'https://www.nav.no/person/nav-dekoratoren-api/auth',
 };
 
 export const innloggingsStatusUrl = INNLOGGINGSSTATUS_URL[getEnvironment()];
