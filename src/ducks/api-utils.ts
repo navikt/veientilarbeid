@@ -36,10 +36,15 @@ function toJson(response: Response) {
     return response.json();
 }
 
-export const fetchData = <S, D>(state: S, setState: Dispatch<SetStateAction<S>>, url: string) => {
+export const fetchData = <S, D>(
+    state: S,
+    setState: Dispatch<SetStateAction<S>>,
+    url: string,
+    config = requestConfig()
+) => {
     setState({ ...state, status: STATUS.PENDING });
 
-    fetchToJson<D>(url, requestConfig())
+    fetchToJson<D>(url, config)
         .then((data) => {
             setState({ ...state, data: data, status: STATUS.OK });
         })

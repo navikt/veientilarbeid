@@ -22,12 +22,21 @@ const getCookie = (name: string) => {
 
 export const requestConfig = (): RequestInit => {
     return {
-        credentials: 'include',
+        credentials: 'same-origin',
         headers: {
             'Content-Type': 'application/json',
             NAV_CSRF_PROTECTION: getCookie('NAV_CSRF_PROTECTION'),
             'Nav-Consumer-Id': 'veientilarbeid',
             'NAV-Call-Id': nanoid(),
+        },
+    };
+};
+
+export const corsConfig = (): RequestInit => {
+    return {
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
         },
     };
 };
