@@ -22,7 +22,7 @@ const getCookie = (name: string) => {
 
 export const requestConfig = (): RequestInit => {
     return {
-        credentials: 'same-origin',
+        credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
             NAV_CSRF_PROTECTION: getCookie('NAV_CSRF_PROTECTION'),
