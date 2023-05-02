@@ -19,5 +19,5 @@ ingresses:
   - https://veientilarbeid.intern.dev.nav.no
 externalHosts:
   - navtestb2c.b2clogin.com
-  - dekoratoren.dev.nav.no
+  - dekoratoren.intern.dev.nav.no
   - unleash.nais.io
