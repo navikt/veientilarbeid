@@ -1,8 +1,8 @@
 import { getEnvironment } from '../ducks/urls';
 
 const AKTIVITETSPLAN_URL = {
-    local: 'https://aktivitetsplan.dev.nav.no',
-    development: 'https://aktivitetsplan.dev.nav.no',
+    local: 'https://aktivitetsplan.ekstern.dev.nav.no',
+    development: 'https://aktivitetsplan.ekstern.dev.nav.no',
     production: 'https://aktivitetsplan.nav.no',
 };
 
