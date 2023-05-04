@@ -15,14 +15,14 @@ export const getEnvironment = () => {
 
 const AIA_BACKEND_URL = {
     local: 'http://localhost:3000/aia-backend',
-    development: 'https://www.intern.dev.nav.no/aia-backend',
-    production: 'https://www.nav.no/aia-backend',
+    development: 'https://www.intern.dev.nav.no/tms-min-side-proxy/aia/aia-backend',
+    production: 'https://www.nav.no/tms-min-side-proxy/aia/aia-backend',
 };
 
 const INNLOGGINGSSTATUS_URL = {
     local: 'http://localhost:3000/auth',
-    development: 'https://www.dev.nav.no/person/innloggingsstatus/auth',
-    production: 'https://www.nav.no/person/innloggingsstatus/auth',
+    development: 'https://www.ekstern.dev.nav.no/person/nav-dekoratoren-api/auth',
+    production: 'https://www.nav.no/person/nav-dekoratoren-api/auth',
 };
 
 export const innloggingsStatusUrl = INNLOGGINGSSTATUS_URL[getEnvironment()];

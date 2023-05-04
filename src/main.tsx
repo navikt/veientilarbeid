@@ -4,7 +4,7 @@ import Innholdslaster from './komponenter/innholdslaster/innholdslaster';
 import * as Autentisering from './contexts/autentisering';
 import Feilmelding from './komponenter/feilmeldinger/feilmelding';
 import { fetchData } from './ducks/api-utils';
-import { ARBEIDSSOKER_NIVA3_URL, AUTH_API, FEATURE_URL } from './ducks/api';
+import { ARBEIDSSOKER_NIVA3_URL, AUTH_API, corsConfig, FEATURE_URL } from './ducks/api';
 import Innhold from './innhold/innhold';
 
 import './index.css';
@@ -24,7 +24,7 @@ const Mikrofrontend = () => {
     const featureTogglesUrl = `${FEATURE_URL}?${parameters}`;
 
     React.useEffect(() => {
-        fetchData<Autentisering.State, Autentisering.Data>(state, setState, AUTH_API);
+        fetchData<Autentisering.State, Autentisering.Data>(state, setState, AUTH_API, corsConfig());
         fetchData<Arbeidssoker.State, Arbeidssoker.Data>(
             arbeidssokerState,
             setArbeidssokerState,
