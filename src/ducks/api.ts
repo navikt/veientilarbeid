@@ -32,6 +32,15 @@ export const requestConfig = (): RequestInit => {
     };
 };
 
+export const corsConfig = (): RequestInit => {
+    return {
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    };
+};
+
 export const AIA_BACKEND = aiaBackendUrl,
     BESVARELSE_URL = `${AIA_BACKEND}/besvarelse`,
     VEILARBOPPFOLGING_URL = `${AIA_BACKEND}/oppfolging`,
