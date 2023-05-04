@@ -33,6 +33,7 @@ export const requestConfig = (): RequestInit => {
 };
 
 export const AIA_BACKEND = aiaBackendUrl,
+    BESVARELSE_URL = `${AIA_BACKEND}/besvarelse`,
     VEILARBOPPFOLGING_URL = `${AIA_BACKEND}/oppfolging`,
     BRUKERINFO_URL = `${AIA_BACKEND}/startregistrering`,
     BRUKERREGISTRERING_URL = `${AIA_BACKEND}/registrering`,
