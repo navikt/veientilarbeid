@@ -3,7 +3,7 @@ app_environment_name: paw
 appres_cms_url: https://dekoratoren.dev.nav.no/
 loginservice_url: https://loginservice-q.nav.no/login
 veientilarbeid_url: https://veientilarbeid.dev.nav.no
-aktivitetsplan_url: https://aktivitetsplan.dev.nav.no
+aktivitetsplan_url: https://aktivitetsplan.ekstern.dev.nav.no
 dialog_url: https://pto.dev.nav.no/arbeid/dialog
 dittnav_link_url: https://www.dev.nav.no/person/dittnav
 syfofront_url: https://tjenester-q1.nav.no/sykefravaer
