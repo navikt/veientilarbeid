@@ -6,6 +6,7 @@ export enum FeatureToggles {
     BRUK_BEKREFT_REAKTIVERING = 'aia.bruk-bekreft-reaktivering',
     BRUK_SPRAKVELGER = 'aia.bruk-sprakvelger',
     BRUK_TABS_DEMO = 'aia.bruk-tabs-demo',
+    BRUK_ENDRING_AV_SITUASJON = 'aia.bruk-endring-av-situasjon',
 }
 
 export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
@@ -18,6 +19,8 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Bruk språkvelger';
         case FeatureToggles.BRUK_TABS_DEMO:
             return 'Bruk tabs demo';
+        case FeatureToggles.BRUK_ENDRING_AV_SITUASJON:
+            return 'Bruk endring av situasjon';
     }
 }
 
@@ -26,6 +29,7 @@ export interface Data {
     'aia.bruk-bekreft-reaktivering'?: boolean;
     'aia.bruk-sprakvelger'?: boolean;
     'aia.bruk-tabs-demo'?: boolean;
+    'aia.bruk-endring-av-situasjon'?: boolean;
 }
 
 export interface State extends DataElement {
@@ -38,6 +42,7 @@ export const initialState: State = {
         'aia.bruk-bekreft-reaktivering': false,
         'aia.bruk-sprakvelger': false,
         'aia.bruk-tabs-demo': false,
+        'aia.bruk-endring-av-situasjon': false,
     },
     status: STATUS.NOT_STARTED,
 };
