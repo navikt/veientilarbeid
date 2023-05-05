@@ -1,5 +1,7 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
+import { useFeatureToggleData, FeatureToggles } from './feature-toggles';
+
 import { fetchToJson } from '../ducks/api-utils';
 import { BESVARELSE_URL, OPPRETT_DIALOG_URL, requestConfig } from '../ducks/api';
 import {
@@ -152,7 +154,10 @@ async function opprettDialog(data: {
 }
 
 function BesvarelseProvider(props: { children: ReactNode }) {
+    const featureToggles = useFeatureToggleData();
     const [besvarelse, settBesvarelse] = useState<BesvarelseResponse>(null);
+
+    const erToggletPa = featureToggles[FeatureToggles.BRUK_ENDRING_AV_SITUASJON];
 
     const hentBesvarelse = async () => {
         try {
@@ -181,8 +186,10 @@ function BesvarelseProvider(props: { children: ReactNode }) {
     };
 
     useEffect(() => {
-        hentBesvarelse();
-    }, []);
+        if (erToggletPa) {
+            hentBesvarelse();
+        }
+    }, [erToggletPa]);
 
     const contextValue = {
         besvarelse,
