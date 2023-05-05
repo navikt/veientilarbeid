@@ -5,6 +5,7 @@ import ArbeidssokerInnhold from './arbeidssoker-innhold';
 import TabsDemo from '../tabs-demo/tabs-demo';
 import { MeldepliktProvider } from '../contexts/meldeplikt';
 import { ReaktiveringProvider } from '../contexts/reaktivering';
+import { BesvarelseProvider } from '../contexts/besvarelse';
 
 function ArbeidssokerInnholdWrapper() {
     const featureToggles = useFeatureToggleData();
@@ -13,7 +14,9 @@ function ArbeidssokerInnholdWrapper() {
     return (
         <ArbeidssokerDataProvider>
             <MeldepliktProvider>
-                <ReaktiveringProvider>{brukTabsDemo ? <TabsDemo /> : <ArbeidssokerInnhold />}</ReaktiveringProvider>
+                <ReaktiveringProvider>
+                    <BesvarelseProvider>{brukTabsDemo ? <TabsDemo /> : <ArbeidssokerInnhold />}</BesvarelseProvider>
+                </ReaktiveringProvider>
             </MeldepliktProvider>
         </ArbeidssokerDataProvider>
     );
