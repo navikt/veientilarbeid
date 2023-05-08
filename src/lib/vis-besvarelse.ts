@@ -8,7 +8,7 @@ import sjekkOmBrukerErStandardInnsatsgruppe from './er-standard-innsatsgruppe';
 
 const DATO_FOR_LANSERING = new Date('2023-05-01');
 
-// TODO: Ta hensyn til aktiv arbeidssøkerperiode
+// TODO: Vurdere å droppe sjekk av formidlingsgruppe
 
 export function visBesvarelser({
     brukerInfoData,

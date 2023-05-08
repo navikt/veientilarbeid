@@ -67,19 +67,35 @@ describe('Tester funksjonen visBesvarelser', () => {
         expect(visBesvarelser(testdata)).toBe(false);
     });
 
-    test('NEI hvis ikke bruker ikke er standard innsatsgruppe', () => {
+    test('NEI hvis person ikke har standard innsatsgruppe', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
         testdata.oppfolgingData.servicegruppe = 'BKART';
         expect(visBesvarelser(testdata)).toBe(false);
     });
 
-    test('JA hvis bruker har besvarelse, er innefor aldersgruppe, har featuretoggle, ikke kan reaktivers og er standard innsatsgruppe', () => {
+    test('NEI hvis person ikke har aktiv arbeidssøkerperiode', () => {
+        const testdata = JSON.parse(JSON.stringify(grunndata));
+        testdata.arbeidssokerPeriodeData.harAktivArbeidssokerperiode = 'Nei';
+        expect(visBesvarelser(testdata)).toBe(false);
+    });
+
+    test('JA hvis person har besvarelse, er innefor aldersgruppe, har featuretoggle, ikke kan reaktivers og er standard innsatsgruppe', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
         testdata.brukerInfoData.alder = 45;
         testdata.oppfolgingData.kanReaktiveres = false;
         testdata.oppfolgingData.servicegruppe = 'IKVAL';
         testdata.oppfolgingData.formidlingsgruppe = 'ARBS';
         testdata.besvarelseData = { registreringsId: 1 };
+
+        expect(visBesvarelser(testdata)).toBe(true);
+    });
+
+    test('JA hvis person har besvarelse, har featuretoggle og aktiv arbeidssøkerperiode', () => {
+        const testdata = JSON.parse(JSON.stringify(grunndata));
+        testdata.brukerInfoData.alder = 60;
+        testdata.oppfolgingData.servicegruppe = 'BKART';
+        testdata.besvarelseData = { registreringsId: 1 };
+        testdata.arbeidssokerPeriodeData.harAktivArbeidssokerperiode = 'Ja';
 
         expect(visBesvarelser(testdata)).toBe(true);
     });
