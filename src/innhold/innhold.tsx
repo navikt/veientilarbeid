@@ -1,4 +1,5 @@
 import { useArbeidssokerPerioder } from '../contexts/arbeidssoker';
+
 import beregnArbeidssokerperioder from '../lib/beregn-arbeidssokerperioder';
 import IkkeArbeidssokerInnhold from './ikke-arbeidssoker-innhold';
 import ArbeidssokerInnholdWrapper from './arbeidssoker-innhold-wrapper';

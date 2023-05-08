@@ -1,15 +1,17 @@
 import React from 'react';
 import { Money } from '@navikt/ds-icons';
 import { Detail, Panel } from '@navikt/ds-react';
-import spacingStyles from '../../spacing.module.css';
-import flexStyles from '../../flex.module.css';
 
+import { useSprakValg } from '../../contexts/sprak';
+import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
+import { useSWRImmutable } from '../../hooks/useSWR';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
-import { DpInnsynSoknad } from '../../contexts/dp-innsyn-soknad';
-import { Vedtak } from '../../contexts/dp-innsyn-vedtak';
 import { useDpInnsynPaabegynteSoknaderData } from '../../contexts/dp-innsyn-paabegynte-soknader';
+import { useFeatureToggleData } from '../../contexts/feature-toggles';
 
+import { Vedtak } from '../../contexts/dp-innsyn-vedtak';
+import { DpInnsynSoknad } from '../../contexts/dp-innsyn-soknad';
 import HarIkkeSokt from './dagpenger-har-ikke-sokt';
 import HarPabegyntSoknad from './dagpenger-har-paabegynt-soknad';
 import HarSokt from './dagpenger-har-sokt';
@@ -23,10 +25,10 @@ import ByttVisningLenke from './bytt-visning-lenke';
 import Ytelser from './ytelser';
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
-import { useSprakValg } from '../../contexts/sprak';
-import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
-import { useSWRImmutable } from '../../hooks/useSWR';
 import { DP_INNSYN_URL } from '../../ducks/api';
+
+import spacingStyles from '../../spacing.module.css';
+import flexStyles from '../../flex.module.css';
 
 function hentDagpengerInnhold(situasjon: DagpengeStatus) {
     if (situasjon === 'paabegynt') {
@@ -66,6 +68,8 @@ function DagpengerOgYtelserInnhold(props: Props) {
     const { paabegynteSoknader = [] } = useDpInnsynPaabegynteSoknaderData();
     const { data: innsendteSoknader = [] } = useSWRImmutable<DpInnsynSoknad[]>(`${DP_INNSYN_URL}/soknad`);
     const { data: dagpengeVedtak = [] } = useSWRImmutable<Vedtak[]>(`${DP_INNSYN_URL}/vedtak`);
+    const featureToggleData = useFeatureToggleData();
+    const brukTabsDemo = featureToggleData['aia.bruk-tabs-demo'];
 
     const dagpengeStatus = beregnDagpengeStatus({
         brukerInfoData,
@@ -93,9 +97,11 @@ function DagpengerOgYtelserInnhold(props: Props) {
                 <Money aria-hidden="true" />
             </span>
             <div className={spacingStyles.fullWidth}>
-                <Detail uppercase style={{ marginTop: '-1rem' }}>
-                    {tekst('tittel')}
-                </Detail>
+                {!brukTabsDemo && (
+                    <Detail uppercase style={{ marginTop: '-1rem' }}>
+                        {tekst('tittel')}
+                    </Detail>
+                )}
                 {props.valgtVisning === 'ytelser' ? (
                     <>
                         <ErRendret loggTekst="Rendrer ytelser sluttkort" />

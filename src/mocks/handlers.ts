@@ -10,8 +10,10 @@ import meldekortstatusResponse from './meldekortstatus-mock';
 import dpSoknadResonse from './dp-innsyn-soknad';
 import dpVedtakResponse from './dp-innsyn-vedtak';
 import dpPaabegynteResponse from './dp-innsyn-paabegynte';
+import besvarelseResponse from './besvarelse-mock';
 import msw_get, { msw_post } from './msw-utils';
 import {
+    BESVARELSE_URL,
     BRUKERINFO_URL,
     BRUKERREGISTRERING_URL,
     FEATURE_URL,
@@ -43,6 +45,7 @@ export const handlers = [
     msw_get(BRUKERREGISTRERING_URL, brukerRegistreringResponse),
     msw_get(ULESTEDIALOGER_URL, ulesteDialogerResponse),
     msw_get(BRUKERINFO_URL, brukerInfoResponse),
+    msw_get(BESVARELSE_URL, besvarelseResponse),
     msw_get(VEILARBOPPFOLGING_URL, oppfolgingResponse),
     msw_get(NESTE_MELDEKORT_URL, meldekortResponse),
     msw_get(MELDEKORTSTATUS_URL, meldekortstatusResponse),
