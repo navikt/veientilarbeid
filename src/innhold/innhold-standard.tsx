@@ -1,11 +1,12 @@
 import { useArbeidssokerPerioder } from '../contexts/arbeidssoker';
-import { useFeatureToggleData } from '../contexts/feature-toggles';
+import { useFeatureToggleData, FeatureToggles } from '../contexts/feature-toggles';
 import { useReaktivering } from '../contexts/reaktivering';
 import { useBehovForVeiledning } from '../contexts/behov-for-veiledning';
 
 import InnholdMetrics from './innhold-metrics';
 import RegistrertTittel from '../komponenter/registrert-tittel/registrert-tittel';
 import MinSituasjon from '../komponenter/min-situasjon/min-situasjon';
+import EndreSituasjon from '../komponenter/endre-situasjon/min-situasjon';
 import ReaktiveringKvittering from '../komponenter/reaktivering/reaktivering-kvittering';
 import GjelderFraDato from '../komponenter/gjelder-fra-dato/GjelderFraDato';
 import DagpengerOgYtelser from '../komponenter/dagpenger/dagpenger-og-ytelser';
@@ -33,6 +34,7 @@ const InnholdStandard = () => {
     const harGyldigBehovsvurdering = harSistSvartDato && harPeriodeStart && harSistSvartDato > harPeriodeStart;
 
     const skalViseReaktiveringsKort = visAutomatiskReaktiveringsKort(featureToggleData, reaktivering);
+    const visEndreSituasjon = featureToggleData[FeatureToggles.BRUK_ENDRING_AV_SITUASJON];
 
     return (
         <>
@@ -44,7 +46,7 @@ const InnholdStandard = () => {
                     <>
                         <ReaktiveringKvittering />
                         <RegistrertTittel />
-                        <MinSituasjon />
+                        {visEndreSituasjon ? <EndreSituasjon /> : <MinSituasjon />}
                         {harGyldigBehovsvurdering ? <HjelpOgStotte /> : <Behovsavklaring />}
                         <DagpengerOgYtelser />
                         <Meldekort />
