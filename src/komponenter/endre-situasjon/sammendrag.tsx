@@ -2,6 +2,7 @@ import { BodyShort, Button, Heading, Modal, Select, UNSAFE_DatePicker, UNSAFE_us
 import { useState } from 'react';
 
 import { useUnderOppfolging } from '../../contexts/arbeidssoker';
+import { useBesvarelse, BesvarelseRequest } from '../../contexts/besvarelse';
 
 import { DinSituasjonSvar } from '../../contexts/brukerregistrering';
 import { loggAktivitet } from '../../metrics/metrics';
@@ -30,6 +31,7 @@ const Sammendrag = (props: any) => {
     const { startDato, manueltRegistrertAv, amplitudeData } = props;
     const underoppfolging = useUnderOppfolging()?.underoppfolging;
     const kanViseKomponent = underoppfolging;
+    const { lagreBesvarelse } = useBesvarelse();
 
     const { datepickerProps, inputProps, selectedDay } = UNSAFE_useDatepicker({
         fromDate: new Date('Jan 01 2022'),
@@ -60,6 +62,20 @@ const Sammendrag = (props: any) => {
             komponent: 'Min situasjon',
             ...amplitudeData,
         });
+        const payload = {
+            tekst: 'Jobbsitiasjonen er oppdatert til noe. Endringene gjelder fra en dato',
+            overskrift: 'Jobbsituasjonen min er endret',
+            venterPaaSvarFraNav: true,
+            oppdatering: {
+                besvarelse: {
+                    dinSituasjon: {
+                        verdi: valgtSituasjon,
+                        gjelderFra: selectedDay,
+                    },
+                },
+            },
+        } as BesvarelseRequest;
+        lagreBesvarelse(payload);
         setOpenModal(false);
         console.log(selectedDay);
     };

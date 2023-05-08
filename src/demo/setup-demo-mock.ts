@@ -98,6 +98,10 @@ export const demo_handlers = [
 
     msw_get(BESVARELSE_URL, besvarelseMock),
 
+    rest.post(BESVARELSE_URL, (req, res, ctx) => {
+        return res(ctx.status(201), ctx.json(besvarelseMock));
+    }),
+
     msw_get(FEATURE_URL, hentFeatureToggles()),
 
     msw_get(AUTH_API, hentAutentiseringsInfo()),
