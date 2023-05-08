@@ -1,7 +1,7 @@
 import { Panel } from '@navikt/ds-react';
 
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
-import { DinSituasjonSvar, useBrukerregistreringData } from '../../contexts/brukerregistrering';
+import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
 import { InnloggingsNiva, useAutentiseringData } from '../../contexts/autentisering';
 
@@ -10,8 +10,6 @@ import InnsynLesMer from '../innsyn/innsyn-les-mer';
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 
 import spacingStyles from '../../spacing.module.css';
-import { useFeatureToggleData } from '../../contexts/feature-toggles';
-import EndreSituasjon from './endre-situasjon';
 
 /*
 const situasjon = {
@@ -39,28 +37,15 @@ function MinSituasjon(props: any) {
     const { opprettetDato, manueltRegistrertAv } = brukerregistreringData?.registrering || {};
     const kanViseKomponent = autentiseringData.securityLevel === InnloggingsNiva.LEVEL_4;
 
-    const erPermitert =
-        brukerregistreringData?.registrering?.besvarelse.dinSituasjon === DinSituasjonSvar.ER_PERMITTERT;
-    const featureToggles = useFeatureToggleData();
-    const brukTabsDemo = featureToggles['aia.bruk-tabs-demo'];
-    const visEndreSituasjon = brukTabsDemo && erPermitert;
-
     if (!kanViseKomponent) return null;
 
     return (
         <Panel className={`${spacingStyles.ml2_39} ${spacingStyles.mtn1_5}`}>
-            {visEndreSituasjon ? (
-                <EndreSituasjon
-                    startDato={opprettetDato || aktivPeriodeStart}
-                    manueltRegistrertAv={manueltRegistrertAv}
-                />
-            ) : (
-                <Sammendrag
-                    startDato={opprettetDato || aktivPeriodeStart}
-                    manueltRegistrertAv={manueltRegistrertAv}
-                    amplitudeData={amplitudeData}
-                />
-            )}
+            <Sammendrag
+                startDato={opprettetDato || aktivPeriodeStart}
+                manueltRegistrertAv={manueltRegistrertAv}
+                amplitudeData={amplitudeData}
+            />
             <InnsynLesMer />
         </Panel>
     );
