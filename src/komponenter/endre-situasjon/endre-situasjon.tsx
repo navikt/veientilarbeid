@@ -54,7 +54,7 @@ function EndreSituasjon(props: Props) {
                     ))}
                 </Select>
                 <Panel style={{ background: 'var(--a-blue-50)' }} className={spacing.mb1}>
-                    <UNSAFE_DatePicker {...datepickerProps}>
+                    <UNSAFE_DatePicker {...datepickerProps} strategy="fixed">
                         <UNSAFE_DatePicker.Input {...inputProps} label="Hvilken dato blir eller ble du permitert?" />
                     </UNSAFE_DatePicker>
                 </Panel>

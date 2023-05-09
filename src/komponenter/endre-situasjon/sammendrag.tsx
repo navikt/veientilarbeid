@@ -35,7 +35,7 @@ const Sammendrag = (props: any) => {
 
     const { datepickerProps, inputProps, selectedDay } = UNSAFE_useDatepicker({
         fromDate: new Date('Jan 01 2022'),
-        onDateChange: (dato) => console.log('Permisjonsdato: ', dato),
+        defaultSelected: new Date(),
     });
 
     const handleDialogClick = () => {
@@ -77,7 +77,6 @@ const Sammendrag = (props: any) => {
         } as BesvarelseRequest;
         lagreBesvarelse(payload);
         setOpenModal(false);
-        console.log(selectedDay);
     };
 
     return !kanViseKomponent ? null : (
@@ -114,11 +113,12 @@ const Sammendrag = (props: any) => {
                                 </option>
                             ))}
                         </Select>
-                        <UNSAFE_DatePicker {...datepickerProps}>
+                        <UNSAFE_DatePicker {...datepickerProps} strategy="fixed">
                             <UNSAFE_DatePicker.Input
                                 {...inputProps}
                                 className={spacing.mb1}
-                                label="Når skjer eller har endringen skjedd?"
+                                label="Når skjedde eller skjer endringen?"
+                                defaultValue={new Date().toLocaleDateString()}
                             />
                         </UNSAFE_DatePicker>
                         <Button variant={'primary'} onClick={handleLagreEndringer}>
