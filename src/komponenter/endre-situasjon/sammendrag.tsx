@@ -1,5 +1,5 @@
 import { BodyShort, Button, Heading, Modal, Select, UNSAFE_DatePicker, UNSAFE_useDatepicker } from '@navikt/ds-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useUnderOppfolging } from '../../contexts/arbeidssoker';
 import { useBesvarelse, BesvarelseRequest } from '../../contexts/besvarelse';
@@ -27,7 +27,6 @@ const dinSituasjonTekster = {
 
 const Sammendrag = (props: any) => {
     const [openModal, setOpenModal] = useState(false);
-    // TODO: Hent valgtSituasjon fra evt lagret besvarelse
     const [valgtSituasjon, settValgtSituasjon] = useState<string>(DinSituasjonSvar.ER_PERMITTERT);
     const { startDato, manueltRegistrertAv, amplitudeData } = props;
     const underoppfolging = useUnderOppfolging()?.underoppfolging;
@@ -80,6 +79,11 @@ const Sammendrag = (props: any) => {
         setOpenModal(false);
     };
 
+    useEffect(() => {
+        if (props.besvarelse) {
+            settValgtSituasjon(props.besvarelse.dinSituasjon.verdi);
+        }
+    }, [props.besvarelse]);
     // TODO: legge inn useEffect for å koble modal til appElement
 
     return !kanViseKomponent ? null : (
