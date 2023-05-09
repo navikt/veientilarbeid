@@ -79,6 +79,8 @@ const Sammendrag = (props: any) => {
         setOpenModal(false);
     };
 
+    // TODO: legge inn useEffect for å koble modal til appElement
+
     return !kanViseKomponent ? null : (
         <div className={`${flexStyles.flex} ${flexStyles.flexColumn}`}>
             <div className={spacing.blokkS}>
@@ -95,6 +97,7 @@ const Sammendrag = (props: any) => {
                     open={openModal}
                     aria-label="Jobbsituasjonen min har endret seg"
                     onClose={() => setOpenModal((x) => !x)}
+                    shouldCloseOnEsc={!datepickerProps.open}
                     aria-labelledby="modal-heading"
                 >
                     <Modal.Content>
@@ -104,11 +107,11 @@ const Sammendrag = (props: any) => {
                         <Select
                             className={spacing.mb1}
                             label={'Velg situasjonen som passer deg best nå'}
-                            defaultValue={DinSituasjonSvar.ER_PERMITTERT}
                             onChange={(e) => settValgtSituasjon(e.target.value)}
+                            value={valgtSituasjon}
                         >
                             {Object.keys(dinSituasjonTekster).map((situasjon) => (
-                                <option key={situasjon} value={situasjon} selected={valgtSituasjon === situasjon}>
+                                <option key={situasjon} value={situasjon}>
                                     {dinSituasjonTekster[situasjon]}
                                 </option>
                             ))}
