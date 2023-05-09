@@ -7,7 +7,7 @@ import { useBesvarelse } from '../../contexts/besvarelse';
 import { InnloggingsNiva, useAutentiseringData } from '../../contexts/autentisering';
 
 import Sammendrag from './sammendrag';
-import InnsynLesMer from '../innsyn/innsyn-les-mer';
+import BesvarelseLesMer from '../innsyn/besvarelse-les-mer';
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 
 import spacingStyles from '../../spacing.module.css';
@@ -38,7 +38,7 @@ function MinSituasjon(props: any) {
                 endret={endret}
                 endretAv={endretAv}
             />
-            <InnsynLesMer />
+            <BesvarelseLesMer />
         </Panel>
     );
 }

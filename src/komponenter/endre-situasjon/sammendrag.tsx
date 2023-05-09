@@ -99,7 +99,7 @@ const Sammendrag = (props: any) => {
                         Sist oppdatert {prettyPrintDato(endret)} av {endretAv === 'BRUKER' ? 'deg' : 'NAV'}
                     </BodyShort>
                 )}
-                <BodyShort className={`${spacing.mb1} ${spacing.my1}`}>
+                <BodyShort className={`${spacing.mb1} ${spacing.mt1}`}>
                     <a href="" onClick={handleModalOpen}>
                         Jobbsituasjonen min har endret seg
                     </a>
