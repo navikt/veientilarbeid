@@ -1,7 +1,11 @@
 import { useArbeidssokerPerioder } from '../contexts/arbeidssoker';
-import { useFeatureToggleData, FeatureToggles } from '../contexts/feature-toggles';
+import { useFeatureToggleData } from '../contexts/feature-toggles';
 import { useReaktivering } from '../contexts/reaktivering';
 import { useBehovForVeiledning } from '../contexts/behov-for-veiledning';
+import { useBrukerinfoData } from '../contexts/bruker-info';
+import { useBesvarelse } from '../contexts/besvarelse';
+import { useOppfolgingData } from '../contexts/oppfolging';
+import { useBrukerregistreringData } from '../contexts/brukerregistrering';
 
 import InnholdMetrics from './innhold-metrics';
 import RegistrertTittel from '../komponenter/registrert-tittel/registrert-tittel';
@@ -17,24 +21,37 @@ import Behovsavklaring from '../komponenter/behovsavklaring-oppfolging/behovsavk
 import beregnArbeidssokerperioder from '../lib/beregn-arbeidssokerperioder';
 import { AutomatiskReaktivert } from '../komponenter/reaktivering/automatisk-reaktivert';
 import { visAutomatiskReaktiveringsKort } from '../lib/vis-automatisk-reaktiverings-kort';
+import { visBesvarelser } from '../lib/vis-besvarelse';
 
 import styles from './innhold.module.css';
 
 const InnholdStandard = () => {
     const arbeidssokerperioderData = useArbeidssokerPerioder();
-    const featureToggleData = useFeatureToggleData();
+    const featuretoggleData = useFeatureToggleData();
     const { reaktivering } = useReaktivering();
     const behov = useBehovForVeiledning();
+    const brukerInfoData = useBrukerinfoData();
+    const { besvarelse } = useBesvarelse();
+    const oppfolgingData = useOppfolgingData();
+    const registreringData = useBrukerregistreringData();
 
+    const beregnedeArbeidssokerperioder = beregnArbeidssokerperioder(arbeidssokerperioderData);
     const { behovForVeiledning } = behov;
-    const { harAktivArbeidssokerperiode, aktivPeriodeStart } = beregnArbeidssokerperioder(arbeidssokerperioderData);
+    const { harAktivArbeidssokerperiode, aktivPeriodeStart } = beregnedeArbeidssokerperioder;
     const harSistSvartDato = behovForVeiledning && behovForVeiledning.dato ? new Date(behovForVeiledning.dato) : null;
     const harPeriodeStart = harAktivArbeidssokerperiode === 'Ja' ? new Date(aktivPeriodeStart) : null;
 
     const harGyldigBehovsvurdering = harSistSvartDato && harPeriodeStart && harSistSvartDato > harPeriodeStart;
 
-    const skalViseReaktiveringsKort = visAutomatiskReaktiveringsKort(featureToggleData, reaktivering);
-    const visEndreSituasjon = featureToggleData[FeatureToggles.BRUK_ENDRING_AV_SITUASJON];
+    const skalViseReaktiveringsKort = visAutomatiskReaktiveringsKort(featuretoggleData, reaktivering);
+    const visEndreSituasjon = visBesvarelser({
+        brukerInfoData,
+        oppfolgingData,
+        registreringData,
+        featuretoggleData,
+        besvarelseData: besvarelse,
+        arbeidssokerPeriodeData: beregnedeArbeidssokerperioder,
+    });
 
     return (
         <>

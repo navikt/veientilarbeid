@@ -27,6 +27,7 @@ const dinSituasjonTekster = {
 
 const Sammendrag = (props: any) => {
     const [openModal, setOpenModal] = useState(false);
+    // TODO: Hent valgtSituasjon fra evt lagret besvarelse
     const [valgtSituasjon, settValgtSituasjon] = useState<string>(DinSituasjonSvar.ER_PERMITTERT);
     const { startDato, manueltRegistrertAv, amplitudeData } = props;
     const underoppfolging = useUnderOppfolging()?.underoppfolging;
