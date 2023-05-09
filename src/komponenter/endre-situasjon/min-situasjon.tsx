@@ -18,10 +18,12 @@ function MinSituasjon(props: any) {
     const { amplitudeData } = useAmplitudeData();
     const autentiseringData = useAutentiseringData();
     const { besvarelse } = useBesvarelse();
+    // TODO: hente situasjon fra registrering om ikke besvarelse finnes
     const besvarelseData = besvarelse ? besvarelse.besvarelse : null;
 
     const { aktivPeriodeStart } = beregnArbeidssokerperioder(arbeidssokerperiodeData);
     const { opprettetDato, manueltRegistrertAv } = brukerregistreringData?.registrering || {};
+    const { endret, endretAv } = besvarelse || {};
     const kanViseKomponent = autentiseringData.securityLevel === InnloggingsNiva.LEVEL_4;
 
     if (!kanViseKomponent) return null;
@@ -33,6 +35,8 @@ function MinSituasjon(props: any) {
                 manueltRegistrertAv={manueltRegistrertAv}
                 amplitudeData={amplitudeData}
                 besvarelse={besvarelseData}
+                endret={endret}
+                endretAv={endretAv}
             />
             <InnsynLesMer />
         </Panel>

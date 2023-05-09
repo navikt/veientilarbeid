@@ -28,7 +28,7 @@ const dinSituasjonTekster = {
 const Sammendrag = (props: any) => {
     const [openModal, setOpenModal] = useState(false);
     const [valgtSituasjon, settValgtSituasjon] = useState<string>(DinSituasjonSvar.ER_PERMITTERT);
-    const { startDato, manueltRegistrertAv, amplitudeData } = props;
+    const { startDato, manueltRegistrertAv, amplitudeData, endret, endretAv, besvarelse } = props;
     const underoppfolging = useUnderOppfolging()?.underoppfolging;
     const kanViseKomponent = underoppfolging;
     const { lagreBesvarelse } = useBesvarelse();
@@ -80,10 +80,10 @@ const Sammendrag = (props: any) => {
     };
 
     useEffect(() => {
-        if (props.besvarelse) {
-            settValgtSituasjon(props.besvarelse.dinSituasjon.verdi);
+        if (besvarelse) {
+            settValgtSituasjon(besvarelse.dinSituasjon.verdi);
         }
-    }, [props.besvarelse]);
+    }, [besvarelse]);
     // TODO: legge inn useEffect for å koble modal til appElement
 
     return !kanViseKomponent ? null : (
@@ -93,7 +93,13 @@ const Sammendrag = (props: any) => {
                     {manueltRegistrertAv ? 'NAV' : 'Du'} registrerte deg som arbeidssøker {prettyPrintDato(startDato)}.
                     <br />
                 </BodyShort>
-                <BodyShort className={spacing.mb1}>
+                <BodyShort>Din nåværende jobbsituasjon er "{dinSituasjonTekster[valgtSituasjon]}".</BodyShort>
+                {endret && endretAv && (
+                    <BodyShort>
+                        Sist oppdatert {prettyPrintDato(endret)} av {endretAv === 'BRUKER' ? 'deg' : 'NAV'}
+                    </BodyShort>
+                )}
+                <BodyShort className={`${spacing.mb1} ${spacing.my1}`}>
                     <a href="" onClick={handleModalOpen}>
                         Jobbsituasjonen min har endret seg
                     </a>

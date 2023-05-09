@@ -97,6 +97,7 @@ export const demo_handlers = [
     msw_get(MOTESTOTTE_URL, hentMotestotte()),
 
     msw_get(BESVARELSE_URL, besvarelseMock),
+    //msw_get(BESVARELSE_URL, null),
 
     rest.post(BESVARELSE_URL, (req, res, ctx) => {
         return res(ctx.status(201), ctx.json(besvarelseMock));
