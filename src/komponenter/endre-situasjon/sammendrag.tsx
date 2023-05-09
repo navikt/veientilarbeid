@@ -70,7 +70,7 @@ const Sammendrag = (props: any) => {
                 besvarelse: {
                     dinSituasjon: {
                         verdi: valgtSituasjon,
-                        gjelderFra: selectedDay,
+                        gjelderFra: selectedDay?.toISOString(),
                     },
                 },
             },
