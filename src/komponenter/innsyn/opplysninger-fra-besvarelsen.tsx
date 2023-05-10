@@ -5,10 +5,11 @@ import { useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
 
 import Feedback from '../feedback/feedback';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
+import { BesvarelseResponse } from '../../contexts/besvarelse';
+import prettyPrintDato from '../../utils/pretty-print-dato';
 
 import spacing from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
-import { BesvarelseResponse } from '../../contexts/besvarelse';
 
 const TEKSTER = {
     nb: {
@@ -78,6 +79,32 @@ interface OpplysningerProps {
     besvarelseData: BesvarelseResponse;
 }
 
+const RegistreringsOpplysninger = (props: OpplysningerProps) => {
+    const { besvarelseData } = props;
+    const opprettet = besvarelseData?.opprettet ? prettyPrintDato(besvarelseData.opprettet) : '';
+    const opprettetAv = besvarelseData?.opprettetAv || '';
+    const endret = besvarelseData?.endret ? prettyPrintDato(besvarelseData.endret) : '';
+    const endretAv = besvarelseData?.endretAv || '';
+    if (!besvarelseData) return null;
+    return (
+        <div className={`${spacing.blokkS}`}>
+            <div className={`${flexStyles.flex}`}>
+                <strong className={spacing.mr05}>Registrering</strong>
+            </div>
+            <div>
+                <div>
+                    <div className={`${spacing.mr05} ${spacing.mb05}`}>
+                        {opprettetAv} registrerte deg som arbeidssøker {opprettet}
+                    </div>
+                    <div className={`${spacing.mr05} ${spacing.mb05}`}>
+                        Opplysningene ble sist endret {endret} av {endretAv}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
 const OpplysningerFraBesvarelsen = (props: OpplysningerProps) => {
     const { besvarelseData } = props;
     const besvarelser = repackBesvarelser(besvarelseData);
@@ -91,16 +118,7 @@ const OpplysningerFraBesvarelsen = (props: OpplysningerProps) => {
                     Veilederen din bruker opplysningene for å vurdere hvor mye veiledning du trenger.
                 </BodyShort>
             </div>
-            <div className={`${spacing.blokkS}`}>
-                <div className={`${flexStyles.flex}`}>
-                    <strong className={spacing.mr05}>Registrering</strong>
-                </div>
-                <div>
-                    <div className={`${flexStyles.flex} ${flexStyles.alignCenter} ${flexStyles.wrap}`}>
-                        <div className={`${spacing.mr05} ${spacing.mb05}`}>opprettet dato og opprettet av</div>
-                    </div>
-                </div>
-            </div>
+            <RegistreringsOpplysninger besvarelseData={besvarelseData} />
             <Oppfolging />
             {besvarelser.map((item, index) => (
                 <Opplysning {...item} key={index} />

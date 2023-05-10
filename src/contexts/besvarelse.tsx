@@ -121,6 +121,7 @@ export type BesvarelseResponse = {
         tilbakeIArbeid?: TilbakeIArbeidResponse;
     };
     opprettet?: string;
+    opprettetAv?: string;
     endret?: string;
     endretAv?: BrukerEllerNav;
 } | null;
