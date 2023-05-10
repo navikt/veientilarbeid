@@ -93,7 +93,7 @@ const Sammendrag = (props: any) => {
                     {manueltRegistrertAv ? 'NAV' : 'Du'} registrerte deg som arbeidssøker {prettyPrintDato(startDato)}.
                     <br />
                 </BodyShort>
-                <BodyShort>Min sist oppgitte jobbsituasjon er "{dinSituasjonTekster[valgtSituasjon]}".</BodyShort>
+                <BodyShort>Sist oppgitte jobbsituasjon er "{dinSituasjonTekster[valgtSituasjon]}".</BodyShort>
                 {endret && endretAv && (
                     <BodyShort>
                         Sist oppdatert {prettyPrintDato(endret)} av {endretAv === 'BRUKER' ? 'deg' : 'NAV'}.
@@ -113,7 +113,7 @@ const Sammendrag = (props: any) => {
                 >
                     <Modal.Content>
                         <Heading spacing level="1" size="large" id="modal-heading">
-                            Jobbsituasjonen min har endret seg
+                            Oppdater jobbsituasjonen din
                         </Heading>
                         <Select
                             className={spacing.mb1}
@@ -141,9 +141,9 @@ const Sammendrag = (props: any) => {
                     </Modal.Content>
                 </Modal>
                 <BodyShort>
-                    Om andre forhold i situasjonen din har endret seg må{' '}
+                    Om andre forhold i situasjonen din har endret seg må du{' '}
                     <a href={dialogLenke} onClick={handleDialogClick}>
-                        gi beskjed til veilederen din
+                        gi beskjed til NAV
                     </a>
                     .
                 </BodyShort>

@@ -82,9 +82,9 @@ interface OpplysningerProps {
 const RegistreringsOpplysninger = (props: OpplysningerProps) => {
     const { besvarelseData } = props;
     const opprettet = besvarelseData?.opprettet ? prettyPrintDato(besvarelseData.opprettet) : '';
-    const opprettetAv = besvarelseData?.opprettetAv || '';
+    const opprettetAv = besvarelseData?.opprettetAv && besvarelseData.opprettetAv === 'BRUKER' ? 'Du' : 'NAV';
     const endret = besvarelseData?.endret ? prettyPrintDato(besvarelseData.endret) : '';
-    const endretAv = besvarelseData?.endretAv || '';
+    const endretAv = besvarelseData?.endretAv && besvarelseData.endretAv === 'BRUKER' ? 'deg' : 'NAV';
     if (!besvarelseData) return null;
     return (
         <div className={`${spacing.blokkS}`}>
@@ -94,10 +94,10 @@ const RegistreringsOpplysninger = (props: OpplysningerProps) => {
             <div>
                 <div>
                     <div className={`${spacing.mr05} ${spacing.mb05}`}>
-                        {opprettetAv} registrerte deg som arbeidssøker {opprettet}
+                        {opprettetAv} registrerte deg som arbeidssøker {opprettet}.
                     </div>
                     <div className={`${spacing.mr05} ${spacing.mb05}`}>
-                        Opplysningene ble sist endret {endret} av {endretAv}
+                        Opplysningene ble sist endret av {endretAv} {endret}.
                     </div>
                 </div>
             </div>
