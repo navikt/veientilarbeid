@@ -65,8 +65,9 @@ const besvarelseMock = {
             endret: null,
         },
     },
-    opprettet: '2023-04-28T22:45:33.31443',
-    endret: '2023-04-28T22:45:33.31443',
+    opprettet: '2023-05-01T22:45:33.31443',
+    opprettetAv: 'BRUKER',
+    endret: '2023-05-03T22:45:33.31443',
     endretAv: 'BRUKER',
 };
 
