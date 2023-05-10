@@ -93,10 +93,10 @@ const Sammendrag = (props: any) => {
                     {manueltRegistrertAv ? 'NAV' : 'Du'} registrerte deg som arbeidssøker {prettyPrintDato(startDato)}.
                     <br />
                 </BodyShort>
-                <BodyShort>Din nåværende jobbsituasjon er "{dinSituasjonTekster[valgtSituasjon]}".</BodyShort>
+                <BodyShort>Min sist oppgitte jobbsituasjon er "{dinSituasjonTekster[valgtSituasjon]}".</BodyShort>
                 {endret && endretAv && (
                     <BodyShort>
-                        Sist oppdatert {prettyPrintDato(endret)} av {endretAv === 'BRUKER' ? 'deg' : 'NAV'}
+                        Sist oppdatert {prettyPrintDato(endret)} av {endretAv === 'BRUKER' ? 'deg' : 'NAV'}.
                     </BodyShort>
                 )}
                 <BodyShort className={`${spacing.mb1} ${spacing.mt1}`}>

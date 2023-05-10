@@ -18,7 +18,6 @@ function MinSituasjon(props: any) {
     const { amplitudeData } = useAmplitudeData();
     const autentiseringData = useAutentiseringData();
     const { besvarelse } = useBesvarelse();
-    // TODO: hente situasjon fra registrering om ikke besvarelse finnes
     const besvarelseData = besvarelse ? besvarelse.besvarelse : null;
 
     const { aktivPeriodeStart } = beregnArbeidssokerperioder(arbeidssokerperiodeData);

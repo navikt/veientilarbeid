@@ -1,16 +1,14 @@
 import { BodyShort } from '@navikt/ds-react';
 
-import { useUnderOppfolging } from '../../contexts/arbeidssoker';
 import { useSprakValg } from '../../contexts/sprak';
 import { useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
 
-import { Besvarelse, SisteStilling, Svar } from '../../contexts/brukerregistrering';
-import prettyPrintDato from '../../utils/pretty-print-dato';
 import Feedback from '../feedback/feedback';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 
 import spacing from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
+import { BesvarelseResponse } from '../../contexts/besvarelse';
 
 const TEKSTER = {
     nb: {
@@ -24,23 +22,6 @@ const TEKSTER = {
         'oppfolging.IKKE_BESVART': 'Ikke besvart',
     },
 };
-
-/**
- * Dette er en fiks fordi det en periode ble postet data fra registreringen med en litt annen signatur
- * Den henter data fra sisteStilling og viser under teksterForBesvarelse
- */
-
-function fiksSisteStilling(innholdStilling: string, innholdSituasjon: string, stilling: SisteStilling): Svar {
-    const harAldriJobbet = innholdStilling === 'HAR_IKKE_HATT_JOBB' || innholdSituasjon === 'ALDRI_HATT_JOBB';
-    const sporsmalId = 'sisteStilling';
-    const sporsmal = 'Hva er din siste jobb?';
-    const svar = harAldriJobbet ? 'Ingen yrkeserfaring' : stilling?.label || 'Ikke oppgitt';
-    return {
-        sporsmalId,
-        sporsmal,
-        svar,
-    };
-}
 
 const Opplysning = (props: any) => {
     const { sporsmal, svar } = props;
@@ -75,27 +56,33 @@ const Oppfolging = () => {
     );
 };
 
-const repackBesvarelser = (besvarelse: Besvarelse, teksterForBesvarelse: Array<Svar>, sisteStilling: SisteStilling) => {
-    const sisteStillingInnhold = besvarelse['sisteStilling'] || '';
-    const dinSituasjonInnhold = besvarelse['dinSituasjon'] || '';
-    const tekster = teksterForBesvarelse || [];
-    // Legger data fra sisteStilling først i teksterForBesvarelse så den oppdaterte plukkes opp av find i alleSvar
-    if (tekster.length > 0) {
-        tekster.unshift(fiksSisteStilling(sisteStillingInnhold, dinSituasjonInnhold, sisteStilling));
-    }
-    const besvarelserMedInnhold = Object.keys(besvarelse).filter((item) => besvarelse[item]);
-    const alleSvar = besvarelserMedInnhold.map((item) => tekster.find((svar) => svar.sporsmalId === item));
-    const svarMedInnhold = alleSvar.filter((svar) => svar !== undefined);
-    return svarMedInnhold;
+interface Svar {
+    sporsmal: string;
+    svar: string | null;
+}
+
+const repackBesvarelser = (besvarelseData: BesvarelseResponse) => {
+    const besvarelse = besvarelseData?.besvarelse || {};
+    const besvarelserMedInnhold = Object.keys(besvarelse).map(
+        (key) =>
+            new Object({
+                sporsmal: key,
+                svar: besvarelse[key].verdi,
+            }) as Svar
+    );
+    const besvarteBesvarelser = besvarelserMedInnhold.filter((item) => item.svar !== null);
+    return besvarteBesvarelser;
 };
 
-const OpplysningerFraBesvarelsen = (props: any) => {
-    const { opprettetDato, manueltRegistrertAv, besvarelse, teksterForBesvarelse, sisteStilling } = props;
-    const besvarelser = repackBesvarelser(besvarelse, teksterForBesvarelse, sisteStilling);
-    const underoppfolging = useUnderOppfolging()?.underoppfolging;
-    const kanViseKomponent = underoppfolging;
+interface OpplysningerProps {
+    besvarelseData: BesvarelseResponse;
+}
 
-    return !kanViseKomponent ? null : (
+const OpplysningerFraBesvarelsen = (props: OpplysningerProps) => {
+    const { besvarelseData } = props;
+    const besvarelser = repackBesvarelser(besvarelseData);
+
+    return !besvarelseData ? null : (
         <div className={`${flexStyles.flex} ${flexStyles.flexColumn}`}>
             <div className={spacing.blokkS}>
                 <BodyShort>
@@ -110,10 +97,7 @@ const OpplysningerFraBesvarelsen = (props: any) => {
                 </div>
                 <div>
                     <div className={`${flexStyles.flex} ${flexStyles.alignCenter} ${flexStyles.wrap}`}>
-                        <div className={`${spacing.mr05} ${spacing.mb05}`}>
-                            {manueltRegistrertAv ? 'NAV' : 'Du'} registrerte deg som arbeidssøker{' '}
-                            {prettyPrintDato(opprettetDato)}
-                        </div>
+                        <div className={`${spacing.mr05} ${spacing.mb05}`}>opprettet dato og opprettet av</div>
                     </div>
                 </div>
             </div>
@@ -121,7 +105,7 @@ const OpplysningerFraBesvarelsen = (props: any) => {
             {besvarelser.map((item, index) => (
                 <Opplysning {...item} key={index} />
             ))}
-            <Feedback id={'svar-fra-registreringen'} />
+            <Feedback id={'svar-fra-besvarelsen'} />
         </div>
     );
 };
