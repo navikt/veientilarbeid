@@ -7,7 +7,7 @@ import Feedback from '../feedback/feedback';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { BesvarelseResponse } from '../../contexts/besvarelse';
 import prettyPrintDato from '../../utils/pretty-print-dato';
-import { sporsmalMap } from '../../models/sporsmal-og-svar';
+import { sporsmalMap, svarMap } from '../../models/sporsmal-og-svar';
 
 import spacing from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
@@ -69,7 +69,7 @@ const repackBesvarelser = (besvarelseData: BesvarelseResponse) => {
         (key) =>
             new Object({
                 sporsmal: sporsmalMap[key],
-                svar: besvarelse[key].verdi,
+                svar: besvarelse[key].verdi ? svarMap[key][besvarelse[key].verdi] : null,
             }) as Svar
     );
     const besvarteBesvarelser = besvarelserMedInnhold.filter((item) => item.svar !== null);
