@@ -23,14 +23,14 @@ const besvarelseMock = {
             endret: null,
         },
         helseHinder: {
-            verdi: 'JA',
+            verdi: 'NEI',
             gjelderFra: null,
             gjelderTil: null,
             endretAv: null,
             endret: null,
         },
         andreForhold: {
-            verdi: 'JA',
+            verdi: 'NEI',
             gjelderFra: null,
             gjelderTil: null,
             endretAv: null,
