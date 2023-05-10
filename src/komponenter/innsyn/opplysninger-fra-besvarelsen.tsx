@@ -7,6 +7,7 @@ import Feedback from '../feedback/feedback';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { BesvarelseResponse } from '../../contexts/besvarelse';
 import prettyPrintDato from '../../utils/pretty-print-dato';
+import { sporsmalMap } from '../../models/sporsmal-og-svar';
 
 import spacing from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
@@ -67,7 +68,7 @@ const repackBesvarelser = (besvarelseData: BesvarelseResponse) => {
     const besvarelserMedInnhold = Object.keys(besvarelse).map(
         (key) =>
             new Object({
-                sporsmal: key,
+                sporsmal: sporsmalMap[key],
                 svar: besvarelse[key].verdi,
             }) as Svar
     );
