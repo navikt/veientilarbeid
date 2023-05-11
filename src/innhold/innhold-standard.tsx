@@ -44,6 +44,7 @@ const InnholdStandard = () => {
     const harGyldigBehovsvurdering = harSistSvartDato && harPeriodeStart && harSistSvartDato > harPeriodeStart;
 
     const skalViseReaktiveringsKort = visAutomatiskReaktiveringsKort(featuretoggleData, reaktivering);
+
     const visEndreSituasjon = visBesvarelser({
         brukerInfoData,
         oppfolgingData,
