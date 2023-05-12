@@ -64,6 +64,8 @@ export enum DemoData {
     REAKTIVERING = 'reaktivering',
     NY_SITUASJON = 'nySituasjon',
     NY_SITUASJON_FRA = 'nySituasjonFra',
+    ENDRET_SITUASJON = 'endretSituasjon',
+    ENDRET_SITUASJON_AV = 'endretSituasjonAv',
 }
 
 export const hentDemoState = (key: string): string | null => hentQueryParam(key);
