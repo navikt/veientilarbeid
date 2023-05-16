@@ -7,8 +7,8 @@ const AKTIVITETSPLAN_URL = {
 };
 
 const DIALOG_URL = {
-    local: 'https://pto.dev.nav.no/arbeid/dialog',
-    development: 'https://pto.dev.nav.no/arbeid/dialog',
+    local: 'https://pto.ekstern.dev.nav.no/arbeid/dialog',
+    development: 'https://pto.ekstern.dev.nav.no/arbeid/dialog',
     production: 'https://nav.no/arbeid/dialog',
 };
 
