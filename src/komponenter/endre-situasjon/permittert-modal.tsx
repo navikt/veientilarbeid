@@ -126,7 +126,7 @@ const PermittertModal = (props: PermittertModalProps) => {
     }, [openModal]);
 
     const Innhold = () => {
-        if (aktivSide == 1) {
+        if (aktivSide === 1) {
             return (
                 <Steg1
                     valgtSituasjon={valgtSituasjon}
@@ -136,7 +136,7 @@ const PermittertModal = (props: PermittertModalProps) => {
             );
         }
 
-        if (aktivSide == 2) {
+        if (aktivSide === 2) {
             return <Steg2 />;
         }
 
