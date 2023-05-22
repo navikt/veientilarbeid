@@ -17,10 +17,12 @@ import {
 } from './brukerregistrering';
 
 export type DinSituasjonRequest = {
-    dinSituasjon: {
-        verdi: DinSituasjonSvar;
-        gjelderFra?: string;
-        gjelderTil?: string;
+    besvarelse: {
+        dinSituasjon: {
+            verdi: DinSituasjonSvar;
+            gjelderFra?: string;
+            gjelderTil?: string;
+        };
     };
 };
 
@@ -102,7 +104,7 @@ export type BesvarelseRequest = {
     tekst?: string;
     overskrift?: string;
     venterPaaSvarFraNav?: boolean;
-    besvarelse: DinSituasjonRequest;
+    oppdatering: DinSituasjonRequest;
 };
 
 export type BesvarelseResponse = {
@@ -119,6 +121,7 @@ export type BesvarelseResponse = {
         tilbakeIArbeid?: TilbakeIArbeidResponse;
     };
     opprettet?: string;
+    opprettetAv?: string;
     endret?: string;
     endretAv?: BrukerEllerNav;
 } | null;
@@ -176,7 +179,7 @@ function BesvarelseProvider(props: { children: ReactNode }) {
             const behov: BesvarelseResponse = await fetchToJson(BESVARELSE_URL, {
                 ...requestConfig(),
                 method: 'POST',
-                body: JSON.stringify({ ...data.besvarelse }),
+                body: JSON.stringify({ ...data.oppdatering }),
             });
             settBesvarelse(behov);
         } catch (error) {
