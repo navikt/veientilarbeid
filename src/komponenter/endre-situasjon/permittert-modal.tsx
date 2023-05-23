@@ -1,4 +1,13 @@
-import { BodyShort, Button, Heading, Modal, Select, UNSAFE_DatePicker, UNSAFE_useDatepicker } from '@navikt/ds-react';
+import {
+    BodyShort,
+    Button,
+    Heading,
+    HelpText,
+    Modal,
+    Select,
+    UNSAFE_DatePicker,
+    UNSAFE_useDatepicker,
+} from '@navikt/ds-react';
 import spacing from '../../spacing.module.css';
 import flex from '../../flex.module.css';
 import React, { useEffect, useState } from 'react';
@@ -105,7 +114,12 @@ const OPPSIGELSE = (props: Steg2Props) => {
                 <UNSAFE_DatePicker.Input
                     {...sisteArbeidsdagInput}
                     className={spacing.mb1}
-                    label="Når er din siste arbeidsdag der arbeidsgiver betaler lønn?"
+                    label={
+                        <div className={flex.flex}>
+                            Når er din siste arbeidsdag der arbeidsgiver betaler lønn?
+                            <HelpText className={spacing.ml05}>Hjelpetekst her</HelpText>
+                        </div>
+                    }
                     defaultValue={new Date().toLocaleDateString()}
                 />
             </UNSAFE_DatePicker>
