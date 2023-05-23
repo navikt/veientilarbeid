@@ -2,10 +2,9 @@ import {
     BodyShort,
     Button,
     Heading,
+    HelpText,
     Modal,
     Select,
-    Radio,
-    RadioGroup,
     UNSAFE_DatePicker,
     UNSAFE_useDatepicker,
 } from '@navikt/ds-react';
@@ -115,7 +114,12 @@ const OPPSIGELSE = (props: Steg2Props) => {
                 <UNSAFE_DatePicker.Input
                     {...sisteArbeidsdagInput}
                     className={spacing.mb1}
-                    label="Når er din siste arbeidsdag der arbeidsgiver betaler lønn?"
+                    label={
+                        <div className={flex.flex}>
+                            Når er din siste arbeidsdag der arbeidsgiver betaler lønn?
+                            <HelpText className={spacing.ml05}>Hjelpetekst her</HelpText>
+                        </div>
+                    }
                     defaultValue={new Date().toLocaleDateString()}
                 />
             </UNSAFE_DatePicker>
@@ -144,8 +148,6 @@ const ENDRET = (props: Steg2Props) => {
     // const { lagreBesvarelse } = useBesvarelse();
     const { amplitudeData, valgtSituasjon, onClick } = props;
 
-    const handleChange = (val: any) => console.log(val);
-
     const handleLagreEndringer = async () => {
         loggAktivitet({
             aktivitet: 'Lagrer endring i jobbsituasjonen',
@@ -167,13 +169,6 @@ const ENDRET = (props: Steg2Props) => {
                     defaultValue={new Date().toLocaleDateString()}
                 />
             </UNSAFE_DatePicker>
-
-            <RadioGroup legend="Hva er den nye peritteringsprosenten?" onChange={(val: any) => handleChange(val)}>
-                <Radio value="100">100 prosent</Radio>
-                <Radio value="75">75 prosent</Radio>
-                <Radio value="50">50 prosent</Radio>
-                <Radio value="25">25 prosent</Radio>
-            </RadioGroup>
 
             <BodyShort className={spacing.mb1}>
                 NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
