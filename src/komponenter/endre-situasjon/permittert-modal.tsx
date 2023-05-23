@@ -3,13 +3,15 @@ import {
     Button,
     Heading,
     HelpText,
+    Link,
     Modal,
+    Radio,
+    RadioGroup,
     Select,
     UNSAFE_DatePicker,
     UNSAFE_useDatepicker,
-    RadioGroup,
-    Radio,
 } from '@navikt/ds-react';
+import { ChevronLeftIcon } from '@navikt/aksel-icons';
 import spacing from '../../spacing.module.css';
 import flex from '../../flex.module.css';
 import React, { useEffect, useState } from 'react';
@@ -454,6 +456,18 @@ const PermittertModal = (props: PermittertModalProps) => {
         return null;
     };
 
+    const Tilbake = () => {
+        if (aktivSide === 1) {
+            return null;
+        }
+        // eslint-disable-next-line react/jsx-no-undef
+        return (
+            <Link href={'#'} onClick={() => settAktivSide(aktivSide - 1)}>
+                <ChevronLeftIcon /> Tilbake
+            </Link>
+        );
+    };
+
     return (
         <Modal
             open={openModal}
@@ -463,6 +477,7 @@ const PermittertModal = (props: PermittertModalProps) => {
             aria-labelledby="modal-heading"
         >
             <Modal.Content>
+                <Tilbake />
                 <Heading spacing level="1" size="large" id="modal-heading">
                     Min jobbsituasjonen har endret seg
                 </Heading>
