@@ -1,4 +1,14 @@
-import { BodyShort, Button, Heading, Modal, Select, UNSAFE_DatePicker, UNSAFE_useDatepicker } from '@navikt/ds-react';
+import {
+    BodyShort,
+    Button,
+    Heading,
+    Modal,
+    Select,
+    Radio,
+    RadioGroup,
+    UNSAFE_DatePicker,
+    UNSAFE_useDatepicker,
+} from '@navikt/ds-react';
 import spacing from '../../spacing.module.css';
 import flex from '../../flex.module.css';
 import React, { useEffect, useState } from 'react';
@@ -121,24 +131,234 @@ const OPPSIGELSE = (props: Steg2Props) => {
     );
 };
 
-const ENDRET = () => {
+const ENDRET = (props: Steg2Props) => {
+    const {
+        datepickerProps: gjelderFraDatoProps,
+        inputProps: gjelderFraDatoInput,
+        selectedDay: gjelderFraDatoDato,
+    } = UNSAFE_useDatepicker({
+        fromDate: new Date('Jan 01 2022'),
+        defaultSelected: new Date(),
+    });
+
+    // const { lagreBesvarelse } = useBesvarelse();
+    const { amplitudeData, valgtSituasjon, onClick } = props;
+
+    const handleChange = (val: any) => console.log(val);
+
+    const handleLagreEndringer = async () => {
+        loggAktivitet({
+            aktivitet: 'Lagrer endring i jobbsituasjonen',
+            komponent: 'Min situasjon',
+            ...amplitudeData,
+        });
+        console.log('valgtSituasjon: ', valgtSituasjon);
+        console.log('oppsigelseDato: ', gjelderFraDatoDato);
+        onClick();
+    };
+
     return (
         <>
-            <BodyShort>Steg 2 for endret</BodyShort>
+            <UNSAFE_DatePicker {...gjelderFraDatoProps} strategy="fixed">
+                <UNSAFE_DatePicker.Input
+                    {...gjelderFraDatoInput}
+                    className={spacing.mb1}
+                    label="Fra hvilken dato skjer endringen?"
+                    defaultValue={new Date().toLocaleDateString()}
+                />
+            </UNSAFE_DatePicker>
+
+            <RadioGroup legend="Hva er den nye peritteringsprosenten?" onChange={(val: any) => handleChange(val)}>
+                <Radio value="100">100 prosent</Radio>
+                <Radio value="75">75 prosent</Radio>
+                <Radio value="50">50 prosent</Radio>
+                <Radio value="25">25 prosent</Radio>
+            </RadioGroup>
+
+            <BodyShort className={spacing.mb1}>
+                NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
+            </BodyShort>
+            <div className={`${flex.flex} ${flex.flexEnd}`}>
+                <Button variant={'primary'} onClick={handleLagreEndringer}>
+                    Lagre endring i situasjon
+                </Button>
+            </div>
         </>
     );
 };
 
-const TILBAKE_TIL_JOBB = () => {
-    return <BodyShort>Steg 2 for tilbake til jobb</BodyShort>;
+const TILBAKE_TIL_JOBB = (props: Steg2Props) => {
+    const {
+        datepickerProps: forsteArbeidsdagProps,
+        inputProps: forsteArbeidsdagInput,
+        selectedDay: forsteArbeidsdagDato,
+    } = UNSAFE_useDatepicker({
+        fromDate: new Date('Jan 01 2022'),
+        defaultSelected: new Date(),
+    });
+
+    // const { lagreBesvarelse } = useBesvarelse();
+    const { amplitudeData, valgtSituasjon, onClick } = props;
+    const handleLagreEndringer = async () => {
+        loggAktivitet({
+            aktivitet: 'Lagrer endring i jobbsituasjonen',
+            komponent: 'Min situasjon',
+            ...amplitudeData,
+        });
+        console.log('valgtSituasjon: ', valgtSituasjon);
+        console.log('oppsigelseDato: ', forsteArbeidsdagDato);
+        onClick();
+    };
+
+    return (
+        <>
+            <UNSAFE_DatePicker {...forsteArbeidsdagProps} strategy="fixed">
+                <UNSAFE_DatePicker.Input
+                    {...forsteArbeidsdagInput}
+                    className={spacing.mb1}
+                    label="Når er første arbeidsdag etter permittering?"
+                    defaultValue={new Date().toLocaleDateString()}
+                />
+            </UNSAFE_DatePicker>
+
+            <BodyShort className={spacing.mb1}>
+                NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
+            </BodyShort>
+            <div className={`${flex.flex} ${flex.flexEnd}`}>
+                <Button variant={'primary'} onClick={handleLagreEndringer}>
+                    Lagre endring i situasjon
+                </Button>
+            </div>
+        </>
+    );
 };
 
-const NY_JOBB = () => {
-    return <BodyShort>Steg 2 for ny jobb</BodyShort>;
+const NY_JOBB = (props: Steg2Props) => {
+    const {
+        datepickerProps: forsteArbeidsdagProps,
+        inputProps: forsteArbeidsdagInput,
+        selectedDay: forsteArbeidsdagDato,
+    } = UNSAFE_useDatepicker({
+        fromDate: new Date('Jan 01 2022'),
+        defaultSelected: new Date(),
+    });
+
+    const {
+        datepickerProps: sisteArbeidsdagProps,
+        inputProps: sisteArbeidsdagInput,
+        selectedDay: sisteArbeidsdagDato,
+    } = UNSAFE_useDatepicker({
+        fromDate: new Date('Jan 01 2022'),
+        defaultSelected: new Date(),
+    });
+
+    // const { lagreBesvarelse } = useBesvarelse();
+    const { amplitudeData, valgtSituasjon, onClick } = props;
+    const handleLagreEndringer = async () => {
+        loggAktivitet({
+            aktivitet: 'Lagrer endring i jobbsituasjonen',
+            komponent: 'Min situasjon',
+            ...amplitudeData,
+        });
+        console.log('valgtSituasjon: ', valgtSituasjon);
+        console.log('oppsigelseDato: ', forsteArbeidsdagDato);
+        console.log('sisteArbeidsdagDato: ', sisteArbeidsdagDato);
+        onClick();
+    };
+
+    return (
+        <>
+            <UNSAFE_DatePicker {...forsteArbeidsdagProps} strategy="fixed">
+                <UNSAFE_DatePicker.Input
+                    {...forsteArbeidsdagInput}
+                    className={spacing.mb1}
+                    label="Når er første arbeidsdag i ny jobb?"
+                    defaultValue={new Date().toLocaleDateString()}
+                />
+            </UNSAFE_DatePicker>
+
+            <UNSAFE_DatePicker {...sisteArbeidsdagProps} strategy="fixed">
+                <UNSAFE_DatePicker.Input
+                    {...sisteArbeidsdagInput}
+                    className={spacing.mb1}
+                    label="Når er siste arbeidsdag med lønn i nåværende jobb?"
+                    defaultValue={new Date().toLocaleDateString()}
+                />
+            </UNSAFE_DatePicker>
+            <BodyShort className={spacing.mb1}>
+                NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
+            </BodyShort>
+            <div className={`${flex.flex} ${flex.flexEnd}`}>
+                <Button variant={'primary'} onClick={handleLagreEndringer}>
+                    Lagre endring i situasjon
+                </Button>
+            </div>
+        </>
+    );
 };
 
-const MIDLERTIDIG_JOBB = () => {
-    return <BodyShort>Steg 2 for midlertidig jobb</BodyShort>;
+const MIDLERTIDIG_JOBB = (props: Steg2Props) => {
+    const {
+        datepickerProps: forsteArbeidsdagProps,
+        inputProps: forsteArbeidsdagInput,
+        selectedDay: forsteArbeidsdagDato,
+    } = UNSAFE_useDatepicker({
+        fromDate: new Date('Jan 01 2022'),
+        defaultSelected: new Date(),
+    });
+
+    const {
+        datepickerProps: sisteArbeidsdagProps,
+        inputProps: sisteArbeidsdagInput,
+        selectedDay: sisteArbeidsdagDato,
+    } = UNSAFE_useDatepicker({
+        fromDate: new Date('Jan 01 2022'),
+        defaultSelected: new Date(),
+    });
+
+    // const { lagreBesvarelse } = useBesvarelse();
+    const { amplitudeData, valgtSituasjon, onClick } = props;
+    const handleLagreEndringer = async () => {
+        loggAktivitet({
+            aktivitet: 'Lagrer endring i jobbsituasjonen',
+            komponent: 'Min situasjon',
+            ...amplitudeData,
+        });
+        console.log('valgtSituasjon: ', valgtSituasjon);
+        console.log('oppsigelseDato: ', forsteArbeidsdagDato);
+        console.log('sisteArbeidsdagDato: ', sisteArbeidsdagDato);
+        onClick();
+    };
+
+    return (
+        <>
+            <UNSAFE_DatePicker {...forsteArbeidsdagProps} strategy="fixed">
+                <UNSAFE_DatePicker.Input
+                    {...forsteArbeidsdagInput}
+                    className={spacing.mb1}
+                    label="Når er første arbeidsdag?"
+                    defaultValue={new Date().toLocaleDateString()}
+                />
+            </UNSAFE_DatePicker>
+
+            <UNSAFE_DatePicker {...sisteArbeidsdagProps} strategy="fixed">
+                <UNSAFE_DatePicker.Input
+                    {...sisteArbeidsdagInput}
+                    className={spacing.mb1}
+                    label="Når er siste arbeidsdag?"
+                    defaultValue={new Date().toLocaleDateString()}
+                />
+            </UNSAFE_DatePicker>
+            <BodyShort className={spacing.mb1}>
+                NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
+            </BodyShort>
+            <div className={`${flex.flex} ${flex.flexEnd}`}>
+                <Button variant={'primary'} onClick={handleLagreEndringer}>
+                    Lagre endring i situasjon
+                </Button>
+            </div>
+        </>
+    );
 };
 
 const UAVKLART = () => {
@@ -179,13 +399,13 @@ const Steg2 = (props: Steg2Props) => {
     if (valgtSituasjon === PermittertSvar.OPPSIGELSE) {
         return <OPPSIGELSE {...props} />;
     } else if (valgtSituasjon === PermittertSvar.TILBAKE_TIL_JOBB) {
-        return <TILBAKE_TIL_JOBB />;
+        return <TILBAKE_TIL_JOBB {...props} />;
     } else if (valgtSituasjon === PermittertSvar.MIDLERTIDIG_JOBB) {
-        return <MIDLERTIDIG_JOBB />;
+        return <MIDLERTIDIG_JOBB {...props} />;
     } else if (valgtSituasjon === PermittertSvar.NY_JOBB) {
-        return <NY_JOBB />;
+        return <NY_JOBB {...props} />;
     } else if (valgtSituasjon === PermittertSvar.ENDRET) {
-        return <ENDRET />;
+        return <ENDRET {...props} />;
     } else if (valgtSituasjon === PermittertSvar.ANNET) {
         return <ANNET />;
     } else if (valgtSituasjon === PermittertSvar.UAVKLART) {
