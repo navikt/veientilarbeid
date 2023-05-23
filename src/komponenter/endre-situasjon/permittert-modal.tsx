@@ -7,6 +7,8 @@ import {
     Select,
     UNSAFE_DatePicker,
     UNSAFE_useDatepicker,
+    RadioGroup,
+    Radio,
 } from '@navikt/ds-react';
 import spacing from '../../spacing.module.css';
 import flex from '../../flex.module.css';
@@ -148,6 +150,8 @@ const ENDRET = (props: Steg2Props) => {
     // const { lagreBesvarelse } = useBesvarelse();
     const { amplitudeData, valgtSituasjon, onClick } = props;
 
+    const handleChange = (val: any) => console.log(val);
+
     const handleLagreEndringer = async () => {
         loggAktivitet({
             aktivitet: 'Lagrer endring i jobbsituasjonen',
@@ -169,6 +173,13 @@ const ENDRET = (props: Steg2Props) => {
                     defaultValue={new Date().toLocaleDateString()}
                 />
             </UNSAFE_DatePicker>
+
+            <RadioGroup legend="Hva er den nye peritteringsprosenten?" onChange={(val: any) => handleChange(val)}>
+                <Radio value="100">100 prosent</Radio>
+                <Radio value="75">75 prosent</Radio>
+                <Radio value="50">50 prosent</Radio>
+                <Radio value="25">25 prosent</Radio>
+            </RadioGroup>
 
             <BodyShort className={spacing.mb1}>
                 NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
