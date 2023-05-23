@@ -1,7 +1,8 @@
-import { BodyShort, Button, Heading, Modal, Select, UNSAFE_useDatepicker } from '@navikt/ds-react';
+import { BodyShort, Button, Heading, Modal, Select, UNSAFE_DatePicker, UNSAFE_useDatepicker } from '@navikt/ds-react';
 import spacing from '../../spacing.module.css';
 import flex from '../../flex.module.css';
 import React, { useEffect, useState } from 'react';
+import { loggAktivitet } from '../../metrics/metrics';
 
 enum PermittertSvar {
     OPPSIGELSE = 'OPPSIGELSE',
@@ -38,14 +39,94 @@ interface Steg1Props {
 
 interface Steg2Props {
     valgtSituasjon: PermittertSvar;
+    onClick: () => void;
+    amplitudeData: any;
 }
 
-const OPPSIGELSE = () => {
-    return <BodyShort>Steg 2 for oppsigelse</BodyShort>;
+const OPPSIGELSE = (props: Steg2Props) => {
+    const {
+        datepickerProps: oppsigelseProps,
+        inputProps: oppsigelseInput,
+        selectedDay: oppsigelseDato,
+    } = UNSAFE_useDatepicker({
+        fromDate: new Date('Jan 01 2022'),
+        defaultSelected: new Date(),
+    });
+
+    const {
+        datepickerProps: sisteArbeidsdagProps,
+        inputProps: sisteArbeidsdagInput,
+        selectedDay: sisteArbeidsdagDato,
+    } = UNSAFE_useDatepicker({
+        fromDate: new Date('Jan 01 2022'),
+        defaultSelected: new Date(),
+    });
+
+    // const { lagreBesvarelse } = useBesvarelse();
+    const { amplitudeData, valgtSituasjon, onClick } = props;
+    const handleLagreEndringer = async () => {
+        loggAktivitet({
+            aktivitet: 'Lagrer endring i jobbsituasjonen',
+            komponent: 'Min situasjon',
+            ...amplitudeData,
+        });
+        console.log('valgtSituasjon: ', valgtSituasjon);
+        console.log('oppsigelseDato: ', oppsigelseDato);
+        console.log('sisteArbeidsdagDato: ', sisteArbeidsdagDato);
+        // const payload = {
+        //     tekst: 'Jobbsitiasjonen er oppdatert til noe. Endringene gjelder fra en dato',
+        //     overskrift: 'Jobbsituasjonen min er endret',
+        //     venterPaaSvarFraNav: true,
+        //     oppdatering: {
+        //         besvarelse: {
+        //             dinSituasjon: {
+        //                 verdi: valgtSituasjon as any,
+        //                 gjelderFra: oppsigelseDato?.toISOString(),
+        //             },
+        //         },
+        //     },
+        // } as BesvarelseRequest;
+        // await lagreBesvarelse(payload);
+        onClick();
+    };
+
+    return (
+        <>
+            <UNSAFE_DatePicker {...oppsigelseProps} strategy="fixed">
+                <UNSAFE_DatePicker.Input
+                    {...oppsigelseInput}
+                    className={spacing.mb1}
+                    label="Når mottok du oppsigelsen?"
+                    defaultValue={new Date().toLocaleDateString()}
+                />
+            </UNSAFE_DatePicker>
+
+            <UNSAFE_DatePicker {...sisteArbeidsdagProps} strategy="fixed">
+                <UNSAFE_DatePicker.Input
+                    {...sisteArbeidsdagInput}
+                    className={spacing.mb1}
+                    label="Når er din siste arbeidsdag der arbeidsgiver betaler lønn?"
+                    defaultValue={new Date().toLocaleDateString()}
+                />
+            </UNSAFE_DatePicker>
+            <BodyShort className={spacing.mb1}>
+                NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
+            </BodyShort>
+            <div className={`${flex.flex} ${flex.flexEnd}`}>
+                <Button variant={'primary'} onClick={handleLagreEndringer}>
+                    Lagre endring i situasjon
+                </Button>
+            </div>
+        </>
+    );
 };
 
 const ENDRET = () => {
-    return <BodyShort>Steg 2 for endret</BodyShort>;
+    return (
+        <>
+            <BodyShort>Steg 2 for endret</BodyShort>
+        </>
+    );
 };
 
 const TILBAKE_TIL_JOBB = () => {
@@ -96,7 +177,7 @@ const Steg1 = (props: Steg1Props) => {
 const Steg2 = (props: Steg2Props) => {
     const { valgtSituasjon } = props;
     if (valgtSituasjon === PermittertSvar.OPPSIGELSE) {
-        return <OPPSIGELSE />;
+        return <OPPSIGELSE {...props} />;
     } else if (valgtSituasjon === PermittertSvar.TILBAKE_TIL_JOBB) {
         return <TILBAKE_TIL_JOBB />;
     } else if (valgtSituasjon === PermittertSvar.MIDLERTIDIG_JOBB) {
@@ -115,44 +196,9 @@ const Steg2 = (props: Steg2Props) => {
 };
 
 const PermittertModal = (props: PermittertModalProps) => {
-    const { openModal, setOpenModal, /*amplitudeData,*/ besvarelse } = props;
-    const { datepickerProps /*inputProps, selectedDay*/ } = UNSAFE_useDatepicker({
-        fromDate: new Date('Jan 01 2022'),
-        defaultSelected: new Date(),
-    });
+    const { openModal, setOpenModal, amplitudeData } = props;
     const [aktivSide, settAktivSide] = React.useState<number>(1);
     const [valgtSituasjon, settValgtSituasjon] = useState<PermittertSvar>(PermittertSvar.OPPSIGELSE);
-
-    // const { lagreBesvarelse } = useBesvarelse();
-
-    // const handleLagreEndringer = () => {
-    //     loggAktivitet({
-    //         aktivitet: 'Lagrer endring i jobbsituasjonen',
-    //         komponent: 'Min situasjon',
-    //         ...amplitudeData,
-    //     });
-    //     const payload = {
-    //         tekst: 'Jobbsitiasjonen er oppdatert til noe. Endringene gjelder fra en dato',
-    //         overskrift: 'Jobbsituasjonen min er endret',
-    //         venterPaaSvarFraNav: true,
-    //         oppdatering: {
-    //             besvarelse: {
-    //                 dinSituasjon: {
-    //                     verdi: valgtSituasjon,
-    //                     gjelderFra: selectedDay?.toISOString(),
-    //                 },
-    //             },
-    //         },
-    //     } as BesvarelseRequest;
-    //     lagreBesvarelse(payload);
-    //     setOpenModal(false);
-    // };
-
-    useEffect(() => {
-        if (besvarelse) {
-            settValgtSituasjon(besvarelse.dinSituasjon.verdi);
-        }
-    }, [besvarelse]);
 
     useEffect(() => {
         settAktivSide(1);
@@ -170,7 +216,13 @@ const PermittertModal = (props: PermittertModalProps) => {
         }
 
         if (aktivSide === 2) {
-            return <Steg2 valgtSituasjon={valgtSituasjon} />;
+            return (
+                <Steg2
+                    valgtSituasjon={valgtSituasjon}
+                    amplitudeData={amplitudeData}
+                    onClick={() => setOpenModal(false)}
+                />
+            );
         }
 
         return null;
@@ -181,7 +233,7 @@ const PermittertModal = (props: PermittertModalProps) => {
             open={openModal}
             aria-label="Jobbsituasjonen min har endret seg"
             onClose={() => setOpenModal((x) => !x)}
-            shouldCloseOnEsc={!datepickerProps.open}
+            // shouldCloseOnEsc={!datepickerProps.open}
             aria-labelledby="modal-heading"
         >
             <Modal.Content>
