@@ -6,21 +6,23 @@ import React, { useEffect, useState } from 'react';
 enum PermittertSvar {
     OPPSIGELSE = 'OPPSIGELSE',
     ENDRET = 'ENDRET',
-    TILBAKE_I_JOBB = 'TILBAKE_I_JOBB',
+    TILBAKE_TIL_JOBB = 'TILBAKE_TIL_JOBB',
     NY_JOBB = 'NY_JOBB',
     MIDLERTIDIG_JOBB = 'MIDLERTIDIG_JOBB',
     UAVKLART = 'UAVKLART',
     ANNET = 'ANNET',
 }
+
 const permittertTekster = {
     [PermittertSvar.OPPSIGELSE]: 'Jeg har fått oppsigelse',
     [PermittertSvar.ENDRET]: 'Permitteringsprosenten har endret seg',
-    [PermittertSvar.TILBAKE_I_JOBB]: 'Har fått tilbake jobben',
+    [PermittertSvar.TILBAKE_TIL_JOBB]: 'Skal tilbake til jobben',
     [PermittertSvar.NY_JOBB]: 'Jeg har fått meg ny jobb',
     [PermittertSvar.MIDLERTIDIG_JOBB]: 'Jeg har fått midlertidig jobb',
     [PermittertSvar.UAVKLART]: 'Arbeidssituasjonen min er uavklart',
     [PermittertSvar.ANNET]: 'Annet',
 };
+
 interface PermittertModalProps {
     openModal: boolean;
     setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -29,10 +31,43 @@ interface PermittertModalProps {
 }
 
 interface Steg1Props {
-    valgtSituasjon: string;
-    settValgtSituasjon: React.Dispatch<React.SetStateAction<string>>;
+    valgtSituasjon: PermittertSvar;
+    settValgtSituasjon: React.Dispatch<React.SetStateAction<PermittertSvar>>;
     onClick: () => void;
 }
+
+interface Steg2Props {
+    valgtSituasjon: PermittertSvar;
+}
+
+const OPPSIGELSE = () => {
+    return <BodyShort>Steg 2 for oppsigelse</BodyShort>;
+};
+
+const ENDRET = () => {
+    return <BodyShort>Steg 2 for endret</BodyShort>;
+};
+
+const TILBAKE_TIL_JOBB = () => {
+    return <BodyShort>Steg 2 for tilbake til jobb</BodyShort>;
+};
+
+const NY_JOBB = () => {
+    return <BodyShort>Steg 2 for ny jobb</BodyShort>;
+};
+
+const MIDLERTIDIG_JOBB = () => {
+    return <BodyShort>Steg 2 for midlertidig jobb</BodyShort>;
+};
+
+const UAVKLART = () => {
+    return <BodyShort>Steg 2 for uavklart</BodyShort>;
+};
+
+const ANNET = () => {
+    return <BodyShort>Steg 2 for annet</BodyShort>;
+};
+
 const Steg1 = (props: Steg1Props) => {
     const { valgtSituasjon, settValgtSituasjon, onClick } = props;
     return (
@@ -40,7 +75,7 @@ const Steg1 = (props: Steg1Props) => {
             <Select
                 className={spacing.mb1}
                 label={'Velg den nye situasjonen som passer deg best'}
-                onChange={(e) => settValgtSituasjon(e.target.value)}
+                onChange={(e) => settValgtSituasjon(e.target.value as PermittertSvar)}
                 value={valgtSituasjon}
             >
                 {Object.keys(permittertTekster).map((situasjon) => (
@@ -58,29 +93,27 @@ const Steg1 = (props: Steg1Props) => {
     );
 };
 
-const Steg2 = () => {
-    return (
-        <>
-            <h1>Steg 2</h1>
-            {/*<UNSAFE_DatePicker {...datepickerProps} strategy="fixed">*/}
-            {/*    <UNSAFE_DatePicker.Input*/}
-            {/*        {...inputProps}*/}
-            {/*        className={spacing.mb1}*/}
-            {/*        label="Når mottok du oppsigelsen?"*/}
-            {/*        defaultValue={new Date().toLocaleDateString()}*/}
-            {/*    />*/}
-            {/*</UNSAFE_DatePicker>*/}
-            {/*<BodyShort className={spacing.mb1}>*/}
-            {/*    NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.*/}
-            {/*</BodyShort>*/}
-            {/*<div className={`${flex.flex} ${flex.flexEnd}`}>*/}
-            {/*    <Button variant={'primary'} onClick={handleLagreEndringer}>*/}
-            {/*        Lagre endring i situasjon*/}
-            {/*    </Button>*/}
-            {/*</div>*/}
-        </>
-    );
+const Steg2 = (props: Steg2Props) => {
+    const { valgtSituasjon } = props;
+    if (valgtSituasjon === PermittertSvar.OPPSIGELSE) {
+        return <OPPSIGELSE />;
+    } else if (valgtSituasjon === PermittertSvar.TILBAKE_TIL_JOBB) {
+        return <TILBAKE_TIL_JOBB />;
+    } else if (valgtSituasjon === PermittertSvar.MIDLERTIDIG_JOBB) {
+        return <MIDLERTIDIG_JOBB />;
+    } else if (valgtSituasjon === PermittertSvar.NY_JOBB) {
+        return <NY_JOBB />;
+    } else if (valgtSituasjon === PermittertSvar.ENDRET) {
+        return <ENDRET />;
+    } else if (valgtSituasjon === PermittertSvar.ANNET) {
+        return <ANNET />;
+    } else if (valgtSituasjon === PermittertSvar.UAVKLART) {
+        return <UAVKLART />;
+    } else {
+        return <ANNET />;
+    }
 };
+
 const PermittertModal = (props: PermittertModalProps) => {
     const { openModal, setOpenModal, /*amplitudeData,*/ besvarelse } = props;
     const { datepickerProps /*inputProps, selectedDay*/ } = UNSAFE_useDatepicker({
@@ -88,7 +121,7 @@ const PermittertModal = (props: PermittertModalProps) => {
         defaultSelected: new Date(),
     });
     const [aktivSide, settAktivSide] = React.useState<number>(1);
-    const [valgtSituasjon, settValgtSituasjon] = useState<string>(PermittertSvar.OPPSIGELSE);
+    const [valgtSituasjon, settValgtSituasjon] = useState<PermittertSvar>(PermittertSvar.OPPSIGELSE);
 
     // const { lagreBesvarelse } = useBesvarelse();
 
@@ -137,7 +170,7 @@ const PermittertModal = (props: PermittertModalProps) => {
         }
 
         if (aktivSide === 2) {
-            return <Steg2 />;
+            return <Steg2 valgtSituasjon={valgtSituasjon} />;
         }
 
         return null;
@@ -154,6 +187,9 @@ const PermittertModal = (props: PermittertModalProps) => {
             <Modal.Content>
                 <Heading spacing level="1" size="large" id="modal-heading">
                     Min jobbsituasjonen har endret seg
+                </Heading>
+                <Heading level="2" size="medium">
+                    Fortell oss hva som har endret seg slik at vi kan veilede deg videre
                 </Heading>
                 <BodyShort className={spacing.mb1}>Steg {aktivSide} / 2</BodyShort>
                 <Innhold />
