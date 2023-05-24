@@ -110,7 +110,14 @@ const OPPSIGELSE = (props: Steg2Props) => {
                 <UNSAFE_DatePicker.Input
                     {...oppsigelseInput}
                     className={spacing.mb1}
-                    label="Når mottok du oppsigelsen?"
+                    label={
+                        <div className={flex.flex}>
+                            Når mottok du oppsigelsen?
+                            <HelpText className={spacing.ml05}>
+                                Datoen da du mottok beskjed fra arbeidsgiver om at du mistet jobben.
+                            </HelpText>
+                        </div>
+                    }
                     defaultValue={new Date().toLocaleDateString()}
                 />
             </UNSAFE_DatePicker>
@@ -122,7 +129,10 @@ const OPPSIGELSE = (props: Steg2Props) => {
                     label={
                         <div className={flex.flex}>
                             Når er din siste arbeidsdag der arbeidsgiver betaler lønn?
-                            <HelpText className={spacing.ml05}>Hjelpetekst her</HelpText>
+                            <HelpText className={spacing.ml05}>
+                                Når oppsigelsestiden er over og du ikke lenger mottar lønn fra arbeidsgiver kan du på
+                                nytt søke dagpenger dersom du ikke har fått nytt arbeid.
+                            </HelpText>
                         </div>
                     }
                     defaultValue={new Date().toLocaleDateString()}
