@@ -18,6 +18,8 @@ import flex from '../../flex.module.css';
 import React, { useEffect, useState } from 'react';
 import { loggAktivitet } from '../../metrics/metrics';
 import prettyPrintDato from '../../utils/pretty-print-dato';
+import { BesvarelseRequest, useBesvarelse } from '../../contexts/besvarelse';
+import { DinSituasjonSvar } from '../../contexts/brukerregistrering';
 
 enum PermittertSvar {
     OPPSIGELSE = 'OPPSIGELSE',
@@ -85,7 +87,7 @@ const OPPSIGELSE = (props: Steg2Props) => {
         defaultSelected: new Date(),
     });
 
-    // const { lagreBesvarelse } = useBesvarelse();
+    const { lagreBesvarelse } = useBesvarelse();
     const { amplitudeData, valgtSituasjon, onClick, settDatoer } = props;
     const handleLagreEndringer = async () => {
         loggAktivitet({
@@ -93,23 +95,24 @@ const OPPSIGELSE = (props: Steg2Props) => {
             komponent: 'Min situasjon',
             ...amplitudeData,
         });
-        console.log('valgtSituasjon: ', valgtSituasjon);
-        console.log('oppsigelseDato: ', oppsigelseDato);
-        console.log('sisteArbeidsdagDato: ', sisteArbeidsdagDato);
-        // const payload = {
-        //     tekst: 'Jobbsitiasjonen er oppdatert til noe. Endringene gjelder fra en dato',
-        //     overskrift: 'Jobbsituasjonen min er endret',
-        //     venterPaaSvarFraNav: true,
-        //     oppdatering: {
-        //         besvarelse: {
-        //             dinSituasjon: {
-        //                 verdi: valgtSituasjon as any,
-        //                 gjelderFra: oppsigelseDato?.toISOString(),
-        //             },
-        //         },
-        //     },
-        // } as BesvarelseRequest;
-        // await lagreBesvarelse(payload);
+        console.log('valgtSituasjon', valgtSituasjon);
+        const payload = {
+            tekst: 'Jobbsitiasjonen er oppdatert til noe. Endringene gjelder fra en dato',
+            overskrift: 'Jobbsituasjonen min er endret',
+            venterPaaSvarFraNav: true,
+            oppdatering: {
+                besvarelse: {
+                    dinSituasjon: {
+                        verdi: DinSituasjonSvar.ER_PERMITTERT,
+                        tilleggsData: {
+                            oppsigelseDato,
+                            sisteArbeidsdagDato,
+                        },
+                    },
+                },
+            },
+        } as BesvarelseRequest;
+        await lagreBesvarelse(payload);
         settDatoer({
             oppsigelseDato,
             sisteArbeidsdagDato,
