@@ -20,7 +20,7 @@ import { loggAktivitet } from '../../metrics/metrics';
 
 enum PermittertSvar {
     OPPSIGELSE = 'OPPSIGELSE',
-    ENDRET = 'ENDRET',
+    ENDRET_PERMITTERINGSPROSENT = 'ENDRET_PERMITTERINGSPROSENT',
     TILBAKE_TIL_JOBB = 'TILBAKE_TIL_JOBB',
     NY_JOBB = 'NY_JOBB',
     MIDLERTIDIG_JOBB = 'MIDLERTIDIG_JOBB',
@@ -30,7 +30,7 @@ enum PermittertSvar {
 
 const permittertTekster = {
     [PermittertSvar.OPPSIGELSE]: 'Jeg har fått oppsigelse',
-    [PermittertSvar.ENDRET]: 'Permitteringsprosenten har endret seg',
+    [PermittertSvar.ENDRET_PERMITTERINGSPROSENT]: 'Permitteringsprosenten har endret seg',
     [PermittertSvar.TILBAKE_TIL_JOBB]: 'Skal tilbake til jobben',
     [PermittertSvar.NY_JOBB]: 'Jeg har fått meg ny jobb',
     [PermittertSvar.MIDLERTIDIG_JOBB]: 'Jeg har fått midlertidig jobb',
@@ -493,7 +493,7 @@ const Steg2 = (props: Steg2Props) => {
         return <MIDLERTIDIG_JOBB {...props} />;
     } else if (valgtSituasjon === PermittertSvar.NY_JOBB) {
         return <NY_JOBB {...props} />;
-    } else if (valgtSituasjon === PermittertSvar.ENDRET) {
+    } else if (valgtSituasjon === PermittertSvar.ENDRET_PERMITTERINGSPROSENT) {
         return <ENDRET {...props} />;
     } else if (valgtSituasjon === PermittertSvar.ANNET) {
         return <ANNET {...props} />;
