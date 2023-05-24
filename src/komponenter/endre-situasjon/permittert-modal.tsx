@@ -52,6 +52,7 @@ interface Steg1Props {
 
 interface Steg2Props {
     valgtSituasjon: PermittertSvar;
+    settValgtSituasjon: React.Dispatch<React.SetStateAction<PermittertSvar>>;
     onClick: () => void;
     amplitudeData: any;
 }
@@ -369,12 +370,81 @@ const MIDLERTIDIG_JOBB = (props: Steg2Props) => {
     );
 };
 
-const UAVKLART = () => {
-    return <BodyShort>Steg 2 for uavklart</BodyShort>;
+const UAVKLART = (props: Steg2Props) => {
+    const { amplitudeData, valgtSituasjon, settValgtSituasjon, onClick } = props;
+    const handleLagreEndringer = async () => {
+        loggAktivitet({
+            aktivitet: 'Lagrer endring i jobbsituasjonen',
+            komponent: 'Min situasjon',
+            ...amplitudeData,
+        });
+        console.log('valgtSituasjon: ', valgtSituasjon);
+        onClick();
+    };
+    return (
+        <>
+            <BodyShort className={spacing.mb1}>Du har sagt at situasjonen din er "uavklart". Fortell mer.</BodyShort>
+            <Select
+                className={spacing.mb1}
+                label={'Velg den nye situasjonen som passer deg best'}
+                onChange={(e) => settValgtSituasjon(e.target.value as PermittertSvar)}
+                value={valgtSituasjon}
+            >
+                {Object.keys(permittertTekster).map((situasjon) => (
+                    <option key={situasjon} value={situasjon}>
+                        {permittertTekster[situasjon]}
+                    </option>
+                ))}
+            </Select>
+            <BodyShort className={spacing.mb1}>
+                NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
+            </BodyShort>
+            <div className={`${flex.flex} ${flex.flexEnd}`}>
+                <Button variant={'primary'} onClick={handleLagreEndringer}>
+                    Lagre endring i situasjon
+                </Button>
+            </div>
+        </>
+    );
 };
 
-const ANNET = () => {
-    return <BodyShort>Steg 2 for annet</BodyShort>;
+const ANNET = (props: Steg2Props) => {
+    const { amplitudeData, valgtSituasjon, settValgtSituasjon, onClick } = props;
+    const handleLagreEndringer = async () => {
+        loggAktivitet({
+            aktivitet: 'Lagrer endring i jobbsituasjonen',
+            komponent: 'Min situasjon',
+            ...amplitudeData,
+        });
+        console.log('valgtSituasjon: ', valgtSituasjon);
+        onClick();
+    };
+
+    return (
+        <>
+            <BodyShort className={spacing.mb1}>Du har sagt at situasjonen din er "annet". Fortell mer.</BodyShort>
+            <Select
+                className={spacing.mb1}
+                label={'Velg den nye situasjonen som passer deg best'}
+                onChange={(e) => settValgtSituasjon(e.target.value as PermittertSvar)}
+                value={valgtSituasjon}
+            >
+                {Object.keys(permittertTekster).map((situasjon) => (
+                    <option key={situasjon} value={situasjon}>
+                        {permittertTekster[situasjon]}
+                    </option>
+                ))}
+            </Select>
+            <BodyShort className={spacing.mb1}>
+                NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
+            </BodyShort>
+            <div className={`${flex.flex} ${flex.flexEnd}`}>
+                <Button variant={'primary'} onClick={handleLagreEndringer}>
+                    Lagre endring i situasjon
+                </Button>
+            </div>
+        </>
+    );
 };
 
 const Steg1 = (props: Steg1Props) => {
@@ -415,11 +485,11 @@ const Steg2 = (props: Steg2Props) => {
     } else if (valgtSituasjon === PermittertSvar.ENDRET) {
         return <ENDRET {...props} />;
     } else if (valgtSituasjon === PermittertSvar.ANNET) {
-        return <ANNET />;
+        return <ANNET {...props} />;
     } else if (valgtSituasjon === PermittertSvar.UAVKLART) {
-        return <UAVKLART />;
+        return <UAVKLART {...props} />;
     } else {
-        return <ANNET />;
+        return <ANNET {...props} />;
     }
 };
 
@@ -448,6 +518,7 @@ const PermittertModal = (props: PermittertModalProps) => {
                 <Steg2
                     valgtSituasjon={valgtSituasjon}
                     amplitudeData={amplitudeData}
+                    settValgtSituasjon={settValgtSituasjon}
                     onClick={() => setOpenModal(false)}
                 />
             );
