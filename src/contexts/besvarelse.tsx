@@ -30,7 +30,7 @@ export type DinSituasjonRequest = {
             verdi: DinSituasjonSvar;
             gjelderFra?: string;
             gjelderTil?: string;
-            tilleggsData?: DinSituasjonTilleggsdata;
+            tilleggsData: DinSituasjonTilleggsdata;
         };
     };
 };
