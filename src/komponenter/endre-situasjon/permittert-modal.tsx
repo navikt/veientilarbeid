@@ -17,6 +17,7 @@ import spacing from '../../spacing.module.css';
 import flex from '../../flex.module.css';
 import React, { useEffect, useState } from 'react';
 import { loggAktivitet } from '../../metrics/metrics';
+import prettyPrintDato from '../../utils/pretty-print-dato';
 
 enum PermittertSvar {
     OPPSIGELSE = 'OPPSIGELSE',
@@ -54,8 +55,15 @@ interface Steg1Props {
 interface Steg2Props {
     valgtSituasjon: PermittertSvar;
     settValgtSituasjon: React.Dispatch<React.SetStateAction<PermittertSvar>>;
+    settDatoer: React.Dispatch<React.SetStateAction<any>>;
     onClick: () => void;
     amplitudeData: any;
+}
+
+interface Steg3Props {
+    valgtSituasjon: PermittertSvar;
+    datoer?: any;
+    onClose(): void;
 }
 
 const OPPSIGELSE = (props: Steg2Props) => {
@@ -78,7 +86,7 @@ const OPPSIGELSE = (props: Steg2Props) => {
     });
 
     // const { lagreBesvarelse } = useBesvarelse();
-    const { amplitudeData, valgtSituasjon, onClick } = props;
+    const { amplitudeData, valgtSituasjon, onClick, settDatoer } = props;
     const handleLagreEndringer = async () => {
         loggAktivitet({
             aktivitet: 'Lagrer endring i jobbsituasjonen',
@@ -102,6 +110,10 @@ const OPPSIGELSE = (props: Steg2Props) => {
         //     },
         // } as BesvarelseRequest;
         // await lagreBesvarelse(payload);
+        settDatoer({
+            oppsigelseDato,
+            sisteArbeidsdagDato,
+        });
         onClick();
     };
 
@@ -504,11 +516,34 @@ const Steg2 = (props: Steg2Props) => {
     }
 };
 
-const Steg3 = () => {
+const OppsigelseKvittering = (props: Steg3Props) => {
+    const { datoer } = props;
+    return (
+        <ul>
+            <li>Du har oppgitt at du mottok oppsigelsen {prettyPrintDato(datoer.oppsigelseDato)}</li>
+            <li>Din arbeidsgiver betaler lønn til og med {prettyPrintDato(datoer.sisteArbeidsdagDato)}</li>
+        </ul>
+    );
+};
+
+const Steg3 = (props: Steg3Props) => {
+    const { valgtSituasjon, onClose } = props;
+    const Kvittering = () => {
+        if (valgtSituasjon === PermittertSvar.OPPSIGELSE) {
+            return <OppsigelseKvittering {...props} />;
+        }
+
+        return null;
+    };
     return (
         <>
             <Alert variant="info">NAV har mottatt oppdateringen.</Alert>
-            <div>Steg 3 </div>
+            <Kvittering />
+            <div className={`${flex.flex} ${flex.flexEnd}`}>
+                <Button variant={'primary'} onClick={onClose}>
+                    Lukk
+                </Button>
+            </div>
         </>
     );
 };
@@ -517,6 +552,7 @@ const PermittertModal = (props: PermittertModalProps) => {
     const { openModal, setOpenModal, amplitudeData } = props;
     const [aktivSide, settAktivSide] = React.useState<number>(1);
     const [valgtSituasjon, settValgtSituasjon] = useState<PermittertSvar>(PermittertSvar.OPPSIGELSE);
+    const [datoer, settDatoer] = useState<any>(null);
 
     useEffect(() => {
         settAktivSide(1);
@@ -539,13 +575,14 @@ const PermittertModal = (props: PermittertModalProps) => {
                     valgtSituasjon={valgtSituasjon}
                     amplitudeData={amplitudeData}
                     settValgtSituasjon={settValgtSituasjon}
+                    settDatoer={settDatoer}
                     onClick={() => settAktivSide(3)}
                 />
             );
         }
 
         if (aktivSide === 3) {
-            return <Steg3 />;
+            return <Steg3 valgtSituasjon={valgtSituasjon} datoer={datoer} onClose={() => setOpenModal(false)} />;
         }
 
         return null;
