@@ -21,7 +21,7 @@ export type DinSituasjonTilleggsdata = {
     forsteArbeidsdagDato?: string;
     sisteArbeidsdagDato?: string;
     gjelderFraDato?: string;
-    permitteringsprosent?: string;
+    permitteringsProsent?: string;
 };
 
 export type DinSituasjonRequest = {
