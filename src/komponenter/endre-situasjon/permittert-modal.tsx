@@ -19,7 +19,6 @@ import React, { useEffect, useState } from 'react';
 import { loggAktivitet } from '../../metrics/metrics';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import { BesvarelseRequest, useBesvarelse } from '../../contexts/besvarelse';
-import { DinSituasjonSvar } from '../../contexts/brukerregistrering';
 
 enum PermittertSvar {
     OPPSIGELSE = 'OPPSIGELSE',
@@ -103,7 +102,7 @@ const OPPSIGELSE = (props: Steg2Props) => {
             oppdatering: {
                 besvarelse: {
                     dinSituasjon: {
-                        verdi: DinSituasjonSvar.ER_PERMITTERT,
+                        verdi: valgtSituasjon as any,
                         tilleggsData: {
                             oppsigelseDato,
                             sisteArbeidsdagDato,
