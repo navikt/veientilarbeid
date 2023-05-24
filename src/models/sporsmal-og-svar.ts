@@ -52,6 +52,13 @@ export const svarMap = {
         USIKKER_JOBBSITUASJON: 'Er usikker på jobbsituasjonen min',
         AKKURAT_FULLFORT_UTDANNING: 'Har akkurat fullført utdanning, militærtjeneste eller annet',
         VIL_FORTSETTE_I_JOBB: 'Har jobb og ønsker å fortsette i den jobben jeg er i',
+        OPPSIGELSE: 'Jeg har fått oppsigelse',
+        ENDRET_PERMITTERINGSPROSENT: 'Permitteringsprosenten har endret seg',
+        TILBAKE_TIL_JOBB: 'Skal tilbake til jobben',
+        NY_JOBB: 'Jeg har fått meg ny jobb',
+        MIDLERTIDIG_JOBB: 'Jeg har fått midlertidig jobb',
+        UAVKLART: 'Arbeidssituasjonen min er uavklart',
+        ANNET: 'Annet',
     },
     fremtidigSituasjon: {
         SAMME_ARBEIDSGIVER: 'Jeg skal tilbake til jobben jeg har',
