@@ -16,12 +16,21 @@ import {
     TilbakeIArbeidSvar,
 } from './brukerregistrering';
 
+export type DinSituasjonTilleggsdata = {
+    oppsigelseDato?: string;
+    forsteArbeidsdagDato?: string;
+    sisteArbeidsdagDato?: string;
+    gjelderFraDato?: string;
+    permitteringsprosent?: string;
+};
+
 export type DinSituasjonRequest = {
     besvarelse: {
         dinSituasjon: {
             verdi: DinSituasjonSvar;
             gjelderFra?: string;
             gjelderTil?: string;
+            tilleggsData?: DinSituasjonTilleggsdata;
         };
     };
 };
@@ -32,6 +41,7 @@ export type DinSituasjonResponse = {
     gjelderTil: string | null;
     endret: string | null;
     endretAv: BrukerEllerNav | null;
+    tilleggsData: DinSituasjonTilleggsdata | null;
 };
 
 export type UtdanningResponse = {
