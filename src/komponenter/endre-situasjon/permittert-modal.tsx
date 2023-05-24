@@ -131,7 +131,6 @@ const OPPSIGELSE = (props: Steg2Props) => {
                             </HelpText>
                         </div>
                     }
-                    defaultValue={new Date().toLocaleDateString()}
                 />
             </UNSAFE_DatePicker>
 
@@ -148,7 +147,6 @@ const OPPSIGELSE = (props: Steg2Props) => {
                             </HelpText>
                         </div>
                     }
-                    defaultValue={new Date().toLocaleDateString()}
                 />
             </UNSAFE_DatePicker>
             <BodyShort className={spacing.mb1}>
@@ -196,7 +194,6 @@ const ENDRET = (props: Steg2Props) => {
                     {...gjelderFraDatoInput}
                     className={spacing.mb1}
                     label="Fra hvilken dato skjer endringen?"
-                    defaultValue={new Date().toLocaleDateString()}
                 />
             </UNSAFE_DatePicker>
 
@@ -249,7 +246,6 @@ const TILBAKE_TIL_JOBB = (props: Steg2Props) => {
                     {...forsteArbeidsdagInput}
                     className={spacing.mb1}
                     label="Når er første arbeidsdag etter permittering?"
-                    defaultValue={new Date().toLocaleDateString()}
                 />
             </UNSAFE_DatePicker>
 
@@ -305,7 +301,6 @@ const NY_JOBB = (props: Steg2Props) => {
                     {...forsteArbeidsdagInput}
                     className={spacing.mb1}
                     label="Når er første arbeidsdag i ny jobb?"
-                    defaultValue={new Date().toLocaleDateString()}
                 />
             </UNSAFE_DatePicker>
 
@@ -314,7 +309,6 @@ const NY_JOBB = (props: Steg2Props) => {
                     {...sisteArbeidsdagInput}
                     className={spacing.mb1}
                     label="Når er siste arbeidsdag med lønn i nåværende jobb?"
-                    defaultValue={new Date().toLocaleDateString()}
                 />
             </UNSAFE_DatePicker>
             <BodyShort className={spacing.mb1}>
@@ -369,7 +363,6 @@ const MIDLERTIDIG_JOBB = (props: Steg2Props) => {
                     {...forsteArbeidsdagInput}
                     className={spacing.mb1}
                     label="Når er første arbeidsdag?"
-                    defaultValue={new Date().toLocaleDateString()}
                 />
             </UNSAFE_DatePicker>
 
@@ -378,7 +371,6 @@ const MIDLERTIDIG_JOBB = (props: Steg2Props) => {
                     {...sisteArbeidsdagInput}
                     className={spacing.mb1}
                     label="Når er siste arbeidsdag?"
-                    defaultValue={new Date().toLocaleDateString()}
                 />
             </UNSAFE_DatePicker>
             <BodyShort className={spacing.mb1}>
