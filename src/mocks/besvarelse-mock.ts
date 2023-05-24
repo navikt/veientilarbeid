@@ -49,6 +49,7 @@ const besvarelseMock = {
             gjelderTil: null,
             endretAv: 'BRUKER',
             endret: '2023-04-28T22:47:51.867791121',
+            tilleggsData: null,
         },
         fremtidigSituasjon: {
             verdi: null,
