@@ -1,4 +1,5 @@
 import {
+    Alert,
     BodyShort,
     Button,
     Heading,
@@ -503,6 +504,15 @@ const Steg2 = (props: Steg2Props) => {
     }
 };
 
+const Steg3 = () => {
+    return (
+        <>
+            <Alert variant="info">NAV har mottatt oppdateringen.</Alert>
+            <div>Steg 3 </div>
+        </>
+    );
+};
+
 const PermittertModal = (props: PermittertModalProps) => {
     const { openModal, setOpenModal, amplitudeData } = props;
     const [aktivSide, settAktivSide] = React.useState<number>(1);
@@ -529,16 +539,20 @@ const PermittertModal = (props: PermittertModalProps) => {
                     valgtSituasjon={valgtSituasjon}
                     amplitudeData={amplitudeData}
                     settValgtSituasjon={settValgtSituasjon}
-                    onClick={() => setOpenModal(false)}
+                    onClick={() => settAktivSide(3)}
                 />
             );
+        }
+
+        if (aktivSide === 3) {
+            return <Steg3 />;
         }
 
         return null;
     };
 
     const Tilbake = () => {
-        if (aktivSide === 1) {
+        if (aktivSide !== 2) {
             return null;
         }
         // eslint-disable-next-line react/jsx-no-undef
@@ -565,7 +579,7 @@ const PermittertModal = (props: PermittertModalProps) => {
                 <Heading level="2" size="medium">
                     Fortell oss hva som har endret seg slik at vi kan veilede deg videre
                 </Heading>
-                <BodyShort className={spacing.mb1}>Steg {aktivSide} / 2</BodyShort>
+                <BodyShort className={spacing.mb1}>Steg {aktivSide} / 3</BodyShort>
                 <Innhold />
             </Modal.Content>
         </Modal>
