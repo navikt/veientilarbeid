@@ -40,7 +40,7 @@ function useLagreEndringer(props: Steg2Props) {
     const [loading, setLoading] = useState<boolean>(false);
     const [feil, settFeil] = useState<string | null>(null);
 
-    const handleLagreEndringer = async (tilleggsData: any) => {
+    const handleLagreEndringer = async (tilleggsData?: any) => {
         try {
             settFeil(null);
             setLoading(true);
@@ -372,16 +372,8 @@ const MIDLERTIDIG_JOBB = (props: Steg2Props) => {
 };
 
 const UAVKLART = (props: Steg2Props) => {
-    const { amplitudeData, valgtSituasjon, settValgtSituasjon, onClick } = props;
-    const handleLagreEndringer = async () => {
-        loggAktivitet({
-            aktivitet: 'Lagrer endring i jobbsituasjonen',
-            komponent: 'Min situasjon',
-            ...amplitudeData,
-        });
-        console.log('valgtSituasjon: ', valgtSituasjon);
-        onClick();
-    };
+    const { valgtSituasjon, settValgtSituasjon } = props;
+    const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
     return (
         <>
             <BodyShort className={spacing.mb1}>Du har sagt at situasjonen din er "uavklart". Fortell mer.</BodyShort>
@@ -400,8 +392,9 @@ const UAVKLART = (props: Steg2Props) => {
             <BodyShort className={spacing.mb1}>
                 NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
             </BodyShort>
+            <Feil feil={feil} />
             <div className={`${flex.flex} ${flex.flexEnd}`}>
-                <Button variant={'primary'} onClick={handleLagreEndringer}>
+                <Button variant={'primary'} onClick={() => handleLagreEndringer()} loading={loading} disabled={loading}>
                     Lagre endring i situasjon
                 </Button>
             </div>
@@ -410,16 +403,8 @@ const UAVKLART = (props: Steg2Props) => {
 };
 
 const ANNET = (props: Steg2Props) => {
-    const { amplitudeData, valgtSituasjon, settValgtSituasjon, onClick } = props;
-    const handleLagreEndringer = async () => {
-        loggAktivitet({
-            aktivitet: 'Lagrer endring i jobbsituasjonen',
-            komponent: 'Min situasjon',
-            ...amplitudeData,
-        });
-        console.log('valgtSituasjon: ', valgtSituasjon);
-        onClick();
-    };
+    const { valgtSituasjon, settValgtSituasjon } = props;
+    const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
 
     return (
         <>
@@ -439,8 +424,9 @@ const ANNET = (props: Steg2Props) => {
             <BodyShort className={spacing.mb1}>
                 NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
             </BodyShort>
+            <Feil feil={feil} />
             <div className={`${flex.flex} ${flex.flexEnd}`}>
-                <Button variant={'primary'} onClick={handleLagreEndringer}>
+                <Button variant={'primary'} onClick={() => handleLagreEndringer()} loading={loading} disabled={loading}>
                     Lagre endring i situasjon
                 </Button>
             </div>
