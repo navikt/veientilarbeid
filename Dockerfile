@@ -21,7 +21,7 @@ RUN npm run build:demo
 RUN cp -r /source/dist /demo
 
 
-FROM nginx:1.23-alpine
+FROM nginx:1-alpine
 COPY nginx.conf /etc/nginx/nginx.conf
 
 COPY --from=node-builder /build /usr/share/nginx/html/esm
