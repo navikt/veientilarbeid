@@ -24,6 +24,61 @@ export interface Steg2Props {
     amplitudeData: any;
 }
 
+const Feil = (props: { feil: string | null }) => {
+    if (!props.feil) {
+        return null;
+    }
+    return (
+        <Alert variant={'error'} className={spacing.mb1}>
+            Noe gikk dessverre galt. Prøv igjen.
+        </Alert>
+    );
+};
+function useLagreEndringer(props: Steg2Props) {
+    const { lagreBesvarelse } = useBesvarelse();
+    const { amplitudeData, onClick, settTilleggsData, valgtSituasjon } = props;
+    const [loading, setLoading] = useState<boolean>(false);
+    const [feil, settFeil] = useState<string | null>(null);
+
+    const handleLagreEndringer = async (tilleggsData: any) => {
+        try {
+            settFeil(null);
+            setLoading(true);
+
+            loggAktivitet({
+                aktivitet: 'Lagrer endring i jobbsituasjonen',
+                komponent: 'Min situasjon',
+                ...amplitudeData,
+            });
+            const payload = {
+                tekst: 'Jobbsitiasjonen er oppdatert til noe. Endringene gjelder fra en dato',
+                overskrift: 'Jobbsituasjonen min er endret',
+                venterPaaSvarFraNav: true,
+                oppdatering: {
+                    besvarelse: {
+                        dinSituasjon: {
+                            verdi: valgtSituasjon as any,
+                            tilleggsData,
+                        },
+                    },
+                },
+            } as BesvarelseRequest;
+            await lagreBesvarelse(payload);
+            settTilleggsData(tilleggsData);
+            onClick();
+        } catch (error: any) {
+            settFeil(error.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return {
+        handleLagreEndringer,
+        feil,
+        loading,
+    };
+}
 const OPPSIGELSE = (props: Steg2Props) => {
     const {
         datepickerProps: oppsigelseProps,
@@ -43,37 +98,7 @@ const OPPSIGELSE = (props: Steg2Props) => {
         defaultSelected: new Date(),
     });
 
-    const { lagreBesvarelse } = useBesvarelse();
-    const { amplitudeData, valgtSituasjon, onClick, settTilleggsData } = props;
-    const handleLagreEndringer = async () => {
-        loggAktivitet({
-            aktivitet: 'Lagrer endring i jobbsituasjonen',
-            komponent: 'Min situasjon',
-            ...amplitudeData,
-        });
-        const payload = {
-            tekst: 'Jobbsitiasjonen er oppdatert til noe. Endringene gjelder fra en dato',
-            overskrift: 'Jobbsituasjonen min er endret',
-            venterPaaSvarFraNav: true,
-            oppdatering: {
-                besvarelse: {
-                    dinSituasjon: {
-                        verdi: valgtSituasjon as any,
-                        tilleggsData: {
-                            oppsigelseDato,
-                            sisteArbeidsdagDato,
-                        },
-                    },
-                },
-            },
-        } as BesvarelseRequest;
-        await lagreBesvarelse(payload);
-        settTilleggsData({
-            oppsigelseDato,
-            sisteArbeidsdagDato,
-        });
-        onClick();
-    };
+    const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
 
     return (
         <>
@@ -110,8 +135,14 @@ const OPPSIGELSE = (props: Steg2Props) => {
             <BodyShort className={spacing.mb1}>
                 NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
             </BodyShort>
+            <Feil feil={feil} />
             <div className={`${flex.flex} ${flex.flexEnd}`}>
-                <Button variant={'primary'} onClick={handleLagreEndringer}>
+                <Button
+                    variant={'primary'}
+                    loading={loading}
+                    disabled={loading}
+                    onClick={() => handleLagreEndringer({ oppsigelseDato, sisteArbeidsdagDato })}
+                >
                     Lagre endring i situasjon
                 </Button>
             </div>
@@ -129,50 +160,12 @@ const ENDRET = (props: Steg2Props) => {
         defaultSelected: new Date(),
     });
     const [permitteringsProsent, settPermitteringsProsent] = useState<string>();
-    const { lagreBesvarelse } = useBesvarelse();
-    const { amplitudeData, valgtSituasjon, onClick, settTilleggsData } = props;
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [feil, settFeil] = useState<string | null>(null);
 
-    const disabled = !permitteringsProsent || isLoading;
-
-    const handleLagreEndringer = async () => {
-        try {
-            settFeil(null);
-            setIsLoading(true);
-
-            loggAktivitet({
-                aktivitet: 'Lagrer endring i jobbsituasjonen',
-                komponent: 'Min situasjon',
-                ...amplitudeData,
-            });
-            const payload = {
-                tekst: 'Jobbsitiasjonen er oppdatert til noe. Endringene gjelder fra en dato',
-                overskrift: 'Jobbsituasjonen min er endret',
-                venterPaaSvarFraNav: true,
-                oppdatering: {
-                    besvarelse: {
-                        dinSituasjon: {
-                            verdi: valgtSituasjon as any,
-                            tilleggsData: {
-                                gjelderFraDato,
-                                permitteringsProsent,
-                            },
-                        },
-                    },
-                },
-            } as BesvarelseRequest;
-            await lagreBesvarelse(payload);
-            settTilleggsData({
-                gjelderFraDato,
-                permitteringsProsent,
-            });
-            onClick();
-        } catch (error: any) {
-            settFeil(error.message);
-        } finally {
-            setIsLoading(false);
-        }
+    const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
+    const disabled = !permitteringsProsent || loading;
+    const tilleggsData = {
+        permitteringsProsent,
+        gjelderFraDato,
     };
 
     return (
@@ -200,13 +193,16 @@ const ENDRET = (props: Steg2Props) => {
             <BodyShort className={spacing.mb1}>
                 NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
             </BodyShort>
-            {feil && (
-                <Alert variant={'error'} className={spacing.mb1}>
-                    Noe gikk dessverre galt. Prøv igjen.
-                </Alert>
-            )}
+
+            <Feil feil={feil} />
+
             <div className={`${flex.flex} ${flex.flexEnd}`}>
-                <Button variant={'primary'} onClick={handleLagreEndringer} loading={isLoading} disabled={disabled}>
+                <Button
+                    variant={'primary'}
+                    onClick={() => handleLagreEndringer(tilleggsData)}
+                    loading={loading}
+                    disabled={disabled}
+                >
                     Lagre endring i situasjon
                 </Button>
             </div>
@@ -250,6 +246,7 @@ const TILBAKE_TIL_JOBB = (props: Steg2Props) => {
             <BodyShort className={spacing.mb1}>
                 NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
             </BodyShort>
+
             <div className={`${flex.flex} ${flex.flexEnd}`}>
                 <Button variant={'primary'} onClick={handleLagreEndringer}>
                     Lagre endring i situasjon
