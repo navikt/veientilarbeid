@@ -8,6 +8,7 @@ import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { BesvarelseResponse, DinSituasjonTilleggsdata } from '../../contexts/besvarelse';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import { sporsmalMap, svarMap } from '../../models/sporsmal-og-svar';
+import TilleggsData from './tilleggsdata';
 
 import spacing from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
@@ -25,20 +26,6 @@ const TEKSTER = {
     },
 };
 
-const TilleggsData = (props: any) => {
-    const { datapunkt, tilleggsData, verdi } = props;
-    if (!tilleggsData) return null;
-
-    return (
-        <>
-            <BodyShort>
-                {datapunkt} - {verdi}
-            </BodyShort>
-            <BodyShort>{JSON.stringify(tilleggsData)}</BodyShort>
-        </>
-    );
-};
-
 const Opplysning = (props: any) => {
     const { sporsmal, svar, verdi, datapunkt, tilleggsData } = props;
     return (
@@ -48,7 +35,7 @@ const Opplysning = (props: any) => {
                 <br />
                 {svar}
             </BodyShort>
-            <TilleggsData datapunkt={datapunkt} tilleggsData={tilleggsData} verdi={verdi} />
+            {datapunkt === 'dinSituasjon' && <TilleggsData tilleggsData={tilleggsData} verdi={verdi} />}
         </div>
     );
 };
@@ -130,7 +117,6 @@ const RegistreringsOpplysninger = (props: OpplysningerProps) => {
 const OpplysningerFraBesvarelsen = (props: OpplysningerProps) => {
     const { besvarelseData } = props;
     const besvarelser = repackBesvarelser(besvarelseData);
-    console.log(besvarelser);
 
     return !besvarelseData ? null : (
         <div className={`${flexStyles.flex} ${flexStyles.flexColumn}`}>
