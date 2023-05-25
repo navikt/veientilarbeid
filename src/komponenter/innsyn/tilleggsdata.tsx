@@ -1,7 +1,7 @@
 import { BodyShort } from '@navikt/ds-react';
 
 import { DinSituasjonTilleggsdata } from '../../contexts/besvarelse';
-// import prettyPrintDato from "../../utils/pretty-print-dato"
+import prettyPrintDato from '../../utils/pretty-print-dato';
 
 interface Props {
     verdi: string | null;
@@ -17,7 +17,21 @@ function TilleggsData(props: Props) {
 
     const OPPSIGELSE = (props: TilleggsDataProps) => {
         const { tilleggsData } = props;
-        return <BodyShort>{JSON.stringify(tilleggsData)}</BodyShort>;
+
+        if (!tilleggsData) return null;
+
+        const { oppsigelseDato, sisteArbeidsdagDato } = tilleggsData;
+
+        return (
+            <>
+                <BodyShort>
+                    Du mottok oppsigelsen {oppsigelseDato ? prettyPrintDato(oppsigelseDato) : 'på ukjent dato'}
+                </BodyShort>
+                <BodyShort>
+                    Siste arbeidsdag med lønn {sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'er ukjent'}
+                </BodyShort>
+            </>
+        );
     };
 
     const ENDRET_PERMITTERINGSPROSENT = (props: TilleggsDataProps) => {
