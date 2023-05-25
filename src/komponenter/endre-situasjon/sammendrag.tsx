@@ -5,6 +5,8 @@ import { useUnderOppfolging } from '../../contexts/arbeidssoker';
 import { loggAktivitet } from '../../metrics/metrics';
 import { dialogLenke } from '../../innhold/lenker';
 import prettyPrintDato from '../../utils/pretty-print-dato';
+import TilleggsData from '../innsyn/tilleggsdata';
+import { svarMap } from '../../models/sporsmal-og-svar';
 
 import spacing from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
@@ -38,9 +40,14 @@ const Sammendrag = (props: any) => {
         <div className={`${flexStyles.flex} ${flexStyles.flexColumn}`}>
             <div className={spacing.blokkS}>
                 <BodyShort className={spacing.mb1}>
-                    {manueltRegistrertAv ? 'NAV' : 'Du'} registrerte deg som permittert arbeidssøker{' '}
-                    {prettyPrintDato(startDato)}.
+                    {manueltRegistrertAv ? 'NAV' : 'Du'} registrerte deg som arbeidssøker {prettyPrintDato(startDato)}.
                     <br />
+                    Din jobbsituasjon: {besvarelse ? svarMap.dinSituasjon[besvarelse.dinSituasjon.verdi] : 'Ukjent'}
+                    <br />
+                    <TilleggsData
+                        verdi={besvarelse ? besvarelse.dinSituasjon.verdi : null}
+                        tilleggsData={besvarelse ? besvarelse.dinSituasjon.tilleggsData : null}
+                    />
                 </BodyShort>
                 <BodyShort className={`${spacing.mb1} ${spacing.mt1}`}>
                     <Button variant="primary" onClick={handleModalOpen}>
