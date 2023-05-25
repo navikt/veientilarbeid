@@ -219,20 +219,10 @@ const TILBAKE_TIL_JOBB = (props: Steg2Props) => {
         fromDate: new Date('Jan 01 2022'),
         defaultSelected: new Date(),
     });
-
-    // const { lagreBesvarelse } = useBesvarelse();
-    const { amplitudeData, valgtSituasjon, onClick } = props;
-    const handleLagreEndringer = async () => {
-        loggAktivitet({
-            aktivitet: 'Lagrer endring i jobbsituasjonen',
-            komponent: 'Min situasjon',
-            ...amplitudeData,
-        });
-        console.log('valgtSituasjon: ', valgtSituasjon);
-        console.log('oppsigelseDato: ', forsteArbeidsdagDato);
-        onClick();
+    const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
+    const tilleggsData = {
+        forsteArbeidsdagDato,
     };
-
     return (
         <>
             <UNSAFE_DatePicker {...forsteArbeidsdagProps} strategy="fixed">
@@ -246,9 +236,14 @@ const TILBAKE_TIL_JOBB = (props: Steg2Props) => {
             <BodyShort className={spacing.mb1}>
                 NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
             </BodyShort>
-
+            <Feil feil={feil} />
             <div className={`${flex.flex} ${flex.flexEnd}`}>
-                <Button variant={'primary'} onClick={handleLagreEndringer}>
+                <Button
+                    variant={'primary'}
+                    onClick={() => handleLagreEndringer(tilleggsData)}
+                    loading={loading}
+                    disabled={loading}
+                >
                     Lagre endring i situasjon
                 </Button>
             </div>
@@ -275,18 +270,10 @@ const NY_JOBB = (props: Steg2Props) => {
         defaultSelected: new Date(),
     });
 
-    // const { lagreBesvarelse } = useBesvarelse();
-    const { amplitudeData, valgtSituasjon, onClick } = props;
-    const handleLagreEndringer = async () => {
-        loggAktivitet({
-            aktivitet: 'Lagrer endring i jobbsituasjonen',
-            komponent: 'Min situasjon',
-            ...amplitudeData,
-        });
-        console.log('valgtSituasjon: ', valgtSituasjon);
-        console.log('oppsigelseDato: ', forsteArbeidsdagDato);
-        console.log('sisteArbeidsdagDato: ', sisteArbeidsdagDato);
-        onClick();
+    const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
+    const tilleggsData = {
+        forsteArbeidsdagDato,
+        sisteArbeidsdagDato,
     };
 
     return (
@@ -309,8 +296,14 @@ const NY_JOBB = (props: Steg2Props) => {
             <BodyShort className={spacing.mb1}>
                 NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
             </BodyShort>
+            <Feil feil={feil} />
             <div className={`${flex.flex} ${flex.flexEnd}`}>
-                <Button variant={'primary'} onClick={handleLagreEndringer}>
+                <Button
+                    variant={'primary'}
+                    onClick={() => handleLagreEndringer(tilleggsData)}
+                    loading={loading}
+                    disabled={loading}
+                >
                     Lagre endring i situasjon
                 </Button>
             </div>
@@ -337,18 +330,10 @@ const MIDLERTIDIG_JOBB = (props: Steg2Props) => {
         defaultSelected: new Date(),
     });
 
-    // const { lagreBesvarelse } = useBesvarelse();
-    const { amplitudeData, valgtSituasjon, onClick } = props;
-    const handleLagreEndringer = async () => {
-        loggAktivitet({
-            aktivitet: 'Lagrer endring i jobbsituasjonen',
-            komponent: 'Min situasjon',
-            ...amplitudeData,
-        });
-        console.log('valgtSituasjon: ', valgtSituasjon);
-        console.log('oppsigelseDato: ', forsteArbeidsdagDato);
-        console.log('sisteArbeidsdagDato: ', sisteArbeidsdagDato);
-        onClick();
+    const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
+    const tilleggsData = {
+        forsteArbeidsdagDato,
+        sisteArbeidsdagDato,
     };
 
     return (
@@ -371,8 +356,14 @@ const MIDLERTIDIG_JOBB = (props: Steg2Props) => {
             <BodyShort className={spacing.mb1}>
                 NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
             </BodyShort>
+            <Feil feil={feil} />
             <div className={`${flex.flex} ${flex.flexEnd}`}>
-                <Button variant={'primary'} onClick={handleLagreEndringer}>
+                <Button
+                    variant={'primary'}
+                    onClick={() => handleLagreEndringer(tilleggsData)}
+                    loading={loading}
+                    disabled={loading}
+                >
                     Lagre endring i situasjon
                 </Button>
             </div>
