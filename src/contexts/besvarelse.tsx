@@ -28,8 +28,8 @@ export type DinSituasjonRequest = {
     besvarelse: {
         dinSituasjon: {
             verdi: DinSituasjonSvar;
-            gjelderFra?: string;
-            gjelderTil?: string;
+            gjelderFraDato?: string;
+            gjelderTilDato?: string;
             tilleggsData: DinSituasjonTilleggsdata;
         };
     };
@@ -37,74 +37,74 @@ export type DinSituasjonRequest = {
 
 export type DinSituasjonResponse = {
     verdi: DinSituasjonSvar;
-    gjelderFra: string | null;
-    gjelderTil: string | null;
-    endret: string | null;
+    gjelderFraDato: string | null;
+    gjelderTilDato: string | null;
+    endretDato: string | null;
     endretAv: BrukerEllerNav | null;
     tilleggsData: DinSituasjonTilleggsdata | null;
 };
 
 export type UtdanningResponse = {
     verdi: UtdanningSvar;
-    gjelderFra: string | null;
-    gjelderTil: string | null;
-    endret: string | null;
+    gjelderFraDato: string | null;
+    gjelderTilDato: string | null;
+    endretDato: string | null;
     endretAv: BrukerEllerNav | null;
 };
 
 export type UtdanningBestattResponse = {
     verdi: UtdanningBestattSvar;
-    gjelderFra: string | null;
-    gjelderTil: string | null;
-    endret: string | null;
+    gjelderFraDato: string | null;
+    gjelderTilDato: string | null;
+    endretDato: string | null;
     endretAv: BrukerEllerNav | null;
 };
 
 export type UtdanningGodkjentResponse = {
     verdi: UtdanningGodkjentSvar;
-    gjelderFra: string | null;
-    gjelderTil: string | null;
-    endret: string | null;
+    gjelderFraDato: string | null;
+    gjelderTilDato: string | null;
+    endretDato: string | null;
     endretAv: BrukerEllerNav | null;
 };
 
 export type HelseHinderResponse = {
     verdi: HelseHinderSvar;
-    gjelderFra: string | null;
-    gjelderTil: string | null;
-    endret: string | null;
+    gjelderFraDato: string | null;
+    gjelderTilDato: string | null;
+    endretDato: string | null;
     endretAv: BrukerEllerNav | null;
 };
 
 export type AndreForholdResponse = {
     verdi: AndreForholdSvar;
-    gjelderFra: string | null;
-    gjelderTil: string | null;
-    endret: string | null;
+    gjelderFraDato: string | null;
+    gjelderTilDato: string | null;
+    endretDato: string | null;
     endretAv: BrukerEllerNav | null;
 };
 
 export type SisteStillingResponse = {
     verdi: SisteStillingSvar;
-    gjelderFra: string | null;
-    gjelderTil: string | null;
-    endret: string | null;
+    gjelderFraDato: string | null;
+    gjelderTilDato: string | null;
+    endretDato: string | null;
     endretAv: BrukerEllerNav | null;
 };
 
 export type FremtidigSituasjonResponse = {
     verdi: FremtidigSituasjonSvar;
-    gjelderFra: string | null;
-    gjelderTil: string | null;
-    endret: string | null;
+    gjelderFraDato: string | null;
+    gjelderTilDato: string | null;
+    endretDato: string | null;
     endretAv: BrukerEllerNav | null;
 };
 
 export type TilbakeIArbeidResponse = {
     verdi: TilbakeIArbeidSvar;
-    gjelderFra: string | null;
-    gjelderTil: string | null;
-    endret: string | null;
+    gjelderFraDato: string | null;
+    gjelderTilDato: string | null;
+    endretDato: string | null;
     endretAv: BrukerEllerNav | null;
 };
 
@@ -130,9 +130,9 @@ export type BesvarelseResponse = {
         fremtidigSituasjon?: FremtidigSituasjonResponse;
         tilbakeIArbeid?: TilbakeIArbeidResponse;
     };
-    opprettet?: string;
+    registreringDato?: string;
     opprettetAv?: string;
-    endret?: string;
+    endretDato?: string;
     endretAv?: BrukerEllerNav;
 } | null;
 

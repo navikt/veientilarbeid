@@ -90,9 +90,9 @@ interface OpplysningerProps {
 
 const RegistreringsOpplysninger = (props: OpplysningerProps) => {
     const { besvarelseData } = props;
-    const opprettet = besvarelseData?.opprettet ? prettyPrintDato(besvarelseData.opprettet) : '';
+    const registreringDato = besvarelseData?.registreringDato ? prettyPrintDato(besvarelseData.registreringDato) : '';
     const opprettetAv = besvarelseData?.opprettetAv && besvarelseData.opprettetAv === 'BRUKER' ? 'Du' : 'NAV';
-    const endret = besvarelseData?.endret ? prettyPrintDato(besvarelseData.endret) : '';
+    const endretDato = besvarelseData?.endretDato ? prettyPrintDato(besvarelseData.endretDato) : '';
     const endretAv = besvarelseData?.endretAv && besvarelseData.endretAv === 'BRUKER' ? 'deg' : 'NAV';
     if (!besvarelseData) return null;
     return (
@@ -103,10 +103,10 @@ const RegistreringsOpplysninger = (props: OpplysningerProps) => {
             <div>
                 <div>
                     <div className={`${spacing.mr05} ${spacing.mb05}`}>
-                        {opprettetAv} registrerte deg som arbeidssøker {opprettet}.
+                        {opprettetAv} registrerte deg som arbeidssøker {registreringDato}.
                     </div>
                     <div className={`${spacing.mr05} ${spacing.mb05}`}>
-                        Opplysningene ble sist endret av {endretAv} {endret}.
+                        Opplysningene ble sist endret av {endretAv} {endretDato}.
                     </div>
                 </div>
             </div>
