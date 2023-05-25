@@ -44,7 +44,10 @@
     padding-top: 1.5rem!important;
     padding-bottom: 1.5rem!important;
 }
-
+.px0_5 {
+    padding-top: .5rem!important;
+    padding-bottom: .5rem!important;
+}
 .pb2 {
     padding-bottom: 2rem!important;
 }

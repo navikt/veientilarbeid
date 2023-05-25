@@ -85,7 +85,7 @@ const PermittertModal = (props: PermittertModalProps) => {
         }
         // eslint-disable-next-line react/jsx-no-undef
         return (
-            <Link href={'#'} onClick={() => settAktivSide(aktivSide - 1)}>
+            <Link href={'#'} onClick={() => settAktivSide(aktivSide - 1)} className={spacing.px0_5}>
                 <ChevronLeftIcon /> Tilbake
             </Link>
         );
