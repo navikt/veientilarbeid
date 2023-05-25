@@ -5,7 +5,7 @@ import { useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
 
 import Feedback from '../feedback/feedback';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
-import { BesvarelseResponse } from '../../contexts/besvarelse';
+import { BesvarelseResponse, DinSituasjonTilleggsdata } from '../../contexts/besvarelse';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import { sporsmalMap, svarMap } from '../../models/sporsmal-og-svar';
 
@@ -25,8 +25,22 @@ const TEKSTER = {
     },
 };
 
+const TilleggsData = (props: any) => {
+    const { datapunkt, tilleggsData, verdi } = props;
+    if (!tilleggsData) return null;
+
+    return (
+        <>
+            <BodyShort>
+                {datapunkt} - {verdi}
+            </BodyShort>
+            <BodyShort>{JSON.stringify(tilleggsData)}</BodyShort>
+        </>
+    );
+};
+
 const Opplysning = (props: any) => {
-    const { sporsmal, svar } = props;
+    const { sporsmal, svar, verdi, datapunkt, tilleggsData } = props;
     return (
         <div className={spacing.blokkS}>
             <BodyShort>
@@ -34,6 +48,7 @@ const Opplysning = (props: any) => {
                 <br />
                 {svar}
             </BodyShort>
+            <TilleggsData datapunkt={datapunkt} tilleggsData={tilleggsData} verdi={verdi} />
         </div>
     );
 };
@@ -61,6 +76,9 @@ const Oppfolging = () => {
 interface Svar {
     sporsmal: string;
     svar: string | null;
+    verdi: string | null;
+    datapunkt: string;
+    tilleggsData: DinSituasjonTilleggsdata | null;
 }
 
 const repackBesvarelser = (besvarelseData: BesvarelseResponse) => {
@@ -70,6 +88,9 @@ const repackBesvarelser = (besvarelseData: BesvarelseResponse) => {
             new Object({
                 sporsmal: sporsmalMap[key],
                 svar: besvarelse[key].verdi ? svarMap[key][besvarelse[key].verdi] : null,
+                verdi: besvarelse[key].verdi || null,
+                datapunkt: key,
+                tilleggsData: besvarelse[key].tilleggsData || null,
             }) as Svar
     );
     const besvarteBesvarelser = besvarelserMedInnhold.filter((item) => item.svar !== null);
@@ -109,6 +130,7 @@ const RegistreringsOpplysninger = (props: OpplysningerProps) => {
 const OpplysningerFraBesvarelsen = (props: OpplysningerProps) => {
     const { besvarelseData } = props;
     const besvarelser = repackBesvarelser(besvarelseData);
+    console.log(besvarelser);
 
     return !besvarelseData ? null : (
         <div className={`${flexStyles.flex} ${flexStyles.flexColumn}`}>
