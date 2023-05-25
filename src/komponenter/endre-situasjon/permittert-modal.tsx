@@ -101,13 +101,12 @@ const PermittertModal = (props: PermittertModalProps) => {
         >
             <Modal.Content>
                 <Tilbake />
-                <Heading spacing level="1" size="large" id="modal-heading">
+                <Heading spacing level="1" size="large" id="modal-heading" className={spacing.mr2}>
                     Min jobbsituasjonen har endret seg
                 </Heading>
-                <Heading level="2" size="medium">
-                    Fortell oss hva som har endret seg slik at vi kan veilede deg videre
-                </Heading>
-                <BodyShort className={spacing.mb1}>Steg {aktivSide} / 3</BodyShort>
+                <BodyShort className={spacing.mb1}>
+                    <small>Steg {aktivSide}/3</small>
+                </BodyShort>
                 <Innhold />
             </Modal.Content>
         </Modal>
