@@ -1,10 +1,10 @@
-import { BodyShort, Button, Heading, Link, Modal, Select } from '@navikt/ds-react';
+import { BodyShort, Heading, Link, Modal } from '@navikt/ds-react';
 import { ChevronLeftIcon } from '@navikt/aksel-icons';
 import spacing from '../../spacing.module.css';
-import flex from '../../flex.module.css';
 import React, { useEffect, useState } from 'react';
 import Steg2 from './steg2';
 import Steg3 from './steg3';
+import Steg1 from './steg1';
 
 export enum PermittertSvar {
     OPPSIGELSE = 'OPPSIGELSE',
@@ -32,36 +32,6 @@ interface PermittertModalProps {
     amplitudeData: any;
     besvarelse: any | null; //BesvarelseResponse['besvarelse'] | null;
 }
-
-interface Steg1Props {
-    valgtSituasjon: PermittertSvar;
-    settValgtSituasjon: React.Dispatch<React.SetStateAction<PermittertSvar>>;
-    onClick: () => void;
-}
-const Steg1 = (props: Steg1Props) => {
-    const { valgtSituasjon, settValgtSituasjon, onClick } = props;
-    return (
-        <>
-            <Select
-                className={spacing.mb1}
-                label={'Velg den nye situasjonen som passer deg best'}
-                onChange={(e) => settValgtSituasjon(e.target.value as PermittertSvar)}
-                value={valgtSituasjon}
-            >
-                {Object.keys(permittertTekster).map((situasjon) => (
-                    <option key={situasjon} value={situasjon}>
-                        {permittertTekster[situasjon]}
-                    </option>
-                ))}
-            </Select>
-            <div className={`${flex.flex} ${flex.flexEnd}`}>
-                <Button variant={'primary'} onClick={onClick}>
-                    Neste
-                </Button>
-            </div>
-        </>
-    );
-};
 
 const PermittertModal = (props: PermittertModalProps) => {
     const { openModal, setOpenModal, amplitudeData } = props;
