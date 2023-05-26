@@ -182,10 +182,9 @@ const ENDRET = (props: Steg2Props) => {
                     settPermitteringsProsent(value);
                 }}
             >
-                <Radio value="100">100 prosent</Radio>
-                <Radio value="75">75 prosent</Radio>
-                <Radio value="50">50 prosent</Radio>
-                <Radio value="25">25 prosent</Radio>
+                <Radio value="100">Fullt permittert - 100 prosent</Radio>
+                <Radio value="75">50 - 100 prosent</Radio>
+                <Radio value="50">Under 50 prosent</Radio>
             </RadioGroup>
 
             <BodyShort className={spacing.mb1}>
@@ -319,19 +318,9 @@ const MIDLERTIDIG_JOBB = (props: Steg2Props) => {
         defaultSelected: new Date(),
     });
 
-    const {
-        datepickerProps: sisteArbeidsdagProps,
-        inputProps: sisteArbeidsdagInput,
-        selectedDay: sisteArbeidsdagDato,
-    } = UNSAFE_useDatepicker({
-        fromDate: new Date('Jan 01 2022'),
-        defaultSelected: new Date(),
-    });
-
     const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
     const tilleggsData = {
         forsteArbeidsdagDato,
-        sisteArbeidsdagDato,
     };
 
     return (
@@ -340,17 +329,10 @@ const MIDLERTIDIG_JOBB = (props: Steg2Props) => {
                 <UNSAFE_DatePicker.Input
                     {...forsteArbeidsdagInput}
                     className={spacing.mb1}
-                    label="Når er første arbeidsdag?"
+                    label="Når er første arbeidsdag i den midlertidige jobben?"
                 />
             </UNSAFE_DatePicker>
 
-            <UNSAFE_DatePicker {...sisteArbeidsdagProps} strategy="fixed">
-                <UNSAFE_DatePicker.Input
-                    {...sisteArbeidsdagInput}
-                    className={spacing.mb1}
-                    label="Når er siste arbeidsdag?"
-                />
-            </UNSAFE_DatePicker>
             <BodyShort className={spacing.mb1}>
                 NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
             </BodyShort>

@@ -44,7 +44,7 @@ const besvarelseMock = {
             endretDato: null,
         },
         dinSituasjon: {
-            verdi: 'AKKURAT_FULLFORT_UTDANNING',
+            verdi: 'ER_PERMITTERT',
             gjelderFraDato: null,
             gjelderTilDato: null,
             endretAv: 'BRUKER',
