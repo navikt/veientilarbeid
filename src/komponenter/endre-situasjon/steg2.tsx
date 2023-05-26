@@ -34,6 +34,7 @@ const Feil = (props: { feil: string | null }) => {
         </Alert>
     );
 };
+
 function useLagreEndringer(props: Steg2Props) {
     const { lagreBesvarelse } = useBesvarelse();
     const { amplitudeData, onClick, settTilleggsData, valgtSituasjon } = props;
@@ -41,6 +42,15 @@ function useLagreEndringer(props: Steg2Props) {
     const [feil, settFeil] = useState<string | null>(null);
 
     const handleLagreEndringer = async (tilleggsData?: any) => {
+        // Gjør om dato fra datepicker til date string
+        if (tilleggsData) {
+            Object.keys(tilleggsData).forEach((key) => {
+                const data = tilleggsData[key];
+                if (data instanceof Date) {
+                    tilleggsData[key] = data.toISOString().substring(0, 10);
+                }
+            });
+        }
         try {
             settFeil(null);
             setLoading(true);
@@ -77,6 +87,7 @@ function useLagreEndringer(props: Steg2Props) {
         loading,
     };
 }
+
 const OPPSIGELSE = (props: Steg2Props) => {
     const {
         datepickerProps: oppsigelseProps,
