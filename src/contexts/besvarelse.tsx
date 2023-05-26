@@ -25,13 +25,11 @@ export type DinSituasjonTilleggsdata = {
 };
 
 export type DinSituasjonRequest = {
-    besvarelse: {
-        dinSituasjon: {
-            verdi: DinSituasjonSvar;
-            gjelderFraDato?: string;
-            gjelderTilDato?: string;
-            tilleggsData: DinSituasjonTilleggsdata;
-        };
+    dinSituasjon: {
+        verdi: DinSituasjonSvar;
+        gjelderFraDato?: string;
+        gjelderTilDato?: string;
+        tilleggsData: DinSituasjonTilleggsdata;
     };
 };
 

@@ -55,11 +55,9 @@ function useLagreEndringer(props: Steg2Props) {
                 overskrift: 'Jobbsituasjonen min er endret',
                 venterPaaSvarFraNav: true,
                 oppdatering: {
-                    besvarelse: {
-                        dinSituasjon: {
-                            verdi: valgtSituasjon as any,
-                            tilleggsData,
-                        },
+                    dinSituasjon: {
+                        verdi: valgtSituasjon as any,
+                        tilleggsData,
                     },
                 },
             } as BesvarelseRequest;

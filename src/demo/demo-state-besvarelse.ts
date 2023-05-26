@@ -60,8 +60,7 @@ export const besvarelsePostResolver = (
     res: ResponseComposition,
     ctx: RestContext
 ) => {
-    const { besvarelse } = req.body;
-    const { dinSituasjon } = besvarelse;
+    const { dinSituasjon } = req.body;
     const { verdi, gjelderFraDato, tilleggsData } = dinSituasjon;
     const endretDato = new Date().toISOString().substring(0, 10);
     const endretAv = 'BRUKER';
