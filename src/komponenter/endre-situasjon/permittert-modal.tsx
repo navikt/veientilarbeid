@@ -12,6 +12,7 @@ export enum PermittertSvar {
     TILBAKE_TIL_JOBB = 'TILBAKE_TIL_JOBB',
     NY_JOBB = 'NY_JOBB',
     MIDLERTIDIG_JOBB = 'MIDLERTIDIG_JOBB',
+    KONKURS = 'KONKURS',
     UAVKLART = 'UAVKLART',
     ANNET = 'ANNET',
 }
@@ -22,6 +23,7 @@ export const permittertTekster = {
     [PermittertSvar.TILBAKE_TIL_JOBB]: 'Skal tilbake til jobben',
     [PermittertSvar.NY_JOBB]: 'Jeg har fått meg ny jobb',
     [PermittertSvar.MIDLERTIDIG_JOBB]: 'Jeg har fått midlertidig jobb',
+    [PermittertSvar.KONKURS]: 'Bedriften er konkurs',
     [PermittertSvar.UAVKLART]: 'Arbeidssituasjonen min er uavklart',
     [PermittertSvar.ANNET]: 'Annet',
 };

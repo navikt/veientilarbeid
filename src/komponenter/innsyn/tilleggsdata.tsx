@@ -114,6 +114,22 @@ function TilleggsData(props: Props) {
         );
     };
 
+    const KONKURS = (props: TilleggsDataProps) => {
+        const { tilleggsData } = props;
+
+        if (!tilleggsData) return null;
+
+        const { sisteArbeidsdagDato } = tilleggsData;
+
+        return (
+            <>
+                <BodyShort>
+                    Siste arbeidsdag {sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'ikke oppgitt'}
+                </BodyShort>
+            </>
+        );
+    };
+
     const UAVKLART = (props: TilleggsDataProps) => {
         const { tilleggsData } = props;
 
@@ -142,6 +158,8 @@ function TilleggsData(props: Props) {
         return <NY_JOBB tilleggsData={tilleggsData} />;
     } else if (verdi === 'MIDLERTIDIG_JOBB') {
         return <MIDLERTIDIG_JOBB tilleggsData={tilleggsData} />;
+    } else if (verdi === 'KONKURS') {
+        return <KONKURS tilleggsData={tilleggsData} />;
     } else if (verdi === 'UAVKLART') {
         return <UAVKLART tilleggsData={tilleggsData} />;
     } else if (verdi === 'ANNET') {

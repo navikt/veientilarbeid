@@ -371,6 +371,48 @@ const MIDLERTIDIG_JOBB = (props: Steg2Props) => {
     );
 };
 
+const KONKURS = (props: Steg2Props) => {
+    const {
+        datepickerProps: sisteArbeidsdagProps,
+        inputProps: sisteArbeidsdagInput,
+        selectedDay: sisteArbeidsdagDato,
+    } = UNSAFE_useDatepicker({
+        fromDate: new Date('Jan 01 2022'),
+        defaultSelected: new Date(),
+    });
+
+    const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
+    const tilleggsData = {
+        sisteArbeidsdagDato,
+    };
+
+    return (
+        <>
+            <UNSAFE_DatePicker {...sisteArbeidsdagProps} strategy="fixed">
+                <UNSAFE_DatePicker.Input
+                    {...sisteArbeidsdagInput}
+                    className={spacing.mb1}
+                    label="Når er siste arbeidsdag?"
+                />
+            </UNSAFE_DatePicker>
+            <BodyShort className={spacing.mb1}>
+                NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
+            </BodyShort>
+            <Feil feil={feil} />
+            <div className={`${flex.flex} ${flex.flexEnd}`}>
+                <Button
+                    variant={'primary'}
+                    onClick={() => handleLagreEndringer(tilleggsData)}
+                    loading={loading}
+                    disabled={loading}
+                >
+                    Lagre endring i situasjon
+                </Button>
+            </div>
+        </>
+    );
+};
+
 const UAVKLART = (props: Steg2Props) => {
     const { valgtSituasjon, settValgtSituasjon } = props;
     const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
@@ -433,6 +475,7 @@ const ANNET = (props: Steg2Props) => {
         </>
     );
 };
+
 const Steg2 = (props: Steg2Props) => {
     const { valgtSituasjon } = props;
     if (valgtSituasjon === PermittertSvar.OPPSIGELSE) {
@@ -441,6 +484,8 @@ const Steg2 = (props: Steg2Props) => {
         return <TILBAKE_TIL_JOBB {...props} />;
     } else if (valgtSituasjon === PermittertSvar.MIDLERTIDIG_JOBB) {
         return <MIDLERTIDIG_JOBB {...props} />;
+    } else if (valgtSituasjon === PermittertSvar.KONKURS) {
+        return <KONKURS {...props} />;
     } else if (valgtSituasjon === PermittertSvar.NY_JOBB) {
         return <NY_JOBB {...props} />;
     } else if (valgtSituasjon === PermittertSvar.ENDRET_PERMITTERINGSPROSENT) {
