@@ -6,6 +6,7 @@ import spacing from '../../spacing.module.css';
 import { mine_dagpenger_url } from '../../url';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import { plussDager } from '../../utils/date-utils';
+import { dagpengerSoknadLenke } from '../../innhold/lenker';
 
 export interface VeiledningsProps {
     valgtSituasjon: PermittertSvar | DinSituasjonSvar;
@@ -40,7 +41,7 @@ const OPPSIGELSE = (props: VeiledningsProps) => {
                 {prettyPrintDato(sisteArbeidsdagDato!)}. Lenke til permitteringsregelverk?
             </p>
             <p>
-                Du bør sende inn ny søknad om ordinære dagpenger mellom{' '}
+                Du bør sende inn <Link href={dagpengerSoknadLenke}>ny søknad om ordinære dagpenger</Link> mellom{' '}
                 {prettyPrintDato(plussDager(new Date(oppsigelseDato!), -7).toISOString())} og{' '}
                 {prettyPrintDato(sisteArbeidsdagDato!)} – da du tidligst kan få dagpenger fra den dagen du sender inn
                 søknaden.
