@@ -19,9 +19,11 @@ import { PermittertSvar, permittertTekster, DinSituasjonSvar, dinSituasjonSvarTe
 import spacing from '../../spacing.module.css';
 import flex from '../../flex.module.css';
 
+type SituasjonSvar = PermittertSvar | DinSituasjonSvar;
+
 export interface Steg2Props {
-    valgtSituasjon: PermittertSvar | DinSituasjonSvar;
-    settValgtSituasjon: React.Dispatch<React.SetStateAction<PermittertSvar | DinSituasjonSvar>>;
+    valgtSituasjon: SituasjonSvar;
+    settValgtSituasjon: React.Dispatch<React.SetStateAction<SituasjonSvar>>;
     settTilleggsData: React.Dispatch<React.SetStateAction<any>>;
     onClick: () => void;
     amplitudeData: any;
@@ -92,7 +94,7 @@ function useLagreEndringer(props: Steg2Props) {
 }
 
 interface WrapperProps {
-    valgtSituasjon: PermittertSvar | DinSituasjonSvar;
+    valgtSituasjon: SituasjonSvar;
     children: React.ReactElement<any>;
 }
 
@@ -441,20 +443,20 @@ const UAVKLART = (props: Steg2Props) => {
     return (
         <Steg2Wrapper valgtSituasjon={props.valgtSituasjon}>
             <>
-                <BodyShort className={spacing.mb1}>
-                    Du har sagt at situasjonen din er "uavklart". Fortell mer.
-                </BodyShort>
                 <Select
                     className={spacing.mb1}
                     label={'Velg den nye situasjonen som passer deg best'}
-                    onChange={(e) => settValgtSituasjon(e.target.value as PermittertSvar)}
+                    onChange={(e) => settValgtSituasjon(e.target.value as SituasjonSvar)}
                     value={valgtSituasjon}
                 >
-                    {Object.keys(permittertTekster).map((situasjon) => (
+                    {Object.keys(dinSituasjonSvarTekster).map((situasjon) => (
                         <option key={situasjon} value={situasjon}>
-                            {permittertTekster[situasjon]}
+                            {dinSituasjonSvarTekster[situasjon]}
                         </option>
                     ))}
+                    <option key={PermittertSvar.ANNET} value={PermittertSvar.ANNET}>
+                        {permittertTekster[PermittertSvar.ANNET]}
+                    </option>
                 </Select>
                 <BodyShort className={spacing.mb1}>
                     NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
@@ -482,18 +484,20 @@ const ANNET = (props: Steg2Props) => {
     return (
         <Steg2Wrapper valgtSituasjon={props.valgtSituasjon}>
             <>
-                <BodyShort className={spacing.mb1}>Du har sagt at situasjonen din er "annet". Fortell mer.</BodyShort>
                 <Select
                     className={spacing.mb1}
                     label={'Velg den nye situasjonen som passer deg best'}
-                    onChange={(e) => settValgtSituasjon(e.target.value as PermittertSvar)}
+                    onChange={(e) => settValgtSituasjon(e.target.value as SituasjonSvar)}
                     value={valgtSituasjon}
                 >
-                    {Object.keys(permittertTekster).map((situasjon) => (
+                    {Object.keys(dinSituasjonSvarTekster).map((situasjon) => (
                         <option key={situasjon} value={situasjon}>
-                            {permittertTekster[situasjon]}
+                            {dinSituasjonSvarTekster[situasjon]}
                         </option>
                     ))}
+                    <option key={PermittertSvar.ANNET} value={PermittertSvar.ANNET}>
+                        {permittertTekster[PermittertSvar.ANNET]}
+                    </option>
                 </Select>
                 <BodyShort className={spacing.mb1}>
                     NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
