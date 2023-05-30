@@ -1,8 +1,11 @@
 import { Alert, Button } from '@navikt/ds-react';
+
+import { PermittertSvar } from './permittert-modal';
+import Veiledning from './veiledning';
+import TilleggsData from '../innsyn/tilleggsdata';
+
 import spacing from '../../spacing.module.css';
 import flex from '../../flex.module.css';
-import { PermittertSvar } from './permittert-modal';
-import TilleggsData from '../innsyn/tilleggsdata';
 
 export interface Steg3Props {
     valgtSituasjon: PermittertSvar;
@@ -18,6 +21,7 @@ const Steg3 = (props: Steg3Props) => {
                 NAV har mottatt oppdateringen.
             </Alert>
             <TilleggsData verdi={valgtSituasjon} tilleggsData={tilleggsData} />
+            <Veiledning valgtSituasjon={valgtSituasjon} />
             <div className={`${flex.flex} ${flex.flexEnd}`}>
                 <Button variant={'primary'} onClick={onClose}>
                     Lukk
