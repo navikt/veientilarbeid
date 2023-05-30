@@ -1,10 +1,12 @@
+import React, { useEffect, useState } from 'react';
 import { BodyShort, Heading, Link, Modal } from '@navikt/ds-react';
 import { ChevronLeftIcon } from '@navikt/aksel-icons';
-import spacing from '../../spacing.module.css';
-import React, { useEffect, useState } from 'react';
+
 import Steg2 from './steg2';
 import Steg3 from './steg3';
 import Steg1 from './steg1';
+
+import spacing from '../../spacing.module.css';
 
 export enum PermittertSvar {
     OPPSIGELSE = 'OPPSIGELSE',
@@ -64,7 +66,7 @@ interface PermittertModalProps {
 const PermittertModal = (props: PermittertModalProps) => {
     const { openModal, setOpenModal, amplitudeData } = props;
     const [aktivSide, settAktivSide] = React.useState<number>(1);
-    const [valgtSituasjon, settValgtSituasjon] = useState<PermittertSvar>(PermittertSvar.OPPSIGELSE);
+    const [valgtSituasjon, settValgtSituasjon] = useState<PermittertSvar | DinSituasjonSvar>(PermittertSvar.OPPSIGELSE);
     const [tilleggsData, settTilleggsData] = useState<any>(null);
 
     useEffect(() => {

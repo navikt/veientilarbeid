@@ -1,11 +1,11 @@
 import { BodyShort } from '@navikt/ds-react';
 
-import { PermittertSvar } from './permittert-modal';
+import { DinSituasjonSvar, PermittertSvar } from './permittert-modal';
 
 import spacing from '../../spacing.module.css';
 
 export interface VeiledningsProps {
-    valgtSituasjon: PermittertSvar;
+    valgtSituasjon: PermittertSvar | DinSituasjonSvar;
     tilleggsData?: any;
 }
 

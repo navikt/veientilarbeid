@@ -14,14 +14,14 @@ import {
 import { BesvarelseRequest, useBesvarelse } from '../../contexts/besvarelse';
 
 import { loggAktivitet } from '../../metrics/metrics';
-import { PermittertSvar, permittertTekster } from './permittert-modal';
+import { PermittertSvar, permittertTekster, DinSituasjonSvar, dinSituasjonSvarTekster } from './permittert-modal';
 
 import spacing from '../../spacing.module.css';
 import flex from '../../flex.module.css';
 
 export interface Steg2Props {
-    valgtSituasjon: PermittertSvar;
-    settValgtSituasjon: React.Dispatch<React.SetStateAction<PermittertSvar>>;
+    valgtSituasjon: PermittertSvar | DinSituasjonSvar;
+    settValgtSituasjon: React.Dispatch<React.SetStateAction<PermittertSvar | DinSituasjonSvar>>;
     settTilleggsData: React.Dispatch<React.SetStateAction<any>>;
     onClick: () => void;
     amplitudeData: any;
@@ -92,12 +92,12 @@ function useLagreEndringer(props: Steg2Props) {
 }
 
 interface WrapperProps {
-    valgtSituasjon: PermittertSvar;
+    valgtSituasjon: PermittertSvar | DinSituasjonSvar;
     children: React.ReactElement<any>;
 }
 
 const Steg2Wrapper = (props: WrapperProps) => {
-    const headingTekst = permittertTekster[props.valgtSituasjon];
+    const headingTekst = permittertTekster[props.valgtSituasjon] || dinSituasjonSvarTekster[props.valgtSituasjon];
 
     return (
         <>

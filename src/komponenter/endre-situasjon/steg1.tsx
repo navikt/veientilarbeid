@@ -1,12 +1,14 @@
 import React from 'react';
 import { Button, Select } from '@navikt/ds-react';
+
+import { DinSituasjonSvar, PermittertSvar, permittertTekster } from './permittert-modal';
+
 import spacing from '../../spacing.module.css';
 import flex from '../../flex.module.css';
-import { PermittertSvar, permittertTekster } from './permittert-modal';
 
 interface Steg1Props {
-    valgtSituasjon: PermittertSvar;
-    settValgtSituasjon: React.Dispatch<React.SetStateAction<PermittertSvar>>;
+    valgtSituasjon: PermittertSvar | DinSituasjonSvar;
+    settValgtSituasjon: React.Dispatch<React.SetStateAction<PermittertSvar | DinSituasjonSvar>>;
     onClick: () => void;
 }
 const Steg1 = (props: Steg1Props) => {

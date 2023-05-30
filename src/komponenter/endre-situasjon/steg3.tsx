@@ -1,6 +1,6 @@
 import { Alert, Button } from '@navikt/ds-react';
 
-import { PermittertSvar } from './permittert-modal';
+import { DinSituasjonSvar, PermittertSvar } from './permittert-modal';
 import Veiledning from './veiledning';
 import TilleggsData from '../innsyn/tilleggsdata';
 
@@ -8,7 +8,7 @@ import spacing from '../../spacing.module.css';
 import flex from '../../flex.module.css';
 
 export interface Steg3Props {
-    valgtSituasjon: PermittertSvar;
+    valgtSituasjon: PermittertSvar | DinSituasjonSvar;
     tilleggsData?: any;
     onClose(): void;
 }
