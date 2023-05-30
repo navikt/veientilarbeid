@@ -21,7 +21,7 @@ const Steg3 = (props: Steg3Props) => {
                 NAV har mottatt oppdateringen.
             </Alert>
             <TilleggsData verdi={valgtSituasjon} tilleggsData={tilleggsData} />
-            <Veiledning valgtSituasjon={valgtSituasjon} />
+            <Veiledning valgtSituasjon={valgtSituasjon} tilleggsData={tilleggsData} />
             <div className={`${flex.flex} ${flex.flexEnd}`}>
                 <Button variant={'primary'} onClick={onClose}>
                     Lukk
