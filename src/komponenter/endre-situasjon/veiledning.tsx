@@ -6,6 +6,7 @@ import spacing from '../../spacing.module.css';
 
 export interface VeiledningsProps {
     valgtSituasjon: PermittertSvar;
+    tilleggsData?: any;
 }
 
 const OPPSIGELSE = (props: VeiledningsProps) => {
