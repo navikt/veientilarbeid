@@ -7,7 +7,7 @@ import spacing from '../../spacing.module.css';
 import flex from '../../flex.module.css';
 
 interface Steg1Props {
-    valgtSituasjon: PermittertSvar | DinSituasjonSvar;
+    valgtSituasjon: PermittertSvar | DinSituasjonSvar | undefined;
     settValgtSituasjon: React.Dispatch<React.SetStateAction<PermittertSvar | DinSituasjonSvar>>;
     onClick: () => void;
 }
@@ -21,6 +21,7 @@ const Steg1 = (props: Steg1Props) => {
                 onChange={(e) => settValgtSituasjon(e.target.value as PermittertSvar)}
                 value={valgtSituasjon}
             >
+                <option disabled={true} selected={true}></option>
                 {Object.keys(permittertTekster).map((situasjon) => (
                     <option key={situasjon} value={situasjon}>
                         {permittertTekster[situasjon]}
@@ -28,7 +29,7 @@ const Steg1 = (props: Steg1Props) => {
                 ))}
             </Select>
             <div className={`${flex.flex} ${flex.flexEnd}`}>
-                <Button variant={'primary'} onClick={onClick}>
+                <Button variant={'primary'} onClick={onClick} disabled={!valgtSituasjon}>
                     Neste
                 </Button>
             </div>

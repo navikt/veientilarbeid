@@ -60,13 +60,13 @@ interface PermittertModalProps {
     openModal: boolean;
     setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
     amplitudeData: any;
-    besvarelse: any | null; //BesvarelseResponse['besvarelse'] | null;
+    besvarelse: any | null;
 }
 
 const PermittertModal = (props: PermittertModalProps) => {
     const { openModal, setOpenModal, amplitudeData } = props;
     const [aktivSide, settAktivSide] = React.useState<number>(1);
-    const [valgtSituasjon, settValgtSituasjon] = useState<PermittertSvar | DinSituasjonSvar>(PermittertSvar.OPPSIGELSE);
+    const [valgtSituasjon, settValgtSituasjon] = useState<any>(undefined);
     const [tilleggsData, settTilleggsData] = useState<any>(null);
 
     useEffect(() => {
