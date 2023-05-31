@@ -160,7 +160,10 @@ const KONKURS = (props: VeiledningsProps) => {
                 bør du sende den mellom {prettyPrintDato(plussDager(new Date(sisteArbeidsdagDato!), -7).toISOString())}{' '}
                 og {prettyPrintDato(sisteArbeidsdagDato!)}
             </p>
-            <p>Burde det også stå noe her om å søker ordinære dagpenger?</p>
+            <p>
+                Dersom du ønsker dagpenger etter forskuddet må du krysse av for at du også søker dagpenger for etter
+                lønnsgarantiperioden er over, så slipper du to dagpengesøknader.
+            </p>
         </>
     );
 };
