@@ -1,9 +1,9 @@
-import { BodyShort, Link } from '@navikt/ds-react';
+import { BodyShort, Link, ReadMore } from '@navikt/ds-react';
 
 import { DinSituasjonSvar, PermittertSvar } from './permittert-modal';
 
 import spacing from '../../spacing.module.css';
-import { mine_dagpenger_url } from '../../url';
+import { dokumentasjon_url, mine_dagpenger_url } from '../../url';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import { plussDager } from '../../utils/date-utils';
 import { dagpengerSoknadLenke } from '../../innhold/lenker';
@@ -22,35 +22,59 @@ const OPPSIGELSE = (props: VeiledningsProps) => {
 
     return (
         <>
-            <p>Basert på det du har oppgitt:</p>
+            <h2>Hva betyr dette for meg?</h2>
+
             <p>
-                Du må dokumentere oppsigelsen. Måten du gjør det på er å laste opp dokumentet via{' '}
-                <Link href={mine_dagpenger_url}>mine dagpenger</Link>.
+                <h4 className={spacing.mbn}>Dokumentasjon</h4>
+                <Link href={dokumentasjon_url}>Du må laste opp oppsigelsen</Link>
             </p>
             <p>
-                Du må sende inn meldekort frem til og med meldekortet som ‘dekker’ {prettyPrintDato(oppsigelseDato!)}{' '}
-                (dagen du mottok oppsigelsen).
+                <h4 className={spacing.mbn}>Meldekort</h4>
+                Frem til {prettyPrintDato(sisteArbeidsdagDato!)} kan du få utbetalt dagpenger som permittert.
                 <br />
-                Siste dagen du får dagpenger som permittert er frem til og med dagen du fikk beskjeden – altså{' '}
-                {prettyPrintDato(oppsigelseDato!)}.
-                <br />
-                Frem til {prettyPrintDato(oppsigelseDato!)} får du utbetalt dagpenger som permittert.
-                <br />
-                Arbeidsgiveren din har ansvaret for å betal lønn fra{' '}
-                {prettyPrintDato(plussDager(new Date(oppsigelseDato!), 1).toISOString())} frem til{' '}
-                {prettyPrintDato(sisteArbeidsdagDato!)}. Lenke til permitteringsregelverk?
+                Det er derfor viktig at du fortsetter å sende inn meldekortene frem til og med perioden som dekker{' '}
+                {prettyPrintDato(sisteArbeidsdagDato!)}.
+                <ReadMore header={'Hva baserer vi dette på?'}>
+                    <p>
+                        Når du blir oppsagt er den siste dagen du får dagpenger som permittert for den dagen du mottok
+                        beskjeden om at du ble oppsagt.
+                    </p>
+                    <p>Du har oppgitt at du fikk denne beskjeden {prettyPrintDato(oppsigelseDato!)}</p>
+                    <p>
+                        Arbeidsgiveren din har ansvaret for å betale lønn fra{' '}
+                        {prettyPrintDato(plussDager(new Date(oppsigelseDato!), 1).toISOString())} frem til og med{' '}
+                        {prettyPrintDato(sisteArbeidsdagDato!)}.
+                    </p>
+                    <p>Du kan lese mer om regelverket for permittering her</p>
+                </ReadMore>
             </p>
             <p>
+                <h4 className={spacing.mbn}>Dagpenger</h4>
                 Du bør sende inn <Link href={dagpengerSoknadLenke}>ny søknad om ordinære dagpenger</Link> mellom{' '}
                 {prettyPrintDato(plussDager(new Date(oppsigelseDato!), -7).toISOString())} og{' '}
-                {prettyPrintDato(sisteArbeidsdagDato!)} – da du tidligst kan få dagpenger fra den dagen du sender inn
-                søknaden.
+                {prettyPrintDato(sisteArbeidsdagDato!)}.
+                <ReadMore header={'Hva baserer vi dette på?'}>
+                    <p>
+                        Du har oppgitt at siste dag med lønn fra arbeidsgiver er {prettyPrintDato(sisteArbeidsdagDato!)}
+                        .
+                    </p>
+                    <p>
+                        Du kan tidligst kan få dagpenger fra den dagen du sender inn en ny søknad om ordinære dagpenger,
+                        <br />
+                        og du kan tidligst sende inn søknad 7 dager før datoen du søker om å få dagpenger fra.
+                    </p>
+                    <p>
+                        Reglene er sånn at du ikke kan få utbetalt dagpenger for datoer før du har sendt inn søknaden.
+                    </p>
+                    <p>Du kan lese mer om regelverket for dagpenger her.</p>
+                </ReadMore>
             </p>
             <p>
-                Du kan svare ‘nei’ på det femtespørsmålet på ‘det siste aktuelle meldekortet’ du skal sende inn (for
-                perioden X til Y/lenke til?).
+                <h4 className={spacing.mbn}>Arbeidssøkerregistrering</h4>
+                Om du ikke lenger vil være registrert som arbeidssøker hos NAV, kan du svare nei på det siste spørsmålet
+                i meldekortet.
                 <br />
-                Da er det viktig at du registrere deg på nytt før du evnt. sender inn ny søknad om ordinære dagpenger.
+                Før du søker dagpenger på nytt, må du huske å registrere deg igjen.
             </p>
         </>
     );

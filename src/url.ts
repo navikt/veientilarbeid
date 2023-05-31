@@ -13,4 +13,10 @@ const MINE_DAGPENGER_URL = {
     production: 'https://www.nav.no/arbeid/dagpenger/mine-dagpenger',
 };
 
+const DOKUMENTASJON_URL = {
+    development: 'https://arbeid.intern.dev.nav.no/dagpenger/dialog/generell-innsending',
+    production: 'https://www.nav.no/dagpenger/dialog/generell-innsending',
+};
+
 export const mine_dagpenger_url = MINE_DAGPENGER_URL[getEnvironment()];
+export const dokumentasjon_url = DOKUMENTASJON_URL[getEnvironment()];
