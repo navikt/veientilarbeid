@@ -1,4 +1,4 @@
-import { Alert, Button, BodyShort } from '@navikt/ds-react';
+import { Alert, BodyShort, Button } from '@navikt/ds-react';
 
 import { DinSituasjonSvar, dinSituasjonSvarTekster, PermittertSvar, permittertTekster } from './permittert-modal';
 import Veiledning from './veiledning';
@@ -20,10 +20,12 @@ const Steg3 = (props: Steg3Props) => {
     return (
         <>
             <Alert variant="info" className={spacing.mb1}>
-                NAV har mottatt oppdateringen.
+                NAV har mottatt følgende oppdateringer:
+                <div className={spacing.pa1}>
+                    <BodyShort>{headingTekst}</BodyShort>
+                    <TilleggsData verdi={valgtSituasjon} tilleggsData={tilleggsData} />
+                </div>
             </Alert>
-            <BodyShort>{headingTekst}</BodyShort>
-            <TilleggsData verdi={valgtSituasjon} tilleggsData={tilleggsData} />
             <Veiledning valgtSituasjon={valgtSituasjon} tilleggsData={tilleggsData} />
             <div className={`${flex.flex} ${flex.flexEnd}`}>
                 <Button variant={'primary'} onClick={onClose}>

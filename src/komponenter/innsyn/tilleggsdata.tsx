@@ -25,7 +25,7 @@ function TilleggsData(props: Props) {
         return (
             <>
                 <BodyShort>
-                    Du mottok oppsigelsen {oppsigelseDato ? prettyPrintDato(oppsigelseDato) : 'på ikke oppgitt dato'}
+                    Oppsigelsen ble mottatt{oppsigelseDato ? prettyPrintDato(oppsigelseDato) : 'på ikke oppgitt dato'}
                 </BodyShort>
                 <BodyShort>
                     Siste arbeidsdag med lønn {sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'er ukjent'}
