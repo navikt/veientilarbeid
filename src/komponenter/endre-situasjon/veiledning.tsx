@@ -3,7 +3,7 @@ import { BodyShort, Link, ReadMore } from '@navikt/ds-react';
 import { DinSituasjonSvar, PermittertSvar } from './permittert-modal';
 
 import spacing from '../../spacing.module.css';
-import { dokumentasjon_url, mine_dagpenger_url } from '../../url';
+import { dokumentasjon_url } from '../../url';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import { plussDager } from '../../utils/date-utils';
 import { dagpengerSoknadLenke } from '../../innhold/lenker';
@@ -87,12 +87,15 @@ const ENDRET_PERMITTERINGSPROSENT = (props: VeiledningsProps) => {
 
     return (
         <>
-            <p>Basert på det du har oppgitt:</p>
+            <h2>Hva betyr dette for meg?</h2>
             <p>
-                Du må sende oss det nye permitteringsvarselet. Måten du gjør det på er å laste opp dokumentet via{' '}
-                <Link href={mine_dagpenger_url}>mine dagpenger</Link>.
+                <h4 className={spacing.mbn}>Dokumentasjon</h4>
+                <Link href={dokumentasjon_url}>Du må sende oss det nye permitteringsvarselet</Link>
             </p>
-            <p>Du må fortsette å sende meldekort i permitteringsperioden.</p>
+            <p>
+                <h4 className={spacing.mbn}>Meldekort</h4>
+                Du må fortsette å sende meldekort hver 14. dag.
+            </p>
         </>
     );
 };
@@ -106,15 +109,16 @@ const TILBAKE_TIL_JOBB = (props: VeiledningsProps) => {
 
     return (
         <>
-            <p>Basert på det du har oppgitt:</p>
+            <h2>Hva betyr dette for meg?</h2>
             <p>
-                Du må sende inn meldekort frem til og med meldekortet som ‘dekker’{' '}
-                {prettyPrintDato(plussDager(new Date(forsteArbeidsdagDato!), -1).toISOString())} (siste dag som
-                permittert).
+                <h4 className={spacing.mbn}>Meldekort</h4>
+                Du må levere meldekort frem til og med meldekortet som rapporterer for{' '}
+                {prettyPrintDato(plussDager(new Date(forsteArbeidsdagDato!), -1).toISOString())}.
             </p>
             <p>
-                Om du ikke lenger ønsker å være registrert arbeidssøker kan du svare "nei" til spm 5 på det siste
-                aktuelle meldekortet.
+                <h4 className={spacing.mbn}>Arbeidssøkerregistrering</h4>
+                Om du ikke lenger vil være registrert som arbeidssøker hos NAV etter å ha sendt inn det siste
+                meldekortet, kan du svare nei på det siste spørsmålet i meldekortet.
             </p>
         </>
     );
@@ -129,15 +133,22 @@ const NY_JOBB = (props: VeiledningsProps) => {
 
     return (
         <>
-            <p>Basert på det du har oppgitt:</p>
+            <h2>Hva betyr dette for meg?</h2>
             <p>
-                Du må sende inn meldekort frem til og med meldekortet som ‘dekker’{' '}
-                {prettyPrintDato(sisteArbeidsdagDato!)} (siste arbeidsdag i nåværende jobb).
+                <h4 className={spacing.mbn}>Meldekort</h4>
+                Du må levere meldekort frem til og med meldekortet som rapporterer for{' '}
+                {prettyPrintDato(sisteArbeidsdagDato!)}.
             </p>
-            <p>Oppsigelsestid når du er permittert er 14 dager.</p>
             <p>
-                Om du ikke lenger ønsker å være registrert arbeidssøker kan du svare "nei" til spm 5 på det siste
-                aktuelle meldekortet.
+                <h4 className={spacing.mbn}>Dagpenger</h4>
+                Du vil kunne motta dagpenger i oppsigelsesperioden.
+                <br />
+                Oppsigelsestid når du er permittert er 14 dager.
+            </p>
+            <p>
+                <h4 className={spacing.mbn}>Arbeidssøkerregistrering</h4>
+                Om du ikke lenger vil være registrert som arbeidssøker hos NAV etter å ha sendt inn det siste
+                meldekortet, kan du svare nei på det siste spørsmålet i meldekortet.
             </p>
         </>
     );
@@ -150,8 +161,19 @@ const MIDLERTIDIG_JOBB = (props: VeiledningsProps) => {
 
     return (
         <>
-            <p>Basert på det du har oppgitt:</p>
-            <p>Du må fortsette å sende inn meldekort i perioden du er midlertidig i arbeid.</p>
+            <h2>Hva betyr dette for meg?</h2>
+            <p>
+                <h4 className={spacing.mbn}>Dokumentasjon</h4>
+                <Link href={dokumentasjon_url}>Du må sende oss den nye arbeidsavtalen</Link>
+            </p>
+            <p>
+                <h4 className={spacing.mbn}>Meldekort</h4>
+                Du må fortsette å sende inn meldekort i perioden du er midlertidig i arbeid.
+            </p>
+            <p>
+                <h4 className={spacing.mbn}>Dagpenger</h4>
+                Dagpengeutbetalingene vil avhenge av hvor mye du jobber og lønnen i den midlertidige jobben.
+            </p>
             <p>Gi oss beskjed om noe endrer seg.</p>
         </>
     );
@@ -166,27 +188,29 @@ const KONKURS = (props: VeiledningsProps) => {
 
     return (
         <>
-            <p>Basert på det du har oppgitt:</p>
+            <h2>Hva betyr dette for meg?</h2>
             <p>
-                Du må dokumentere konkursen. Måten du gjør det på er å laste opp dokumentet via{' '}
-                <Link href={mine_dagpenger_url}>mine dagpenger</Link>.
+                <h4 className={spacing.mbn}>Dokumentasjon</h4>
+                <Link href={dokumentasjon_url}>Du må sende oss meldingen om konkursen</Link>
             </p>
             <p>
-                Du må sende inn meldekort frem til og med meldekortet som ‘dekker’{' '}
-                {prettyPrintDato(sisteArbeidsdagDato!)} (siste arbeidsdag).
+                <h4 className={spacing.mbn}>Meldekort</h4>
+                Du må levere meldekort frem til og med meldekortet som rapporterer for{' '}
+                {prettyPrintDato(sisteArbeidsdagDato!)}.
             </p>
             <p>
-                Dersom du fortsatt ønsker å stå registrert som arbeidssøker må du fortsette å sende inn meldekort også
-                etter dette.
-            </p>
-            <p>
-                Dersom du vil <Link href={dagpengerSoknadLenke}>søke om dagpenger som forskudd på lønnsgaranti</Link>,
-                bør du sende den mellom {prettyPrintDato(plussDager(new Date(sisteArbeidsdagDato!), -7).toISOString())}{' '}
-                og {prettyPrintDato(sisteArbeidsdagDato!)}
+                <h4 className={spacing.mbn}>Dagpenger</h4>
+                Du kan <Link href={dagpengerSoknadLenke}>søke om dagpenger som forskudd på lønnsgaranti</Link>, mellom{' '}
+                {prettyPrintDato(plussDager(new Date(sisteArbeidsdagDato!), -7).toISOString())} og{' '}
+                {prettyPrintDato(sisteArbeidsdagDato!)}
             </p>
             <p>
                 Dersom du ønsker dagpenger etter forskuddet må du krysse av for at du også søker dagpenger for etter
                 lønnsgarantiperioden er over, så slipper du to dagpengesøknader.
+            </p>
+            <p>
+                <h4 className={spacing.mbn}>Arbeidssøkerregistrering</h4>
+                Dersom du fortsatt ønsker å stå registrert som arbeidssøker må du fortsette å sende inn meldekort.
             </p>
         </>
     );
