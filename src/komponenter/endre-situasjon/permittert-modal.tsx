@@ -64,10 +64,11 @@ interface PermittertModalProps {
 }
 
 const PermittertModal = (props: PermittertModalProps) => {
-    const { openModal, setOpenModal, amplitudeData } = props;
+    const { openModal, setOpenModal, amplitudeData, besvarelse } = props;
     const [aktivSide, settAktivSide] = React.useState<number>(1);
     const [valgtSituasjon, settValgtSituasjon] = useState<any>(undefined);
     const [tilleggsData, settTilleggsData] = useState<any>(null);
+    const opprinneligSituasjon = besvarelse?.dinSituasjon?.verdi;
 
     useEffect(() => {
         settAktivSide(1);
@@ -78,6 +79,7 @@ const PermittertModal = (props: PermittertModalProps) => {
             return (
                 <Steg1
                     valgtSituasjon={valgtSituasjon}
+                    opprinneligSituasjon={opprinneligSituasjon}
                     settValgtSituasjon={settValgtSituasjon}
                     onClick={() => settAktivSide(2)}
                 />
