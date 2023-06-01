@@ -85,7 +85,7 @@ describe('Tester funksjonen visBesvarelser', () => {
         testdata.oppfolgingData.kanReaktiveres = false;
         testdata.oppfolgingData.servicegruppe = 'IKVAL';
         testdata.oppfolgingData.formidlingsgruppe = 'ARBS';
-        testdata.besvarelseData = { registreringsId: 1 };
+        testdata.besvarelseData = { registreringsId: 1, erBesvarelseEndret: true };
 
         expect(visBesvarelser(testdata)).toBe(true);
     });
@@ -94,7 +94,7 @@ describe('Tester funksjonen visBesvarelser', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
         testdata.brukerInfoData.alder = 60;
         testdata.oppfolgingData.servicegruppe = 'BKART';
-        testdata.besvarelseData = { registreringsId: 1 };
+        testdata.besvarelseData = { registreringsId: 1, erBesvarelseEndret: true };
         testdata.arbeidssokerPeriodeData.harAktivArbeidssokerperiode = 'Ja';
 
         expect(visBesvarelser(testdata)).toBe(true);
