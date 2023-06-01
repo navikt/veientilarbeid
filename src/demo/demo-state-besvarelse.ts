@@ -31,7 +31,7 @@ function oppdaterBesvarelse(
 ): BesvarelseResponse {
     const oppdatertBesvarelse = JSON.parse(JSON.stringify(besvarelseMock));
     if (erBesvarelseEndret) {
-        oppdatertBesvarelse.besvarelse.erBesvarelseEndret = true;
+        oppdatertBesvarelse.erBesvarelseEndret = true;
     }
     if (verdi) {
         oppdatertBesvarelse.besvarelse.dinSituasjon.verdi = verdi;

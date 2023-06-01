@@ -69,7 +69,7 @@ const besvarelseMock = {
     registreringsTidspunkt: '2023-04-28T22:45:33.31443',
     endretTidspunkt: '2023-04-28T22:45:33.31443',
     endretAv: 'BRUKER',
-    erBevarelseEndret: false,
+    erBesvarelseEndret: false,
 };
 
 export default besvarelseMock;
