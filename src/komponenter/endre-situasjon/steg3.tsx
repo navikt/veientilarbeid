@@ -21,9 +21,9 @@ const Steg3 = (props: Steg3Props) => {
         <>
             <Alert variant="info" className={spacing.mb1}>
                 NAV har mottatt følgende oppdateringer:
-                <div className={spacing.pa1}>
-                    <BodyShort>{headingTekst}</BodyShort>
+                <div className={`${spacing.pa1} ${spacing.mln_1}`}>
                     <TilleggsData verdi={valgtSituasjon} tilleggsData={tilleggsData} />
+                    <BodyShort>{headingTekst}</BodyShort>
                 </div>
             </Alert>
             <Veiledning valgtSituasjon={valgtSituasjon} tilleggsData={tilleggsData} />

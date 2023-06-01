@@ -27,6 +27,10 @@
     margin-left: 1rem!important;
 }
 
+.mln_1 {
+    margin-left: -1rem!important;
+}
+
 .ml1_75 {
     margin-left: 1.75rem!important;
 }
