@@ -37,7 +37,7 @@ export type DinSituasjonResponse = {
     verdi: DinSituasjonSvar;
     gjelderFraDato: string | null;
     gjelderTilDato: string | null;
-    endretDato: string | null;
+    endretTidspunkt: string | null;
     endretAv: BrukerEllerNav | null;
     tilleggsData: DinSituasjonTilleggsdata | null;
 };
@@ -46,7 +46,7 @@ export type UtdanningResponse = {
     verdi: UtdanningSvar;
     gjelderFraDato: string | null;
     gjelderTilDato: string | null;
-    endretDato: string | null;
+    endretTidspunkt: string | null;
     endretAv: BrukerEllerNav | null;
 };
 
@@ -54,7 +54,7 @@ export type UtdanningBestattResponse = {
     verdi: UtdanningBestattSvar;
     gjelderFraDato: string | null;
     gjelderTilDato: string | null;
-    endretDato: string | null;
+    endretTidspunkt: string | null;
     endretAv: BrukerEllerNav | null;
 };
 
@@ -62,7 +62,7 @@ export type UtdanningGodkjentResponse = {
     verdi: UtdanningGodkjentSvar;
     gjelderFraDato: string | null;
     gjelderTilDato: string | null;
-    endretDato: string | null;
+    endretTidspunkt: string | null;
     endretAv: BrukerEllerNav | null;
 };
 
@@ -70,7 +70,7 @@ export type HelseHinderResponse = {
     verdi: HelseHinderSvar;
     gjelderFraDato: string | null;
     gjelderTilDato: string | null;
-    endretDato: string | null;
+    endretTidspunkt: string | null;
     endretAv: BrukerEllerNav | null;
 };
 
@@ -78,7 +78,7 @@ export type AndreForholdResponse = {
     verdi: AndreForholdSvar;
     gjelderFraDato: string | null;
     gjelderTilDato: string | null;
-    endretDato: string | null;
+    endretTidspunkt: string | null;
     endretAv: BrukerEllerNav | null;
 };
 
@@ -86,7 +86,7 @@ export type SisteStillingResponse = {
     verdi: SisteStillingSvar;
     gjelderFraDato: string | null;
     gjelderTilDato: string | null;
-    endretDato: string | null;
+    endretTidspunkt: string | null;
     endretAv: BrukerEllerNav | null;
 };
 
@@ -94,7 +94,7 @@ export type FremtidigSituasjonResponse = {
     verdi: FremtidigSituasjonSvar;
     gjelderFraDato: string | null;
     gjelderTilDato: string | null;
-    endretDato: string | null;
+    endretTidspunkt: string | null;
     endretAv: BrukerEllerNav | null;
 };
 
@@ -102,7 +102,7 @@ export type TilbakeIArbeidResponse = {
     verdi: TilbakeIArbeidSvar;
     gjelderFraDato: string | null;
     gjelderTilDato: string | null;
-    endretDato: string | null;
+    endretTidspunkt: string | null;
     endretAv: BrukerEllerNav | null;
 };
 
@@ -128,10 +128,11 @@ export type BesvarelseResponse = {
         fremtidigSituasjon?: FremtidigSituasjonResponse;
         tilbakeIArbeid?: TilbakeIArbeidResponse;
     };
-    registreringDato?: string;
+    registreringsTidspunkt?: string;
     opprettetAv?: string;
-    endretDato?: string;
+    endretTidspunkt?: string;
     endretAv?: BrukerEllerNav;
+    erBesvarelseEndret?: boolean;
 } | null;
 
 interface BesvarelseProviderType {

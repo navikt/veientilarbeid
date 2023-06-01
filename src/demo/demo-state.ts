@@ -67,6 +67,7 @@ export enum DemoData {
     ENDRET_SITUASJON = 'endretSituasjon',
     ENDRET_SITUASJON_AV = 'endretSituasjonAv',
     SITUASJON_TILLEGGSDATA = 'situasjonTilleggsData',
+    ER_BESVARELSE_ENDRET = 'erBesvarelseEndret',
 }
 
 export const hentDemoState = (key: string): string | null => hentQueryParam(key);

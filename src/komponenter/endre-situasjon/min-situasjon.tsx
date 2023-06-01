@@ -22,7 +22,7 @@ function MinSituasjon(props: any) {
 
     const { aktivPeriodeStart } = beregnArbeidssokerperioder(arbeidssokerperiodeData);
     const { opprettetDato, manueltRegistrertAv } = brukerregistreringData?.registrering || {};
-    const { endretDato, endretAv } = besvarelse || {};
+    const { endretTidspunkt, endretAv } = besvarelse || {};
     const kanViseKomponent = autentiseringData.securityLevel === InnloggingsNiva.LEVEL_4;
 
     if (!kanViseKomponent) return null;
@@ -34,7 +34,7 @@ function MinSituasjon(props: any) {
                 manueltRegistrertAv={manueltRegistrertAv}
                 amplitudeData={amplitudeData}
                 besvarelse={besvarelseData}
-                endretDato={endretDato}
+                endretTidspunkt={endretTidspunkt}
                 endretAv={endretAv}
             />
             <BesvarelseLesMer />
