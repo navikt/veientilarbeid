@@ -14,7 +14,7 @@ import PermittertModal from './permittert-modal';
 
 const Sammendrag = (props: any) => {
     const [openModal, setOpenModal] = useState(false);
-    const { startDato, manueltRegistrertAv, amplitudeData, besvarelse } = props;
+    const { startDato, manueltRegistrertAv, amplitudeData, besvarelse, erBesvarelseEndret } = props;
     const underoppfolging = useUnderOppfolging()?.underoppfolging;
     const kanViseKomponent = underoppfolging;
 
@@ -47,10 +47,11 @@ const Sammendrag = (props: any) => {
                     <TilleggsData
                         verdi={besvarelse ? besvarelse.dinSituasjon.verdi : null}
                         tilleggsData={besvarelse ? besvarelse.dinSituasjon.tilleggsData : null}
+                        visKnapper={true}
                     />
                 </BodyShort>
                 <BodyShort className={`${spacing.mb1} ${spacing.mt1}`}>
-                    <Button variant="primary" onClick={handleModalOpen}>
+                    <Button variant={erBesvarelseEndret ? 'secondary' : 'primary'} onClick={handleModalOpen}>
                         Jobbsituasjonen min har endret seg
                     </Button>
                 </BodyShort>

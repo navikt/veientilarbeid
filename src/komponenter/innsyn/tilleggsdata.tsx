@@ -1,11 +1,13 @@
-import { BodyShort } from '@navikt/ds-react';
+import { BodyShort, Link } from '@navikt/ds-react';
 
 import { DinSituasjonTilleggsdata } from '../../contexts/besvarelse';
 import prettyPrintDato from '../../utils/pretty-print-dato';
+import { dokumentasjon_url } from '../../url';
 
 interface Props {
     verdi: string | null;
     tilleggsData: DinSituasjonTilleggsdata | null;
+    visKnapper?: boolean;
 }
 
 interface TilleggsDataProps {
@@ -13,7 +15,7 @@ interface TilleggsDataProps {
 }
 
 function TilleggsData(props: Props) {
-    const { verdi, tilleggsData } = props;
+    const { verdi, tilleggsData, visKnapper } = props;
 
     const OPPSIGELSE = (props: TilleggsDataProps) => {
         const { tilleggsData } = props;
@@ -30,6 +32,13 @@ function TilleggsData(props: Props) {
                 <BodyShort>
                     Siste arbeidsdag med lønn {sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'er ukjent'}
                 </BodyShort>
+                {visKnapper && (
+                    <p>
+                        Du må dokumentere oppsigelsen.
+                        <br />
+                        <Link href={dokumentasjon_url}>Gå til opplasting</Link>
+                    </p>
+                )}
             </>
         );
     };
