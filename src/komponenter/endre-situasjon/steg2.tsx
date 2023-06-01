@@ -52,7 +52,9 @@ function useLagreEndringer(props: Steg2Props) {
             Object.keys(tilleggsData).forEach((key) => {
                 const data = tilleggsData[key];
                 if (data instanceof Date) {
-                    tilleggsData[key] = data.toISOString().substring(0, 10);
+                    tilleggsData[key] = new Date(data.getTime() - data.getTimezoneOffset() * 60 * 1000)
+                        .toISOString()
+                        .substring(0, 10);
                 }
             });
         }
