@@ -41,6 +41,9 @@ function oppdaterBesvarelse(
     }
     if (tilleggsData) {
         oppdatertBesvarelse.besvarelse.dinSituasjon.tilleggsData = tilleggsData;
+        oppdatertBesvarelse.besvarelse.dinSituasjon.tilleggsData.endretTidspunkt =
+            endretTidspunkt || new Date().toISOString();
+        oppdatertBesvarelse.besvarelse.dinSituasjon.tilleggsData.endretAv = endretAv || 'BRUKER';
     }
     if (endretTidspunkt) {
         oppdatertBesvarelse.besvarelse.endretTidspunkt = endretTidspunkt;
@@ -77,7 +80,7 @@ export const besvarelsePostResolver = (
 ) => {
     const { dinSituasjon } = req.body;
     const { verdi, gjelderFraDato, tilleggsData } = dinSituasjon;
-    const endretTidspunkt = new Date().toISOString().substring(0, 10);
+    const endretTidspunkt = new Date().toISOString();
     const endretAv = 'BRUKER';
     const erBesvarelseEndret = true;
     settNySituasjon(verdi);

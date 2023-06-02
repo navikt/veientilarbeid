@@ -1,4 +1,4 @@
-import { BodyShort } from '@navikt/ds-react';
+import { BodyShort, Link } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
 import { useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
@@ -8,6 +8,7 @@ import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { BesvarelseResponse, DinSituasjonTilleggsdata } from '../../contexts/besvarelse';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import { sporsmalMap, svarMap } from '../../models/sporsmal-og-svar';
+import { dialogLenke } from '../../innhold/lenker';
 import TilleggsData from './tilleggsdata';
 
 import spacing from '../../spacing.module.css';
@@ -48,9 +49,11 @@ const DinSituasjon = (props: any) => {
             <BodyShort>
                 <strong>Hvilken jobbsituasjon passer best?</strong>
                 <br />
-                {prettyPrintDato(endretTidspunkt)} endret {endretAv === 'BRUKER' ? 'du' : 'NAV'} til {svar}
+                {prettyPrintDato(endretTidspunkt)} endret {endretAv === 'BRUKER' ? 'du' : 'NAV'} til "{svar}".
             </BodyShort>
-            <BodyShort>For å se endringene du har oppgitt kan du gå til dialogen.</BodyShort>
+            <BodyShort>
+                For å se endringene du har oppgitt kan du <Link href={dialogLenke}>gå til dialogen</Link>.
+            </BodyShort>
         </div>
     );
 };
