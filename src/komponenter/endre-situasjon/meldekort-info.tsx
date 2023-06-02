@@ -1,15 +1,11 @@
 import { PermittertSvar } from './permittert-modal';
 import prettyPrintDato from '../../utils/pretty-print-dato';
-import { Alert, ReadMore } from '@navikt/ds-react';
+import { ReadMore } from '@navikt/ds-react';
 import { plussDager } from '../../utils/date-utils';
+import { VeiledningsProps } from './veiledning';
 
-interface MeldekortInfoProps {
-    valgtSituasjon?: string;
-    tilleggsData?: any;
-    visDropdown: boolean;
-}
-const OPPSIGELSE = (props: MeldekortInfoProps) => {
-    const { tilleggsData, visDropdown } = props;
+const OPPSIGELSE = (props: VeiledningsProps) => {
+    const { tilleggsData } = props;
 
     if (!tilleggsData) return null;
 
@@ -21,26 +17,23 @@ const OPPSIGELSE = (props: MeldekortInfoProps) => {
             <br />
             Det er derfor viktig at du fortsetter å sende inn meldekortene frem til og med perioden som dekker{' '}
             {prettyPrintDato(sisteArbeidsdagDato!)}.
-            {visDropdown && (
-                <ReadMore header={'Hva baserer vi dette på?'}>
-                    <p>
-                        Når du blir oppsagt er den siste dagen du får dagpenger som permittert for den dagen du mottok
-                        beskjeden om at du ble oppsagt.
-                    </p>
-                    <p>Du har oppgitt at du fikk denne beskjeden {prettyPrintDato(oppsigelseDato!)}</p>
-                    <p>
-                        Arbeidsgiveren din har ansvaret for å betale lønn fra{' '}
-                        {prettyPrintDato(plussDager(new Date(oppsigelseDato!), 1).toISOString())} frem til og med{' '}
-                        {prettyPrintDato(sisteArbeidsdagDato!)}.
-                    </p>
-                    <p>Du kan lese mer om regelverket for permittering her</p>
-                </ReadMore>
-            )}
+            <ReadMore header={'Hva baserer vi denne veiledningen på?'}>
+                <p>
+                    Når du blir oppsagt er den siste dagen du får dagpenger som permittert for den dagen du mottok
+                    beskjeden om at du ble oppsagt.
+                </p>
+                <p>Du har oppgitt at du fikk denne beskjeden {prettyPrintDato(oppsigelseDato!)}</p>
+                <p>
+                    Arbeidsgiveren din har ansvaret for å betale lønn fra{' '}
+                    {prettyPrintDato(plussDager(new Date(oppsigelseDato!), 1).toISOString())} frem til og med{' '}
+                    {prettyPrintDato(sisteArbeidsdagDato!)}.
+                </p>
+                <p>Du kan lese mer om regelverket for permittering her</p>
+            </ReadMore>
         </>
     );
 };
-
-const hentKomponent = (props: MeldekortInfoProps) => {
+function MeldekortInfo(props: VeiledningsProps) {
     const { valgtSituasjon } = props;
 
     if (valgtSituasjon === PermittertSvar.OPPSIGELSE) {
@@ -84,18 +77,5 @@ const hentKomponent = (props: MeldekortInfoProps) => {
     //     return <ANNET {...props} />;
     // }
     return null;
-};
-function MeldekortInfo(props: MeldekortInfoProps) {
-    return hentKomponent(props);
-}
-
-export function MeldekortInfoAlert(props: MeldekortInfoProps) {
-    const infoKomponent = hentKomponent(props);
-
-    if (!infoKomponent) {
-        return null;
-    }
-
-    return <Alert variant={'info'}>{infoKomponent}</Alert>;
 }
 export default MeldekortInfo;

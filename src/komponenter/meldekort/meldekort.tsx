@@ -14,7 +14,7 @@ import { loggAktivitet } from '../../metrics/metrics';
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
 import { useBesvarelse } from '../../contexts/besvarelse';
-import { MeldekortInfoAlert } from '../endre-situasjon/meldekort-info';
+import MeldekortInfo from '../endre-situasjon/meldekort-info';
 
 const TEKSTER = {
     nb: {
@@ -42,6 +42,11 @@ function Meldekort() {
         }
     };
 
+    const meldekortInfo = MeldekortInfo({
+        valgtSituasjon: besvarelse?.besvarelse?.dinSituasjon?.verdi as any,
+        tilleggsData: besvarelse?.besvarelse?.dinSituasjon?.tilleggsData,
+    });
+
     return (
         <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
             <span
@@ -61,12 +66,10 @@ function Meldekort() {
                     </Detail>
                 )}
                 <MeldekortHovedInnhold>
-                    {erBesvarelseEndret && (
-                        <MeldekortInfoAlert
-                            visDropdown={false}
-                            valgtSituasjon={besvarelse?.besvarelse?.dinSituasjon?.verdi}
-                            tilleggsData={besvarelse?.besvarelse?.dinSituasjon?.tilleggsData}
-                        />
+                    {erBesvarelseEndret && meldekortInfo && (
+                        <Panel className={spacingStyles.mb1} style={{ background: 'var(--a-blue-50)' }}>
+                            {meldekortInfo}
+                        </Panel>
                     )}
                 </MeldekortHovedInnhold>
 

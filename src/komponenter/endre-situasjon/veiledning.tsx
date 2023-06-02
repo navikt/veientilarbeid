@@ -32,7 +32,7 @@ const OPPSIGELSE = (props: VeiledningsProps) => {
             </p>
             <p>
                 <h4 className={spacing.mbn}>Meldekort</h4>
-                <MeldekortInfo visDropdown={true} {...props} />
+                <MeldekortInfo {...props} />
             </p>
             <p>
                 <h4 className={spacing.mbn}>Dagpenger</h4>
