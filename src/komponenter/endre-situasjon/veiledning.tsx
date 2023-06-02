@@ -8,6 +8,7 @@ import { plussDager } from '../../utils/date-utils';
 import { dagpengerSoknadLenke } from '../../innhold/lenker';
 
 import spacing from '../../spacing.module.css';
+import MeldekortInfo from './meldekort-info';
 
 export interface VeiledningsProps {
     valgtSituasjon: PermittertSvar | DinSituasjonSvar;
@@ -31,23 +32,7 @@ const OPPSIGELSE = (props: VeiledningsProps) => {
             </p>
             <p>
                 <h4 className={spacing.mbn}>Meldekort</h4>
-                Frem til {prettyPrintDato(sisteArbeidsdagDato!)} kan du få utbetalt dagpenger som permittert.
-                <br />
-                Det er derfor viktig at du fortsetter å sende inn meldekortene frem til og med perioden som dekker{' '}
-                {prettyPrintDato(sisteArbeidsdagDato!)}.
-                <ReadMore header={'Hva baserer vi dette på?'}>
-                    <p>
-                        Når du blir oppsagt er den siste dagen du får dagpenger som permittert for den dagen du mottok
-                        beskjeden om at du ble oppsagt.
-                    </p>
-                    <p>Du har oppgitt at du fikk denne beskjeden {prettyPrintDato(oppsigelseDato!)}</p>
-                    <p>
-                        Arbeidsgiveren din har ansvaret for å betale lønn fra{' '}
-                        {prettyPrintDato(plussDager(new Date(oppsigelseDato!), 1).toISOString())} frem til og med{' '}
-                        {prettyPrintDato(sisteArbeidsdagDato!)}.
-                    </p>
-                    <p>Du kan lese mer om regelverket for permittering her</p>
-                </ReadMore>
+                <MeldekortInfo visDropdown={true} {...props} />
             </p>
             <p>
                 <h4 className={spacing.mbn}>Dagpenger</h4>

@@ -13,6 +13,8 @@ import { loggAktivitet } from '../../metrics/metrics';
 
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
+import { useBesvarelse } from '../../contexts/besvarelse';
+import { MeldekortInfoAlert } from '../endre-situasjon/meldekort-info';
 
 const TEKSTER = {
     nb: {
@@ -30,6 +32,8 @@ function Meldekort() {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const featureToggleData = useFeatureToggleData();
     const brukTabsDemo = featureToggleData['aia.bruk-tabs-demo'];
+    const { besvarelse } = useBesvarelse();
+    const { erBesvarelseEndret } = besvarelse || {};
 
     const handleClickLesMer = () => {
         if (!clickedLesMer) {
@@ -56,7 +60,16 @@ function Meldekort() {
                         Meldekort og meldeplikt
                     </Detail>
                 )}
-                <MeldekortHovedInnhold />
+                <MeldekortHovedInnhold>
+                    {erBesvarelseEndret && (
+                        <MeldekortInfoAlert
+                            visDropdown={false}
+                            valgtSituasjon={besvarelse?.besvarelse?.dinSituasjon?.verdi}
+                            tilleggsData={besvarelse?.besvarelse?.dinSituasjon?.tilleggsData}
+                        />
+                    )}
+                </MeldekortHovedInnhold>
+
                 <ReadMore size="medium" header={tekst('overskrift')} onClick={handleClickLesMer}>
                     <MeldekortForklaring />
                 </ReadMore>
