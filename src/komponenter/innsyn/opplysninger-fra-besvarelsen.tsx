@@ -123,6 +123,8 @@ const RegistreringsOpplysninger = (props: OpplysningerProps) => {
     const opprettetAv = besvarelseData?.opprettetAv && besvarelseData.opprettetAv === 'BRUKER' ? 'Du' : 'NAV';
     const endretTidspunkt = besvarelseData?.endretTidspunkt ? prettyPrintDato(besvarelseData.endretTidspunkt) : '';
     const endretAv = besvarelseData?.endretAv && besvarelseData.endretAv === 'BRUKER' ? 'deg' : 'NAV';
+    const erBesvarelseEndret = besvarelseData?.erBesvarelseEndret || false;
+
     if (!besvarelseData) return null;
     return (
         <div className={`${spacing.blokkS}`}>
@@ -134,9 +136,11 @@ const RegistreringsOpplysninger = (props: OpplysningerProps) => {
                     <BodyShort>
                         {opprettetAv} registrerte deg som arbeidssøker {registreringsTidspunkt}.
                     </BodyShort>
-                    <BodyShort>
-                        Opplysningene ble sist endret av {endretAv} {endretTidspunkt}.
-                    </BodyShort>
+                    {erBesvarelseEndret && (
+                        <BodyShort>
+                            Opplysningene ble sist endret av {endretAv} {endretTidspunkt}.
+                        </BodyShort>
+                    )}
                 </div>
             </div>
         </div>
