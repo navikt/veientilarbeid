@@ -20,6 +20,7 @@ import MeldekortKnapp from './meldekort-knapp';
 import { vilUtmeldes } from '../../lib/vil-utmeldes';
 
 import spacingStyles from '../../spacing.module.css';
+import { ReactNode } from 'react';
 
 const TEKSTER = {
     nb: {
@@ -48,7 +49,10 @@ const TEKSTER = {
     },
 };
 
-function MeldekortHovedInnhold() {
+interface MeldekortHovedInnholdProps {
+    children?: ReactNode;
+}
+function MeldekortHovedInnhold(props: MeldekortHovedInnholdProps) {
     const { meldekortData = null, isError } = useMeldekortData();
     const { reaktivering } = useReaktivering();
     const visUtmelding = vilUtmeldes(reaktivering);
@@ -145,7 +149,7 @@ function MeldekortHovedInnhold() {
         <>
             <ErRendret loggTekst="Rendrer meldekort sluttkort" />
             <div>
-                <Meldekortstatus />
+                <Meldekortstatus>{props.children}</Meldekortstatus>
                 <Utmeldingsinformasjon visUtmeldingsInformasjon={visUtmelding} />
                 <div>
                     <MeldekortKnapp

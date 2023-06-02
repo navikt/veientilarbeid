@@ -9,7 +9,7 @@ import { OppfolgingContext } from '../../contexts/oppfolging';
 import { hentIDag } from '../../utils/chrono';
 import { datoMedUkedag, datoUtenTid, plussDager } from '../../utils/date-utils';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
-import { useContext } from 'react';
+import { ReactNode, useContext } from 'react';
 import { useMeldekortData } from '../../hooks/use-meldekortdata';
 
 const TEKSTER = {
@@ -26,7 +26,7 @@ const TEKSTER = {
         sendIDag: 'It is recommended to submit the employment status form as soon as possible',
     },
 };
-function Meldekortstatus() {
+function Meldekortstatus(props: { children?: ReactNode }) {
     const { meldekortData = null } = useMeldekortData();
     const { kanReaktiveres } = useContext(OppfolgingContext).data;
     const sprak = useSprakValg().sprak;
@@ -52,6 +52,7 @@ function Meldekortstatus() {
                     <Heading size="medium" className={spacingStyles.blokkXs}>
                         {tekst('heading')}
                     </Heading>
+                    {props.children}
                     <BodyLong className={spacingStyles.blokkXs}>
                         {`${tekst('fristenEr')} ${datoMedUkedag(inaktiveringsDato, sprak)}, ${tekst('klokken23')}`}
                     </BodyLong>

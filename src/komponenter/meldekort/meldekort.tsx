@@ -13,6 +13,8 @@ import { loggAktivitet } from '../../metrics/metrics';
 
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
+import { useBesvarelse } from '../../contexts/besvarelse';
+import MeldekortInfo from '../endre-situasjon/meldekort-info';
 
 const TEKSTER = {
     nb: {
@@ -30,6 +32,8 @@ function Meldekort() {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const featureToggleData = useFeatureToggleData();
     const brukTabsDemo = featureToggleData['aia.bruk-tabs-demo'];
+    const { besvarelse } = useBesvarelse();
+    const { erBesvarelseEndret } = besvarelse || {};
 
     const handleClickLesMer = () => {
         if (!clickedLesMer) {
@@ -37,6 +41,11 @@ function Meldekort() {
             setClickedLesMer(true);
         }
     };
+
+    const meldekortInfo = MeldekortInfo({
+        valgtSituasjon: besvarelse?.besvarelse?.dinSituasjon?.verdi as any,
+        tilleggsData: besvarelse?.besvarelse?.dinSituasjon?.tilleggsData,
+    });
 
     return (
         <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
@@ -56,7 +65,14 @@ function Meldekort() {
                         Meldekort og meldeplikt
                     </Detail>
                 )}
-                <MeldekortHovedInnhold />
+                <MeldekortHovedInnhold>
+                    {erBesvarelseEndret && meldekortInfo && (
+                        <Panel className={spacingStyles.mb1} style={{ background: 'var(--a-blue-50)' }}>
+                            {meldekortInfo}
+                        </Panel>
+                    )}
+                </MeldekortHovedInnhold>
+
                 <ReadMore size="medium" header={tekst('overskrift')} onClick={handleClickLesMer}>
                     <MeldekortForklaring />
                 </ReadMore>
