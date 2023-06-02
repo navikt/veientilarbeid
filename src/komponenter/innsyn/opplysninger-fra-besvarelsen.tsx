@@ -40,6 +40,21 @@ const Opplysning = (props: any) => {
     );
 };
 
+const DinSituasjon = (props: any) => {
+    const { svar, tilleggsData } = props;
+    const { endretTidspunkt, endretAv } = tilleggsData;
+    return (
+        <div className={spacing.blokkS}>
+            <BodyShort>
+                <strong>Hvilken jobbsituasjon passer best?</strong>
+                <br />
+                {prettyPrintDato(endretTidspunkt)} endret {endretAv === 'BRUKER' ? 'du' : 'NAV'} til {svar}
+            </BodyShort>
+            <BodyShort>For å se endringene du har oppgitt kan du gå til dialogen.</BodyShort>
+        </div>
+    );
+};
+
 const Oppfolging = () => {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
     const { behovForVeiledning } = useBehovForVeiledning();
@@ -103,13 +118,13 @@ const RegistreringsOpplysninger = (props: OpplysningerProps) => {
                 <strong className={spacing.mr05}>Registrering</strong>
             </div>
             <div>
-                <div>
-                    <div className={`${spacing.mr05} ${spacing.mb05}`}>
+                <div className={`${spacing.mr05} ${spacing.mb05}`}>
+                    <BodyShort>
                         {opprettetAv} registrerte deg som arbeidssøker {registreringsTidspunkt}.
-                    </div>
-                    <div className={`${spacing.mr05} ${spacing.mb05}`}>
+                    </BodyShort>
+                    <BodyShort>
                         Opplysningene ble sist endret av {endretAv} {endretTidspunkt}.
-                    </div>
+                    </BodyShort>
                 </div>
             </div>
         </div>
@@ -132,7 +147,7 @@ const OpplysningerFraBesvarelsen = (props: OpplysningerProps) => {
                 </BodyShort>
             </div>
             <RegistreringsOpplysninger besvarelseData={besvarelseData} />
-            {dinSituasjon && <Opplysning {...dinSituasjon} />}
+            {dinSituasjon && <DinSituasjon {...dinSituasjon} />}
             <Oppfolging />
             {filtrerteBesvarelser.map((item, index) => (
                 <Opplysning {...item} key={index} />
