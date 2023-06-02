@@ -1,6 +1,6 @@
 import React from 'react';
 import { Money } from '@navikt/ds-icons';
-import { Detail, Panel } from '@navikt/ds-react';
+import { BodyShort, Detail, Panel } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
 import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
@@ -30,6 +30,10 @@ import { DP_INNSYN_URL } from '../../ducks/api';
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
 
+function StansetDagpenger() {
+    return <BodyShort>Stanset</BodyShort>;
+}
+
 function hentDagpengerInnhold(situasjon: DagpengeStatus) {
     if (situasjon === 'paabegynt') {
         return HarPabegyntSoknad;
@@ -41,6 +45,8 @@ function hentDagpengerInnhold(situasjon: DagpengeStatus) {
         return InnvilgetDagpenger;
     } else if (situasjon === 'avslag') {
         return AvslagDagpenger;
+    } else if (situasjon === 'stanset') {
+        return StansetDagpenger;
     } else {
         return HarIkkeSokt;
     }

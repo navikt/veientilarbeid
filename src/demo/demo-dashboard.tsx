@@ -222,6 +222,7 @@ const DemoDashboard = () => {
         soktogpaabegynt: 'Har sendt søknad og nytt utkast',
         innvilget: 'Søknad innvilget',
         avslag: 'Søknad avslått',
+        stanset: 'Stanset',
     };
 
     const kvitteringsStatuser = {
