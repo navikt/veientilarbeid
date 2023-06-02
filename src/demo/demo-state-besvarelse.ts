@@ -41,9 +41,8 @@ function oppdaterBesvarelse(
     }
     if (tilleggsData) {
         oppdatertBesvarelse.besvarelse.dinSituasjon.tilleggsData = tilleggsData;
-        oppdatertBesvarelse.besvarelse.dinSituasjon.tilleggsData.endretTidspunkt =
-            endretTidspunkt || new Date().toISOString();
-        oppdatertBesvarelse.besvarelse.dinSituasjon.tilleggsData.endretAv = endretAv || 'BRUKER';
+        oppdatertBesvarelse.besvarelse.dinSituasjon.endretTidspunkt = endretTidspunkt || new Date().toISOString();
+        oppdatertBesvarelse.besvarelse.dinSituasjon.endretAv = endretAv || 'BRUKER';
     }
     if (endretTidspunkt) {
         oppdatertBesvarelse.besvarelse.endretTidspunkt = endretTidspunkt;

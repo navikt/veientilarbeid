@@ -42,18 +42,23 @@ const Opplysning = (props: any) => {
 };
 
 const DinSituasjon = (props: any) => {
-    const { svar, tilleggsData } = props;
-    const { endretTidspunkt, endretAv } = tilleggsData;
+    const { svar, endretTidspunkt, endretAv } = props;
+    const erEndret = endretAv && endretTidspunkt;
     return (
         <div className={spacing.blokkS}>
             <BodyShort>
                 <strong>Hvilken jobbsituasjon passer best?</strong>
                 <br />
-                {prettyPrintDato(endretTidspunkt)} endret {endretAv === 'BRUKER' ? 'du' : 'NAV'} til "{svar}".
+                {erEndret
+                    ? `${prettyPrintDato(endretTidspunkt)} endret ${endretAv === 'BRUKER' ? 'du' : 'NAV'} til "${svar}"`
+                    : `${svar}`}
+                .
             </BodyShort>
-            <BodyShort>
-                For å se endringene du har oppgitt kan du <Link href={dialogLenke}>gå til dialogen</Link>.
-            </BodyShort>
+            {erEndret && (
+                <BodyShort>
+                    For å se endringene du har oppgitt kan du <Link href={dialogLenke}>gå til dialogen</Link>.
+                </BodyShort>
+            )}
         </div>
     );
 };
@@ -82,6 +87,8 @@ interface Svar {
     sporsmal: string;
     svar: string | null;
     verdi: string | null;
+    endretTidspunkt: string | null;
+    endretAv: string | null;
     datapunkt: string;
     tilleggsData: DinSituasjonTilleggsdata | null;
 }
@@ -94,6 +101,8 @@ const repackBesvarelser = (besvarelseData: BesvarelseResponse) => {
                 sporsmal: sporsmalMap[key],
                 svar: besvarelse[key].verdi ? svarMap[key][besvarelse[key].verdi] : null,
                 verdi: besvarelse[key].verdi || null,
+                endretTidspunkt: besvarelse[key].endretTidspunkt || null,
+                endretAv: besvarelse[key].endretAv || null,
                 datapunkt: key,
                 tilleggsData: besvarelse[key].tilleggsData || null,
             }) as Svar
