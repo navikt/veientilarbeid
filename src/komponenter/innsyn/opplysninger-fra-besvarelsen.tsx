@@ -119,6 +119,8 @@ const RegistreringsOpplysninger = (props: OpplysningerProps) => {
 const OpplysningerFraBesvarelsen = (props: OpplysningerProps) => {
     const { besvarelseData } = props;
     const besvarelser = repackBesvarelser(besvarelseData);
+    const dinSituasjon = besvarelser.find((svar) => svar.datapunkt === 'dinSituasjon');
+    const filtrerteBesvarelser = besvarelser.filter((svar) => svar.datapunkt !== 'dinSituasjon');
 
     return !besvarelseData ? null : (
         <div className={`${flexStyles.flex} ${flexStyles.flexColumn}`}>
@@ -130,8 +132,9 @@ const OpplysningerFraBesvarelsen = (props: OpplysningerProps) => {
                 </BodyShort>
             </div>
             <RegistreringsOpplysninger besvarelseData={besvarelseData} />
+            {dinSituasjon && <Opplysning {...dinSituasjon} />}
             <Oppfolging />
-            {besvarelser.map((item, index) => (
+            {filtrerteBesvarelser.map((item, index) => (
                 <Opplysning {...item} key={index} />
             ))}
             <Feedback id={'svar-fra-besvarelsen'} />
