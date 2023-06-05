@@ -1,4 +1,4 @@
-import { BodyShort, Link } from '@navikt/ds-react';
+import { BodyShort } from '@navikt/ds-react';
 
 import { DinSituasjonTilleggsdata } from '../../contexts/besvarelse';
 import prettyPrintDato from '../../utils/pretty-print-dato';
@@ -36,7 +36,9 @@ function TilleggsData(props: Props) {
                     <p>
                         Du må dokumentere oppsigelsen.
                         <br />
-                        <Link href={dokumentasjon_url}>Gå til opplasting</Link>
+                        <a className={'navds-button navds-button--primary'} href={dokumentasjon_url}>
+                            Gå til opplasting
+                        </a>
                     </p>
                 )}
             </>
