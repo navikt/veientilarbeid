@@ -30,20 +30,61 @@ const OPPSIGELSE = (props: VeiledningsProps) => {
         </>
     );
 };
+
+const NY_JOBB = (props: VeiledningsProps) => {
+    const { tilleggsData } = props;
+
+    if (!tilleggsData) return null;
+
+    return (
+        <p>
+            Du vil kunne motta dagpenger i oppsigelsesperioden.
+            <br />
+            Oppsigelsestid når du er permittert er 14 dager.
+        </p>
+    );
+};
+
+const MIDLERTIDIG_JOBB = (props: VeiledningsProps) => {
+    const { tilleggsData } = props;
+
+    if (!tilleggsData) return null;
+
+    return <p>Dagpengeutbetalingene vil avhenge av hvor mye du jobber og lønnen i den midlertidige jobben.</p>;
+};
+
+const KONKURS = (props: VeiledningsProps) => {
+    const { tilleggsData } = props;
+
+    if (!tilleggsData) return null;
+
+    const { sisteArbeidsdagDato } = tilleggsData;
+
+    return (
+        <p>
+            Du kan <Link href={dagpengerSoknadLenke}>søke om dagpenger som forskudd på lønnsgaranti</Link>, mellom{' '}
+            {prettyPrintDato(plussDager(new Date(sisteArbeidsdagDato!), -7).toISOString())} og{' '}
+            {prettyPrintDato(sisteArbeidsdagDato!)}
+        </p>
+    );
+};
+
 function DagpengerInfo(props: VeiledningsProps) {
     const { valgtSituasjon } = props;
 
     if (valgtSituasjon === PermittertSvar.OPPSIGELSE) {
         return <OPPSIGELSE {...props} />;
     }
-    // else if (valgtSituasjon === PermittertSvar.TILBAKE_TIL_JOBB) {
-    //     return <TILBAKE_TIL_JOBB {...props} />;
-    // } else if (valgtSituasjon === PermittertSvar.MIDLERTIDIG_JOBB) {
-    //     return <MIDLERTIDIG_JOBB {...props} />;
-    // } else if (valgtSituasjon === PermittertSvar.KONKURS) {
-    //     return <KONKURS {...props} />;
-    // } else if (valgtSituasjon === PermittertSvar.NY_JOBB) {
-    //     return <NY_JOBB {...props} />;
+
+    //else if (valgtSituasjon === PermittertSvar.TILBAKE_TIL_JOBB) {
+    //   return <TILBAKE_TIL_JOBB {...props} />;
+    else if (valgtSituasjon === PermittertSvar.MIDLERTIDIG_JOBB) {
+        return <MIDLERTIDIG_JOBB {...props} />;
+    } else if (valgtSituasjon === PermittertSvar.KONKURS) {
+        return <KONKURS {...props} />;
+    } else if (valgtSituasjon === PermittertSvar.NY_JOBB) {
+        return <NY_JOBB {...props} />;
+    }
     // } else if (valgtSituasjon === PermittertSvar.ENDRET_PERMITTERINGSPROSENT) {
     //     return <ENDRET_PERMITTERINGSPROSENT {...props} />;
     // } else if (valgtSituasjon === PermittertSvar.ANNET) {
