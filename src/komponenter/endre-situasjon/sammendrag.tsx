@@ -11,9 +11,11 @@ import { svarMap } from '../../models/sporsmal-og-svar';
 import spacing from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
 import PermittertModal from './permittert-modal';
+import LesIgjenModal from './les-igjen-modal';
 
 const Sammendrag = (props: any) => {
-    const [openModal, setOpenModal] = useState(false);
+    const [openEndreModal, setOpenEndreModal] = useState(false);
+    const [openLesIgjenModal, setOpenLesIgjenModal] = useState(false);
     const { startDato, manueltRegistrertAv, amplitudeData, besvarelse, erBesvarelseEndret } = props;
     const underoppfolging = useUnderOppfolging()?.underoppfolging;
     const kanViseKomponent = underoppfolging;
@@ -26,14 +28,24 @@ const Sammendrag = (props: any) => {
         });
     };
 
-    const handleModalOpen = (event: any) => {
+    const handleEndreModalOpen = (event: any) => {
         event.preventDefault();
         loggAktivitet({
             aktivitet: 'Åpner modal for å endre jobbsituasjon',
             komponent: 'Min situasjon',
             ...amplitudeData,
         });
-        setOpenModal(true);
+        setOpenEndreModal(true);
+    };
+
+    const handleLesIgjenModalOpen = (event: any) => {
+        event.preventDefault();
+        loggAktivitet({
+            aktivitet: 'Åpner modal for å lese veiledning igjen',
+            komponent: 'Min situasjon',
+            ...amplitudeData,
+        });
+        setOpenLesIgjenModal(true);
     };
 
     return !kanViseKomponent ? null : (
@@ -51,13 +63,19 @@ const Sammendrag = (props: any) => {
                     />
                 </BodyShort>
                 <BodyShort className={`${spacing.mb1} ${spacing.mt1}`}>
-                    <Button variant={erBesvarelseEndret ? 'secondary' : 'primary'} onClick={handleModalOpen}>
+                    <Button variant={erBesvarelseEndret ? 'secondary' : 'primary'} onClick={handleEndreModalOpen}>
                         Jobbsituasjonen min har endret seg
                     </Button>
                 </BodyShort>
                 <PermittertModal
-                    openModal={openModal}
-                    setOpenModal={setOpenModal}
+                    openModal={openEndreModal}
+                    setOpenModal={setOpenEndreModal}
+                    besvarelse={besvarelse}
+                    amplitudeData={amplitudeData}
+                />
+                <LesIgjenModal
+                    openModal={openLesIgjenModal}
+                    setOpenModal={setOpenLesIgjenModal}
                     besvarelse={besvarelse}
                     amplitudeData={amplitudeData}
                 />
@@ -68,6 +86,14 @@ const Sammendrag = (props: any) => {
                     </a>
                     .
                 </BodyShort>
+                {besvarelse && (
+                    <BodyShort className={`${spacing.mb1} ${spacing.mt1}`}>
+                        <a href={''} onClick={handleLesIgjenModalOpen}>
+                            Les om igjen hva denne endringen betyr for deg
+                        </a>
+                        .
+                    </BodyShort>
+                )}
             </div>
         </div>
     );
