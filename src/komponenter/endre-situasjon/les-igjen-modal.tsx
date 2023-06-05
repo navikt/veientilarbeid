@@ -15,10 +15,12 @@ interface LesIgjenModalProps {
 
 const LesIgjenModal = (props: LesIgjenModalProps) => {
     const { openModal, setOpenModal, besvarelse } = props;
-    const valgtSituasjon = besvarelse.dinSituasjon.verdi;
-    const tilleggsData = besvarelse.dinSituasjon.tilleggsData;
+    const valgtSituasjon = besvarelse?.dinSituasjon.verdi;
+    const tilleggsData = besvarelse?.dinSituasjon.tilleggsData;
 
     const Innhold = () => {
+        if (!valgtSituasjon || !tilleggsData) return null;
+
         return (
             <>
                 <Veiledning valgtSituasjon={valgtSituasjon} tilleggsData={tilleggsData} />
