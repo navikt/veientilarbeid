@@ -29,6 +29,8 @@ import { DP_INNSYN_URL } from '../../ducks/api';
 
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
+import { useBesvarelse } from '../../contexts/besvarelse';
+import DagpengerInfo from '../endre-situasjon/dagpenger-info';
 
 function StansetDagpenger() {
     return <BodyShort>Stanset</BodyShort>;
@@ -76,6 +78,12 @@ function DagpengerOgYtelserInnhold(props: Props) {
     const { data: dagpengeVedtak = [] } = useSWRImmutable<Vedtak[]>(`${DP_INNSYN_URL}/vedtak`);
     const featureToggleData = useFeatureToggleData();
     const brukTabsDemo = featureToggleData['aia.bruk-tabs-demo'];
+    const { besvarelse } = useBesvarelse();
+    const { erBesvarelseEndret } = besvarelse || {};
+    const dagpengerInfo = DagpengerInfo({
+        valgtSituasjon: besvarelse?.besvarelse?.dinSituasjon?.verdi as any,
+        tilleggsData: besvarelse?.besvarelse?.dinSituasjon?.tilleggsData,
+    });
 
     const dagpengeStatus = beregnDagpengeStatus({
         brukerInfoData,
@@ -117,7 +125,13 @@ function DagpengerOgYtelserInnhold(props: Props) {
                 ) : (
                     <>
                         <ErRendret loggTekst="Rendrer dagpenger sluttkort" />
-                        <DagpengerInnhold />
+                        <DagpengerInnhold>
+                            {erBesvarelseEndret && dagpengerInfo && (
+                                <Panel className={spacingStyles.mb1} style={{ background: 'var(--a-blue-50)' }}>
+                                    {dagpengerInfo}
+                                </Panel>
+                            )}
+                        </DagpengerInnhold>
                         <InViewport loggTekst="Viser dagpenger sluttkort i viewport" />
                     </>
                 )}
