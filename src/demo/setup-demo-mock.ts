@@ -49,7 +49,7 @@ import {
 import { hentBrukerRegistrering } from './demo-state-brukerregistrering';
 import msw_get from '../mocks/msw-utils';
 import meldekortstatusResponse from '../mocks/meldekortstatus-mock';
-import besvarelseMock from '../mocks/besvarelse-mock';
+import { besvarelseGetResolver, besvarelsePostResolver } from './demo-state-besvarelse';
 import { gjelderFraGetResolver, gjelderFraPostResolver } from './demo-state-gjelderfra';
 import { brukerProfilGetResolver, brukerProfilPostResolver } from './demo-state-profil';
 import { reaktiveringGetResolver, reaktiveringPostResolver } from './demo-state-reaktivering';
@@ -96,7 +96,10 @@ export const demo_handlers = [
 
     msw_get(MOTESTOTTE_URL, hentMotestotte()),
 
-    msw_get(BESVARELSE_URL, besvarelseMock),
+    rest.get(BESVARELSE_URL, besvarelseGetResolver),
+    //msw_get(BESVARELSE_URL, null),
+
+    rest.post(BESVARELSE_URL, besvarelsePostResolver),
 
     msw_get(FEATURE_URL, hentFeatureToggles()),
 

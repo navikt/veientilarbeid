@@ -11,7 +11,7 @@ import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 
 import spacingStyles from '../../spacing.module.css';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
-import EndreSituasjon from './endre-situasjon';
+import EndreSituasjon from '../endre-situasjon/min-situasjon';
 
 /*
 const situasjon = {
@@ -47,20 +47,17 @@ function MinSituasjon(props: any) {
 
     if (!kanViseKomponent) return null;
 
+    if (visEndreSituasjon) {
+        return <EndreSituasjon />;
+    }
+
     return (
         <Panel className={`${spacingStyles.ml2_39} ${spacingStyles.mtn1_5}`}>
-            {visEndreSituasjon ? (
-                <EndreSituasjon
-                    startDato={opprettetDato || aktivPeriodeStart}
-                    manueltRegistrertAv={manueltRegistrertAv}
-                />
-            ) : (
-                <Sammendrag
-                    startDato={opprettetDato || aktivPeriodeStart}
-                    manueltRegistrertAv={manueltRegistrertAv}
-                    amplitudeData={amplitudeData}
-                />
-            )}
+            <Sammendrag
+                startDato={opprettetDato || aktivPeriodeStart}
+                manueltRegistrertAv={manueltRegistrertAv}
+                amplitudeData={amplitudeData}
+            />
             <InnsynLesMer />
         </Panel>
     );

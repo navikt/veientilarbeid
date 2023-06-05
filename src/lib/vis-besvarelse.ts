@@ -9,6 +9,7 @@ import sjekkOmBrukerErStandardInnsatsgruppe from './er-standard-innsatsgruppe';
 const DATO_FOR_LANSERING = new Date('2023-05-01');
 
 // TODO: Vurdere å droppe sjekk av formidlingsgruppe
+// TODO: gå over til å bruke besvarelse i steder for registreringData
 
 export function visBesvarelser({
     brukerInfoData,
@@ -34,7 +35,7 @@ export function visBesvarelser({
 
     const aldersgruppeUtenForsterketInnsats = brukerInfoData.alder >= 30 && brukerInfoData.alder <= 59;
 
-    const harEndretBesvarelse = besvarelseData && besvarelseData.endret !== null;
+    const harEndretBesvarelse = besvarelseData && besvarelseData.erBesvarelseEndret;
 
     const erRegistrertEtterLansering = datoForRegistrering > DATO_FOR_LANSERING;
 

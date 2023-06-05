@@ -16,83 +16,93 @@ import {
     TilbakeIArbeidSvar,
 } from './brukerregistrering';
 
+export type DinSituasjonTilleggsdata = {
+    oppsigelseDato?: string;
+    forsteArbeidsdagDato?: string;
+    sisteArbeidsdagDato?: string;
+    gjelderFraDato?: string;
+    permitteringsProsent?: string;
+};
+
 export type DinSituasjonRequest = {
     dinSituasjon: {
         verdi: DinSituasjonSvar;
-        gjelderFra?: string;
-        gjelderTil?: string;
+        gjelderFraDato?: string;
+        gjelderTilDato?: string;
+        tilleggsData: DinSituasjonTilleggsdata;
     };
 };
 
 export type DinSituasjonResponse = {
     verdi: DinSituasjonSvar;
-    gjelderFra: string | null;
-    gjelderTil: string | null;
-    endret: string | null;
+    gjelderFraDato: string | null;
+    gjelderTilDato: string | null;
+    endretTidspunkt: string | null;
     endretAv: BrukerEllerNav | null;
+    tilleggsData: DinSituasjonTilleggsdata | null;
 };
 
 export type UtdanningResponse = {
     verdi: UtdanningSvar;
-    gjelderFra: string | null;
-    gjelderTil: string | null;
-    endret: string | null;
+    gjelderFraDato: string | null;
+    gjelderTilDato: string | null;
+    endretTidspunkt: string | null;
     endretAv: BrukerEllerNav | null;
 };
 
 export type UtdanningBestattResponse = {
     verdi: UtdanningBestattSvar;
-    gjelderFra: string | null;
-    gjelderTil: string | null;
-    endret: string | null;
+    gjelderFraDato: string | null;
+    gjelderTilDato: string | null;
+    endretTidspunkt: string | null;
     endretAv: BrukerEllerNav | null;
 };
 
 export type UtdanningGodkjentResponse = {
     verdi: UtdanningGodkjentSvar;
-    gjelderFra: string | null;
-    gjelderTil: string | null;
-    endret: string | null;
+    gjelderFraDato: string | null;
+    gjelderTilDato: string | null;
+    endretTidspunkt: string | null;
     endretAv: BrukerEllerNav | null;
 };
 
 export type HelseHinderResponse = {
     verdi: HelseHinderSvar;
-    gjelderFra: string | null;
-    gjelderTil: string | null;
-    endret: string | null;
+    gjelderFraDato: string | null;
+    gjelderTilDato: string | null;
+    endretTidspunkt: string | null;
     endretAv: BrukerEllerNav | null;
 };
 
 export type AndreForholdResponse = {
     verdi: AndreForholdSvar;
-    gjelderFra: string | null;
-    gjelderTil: string | null;
-    endret: string | null;
+    gjelderFraDato: string | null;
+    gjelderTilDato: string | null;
+    endretTidspunkt: string | null;
     endretAv: BrukerEllerNav | null;
 };
 
 export type SisteStillingResponse = {
     verdi: SisteStillingSvar;
-    gjelderFra: string | null;
-    gjelderTil: string | null;
-    endret: string | null;
+    gjelderFraDato: string | null;
+    gjelderTilDato: string | null;
+    endretTidspunkt: string | null;
     endretAv: BrukerEllerNav | null;
 };
 
 export type FremtidigSituasjonResponse = {
     verdi: FremtidigSituasjonSvar;
-    gjelderFra: string | null;
-    gjelderTil: string | null;
-    endret: string | null;
+    gjelderFraDato: string | null;
+    gjelderTilDato: string | null;
+    endretTidspunkt: string | null;
     endretAv: BrukerEllerNav | null;
 };
 
 export type TilbakeIArbeidResponse = {
     verdi: TilbakeIArbeidSvar;
-    gjelderFra: string | null;
-    gjelderTil: string | null;
-    endret: string | null;
+    gjelderFraDato: string | null;
+    gjelderTilDato: string | null;
+    endretTidspunkt: string | null;
     endretAv: BrukerEllerNav | null;
 };
 
@@ -102,7 +112,7 @@ export type BesvarelseRequest = {
     tekst?: string;
     overskrift?: string;
     venterPaaSvarFraNav?: boolean;
-    besvarelse: DinSituasjonRequest;
+    oppdatering: DinSituasjonRequest;
 };
 
 export type BesvarelseResponse = {
@@ -118,9 +128,11 @@ export type BesvarelseResponse = {
         fremtidigSituasjon?: FremtidigSituasjonResponse;
         tilbakeIArbeid?: TilbakeIArbeidResponse;
     };
-    opprettet?: string;
-    endret?: string;
+    registreringsTidspunkt?: string;
+    opprettetAv?: string;
+    endretTidspunkt?: string;
     endretAv?: BrukerEllerNav;
+    erBesvarelseEndret?: boolean;
 } | null;
 
 interface BesvarelseProviderType {
@@ -176,7 +188,7 @@ function BesvarelseProvider(props: { children: ReactNode }) {
             const behov: BesvarelseResponse = await fetchToJson(BESVARELSE_URL, {
                 ...requestConfig(),
                 method: 'POST',
-                body: JSON.stringify({ ...data.besvarelse }),
+                body: JSON.stringify({ ...data.oppdatering }),
             });
             settBesvarelse(behov);
         } catch (error) {
