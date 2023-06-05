@@ -62,7 +62,7 @@ const ENDRET_PERMITTERINGSPROSENT = (props: VeiledningsProps) => {
             </p>
             <p>
                 <h4 className={spacing.mbn}>Meldekort</h4>
-                Du må fortsette å sende meldekort hver 14. dag.
+                <MeldekortInfo {...props} />
             </p>
         </>
     );
@@ -73,15 +73,12 @@ const TILBAKE_TIL_JOBB = (props: VeiledningsProps) => {
 
     if (!tilleggsData) return null;
 
-    const { forsteArbeidsdagDato } = tilleggsData;
-
     return (
         <>
             <h2>Hva betyr dette for meg?</h2>
             <p>
                 <h4 className={spacing.mbn}>Meldekort</h4>
-                Du må levere meldekort frem til og med meldekortet som rapporterer for{' '}
-                {prettyPrintDato(plussDager(new Date(forsteArbeidsdagDato!), -1).toISOString())}.
+                <MeldekortInfo {...props} />
             </p>
             <p>
                 <h4 className={spacing.mbn}>Arbeidssøkerregistrering</h4>
@@ -97,15 +94,12 @@ const NY_JOBB = (props: VeiledningsProps) => {
 
     if (!tilleggsData) return null;
 
-    const { sisteArbeidsdagDato } = tilleggsData;
-
     return (
         <>
             <h2>Hva betyr dette for meg?</h2>
             <p>
                 <h4 className={spacing.mbn}>Meldekort</h4>
-                Du må levere meldekort frem til og med meldekortet som rapporterer for{' '}
-                {prettyPrintDato(sisteArbeidsdagDato!)}.
+                <MeldekortInfo {...props} />
             </p>
             <p>
                 <h4 className={spacing.mbn}>Dagpenger</h4>
@@ -136,7 +130,7 @@ const MIDLERTIDIG_JOBB = (props: VeiledningsProps) => {
             </p>
             <p>
                 <h4 className={spacing.mbn}>Meldekort</h4>
-                Du må fortsette å sende inn meldekort i perioden du er midlertidig i arbeid.
+                <MeldekortInfo {...props} />
             </p>
             <p>
                 <h4 className={spacing.mbn}>Dagpenger</h4>
@@ -163,8 +157,7 @@ const KONKURS = (props: VeiledningsProps) => {
             </p>
             <p>
                 <h4 className={spacing.mbn}>Meldekort</h4>
-                Du må levere meldekort frem til og med meldekortet som rapporterer for{' '}
-                {prettyPrintDato(sisteArbeidsdagDato!)}.
+                <MeldekortInfo {...props} />
             </p>
             <p>
                 <h4 className={spacing.mbn}>Dagpenger</h4>

@@ -33,23 +33,76 @@ const OPPSIGELSE = (props: VeiledningsProps) => {
         </>
     );
 };
+const TILBAKE_TIL_JOBB = (props: VeiledningsProps) => {
+    const { tilleggsData } = props;
+
+    if (!tilleggsData) return null;
+
+    const { forsteArbeidsdagDato } = tilleggsData;
+
+    return (
+        <>
+            Du må levere meldekort frem til og med meldekortet som rapporterer for{' '}
+            {prettyPrintDato(plussDager(new Date(forsteArbeidsdagDato!), -1).toISOString())}.
+        </>
+    );
+};
+
+const NY_JOBB = (props: VeiledningsProps) => {
+    const { tilleggsData } = props;
+
+    if (!tilleggsData) return null;
+
+    const { sisteArbeidsdagDato } = tilleggsData;
+
+    return (
+        <>
+            Du må levere meldekort frem til og med meldekortet som rapporterer for{' '}
+            {prettyPrintDato(sisteArbeidsdagDato!)}.
+        </>
+    );
+};
+
+const KONKURS = (props: VeiledningsProps) => {
+    const { tilleggsData } = props;
+
+    if (!tilleggsData) return null;
+
+    const { sisteArbeidsdagDato } = tilleggsData;
+
+    return (
+        <>
+            Du må levere meldekort frem til og med meldekortet som rapporterer for{' '}
+            {prettyPrintDato(sisteArbeidsdagDato!)}.
+        </>
+    );
+};
+
+const MIDLERTIDIG_JOBB = (props: VeiledningsProps) => {
+    return <>Du må fortsette å sende inn meldekort i perioden du er midlertidig i arbeid.</>;
+};
+
+const ENDRET_PERMITTERINGSPROSENT = (props: VeiledningsProps) => {
+    return <>Du må fortsette å sende meldekort hver 14. dag.</>;
+};
+
 function MeldekortInfo(props: VeiledningsProps) {
     const { valgtSituasjon } = props;
 
     if (valgtSituasjon === PermittertSvar.OPPSIGELSE) {
         return <OPPSIGELSE {...props} />;
+    } else if (valgtSituasjon === PermittertSvar.TILBAKE_TIL_JOBB) {
+        return <TILBAKE_TIL_JOBB {...props} />;
+    } else if (valgtSituasjon === PermittertSvar.MIDLERTIDIG_JOBB) {
+        return <MIDLERTIDIG_JOBB {...props} />;
+    } else if (valgtSituasjon === PermittertSvar.KONKURS) {
+        return <KONKURS {...props} />;
+    } else if (valgtSituasjon === PermittertSvar.NY_JOBB) {
+        return <NY_JOBB {...props} />;
+    } else if (valgtSituasjon === PermittertSvar.ENDRET_PERMITTERINGSPROSENT) {
+        return <ENDRET_PERMITTERINGSPROSENT {...props} />;
     }
-    // else if (valgtSituasjon === PermittertSvar.TILBAKE_TIL_JOBB) {
-    //     return <TILBAKE_TIL_JOBB {...props} />;
-    // } else if (valgtSituasjon === PermittertSvar.MIDLERTIDIG_JOBB) {
-    //     return <MIDLERTIDIG_JOBB {...props} />;
-    // } else if (valgtSituasjon === PermittertSvar.KONKURS) {
-    //     return <KONKURS {...props} />;
-    // } else if (valgtSituasjon === PermittertSvar.NY_JOBB) {
-    //     return <NY_JOBB {...props} />;
-    // } else if (valgtSituasjon === PermittertSvar.ENDRET_PERMITTERINGSPROSENT) {
-    //     return <ENDRET_PERMITTERINGSPROSENT {...props} />;
-    // } else if (valgtSituasjon === PermittertSvar.ANNET) {
+    // else if (valgtSituasjon === PermittertSvar.ANNET) {
     //     return <ANNET {...props} />;
     // } else if (valgtSituasjon === PermittertSvar.UAVKLART) {
     //     return <UAVKLART {...props} />;
