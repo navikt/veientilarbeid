@@ -26,7 +26,7 @@ const TEKSTER: Tekster<string> = {
     },
 };
 
-const DagpengerHarSokt = () => {
+const DagpengerHarSokt = (props: any) => {
     const { data: soknader = [] } = useSWRImmutable<DpInnsynSoknad[]>(`${DP_INNSYN_URL}/soknad`);
     const sisteInnsendteSoknad = soknader?.sort(sorterEtterNyesteDatoInnsendt)[0];
     const { paabegynteSoknader = [] } = useDpInnsynPaabegynteSoknaderData();
@@ -44,6 +44,7 @@ const DagpengerHarSokt = () => {
             <Heading size="medium" className={spacingStyles.blokkXs}>
                 {harPaabegyntEtterInnsendt ? tekst('harPaabegynt') : tekst('soknad')}
             </Heading>
+            {props.children}
             <SistInnsendtSoknad dato={sisteInnsendteSoknad?.datoInnsendt} komponent="sokt" />
             <EttersendDokumentasjon amplitudeTemaNavn={amplitudeTemaNavn} />
             <PaabegynteSoknader dato={sisteInnsendteSoknad?.datoInnsendt} komponent="sokt" />

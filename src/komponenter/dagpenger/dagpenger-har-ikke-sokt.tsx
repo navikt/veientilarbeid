@@ -23,7 +23,7 @@ const TEKSTER: Tekster<string> = {
     },
 };
 
-const DagpengerHarIkkeSokt = () => {
+const DagpengerHarIkkeSokt = (props: any) => {
     const { amplitudeData } = useAmplitudeData();
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
@@ -40,6 +40,7 @@ const DagpengerHarIkkeSokt = () => {
             <Heading size="medium" className={`${flexStyles.flex} ${spacingStyles.blokkXs}`}>
                 {tekst('heading')}
             </Heading>
+            {props.children}
             <BodyLong>{tekst('ingress')}</BodyLong>
             <SkrivTilOssChatOgMineDagpenger amplitudeTemaNavn='"dagpenger-tema - ikke søkt dagpenger"' />
 

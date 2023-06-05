@@ -32,7 +32,7 @@ const TEKSTER: Tekster<string> = {
     },
 };
 
-const DagpengerHarPaabegyntSoknad = () => {
+const DagpengerHarPaabegyntSoknad = (props: any) => {
     const { paabegynteSoknader = [] } = useDpInnsynPaabegynteSoknaderData();
     const { amplitudeData } = useAmplitudeData();
 
@@ -61,6 +61,7 @@ const DagpengerHarPaabegyntSoknad = () => {
             <Heading size="medium" className={spacingStyles.blokkXs}>
                 {tekst('heading')}
             </Heading>
+            {props.children}
             <BodyShort className={spacingStyles.blokkXs}>{tekst('ingress')}</BodyShort>
             <BodyShort>{tekst('ikkeSendt')}</BodyShort>
 

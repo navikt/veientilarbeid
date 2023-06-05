@@ -22,7 +22,7 @@ const TEKSTER: Tekster<string> = {
     },
 };
 
-const DagpengerInnvilget = () => {
+const DagpengerInnvilget = (props: any) => {
     const { data: vedtakData = [] } = useSWRImmutable<Vedtak[]>(`${DP_INNSYN_URL}/vedtak`);
     const nyesteInnvilgedeVedtak = vedtakData
         .filter((vedtak) => vedtak.status === 'INNVILGET')
@@ -38,7 +38,7 @@ const DagpengerInnvilget = () => {
             <Heading size="medium" className={spacingStyles.blokkXs}>
                 {tekst('heading')}
             </Heading>
-
+            {props.children}
             <BodyShort className={spacingStyles.blokkXs}>
                 {`${tekst('fattet')} ${prettyPrintDato(nyesteInnvilgedeVedtak.datoFattet, sprak)} ${tekst('status')} `}
                 <b>{nyesteInnvilgedeVedtak.status.toLocaleLowerCase()}</b>.
