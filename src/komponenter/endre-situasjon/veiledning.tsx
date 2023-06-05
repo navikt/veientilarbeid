@@ -1,4 +1,4 @@
-import { BodyShort, Link, ReadMore } from '@navikt/ds-react';
+import { BodyShort, Link } from '@navikt/ds-react';
 
 import { DinSituasjonSvar, PermittertSvar } from './permittert-modal';
 
@@ -9,6 +9,7 @@ import { dagpengerSoknadLenke } from '../../innhold/lenker';
 
 import spacing from '../../spacing.module.css';
 import MeldekortInfo from './meldekort-info';
+import DagpengerInfo from './dagpenger-info';
 
 export interface VeiledningsProps {
     valgtSituasjon: PermittertSvar | DinSituasjonSvar;
@@ -19,8 +20,6 @@ const OPPSIGELSE = (props: VeiledningsProps) => {
     const { tilleggsData } = props;
 
     if (!tilleggsData) return null;
-
-    const { oppsigelseDato, sisteArbeidsdagDato } = tilleggsData;
 
     return (
         <>
@@ -36,24 +35,7 @@ const OPPSIGELSE = (props: VeiledningsProps) => {
             </p>
             <p>
                 <h4 className={spacing.mbn}>Dagpenger</h4>
-                Du bør sende inn <Link href={dagpengerSoknadLenke}>ny søknad om ordinære dagpenger</Link> mellom{' '}
-                {prettyPrintDato(plussDager(new Date(oppsigelseDato!), -7).toISOString())} og{' '}
-                {prettyPrintDato(sisteArbeidsdagDato!)}.
-                <ReadMore header={'Hva baserer vi dette på?'}>
-                    <p>
-                        Du har oppgitt at siste dag med lønn fra arbeidsgiver er {prettyPrintDato(sisteArbeidsdagDato!)}
-                        .
-                    </p>
-                    <p>
-                        Du kan tidligst kan få dagpenger fra den dagen du sender inn en ny søknad om ordinære dagpenger,
-                        <br />
-                        og du kan tidligst sende inn søknad 7 dager før datoen du søker om å få dagpenger fra.
-                    </p>
-                    <p>
-                        Reglene er sånn at du ikke kan få utbetalt dagpenger for datoer før du har sendt inn søknaden.
-                    </p>
-                    <p>Du kan lese mer om regelverket for dagpenger her.</p>
-                </ReadMore>
+                <DagpengerInfo {...props} />
             </p>
             <p>
                 <h4 className={spacing.mbn}>Arbeidssøkerregistrering</h4>
