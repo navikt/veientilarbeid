@@ -86,7 +86,7 @@ const Sammendrag = (props: any) => {
                     </a>
                     .
                 </BodyShort>
-                {besvarelse && (
+                {erBesvarelseEndret && (
                     <BodyShort className={`${spacing.mb1} ${spacing.mt1}`}>
                         <a href={''} onClick={handleLesIgjenModalOpen}>
                             Les om igjen hva denne endringen betyr for deg

@@ -13,10 +13,10 @@ const OPPSIGELSE = (props: VeiledningsProps) => {
 
     return (
         <>
-            Frem til {prettyPrintDato(sisteArbeidsdagDato!)} kan du få utbetalt dagpenger som permittert.
+            Frem til {prettyPrintDato(oppsigelseDato!)} kan du få utbetalt dagpenger som permittert.
             <br />
             Det er derfor viktig at du fortsetter å sende inn meldekortene frem til og med perioden som dekker{' '}
-            {prettyPrintDato(sisteArbeidsdagDato!)}.
+            {prettyPrintDato(oppsigelseDato!)}.
             <ReadMore header={'Hva baserer vi denne veiledningen på?'}>
                 <p>
                     Når du blir oppsagt er den siste dagen du får dagpenger som permittert for den dagen du mottok
