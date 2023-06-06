@@ -37,11 +37,11 @@ const NY_JOBB = (props: VeiledningsProps) => {
     if (!tilleggsData) return null;
 
     return (
-        <p>
+        <>
             Du vil kunne motta dagpenger i oppsigelsesperioden.
             <br />
             Oppsigelsestid når du er permittert er 14 dager.
-        </p>
+        </>
     );
 };
 
@@ -50,7 +50,7 @@ const MIDLERTIDIG_JOBB = (props: VeiledningsProps) => {
 
     if (!tilleggsData) return null;
 
-    return <p>Dagpengeutbetalingene vil avhenge av hvor mye du jobber og lønnen i den midlertidige jobben.</p>;
+    return <>Dagpengeutbetalingene vil avhenge av hvor mye du jobber og lønnen i den midlertidige jobben.</>;
 };
 
 const KONKURS = (props: VeiledningsProps) => {
@@ -61,11 +61,11 @@ const KONKURS = (props: VeiledningsProps) => {
     const { sisteArbeidsdagDato } = tilleggsData;
 
     return (
-        <p>
+        <>
             Du kan <Link href={dagpengerSoknadLenke}>søke om dagpenger som forskudd på lønnsgaranti</Link>, mellom{' '}
             {prettyPrintDato(plussDager(new Date(sisteArbeidsdagDato!), -7).toISOString())} og{' '}
             {prettyPrintDato(sisteArbeidsdagDato!)}
-        </p>
+        </>
     );
 };
 
@@ -74,46 +74,13 @@ function DagpengerInfo(props: VeiledningsProps) {
 
     if (valgtSituasjon === PermittertSvar.OPPSIGELSE) {
         return <OPPSIGELSE {...props} />;
-    }
-
-    //else if (valgtSituasjon === PermittertSvar.TILBAKE_TIL_JOBB) {
-    //   return <TILBAKE_TIL_JOBB {...props} />;
-    else if (valgtSituasjon === PermittertSvar.MIDLERTIDIG_JOBB) {
+    } else if (valgtSituasjon === PermittertSvar.MIDLERTIDIG_JOBB) {
         return <MIDLERTIDIG_JOBB {...props} />;
     } else if (valgtSituasjon === PermittertSvar.KONKURS) {
         return <KONKURS {...props} />;
     } else if (valgtSituasjon === PermittertSvar.NY_JOBB) {
         return <NY_JOBB {...props} />;
     }
-    // } else if (valgtSituasjon === PermittertSvar.ENDRET_PERMITTERINGSPROSENT) {
-    //     return <ENDRET_PERMITTERINGSPROSENT {...props} />;
-    // } else if (valgtSituasjon === PermittertSvar.ANNET) {
-    //     return <ANNET {...props} />;
-    // } else if (valgtSituasjon === PermittertSvar.UAVKLART) {
-    //     return <UAVKLART {...props} />;
-    // } else if (valgtSituasjon === DinSituasjonSvar.MISTET_JOBBEN) {
-    //     return <MISTET_JOBBEN {...props} />;
-    // } else if (valgtSituasjon === DinSituasjonSvar.HAR_SAGT_OPP) {
-    //     return <HAR_SAGT_OPP {...props} />;
-    // } else if (valgtSituasjon === DinSituasjonSvar.DELTIDSJOBB_VIL_MER) {
-    //     return <DELTIDSJOBB_VIL_MER {...props} />;
-    // } else if (valgtSituasjon === DinSituasjonSvar.ALDRI_HATT_JOBB) {
-    //     return <ALDRI_HATT_JOBB {...props} />;
-    // } else if (valgtSituasjon === DinSituasjonSvar.VIL_BYTTE_JOBB) {
-    //     return <VIL_BYTTE_JOBB {...props} />;
-    // } else if (valgtSituasjon === DinSituasjonSvar.JOBB_OVER_2_AAR) {
-    //     return <JOBB_OVER_2_AAR {...props} />;
-    // } else if (valgtSituasjon === DinSituasjonSvar.ER_PERMITTERT) {
-    //     return <ER_PERMITTERT {...props} />;
-    // } else if (valgtSituasjon === DinSituasjonSvar.USIKKER_JOBBSITUASJON) {
-    //     return <USIKKER_JOBBSITUASJON {...props} />;
-    // } else if (valgtSituasjon === DinSituasjonSvar.AKKURAT_FULLFORT_UTDANNING) {
-    //     return <AKKURAT_FULLFORT_UTDANNING {...props} />;
-    // } else if (valgtSituasjon === DinSituasjonSvar.VIL_FORTSETTE_I_JOBB) {
-    //     return <VIL_FORTSETTE_I_JOBB {...props} />;
-    // } else {
-    //     return <ANNET {...props} />;
-    // }
     return null;
 }
 export default DagpengerInfo;

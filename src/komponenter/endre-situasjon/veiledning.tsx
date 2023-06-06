@@ -3,9 +3,6 @@ import { BodyShort, Link } from '@navikt/ds-react';
 import { DinSituasjonSvar, PermittertSvar } from './permittert-modal';
 
 import { dokumentasjon_url } from '../../url';
-import prettyPrintDato from '../../utils/pretty-print-dato';
-import { plussDager } from '../../utils/date-utils';
-import { dagpengerSoknadLenke } from '../../innhold/lenker';
 
 import spacing from '../../spacing.module.css';
 import MeldekortInfo from './meldekort-info';
@@ -103,9 +100,7 @@ const NY_JOBB = (props: VeiledningsProps) => {
             </p>
             <p>
                 <h4 className={spacing.mbn}>Dagpenger</h4>
-                Du vil kunne motta dagpenger i oppsigelsesperioden.
-                <br />
-                Oppsigelsestid når du er permittert er 14 dager.
+                <DagpengerInfo {...props} />
             </p>
             <p>
                 <h4 className={spacing.mbn}>Arbeidssøkerregistrering</h4>
@@ -134,7 +129,7 @@ const MIDLERTIDIG_JOBB = (props: VeiledningsProps) => {
             </p>
             <p>
                 <h4 className={spacing.mbn}>Dagpenger</h4>
-                Dagpengeutbetalingene vil avhenge av hvor mye du jobber og lønnen i den midlertidige jobben.
+                <DagpengerInfo {...props} />
             </p>
             <p>Gi oss beskjed om noe endrer seg.</p>
         </>
@@ -145,8 +140,6 @@ const KONKURS = (props: VeiledningsProps) => {
     const { tilleggsData } = props;
 
     if (!tilleggsData) return null;
-
-    const { sisteArbeidsdagDato } = tilleggsData;
 
     return (
         <>
@@ -161,9 +154,7 @@ const KONKURS = (props: VeiledningsProps) => {
             </p>
             <p>
                 <h4 className={spacing.mbn}>Dagpenger</h4>
-                Du kan <Link href={dagpengerSoknadLenke}>søke om dagpenger som forskudd på lønnsgaranti</Link>, mellom{' '}
-                {prettyPrintDato(plussDager(new Date(sisteArbeidsdagDato!), -7).toISOString())} og{' '}
-                {prettyPrintDato(sisteArbeidsdagDato!)}
+                <DagpengerInfo {...props} />
             </p>
             <p>
                 Dersom du ønsker dagpenger etter forskuddet må du krysse av for at du også søker dagpenger for etter
