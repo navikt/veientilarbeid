@@ -7,11 +7,13 @@ import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
 
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
-import { DinSituasjonSvar, useBrukerregistreringData } from '../../contexts/brukerregistrering';
+import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
+import { harPermittertSituasjon } from '../../lib/har-permittert-situasjon';
+import { useBesvarelse } from '../../contexts/besvarelse';
 
 const TEKSTER = {
     nb: {
@@ -45,9 +47,9 @@ const RegistrertTittel = () => {
     const arbeidssokerperioder = beregnArbeidssokerperioder(arbeidssokerperioderData);
     const brukerregistreringData = useBrukerregistreringData();
     const harAktivArbeidssokerperiode = arbeidssokerperioder.harAktivArbeidssokerperiode === 'Ja';
-    const erPermittert =
-        brukerregistreringData?.registrering?.besvarelse.dinSituasjon === DinSituasjonSvar.ER_PERMITTERT;
+    const { besvarelse } = useBesvarelse();
     const registrertDato = brukerregistreringData?.registrering.opprettetDato || false;
+    const erPermittert = harPermittertSituasjon(brukerregistreringData?.registrering, besvarelse);
 
     const scrollToRegistrering = useCallback(() => {
         const goto = new URLSearchParams(window.location.search).get('goTo');

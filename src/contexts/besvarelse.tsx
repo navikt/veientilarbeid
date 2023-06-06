@@ -15,6 +15,7 @@ import {
     FremtidigSituasjonSvar,
     TilbakeIArbeidSvar,
 } from './brukerregistrering';
+import { PermittertSvar } from '../komponenter/endre-situasjon/permittert-modal';
 
 export type DinSituasjonTilleggsdata = {
     oppsigelseDato?: string;
@@ -26,7 +27,7 @@ export type DinSituasjonTilleggsdata = {
 
 export type DinSituasjonRequest = {
     dinSituasjon: {
-        verdi: DinSituasjonSvar;
+        verdi: DinSituasjonSvar | PermittertSvar;
         gjelderFraDato?: string;
         gjelderTilDato?: string;
         tilleggsData: DinSituasjonTilleggsdata;
