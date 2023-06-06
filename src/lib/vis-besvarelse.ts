@@ -33,6 +33,11 @@ export function visBesvarelser({
         : new Date('2019-07-01');
     const toggleErAktiv = featuretoggleData[FeatureToggles.FeatureToggles.BRUK_ENDRING_AV_SITUASJON] || false;
 
+    const erPermittert =
+        (brukerregistreringData &&
+            brukerregistreringData.besvarelse.dinSituasjon === Brukerregistrering.DinSituasjonSvar.ER_PERMITTERT) ||
+        false;
+
     const aldersgruppeUtenForsterketInnsats = brukerInfoData.alder >= 30 && brukerInfoData.alder <= 59;
 
     const harEndretBesvarelse = besvarelseData && besvarelseData.erBesvarelseEndret;
@@ -46,6 +51,7 @@ export function visBesvarelser({
         (toggleErAktiv &&
             harAktivArbeidssokerperiode &&
             erRegistrertEtterLansering &&
+            erPermittert &&
             aldersgruppeUtenForsterketInnsats &&
             !erAAP &&
             sjekkOmBrukerErStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData }) &&

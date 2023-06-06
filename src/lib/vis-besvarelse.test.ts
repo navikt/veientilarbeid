@@ -100,9 +100,10 @@ describe('Tester funksjonen visBesvarelser', () => {
         expect(visBesvarelser(testdata)).toBe(true);
     });
 
-    test('JA hvis bruker ikke har besvarelse, er innefor aldersgruppe, har featuretoggle, ikke kan reaktivers og er standard innsatsgruppe', () => {
+    test('JA hvis bruker ikke har besvarelse, er innefor aldersgruppe, har featuretoggle, ikke kan reaktivers, er permittert og er standard innsatsgruppe', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
         testdata.registreringData.registrering.opprettetDato = new Date('2023-05-02');
+        testdata.registreringData.registrering.besvarelse.dinSituasjon = DinSituasjonSvar.ER_PERMITTERT;
         testdata.brukerInfoData.alder = 45;
         testdata.oppfolgingData.kanReaktiveres = false;
         testdata.oppfolgingData.servicegruppe = 'IKVAL';
@@ -110,5 +111,18 @@ describe('Tester funksjonen visBesvarelser', () => {
         testdata.besvarelseData = null;
 
         expect(visBesvarelser(testdata)).toBe(true);
+    });
+
+    test('NEI hvis bruker ikke har besvarelse, er innefor aldersgruppe, har featuretoggle, ikke kan reaktivers, ikke er permittert og er standard innsatsgruppe', () => {
+        const testdata = JSON.parse(JSON.stringify(grunndata));
+        testdata.registreringData.registrering.opprettetDato = new Date('2023-05-02');
+        testdata.registreringData.registrering.besvarelse.dinSituasjon = DinSituasjonSvar.MISTET_JOBBEN;
+        testdata.brukerInfoData.alder = 45;
+        testdata.oppfolgingData.kanReaktiveres = false;
+        testdata.oppfolgingData.servicegruppe = 'IKVAL';
+        testdata.oppfolgingData.formidlingsgruppe = 'ARBS';
+        testdata.besvarelseData = null;
+
+        expect(visBesvarelser(testdata)).toBe(false);
     });
 });
