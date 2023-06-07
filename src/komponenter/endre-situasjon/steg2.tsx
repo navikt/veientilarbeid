@@ -7,8 +7,8 @@ import {
     Radio,
     RadioGroup,
     Select,
-    UNSAFE_DatePicker,
-    UNSAFE_useDatepicker,
+    DatePicker,
+    useDatepicker,
 } from '@navikt/ds-react';
 
 import { BesvarelseRequest, useBesvarelse } from '../../contexts/besvarelse';
@@ -116,7 +116,7 @@ const OPPSIGELSE = (props: Steg2Props) => {
         datepickerProps: oppsigelseProps,
         inputProps: oppsigelseInput,
         selectedDay: oppsigelseDato,
-    } = UNSAFE_useDatepicker({
+    } = useDatepicker({
         fromDate: new Date('Jan 01 2022'),
         defaultSelected: new Date(),
     });
@@ -125,7 +125,7 @@ const OPPSIGELSE = (props: Steg2Props) => {
         datepickerProps: sisteArbeidsdagProps,
         inputProps: sisteArbeidsdagInput,
         selectedDay: sisteArbeidsdagDato,
-    } = UNSAFE_useDatepicker({
+    } = useDatepicker({
         fromDate: new Date('Jan 01 2022'),
         defaultSelected: new Date(),
     });
@@ -135,8 +135,8 @@ const OPPSIGELSE = (props: Steg2Props) => {
     return (
         <Steg2Wrapper valgtSituasjon={props.valgtSituasjon}>
             <>
-                <UNSAFE_DatePicker {...oppsigelseProps} strategy="fixed">
-                    <UNSAFE_DatePicker.Input
+                <DatePicker {...oppsigelseProps} strategy="fixed">
+                    <DatePicker.Input
                         {...oppsigelseInput}
                         className={spacing.mb1}
                         label={
@@ -148,10 +148,10 @@ const OPPSIGELSE = (props: Steg2Props) => {
                             </div>
                         }
                     />
-                </UNSAFE_DatePicker>
+                </DatePicker>
 
-                <UNSAFE_DatePicker {...sisteArbeidsdagProps} strategy="fixed">
-                    <UNSAFE_DatePicker.Input
+                <DatePicker {...sisteArbeidsdagProps} strategy="fixed">
+                    <DatePicker.Input
                         {...sisteArbeidsdagInput}
                         className={spacing.mb1}
                         label={
@@ -164,7 +164,7 @@ const OPPSIGELSE = (props: Steg2Props) => {
                             </div>
                         }
                     />
-                </UNSAFE_DatePicker>
+                </DatePicker>
                 <BodyShort className={spacing.mb1}>
                     NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
                 </BodyShort>
@@ -189,7 +189,7 @@ const ENDRET = (props: Steg2Props) => {
         datepickerProps: gjelderFraDatoProps,
         inputProps: gjelderFraDatoInput,
         selectedDay: gjelderFraDato,
-    } = UNSAFE_useDatepicker({
+    } = useDatepicker({
         fromDate: new Date('Jan 01 2022'),
         defaultSelected: new Date(),
     });
@@ -205,13 +205,13 @@ const ENDRET = (props: Steg2Props) => {
     return (
         <Steg2Wrapper valgtSituasjon={props.valgtSituasjon}>
             <>
-                <UNSAFE_DatePicker {...gjelderFraDatoProps} strategy="fixed">
-                    <UNSAFE_DatePicker.Input
+                <DatePicker {...gjelderFraDatoProps} strategy="fixed">
+                    <DatePicker.Input
                         {...gjelderFraDatoInput}
                         className={spacing.mb1}
                         label="Fra hvilken dato skjer endringen?"
                     />
-                </UNSAFE_DatePicker>
+                </DatePicker>
 
                 <RadioGroup
                     legend="Hva er den nye peritteringsprosenten?"
@@ -250,7 +250,7 @@ const TILBAKE_TIL_JOBB = (props: Steg2Props) => {
         datepickerProps: forsteArbeidsdagProps,
         inputProps: forsteArbeidsdagInput,
         selectedDay: forsteArbeidsdagDato,
-    } = UNSAFE_useDatepicker({
+    } = useDatepicker({
         fromDate: new Date('Jan 01 2022'),
         defaultSelected: new Date(),
     });
@@ -261,13 +261,13 @@ const TILBAKE_TIL_JOBB = (props: Steg2Props) => {
     return (
         <Steg2Wrapper valgtSituasjon={props.valgtSituasjon}>
             <>
-                <UNSAFE_DatePicker {...forsteArbeidsdagProps} strategy="fixed">
-                    <UNSAFE_DatePicker.Input
+                <DatePicker {...forsteArbeidsdagProps} strategy="fixed">
+                    <DatePicker.Input
                         {...forsteArbeidsdagInput}
                         className={spacing.mb1}
                         label="Når er første arbeidsdag etter permittering?"
                     />
-                </UNSAFE_DatePicker>
+                </DatePicker>
 
                 <BodyShort className={spacing.mb1}>
                     NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
@@ -293,7 +293,7 @@ const NY_JOBB = (props: Steg2Props) => {
         datepickerProps: forsteArbeidsdagProps,
         inputProps: forsteArbeidsdagInput,
         selectedDay: forsteArbeidsdagDato,
-    } = UNSAFE_useDatepicker({
+    } = useDatepicker({
         fromDate: new Date('Jan 01 2022'),
         defaultSelected: new Date(),
     });
@@ -302,7 +302,7 @@ const NY_JOBB = (props: Steg2Props) => {
         datepickerProps: sisteArbeidsdagProps,
         inputProps: sisteArbeidsdagInput,
         selectedDay: sisteArbeidsdagDato,
-    } = UNSAFE_useDatepicker({
+    } = useDatepicker({
         fromDate: new Date('Jan 01 2022'),
         defaultSelected: new Date(),
     });
@@ -316,21 +316,21 @@ const NY_JOBB = (props: Steg2Props) => {
     return (
         <Steg2Wrapper valgtSituasjon={props.valgtSituasjon}>
             <>
-                <UNSAFE_DatePicker {...forsteArbeidsdagProps} strategy="fixed">
-                    <UNSAFE_DatePicker.Input
+                <DatePicker {...forsteArbeidsdagProps} strategy="fixed">
+                    <DatePicker.Input
                         {...forsteArbeidsdagInput}
                         className={spacing.mb1}
                         label="Når er første arbeidsdag i ny jobb?"
                     />
-                </UNSAFE_DatePicker>
+                </DatePicker>
 
-                <UNSAFE_DatePicker {...sisteArbeidsdagProps} strategy="fixed">
-                    <UNSAFE_DatePicker.Input
+                <DatePicker {...sisteArbeidsdagProps} strategy="fixed">
+                    <DatePicker.Input
                         {...sisteArbeidsdagInput}
                         className={spacing.mb1}
                         label="Når er siste arbeidsdag med lønn i nåværende jobb?"
                     />
-                </UNSAFE_DatePicker>
+                </DatePicker>
                 <BodyShort className={spacing.mb1}>
                     NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
                 </BodyShort>
@@ -355,7 +355,7 @@ const MIDLERTIDIG_JOBB = (props: Steg2Props) => {
         datepickerProps: forsteArbeidsdagProps,
         inputProps: forsteArbeidsdagInput,
         selectedDay: forsteArbeidsdagDato,
-    } = UNSAFE_useDatepicker({
+    } = useDatepicker({
         fromDate: new Date('Jan 01 2022'),
         defaultSelected: new Date(),
     });
@@ -368,13 +368,13 @@ const MIDLERTIDIG_JOBB = (props: Steg2Props) => {
     return (
         <Steg2Wrapper valgtSituasjon={props.valgtSituasjon}>
             <>
-                <UNSAFE_DatePicker {...forsteArbeidsdagProps} strategy="fixed">
-                    <UNSAFE_DatePicker.Input
+                <DatePicker {...forsteArbeidsdagProps} strategy="fixed">
+                    <DatePicker.Input
                         {...forsteArbeidsdagInput}
                         className={spacing.mb1}
                         label="Når er første arbeidsdag i den midlertidige jobben?"
                     />
-                </UNSAFE_DatePicker>
+                </DatePicker>
 
                 <BodyShort className={spacing.mb1}>
                     NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
@@ -400,7 +400,7 @@ const KONKURS = (props: Steg2Props) => {
         datepickerProps: sisteArbeidsdagProps,
         inputProps: sisteArbeidsdagInput,
         selectedDay: sisteArbeidsdagDato,
-    } = UNSAFE_useDatepicker({
+    } = useDatepicker({
         fromDate: new Date('Jan 01 2022'),
         defaultSelected: new Date(),
     });
@@ -413,13 +413,13 @@ const KONKURS = (props: Steg2Props) => {
     return (
         <Steg2Wrapper valgtSituasjon={props.valgtSituasjon}>
             <>
-                <UNSAFE_DatePicker {...sisteArbeidsdagProps} strategy="fixed">
-                    <UNSAFE_DatePicker.Input
+                <DatePicker {...sisteArbeidsdagProps} strategy="fixed">
+                    <DatePicker.Input
                         {...sisteArbeidsdagInput}
                         className={spacing.mb1}
                         label="Når er siste arbeidsdag?"
                     />
-                </UNSAFE_DatePicker>
+                </DatePicker>
                 <BodyShort className={spacing.mb1}>
                     NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
                 </BodyShort>

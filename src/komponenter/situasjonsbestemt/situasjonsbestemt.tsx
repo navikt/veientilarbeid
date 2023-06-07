@@ -1,5 +1,5 @@
 import { BodyLong, Heading, Link, Panel } from '@navikt/ds-react';
-import { Bandage, Dialog, Laptop, Notes, Task } from '@navikt/ds-icons';
+import { BandageIcon, ChatIcon, LaptopIcon, ClipboardIcon, TasklistIcon } from '@navikt/aksel-icons';
 
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
@@ -96,7 +96,7 @@ function Situasjonsbestemt() {
 
     const DittSykefravaer = () => {
         return ListeElement(
-            <Bandage aria-hidden="true" />,
+            <BandageIcon aria-hidden="true" />,
             <div>
                 <Heading size="medium">{tekst('sykefravaer.overskrift')}</Heading>
                 <BodyLong>
@@ -113,7 +113,7 @@ function Situasjonsbestemt() {
 
     const DialogPanel = () => {
         return ListeElement(
-            <Dialog aria-hidden="true" />,
+            <ChatIcon aria-hidden="true" />,
             <div>
                 <Heading size="medium">{tekst('dialog.overskrift')}</Heading>
                 <Link href={dialogLenke} onClick={() => handleClick('Går til dialogen fra ikke-standard')}>
@@ -129,7 +129,7 @@ function Situasjonsbestemt() {
                 {harGyldigBehovsvurdering ? <DialogPanel /> : <Behovsavklaring />}
                 {harGyldigBehovsvurdering &&
                     ListeElement(
-                        <Task aria-hidden="true" />,
+                        <TasklistIcon aria-hidden="true" />,
                         <div>
                             <Heading size="medium">{tekst('aktivitetsplan.overskrift')}</Heading>
                             <BodyLong>
@@ -147,10 +147,10 @@ function Situasjonsbestemt() {
                 {erSykmeldtMedArbeidsgiver ? (
                     <DittSykefravaer />
                 ) : (
-                    ListeElement(<Notes aria-hidden="true" />, <MeldekortHovedInnhold />)
+                    ListeElement(<ClipboardIcon aria-hidden="true" />, <MeldekortHovedInnhold />)
                 )}
                 {ListeElement(
-                    <Laptop aria-hidden="true" />,
+                    <LaptopIcon aria-hidden="true" />,
                     <div>
                         <Heading size="medium">{tekst('sporsmal.overskrift')}</Heading>
                         <BodyLong>

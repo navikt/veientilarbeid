@@ -1,5 +1,5 @@
 import { Button, Heading, BodyShort } from '@navikt/ds-react';
-import { Next } from '@navikt/ds-icons';
+import { ChevronRightIcon } from '@navikt/aksel-icons';
 
 import {
     DpInnsynPaabegyntSoknad,
@@ -68,7 +68,7 @@ const DagpengerHarPaabegyntSoknad = (props: any) => {
             <Button
                 onClick={handleClickFortsett}
                 className={`${spacingStyles.mt1} ${spacingStyles.mb1}`}
-                icon={<Next aria-hidden="true" />}
+                icon={<ChevronRightIcon aria-hidden="true" />}
                 iconPosition="right"
             >
                 {tekst('fortsett')} {`${tekst('pabegynt')} ${prettyPrintDato(sistePabegynteSoknad.sistEndret, sprak)}`}{' '}

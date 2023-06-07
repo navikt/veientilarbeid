@@ -1,4 +1,4 @@
-import { Dialog } from '@navikt/ds-icons';
+import { ChatIcon } from '@navikt/aksel-icons';
 import { BodyLong, BodyShort, Button, Heading } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
@@ -64,7 +64,7 @@ function IkkeSvartPaaBehovsavklaringSituasjonsbestemt() {
     }
 
     return ListeElement(
-        <Dialog aria-hidden="true" />,
+        <ChatIcon aria-hidden="true" />,
         <div className={spacingStyles.fullWidth}>
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - ikke svart - situasjonsbestemt" />
             <Heading className={spacingStyles.mb1} size="medium">

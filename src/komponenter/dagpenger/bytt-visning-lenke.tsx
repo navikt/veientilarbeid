@@ -3,7 +3,7 @@ import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-spra
 import { useSprakValg } from '../../contexts/sprak';
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
-import { Cancel } from '@navikt/ds-icons';
+import { XMarkIcon } from '@navikt/aksel-icons';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -25,7 +25,7 @@ const ByttVisningLenke = (props: {
     return (
         <div className={`${flexStyles.flex} ${flexStyles.alignCenter} ${spacingStyles.mt1}`}>
             <Link href="" onClick={props.handleByttVisningKlikk}>
-                <Cancel
+                <XMarkIcon
                     aria-hidden="true"
                     className={spacingStyles.mr05}
                     title={

@@ -1,4 +1,4 @@
-import { Dialog } from '@navikt/ds-icons';
+import { ChatIcon } from '@navikt/aksel-icons';
 import { BodyLong, Detail, Heading, Panel } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
@@ -47,7 +47,7 @@ function EnigMedProfilering() {
                     fontSize: 'var(--a-font-size-heading-medium)',
                 }}
             >
-                <Dialog />
+                <ChatIcon />
             </span>
             <div className={spacingStyles.fullWidth}>
                 {!brukTabsDemo && (
@@ -90,7 +90,7 @@ function UenigMedProfilering() {
                     fontSize: 'var(--a-font-size-heading-medium)',
                 }}
             >
-                <Dialog aria-hidden="true" />
+                <ChatIcon aria-hidden="true" />
             </span>
             <div className={spacingStyles.fullWidth}>
                 <Detail uppercase style={{ marginTop: '-1rem' }}>

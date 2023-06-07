@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Dialog } from '@navikt/ds-icons';
+import { ChatIcon } from '@navikt/aksel-icons';
 import { Detail, Heading, Panel, ReadMore } from '@navikt/ds-react';
 
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
@@ -71,7 +71,7 @@ function HjelpOgStotte() {
                     fontSize: 'var(--a-font-size-heading-medium)',
                 }}
             >
-                <Dialog aria-hidden="true" />
+                <ChatIcon aria-hidden="true" />
             </span>
             <div className={spacingStyles.fullWidth}>
                 <Detail uppercase style={{ marginTop: '-1rem' }}>

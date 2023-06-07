@@ -1,5 +1,5 @@
 import { BodyLong, Button, Heading } from '@navikt/ds-react';
-import { Next } from '@navikt/ds-icons';
+import { ChevronRightIcon } from '@navikt/aksel-icons';
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
 
@@ -47,7 +47,7 @@ const DagpengerHarIkkeSokt = (props: any) => {
             <Button
                 variant="primary"
                 onClick={handleButtonClick}
-                icon={<Next aria-hidden="true" />}
+                icon={<ChevronRightIcon aria-hidden="true" />}
                 iconPosition="right"
             >
                 {tekst('sok')}

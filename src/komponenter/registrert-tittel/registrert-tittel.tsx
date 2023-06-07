@@ -1,6 +1,6 @@
 import { createRef, useCallback, useEffect, useState } from 'react';
 import { BodyShort, Heading, Panel } from '@navikt/ds-react';
-import { Success, SuccessColored } from '@navikt/ds-icons';
+import { CheckmarkCircleIcon } from '@navikt/aksel-icons';
 
 import { useSprakValg } from '../../contexts/sprak';
 import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
@@ -77,7 +77,8 @@ const RegistrertTittel = () => {
                             fontSize: 'var(--a-font-size-heading-medium)',
                         }}
                     >
-                        {erNyRegistrert ? <SuccessColored aria-hidden="true" /> : <Success aria-hidden="true" />}
+                        {/*{erNyRegistrert ? <SuccessColored aria-hidden="true" /> : <CheckmarkCircleIcon aria-hidden="true" />}*/}
+                        <CheckmarkCircleIcon aria-hidden="true" />
                     </span>
                     <div>
                         <Heading size="medium">{tekst(hentTekstNokkel(erNyRegistrert, erPermittert))}</Heading>

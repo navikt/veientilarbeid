@@ -1,5 +1,5 @@
 import { Panel, Heading, BodyShort, Link, Button, Detail } from '@navikt/ds-react';
-import { Close, Money } from '@navikt/ds-icons';
+import { XMarkIcon, BankNoteIcon } from '@navikt/aksel-icons';
 import React, { useEffect, useState } from 'react';
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
@@ -95,7 +95,7 @@ const ReaktiveringKvittering = () => {
                         fontSize: 'var(--a-font-size-heading-medium)',
                     }}
                 >
-                    <Money />
+                    <BankNoteIcon />
                 </span>
                 <div className={spacingStyles.fullWidth}>
                     <div className={`${flexStyles.flex} ${flexStyles.spaceBetween} ${spacingStyles.blokkS}`}>
@@ -106,7 +106,7 @@ const ReaktiveringKvittering = () => {
                             <Heading size="medium">{tekst('ingress')}</Heading>
                         </div>
                         <Button variant="tertiary" size="small" onClick={handleLukkeKvitteringKnapp}>
-                            <Close color="black" title={tekst('lukk')} />
+                            <XMarkIcon color="black" title={tekst('lukk')} />
                         </Button>
                     </div>
                     <div>

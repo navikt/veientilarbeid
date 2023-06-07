@@ -1,6 +1,6 @@
 import React from 'react';
 import { BodyShort, Button } from '@navikt/ds-react';
-import { Next } from '@navikt/ds-icons';
+import { ChevronRightIcon } from '@navikt/aksel-icons';
 import spacingStyles from '../../spacing.module.css';
 
 import { AmplitudeData, amplitudeLogger } from '../../metrics/amplitude-utils';
@@ -61,7 +61,7 @@ const DialogKnapp: React.FC<DialogKnappProps> = (props) => {
                 onClick={handleClickInnsending}
                 className={`${spacingStyles.mt1} ${spacingStyles.mb1}`}
                 variant={variant}
-                icon={<Next />}
+                icon={<ChevronRightIcon />}
                 iconPosition="right"
             >
                 {tekst('title')}

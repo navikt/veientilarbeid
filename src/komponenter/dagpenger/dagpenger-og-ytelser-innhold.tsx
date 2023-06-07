@@ -1,5 +1,5 @@
 import React from 'react';
-import { Money } from '@navikt/ds-icons';
+import { BankNoteIcon } from '@navikt/aksel-icons';
 import { BodyShort, Detail, Panel } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
@@ -108,7 +108,7 @@ function DagpengerOgYtelserInnhold(props: Props) {
                     fontSize: 'var(--a-font-size-heading-medium)',
                 }}
             >
-                <Money aria-hidden="true" />
+                <BankNoteIcon aria-hidden="true" />
             </span>
             <div className={spacingStyles.fullWidth}>
                 {!brukTabsDemo && (
