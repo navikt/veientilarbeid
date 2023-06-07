@@ -10,7 +10,6 @@ import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 
-import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
 import { harPermittertSituasjon } from '../../lib/har-permittert-situasjon';
 import { useBesvarelse } from '../../contexts/besvarelse';
@@ -67,7 +66,7 @@ const RegistrertTittel = () => {
 
     return (
         <div ref={containerRef}>
-            <Panel className={spacingStyles.px1_5}>
+            <Panel>
                 <div className={flexStyles.flex}>
                     <span
                         style={{
