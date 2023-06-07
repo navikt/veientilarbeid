@@ -1,12 +1,12 @@
 import { BodyShort, Link } from '@navikt/ds-react';
 
-import { DinSituasjonSvar, PermittertSvar } from './permittert-modal';
-
 import { dokumentasjon_url } from '../../url';
 
 import spacing from '../../spacing.module.css';
 import MeldekortInfo from './meldekort-info';
 import DagpengerInfo from './dagpenger-info';
+import { PermittertSvar } from '../../models/endring-av-situasjon';
+import { DinSituasjonSvar } from '../../contexts/brukerregistrering';
 
 export interface VeiledningsProps {
     valgtSituasjon: PermittertSvar | DinSituasjonSvar;

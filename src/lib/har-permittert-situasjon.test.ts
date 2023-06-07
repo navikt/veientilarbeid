@@ -1,5 +1,6 @@
 import { harPermittertSituasjon } from './har-permittert-situasjon';
-import { DinSituasjonSvar, PermittertSvar } from '../komponenter/endre-situasjon/permittert-modal';
+import { DinSituasjonSvar } from '../contexts/brukerregistrering';
+import { PermittertSvar } from '../models/endring-av-situasjon';
 
 describe('har-permittert-situasjon', () => {
     test('returnerer false for tom input', () => {

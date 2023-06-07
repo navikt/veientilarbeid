@@ -1,6 +1,7 @@
 import { Alert, BodyShort, Button } from '@navikt/ds-react';
+import { DinSituasjonSvar } from '../../contexts/brukerregistrering';
+import { dinSituasjonSvarTekster, PermittertSvar, permittertTekster } from '../../models/endring-av-situasjon';
 
-import { DinSituasjonSvar, dinSituasjonSvarTekster, PermittertSvar, permittertTekster } from './permittert-modal';
 import Veiledning from './veiledning';
 import TilleggsData from '../innsyn/tilleggsdata';
 

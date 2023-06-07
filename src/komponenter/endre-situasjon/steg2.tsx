@@ -14,7 +14,9 @@ import {
 import { BesvarelseRequest, useBesvarelse } from '../../contexts/besvarelse';
 
 import { loggAktivitet } from '../../metrics/metrics';
-import { PermittertSvar, permittertTekster, DinSituasjonSvar, dinSituasjonSvarTekster } from './permittert-modal';
+import { DinSituasjonSvar } from '../../contexts/brukerregistrering';
+import { dinSituasjonSvarTekster, PermittertSvar, permittertTekster } from '../../models/endring-av-situasjon';
+
 import { svarMap } from '../../models/sporsmal-og-svar';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 

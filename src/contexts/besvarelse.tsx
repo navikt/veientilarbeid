@@ -15,7 +15,7 @@ import {
     FremtidigSituasjonSvar,
     TilbakeIArbeidSvar,
 } from './brukerregistrering';
-import { PermittertSvar } from '../komponenter/endre-situasjon/permittert-modal';
+import { PermittertSvar } from '../models/endring-av-situasjon';
 
 export type DinSituasjonTilleggsdata = {
     oppsigelseDato?: string;

@@ -1,8 +1,8 @@
-import { PermittertSvar } from './permittert-modal';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import { ReadMore } from '@navikt/ds-react';
 import { plussDager } from '../../utils/date-utils';
 import { VeiledningsProps } from './veiledning';
+import { PermittertSvar } from '../../models/endring-av-situasjon';
 
 const OPPSIGELSE = (props: VeiledningsProps) => {
     const { tilleggsData } = props;

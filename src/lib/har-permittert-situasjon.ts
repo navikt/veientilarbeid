@@ -1,6 +1,6 @@
 import { Brukerregistrering, DinSituasjonSvar } from '../contexts/brukerregistrering';
 import { BesvarelseResponse } from '../contexts/besvarelse';
-import { PermittertSvar } from '../komponenter/endre-situasjon/permittert-modal';
+import { PermittertSvar } from '../models/endring-av-situasjon';
 
 const permitterteTilstander = [
     PermittertSvar.ENDRET_PERMITTERINGSPROSENT,
