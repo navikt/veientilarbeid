@@ -15,6 +15,7 @@ import { BesvarelseRequest, useBesvarelse } from '../../contexts/besvarelse';
 
 import { loggAktivitet } from '../../metrics/metrics';
 import { PermittertSvar, permittertTekster, DinSituasjonSvar, dinSituasjonSvarTekster } from './permittert-modal';
+import { svarMap } from '../../models/sporsmal-og-svar';
 
 import spacing from '../../spacing.module.css';
 import flex from '../../flex.module.css';
@@ -40,13 +41,29 @@ const Feil = (props: { feil: string | null }) => {
     );
 };
 
+function genererDialogTekst(valgtSituasjon: SituasjonSvar, tilleggsData?: any) {
+    const tekstArray = [];
+
+    tekstArray.push(`Jobbsituasjonen er endret til "${svarMap.dinSituasjon[valgtSituasjon]}".`);
+
+    if (tilleggsData) {
+        tekstArray.push('Tilleggsopplysninger: \n\n');
+    }
+
+    return {
+        tekst: tekstArray.join('\n\n'),
+        overskrift: 'Jobbsituasjonen min er endret',
+        venterPaaSvarFraNav: true,
+    };
+}
+
 function useLagreEndringer(props: Steg2Props) {
     const { lagreBesvarelse } = useBesvarelse();
-    const { amplitudeData, onClick, settTilleggsData, valgtSituasjon } = props;
+    const { amplitudeData, onClick, settTilleggsData } = props;
     const [loading, setLoading] = useState<boolean>(false);
     const [feil, settFeil] = useState<string | null>(null);
 
-    const handleLagreEndringer = async (tilleggsData?: any) => {
+    const handleLagreEndringer = async (valgtSituasjon?: any, tilleggsData?: any) => {
         // Gjør om dato fra datepicker til date string
         if (tilleggsData) {
             Object.keys(tilleggsData).forEach((key) => {
@@ -67,10 +84,13 @@ function useLagreEndringer(props: Steg2Props) {
                 komponent: 'Min situasjon',
                 ...amplitudeData,
             });
+
+            const { tekst, overskrift, venterPaaSvarFraNav } = genererDialogTekst(valgtSituasjon, tilleggsData);
+
             const payload = {
-                tekst: 'Jobbsituasjonen er oppdatert til noe. Endringene gjelder fra en dato',
-                overskrift: 'Jobbsituasjonen min er endret',
-                venterPaaSvarFraNav: true,
+                tekst,
+                overskrift,
+                venterPaaSvarFraNav,
                 oppdatering: {
                     dinSituasjon: {
                         verdi: valgtSituasjon as any,
@@ -132,8 +152,10 @@ const OPPSIGELSE = (props: Steg2Props) => {
 
     const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
 
+    const { valgtSituasjon } = props;
+
     return (
-        <Steg2Wrapper valgtSituasjon={props.valgtSituasjon}>
+        <Steg2Wrapper valgtSituasjon={valgtSituasjon}>
             <>
                 <UNSAFE_DatePicker {...oppsigelseProps} strategy="fixed">
                     <UNSAFE_DatePicker.Input
@@ -174,7 +196,7 @@ const OPPSIGELSE = (props: Steg2Props) => {
                         variant={'primary'}
                         loading={loading}
                         disabled={loading}
-                        onClick={() => handleLagreEndringer({ oppsigelseDato, sisteArbeidsdagDato })}
+                        onClick={() => handleLagreEndringer({ oppsigelseDato, sisteArbeidsdagDato, valgtSituasjon })}
                     >
                         Lagre endring i situasjon
                     </Button>
