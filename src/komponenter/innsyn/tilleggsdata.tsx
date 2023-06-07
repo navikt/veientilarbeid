@@ -135,7 +135,7 @@ function TilleggsData(props: Props) {
         return (
             <>
                 <BodyShort>
-                    Siste arbeidsdag {sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'ikke oppgitt'}
+                    Siste arbeidsdag er {sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'ikke oppgitt'}
                 </BodyShort>
             </>
         );

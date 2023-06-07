@@ -16,6 +16,7 @@ import { BesvarelseRequest, useBesvarelse } from '../../contexts/besvarelse';
 import { loggAktivitet } from '../../metrics/metrics';
 import { PermittertSvar, permittertTekster, DinSituasjonSvar, dinSituasjonSvarTekster } from './permittert-modal';
 import { svarMap } from '../../models/sporsmal-og-svar';
+import prettyPrintDato from '../../utils/pretty-print-dato';
 
 import spacing from '../../spacing.module.css';
 import flex from '../../flex.module.css';
@@ -48,6 +49,54 @@ function genererDialogTekst(valgtSituasjon: SituasjonSvar, tilleggsData?: any) {
 
     if (tilleggsData) {
         tekstArray.push('Tilleggsopplysninger: \n\n');
+        const { oppsigelseDato, sisteArbeidsdagDato, permitteringsProsent, gjelderFraDato, forsteArbeidsdagDato } =
+            tilleggsData;
+        if (valgtSituasjon === PermittertSvar.OPPSIGELSE) {
+            tekstArray.push(
+                `Oppsigelsen ble mottatt ${oppsigelseDato ? prettyPrintDato(oppsigelseDato) : 'på ikke oppgitt dato'}`
+            );
+            tekstArray.push(
+                `Siste arbeidsdag med lønn ${sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'er ukjent'}`
+            );
+        } else if (valgtSituasjon === PermittertSvar.ENDRET_PERMITTERINGSPROSENT) {
+            tekstArray.push(
+                `Ny permitteringsprosent er ${
+                    permitteringsProsent ? `${permitteringsProsent} prosent` : 'er ikke oppgitt'
+                }`
+            );
+            tekstArray.push(
+                `Permitteringsprosenten gjelder fra ${
+                    gjelderFraDato ? prettyPrintDato(gjelderFraDato) : 'ikke oppgitt dato'
+                }`
+            );
+        } else if (valgtSituasjon === PermittertSvar.TILBAKE_TIL_JOBB) {
+            tekstArray.push(
+                `Du er tilbake på jobb fra ${
+                    forsteArbeidsdagDato ? prettyPrintDato(forsteArbeidsdagDato) : 'ikke oppgitt dato'
+                }`
+            );
+        } else if (valgtSituasjon === PermittertSvar.NY_JOBB) {
+            tekstArray.push(
+                `Første arbeidsdag i ny jobb er ${
+                    forsteArbeidsdagDato ? prettyPrintDato(forsteArbeidsdagDato) : 'ikke oppgitt'
+                }`
+            );
+        } else if (valgtSituasjon === PermittertSvar.MIDLERTIDIG_JOBB) {
+            tekstArray.push(
+                `Første arbeidsdag i ny jobb er ${
+                    forsteArbeidsdagDato ? prettyPrintDato(forsteArbeidsdagDato) : 'ikke oppgitt'
+                }`
+            );
+            tekstArray.push(
+                `Siste arbeidsdag med lønn ${
+                    sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'ikke oppgitt'
+                }`
+            );
+        } else if (valgtSituasjon === PermittertSvar.KONKURS) {
+            tekstArray.push(
+                `Siste arbeidsdag er ${sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'ikke oppgitt'}`
+            );
+        }
     }
 
     return {
