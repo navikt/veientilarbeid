@@ -152,10 +152,13 @@ const OPPSIGELSE = (props: Steg2Props) => {
 
     const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
 
-    const { valgtSituasjon } = props;
+    const tilleggsData = {
+        oppsigelseDato,
+        sisteArbeidsdagDato,
+    };
 
     return (
-        <Steg2Wrapper valgtSituasjon={valgtSituasjon}>
+        <Steg2Wrapper valgtSituasjon={props.valgtSituasjon}>
             <>
                 <UNSAFE_DatePicker {...oppsigelseProps} strategy="fixed">
                     <UNSAFE_DatePicker.Input
@@ -196,7 +199,7 @@ const OPPSIGELSE = (props: Steg2Props) => {
                         variant={'primary'}
                         loading={loading}
                         disabled={loading}
-                        onClick={() => handleLagreEndringer({ oppsigelseDato, sisteArbeidsdagDato, valgtSituasjon })}
+                        onClick={() => handleLagreEndringer(props.valgtSituasjon, tilleggsData)}
                     >
                         Lagre endring i situasjon
                     </Button>
@@ -206,7 +209,7 @@ const OPPSIGELSE = (props: Steg2Props) => {
     );
 };
 
-const ENDRET = (props: Steg2Props) => {
+const ENDRET_PERMITTERINGSPROSENT = (props: Steg2Props) => {
     const {
         datepickerProps: gjelderFraDatoProps,
         inputProps: gjelderFraDatoInput,
@@ -219,6 +222,7 @@ const ENDRET = (props: Steg2Props) => {
 
     const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
     const disabled = !permitteringsProsent || loading;
+
     const tilleggsData = {
         permitteringsProsent,
         gjelderFraDato,
@@ -255,7 +259,7 @@ const ENDRET = (props: Steg2Props) => {
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
                     <Button
                         variant={'primary'}
-                        onClick={() => handleLagreEndringer(tilleggsData)}
+                        onClick={() => handleLagreEndringer(props.valgtSituasjon, tilleggsData)}
                         loading={loading}
                         disabled={disabled}
                     >
@@ -277,9 +281,11 @@ const TILBAKE_TIL_JOBB = (props: Steg2Props) => {
         defaultSelected: new Date(),
     });
     const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
+
     const tilleggsData = {
         forsteArbeidsdagDato,
     };
+
     return (
         <Steg2Wrapper valgtSituasjon={props.valgtSituasjon}>
             <>
@@ -298,7 +304,7 @@ const TILBAKE_TIL_JOBB = (props: Steg2Props) => {
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
                     <Button
                         variant={'primary'}
-                        onClick={() => handleLagreEndringer(tilleggsData)}
+                        onClick={() => handleLagreEndringer(props.valgtSituasjon, tilleggsData)}
                         loading={loading}
                         disabled={loading}
                     >
@@ -330,6 +336,8 @@ const NY_JOBB = (props: Steg2Props) => {
     });
 
     const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
+    0;
+
     const tilleggsData = {
         forsteArbeidsdagDato,
         sisteArbeidsdagDato,
@@ -360,7 +368,7 @@ const NY_JOBB = (props: Steg2Props) => {
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
                     <Button
                         variant={'primary'}
-                        onClick={() => handleLagreEndringer(tilleggsData)}
+                        onClick={() => handleLagreEndringer(props.valgtSituasjon, tilleggsData)}
                         loading={loading}
                         disabled={loading}
                     >
@@ -383,6 +391,7 @@ const MIDLERTIDIG_JOBB = (props: Steg2Props) => {
     });
 
     const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
+
     const tilleggsData = {
         forsteArbeidsdagDato,
     };
@@ -405,7 +414,7 @@ const MIDLERTIDIG_JOBB = (props: Steg2Props) => {
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
                     <Button
                         variant={'primary'}
-                        onClick={() => handleLagreEndringer(tilleggsData)}
+                        onClick={() => handleLagreEndringer(props.valgtSituasjon, tilleggsData)}
                         loading={loading}
                         disabled={loading}
                     >
@@ -428,6 +437,7 @@ const KONKURS = (props: Steg2Props) => {
     });
 
     const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
+
     const tilleggsData = {
         sisteArbeidsdagDato,
     };
@@ -449,7 +459,7 @@ const KONKURS = (props: Steg2Props) => {
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
                     <Button
                         variant={'primary'}
-                        onClick={() => handleLagreEndringer(tilleggsData)}
+                        onClick={() => handleLagreEndringer(props.valgtSituasjon, tilleggsData)}
                         loading={loading}
                         disabled={loading}
                     >
@@ -489,7 +499,7 @@ const UAVKLART = (props: Steg2Props) => {
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
                     <Button
                         variant={'primary'}
-                        onClick={() => handleLagreEndringer()}
+                        onClick={() => handleLagreEndringer(valgtSituasjon)}
                         loading={loading}
                         disabled={loading}
                     >
@@ -530,7 +540,7 @@ const ANNET = (props: Steg2Props) => {
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
                     <Button
                         variant={'primary'}
-                        onClick={() => handleLagreEndringer()}
+                        onClick={() => handleLagreEndringer(valgtSituasjon)}
                         loading={loading}
                         disabled={loading}
                     >
@@ -555,7 +565,7 @@ const Steg2 = (props: Steg2Props) => {
     } else if (valgtSituasjon === PermittertSvar.NY_JOBB) {
         return <NY_JOBB {...props} />;
     } else if (valgtSituasjon === PermittertSvar.ENDRET_PERMITTERINGSPROSENT) {
-        return <ENDRET {...props} />;
+        return <ENDRET_PERMITTERINGSPROSENT {...props} />;
     } else if (valgtSituasjon === PermittertSvar.ANNET) {
         return <ANNET {...props} />;
     } else if (valgtSituasjon === PermittertSvar.UAVKLART) {
