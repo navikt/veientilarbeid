@@ -4,19 +4,18 @@ import { useState } from 'react';
 import { useUnderOppfolging } from '../../contexts/arbeidssoker';
 import { loggAktivitet } from '../../metrics/metrics';
 import { dialogLenke } from '../../innhold/lenker';
-import prettyPrintDato from '../../utils/pretty-print-dato';
 import TilleggsData from '../innsyn/tilleggsdata';
 import { svarMap } from '../../models/sporsmal-og-svar';
+import PermittertModal from './permittert-modal';
+import LesIgjenModal from './les-igjen-modal';
 
 import spacing from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
-import PermittertModal from './permittert-modal';
-import LesIgjenModal from './les-igjen-modal';
 
 const Sammendrag = (props: any) => {
     const [openEndreModal, setOpenEndreModal] = useState(false);
     const [openLesIgjenModal, setOpenLesIgjenModal] = useState(false);
-    const { startDato, manueltRegistrertAv, amplitudeData, besvarelse, erBesvarelseEndret } = props;
+    const { amplitudeData, besvarelse, erBesvarelseEndret } = props;
     const underoppfolging = useUnderOppfolging()?.underoppfolging;
     const kanViseKomponent = underoppfolging;
 
@@ -52,8 +51,6 @@ const Sammendrag = (props: any) => {
         <div className={`${flexStyles.flex} ${flexStyles.flexColumn}`}>
             <div className={spacing.blokkS}>
                 <BodyShort className={spacing.mb1}>
-                    {manueltRegistrertAv ? 'NAV' : 'Du'} registrerte deg som arbeidssøker {prettyPrintDato(startDato)}.
-                    <br />
                     Din jobbsituasjon: {besvarelse ? svarMap.dinSituasjon[besvarelse.dinSituasjon.verdi] : 'Ukjent'}
                     <br />
                     <TilleggsData
