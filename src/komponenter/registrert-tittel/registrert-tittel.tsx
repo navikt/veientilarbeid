@@ -11,6 +11,7 @@ import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 
 import flexStyles from '../../flex.module.css';
+import spacingStyles from '../../spacing.module.css';
 import { harPermittertSituasjon } from '../../lib/har-permittert-situasjon';
 import { useBesvarelse } from '../../contexts/besvarelse';
 
@@ -66,7 +67,7 @@ const RegistrertTittel = () => {
 
     return (
         <div ref={containerRef}>
-            <Panel>
+            <Panel className={spacingStyles.pbn}>
                 <div className={flexStyles.flex}>
                     <span
                         style={{

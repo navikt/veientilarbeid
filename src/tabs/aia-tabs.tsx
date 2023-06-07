@@ -45,7 +45,7 @@ const AiaTabs = () => {
     return (
         <div className={styles.limit}>
             <RegistrertTittel />
-            <Tabs defaultValue="situasjon" className={tabStyles.mb2}>
+            <Tabs defaultValue="situasjon" className={`${tabStyles.mb2} ${tabStyles.mt1}`}>
                 <Tabs.List>
                     <Tabs.Tab value="situasjon" label="Min situasjon" />
                     <Tabs.Tab value="hjelp" label="Hjelp og støtte" />

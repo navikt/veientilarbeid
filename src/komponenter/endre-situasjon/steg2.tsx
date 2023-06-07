@@ -385,7 +385,6 @@ const NY_JOBB = (props: Steg2Props) => {
     });
 
     const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
-    0;
 
     const tilleggsData = {
         forsteArbeidsdagDato,
