@@ -1,4 +1,4 @@
-import { BodyShort, Heading, Panel, Tabs } from '@navikt/ds-react';
+import { Tabs } from '@navikt/ds-react';
 
 import RegistrertTittel from '../komponenter/registrert-tittel/registrert-tittel';
 import MinSituasjon from '../komponenter/min-situasjon/min-situasjon';
@@ -8,15 +8,6 @@ import Meldekort from '../komponenter/meldekort/meldekort';
 
 import styles from '../innhold/innhold.module.css';
 import tabStyles from './tabs.module.css';
-
-const Varselboks = () => {
-    return (
-        <Panel border>
-            <Heading size="medium">Utkast/påbegynt søknad om dagpenger</Heading>
-            <BodyShort>Fullfør og send inn søknaden du startet på 21. april</BodyShort>
-        </Panel>
-    );
-};
 
 const MinSituasjonTab = () => {
     return (
@@ -52,11 +43,10 @@ const MeldekortTab = () => {
     );
 };
 
-const TabsDemo = () => {
+const AiaTabs = () => {
     return (
         <div className={styles.limit}>
             <RegistrertTittel />
-            <Varselboks />
             <Tabs defaultValue="situasjon" className={tabStyles.mb2}>
                 <Tabs.List>
                     <Tabs.Tab value="situasjon" label="Min situasjon" />
@@ -73,4 +63,4 @@ const TabsDemo = () => {
     );
 };
 
-export default TabsDemo;
+export default AiaTabs;
