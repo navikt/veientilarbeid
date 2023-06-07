@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Next } from '@navikt/ds-icons';
+import { ChevronRightIcon } from '@navikt/aksel-icons';
 import { Button } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
 
@@ -33,7 +33,7 @@ const MeldekortKnapp: React.FC<TemaLenkepanelProps> = (props) => {
             variant={props.variant}
             onClick={handleClickInnsending}
             className={`${spacingStyles.mb1} ${spacingStyles.mt1}`}
-            icon={<Next aria-hidden="true" />}
+            icon={<ChevronRightIcon aria-hidden="true" />}
             iconPosition="right"
         >
             {props.tittel}

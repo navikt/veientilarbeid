@@ -1,5 +1,5 @@
 import { BodyLong, Heading, Link, Panel } from '@navikt/ds-react';
-import { Task } from '@navikt/ds-icons';
+import { TasklistIcon } from '@navikt/aksel-icons';
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
 
@@ -42,7 +42,7 @@ const Aktivitetsplan = () => {
                     fontSize: 'var(--a-font-size-heading-medium)',
                 }}
             >
-                <Task />
+                <TasklistIcon />
             </span>
             <div>
                 <Heading size="medium">{tekst('aktivitetsplan.overskrift')}</Heading>

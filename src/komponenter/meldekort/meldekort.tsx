@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Detail, Panel, ReadMore } from '@navikt/ds-react';
-import { Notes } from '@navikt/ds-icons';
+import { ClipboardIcon } from '@navikt/aksel-icons';
 
 import { useSprakValg } from '../../contexts/sprak';
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
@@ -57,7 +57,7 @@ function Meldekort() {
                     fontSize: 'var(--a-font-size-heading-medium)',
                 }}
             >
-                <Notes aria-hidden="true" />
+                <ClipboardIcon aria-hidden="true" />
             </span>
             <div className={spacingStyles.fullWidth}>
                 {!brukTabsDemo && (

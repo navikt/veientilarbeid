@@ -1,4 +1,4 @@
-import { Dialog } from '@navikt/ds-icons';
+import { ChatIcon } from '@navikt/aksel-icons';
 import { BodyLong, Detail, Heading, Panel } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
@@ -46,7 +46,7 @@ function BehovsavklaringAvklartStandard() {
                     fontSize: 'var(--a-font-size-heading-medium)',
                 }}
             >
-                <Dialog aria-hidden="true" />
+                <ChatIcon aria-hidden="true" />
             </span>
             <div className={spacingStyles.fullWidth}>
                 {!brukTabsDemo && (

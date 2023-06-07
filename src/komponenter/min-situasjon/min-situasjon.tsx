@@ -16,6 +16,7 @@ import EndreSituasjon from '../endre-situasjon/min-situasjon';
 import { visBesvarelser } from '../../lib/vis-besvarelse';
 
 import spacingStyles from '../../spacing.module.css';
+import flexStyles from '../../flex.module.css';
 
 function MinSituasjon(props: any) {
     const registreringData = useBrukerregistreringData();
@@ -48,13 +49,24 @@ function MinSituasjon(props: any) {
     }
 
     return (
-        <Panel className={`${spacingStyles.ml2_39} ${spacingStyles.mtn1_5}`}>
-            <Sammendrag
-                startDato={opprettetDato || aktivPeriodeStart}
-                manueltRegistrertAv={manueltRegistrertAv}
-                amplitudeData={amplitudeData}
-            />
-            <InnsynLesMer />
+        <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
+            <span
+                style={{
+                    marginRight: '0.5em',
+                    position: 'relative',
+                    top: '6px',
+                    fontSize: 'var(--a-font-size-heading-medium)',
+                    width: '24px',
+                }}
+            ></span>
+            <div className={spacingStyles.fullWidth}>
+                <Sammendrag
+                    startDato={opprettetDato || aktivPeriodeStart}
+                    manueltRegistrertAv={manueltRegistrertAv}
+                    amplitudeData={amplitudeData}
+                />
+                <InnsynLesMer />
+            </div>
         </Panel>
     );
 }

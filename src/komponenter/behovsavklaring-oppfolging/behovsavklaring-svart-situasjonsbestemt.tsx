@@ -1,4 +1,4 @@
-import { Dialog } from '@navikt/ds-icons';
+import { ChatIcon } from '@navikt/aksel-icons';
 import { BodyLong, Heading } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
@@ -42,7 +42,7 @@ function EnigMedProfilering() {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
     return ListeElement(
-        <Dialog aria-hidden="true" />,
+        <ChatIcon aria-hidden="true" />,
         <div>
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - svart - enig - situasjonsbestemt" />
             <Heading className={spacingStyles.mb1} size="medium">
@@ -68,7 +68,7 @@ function UenigMedProfilering() {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
     return ListeElement(
-        <Dialog />,
+        <ChatIcon />,
         <div className={spacingStyles.fullWidth}>
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - svart - uenig - situasjonsbestemt" />
             <Heading className={spacingStyles.mb1} size="medium">

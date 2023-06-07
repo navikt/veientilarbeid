@@ -1,5 +1,5 @@
 import { BodyLong, Button, Heading, Panel } from '@navikt/ds-react';
-import { InformationColored } from '@navikt/ds-icons';
+import { InformationIcon } from '@navikt/aksel-icons';
 import { useState } from 'react';
 
 import { useFeatureToggleData, FeatureToggles } from '../../contexts/feature-toggles';
@@ -87,7 +87,7 @@ function AutomatiskReaktivert() {
                         fontSize: 'var(--a-font-size-heading-medium)',
                     }}
                 >
-                    <InformationColored aria-hidden="true" />
+                    <InformationIcon aria-hidden="true" />
                 </span>
                 <div>
                     <Heading size="medium">{tekst('tittel')}</Heading>

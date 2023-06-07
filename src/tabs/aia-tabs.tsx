@@ -12,9 +12,7 @@ import tabStyles from './tabs.module.css';
 const MinSituasjonTab = () => {
     return (
         <Tabs.Panel value="situasjon" className="h-24 w-full bg-gray-50 p-4">
-            <div className={`${tabStyles.mln2_4} ${tabStyles.mt1}`}>
-                <MinSituasjon />
-            </div>
+            <MinSituasjon />
         </Tabs.Panel>
     );
 };
