@@ -4,6 +4,7 @@ import { ReadMore } from '@navikt/ds-react';
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { useSprakValg } from '../../contexts/sprak';
 import { useBesvarelse } from '../../contexts/besvarelse';
+import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 
 import { loggAktivitet } from '../../metrics/metrics';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
@@ -22,7 +23,10 @@ const BesvarelseLesMer = () => {
     const [clickedInnsyn, setClickedInnsyn] = useState(false);
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
     const { besvarelse } = useBesvarelse();
+    const brukerregistreringData = useBrukerregistreringData();
     const { amplitudeData } = useAmplitudeData();
+
+    const { manueltRegistrertAv } = brukerregistreringData?.registrering || {};
 
     const handleClickOpenRegistreringsopplysninger = () => {
         if (!clickedInnsyn) {
@@ -33,7 +37,7 @@ const BesvarelseLesMer = () => {
 
     return (
         <ReadMore size="medium" header={tekst('header')} onClick={handleClickOpenRegistreringsopplysninger}>
-            <OpplysningerFraBesvarelsen besvarelseData={besvarelse} />
+            <OpplysningerFraBesvarelsen besvarelseData={besvarelse} manueltRegistrertAv={manueltRegistrertAv} />
         </ReadMore>
     );
 };

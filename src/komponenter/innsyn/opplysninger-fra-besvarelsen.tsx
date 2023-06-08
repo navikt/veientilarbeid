@@ -113,14 +113,15 @@ const repackBesvarelser = (besvarelseData: BesvarelseResponse) => {
 
 interface OpplysningerProps {
     besvarelseData: BesvarelseResponse;
+    manueltRegistrertAv: object | undefined | null;
 }
 
 const RegistreringsOpplysninger = (props: OpplysningerProps) => {
-    const { besvarelseData } = props;
+    const { besvarelseData, manueltRegistrertAv } = props;
     const registreringsTidspunkt = besvarelseData?.registreringsTidspunkt
         ? prettyPrintDato(besvarelseData.registreringsTidspunkt)
         : '';
-    const opprettetAv = besvarelseData?.opprettetAv && besvarelseData.opprettetAv === 'BRUKER' ? 'Du' : 'NAV';
+    const opprettetAv = manueltRegistrertAv ? 'NAV' : 'Du';
     const endretTidspunkt = besvarelseData?.endretTidspunkt ? prettyPrintDato(besvarelseData.endretTidspunkt) : '';
     const endretAv = besvarelseData?.endretAv && besvarelseData.endretAv === 'BRUKER' ? 'deg' : 'NAV';
     const erBesvarelseEndret = besvarelseData?.erBesvarelseEndret || false;
@@ -148,7 +149,7 @@ const RegistreringsOpplysninger = (props: OpplysningerProps) => {
 };
 
 const OpplysningerFraBesvarelsen = (props: OpplysningerProps) => {
-    const { besvarelseData } = props;
+    const { besvarelseData, manueltRegistrertAv } = props;
     const besvarelser = repackBesvarelser(besvarelseData);
     const dinSituasjon = besvarelser.find((svar) => svar.datapunkt === 'dinSituasjon');
     const filtrerteBesvarelser = besvarelser.filter((svar) => svar.datapunkt !== 'dinSituasjon');
@@ -162,7 +163,7 @@ const OpplysningerFraBesvarelsen = (props: OpplysningerProps) => {
                     Veilederen din bruker opplysningene for å vurdere hvor mye veiledning du trenger.
                 </BodyShort>
             </div>
-            <RegistreringsOpplysninger besvarelseData={besvarelseData} />
+            <RegistreringsOpplysninger besvarelseData={besvarelseData} manueltRegistrertAv={manueltRegistrertAv} />
             {dinSituasjon && <DinSituasjon {...dinSituasjon} />}
             <Oppfolging />
             {filtrerteBesvarelser.map((item, index) => (
