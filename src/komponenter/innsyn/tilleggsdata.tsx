@@ -1,9 +1,10 @@
-import { BodyShort, Checkbox, CheckboxGroup } from '@navikt/ds-react';
+import { BodyShort, Checkbox, CheckboxGroup, Loader } from '@navikt/ds-react';
 
 import { DinSituasjonTilleggsdata } from '../../contexts/besvarelse';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import { dokumentasjon_url } from '../../url';
 import { useProfil } from '../../contexts/profil';
+import { useState } from 'react';
 
 interface Props {
     verdi: string | null;
@@ -21,13 +22,21 @@ function TilleggsData(props: Props) {
     const OPPSIGELSE = (props: TilleggsDataProps) => {
         const { tilleggsData } = props;
         const { lagreProfil, profil } = useProfil();
+        const [visSpinner, settVisSpinner] = useState<boolean>(false);
+
         if (!tilleggsData) return null;
 
         const { oppsigelseDato, sisteArbeidsdagDato } = tilleggsData;
+        const harSendtInnDokumentasjon = Boolean(profil?.aiaHarSendtInnDokumentasjonForEndring);
 
         const onChange = async (val: any[]) => {
             if (val.length > 0) {
-                await lagreProfil({ aiaHarSendtInnDokumentasjonForEndring: new Date().toISOString() });
+                try {
+                    settVisSpinner(true);
+                    await lagreProfil({ aiaHarSendtInnDokumentasjonForEndring: new Date().toISOString() });
+                } finally {
+                    settVisSpinner(false);
+                }
             }
         };
         return (
@@ -38,7 +47,12 @@ function TilleggsData(props: Props) {
                 <BodyShort>
                     Siste arbeidsdag med lønn {sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'er ukjent'}
                 </BodyShort>
-                {visKnapper && (
+                {harSendtInnDokumentasjon && (
+                    <BodyShort>
+                        Sendte inn dokumentasjon {prettyPrintDato(profil!.aiaHarSendtInnDokumentasjonForEndring!)}
+                    </BodyShort>
+                )}
+                {visKnapper && !harSendtInnDokumentasjon && (
                     <p>
                         Du må dokumentere oppsigelsen.
                         <br />
@@ -47,12 +61,13 @@ function TilleggsData(props: Props) {
                         </a>
                         <br />
                         <CheckboxGroup legend={''} onChange={onChange}>
-                            <Checkbox
-                                checked={Boolean(profil?.aiaHarSendtInnDokumentasjonForEndring)}
-                                disabled={Boolean(profil?.aiaHarSendtInnDokumentasjonForEndring)}
-                            >
-                                Jeg har sendt inn dokumentasjon
-                            </Checkbox>
+                            {visSpinner ? (
+                                <Loader />
+                            ) : (
+                                <Checkbox checked={harSendtInnDokumentasjon} disabled={harSendtInnDokumentasjon}>
+                                    Jeg har sendt inn dokumentasjon
+                                </Checkbox>
+                            )}
                         </CheckboxGroup>
                     </p>
                 )}
