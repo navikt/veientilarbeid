@@ -49,7 +49,7 @@ function MinSituasjon(props: any) {
     }
 
     return (
-        <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
+        <Panel className={`${flexStyles.flex}`}>
             <span
                 style={{
                     marginRight: '0.5em',

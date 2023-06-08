@@ -30,7 +30,7 @@ function MinSituasjon(props: any) {
     if (!kanViseKomponent) return null;
 
     return (
-        <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
+        <Panel className={`${flexStyles.flex}`} style={{ paddingLeft: 0, paddingTop: 0 }}>
             <span
                 style={{
                     marginRight: '0.5em',
