@@ -45,10 +45,10 @@ function oppdaterBesvarelse(
         oppdatertBesvarelse.besvarelse.dinSituasjon.endretAv = endretAv || 'BRUKER';
     }
     if (endretTidspunkt) {
-        oppdatertBesvarelse.besvarelse.endretTidspunkt = endretTidspunkt;
+        oppdatertBesvarelse.endretTidspunkt = endretTidspunkt;
     }
     if (endretAv) {
-        oppdatertBesvarelse.besvarelse.endretAv = endretAv;
+        oppdatertBesvarelse.endretAv = endretAv;
     }
     return oppdatertBesvarelse;
 }

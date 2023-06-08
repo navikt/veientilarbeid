@@ -1,10 +1,11 @@
 import { BodyShort, Checkbox, CheckboxGroup, Loader } from '@navikt/ds-react';
 
-import { DinSituasjonTilleggsdata } from '../../contexts/besvarelse';
+import { BesvarelseResponse, DinSituasjonTilleggsdata, useBesvarelse } from '../../contexts/besvarelse';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import { dokumentasjon_url } from '../../url';
 import { useProfil } from '../../contexts/profil';
 import { useState } from 'react';
+import { Profil } from '../../profil';
 
 interface Props {
     verdi: string | null;
@@ -16,18 +17,34 @@ interface TilleggsDataProps {
     tilleggsData: DinSituasjonTilleggsdata | null;
 }
 
+const harSendtInnNyDokumentasjon = (profil: Profil | null, besvarelse: BesvarelseResponse) => {
+    const harSendtInnDokumentasjon = Boolean(profil?.aiaHarSendtInnDokumentasjonForEndring);
+    if (!harSendtInnDokumentasjon) {
+        return false;
+    }
+
+    if (besvarelse?.erBesvarelseEndret) {
+        const endretDato = new Date(besvarelse.endretTidspunkt!);
+        const innsendtDato = new Date(profil?.aiaHarSendtInnDokumentasjonForEndring!);
+        return innsendtDato > endretDato;
+    }
+
+    return harSendtInnDokumentasjon;
+};
 function TilleggsData(props: Props) {
     const { verdi, tilleggsData, visKnapper } = props;
 
     const OPPSIGELSE = (props: TilleggsDataProps) => {
         const { tilleggsData } = props;
         const { lagreProfil, profil } = useProfil();
+        const { besvarelse } = useBesvarelse();
+
         const [visSpinner, settVisSpinner] = useState<boolean>(false);
 
         if (!tilleggsData) return null;
 
         const { oppsigelseDato, sisteArbeidsdagDato } = tilleggsData;
-        const harSendtInnDokumentasjon = Boolean(profil?.aiaHarSendtInnDokumentasjonForEndring);
+        const harSendtInnDokumentasjon = harSendtInnNyDokumentasjon(profil, besvarelse);
 
         const onChange = async (val: any[]) => {
             if (val.length > 0) {
