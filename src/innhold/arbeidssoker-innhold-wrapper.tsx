@@ -15,7 +15,9 @@ function ArbeidssokerInnholdWrapper() {
         <ArbeidssokerDataProvider>
             <MeldepliktProvider>
                 <ReaktiveringProvider>
-                    <BesvarelseProvider>{brukTabs ? <AiaTabs /> : <ArbeidssokerInnhold />}</BesvarelseProvider>
+                    <BesvarelseProvider>
+                        <div id={'aia-wrapper'}>{brukTabs ? <AiaTabs /> : <ArbeidssokerInnhold />}</div>
+                    </BesvarelseProvider>
                 </ReaktiveringProvider>
             </MeldepliktProvider>
         </ArbeidssokerDataProvider>

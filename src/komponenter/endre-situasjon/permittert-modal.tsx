@@ -26,6 +26,10 @@ const PermittertModal = (props: PermittertModalProps) => {
         settAktivSide(1);
     }, [openModal]);
 
+    useEffect(() => {
+        Modal.setAppElement('#aia-wrapper');
+    }, []);
+
     const Innhold = () => {
         if (aktivSide === 1) {
             return (
