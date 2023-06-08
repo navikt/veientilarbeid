@@ -1,8 +1,9 @@
-import { BodyShort } from '@navikt/ds-react';
+import { BodyShort, Checkbox, CheckboxGroup } from '@navikt/ds-react';
 
 import { DinSituasjonTilleggsdata } from '../../contexts/besvarelse';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import { dokumentasjon_url } from '../../url';
+import { useProfil } from '../../contexts/profil';
 
 interface Props {
     verdi: string | null;
@@ -19,11 +20,16 @@ function TilleggsData(props: Props) {
 
     const OPPSIGELSE = (props: TilleggsDataProps) => {
         const { tilleggsData } = props;
-
+        const { lagreProfil, profil } = useProfil();
         if (!tilleggsData) return null;
 
         const { oppsigelseDato, sisteArbeidsdagDato } = tilleggsData;
 
+        const onChange = async (val: any[]) => {
+            if (val.length > 0) {
+                await lagreProfil({ aiaHarSendtInnDokumentasjonForEndring: new Date().toISOString() });
+            }
+        };
         return (
             <>
                 <BodyShort>
@@ -39,6 +45,15 @@ function TilleggsData(props: Props) {
                         <a className={'navds-button navds-button--primary'} href={dokumentasjon_url}>
                             Gå til opplasting
                         </a>
+                        <br />
+                        <CheckboxGroup legend={''} onChange={onChange}>
+                            <Checkbox
+                                checked={Boolean(profil?.aiaHarSendtInnDokumentasjonForEndring)}
+                                disabled={Boolean(profil?.aiaHarSendtInnDokumentasjonForEndring)}
+                            >
+                                Jeg har sendt inn dokumentasjon
+                            </Checkbox>
+                        </CheckboxGroup>
                     </p>
                 )}
             </>

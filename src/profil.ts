@@ -7,6 +7,7 @@ export type Profil = {
     aiaAvslaattEgenvurderingUke12?: string;
     aiaValgtPengestotteVisning?: PengestotteVisning;
     aiaReaktiveringVisning?: JaEllerNei;
+    aiaHarSendtInnDokumentasjonForEndring?: string | null;
 };
 
 type PengestotteVisning = 'dagpenger' | 'ytelser';
