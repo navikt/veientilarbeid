@@ -8,6 +8,7 @@ export const lesOmOkonomi = (stonad: string, servicegruppe: string | null) => {
 
 export type AktivitetsMetrikkData = {
     aktivitet: string;
+    komponent?: string;
 };
 
 export type AmplitudeStandardAktivitetsData = AktivitetsMetrikkData & AmplitudeData;
