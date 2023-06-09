@@ -11,6 +11,8 @@ import { loggAktivitet } from '../metrics/metrics';
 
 import styles from '../innhold/innhold.module.css';
 import tabStyles from './tabs.module.css';
+import { useEffect, useState } from 'react';
+import { hentQueryParam, settQueryParam } from '../utils/query-param-utils';
 
 const MinSituasjonTab = () => {
     return (
@@ -43,31 +45,46 @@ const MeldekortTab = () => {
         </Tabs.Panel>
     );
 };
-
+const QUERY_PARAM = 'aia.aktivTab';
+enum TabValue {
+    MIN_SITUASJON = 'situasjon',
+    HJELP_OG_STOTTE = 'hjelp',
+    PENGESTOTTE = 'ytelse',
+    MELDEKORT = 'meldekort',
+}
 const AiaTabs = () => {
     const { amplitudeData } = useAmplitudeData();
 
-    const handleTabSkifte = (tab: string) => {
+    const loggTabSkifte = (tab: string) => {
         loggAktivitet({ aktivitet: `Bytter til ${tab}`, komponent: 'tabs', ...amplitudeData });
     };
+
+    const [aktivTab, settAktivTab] = useState<TabValue>(TabValue.MIN_SITUASJON);
+    const onChangeTab = (tab: string) => {
+        settQueryParam(QUERY_PARAM, tab);
+        settAktivTab(tab as TabValue);
+    };
+
+    useEffect(() => {
+        const tabFraQuery = hentQueryParam(QUERY_PARAM);
+        if (
+            [TabValue.HJELP_OG_STOTTE, TabValue.MIN_SITUASJON, TabValue.MELDEKORT, TabValue.PENGESTOTTE].includes(
+                tabFraQuery as any
+            )
+        ) {
+            settAktivTab(tabFraQuery as TabValue);
+        }
+    }, []);
 
     return (
         <div className={styles.limit}>
             <RegistrertTittel />
-            <Tabs defaultValue="situasjon" className={`${tabStyles.mb2} ${tabStyles.mt1}`}>
+            <Tabs value={aktivTab} onChange={onChangeTab} className={`${tabStyles.mb2} ${tabStyles.mt1}`}>
                 <Tabs.List>
-                    <Tabs.Tab
-                        value="situasjon"
-                        label="Min situasjon"
-                        onClick={() => handleTabSkifte('Min situasjon')}
-                    />
-                    <Tabs.Tab
-                        value="hjelp"
-                        label="Hjelp og støtte"
-                        onClick={() => handleTabSkifte('Hjelp og støtte')}
-                    />
-                    <Tabs.Tab value="ytelse" label="Pengestøtte" onClick={() => handleTabSkifte('Pengestøtte')} />
-                    <Tabs.Tab value="meldekort" label="Meldekort" onClick={() => handleTabSkifte('Meldekort')} />
+                    <Tabs.Tab value="situasjon" label="Min situasjon" onClick={() => loggTabSkifte('Min situasjon')} />
+                    <Tabs.Tab value="hjelp" label="Hjelp og støtte" onClick={() => loggTabSkifte('Hjelp og støtte')} />
+                    <Tabs.Tab value="ytelse" label="Pengestøtte" onClick={() => loggTabSkifte('Pengestøtte')} />
+                    <Tabs.Tab value="meldekort" label="Meldekort" onClick={() => loggTabSkifte('Meldekort')} />
                 </Tabs.List>
                 <MinSituasjonTab />
                 <HjelpOgStotteTab />
