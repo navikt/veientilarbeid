@@ -85,7 +85,22 @@ const MIDLERTIDIG_JOBB = (props: VeiledningsProps) => {
 const ENDRET_PERMITTERINGSPROSENT = (props: VeiledningsProps) => {
     return <>Du må fortsette å sende meldekort hver 14. dag.</>;
 };
+const SAGT_OPP = (props: VeiledningsProps) => {
+    const { tilleggsData } = props;
 
+    if (!tilleggsData) return null;
+
+    const { oppsigelseDato } = tilleggsData;
+
+    return (
+        <>
+            Frem til {prettyPrintDato(oppsigelseDato!)} kan du få utbetalt dagpenger som permittert.
+            <br />
+            Det er derfor viktig at du fortsetter å sende inn meldekortene frem til og med perioden som dekker{' '}
+            {prettyPrintDato(oppsigelseDato!)}.
+        </>
+    );
+};
 function MeldekortInfo(props: VeiledningsProps) {
     const { valgtSituasjon } = props;
 
@@ -101,34 +116,9 @@ function MeldekortInfo(props: VeiledningsProps) {
         return <NY_JOBB {...props} />;
     } else if (valgtSituasjon === PermittertSvar.ENDRET_PERMITTERINGSPROSENT) {
         return <ENDRET_PERMITTERINGSPROSENT {...props} />;
+    } else if (valgtSituasjon === PermittertSvar.SAGT_OPP) {
+        return <SAGT_OPP {...props} />;
     }
-    // else if (valgtSituasjon === PermittertSvar.ANNET) {
-    //     return <ANNET {...props} />;
-    // } else if (valgtSituasjon === PermittertSvar.UAVKLART) {
-    //     return <UAVKLART {...props} />;
-    // } else if (valgtSituasjon === DinSituasjonSvar.MISTET_JOBBEN) {
-    //     return <MISTET_JOBBEN {...props} />;
-    // } else if (valgtSituasjon === DinSituasjonSvar.HAR_SAGT_OPP) {
-    //     return <HAR_SAGT_OPP {...props} />;
-    // } else if (valgtSituasjon === DinSituasjonSvar.DELTIDSJOBB_VIL_MER) {
-    //     return <DELTIDSJOBB_VIL_MER {...props} />;
-    // } else if (valgtSituasjon === DinSituasjonSvar.ALDRI_HATT_JOBB) {
-    //     return <ALDRI_HATT_JOBB {...props} />;
-    // } else if (valgtSituasjon === DinSituasjonSvar.VIL_BYTTE_JOBB) {
-    //     return <VIL_BYTTE_JOBB {...props} />;
-    // } else if (valgtSituasjon === DinSituasjonSvar.JOBB_OVER_2_AAR) {
-    //     return <JOBB_OVER_2_AAR {...props} />;
-    // } else if (valgtSituasjon === DinSituasjonSvar.ER_PERMITTERT) {
-    //     return <ER_PERMITTERT {...props} />;
-    // } else if (valgtSituasjon === DinSituasjonSvar.USIKKER_JOBBSITUASJON) {
-    //     return <USIKKER_JOBBSITUASJON {...props} />;
-    // } else if (valgtSituasjon === DinSituasjonSvar.AKKURAT_FULLFORT_UTDANNING) {
-    //     return <AKKURAT_FULLFORT_UTDANNING {...props} />;
-    // } else if (valgtSituasjon === DinSituasjonSvar.VIL_FORTSETTE_I_JOBB) {
-    //     return <VIL_FORTSETTE_I_JOBB {...props} />;
-    // } else {
-    //     return <ANNET {...props} />;
-    // }
     return null;
 }
 export default MeldekortInfo;

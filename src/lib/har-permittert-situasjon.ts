@@ -7,7 +7,7 @@ const permitterteTilstander = [
     PermittertSvar.MIDLERTIDIG_JOBB,
     PermittertSvar.TILBAKE_TIL_JOBB,
     PermittertSvar.ANNET,
-    PermittertSvar.UAVKLART,
+    PermittertSvar.SAGT_OPP,
     DinSituasjonSvar.ER_PERMITTERT,
 ];
 export function harPermittertSituasjon(

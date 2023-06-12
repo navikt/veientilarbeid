@@ -6,6 +6,7 @@ import { dokumentasjon_url } from '../../url';
 import { useProfil } from '../../contexts/profil';
 import { useState } from 'react';
 import { Profil } from '../../profil';
+import { PermittertSvar } from '../../models/endring-av-situasjon';
 
 interface Props {
     verdi: string | null;
@@ -188,12 +189,23 @@ function TilleggsData(props: Props) {
         );
     };
 
-    const UAVKLART = (props: TilleggsDataProps) => {
+    const SAGT_OPP = (props: TilleggsDataProps) => {
         const { tilleggsData } = props;
 
         if (!tilleggsData) return null;
 
-        return <BodyShort>{JSON.stringify(tilleggsData)}</BodyShort>;
+        const { oppsigelseDato, sisteArbeidsdagDato } = tilleggsData;
+
+        return (
+            <>
+                <BodyShort>
+                    Du sa opp {oppsigelseDato ? prettyPrintDato(oppsigelseDato) : 'på ikke oppgitt dato'}
+                </BodyShort>
+                <BodyShort>
+                    Siste arbeidsdag med lønn {sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'er ukjent'}
+                </BodyShort>
+            </>
+        );
     };
 
     const ANNET = (props: TilleggsDataProps) => {
@@ -206,21 +218,21 @@ function TilleggsData(props: Props) {
 
     if (!tilleggsData || !verdi) return null;
 
-    if (verdi === 'OPPSIGELSE') {
+    if (verdi === PermittertSvar.OPPSIGELSE) {
         return <OPPSIGELSE tilleggsData={tilleggsData} />;
-    } else if (verdi === 'ENDRET_PERMITTERINGSPROSENT') {
+    } else if (verdi === PermittertSvar.ENDRET_PERMITTERINGSPROSENT) {
         return <ENDRET_PERMITTERINGSPROSENT tilleggsData={tilleggsData} />;
-    } else if (verdi === 'TILBAKE_TIL_JOBB') {
+    } else if (verdi === PermittertSvar.TILBAKE_TIL_JOBB) {
         return <TILBAKE_TIL_JOBB tilleggsData={tilleggsData} />;
-    } else if (verdi === 'NY_JOBB') {
+    } else if (verdi === PermittertSvar.NY_JOBB) {
         return <NY_JOBB tilleggsData={tilleggsData} />;
-    } else if (verdi === 'MIDLERTIDIG_JOBB') {
+    } else if (verdi === PermittertSvar.MIDLERTIDIG_JOBB) {
         return <MIDLERTIDIG_JOBB tilleggsData={tilleggsData} />;
-    } else if (verdi === 'KONKURS') {
+    } else if (verdi === PermittertSvar.KONKURS) {
         return <KONKURS tilleggsData={tilleggsData} />;
-    } else if (verdi === 'UAVKLART') {
-        return <UAVKLART tilleggsData={tilleggsData} />;
-    } else if (verdi === 'ANNET') {
+    } else if (verdi === PermittertSvar.SAGT_OPP) {
+        return <SAGT_OPP tilleggsData={tilleggsData} />;
+    } else if (verdi === PermittertSvar.ANNET) {
         return <ANNET tilleggsData={tilleggsData} />;
     }
 

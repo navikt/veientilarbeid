@@ -521,27 +521,58 @@ const KONKURS = (props: Steg2Props) => {
     );
 };
 
-const UAVKLART = (props: Steg2Props) => {
-    const { valgtSituasjon, settValgtSituasjon } = props;
+const SAGT_OPP = (props: Steg2Props) => {
+    const {
+        datepickerProps: oppsigelseProps,
+        inputProps: oppsigelseInput,
+        selectedDay: oppsigelseDato,
+    } = useDatepicker({
+        fromDate: new Date('Jan 01 2022'),
+        defaultSelected: new Date(),
+    });
+
+    const {
+        datepickerProps: sisteArbeidsdagProps,
+        inputProps: sisteArbeidsdagInput,
+        selectedDay: sisteArbeidsdagDato,
+    } = useDatepicker({
+        fromDate: new Date('Jan 01 2022'),
+        defaultSelected: new Date(),
+    });
+
     const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
+
+    const tilleggsData = {
+        oppsigelseDato,
+        sisteArbeidsdagDato,
+    };
+
     return (
         <Steg2Wrapper valgtSituasjon={props.valgtSituasjon}>
             <>
-                <Select
-                    className={spacing.mb1}
-                    label={'Velg den nye situasjonen som passer deg best'}
-                    onChange={(e) => settValgtSituasjon(e.target.value as SituasjonSvar)}
-                    value={valgtSituasjon}
-                >
-                    {Object.keys(dinSituasjonSvarTekster).map((situasjon) => (
-                        <option key={situasjon} value={situasjon}>
-                            {dinSituasjonSvarTekster[situasjon]}
-                        </option>
-                    ))}
-                    <option key={PermittertSvar.ANNET} value={PermittertSvar.ANNET}>
-                        {permittertTekster[PermittertSvar.ANNET]}
-                    </option>
-                </Select>
+                <DatePicker {...oppsigelseProps} strategy="fixed">
+                    <DatePicker.Input
+                        {...oppsigelseInput}
+                        className={spacing.mb1}
+                        label={<div className={flex.flex}>Når sa du opp?</div>}
+                    />
+                </DatePicker>
+
+                <DatePicker {...sisteArbeidsdagProps} strategy="fixed">
+                    <DatePicker.Input
+                        {...sisteArbeidsdagInput}
+                        className={spacing.mb1}
+                        label={
+                            <div className={flex.flex}>
+                                Når er din siste arbeidsdag der arbeidsgiver betaler lønn?
+                                <HelpText className={spacing.ml05}>
+                                    Når oppsigelsestiden er over og du ikke lenger mottar lønn fra arbeidsgiver kan du
+                                    på nytt søke dagpenger dersom du ikke har fått nytt arbeid.
+                                </HelpText>
+                            </div>
+                        }
+                    />
+                </DatePicker>
                 <BodyShort className={spacing.mb1}>
                     NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
                 </BodyShort>
@@ -549,9 +580,9 @@ const UAVKLART = (props: Steg2Props) => {
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
                     <Button
                         variant={'primary'}
-                        onClick={() => handleLagreEndringer(valgtSituasjon)}
                         loading={loading}
                         disabled={loading}
+                        onClick={() => handleLagreEndringer(props.valgtSituasjon, tilleggsData)}
                     >
                         Lagre endring i situasjon
                     </Button>
@@ -560,7 +591,6 @@ const UAVKLART = (props: Steg2Props) => {
         </Steg2Wrapper>
     );
 };
-
 const ANNET = (props: Steg2Props) => {
     const { valgtSituasjon, settValgtSituasjon } = props;
     const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
@@ -618,8 +648,8 @@ const Steg2 = (props: Steg2Props) => {
         return <ENDRET_PERMITTERINGSPROSENT {...props} />;
     } else if (valgtSituasjon === PermittertSvar.ANNET) {
         return <ANNET {...props} />;
-    } else if (valgtSituasjon === PermittertSvar.UAVKLART) {
-        return <UAVKLART {...props} />;
+    } else if (valgtSituasjon === PermittertSvar.SAGT_OPP) {
+        return <SAGT_OPP {...props} />;
     } else {
         return <ANNET {...props} />;
     }

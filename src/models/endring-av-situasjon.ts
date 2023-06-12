@@ -7,23 +7,9 @@ export enum PermittertSvar {
     NY_JOBB = 'NY_JOBB',
     MIDLERTIDIG_JOBB = 'MIDLERTIDIG_JOBB',
     KONKURS = 'KONKURS',
-    UAVKLART = 'UAVKLART',
+    SAGT_OPP = 'SAGT_OPP',
     ANNET = 'ANNET',
 }
-
-// export enum DinSituasjonSvar {
-//     MISTET_JOBBEN = 'MISTET_JOBBEN',
-//     HAR_SAGT_OPP = 'HAR_SAGT_OPP',
-//     DELTIDSJOBB_VIL_MER = 'DELTIDSJOBB_VIL_MER',
-//     ALDRI_HATT_JOBB = 'ALDRI_HATT_JOBB',
-//     VIL_BYTTE_JOBB = 'VIL_BYTTE_JOBB',
-//     JOBB_OVER_2_AAR = 'JOBB_OVER_2_AAR',
-//     ER_PERMITTERT = 'ER_PERMITTERT',
-//     USIKKER_JOBBSITUASJON = 'USIKKER_JOBBSITUASJON',
-//     AKKURAT_FULLFORT_UTDANNING = 'AKKURAT_FULLFORT_UTDANNING',
-//     VIL_FORTSETTE_I_JOBB = 'VIL_FORTSETTE_I_JOBB',
-// }
-
 export const dinSituasjonSvarTekster = {
     [DinSituasjonSvar.MISTET_JOBBEN]: 'Har mistet eller kommer til å miste jobben',
     [DinSituasjonSvar.HAR_SAGT_OPP]: 'Har sagt opp eller kommer til å si opp',
@@ -38,12 +24,12 @@ export const dinSituasjonSvarTekster = {
 };
 
 export const permittertTekster = {
-    [PermittertSvar.OPPSIGELSE]: 'Jeg har fått oppsigelse',
-    [PermittertSvar.ENDRET_PERMITTERINGSPROSENT]: 'Permitteringsprosenten har endret seg',
-    [PermittertSvar.TILBAKE_TIL_JOBB]: 'Skal tilbake til jobben',
-    [PermittertSvar.NY_JOBB]: 'Jeg har fått meg ny jobb',
-    [PermittertSvar.MIDLERTIDIG_JOBB]: 'Jeg har fått midlertidig jobb',
-    [PermittertSvar.KONKURS]: 'Bedriften er konkurs',
-    [PermittertSvar.UAVKLART]: 'Arbeidssituasjonen min er uavklart',
+    [PermittertSvar.TILBAKE_TIL_JOBB]: 'Jeg skal begynne å jobbe igjen hos min arbeidsgiver',
+    [PermittertSvar.OPPSIGELSE]: 'Jeg har blitt oppsagt',
+    [PermittertSvar.ENDRET_PERMITTERINGSPROSENT]: ' Arbeidsgiver har endret permitteringen min',
+    [PermittertSvar.NY_JOBB]: 'Jeg skal begynne å jobbe hos en ny arbeidsgiver ',
+    [PermittertSvar.MIDLERTIDIG_JOBB]: 'Jeg har fått midlertidig jobb hos en ny arbeidsgiver',
+    [PermittertSvar.KONKURS]: 'Min arbeidsgiver er konkurs ',
+    [PermittertSvar.SAGT_OPP]: 'Jeg har sagt opp jobben min',
     [PermittertSvar.ANNET]: 'Annet',
 };

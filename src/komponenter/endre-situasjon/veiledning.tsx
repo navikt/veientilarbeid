@@ -168,10 +168,29 @@ const KONKURS = (props: VeiledningsProps) => {
     );
 };
 
-const UAVKLART = (props: VeiledningsProps) => {
+const SAGT_OPP = (props: VeiledningsProps) => {
+    const { tilleggsData } = props;
+
+    if (!tilleggsData) return null;
+
     return (
         <>
-            <BodyShort className={spacing.mb1}>Veiledning for {props.valgtSituasjon}</BodyShort>
+            <h2>Hva betyr dette for meg?</h2>
+            <p>
+                <h4 className={spacing.mbn}>Meldekort</h4>
+                <MeldekortInfo {...props} />
+            </p>
+            <p>
+                <h4 className={spacing.mbn}>Dagpenger</h4>
+                <DagpengerInfo {...props} />
+            </p>
+            <p>
+                <h4 className={spacing.mbn}>Arbeidssøkerregistrering</h4>
+                Om du ikke lenger vil være registrert som arbeidssøker hos NAV, kan du svare nei på det siste spørsmålet
+                i meldekortet.
+                <br />
+                Før du søker dagpenger på nytt, må du huske å registrere deg igjen.
+            </p>
         </>
     );
 };
@@ -280,8 +299,8 @@ const Veiledning = (props: VeiledningsProps) => {
         return <ENDRET_PERMITTERINGSPROSENT {...props} />;
     } else if (valgtSituasjon === PermittertSvar.ANNET) {
         return <ANNET {...props} />;
-    } else if (valgtSituasjon === PermittertSvar.UAVKLART) {
-        return <UAVKLART {...props} />;
+    } else if (valgtSituasjon === PermittertSvar.SAGT_OPP) {
+        return <SAGT_OPP {...props} />;
     } else if (valgtSituasjon === DinSituasjonSvar.MISTET_JOBBEN) {
         return <MISTET_JOBBEN {...props} />;
     } else if (valgtSituasjon === DinSituasjonSvar.HAR_SAGT_OPP) {
