@@ -23,7 +23,7 @@ describe('har-permittert-situasjon', () => {
             PermittertSvar.MIDLERTIDIG_JOBB,
             PermittertSvar.TILBAKE_TIL_JOBB,
             PermittertSvar.ANNET,
-            PermittertSvar.UAVKLART,
+            PermittertSvar.SAGT_OPP,
         ].forEach((svar) => {
             expect(
                 harPermittertSituasjon(undefined, {

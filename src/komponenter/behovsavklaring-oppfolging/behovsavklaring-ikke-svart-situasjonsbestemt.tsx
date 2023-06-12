@@ -1,5 +1,5 @@
 import { ChatIcon } from '@navikt/aksel-icons';
-import { BodyLong, BodyShort, Button, Heading } from '@navikt/ds-react';
+import { BodyLong, BodyShort, Button, Detail, Heading, Panel } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
 import { useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
@@ -11,11 +11,12 @@ import ReadMoreVurdering from './readmore-vurdering';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import { ForeslattInnsatsgruppe } from '../../contexts/brukerregistrering';
-import { ListeElement } from '../situasjonsbestemt/situasjonsbestemt';
 
 import spacingStyles from '../../spacing.module.css';
 import { useState } from 'react';
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
+import flexStyles from '../../flex.module.css';
+import { useFeatureToggleData } from '../../contexts/feature-toggles';
 
 const TEKSTER = {
     nb: {
@@ -43,6 +44,8 @@ function IkkeSvartPaaBehovsavklaringSituasjonsbestemt() {
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const [pendingRequest, settPendingRequest] = useState<ForeslattInnsatsgruppe | null>(null);
+    const featureToggleData = useFeatureToggleData();
+    const brukTabsDemo = featureToggleData['aia.bruk-tabs-demo'];
 
     async function onLagreBehovForVeiledning(behov: ForeslattInnsatsgruppe) {
         settPendingRequest(behov);
@@ -63,38 +66,54 @@ function IkkeSvartPaaBehovsavklaringSituasjonsbestemt() {
         }
     }
 
-    return ListeElement(
-        <ChatIcon aria-hidden="true" />,
-        <div className={spacingStyles.fullWidth}>
-            <ErRendret loggTekst="Rendrer behovsavklaringkomponent - ikke svart - situasjonsbestemt" />
-            <Heading className={spacingStyles.mb1} size="medium">
-                {tekst('heading')}
-            </Heading>
-            <BodyLong className={`${spacingStyles.mb1}`}>{tekst('beskrivelse')}</BodyLong>
-            <BodyShort className={`${spacingStyles.mb1}`}>{tekst('hvaTenkerDu')}</BodyShort>
-            <BodyShort className={`${spacingStyles.mb1}`}>{tekst('klareDegSelv')}</BodyShort>
-            <Button
-                onClick={() => onLagreBehovForVeiledning(ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS)}
-                disabled={pendingRequest !== null}
-                loading={pendingRequest === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS}
+    return (
+        <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
+            <span
+                style={{
+                    marginRight: '0.5em',
+                    position: 'relative',
+                    top: '6px',
+                    fontSize: 'var(--a-font-size-heading-medium)',
+                }}
             >
-                Ja, jeg ønsker hjelp
-            </Button>
-            <div className={spacingStyles.mb1}>
+                <ChatIcon aria-hidden="true" />
+            </span>
+            <div className={spacingStyles.fullWidth}>
+                <ErRendret loggTekst="Rendrer behovsavklaringkomponent - ikke svart - situasjonsbestemt" />{' '}
+                {!brukTabsDemo && (
+                    <Detail uppercase style={{ marginTop: '-1rem' }}>
+                        {tekst('overskrift')}
+                    </Detail>
+                )}
+                <Heading className={spacingStyles.mb1} size="medium">
+                    {tekst('heading')}
+                </Heading>
+                <BodyLong className={`${spacingStyles.mb1}`}>{tekst('beskrivelse')}</BodyLong>
+                <BodyShort className={`${spacingStyles.mb1}`}>{tekst('hvaTenkerDu')}</BodyShort>
+                <BodyShort className={`${spacingStyles.mb1}`}>{tekst('klareDegSelv')}</BodyShort>
                 <Button
-                    onClick={() => onLagreBehovForVeiledning(ForeslattInnsatsgruppe.STANDARD_INNSATS)}
+                    onClick={() => onLagreBehovForVeiledning(ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS)}
                     disabled={pendingRequest !== null}
-                    loading={pendingRequest === ForeslattInnsatsgruppe.STANDARD_INNSATS}
-                    variant="secondary"
-                    className={`${spacingStyles.mt1}`}
+                    loading={pendingRequest === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS}
                 >
-                    Nei, jeg vil gjerne klare meg selv
+                    Ja, jeg ønsker hjelp
                 </Button>
+                <div className={spacingStyles.mb1}>
+                    <Button
+                        onClick={() => onLagreBehovForVeiledning(ForeslattInnsatsgruppe.STANDARD_INNSATS)}
+                        disabled={pendingRequest !== null}
+                        loading={pendingRequest === ForeslattInnsatsgruppe.STANDARD_INNSATS}
+                        variant="secondary"
+                        className={`${spacingStyles.mt1}`}
+                    >
+                        Nei, jeg vil gjerne klare meg selv
+                    </Button>
+                </div>
+                <ReadMoreVeileder />
+                <ReadMoreVurdering />
+                <InViewport loggTekst="Viser behovsavklaringkomponent - ikke svart - situasjonsbestemt i viewport" />
             </div>
-            <ReadMoreVeileder />
-            <ReadMoreVurdering />
-            <InViewport loggTekst="Viser behovsavklaringkomponent - ikke svart - situasjonsbestemt i viewport" />
-        </div>
+        </Panel>
     );
 }
 
