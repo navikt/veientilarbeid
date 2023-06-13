@@ -98,6 +98,13 @@ function genererDialogTekst(valgtSituasjon: SituasjonSvar, tilleggsData?: any) {
             tekstArray.push(
                 `Siste arbeidsdag er ${sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'ikke oppgitt'}`
             );
+        } else if (valgtSituasjon === PermittertSvar.SAGT_OPP) {
+            tekstArray.push(`Jeg sa opp ${oppsigelseDato ? prettyPrintDato(oppsigelseDato) : 'ikke oppgitt'}`);
+            tekstArray.push(
+                `Siste arbeidsdag med lønn ${
+                    sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'ikke oppgitt'
+                }`
+            );
         }
     }
 
