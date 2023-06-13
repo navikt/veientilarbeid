@@ -49,6 +49,7 @@ const PermittertModal = (props: PermittertModalProps) => {
                     amplitudeData={amplitudeData}
                     settValgtSituasjon={settValgtSituasjon}
                     settTilleggsData={settTilleggsData}
+                    opprinneligSituasjon={opprinneligSituasjon}
                     onClick={() => settAktivSide(3)}
                 />
             );

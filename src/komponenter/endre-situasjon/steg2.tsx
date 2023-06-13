@@ -27,6 +27,7 @@ type SituasjonSvar = PermittertSvar | DinSituasjonSvar;
 
 export interface Steg2Props {
     valgtSituasjon: SituasjonSvar;
+    opprinneligSituasjon: SituasjonSvar | undefined;
     settValgtSituasjon: React.Dispatch<React.SetStateAction<SituasjonSvar>>;
     settTilleggsData: React.Dispatch<React.SetStateAction<any>>;
     onClick: () => void;
@@ -44,7 +45,11 @@ const Feil = (props: { feil: string | null }) => {
     );
 };
 
-function genererDialogTekst(valgtSituasjon: SituasjonSvar, tilleggsData?: any) {
+function genererDialogTekst(
+    valgtSituasjon: SituasjonSvar,
+    opprinneligSituasjon: SituasjonSvar | undefined,
+    tilleggsData?: any
+) {
     const tekstArray = [];
 
     tekstArray.push(`Jobbsituasjonen er endret til "${svarMap.dinSituasjon[valgtSituasjon]}".`);
@@ -85,13 +90,8 @@ function genererDialogTekst(valgtSituasjon: SituasjonSvar, tilleggsData?: any) {
             );
         } else if (valgtSituasjon === PermittertSvar.MIDLERTIDIG_JOBB) {
             tekstArray.push(
-                `Første arbeidsdag i ny jobb er ${
+                `Første arbeidsdag i midlertidige jobb er ${
                     forsteArbeidsdagDato ? prettyPrintDato(forsteArbeidsdagDato) : 'ikke oppgitt'
-                }`
-            );
-            tekstArray.push(
-                `Siste arbeidsdag med lønn ${
-                    sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'ikke oppgitt'
                 }`
             );
         } else if (valgtSituasjon === PermittertSvar.KONKURS) {
@@ -105,6 +105,10 @@ function genererDialogTekst(valgtSituasjon: SituasjonSvar, tilleggsData?: any) {
                     sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'ikke oppgitt'
                 }`
             );
+        }
+
+        if (opprinneligSituasjon) {
+            tekstArray.push(`Jobbsituasjonen er endret fra "${svarMap.dinSituasjon[opprinneligSituasjon]}".`);
         }
     }
 
@@ -121,7 +125,7 @@ function useLagreEndringer(props: Steg2Props) {
     const [loading, setLoading] = useState<boolean>(false);
     const [feil, settFeil] = useState<string | null>(null);
 
-    const handleLagreEndringer = async (valgtSituasjon?: any, tilleggsData?: any) => {
+    const handleLagreEndringer = async (valgtSituasjon?: any, opprinneligSituasjon?: any, tilleggsData?: any) => {
         // Gjør om dato fra datepicker til date string
         if (tilleggsData) {
             Object.keys(tilleggsData).forEach((key) => {
@@ -143,7 +147,11 @@ function useLagreEndringer(props: Steg2Props) {
                 ...amplitudeData,
             });
 
-            const { tekst, overskrift, venterPaaSvarFraNav } = genererDialogTekst(valgtSituasjon, tilleggsData);
+            const { tekst, overskrift, venterPaaSvarFraNav } = genererDialogTekst(
+                valgtSituasjon,
+                opprinneligSituasjon,
+                tilleggsData
+            );
 
             const payload = {
                 tekst,
@@ -257,7 +265,9 @@ const OPPSIGELSE = (props: Steg2Props) => {
                         variant={'primary'}
                         loading={loading}
                         disabled={loading}
-                        onClick={() => handleLagreEndringer(props.valgtSituasjon, tilleggsData)}
+                        onClick={() =>
+                            handleLagreEndringer(props.valgtSituasjon, props.opprinneligSituasjon, tilleggsData)
+                        }
                     >
                         Lagre endring i situasjon
                     </Button>
@@ -317,7 +327,9 @@ const ENDRET_PERMITTERINGSPROSENT = (props: Steg2Props) => {
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
                     <Button
                         variant={'primary'}
-                        onClick={() => handleLagreEndringer(props.valgtSituasjon, tilleggsData)}
+                        onClick={() =>
+                            handleLagreEndringer(props.valgtSituasjon, props.opprinneligSituasjon, tilleggsData)
+                        }
                         loading={loading}
                         disabled={disabled}
                     >
@@ -362,7 +374,9 @@ const TILBAKE_TIL_JOBB = (props: Steg2Props) => {
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
                     <Button
                         variant={'primary'}
-                        onClick={() => handleLagreEndringer(props.valgtSituasjon, tilleggsData)}
+                        onClick={() =>
+                            handleLagreEndringer(props.valgtSituasjon, props.opprinneligSituasjon, tilleggsData)
+                        }
                         loading={loading}
                         disabled={loading}
                     >
@@ -425,7 +439,9 @@ const NY_JOBB = (props: Steg2Props) => {
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
                     <Button
                         variant={'primary'}
-                        onClick={() => handleLagreEndringer(props.valgtSituasjon, tilleggsData)}
+                        onClick={() =>
+                            handleLagreEndringer(props.valgtSituasjon, props.opprinneligSituasjon, tilleggsData)
+                        }
                         loading={loading}
                         disabled={loading}
                     >
@@ -471,7 +487,9 @@ const MIDLERTIDIG_JOBB = (props: Steg2Props) => {
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
                     <Button
                         variant={'primary'}
-                        onClick={() => handleLagreEndringer(props.valgtSituasjon, tilleggsData)}
+                        onClick={() =>
+                            handleLagreEndringer(props.valgtSituasjon, props.opprinneligSituasjon, tilleggsData)
+                        }
                         loading={loading}
                         disabled={loading}
                     >
@@ -516,7 +534,9 @@ const KONKURS = (props: Steg2Props) => {
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
                     <Button
                         variant={'primary'}
-                        onClick={() => handleLagreEndringer(props.valgtSituasjon, tilleggsData)}
+                        onClick={() =>
+                            handleLagreEndringer(props.valgtSituasjon, props.opprinneligSituasjon, tilleggsData)
+                        }
                         loading={loading}
                         disabled={loading}
                     >
@@ -589,7 +609,9 @@ const SAGT_OPP = (props: Steg2Props) => {
                         variant={'primary'}
                         loading={loading}
                         disabled={loading}
-                        onClick={() => handleLagreEndringer(props.valgtSituasjon, tilleggsData)}
+                        onClick={() =>
+                            handleLagreEndringer(props.valgtSituasjon, props.opprinneligSituasjon, tilleggsData)
+                        }
                     >
                         Lagre endring i situasjon
                     </Button>
