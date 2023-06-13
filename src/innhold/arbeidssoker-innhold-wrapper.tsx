@@ -9,6 +9,8 @@ import { BesvarelseProvider } from '../contexts/besvarelse';
 
 function ArbeidssokerInnholdWrapper() {
     const featureToggles = useFeatureToggleData();
+
+    // TODO: Tabs må også sjekke visBesvarelse
     const brukTabs = featureToggles['aia.bruk-tabs-demo'];
 
     return (
