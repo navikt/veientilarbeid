@@ -8,7 +8,6 @@ import { useSWRImmutable } from '../../hooks/useSWR';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useDpInnsynPaabegynteSoknaderData } from '../../contexts/dp-innsyn-paabegynte-soknader';
-import { useFeatureToggleData } from '../../contexts/feature-toggles';
 
 import { Vedtak } from '../../contexts/dp-innsyn-vedtak';
 import { DpInnsynSoknad } from '../../contexts/dp-innsyn-soknad';
@@ -31,6 +30,7 @@ import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
 import { useBesvarelse } from '../../contexts/besvarelse';
 import DagpengerInfo from '../endre-situasjon/dagpenger-info';
+import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
 
 function StansetDagpenger() {
     return <BodyShort>Stanset</BodyShort>;
@@ -76,8 +76,7 @@ function DagpengerOgYtelserInnhold(props: Props) {
     const { paabegynteSoknader = [] } = useDpInnsynPaabegynteSoknaderData();
     const { data: innsendteSoknader = [] } = useSWRImmutable<DpInnsynSoknad[]>(`${DP_INNSYN_URL}/soknad`);
     const { data: dagpengeVedtak = [] } = useSWRImmutable<Vedtak[]>(`${DP_INNSYN_URL}/vedtak`);
-    const featureToggleData = useFeatureToggleData();
-    const brukTabsDemo = featureToggleData['aia.bruk-tabs-demo'];
+    const brukTabsDemo = useSkalBrukeTabs();
     const { besvarelse } = useBesvarelse();
     const { erBesvarelseEndret } = besvarelse || {};
     const dagpengerInfo = DagpengerInfo({

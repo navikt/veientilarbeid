@@ -16,7 +16,7 @@ import spacingStyles from '../../spacing.module.css';
 import { useState } from 'react';
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import flexStyles from '../../flex.module.css';
-import { useFeatureToggleData } from '../../contexts/feature-toggles';
+import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
 
 const TEKSTER = {
     nb: {
@@ -44,8 +44,7 @@ function IkkeSvartPaaBehovsavklaringSituasjonsbestemt() {
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const [pendingRequest, settPendingRequest] = useState<ForeslattInnsatsgruppe | null>(null);
-    const featureToggleData = useFeatureToggleData();
-    const brukTabsDemo = featureToggleData['aia.bruk-tabs-demo'];
+    const brukTabsDemo = useSkalBrukeTabs();
 
     async function onLagreBehovForVeiledning(behov: ForeslattInnsatsgruppe) {
         settPendingRequest(behov);

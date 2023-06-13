@@ -3,7 +3,6 @@ import { BodyLong, Detail, Heading, Panel } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
 import { useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
-import { useFeatureToggleData } from '../../contexts/feature-toggles';
 
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import ReadMoreVeileder from './readmore-veileder';
@@ -14,6 +13,7 @@ import { AktivitetsplanLenke, GaaTilDialogKnapp } from './lenker';
 
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
+import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
 
 const TEKSTER = {
     nb: {
@@ -33,8 +33,7 @@ const TEKSTER = {
 function EnigMedProfilering() {
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
-    const featureToggleData = useFeatureToggleData();
-    const brukTabsDemo = featureToggleData['aia.bruk-tabs-demo'];
+    const brukTabsDemo = useSkalBrukeTabs();
 
     return (
         <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>

@@ -5,7 +5,6 @@ import { BodyLong, Button, Detail, Heading, Panel } from '@navikt/ds-react';
 import { useSprakValg } from '../../contexts/sprak';
 import { useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
-import { useFeatureToggleData } from '../../contexts/feature-toggles';
 
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { loggAktivitet } from '../../metrics/metrics';
@@ -17,6 +16,7 @@ import { ForeslattInnsatsgruppe } from '../../contexts/brukerregistrering';
 
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
+import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
 
 const TEKSTER = {
     nb: {
@@ -48,8 +48,7 @@ function IkkeSvartPaaBehovsavklaringStandardInnsats() {
     const { amplitudeData } = useAmplitudeData();
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
-    const featureToggleData = useFeatureToggleData();
-    const brukTabsDemo = featureToggleData['aia.bruk-tabs-demo'];
+    const brukTabsDemo = useSkalBrukeTabs();
     const [pendingRequest, settPendingRequest] = useState<ForeslattInnsatsgruppe | null>(null);
 
     async function onClickBehovForVeiledning(behov: ForeslattInnsatsgruppe) {

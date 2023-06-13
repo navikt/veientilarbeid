@@ -4,7 +4,6 @@ import { ClipboardIcon } from '@navikt/aksel-icons';
 
 import { useSprakValg } from '../../contexts/sprak';
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
-import { useFeatureToggleData } from '../../contexts/feature-toggles';
 
 import MeldekortHovedInnhold from './meldekort-hovedinnhold';
 import MeldekortForklaring from './meldekort-forklaring';
@@ -15,6 +14,7 @@ import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
 import { useBesvarelse } from '../../contexts/besvarelse';
 import MeldekortInfo from '../endre-situasjon/meldekort-info';
+import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
 
 const TEKSTER = {
     nb: {
@@ -30,8 +30,7 @@ function Meldekort() {
     const { amplitudeData } = useAmplitudeData();
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
-    const featureToggleData = useFeatureToggleData();
-    const brukTabsDemo = featureToggleData['aia.bruk-tabs-demo'];
+    const brukTabsDemo = useSkalBrukeTabs();
     const { besvarelse } = useBesvarelse();
     const { erBesvarelseEndret } = besvarelse || {};
 
