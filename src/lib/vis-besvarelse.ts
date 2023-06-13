@@ -6,11 +6,11 @@ import { BesvarelseResponse } from '../contexts/besvarelse';
 import { BeregnedePerioder } from '../lib/beregn-arbeidssokerperioder';
 import sjekkOmBrukerErStandardInnsatsgruppe from './er-standard-innsatsgruppe';
 
+// TODO: Dato skal settes til 01. februar
 const DATO_FOR_LANSERING = new Date('2023-05-01');
 
 // TODO: Vurdere å droppe sjekk av formidlingsgruppe
 // TODO: gå over til å bruke besvarelse i steder for registreringData
-
 export function visBesvarelser({
     brukerInfoData,
     oppfolgingData,
