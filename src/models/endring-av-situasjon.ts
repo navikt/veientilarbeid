@@ -27,9 +27,9 @@ export const permittertTekster = {
     [PermittertSvar.TILBAKE_TIL_JOBB]: 'Jeg skal begynne å jobbe igjen hos min arbeidsgiver',
     [PermittertSvar.OPPSIGELSE]: 'Jeg har blitt oppsagt',
     [PermittertSvar.ENDRET_PERMITTERINGSPROSENT]: ' Arbeidsgiver har endret permitteringen min',
-    [PermittertSvar.NY_JOBB]: 'Jeg skal begynne å jobbe hos en ny arbeidsgiver ',
+    [PermittertSvar.NY_JOBB]: 'Jeg skal begynne å jobbe hos en ny arbeidsgiver',
     [PermittertSvar.MIDLERTIDIG_JOBB]: 'Jeg har fått midlertidig jobb hos en ny arbeidsgiver',
-    [PermittertSvar.KONKURS]: 'Min arbeidsgiver er konkurs ',
+    [PermittertSvar.KONKURS]: 'Min arbeidsgiver er konkurs',
     [PermittertSvar.SAGT_OPP]: 'Jeg har sagt opp jobben min',
     [PermittertSvar.ANNET]: 'Annet',
 };
