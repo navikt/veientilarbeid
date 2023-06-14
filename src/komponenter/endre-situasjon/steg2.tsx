@@ -620,6 +620,7 @@ const SAGT_OPP = (props: Steg2Props) => {
         </Steg2Wrapper>
     );
 };
+
 const ANNET = (props: Steg2Props) => {
     const { valgtSituasjon, settValgtSituasjon } = props;
     const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);

@@ -1,10 +1,11 @@
 import React from 'react';
 import { Button, Select } from '@navikt/ds-react';
 
-import spacing from '../../spacing.module.css';
-import flex from '../../flex.module.css';
 import { DinSituasjonSvar } from '../../contexts/brukerregistrering';
 import { dinSituasjonSvarTekster, PermittertSvar, permittertTekster } from '../../models/endring-av-situasjon';
+
+import spacing from '../../spacing.module.css';
+import flex from '../../flex.module.css';
 
 type SituasjonSvar = PermittertSvar | DinSituasjonSvar;
 
@@ -17,7 +18,7 @@ interface Steg1Props {
 
 const Steg1 = (props: Steg1Props) => {
     const { opprinneligSituasjon, valgtSituasjon, settValgtSituasjon, onClick } = props;
-    const filterSituasjon = valgtSituasjon !== undefined ? valgtSituasjon : opprinneligSituasjon;
+    const filterSituasjon = opprinneligSituasjon;
     const erPermittertSvar =
         (filterSituasjon !== undefined && filterSituasjon === DinSituasjonSvar.ER_PERMITTERT) ||
         (filterSituasjon !== undefined && Object.keys(permittertTekster).includes(filterSituasjon));
