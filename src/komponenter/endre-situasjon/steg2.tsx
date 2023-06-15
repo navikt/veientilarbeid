@@ -674,10 +674,11 @@ const Steg2 = (props: Steg2Props) => {
         return <KONKURS {...props} />;
     } else if (valgtSituasjon === PermittertSvar.NY_JOBB) {
         return <NY_JOBB {...props} />;
-    } else if (valgtSituasjon === PermittertSvar.ENDRET_PERMITTERINGSPROSENT) {
+    } else if (
+        valgtSituasjon === PermittertSvar.ENDRET_PERMITTERINGSPROSENT ||
+        valgtSituasjon === DinSituasjonSvar.ER_PERMITTERT
+    ) {
         return <ENDRET_PERMITTERINGSPROSENT {...props} />;
-    } else if (valgtSituasjon === PermittertSvar.ANNET) {
-        return <ANNET {...props} />;
     } else if (valgtSituasjon === PermittertSvar.SAGT_OPP) {
         return <SAGT_OPP {...props} />;
     } else {
