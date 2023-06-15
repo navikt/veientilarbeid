@@ -35,6 +35,12 @@ const Feil = (props: { feil: string | null }) => {
     );
 };
 
+const OpplysningeneBrukesTil = () => {
+    return (
+        <BodyShort className={spacing.mb1}>NAV bruker opplysningene for å kunne tilpasse veiledningen din.</BodyShort>
+    );
+};
+
 function genererDialogTekst(
     valgtSituasjon: SituasjonSvar,
     opprinneligSituasjon: SituasjonSvar | undefined,
@@ -250,9 +256,7 @@ const OPPSIGELSE = (props: Steg2Props) => {
                         }
                     />
                 </DatePicker>
-                <BodyShort className={spacing.mb1}>
-                    NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
-                </BodyShort>
+                <OpplysningeneBrukesTil />
                 <Feil feil={feil} />
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
                     <Button
@@ -312,9 +316,7 @@ const ENDRET_PERMITTERINGSPROSENT = (props: Steg2Props) => {
                     <Radio value="50">Under 50 prosent</Radio>
                 </RadioGroup>
 
-                <BodyShort className={spacing.mb1}>
-                    NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
-                </BodyShort>
+                <OpplysningeneBrukesTil />
 
                 <Feil feil={feil} />
 
@@ -361,9 +363,7 @@ const TILBAKE_TIL_JOBB = (props: Steg2Props) => {
                     />
                 </DatePicker>
 
-                <BodyShort className={spacing.mb1}>
-                    NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
-                </BodyShort>
+                <OpplysningeneBrukesTil />
                 <Feil feil={feil} />
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
                     <Button
@@ -426,9 +426,7 @@ const NY_JOBB = (props: Steg2Props) => {
                         label="Når er siste arbeidsdag med lønn i nåværende jobb?"
                     />
                 </DatePicker>
-                <BodyShort className={spacing.mb1}>
-                    NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
-                </BodyShort>
+                <OpplysningeneBrukesTil />
                 <Feil feil={feil} />
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
                     <Button
@@ -474,9 +472,7 @@ const MIDLERTIDIG_JOBB = (props: Steg2Props) => {
                     />
                 </DatePicker>
 
-                <BodyShort className={spacing.mb1}>
-                    NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
-                </BodyShort>
+                <OpplysningeneBrukesTil />
                 <Feil feil={feil} />
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
                     <Button
@@ -521,9 +517,7 @@ const KONKURS = (props: Steg2Props) => {
                         label="Når er siste arbeidsdag?"
                     />
                 </DatePicker>
-                <BodyShort className={spacing.mb1}>
-                    NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
-                </BodyShort>
+                <OpplysningeneBrukesTil />
                 <Feil feil={feil} />
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
                     <Button
@@ -594,9 +588,7 @@ const SAGT_OPP = (props: Steg2Props) => {
                         }
                     />
                 </DatePicker>
-                <BodyShort className={spacing.mb1}>
-                    NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
-                </BodyShort>
+                <OpplysningeneBrukesTil />
                 <Feil feil={feil} />
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
                     <Button
@@ -641,9 +633,7 @@ const ANNET = (props: Steg2Props) => {
                         label={<div className={flex.flex}>Når gjelder endringen fra?</div>}
                     />
                 </DatePicker>
-                <BodyShort className={spacing.mb1}>
-                    NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
-                </BodyShort>
+                <OpplysningeneBrukesTil />
                 <Feil feil={feil} />
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
                     <Button
