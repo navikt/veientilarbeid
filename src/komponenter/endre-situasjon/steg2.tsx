@@ -57,13 +57,13 @@ function genererDialogTekst(
             );
         } else if (valgtSituasjon === PermittertSvar.ENDRET_PERMITTERINGSPROSENT) {
             tekstArray.push(
-                `Ny permitteringsprosent er ${
-                    permitteringsProsent ? `${permitteringsProsent} prosent` : 'er ikke oppgitt'
+                `Den nye permitteringen gjelder fra ${
+                    gjelderFraDato ? prettyPrintDato(gjelderFraDato) : 'ikke oppgitt dato'
                 }`
             );
             tekstArray.push(
-                `Permitteringsprosenten gjelder fra ${
-                    gjelderFraDato ? prettyPrintDato(gjelderFraDato) : 'ikke oppgitt dato'
+                `Ny permitteringsprosent er ${
+                    permitteringsProsent ? `${permitteringsProsent} prosent` : 'er ikke oppgitt'
                 }`
             );
         } else if (valgtSituasjon === PermittertSvar.TILBAKE_TIL_JOBB) {
@@ -94,6 +94,10 @@ function genererDialogTekst(
                 `Siste arbeidsdag med lønn ${
                     sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'ikke oppgitt'
                 }`
+            );
+        } else {
+            tekstArray.push(
+                `Endringen gjelder fra ${gjelderFraDato ? prettyPrintDato(gjelderFraDato) : 'ikke oppgitt dato'}`
             );
         }
 
