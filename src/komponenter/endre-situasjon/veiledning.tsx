@@ -1,4 +1,4 @@
-import { BodyShort, Link } from '@navikt/ds-react';
+import { BodyLong, BodyShort, Link, ReadMore } from '@navikt/ds-react';
 
 import { dokumentasjon_url } from '../../url';
 
@@ -12,6 +12,40 @@ export interface VeiledningsProps {
     valgtSituasjon: PermittertSvar | DinSituasjonSvar;
     tilleggsData?: any;
 }
+
+const GENERELL_VEILEDNING_MED_DOKUMENTASJON = () => {
+    return (
+        <>
+            <h2>Hva betyr endringen for meg?</h2>
+            <BodyShort>Vi baserer denne veiledningen på de opplysningene du har oppgitt.</BodyShort>
+            <h3 className={spacing.mbn}>Hva må jeg gjøre nå?</h3>
+            <BodyShort>
+                Du må sende oss dokumentasjon om endringen dersom du ikke har gjort det allerede.
+                <br />
+                Du kan gå direkte til innsendingen når du lukker dette vinudet.
+            </BodyShort>
+            <ReadMore header="Hva skjer nå om jeg har søkt eller mottar dagpenger?">
+                <BodyShort>
+                    Når vi får behandlet dokumentasjonen du sender oss, vil du få et brev om saken din og hva du skal
+                    gjøre.
+                </BodyShort>
+                <BodyShort>Frem til du mottar dette brevet bør du fortsette å sende inn meldekortene.</BodyShort>
+                <BodyShort>Du finner informasjon om saksbehandlingstider på NAV.no.</BodyShort>
+            </ReadMore>
+            <ReadMore header="Skal jeg fortsatt være registrert som arbeidssøker?">
+                <BodyShort>
+                    Ett av kravene for å få innvilget pengestøtte (dagpenger, tiltakspenger eller kommunal ytelse) er at
+                    du må være registrert som arbeidssøker i hele perioden du søker om pengestøtten for.
+                </BodyShort>
+                <BodyLong>
+                    Om du er usikker på når du har rett på pengestøtte, må du derfor huske å sende inn alle meldekortene
+                    fremover og å svare ‘Ja’ på spørsmålet om du ønsker å være registrert som arbeidssøker for de neste
+                    14 dagene.
+                </BodyLong>
+            </ReadMore>
+        </>
+    );
+};
 
 const OPPSIGELSE = (props: VeiledningsProps) => {
     const { tilleggsData } = props;
@@ -196,11 +230,7 @@ const SAGT_OPP = (props: VeiledningsProps) => {
 };
 
 const ANNET = (props: VeiledningsProps) => {
-    return (
-        <>
-            <BodyShort className={spacing.mb1}>Veiledning for {props.valgtSituasjon}</BodyShort>
-        </>
-    );
+    return <GENERELL_VEILEDNING_MED_DOKUMENTASJON />;
 };
 
 const MISTET_JOBBEN = (props: VeiledningsProps) => {

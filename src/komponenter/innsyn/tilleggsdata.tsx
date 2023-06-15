@@ -213,7 +213,13 @@ function TilleggsData(props: Props) {
 
         if (!tilleggsData) return null;
 
-        return <BodyShort>{JSON.stringify(tilleggsData)}</BodyShort>;
+        const { gjelderFraDato } = tilleggsData;
+
+        return (
+            <BodyShort>
+                Endringen gjelder fra {gjelderFraDato ? prettyPrintDato(gjelderFraDato) : 'ikke oppgitt dato'}
+            </BodyShort>
+        );
     };
 
     if (!tilleggsData || !verdi) return null;
@@ -232,7 +238,7 @@ function TilleggsData(props: Props) {
         return <KONKURS tilleggsData={tilleggsData} />;
     } else if (verdi === PermittertSvar.SAGT_OPP) {
         return <SAGT_OPP tilleggsData={tilleggsData} />;
-    } else if (verdi === PermittertSvar.ANNET) {
+    } else {
         return <ANNET tilleggsData={tilleggsData} />;
     }
 
