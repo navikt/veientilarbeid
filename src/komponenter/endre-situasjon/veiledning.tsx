@@ -295,7 +295,7 @@ const Veiledning = (props: VeiledningsProps) => {
         return <KONKURS {...props} />;
     } else if (valgtSituasjon === PermittertSvar.NY_JOBB) {
         return <NY_JOBB {...props} />;
-    } else if (valgtSituasjon === PermittertSvar.ENDRET_PERMITTERINGSPROSENT) {
+    } else if (valgtSituasjon === PermittertSvar.ENDRET_PERMITTERINGSPROSENT || DinSituasjonSvar.ER_PERMITTERT) {
         return <ENDRET_PERMITTERINGSPROSENT {...props} />;
     } else if (valgtSituasjon === PermittertSvar.ANNET) {
         return <ANNET {...props} />;
