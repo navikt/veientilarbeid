@@ -16,7 +16,7 @@ export interface VeiledningsProps {
 const GENERELL_VEILEDNING_MED_DOKUMENTASJON = () => {
     return (
         <>
-            <h2>Hva betyr endringen for meg?</h2>
+            <h2 className={spacing.mbn}>Hva betyr endringen for meg?</h2>
             <BodyShort>Vi baserer denne veiledningen på de opplysningene du har oppgitt.</BodyShort>
             <h3 className={spacing.mbn}>Hva må jeg gjøre nå?</h3>
             <BodyShort>
@@ -24,22 +24,24 @@ const GENERELL_VEILEDNING_MED_DOKUMENTASJON = () => {
                 <br />
                 Du kan gå direkte til innsendingen når du lukker dette vinudet.
             </BodyShort>
-            <ReadMore header="Hva skjer nå om jeg har søkt eller mottar dagpenger?">
-                <BodyShort>
+            <ReadMore header="Hva skjer nå om jeg har søkt eller mottar dagpenger?" className={spacing.mt1}>
+                <BodyShort className={spacing.mb1}>
                     Når vi får behandlet dokumentasjonen du sender oss, vil du få et brev om saken din og hva du skal
                     gjøre.
                 </BodyShort>
-                <BodyShort>Frem til du mottar dette brevet bør du fortsette å sende inn meldekortene.</BodyShort>
+                <BodyShort className={spacing.mb1}>
+                    Frem til du mottar dette brevet bør du fortsette å sende inn meldekortene.
+                </BodyShort>
                 <BodyShort>Du finner informasjon om saksbehandlingstider på NAV.no.</BodyShort>
             </ReadMore>
-            <ReadMore header="Skal jeg fortsatt være registrert som arbeidssøker?">
-                <BodyShort>
+            <ReadMore header="Skal jeg fortsatt være registrert som arbeidssøker?" className={spacing.mt1}>
+                <BodyShort className={spacing.mb1}>
                     Ett av kravene for å få innvilget pengestøtte (dagpenger, tiltakspenger eller kommunal ytelse) er at
                     du må være registrert som arbeidssøker i hele perioden du søker om pengestøtten for.
                 </BodyShort>
                 <BodyLong>
                     Om du er usikker på når du har rett på pengestøtte, må du derfor huske å sende inn alle meldekortene
-                    fremover og å svare ‘Ja’ på spørsmålet om du ønsker å være registrert som arbeidssøker for de neste
+                    fremover og å svare 'Ja' på spørsmålet om du ønsker å være registrert som arbeidssøker for de neste
                     14 dagene.
                 </BodyLong>
             </ReadMore>
@@ -281,14 +283,6 @@ const JOBB_OVER_2_AAR = (props: VeiledningsProps) => {
     );
 };
 
-const ER_PERMITTERT = (props: VeiledningsProps) => {
-    return (
-        <>
-            <BodyShort className={spacing.mb1}>Veiledning for {props.valgtSituasjon}</BodyShort>
-        </>
-    );
-};
-
 const USIKKER_JOBBSITUASJON = (props: VeiledningsProps) => {
     return (
         <>
@@ -315,6 +309,7 @@ const VIL_FORTSETTE_I_JOBB = (props: VeiledningsProps) => {
 
 const Veiledning = (props: VeiledningsProps) => {
     const { valgtSituasjon } = props;
+
     if (valgtSituasjon === PermittertSvar.OPPSIGELSE) {
         return <OPPSIGELSE {...props} />;
     } else if (valgtSituasjon === PermittertSvar.TILBAKE_TIL_JOBB) {
@@ -325,7 +320,10 @@ const Veiledning = (props: VeiledningsProps) => {
         return <KONKURS {...props} />;
     } else if (valgtSituasjon === PermittertSvar.NY_JOBB) {
         return <NY_JOBB {...props} />;
-    } else if (valgtSituasjon === PermittertSvar.ENDRET_PERMITTERINGSPROSENT || DinSituasjonSvar.ER_PERMITTERT) {
+    } else if (
+        valgtSituasjon === PermittertSvar.ENDRET_PERMITTERINGSPROSENT ||
+        valgtSituasjon === DinSituasjonSvar.ER_PERMITTERT
+    ) {
         return <ENDRET_PERMITTERINGSPROSENT {...props} />;
     } else if (valgtSituasjon === PermittertSvar.ANNET) {
         return <ANNET {...props} />;
@@ -343,8 +341,6 @@ const Veiledning = (props: VeiledningsProps) => {
         return <VIL_BYTTE_JOBB {...props} />;
     } else if (valgtSituasjon === DinSituasjonSvar.JOBB_OVER_2_AAR) {
         return <JOBB_OVER_2_AAR {...props} />;
-    } else if (valgtSituasjon === DinSituasjonSvar.ER_PERMITTERT) {
-        return <ER_PERMITTERT {...props} />;
     } else if (valgtSituasjon === DinSituasjonSvar.USIKKER_JOBBSITUASJON) {
         return <USIKKER_JOBBSITUASJON {...props} />;
     } else if (valgtSituasjon === DinSituasjonSvar.AKKURAT_FULLFORT_UTDANNING) {

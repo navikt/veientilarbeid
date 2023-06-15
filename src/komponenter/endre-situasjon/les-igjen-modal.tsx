@@ -18,7 +18,8 @@ const LesIgjenModal = (props: LesIgjenModalProps) => {
     const valgtSituasjon = besvarelse?.dinSituasjon.verdi;
     const tilleggsData = besvarelse?.dinSituasjon.tilleggsData;
 
-    const Innhold = () => {
+    const Innhold = (props: any) => {
+        const { valgtSituasjon, tilleggsData } = props;
         if (!valgtSituasjon || !tilleggsData) return null;
 
         return (
@@ -45,7 +46,7 @@ const LesIgjenModal = (props: LesIgjenModalProps) => {
                 <Heading spacing level="1" size="large" id="modal-heading" className={spacing.mr2}>
                     Min jobbsituasjonen har endret seg
                 </Heading>
-                <Innhold />
+                <Innhold tilleggsData={tilleggsData} valgtSituasjon={valgtSituasjon} />
             </Modal.Content>
         </Modal>
     );
