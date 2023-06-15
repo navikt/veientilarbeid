@@ -22,7 +22,9 @@ const Steg1 = (props: Steg1Props) => {
     const erPermittertSvar =
         (filterSituasjon !== undefined && filterSituasjon === DinSituasjonSvar.ER_PERMITTERT) ||
         (filterSituasjon !== undefined && Object.keys(permittertTekster).includes(filterSituasjon));
-    const svarTekster = erPermittertSvar ? permittertTekster : dinSituasjonSvarTekster;
+    const svarTekster = erPermittertSvar
+        ? { ...permittertTekster, ...dinSituasjonSvarTekster }
+        : { ...dinSituasjonSvarTekster, ...permittertTekster };
 
     return (
         <>
