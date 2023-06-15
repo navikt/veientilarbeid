@@ -1,15 +1,5 @@
 import React, { useState } from 'react';
-import {
-    Alert,
-    BodyShort,
-    Button,
-    HelpText,
-    Radio,
-    RadioGroup,
-    Select,
-    DatePicker,
-    useDatepicker,
-} from '@navikt/ds-react';
+import { Alert, BodyShort, Button, HelpText, Radio, RadioGroup, DatePicker, useDatepicker } from '@navikt/ds-react';
 
 import { BesvarelseRequest, useBesvarelse } from '../../contexts/besvarelse';
 
@@ -622,27 +612,31 @@ const SAGT_OPP = (props: Steg2Props) => {
 };
 
 const ANNET = (props: Steg2Props) => {
-    const { valgtSituasjon, settValgtSituasjon } = props;
+    const {
+        datepickerProps: gjelderFraProps,
+        inputProps: gjelderFraInput,
+        selectedDay: gjelderFraDato,
+    } = useDatepicker({
+        fromDate: new Date('Jan 01 2022'),
+        defaultSelected: new Date(),
+    });
+
     const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
+
+    const tilleggsData = {
+        gjelderFraDato,
+    };
 
     return (
         <Steg2Wrapper valgtSituasjon={props.valgtSituasjon}>
             <>
-                <Select
-                    className={spacing.mb1}
-                    label={'Velg den nye situasjonen som passer deg best'}
-                    onChange={(e) => settValgtSituasjon(e.target.value as SituasjonSvar)}
-                    value={valgtSituasjon}
-                >
-                    {Object.keys(dinSituasjonSvarTekster).map((situasjon) => (
-                        <option key={situasjon} value={situasjon}>
-                            {dinSituasjonSvarTekster[situasjon]}
-                        </option>
-                    ))}
-                    <option key={PermittertSvar.ANNET} value={PermittertSvar.ANNET}>
-                        {permittertTekster[PermittertSvar.ANNET]}
-                    </option>
-                </Select>
+                <DatePicker {...gjelderFraProps} strategy="fixed">
+                    <DatePicker.Input
+                        {...gjelderFraInput}
+                        className={spacing.mb1}
+                        label={<div className={flex.flex}>Når gjelder endringen fra?</div>}
+                    />
+                </DatePicker>
                 <BodyShort className={spacing.mb1}>
                     NAV bruker opplysningene til å vurdere hvor mye veiledning du trenger.
                 </BodyShort>
@@ -650,7 +644,9 @@ const ANNET = (props: Steg2Props) => {
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
                     <Button
                         variant={'primary'}
-                        onClick={() => handleLagreEndringer(valgtSituasjon)}
+                        onClick={() =>
+                            handleLagreEndringer(props.valgtSituasjon, props.opprinneligSituasjon, tilleggsData)
+                        }
                         loading={loading}
                         disabled={loading}
                     >
