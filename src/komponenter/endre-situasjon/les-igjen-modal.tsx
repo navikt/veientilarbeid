@@ -37,14 +37,14 @@ const LesIgjenModal = (props: LesIgjenModalProps) => {
     return (
         <Modal
             open={openModal}
-            aria-label="Hva betyr endringene for meg?"
+            aria-label="Jobbsituasjonen min har endret seg"
             onClose={() => setOpenModal((x) => !x)}
             // shouldCloseOnEsc={!datepickerProps.open}
             aria-labelledby="modal-heading"
         >
             <Modal.Content>
                 <Heading spacing level="1" size="large" id="modal-heading" className={spacing.mr2}>
-                    Min jobbsituasjonen har endret seg
+                    Jobbsituasjonen min har endret seg
                 </Heading>
                 <Innhold tilleggsData={tilleggsData} valgtSituasjon={valgtSituasjon} />
             </Modal.Content>

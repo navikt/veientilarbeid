@@ -91,7 +91,7 @@ const PermittertModal = (props: PermittertModalProps) => {
             <Modal.Content>
                 <Tilbake />
                 <Heading spacing level="1" size="large" id="modal-heading" className={spacing.mr2}>
-                    Min jobbsituasjonen har endret seg
+                    Jobbsituasjonen min har endret seg
                 </Heading>
                 <BodyShort className={spacing.mb1}>
                     <small>Steg {aktivSide}/3</small>
