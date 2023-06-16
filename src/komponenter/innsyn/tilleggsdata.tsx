@@ -35,6 +35,23 @@ const harSendtInnNyDokumentasjon = (profil: Profil | null, besvarelse: Besvarels
 function TilleggsData(props: Props) {
     const { verdi, tilleggsData, visKnapper } = props;
 
+    const TILBAKE_TIL_JOBB = (props: TilleggsDataProps) => {
+        const { tilleggsData } = props;
+
+        if (!tilleggsData) return null;
+
+        const { forsteArbeidsdagDato } = tilleggsData;
+
+        return (
+            <>
+                <BodyShort>
+                    Første arbeidsdag etter permittering er{' '}
+                    {forsteArbeidsdagDato ? prettyPrintDato(forsteArbeidsdagDato) : 'ikke oppgitt dato'}
+                </BodyShort>
+            </>
+        );
+    };
+
     const OPPSIGELSE = (props: TilleggsDataProps) => {
         const { tilleggsData } = props;
         const { lagreProfil, profil } = useProfil();
@@ -60,10 +77,11 @@ function TilleggsData(props: Props) {
         return (
             <>
                 <BodyShort>
-                    Oppsigelsen ble mottatt {oppsigelseDato ? prettyPrintDato(oppsigelseDato) : 'på ikke oppgitt dato'}
+                    Du mottok oppsigelsen {oppsigelseDato ? prettyPrintDato(oppsigelseDato) : 'på ikke oppgitt dato'}
                 </BodyShort>
                 <BodyShort>
-                    Siste arbeidsdag med lønn {sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'er ukjent'}
+                    Siste arbeidsdag med lønn fra arbeidsgiver{' '}
+                    {sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'er ukjent'}
                 </BodyShort>
                 {harSendtInnDokumentasjon && (
                     <BodyShort>
@@ -103,28 +121,10 @@ function TilleggsData(props: Props) {
         return (
             <>
                 <BodyShort>
-                    Permitteringsprosent er{' '}
-                    {permitteringsProsent ? `${permitteringsProsent} prosent` : 'er ikke oppgitt'}
+                    Endringen gjelder fra {gjelderFraDato ? prettyPrintDato(gjelderFraDato) : 'ikke oppgitt dato'}
                 </BodyShort>
                 <BodyShort>
-                    Permitteringen gjelder fra {gjelderFraDato ? prettyPrintDato(gjelderFraDato) : 'ikke oppgitt dato'}
-                </BodyShort>
-            </>
-        );
-    };
-
-    const TILBAKE_TIL_JOBB = (props: TilleggsDataProps) => {
-        const { tilleggsData } = props;
-
-        if (!tilleggsData) return null;
-
-        const { forsteArbeidsdagDato } = tilleggsData;
-
-        return (
-            <>
-                <BodyShort>
-                    Du er tilbake på jobb fra{' '}
-                    {forsteArbeidsdagDato ? prettyPrintDato(forsteArbeidsdagDato) : 'ikke oppgitt dato'}
+                    Permitteringsgraden er {permitteringsProsent ? `${permitteringsProsent} prosent` : 'ikke oppgitt'}
                 </BodyShort>
             </>
         );
@@ -135,17 +135,13 @@ function TilleggsData(props: Props) {
 
         if (!tilleggsData) return null;
 
-        const { forsteArbeidsdagDato, sisteArbeidsdagDato, stillingsProsent } = tilleggsData;
+        const { forsteArbeidsdagDato, stillingsProsent } = tilleggsData;
 
         return (
             <>
                 <BodyShort>
-                    Første arbeidsdag i ny jobb er{' '}
+                    Første arbeidsdag i ny jobb etter permitteringen er{' '}
                     {forsteArbeidsdagDato ? prettyPrintDato(forsteArbeidsdagDato) : 'ikke oppgitt'}
-                </BodyShort>
-                <BodyShort>
-                    Siste arbeidsdag med lønn{' '}
-                    {sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'ikke oppgitt'}
                 </BodyShort>
                 <BodyShort>Stillingsprosenten er {stillingsProsent ? stillingsProsent : 'ikke oppgitt'}</BodyShort>
             </>
