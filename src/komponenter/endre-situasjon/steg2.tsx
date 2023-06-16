@@ -203,6 +203,51 @@ const Steg2Wrapper = (props: WrapperProps) => {
     );
 };
 
+const TILBAKE_TIL_JOBB = (props: Steg2Props) => {
+    const {
+        datepickerProps: forsteArbeidsdagProps,
+        inputProps: forsteArbeidsdagInput,
+        selectedDay: forsteArbeidsdagDato,
+    } = useDatepicker({
+        fromDate: new Date('Jan 01 2022'),
+        defaultSelected: new Date(),
+    });
+    const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
+
+    const tilleggsData = {
+        forsteArbeidsdagDato,
+    };
+
+    return (
+        <Steg2Wrapper valgtSituasjon={props.valgtSituasjon}>
+            <>
+                <DatePicker {...forsteArbeidsdagProps} strategy="fixed">
+                    <DatePicker.Input
+                        {...forsteArbeidsdagInput}
+                        className={spacing.mb1}
+                        label="Når er første arbeidsdag etter permittering?"
+                    />
+                </DatePicker>
+
+                <OpplysningeneBrukesTil />
+                <Feil feil={feil} />
+                <div className={`${flex.flex} ${flex.flexEnd}`}>
+                    <Button
+                        variant={'primary'}
+                        onClick={() =>
+                            handleLagreEndringer(props.valgtSituasjon, props.opprinneligSituasjon, tilleggsData)
+                        }
+                        loading={loading}
+                        disabled={loading}
+                    >
+                        Lagre endring i situasjon
+                    </Button>
+                </div>
+            </>
+        </Steg2Wrapper>
+    );
+};
+
 const OPPSIGELSE = (props: Steg2Props) => {
     const {
         datepickerProps: oppsigelseProps,
@@ -312,7 +357,7 @@ const ENDRET_PERMITTERINGSPROSENT = (props: Steg2Props) => {
                 </DatePicker>
 
                 <RadioGroup
-                    legend="Hva er den nye peritteringsprosenten?"
+                    legend="I hvor stor grad er du permittert?"
                     onChange={(value) => {
                         settPermitteringsProsent(value);
                     }}
@@ -343,65 +388,11 @@ const ENDRET_PERMITTERINGSPROSENT = (props: Steg2Props) => {
     );
 };
 
-const TILBAKE_TIL_JOBB = (props: Steg2Props) => {
-    const {
-        datepickerProps: forsteArbeidsdagProps,
-        inputProps: forsteArbeidsdagInput,
-        selectedDay: forsteArbeidsdagDato,
-    } = useDatepicker({
-        fromDate: new Date('Jan 01 2022'),
-        defaultSelected: new Date(),
-    });
-    const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
-
-    const tilleggsData = {
-        forsteArbeidsdagDato,
-    };
-
-    return (
-        <Steg2Wrapper valgtSituasjon={props.valgtSituasjon}>
-            <>
-                <DatePicker {...forsteArbeidsdagProps} strategy="fixed">
-                    <DatePicker.Input
-                        {...forsteArbeidsdagInput}
-                        className={spacing.mb1}
-                        label="Når er første arbeidsdag etter permittering?"
-                    />
-                </DatePicker>
-
-                <OpplysningeneBrukesTil />
-                <Feil feil={feil} />
-                <div className={`${flex.flex} ${flex.flexEnd}`}>
-                    <Button
-                        variant={'primary'}
-                        onClick={() =>
-                            handleLagreEndringer(props.valgtSituasjon, props.opprinneligSituasjon, tilleggsData)
-                        }
-                        loading={loading}
-                        disabled={loading}
-                    >
-                        Lagre endring i situasjon
-                    </Button>
-                </div>
-            </>
-        </Steg2Wrapper>
-    );
-};
-
 const NY_JOBB = (props: Steg2Props) => {
     const {
         datepickerProps: forsteArbeidsdagProps,
         inputProps: forsteArbeidsdagInput,
         selectedDay: forsteArbeidsdagDato,
-    } = useDatepicker({
-        fromDate: new Date('Jan 01 2022'),
-        defaultSelected: new Date(),
-    });
-
-    const {
-        datepickerProps: sisteArbeidsdagProps,
-        inputProps: sisteArbeidsdagInput,
-        selectedDay: sisteArbeidsdagDato,
     } = useDatepicker({
         fromDate: new Date('Jan 01 2022'),
         defaultSelected: new Date(),
@@ -415,7 +406,6 @@ const NY_JOBB = (props: Steg2Props) => {
 
     const tilleggsData = {
         forsteArbeidsdagDato,
-        sisteArbeidsdagDato,
         stillingsProsent,
     };
 
@@ -426,15 +416,7 @@ const NY_JOBB = (props: Steg2Props) => {
                     <DatePicker.Input
                         {...forsteArbeidsdagInput}
                         className={spacing.mb1}
-                        label="Når er første arbeidsdag i ny jobb?"
-                    />
-                </DatePicker>
-
-                <DatePicker {...sisteArbeidsdagProps} strategy="fixed">
-                    <DatePicker.Input
-                        {...sisteArbeidsdagInput}
-                        className={spacing.mb1}
-                        label="Når er siste arbeidsdag med lønn i nåværende jobb?"
+                        label="Når er første arbeidsdag i ny jobb etter permittering?"
                     />
                 </DatePicker>
 
@@ -495,7 +477,7 @@ const MIDLERTIDIG_JOBB = (props: Steg2Props) => {
                     <DatePicker.Input
                         {...forsteArbeidsdagInput}
                         className={spacing.mb1}
-                        label="Når er første arbeidsdag i den midlertidige jobben?"
+                        label="Når er første arbeidsdag i ny jobb etter permittering?"
                     />
                 </DatePicker>
 
@@ -606,7 +588,7 @@ const SAGT_OPP = (props: Steg2Props) => {
                     <DatePicker.Input
                         {...oppsigelseInput}
                         className={spacing.mb1}
-                        label={<div className={flex.flex}>Når sa du opp?</div>}
+                        label={<div className={flex.flex}>Når leverte du oppsigelsen din?</div>}
                     />
                 </DatePicker>
 
@@ -616,7 +598,7 @@ const SAGT_OPP = (props: Steg2Props) => {
                         className={spacing.mb1}
                         label={
                             <div className={flex.flex}>
-                                Når er din siste arbeidsdag der arbeidsgiver betaler lønn?
+                                Når er siste arbeidsdag der arbeidsgiver betaler lønn?
                                 <HelpText className={spacing.ml05}>
                                     Når oppsigelsestiden er over og du ikke lenger mottar lønn fra arbeidsgiver kan du
                                     på nytt søke dagpenger dersom du ikke har fått nytt arbeid.
