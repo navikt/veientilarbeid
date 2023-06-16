@@ -52,8 +52,14 @@ function genererDialogTekst(
 
     if (tilleggsData) {
         tekstArray.push('Tilleggsopplysninger: \n\n');
-        const { oppsigelseDato, sisteArbeidsdagDato, permitteringsProsent, gjelderFraDato, forsteArbeidsdagDato } =
-            tilleggsData;
+        const {
+            oppsigelseDato,
+            sisteArbeidsdagDato,
+            permitteringsProsent,
+            gjelderFraDato,
+            forsteArbeidsdagDato,
+            stillingsProsent,
+        } = tilleggsData;
         if (valgtSituasjon === PermittertSvar.OPPSIGELSE) {
             tekstArray.push(
                 `Oppsigelsen ble mottatt ${oppsigelseDato ? prettyPrintDato(oppsigelseDato) : 'på ikke oppgitt dato'}`
@@ -63,12 +69,10 @@ function genererDialogTekst(
             );
         } else if (valgtSituasjon === PermittertSvar.ENDRET_PERMITTERINGSPROSENT) {
             tekstArray.push(
-                `Den nye permitteringen gjelder fra ${
-                    gjelderFraDato ? prettyPrintDato(gjelderFraDato) : 'ikke oppgitt dato'
-                }`
+                `Permitteringen gjelder fra ${gjelderFraDato ? prettyPrintDato(gjelderFraDato) : 'ikke oppgitt dato'}`
             );
             tekstArray.push(
-                `Ny permitteringsprosent er ${
+                `Permitteringsprosenten er ${
                     permitteringsProsent ? `${permitteringsProsent} prosent` : 'er ikke oppgitt'
                 }`
             );
@@ -84,12 +88,14 @@ function genererDialogTekst(
                     forsteArbeidsdagDato ? prettyPrintDato(forsteArbeidsdagDato) : 'ikke oppgitt'
                 }`
             );
+            tekstArray.push(`Stillingsprosenten er ${stillingsProsent ? stillingsProsent : 'ikke oppgitt'}`);
         } else if (valgtSituasjon === PermittertSvar.MIDLERTIDIG_JOBB) {
             tekstArray.push(
                 `Første arbeidsdag i midlertidige jobb er ${
                     forsteArbeidsdagDato ? prettyPrintDato(forsteArbeidsdagDato) : 'ikke oppgitt'
                 }`
             );
+            tekstArray.push(`Stillingsprosenten er ${stillingsProsent ? stillingsProsent : 'ikke oppgitt'}`);
         } else if (valgtSituasjon === PermittertSvar.KONKURS) {
             tekstArray.push(
                 `Siste arbeidsdag er ${sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'ikke oppgitt'}`
@@ -401,11 +407,16 @@ const NY_JOBB = (props: Steg2Props) => {
         defaultSelected: new Date(),
     });
 
+    const [stillingsProsent, settStillingsProsent] = useState<string>();
+
     const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
+
+    const disabled = !stillingsProsent || loading;
 
     const tilleggsData = {
         forsteArbeidsdagDato,
         sisteArbeidsdagDato,
+        stillingsProsent,
     };
 
     return (
@@ -426,6 +437,17 @@ const NY_JOBB = (props: Steg2Props) => {
                         label="Når er siste arbeidsdag med lønn i nåværende jobb?"
                     />
                 </DatePicker>
+
+                <RadioGroup
+                    legend="Hvor mye skal du jobbe?"
+                    onChange={(value) => {
+                        settStillingsProsent(value);
+                    }}
+                >
+                    <Radio value="Heltid">Fulltid - 100 prosent</Radio>
+                    <Radio value="Deltid">Deltid</Radio>
+                </RadioGroup>
+
                 <OpplysningeneBrukesTil />
                 <Feil feil={feil} />
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
@@ -435,7 +457,7 @@ const NY_JOBB = (props: Steg2Props) => {
                             handleLagreEndringer(props.valgtSituasjon, props.opprinneligSituasjon, tilleggsData)
                         }
                         loading={loading}
-                        disabled={loading}
+                        disabled={disabled}
                     >
                         Lagre endring i situasjon
                     </Button>
@@ -455,10 +477,15 @@ const MIDLERTIDIG_JOBB = (props: Steg2Props) => {
         defaultSelected: new Date(),
     });
 
+    const [stillingsProsent, settStillingsProsent] = useState<string>();
+
     const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
+
+    const disabled = !stillingsProsent || loading;
 
     const tilleggsData = {
         forsteArbeidsdagDato,
+        stillingsProsent,
     };
 
     return (
@@ -472,6 +499,16 @@ const MIDLERTIDIG_JOBB = (props: Steg2Props) => {
                     />
                 </DatePicker>
 
+                <RadioGroup
+                    legend="Hvor mye skal du jobbe?"
+                    onChange={(value) => {
+                        settStillingsProsent(value);
+                    }}
+                >
+                    <Radio value="Heltid">Fulltid - 100 prosent</Radio>
+                    <Radio value="Deltid">Deltid</Radio>
+                </RadioGroup>
+
                 <OpplysningeneBrukesTil />
                 <Feil feil={feil} />
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
@@ -481,7 +518,7 @@ const MIDLERTIDIG_JOBB = (props: Steg2Props) => {
                             handleLagreEndringer(props.valgtSituasjon, props.opprinneligSituasjon, tilleggsData)
                         }
                         loading={loading}
-                        disabled={loading}
+                        disabled={disabled}
                     >
                         Lagre endring i situasjon
                     </Button>

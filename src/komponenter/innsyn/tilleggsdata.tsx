@@ -103,12 +103,11 @@ function TilleggsData(props: Props) {
         return (
             <>
                 <BodyShort>
-                    Ny permitteringsprosent er{' '}
+                    Permitteringsprosent er{' '}
                     {permitteringsProsent ? `${permitteringsProsent} prosent` : 'er ikke oppgitt'}
                 </BodyShort>
                 <BodyShort>
-                    Permitteringsprosenten gjelder fra{' '}
-                    {gjelderFraDato ? prettyPrintDato(gjelderFraDato) : 'ikke oppgitt dato'}
+                    Permitteringen gjelder fra {gjelderFraDato ? prettyPrintDato(gjelderFraDato) : 'ikke oppgitt dato'}
                 </BodyShort>
             </>
         );
@@ -136,7 +135,7 @@ function TilleggsData(props: Props) {
 
         if (!tilleggsData) return null;
 
-        const { forsteArbeidsdagDato, sisteArbeidsdagDato } = tilleggsData;
+        const { forsteArbeidsdagDato, sisteArbeidsdagDato, stillingsProsent } = tilleggsData;
 
         return (
             <>
@@ -148,6 +147,7 @@ function TilleggsData(props: Props) {
                     Siste arbeidsdag med lønn{' '}
                     {sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'ikke oppgitt'}
                 </BodyShort>
+                <BodyShort>Stillingsprosenten er {stillingsProsent ? stillingsProsent : 'ikke oppgitt'}</BodyShort>
             </>
         );
     };
@@ -157,7 +157,7 @@ function TilleggsData(props: Props) {
 
         if (!tilleggsData) return null;
 
-        const { forsteArbeidsdagDato, sisteArbeidsdagDato } = tilleggsData;
+        const { forsteArbeidsdagDato, sisteArbeidsdagDato, stillingsProsent } = tilleggsData;
 
         return (
             <>
@@ -169,6 +169,7 @@ function TilleggsData(props: Props) {
                     Siste arbeidsdag med lønn{' '}
                     {sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'ikke oppgitt'}
                 </BodyShort>
+                <BodyShort>Stillingsprosenten er {stillingsProsent ? stillingsProsent : 'ikke oppgitt'}</BodyShort>
             </>
         );
     };
