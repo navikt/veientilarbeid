@@ -16,6 +16,8 @@ interface Steg1Props {
     onClick: () => void;
 }
 
+const standardSvarSomSkalFjernes: SituasjonSvar[] = [DinSituasjonSvar.HAR_SAGT_OPP, DinSituasjonSvar.MISTET_JOBBEN];
+
 const Steg1 = (props: Steg1Props) => {
     const { opprinneligSituasjon, valgtSituasjon, settValgtSituasjon, onClick } = props;
     const filterSituasjon = opprinneligSituasjon;
@@ -35,11 +37,14 @@ const Steg1 = (props: Steg1Props) => {
                 value={valgtSituasjon}
             >
                 <option disabled={true} selected={true}></option>
-                {Object.keys(svarTekster).map((situasjon) => (
-                    <option key={situasjon} value={situasjon}>
-                        {svarTekster[situasjon]}
-                    </option>
-                ))}
+                {Object.keys(svarTekster).map((situasjon) => {
+                    if (standardSvarSomSkalFjernes.includes(situasjon as SituasjonSvar)) return null;
+                    return (
+                        <option key={situasjon} value={situasjon}>
+                            {svarTekster[situasjon]}
+                        </option>
+                    );
+                })}
             </Select>
             <div className={`${flex.flex} ${flex.flexEnd}`}>
                 <Button variant={'primary'} onClick={onClick} disabled={!valgtSituasjon}>
