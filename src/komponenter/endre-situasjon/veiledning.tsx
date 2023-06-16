@@ -2,11 +2,14 @@ import { BodyLong, BodyShort, Link, ReadMore } from '@navikt/ds-react';
 
 import { dokumentasjon_url } from '../../url';
 
-import spacing from '../../spacing.module.css';
 import MeldekortInfo from './meldekort-info';
 import DagpengerInfo from './dagpenger-info';
 import { PermittertSvar } from '../../models/endring-av-situasjon';
 import { DinSituasjonSvar } from '../../contexts/brukerregistrering';
+
+import Feedback from '../feedback/feedback-profil';
+
+import spacing from '../../spacing.module.css';
 
 export interface VeiledningsProps {
     valgtSituasjon: PermittertSvar | DinSituasjonSvar;
@@ -45,6 +48,7 @@ const GENERELL_VEILEDNING_MED_DOKUMENTASJON = () => {
                     14 dagene.
                 </BodyLong>
             </ReadMore>
+            <Feedback id="endring-veiledning-generell" />
         </>
     );
 };
@@ -77,6 +81,7 @@ const OPPSIGELSE = (props: VeiledningsProps) => {
                 <br />
                 Før du søker dagpenger på nytt, må du huske å registrere deg igjen.
             </p>
+            <Feedback id="endring-veiledning-oppsigelse" />
         </>
     );
 };
@@ -97,6 +102,7 @@ const ENDRET_PERMITTERINGSPROSENT = (props: VeiledningsProps) => {
                 <h4 className={spacing.mbn}>Meldekort</h4>
                 <MeldekortInfo {...props} />
             </p>
+            <Feedback id="endring-veiledning-endret-permittering" />
         </>
     );
 };
@@ -118,6 +124,7 @@ const TILBAKE_TIL_JOBB = (props: VeiledningsProps) => {
                 Om du ikke lenger vil være registrert som arbeidssøker hos NAV etter å ha sendt inn det siste
                 meldekortet, kan du svare nei på det siste spørsmålet i meldekortet.
             </p>
+            <Feedback id="endring-veiledning-tilbake-til-jobb" />
         </>
     );
 };
@@ -143,6 +150,7 @@ const NY_JOBB = (props: VeiledningsProps) => {
                 Om du ikke lenger vil være registrert som arbeidssøker hos NAV etter å ha sendt inn det siste
                 meldekortet, kan du svare nei på det siste spørsmålet i meldekortet.
             </p>
+            <Feedback id="endring-veiledning-ny-jobb" />
         </>
     );
 };
@@ -168,6 +176,7 @@ const MIDLERTIDIG_JOBB = (props: VeiledningsProps) => {
                 <DagpengerInfo {...props} />
             </p>
             <p>Gi oss beskjed om noe endrer seg.</p>
+            <Feedback id="endring-veiledning-midlertidig-jobb" />
         </>
     );
 };
@@ -200,6 +209,7 @@ const KONKURS = (props: VeiledningsProps) => {
                 <h4 className={spacing.mbn}>Arbeidssøkerregistrering</h4>
                 Dersom du fortsatt ønsker å stå registrert som arbeidssøker må du fortsette å sende inn meldekort.
             </p>
+            <Feedback id="endring-veiledning-konkurs" />
         </>
     );
 };
@@ -227,6 +237,7 @@ const SAGT_OPP = (props: VeiledningsProps) => {
                 <br />
                 Før du søker dagpenger på nytt, må du huske å registrere deg igjen.
             </p>
+            <Feedback id="endring-veiledning-sagt-opp" />
         </>
     );
 };
@@ -239,14 +250,7 @@ const MISTET_JOBBEN = (props: VeiledningsProps) => {
     return (
         <>
             <BodyShort className={spacing.mb1}>Veiledning for {props.valgtSituasjon}</BodyShort>
-        </>
-    );
-};
-
-const HAR_SAGT_OPP = (props: VeiledningsProps) => {
-    return (
-        <>
-            <BodyShort className={spacing.mb1}>Veiledning for {props.valgtSituasjon}</BodyShort>
+            <Feedback id="endring-veiledning-mistet-jobben" />
         </>
     );
 };
@@ -255,6 +259,7 @@ const DELTIDSJOBB_VIL_MER = (props: VeiledningsProps) => {
     return (
         <>
             <BodyShort className={spacing.mb1}>Veiledning for {props.valgtSituasjon}</BodyShort>
+            <Feedback id="endring-veiledning-deltidsjobb" />
         </>
     );
 };
@@ -263,6 +268,7 @@ const ALDRI_HATT_JOBB = (props: VeiledningsProps) => {
     return (
         <>
             <BodyShort className={spacing.mb1}>Veiledning for {props.valgtSituasjon}</BodyShort>
+            <Feedback id="endring-veiledning-aldri-hatt-jobb" />
         </>
     );
 };
@@ -271,6 +277,7 @@ const VIL_BYTTE_JOBB = (props: VeiledningsProps) => {
     return (
         <>
             <BodyShort className={spacing.mb1}>Veiledning for {props.valgtSituasjon}</BodyShort>
+            <Feedback id="endring-veiledning-vil-bytte-jobb" />
         </>
     );
 };
@@ -279,6 +286,7 @@ const JOBB_OVER_2_AAR = (props: VeiledningsProps) => {
     return (
         <>
             <BodyShort className={spacing.mb1}>Veiledning for {props.valgtSituasjon}</BodyShort>
+            <Feedback id="endring-veiledning-jobb-over-to-aar" />
         </>
     );
 };
@@ -287,6 +295,7 @@ const USIKKER_JOBBSITUASJON = (props: VeiledningsProps) => {
     return (
         <>
             <BodyShort className={spacing.mb1}>Veiledning for {props.valgtSituasjon}</BodyShort>
+            <Feedback id="endring-veiledning-usikker-jobb" />
         </>
     );
 };
@@ -295,6 +304,7 @@ const AKKURAT_FULLFORT_UTDANNING = (props: VeiledningsProps) => {
     return (
         <>
             <BodyShort className={spacing.mb1}>Veiledning for {props.valgtSituasjon}</BodyShort>
+            <Feedback id="endring-veiledning-utdanning" />
         </>
     );
 };
@@ -303,6 +313,7 @@ const VIL_FORTSETTE_I_JOBB = (props: VeiledningsProps) => {
     return (
         <>
             <BodyShort className={spacing.mb1}>Veiledning for {props.valgtSituasjon}</BodyShort>
+            <Feedback id="endring-veiledning-fortsette-jobb" />
         </>
     );
 };
@@ -331,8 +342,6 @@ const Veiledning = (props: VeiledningsProps) => {
         return <SAGT_OPP {...props} />;
     } else if (valgtSituasjon === DinSituasjonSvar.MISTET_JOBBEN) {
         return <MISTET_JOBBEN {...props} />;
-    } else if (valgtSituasjon === DinSituasjonSvar.HAR_SAGT_OPP) {
-        return <HAR_SAGT_OPP {...props} />;
     } else if (valgtSituasjon === DinSituasjonSvar.DELTIDSJOBB_VIL_MER) {
         return <DELTIDSJOBB_VIL_MER {...props} />;
     } else if (valgtSituasjon === DinSituasjonSvar.ALDRI_HATT_JOBB) {

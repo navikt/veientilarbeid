@@ -1,12 +1,13 @@
 import { useContext } from 'react';
 import { BodyShort, Heading, Link } from '@navikt/ds-react';
-import spacingStyles from '../../spacing.module.css';
 
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 
 import { OppfolgingContext, Servicegruppe } from '../../contexts/oppfolging';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import Feedback from '../feedback/feedback';
+
+import spacingStyles from '../../spacing.module.css';
 
 function Avsnitt1() {
     return (
