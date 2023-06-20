@@ -60,7 +60,7 @@ const GENERELL_VEILEDNING_MED_DOKUMENTASJON = () => {
                     14 dagene.
                 </BodyLong>
             </ReadMore>
-            <Feedback id="endring-veiledning-generell" />
+            <Feedback id="endring-veiledning-generell-med-dokumentasjon" />
         </>
     );
 };
@@ -86,7 +86,7 @@ const GENERELL_VEILEDNING_UTEN_DOKUMENTASJON = () => {
                     14 dagene.
                 </BodyLong>
             </ReadMore>
-            <Feedback id="endring-veiledning-generell" />
+            <Feedback id="endring-veiledning-generell-uten-dokumentasjon" />
         </>
     );
 };
@@ -281,34 +281,7 @@ const SAGT_OPP = (props: VeiledningsProps) => {
 };
 
 const ANNET = (props: VeiledningsProps) => {
-    return <GENERELL_VEILEDNING_MED_DOKUMENTASJON />;
-};
-
-const MISTET_JOBBEN = (props: VeiledningsProps) => {
-    return (
-        <>
-            <BodyShort className={spacing.mb1}>Veiledning for {props.valgtSituasjon}</BodyShort>
-            <Feedback id="endring-veiledning-mistet-jobben" />
-        </>
-    );
-};
-
-const DELTIDSJOBB_VIL_MER = (props: VeiledningsProps) => {
-    return (
-        <>
-            <BodyShort className={spacing.mb1}>Veiledning for {props.valgtSituasjon}</BodyShort>
-            <Feedback id="endring-veiledning-deltidsjobb" />
-        </>
-    );
-};
-
-const ALDRI_HATT_JOBB = (props: VeiledningsProps) => {
-    return (
-        <>
-            <BodyShort className={spacing.mb1}>Veiledning for {props.valgtSituasjon}</BodyShort>
-            <Feedback id="endring-veiledning-aldri-hatt-jobb" />
-        </>
-    );
+    return <GENERELL_VEILEDNING_UTEN_DOKUMENTASJON />;
 };
 
 const VIL_BYTTE_JOBB = (props: VeiledningsProps) => {
@@ -316,42 +289,6 @@ const VIL_BYTTE_JOBB = (props: VeiledningsProps) => {
         <>
             <BodyShort className={spacing.mb1}>Veiledning for {props.valgtSituasjon}</BodyShort>
             <Feedback id="endring-veiledning-vil-bytte-jobb" />
-        </>
-    );
-};
-
-const JOBB_OVER_2_AAR = (props: VeiledningsProps) => {
-    return (
-        <>
-            <BodyShort className={spacing.mb1}>Veiledning for {props.valgtSituasjon}</BodyShort>
-            <Feedback id="endring-veiledning-jobb-over-to-aar" />
-        </>
-    );
-};
-
-const USIKKER_JOBBSITUASJON = (props: VeiledningsProps) => {
-    return (
-        <>
-            <BodyShort className={spacing.mb1}>Veiledning for {props.valgtSituasjon}</BodyShort>
-            <Feedback id="endring-veiledning-usikker-jobb" />
-        </>
-    );
-};
-
-const AKKURAT_FULLFORT_UTDANNING = (props: VeiledningsProps) => {
-    return (
-        <>
-            <BodyShort className={spacing.mb1}>Veiledning for {props.valgtSituasjon}</BodyShort>
-            <Feedback id="endring-veiledning-utdanning" />
-        </>
-    );
-};
-
-const VIL_FORTSETTE_I_JOBB = (props: VeiledningsProps) => {
-    return (
-        <>
-            <BodyShort className={spacing.mb1}>Veiledning for {props.valgtSituasjon}</BodyShort>
-            <Feedback id="endring-veiledning-fortsette-jobb" />
         </>
     );
 };
@@ -378,22 +315,8 @@ const Veiledning = (props: VeiledningsProps) => {
         return <ANNET {...props} />;
     } else if (valgtSituasjon === PermittertSvar.SAGT_OPP) {
         return <SAGT_OPP {...props} />;
-    } else if (valgtSituasjon === DinSituasjonSvar.MISTET_JOBBEN) {
-        return <MISTET_JOBBEN {...props} />;
-    } else if (valgtSituasjon === DinSituasjonSvar.DELTIDSJOBB_VIL_MER) {
-        return <DELTIDSJOBB_VIL_MER {...props} />;
-    } else if (valgtSituasjon === DinSituasjonSvar.ALDRI_HATT_JOBB) {
-        return <ALDRI_HATT_JOBB {...props} />;
     } else if (valgtSituasjon === DinSituasjonSvar.VIL_BYTTE_JOBB) {
         return <VIL_BYTTE_JOBB {...props} />;
-    } else if (valgtSituasjon === DinSituasjonSvar.JOBB_OVER_2_AAR) {
-        return <JOBB_OVER_2_AAR {...props} />;
-    } else if (valgtSituasjon === DinSituasjonSvar.USIKKER_JOBBSITUASJON) {
-        return <USIKKER_JOBBSITUASJON {...props} />;
-    } else if (valgtSituasjon === DinSituasjonSvar.AKKURAT_FULLFORT_UTDANNING) {
-        return <AKKURAT_FULLFORT_UTDANNING {...props} />;
-    } else if (valgtSituasjon === DinSituasjonSvar.VIL_FORTSETTE_I_JOBB) {
-        return <VIL_FORTSETTE_I_JOBB {...props} />;
     } else if (kreverDokumentasjon(valgtSituasjon)) {
         return <GENERELL_VEILEDNING_MED_DOKUMENTASJON />;
     } else if (!kreverDokumentasjon(valgtSituasjon)) {
