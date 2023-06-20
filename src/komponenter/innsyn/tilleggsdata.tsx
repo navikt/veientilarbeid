@@ -32,6 +32,50 @@ const harSendtInnNyDokumentasjon = (profil: Profil | null, besvarelse: Besvarels
 
     return harSendtInnDokumentasjon;
 };
+
+const SendInnDokumentasjon = () => {
+    const { lagreProfil, profil } = useProfil();
+    const { besvarelse } = useBesvarelse();
+
+    const [visSpinner, settVisSpinner] = useState<boolean>(false);
+    const harSendtInnDokumentasjon = harSendtInnNyDokumentasjon(profil, besvarelse);
+
+    const onChange = async (val: any[]) => {
+        if (val.length > 0) {
+            try {
+                settVisSpinner(true);
+                await lagreProfil({ aiaHarSendtInnDokumentasjonForEndring: new Date().toISOString() });
+            } finally {
+                settVisSpinner(false);
+            }
+        }
+    };
+
+    if (harSendtInnDokumentasjon) {
+        return null;
+    }
+
+    return (
+        <p>
+            Du må dokumentere oppsigelsen.
+            <br />
+            <a className={'navds-button navds-button--primary'} href={dokumentasjon_url}>
+                Gå til opplasting
+            </a>
+            <br />
+            <CheckboxGroup legend={''} onChange={onChange}>
+                {visSpinner ? (
+                    <Loader />
+                ) : (
+                    <Checkbox checked={harSendtInnDokumentasjon} disabled={harSendtInnDokumentasjon}>
+                        Jeg har sendt inn dokumentasjon
+                    </Checkbox>
+                )}
+            </CheckboxGroup>
+        </p>
+    );
+};
+
 function TilleggsData(props: Props) {
     const { verdi, tilleggsData, visKnapper } = props;
 
@@ -54,26 +98,14 @@ function TilleggsData(props: Props) {
 
     const OPPSIGELSE = (props: TilleggsDataProps) => {
         const { tilleggsData } = props;
-        const { lagreProfil, profil } = useProfil();
+        const { profil } = useProfil();
         const { besvarelse } = useBesvarelse();
-
-        const [visSpinner, settVisSpinner] = useState<boolean>(false);
 
         if (!tilleggsData) return null;
 
         const { oppsigelseDato, sisteArbeidsdagDato } = tilleggsData;
         const harSendtInnDokumentasjon = harSendtInnNyDokumentasjon(profil, besvarelse);
 
-        const onChange = async (val: any[]) => {
-            if (val.length > 0) {
-                try {
-                    settVisSpinner(true);
-                    await lagreProfil({ aiaHarSendtInnDokumentasjonForEndring: new Date().toISOString() });
-                } finally {
-                    settVisSpinner(false);
-                }
-            }
-        };
         return (
             <>
                 <BodyShort>
@@ -88,25 +120,7 @@ function TilleggsData(props: Props) {
                         Sendte inn dokumentasjon {prettyPrintDato(profil!.aiaHarSendtInnDokumentasjonForEndring!)}
                     </BodyShort>
                 )}
-                {visKnapper && !harSendtInnDokumentasjon && (
-                    <p>
-                        Du må dokumentere oppsigelsen.
-                        <br />
-                        <a className={'navds-button navds-button--primary'} href={dokumentasjon_url}>
-                            Gå til opplasting
-                        </a>
-                        <br />
-                        <CheckboxGroup legend={''} onChange={onChange}>
-                            {visSpinner ? (
-                                <Loader />
-                            ) : (
-                                <Checkbox checked={harSendtInnDokumentasjon} disabled={harSendtInnDokumentasjon}>
-                                    Jeg har sendt inn dokumentasjon
-                                </Checkbox>
-                            )}
-                        </CheckboxGroup>
-                    </p>
-                )}
+                {visKnapper && <SendInnDokumentasjon />}
             </>
         );
     };
