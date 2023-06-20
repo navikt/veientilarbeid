@@ -18,12 +18,13 @@ export interface VeiledningsProps {
     tilleggsData?: any;
 }
 
-function kreverDokumentasjon(valgtSituasjon: SituasjonSvar): boolean {
+export function kreverDokumentasjon(valgtSituasjon: SituasjonSvar): boolean {
     const dokumentasjonsSituasjoner: SituasjonSvar[] = [
         PermittertSvar.TILBAKE_TIL_JOBB,
         PermittertSvar.OPPSIGELSE,
         PermittertSvar.ENDRET_PERMITTERINGSPROSENT,
         PermittertSvar.SAGT_OPP,
+        DinSituasjonSvar.ER_PERMITTERT,
     ];
     return dokumentasjonsSituasjoner.includes(valgtSituasjon);
 }
