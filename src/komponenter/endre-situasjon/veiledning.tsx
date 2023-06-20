@@ -11,9 +11,21 @@ import Feedback from '../feedback/feedback-profil';
 
 import spacing from '../../spacing.module.css';
 
+type SituasjonSvar = PermittertSvar | DinSituasjonSvar;
+
 export interface VeiledningsProps {
-    valgtSituasjon: PermittertSvar | DinSituasjonSvar;
+    valgtSituasjon: SituasjonSvar;
     tilleggsData?: any;
+}
+
+function kreverDokumentasjon(valgtSituasjon: SituasjonSvar): boolean {
+    const dokumentasjonsSituasjoner: SituasjonSvar[] = [
+        PermittertSvar.TILBAKE_TIL_JOBB,
+        PermittertSvar.OPPSIGELSE,
+        PermittertSvar.ENDRET_PERMITTERINGSPROSENT,
+        PermittertSvar.SAGT_OPP,
+    ];
+    return dokumentasjonsSituasjoner.includes(valgtSituasjon);
 }
 
 const GENERELL_VEILEDNING_MED_DOKUMENTASJON = () => {
@@ -25,7 +37,7 @@ const GENERELL_VEILEDNING_MED_DOKUMENTASJON = () => {
             <BodyShort>
                 Du må sende oss dokumentasjon om endringen dersom du ikke har gjort det allerede.
                 <br />
-                Du kan gå direkte til innsendingen når du lukker dette vinudet.
+                Du kan gå direkte til innsendingen når du lukker dette vinduet.
             </BodyShort>
             <ReadMore header="Hva skjer nå om jeg har søkt eller mottar dagpenger?" className={spacing.mt1}>
                 <BodyShort className={spacing.mb1}>
@@ -37,6 +49,32 @@ const GENERELL_VEILEDNING_MED_DOKUMENTASJON = () => {
                 </BodyShort>
                 <BodyShort>Du finner informasjon om saksbehandlingstider på NAV.no.</BodyShort>
             </ReadMore>
+            <ReadMore header="Skal jeg fortsatt være registrert som arbeidssøker?" className={spacing.mt1}>
+                <BodyShort className={spacing.mb1}>
+                    Ett av kravene for å få innvilget pengestøtte (dagpenger, tiltakspenger eller kommunal ytelse) er at
+                    du må være registrert som arbeidssøker i hele perioden du søker om pengestøtten for.
+                </BodyShort>
+                <BodyLong>
+                    Om du er usikker på når du har rett på pengestøtte, må du derfor huske å sende inn alle meldekortene
+                    fremover og å svare 'Ja' på spørsmålet om du ønsker å være registrert som arbeidssøker for de neste
+                    14 dagene.
+                </BodyLong>
+            </ReadMore>
+            <Feedback id="endring-veiledning-generell" />
+        </>
+    );
+};
+
+const GENERELL_VEILEDNING_UTEN_DOKUMENTASJON = () => {
+    return (
+        <>
+            <h2 className={spacing.mbn}>Hva betyr endringen for meg?</h2>
+            <BodyShort>Vi baserer denne veiledningen på de opplysningene du har oppgitt.</BodyShort>
+            <h3 className={spacing.mbn}>Hva må jeg gjøre nå?</h3>
+            <BodyShort>
+                Vi har mottatt endringen i din situasjon så du trenger i utgangspunktet ikke gjøre mer rundt denne
+                saken.
+            </BodyShort>
             <ReadMore header="Skal jeg fortsatt være registrert som arbeidssøker?" className={spacing.mt1}>
                 <BodyShort className={spacing.mb1}>
                     Ett av kravene for å få innvilget pengestøtte (dagpenger, tiltakspenger eller kommunal ytelse) er at
@@ -356,6 +394,10 @@ const Veiledning = (props: VeiledningsProps) => {
         return <AKKURAT_FULLFORT_UTDANNING {...props} />;
     } else if (valgtSituasjon === DinSituasjonSvar.VIL_FORTSETTE_I_JOBB) {
         return <VIL_FORTSETTE_I_JOBB {...props} />;
+    } else if (kreverDokumentasjon(valgtSituasjon)) {
+        return <GENERELL_VEILEDNING_MED_DOKUMENTASJON />;
+    } else if (!kreverDokumentasjon(valgtSituasjon)) {
+        return <GENERELL_VEILEDNING_UTEN_DOKUMENTASJON />;
     } else {
         return <ANNET {...props} />;
     }
