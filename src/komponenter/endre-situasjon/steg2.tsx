@@ -283,9 +283,9 @@ const OPPSIGELSE = (props: Steg2Props) => {
                         className={spacing.mb1}
                         label={
                             <div className={flex.flex}>
-                                Når mottok du oppsigelsen?
+                                Når fikk du oppsigelsen?
                                 <HelpText className={spacing.ml05}>
-                                    Datoen da du mottok beskjed fra arbeidsgiver om at du mistet jobben.
+                                    Datoen du fikk skriftlig oppsigelse fra arbeidsgiver.
                                 </HelpText>
                             </div>
                         }
@@ -298,10 +298,9 @@ const OPPSIGELSE = (props: Steg2Props) => {
                         className={spacing.mb1}
                         label={
                             <div className={flex.flex}>
-                                Når er din siste arbeidsdag der arbeidsgiver betaler lønn?
+                                Når er din siste dag med lønn fra arbeidsgiver?
                                 <HelpText className={spacing.ml05}>
-                                    Når oppsigelsestiden er over og du ikke lenger mottar lønn fra arbeidsgiver kan du
-                                    på nytt søke dagpenger dersom du ikke har fått nytt arbeid.
+                                    Den datoen oppsigelsestiden er over og du ikke lenger mottar lønn fra arbeidsgiver.
                                 </HelpText>
                             </div>
                         }

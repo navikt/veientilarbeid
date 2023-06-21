@@ -145,29 +145,54 @@ const OPPSIGELSE = (props: VeiledningsProps) => {
 
     if (!tilleggsData) return null;
 
+    const { oppsigelseDato } = tilleggsData;
+
     return (
         <>
-            <h2>Hva betyr dette for meg?</h2>
+            <h2 className={spacing.mbn}>Hva betyr endringen for meg?</h2>
+            <BodyShort>Vi baserer denne veiledningen på de opplysningene du har oppgitt.</BodyShort>
 
-            <p>
-                <h4 className={spacing.mbn}>Dokumentasjon</h4>
-                <Link href={dokumentasjon_url}>Du må laste opp oppsigelsen</Link>
-            </p>
-            <p>
-                <h4 className={spacing.mbn}>Meldekort</h4>
-                <MeldekortInfo {...props} />
-            </p>
-            <p>
-                <h4 className={spacing.mbn}>Dagpenger</h4>
-                <DagpengerInfo {...props} />
-            </p>
-            <p>
-                <h4 className={spacing.mbn}>Arbeidssøkerregistrering</h4>
-                Om du ikke lenger vil være registrert som arbeidssøker hos NAV, kan du svare nei på det siste spørsmålet
-                i meldekortet.
-                <br />
-                Før du søker dagpenger på nytt, må du huske å registrere deg igjen.
-            </p>
+            <h3 className={spacing.mbn}>Hva må jeg gjøre nå?</h3>
+            <BodyShort>Du må sende oss oppsigelsen du har fått fra arbeidsgiver.</BodyShort>
+            <BodyShort>
+                Når vi får behandlet dokumentasjonen du sender oss, vil du få et brev om saken din og hva du skal gjøre.
+            </BodyShort>
+            <BodyShort>Du kan gå direkte til innsending når du lukker denne boksen.</BodyShort>
+            <ReadMore header="Hva skjer nå om du har søkt eller mottar dagpenger?" className={spacing.mt1}>
+                <BodyShort className={spacing.mb1}>
+                    Hvis du var permittert da du ble oppsagt, har du rett til lønn fra arbeidsgiveren din. Du har krav
+                    på lønn fra dagen du mottok oppsigelsen og ut oppsigelsestiden.
+                </BodyShort>
+                <BodyShort className={spacing.mb1}>
+                    Du har oppgitt at du mottok oppsigelsen {prettyPrintDato(oppsigelseDato)}.
+                </BodyShort>
+                <BodyShort>
+                    Frem til {prettyPrintDato(oppsigelseDato)} kan du ha rett på dagpenger som permittert arbeidssøker
+                </BodyShort>
+                <BodyShort>
+                    Arbeidsgiver har ansvaret for å betale lønn fra{' '}
+                    {prettyPrintDato(plussDager(oppsigelseDato, 1).toISOString())} og ut oppsigelsestiden.
+                </BodyShort>
+                <BodyShort className={spacing.mb1}>
+                    Du bør fortsette å sende inn meldekortene også i oppsigelsestiden.
+                </BodyShort>
+                <BodyShort>
+                    <Link href={saksbehandlingstiderDagpengerUrl}>
+                        Du finner informasjon om saksbehandlingstider på NAV.no.
+                    </Link>
+                </BodyShort>
+            </ReadMore>
+            <ReadMore header="Skal jeg fortsatt være registrert som arbeidssøker?" className={spacing.mt1}>
+                <BodyShort className={spacing.mb1}>
+                    Ett av kravene for å få innvilget dagpenger er at du må være registrert som arbeidssøker i hele
+                    perioden du søker om pengestøtten for.
+                </BodyShort>
+                <BodyLong>
+                    Om du er usikker på når du har rett på pengestøtte, må du derfor huske å sende inn alle meldekortene
+                    fremover og å svare 'Ja' på spørsmålet om du ønsker å være registrert som arbeidssøker for de neste
+                    14 dagene.
+                </BodyLong>
+            </ReadMore>
             <Feedback id="endring-veiledning-oppsigelse" />
         </>
     );

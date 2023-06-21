@@ -25,7 +25,7 @@ export const dinSituasjonSvarTekster = {
 
 export const permittertTekster = {
     [PermittertSvar.TILBAKE_TIL_JOBB]: 'Jeg skal tilbake i jobb hos min nåværende arbeidsgiver',
-    [PermittertSvar.OPPSIGELSE]: 'Jeg har blitt oppsagt',
+    [PermittertSvar.OPPSIGELSE]: 'Jeg har blitt sagt opp',
     [PermittertSvar.ENDRET_PERMITTERINGSPROSENT]: ' Arbeidsgiver har endret permitteringen min',
     [PermittertSvar.NY_JOBB]: 'Jeg skal begynne å jobbe hos en ny arbeidsgiver',
     [PermittertSvar.MIDLERTIDIG_JOBB]: 'Jeg har fått midlertidig jobb hos en ny arbeidsgiver',
