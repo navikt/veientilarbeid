@@ -5,7 +5,7 @@ import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { loggAktivitet } from '../../metrics/metrics';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
-import { mine_dagpenger_url } from '../../url';
+import { mine_dagpenger_url } from '../../ducks/urls';
 
 const TEKSTER = {
     nb: {

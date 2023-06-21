@@ -1,6 +1,5 @@
 import { BodyLong, BodyShort, Link, ReadMore } from '@navikt/ds-react';
 
-import { dokumentasjon_url } from '../../url';
 import { saksbehandlingstiderDagpengerUrl } from '../../innhold/lenker';
 import Feedback from '../feedback/feedback-profil';
 import MeldekortInfo from './meldekort-info';
@@ -11,6 +10,7 @@ import { DinSituasjonSvar } from '../../contexts/brukerregistrering';
 import { plussDager } from '../../utils/date-utils';
 
 import spacing from '../../spacing.module.css';
+import { dokumentasjon_url } from '../../ducks/urls';
 
 type SituasjonSvar = PermittertSvar | DinSituasjonSvar;
 

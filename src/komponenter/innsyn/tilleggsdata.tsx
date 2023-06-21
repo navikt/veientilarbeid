@@ -2,11 +2,11 @@ import { BodyShort, Checkbox, CheckboxGroup, Loader } from '@navikt/ds-react';
 
 import { BesvarelseResponse, DinSituasjonTilleggsdata, useBesvarelse } from '../../contexts/besvarelse';
 import prettyPrintDato from '../../utils/pretty-print-dato';
-import { dokumentasjon_url } from '../../url';
 import { useProfil } from '../../contexts/profil';
 import { useState } from 'react';
 import { Profil } from '../../profil';
 import { PermittertSvar } from '../../models/endring-av-situasjon';
+import { dokumentasjon_url } from '../../ducks/urls';
 
 interface Props {
     verdi: string | null;

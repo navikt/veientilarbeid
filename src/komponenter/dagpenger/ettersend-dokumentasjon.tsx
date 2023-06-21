@@ -1,11 +1,11 @@
 import { BodyShort, Link } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
 
-import { mine_dagpenger_url } from '../../url';
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
 import { loggAktivitet } from '../../metrics/metrics';
+import { mine_dagpenger_url } from '../../ducks/urls';
 
 interface Props {
     amplitudeTemaNavn: string;
