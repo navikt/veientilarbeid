@@ -282,7 +282,26 @@ const SAGT_OPP = (props: VeiledningsProps) => {
 };
 
 const ANNET = (props: VeiledningsProps) => {
-    return <GENERELL_VEILEDNING_UTEN_DOKUMENTASJON />;
+    return (
+        <>
+            <h2 className={spacing.mbn}>Hva betyr endringen for meg?</h2>
+            <BodyShort>Vi baserer denne veiledningen på de opplysningene du har oppgitt.</BodyShort>
+            <h3 className={spacing.mbn}>Hva må jeg gjøre nå?</h3>
+            <BodyShort>Skriv til NAV i dialogen og fortell mer om den nye jobbsituasjonen din.</BodyShort>
+            <ReadMore header="Skal jeg fortsatt være registrert som arbeidssøker?" className={spacing.mt1}>
+                <BodyShort className={spacing.mb1}>
+                    Ett av kravene for å få innvilget pengestøtte (dagpenger, tiltakspenger eller kommunal ytelse) er at
+                    du må være registrert som arbeidssøker i hele perioden du søker om pengestøtten for.
+                </BodyShort>
+                <BodyLong>
+                    Om du er usikker på når du har rett på pengestøtte, må du derfor huske å sende inn alle meldekortene
+                    fremover og å svare 'Ja' på spørsmålet om du ønsker å være registrert som arbeidssøker for de neste
+                    14 dagene.
+                </BodyLong>
+            </ReadMore>
+            <Feedback id="endring-veiledning-annet" />
+        </>
+    );
 };
 
 const VIL_BYTTE_JOBB = (props: VeiledningsProps) => {
