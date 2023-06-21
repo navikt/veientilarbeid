@@ -10,7 +10,6 @@ import { DinSituasjonSvar } from '../../contexts/brukerregistrering';
 import { plussDager } from '../../utils/date-utils';
 
 import spacing from '../../spacing.module.css';
-import { dokumentasjon_url } from '../../ducks/urls';
 
 type SituasjonSvar = PermittertSvar | DinSituasjonSvar;
 
@@ -298,28 +297,24 @@ const KONKURS = (props: VeiledningsProps) => {
 
     return (
         <>
-            <h2>Hva betyr dette for meg?</h2>
-            <p>
-                <h4 className={spacing.mbn}>Dokumentasjon</h4>
-                <Link href={dokumentasjon_url}>Du må sende oss meldingen om konkursen</Link>
-            </p>
-            <p>
-                <h4 className={spacing.mbn}>Meldekort</h4>
-                <MeldekortInfo {...props} />
-            </p>
-            <p>
-                <h4 className={spacing.mbn}>Dagpenger</h4>
-                <DagpengerInfo {...props} />
-            </p>
-            <p>
-                Dersom du ønsker dagpenger etter forskuddet må du krysse av for at du også søker dagpenger for etter
-                lønnsgarantiperioden er over, så slipper du to dagpengesøknader.
-            </p>
-            <p>
-                <h4 className={spacing.mbn}>Arbeidssøkerregistrering</h4>
-                Dersom du fortsatt ønsker å stå registrert som arbeidssøker må du fortsette å sende inn meldekort.
-            </p>
-            <Feedback id="endring-veiledning-konkurs" />
+            <h2 className={spacing.mbn}>Hva betyr endringen for meg?</h2>
+            <BodyShort>Vi baserer denne veiledningen på de opplysningene du har oppgitt.</BodyShort>
+            <h3 className={spacing.mbn}>Hva må jeg gjøre nå?</h3>
+            <BodyShort className={spacing.mb1}>
+                Når du mistet jobben fordi arbeidsgiveren din er konkurs, kan du få forskudd på lønnsgarantimidler i
+                form av dagpenger i inntil en måned.
+            </BodyShort>
+            <BodyShort className={spacing.mb1}>Du krysser av for at du ønsker dette i søknaden om dagpenger.</BodyShort>
+            <BodyShort className={spacing.mb1}>Les mer om konkurs og lønnsgaranti.</BodyShort>
+            <BodyShort className={spacing.mb1}>
+                Les mer om hva du kan gjøre hvis arbeidsgiveren din går konkurs.
+            </BodyShort>
+            <BodyShort className={spacing.mb1}>
+                Hvis arbeidsgiveren din har gått konkurs, kan du ha rett til lønnsgarantimidler fra NAV.
+                Lønnsgarantimidler skal dekke lønn, feriepenger og eventuelt andre betalinger som arbeidsgiveren din
+                skylder deg.
+            </BodyShort>
+            <Feedback id="endring-veiledning-konkurs-jobb" />
         </>
     );
 };

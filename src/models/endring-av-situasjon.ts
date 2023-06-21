@@ -29,7 +29,7 @@ export const permittertTekster = {
     [PermittertSvar.ENDRET_PERMITTERINGSPROSENT]: ' Arbeidsgiver har endret permitteringen min',
     [PermittertSvar.NY_JOBB]: 'Jeg skal begynne å jobbe hos en annen arbeidsgiver',
     [PermittertSvar.MIDLERTIDIG_JOBB]: 'Jeg har fått midlertidig jobb hos en annen arbeidsgiver',
-    [PermittertSvar.KONKURS]: 'Min arbeidsgiver er konkurs',
+    [PermittertSvar.KONKURS]: 'Arbeidsgiveren min er konkurs',
     [PermittertSvar.SAGT_OPP]: 'Jeg har sagt opp jobben min',
     [PermittertSvar.ANNET]: 'Annet',
 };

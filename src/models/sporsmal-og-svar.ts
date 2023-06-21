@@ -57,7 +57,7 @@ export const svarMap = {
         TILBAKE_TIL_JOBB: 'Jeg skal begynne å jobbe igjen hos min arbeidsgiver',
         NY_JOBB: 'Jeg skal begynne å jobbe hos en annen arbeidsgiver',
         MIDLERTIDIG_JOBB: 'Jeg har fått midlertidig jobb hos en annen arbeidsgiver',
-        KONKURS: 'Min arbeidsgiver er konkurs',
+        KONKURS: 'Arbeidsgiveren min er konkurs',
         SAGT_OPP: 'Jeg har sagt opp jobben min',
         ANNET: 'Annet',
     },
