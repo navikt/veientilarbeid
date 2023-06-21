@@ -205,15 +205,37 @@ const ENDRET_PERMITTERINGSPROSENT = (props: VeiledningsProps) => {
 
     return (
         <>
-            <h2>Hva betyr dette for meg?</h2>
-            <p>
-                <h4 className={spacing.mbn}>Dokumentasjon</h4>
-                <Link href={dokumentasjon_url}>Du må sende oss det nye permitteringsvarselet</Link>
-            </p>
-            <p>
-                <h4 className={spacing.mbn}>Meldekort</h4>
-                <MeldekortInfo {...props} />
-            </p>
+            <h2 className={spacing.mbn}>Hva betyr endringen for meg?</h2>
+            <BodyShort>Vi baserer denne veiledningen på de opplysningene du har oppgitt.</BodyShort>
+            <h3 className={spacing.mbn}>Hva må jeg gjøre nå?</h3>
+            <BodyShort className={spacing.mb1}>
+                Du må sende oss nytt permitteringsvarsel eller annen dokumentasjon fra arbeidsgiver.
+            </BodyShort>
+            <BodyShort>Du finner knapp for opplasting når du lukker denne boksen.</BodyShort>
+            <ReadMore header="Hva skjer nå om du har søkt eller mottar dagpenger?" className={spacing.mt1}>
+                <BodyShort className={spacing.mb1}>
+                    Når vi har behandlet den nye dokumentasjonen, får du brev om hva du skal gjøre videre.
+                </BodyShort>
+                <BodyShort className={spacing.mb1}>Du bør fortsette å sende inn meldekortene.</BodyShort>
+                <BodyShort className={spacing.mb1}>
+                    Du må være permittert i minst 50% av din vanlige arbeidstid for å ha rett på dagpenger som
+                    permittert.
+                </BodyShort>
+                <BodyShort>
+                    <Link href={saksbehandlingstiderDagpengerUrl}>
+                        Du finner informasjon om saksbehandlingstider på NAV.no.
+                    </Link>
+                </BodyShort>
+            </ReadMore>
+            <ReadMore header="Skal jeg fortsatt være registrert som arbeidssøker?" className={spacing.mt1}>
+                <BodyShort className={spacing.mb1}>
+                    For å få dagpenger må du være registrert som arbeidssøker.
+                </BodyShort>
+                <BodyLong>
+                    Husk at du må sende meldekort og svare 'Ja' på spørsmålet om du ønsker å være registrert som
+                    arbeidssøker for de neste 14 dagene.
+                </BodyLong>
+            </ReadMore>
             <Feedback id="endring-veiledning-endret-permittering" />
         </>
     );

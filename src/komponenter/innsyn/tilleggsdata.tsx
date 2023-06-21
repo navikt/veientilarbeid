@@ -125,6 +125,12 @@ function TilleggsData(props: Props) {
         );
     };
 
+    const permitteringsprosentMapping = {
+        '100': 'fullt permittert - 100 prosent',
+        '75': 'mellom 50 og 100 prosent',
+        '50': 'mindre enn 50 prosent',
+    };
+
     const ENDRET_PERMITTERINGSPROSENT = (props: TilleggsDataProps) => {
         const { tilleggsData } = props;
 
@@ -135,10 +141,12 @@ function TilleggsData(props: Props) {
         return (
             <>
                 <BodyShort>
-                    Endringen gjelder fra {gjelderFraDato ? prettyPrintDato(gjelderFraDato) : 'ikke oppgitt dato'}
+                    Permitteringsprosenten gjelder fra{' '}
+                    {gjelderFraDato ? prettyPrintDato(gjelderFraDato) : 'ikke oppgitt dato'}
                 </BodyShort>
                 <BodyShort>
-                    Permitteringsgraden er {permitteringsProsent ? `${permitteringsProsent} prosent` : 'ikke oppgitt'}
+                    Ny permitteringsprosent er{' '}
+                    {permitteringsProsent ? `${permitteringsprosentMapping[permitteringsProsent]}` : 'ikke oppgitt'}
                 </BodyShort>
             </>
         );

@@ -351,7 +351,14 @@ const ENDRET_PERMITTERINGSPROSENT = (props: Steg2Props) => {
                     <DatePicker.Input
                         {...gjelderFraDatoInput}
                         className={spacing.mb1}
-                        label="Fra hvilken dato skjer endringen?"
+                        label={
+                            <div className={flex.flex}>
+                                Fra hvilken dato gjelder endringen?
+                                <HelpText className={spacing.ml05}>
+                                    Datoen endringen trer i kraft i følge permitteringsvarselet.
+                                </HelpText>
+                            </div>
+                        }
                     />
                 </DatePicker>
 
@@ -362,8 +369,8 @@ const ENDRET_PERMITTERINGSPROSENT = (props: Steg2Props) => {
                     }}
                 >
                     <Radio value="100">Fullt permittert - 100 prosent</Radio>
-                    <Radio value="75">50 - 100 prosent</Radio>
-                    <Radio value="50">Under 50 prosent</Radio>
+                    <Radio value="75">Mellom 50 og 100 prosent</Radio>
+                    <Radio value="50">Mindre enn 50 prosent</Radio>
                 </RadioGroup>
 
                 <OpplysningeneBrukesTil />
