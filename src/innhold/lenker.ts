@@ -66,3 +66,4 @@ export const meldekortLenke = 'https://www.nav.no/meldekort';
 export const omMeldekortLenke = OM_MELDEKORT_URL[getEnvironment()];
 export const aapSoknadLenke = 'https://www.nav.no/soknader/nb/person/arbeid/arbeidsavklaringspenger';
 export const difiLenke = 'https://brukerprofil.difi.no/minprofil/';
+export const saksbehandlingstiderDagpengerUrl = 'https://www.nav.no/saksbehandlingstider#dagpenger';

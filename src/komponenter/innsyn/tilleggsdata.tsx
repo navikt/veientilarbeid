@@ -89,7 +89,7 @@ function TilleggsData(props: Props) {
         return (
             <>
                 <BodyShort>
-                    Første arbeidsdag etter permittering er{' '}
+                    Min første arbeidsdag etter permittering er{' '}
                     {forsteArbeidsdagDato ? prettyPrintDato(forsteArbeidsdagDato) : 'ikke oppgitt dato'}
                 </BodyShort>
             </>
