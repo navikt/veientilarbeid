@@ -484,7 +484,7 @@ const MIDLERTIDIG_JOBB = (props: Steg2Props) => {
                     <DatePicker.Input
                         {...forsteArbeidsdagInput}
                         className={spacing.mb1}
-                        label="Når er første arbeidsdag i ny jobb etter permittering?"
+                        label="Når er første dag i ny jobb?"
                     />
                 </DatePicker>
 
@@ -494,8 +494,9 @@ const MIDLERTIDIG_JOBB = (props: Steg2Props) => {
                         settStillingsProsent(value);
                     }}
                 >
-                    <Radio value="Heltid">Fulltid - 100 prosent</Radio>
-                    <Radio value="Deltid">Deltid</Radio>
+                    <Radio value="100">Fulltid - 100 prosent</Radio>
+                    <Radio value="75">Mellom 50 og 100 prosent</Radio>
+                    <Radio value="50">Mindre enn 50 prosent</Radio>
                 </RadioGroup>
 
                 <OpplysningeneBrukesTil />

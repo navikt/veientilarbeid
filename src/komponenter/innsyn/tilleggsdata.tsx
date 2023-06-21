@@ -184,7 +184,7 @@ function TilleggsData(props: Props) {
 
         if (!tilleggsData) return null;
 
-        const { forsteArbeidsdagDato, sisteArbeidsdagDato, stillingsProsent } = tilleggsData;
+        const { forsteArbeidsdagDato, stillingsProsent } = tilleggsData;
 
         return (
             <>
@@ -193,10 +193,9 @@ function TilleggsData(props: Props) {
                     {forsteArbeidsdagDato ? prettyPrintDato(forsteArbeidsdagDato) : 'ikke oppgitt'}
                 </BodyShort>
                 <BodyShort>
-                    Siste arbeidsdag med lønn{' '}
-                    {sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'ikke oppgitt'}
+                    Jeg skal begynne å jobbe{' '}
+                    {stillingsProsent ? stillingsprosentMapping[stillingsProsent] : 'ikke oppgitt'}
                 </BodyShort>
-                <BodyShort>Stillingsprosenten er {stillingsProsent ? stillingsProsent : 'ikke oppgitt'}</BodyShort>
             </>
         );
     };

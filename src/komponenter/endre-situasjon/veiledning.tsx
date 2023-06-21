@@ -273,20 +273,19 @@ const MIDLERTIDIG_JOBB = (props: VeiledningsProps) => {
 
     return (
         <>
-            <h2>Hva betyr dette for meg?</h2>
-            <p>
-                <h4 className={spacing.mbn}>Dokumentasjon</h4>
-                <Link href={dokumentasjon_url}>Du må sende oss den nye arbeidsavtalen</Link>
-            </p>
-            <p>
-                <h4 className={spacing.mbn}>Meldekort</h4>
-                <MeldekortInfo {...props} />
-            </p>
-            <p>
-                <h4 className={spacing.mbn}>Dagpenger</h4>
-                <DagpengerInfo {...props} />
-            </p>
-            <p>Gi oss beskjed om noe endrer seg.</p>
+            <h2 className={spacing.mbn}>Hva betyr endringen for meg?</h2>
+            <BodyShort>Vi baserer denne veiledningen på de opplysningene du har oppgitt.</BodyShort>
+            <h3 className={spacing.mbn}>Hva må jeg gjøre nå?</h3>
+            <BodyShort className={spacing.mb1}>Du bør lese mer om jobb i kombinasjon med dagpenger.</BodyShort>
+            <ReadMore header="Skal jeg fortsatt være registrert som arbeidssøker?" className={spacing.mt1}>
+                <BodyShort className={spacing.mb1}>
+                    For å få dagpenger må du være registrert som arbeidssøker.
+                </BodyShort>
+                <BodyLong>
+                    Husk at du må sende meldekort og svare 'Ja' på spørsmålet om du ønsker å være registrert som
+                    arbeidssøker for de neste 14 dagene.
+                </BodyLong>
+            </ReadMore>
             <Feedback id="endring-veiledning-midlertidig-jobb" />
         </>
     );

@@ -56,7 +56,7 @@ export const svarMap = {
         ENDRET_PERMITTERINGSPROSENT: 'Arbeidsgiver har endret permitteringen min',
         TILBAKE_TIL_JOBB: 'Jeg skal begynne å jobbe igjen hos min arbeidsgiver',
         NY_JOBB: 'Jeg skal begynne å jobbe hos en annen arbeidsgiver',
-        MIDLERTIDIG_JOBB: 'Jeg har fått midlertidig jobb hos en ny arbeidsgiver',
+        MIDLERTIDIG_JOBB: 'Jeg har fått midlertidig jobb hos en annen arbeidsgiver',
         KONKURS: 'Min arbeidsgiver er konkurs',
         SAGT_OPP: 'Jeg har sagt opp jobben min',
         ANNET: 'Annet',
