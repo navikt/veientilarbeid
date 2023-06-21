@@ -248,20 +248,19 @@ const NY_JOBB = (props: VeiledningsProps) => {
 
     return (
         <>
-            <h2>Hva betyr dette for meg?</h2>
-            <p>
-                <h4 className={spacing.mbn}>Meldekort</h4>
-                <MeldekortInfo {...props} />
-            </p>
-            <p>
-                <h4 className={spacing.mbn}>Dagpenger</h4>
-                <DagpengerInfo {...props} />
-            </p>
-            <p>
-                <h4 className={spacing.mbn}>Arbeidssøkerregistrering</h4>
-                Om du ikke lenger vil være registrert som arbeidssøker hos NAV etter å ha sendt inn det siste
-                meldekortet, kan du svare nei på det siste spørsmålet i meldekortet.
-            </p>
+            <h2 className={spacing.mbn}>Hva betyr endringen for meg?</h2>
+            <BodyShort>Vi baserer denne veiledningen på de opplysningene du har oppgitt.</BodyShort>
+            <h3 className={spacing.mbn}>Hva må jeg gjøre nå?</h3>
+            <BodyShort className={spacing.mb1}>Du bør lese mer om jobb i kombinasjon med dagpenger.</BodyShort>
+            <ReadMore header="Skal jeg fortsatt være registrert som arbeidssøker?" className={spacing.mt1}>
+                <BodyShort className={spacing.mb1}>
+                    For å få dagpenger må du være registrert som arbeidssøker.
+                </BodyShort>
+                <BodyLong>
+                    Husk at du må sende meldekort og svare 'Ja' på spørsmålet om du ønsker å være registrert som
+                    arbeidssøker for de neste 14 dagene.
+                </BodyLong>
+            </ReadMore>
             <Feedback id="endring-veiledning-ny-jobb" />
         </>
     );

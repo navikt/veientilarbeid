@@ -152,6 +152,12 @@ function TilleggsData(props: Props) {
         );
     };
 
+    const stillingsprosentMapping = {
+        '100': 'fulltid - 100 prosent',
+        '75': 'deltid - mellom 50 og 100 prosent',
+        '50': 'deltid - mindre enn 50 prosent',
+    };
+
     const NY_JOBB = (props: TilleggsDataProps) => {
         const { tilleggsData } = props;
 
@@ -162,10 +168,13 @@ function TilleggsData(props: Props) {
         return (
             <>
                 <BodyShort>
-                    Første arbeidsdag i ny jobb etter permitteringen er{' '}
+                    Første arbeidsdag i ny jobb er{' '}
                     {forsteArbeidsdagDato ? prettyPrintDato(forsteArbeidsdagDato) : 'ikke oppgitt'}
                 </BodyShort>
-                <BodyShort>Stillingsprosenten er {stillingsProsent ? stillingsProsent : 'ikke oppgitt'}</BodyShort>
+                <BodyShort>
+                    Jeg skal begynne å jobbe{' '}
+                    {stillingsProsent ? stillingsprosentMapping[stillingsProsent] : 'ikke oppgitt'}
+                </BodyShort>
             </>
         );
     };
