@@ -37,7 +37,7 @@ const Feil = (props: { feil: string | null }) => {
 
 const OpplysningeneBrukesTil = () => {
     return (
-        <BodyShort className={spacing.mb1}>NAV bruker opplysningene for å kunne tilpasse veiledningen din.</BodyShort>
+        <BodyShort className={spacing.mb1}>NAV bruker opplysningene for å kunne tilpasse veiledningen din</BodyShort>
     );
 };
 
@@ -197,7 +197,10 @@ const Steg2Wrapper = (props: WrapperProps) => {
 
     return (
         <>
-            <BodyShort>{headingTekst}</BodyShort>
+            <BodyShort>
+                <b>Valgt situasjon</b>
+            </BodyShort>
+            <BodyShort className={spacing.mb1}>{headingTekst}</BodyShort>
             {props.children}
         </>
     );
