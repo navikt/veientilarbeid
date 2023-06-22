@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { Profil } from '../../profil';
 import { PermittertSvar } from '../../models/endring-av-situasjon';
 import { dokumentasjon_url } from '../../ducks/urls';
+import { SituasjonSvar } from '../endre-situasjon/veiledning';
 
 interface Props {
     verdi: string | null;
@@ -33,7 +34,7 @@ const harSendtInnNyDokumentasjon = (profil: Profil | null, besvarelse: Besvarels
     return harSendtInnDokumentasjon;
 };
 
-const SendInnDokumentasjon = () => {
+const SendInnDokumentasjon = (props: { aktuellSituasjon: SituasjonSvar }) => {
     const { lagreProfil, profil } = useProfil();
     const { besvarelse } = useBesvarelse();
 
@@ -55,9 +56,16 @@ const SendInnDokumentasjon = () => {
         return null;
     }
 
+    const dokumentasjonMapping = {
+        [PermittertSvar.OPPSIGELSE]: 'oppsigelsen',
+        [PermittertSvar.TILBAKE_TIL_JOBB]: 'permitteringsvarselet',
+        [PermittertSvar.ENDRET_PERMITTERINGSPROSENT]: 'permitteringsvarselet',
+        [PermittertSvar.SAGT_OPP]: 'oppsigelsen',
+    };
+
     return (
-        <p>
-            Du må dokumentere oppsigelsen.
+        <div>
+            <BodyShort>Du må dokumentere {dokumentasjonMapping[props.aktuellSituasjon]}.</BodyShort>
             <br />
             <a className={'navds-button navds-button--primary'} href={dokumentasjon_url}>
                 Gå til opplasting
@@ -72,7 +80,7 @@ const SendInnDokumentasjon = () => {
                     </Checkbox>
                 )}
             </CheckboxGroup>
-        </p>
+        </div>
     );
 };
 
@@ -80,11 +88,15 @@ function TilleggsData(props: Props) {
     const { verdi, tilleggsData, visKnapper } = props;
 
     const TILBAKE_TIL_JOBB = (props: TilleggsDataProps) => {
+        const { profil } = useProfil();
+        const { besvarelse } = useBesvarelse();
         const { tilleggsData } = props;
 
         if (!tilleggsData) return null;
 
         const { forsteArbeidsdagDato } = tilleggsData;
+
+        const harSendtInnDokumentasjon = harSendtInnNyDokumentasjon(profil, besvarelse);
 
         return (
             <>
@@ -92,6 +104,8 @@ function TilleggsData(props: Props) {
                     Min første arbeidsdag etter permittering er{' '}
                     {forsteArbeidsdagDato ? prettyPrintDato(forsteArbeidsdagDato) : 'ikke oppgitt dato'}
                 </BodyShort>
+                {harSendtInnDokumentasjon && <BodyShort>Jeg har sendt inn dokumentasjon</BodyShort>}
+                {visKnapper && <SendInnDokumentasjon aktuellSituasjon={PermittertSvar.TILBAKE_TIL_JOBB} />}
             </>
         );
     };
@@ -116,7 +130,7 @@ function TilleggsData(props: Props) {
                     {sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'ukjent'}
                 </BodyShort>
                 {harSendtInnDokumentasjon && <BodyShort>Jeg har sendt inn dokumentasjon</BodyShort>}
-                {visKnapper && <SendInnDokumentasjon />}
+                {visKnapper && <SendInnDokumentasjon aktuellSituasjon={PermittertSvar.OPPSIGELSE} />}
             </>
         );
     };
@@ -129,9 +143,12 @@ function TilleggsData(props: Props) {
 
     const ENDRET_PERMITTERINGSPROSENT = (props: TilleggsDataProps) => {
         const { tilleggsData } = props;
+        const { profil } = useProfil();
+        const { besvarelse } = useBesvarelse();
 
         if (!tilleggsData) return null;
 
+        const harSendtInnDokumentasjon = harSendtInnNyDokumentasjon(profil, besvarelse);
         const { permitteringsProsent, gjelderFraDato } = tilleggsData;
 
         return (
@@ -144,6 +161,8 @@ function TilleggsData(props: Props) {
                     Ny permitteringsprosent er{' '}
                     {permitteringsProsent ? `${permitteringsprosentMapping[permitteringsProsent]}` : 'ikke oppgitt'}
                 </BodyShort>
+                {harSendtInnDokumentasjon && <BodyShort>Jeg har sendt inn dokumentasjon</BodyShort>}
+                {visKnapper && <SendInnDokumentasjon aktuellSituasjon={PermittertSvar.ENDRET_PERMITTERINGSPROSENT} />}
             </>
         );
     };
@@ -215,8 +234,12 @@ function TilleggsData(props: Props) {
 
     const SAGT_OPP = (props: TilleggsDataProps) => {
         const { tilleggsData } = props;
+        const { profil } = useProfil();
+        const { besvarelse } = useBesvarelse();
 
         if (!tilleggsData) return null;
+
+        const harSendtInnDokumentasjon = harSendtInnNyDokumentasjon(profil, besvarelse);
 
         const { oppsigelseDato, sisteArbeidsdagDato } = tilleggsData;
 
@@ -230,6 +253,8 @@ function TilleggsData(props: Props) {
                     Siste arbeidsdag med lønn er{' '}
                     {sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'ikke oppgitt'}
                 </BodyShort>
+                {harSendtInnDokumentasjon && <BodyShort>Jeg har sendt inn dokumentasjon</BodyShort>}
+                {visKnapper && <SendInnDokumentasjon aktuellSituasjon={PermittertSvar.SAGT_OPP} />}
             </>
         );
     };

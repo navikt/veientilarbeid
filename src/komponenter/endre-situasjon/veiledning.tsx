@@ -9,7 +9,7 @@ import { plussDager } from '../../utils/date-utils';
 
 import spacing from '../../spacing.module.css';
 
-type SituasjonSvar = PermittertSvar | DinSituasjonSvar;
+export type SituasjonSvar = PermittertSvar | DinSituasjonSvar;
 
 export interface VeiledningsProps {
     valgtSituasjon: SituasjonSvar;
@@ -22,7 +22,6 @@ export function kreverDokumentasjon(valgtSituasjon: SituasjonSvar): boolean {
         PermittertSvar.OPPSIGELSE,
         PermittertSvar.ENDRET_PERMITTERINGSPROSENT,
         PermittertSvar.SAGT_OPP,
-        DinSituasjonSvar.ER_PERMITTERT,
     ];
     return dokumentasjonsSituasjoner.includes(valgtSituasjon);
 }
@@ -325,13 +324,7 @@ const SAGT_OPP = (props: VeiledningsProps) => {
             <BodyShort className={spacing.mb1}>
                 Du kan gå direkte til innsending når du lukker denne visningen.
             </BodyShort>
-            <BodyShort className={spacing.mb1}>
-                Hvis vi vurderer at du ikke hadde rimelig grunn til å si opp, får du ikke utbetalt dagpenger i 18 uker.
-            </BodyShort>
-            <BodyShort className={spacing.mb1}>
-                Husk å send inn meldekortene innen fristen også i perioden du ikke får utbetalt dagpenger. Du må vente i
-                18 nye uker før du har rett på dagpenger om du ikke sender inn et eller flere meldekort.
-            </BodyShort>
+            <BodyShort className={spacing.mb1}>Om du nå står uten jobb, kan du søke dagpenger påny.</BodyShort>
             <ReadMore header="Hva skjer nå om du har søkt eller mottar dagpenger?" className={spacing.mt1}>
                 <BodyShort className={spacing.mb1}>Du leverte oppsigelsen {prettyPrintDato(oppsigelseDato)}.</BodyShort>
                 <BodyShort className={spacing.mb1}>
@@ -360,7 +353,7 @@ const SAGT_OPP = (props: VeiledningsProps) => {
                 </BodyShort>
                 <BodyLong>
                     Om du er usikker på når du har rett på pengestøtte, må du derfor huske å sende inn alle meldekortene
-                    fremover og å svare ‘Ja’ på spørsmålet om du ønsker å være registrert som arbeidssøker for de neste
+                    fremover og å svare 'Ja' på spørsmålet om du ønsker å være registrert som arbeidssøker for de neste
                     14 dagene. Dersom det ikke kan dokumenteres at du hadde rimelig grunn til å si opp, må du sende alle
                     meldekort fram til søknaden er behandlet og i 18 uker etter innvilgelse før du har rett til å motta
                     dagpenger.
@@ -379,13 +372,11 @@ const ANNET = (props: VeiledningsProps) => {
             <BodyShort>Skriv til NAV i dialogen og fortell mer om den nye jobbsituasjonen din.</BodyShort>
             <ReadMore header="Skal jeg fortsatt være registrert som arbeidssøker?" className={spacing.mt1}>
                 <BodyShort className={spacing.mb1}>
-                    Ett av kravene for å få innvilget pengestøtte (dagpenger, tiltakspenger eller kommunal ytelse) er at
-                    du må være registrert som arbeidssøker i hele perioden du søker om pengestøtten for.
+                    For å få dagpenger må du være registrert som arbeidssøker.
                 </BodyShort>
                 <BodyLong>
-                    Om du er usikker på når du har rett på pengestøtte, må du derfor huske å sende inn alle meldekortene
-                    fremover og å svare 'Ja' på spørsmålet om du ønsker å være registrert som arbeidssøker for de neste
-                    14 dagene.
+                    Husk at du må sende meldekort og svare 'Ja' på spørsmålet om du ønsker å være registrert som
+                    arbeidssøker for de neste 14 dagene.
                 </BodyLong>
             </ReadMore>
             <Feedback id="endring-veiledning-annet" />
