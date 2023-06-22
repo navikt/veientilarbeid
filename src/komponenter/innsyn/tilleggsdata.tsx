@@ -115,11 +115,7 @@ function TilleggsData(props: Props) {
                     Siste dag med lønn fra arbeidsgiver er{' '}
                     {sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'ukjent'}
                 </BodyShort>
-                {harSendtInnDokumentasjon && (
-                    <BodyShort>
-                        Sendte inn dokumentasjon {prettyPrintDato(profil!.aiaHarSendtInnDokumentasjonForEndring!)}
-                    </BodyShort>
-                )}
+                {harSendtInnDokumentasjon && <BodyShort>Jeg har sendt inn dokumentasjon</BodyShort>}
                 {visKnapper && <SendInnDokumentasjon />}
             </>
         );
