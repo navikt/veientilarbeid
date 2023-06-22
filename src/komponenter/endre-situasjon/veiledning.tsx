@@ -99,9 +99,8 @@ const TILBAKE_TIL_JOBB = (props: VeiledningsProps) => {
 
     return (
         <>
-            <h2 className={spacing.mbn}>Hva betyr endringen for meg?</h2>
             <BodyShort>Vi baserer denne veiledningen på de opplysningene du har oppgitt.</BodyShort>
-            <h3 className={spacing.mbn}>Hva må jeg gjøre nå?</h3>
+            <h2 className={spacing.mbn}>Hva må jeg gjøre nå?</h2>
             <BodyShort>
                 Hvis du har et permitteringsvarsel som du enda ikke har sendt oss, må du gjøre det nå.
             </BodyShort>
@@ -146,20 +145,18 @@ const OPPSIGELSE = (props: VeiledningsProps) => {
 
     return (
         <>
-            <h2 className={spacing.mbn}>Hva betyr endringen for meg?</h2>
             <BodyShort>Vi baserer denne veiledningen på de opplysningene du har oppgitt.</BodyShort>
-
-            <h3 className={spacing.mbn}>Hva må jeg gjøre nå?</h3>
+            <h2 className={spacing.mbn}>Hva må jeg gjøre nå?</h2>
             <BodyShort>Du må sende oss oppsigelsen du har fått fra arbeidsgiver.</BodyShort>
+            <BodyShort className={spacing.mb1}>Du kan gå direkte til innsending når du lukker denne boksen.</BodyShort>
             <BodyShort>
                 Når vi får behandlet dokumentasjonen du sender oss, vil du få et brev om saken din og hva du skal gjøre.
             </BodyShort>
-            <BodyShort>Du kan gå direkte til innsending når du lukker denne boksen.</BodyShort>
             <ReadMore header="Hva skjer nå om du har søkt eller mottar dagpenger?" className={spacing.mt1}>
-                <BodyShort className={spacing.mb1}>
-                    Hvis du var permittert da du ble oppsagt, har du rett til lønn fra arbeidsgiveren din. Du har krav
-                    på lønn fra dagen du mottok oppsigelsen og ut oppsigelsestiden.
+                <BodyShort>
+                    Hvis du var permittert da du ble oppsagt, har du rett til lønn fra arbeidsgiveren din.
                 </BodyShort>
+                <BodyShort>Du har krav på lønn fra dagen du mottok oppsigelsen og ut oppsigelsestiden.</BodyShort>
                 <BodyShort className={spacing.mb1}>
                     Du har oppgitt at du mottok oppsigelsen {prettyPrintDato(oppsigelseDato)}.
                 </BodyShort>
@@ -202,9 +199,8 @@ const ENDRET_PERMITTERINGSPROSENT = (props: VeiledningsProps) => {
 
     return (
         <>
-            <h2 className={spacing.mbn}>Hva betyr endringen for meg?</h2>
             <BodyShort>Vi baserer denne veiledningen på de opplysningene du har oppgitt.</BodyShort>
-            <h3 className={spacing.mbn}>Hva må jeg gjøre nå?</h3>
+            <h2 className={spacing.mbn}>Hva må jeg gjøre nå?</h2>
             <BodyShort className={spacing.mb1}>
                 Du må sende oss nytt permitteringsvarsel eller annen dokumentasjon fra arbeidsgiver.
             </BodyShort>
@@ -245,9 +241,8 @@ const NY_JOBB = (props: VeiledningsProps) => {
 
     return (
         <>
-            <h2 className={spacing.mbn}>Hva betyr endringen for meg?</h2>
             <BodyShort>Vi baserer denne veiledningen på de opplysningene du har oppgitt.</BodyShort>
-            <h3 className={spacing.mbn}>Hva må jeg gjøre nå?</h3>
+            <h2 className={spacing.mbn}>Hva må jeg gjøre nå?</h2>
             <BodyShort className={spacing.mb1}>Du bør lese mer om jobb i kombinasjon med dagpenger.</BodyShort>
             <ReadMore header="Skal jeg fortsatt være registrert som arbeidssøker?" className={spacing.mt1}>
                 <BodyShort className={spacing.mb1}>
@@ -270,9 +265,8 @@ const MIDLERTIDIG_JOBB = (props: VeiledningsProps) => {
 
     return (
         <>
-            <h2 className={spacing.mbn}>Hva betyr endringen for meg?</h2>
             <BodyShort>Vi baserer denne veiledningen på de opplysningene du har oppgitt.</BodyShort>
-            <h3 className={spacing.mbn}>Hva må jeg gjøre nå?</h3>
+            <h2 className={spacing.mbn}>Hva må jeg gjøre nå?</h2>
             <BodyShort className={spacing.mb1}>Du bør lese mer om jobb i kombinasjon med dagpenger.</BodyShort>
             <ReadMore header="Skal jeg fortsatt være registrert som arbeidssøker?" className={spacing.mt1}>
                 <BodyShort className={spacing.mb1}>
@@ -295,9 +289,8 @@ const KONKURS = (props: VeiledningsProps) => {
 
     return (
         <>
-            <h2 className={spacing.mbn}>Hva betyr endringen for meg?</h2>
             <BodyShort>Vi baserer denne veiledningen på de opplysningene du har oppgitt.</BodyShort>
-            <h3 className={spacing.mbn}>Hva må jeg gjøre nå?</h3>
+            <h2 className={spacing.mbn}>Hva må jeg gjøre nå?</h2>
             <BodyShort className={spacing.mb1}>
                 Når du mistet jobben fordi arbeidsgiveren din er konkurs, kan du få forskudd på lønnsgarantimidler i
                 form av dagpenger i inntil en måned.
@@ -326,12 +319,11 @@ const SAGT_OPP = (props: VeiledningsProps) => {
 
     return (
         <>
-            <h2 className={spacing.mbn}>Hva betyr endringen for meg?</h2>
             <BodyShort>Vi baserer denne veiledningen på de opplysningene du har oppgitt.</BodyShort>
-            <h3 className={spacing.mbn}>Hva må jeg gjøre nå?</h3>
+            <h2 className={spacing.mbn}>Hva må jeg gjøre nå?</h2>
+            <BodyShort>Du må sende oss dokumentasjon av oppsigelsen.</BodyShort>
             <BodyShort className={spacing.mb1}>
-                Du må sende oss dokumentasjon av oppsigelsen. Du kan gå direkte til innsending når du lukker denne
-                visningen.
+                Du kan gå direkte til innsending når du lukker denne visningen.
             </BodyShort>
             <BodyShort className={spacing.mb1}>
                 Hvis vi vurderer at du ikke hadde rimelig grunn til å si opp, får du ikke utbetalt dagpenger i 18 uker.
@@ -382,9 +374,8 @@ const SAGT_OPP = (props: VeiledningsProps) => {
 const ANNET = (props: VeiledningsProps) => {
     return (
         <>
-            <h2 className={spacing.mbn}>Hva betyr endringen for meg?</h2>
             <BodyShort>Vi baserer denne veiledningen på de opplysningene du har oppgitt.</BodyShort>
-            <h3 className={spacing.mbn}>Hva må jeg gjøre nå?</h3>
+            <h2 className={spacing.mbn}>Hva må jeg gjøre nå?</h2>
             <BodyShort>Skriv til NAV i dialogen og fortell mer om den nye jobbsituasjonen din.</BodyShort>
             <ReadMore header="Skal jeg fortsatt være registrert som arbeidssøker?" className={spacing.mt1}>
                 <BodyShort className={spacing.mb1}>
