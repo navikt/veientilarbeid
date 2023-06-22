@@ -40,7 +40,9 @@ const Steg1 = (props: Steg1Props) => {
                 onChange={(e) => settValgtSituasjon(e.target.value as SituasjonSvar)}
                 value={valgtSituasjon}
             >
-                <option disabled={true} selected={true}></option>
+                <option disabled={true} selected={true}>
+                    Velg blant situasjonene nedenfor
+                </option>
                 {Object.keys(svarTekster).map((situasjon) => {
                     if (standardSvarSomSkalFjernes.includes(situasjon as SituasjonSvar)) return null;
                     return (
