@@ -31,5 +31,5 @@ export const permittertTekster = {
     [PermittertSvar.MIDLERTIDIG_JOBB]: 'Jeg har fått midlertidig jobb hos en annen arbeidsgiver',
     [PermittertSvar.KONKURS]: 'Arbeidsgiveren min er konkurs',
     [PermittertSvar.SAGT_OPP]: 'Jeg har sagt opp jobben min',
-    [PermittertSvar.ANNET]: 'Ingen av de foreslåtte situasjonene passer',
+    [PermittertSvar.ANNET]: 'Ingen av situasjonene passer for meg',
 };

@@ -26,6 +26,14 @@ export function kreverDokumentasjon(valgtSituasjon: SituasjonSvar): boolean {
     return dokumentasjonsSituasjoner.includes(valgtSituasjon);
 }
 
+const DagpengeSaksbehandlingstider = () => {
+    return (
+        <BodyShort>
+            <Link href={saksbehandlingstiderDagpengerUrl}>Her finner du informasjon om saksbehandlingstiden</Link>
+        </BodyShort>
+    );
+};
+
 const GENERELL_VEILEDNING_MED_DOKUMENTASJON = () => {
     return (
         <>
@@ -45,7 +53,7 @@ const GENERELL_VEILEDNING_MED_DOKUMENTASJON = () => {
                 <BodyShort className={spacing.mb1}>
                     Frem til du mottar dette brevet bør du fortsette å sende inn meldekortene.
                 </BodyShort>
-                <BodyShort>Du finner informasjon om saksbehandlingstider på NAV.no.</BodyShort>
+                <DagpengeSaksbehandlingstider />
             </ReadMore>
             <ReadMore header="Skal jeg fortsatt være registrert som arbeidssøker?" className={spacing.mt1}>
                 <BodyShort className={spacing.mb1}>
@@ -114,11 +122,7 @@ const TILBAKE_TIL_JOBB = (props: VeiledningsProps) => {
                     dagpenger som permittert arbeidssøker.
                 </BodyShort>
                 <BodyShort className={spacing.mb1}>Du får et brev om saken din og hva du skal gjøre.</BodyShort>
-                <BodyShort>
-                    <Link href={saksbehandlingstiderDagpengerUrl}>
-                        Du finner informasjon om saksbehandlingstider på NAV.no.
-                    </Link>
-                </BodyShort>
+                <DagpengeSaksbehandlingstider />
             </ReadMore>
             <ReadMore header="Skal jeg fortsatt være registrert som arbeidssøker?" className={spacing.mt1}>
                 <BodyShort className={spacing.mb1}>
@@ -169,11 +173,7 @@ const OPPSIGELSE = (props: VeiledningsProps) => {
                 <BodyShort className={spacing.mb1}>
                     Du bør fortsette å sende inn meldekortene også i oppsigelsestiden.
                 </BodyShort>
-                <BodyShort>
-                    <Link href={saksbehandlingstiderDagpengerUrl}>
-                        Du finner informasjon om saksbehandlingstider på NAV.no.
-                    </Link>
-                </BodyShort>
+                <DagpengeSaksbehandlingstider />
             </ReadMore>
             <ReadMore header="Skal jeg fortsatt være registrert som arbeidssøker?" className={spacing.mt1}>
                 <BodyShort className={spacing.mb1}>
@@ -369,7 +369,7 @@ const ANNET = (props: VeiledningsProps) => {
         <>
             <BodyShort>Vi baserer denne veiledningen på de opplysningene du har oppgitt.</BodyShort>
             <h2 className={spacing.mbn}>Hva må jeg gjøre nå?</h2>
-            <BodyShort>Skriv til NAV i dialogen og fortell mer om den nye jobbsituasjonen din.</BodyShort>
+            <BodyShort>Skriv i dialogen og fortell oss mer om situasjonen din.</BodyShort>
             <ReadMore header="Skal jeg fortsatt være registrert som arbeidssøker?" className={spacing.mt1}>
                 <BodyShort className={spacing.mb1}>
                     For å få dagpenger må du være registrert som arbeidssøker.
