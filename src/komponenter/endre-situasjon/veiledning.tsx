@@ -2,8 +2,6 @@ import { BodyLong, BodyShort, Link, ReadMore } from '@navikt/ds-react';
 
 import { saksbehandlingstiderDagpengerUrl } from '../../innhold/lenker';
 import Feedback from '../feedback/feedback-profil';
-import MeldekortInfo from './meldekort-info';
-import DagpengerInfo from './dagpenger-info';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import { PermittertSvar } from '../../models/endring-av-situasjon';
 import { DinSituasjonSvar } from '../../contexts/brukerregistrering';
@@ -324,24 +322,58 @@ const SAGT_OPP = (props: VeiledningsProps) => {
 
     if (!tilleggsData) return null;
 
+    const { oppsigelseDato } = tilleggsData;
+
     return (
         <>
-            <h2>Hva betyr dette for meg?</h2>
-            <p>
-                <h4 className={spacing.mbn}>Meldekort</h4>
-                <MeldekortInfo {...props} />
-            </p>
-            <p>
-                <h4 className={spacing.mbn}>Dagpenger</h4>
-                <DagpengerInfo {...props} />
-            </p>
-            <p>
-                <h4 className={spacing.mbn}>Arbeidssøkerregistrering</h4>
-                Om du ikke lenger vil være registrert som arbeidssøker hos NAV, kan du svare nei på det siste spørsmålet
-                i meldekortet.
-                <br />
-                Før du søker dagpenger på nytt, må du huske å registrere deg igjen.
-            </p>
+            <h2 className={spacing.mbn}>Hva betyr endringen for meg?</h2>
+            <BodyShort>Vi baserer denne veiledningen på de opplysningene du har oppgitt.</BodyShort>
+            <h3 className={spacing.mbn}>Hva må jeg gjøre nå?</h3>
+            <BodyShort className={spacing.mb1}>
+                Du må sende oss dokumentasjon av oppsigelsen. Du kan gå direkte til innsending når du lukker denne
+                visningen.
+            </BodyShort>
+            <BodyShort className={spacing.mb1}>
+                Hvis vi vurderer at du ikke hadde rimelig grunn til å si opp, får du ikke utbetalt dagpenger i 18 uker.
+            </BodyShort>
+            <BodyShort className={spacing.mb1}>
+                Husk å send inn meldekortene innen fristen også i perioden du ikke får utbetalt dagpenger. Du må vente i
+                18 nye uker før du har rett på dagpenger om du ikke sender inn et eller flere meldekort.
+            </BodyShort>
+            <ReadMore header="Hva skjer nå om du har søkt eller mottar dagpenger?" className={spacing.mt1}>
+                <BodyShort className={spacing.mb1}>Du leverte oppsigelsen {prettyPrintDato(oppsigelseDato)}.</BodyShort>
+                <BodyShort className={spacing.mb1}>
+                    Frem til {prettyPrintDato(oppsigelseDato)} kan du ha rett på dagpenger som permittert arbeidssøker.
+                </BodyShort>
+                <BodyShort className={spacing.mb1}>
+                    Arbeidsgiver har ansvaret for å betale lønn fra{' '}
+                    {prettyPrintDato(plussDager(oppsigelseDato, 1).toISOString())} og ut oppsigelsestiden.
+                </BodyShort>
+                <BodyShort className={spacing.mb1}>
+                    Når vi får behandlet dokumentasjonen du sender oss, vil du få et brev om saken din og hva du skal
+                    gjøre.
+                </BodyShort>
+                <BodyShort>
+                    <Link href={saksbehandlingstiderDagpengerUrl}>
+                        Du finner informasjon om saksbehandlingstider på NAV.no.
+                    </Link>
+                </BodyShort>
+            </ReadMore>
+            <ReadMore header="Skal jeg fortsatt være registrert som arbeidssøker?" className={spacing.mt1}>
+                <BodyShort className={spacing.mb1}>
+                    Ett av kravene for å få innvilget pengestøtte (dagpenger, tiltakspenger eller kommunal ytelse) er at
+                    du må være registrert som arbeidssøker i hele perioden du søker om pengestøtten for. Om det er
+                    dagpenger du skal søke når du har sagt opp selv, må du som hovedregel i tillegg passe på at du er
+                    registrert som arbeidssøker i 18 uker fra du sier opp og har fått innvilget dagpenger.
+                </BodyShort>
+                <BodyLong>
+                    Om du er usikker på når du har rett på pengestøtte, må du derfor huske å sende inn alle meldekortene
+                    fremover og å svare ‘Ja’ på spørsmålet om du ønsker å være registrert som arbeidssøker for de neste
+                    14 dagene. Dersom det ikke kan dokumenteres at du hadde rimelig grunn til å si opp, må du sende alle
+                    meldekort fram til søknaden er behandlet og i 18 uker etter innvilgelse før du har rett til å motta
+                    dagpenger.
+                </BodyLong>
+            </ReadMore>
             <Feedback id="endring-veiledning-sagt-opp" />
         </>
     );
