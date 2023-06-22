@@ -4,7 +4,7 @@ import { useBrukerinfoData } from '../contexts/bruker-info';
 
 import beregnArbeidssokerperioder from '../lib/beregn-arbeidssokerperioder';
 import ReaktiveringWrapper from '../komponenter/reaktivering/reaktivering-wrapper';
-import { Servicegruppe } from '../contexts/oppfolging';
+import { Servicegruppe, Formidlingsgruppe } from '../contexts/oppfolging';
 import InnholdMetrics from './innhold-metrics';
 import ForenkletInnhold from '../komponenter/ikke-standard/forenklet-innhold';
 import Motestotte from '../komponenter/ikke-standard/motestotte';
@@ -14,13 +14,17 @@ import styles from './innhold.module.css';
 const InnholdUnderOppfolgingUtenPeriode = () => {
     const arbeidssokerperioderData = useArbeidssokerPerioder();
     const arbeidssokerperioder = beregnArbeidssokerperioder(arbeidssokerperioderData);
-    const { servicegruppe } = useOppfolgingData();
+    const { servicegruppe, formidlingsgruppe } = useOppfolgingData();
     const { rettighetsgruppe } = useBrukerinfoData();
 
     const erIkkeAAP = rettighetsgruppe !== 'AAP';
     const erIkkeVarig = servicegruppe !== Servicegruppe.VARIG;
+    const erIkkeArenaArbs = formidlingsgruppe !== Formidlingsgruppe.ARBS;
     const skalViseReaktivering =
-        arbeidssokerperioder.antallDagerSidenSisteArbeidssokerperiode < 28 && erIkkeAAP && erIkkeVarig;
+        arbeidssokerperioder.antallDagerSidenSisteArbeidssokerperiode < 28 &&
+        erIkkeAAP &&
+        erIkkeVarig &&
+        erIkkeArenaArbs;
 
     return (
         <>
