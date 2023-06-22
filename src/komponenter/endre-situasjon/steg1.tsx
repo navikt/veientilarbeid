@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Select } from '@navikt/ds-react';
 
 import { DinSituasjonSvar } from '../../contexts/brukerregistrering';
-import { dinSituasjonSvarTekster, PermittertSvar, permittertTekster } from '../../models/endring-av-situasjon';
+import { PermittertSvar, permittertTekster } from '../../models/endring-av-situasjon';
 
 import spacing from '../../spacing.module.css';
 import flex from '../../flex.module.css';
@@ -19,7 +19,8 @@ interface Steg1Props {
 const standardSvarSomSkalFjernes: SituasjonSvar[] = [DinSituasjonSvar.HAR_SAGT_OPP, DinSituasjonSvar.MISTET_JOBBEN];
 
 const Steg1 = (props: Steg1Props) => {
-    const { opprinneligSituasjon, valgtSituasjon, settValgtSituasjon, onClick } = props;
+    const { valgtSituasjon, settValgtSituasjon, onClick } = props;
+    /*
     const filterSituasjon = opprinneligSituasjon;
     const erPermittertSvar =
         (filterSituasjon !== undefined && filterSituasjon === DinSituasjonSvar.ER_PERMITTERT) ||
@@ -27,6 +28,9 @@ const Steg1 = (props: Steg1Props) => {
     const svarTekster = erPermittertSvar
         ? { ...permittertTekster, ...dinSituasjonSvarTekster }
         : { ...dinSituasjonSvarTekster, ...permittertTekster };
+    */
+
+    const svarTekster = permittertTekster;
 
     return (
         <>
