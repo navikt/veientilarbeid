@@ -149,17 +149,22 @@ function TilleggsData(props: Props) {
         if (!tilleggsData) return null;
 
         const harSendtInnDokumentasjon = harSendtInnNyDokumentasjon(profil, besvarelse);
-        const { permitteringsProsent, gjelderFraDato } = tilleggsData;
+        const { permitteringsProsent, gjelderFraDato, permitteringForlenget } = tilleggsData;
+
+        const permitteringErForlenget = permitteringForlenget === 'Ja';
 
         return (
             <>
+                {permitteringErForlenget && (
+                    <BodyShort>
+                        Permitteringen er forlenget fra{' '}
+                        {gjelderFraDato ? prettyPrintDato(gjelderFraDato) : 'ikke oppgitt dato'}
+                    </BodyShort>
+                )}
                 <BodyShort>
-                    Permitteringsprosenten gjelder fra{' '}
+                    Permitteringsgraden er{' '}
+                    {permitteringsProsent ? `${permitteringsprosentMapping[permitteringsProsent]}` : 'ikke oppgitt'} fra{' '}
                     {gjelderFraDato ? prettyPrintDato(gjelderFraDato) : 'ikke oppgitt dato'}
-                </BodyShort>
-                <BodyShort>
-                    Ny permitteringsprosent er{' '}
-                    {permitteringsProsent ? `${permitteringsprosentMapping[permitteringsProsent]}` : 'ikke oppgitt'}
                 </BodyShort>
                 {harSendtInnDokumentasjon && <BodyShort>Jeg har sendt inn dokumentasjon</BodyShort>}
                 {visKnapper && <SendInnDokumentasjon aktuellSituasjon={PermittertSvar.ENDRET_PERMITTERINGSPROSENT} />}

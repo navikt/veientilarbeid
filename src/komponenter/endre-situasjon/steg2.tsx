@@ -338,12 +338,14 @@ const ENDRET_PERMITTERINGSPROSENT = (props: Steg2Props) => {
         defaultSelected: new Date(),
     });
     const [permitteringsProsent, settPermitteringsProsent] = useState<string>();
+    const [permitteringForlenget, settPermitteringForlenget] = useState<string>();
 
     const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
-    const disabled = !permitteringsProsent || loading;
+    const disabled = !permitteringsProsent || !permitteringForlenget || loading;
 
     const tilleggsData = {
         permitteringsProsent,
+        permitteringForlenget,
         gjelderFraDato,
     };
 
@@ -374,6 +376,16 @@ const ENDRET_PERMITTERINGSPROSENT = (props: Steg2Props) => {
                     <Radio value="100">Fullt permittert - 100 prosent</Radio>
                     <Radio value="75">Mellom 50 og 100 prosent</Radio>
                     <Radio value="50">Mindre enn 50 prosent</Radio>
+                </RadioGroup>
+
+                <RadioGroup
+                    legend="Er endringen en forlengelse av permitteringen?"
+                    onChange={(value) => {
+                        settPermitteringForlenget(value);
+                    }}
+                >
+                    <Radio value="Ja">Ja</Radio>
+                    <Radio value="Nei">Nei</Radio>
                 </RadioGroup>
 
                 <OpplysningeneBrukesTil />

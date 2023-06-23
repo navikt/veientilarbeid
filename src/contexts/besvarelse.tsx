@@ -23,6 +23,7 @@ export type DinSituasjonTilleggsdata = {
     sisteArbeidsdagDato?: string;
     gjelderFraDato?: string;
     permitteringsProsent?: string;
+    permitteringForlenget?: string;
     stillingsProsent?: string;
 };
 
