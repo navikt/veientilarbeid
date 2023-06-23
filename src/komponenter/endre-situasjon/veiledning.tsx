@@ -361,8 +361,8 @@ const SAGT_OPP = (props: VeiledningsProps) => {
                     Frem til {prettyPrintDato(oppsigelseDato)} kan du ha rett på dagpenger som permittert arbeidssøker.
                 </BodyShort>
                 <BodyShort className={spacing.mb1}>
-                    Arbeidsgiver har ansvaret for å betale lønn fra{' '}
-                    {prettyPrintDato(plussDager(oppsigelseDato, 1).toISOString())} og ut oppsigelsestiden.
+                    Arbeidsgiver har ikke ansvaret for å betale lønn når du selv sier opp under permittering, med mindre
+                    det er gjort egne avtaler om dette.
                 </BodyShort>
                 <BodyShort className={spacing.mb1}>
                     Når vi får behandlet dokumentasjonen du sender oss, vil du få et brev om saken din og hva du skal

@@ -124,9 +124,7 @@ function genererDialogTekst(
             );
         } else if (valgtSituasjon === PermittertSvar.SAGT_OPP) {
             tekstArray.push(
-                `Jeg har sagt opp jobben min ${
-                    oppsigelseDato ? prettyPrintDato(oppsigelseDato) : 'på ikke oppgitt dato'
-                }`
+                `Jeg leverte oppsigelsen ${oppsigelseDato ? prettyPrintDato(oppsigelseDato) : 'på ikke oppgitt dato'}`
             );
             tekstArray.push(
                 `Siste arbeidsdag med lønn er ${
