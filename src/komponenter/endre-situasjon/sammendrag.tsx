@@ -50,7 +50,7 @@ const Sammendrag = (props: any) => {
     return !kanViseKomponent ? null : (
         <div className={`${flexStyles.flex} ${flexStyles.flexColumn}`}>
             <div className={spacing.blokkS}>
-                <BodyShort className={spacing.mb1}>
+                <div className={spacing.mb1}>
                     Din jobbsituasjon: {besvarelse ? svarMap.dinSituasjon[besvarelse.dinSituasjon.verdi] : 'Ukjent'}
                     <br />
                     <TilleggsData
@@ -58,7 +58,7 @@ const Sammendrag = (props: any) => {
                         tilleggsData={besvarelse ? besvarelse.dinSituasjon.tilleggsData : null}
                         visKnapper={true}
                     />
-                </BodyShort>
+                </div>
                 <BodyShort className={`${spacing.mb1} ${spacing.mt1}`}>
                     <Button variant={erBesvarelseEndret ? 'secondary' : 'primary'} onClick={handleEndreModalOpen}>
                         Jobbsituasjonen min har endret seg
