@@ -10,7 +10,7 @@ import flex from '../../flex.module.css';
 type SituasjonSvar = PermittertSvar | DinSituasjonSvar;
 
 interface Steg1Props {
-    valgtSituasjon: SituasjonSvar | undefined;
+    valgtSituasjon: SituasjonSvar | undefined | '-1';
     opprinneligSituasjon: SituasjonSvar | undefined;
     settValgtSituasjon: React.Dispatch<React.SetStateAction<SituasjonSvar>>;
     onClick: () => void;
@@ -20,18 +20,8 @@ const standardSvarSomSkalFjernes: SituasjonSvar[] = [DinSituasjonSvar.HAR_SAGT_O
 
 const Steg1 = (props: Steg1Props) => {
     const { valgtSituasjon, settValgtSituasjon, onClick } = props;
-    /*
-    const filterSituasjon = opprinneligSituasjon;
-    const erPermittertSvar =
-        (filterSituasjon !== undefined && filterSituasjon === DinSituasjonSvar.ER_PERMITTERT) ||
-        (filterSituasjon !== undefined && Object.keys(permittertTekster).includes(filterSituasjon));
-    const svarTekster = erPermittertSvar
-        ? { ...permittertTekster, ...dinSituasjonSvarTekster }
-        : { ...dinSituasjonSvarTekster, ...permittertTekster };
-    */
 
     const svarTekster = permittertTekster;
-
     return (
         <>
             <Select
@@ -40,7 +30,7 @@ const Steg1 = (props: Steg1Props) => {
                 onChange={(e) => settValgtSituasjon(e.target.value as SituasjonSvar)}
                 value={valgtSituasjon}
             >
-                <option disabled={true} selected={true}>
+                <option disabled={true} value={'-1'}>
                     Velg blant situasjonene nedenfor
                 </option>
                 {Object.keys(svarTekster).map((situasjon) => {
@@ -53,7 +43,7 @@ const Steg1 = (props: Steg1Props) => {
                 })}
             </Select>
             <div className={`${flex.flex} ${flex.flexEnd}`}>
-                <Button variant={'primary'} onClick={onClick} disabled={!valgtSituasjon}>
+                <Button variant={'primary'} onClick={onClick} disabled={valgtSituasjon === '-1'}>
                     Neste
                 </Button>
             </div>

@@ -71,11 +71,11 @@ const SendInnDokumentasjon = (props: { aktuellSituasjon: SituasjonSvar }) => {
                 Gå til opplasting
             </a>
             <br />
-            <CheckboxGroup legend={''} onChange={onChange}>
+            <CheckboxGroup legend={''} onChange={onChange} value={harSendtInnDokumentasjon ? ['true'] : undefined}>
                 {visSpinner ? (
                     <Loader />
                 ) : (
-                    <Checkbox checked={harSendtInnDokumentasjon} disabled={harSendtInnDokumentasjon}>
+                    <Checkbox disabled={harSendtInnDokumentasjon} value={'true'}>
                         Jeg har sendt inn dokumentasjon
                     </Checkbox>
                 )}
