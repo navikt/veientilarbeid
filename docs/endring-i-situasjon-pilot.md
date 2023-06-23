@@ -15,3 +15,11 @@ Deretter får de en modal hvor de velge mellom de vanligste utgangssituasjonen f
 Det genereres en dialog på bakgrunn av informasjonen som er oppgitt som sendes til veilederen.
 
 ## Måleparameter
+
+For å se bruken av ReadMore på veiledningssiden kan du sette opp følgende:
+
+veientilarbeid.aktivitet
+aktivitet: 'Leser dagpengeveiledning' || 'Leser registreringsveiledning'
+komponent: 'TILBAKE_TIL_JOBB' || 'OPPSIGELSE' || 'ENDRET_PERMITTERINGSPROSENT' || 'SAGT_OPP' || 'ANNET'
+
+Dette vil gi en oversikt over hvorvidt de har åpnet ReadMore og dagpenger eller arbeidssøkerregistrering og hvilken jobbsituasjon de har sagt de har vært i da de åpnet den.
