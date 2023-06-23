@@ -228,17 +228,18 @@ const ENDRET_PERMITTERINGSPROSENT = (props: VeiledningsProps) => {
                 onClick={() => handleReadmoreDagpenger('ENDRET_PERMITTERINGSPROSENT')}
             >
                 <BodyShort className={spacing.mb1}>
-                    Når vi har behandlet den nye dokumentasjonen, får du brev om hva du skal gjøre videre.
+                    Når vi har behandlet dokumentasjonen du sender oss, får du melding på Mitt NAV om hva du skal gjøre
+                    videre.
                 </BodyShort>
                 <BodyShort className={spacing.mb1}>Du bør fortsette å sende inn meldekortene.</BodyShort>
+                <BodyShort>
+                    <Link href={saksbehandlingstiderDagpengerUrl}>
+                        Her finner du informasjon om saksbehandlingstiden.
+                    </Link>
+                </BodyShort>
                 <BodyShort className={spacing.mb1}>
                     Du må være permittert i minst 50% av din vanlige arbeidstid for å ha rett på dagpenger som
                     permittert.
-                </BodyShort>
-                <BodyShort>
-                    <Link href={saksbehandlingstiderDagpengerUrl}>
-                        Du finner informasjon om saksbehandlingstider på NAV.no.
-                    </Link>
                 </BodyShort>
             </ReadMore>
             <ReadMore
@@ -308,7 +309,7 @@ const MIDLERTIDIG_JOBB = (props: VeiledningsProps) => {
 };
 
 const KONKURS = (props: VeiledningsProps) => {
-    const { tilleggsData } = props;
+    const { tilleggsData, handleReadmoreRegistrering } = props;
 
     if (!tilleggsData) return null;
 
@@ -320,16 +321,32 @@ const KONKURS = (props: VeiledningsProps) => {
                 Når du mistet jobben fordi arbeidsgiveren din er konkurs, kan du få forskudd på lønnsgarantimidler i
                 form av dagpenger i inntil en måned.
             </BodyShort>
-            <BodyShort className={spacing.mb1}>Du krysser av for at du ønsker dette i søknaden om dagpenger.</BodyShort>
-            <BodyShort className={spacing.mb1}>Les mer om konkurs og lønnsgaranti.</BodyShort>
+            <BodyShort className={spacing.mb1}>
+                Du krysser av for at du ønsker lønnsgarantimidler i søknaden om dagpenger.
+            </BodyShort>
             <BodyShort className={spacing.mb1}>
                 Les mer om hva du kan gjøre hvis arbeidsgiveren din går konkurs.
             </BodyShort>
+
             <BodyShort className={spacing.mb1}>
                 Hvis arbeidsgiveren din har gått konkurs, kan du ha rett til lønnsgarantimidler fra NAV.
                 Lønnsgarantimidler skal dekke lønn, feriepenger og eventuelt andre betalinger som arbeidsgiveren din
                 skylder deg.
             </BodyShort>
+            <ReadMore
+                header="Skal jeg fortsatt være registrert som arbeidssøker?"
+                className={spacing.mt1}
+                onClick={() => handleReadmoreRegistrering('KONKURS')}
+            >
+                <BodyShort className={spacing.mb1}>
+                    For å få dagpenger må du være registrert som arbeidssøker.
+                </BodyShort>
+                <BodyLong>
+                    Om du er usikker på når du har rett på dagpenger, må du huske å sende inn alle meldekortene fremover
+                    og å svare 'Ja' på spørsmålet om du ønsker å være registrert som arbeidssøker for de neste 14
+                    dagene.
+                </BodyLong>
+            </ReadMore>
             <Feedback id="endring-veiledning-konkurs-jobb" />
         </>
     );
@@ -347,30 +364,33 @@ const SAGT_OPP = (props: VeiledningsProps) => {
             <BodyShort>Vi baserer denne veiledningen på de opplysningene du har oppgitt.</BodyShort>
             <h2 className={spacing.mbn}>Hva må jeg gjøre nå?</h2>
             <BodyShort>Du må sende oss dokumentasjon av oppsigelsen.</BodyShort>
+            <BodyShort>Du kan gå direkte til innsending når du lukker denne 'visningen'.</BodyShort>
             <BodyShort className={spacing.mb1}>
-                Du kan gå direkte til innsending når du lukker denne visningen.
+                Husk å sende inn meldekortet for den siste perioden du var permittert.
             </BodyShort>
-            <BodyShort className={spacing.mb1}>Om du nå står uten jobb, kan du søke dagpenger påny.</BodyShort>
+            <BodyShort>Hvis du nå står uten jobb, kan du søke om dagpenger på nytt.</BodyShort>
+            <BodyShort>Hvis du søker om dagpenger på nytt, må du huske å sende meldekort.</BodyShort>
+            <BodyShort>Her kan du lese om dagpenger. </BodyShort>
+
             <ReadMore
                 header="Hva skjer nå om du har søkt eller mottar dagpenger?"
                 className={spacing.mt1}
                 onClick={() => handleReadmoreDagpenger('SAGT_OPP')}
             >
-                <BodyShort className={spacing.mb1}>Du leverte oppsigelsen {prettyPrintDato(oppsigelseDato)}.</BodyShort>
                 <BodyShort className={spacing.mb1}>
-                    Frem til {prettyPrintDato(oppsigelseDato)} kan du ha rett på dagpenger som permittert arbeidssøker.
+                    Du sa opp stillingen din {prettyPrintDato(oppsigelseDato)}.
                 </BodyShort>
                 <BodyShort className={spacing.mb1}>
                     Arbeidsgiver har ikke ansvaret for å betale lønn når du selv sier opp under permittering, med mindre
                     det er gjort egne avtaler om dette.
                 </BodyShort>
                 <BodyShort className={spacing.mb1}>
-                    Når vi får behandlet dokumentasjonen du sender oss, vil du få et brev om saken din og hva du skal
-                    gjøre.
+                    Når vi har behandlet dokumentasjonen du sender oss, får du melding på Mitt NAV om hva du skal gjøre
+                    videre.
                 </BodyShort>
                 <BodyShort>
                     <Link href={saksbehandlingstiderDagpengerUrl}>
-                        Du finner informasjon om saksbehandlingstider på NAV.no.
+                        Her finner du informasjon om skasbehandlingstiden
                     </Link>
                 </BodyShort>
             </ReadMore>
@@ -380,17 +400,12 @@ const SAGT_OPP = (props: VeiledningsProps) => {
                 onClick={() => handleReadmoreRegistrering('SAGT_OPP')}
             >
                 <BodyShort className={spacing.mb1}>
-                    Ett av kravene for å få innvilget pengestøtte (dagpenger, tiltakspenger eller kommunal ytelse) er at
-                    du må være registrert som arbeidssøker i hele perioden du søker om pengestøtten for. Om det er
-                    dagpenger du skal søke når du har sagt opp selv, må du som hovedregel i tillegg passe på at du er
-                    registrert som arbeidssøker i 18 uker fra du sier opp og har fått innvilget dagpenger.
+                    For å få dagpenger må du være registrert som arbeidssøker.
                 </BodyShort>
                 <BodyLong>
                     Om du er usikker på når du har rett på pengestøtte, må du derfor huske å sende inn alle meldekortene
                     fremover og å svare 'Ja' på spørsmålet om du ønsker å være registrert som arbeidssøker for de neste
-                    14 dagene. Dersom det ikke kan dokumenteres at du hadde rimelig grunn til å si opp, må du sende alle
-                    meldekort fram til søknaden er behandlet og i 18 uker etter innvilgelse før du har rett til å motta
-                    dagpenger.
+                    14 dagene.
                 </BodyLong>
             </ReadMore>
             <Feedback id="endring-veiledning-sagt-opp" />
@@ -414,8 +429,9 @@ const ANNET = (props: VeiledningsProps) => {
                     For å få dagpenger må du være registrert som arbeidssøker.
                 </BodyShort>
                 <BodyLong>
-                    Husk at du må sende meldekort og svare 'Ja' på spørsmålet om du ønsker å være registrert som
-                    arbeidssøker for de neste 14 dagene.
+                    Om du er usikker på når du har rett på dagpenger, må du huske å sende inn alle meldekortene fremover
+                    og å svare 'Ja' på spørsmålet om du ønsker å være registrert som arbeidssøker for de neste 14
+                    dagene.
                 </BodyLong>
             </ReadMore>
             <Feedback id="endring-veiledning-annet" />

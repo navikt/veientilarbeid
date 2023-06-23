@@ -188,7 +188,7 @@ function TilleggsData(props: Props) {
         return (
             <>
                 <BodyShort>
-                    Første arbeidsdag i ny jobb er{' '}
+                    Min første arbeidsdag i ny jobb er{' '}
                     {forsteArbeidsdagDato ? prettyPrintDato(forsteArbeidsdagDato) : 'ikke oppgitt'}
                 </BodyShort>
                 <BodyShort>
@@ -209,7 +209,7 @@ function TilleggsData(props: Props) {
         return (
             <>
                 <BodyShort>
-                    Første arbeidsdag i ny jobb er{' '}
+                    Min første arbeidsdag i ny jobb er{' '}
                     {forsteArbeidsdagDato ? prettyPrintDato(forsteArbeidsdagDato) : 'ikke oppgitt'}
                 </BodyShort>
                 <BodyShort>
@@ -251,10 +251,11 @@ function TilleggsData(props: Props) {
         return (
             <>
                 <BodyShort>
-                    Jeg leverte oppsigelsen {oppsigelseDato ? prettyPrintDato(oppsigelseDato) : 'på ikke oppgitt dato'}
+                    Jeg har levert oppsigelse{' '}
+                    {oppsigelseDato ? prettyPrintDato(oppsigelseDato) : 'på ikke oppgitt dato'}
                 </BodyShort>
                 <BodyShort>
-                    Siste arbeidsdag med lønn er{' '}
+                    Siste dag i oppsigelsestiden er{' '}
                     {sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'ikke oppgitt'}
                 </BodyShort>
                 {harSendtInnDokumentasjon && <BodyShort>Jeg har sendt inn dokumentasjon</BodyShort>}
@@ -272,7 +273,7 @@ function TilleggsData(props: Props) {
 
         return (
             <BodyShort>
-                Endringen gjelder fra {gjelderFraDato ? prettyPrintDato(gjelderFraDato) : 'ikke oppgitt dato'}
+                Datoen for endringen er {gjelderFraDato ? prettyPrintDato(gjelderFraDato) : 'ikke oppgitt dato'}
             </BodyShort>
         );
     };

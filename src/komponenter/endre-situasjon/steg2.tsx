@@ -637,14 +637,7 @@ const SAGT_OPP = (props: Steg2Props) => {
                     <DatePicker.Input
                         {...oppsigelseInput}
                         className={spacing.mb1}
-                        label={
-                            <div className={flex.flex}>
-                                Når leverte du oppsigelsen din?
-                                <HelpText className={spacing.ml05}>
-                                    Datoen du leverte skriftlig oppsigelse til arbeidsgiver.
-                                </HelpText>
-                            </div>
-                        }
+                        label={<div className={flex.flex}>Fra hvilken dato har du sagt opp stillingen din?</div>}
                     />
                 </DatePicker>
 
@@ -655,9 +648,7 @@ const SAGT_OPP = (props: Steg2Props) => {
                         label={
                             <div className={flex.flex}>
                                 Når er siste arbeidsdag der arbeidsgiver betaler lønn?
-                                <HelpText className={spacing.ml05}>
-                                    Datoen for når oppsigelsestiden er over og du ikke lenger får lønn fra arbeidsgiver.
-                                </HelpText>
+                                <HelpText className={spacing.ml05}>Siste dag i oppsigelsestiden.</HelpText>
                             </div>
                         }
                     />

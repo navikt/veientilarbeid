@@ -48,6 +48,14 @@ Dette viser hvor mange som har trykket på knappen "Jobbsituasjonen min har endr
 
 ---
 
+Hvor mange trykker "Neste" på steg 1
+
+Hvor mange trykker "tilbake" på steg 2
+
+Hvor mange trykker "Lagre endring i situasjon" steg 2
+
+---
+
 -   veientilarbeid.aktivitet
 -   aktivitet: 'Åpner modal for å lese veiledning igjen'
 -   komponent: 'Min situasjon'
@@ -73,3 +81,5 @@ Viser hvor mange som har byttet til de ulik tabene
 ### Har lastet opp dokumentasjon
 
 ### Bruk av lenker
+
+### Feedback
