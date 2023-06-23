@@ -16,10 +16,60 @@ Det genereres en dialog på bakgrunn av informasjonen som er oppgitt som sendes 
 
 ## Måleparameter
 
-For å se bruken av ReadMore på veiledningssiden kan du sette opp følgende:
+### ReadMore på veiledningssidene
 
 veientilarbeid.aktivitet
-aktivitet: 'Leser dagpengeveiledning' || 'Leser registreringsveiledning'
-komponent: 'TILBAKE_TIL_JOBB' || 'OPPSIGELSE' || 'ENDRET_PERMITTERINGSPROSENT' || 'SAGT_OPP' || 'ANNET'
+aktivitet: 'Leser dagpengeveiledning' | 'Leser registreringsveiledning'
+komponent: 'TILBAKE_TIL_JOBB' | 'OPPSIGELSE' | 'ENDRET_PERMITTERINGSPROSENT' | 'SAGT_OPP' | 'ANNET'
 
-Dette vil gi en oversikt over hvorvidt de har åpnet ReadMore og dagpenger eller arbeidssøkerregistrering og hvilken jobbsituasjon de har sagt de har vært i da de åpnet den.
+Dette vil gi en oversikt over hvorvidt de har åpnet ReadMore for dagpenger eller arbeidssøkerregistrering og hvilken jobbsituasjon de har sagt de har vært i da de åpnet den.
+
+### Visning av komponent
+
+aia.inviewport
+viser: 'Viser endring av situasjon'
+
+Dette vil vise hvor mange som har hatt komponenten i viewPort (hatt den inne på skjermen sin)
+
+### Rendring av komponent
+
+veientilarbeid.rendring
+rendrer: 'Rendrer endring av situasjon'
+
+Dette vil vise hvor mange som har fått rendret komponenten (uten nødvendigvis å ha sett den)
+
+### Bruk av komponent
+
+veientilarbeid.aktivitet
+aktivitet: 'Åpner modal for å endre jobbsituasjon'
+komponent: 'Min situasjon'
+
+Dette viser hvor mange som har trykket på knappen "Jobbsituasjonen min har endret seg" for å endre jobbsituasjonen sin.
+
+---
+
+veientilarbeid.aktivitet
+aktivitet: 'Åpner modal for å lese veiledning igjen'
+komponent: 'Min situasjon'
+
+Dette viser hvor mange som har trykket på lenken "Les om igjen hva denne endringen betyr for deg" for å lese veiledningen etter endring av situasjon påny
+
+---
+
+veientilarbeid.aktivitet
+aktivitet: 'Går til endre andre opplysninger'
+komponent: 'Min situasjon'
+
+Dette viser hvor mange som har trykket på lenken "gi beskjed til NAV" for å endre andre forhold i situasjonen sin.
+
+### Bruk av tabs
+
+veientilarbeid.aktivitet
+aktivitet: 'Bytter til Min situasjon | Hjelp og støtte | Pengestøtte | Meldekort',
+komponent: 'tabs'
+
+Viser hvor mange som har byttet til de ulik tabene
+
+### Har lastet opp dokumentasjon
+
+### Bruk av lenker

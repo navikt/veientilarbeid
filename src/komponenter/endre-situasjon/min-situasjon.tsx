@@ -9,6 +9,8 @@ import { InnloggingsNiva, useAutentiseringData } from '../../contexts/autentiser
 import Sammendrag from './sammendrag';
 import BesvarelseLesMer from '../innsyn/besvarelse-les-mer';
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
+import AiAInViewport from '../aia-in-viewport/aia-in-viewport';
+import ErRendret from '../er-rendret/er-rendret';
 
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
@@ -31,6 +33,7 @@ function MinSituasjon(props: any) {
 
     return (
         <Panel className={`${flexStyles.flex}`} style={{ paddingLeft: 0, paddingTop: 0 }}>
+            <ErRendret loggTekst="Rendrer endring av situasjon" />
             <span
                 style={{
                     marginRight: '0.5em',
@@ -52,6 +55,7 @@ function MinSituasjon(props: any) {
                 />
                 <BesvarelseLesMer />
             </Panel>
+            <AiAInViewport loggTekst="Viser endring av situasjon" />
         </Panel>
     );
 }
