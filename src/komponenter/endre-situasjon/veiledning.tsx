@@ -31,7 +31,7 @@ export function kreverDokumentasjon(valgtSituasjon: SituasjonSvar): boolean {
 const DagpengeSaksbehandlingstider = () => {
     return (
         <BodyShort>
-            <Link href={saksbehandlingstiderDagpengerUrl}>Her finner du informasjon om saksbehandlingstiden</Link>
+            Du finner informasjon om <Link href={saksbehandlingstiderDagpengerUrl}>saksbehandlingstider her</Link>.
         </BodyShort>
     );
 };
@@ -108,6 +108,7 @@ const TILBAKE_TIL_JOBB = (props: VeiledningsProps) => {
 
     return (
         <>
+            <h2 className={spacing.mbn}>Hva betyr endringen for meg?</h2>
             <BodyShort>Vi baserer denne veiledningen på de opplysningene du har oppgitt.</BodyShort>
             <h2 className={spacing.mbn}>Hva må jeg gjøre nå?</h2>
             <BodyShort>
@@ -161,7 +162,6 @@ const OPPSIGELSE = (props: VeiledningsProps) => {
             <BodyShort>Vi baserer denne veiledningen på de opplysningene du har oppgitt.</BodyShort>
             <h2 className={spacing.mbn}>Hva må jeg gjøre nå?</h2>
             <BodyShort>Du må sende oss oppsigelsen du har fått fra arbeidsgiver.</BodyShort>
-            <BodyShort className={spacing.mb1}>Du kan gå direkte til innsending når du lukker denne boksen.</BodyShort>
             <BodyShort>
                 Når vi får behandlet dokumentasjonen du sender oss, vil du få et brev om saken din og hva du skal gjøre.
             </BodyShort>
@@ -173,20 +173,18 @@ const OPPSIGELSE = (props: VeiledningsProps) => {
                 <BodyShort>
                     Hvis du var permittert da du ble oppsagt, har du rett til lønn fra arbeidsgiveren din.
                 </BodyShort>
-                <BodyShort>Du har krav på lønn fra dagen du mottok oppsigelsen og ut oppsigelsestiden.</BodyShort>
                 <BodyShort className={spacing.mb1}>
-                    Du har oppgitt at du mottok oppsigelsen {prettyPrintDato(oppsigelseDato)}.
+                    Du har krav på lønn fra dagen du mottok oppsigelsen og ut oppsigelsestiden.
                 </BodyShort>
+                <BodyShort>Du har oppgitt at du mottok oppsigelsen {prettyPrintDato(oppsigelseDato)}.</BodyShort>
                 <BodyShort>
                     Frem til {prettyPrintDato(oppsigelseDato)} kan du ha rett på dagpenger som permittert arbeidssøker
                 </BodyShort>
-                <BodyShort>
+                <BodyShort className={spacing.mb1}>
                     Arbeidsgiver har ansvaret for å betale lønn fra{' '}
                     {prettyPrintDato(plussDager(oppsigelseDato, 1).toISOString())} og ut oppsigelsestiden.
                 </BodyShort>
-                <BodyShort className={spacing.mb1}>
-                    Du bør fortsette å sende inn meldekortene også i oppsigelsestiden.
-                </BodyShort>
+                <BodyShort>Du bør fortsette å sende inn meldekortene også i oppsigelsestiden.</BodyShort>
                 <DagpengeSaksbehandlingstider />
             </ReadMore>
             <ReadMore
@@ -195,13 +193,16 @@ const OPPSIGELSE = (props: VeiledningsProps) => {
                 onClick={() => handleReadmoreRegistrering('OPPSIGELSE')}
             >
                 <BodyShort className={spacing.mb1}>
-                    Ett av kravene for å få innvilget dagpenger er at du må være registrert som arbeidssøker i hele
-                    perioden du søker om pengestøtten for.
+                    For å få dagpenger må du være registrert som arbeidssøker.
                 </BodyShort>
                 <BodyLong>
-                    Om du er usikker på når du har rett på pengestøtte, må du derfor huske å sende inn alle meldekortene
-                    fremover og å svare 'Ja' på spørsmålet om du ønsker å være registrert som arbeidssøker for de neste
-                    14 dagene.
+                    Om du er usikker på når du har rett på pengestøtte,
+                    <br />
+                    må du derfor huske å sende inn alle meldekortene fremover
+                    <br />
+                    og å svare 'Ja' på spørsmålet om du ønsker å være registrert som arbeidssøker
+                    <br />
+                    for de neste 14 dagene.
                 </BodyLong>
             </ReadMore>
             <Feedback id="endring-veiledning-oppsigelse" />
