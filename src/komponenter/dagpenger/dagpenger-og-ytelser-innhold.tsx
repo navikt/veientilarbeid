@@ -28,8 +28,6 @@ import { DP_INNSYN_URL } from '../../ducks/api';
 
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
-import { useBesvarelse } from '../../contexts/besvarelse';
-import DagpengerInfo from '../endre-situasjon/dagpenger-info';
 import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
 
 function StansetDagpenger() {
@@ -77,12 +75,6 @@ function DagpengerOgYtelserInnhold(props: Props) {
     const { data: innsendteSoknader = [] } = useSWRImmutable<DpInnsynSoknad[]>(`${DP_INNSYN_URL}/soknad`);
     const { data: dagpengeVedtak = [] } = useSWRImmutable<Vedtak[]>(`${DP_INNSYN_URL}/vedtak`);
     const brukTabsDemo = useSkalBrukeTabs();
-    const { besvarelse } = useBesvarelse();
-    const { erBesvarelseEndret } = besvarelse || {};
-    const dagpengerInfo = DagpengerInfo({
-        valgtSituasjon: besvarelse?.besvarelse?.dinSituasjon?.verdi as any,
-        tilleggsData: besvarelse?.besvarelse?.dinSituasjon?.tilleggsData,
-    });
 
     const dagpengeStatus = beregnDagpengeStatus({
         brukerInfoData,
@@ -124,13 +116,7 @@ function DagpengerOgYtelserInnhold(props: Props) {
                 ) : (
                     <>
                         <ErRendret loggTekst="Rendrer dagpenger sluttkort" />
-                        <DagpengerInnhold>
-                            {erBesvarelseEndret && dagpengerInfo && (
-                                <Panel className={spacingStyles.mb1} style={{ background: 'var(--a-blue-50)' }}>
-                                    {dagpengerInfo}
-                                </Panel>
-                            )}
-                        </DagpengerInnhold>
+                        <DagpengerInnhold />
                         <InViewport loggTekst="Viser dagpenger sluttkort i viewport" />
                     </>
                 )}

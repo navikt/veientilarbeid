@@ -14,6 +14,8 @@ export type SituasjonSvar = PermittertSvar | DinSituasjonSvar;
 export interface VeiledningsProps {
     valgtSituasjon: SituasjonSvar;
     tilleggsData?: any;
+    handleReadmoreDagpenger: (komponent: string) => void;
+    handleReadmoreRegistrering: (komponent: string) => void;
 }
 
 export function kreverDokumentasjon(valgtSituasjon: SituasjonSvar): boolean {
@@ -98,7 +100,7 @@ const GENERELL_VEILEDNING_UTEN_DOKUMENTASJON = () => {
 };
 
 const TILBAKE_TIL_JOBB = (props: VeiledningsProps) => {
-    const { tilleggsData } = props;
+    const { tilleggsData, handleReadmoreDagpenger, handleReadmoreRegistrering } = props;
 
     if (!tilleggsData) return null;
 
@@ -112,7 +114,11 @@ const TILBAKE_TIL_JOBB = (props: VeiledningsProps) => {
                 Hvis du har et permitteringsvarsel som du enda ikke har sendt oss, må du gjøre det nå.
             </BodyShort>
             <BodyShort>Du kan gå direkte til innsending når du lukker denne boksen.</BodyShort>
-            <ReadMore header="Hva skjer nå om du har søkt eller mottar dagpenger?" className={spacing.mt1}>
+            <ReadMore
+                header="Hva skjer nå om du har søkt eller mottar dagpenger?"
+                className={spacing.mt1}
+                onClick={() => handleReadmoreDagpenger('TILBAKE_TIL_JOBB')}
+            >
                 <BodyShort className={spacing.mb1}>
                     Du har oppgitt at du skal tilbake i jobb hos din nåværende arbeidsgiver{' '}
                     {prettyPrintDato(forsteArbeidsdagDato)}.
@@ -124,13 +130,17 @@ const TILBAKE_TIL_JOBB = (props: VeiledningsProps) => {
                 <BodyShort className={spacing.mb1}>Du får et brev om saken din og hva du skal gjøre.</BodyShort>
                 <DagpengeSaksbehandlingstider />
             </ReadMore>
-            <ReadMore header="Skal jeg fortsatt være registrert som arbeidssøker?" className={spacing.mt1}>
+            <ReadMore
+                header="Skal jeg fortsatt være registrert som arbeidssøker?"
+                className={spacing.mt1}
+                onClick={() => handleReadmoreRegistrering('TILBAKE_TIL_JOBB')}
+            >
                 <BodyShort className={spacing.mb1}>
                     For å få dagpenger frem til du begynner i jobb igjen, må du være registrert som arbeidssøker og
                     sende meldekort.
                 </BodyShort>
                 <BodyLong>
-                    Når du er tilbake i jobb og ikke får dagpenger eller ønsker oppfølging fra NAV, kan du svare ‘Nei’
+                    Når du er tilbake i jobb og ikke får dagpenger eller ønsker oppfølging fra NAV, kan du svare 'Nei'
                     på spørsmålet om du ønsker å være registrert som arbeidssøker.
                 </BodyLong>
             </ReadMore>
@@ -140,7 +150,7 @@ const TILBAKE_TIL_JOBB = (props: VeiledningsProps) => {
 };
 
 const OPPSIGELSE = (props: VeiledningsProps) => {
-    const { tilleggsData } = props;
+    const { tilleggsData, handleReadmoreDagpenger, handleReadmoreRegistrering } = props;
 
     if (!tilleggsData) return null;
 
@@ -155,7 +165,11 @@ const OPPSIGELSE = (props: VeiledningsProps) => {
             <BodyShort>
                 Når vi får behandlet dokumentasjonen du sender oss, vil du få et brev om saken din og hva du skal gjøre.
             </BodyShort>
-            <ReadMore header="Hva skjer nå om du har søkt eller mottar dagpenger?" className={spacing.mt1}>
+            <ReadMore
+                header="Hva skjer nå om du har søkt eller mottar dagpenger?"
+                className={spacing.mt1}
+                onClick={() => handleReadmoreDagpenger('OPPSIGELSE')}
+            >
                 <BodyShort>
                     Hvis du var permittert da du ble oppsagt, har du rett til lønn fra arbeidsgiveren din.
                 </BodyShort>
@@ -175,7 +189,11 @@ const OPPSIGELSE = (props: VeiledningsProps) => {
                 </BodyShort>
                 <DagpengeSaksbehandlingstider />
             </ReadMore>
-            <ReadMore header="Skal jeg fortsatt være registrert som arbeidssøker?" className={spacing.mt1}>
+            <ReadMore
+                header="Skal jeg fortsatt være registrert som arbeidssøker?"
+                className={spacing.mt1}
+                onClick={() => handleReadmoreRegistrering('OPPSIGELSE')}
+            >
                 <BodyShort className={spacing.mb1}>
                     Ett av kravene for å få innvilget dagpenger er at du må være registrert som arbeidssøker i hele
                     perioden du søker om pengestøtten for.
@@ -192,7 +210,7 @@ const OPPSIGELSE = (props: VeiledningsProps) => {
 };
 
 const ENDRET_PERMITTERINGSPROSENT = (props: VeiledningsProps) => {
-    const { tilleggsData } = props;
+    const { tilleggsData, handleReadmoreDagpenger, handleReadmoreRegistrering } = props;
 
     if (!tilleggsData) return null;
 
@@ -204,7 +222,11 @@ const ENDRET_PERMITTERINGSPROSENT = (props: VeiledningsProps) => {
                 Du må sende oss nytt permitteringsvarsel eller annen dokumentasjon fra arbeidsgiver.
             </BodyShort>
             <BodyShort>Du finner knapp for opplasting når du lukker denne boksen.</BodyShort>
-            <ReadMore header="Hva skjer nå om du har søkt eller mottar dagpenger?" className={spacing.mt1}>
+            <ReadMore
+                header="Hva skjer nå om du har søkt eller mottar dagpenger?"
+                className={spacing.mt1}
+                onClick={() => handleReadmoreDagpenger('ENDRET_PERMITTERINGSPROSENT')}
+            >
                 <BodyShort className={spacing.mb1}>
                     Når vi har behandlet den nye dokumentasjonen, får du brev om hva du skal gjøre videre.
                 </BodyShort>
@@ -219,7 +241,11 @@ const ENDRET_PERMITTERINGSPROSENT = (props: VeiledningsProps) => {
                     </Link>
                 </BodyShort>
             </ReadMore>
-            <ReadMore header="Skal jeg fortsatt være registrert som arbeidssøker?" className={spacing.mt1}>
+            <ReadMore
+                header="Skal jeg fortsatt være registrert som arbeidssøker?"
+                className={spacing.mt1}
+                onClick={() => handleReadmoreRegistrering('ENDRET_PERMITTERINGSPROSENT')}
+            >
                 <BodyShort className={spacing.mb1}>
                     For å få dagpenger må du være registrert som arbeidssøker.
                 </BodyShort>
@@ -310,7 +336,7 @@ const KONKURS = (props: VeiledningsProps) => {
 };
 
 const SAGT_OPP = (props: VeiledningsProps) => {
-    const { tilleggsData } = props;
+    const { tilleggsData, handleReadmoreDagpenger, handleReadmoreRegistrering } = props;
 
     if (!tilleggsData) return null;
 
@@ -325,7 +351,11 @@ const SAGT_OPP = (props: VeiledningsProps) => {
                 Du kan gå direkte til innsending når du lukker denne visningen.
             </BodyShort>
             <BodyShort className={spacing.mb1}>Om du nå står uten jobb, kan du søke dagpenger påny.</BodyShort>
-            <ReadMore header="Hva skjer nå om du har søkt eller mottar dagpenger?" className={spacing.mt1}>
+            <ReadMore
+                header="Hva skjer nå om du har søkt eller mottar dagpenger?"
+                className={spacing.mt1}
+                onClick={() => handleReadmoreDagpenger('SAGT_OPP')}
+            >
                 <BodyShort className={spacing.mb1}>Du leverte oppsigelsen {prettyPrintDato(oppsigelseDato)}.</BodyShort>
                 <BodyShort className={spacing.mb1}>
                     Frem til {prettyPrintDato(oppsigelseDato)} kan du ha rett på dagpenger som permittert arbeidssøker.
@@ -344,7 +374,11 @@ const SAGT_OPP = (props: VeiledningsProps) => {
                     </Link>
                 </BodyShort>
             </ReadMore>
-            <ReadMore header="Skal jeg fortsatt være registrert som arbeidssøker?" className={spacing.mt1}>
+            <ReadMore
+                header="Skal jeg fortsatt være registrert som arbeidssøker?"
+                className={spacing.mt1}
+                onClick={() => handleReadmoreRegistrering('SAGT_OPP')}
+            >
                 <BodyShort className={spacing.mb1}>
                     Ett av kravene for å få innvilget pengestøtte (dagpenger, tiltakspenger eller kommunal ytelse) er at
                     du må være registrert som arbeidssøker i hele perioden du søker om pengestøtten for. Om det er
@@ -365,12 +399,17 @@ const SAGT_OPP = (props: VeiledningsProps) => {
 };
 
 const ANNET = (props: VeiledningsProps) => {
+    const { handleReadmoreRegistrering } = props;
     return (
         <>
             <BodyShort>Vi baserer denne veiledningen på de opplysningene du har oppgitt.</BodyShort>
             <h2 className={spacing.mbn}>Hva må jeg gjøre nå?</h2>
             <BodyShort>Skriv i dialogen og fortell oss mer om situasjonen din.</BodyShort>
-            <ReadMore header="Skal jeg fortsatt være registrert som arbeidssøker?" className={spacing.mt1}>
+            <ReadMore
+                header="Skal jeg fortsatt være registrert som arbeidssøker?"
+                className={spacing.mt1}
+                onClick={() => handleReadmoreRegistrering('ANNET')}
+            >
                 <BodyShort className={spacing.mb1}>
                     For å få dagpenger må du være registrert som arbeidssøker.
                 </BodyShort>

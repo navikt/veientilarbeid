@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BodyShort, Heading, Link, Modal } from '@navikt/ds-react';
 import { ChevronLeftIcon } from '@navikt/aksel-icons';
 
+import { AmplitudeData } from '../../metrics/amplitude-utils';
 import Steg2 from './steg2';
 import Steg3 from './steg3';
 import Steg1 from './steg1';
@@ -11,7 +12,7 @@ import spacing from '../../spacing.module.css';
 interface PermittertModalProps {
     openModal: boolean;
     setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
-    amplitudeData: any;
+    amplitudeData: AmplitudeData;
     besvarelse: any | null;
 }
 
@@ -58,6 +59,7 @@ const PermittertModal = (props: PermittertModalProps) => {
         if (aktivSide === 3) {
             return (
                 <Steg3
+                    amplitudeData={amplitudeData}
                     valgtSituasjon={valgtSituasjon}
                     tilleggsData={tilleggsData}
                     onClose={() => setOpenModal(false)}
