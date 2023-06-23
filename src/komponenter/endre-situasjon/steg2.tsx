@@ -46,6 +46,18 @@ function genererDialogTekst(
     opprinneligSituasjon: SituasjonSvar | undefined,
     tilleggsData?: any
 ) {
+    const permitteringsprosentMapping = {
+        '100': 'fullt permittert - 100 prosent',
+        '75': 'mellom 50 og 100 prosent',
+        '50': 'mindre enn 50 prosent',
+    };
+
+    const stillingsprosentMapping = {
+        '100': 'fulltid - 100 prosent',
+        '75': 'deltid - mellom 50 og 100 prosent',
+        '50': 'deltid - mindre enn 50 prosent',
+    };
+
     const tekstArray = [];
 
     tekstArray.push(`Jobbsituasjonen er endret til "${svarMap.dinSituasjon[valgtSituasjon]}".`);
@@ -56,6 +68,7 @@ function genererDialogTekst(
             oppsigelseDato,
             sisteArbeidsdagDato,
             permitteringsProsent,
+            permitteringForlenget,
             gjelderFraDato,
             forsteArbeidsdagDato,
             stillingsProsent,
@@ -65,20 +78,27 @@ function genererDialogTekst(
                 `Oppsigelsen ble mottatt ${oppsigelseDato ? prettyPrintDato(oppsigelseDato) : 'på ikke oppgitt dato'}`
             );
             tekstArray.push(
-                `Siste arbeidsdag med lønn ${sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'er ukjent'}`
+                `Siste dag med lønn fra arbeidsgiver er ${
+                    sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'er ukjent'
+                }`
             );
         } else if (valgtSituasjon === PermittertSvar.ENDRET_PERMITTERINGSPROSENT) {
+            const permitteringErForlenget = permitteringForlenget === 'Ja';
+            if (permitteringErForlenget) {
+                tekstArray.push(
+                    `Permitteringen er forlenget fra ${
+                        gjelderFraDato ? prettyPrintDato(gjelderFraDato) : 'ikke oppgitt dato'
+                    }`
+                );
+            }
             tekstArray.push(
-                `Permitteringen gjelder fra ${gjelderFraDato ? prettyPrintDato(gjelderFraDato) : 'ikke oppgitt dato'}`
-            );
-            tekstArray.push(
-                `Permitteringsprosenten er ${
-                    permitteringsProsent ? `${permitteringsProsent} prosent` : 'er ikke oppgitt'
-                }`
+                `Permitteringsgraden er ${
+                    permitteringsProsent ? permitteringsprosentMapping[permitteringsProsent] : 'er ikke oppgitt'
+                } fra ${gjelderFraDato ? prettyPrintDato(gjelderFraDato) : 'ikke oppgitt dato'}`
             );
         } else if (valgtSituasjon === PermittertSvar.TILBAKE_TIL_JOBB) {
             tekstArray.push(
-                `Du er tilbake på jobb fra ${
+                `Min første arbeidsdag etter permittering er ${
                     forsteArbeidsdagDato ? prettyPrintDato(forsteArbeidsdagDato) : 'ikke oppgitt dato'
                 }`
             );
@@ -88,22 +108,28 @@ function genererDialogTekst(
                     forsteArbeidsdagDato ? prettyPrintDato(forsteArbeidsdagDato) : 'ikke oppgitt'
                 }`
             );
-            tekstArray.push(`Stillingsprosenten er ${stillingsProsent ? stillingsProsent : 'ikke oppgitt'}`);
+            tekstArray.push(`Jeg skal begynne å jobbe
+            ${stillingsProsent ? stillingsprosentMapping[stillingsProsent] : 'ikke oppgitt'}`);
         } else if (valgtSituasjon === PermittertSvar.MIDLERTIDIG_JOBB) {
             tekstArray.push(
-                `Første arbeidsdag i midlertidige jobb er ${
+                `Første arbeidsdag i ny jobb er ${
                     forsteArbeidsdagDato ? prettyPrintDato(forsteArbeidsdagDato) : 'ikke oppgitt'
                 }`
             );
-            tekstArray.push(`Stillingsprosenten er ${stillingsProsent ? stillingsProsent : 'ikke oppgitt'}`);
+            tekstArray.push(`Jeg skal begynne å jobbe
+            ${stillingsProsent ? stillingsprosentMapping[stillingsProsent] : 'ikke oppgitt'}`);
         } else if (valgtSituasjon === PermittertSvar.KONKURS) {
             tekstArray.push(
-                `Siste arbeidsdag er ${sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'ikke oppgitt'}`
+                `Min siste arbeidsdag er ${sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'ikke oppgitt'}`
             );
         } else if (valgtSituasjon === PermittertSvar.SAGT_OPP) {
-            tekstArray.push(`Jeg sa opp ${oppsigelseDato ? prettyPrintDato(oppsigelseDato) : 'ikke oppgitt'}`);
             tekstArray.push(
-                `Siste arbeidsdag med lønn ${
+                `Jeg har sagt opp jobben min ${
+                    oppsigelseDato ? prettyPrintDato(oppsigelseDato) : 'på ikke oppgitt dato'
+                }`
+            );
+            tekstArray.push(
+                `Siste arbeidsdag med lønn er ${
                     sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'ikke oppgitt'
                 }`
             );
@@ -116,6 +142,8 @@ function genererDialogTekst(
         if (opprinneligSituasjon) {
             tekstArray.push(`Jobbsituasjonen er endret fra "${svarMap.dinSituasjon[opprinneligSituasjon]}".`);
         }
+
+        tekstArray.push('\n\nDenne meldingen er generert utfra svarene som ble oppgitt da jobbsituasjonen ble endret');
     }
 
     return {
