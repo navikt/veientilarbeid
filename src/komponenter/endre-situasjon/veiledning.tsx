@@ -18,16 +18,6 @@ export interface VeiledningsProps {
     handleReadmoreRegistrering: (komponent: string) => void;
 }
 
-export function kreverDokumentasjon(valgtSituasjon: SituasjonSvar): boolean {
-    const dokumentasjonsSituasjoner: SituasjonSvar[] = [
-        PermittertSvar.TILBAKE_TIL_JOBB,
-        PermittertSvar.OPPSIGELSE,
-        PermittertSvar.ENDRET_PERMITTERINGSPROSENT,
-        PermittertSvar.SAGT_OPP,
-    ];
-    return dokumentasjonsSituasjoner.includes(valgtSituasjon);
-}
-
 const DagpengeSaksbehandlingstider = () => {
     return (
         <BodyShort>
@@ -35,68 +25,6 @@ const DagpengeSaksbehandlingstider = () => {
         </BodyShort>
     );
 };
-
-const GENERELL_VEILEDNING_MED_DOKUMENTASJON = () => {
-    return (
-        <>
-            <BodyShort>Vi baserer denne veiledningen på de opplysningene du har oppgitt.</BodyShort>
-            <h3 className={spacing.mbn}>Hva må jeg gjøre nå?</h3>
-            <BodyShort>
-                Du må sende oss dokumentasjon om endringen dersom du ikke har gjort det allerede.
-                <br />
-                Du kan gå direkte til innsendingen når du lukker dette vinduet.
-            </BodyShort>
-            <ReadMore header="Hva skjer nå om jeg har søkt eller mottar dagpenger?" className={spacing.mt1}>
-                <BodyShort className={spacing.mb1}>
-                    Når vi får behandlet dokumentasjonen du sender oss, vil du få et brev om saken din og hva du skal
-                    gjøre.
-                </BodyShort>
-                <BodyShort className={spacing.mb1}>
-                    Frem til du mottar dette brevet bør du fortsette å sende inn meldekortene.
-                </BodyShort>
-                <DagpengeSaksbehandlingstider />
-            </ReadMore>
-            <ReadMore header="Skal jeg fortsatt være registrert som arbeidssøker?" className={spacing.mt1}>
-                <BodyShort className={spacing.mb1}>
-                    Ett av kravene for å få innvilget pengestøtte (dagpenger, tiltakspenger eller kommunal ytelse) er at
-                    du må være registrert som arbeidssøker i hele perioden du søker om pengestøtten for.
-                </BodyShort>
-                <BodyLong>
-                    Om du er usikker på når du har rett på pengestøtte, må du derfor huske å sende inn alle meldekortene
-                    fremover og å svare 'Ja' på spørsmålet om du ønsker å være registrert som arbeidssøker for de neste
-                    14 dagene.
-                </BodyLong>
-            </ReadMore>
-            <Feedback id="endring-veiledning-generell-med-dokumentasjon" />
-        </>
-    );
-};
-
-const GENERELL_VEILEDNING_UTEN_DOKUMENTASJON = () => {
-    return (
-        <>
-            <BodyShort>Vi baserer denne veiledningen på de opplysningene du har oppgitt.</BodyShort>
-            <h3 className={spacing.mbn}>Hva må jeg gjøre nå?</h3>
-            <BodyShort>
-                Vi har mottatt endringen i din situasjon så du trenger i utgangspunktet ikke gjøre mer rundt denne
-                saken.
-            </BodyShort>
-            <ReadMore header="Skal jeg fortsatt være registrert som arbeidssøker?" className={spacing.mt1}>
-                <BodyShort className={spacing.mb1}>
-                    Ett av kravene for å få innvilget pengestøtte (dagpenger, tiltakspenger eller kommunal ytelse) er at
-                    du må være registrert som arbeidssøker i hele perioden du søker om pengestøtten for.
-                </BodyShort>
-                <BodyLong>
-                    Om du er usikker på når du har rett på pengestøtte, må du derfor huske å sende inn alle meldekortene
-                    fremover og å svare 'Ja' på spørsmålet om du ønsker å være registrert som arbeidssøker for de neste
-                    14 dagene.
-                </BodyLong>
-            </ReadMore>
-            <Feedback id="endring-veiledning-generell-uten-dokumentasjon" />
-        </>
-    );
-};
-
 const TILBAKE_TIL_JOBB = (props: VeiledningsProps) => {
     const { tilleggsData, handleReadmoreDagpenger, handleReadmoreRegistrering } = props;
 
@@ -194,7 +122,7 @@ const OPPSIGELSE = (props: VeiledningsProps) => {
                     For å få dagpenger må du være registrert som arbeidssøker.
                 </BodyShort>
                 <BodyLong>
-                    Om du er usikker på når du har rett på pengestøtte,
+                    Om du er usikker på når du har rett på dagpenger,
                     <br />
                     må du derfor huske å sende inn alle meldekortene fremover
                     <br />
@@ -402,7 +330,7 @@ const SAGT_OPP = (props: VeiledningsProps) => {
                     For å få dagpenger må du være registrert som arbeidssøker.
                 </BodyShort>
                 <BodyLong>
-                    Om du er usikker på når du har rett på pengestøtte, må du derfor huske å sende inn alle meldekortene
+                    Om du er usikker på når du har rett på dagpenger, må du derfor huske å sende inn alle meldekortene
                     fremover og å svare 'Ja' på spørsmålet om du ønsker å være registrert som arbeidssøker for de neste
                     14 dagene.
                 </BodyLong>
@@ -471,10 +399,6 @@ const Veiledning = (props: VeiledningsProps) => {
         return <SAGT_OPP {...props} />;
     } else if (valgtSituasjon === DinSituasjonSvar.VIL_BYTTE_JOBB) {
         return <VIL_BYTTE_JOBB {...props} />;
-    } else if (kreverDokumentasjon(valgtSituasjon)) {
-        return <GENERELL_VEILEDNING_MED_DOKUMENTASJON />;
-    } else if (!kreverDokumentasjon(valgtSituasjon)) {
-        return <GENERELL_VEILEDNING_UTEN_DOKUMENTASJON />;
     } else {
         return <ANNET {...props} />;
     }
