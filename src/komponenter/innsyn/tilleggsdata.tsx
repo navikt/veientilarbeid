@@ -1,4 +1,4 @@
-import { BodyShort, Checkbox, CheckboxGroup, Loader } from '@navikt/ds-react';
+import { BodyShort, Checkbox, CheckboxGroup, Link, Loader } from '@navikt/ds-react';
 
 import { BesvarelseResponse, DinSituasjonTilleggsdata, useBesvarelse } from '../../contexts/besvarelse';
 import prettyPrintDato from '../../utils/pretty-print-dato';
@@ -88,15 +88,11 @@ function TilleggsData(props: Props) {
     const { verdi, tilleggsData, visKnapper } = props;
 
     const TILBAKE_TIL_JOBB = (props: TilleggsDataProps) => {
-        const { profil } = useProfil();
-        const { besvarelse } = useBesvarelse();
         const { tilleggsData } = props;
 
         if (!tilleggsData) return null;
 
         const { forsteArbeidsdagDato } = tilleggsData;
-
-        const harSendtInnDokumentasjon = harSendtInnNyDokumentasjon(profil, besvarelse);
 
         return (
             <>
@@ -104,8 +100,10 @@ function TilleggsData(props: Props) {
                     Min første arbeidsdag etter permittering er{' '}
                     {forsteArbeidsdagDato ? prettyPrintDato(forsteArbeidsdagDato) : 'ikke oppgitt dato'}
                 </BodyShort>
-                {harSendtInnDokumentasjon && <BodyShort>Jeg har sendt inn dokumentasjon</BodyShort>}
-                {visKnapper && <SendInnDokumentasjon aktuellSituasjon={PermittertSvar.TILBAKE_TIL_JOBB} />}
+                <BodyShort>Du må dokumentere endringer i permitteringen</BodyShort>
+                <BodyShort>
+                    <Link href={dokumentasjon_url}>Gå til opplasting</Link>
+                </BodyShort>
             </>
         );
     };
