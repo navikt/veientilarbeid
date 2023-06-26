@@ -160,10 +160,11 @@ const OPPSIGELSE = (props: VeiledningsProps) => {
             <h2 className={spacing.mbn}>Hva må jeg gjøre nå?</h2>
             <BodyShort>Du må sende oss oppsigelsen du har fått fra arbeidsgiver.</BodyShort>
             <BodyShort>
-                Når vi får behandlet dokumentasjonen du sender oss, vil du få et brev om saken din og hva du skal gjøre.
+                Når vi har behandlet dokumentasjonen du sender oss, får du melding på Min side om hva du skal gjøre
+                videre.
             </BodyShort>
             <ReadMore
-                header="Hva skjer nå om du har søkt eller mottar dagpenger?"
+                header="Hva skjer hvis du har søkt eller mottar dagpenger?"
                 className={spacing.mt1}
                 onClick={() => handleReadmoreDagpenger('OPPSIGELSE')}
             >
