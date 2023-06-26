@@ -169,11 +169,7 @@ const ENDRET_PERMITTERINGSPROSENT = (props: VeiledningsProps) => {
                     videre.
                 </BodyShort>
                 <BodyShort className={spacing.mb1}>Du bør fortsette å sende inn meldekortene.</BodyShort>
-                <BodyShort>
-                    <Link href={saksbehandlingstiderDagpengerUrl}>
-                        Her finner du informasjon om saksbehandlingstiden.
-                    </Link>
-                </BodyShort>
+                <DagpengeSaksbehandlingstider />
                 <BodyShort className={spacing.mb1}>
                     Du må være permittert i minst 50% av din vanlige arbeidstid for å ha rett på dagpenger som
                     permittert.
@@ -325,11 +321,7 @@ const SAGT_OPP = (props: VeiledningsProps) => {
                     Når vi har behandlet dokumentasjonen du sender oss, får du melding på Mitt NAV om hva du skal gjøre
                     videre.
                 </BodyShort>
-                <BodyShort>
-                    <Link href={saksbehandlingstiderDagpengerUrl}>
-                        Her finner du informasjon om skasbehandlingstiden
-                    </Link>
-                </BodyShort>
+                <DagpengeSaksbehandlingstider />
             </ReadMore>
             <ReadMore
                 header="Skal jeg fortsatt være registrert som arbeidssøker?"
