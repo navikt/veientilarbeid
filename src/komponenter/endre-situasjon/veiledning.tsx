@@ -39,7 +39,6 @@ const DagpengeSaksbehandlingstider = () => {
 const GENERELL_VEILEDNING_MED_DOKUMENTASJON = () => {
     return (
         <>
-            <h2 className={spacing.mbn}>Hva betyr endringen for meg?</h2>
             <BodyShort>Vi baserer denne veiledningen på de opplysningene du har oppgitt.</BodyShort>
             <h3 className={spacing.mbn}>Hva må jeg gjøre nå?</h3>
             <BodyShort>
@@ -76,7 +75,6 @@ const GENERELL_VEILEDNING_MED_DOKUMENTASJON = () => {
 const GENERELL_VEILEDNING_UTEN_DOKUMENTASJON = () => {
     return (
         <>
-            <h2 className={spacing.mbn}>Hva betyr endringen for meg?</h2>
             <BodyShort>Vi baserer denne veiledningen på de opplysningene du har oppgitt.</BodyShort>
             <h3 className={spacing.mbn}>Hva må jeg gjøre nå?</h3>
             <BodyShort>
@@ -108,7 +106,6 @@ const TILBAKE_TIL_JOBB = (props: VeiledningsProps) => {
 
     return (
         <>
-            <h2 className={spacing.mbn}>Hva betyr endringen for meg?</h2>
             <BodyShort>Vi baserer denne veiledningen på de opplysningene du har oppgitt.</BodyShort>
             <h2 className={spacing.mbn}>Hva må jeg gjøre nå?</h2>
             <BodyShort>
