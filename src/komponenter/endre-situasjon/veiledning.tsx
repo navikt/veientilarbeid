@@ -31,7 +31,7 @@ export function kreverDokumentasjon(valgtSituasjon: SituasjonSvar): boolean {
 const DagpengeSaksbehandlingstider = () => {
     return (
         <BodyShort>
-            Du finner informasjon om <Link href={saksbehandlingstiderDagpengerUrl}>saksbehandlingstider her</Link>.
+            <Link href={saksbehandlingstiderDagpengerUrl}>Her finner du informasjon om saksbehandlingstiden.</Link>.
         </BodyShort>
     );
 };
