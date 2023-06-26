@@ -38,6 +38,7 @@ const DOKUMENTASJON_URL = {
 
 export const mine_dagpenger_url = MINE_DAGPENGER_URL[getEnvironment()];
 export const dokumentasjon_url = DOKUMENTASJON_URL[getEnvironment()];
-
+export const konkurs_url =
+    'https://www.nav.no/no/person/arbeid/dagpenger-ved-arbeidsloshet-og-permittering/lonnsgarantiordningen';
 export const innloggingsStatusUrl = INNLOGGINGSSTATUS_URL[getEnvironment()];
 export const aiaBackendUrl = AIA_BACKEND_URL[getEnvironment()];

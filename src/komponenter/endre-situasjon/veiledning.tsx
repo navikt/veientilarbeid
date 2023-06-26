@@ -8,6 +8,7 @@ import { DinSituasjonSvar } from '../../contexts/brukerregistrering';
 import { plussDager } from '../../utils/date-utils';
 
 import spacing from '../../spacing.module.css';
+import { konkurs_url } from '../../ducks/urls';
 
 export type SituasjonSvar = PermittertSvar | DinSituasjonSvar;
 
@@ -252,7 +253,7 @@ const KONKURS = (props: VeiledningsProps) => {
                 Du krysser av for at du ønsker lønnsgarantimidler i søknaden om dagpenger.
             </BodyShort>
             <BodyShort className={spacing.mb1}>
-                Les mer om hva du kan gjøre hvis arbeidsgiveren din går konkurs.
+                Les mer om <Link href={konkurs_url}>hva du kan gjøre hvis arbeidsgiveren din går konkurs.</Link>
             </BodyShort>
 
             <BodyShort className={spacing.mb1}>
