@@ -9,6 +9,8 @@ import { plussDager } from '../../utils/date-utils';
 
 import spacing from '../../spacing.module.css';
 import { konkurs_url } from '../../ducks/urls';
+import { loggAktivitet } from '../../metrics/metrics';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 
 export type SituasjonSvar = PermittertSvar | DinSituasjonSvar;
 
@@ -20,9 +22,16 @@ export interface VeiledningsProps {
 }
 
 const DagpengeSaksbehandlingstider = () => {
+    const { amplitudeData } = useAmplitudeData();
     return (
         <BodyShort>
-            <Link href={saksbehandlingstiderDagpengerUrl}>Her finner du informasjon om saksbehandlingstiden.</Link>.
+            <Link
+                href={saksbehandlingstiderDagpengerUrl}
+                onClick={() => loggAktivitet({ aktivitet: 'Går til DagpengeSaksbehandlingstider', ...amplitudeData })}
+            >
+                Her finner du informasjon om saksbehandlingstiden.
+            </Link>
+            .
         </BodyShort>
     );
 };
