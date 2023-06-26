@@ -100,10 +100,14 @@ function TilleggsData(props: Props) {
                     Min første arbeidsdag etter permittering er{' '}
                     {forsteArbeidsdagDato ? prettyPrintDato(forsteArbeidsdagDato) : 'ikke oppgitt dato'}
                 </BodyShort>
-                <BodyShort>Du må dokumentere endringer i permitteringen</BodyShort>
-                <BodyShort>
-                    <Link href={dokumentasjon_url}>Gå til opplasting</Link>
-                </BodyShort>
+                {visKnapper && (
+                    <>
+                        <BodyShort>Du må dokumentere endringer i permitteringen</BodyShort>
+                        <BodyShort>
+                            <Link href={dokumentasjon_url}>Gå til opplasting</Link>
+                        </BodyShort>
+                    </>
+                )}
             </>
         );
     };
