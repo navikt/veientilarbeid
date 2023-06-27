@@ -90,7 +90,7 @@ const PermittertModal = (props: PermittertModalProps) => {
             // shouldCloseOnEsc={!datepickerProps.open}
             aria-labelledby="modal-heading"
         >
-            <Modal.Content>
+            <Modal.Content style={{ maxWidth: '1000px', width: '85vw' }}>
                 <Tilbake />
                 <Heading spacing level="1" size="large" id="modal-heading" className={spacing.mr2}>
                     Jobbsituasjonen min har endret seg
