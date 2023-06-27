@@ -51,7 +51,8 @@ const Sammendrag = (props: any) => {
         <div className={`${flexStyles.flex} ${flexStyles.flexColumn}`}>
             <div className={spacing.blokkS}>
                 <div className={spacing.mb1}>
-                    Din jobbsituasjon: {besvarelse ? svarMap.dinSituasjon[besvarelse.dinSituasjon.verdi] : 'Ukjent'}
+                    <h4 className={spacing.mvn}>Din jobbsituasjon</h4>
+                    {besvarelse ? svarMap.dinSituasjon[besvarelse.dinSituasjon.verdi] : 'Ukjent'}
                     <br />
                     <TilleggsData
                         verdi={besvarelse ? besvarelse.dinSituasjon.verdi : null}

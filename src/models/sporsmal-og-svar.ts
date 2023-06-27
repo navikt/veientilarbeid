@@ -54,7 +54,7 @@ export const svarMap = {
         VIL_FORTSETTE_I_JOBB: 'Har jobb og ønsker å fortsette i den jobben jeg er i',
         OPPSIGELSE: 'Jeg har blitt sagt opp av arbeidsgiver',
         ENDRET_PERMITTERINGSPROSENT: 'Arbeidsgiver har endret permitteringen min',
-        TILBAKE_TIL_JOBB: 'Jeg skal begynne å jobbe igjen hos min arbeidsgiver',
+        TILBAKE_TIL_JOBB: 'Jeg skal tilbake i jobb hos min nåværende arbeidsgiver',
         NY_JOBB: 'Jeg skal begynne å jobbe hos en annen arbeidsgiver',
         MIDLERTIDIG_JOBB: 'Jeg har fått midlertidig jobb hos en annen arbeidsgiver',
         KONKURS: 'Arbeidsgiveren min er konkurs',

@@ -53,6 +53,10 @@
 .mv1 {
     margin: 1rem 0!important;
 }
+.mvn {
+    margin-top: 0!important;
+    margin-bottom: 0!important;
+}
 
 .pa1 {
     padding: 1rem!important;;

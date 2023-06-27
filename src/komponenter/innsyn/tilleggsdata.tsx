@@ -102,7 +102,10 @@ function TilleggsData(props: Props) {
                 </BodyShort>
                 {visKnapper && (
                     <>
-                        <BodyShort>Du må dokumentere endringer i permitteringen</BodyShort>
+                        <br />
+                        <BodyShort>
+                            Hvis du har et permitteringsvarsel som du enda ikke har sendt oss, må du gjøre det nå.
+                        </BodyShort>
                         <BodyShort>
                             <Link href={dokumentasjon_url}>Gå til opplasting</Link>
                         </BodyShort>
