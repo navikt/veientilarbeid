@@ -94,8 +94,8 @@ const AiaTabs = () => {
             <RegistrertTittel />
             <Tabs value={aktivTab} onChange={onChangeTab} className={`${tabStyles.mb2} ${tabStyles.mt1}`}>
                 <Tabs.List>
-                    <Tabs.Tab value="situasjon" label="Min situasjon" />
-                    <Tabs.Tab value="hjelp" label="Hjelp og støtte" />
+                    <Tabs.Tab value="situasjon" label="Min situasjon" className={tabStyles.nowrap} />
+                    <Tabs.Tab value="hjelp" label="Hjelp og støtte" className={tabStyles.nowrap} />
                     <Tabs.Tab value="ytelse" label="Pengestøtte" />
                     <Tabs.Tab value="meldekort" label="Meldekort" />
                 </Tabs.List>

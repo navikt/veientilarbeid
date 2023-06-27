@@ -9,3 +9,7 @@
 .mln2_4 {
   margin-left: -2.4rem !important;
 }
+
+.nowrap {
+  white-space: nowrap;
+}
