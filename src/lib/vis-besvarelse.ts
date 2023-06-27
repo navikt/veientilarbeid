@@ -38,7 +38,7 @@ export function visBesvarelser({
 
     const aldersgruppeUtenForsterketInnsats = brukerInfoData.alder >= 30 && brukerInfoData.alder <= 59;
 
-    const harEndretBesvarelse = besvarelseData && besvarelseData.erBesvarelseEndret;
+    const harEndretBesvarelse = besvarelseData && besvarelseData.erBesvarelsenEndret;
 
     const erRegistrertEtterLansering = datoForRegistrering > DATO_FOR_LANSERING;
 

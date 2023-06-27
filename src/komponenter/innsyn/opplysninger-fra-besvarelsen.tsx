@@ -124,7 +124,7 @@ const RegistreringsOpplysninger = (props: OpplysningerProps) => {
     const opprettetAv = manueltRegistrertAv ? 'NAV' : 'Du';
     const endretTidspunkt = besvarelseData?.endretTidspunkt ? prettyPrintDato(besvarelseData.endretTidspunkt) : '';
     const endretAv = besvarelseData?.endretAv && besvarelseData.endretAv === 'BRUKER' ? 'deg' : 'NAV';
-    const erBesvarelseEndret = besvarelseData?.erBesvarelseEndret || false;
+    const erBesvarelsenEndret = besvarelseData?.erBesvarelsenEndret || false;
 
     if (!besvarelseData) return null;
     return (
@@ -137,7 +137,7 @@ const RegistreringsOpplysninger = (props: OpplysningerProps) => {
                     <BodyShort>
                         {opprettetAv} registrerte deg som arbeidssøker {registreringsTidspunkt}.
                     </BodyShort>
-                    {erBesvarelseEndret && (
+                    {erBesvarelsenEndret && (
                         <BodyShort>
                             Opplysningene ble sist endret av {endretAv} {endretTidspunkt}.
                         </BodyShort>

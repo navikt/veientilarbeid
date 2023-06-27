@@ -27,7 +27,7 @@ describe('har-permittert-situasjon', () => {
         ].forEach((svar) => {
             expect(
                 harPermittertSituasjon(undefined, {
-                    erBesvarelseEndret: true,
+                    erBesvarelsenEndret: true,
                     besvarelse: {
                         dinSituasjon: {
                             verdi: svar,
@@ -41,7 +41,7 @@ describe('har-permittert-situasjon', () => {
     test('returnerer false for ikke-permittert besvarelse', () => {
         expect(
             harPermittertSituasjon(undefined, {
-                erBesvarelseEndret: true,
+                erBesvarelsenEndret: true,
                 besvarelse: {
                     dinSituasjon: {
                         verdi: PermittertSvar.OPPSIGELSE,

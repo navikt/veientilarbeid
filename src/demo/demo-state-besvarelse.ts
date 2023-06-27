@@ -18,8 +18,8 @@ const settEndretSituasjonFra = (value: string) => settDemoState(DemoData.ENDRET_
 const hentEndretSituasjonAv = () => hentDemoState(DemoData.ENDRET_SITUASJON_AV) || null;
 const settEndretSituasjonAv = (value: string) => settDemoState(DemoData.ENDRET_SITUASJON_AV, value);
 
-const hentErBesvarelseEndret = () => hentDemoState(DemoData.ER_BESVARELSE_ENDRET) || null;
-const settErBesvarelseEndret = (value: boolean) => settDemoState(DemoData.ER_BESVARELSE_ENDRET, value);
+const hentErBesvarelsenEndret = () => hentDemoState(DemoData.ER_BESVARELSEN_ENDRET) || null;
+const settErBesvarelsenEndret = (value: boolean) => settDemoState(DemoData.ER_BESVARELSEN_ENDRET, value);
 
 function oppdaterBesvarelse(
     verdi: string | null,
@@ -27,11 +27,11 @@ function oppdaterBesvarelse(
     endretTidspunkt: string | null,
     endretAv: string | null,
     tilleggsData: DinSituasjonTilleggsdata,
-    erBesvarelseEndret: string | null | boolean
+    erBesvarelsenEndret: string | null | boolean
 ): BesvarelseResponse {
     const oppdatertBesvarelse = JSON.parse(JSON.stringify(besvarelseMock));
-    if (erBesvarelseEndret) {
-        oppdatertBesvarelse.erBesvarelseEndret = true;
+    if (erBesvarelsenEndret) {
+        oppdatertBesvarelse.erBesvarelsenEndret = true;
     }
     if (verdi) {
         oppdatertBesvarelse.besvarelse.dinSituasjon.verdi = verdi;
@@ -59,7 +59,7 @@ export const besvarelseGetResolver = (req: RestRequest, res: ResponseComposition
     const endretTidspunkt = hentEndretSituasjonFra();
     const endretAv = hentEndretSituasjonAv();
     const tilleggsData = hentSituasjonTilleggsdata();
-    const erBesvarelseEndret = hentErBesvarelseEndret();
+    const erBesvarelsenEndret = hentErBesvarelsenEndret();
     const parsetData = tilleggsData ? JSON.parse(tilleggsData) : null;
     const oppdatertBesvarelse = oppdaterBesvarelse(
         verdi,
@@ -67,7 +67,7 @@ export const besvarelseGetResolver = (req: RestRequest, res: ResponseComposition
         endretTidspunkt,
         endretAv,
         parsetData,
-        erBesvarelseEndret
+        erBesvarelsenEndret
     );
     return res(ctx.json(oppdatertBesvarelse));
 };
@@ -81,9 +81,9 @@ export const besvarelsePostResolver = (
     const { verdi, gjelderFraDato, tilleggsData } = dinSituasjon;
     const endretTidspunkt = new Date().toISOString();
     const endretAv = 'BRUKER';
-    const erBesvarelseEndret = true;
+    const erBesvarelsenEndret = true;
     settNySituasjon(verdi);
-    settErBesvarelseEndret(erBesvarelseEndret);
+    settErBesvarelsenEndret(erBesvarelsenEndret);
     if (tilleggsData) {
         settSituasjonTilleggsdata(JSON.stringify(tilleggsData));
     }
@@ -98,7 +98,7 @@ export const besvarelsePostResolver = (
         endretTidspunkt,
         endretAv,
         tilleggsData,
-        erBesvarelseEndret
+        erBesvarelsenEndret
     );
     return res(ctx.status(201), ctx.json(oppdatertBesvarelse));
 };

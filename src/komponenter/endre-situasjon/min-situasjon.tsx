@@ -25,10 +25,10 @@ function MinSituasjon(props: any) {
 
     const { aktivPeriodeStart } = beregnArbeidssokerperioder(arbeidssokerperiodeData);
     const { opprettetDato, manueltRegistrertAv } = brukerregistreringData?.registrering || {};
-    const { endretTidspunkt, endretAv, erBesvarelseEndret } = besvarelse || {};
+    const { endretTidspunkt, endretAv, erBesvarelsenEndret } = besvarelse || {};
     const kanViseKomponent = autentiseringData.securityLevel === InnloggingsNiva.LEVEL_4;
 
-    const endretStyle = erBesvarelseEndret ? { background: 'var(--a-blue-50)' } : {};
+    const endretStyle = erBesvarelsenEndret ? { background: 'var(--a-blue-50)' } : {};
     if (!kanViseKomponent) return null;
 
     return (
@@ -51,7 +51,7 @@ function MinSituasjon(props: any) {
                     besvarelse={besvarelseData}
                     endretTidspunkt={endretTidspunkt}
                     endretAv={endretAv}
-                    erBesvarelseEndret={erBesvarelseEndret}
+                    erBesvarelsenEndret={erBesvarelsenEndret}
                 />
                 <BesvarelseLesMer />
             </Panel>

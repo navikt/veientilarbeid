@@ -15,7 +15,7 @@ import flexStyles from '../../flex.module.css';
 const Sammendrag = (props: any) => {
     const [openEndreModal, setOpenEndreModal] = useState(false);
     const [openLesIgjenModal, setOpenLesIgjenModal] = useState(false);
-    const { amplitudeData, besvarelse, erBesvarelseEndret } = props;
+    const { amplitudeData, besvarelse, erBesvarelsenEndret } = props;
     const underoppfolging = useUnderOppfolging()?.underoppfolging;
     const kanViseKomponent = underoppfolging;
 
@@ -60,7 +60,7 @@ const Sammendrag = (props: any) => {
                     />
                 </div>
                 <BodyShort className={`${spacing.mb1} ${spacing.mt1}`}>
-                    <Button variant={erBesvarelseEndret ? 'secondary' : 'primary'} onClick={handleEndreModalOpen}>
+                    <Button variant={erBesvarelsenEndret ? 'secondary' : 'primary'} onClick={handleEndreModalOpen}>
                         Jobbsituasjonen min har endret seg
                     </Button>
                 </BodyShort>
@@ -83,7 +83,7 @@ const Sammendrag = (props: any) => {
                     </a>
                     .
                 </BodyShort>
-                {erBesvarelseEndret && (
+                {erBesvarelsenEndret && (
                     <BodyShort className={`${spacing.mb1} ${spacing.mt1}`}>
                         <a href={''} onClick={handleLesIgjenModalOpen}>
                             Les om igjen hva denne endringen betyr for deg

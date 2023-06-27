@@ -14,7 +14,7 @@ export function harPermittertSituasjon(
     brukerRegistrering?: Brukerregistrering,
     besvarelse?: BesvarelseResponse
 ): boolean {
-    if (besvarelse?.erBesvarelseEndret) {
+    if (besvarelse?.erBesvarelsenEndret) {
         return permitterteTilstander.includes(besvarelse?.besvarelse?.dinSituasjon?.verdi as any);
     }
 

@@ -135,7 +135,7 @@ export type BesvarelseResponse = {
     opprettetAv?: string;
     endretTidspunkt?: string;
     endretAv?: BrukerEllerNav;
-    erBesvarelseEndret?: boolean;
+    erBesvarelsenEndret?: boolean;
 } | null;
 
 interface BesvarelseProviderType {

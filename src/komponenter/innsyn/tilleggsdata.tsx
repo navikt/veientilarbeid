@@ -25,7 +25,7 @@ const harSendtInnNyDokumentasjon = (profil: Profil | null, besvarelse: Besvarels
         return false;
     }
 
-    if (besvarelse?.erBesvarelseEndret) {
+    if (besvarelse?.erBesvarelsenEndret) {
         const endretDato = new Date(besvarelse.endretTidspunkt!);
         const innsendtDato = new Date(profil?.aiaHarSendtInnDokumentasjonForEndring!);
         return innsendtDato > endretDato;
