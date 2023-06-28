@@ -1,0 +1,21 @@
+.panelIcon {
+    display: none;
+    margin-right: 0.5em;
+    position: relative;
+    top: 6px;
+    font-size: var(--a-font-size-heading-medium);
+    width: 24px;
+}
+
+.rMr1 {
+    margin-right: 0;
+}
+
+@media screen and (min-width: 800px) {
+    .panelIcon {
+        display: initial;
+    }
+    .rMr1 {
+        margin-right: 1rem;
+    }
+}

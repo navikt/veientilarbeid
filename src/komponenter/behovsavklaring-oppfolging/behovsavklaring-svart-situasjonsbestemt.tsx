@@ -11,8 +11,10 @@ import InViewport from '../in-viewport/in-viewport';
 import { ForeslattInnsatsgruppe } from '../../contexts/brukerregistrering';
 
 import spacingStyles from '../../spacing.module.css';
-import { AktivitetsplanLenke, DialogLenke, GaaTilDialogKnapp } from './lenker';
 import flexStyles from '../../flex.module.css';
+import responsiveStyles from '../../responsive.module.css';
+
+import { AktivitetsplanLenke, DialogLenke, GaaTilDialogKnapp } from './lenker';
 
 const TEKSTER = {
     nb: {
@@ -43,14 +45,7 @@ function EnigMedProfilering() {
 
     return (
         <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
-            <span
-                style={{
-                    marginRight: '0.5em',
-                    position: 'relative',
-                    top: '6px',
-                    fontSize: 'var(--a-font-size-heading-medium)',
-                }}
-            >
+            <span className={responsiveStyles.panelIcon}>
                 <ChatIcon aria-hidden="true" />
             </span>
             <div className={spacingStyles.fullWidth}>
@@ -80,14 +75,7 @@ function UenigMedProfilering() {
 
     return (
         <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
-            <span
-                style={{
-                    marginRight: '0.5em',
-                    position: 'relative',
-                    top: '6px',
-                    fontSize: 'var(--a-font-size-heading-medium)',
-                }}
-            >
+            <span className={responsiveStyles.panelIcon}>
                 <ChatIcon aria-hidden="true" />
             </span>
             <div className={spacingStyles.fullWidth}>

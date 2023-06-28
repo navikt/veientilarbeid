@@ -13,6 +13,8 @@ import { AktivitetsplanLenke, GaaTilDialogKnapp } from './lenker';
 
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
+import responsiveStyles from '../../responsive.module.css';
+
 import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
 
 const TEKSTER = {
@@ -38,15 +40,8 @@ function EnigMedProfilering() {
     return (
         <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - svart - enig - standard" />
-            <span
-                style={{
-                    marginRight: '0.5em',
-                    position: 'relative',
-                    top: '6px',
-                    fontSize: 'var(--a-font-size-heading-medium)',
-                }}
-            >
-                <ChatIcon />
+            <span className={responsiveStyles.panelIcon}>
+                <ChatIcon aria-hidden={true} />
             </span>
             <div className={spacingStyles.fullWidth}>
                 {!brukTabsDemo && (
@@ -81,14 +76,7 @@ function UenigMedProfilering() {
     return (
         <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - svart - uenig - standard" />
-            <span
-                style={{
-                    marginRight: '0.5em',
-                    position: 'relative',
-                    top: '6px',
-                    fontSize: 'var(--a-font-size-heading-medium)',
-                }}
-            >
+            <span className={responsiveStyles.panelIcon}>
                 <ChatIcon aria-hidden="true" />
             </span>
             <div className={spacingStyles.fullWidth}>

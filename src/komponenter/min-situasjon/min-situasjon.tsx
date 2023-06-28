@@ -17,6 +17,7 @@ import { visBesvarelser } from '../../lib/vis-besvarelse';
 
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
+import responsiveStyles from '../../responsive.module.css';
 
 function MinSituasjon(props: any) {
     const registreringData = useBrukerregistreringData();
@@ -50,15 +51,7 @@ function MinSituasjon(props: any) {
 
     return (
         <Panel className={`${flexStyles.flex}`}>
-            <span
-                style={{
-                    marginRight: '0.5em',
-                    position: 'relative',
-                    top: '6px',
-                    fontSize: 'var(--a-font-size-heading-medium)',
-                    width: '24px',
-                }}
-            ></span>
+            <span className={responsiveStyles.panelIcon}></span>
             <div className={spacingStyles.fullWidth}>
                 <Sammendrag
                     startDato={opprettetDato || aktivPeriodeStart}

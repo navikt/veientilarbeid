@@ -32,7 +32,7 @@ const tabValueMap = {
 
 const MinSituasjonTab = () => {
     return (
-        <Tabs.Panel value="situasjon" className="h-24 w-full bg-gray-50 p-4">
+        <Tabs.Panel value="situasjon">
             <MinSituasjon />
         </Tabs.Panel>
     );
@@ -40,7 +40,7 @@ const MinSituasjonTab = () => {
 
 const HjelpOgStotteTab = () => {
     return (
-        <Tabs.Panel value="hjelp" className="h-24 w-full bg-gray-50 p-4">
+        <Tabs.Panel value="hjelp">
             <Behovsavklaring />
         </Tabs.Panel>
     );
@@ -48,7 +48,7 @@ const HjelpOgStotteTab = () => {
 
 const YtelseTab = () => {
     return (
-        <Tabs.Panel value="ytelse" className="h-24  w-full bg-gray-50 p-4">
+        <Tabs.Panel value="ytelse">
             <DagpengerOgYtelser />
         </Tabs.Panel>
     );
@@ -56,7 +56,7 @@ const YtelseTab = () => {
 
 const MeldekortTab = () => {
     return (
-        <Tabs.Panel value="meldekort" className="h-24  w-full bg-gray-50 p-4">
+        <Tabs.Panel value="meldekort">
             <Meldekort />
         </Tabs.Panel>
     );
