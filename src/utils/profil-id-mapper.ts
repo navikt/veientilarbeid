@@ -6,6 +6,7 @@ const ids = {
     'egenvurdering-avslaatt': 'aiaAvslaattEgenvurdering',
     '12uker-egenvurdering': 'aiaAvslaattEgenvurderingUke12',
     ytelser_tema_vis_key: 'aiaValgtPengestotteVisning',
+    'svar-fra-besvarelsen': 'aiaFeedbackSvarFraBesvarelsen',
 };
 
 export function hentProfilnokkelFraLocalStorage(id: string) {
