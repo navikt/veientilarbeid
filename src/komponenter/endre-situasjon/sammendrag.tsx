@@ -1,4 +1,4 @@
-import { BodyShort, Button, Heading } from '@navikt/ds-react';
+import { BodyLong, BodyShort, Button, Heading, ReadMore } from '@navikt/ds-react';
 import { useState } from 'react';
 
 import { useUnderOppfolging } from '../../contexts/arbeidssoker';
@@ -10,12 +10,14 @@ import PermittertModal from './permittert-modal';
 import LesIgjenModal from './les-igjen-modal';
 
 import spacing from '../../spacing.module.css';
-import flexStyles from '../../flex.module.css';
 import spacingStyles from '../../spacing.module.css';
+import flexStyles from '../../flex.module.css';
 
 const Sammendrag = (props: any) => {
     const [openEndreModal, setOpenEndreModal] = useState(false);
     const [openLesIgjenModal, setOpenLesIgjenModal] = useState(false);
+    const [harLestOmEndringer, setHarLestOmEndringer] = useState<boolean>(false);
+
     const { amplitudeData, besvarelse, erBesvarelsenEndret } = props;
     const underoppfolging = useUnderOppfolging()?.underoppfolging;
     const kanViseKomponent = underoppfolging;
@@ -48,6 +50,17 @@ const Sammendrag = (props: any) => {
         setOpenLesIgjenModal(true);
     };
 
+    const handleLesOmEndringer = () => {
+        if (!harLestOmEndringer) {
+            loggAktivitet({
+                aktivitet: 'Leser om hvorfor gjøre endringer',
+                komponent: 'Min situasjon',
+                ...amplitudeData,
+            });
+            setHarLestOmEndringer(true);
+        }
+    };
+
     return !kanViseKomponent ? null : (
         <div className={`${flexStyles.flex} ${flexStyles.flexColumn}`}>
             <div className={spacing.blokkS}>
@@ -66,6 +79,18 @@ const Sammendrag = (props: any) => {
                         Jobbsituasjonen min har endret seg
                     </Button>
                 </BodyShort>
+                <ReadMore
+                    header={'Når og hvorfor skal jeg si ifra om endringer?'}
+                    className={spacing.mb1}
+                    onClick={handleLesOmEndringer}
+                >
+                    <BodyLong>
+                        Hvis det skjer endringer i situasjonen din, kan det påvirke oppfølgingen eller utbetalingen du
+                        får fra NAV. Det er derfor viktig å gi beskjed om endringen.
+                        <br />
+                        Det kan være endringer i din inntekt, familiesituasjon, jobbsituasjon, og så videre.
+                    </BodyLong>
+                </ReadMore>
                 <PermittertModal
                     openModal={openEndreModal}
                     setOpenModal={setOpenEndreModal}
