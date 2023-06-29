@@ -1,4 +1,3 @@
-import { ChatIcon } from '@navikt/aksel-icons';
 import { BodyLong, Heading, Panel } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
@@ -11,8 +10,6 @@ import InViewport from '../in-viewport/in-viewport';
 import { ForeslattInnsatsgruppe } from '../../contexts/brukerregistrering';
 
 import spacingStyles from '../../spacing.module.css';
-import flexStyles from '../../flex.module.css';
-import responsiveStyles from '../../responsive.module.css';
 
 import { AktivitetsplanLenke, DialogLenke, GaaTilDialogKnapp } from './lenker';
 
@@ -44,27 +41,22 @@ function EnigMedProfilering() {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
     return (
-        <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
-            <span className={responsiveStyles.panelIcon}>
-                <ChatIcon aria-hidden="true" />
-            </span>
-            <div className={spacingStyles.fullWidth}>
-                <ErRendret loggTekst="Rendrer behovsavklaringkomponent - svart - enig - situasjonsbestemt" />
-                <Heading className={spacingStyles.mb1} size="medium">
-                    {tekst('headingEnig')}
-                </Heading>
-                <BodyLong className={spacingStyles.mb1}>{tekst('beskrivelseEnigDialog')}.</BodyLong>
-                <ReadMoreVeileder />
-                <BodyLong className={spacingStyles.mt1}>
-                    <DialogLenke aktivitet={'Behovsavklaring - svart - situasjonsbestemt - enig - går til dialogen'} />
-                </BodyLong>
-                <BodyLong className={spacingStyles.mt1}>
-                    <AktivitetsplanLenke
-                        aktivitet={'Behovsavklaring - svart - situasjonsbestemt - enig - går til aktivitetsplanen'}
-                    />
-                </BodyLong>
-                <InViewport loggTekst="Viser behovsavklaringkomponent - svart - enig - situasjonsbestemt i viewport" />
-            </div>
+        <Panel>
+            <ErRendret loggTekst="Rendrer behovsavklaringkomponent - svart - enig - situasjonsbestemt" />
+            <Heading className={spacingStyles.mb1} size="medium">
+                {tekst('headingEnig')}
+            </Heading>
+            <BodyLong className={spacingStyles.mb1}>{tekst('beskrivelseEnigDialog')}.</BodyLong>
+            <ReadMoreVeileder />
+            <BodyLong className={spacingStyles.mt1}>
+                <DialogLenke aktivitet={'Behovsavklaring - svart - situasjonsbestemt - enig - går til dialogen'} />
+            </BodyLong>
+            <BodyLong className={spacingStyles.mt1}>
+                <AktivitetsplanLenke
+                    aktivitet={'Behovsavklaring - svart - situasjonsbestemt - enig - går til aktivitetsplanen'}
+                />
+            </BodyLong>
+            <InViewport loggTekst="Viser behovsavklaringkomponent - svart - enig - situasjonsbestemt i viewport" />
         </Panel>
     );
 }
@@ -74,31 +66,26 @@ function UenigMedProfilering() {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
     return (
-        <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
-            <span className={responsiveStyles.panelIcon}>
-                <ChatIcon aria-hidden="true" />
-            </span>
-            <div className={spacingStyles.fullWidth}>
-                <ErRendret loggTekst="Rendrer behovsavklaringkomponent - svart - uenig - situasjonsbestemt" />
-                <Heading className={spacingStyles.mb1} size="medium">
-                    {tekst('headingUenig')}
-                </Heading>
-                <BodyLong className={spacingStyles.mb1}>{tekst('beskrivelseUenig')}</BodyLong>
-                <BodyLong className={spacingStyles.mb1}>{tekst('beskrivelseUenigDialog')}.</BodyLong>
-                <BodyLong className={spacingStyles.mb1}>
-                    <GaaTilDialogKnapp tekst={tekst('skrivTilVeileder')} />
-                </BodyLong>
-                <ReadMoreVeileder />
-                <BodyLong className={spacingStyles.mt1}>
-                    <DialogLenke aktivitet={'Behovsavklaring - svart - situasjonsbestemt - uenig - går til dialogen'} />
-                </BodyLong>
-                <BodyLong className={spacingStyles.mt1}>
-                    <AktivitetsplanLenke
-                        aktivitet={'Behovsavklaring - svart - situasjonsbestemt - uenig - går til aktivitetsplanen'}
-                    />
-                </BodyLong>
-                <InViewport loggTekst="Viser behovsavklaringkomponent - svart - uenig - situasjonsbestemt i viewport" />
-            </div>
+        <Panel>
+            <ErRendret loggTekst="Rendrer behovsavklaringkomponent - svart - uenig - situasjonsbestemt" />
+            <Heading className={spacingStyles.mb1} size="medium">
+                {tekst('headingUenig')}
+            </Heading>
+            <BodyLong className={spacingStyles.mb1}>{tekst('beskrivelseUenig')}</BodyLong>
+            <BodyLong className={spacingStyles.mb1}>{tekst('beskrivelseUenigDialog')}.</BodyLong>
+            <BodyLong className={spacingStyles.mb1}>
+                <GaaTilDialogKnapp tekst={tekst('skrivTilVeileder')} />
+            </BodyLong>
+            <ReadMoreVeileder />
+            <BodyLong className={spacingStyles.mt1}>
+                <DialogLenke aktivitet={'Behovsavklaring - svart - situasjonsbestemt - uenig - går til dialogen'} />
+            </BodyLong>
+            <BodyLong className={spacingStyles.mt1}>
+                <AktivitetsplanLenke
+                    aktivitet={'Behovsavklaring - svart - situasjonsbestemt - uenig - går til aktivitetsplanen'}
+                />
+            </BodyLong>
+            <InViewport loggTekst="Viser behovsavklaringkomponent - svart - uenig - situasjonsbestemt i viewport" />
         </Panel>
     );
 }

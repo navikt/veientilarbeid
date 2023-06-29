@@ -1,4 +1,4 @@
-import { Panel } from '@navikt/ds-react';
+import { Detail, Heading, Panel } from '@navikt/ds-react';
 
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
@@ -14,10 +14,8 @@ import InnsynLesMer from '../innsyn/innsyn-les-mer';
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 import EndreSituasjon from '../endre-situasjon/min-situasjon';
 import { visBesvarelser } from '../../lib/vis-besvarelse';
-
 import spacingStyles from '../../spacing.module.css';
-import flexStyles from '../../flex.module.css';
-import responsiveStyles from '../../responsive.module.css';
+import { svarMap } from '../../models/sporsmal-og-svar';
 
 function MinSituasjon(props: any) {
     const registreringData = useBrukerregistreringData();
@@ -49,17 +47,22 @@ function MinSituasjon(props: any) {
         return <EndreSituasjon />;
     }
 
+    const heading = registreringData?.registrering?.besvarelse?.dinSituasjon
+        ? svarMap.dinSituasjon[registreringData?.registrering?.besvarelse?.dinSituasjon]
+        : 'Min jobbsituasjon: ukjent';
+
     return (
-        <Panel className={`${flexStyles.flex}`}>
-            <span className={responsiveStyles.panelIcon}></span>
-            <div className={spacingStyles.fullWidth}>
-                <Sammendrag
-                    startDato={opprettetDato || aktivPeriodeStart}
-                    manueltRegistrertAv={manueltRegistrertAv}
-                    amplitudeData={amplitudeData}
-                />
-                <InnsynLesMer />
-            </div>
+        <Panel>
+            <Detail uppercase>Min situasjon</Detail>
+            <Heading className={spacingStyles.mb1} size="medium">
+                {heading}
+            </Heading>
+            <Sammendrag
+                startDato={opprettetDato || aktivPeriodeStart}
+                manueltRegistrertAv={manueltRegistrertAv}
+                amplitudeData={amplitudeData}
+            />
+            <InnsynLesMer />
         </Panel>
     );
 }

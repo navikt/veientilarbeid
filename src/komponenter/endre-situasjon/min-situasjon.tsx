@@ -12,10 +12,6 @@ import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 import AiAInViewport from '../aia-in-viewport/aia-in-viewport';
 import ErRendret from '../er-rendret/er-rendret';
 
-import spacingStyles from '../../spacing.module.css';
-import flexStyles from '../../flex.module.css';
-import responsiveStyles from '../../responsive.module.css';
-
 function MinSituasjon(props: any) {
     const brukerregistreringData = useBrukerregistreringData();
     const arbeidssokerperiodeData = useArbeidssokerPerioder();
@@ -33,13 +29,9 @@ function MinSituasjon(props: any) {
     if (!kanViseKomponent) return null;
 
     return (
-        <Panel
-            className={`${flexStyles.flex} ${responsiveStyles.rMr1}`}
-            style={{ paddingLeft: 0, paddingTop: 0, paddingRight: 0 }}
-        >
+        <Panel style={{ paddingLeft: 0, paddingTop: 0, paddingRight: 0 }}>
             <ErRendret loggTekst="Rendrer endring av situasjon" />
-            <span className={responsiveStyles.panelIcon}></span>
-            <Panel className={`${spacingStyles.fullWidth}`} style={endretStyle}>
+            <Panel style={endretStyle}>
                 <Sammendrag
                     startDato={opprettetDato || aktivPeriodeStart}
                     manueltRegistrertAv={manueltRegistrertAv}

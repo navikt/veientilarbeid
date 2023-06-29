@@ -1,5 +1,4 @@
 import React from 'react';
-import { BankNoteIcon } from '@navikt/aksel-icons';
 import { BodyShort, Detail, Panel } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
@@ -25,10 +24,6 @@ import Ytelser from './ytelser';
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { DP_INNSYN_URL } from '../../ducks/api';
-
-import spacingStyles from '../../spacing.module.css';
-import flexStyles from '../../flex.module.css';
-import responsiveStyles from '../../responsive.module.css';
 import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
 
 function StansetDagpenger() {
@@ -91,34 +86,29 @@ function DagpengerOgYtelserInnhold(props: Props) {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     return (
-        <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
-            <span className={responsiveStyles.panelIcon}>
-                <BankNoteIcon aria-hidden="true" />
-            </span>
-            <div className={spacingStyles.fullWidth}>
-                {!brukTabsDemo && (
-                    <Detail uppercase style={{ marginTop: '-1rem' }}>
-                        {tekst('tittel')}
-                    </Detail>
-                )}
-                {props.valgtVisning === 'ytelser' ? (
-                    <>
-                        <ErRendret loggTekst="Rendrer ytelser sluttkort" />
-                        <Ytelser />
-                        <InViewport loggTekst="Viser ytelser sluttkort i viewport" />
-                    </>
-                ) : (
-                    <>
-                        <ErRendret loggTekst="Rendrer dagpenger sluttkort" />
-                        <DagpengerInnhold />
-                        <InViewport loggTekst="Viser dagpenger sluttkort i viewport" />
-                    </>
-                )}
-                <ByttVisningLenke
-                    handleByttVisningKlikk={props.handleByttVisningKlikk}
-                    valgtYtelserVisning={props.valgtVisning}
-                />
-            </div>
+        <Panel>
+            {!brukTabsDemo && (
+                <Detail uppercase style={{ marginTop: '-1rem' }}>
+                    {tekst('tittel')}
+                </Detail>
+            )}
+            {props.valgtVisning === 'ytelser' ? (
+                <>
+                    <ErRendret loggTekst="Rendrer ytelser sluttkort" />
+                    <Ytelser />
+                    <InViewport loggTekst="Viser ytelser sluttkort i viewport" />
+                </>
+            ) : (
+                <>
+                    <ErRendret loggTekst="Rendrer dagpenger sluttkort" />
+                    <DagpengerInnhold />
+                    <InViewport loggTekst="Viser dagpenger sluttkort i viewport" />
+                </>
+            )}
+            <ByttVisningLenke
+                handleByttVisningKlikk={props.handleByttVisningKlikk}
+                valgtYtelserVisning={props.valgtVisning}
+            />
         </Panel>
     );
 }

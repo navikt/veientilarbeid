@@ -1,6 +1,5 @@
 import { createRef, useCallback, useEffect, useState } from 'react';
 import { BodyShort, Heading, Panel } from '@navikt/ds-react';
-import { CheckmarkCircleIcon } from '@navikt/aksel-icons';
 
 import { useSprakValg } from '../../contexts/sprak';
 import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
@@ -9,8 +8,6 @@ import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import prettyPrintDato from '../../utils/pretty-print-dato';
-
-import flexStyles from '../../flex.module.css';
 import spacingStyles from '../../spacing.module.css';
 import { harPermittertSituasjon } from '../../lib/har-permittert-situasjon';
 import { useBesvarelse } from '../../contexts/besvarelse';
@@ -68,27 +65,12 @@ const RegistrertTittel = () => {
     return (
         <div ref={containerRef}>
             <Panel className={spacingStyles.pbn}>
-                <div className={flexStyles.flex}>
-                    <span
-                        style={{
-                            marginRight: '0.5em',
-                            position: 'relative',
-                            top: '6px',
-                            fontSize: 'var(--a-font-size-heading-medium)',
-                        }}
-                    >
-                        {/*{erNyRegistrert ? <SuccessColored aria-hidden="true" /> : <CheckmarkCircleIcon aria-hidden="true" />}*/}
-                        <CheckmarkCircleIcon aria-hidden="true" />
-                    </span>
-                    <div>
-                        <Heading size="medium">{tekst(hentTekstNokkel(erNyRegistrert, erPermittert))}</Heading>
-                        {registrertDato && (
-                            <BodyShort>
-                                {tekst('registreringsDato')}: {prettyPrintDato(registrertDato)}
-                            </BodyShort>
-                        )}
-                    </div>
-                </div>
+                <Heading size="medium">{tekst(hentTekstNokkel(erNyRegistrert, erPermittert))}</Heading>
+                {registrertDato && (
+                    <BodyShort>
+                        {tekst('registreringsDato')}: {prettyPrintDato(registrertDato)}
+                    </BodyShort>
+                )}
             </Panel>
         </div>
     );

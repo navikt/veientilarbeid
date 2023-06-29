@@ -1,4 +1,3 @@
-import { ChatIcon } from '@navikt/aksel-icons';
 import { BodyLong, Detail, Heading, Panel } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
@@ -12,8 +11,6 @@ import { ForeslattInnsatsgruppe } from '../../contexts/brukerregistrering';
 import { AktivitetsplanLenke, GaaTilDialogKnapp } from './lenker';
 
 import spacingStyles from '../../spacing.module.css';
-import flexStyles from '../../flex.module.css';
-import responsiveStyles from '../../responsive.module.css';
 
 import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
 
@@ -38,32 +35,27 @@ function EnigMedProfilering() {
     const brukTabsDemo = useSkalBrukeTabs();
 
     return (
-        <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
+        <Panel>
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - svart - enig - standard" />
-            <span className={responsiveStyles.panelIcon}>
-                <ChatIcon aria-hidden={true} />
-            </span>
-            <div className={spacingStyles.fullWidth}>
-                {!brukTabsDemo && (
-                    <Detail uppercase style={{ marginTop: '-1rem' }}>
-                        {tekst('overskrift')}
-                    </Detail>
-                )}
-                <Heading className={spacingStyles.mb1} size="medium">
-                    {tekst('headingEnig')}
-                </Heading>
-                <BodyLong className={spacingStyles.mb1}>{tekst('beskrivelseEnig')}</BodyLong>
-                <BodyLong className={spacingStyles.blokkXs}>{tekst('behovForVeiledningLikevel')}</BodyLong>
-                <GaaTilDialogKnapp variant={'secondary'} />
-                <div className={spacingStyles.mt1}>
-                    <ReadMoreVeileder />
-                </div>
-                <BodyLong className={spacingStyles.mt1}>
-                    <AktivitetsplanLenke
-                        aktivitet={'Behovsavklaring - svart - standard - enig - går til aktivitetsplanen'}
-                    />
-                </BodyLong>
+            {!brukTabsDemo && (
+                <Detail uppercase style={{ marginTop: '-1rem' }}>
+                    {tekst('overskrift')}
+                </Detail>
+            )}
+            <Heading className={spacingStyles.mb1} size="medium">
+                {tekst('headingEnig')}
+            </Heading>
+            <BodyLong className={spacingStyles.mb1}>{tekst('beskrivelseEnig')}</BodyLong>
+            <BodyLong className={spacingStyles.blokkXs}>{tekst('behovForVeiledningLikevel')}</BodyLong>
+            <GaaTilDialogKnapp variant={'secondary'} />
+            <div className={spacingStyles.mt1}>
+                <ReadMoreVeileder />
             </div>
+            <BodyLong className={spacingStyles.mt1}>
+                <AktivitetsplanLenke
+                    aktivitet={'Behovsavklaring - svart - standard - enig - går til aktivitetsplanen'}
+                />
+            </BodyLong>
             <InViewport loggTekst="Viser behovsavklaringkomponent - svart - enig - standard i viewport" />
         </Panel>
     );
@@ -72,32 +64,29 @@ function EnigMedProfilering() {
 function UenigMedProfilering() {
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
-
+    const brukTabsDemo = useSkalBrukeTabs();
     return (
-        <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
+        <Panel>
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - svart - uenig - standard" />
-            <span className={responsiveStyles.panelIcon}>
-                <ChatIcon aria-hidden="true" />
-            </span>
-            <div className={spacingStyles.fullWidth}>
+            {!brukTabsDemo && (
                 <Detail uppercase style={{ marginTop: '-1rem' }}>
                     {tekst('overskrift')}
                 </Detail>
-                <Heading className={spacingStyles.blokkXs} size="medium">
-                    {tekst('headingUenig')}
-                </Heading>
-                <BodyLong className={spacingStyles.mb1}>{tekst('fortellMer')}</BodyLong>
-                <BodyLong className={spacingStyles.mb1}>
-                    <GaaTilDialogKnapp />
-                </BodyLong>
-                <BodyLong className={spacingStyles.mb1}>{tekst('hjelpOgVedtak')}</BodyLong>
-                <ReadMoreVeileder />
-                <BodyLong className={spacingStyles.mt1}>
-                    <AktivitetsplanLenke
-                        aktivitet={'Behovsavklaring - svart - standard - uenig - går til aktivitetsplanen'}
-                    />
-                </BodyLong>
-            </div>
+            )}
+            <Heading className={spacingStyles.blokkXs} size="medium">
+                {tekst('headingUenig')}
+            </Heading>
+            <BodyLong className={spacingStyles.mb1}>{tekst('fortellMer')}</BodyLong>
+            <BodyLong className={spacingStyles.mb1}>
+                <GaaTilDialogKnapp />
+            </BodyLong>
+            <BodyLong className={spacingStyles.mb1}>{tekst('hjelpOgVedtak')}</BodyLong>
+            <ReadMoreVeileder />
+            <BodyLong className={spacingStyles.mt1}>
+                <AktivitetsplanLenke
+                    aktivitet={'Behovsavklaring - svart - standard - uenig - går til aktivitetsplanen'}
+                />
+            </BodyLong>
             <InViewport loggTekst="Viser behovsavklaringkomponent - svart - uenig - standard i viewport" />
         </Panel>
     );

@@ -1,4 +1,4 @@
-import { BodyShort, Button } from '@navikt/ds-react';
+import { BodyShort, Button, Heading } from '@navikt/ds-react';
 import { useState } from 'react';
 
 import { useUnderOppfolging } from '../../contexts/arbeidssoker';
@@ -11,6 +11,7 @@ import LesIgjenModal from './les-igjen-modal';
 
 import spacing from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
+import spacingStyles from '../../spacing.module.css';
 
 const Sammendrag = (props: any) => {
     const [openEndreModal, setOpenEndreModal] = useState(false);
@@ -51,9 +52,9 @@ const Sammendrag = (props: any) => {
         <div className={`${flexStyles.flex} ${flexStyles.flexColumn}`}>
             <div className={spacing.blokkS}>
                 <div className={spacing.mb1}>
-                    <h4 className={spacing.mvn}>Min jobbsituasjon</h4>
-                    {besvarelse ? svarMap.dinSituasjon[besvarelse.dinSituasjon.verdi] : 'Ukjent'}
-                    <br />
+                    <Heading className={spacingStyles.mb1} size="medium">
+                        {besvarelse ? svarMap.dinSituasjon[besvarelse.dinSituasjon.verdi] : 'Min jobbsituasjon: ukjent'}
+                    </Heading>
                     <TilleggsData
                         verdi={besvarelse ? besvarelse.dinSituasjon.verdi : null}
                         tilleggsData={besvarelse ? besvarelse.dinSituasjon.tilleggsData : null}

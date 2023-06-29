@@ -1,4 +1,3 @@
-import { ChatIcon } from '@navikt/aksel-icons';
 import { BodyLong, Detail, Heading, Panel } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
@@ -9,8 +8,6 @@ import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 
 import spacingStyles from '../../spacing.module.css';
-import flexStyles from '../../flex.module.css';
-import responsiveStyles from '../../responsive.module.css';
 
 import { AktivitetsplanLenke, DialogLenke } from './lenker';
 import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
@@ -43,32 +40,27 @@ function BehovsavklaringAvklartSituasjonsbestemt() {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const brukTabsDemo = useSkalBrukeTabs();
     return (
-        <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
+        <Panel>
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - avklart - situasjonsbestemt" />
-            <span className={responsiveStyles.panelIcon}>
-                <ChatIcon aria-hidden="true" />
-            </span>
-            <div className={spacingStyles.fullWidth}>
-                {!brukTabsDemo && (
-                    <Detail uppercase style={{ marginTop: '-1rem' }}>
-                        {tekst('overskrift')}
-                    </Detail>
-                )}
-                <Heading className={spacingStyles.mb1} size="medium">
-                    {tekst('headingEnig')}
-                </Heading>
-                <BodyLong className={spacingStyles.mb1}>{tekst('beskrivelseEnigDialog')}.</BodyLong>
-                <ReadMoreVeileder />
-                <BodyLong className={spacingStyles.mt1}>
-                    <DialogLenke aktivitet={'Behovsavklaring - avklart - situasjonsbestemt - går til dialogen'} />
-                </BodyLong>
-                <BodyLong className={spacingStyles.mt1}>
-                    <AktivitetsplanLenke
-                        aktivitet={'Behovsavklaring - avklart - situasjonsbestemt - går til aktivitetsplanen'}
-                    />
-                </BodyLong>
-                <InViewport loggTekst="Viser behovsavklaringkomponent - avklart - situasjonsbestemt i viewport" />
-            </div>
+            {!brukTabsDemo && (
+                <Detail uppercase style={{ marginTop: '-1rem' }}>
+                    {tekst('overskrift')}
+                </Detail>
+            )}
+            <Heading className={spacingStyles.mb1} size="medium">
+                {tekst('headingEnig')}
+            </Heading>
+            <BodyLong className={spacingStyles.mb1}>{tekst('beskrivelseEnigDialog')}.</BodyLong>
+            <ReadMoreVeileder />
+            <BodyLong className={spacingStyles.mt1}>
+                <DialogLenke aktivitet={'Behovsavklaring - avklart - situasjonsbestemt - går til dialogen'} />
+            </BodyLong>
+            <BodyLong className={spacingStyles.mt1}>
+                <AktivitetsplanLenke
+                    aktivitet={'Behovsavklaring - avklart - situasjonsbestemt - går til aktivitetsplanen'}
+                />
+            </BodyLong>
+            <InViewport loggTekst="Viser behovsavklaringkomponent - avklart - situasjonsbestemt i viewport" />
         </Panel>
     );
 }

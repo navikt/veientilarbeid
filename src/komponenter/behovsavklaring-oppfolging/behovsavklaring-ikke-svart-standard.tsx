@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { ChatIcon } from '@navikt/aksel-icons';
 import { BodyLong, Button, Detail, Heading, Panel } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
@@ -15,8 +14,6 @@ import ReadMoreVurdering from './readmore-vurdering';
 import { ForeslattInnsatsgruppe } from '../../contexts/brukerregistrering';
 
 import spacingStyles from '../../spacing.module.css';
-import flexStyles from '../../flex.module.css';
-import responsiveStyles from '../../responsive.module.css';
 
 import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
 
@@ -83,43 +80,38 @@ function IkkeSvartPaaBehovsavklaringStandardInnsats() {
     }
 
     return (
-        <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
+        <Panel>
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - ikke svart - standard" />
-            <span className={responsiveStyles.panelIcon}>
-                <ChatIcon aria-hidden="true" />
-            </span>
-            <div className={spacingStyles.fullWidth}>
-                {!brukTabsDemo && (
-                    <Detail uppercase style={{ marginTop: '-1rem' }}>
-                        {tekst('overskrift')}
-                    </Detail>
-                )}
-                <Heading className={spacingStyles.mb1} size="medium">
-                    {tekst('heading')}
-                </Heading>
-                <BodyLong className={`${spacingStyles.mb1}`}>{tekst('beskrivelse')}</BodyLong>
-                <BodyLong className={`${spacingStyles.mb1}`}>{tekst('veilederKanIkke')}</BodyLong>
+            {!brukTabsDemo && (
+                <Detail uppercase style={{ marginTop: '-1rem' }}>
+                    {tekst('overskrift')}
+                </Detail>
+            )}
+            <Heading className={spacingStyles.mb1} size="medium">
+                {tekst('heading')}
+            </Heading>
+            <BodyLong className={`${spacingStyles.mb1}`}>{tekst('beskrivelse')}</BodyLong>
+            <BodyLong className={`${spacingStyles.mb1}`}>{tekst('veilederKanIkke')}</BodyLong>
+            <Button
+                onClick={() => onClickBehovForVeiledning(ForeslattInnsatsgruppe.STANDARD_INNSATS)}
+                disabled={pendingRequest !== null}
+                loading={pendingRequest === ForeslattInnsatsgruppe.STANDARD_INNSATS}
+            >
+                {tekst('svarEnigKnappetekst')}
+            </Button>
+            <div className={spacingStyles.mb1}>
                 <Button
-                    onClick={() => onClickBehovForVeiledning(ForeslattInnsatsgruppe.STANDARD_INNSATS)}
+                    onClick={() => onClickBehovForVeiledning(ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS)}
                     disabled={pendingRequest !== null}
-                    loading={pendingRequest === ForeslattInnsatsgruppe.STANDARD_INNSATS}
+                    loading={pendingRequest === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS}
+                    variant="secondary"
+                    className={`${spacingStyles.mt1}`}
                 >
-                    {tekst('svarEnigKnappetekst')}
+                    {tekst('svarUenigKnappetekst')}
                 </Button>
-                <div className={spacingStyles.mb1}>
-                    <Button
-                        onClick={() => onClickBehovForVeiledning(ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS)}
-                        disabled={pendingRequest !== null}
-                        loading={pendingRequest === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS}
-                        variant="secondary"
-                        className={`${spacingStyles.mt1}`}
-                    >
-                        {tekst('svarUenigKnappetekst')}
-                    </Button>
-                </div>
-                <ReadMoreVeileder />
-                <ReadMoreVurdering />
             </div>
+            <ReadMoreVeileder />
+            <ReadMoreVurdering />
             <InViewport loggTekst="Viser behovsavklaringkomponent - ikke svart - standard i viewport" />
         </Panel>
     );

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { ChatIcon } from '@navikt/aksel-icons';
 import { Detail, Heading, Panel, ReadMore } from '@navikt/ds-react';
 
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
@@ -16,7 +15,6 @@ import InViewport from '../in-viewport/in-viewport';
 import Forklaring from './forklaring';
 
 import spacingStyles from '../../spacing.module.css';
-import flexStyles from '../../flex.module.css';
 
 const TEKSTER = {
     nb: {
@@ -62,26 +60,14 @@ function HjelpOgStotte() {
     };
 
     return (
-        <Panel className={`${flexStyles.flex} ${spacingStyles.px1_5}`}>
-            <span
-                style={{
-                    marginRight: '0.5em',
-                    position: 'relative',
-                    top: '6px',
-                    fontSize: 'var(--a-font-size-heading-medium)',
-                }}
-            >
-                <ChatIcon aria-hidden="true" />
-            </span>
-            <div className={spacingStyles.fullWidth}>
-                <Detail uppercase style={{ marginTop: '-1rem' }}>
-                    Hjelp og støtte
-                </Detail>
-                <DefaultInnhold />
-                <ReadMore size="medium" header={tekst('readMoreHeading')} onClick={handleClickLesMer}>
-                    <Forklaring />
-                </ReadMore>
-            </div>
+        <Panel>
+            <Detail uppercase style={{ marginTop: '-1rem' }}>
+                Hjelp og støtte
+            </Detail>
+            <DefaultInnhold />
+            <ReadMore size="medium" header={tekst('readMoreHeading')} onClick={handleClickLesMer}>
+                <Forklaring />
+            </ReadMore>
             <InViewport loggTekst="Viser hjelp og støtte-komponent i viewport" />
         </Panel>
     );
