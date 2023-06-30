@@ -49,10 +49,14 @@ const RegistrertTittel = () => {
     const erPermittert = harPermittertSituasjon(brukerregistreringData?.registrering, besvarelse);
 
     const scrollToRegistrering = useCallback(() => {
-        const goto = new URLSearchParams(window.location.search).get('goTo');
+        const params = new URLSearchParams(window.location.search);
+        const goto = params.get('goTo');
+
         if (goto === 'registrering' && containerRef.current) {
             containerRef.current.scrollIntoView();
             settErNyRegistrert(true);
+            params.delete('goTo');
+            window.history.replaceState(null, '', `?${params}`);
         }
     }, [containerRef]);
 
