@@ -1,5 +1,5 @@
-import { Panel, Heading, BodyShort, Link, Button, Detail } from '@navikt/ds-react';
-import { XMarkIcon, BankNoteIcon } from '@navikt/aksel-icons';
+import { BodyShort, Button, Detail, Heading, Link, Panel } from '@navikt/ds-react';
+import { XMarkIcon } from '@navikt/aksel-icons';
 import React, { useEffect, useState } from 'react';
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
@@ -86,41 +86,27 @@ const ReaktiveringKvittering = () => {
 
     return (
         <>
-            <Panel className={`${flexStyles.flex} ${spacingStyles.blokkS} ${spacingStyles.px1_5}`}>
-                <span
-                    style={{
-                        marginRight: '0.5em',
-                        position: 'relative',
-                        top: '6px',
-                        fontSize: 'var(--a-font-size-heading-medium)',
-                    }}
-                >
-                    <BankNoteIcon />
-                </span>
-                <div className={spacingStyles.fullWidth}>
-                    <div className={`${flexStyles.flex} ${flexStyles.spaceBetween} ${spacingStyles.blokkS}`}>
-                        <div>
-                            <Detail uppercase style={{ marginTop: '-1rem' }}>
-                                {tekst('tittel')}
-                            </Detail>
-                            <Heading size="medium">{tekst('ingress')}</Heading>
-                        </div>
-                        <Button variant="tertiary" size="small" onClick={handleLukkeKvitteringKnapp}>
-                            <XMarkIcon color="black" title={tekst('lukk')} />
-                        </Button>
-                    </div>
+            <Panel className={spacingStyles.mt1} style={{ background: 'var(--a-surface-warning-subtle)' }}>
+                <div className={`${flexStyles.flex} ${flexStyles.spaceBetween} ${spacingStyles.blokkS}`}>
                     <div>
-                        <BodyShort className={spacingStyles.blokkXs}>{tekst('utbetalingStoppet')}</BodyShort>
-                        <BodyShort className={spacingStyles.blokkXs}>{tekst('tidligstMotta')}</BodyShort>
-                        <Button variant="secondary" onClick={handleSokGjenopptak} className={spacingStyles.blokkXs}>
-                            {tekst('sok')}
-                        </Button>
-                        <BodyShort>
-                            <Link href="#" onClick={handleIkkeSokeNaa}>
-                                {tekst('skalIkke')}
-                            </Link>
-                        </BodyShort>
+                        <Detail uppercase>{tekst('tittel')}</Detail>
+                        <Heading size="medium">{tekst('ingress')}</Heading>
                     </div>
+                    <Button variant="tertiary" size="small" onClick={handleLukkeKvitteringKnapp}>
+                        <XMarkIcon color="black" title={tekst('lukk')} />
+                    </Button>
+                </div>
+                <div>
+                    <BodyShort className={spacingStyles.blokkXs}>{tekst('utbetalingStoppet')}</BodyShort>
+                    <BodyShort className={spacingStyles.blokkXs}>{tekst('tidligstMotta')}</BodyShort>
+                    <Button variant="secondary" onClick={handleSokGjenopptak} className={spacingStyles.blokkXs}>
+                        {tekst('sok')}
+                    </Button>
+                    <BodyShort>
+                        <Link href="#" onClick={handleIkkeSokeNaa}>
+                            {tekst('skalIkke')}
+                        </Link>
+                    </BodyShort>
                 </div>
             </Panel>
             <ErRendret loggTekst="Rendrer kvittering etter reaktivering" />
