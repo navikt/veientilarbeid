@@ -1,5 +1,5 @@
 import { Tabs } from '@navikt/ds-react';
-import { useEffect, useState } from 'react';
+import { HTMLProps, useEffect, useState } from 'react';
 
 import { useAmplitudeData } from '../komponenter/hent-initial-data/amplitude-provider';
 
@@ -13,6 +13,7 @@ import { hentQueryParam, settQueryParam } from '../utils/query-param-utils';
 
 import tabStyles from './tabs.module.css';
 import styles from '../innhold/innhold.module.css';
+import useHarGyldigBehovsvurdering from '../hooks/use-har-gyldig-behovsvurdering';
 
 const QUERY_PARAM = 'aia.aktivTab';
 
@@ -62,6 +63,23 @@ const MeldekortTab = () => {
     );
 };
 
+const VarslingSirkel = (props: HTMLProps<any>) => {
+    return (
+        <span
+            {...props}
+            style={{
+                position: 'relative',
+                borderRadius: '50%',
+                background: 'var(--a-surface-danger)',
+                height: '12px',
+                width: '12px',
+                top: '-6px',
+                left: '-3px',
+            }}
+        ></span>
+    );
+};
+
 const AiaTabs = () => {
     const { amplitudeData } = useAmplitudeData();
 
@@ -70,6 +88,7 @@ const AiaTabs = () => {
     };
 
     const [aktivTab, settAktivTab] = useState<TabValue>(TabValue.MIN_SITUASJON);
+    const harGyldigBehovsvurdering = useHarGyldigBehovsvurdering();
 
     const onChangeTab = (tab: string) => {
         settQueryParam(QUERY_PARAM, tab);
@@ -95,7 +114,21 @@ const AiaTabs = () => {
             <Tabs value={aktivTab} onChange={onChangeTab} className={`${tabStyles.mb2} ${tabStyles.mt1}`}>
                 <Tabs.List>
                     <Tabs.Tab value="situasjon" label="Min situasjon" className={tabStyles.nowrap} />
-                    <Tabs.Tab value="hjelp" label="Hjelp og støtte" className={tabStyles.nowrap} />
+                    <Tabs.Tab
+                        value="hjelp"
+                        label={
+                            <>
+                                Hjelp og støtte{' '}
+                                {!harGyldigBehovsvurdering && (
+                                    <VarslingSirkel
+                                        title={'Du har ikke vurdert ditt behov for veiledning'}
+                                        aria-label={'Du har ikke vurdert ditt behov for veiledning'}
+                                    />
+                                )}
+                            </>
+                        }
+                        className={tabStyles.nowrap}
+                    />
                     <Tabs.Tab value="ytelse" label="Pengestøtte" />
                     <Tabs.Tab value="meldekort" label="Meldekort" />
                 </Tabs.List>
