@@ -23,9 +23,9 @@
     "dependencies": {
         "@alheimsins/uker-fra-dato": "1.0.4",
         "@alheimsins/virkedager": "2.2.0",
-        "@navikt/ds-css": "4.0.0",
-        "@navikt/aksel-icons": "4.0.0",
-        "@navikt/ds-react": "4.0.0",
+        "@navikt/ds-css": "4.6.1",
+        "@navikt/aksel-icons": "4.6.1",
+        "@navikt/ds-react": "4.6.1",
         "@snyk/protect": "1.1152.0",
         "amplitude-js": "8.21.9",
         "classnames": "2.3.2",
