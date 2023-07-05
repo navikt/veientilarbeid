@@ -71,9 +71,9 @@ const VarslingSirkel = (props: HTMLProps<any>) => {
                 position: 'relative',
                 borderRadius: '50%',
                 background: 'var(--a-surface-danger)',
-                height: '12px',
-                width: '12px',
-                top: '-6px',
+                height: '8px',
+                width: '8px',
+                top: '-10px',
                 left: '-3px',
             }}
         ></span>
