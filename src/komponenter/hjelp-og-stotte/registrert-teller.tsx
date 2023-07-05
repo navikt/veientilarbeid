@@ -76,7 +76,7 @@ const under23Uker = (ukerRegistrert: string, sprak: Sprak) => {
 };
 
 function RegistrertTeller({ ukerRegistrert, registrertDato }: TellerProps) {
-    const over23Uker = ukerRegistrert && ukerRegistrert > 23;
+    const over23Uker = ukerRegistrert && (ukerRegistrert as number) > 23;
     const sprak = useSprakValg().sprak;
 
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);

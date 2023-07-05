@@ -1,3 +1,5 @@
+import { Profil } from '../profil';
+
 const ids = {
     'meldekort-forklaring': 'aiaFeedbackMeldekortForklaring',
     'hjelp-og-stotte-forklaring': 'aiaFeedbackHjelpOgStotteForklaring',
@@ -9,6 +11,9 @@ const ids = {
     'svar-fra-besvarelsen': 'aiaFeedbackSvarFraBesvarelsen',
 };
 
-export function hentProfilnokkelFraLocalStorage(id: string) {
-    return ids[id];
+type keys = keyof typeof ids;
+
+// type values = values typeof ids;
+export function hentProfilnokkelFraLocalStorage(id: string): keyof Profil {
+    return ids[id as keys] as keyof Profil;
 }

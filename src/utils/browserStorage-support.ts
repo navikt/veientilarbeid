@@ -27,7 +27,7 @@ function finnTilgjengeligBrowserStorage(): BrowserStorage {
 }
 
 export function lagFallbackBrowserStorage(): BrowserStorage {
-    const lagring = {};
+    const lagring: { [k: string]: string | null } = {};
 
     return {
         getItem(key: string) {
@@ -42,7 +42,7 @@ export function lagFallbackBrowserStorage(): BrowserStorage {
     };
 }
 
-function erStorageTilgjengelig(storageType: string) {
+function erStorageTilgjengelig(storageType: 'sessionStorage' | 'localStorage') {
     try {
         const storage = window[storageType] as Storage;
         const testKey = '__storageTest__';

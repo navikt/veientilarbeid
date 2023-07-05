@@ -5,7 +5,7 @@ import { InnloggingsNiva, useAutentiseringData } from '../../contexts/autentiser
 import { DinSituasjonSvar, useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { OppfolgingContext } from '../../contexts/oppfolging';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
-import { useFeatureToggleData } from '../../contexts/feature-toggles';
+import { FeautreToggleData, useFeatureToggleData } from '../../contexts/feature-toggles';
 import grupperGeografiskTilknytning from '../../utils/grupper-geografisk-tilknytning';
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 import dagerFraDato from '../../utils/dager-fra-dato';
@@ -95,7 +95,7 @@ const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const formidlingsgruppeOrIngenVerdi = formidlingsgruppe || 'INGEN_VERDI';
 
     const aktiveFeatureToggles = Object.keys(featuretoggleData).reduce((toggles, current) => {
-        if (featuretoggleData[current]) {
+        if (featuretoggleData[current as keyof FeautreToggleData]) {
             toggles.push(current);
         }
         return toggles;

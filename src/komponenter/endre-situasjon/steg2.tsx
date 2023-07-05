@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Alert, BodyShort, Button, HelpText, Radio, RadioGroup, DatePicker, useDatepicker } from '@navikt/ds-react';
+import { Alert, BodyShort, Button, DatePicker, HelpText, Radio, RadioGroup, useDatepicker } from '@navikt/ds-react';
 
 import { BesvarelseRequest, useBesvarelse } from '../../contexts/besvarelse';
 
@@ -46,13 +46,13 @@ function genererDialogTekst(
     opprinneligSituasjon: SituasjonSvar | undefined,
     tilleggsData?: any
 ) {
-    const permitteringsprosentMapping = {
+    const permitteringsprosentMapping: { [key: string]: string } = {
         '100': 'fullt permittert - 100 prosent',
         '75': 'mellom 50 og 100 prosent',
         '50': 'mindre enn 50 prosent',
     };
 
-    const stillingsprosentMapping = {
+    const stillingsprosentMapping: { [key: string]: string } = {
         '100': 'fulltid - 100 prosent',
         '75': 'deltid - mellom 50 og 100 prosent',
         '50': 'deltid - mindre enn 50 prosent',
@@ -219,7 +219,9 @@ interface WrapperProps {
 }
 
 const Steg2Wrapper = (props: WrapperProps) => {
-    const headingTekst = permittertTekster[props.valgtSituasjon] || dinSituasjonSvarTekster[props.valgtSituasjon];
+    const headingTekst =
+        permittertTekster[props.valgtSituasjon as PermittertSvar] ||
+        dinSituasjonSvarTekster[props.valgtSituasjon as DinSituasjonSvar];
 
     return (
         <>

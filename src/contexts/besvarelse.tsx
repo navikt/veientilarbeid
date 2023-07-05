@@ -118,19 +118,21 @@ export type BesvarelseRequest = {
     oppdatering: DinSituasjonRequest;
 };
 
+export type Besvarelse = {
+    dinSituasjon?: DinSituasjonResponse;
+    utdanning?: UtdanningResponse;
+    utdanningBestatt?: UtdanningBestattResponse;
+    utdannningGodkjent?: UtdanningGodkjentResponse;
+    helseHinder?: HelseHinderResponse;
+    andreForhold?: AndreForholdResponse;
+    sisteStilling?: SisteStillingResponse;
+    fremtidigSituasjon?: FremtidigSituasjonResponse;
+    tilbakeIArbeid?: TilbakeIArbeidResponse;
+};
+
 export type BesvarelseResponse = {
     registreringsId?: string;
-    besvarelse?: {
-        dinSituasjon?: DinSituasjonResponse;
-        utdanning?: UtdanningResponse;
-        utdanningBestatt?: UtdanningBestattResponse;
-        utdannningGodkjent?: UtdanningGodkjentResponse;
-        helseHinder?: HelseHinderResponse;
-        andreForhold?: AndreForholdResponse;
-        sisteStilling?: SisteStillingResponse;
-        fremtidigSituasjon?: FremtidigSituasjonResponse;
-        tilbakeIArbeid?: TilbakeIArbeidResponse;
-    };
+    besvarelse?: Besvarelse;
     registreringsTidspunkt?: string;
     opprettetAv?: string;
     endretTidspunkt?: string;

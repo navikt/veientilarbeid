@@ -15,3 +15,10 @@ type PengestotteVisning = 'dagpenger' | 'ytelser';
 export type JaEllerNei = { oppdatert: string; valg: 'ja' | 'nei' };
 
 type Feedback = { updated: string; valgt: string };
+export type ProfilFeedbackKeys = Extract<
+    Profil,
+    | 'aiaFeedbackMeldekortForklaring'
+    | 'aiaFeedbackHjelpOgStotteForklaring'
+    | 'aiaFeedbackHjelpOgStotteForklaringUngdom'
+    | 'aiaFeedbackSvarFraRegistreringen'
+>;

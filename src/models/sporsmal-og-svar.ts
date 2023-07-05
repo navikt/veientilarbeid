@@ -1,4 +1,4 @@
-export const sporsmalMap = {
+export const sporsmalMap: { [key: string]: string } = {
     utdanning: 'Hva er din høyeste fullførte utdanning?',
     utdanningBestatt: 'Er utdanningen din bestått?',
     utdanningGodkjent: 'Er utdanningen din godkjent i Norge?',
@@ -10,7 +10,7 @@ export const sporsmalMap = {
     tilbakeIArbeid: 'Tror du at du kommer tilbake i jobb før du har vært sykmeldt i 52 uker?',
 };
 
-export const svarMap = {
+export const svarMap: { [key: string]: any } = {
     utdanning: {
         INGEN_UTDANNING: 'Ingen utdanning',
         GRUNNSKOLE: 'Grunnskole',

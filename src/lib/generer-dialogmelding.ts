@@ -1,6 +1,6 @@
 import { ForeslattInnsatsgruppe } from '../contexts/brukerregistrering';
 
-const muligeSvar = {
+const muligeSvar: { [key: string]: string } = {
     STANDARD_INNSATS_STANDARD_INNSATS: 'Jeg ønsker å klare meg selv',
     STANDARD_INNSATS_SITUASJONSBESTEMT_INNSATS: 'Jeg ønsker hjelp fra en veileder',
     SITUASJONSBESTEMT_INNSATS_STANDARD_INNSATS: 'Jeg ønsker ikke hjelp fra en veileder',

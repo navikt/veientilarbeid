@@ -12,7 +12,7 @@ function IkkeArbeidssokerInnhold() {
 
     return (
         <>
-            {arbeidssokerperioder.antallDagerSidenSisteArbeidssokerperiode < 28 && !underOppfolging && (
+            {(arbeidssokerperioder.antallDagerSidenSisteArbeidssokerperiode as number) < 28 && !underOppfolging && (
                 <ReaktiveringWrapper />
             )}
             {underOppfolging ? (

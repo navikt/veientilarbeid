@@ -249,7 +249,7 @@ const DemoDashboard = () => {
 
     const arbeidssokerPerioder = {
         aktiv: 'Aktiv',
-        'nylig-utløpt': 'Nylig utløpt (mindre enn 28 dager)',
+        'nylig-utlopt': 'Nylig utløpt (mindre enn 28 dager)',
         gammel: 'Utløpt (mer enn 28 dager)',
         'aktiv-legacy': 'Aktiv - registrert før høst 2018',
         ingen: 'Ingen',
@@ -347,7 +347,7 @@ const DemoDashboard = () => {
                         >
                             {Object.keys(arbeidssokerPerioder).map((periode: string) => (
                                 <option key={periode} value={periode}>
-                                    {arbeidssokerPerioder[periode]}
+                                    {arbeidssokerPerioder[periode as keyof typeof arbeidssokerPerioder]}
                                 </option>
                             ))}
                         </Select>
@@ -359,8 +359,19 @@ const DemoDashboard = () => {
                                 defaultValue={hentOpprettetDato()}
                             >
                                 {Object.keys(opprettetRegistreringDato).map((key: string) => (
-                                    <option key={key} value={opprettetRegistreringDato[key]}>
-                                        {opprettetRegistreringDatoLabels[key]}
+                                    <option
+                                        key={key}
+                                        value={
+                                            opprettetRegistreringDato[
+                                                key as keyof typeof opprettetRegistreringDatoLabels
+                                            ]
+                                        }
+                                    >
+                                        {
+                                            opprettetRegistreringDatoLabels[
+                                                key as keyof typeof opprettetRegistreringDatoLabels
+                                            ]
+                                        }
                                     </option>
                                 ))}
                             </Select>
@@ -373,7 +384,7 @@ const DemoDashboard = () => {
                         >
                             {Object.keys(dagpengeStatuser).map((gruppe: string) => (
                                 <option key={gruppe} value={gruppe}>
-                                    {dagpengeStatuser[gruppe]}
+                                    {dagpengeStatuser[gruppe as keyof typeof dagpengeStatuser]}
                                 </option>
                             ))}
                         </Select>
@@ -387,7 +398,11 @@ const DemoDashboard = () => {
                                 .sort((a, b) => parseInt(a, 10) - parseInt(b, 10))
                                 .map((dag: string) => (
                                     <option key={dag} value={dag}>
-                                        {antallDagerEtterFastsattMeldedag[dag]}
+                                        {
+                                            antallDagerEtterFastsattMeldedag[
+                                                dag as unknown as keyof typeof antallDagerEtterFastsattMeldedag
+                                            ]
+                                        }
                                     </option>
                                 ))}
                         </Select>
@@ -422,7 +437,7 @@ const DemoDashboard = () => {
                         >
                             {Object.keys(servicegrupper).map((gruppe: string) => (
                                 <option key={gruppe} value={gruppe}>
-                                    {servicegrupper[gruppe]}
+                                    {servicegrupper[gruppe as keyof typeof servicegrupper]}
                                 </option>
                             ))}
                         </Select>
@@ -434,7 +449,7 @@ const DemoDashboard = () => {
                         >
                             {Object.keys(foreslattInnsatsgrupper).map((svar: string) => (
                                 <option key={svar} value={svar}>
-                                    {foreslattInnsatsgrupper[svar]}
+                                    {foreslattInnsatsgrupper[svar as keyof typeof foreslattInnsatsgrupper]}
                                 </option>
                             ))}
                         </Select>
@@ -494,7 +509,7 @@ const DemoDashboard = () => {
                                     >
                                         {Object.keys(rettighetsgrupper).map((gruppe: string) => (
                                             <option key={gruppe} value={gruppe}>
-                                                {rettighetsgrupper[gruppe]}
+                                                {rettighetsgrupper[gruppe as keyof typeof rettighetsgrupper]}
                                             </option>
                                         ))}
                                     </Select>
@@ -506,7 +521,7 @@ const DemoDashboard = () => {
                                     >
                                         {Object.keys(registreringTyper).map((gruppe: string) => (
                                             <option key={gruppe} value={gruppe}>
-                                                {registreringTyper[gruppe]}
+                                                {registreringTyper[gruppe as keyof typeof registreringTyper]}
                                             </option>
                                         ))}
                                     </Select>
@@ -518,7 +533,7 @@ const DemoDashboard = () => {
                                     >
                                         {Object.keys(formidlingsgrupper).map((gruppe: string) => (
                                             <option key={gruppe} value={gruppe}>
-                                                {formidlingsgrupper[gruppe]}
+                                                {formidlingsgrupper[gruppe as keyof typeof formidlingsgrupper]}
                                             </option>
                                         ))}
                                     </Select>
@@ -532,7 +547,7 @@ const DemoDashboard = () => {
                                     >
                                         {Object.keys(FremtidigSituasjonSvar).map((svar: string) => (
                                             <option key={svar} value={svar}>
-                                                {fremtidigeSituasjoner[svar]}
+                                                {fremtidigeSituasjoner[svar as keyof typeof FremtidigSituasjonSvar]}
                                             </option>
                                         ))}
                                     </Select>
@@ -544,7 +559,7 @@ const DemoDashboard = () => {
                                     >
                                         {Object.keys(DinSituasjonSvar).map((svar: string) => (
                                             <option key={svar} value={svar}>
-                                                {dineSituasjoner[svar]}
+                                                {dineSituasjoner[svar as keyof typeof DinSituasjonSvar]}
                                             </option>
                                         ))}
                                     </Select>
@@ -556,7 +571,7 @@ const DemoDashboard = () => {
                                     >
                                         {Object.keys(kvitteringsStatuser).map((gruppe: string) => (
                                             <option key={gruppe} value={gruppe}>
-                                                {kvitteringsStatuser[gruppe]}
+                                                {kvitteringsStatuser[gruppe as keyof typeof kvitteringsStatuser]}
                                             </option>
                                         ))}
                                     </Select>
@@ -567,7 +582,7 @@ const DemoDashboard = () => {
                                     >
                                         {Object.keys(spraakValg).map((sprak) => (
                                             <option key={sprak} value={sprak}>
-                                                {spraakValg[sprak]}
+                                                {spraakValg[sprak as keyof typeof spraakValg]}
                                             </option>
                                         ))}
                                     </Select>

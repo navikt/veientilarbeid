@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, SyntheticEvent } from 'react';
+import { SyntheticEvent, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { BodyShort, Detail, Popover } from '@navikt/ds-react';
 import { nanoid } from 'nanoid';
@@ -10,6 +10,7 @@ import { useProfil } from '../../contexts/profil';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import styles from './feedback.module.css';
+import { ProfilFeedbackKeys } from '../../profil';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -60,10 +61,9 @@ function Feedback({ id, className, sporsmal }: Props) {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     const neiId = nanoid();
-
     useEffect(() => {
-        if (profil && profil[id]) {
-            const { valgt, updated } = profil[id];
+        if (profil && profil[id as ProfilFeedbackKeys]) {
+            const { valgt, updated } = profil[id as ProfilFeedbackKeys];
             setValgt(valgt || '');
             setOppdatert(updated || new Date().toISOString());
         }
