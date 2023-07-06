@@ -14,6 +14,8 @@ import { hentQueryParam, settQueryParam } from '../utils/query-param-utils';
 import tabStyles from './tabs.module.css';
 import styles from '../innhold/innhold.module.css';
 import useHarGyldigBehovsvurdering from '../hooks/use-har-gyldig-behovsvurdering';
+import { DagpengeStatus } from '../lib/beregn-dagpenge-status';
+import { useBeregnDagpengestatus } from '../hooks/use-beregn-dagpengestatus';
 
 const QUERY_PARAM = 'aia.aktivTab';
 
@@ -80,6 +82,11 @@ const VarslingSirkel = (props: HTMLProps<any>) => {
     );
 };
 
+function harIkkeSoktDagpenger(dagpengeStatus: DagpengeStatus) {
+    return !['paabegynt', 'sokt', 'mottar', 'avslag', 'innvilget', 'soktogpaabegynt', 'stanset'].includes(
+        dagpengeStatus
+    );
+}
 const AiaTabs = () => {
     const { amplitudeData } = useAmplitudeData();
 
@@ -89,7 +96,7 @@ const AiaTabs = () => {
 
     const [aktivTab, settAktivTab] = useState<TabValue>(TabValue.MIN_SITUASJON);
     const harGyldigBehovsvurdering = useHarGyldigBehovsvurdering();
-
+    const visPengestotteVarsel = harIkkeSoktDagpenger(useBeregnDagpengestatus());
     const onChangeTab = (tab: string) => {
         settQueryParam(QUERY_PARAM, tab);
         settAktivTab(tab as TabValue);
@@ -129,7 +136,20 @@ const AiaTabs = () => {
                         }
                         className={tabStyles.nowrap}
                     />
-                    <Tabs.Tab value="ytelse" label="Pengestøtte" />
+                    <Tabs.Tab
+                        value="ytelse"
+                        label={
+                            <>
+                                Pengestøtte{' '}
+                                {visPengestotteVarsel && (
+                                    <VarslingSirkel
+                                        title={'Du har ikke sendt inn søknad om dagpenger'}
+                                        aria-label={'Du har ikke sendt inn søknad om dagpenger'}
+                                    />
+                                )}
+                            </>
+                        }
+                    />
                     <Tabs.Tab value="meldekort" label="Meldekort" />
                 </Tabs.List>
                 <MinSituasjonTab />
