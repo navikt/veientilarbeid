@@ -26,7 +26,7 @@ export type ProviderProps = {
     autentisering?: DeepPartial<Autentisering.Data>;
     amplitude?: DeepPartial<AmplitudeData>;
     brukerregistrering?: DeepPartial<Brukerregistrering.Data> | null;
-    featureToggle?: DeepPartial<FeatureToggle.Data>;
+    featureToggle?: DeepPartial<FeatureToggle.FeautreToggleData>;
     oppfolging?: DeepPartial<Oppfolging.Data>;
     ulesteDialoger?: DeepPartial<UlesteDialoger.Data>;
     brukerInfo?: DeepPartial<BrukerInfo.Data>;

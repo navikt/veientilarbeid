@@ -24,7 +24,7 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
     }
 }
 
-export interface Data {
+export interface FeautreToggleData {
     'veientilarbeid.vis-gjelder-fra-dato'?: boolean;
     'aia.bruk-bekreft-reaktivering'?: boolean;
     'aia.bruk-sprakvelger'?: boolean;
@@ -33,7 +33,7 @@ export interface Data {
 }
 
 export interface State extends DataElement {
-    data: Data;
+    data: FeautreToggleData;
 }
 
 export const initialState: State = {

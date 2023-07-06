@@ -20,7 +20,7 @@ export function visBesvarelser({
     brukerInfoData: BrukerInfo.Data;
     oppfolgingData: Oppfolging.Data;
     registreringData: Brukerregistrering.Data | null;
-    featuretoggleData: FeatureToggles.Data;
+    featuretoggleData: FeatureToggles.FeautreToggleData;
     besvarelseData: BesvarelseResponse | null;
     arbeidssokerPeriodeData: BeregnedePerioder;
 }): boolean {

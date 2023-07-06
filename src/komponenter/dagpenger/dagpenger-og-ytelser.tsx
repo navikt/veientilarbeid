@@ -18,12 +18,12 @@ function DagpengerOgYtelser() {
     const valgtVisningFraBrowserStorage = hentFraBrowserStorage(YTELSER_TEMA_VIS_KEY);
 
     const [valgtYtelserVisning, setValgtYtelserVisning] = useState<string>(
-        valgtVisningFraProfil ?? valgtVisningFraBrowserStorage ?? 'dagpenger'
+        (valgtVisningFraProfil ?? valgtVisningFraBrowserStorage ?? 'dagpenger') as string
     );
 
     useEffect(() => {
         if (profil && profil[YTELSER_VISNING_PROFIL_KEY]) {
-            setValgtYtelserVisning(profil[YTELSER_VISNING_PROFIL_KEY]);
+            setValgtYtelserVisning(profil[YTELSER_VISNING_PROFIL_KEY] as string);
         }
     }, [profil, YTELSER_VISNING_PROFIL_KEY]);
 

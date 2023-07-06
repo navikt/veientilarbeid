@@ -21,7 +21,7 @@ const InnholdUnderOppfolgingUtenPeriode = () => {
     const erIkkeVarig = servicegruppe !== Servicegruppe.VARIG;
     const erIkkeArenaArbs = formidlingsgruppe !== Formidlingsgruppe.ARBS;
     const skalViseReaktivering =
-        arbeidssokerperioder.antallDagerSidenSisteArbeidssokerperiode < 28 &&
+        (arbeidssokerperioder.antallDagerSidenSisteArbeidssokerperiode as number) < 28 &&
         erIkkeAAP &&
         erIkkeVarig &&
         erIkkeArenaArbs;

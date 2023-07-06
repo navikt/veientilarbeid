@@ -37,7 +37,7 @@ const Steg1 = (props: Steg1Props) => {
                     if (standardSvarSomSkalFjernes.includes(situasjon as SituasjonSvar)) return null;
                     return (
                         <option key={situasjon} value={situasjon}>
-                            {svarTekster[situasjon]}
+                            {svarTekster[situasjon as PermittertSvar]}
                         </option>
                     );
                 })}

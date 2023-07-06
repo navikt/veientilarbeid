@@ -63,9 +63,15 @@ const SendInnDokumentasjon = (props: { aktuellSituasjon: SituasjonSvar }) => {
         [PermittertSvar.SAGT_OPP]: 'oppsigelsen',
     };
 
+    const aktuellSituasjon = props.aktuellSituasjon as
+        | PermittertSvar.OPPSIGELSE
+        | PermittertSvar.TILBAKE_TIL_JOBB
+        | PermittertSvar.ENDRET_PERMITTERINGSPROSENT
+        | PermittertSvar.SAGT_OPP;
+
     return (
         <div>
-            <BodyShort>Du må dokumentere {dokumentasjonMapping[props.aktuellSituasjon]}.</BodyShort>
+            <BodyShort>Du må dokumentere {dokumentasjonMapping[aktuellSituasjon]}.</BodyShort>
             <br />
             <a className={'navds-button navds-button--primary'} href={dokumentasjon_url}>
                 Gå til opplasting
@@ -140,7 +146,7 @@ function TilleggsData(props: Props) {
         );
     };
 
-    const permitteringsprosentMapping = {
+    const permitteringsprosentMapping: { [key: string]: string } = {
         '100': 'fullt permittert - 100 prosent',
         '75': 'mellom 50 og 100 prosent',
         '50': 'mindre enn 50 prosent',
@@ -177,7 +183,7 @@ function TilleggsData(props: Props) {
         );
     };
 
-    const stillingsprosentMapping = {
+    const stillingsprosentMapping: { [key: string]: string } = {
         '100': 'fulltid - 100 prosent',
         '75': 'deltid - mellom 50 og 100 prosent',
         '50': 'deltid - mindre enn 50 prosent',

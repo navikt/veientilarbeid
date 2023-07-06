@@ -109,8 +109,8 @@ export const hentDagerEtterFastsattMeldedag = (): number => {
 export const settAntallDagerEtterFastsattMeldedag = (dag: string) => settDemoState(DemoData.MELDEKORT, dag);
 
 export const hentFeatureToggles = () => {
-    const presets = {};
-    return Object.values(FeatureToggles).reduce((liste, toggle) => {
+    const presets: any = {};
+    return Object.values(FeatureToggles).reduce((liste: any, toggle) => {
         const presetVerdi = presets[toggle];
         liste[toggle] = !hentDemoState(toggle) && presetVerdi ? presetVerdi : hentDemoState(toggle) === 'true';
         return liste;

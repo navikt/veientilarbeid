@@ -5,7 +5,7 @@ import { useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
 
 import Feedback from '../feedback/feedback';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
-import { BesvarelseResponse, DinSituasjonTilleggsdata } from '../../contexts/besvarelse';
+import { Besvarelse, BesvarelseResponse, DinSituasjonTilleggsdata } from '../../contexts/besvarelse';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import { sporsmalMap, svarMap } from '../../models/sporsmal-og-svar';
 import { dialogLenke } from '../../innhold/lenker';
@@ -95,18 +95,18 @@ interface Svar {
 
 const repackBesvarelser = (besvarelseData: BesvarelseResponse) => {
     const besvarelse = besvarelseData?.besvarelse || {};
-    const besvarelserMedInnhold = Object.keys(besvarelse).map(
-        (key) =>
-            new Object({
-                sporsmal: sporsmalMap[key],
-                svar: besvarelse[key].verdi ? svarMap[key][besvarelse[key].verdi] : null,
-                verdi: besvarelse[key].verdi || null,
-                endretTidspunkt: besvarelse[key].endretTidspunkt || null,
-                endretAv: besvarelse[key].endretAv || null,
-                datapunkt: key,
-                tilleggsData: besvarelse[key].tilleggsData || null,
-            }) as Svar
-    );
+    const besvarelserMedInnhold = Object.keys(besvarelse).map((key) => {
+        const k = key as keyof Besvarelse;
+        return {
+            sporsmal: sporsmalMap[k],
+            svar: besvarelse[k]?.verdi ? svarMap[k][besvarelse[k]!.verdi] : null,
+            verdi: besvarelse[k]?.verdi || null,
+            endretTidspunkt: besvarelse[k]?.endretTidspunkt || null,
+            endretAv: besvarelse[k]?.endretAv || null,
+            datapunkt: key,
+            tilleggsData: (besvarelse[k] as any).tilleggsData || null,
+        } as Svar;
+    });
     const besvarteBesvarelser = besvarelserMedInnhold.filter((item) => item.svar !== null);
     return besvarteBesvarelser;
 };

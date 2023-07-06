@@ -1,4 +1,4 @@
-const fylkesnummer = {
+const fylkesnummer: { [k: string]: string } = {
     '30': 'Viken',
     '03': 'Oslo',
     '34': 'Innlandet',

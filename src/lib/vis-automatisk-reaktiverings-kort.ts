@@ -1,4 +1,4 @@
-import { Data as FeatureToggleData, FeatureToggles } from '../contexts/feature-toggles';
+import { FeautreToggleData as FeatureToggleData, FeatureToggles } from '../contexts/feature-toggles';
 import { Reaktivering } from '../contexts/reaktivering';
 
 export type ReaktiveringEllerNull = Reaktivering | null;

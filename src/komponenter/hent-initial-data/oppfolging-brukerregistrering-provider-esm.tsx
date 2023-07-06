@@ -38,7 +38,7 @@ const OppfolgingBrukerregistreringProvider = ({ children }: OppfolgingProviderPr
             setMeldekortstatusState,
             MELDEKORTSTATUS_URL
         );
-        fetchData<FeatureToggle.State, FeatureToggle.Data>(
+        fetchData<FeatureToggle.State, FeatureToggle.FeautreToggleData>(
             featureToggleState,
             setFeatureToggleState,
             featureTogglesUrl

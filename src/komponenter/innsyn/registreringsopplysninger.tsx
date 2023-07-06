@@ -83,7 +83,7 @@ const repackBesvarelser = (besvarelse: Besvarelse, teksterForBesvarelse: Array<S
     if (tekster.length > 0) {
         tekster.unshift(fiksSisteStilling(sisteStillingInnhold, dinSituasjonInnhold, sisteStilling));
     }
-    const besvarelserMedInnhold = Object.keys(besvarelse).filter((item) => besvarelse[item]);
+    const besvarelserMedInnhold = Object.keys(besvarelse).filter((item) => besvarelse[item as keyof Besvarelse]);
     const alleSvar = besvarelserMedInnhold.map((item) => tekster.find((svar) => svar.sporsmalId === item));
     const svarMedInnhold = alleSvar.filter((svar) => svar !== undefined);
     return svarMedInnhold;

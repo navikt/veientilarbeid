@@ -93,7 +93,7 @@ const AiaTabs = () => {
     const onChangeTab = (tab: string) => {
         settQueryParam(QUERY_PARAM, tab);
         settAktivTab(tab as TabValue);
-        loggTabSkifte(tabValueMap[tab]);
+        loggTabSkifte(tabValueMap[tab as TabValue]);
     };
 
     useEffect(() => {
