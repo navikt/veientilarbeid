@@ -16,6 +16,14 @@ import styles from '../innhold/innhold.module.css';
 import useHarGyldigBehovsvurdering from '../hooks/use-har-gyldig-behovsvurdering';
 import { DagpengeStatus } from '../lib/beregn-dagpenge-status';
 import { useBeregnDagpengestatus } from '../hooks/use-beregn-dagpengestatus';
+import { Data, useMeldekortData } from '../hooks/use-meldekortdata';
+import { datoUtenTid } from '../utils/date-utils';
+import { hentIDag } from '../utils/chrono';
+import {
+    beregnDagerEtterFastsattMeldedag,
+    beregnDagerTilInaktivering,
+    hentMeldekortForLevering,
+} from '../utils/meldekort-utils';
 import { Profil } from '../profil';
 import { useProfil } from '../contexts/profil';
 
@@ -91,6 +99,19 @@ function harIkkeSoktDagpenger(dagpengeStatus: DagpengeStatus, profil: Profil | n
         !['paabegynt', 'sokt', 'mottar', 'avslag', 'innvilget', 'soktogpaabegynt', 'stanset'].includes(dagpengeStatus)
     );
 }
+
+function skalViseMeldekortVarsel(meldekortData?: Data) {
+    if (!meldekortData) {
+        return false;
+    }
+
+    const dato = datoUtenTid(hentIDag().toISOString());
+    const meldekortForLevering = hentMeldekortForLevering(dato, meldekortData);
+    const erInnenforTidsfrist =
+        beregnDagerTilInaktivering(beregnDagerEtterFastsattMeldedag(dato, meldekortData) ?? 0) >= 0;
+
+    return meldekortForLevering.length === 1 && erInnenforTidsfrist;
+}
 const AiaTabs = () => {
     const { amplitudeData } = useAmplitudeData();
 
@@ -101,6 +122,8 @@ const AiaTabs = () => {
     const [aktivTab, settAktivTab] = useState<TabValue>(TabValue.MIN_SITUASJON);
     const harGyldigBehovsvurdering = useHarGyldigBehovsvurdering();
     const visPengestotteVarsel = harIkkeSoktDagpenger(useBeregnDagpengestatus(), useProfil().profil);
+    const visMeldekortVarsel = skalViseMeldekortVarsel(useMeldekortData().meldekortData);
+
     const onChangeTab = (tab: string) => {
         settQueryParam(QUERY_PARAM, tab);
         settAktivTab(tab as TabValue);
@@ -154,7 +177,20 @@ const AiaTabs = () => {
                             </>
                         }
                     />
-                    <Tabs.Tab value="meldekort" label="Meldekort" />
+                    <Tabs.Tab
+                        value="meldekort"
+                        label={
+                            <>
+                                Meldekort{' '}
+                                {visMeldekortVarsel && (
+                                    <VarslingSirkel
+                                        title={'Du kan sende inn meldekort'}
+                                        aria-label={'Du kan sende inn meldekort'}
+                                    />
+                                )}
+                            </>
+                        }
+                    />
                 </Tabs.List>
                 <MinSituasjonTab />
                 <HjelpOgStotteTab />
