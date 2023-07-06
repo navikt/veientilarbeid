@@ -16,6 +16,8 @@ import styles from '../innhold/innhold.module.css';
 import useHarGyldigBehovsvurdering from '../hooks/use-har-gyldig-behovsvurdering';
 import { DagpengeStatus } from '../lib/beregn-dagpenge-status';
 import { useBeregnDagpengestatus } from '../hooks/use-beregn-dagpengestatus';
+import { Profil } from '../profil';
+import { useProfil } from '../contexts/profil';
 
 const QUERY_PARAM = 'aia.aktivTab';
 
@@ -81,10 +83,12 @@ const VarslingSirkel = (props: HTMLProps<any>) => {
         ></span>
     );
 };
+function harIkkeSoktDagpenger(dagpengeStatus: DagpengeStatus, profil: Profil | null) {
+    const valgtVisning = profil?.aiaValgtPengestotteVisning;
 
-function harIkkeSoktDagpenger(dagpengeStatus: DagpengeStatus) {
-    return !['paabegynt', 'sokt', 'mottar', 'avslag', 'innvilget', 'soktogpaabegynt', 'stanset'].includes(
-        dagpengeStatus
+    return (
+        valgtVisning === 'dagpenger' &&
+        !['paabegynt', 'sokt', 'mottar', 'avslag', 'innvilget', 'soktogpaabegynt', 'stanset'].includes(dagpengeStatus)
     );
 }
 const AiaTabs = () => {
@@ -96,7 +100,7 @@ const AiaTabs = () => {
 
     const [aktivTab, settAktivTab] = useState<TabValue>(TabValue.MIN_SITUASJON);
     const harGyldigBehovsvurdering = useHarGyldigBehovsvurdering();
-    const visPengestotteVarsel = harIkkeSoktDagpenger(useBeregnDagpengestatus());
+    const visPengestotteVarsel = harIkkeSoktDagpenger(useBeregnDagpengestatus(), useProfil().profil);
     const onChangeTab = (tab: string) => {
         settQueryParam(QUERY_PARAM, tab);
         settAktivTab(tab as TabValue);
