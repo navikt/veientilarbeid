@@ -104,7 +104,7 @@ const repackBesvarelser = (besvarelseData: BesvarelseResponse) => {
             endretTidspunkt: besvarelse[k]?.endretTidspunkt || null,
             endretAv: besvarelse[k]?.endretAv || null,
             datapunkt: key,
-            tilleggsData: (besvarelse[k] as any).tilleggsData || null,
+            tilleggsData: (besvarelse[k] as any)?.tilleggsData || null,
         } as Svar;
     });
     const besvarteBesvarelser = besvarelserMedInnhold.filter((item) => item.svar !== null);
