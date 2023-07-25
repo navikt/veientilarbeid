@@ -1,4 +1,6 @@
 import React from 'react';
+import { initializeFaro } from '@grafana/faro-web-sdk';
+import naisTelemetry from './utils/nais';
 
 import Innholdslaster from './komponenter/innholdslaster/innholdslaster';
 import * as Autentisering from './contexts/autentisering';
@@ -28,13 +30,19 @@ const Mikrofrontend = () => {
         fetchData<Arbeidssoker.State, Arbeidssoker.Data>(
             arbeidssokerState,
             setArbeidssokerState,
-            ARBEIDSSOKER_NIVA3_URL
+            ARBEIDSSOKER_NIVA3_URL,
         );
         fetchData<FeatureToggle.State, FeatureToggle.FeautreToggleData>(
             featureToggleState,
             setFeatureToggleState,
-            featureTogglesUrl
+            featureTogglesUrl,
         );
+
+        initializeFaro({
+            url: naisTelemetry.telemetryCollectorURL,
+            app: naisTelemetry.app,
+        });
+
         setValgtSprak(SprakValg.hentSprakValgFraUrl());
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

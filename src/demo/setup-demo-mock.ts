@@ -46,6 +46,8 @@ import {
     DemoData,
 } from './demo-state';
 
+import { telemetryUrl } from '../innhold/lenker';
+
 import { hentBrukerRegistrering } from './demo-state-brukerregistrering';
 import msw_get from '../mocks/msw-utils';
 import meldekortstatusResponse from '../mocks/meldekortstatus-mock';
@@ -141,9 +143,9 @@ export const demo_handlers = [
             ctx.json(
                 arbeidssokerNiva3Response(
                     underOppfolging,
-                    searchParams.get('arbeidssokerPeriode') as ArbeidssokerPeriode
-                )
-            )
+                    searchParams.get('arbeidssokerPeriode') as ArbeidssokerPeriode,
+                ),
+            ),
         );
     }),
 
@@ -174,6 +176,10 @@ export const demo_handlers = [
     rest.post(REAKTIVERING_URL, reaktiveringPostResolver),
 
     rest.post('https://amplitude.nav.no/collect', (req, res, ctx) => {
+        return res(ctx.status(200));
+    }),
+
+    rest.post(telemetryUrl, (req, res, ctx) => {
         return res(ctx.status(200));
     }),
 ];
