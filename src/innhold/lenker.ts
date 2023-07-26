@@ -48,6 +48,12 @@ const OM_MELDEKORT_URL = {
     production: 'https://www.nav.no/meldekort/om-meldekort',
 };
 
+const TELEMETRY_URL = {
+    local: 'http://localhost:12347/collect',
+    development: 'https://telemetry.ekstern.dev.nav.no/collect',
+    production: 'https://telemetry.nav.no/collect',
+};
+
 export const aktivitetsplanLenke = AKTIVITETSPLAN_URL[getEnvironment()];
 export const dialogLenke = DIALOG_URL[getEnvironment()];
 export const stillingLenke = `${ARBEIDSPLASSEN_URL[getEnvironment()]}/stillinger`;
@@ -67,3 +73,4 @@ export const omMeldekortLenke = OM_MELDEKORT_URL[getEnvironment()];
 export const aapSoknadLenke = 'https://www.nav.no/soknader/nb/person/arbeid/arbeidsavklaringspenger';
 export const difiLenke = 'https://brukerprofil.difi.no/minprofil/';
 export const saksbehandlingstiderDagpengerUrl = 'https://www.nav.no/saksbehandlingstider#dagpenger';
+export const telemetryUrl = TELEMETRY_URL[getEnvironment()];
