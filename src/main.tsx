@@ -39,6 +39,7 @@ const Mikrofrontend = () => {
         );
 
         initializeFaro({
+            isolate: true,
             url: naisTelemetry.telemetryCollectorURL,
             app: naisTelemetry.app,
         });
