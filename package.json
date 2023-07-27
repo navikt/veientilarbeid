@@ -16,7 +16,7 @@
         "deploy": "npm run build && gh-pages -d build",
         "prettier": "prettier --write 'src/**/*.ts' 'src/**/*.tsx' 'src/**/*.css'",
         "refresh": "rm -rf node_modules && rm package-lock.json && npm i",
-        "postinstall": "husky install"
+        "prepare": "husky install"
     },
     "dependencies": {
         "@alheimsins/uker-fra-dato": "1.0.4",
