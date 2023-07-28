@@ -1,0 +1,83 @@
+kind: Application
+apiVersion: nais.io/v1alpha1
+metadata:
+  name: veientilarbeid
+  namespace: paw
+  labels:
+    team: paw
+spec:
+  env:
+  - name: APPRES_CMS_URL
+    value: https://dekoratoren.dev.nav.no/
+  - name: LOGINSERVICE_URL
+    value: https://loginservice-q.nav.no/login
+  - name: VEIENTILARBEID_URL
+    value: https://veientilarbeid.intern.dev.nav.no
+  - name: AKTIVITETSPLAN_URL
+    value: https://aktivitetsplan.ekstern.dev.nav.no
+  - name: DIALOG_URL
+    value: https://pto.ekstern.dev.nav.no/arbeid/dialog
+  - name: DITTNAV_LINK_URL
+    value: https://www.intern.dev.nav.no/person/dittnav
+  - name: SYFOFRONT_URL
+    value: https://tjenester-q1.nav.no/sykefravaer
+  - name: VEIVISERSOSIALHJELP_URL
+    value: https://tjenester-q1.nav.no/veivisersosialhjelp
+  - name: ARBEIDSPLASSEN_URL
+    value: https://arbeidsplassen-t.nav.no
+  - name: BEHOVSVURDERING_URL
+    value: https://behovsvurdering-q1.dev-sbs.nais.io
+  - name: START_SAMTALE_URL
+    value: https://pto.dev.nav.no/arbeid/start-samtale
+  - name: ARBEIDSSOKERREGISTRERING_URL
+    value: https://arbeid.intern.dev.nav.no/arbeid/registrering
+  - name: VEILARBPROXY_URL
+    value: http://pto-proxy.pto.svc.cluster.local/proxy
+  - name: FASIT_ENVIRONMENT_NAME
+    value: paw
+  - name: DISABLE_FRONTEND_LOGGER
+    value: 'true'
+  - name: DISABLE_SENSU_METRICS
+    value: 'true'
+  - name: FORTSETT_DP_SOKNAD_URL
+    value: https://arbeid.dev.nav.no/arbeid/dagpenger/soknad-innsending/soknad
+  - name: FORTSETT_NY_DP_SOKNAD_URL
+    value: https://arbeid.dev.nav.no/dagpenger/soknad
+  envFrom:
+    - configmap: loginservice-idporten
+  image: {{image}}
+  ingresses:
+    - https://veientilarbeid.intern.dev.nav.no
+  liveness:
+    path: /isAlive
+    port: 8080
+    initialDelay: 60
+  port: 8080
+  prometheus:
+    enabled: false
+    path: /internal/metrics
+  readiness:
+    path: /isReady
+    port: 8080
+    initialDelay: 60
+  replicas:
+    min: 1
+    max: 2
+    cpuThresholdPercentage: 50
+  resources:
+    limits:
+      cpu: "1"
+      memory: 2048Mi
+    requests:
+      memory: 1024Mi
+      cpu: "1"
+  webproxy: true
+  accessPolicy:
+    outbound:
+      rules:
+        - application: pto-proxy
+          namespace: pto
+      external:
+        - host: navtestb2c.b2clogin.com
+        - host: dekoratoren.ekstern.dev.nav.no
+        - host: unleash.nais.io
