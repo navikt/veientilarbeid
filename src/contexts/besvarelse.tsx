@@ -182,7 +182,6 @@ function BesvarelseProvider(props: { children: ReactNode }) {
         try {
             const oppdatertBesvarelse = await fetchToJson(BESVARELSE_URL, requestConfig());
             if (oppdatertBesvarelse) {
-                console.log('har hentet besvarelse');
                 settBesvarelse(oppdatertBesvarelse as BesvarelseResponse);
             }
         } catch (error) {
@@ -213,8 +212,6 @@ function BesvarelseProvider(props: { children: ReactNode }) {
 
     useEffect(() => {
         if (besvarelse?.erBesvarelsenEndret === true) {
-            console.log('besvarelsen er endret');
-            console.log(besvarelse.besvarelse?.dinSituasjon?.verdi || 'N/A');
             oppdaterAmplitudeData({
                 endretSituasjon: besvarelse.besvarelse?.dinSituasjon?.verdi || 'N/A',
             });
