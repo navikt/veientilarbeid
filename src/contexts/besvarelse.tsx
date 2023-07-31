@@ -214,6 +214,7 @@ function BesvarelseProvider(props: { children: ReactNode }) {
     useEffect(() => {
         if (besvarelse?.erBesvarelsenEndret === true) {
             console.log('besvarelsen er endret');
+            console.log(besvarelse.besvarelse?.dinSituasjon?.verdi || 'N/A');
             oppdaterAmplitudeData({
                 endretSituasjon: besvarelse.besvarelse?.dinSituasjon?.verdi || 'N/A',
             });
