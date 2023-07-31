@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
 import { useFeatureToggleData, FeatureToggles } from './feature-toggles';
+import { useAmplitudeData } from '../komponenter/hent-initial-data/amplitude-provider';
 
 import { fetchToJson } from '../ducks/api-utils';
 import { BESVARELSE_URL, OPPRETT_DIALOG_URL, requestConfig } from '../ducks/api';
@@ -172,6 +173,7 @@ async function opprettDialog(data: {
 
 function BesvarelseProvider(props: { children: ReactNode }) {
     const featureToggles = useFeatureToggleData();
+    const { oppdaterAmplitudeData } = useAmplitudeData();
     const [besvarelse, settBesvarelse] = useState<BesvarelseResponse>(null);
 
     const erToggletPa = featureToggles[FeatureToggles.BRUK_ENDRING_AV_SITUASJON];
@@ -207,6 +209,14 @@ function BesvarelseProvider(props: { children: ReactNode }) {
             hentBesvarelse();
         }
     }, [erToggletPa]);
+
+    useEffect(() => {
+        if (besvarelse?.erBesvarelsenEndret === true) {
+            oppdaterAmplitudeData({
+                endretSituasjon: besvarelse.besvarelse?.dinSituasjon?.verdi || 'N/A',
+            });
+        }
+    }, [besvarelse]);
 
     const contextValue = {
         besvarelse,

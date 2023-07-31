@@ -1,16 +1,18 @@
 import * as React from 'react';
 import { createContext, useContext } from 'react';
 import ukerFraDato from '@alheimsins/uker-fra-dato';
+
 import { InnloggingsNiva, useAutentiseringData } from '../../contexts/autentisering';
 import { DinSituasjonSvar, useBrukerregistreringData } from '../../contexts/brukerregistrering';
-import { OppfolgingContext } from '../../contexts/oppfolging';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { FeautreToggleData, useFeatureToggleData } from '../../contexts/feature-toggles';
+import { useArbeidssokerPerioder, useUnderOppfolging } from '../../contexts/arbeidssoker';
+
+import { OppfolgingContext } from '../../contexts/oppfolging';
 import grupperGeografiskTilknytning from '../../utils/grupper-geografisk-tilknytning';
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 import dagerFraDato from '../../utils/dager-fra-dato';
 import { AmplitudeData } from '../../metrics/amplitude-utils';
-import { useArbeidssokerPerioder, useUnderOppfolging } from '../../contexts/arbeidssoker';
 import * as SprakValg from '../../contexts/sprak';
 import beregnBrukergruppe from '../../lib/beregn-brukergruppe';
 
@@ -36,6 +38,7 @@ export const initialAmplitudeData: AmplitudeData = {
     buildTimestamp: new Date().toISOString(),
     erSykmeldtMedArbeidsgiver: 'ukjent',
     dinSituasjon: DinSituasjonSvar.INGEN_VERDI,
+    endretSituasjon: 'INGEN_DATA',
     reservasjonKRR: 'ukjent',
     aktiveFeatureToggles: [],
     sprakValgFraCookie: 'IKKE_VALGT',
@@ -155,7 +158,7 @@ const AmplitudeProvider = (props: { children: React.ReactNode }) => {
                 ...data,
             });
         },
-        [amplitudeData]
+        [amplitudeData],
     );
 
     return (
