@@ -91,11 +91,12 @@ const VarslingSirkel = (props: HTMLProps<any>) => {
         ></span>
     );
 };
+
 function harIkkeSoktDagpenger(dagpengeStatus: DagpengeStatus, profil: Profil | null) {
     const valgtVisning = profil?.aiaValgtPengestotteVisning;
 
     return (
-        valgtVisning === 'dagpenger' &&
+        valgtVisning !== 'ytelser' &&
         !['paabegynt', 'sokt', 'mottar', 'avslag', 'innvilget', 'soktogpaabegynt', 'stanset'].includes(dagpengeStatus)
     );
 }
@@ -135,7 +136,7 @@ const AiaTabs = () => {
 
         if (
             [TabValue.HJELP_OG_STOTTE, TabValue.MIN_SITUASJON, TabValue.MELDEKORT, TabValue.PENGESTOTTE].includes(
-                tabFraQuery as any
+                tabFraQuery as any,
             )
         ) {
             settAktivTab(tabFraQuery as TabValue);
