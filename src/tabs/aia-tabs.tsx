@@ -2,6 +2,10 @@ import { Tabs } from '@navikt/ds-react';
 import { HTMLProps, useEffect, useState } from 'react';
 
 import { useAmplitudeData } from '../komponenter/hent-initial-data/amplitude-provider';
+import useHarGyldigBehovsvurdering from '../hooks/use-har-gyldig-behovsvurdering';
+import { useBeregnDagpengestatus } from '../hooks/use-beregn-dagpengestatus';
+import { Data, useMeldekortData } from '../hooks/use-meldekortdata';
+import { useProfil } from '../contexts/profil';
 
 import RegistrertTittel from '../komponenter/registrert-tittel/registrert-tittel';
 import MinSituasjon from '../komponenter/min-situasjon/min-situasjon';
@@ -10,22 +14,18 @@ import DagpengerOgYtelser from '../komponenter/dagpenger/dagpenger-og-ytelser';
 import Meldekort from '../komponenter/meldekort/meldekort';
 import { loggAktivitet } from '../metrics/metrics';
 import { hentQueryParam, settQueryParam } from '../utils/query-param-utils';
-
-import tabStyles from './tabs.module.css';
-import styles from '../innhold/innhold.module.css';
-import useHarGyldigBehovsvurdering from '../hooks/use-har-gyldig-behovsvurdering';
 import { DagpengeStatus } from '../lib/beregn-dagpenge-status';
-import { useBeregnDagpengestatus } from '../hooks/use-beregn-dagpengestatus';
-import { Data, useMeldekortData } from '../hooks/use-meldekortdata';
 import { datoUtenTid } from '../utils/date-utils';
 import { hentIDag } from '../utils/chrono';
+import { Profil } from '../profil';
 import {
     beregnDagerEtterFastsattMeldedag,
     beregnDagerTilInaktivering,
     hentMeldekortForLevering,
 } from '../utils/meldekort-utils';
-import { Profil } from '../profil';
-import { useProfil } from '../contexts/profil';
+
+import tabStyles from './tabs.module.css';
+import styles from '../innhold/innhold.module.css';
 
 const QUERY_PARAM = 'aia.aktivTab';
 
@@ -114,16 +114,15 @@ function skalViseMeldekortVarsel(meldekortData?: Data) {
     return meldekortForLevering.length === 1 && erInnenforTidsfrist;
 }
 const AiaTabs = () => {
+    const [aktivTab, settAktivTab] = useState<TabValue>(TabValue.MIN_SITUASJON);
+    const harGyldigBehovsvurdering = useHarGyldigBehovsvurdering();
+    const visPengestotteVarsel = harIkkeSoktDagpenger(useBeregnDagpengestatus(), useProfil().profil);
+    const visMeldekortVarsel = skalViseMeldekortVarsel(useMeldekortData().meldekortData);
     const { amplitudeData } = useAmplitudeData();
 
     const loggTabSkifte = (tab: string) => {
         loggAktivitet({ aktivitet: `Bytter til ${tab}`, komponent: 'tabs', ...amplitudeData });
     };
-
-    const [aktivTab, settAktivTab] = useState<TabValue>(TabValue.MIN_SITUASJON);
-    const harGyldigBehovsvurdering = useHarGyldigBehovsvurdering();
-    const visPengestotteVarsel = harIkkeSoktDagpenger(useBeregnDagpengestatus(), useProfil().profil);
-    const visMeldekortVarsel = skalViseMeldekortVarsel(useMeldekortData().meldekortData);
 
     const onChangeTab = (tab: string) => {
         settQueryParam(QUERY_PARAM, tab);

@@ -26,6 +26,7 @@ function MinSituasjon(props: any) {
     const kanViseKomponent = autentiseringData.securityLevel === InnloggingsNiva.LEVEL_4;
 
     const endretStyle = erBesvarelsenEndret ? { background: 'var(--a-blue-50)' } : {};
+
     if (!kanViseKomponent) return null;
 
     return (

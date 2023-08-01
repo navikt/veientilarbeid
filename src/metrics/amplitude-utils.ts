@@ -1,9 +1,11 @@
 // tslint:disable align no-any
 import amplitude from 'amplitude-js';
+
 import { AMPLITUDE_API_KEY_PROD, AMPLITUDE_API_KEY_TEST, AMPLITUDE_ENDPOINT } from '../utils/konstanter';
 import { InnloggingsNiva } from '../contexts/autentisering';
 import { erProduksjon } from '../utils/app-state-utils';
 import { DinSituasjonSvar, ForeslattInnsatsgruppe } from '../contexts/brukerregistrering';
+import { PermittertSvar } from '../models/endring-av-situasjon';
 import * as SprakValg from '../contexts/sprak';
 import { DagpengeStatus } from '../lib/beregn-dagpenge-status';
 import { AntattInaktiveringsgrunn } from '../contexts/antatt-inaktiveringsgrunn';
@@ -52,6 +54,7 @@ export type AmplitudeData = {
     buildTimestamp: string;
     erSykmeldtMedArbeidsgiver: string;
     dinSituasjon: DinSituasjonSvar;
+    endretSituasjon: 'INGEN_DATA' | 'N/A' | DinSituasjonSvar | PermittertSvar;
     reservasjonKRR: string;
     aktiveFeatureToggles: string[];
     sprakValgFraCookie?: SprakValg.Sprak | 'IKKE_VALGT';
