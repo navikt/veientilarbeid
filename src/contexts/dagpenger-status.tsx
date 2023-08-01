@@ -32,6 +32,7 @@ function DagpengerStatusProvider(props: { children: ReactNode }) {
             try {
                 const response: DagpengerStatusResponse = await fetchToJson(DAGPENGER_STATUS, requestConfig());
                 settDagpengerStatus(response.dagpengerStatus);
+                console.log('oppdaterer amplitude for dagpengestatus');
                 oppdaterAmplitudeData({
                     dagpengerStatus: response.dagpengerStatus,
                     antallDagerSidenDagpengerStanset: response.antallDagerSidenDagpengerStanset,
