@@ -23,26 +23,33 @@ export const DagpengerStatusContext = createContext<DagpengerStatusProviderType>
 
 function DagpengerStatusProvider(props: { children: ReactNode }) {
     const { securityLevel } = useAutentiseringData();
-    const { oppdaterAmplitudeData } = useAmplitudeData();
+    const { amplitudeData, oppdaterAmplitudeData } = useAmplitudeData();
 
     const [dagpengerStatus, settDagpengerStatus] = useState<DagpengerStatus | null>(null);
+    const [erOppdatert, setErOppdatert] = useState(false);
 
     useEffect(() => {
         const hentDagpengerStatus = async () => {
             try {
-                const response: DagpengerStatusResponse = await fetchToJson(DAGPENGER_STATUS, requestConfig());
-                settDagpengerStatus(response.dagpengerStatus);
-                console.log('oppdaterer amplitude for dagpengestatus');
-                oppdaterAmplitudeData({
-                    dagpengerStatus: response.dagpengerStatus,
-                    antallDagerSidenDagpengerStanset: response.antallDagerSidenDagpengerStanset,
-                });
+                if (!erOppdatert) {
+                    const response: DagpengerStatusResponse = await fetchToJson(DAGPENGER_STATUS, requestConfig());
+                    settDagpengerStatus(response.dagpengerStatus);
+                    setErOppdatert(true);
+                    console.log('oppdaterer amplitude for dagpengestatus');
+                    oppdaterAmplitudeData({
+                        ...amplitudeData,
+                        ...{
+                            dagpengerStatus: response.dagpengerStatus,
+                            antallDagerSidenDagpengerStanset: response.antallDagerSidenDagpengerStanset,
+                        },
+                    });
+                }
             } catch (err) {}
         };
-        if (securityLevel === InnloggingsNiva.LEVEL_4) {
+        if (securityLevel === InnloggingsNiva.LEVEL_4 && !erOppdatert) {
             hentDagpengerStatus();
         }
-    }, [securityLevel]);
+    }, [securityLevel, amplitudeData, erOppdatert]);
 
     const contextValue = {
         dagpengerStatus,
