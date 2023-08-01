@@ -164,10 +164,10 @@ const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     */
 
     const oppdaterAmplitudeData = (data: Partial<AmplitudeData>) => {
-        setAmplitudeData({
+        setAmplitudeData((amplitudeData) => ({
             ...amplitudeData,
             ...data,
-        });
+        }));
     };
 
     return (
