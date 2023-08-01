@@ -23,7 +23,7 @@ export const DagpengerStatusContext = createContext<DagpengerStatusProviderType>
 
 function DagpengerStatusProvider(props: { children: ReactNode }) {
     const { securityLevel } = useAutentiseringData();
-    const { amplitudeData, oppdaterAmplitudeData } = useAmplitudeData();
+    const { oppdaterAmplitudeData } = useAmplitudeData();
 
     const [dagpengerStatus, settDagpengerStatus] = useState<DagpengerStatus | null>(null);
 
@@ -33,17 +33,16 @@ function DagpengerStatusProvider(props: { children: ReactNode }) {
                 const response: DagpengerStatusResponse = await fetchToJson(DAGPENGER_STATUS, requestConfig());
                 settDagpengerStatus(response.dagpengerStatus);
                 console.log('oppdaterer amplitude for dagpengestatus');
-                const oppdaterteAmplitudeData = {
+                oppdaterAmplitudeData({
                     dagpengerStatus: response.dagpengerStatus,
                     antallDagerSidenDagpengerStanset: response.antallDagerSidenDagpengerStanset,
-                };
-                oppdaterAmplitudeData({ ...amplitudeData, ...oppdaterteAmplitudeData });
+                });
             } catch (err) {}
         };
         if (securityLevel === InnloggingsNiva.LEVEL_4) {
             hentDagpengerStatus();
         }
-    }, [securityLevel, amplitudeData]);
+    }, [securityLevel]);
 
     const contextValue = {
         dagpengerStatus,
