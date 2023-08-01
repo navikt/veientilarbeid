@@ -6,6 +6,7 @@ import { loggAktivitet } from '../../metrics/metrics';
 
 import spacing from '../../spacing.module.css';
 import flex from '../../flex.module.css';
+import styles from './modal.module.css';
 
 interface LesIgjenModalProps {
     openModal: boolean;
@@ -73,7 +74,7 @@ const LesIgjenModal = (props: LesIgjenModalProps) => {
             // shouldCloseOnEsc={!datepickerProps.open}
             aria-labelledby="modal-heading"
         >
-            <Modal.Content>
+            <Modal.Content className={styles.maxWidth}>
                 <Heading spacing level="1" size="large" id="modal-heading" className={spacing.mr2}>
                     Jobbsituasjonen min har endret seg
                 </Heading>

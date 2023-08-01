@@ -8,6 +8,7 @@ import Steg3 from './steg3';
 import Steg1 from './steg1';
 
 import spacing from '../../spacing.module.css';
+import styles from './modal.module.css';
 
 interface PermittertModalProps {
     openModal: boolean;
@@ -90,7 +91,7 @@ const PermittertModal = (props: PermittertModalProps) => {
             // shouldCloseOnEsc={!datepickerProps.open}
             aria-labelledby="modal-heading"
         >
-            <Modal.Content style={{ maxWidth: '1000px', width: '85vw' }}>
+            <Modal.Content className={styles.maxWidth}>
                 <Tilbake />
                 <Heading spacing level="1" size="large" id="modal-heading" className={spacing.mr2}>
                     Jobbsituasjonen min har endret seg
