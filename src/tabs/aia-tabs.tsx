@@ -114,9 +114,8 @@ function skalViseMeldekortVarsel(meldekortData?: Data) {
     return meldekortForLevering.length === 1 && erInnenforTidsfrist;
 }
 const AiaTabs = () => {
-    const { amplitudeData } = useAmplitudeData();
-
     const loggTabSkifte = (tab: string) => {
+        const { amplitudeData } = useAmplitudeData();
         loggAktivitet({ aktivitet: `Bytter til ${tab}`, komponent: 'tabs', ...amplitudeData });
     };
 
