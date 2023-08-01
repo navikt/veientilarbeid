@@ -151,6 +151,7 @@ const AmplitudeProvider = (props: { children: React.ReactNode }) => {
 
     const [amplitudeData, setAmplitudeData] = React.useState(data);
 
+    /*
     const oppdaterAmplitudeData = React.useCallback(
         (data: Partial<AmplitudeData>) => {
             setAmplitudeData({
@@ -160,6 +161,14 @@ const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         },
         [amplitudeData],
     );
+    */
+
+    const oppdaterAmplitudeData = (data: Partial<AmplitudeData>) => {
+        setAmplitudeData({
+            ...amplitudeData,
+            ...data,
+        });
+    };
 
     return (
         <AmplitudeContext.Provider value={{ amplitudeData, oppdaterAmplitudeData }}>
