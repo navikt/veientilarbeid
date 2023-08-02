@@ -8,6 +8,8 @@ import { Profil } from '../../profil';
 import { PermittertSvar } from '../../models/endring-av-situasjon';
 import { dokumentasjon_url } from '../../ducks/urls';
 import { SituasjonSvar } from '../endre-situasjon/veiledning';
+import { loggAktivitet } from '../../metrics/metrics';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 
 interface Props {
     verdi: string | null;
@@ -37,6 +39,7 @@ const harSendtInnNyDokumentasjon = (profil: Profil | null, besvarelse: Besvarels
 const SendInnDokumentasjon = (props: { aktuellSituasjon: SituasjonSvar }) => {
     const { lagreProfil, profil } = useProfil();
     const { besvarelse } = useBesvarelse();
+    const { amplitudeData } = useAmplitudeData();
 
     const [visSpinner, settVisSpinner] = useState<boolean>(false);
     const harSendtInnDokumentasjon = harSendtInnNyDokumentasjon(profil, besvarelse);
@@ -46,6 +49,7 @@ const SendInnDokumentasjon = (props: { aktuellSituasjon: SituasjonSvar }) => {
             try {
                 settVisSpinner(true);
                 await lagreProfil({ aiaHarSendtInnDokumentasjonForEndring: new Date().toISOString() });
+                loggAktivitet({ aktivitet: 'Har sendt inn dokumentasjon', ...amplitudeData });
             } finally {
                 settVisSpinner(false);
             }
