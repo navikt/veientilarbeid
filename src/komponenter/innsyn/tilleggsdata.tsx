@@ -109,6 +109,11 @@ function TilleggsData(props: Props) {
         '50': 'deltid - mindre enn 50 prosent',
     };
 
+    const harNyJobbMapping: { [key: string]: string } = {
+        ja: 'Jeg har ny jobb å gå til',
+        nei: 'Jeg har ikke ny jobb å gå til',
+    };
+
     const TILBAKE_TIL_JOBB = (props: TilleggsDataProps) => {
         const { tilleggsData } = props;
 
@@ -149,7 +154,7 @@ function TilleggsData(props: Props) {
 
         if (!tilleggsData) return null;
 
-        const { oppsigelseDato, sisteArbeidsdagDato } = tilleggsData;
+        const { oppsigelseDato, sisteArbeidsdagDato, harNyJobb } = tilleggsData;
         const harSendtInnDokumentasjon = harSendtInnNyDokumentasjon(profil, besvarelse);
 
         return (
@@ -161,6 +166,7 @@ function TilleggsData(props: Props) {
                     Siste dag med lønn fra arbeidsgiver er{' '}
                     {sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'ukjent'}
                 </BodyShort>
+                {harNyJobb && <BodyShort>{harNyJobbMapping[harNyJobb]}</BodyShort>}
                 {harSendtInnDokumentasjon && <BodyShort>Jeg har sendt inn dokumentasjon</BodyShort>}
                 {visKnapper && <SendInnDokumentasjon aktuellSituasjon={PermittertSvar.OPPSIGELSE} />}
             </>
@@ -245,7 +251,7 @@ function TilleggsData(props: Props) {
 
         if (!tilleggsData) return null;
 
-        const { sisteArbeidsdagDato } = tilleggsData;
+        const { sisteArbeidsdagDato, harNyJobb } = tilleggsData;
 
         return (
             <>
@@ -253,6 +259,7 @@ function TilleggsData(props: Props) {
                     Min siste arbeidsdag er{' '}
                     {sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'ikke oppgitt'}
                 </BodyShort>
+                {harNyJobb && <BodyShort>{harNyJobbMapping[harNyJobb]}</BodyShort>}
             </>
         );
     };
@@ -266,7 +273,7 @@ function TilleggsData(props: Props) {
 
         const harSendtInnDokumentasjon = harSendtInnNyDokumentasjon(profil, besvarelse);
 
-        const { oppsigelseDato, sisteArbeidsdagDato } = tilleggsData;
+        const { oppsigelseDato, sisteArbeidsdagDato, harNyJobb } = tilleggsData;
 
         return (
             <>
@@ -278,6 +285,7 @@ function TilleggsData(props: Props) {
                     Siste dag i oppsigelsestiden er{' '}
                     {sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'ikke oppgitt'}
                 </BodyShort>
+                {harNyJobb && <BodyShort>{harNyJobbMapping[harNyJobb]}</BodyShort>}
                 {harSendtInnDokumentasjon && <BodyShort>Jeg har sendt inn dokumentasjon</BodyShort>}
                 {visKnapper && <SendInnDokumentasjon aktuellSituasjon={PermittertSvar.SAGT_OPP} />}
             </>
