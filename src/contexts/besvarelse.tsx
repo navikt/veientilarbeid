@@ -26,6 +26,7 @@ export type DinSituasjonTilleggsdata = {
     permitteringsProsent?: string;
     permitteringForlenget?: string;
     stillingsProsent?: string;
+    harNyJobb?: string;
 };
 
 export type DinSituasjonRequest = {

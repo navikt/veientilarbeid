@@ -58,6 +58,11 @@ function genererDialogTekst(
         '50': 'deltid - mindre enn 50 prosent',
     };
 
+    const harNyJobbMapping: { [key: string]: string } = {
+        ja: 'Jeg har ny jobb å gå til',
+        nei: 'Jeg har ikke ny jobb å gå til',
+    };
+
     const tekstArray = [];
 
     tekstArray.push(`Jobbsituasjonen er endret til "${svarMap.dinSituasjon[valgtSituasjon]}".`);
@@ -72,6 +77,7 @@ function genererDialogTekst(
             gjelderFraDato,
             forsteArbeidsdagDato,
             stillingsProsent,
+            harNyJobb,
         } = tilleggsData;
         if (valgtSituasjon === PermittertSvar.OPPSIGELSE) {
             tekstArray.push(
@@ -82,6 +88,9 @@ function genererDialogTekst(
                     sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'er ukjent'
                 }`,
             );
+            if (harNyJobb) {
+                tekstArray.push(harNyJobbMapping[harNyJobb]);
+            }
         } else if (valgtSituasjon === PermittertSvar.ENDRET_PERMITTERINGSPROSENT) {
             const permitteringErForlenget = permitteringForlenget === 'Ja';
             if (permitteringErForlenget) {
@@ -126,6 +135,9 @@ function genererDialogTekst(
                     sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'ikke oppgitt'
                 }`,
             );
+            if (harNyJobb) {
+                tekstArray.push(harNyJobbMapping[harNyJobb]);
+            }
         } else if (valgtSituasjon === PermittertSvar.SAGT_OPP) {
             tekstArray.push(
                 `Jeg leverte oppsigelsen ${oppsigelseDato ? prettyPrintDato(oppsigelseDato) : 'på ikke oppgitt dato'}`,
@@ -135,6 +147,9 @@ function genererDialogTekst(
                     sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'ikke oppgitt'
                 }`,
             );
+            if (harNyJobb) {
+                tekstArray.push(harNyJobbMapping[harNyJobb]);
+            }
         } else {
             tekstArray.push(
                 `Endringen gjelder fra ${gjelderFraDato ? prettyPrintDato(gjelderFraDato) : 'ikke oppgitt dato'}`,
@@ -319,11 +334,15 @@ const OPPSIGELSE = (props: Steg2Props) => {
         defaultSelected: new Date(),
     });
 
+    const [harNyJobb, settHarNyJobb] = useState<string>();
+
     const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
+    const disabled = !harNyJobb || loading;
 
     const tilleggsData = {
         oppsigelseDato,
         sisteArbeidsdagDato,
+        harNyJobb,
     };
 
     return (
@@ -358,13 +377,24 @@ const OPPSIGELSE = (props: Steg2Props) => {
                         }
                     />
                 </DatePicker>
+
+                <RadioGroup
+                    legend="Har du ny jobb?"
+                    onChange={(value) => {
+                        settHarNyJobb(value);
+                    }}
+                >
+                    <Radio value="ja">Ja, jeg har ny jobb å gå til</Radio>
+                    <Radio value="nei">Nei, jeg har ikke ny jobb</Radio>
+                </RadioGroup>
+
                 <OpplysningeneBrukesTil />
                 <Feil feil={feil} />
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
                     <Button
                         variant={'primary'}
                         loading={loading}
-                        disabled={loading}
+                        disabled={disabled}
                         onClick={() =>
                             handleLagreEndringer(props.valgtSituasjon, props.opprinneligSituasjon, tilleggsData)
                         }
@@ -592,10 +622,14 @@ const KONKURS = (props: Steg2Props) => {
         defaultSelected: new Date(),
     });
 
+    const [harNyJobb, settHarNyJobb] = useState<string>();
+
     const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
+    const disabled = !harNyJobb || loading;
 
     const tilleggsData = {
         sisteArbeidsdagDato,
+        harNyJobb,
     };
 
     return (
@@ -608,6 +642,17 @@ const KONKURS = (props: Steg2Props) => {
                         label="Når er siste arbeidsdag?"
                     />
                 </DatePicker>
+
+                <RadioGroup
+                    legend="Har du ny jobb?"
+                    onChange={(value) => {
+                        settHarNyJobb(value);
+                    }}
+                >
+                    <Radio value="ja">Ja, jeg har ny jobb å gå til</Radio>
+                    <Radio value="nei">Nei, jeg har ikke ny jobb</Radio>
+                </RadioGroup>
+
                 <OpplysningeneBrukesTil />
                 <Feil feil={feil} />
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
@@ -617,7 +662,7 @@ const KONKURS = (props: Steg2Props) => {
                             handleLagreEndringer(props.valgtSituasjon, props.opprinneligSituasjon, tilleggsData)
                         }
                         loading={loading}
-                        disabled={loading}
+                        disabled={disabled}
                     >
                         Lagre endring i situasjon
                     </Button>
@@ -646,11 +691,15 @@ const SAGT_OPP = (props: Steg2Props) => {
         defaultSelected: new Date(),
     });
 
+    const [harNyJobb, settHarNyJobb] = useState<string>();
+
     const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
+    const disabled = !harNyJobb || loading;
 
     const tilleggsData = {
         oppsigelseDato,
         sisteArbeidsdagDato,
+        harNyJobb,
     };
 
     return (
@@ -676,13 +725,24 @@ const SAGT_OPP = (props: Steg2Props) => {
                         }
                     />
                 </DatePicker>
+
+                <RadioGroup
+                    legend="Har du ny jobb?"
+                    onChange={(value) => {
+                        settHarNyJobb(value);
+                    }}
+                >
+                    <Radio value="ja">Ja, jeg har ny jobb å gå til</Radio>
+                    <Radio value="nei">Nei, jeg har ikke ny jobb</Radio>
+                </RadioGroup>
+
                 <OpplysningeneBrukesTil />
                 <Feil feil={feil} />
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
                     <Button
                         variant={'primary'}
                         loading={loading}
-                        disabled={loading}
+                        disabled={disabled}
                         onClick={() =>
                             handleLagreEndringer(props.valgtSituasjon, props.opprinneligSituasjon, tilleggsData)
                         }
