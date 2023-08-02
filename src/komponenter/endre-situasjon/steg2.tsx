@@ -260,14 +260,12 @@ const TILBAKE_TIL_JOBB = (props: Steg2Props) => {
         selectedDay: forsteArbeidsdagDato,
     } = useDatepicker({
         fromDate: new Date('Jan 01 2022'),
-        defaultSelected: new Date(),
     });
 
     const [stillingsProsent, settStillingsProsent] = useState<string>();
 
     const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
-
-    const disabled = !stillingsProsent || loading;
+    const disabled = !stillingsProsent || !forsteArbeidsdagDato || loading;
 
     const tilleggsData = {
         forsteArbeidsdagDato,
@@ -322,7 +320,6 @@ const OPPSIGELSE = (props: Steg2Props) => {
         selectedDay: oppsigelseDato,
     } = useDatepicker({
         fromDate: new Date('Jan 01 2022'),
-        defaultSelected: new Date(),
     });
 
     const {
@@ -331,13 +328,12 @@ const OPPSIGELSE = (props: Steg2Props) => {
         selectedDay: sisteArbeidsdagDato,
     } = useDatepicker({
         fromDate: new Date('Jan 01 2022'),
-        defaultSelected: new Date(),
     });
 
     const [harNyJobb, settHarNyJobb] = useState<string>();
 
     const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
-    const disabled = !harNyJobb || loading;
+    const disabled = !harNyJobb || !oppsigelseDato || !sisteArbeidsdagDato || loading;
 
     const tilleggsData = {
         oppsigelseDato,
@@ -414,13 +410,12 @@ const ENDRET_PERMITTERINGSPROSENT = (props: Steg2Props) => {
         selectedDay: gjelderFraDato,
     } = useDatepicker({
         fromDate: new Date('Jan 01 2022'),
-        defaultSelected: new Date(),
     });
     const [permitteringsProsent, settPermitteringsProsent] = useState<string>();
     const [permitteringForlenget, settPermitteringForlenget] = useState<string>();
 
     const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
-    const disabled = !permitteringsProsent || !permitteringForlenget || loading;
+    const disabled = !permitteringsProsent || !permitteringForlenget || !gjelderFraDato || loading;
 
     const tilleggsData = {
         permitteringsProsent,
@@ -495,14 +490,13 @@ const NY_JOBB = (props: Steg2Props) => {
         selectedDay: forsteArbeidsdagDato,
     } = useDatepicker({
         fromDate: new Date('Jan 01 2022'),
-        defaultSelected: new Date(),
     });
 
     const [stillingsProsent, settStillingsProsent] = useState<string>();
 
     const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
 
-    const disabled = !stillingsProsent || loading;
+    const disabled = !stillingsProsent || !forsteArbeidsdagDato || loading;
 
     const tilleggsData = {
         forsteArbeidsdagDato,
@@ -557,14 +551,13 @@ const MIDLERTIDIG_JOBB = (props: Steg2Props) => {
         selectedDay: forsteArbeidsdagDato,
     } = useDatepicker({
         fromDate: new Date('Jan 01 2022'),
-        defaultSelected: new Date(),
     });
 
     const [stillingsProsent, settStillingsProsent] = useState<string>();
 
     const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
 
-    const disabled = !stillingsProsent || loading;
+    const disabled = !stillingsProsent || !forsteArbeidsdagDato || loading;
 
     const tilleggsData = {
         forsteArbeidsdagDato,
@@ -619,13 +612,12 @@ const KONKURS = (props: Steg2Props) => {
         selectedDay: sisteArbeidsdagDato,
     } = useDatepicker({
         fromDate: new Date('Jan 01 2022'),
-        defaultSelected: new Date(),
     });
 
     const [harNyJobb, settHarNyJobb] = useState<string>();
 
     const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
-    const disabled = !harNyJobb || loading;
+    const disabled = !harNyJobb || !sisteArbeidsdagDato || loading;
 
     const tilleggsData = {
         sisteArbeidsdagDato,
@@ -679,7 +671,6 @@ const SAGT_OPP = (props: Steg2Props) => {
         selectedDay: oppsigelseDato,
     } = useDatepicker({
         fromDate: new Date('Jan 01 2022'),
-        defaultSelected: new Date(),
     });
 
     const {
@@ -688,13 +679,12 @@ const SAGT_OPP = (props: Steg2Props) => {
         selectedDay: sisteArbeidsdagDato,
     } = useDatepicker({
         fromDate: new Date('Jan 01 2022'),
-        defaultSelected: new Date(),
     });
 
     const [harNyJobb, settHarNyJobb] = useState<string>();
 
     const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
-    const disabled = !harNyJobb || loading;
+    const disabled = !harNyJobb || !oppsigelseDato || !sisteArbeidsdagDato || loading;
 
     const tilleggsData = {
         oppsigelseDato,
@@ -762,7 +752,6 @@ const ANNET = (props: Steg2Props) => {
         selectedDay: gjelderFraDato,
     } = useDatepicker({
         fromDate: new Date('Jan 01 2022'),
-        defaultSelected: new Date(),
     });
 
     const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
@@ -770,6 +759,8 @@ const ANNET = (props: Steg2Props) => {
     const tilleggsData = {
         gjelderFraDato,
     };
+
+    const disabled = !gjelderFraDato || loading;
 
     return (
         <Steg2Wrapper valgtSituasjon={props.valgtSituasjon}>
@@ -790,7 +781,7 @@ const ANNET = (props: Steg2Props) => {
                             handleLagreEndringer(props.valgtSituasjon, props.opprinneligSituasjon, tilleggsData)
                         }
                         loading={loading}
-                        disabled={loading}
+                        disabled={disabled}
                     >
                         Lagre endring i situasjon
                     </Button>
