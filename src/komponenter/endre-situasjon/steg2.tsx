@@ -44,7 +44,7 @@ const OpplysningeneBrukesTil = () => {
 function genererDialogTekst(
     valgtSituasjon: SituasjonSvar,
     opprinneligSituasjon: SituasjonSvar | undefined,
-    tilleggsData?: any
+    tilleggsData?: any,
 ) {
     const permitteringsprosentMapping: { [key: string]: string } = {
         '100': 'fullt permittert - 100 prosent',
@@ -75,12 +75,12 @@ function genererDialogTekst(
         } = tilleggsData;
         if (valgtSituasjon === PermittertSvar.OPPSIGELSE) {
             tekstArray.push(
-                `Oppsigelsen ble mottatt ${oppsigelseDato ? prettyPrintDato(oppsigelseDato) : 'på ikke oppgitt dato'}`
+                `Oppsigelsen ble mottatt ${oppsigelseDato ? prettyPrintDato(oppsigelseDato) : 'på ikke oppgitt dato'}`,
             );
             tekstArray.push(
                 `Siste dag med lønn fra arbeidsgiver er ${
                     sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'er ukjent'
-                }`
+                }`,
             );
         } else if (valgtSituasjon === PermittertSvar.ENDRET_PERMITTERINGSPROSENT) {
             const permitteringErForlenget = permitteringForlenget === 'Ja';
@@ -88,25 +88,27 @@ function genererDialogTekst(
                 tekstArray.push(
                     `Permitteringen er forlenget fra ${
                         gjelderFraDato ? prettyPrintDato(gjelderFraDato) : 'ikke oppgitt dato'
-                    }`
+                    }`,
                 );
             }
             tekstArray.push(
                 `Permitteringsgraden er ${
                     permitteringsProsent ? permitteringsprosentMapping[permitteringsProsent] : 'er ikke oppgitt'
-                } fra ${gjelderFraDato ? prettyPrintDato(gjelderFraDato) : 'ikke oppgitt dato'}`
+                } fra ${gjelderFraDato ? prettyPrintDato(gjelderFraDato) : 'ikke oppgitt dato'}`,
             );
         } else if (valgtSituasjon === PermittertSvar.TILBAKE_TIL_JOBB) {
             tekstArray.push(
                 `Min første arbeidsdag etter permittering er ${
                     forsteArbeidsdagDato ? prettyPrintDato(forsteArbeidsdagDato) : 'ikke oppgitt dato'
-                }`
+                }`,
             );
+            tekstArray.push(`Jeg skal jobbe
+            ${stillingsProsent ? stillingsprosentMapping[stillingsProsent] : 'ikke oppgitt'}`);
         } else if (valgtSituasjon === PermittertSvar.NY_JOBB) {
             tekstArray.push(
                 `Første arbeidsdag i ny jobb er ${
                     forsteArbeidsdagDato ? prettyPrintDato(forsteArbeidsdagDato) : 'ikke oppgitt'
-                }`
+                }`,
             );
             tekstArray.push(`Jeg skal begynne å jobbe
             ${stillingsProsent ? stillingsprosentMapping[stillingsProsent] : 'ikke oppgitt'}`);
@@ -114,26 +116,28 @@ function genererDialogTekst(
             tekstArray.push(
                 `Første arbeidsdag i ny jobb er ${
                     forsteArbeidsdagDato ? prettyPrintDato(forsteArbeidsdagDato) : 'ikke oppgitt'
-                }`
+                }`,
             );
             tekstArray.push(`Jeg skal begynne å jobbe
             ${stillingsProsent ? stillingsprosentMapping[stillingsProsent] : 'ikke oppgitt'}`);
         } else if (valgtSituasjon === PermittertSvar.KONKURS) {
             tekstArray.push(
-                `Min siste arbeidsdag er ${sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'ikke oppgitt'}`
+                `Min siste arbeidsdag er ${
+                    sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'ikke oppgitt'
+                }`,
             );
         } else if (valgtSituasjon === PermittertSvar.SAGT_OPP) {
             tekstArray.push(
-                `Jeg leverte oppsigelsen ${oppsigelseDato ? prettyPrintDato(oppsigelseDato) : 'på ikke oppgitt dato'}`
+                `Jeg leverte oppsigelsen ${oppsigelseDato ? prettyPrintDato(oppsigelseDato) : 'på ikke oppgitt dato'}`,
             );
             tekstArray.push(
                 `Siste arbeidsdag med lønn er ${
                     sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'ikke oppgitt'
-                }`
+                }`,
             );
         } else {
             tekstArray.push(
-                `Endringen gjelder fra ${gjelderFraDato ? prettyPrintDato(gjelderFraDato) : 'ikke oppgitt dato'}`
+                `Endringen gjelder fra ${gjelderFraDato ? prettyPrintDato(gjelderFraDato) : 'ikke oppgitt dato'}`,
             );
         }
 
@@ -182,7 +186,7 @@ function useLagreEndringer(props: Steg2Props) {
             const { tekst, overskrift, venterPaaSvarFraNav } = genererDialogTekst(
                 valgtSituasjon,
                 opprinneligSituasjon,
-                tilleggsData
+                tilleggsData,
             );
 
             const payload = {
@@ -243,10 +247,16 @@ const TILBAKE_TIL_JOBB = (props: Steg2Props) => {
         fromDate: new Date('Jan 01 2022'),
         defaultSelected: new Date(),
     });
+
+    const [stillingsProsent, settStillingsProsent] = useState<string>();
+
     const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
+
+    const disabled = !stillingsProsent || loading;
 
     const tilleggsData = {
         forsteArbeidsdagDato,
+        stillingsProsent,
     };
 
     return (
@@ -260,6 +270,17 @@ const TILBAKE_TIL_JOBB = (props: Steg2Props) => {
                     />
                 </DatePicker>
 
+                <RadioGroup
+                    legend="Hvor mye skal du jobbe?"
+                    onChange={(value) => {
+                        settStillingsProsent(value);
+                    }}
+                >
+                    <Radio value="100">Fulltid - 100 prosent</Radio>
+                    <Radio value="75">Mellom 50 og 100 prosent</Radio>
+                    <Radio value="50">Mindre enn 50 prosent</Radio>
+                </RadioGroup>
+
                 <OpplysningeneBrukesTil />
                 <Feil feil={feil} />
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
@@ -269,7 +290,7 @@ const TILBAKE_TIL_JOBB = (props: Steg2Props) => {
                             handleLagreEndringer(props.valgtSituasjon, props.opprinneligSituasjon, tilleggsData)
                         }
                         loading={loading}
-                        disabled={loading}
+                        disabled={disabled}
                     >
                         Lagre endring i situasjon
                     </Button>

@@ -93,12 +93,24 @@ const SendInnDokumentasjon = (props: { aktuellSituasjon: SituasjonSvar }) => {
 function TilleggsData(props: Props) {
     const { verdi, tilleggsData, visKnapper } = props;
 
+    const permitteringsprosentMapping: { [key: string]: string } = {
+        '100': 'fullt permittert - 100 prosent',
+        '75': 'mellom 50 og 100 prosent',
+        '50': 'mindre enn 50 prosent',
+    };
+
+    const stillingsprosentMapping: { [key: string]: string } = {
+        '100': 'fulltid - 100 prosent',
+        '75': 'deltid - mellom 50 og 100 prosent',
+        '50': 'deltid - mindre enn 50 prosent',
+    };
+
     const TILBAKE_TIL_JOBB = (props: TilleggsDataProps) => {
         const { tilleggsData } = props;
 
         if (!tilleggsData) return null;
 
-        const { forsteArbeidsdagDato } = tilleggsData;
+        const { forsteArbeidsdagDato, stillingsProsent } = tilleggsData;
 
         return (
             <>
@@ -106,6 +118,11 @@ function TilleggsData(props: Props) {
                     Min første arbeidsdag etter permittering er{' '}
                     {forsteArbeidsdagDato ? prettyPrintDato(forsteArbeidsdagDato) : 'ikke oppgitt dato'}
                 </BodyShort>
+                {stillingsProsent && (
+                    <BodyShort>
+                        Jeg skal jobbe {stillingsProsent ? stillingsprosentMapping[stillingsProsent] : 'ikke oppgitt'}
+                    </BodyShort>
+                )}
                 {visKnapper && (
                     <>
                         <br />
@@ -146,12 +163,6 @@ function TilleggsData(props: Props) {
         );
     };
 
-    const permitteringsprosentMapping: { [key: string]: string } = {
-        '100': 'fullt permittert - 100 prosent',
-        '75': 'mellom 50 og 100 prosent',
-        '50': 'mindre enn 50 prosent',
-    };
-
     const ENDRET_PERMITTERINGSPROSENT = (props: TilleggsDataProps) => {
         const { tilleggsData } = props;
         const { profil } = useProfil();
@@ -181,12 +192,6 @@ function TilleggsData(props: Props) {
                 {visKnapper && <SendInnDokumentasjon aktuellSituasjon={PermittertSvar.ENDRET_PERMITTERINGSPROSENT} />}
             </>
         );
-    };
-
-    const stillingsprosentMapping: { [key: string]: string } = {
-        '100': 'fulltid - 100 prosent',
-        '75': 'deltid - mellom 50 og 100 prosent',
-        '50': 'deltid - mindre enn 50 prosent',
     };
 
     const NY_JOBB = (props: TilleggsDataProps) => {
