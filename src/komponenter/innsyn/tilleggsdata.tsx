@@ -77,7 +77,11 @@ const SendInnDokumentasjon = (props: { aktuellSituasjon: SituasjonSvar }) => {
         <div>
             <BodyShort>Du må dokumentere {dokumentasjonMapping[aktuellSituasjon]}.</BodyShort>
             <br />
-            <a className={'navds-button navds-button--primary'} href={dokumentasjon_url}>
+            <a
+                className={'navds-button navds-button--primary'}
+                href={dokumentasjon_url}
+                onClick={() => loggAktivitet({ aktivitet: `Klikker på 'Gå til opplasting'`, ...amplitudeData })}
+            >
                 Gå til opplasting
             </a>
             <br />
