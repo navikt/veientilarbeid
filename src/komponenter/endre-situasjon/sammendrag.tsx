@@ -1,4 +1,4 @@
-import { BodyLong, BodyShort, Button, Heading, ReadMore } from '@navikt/ds-react';
+import { BodyShort, Button, Heading, ReadMore } from '@navikt/ds-react';
 import { useState } from 'react';
 
 import { useUnderOppfolging } from '../../contexts/arbeidssoker';
@@ -11,14 +11,14 @@ import spacing from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
 import BesvarelseLesMer from '../innsyn/besvarelse-les-mer';
 import SendInnDokumentasjon from './send-inn-dokumentasjon';
+import { dialogLenke } from '../../innhold/lenker';
 
 const Sammendrag = (props: any) => {
     const [openEndreModal, setOpenEndreModal] = useState(false);
     const [harLestOmEndringer, setHarLestOmEndringer] = useState<boolean>(false);
 
     const { amplitudeData, besvarelse } = props;
-    const underoppfolging = useUnderOppfolging()?.underoppfolging;
-    const kanViseKomponent = underoppfolging;
+    const kanViseKomponent = useUnderOppfolging()?.underoppfolging;
 
     const handleEndreModalOpen = (event: any) => {
         event.preventDefault();
@@ -39,6 +39,14 @@ const Sammendrag = (props: any) => {
             });
             setHarLestOmEndringer(true);
         }
+    };
+
+    const handleDialogClick = () => {
+        loggAktivitet({
+            aktivitet: 'Går til endre andre opplysninger',
+            komponent: 'Min situasjon',
+            ...amplitudeData,
+        });
     };
 
     return !kanViseKomponent ? null : (
@@ -65,12 +73,22 @@ const Sammendrag = (props: any) => {
                     className={spacing.mb1}
                     onClick={handleLesOmEndringer}
                 >
-                    <BodyLong>
-                        Hvis det skjer endringer i situasjonen din, kan det påvirke oppfølgingen eller utbetalingen du
-                        får fra NAV. Det er derfor viktig å gi beskjed om endringen.
-                        <br />
-                        Det kan være endringer i din inntekt, familiesituasjon, jobbsituasjon, og så videre.
-                    </BodyLong>
+                    <BodyShort className={spacing.mb1}>
+                        Hvis det skjer endringer i jobbsituasjonen din, kan det påvirke oppfølgingen eller utbetalingen
+                        du får fra NAV.
+                    </BodyShort>
+                    <BodyShort className={spacing.mb1}>
+                        Endringer i jobbsituasjonen kan eksempelvis være at du ikke lenger er permittert eller at
+                        bedriften har gått konkurs.
+                    </BodyShort>
+                    <BodyShort>
+                        Om andre forhold i situasjonen din endrer seg, som for eksempel inntekten din eller
+                        familiesituasjonen, må du{' '}
+                        <a href={dialogLenke} onClick={handleDialogClick}>
+                            gi beskjed til NAV
+                        </a>{' '}
+                        og beskrive hva som har skjedd.
+                    </BodyShort>
                 </ReadMore>
                 <PermittertModal
                     openModal={openEndreModal}
