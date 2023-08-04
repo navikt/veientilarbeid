@@ -1,105 +1,23 @@
-import { BodyShort, Checkbox, CheckboxGroup, Link, Loader } from '@navikt/ds-react';
+import { BodyShort } from '@navikt/ds-react';
 
-import { BesvarelseResponse, DinSituasjonTilleggsdata, useBesvarelse } from '../../contexts/besvarelse';
+import { DinSituasjonTilleggsdata, useBesvarelse } from '../../contexts/besvarelse';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import { useProfil } from '../../contexts/profil';
-import { useState } from 'react';
-import { Profil } from '../../profil';
 import { PermittertSvar } from '../../models/endring-av-situasjon';
-import { dokumentasjon_url } from '../../ducks/urls';
-import { SituasjonSvar } from '../endre-situasjon/veiledning';
-import { loggAktivitet } from '../../metrics/metrics';
-import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
+import spacing from '../../spacing.module.css';
+import { harSendtInnNyDokumentasjon } from '../endre-situasjon/send-inn-dokumentasjon';
 
 interface Props {
     verdi: string | null;
     tilleggsData: DinSituasjonTilleggsdata | null;
-    visKnapper?: boolean;
 }
 
 interface TilleggsDataProps {
     tilleggsData: DinSituasjonTilleggsdata | null;
 }
 
-const harSendtInnNyDokumentasjon = (profil: Profil | null, besvarelse: BesvarelseResponse) => {
-    const harSendtInnDokumentasjon = Boolean(profil?.aiaHarSendtInnDokumentasjonForEndring);
-    if (!harSendtInnDokumentasjon) {
-        return false;
-    }
-
-    if (besvarelse?.erBesvarelsenEndret) {
-        const endretDato = new Date(besvarelse.endretTidspunkt!);
-        const innsendtDato = new Date(profil?.aiaHarSendtInnDokumentasjonForEndring!);
-        return innsendtDato > endretDato;
-    }
-
-    return harSendtInnDokumentasjon;
-};
-
-const SendInnDokumentasjon = (props: { aktuellSituasjon: SituasjonSvar }) => {
-    const { lagreProfil, profil } = useProfil();
-    const { besvarelse } = useBesvarelse();
-    const { amplitudeData } = useAmplitudeData();
-
-    const [visSpinner, settVisSpinner] = useState<boolean>(false);
-    const harSendtInnDokumentasjon = harSendtInnNyDokumentasjon(profil, besvarelse);
-
-    const onChange = async (val: any[]) => {
-        if (val.length > 0) {
-            try {
-                settVisSpinner(true);
-                await lagreProfil({ aiaHarSendtInnDokumentasjonForEndring: new Date().toISOString() });
-                loggAktivitet({ aktivitet: 'Har sendt inn dokumentasjon', ...amplitudeData });
-            } finally {
-                settVisSpinner(false);
-            }
-        }
-    };
-
-    if (harSendtInnDokumentasjon) {
-        return null;
-    }
-
-    const dokumentasjonMapping = {
-        [PermittertSvar.OPPSIGELSE]: 'oppsigelsen',
-        [PermittertSvar.TILBAKE_TIL_JOBB]: 'permitteringsvarselet',
-        [PermittertSvar.ENDRET_PERMITTERINGSPROSENT]: 'permitteringsvarselet',
-        [PermittertSvar.SAGT_OPP]: 'oppsigelsen',
-    };
-
-    const aktuellSituasjon = props.aktuellSituasjon as
-        | PermittertSvar.OPPSIGELSE
-        | PermittertSvar.TILBAKE_TIL_JOBB
-        | PermittertSvar.ENDRET_PERMITTERINGSPROSENT
-        | PermittertSvar.SAGT_OPP;
-
-    return (
-        <div>
-            <BodyShort>Du må dokumentere {dokumentasjonMapping[aktuellSituasjon]}.</BodyShort>
-            <br />
-            <a
-                className={'navds-button navds-button--primary'}
-                href={dokumentasjon_url}
-                onClick={() => loggAktivitet({ aktivitet: `Klikker på 'Gå til opplasting'`, ...amplitudeData })}
-            >
-                Gå til opplasting
-            </a>
-            <br />
-            <CheckboxGroup legend={''} onChange={onChange} value={harSendtInnDokumentasjon ? ['true'] : undefined}>
-                {visSpinner ? (
-                    <Loader />
-                ) : (
-                    <Checkbox disabled={harSendtInnDokumentasjon} value={'true'}>
-                        Jeg har sendt inn dokumentasjon
-                    </Checkbox>
-                )}
-            </CheckboxGroup>
-        </div>
-    );
-};
-
 function TilleggsData(props: Props) {
-    const { verdi, tilleggsData, visKnapper } = props;
+    const { verdi, tilleggsData } = props;
 
     const permitteringsprosentMapping: { [key: string]: string } = {
         '100': 'fullt permittert - 100 prosent',
@@ -120,13 +38,15 @@ function TilleggsData(props: Props) {
 
     const TILBAKE_TIL_JOBB = (props: TilleggsDataProps) => {
         const { tilleggsData } = props;
+        const { profil } = useProfil();
+        const { besvarelse } = useBesvarelse();
 
         if (!tilleggsData) return null;
 
         const { forsteArbeidsdagDato, stillingsProsent } = tilleggsData;
-
+        const harSendtInnDokumentasjon = harSendtInnNyDokumentasjon(profil, besvarelse);
         return (
-            <>
+            <div className={spacing.mv0_5}>
                 <BodyShort>
                     Min første arbeidsdag etter permittering er{' '}
                     {forsteArbeidsdagDato ? prettyPrintDato(forsteArbeidsdagDato) : 'ikke oppgitt dato'}
@@ -136,18 +56,8 @@ function TilleggsData(props: Props) {
                         Jeg skal jobbe {stillingsProsent ? stillingsprosentMapping[stillingsProsent] : 'ikke oppgitt'}
                     </BodyShort>
                 )}
-                {visKnapper && (
-                    <>
-                        <br />
-                        <BodyShort>
-                            Hvis du har et permitteringsvarsel som du enda ikke har sendt oss, må du gjøre det nå.
-                        </BodyShort>
-                        <BodyShort>
-                            <Link href={dokumentasjon_url}>Gå til opplasting</Link>
-                        </BodyShort>
-                    </>
-                )}
-            </>
+                {harSendtInnDokumentasjon && <BodyShort>Jeg har sendt inn dokumentasjon</BodyShort>}
+            </div>
         );
     };
 
@@ -172,7 +82,6 @@ function TilleggsData(props: Props) {
                 </BodyShort>
                 {harNyJobb && <BodyShort>{harNyJobbMapping[harNyJobb]}</BodyShort>}
                 {harSendtInnDokumentasjon && <BodyShort>Jeg har sendt inn dokumentasjon</BodyShort>}
-                {visKnapper && <SendInnDokumentasjon aktuellSituasjon={PermittertSvar.OPPSIGELSE} />}
             </>
         );
     };
@@ -203,7 +112,6 @@ function TilleggsData(props: Props) {
                     {gjelderFraDato ? prettyPrintDato(gjelderFraDato) : 'ikke oppgitt dato'}
                 </BodyShort>
                 {harSendtInnDokumentasjon && <BodyShort>Jeg har sendt inn dokumentasjon</BodyShort>}
-                {visKnapper && <SendInnDokumentasjon aktuellSituasjon={PermittertSvar.ENDRET_PERMITTERINGSPROSENT} />}
             </>
         );
     };
@@ -291,7 +199,6 @@ function TilleggsData(props: Props) {
                 </BodyShort>
                 {harNyJobb && <BodyShort>{harNyJobbMapping[harNyJobb]}</BodyShort>}
                 {harSendtInnDokumentasjon && <BodyShort>Jeg har sendt inn dokumentasjon</BodyShort>}
-                {visKnapper && <SendInnDokumentasjon aktuellSituasjon={PermittertSvar.SAGT_OPP} />}
             </>
         );
     };
@@ -329,8 +236,6 @@ function TilleggsData(props: Props) {
     } else {
         return <ANNET tilleggsData={tilleggsData} />;
     }
-
-    return null;
 }
 
 export default TilleggsData;

@@ -3,32 +3,22 @@ import { useState } from 'react';
 
 import { useUnderOppfolging } from '../../contexts/arbeidssoker';
 import { loggAktivitet } from '../../metrics/metrics';
-import { dialogLenke } from '../../innhold/lenker';
 import TilleggsData from '../innsyn/tilleggsdata';
 import { svarMap } from '../../models/sporsmal-og-svar';
 import PermittertModal from './permittert-modal';
-import LesIgjenModal from './les-igjen-modal';
 
 import spacing from '../../spacing.module.css';
-import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
+import BesvarelseLesMer from '../innsyn/besvarelse-les-mer';
+import SendInnDokumentasjon from './send-inn-dokumentasjon';
 
 const Sammendrag = (props: any) => {
     const [openEndreModal, setOpenEndreModal] = useState(false);
-    const [openLesIgjenModal, setOpenLesIgjenModal] = useState(false);
     const [harLestOmEndringer, setHarLestOmEndringer] = useState<boolean>(false);
 
-    const { amplitudeData, besvarelse, erBesvarelsenEndret } = props;
+    const { amplitudeData, besvarelse } = props;
     const underoppfolging = useUnderOppfolging()?.underoppfolging;
     const kanViseKomponent = underoppfolging;
-
-    const handleDialogClick = () => {
-        loggAktivitet({
-            aktivitet: 'Går til endre andre opplysninger',
-            komponent: 'Min situasjon',
-            ...amplitudeData,
-        });
-    };
 
     const handleEndreModalOpen = (event: any) => {
         event.preventDefault();
@@ -38,16 +28,6 @@ const Sammendrag = (props: any) => {
             ...amplitudeData,
         });
         setOpenEndreModal(true);
-    };
-
-    const handleLesIgjenModalOpen = (event: any) => {
-        event.preventDefault();
-        loggAktivitet({
-            aktivitet: 'Åpner modal for å lese veiledning igjen',
-            komponent: 'Min situasjon',
-            ...amplitudeData,
-        });
-        setOpenLesIgjenModal(true);
     };
 
     const handleLesOmEndringer = () => {
@@ -65,17 +45,18 @@ const Sammendrag = (props: any) => {
         <div className={`${flexStyles.flex} ${flexStyles.flexColumn}`}>
             <div className={spacing.blokkS}>
                 <div className={spacing.mb1}>
-                    <Heading className={spacingStyles.mb1} size="medium">
+                    <Heading size="medium">
                         {besvarelse ? svarMap.dinSituasjon[besvarelse.dinSituasjon.verdi] : 'Min jobbsituasjon: ukjent'}
                     </Heading>
                     <TilleggsData
                         verdi={besvarelse ? besvarelse.dinSituasjon.verdi : null}
                         tilleggsData={besvarelse ? besvarelse.dinSituasjon.tilleggsData : null}
-                        visKnapper={true}
                     />
+                    <BesvarelseLesMer />
                 </div>
+                {besvarelse && <SendInnDokumentasjon aktuellSituasjon={besvarelse.dinSituasjon.verdi} />}
                 <BodyShort className={`${spacing.mb1} ${spacing.mt1}`}>
-                    <Button variant={erBesvarelsenEndret ? 'secondary' : 'primary'} onClick={handleEndreModalOpen}>
+                    <Button variant={'secondary'} onClick={handleEndreModalOpen}>
                         Jobbsituasjonen min har endret seg
                     </Button>
                 </BodyShort>
@@ -97,27 +78,6 @@ const Sammendrag = (props: any) => {
                     besvarelse={besvarelse}
                     amplitudeData={amplitudeData}
                 />
-                <LesIgjenModal
-                    openModal={openLesIgjenModal}
-                    setOpenModal={setOpenLesIgjenModal}
-                    besvarelse={besvarelse}
-                    amplitudeData={amplitudeData}
-                />
-                <BodyShort>
-                    Om andre forhold i situasjonen din har endret seg må du{' '}
-                    <a href={dialogLenke} onClick={handleDialogClick}>
-                        gi beskjed til NAV
-                    </a>
-                    .
-                </BodyShort>
-                {erBesvarelsenEndret && (
-                    <BodyShort className={`${spacing.mb1} ${spacing.mt1}`}>
-                        <a href={''} onClick={handleLesIgjenModalOpen}>
-                            Les om igjen hva denne endringen betyr for deg
-                        </a>
-                        .
-                    </BodyShort>
-                )}
             </div>
         </div>
     );

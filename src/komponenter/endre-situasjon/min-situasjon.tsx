@@ -7,7 +7,6 @@ import { useBesvarelse } from '../../contexts/besvarelse';
 import { InnloggingsNiva, useAutentiseringData } from '../../contexts/autentisering';
 
 import Sammendrag from './sammendrag';
-import BesvarelseLesMer from '../innsyn/besvarelse-les-mer';
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 import AiAInViewport from '../aia-in-viewport/aia-in-viewport';
 import ErRendret from '../er-rendret/er-rendret';
@@ -25,14 +24,12 @@ function MinSituasjon(props: any) {
     const { endretTidspunkt, endretAv, erBesvarelsenEndret } = besvarelse || {};
     const kanViseKomponent = autentiseringData.securityLevel === InnloggingsNiva.LEVEL_4;
 
-    const endretStyle = erBesvarelsenEndret ? { background: 'var(--a-blue-50)' } : {};
-
     if (!kanViseKomponent) return null;
 
     return (
         <Panel style={{ paddingLeft: 0, paddingTop: 0, paddingRight: 0 }}>
             <ErRendret loggTekst="Rendrer endring av situasjon" />
-            <Panel style={endretStyle}>
+            <Panel>
                 <Sammendrag
                     startDato={opprettetDato || aktivPeriodeStart}
                     manueltRegistrertAv={manueltRegistrertAv}
@@ -42,7 +39,6 @@ function MinSituasjon(props: any) {
                     endretAv={endretAv}
                     erBesvarelsenEndret={erBesvarelsenEndret}
                 />
-                <BesvarelseLesMer />
             </Panel>
             <AiAInViewport loggTekst="Viser endring av situasjon" />
         </Panel>

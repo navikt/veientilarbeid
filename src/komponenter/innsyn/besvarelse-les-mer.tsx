@@ -12,7 +12,7 @@ import OpplysningerFraBesvarelsen from './opplysninger-fra-besvarelsen';
 
 const TEKSTER = {
     nb: {
-        header: 'Alle opplysningene fra registreringen',
+        header: 'Se alle opplysningene fra registreringen',
     },
     en: {
         header: 'See your answers from the registration as job seeker',
