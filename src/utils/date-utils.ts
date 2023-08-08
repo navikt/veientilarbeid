@@ -33,24 +33,27 @@ export function hentISOUke(datoMedTid: string) {
     return Math.ceil(((dato.getTime() - foersteDatoIAaret.getTime()) / msPerDoegn + 1) / 7);
 }
 
+const norsk = {
+    ukeDager: ['søndag', 'mandag', 'tirdag', 'onsdag', 'torsdag', 'fredag', 'lørdag'],
+    maneder: [
+        'januar',
+        'februar',
+        'mars',
+        'april',
+        'mai',
+        'juni',
+        'juli',
+        'august',
+        'september',
+        'oktober',
+        'november',
+        'desember',
+    ],
+};
+
 const TEKSTER = {
-    nb: {
-        ukeDager: ['søndag', 'mandag', 'tirdag', 'onsdag', 'torsdag', 'fredag', 'lørdag'],
-        maneder: [
-            'januar',
-            'februar',
-            'mars',
-            'april',
-            'mai',
-            'juni',
-            'juli',
-            'august',
-            'september',
-            'oktober',
-            'november',
-            'desember',
-        ],
-    },
+    nb: norsk,
+    nn: norsk,
     en: {
         ukeDager: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
         maneder: [
@@ -76,12 +79,18 @@ export function datoMedUkedag(dato: Date, sprak: Sprak = 'nb') {
     return `${dager[dato.getDay()]} ${dato.getDate()}. ${maneder[dato.getMonth()]}`;
 }
 
-export const formaterDato = (dato: Date): string =>
-    new Date(dato).toLocaleDateString('no', {
+export const formaterDato = (dato: Date, sprak: Sprak = 'nb'): string => {
+    const locale = sprak === 'en' ? 'en' : 'no';
+    return new Date(dato).toLocaleDateString(locale, {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
     });
+};
+
+export const formaterDatoString = (dato: string, sprak: Sprak = 'nb'): string => {
+    return formaterDato(new Date(dato), sprak);
+};
 
 export const datoForForventetSvar = (dato: Date) => {
     return new Date(virkedager(new Date(dato), DAGPENGER_SAKSBEHANDLINGSTID));

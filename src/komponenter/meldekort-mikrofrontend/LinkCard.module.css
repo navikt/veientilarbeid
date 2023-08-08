@@ -1,0 +1,26 @@
+#linkcard {
+  flex: 1 1;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: #f7f7f7;
+}
+
+#linkcardChevron {
+  align-self: end;
+}
+
+#linkpanel {
+  height: fit-content;
+  border-radius: 8px;
+  background-color: #f7f7f7;
+}
+
+.text {
+  padding-bottom: 12px;
+}
+
+.dato {
+  font-size: 16px !important;
+  padding-bottom: 12px;
+  color: #707070;
+}

@@ -1,20 +1,21 @@
 import { Sprak } from '../contexts/sprak';
-
+const norsk = [
+    'januar',
+    'februar',
+    'mars',
+    'april',
+    'mai',
+    'juni',
+    'juli',
+    'august',
+    'september',
+    'oktober',
+    'november',
+    'desember',
+];
 const monthNames = {
-    nb: [
-        'januar',
-        'februar',
-        'mars',
-        'april',
-        'mai',
-        'juni',
-        'juli',
-        'august',
-        'september',
-        'oktober',
-        'november',
-        'desember',
-    ],
+    nb: norsk,
+    nn: norsk,
     en: [
         'January',
         'February',

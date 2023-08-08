@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react';
 
-export type Sprak = 'nb' | 'en';
+export type Sprak = 'nb' | 'en' | 'nn';
 
 export interface State {
     sprak: Sprak;
