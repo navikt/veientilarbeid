@@ -7,7 +7,7 @@ export enum FeatureToggles {
     BRUK_SPRAKVELGER = 'aia.bruk-sprakvelger',
     BRUK_TABS_DEMO = 'aia.bruk-tabs-demo',
     BRUK_ENDRING_AV_SITUASJON = 'aia.bruk-endring-av-situasjon',
-    BRUK_MELDEKORT_MIKROSERVICE = 'aia.bruk-meldekort-mikroservice',
+    BRUK_MELDEKORT_MIKROFRONTEND = 'aia.bruk-meldekort-mikrofrontend',
 }
 
 export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
@@ -22,7 +22,7 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Bruk tabs demo';
         case FeatureToggles.BRUK_ENDRING_AV_SITUASJON:
             return 'Bruk endring av situasjon';
-        case FeatureToggles.BRUK_MELDEKORT_MIKROSERVICE:
+        case FeatureToggles.BRUK_MELDEKORT_MIKROFRONTEND:
             return 'Bruk meldekort mikroservice';
     }
 }
@@ -33,7 +33,7 @@ export interface FeautreToggleData {
     'aia.bruk-sprakvelger'?: boolean;
     'aia.bruk-tabs-demo'?: boolean;
     'aia.bruk-endring-av-situasjon'?: boolean;
-    'aia.bruk-meldekort-mikroservice'?: boolean;
+    'aia.bruk-meldekort-mikrofrontend'?: boolean;
 }
 
 export interface State extends DataElement {
@@ -47,7 +47,7 @@ export const initialState: State = {
         'aia.bruk-sprakvelger': false,
         'aia.bruk-tabs-demo': false,
         'aia.bruk-endring-av-situasjon': false,
-        'aia.bruk-meldekort-mikroservice': false,
+        'aia.bruk-meldekort-mikrofrontend': false,
     },
     status: STATUS.NOT_STARTED,
 };

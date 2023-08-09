@@ -10,7 +10,7 @@ import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { loggAktivitet } from '../../metrics/metrics';
 
 import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
-import { useFeatureToggleData } from '../../contexts/feature-toggles';
+import { FeatureToggles, useFeatureToggleData } from '../../contexts/feature-toggles';
 import MeldekortMikrofrontend from '../meldekort-mikrofrontend/meldekort-mikrofrontend';
 
 const TEKSTER = {
@@ -29,7 +29,7 @@ function Meldekort() {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const brukTabsDemo = useSkalBrukeTabs();
     const featuretoggleData = useFeatureToggleData();
-    const brukMeldekortMikroservice = featuretoggleData['aia.bruk-meldekort-mikroservice'];
+    const brukMeldekortMikrofrontend = featuretoggleData[FeatureToggles.BRUK_MELDEKORT_MIKROFRONTEND];
     const handleClickLesMer = () => {
         if (!clickedLesMer) {
             loggAktivitet({ aktivitet: 'Leser forklaringen for meldekort', ...amplitudeData });
@@ -44,7 +44,7 @@ function Meldekort() {
                     Meldekort og meldeplikt
                 </Detail>
             )}
-            {brukMeldekortMikroservice ? <MeldekortMikrofrontend /> : <MeldekortHovedInnhold />}
+            {brukMeldekortMikrofrontend ? <MeldekortMikrofrontend /> : <MeldekortHovedInnhold />}
             <ReadMore size="medium" header={tekst('overskrift')} onClick={handleClickLesMer}>
                 <MeldekortForklaring />
             </ReadMore>
