@@ -50,9 +50,16 @@ export const isMeldekortbruker = (meldekort: MeldekortDataFraApi) => {
 };
 
 const calculateSisteDatoForTrekk = (til?: string) => {
-    const tilDato = datoUtenTid(til || '');
+    if (!til) {
+        return {
+            sisteDatoForTrekk: '',
+            risikerTrekk: false,
+        };
+    }
+
+    const tilDato = datoUtenTid(til);
     const sisteDatoForTrekk = plussDager(tilDato, 8);
-    const risikerTrekk = antallDagerSiden(datoUtenTid(''), tilDato) < 0;
+    const risikerTrekk = antallDagerSiden(datoUtenTid(new Date().toISOString()), tilDato) < 0;
 
     return {
         sisteDatoForTrekk: sisteDatoForTrekk.toISOString().substring(0, 10),

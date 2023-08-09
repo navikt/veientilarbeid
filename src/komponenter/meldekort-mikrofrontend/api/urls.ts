@@ -16,7 +16,7 @@ export const getEnvironment = (): 'production' | 'development' | 'local' => {
 type EnvUrl = { local: string; development: string; production: string };
 
 const MELDEKORT_API_URL: EnvUrl = {
-    local: 'http://localhost:3002/api/meldekortinfo',
+    local: 'http://localhost:3000/aia-backend/meldekort/status',
     development: 'https://www.intern.dev.nav.no/tms-min-side-proxy/meldekort/api/person/meldekortstatus',
     production: 'https://www.nav.no/tms-min-side-proxy/meldekort/api/person/meldekortstatus',
 };
