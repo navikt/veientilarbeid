@@ -23,7 +23,7 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
         case FeatureToggles.BRUK_ENDRING_AV_SITUASJON:
             return 'Bruk endring av situasjon';
         case FeatureToggles.BRUK_MELDEKORT_MIKROFRONTEND:
-            return 'Bruk meldekort mikroservice';
+            return 'Bruk meldekort mikrofrontend';
     }
 }
 
