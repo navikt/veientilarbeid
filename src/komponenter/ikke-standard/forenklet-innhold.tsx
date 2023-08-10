@@ -13,6 +13,8 @@ import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { aktivitetsplanLenke, dialogLenke, sykefravaerLenke } from '../../innhold/lenker';
 import { loggAktivitet } from '../../metrics/metrics';
 import MeldekortHovedInnhold from '../meldekort/meldekort-hovedinnhold';
+import { FeatureToggles, useFeatureToggleData } from '../../contexts/feature-toggles';
+import MeldekortMikrofrontend from '../meldekort-mikrofrontend/meldekort-mikrofrontend';
 
 const TEKSTER = {
     nb: {
@@ -77,6 +79,8 @@ function ForenkletInnhold() {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
     const { amplitudeData } = useAmplitudeData();
     const { erSykmeldtMedArbeidsgiver } = useBrukerinfoData();
+    const featuretoggleData = useFeatureToggleData();
+    const brukMeldekortMikrofrontend = featuretoggleData[FeatureToggles.BRUK_MELDEKORT_MIKROFRONTEND];
 
     const handleClick = (action: string) => {
         loggAktivitet({ aktivitet: action, ...amplitudeData });
@@ -95,7 +99,7 @@ function ForenkletInnhold() {
                         {tekst('sykefravaer.ingress')}
                     </Link>
                 </BodyLong>
-            </div>
+            </div>,
         );
     };
 
@@ -116,12 +120,15 @@ function ForenkletInnhold() {
                             </Link>{' '}
                             {tekst('aktivitetsplan.holde-orden')}
                         </BodyLong>
-                    </div>
+                    </div>,
                 )}
                 {erSykmeldtMedArbeidsgiver ? (
                     <DittSykefravaer />
                 ) : (
-                    ListeElement(<ClipboardIcon aria-hidden="true" />, <MeldekortHovedInnhold />)
+                    ListeElement(
+                        <ClipboardIcon aria-hidden="true" />,
+                        brukMeldekortMikrofrontend ? <MeldekortMikrofrontend /> : <MeldekortHovedInnhold />,
+                    )
                 )}
                 {ListeElement(
                     <ChatIcon aria-hidden="true" />,
@@ -130,7 +137,7 @@ function ForenkletInnhold() {
                         <Link href={dialogLenke} onClick={() => handleClick('Går til dialogen fra ikke-standard')}>
                             {tekst('dialog.ingress')}
                         </Link>{' '}
-                    </div>
+                    </div>,
                 )}
                 {ListeElement(
                     <LaptopIcon aria-hidden="true" />,
@@ -162,7 +169,7 @@ function ForenkletInnhold() {
                             </Link>
                             .
                         </BodyLong>
-                    </div>
+                    </div>,
                 )}
             </ul>
         </Panel>
