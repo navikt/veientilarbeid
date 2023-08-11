@@ -1,6 +1,6 @@
 import { BodyLong, Button, Heading, Panel } from '@navikt/ds-react';
 import { InformationIcon } from '@navikt/aksel-icons';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { useFeatureToggleData, FeatureToggles } from '../../contexts/feature-toggles';
 import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
@@ -57,6 +57,7 @@ function AutomatiskReaktivert() {
     const arbeidssokerperioder = beregnArbeidssokerperioder(arbeidssokerperioderData);
     const visSprakvelger = featureToggleData[FeatureToggles.BRUK_SPRAKVELGER];
     const kanViseKomponent = featureToggleData[FeatureToggles.BRUK_BEKREFT_REAKTIVERING] && harUbesvartReaktivering;
+    const panelRef = useRef<HTMLDivElement>(null);
 
     async function handleReaktiveringSvar(svar: ReaktiveringSvarAlternativer) {
         await lagreReaktiveringSvar(svar);
@@ -68,10 +69,16 @@ function AutomatiskReaktivert() {
         setValgtSprak(valgtSprak === 'en' ? 'nb' : 'en');
     }
 
+    useEffect(() => {
+        if (panelRef.current) {
+            panelRef.current.scrollIntoView({ block: 'end', inline: 'nearest' });
+        }
+    }, []);
+
     if (!kanViseKomponent) return null;
 
     return (
-        <Panel className={spacingStyles.px1_5}>
+        <Panel className={spacingStyles.px1_5} ref={panelRef}>
             <ErRendret loggTekst="Rendrer automatisk reaktivert" />
             {visSprakvelger && (
                 <Button variant="tertiary" size="xsmall" className={spacingStyles.ml1_75} onClick={toggleByttSprak}>

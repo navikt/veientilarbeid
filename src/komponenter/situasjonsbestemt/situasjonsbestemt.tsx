@@ -17,6 +17,8 @@ import MeldekortHovedInnhold from '../meldekort/meldekort-hovedinnhold';
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
 import styles from './situasjonsbestemt.module.css';
+import { FeatureToggles, useFeatureToggleData } from '../../contexts/feature-toggles';
+import MeldekortMikrofrontend from '../meldekort-mikrofrontend/meldekort-mikrofrontend';
 
 const TEKSTER = {
     nb: {
@@ -89,6 +91,8 @@ function Situasjonsbestemt() {
     const harPeriodeStart = harAktivArbeidssokerperiode === 'Ja' ? new Date(aktivPeriodeStart) : null;
 
     const harGyldigBehovsvurdering = harSistSvartDato && harPeriodeStart && harSistSvartDato > harPeriodeStart;
+    const featuretoggleData = useFeatureToggleData();
+    const brukMeldekortMikrofrontend = featuretoggleData[FeatureToggles.BRUK_MELDEKORT_MIKROFRONTEND];
 
     const handleClick = (action: string) => {
         loggAktivitet({ aktivitet: action, ...amplitudeData });
@@ -107,7 +111,7 @@ function Situasjonsbestemt() {
                         {tekst('sykefravaer.ingress')}
                     </Link>
                 </BodyLong>
-            </div>
+            </div>,
         );
     };
 
@@ -119,7 +123,7 @@ function Situasjonsbestemt() {
                 <Link href={dialogLenke} onClick={() => handleClick('Går til dialogen fra ikke-standard')}>
                     {tekst('dialog.ingress')}
                 </Link>{' '}
-            </div>
+            </div>,
         );
     };
 
@@ -142,12 +146,15 @@ function Situasjonsbestemt() {
                                 </Link>{' '}
                                 {tekst('aktivitetsplan.holde-orden')}
                             </BodyLong>
-                        </div>
+                        </div>,
                     )}
                 {erSykmeldtMedArbeidsgiver ? (
                     <DittSykefravaer />
                 ) : (
-                    ListeElement(<ClipboardIcon aria-hidden="true" />, <MeldekortHovedInnhold />)
+                    ListeElement(
+                        <ClipboardIcon aria-hidden="true" />,
+                        brukMeldekortMikrofrontend ? <MeldekortMikrofrontend /> : <MeldekortHovedInnhold />,
+                    )
                 )}
                 {ListeElement(
                     <LaptopIcon aria-hidden="true" />,
@@ -179,7 +186,7 @@ function Situasjonsbestemt() {
                             </Link>
                             .
                         </BodyLong>
-                    </div>
+                    </div>,
                 )}
             </ul>
         </Panel>

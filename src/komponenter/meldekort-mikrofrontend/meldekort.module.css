@@ -1,0 +1,22 @@
+.meldekort {
+    margin-bottom: var(--navds-spacing-8);
+}
+
+.container {
+    display: grid;
+    gap: 1rem;
+}
+
+@media (min-width: 0px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr auto;
+    }
+}
+
+@media (min-width: 648px) {
+    .container {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+    }
+}
