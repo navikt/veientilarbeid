@@ -14,7 +14,7 @@ export const SprakContext = createContext<State>(initialState);
 
 export const useSprakValg = () => useContext(SprakContext);
 
-function hentSprakFraUrl() {
+export function hentSprakFraUrl(url: string) {
     return [
         {
             regExp: /\/n(b|o)($|\/)/,
@@ -28,12 +28,12 @@ function hentSprakFraUrl() {
             regExp: /\/nn($|\/)/,
             sprak: 'nn',
         },
-    ].find(({ regExp }) => regExp.test(window.location.href))?.sprak;
+    ].find(({ regExp }) => regExp.test(url))?.sprak;
 }
 export const hentSprakValgFraUrl = (): State => {
     const urlParams = new URLSearchParams(window.location.search);
     const sprakFraUrlParam = urlParams.get('lang');
-    const sprakFraUrl = sprakFraUrlParam ?? hentSprakFraUrl();
+    const sprakFraUrl = sprakFraUrlParam ?? hentSprakFraUrl(window.location.href);
     const setGyldigSprak = (sprak?: string): Sprak => {
         return (['en', 'nb', 'nn'].includes(sprak as any) ? sprak : 'nb') as Sprak;
     };
