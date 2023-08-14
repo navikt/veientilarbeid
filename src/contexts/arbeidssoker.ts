@@ -29,7 +29,5 @@ export const initialState: State = {
 
 export const ArbeidssokerContext = createContext<State>(initialState);
 
-export const useArbeidssoker = () => useContext(ArbeidssokerContext).data;
-
 export const useUnderOppfolging = () => useContext(ArbeidssokerContext).data?.underoppfolging;
 export const useArbeidssokerPerioder = () => useContext(ArbeidssokerContext).data?.arbeidssokerperioder;

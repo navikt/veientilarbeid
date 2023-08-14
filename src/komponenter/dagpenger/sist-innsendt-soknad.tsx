@@ -2,7 +2,6 @@ import { BodyShort, Link } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
 
 import { sorterEtterNyesteDatoInnsendt } from '../../lib/beregn-dagpenge-status';
-import { DpInnsynSoknad } from '../../contexts/dp-innsyn-soknad';
 import { datoForForventetSvar } from '../../utils/date-utils';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import { loggAktivitet } from '../../metrics/metrics';
@@ -11,6 +10,7 @@ import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
 import { useSWRImmutable } from '../../hooks/useSWR';
 import { DP_INNSYN_URL } from '../../ducks/api';
+import { DpInnsynSoknad } from '../../models/dagpenger';
 
 const TEKSTER = {
     nb: {
@@ -60,7 +60,7 @@ const SistInnsendtSoknad = ({ dato, komponent }: { dato?: string; komponent: str
                 {tekst('svar')}{' '}
                 {prettyPrintDato(
                     datoForForventetSvar(new Date(sisteInnsendteSoknad.datoInnsendt)).toISOString(),
-                    sprak
+                    sprak,
                 )}
             </BodyShort>
 
@@ -69,7 +69,7 @@ const SistInnsendtSoknad = ({ dato, komponent }: { dato?: string; komponent: str
                 onClick={() => {
                     loggLenkeKlikk(
                         `'Går til saksbehandlingstider fra "dagpenger-tema - ${komponent}"`,
-                        'https://www.nav.no/saksbehandlingstider#dagpenger'
+                        'https://www.nav.no/saksbehandlingstider#dagpenger',
                     );
                 }}
                 href="https://www.nav.no/saksbehandlingstider#dagpenger"

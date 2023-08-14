@@ -1,7 +1,6 @@
 import { Heading } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
 
-import { DpInnsynSoknad } from '../../contexts/dp-innsyn-soknad';
 import { useDpInnsynPaabegynteSoknaderData } from '../../contexts/dp-innsyn-paabegynte-soknader';
 import { useSprakValg } from '../../contexts/sprak';
 
@@ -14,6 +13,7 @@ import EttersendDokumentasjon from './ettersend-dokumentasjon';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import { useSWRImmutable } from '../../hooks/useSWR';
 import { DP_INNSYN_URL } from '../../ducks/api';
+import { DpInnsynSoknad } from '../../models/dagpenger';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -31,7 +31,7 @@ const DagpengerHarSokt = (props: any) => {
     const sisteInnsendteSoknad = soknader?.sort(sorterEtterNyesteDatoInnsendt)[0];
     const { paabegynteSoknader = [] } = useDpInnsynPaabegynteSoknaderData();
     const sistePaabegyntSoknad = paabegynteSoknader.sort(
-        (a, b) => new Date(b.sistEndret).getTime() - new Date(a.sistEndret).getTime()
+        (a, b) => new Date(b.sistEndret).getTime() - new Date(a.sistEndret).getTime(),
     )[0];
     const harPaabegyntEtterInnsendt =
         sistePaabegyntSoknad &&

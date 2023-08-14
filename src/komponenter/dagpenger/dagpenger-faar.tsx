@@ -2,7 +2,6 @@ import { Heading } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
 
 import PaabegynteSoknader from './paabegynte-soknader';
-import { Vedtak } from '../../contexts/dp-innsyn-vedtak';
 import { sorterEtterNyesteVedtak } from '../../lib/beregn-dagpenge-status';
 import SistInnsendtSoknad from './sist-innsendt-soknad';
 import SkrivTilOssChatOgMineDagpenger from './skriv-til-oss-chat-og-mine-dagpenger';
@@ -11,6 +10,7 @@ import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-spra
 import { useSprakValg } from '../../contexts/sprak';
 import { useSWRImmutable } from '../../hooks/useSWR';
 import { DP_INNSYN_URL } from '../../ducks/api';
+import { Vedtak } from '../../models/dagpenger';
 
 const TEKSTER: Tekster<string> = {
     nb: {

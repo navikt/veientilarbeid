@@ -1,7 +1,6 @@
 import { BodyShort, Heading } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
 
-import { Vedtak } from '../../contexts/dp-innsyn-vedtak';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import SkrivTilOssChatOgMineDagpenger from './skriv-til-oss-chat-og-mine-dagpenger';
 import LesOmYtelser from './les-om-ytelser';
@@ -9,6 +8,7 @@ import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-spra
 import { useSprakValg } from '../../contexts/sprak';
 import { useSWRImmutable } from '../../hooks/useSWR';
 import { DP_INNSYN_URL } from '../../ducks/api';
+import { Vedtak } from '../../models/dagpenger';
 
 const TEKSTER: Tekster<string> = {
     nb: {

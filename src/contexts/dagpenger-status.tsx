@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import { createContext, ReactNode, useEffect, useState } from 'react';
 import { InnloggingsNiva, useAutentiseringData } from './autentisering';
 import { DAGPENGER_STATUS, requestConfig } from '../ducks/api';
 import { fetchToJson } from '../ducks/api-utils';
@@ -50,14 +50,4 @@ function DagpengerStatusProvider(props: { children: ReactNode }) {
     return <DagpengerStatusContext.Provider value={contextValue}>{props.children}</DagpengerStatusContext.Provider>;
 }
 
-function useDagpengerStatus() {
-    const context = useContext(DagpengerStatusContext);
-
-    if (context === undefined) {
-        throw new Error('useDagpengerStatus må brukes under en DagpengerStatusProvider');
-    }
-
-    return context;
-}
-
-export { DagpengerStatusProvider, useDagpengerStatus };
+export { DagpengerStatusProvider };

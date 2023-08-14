@@ -4,10 +4,9 @@ import { useArbeidssokerPerioder } from '../contexts/arbeidssoker';
 import beregnArbeidssokerperioder from '../lib/beregn-arbeidssokerperioder';
 import { useDpInnsynPaabegynteSoknaderData } from '../contexts/dp-innsyn-paabegynte-soknader';
 import { useSWRImmutable } from './useSWR';
-import { DpInnsynSoknad } from '../contexts/dp-innsyn-soknad';
 import { DP_INNSYN_URL } from '../ducks/api';
-import { Vedtak } from '../contexts/dp-innsyn-vedtak';
 import beregnDagpengeStatus from '../lib/beregn-dagpenge-status';
+import { DpInnsynSoknad, Vedtak } from '../models/dagpenger';
 
 export function useBeregnDagpengestatus() {
     const brukerInfoData = useBrukerinfoData();

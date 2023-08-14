@@ -3,8 +3,6 @@ import spacingStyles from '../../spacing.module.css';
 
 import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
-import { DpInnsynSoknad } from '../../contexts/dp-innsyn-soknad';
-import { Vedtak } from '../../contexts/dp-innsyn-vedtak';
 import { useDpInnsynPaabegynteSoknaderData } from '../../contexts/dp-innsyn-paabegynte-soknader';
 import { useSprakValg } from '../../contexts/sprak';
 
@@ -17,6 +15,7 @@ import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
 import { useSWRImmutable } from '../../hooks/useSWR';
 import { DP_INNSYN_URL } from '../../ducks/api';
+import { DpInnsynSoknad, Vedtak } from '../../models/dagpenger';
 // TODO - oversette alle tekster til engelsk
 const TEKSTER = {
     nb: {

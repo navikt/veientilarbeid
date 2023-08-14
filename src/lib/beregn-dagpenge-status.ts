@@ -8,10 +8,9 @@
  */
 import * as Brukerregistrering from '../contexts/brukerregistrering';
 import * as BrukerInfo from '../contexts/bruker-info';
-import { DpInnsynSoknad } from '../contexts/dp-innsyn-soknad';
 import { DpInnsynPaabegyntSoknad } from '../contexts/dp-innsyn-paabegynte-soknader';
-import { Vedtak } from '../contexts/dp-innsyn-vedtak';
 import { BeregnedePerioder } from './beregn-arbeidssokerperioder';
+import { DpInnsynSoknad, Vedtak } from '../models/dagpenger';
 
 // import { plussDager } from '../utils/date-utils';
 
@@ -93,7 +92,7 @@ function beregnDagpengeStatus({
 
     const sistPaabegynteSoknad = paabegynteSoknader.sort(
         (a: DpInnsynPaabegyntSoknad, b: DpInnsynPaabegyntSoknad) =>
-            new Date(a.sistEndret).getTime() - new Date(b.sistEndret).getTime()
+            new Date(a.sistEndret).getTime() - new Date(b.sistEndret).getTime(),
     )[0];
 
     const harPaabegyntEtterInnsendt =
