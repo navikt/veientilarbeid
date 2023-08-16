@@ -26,6 +26,11 @@ import {
 
 import tabStyles from './tabs.module.css';
 import styles from '../innhold/innhold.module.css';
+import {
+    harSendtInnNyDokumentasjon,
+    harSitasjonSomKreverDokumentasjon,
+} from '../komponenter/endre-situasjon/send-inn-dokumentasjon';
+import { useBesvarelse } from '../contexts/besvarelse';
 
 const QUERY_PARAM = 'aia.aktivTab';
 
@@ -113,11 +118,25 @@ function skalViseMeldekortVarsel(meldekortData?: Data) {
 
     return meldekortForLevering.length === 1 && erInnenforTidsfrist;
 }
+
+function useSkalViseHjelpOgStotteVarsel() {
+    const { besvarelse: besvarelseData } = useBesvarelse();
+    const { profil } = useProfil();
+    const aktuellSitausjon = besvarelseData?.besvarelse?.dinSituasjon?.verdi;
+
+    if (!aktuellSitausjon) {
+        return false;
+    }
+
+    return harSitasjonSomKreverDokumentasjon(aktuellSitausjon) && !harSendtInnNyDokumentasjon(profil, besvarelseData);
+}
 const AiaTabs = () => {
     const [aktivTab, settAktivTab] = useState<TabValue>(TabValue.MIN_SITUASJON);
     const harGyldigBehovsvurdering = useHarGyldigBehovsvurdering();
     const visPengestotteVarsel = harIkkeSoktDagpenger(useBeregnDagpengestatus(), useProfil().profil);
     const visMeldekortVarsel = skalViseMeldekortVarsel(useMeldekortData().meldekortData);
+    const visHjelpOgStotteVarsel = useSkalViseHjelpOgStotteVarsel();
+
     const { amplitudeData } = useAmplitudeData();
 
     const loggTabSkifte = (tab: string) => {
@@ -147,7 +166,21 @@ const AiaTabs = () => {
             <RegistrertTittel />
             <Tabs value={aktivTab} onChange={onChangeTab} className={`${tabStyles.mb2} ${tabStyles.mt1}`}>
                 <Tabs.List>
-                    <Tabs.Tab value="situasjon" label="Min situasjon" className={tabStyles.nowrap} />
+                    <Tabs.Tab
+                        value="situasjon"
+                        label={
+                            <>
+                                Min situasjon{' '}
+                                {visHjelpOgStotteVarsel && (
+                                    <VarslingSirkel
+                                        title={'Du har ikke sendt inn dokumentasjon'}
+                                        aria-label={'Du har ikke sendt inn dokumentasjon'}
+                                    />
+                                )}
+                            </>
+                        }
+                        className={tabStyles.nowrap}
+                    />
                     <Tabs.Tab
                         value="hjelp"
                         label={

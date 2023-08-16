@@ -25,6 +25,20 @@ export const harSendtInnNyDokumentasjon = (profil: Profil | null, besvarelse: Be
     return harSendtInnDokumentasjon;
 };
 
+export const harSitasjonSomKreverDokumentasjon = (aktuellSituasjon: SituasjonSvar) => {
+    return [
+        PermittertSvar.OPPSIGELSE,
+        PermittertSvar.TILBAKE_TIL_JOBB,
+        PermittertSvar.ENDRET_PERMITTERINGSPROSENT,
+        PermittertSvar.SAGT_OPP,
+    ].includes(
+        aktuellSituasjon as
+            | PermittertSvar.OPPSIGELSE
+            | PermittertSvar.TILBAKE_TIL_JOBB
+            | PermittertSvar.ENDRET_PERMITTERINGSPROSENT
+            | PermittertSvar.SAGT_OPP,
+    );
+};
 const SendInnDokumentasjon = (props: { aktuellSituasjon: SituasjonSvar }) => {
     const { lagreProfil, profil } = useProfil();
     const { besvarelse } = useBesvarelse();
@@ -51,16 +65,7 @@ const SendInnDokumentasjon = (props: { aktuellSituasjon: SituasjonSvar }) => {
         | PermittertSvar.ENDRET_PERMITTERINGSPROSENT
         | PermittertSvar.SAGT_OPP;
 
-    if (
-        harSendtInnDokumentasjon ||
-        !aktuellSituasjon ||
-        ![
-            PermittertSvar.OPPSIGELSE,
-            PermittertSvar.TILBAKE_TIL_JOBB,
-            PermittertSvar.ENDRET_PERMITTERINGSPROSENT,
-            PermittertSvar.SAGT_OPP,
-        ].includes(aktuellSituasjon)
-    ) {
+    if (harSendtInnDokumentasjon || !aktuellSituasjon || !harSitasjonSomKreverDokumentasjon(aktuellSituasjon)) {
         return null;
     }
 
