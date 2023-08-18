@@ -16,7 +16,7 @@ export const getEnvironment = () => {
 const AIA_BACKEND_URL = {
     local: 'http://localhost:3000/aia-backend',
     development: 'https://www.intern.dev.nav.no/aia-backend',
-    production: 'https://www.nav.no/tms-min-side-proxy/aia/aia-backend',
+    production: 'https://www.nav.no/aia-backend',
 };
 
 const INNLOGGINGSSTATUS_URL = {
