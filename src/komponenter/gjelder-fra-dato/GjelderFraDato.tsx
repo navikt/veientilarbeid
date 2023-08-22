@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { BodyShort, Button, Heading, Link, Modal } from '@navikt/ds-react';
+import { BodyShort, Button, Link, Modal } from '@navikt/ds-react';
 
 import { useGjelderFraDatoModal } from '../../contexts/gjelder-fra-dato-modal';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
@@ -50,11 +50,12 @@ function GjelderFraDato(): JSX.Element | null {
     }
 
     return (
-        <Modal open={visModal} onClose={settLukkModal} shouldCloseOnOverlayClick={false}>
-            <Modal.Content>
-                <Heading spacing={true} size={'medium'} style={{ marginRight: '2em' }}>
-                    Hvilken dag er den siste dagen med lønn?
-                </Heading>
+        <Modal
+            open={visModal}
+            onClose={settLukkModal}
+            header={{ heading: 'Hvilken dag er den siste dagen med lønn?', size: 'medium' }}
+        >
+            <Modal.Body>
                 <BodyShort spacing={true}>
                     <input
                         style={{ width: 'initial' }}
@@ -84,7 +85,7 @@ function GjelderFraDato(): JSX.Element | null {
                 <Button variant={'secondary'} onClick={onSubmit} loading={lagrerDato}>
                     Lagre
                 </Button>
-            </Modal.Content>
+            </Modal.Body>
         </Modal>
     );
 }

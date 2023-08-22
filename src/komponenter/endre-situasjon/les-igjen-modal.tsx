@@ -1,12 +1,10 @@
 import React from 'react';
-import { Button, Heading, Modal } from '@navikt/ds-react';
+import { Button, Modal } from '@navikt/ds-react';
 
 import Veiledning from './veiledning';
 import { loggAktivitet } from '../../metrics/metrics';
 
-import spacing from '../../spacing.module.css';
 import flex from '../../flex.module.css';
-import styles from './modal.module.css';
 
 interface LesIgjenModalProps {
     openModal: boolean;
@@ -69,17 +67,13 @@ const LesIgjenModal = (props: LesIgjenModalProps) => {
     return (
         <Modal
             open={openModal}
-            aria-label="Jobbsituasjonen min har endret seg"
-            onClose={() => setOpenModal((x) => !x)}
-            // shouldCloseOnEsc={!datepickerProps.open}
-            aria-labelledby="modal-heading"
+            onClose={() => setOpenModal(false)}
+            width={'medium'}
+            header={{ heading: 'Jobbsituasjonen min har endret seg', size: 'medium' }}
         >
-            <Modal.Content className={styles.maxWidth}>
-                <Heading spacing level="1" size="large" id="modal-heading" className={spacing.mr2}>
-                    Jobbsituasjonen min har endret seg
-                </Heading>
+            <Modal.Body>
                 <Innhold tilleggsData={tilleggsData} valgtSituasjon={valgtSituasjon} amplitudeData={amplitudeData} />
-            </Modal.Content>
+            </Modal.Body>
         </Modal>
     );
 };
