@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BodyShort, Heading, Link, Modal } from '@navikt/ds-react';
+import { BodyShort, Link, Modal } from '@navikt/ds-react';
 import { ChevronLeftIcon } from '@navikt/aksel-icons';
 
 import { AmplitudeData } from '../../metrics/amplitude-utils';
@@ -8,7 +8,6 @@ import Steg3 from './steg3';
 import Steg1 from './steg1';
 
 import spacing from '../../spacing.module.css';
-import styles from './modal.module.css';
 
 interface PermittertModalProps {
     openModal: boolean;
@@ -27,10 +26,6 @@ const PermittertModal = (props: PermittertModalProps) => {
     useEffect(() => {
         settAktivSide(1);
     }, [openModal]);
-
-    useEffect(() => {
-        Modal.setAppElement('#aia-wrapper');
-    }, []);
 
     const Innhold = () => {
         if (aktivSide === 1) {
@@ -85,22 +80,18 @@ const PermittertModal = (props: PermittertModalProps) => {
 
     return (
         <Modal
+            width={'medium'}
             open={openModal}
-            aria-label="Jobbsituasjonen min har endret seg"
-            onClose={() => setOpenModal((x) => !x)}
-            // shouldCloseOnEsc={!datepickerProps.open}
-            aria-labelledby="modal-heading"
+            onClose={() => setOpenModal(false)}
+            header={{ heading: 'Jobbsituasjonen min har endret seg', size: 'medium' }}
         >
-            <Modal.Content className={styles.maxWidth}>
+            <Modal.Body>
                 <Tilbake />
-                <Heading spacing level="1" size="large" id="modal-heading" className={spacing.mr2}>
-                    Jobbsituasjonen min har endret seg
-                </Heading>
-                <BodyShort className={spacing.mb1}>
+                <BodyShort spacing>
                     <small>Steg {aktivSide}/3</small>
                 </BodyShort>
                 <Innhold />
-            </Modal.Content>
+            </Modal.Body>
         </Modal>
     );
 };
