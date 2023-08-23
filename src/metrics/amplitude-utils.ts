@@ -74,6 +74,7 @@ export type AmplitudeData = {
     levertMeldekortEtterInaktvering: 'INGEN_DATA' | 'Ja' | 'Nei';
     automatiskReaktivert: 'INGEN_DATA' | 'Ja';
     automatiskReaktivertSvar: 'INGEN_DATA' | 'Ikke svart' | 'ja' | 'nei';
+    loggetFraSide: 'Min side' | 'Side 2' | 'INGEN_DATA';
 };
 
 export function amplitudeLogger(name: string, values?: object) {

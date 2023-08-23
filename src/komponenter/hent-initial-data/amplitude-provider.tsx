@@ -58,6 +58,7 @@ export const initialAmplitudeData: AmplitudeData = {
     levertMeldekortEtterInaktvering: 'INGEN_DATA',
     automatiskReaktivert: 'INGEN_DATA',
     automatiskReaktivertSvar: 'INGEN_DATA',
+    loggetFraSide: 'INGEN_DATA',
 };
 
 const AmplitudeContext = createContext({
@@ -118,6 +119,9 @@ const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const valgtSprak = hentSprakValgFraCookie();
     const sprakValgFraCookie = valgtSprak || 'IKKE_VALGT';
 
+    const url = window.location.href;
+    const loggetFraSide = url.includes('arbeidssoker') ? 'Side 2' : 'Min side';
+
     const data: AmplitudeData = {
         ...initialAmplitudeData,
         brukergruppe: beregnBrukergruppe({
@@ -147,6 +151,7 @@ const AmplitudeProvider = (props: { children: React.ReactNode }) => {
         antallDagerSidenSisteArbeidssokerperiode,
         antallUkerSidenSisteArbeidssokerperiode,
         antallUkerMellomSisteArbeidssokerperioder,
+        loggetFraSide,
     };
 
     const [amplitudeData, setAmplitudeData] = React.useState(data);
