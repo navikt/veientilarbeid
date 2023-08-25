@@ -49,7 +49,7 @@ describe('Tester at main rendrer riktig innhold', () => {
         test('med standard innsatsgruppe som ikke er under oppfølging', async () => {
             server.use(
                 ...standardHandlers,
-                msw_get(ARBEIDSSOKER_NIVA3_URL_UTEN_QUERY_PARAMS, arbeidssoker(false, 'aktiv'))
+                msw_get(ARBEIDSSOKER_NIVA3_URL_UTEN_QUERY_PARAMS, arbeidssoker(false, 'aktiv')),
             );
             render(<Mikrofrontend />);
 
@@ -70,7 +70,7 @@ describe('Tester at main rendrer riktig innhold', () => {
         test(', men er under oppfølging', async () => {
             server.use(
                 ...ikkeStandardHandlers,
-                msw_get(ARBEIDSSOKER_NIVA3_URL_UTEN_QUERY_PARAMS, arbeidssoker(true, 'ingen'))
+                msw_get(ARBEIDSSOKER_NIVA3_URL_UTEN_QUERY_PARAMS, arbeidssoker(true, 'ingen')),
             );
             render(<Mikrofrontend />);
 
@@ -80,7 +80,7 @@ describe('Tester at main rendrer riktig innhold', () => {
         });
 
         test(', men nylig har vært arbeidssøker (viser reaktiveringskomponent)', async () => {
-            server.use(msw_get(ARBEIDSSOKER_NIVA3_URL_UTEN_QUERY_PARAMS, arbeidssoker(false, 'nylig-utløpt')));
+            server.use(msw_get(ARBEIDSSOKER_NIVA3_URL_UTEN_QUERY_PARAMS, arbeidssoker(false, 'nylig-utlopt')));
 
             const { container } = render(<Mikrofrontend />);
 
@@ -89,7 +89,7 @@ describe('Tester at main rendrer riktig innhold', () => {
             expect(swrSpy).not.toHaveBeenCalledWith('ER_STANDARD_INNSATSGRUPPE_URL');
             expect(container).not.toBeEmptyDOMElement();
             expect(
-                await screen.findByText('Du er ikke lenger registrert som arbeidssøker hos NAV')
+                await screen.findByText('Du er ikke lenger registrert som arbeidssøker hos NAV'),
             ).toBeInTheDocument();
         });
 

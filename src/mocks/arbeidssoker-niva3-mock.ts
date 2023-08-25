@@ -1,4 +1,4 @@
-export type ArbeidssokerPeriode = 'aktiv' | 'ingen' | 'nylig-utløpt' | 'gammel' | 'aktiv-legacy' | 'aktiv-reaktivert';
+export type ArbeidssokerPeriode = 'aktiv' | 'ingen' | 'nylig-utlopt' | 'gammel' | 'aktiv-legacy' | 'aktiv-reaktivert';
 
 const identity = (i: any) => i;
 
@@ -12,7 +12,7 @@ const arbeidssoker = (underOppfolging: boolean, periode: ArbeidssokerPeriode | n
             status: 200,
             arbeidssokerperioder: [
                 (periode === 'aktiv' || periode === null) && { fraOgMedDato: '2022-09-11', tilOgMedDato: null },
-                periode === 'nylig-utløpt' && {
+                periode === 'nylig-utlopt' && {
                     fraOgMedDato: '2022-09-11',
                     tilOgMedDato: new Date().toISOString().substring(0, 10),
                 },
