@@ -7,11 +7,13 @@ import { useMeldeplikt } from '../../contexts/meldeplikt';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import { loggAktivitet } from '../../metrics/metrics';
-import { dialogLenke, reaktiveringLenke } from '../../innhold/lenker';
+import { dialogLenke } from '../../innhold/lenker';
 import SisteMeldekortVidereRegistrertValg from './siste-meldekort-videre-registrert-valg';
 
 import styles from '../../innhold/innhold.module.css';
 import spacingStyles from '../../spacing.module.css';
+import { fetchToJson } from '../../ducks/api-utils';
+import { FULLFOER_REAKTIVERING_URL, requestConfig } from '../../ducks/api';
 
 interface Props {
     handleIkkeReaktivering: (event: React.SyntheticEvent) => void;
@@ -23,15 +25,16 @@ const ReaktiveringAktuelt = (props: Props) => {
 
     const { handleIkkeReaktivering } = props;
 
-    const handleReaktivering = (aktivitet: string) => {
-        loggAktivitet({ aktivitet: aktivitet, ...amplitudeData });
-        window.location.assign(reaktiveringLenke);
-    };
-
     const handleDialog = (aktivitet: string) => {
         loggAktivitet({ aktivitet: aktivitet, ...amplitudeData });
         window.location.assign(dialogLenke);
     };
+
+    const fullfoerReaktivering = async () =>
+        await fetchToJson(FULLFOER_REAKTIVERING_URL, {
+            ...requestConfig(),
+            method: 'POST',
+        });
 
     return (
         <section className={`${styles.limit} ${spacingStyles.blokkM}`}>
@@ -43,7 +46,7 @@ const ReaktiveringAktuelt = (props: Props) => {
                 <div>
                     <SisteMeldekortVidereRegistrertValg meldeplikt={meldeplikt} />
                     <BodyShort className={spacingStyles.blokkS}>
-                        <Button variant="primary" onClick={() => handleReaktivering('Går til reaktivering')}>
+                        <Button variant="primary" onClick={fullfoerReaktivering}>
                             Registrer deg som arbeidssøker
                         </Button>
                     </BodyShort>

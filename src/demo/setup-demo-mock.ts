@@ -22,6 +22,7 @@ import {
     DAGPENGER_STATUS,
     ANTATT_INAKTIVERINGSGRUNN,
     REAKTIVERING_URL,
+    FULLFOER_REAKTIVERING_URL,
 } from '../ducks/api';
 
 import {
@@ -174,6 +175,9 @@ export const demo_handlers = [
 
     rest.get(REAKTIVERING_URL, reaktiveringGetResolver),
     rest.post(REAKTIVERING_URL, reaktiveringPostResolver),
+    rest.post(FULLFOER_REAKTIVERING_URL, (req, res, ctx) => {
+        return res(ctx.status(200));
+    }),
 
     rest.post('https://amplitude.nav.no/collect', (req, res, ctx) => {
         return res(ctx.status(200));
