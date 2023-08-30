@@ -39,7 +39,7 @@ const ReaktiveringAktuelt = (props: Props) => {
                 <div>
                     <SisteMeldekortVidereRegistrertValg meldeplikt={meldeplikt} />
                     <BodyShort className={spacingStyles.blokkS}>
-                        <ReaktiveringKnapp />
+                        <ReaktiveringKnapp aktivitet="Trykker på reaktivering" />
                     </BodyShort>
                     <BodyShort className={spacingStyles.blokkXs}>
                         <Link href={dialogLenke} onClick={handleIkkeReaktivering}>

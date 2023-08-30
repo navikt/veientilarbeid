@@ -3,13 +3,21 @@ import { FULLFOER_REAKTIVERING_URL, requestConfig } from '../../ducks/api';
 import { Alert, Button } from '@navikt/ds-react';
 import { useState } from 'react';
 import spacing from '../../spacing.module.css';
+import { loggAktivitet } from '../../metrics/metrics';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 
-const ReaktiveringsKnapp = () => {
+interface Props {
+    aktivitet: string;
+}
+
+const ReaktiveringsKnapp = ({ aktivitet }: Props) => {
+    const { amplitudeData } = useAmplitudeData();
     const [showError, setShowError] = useState(false);
     const [loading, setLoading] = useState(false);
     const fullfoerReaktivering = async () => {
         setLoading(true);
         setShowError(false);
+        loggAktivitet({ aktivitet, ...amplitudeData });
         try {
             await fetchToJson(FULLFOER_REAKTIVERING_URL, {
                 ...requestConfig(),
