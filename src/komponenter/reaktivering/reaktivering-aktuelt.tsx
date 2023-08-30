@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Alert, BodyShort, Button, Heading, Link } from '@navikt/ds-react';
+import { Alert, BodyShort, Heading, Link } from '@navikt/ds-react';
 
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { useMeldeplikt } from '../../contexts/meldeplikt';
@@ -12,8 +12,7 @@ import SisteMeldekortVidereRegistrertValg from './siste-meldekort-videre-registr
 
 import styles from '../../innhold/innhold.module.css';
 import spacingStyles from '../../spacing.module.css';
-import { fetchToJson } from '../../ducks/api-utils';
-import { FULLFOER_REAKTIVERING_URL, requestConfig } from '../../ducks/api';
+import ReaktiveringKnapp from './reaktivering-knapp';
 
 interface Props {
     handleIkkeReaktivering: (event: React.SyntheticEvent) => void;
@@ -30,12 +29,6 @@ const ReaktiveringAktuelt = (props: Props) => {
         window.location.assign(dialogLenke);
     };
 
-    const fullfoerReaktivering = async () =>
-        await fetchToJson(FULLFOER_REAKTIVERING_URL, {
-            ...requestConfig(),
-            method: 'POST',
-        });
-
     return (
         <section className={`${styles.limit} ${spacingStyles.blokkM}`}>
             <ErRendret loggTekst="Rendrer tema: kan reaktiveres" />
@@ -46,9 +39,7 @@ const ReaktiveringAktuelt = (props: Props) => {
                 <div>
                     <SisteMeldekortVidereRegistrertValg meldeplikt={meldeplikt} />
                     <BodyShort className={spacingStyles.blokkS}>
-                        <Button variant="primary" onClick={fullfoerReaktivering}>
-                            Registrer deg som arbeidssøker
-                        </Button>
+                        <ReaktiveringKnapp />
                     </BodyShort>
                     <BodyShort className={spacingStyles.blokkXs}>
                         <Link href={dialogLenke} onClick={handleIkkeReaktivering}>

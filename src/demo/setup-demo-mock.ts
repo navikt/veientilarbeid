@@ -45,6 +45,7 @@ import {
     hentStandardInnsatsgruppe,
     hentDemoState,
     DemoData,
+    settArbeidssokerPeriode,
 } from './demo-state';
 
 import { telemetryUrl } from '../innhold/lenker';
@@ -175,7 +176,14 @@ export const demo_handlers = [
 
     rest.get(REAKTIVERING_URL, reaktiveringGetResolver),
     rest.post(REAKTIVERING_URL, reaktiveringPostResolver),
-    rest.post(FULLFOER_REAKTIVERING_URL, (req, res, ctx) => {
+    rest.post(FULLFOER_REAKTIVERING_URL, async (req, res, ctx) => {
+        const delay = new Promise((resolve) =>
+            setTimeout(() => {
+                settArbeidssokerPeriode('aktiv');
+                resolve(null);
+            }, 1000),
+        );
+        await delay;
         return res(ctx.status(204));
     }),
 
