@@ -12,6 +12,8 @@ import SisteMeldekortVidereRegistrertValg from './siste-meldekort-videre-registr
 
 import styles from '../../innhold/innhold.module.css';
 import spacingStyles from '../../spacing.module.css';
+import ReaktiveringKnapp from './reaktivering-knapp';
+import { FeatureToggles, useFeatureToggleData } from '../../contexts/feature-toggles';
 
 interface Props {
     handleIkkeReaktivering: (event: React.SyntheticEvent) => void;
@@ -20,6 +22,7 @@ interface Props {
 const ReaktiveringAktuelt = (props: Props) => {
     const { amplitudeData } = useAmplitudeData();
     const { meldeplikt } = useMeldeplikt();
+    const featureToggle = useFeatureToggleData();
 
     const { handleIkkeReaktivering } = props;
 
@@ -43,9 +46,13 @@ const ReaktiveringAktuelt = (props: Props) => {
                 <div>
                     <SisteMeldekortVidereRegistrertValg meldeplikt={meldeplikt} />
                     <BodyShort className={spacingStyles.blokkS}>
-                        <Button variant="primary" onClick={() => handleReaktivering('Går til reaktivering')}>
-                            Registrer deg som arbeidssøker
-                        </Button>
+                        {featureToggle[FeatureToggles.BRUK_REAKTIVERING_KNAPP] ? (
+                            <ReaktiveringKnapp aktivitet="Trykker på reaktivering" />
+                        ) : (
+                            <Button variant="primary" onClick={() => handleReaktivering('Går til reaktivering')}>
+                                Registrer deg som arbeidssøker
+                            </Button>
+                        )}
                     </BodyShort>
                     <BodyShort className={spacingStyles.blokkXs}>
                         <Link href={dialogLenke} onClick={handleIkkeReaktivering}>

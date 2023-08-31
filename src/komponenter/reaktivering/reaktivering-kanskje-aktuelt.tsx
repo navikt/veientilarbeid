@@ -11,6 +11,8 @@ import SisteMeldekortVidereRegistrertValg from './siste-meldekort-videre-registr
 
 import styles from '../../innhold/innhold.module.css';
 import spacingStyles from '../../spacing.module.css';
+import ReaktiveringKnapp from './reaktivering-knapp';
+import { FeatureToggles, useFeatureToggleData } from '../../contexts/feature-toggles';
 
 interface ReaktiveringKanskjeAktueltProps {
     skalViseDato: boolean;
@@ -19,6 +21,7 @@ interface ReaktiveringKanskjeAktueltProps {
 const ReaktiveringKanskjeAktuelt = (props: ReaktiveringKanskjeAktueltProps) => {
     const { amplitudeData } = useAmplitudeData();
     const { meldeplikt } = useMeldeplikt();
+    const featureToggle = useFeatureToggleData();
     const { skalViseDato } = props;
 
     const handleReaktivering = (aktivitet: string) => {
@@ -52,12 +55,16 @@ const ReaktiveringKanskjeAktuelt = (props: ReaktiveringKanskjeAktueltProps) => {
                         </Link>
                     </BodyShort>
                     <BodyShort className={spacingStyles.mb1}>
-                        <Button
-                            variant="secondary"
-                            onClick={() => handleReaktivering('Går til reaktivering fra reaktivering ikke aktuelt')}
-                        >
-                            Registrer deg som arbeidssøker
-                        </Button>
+                        {featureToggle[FeatureToggles.BRUK_REAKTIVERING_KNAPP] ? (
+                            <ReaktiveringKnapp aktivitet="Trykker på reaktivering fra reaktivering ikke aktuelt" />
+                        ) : (
+                            <Button
+                                variant="secondary"
+                                onClick={() => handleReaktivering('Går til reaktivering fra reaktivering ikke aktuelt')}
+                            >
+                                Registrer deg som arbeidssøker
+                            </Button>
+                        )}
                     </BodyShort>
                     <InViewport loggTekst="Reaktivering ikke aktuelt" />
                 </div>

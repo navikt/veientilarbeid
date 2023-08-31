@@ -62,4 +62,5 @@ export const AIA_BACKEND = aiaBackendUrl,
     BEHOV_FOR_VEILEDNING_URL = `${AIA_BACKEND}/behov-for-veiledning`,
     DAGPENGER_STATUS = `${AIA_BACKEND}/dagpenger-status`,
     ANTATT_INAKTIVERINGSGRUNN = `${AIA_BACKEND}/data/meldekort-inaktivering`,
-    REAKTIVERING_URL = `${AIA_BACKEND}/reaktivering`;
+    REAKTIVERING_URL = `${AIA_BACKEND}/reaktivering`,
+    FULLFOER_REAKTIVERING_URL = `${AIA_BACKEND}/fullfoerreaktivering`;

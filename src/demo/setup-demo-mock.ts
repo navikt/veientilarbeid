@@ -22,6 +22,7 @@ import {
     DAGPENGER_STATUS,
     ANTATT_INAKTIVERINGSGRUNN,
     REAKTIVERING_URL,
+    FULLFOER_REAKTIVERING_URL,
 } from '../ducks/api';
 
 import {
@@ -44,6 +45,7 @@ import {
     hentStandardInnsatsgruppe,
     hentDemoState,
     DemoData,
+    settArbeidssokerPeriode,
 } from './demo-state';
 
 import { telemetryUrl } from '../innhold/lenker';
@@ -174,6 +176,16 @@ export const demo_handlers = [
 
     rest.get(REAKTIVERING_URL, reaktiveringGetResolver),
     rest.post(REAKTIVERING_URL, reaktiveringPostResolver),
+    rest.post(FULLFOER_REAKTIVERING_URL, async (req, res, ctx) => {
+        const delay = new Promise((resolve) =>
+            setTimeout(() => {
+                settArbeidssokerPeriode('aktiv');
+                resolve(null);
+            }, 1000),
+        );
+        await delay;
+        return res(ctx.status(204));
+    }),
 
     rest.post('https://amplitude.nav.no/collect', (req, res, ctx) => {
         return res(ctx.status(200));
