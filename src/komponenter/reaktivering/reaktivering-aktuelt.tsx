@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Alert, BodyShort, Heading, Link } from '@navikt/ds-react';
+import { Alert, BodyShort, Button, Heading, Link } from '@navikt/ds-react';
 
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { useMeldeplikt } from '../../contexts/meldeplikt';
@@ -7,12 +7,13 @@ import { useMeldeplikt } from '../../contexts/meldeplikt';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import { loggAktivitet } from '../../metrics/metrics';
-import { dialogLenke } from '../../innhold/lenker';
+import { dialogLenke, reaktiveringLenke } from '../../innhold/lenker';
 import SisteMeldekortVidereRegistrertValg from './siste-meldekort-videre-registrert-valg';
 
 import styles from '../../innhold/innhold.module.css';
 import spacingStyles from '../../spacing.module.css';
 import ReaktiveringKnapp from './reaktivering-knapp';
+import { FeatureToggles, useFeatureToggleData } from '../../contexts/feature-toggles';
 
 interface Props {
     handleIkkeReaktivering: (event: React.SyntheticEvent) => void;
@@ -21,8 +22,14 @@ interface Props {
 const ReaktiveringAktuelt = (props: Props) => {
     const { amplitudeData } = useAmplitudeData();
     const { meldeplikt } = useMeldeplikt();
+    const featureToggle = useFeatureToggleData();
 
     const { handleIkkeReaktivering } = props;
+
+    const handleReaktivering = (aktivitet: string) => {
+        loggAktivitet({ aktivitet: aktivitet, ...amplitudeData });
+        window.location.assign(reaktiveringLenke);
+    };
 
     const handleDialog = (aktivitet: string) => {
         loggAktivitet({ aktivitet: aktivitet, ...amplitudeData });
@@ -39,7 +46,13 @@ const ReaktiveringAktuelt = (props: Props) => {
                 <div>
                     <SisteMeldekortVidereRegistrertValg meldeplikt={meldeplikt} />
                     <BodyShort className={spacingStyles.blokkS}>
-                        <ReaktiveringKnapp aktivitet="Trykker på reaktivering" />
+                        {featureToggle[FeatureToggles.BRUK_REAKTIVERING_KNAPP] ? (
+                            <ReaktiveringKnapp aktivitet="Trykker på reaktivering" />
+                        ) : (
+                            <Button variant="primary" onClick={() => handleReaktivering('Går til reaktivering')}>
+                                Registrer deg som arbeidssøker
+                            </Button>
+                        )}
                     </BodyShort>
                     <BodyShort className={spacingStyles.blokkXs}>
                         <Link href={dialogLenke} onClick={handleIkkeReaktivering}>
