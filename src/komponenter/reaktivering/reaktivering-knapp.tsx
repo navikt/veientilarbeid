@@ -23,6 +23,7 @@ const ReaktiveringsKnapp = ({ aktivitet }: Props) => {
                 ...requestConfig(),
                 method: 'POST',
             });
+            loggAktivitet({ aktivitet: 'Bruker ble reaktivert', ...amplitudeData });
             window.location.reload();
         } catch (e) {
             setShowError(true);

@@ -47,7 +47,7 @@ const ReaktiveringAktuelt = (props: Props) => {
                     <SisteMeldekortVidereRegistrertValg meldeplikt={meldeplikt} />
                     <BodyShort className={spacingStyles.blokkS}>
                         {featureToggle[FeatureToggles.BRUK_REAKTIVERING_KNAPP] ? (
-                            <ReaktiveringKnapp aktivitet="Trykker på reaktivering" />
+                            <ReaktiveringKnapp aktivitet="Bruker reaktiverer seg selv" />
                         ) : (
                             <Button variant="primary" onClick={() => handleReaktivering('Går til reaktivering')}>
                                 Registrer deg som arbeidssøker

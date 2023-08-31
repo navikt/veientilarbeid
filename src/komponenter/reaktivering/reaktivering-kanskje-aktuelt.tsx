@@ -56,7 +56,7 @@ const ReaktiveringKanskjeAktuelt = (props: ReaktiveringKanskjeAktueltProps) => {
                     </BodyShort>
                     <BodyShort className={spacingStyles.mb1}>
                         {featureToggle[FeatureToggles.BRUK_REAKTIVERING_KNAPP] ? (
-                            <ReaktiveringKnapp aktivitet="Trykker på reaktivering fra reaktivering ikke aktuelt" />
+                            <ReaktiveringKnapp aktivitet="Bruker reaktiverer seg selv fra reaktivering ikke aktuelt" />
                         ) : (
                             <Button
                                 variant="secondary"
