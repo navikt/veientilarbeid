@@ -74,6 +74,13 @@ import spacingStyles from '../spacing.module.css';
 import flexStyles from '../flex.module.css';
 import { settBehovForVeiledning } from './demo-state-behov-for-veiledning';
 
+const identity = (i: any) => i;
+
+const getFeatureToggleCheckboxGroupValue = () => {
+    return Object.values(FeatureToggles).reduce((acc, toggle) => {
+        return [...acc, hentDemoState(toggle) === 'true' && toggle].filter(identity);
+    }, [] as any[]);
+};
 const DemoDashboard = () => {
     const [flerevalgOpen, setFlerevalgOpen] = React.useState(false);
     const SYKMELDT_MED_ARBEIDSGIVER = DemoData.SYKMELDT_MED_ARBEIDSGIVER;
@@ -408,22 +415,17 @@ const DemoDashboard = () => {
                         </Select>
                         <CheckboxGroup
                             // onChange={handleClick}
+                            onChange={(val) => console.log('val', val)}
                             legend=""
+                            value={[
+                                hentStandardInnsatsgruppe().standardInnsatsgruppe === true && STANDARD_INNSATSGRUPPE,
+                                hentUnderOppfolging().underOppfolging === true && UNDER_OPPFOLGING,
+                            ].filter(identity)}
                         >
-                            <Checkbox
-                                id={STANDARD_INNSATSGRUPPE}
-                                value={STANDARD_INNSATSGRUPPE}
-                                checked={hentStandardInnsatsgruppe().standardInnsatsgruppe === true}
-                                onChange={handleClick}
-                            >
+                            <Checkbox id={STANDARD_INNSATSGRUPPE} value={STANDARD_INNSATSGRUPPE} onChange={handleClick}>
                                 Standard innsatsgruppe
                             </Checkbox>
-                            <Checkbox
-                                id={UNDER_OPPFOLGING}
-                                value={UNDER_OPPFOLGING}
-                                checked={hentUnderOppfolging().underOppfolging === true}
-                                onChange={handleClick}
-                            >
+                            <Checkbox id={UNDER_OPPFOLGING} value={UNDER_OPPFOLGING} onChange={handleClick}>
                                 Under oppfølging
                             </Checkbox>
                         </CheckboxGroup>
@@ -477,16 +479,10 @@ const DemoDashboard = () => {
                         </Panel>
                     </Panel>
                     <Panel className={styles.demoFeaturetoggles}>
-                        <CheckboxGroup legend={'Featuretoggles'}>
+                        <CheckboxGroup legend={'Featuretoggles'} value={getFeatureToggleCheckboxGroupValue()}>
                             {Object.values(FeatureToggles).map((toggle) => {
                                 return (
-                                    <Checkbox
-                                        checked={hentDemoState(toggle) === 'true'}
-                                        key={toggle}
-                                        id={toggle}
-                                        value={toggle}
-                                        onChange={handleClick}
-                                    >
+                                    <Checkbox key={toggle} id={toggle} value={toggle} onChange={handleClick}>
                                         {prettyPrintFeatureToggle(toggle)}
                                     </Checkbox>
                                 );
@@ -590,13 +586,20 @@ const DemoDashboard = () => {
                                 <Cell xs={6} md={6} lg={3}>
                                     <Panel className={styles.demoCheckboxpanel}>
                                         <CheckboxGroup
-                                            // onChange={handleClick}
                                             legend=""
+                                            value={[
+                                                hentSykmeldtMedArbeidsgiver() && SYKMELDT_MED_ARBEIDSGIVER,
+                                                hentUlesteDialoger() && ULESTE_DIALOGER,
+                                                !!hentMotestotte() && MOTESTOTTE,
+                                                hentAutentiseringsInfo().securityLevel === InnloggingsNiva.LEVEL_3 &&
+                                                    AUTENTISERINGS_INFO,
+                                                hentAlder() < 30 && ER_UNDER_30,
+                                                hentVisGjelderFraDato() && VIS_GJELDER_FRA_DATO,
+                                            ].filter(identity)}
                                         >
                                             <Checkbox
                                                 id={SYKMELDT_MED_ARBEIDSGIVER}
                                                 value={SYKMELDT_MED_ARBEIDSGIVER}
-                                                checked={hentSykmeldtMedArbeidsgiver()}
                                                 onChange={handleClick}
                                             >
                                                 Sykmelding
@@ -604,41 +607,26 @@ const DemoDashboard = () => {
                                             <Checkbox
                                                 id={ULESTE_DIALOGER}
                                                 value={ULESTE_DIALOGER}
-                                                checked={hentUlesteDialoger()}
                                                 onChange={handleClick}
                                             >
                                                 Uleste dialoger
                                             </Checkbox>
-                                            <Checkbox
-                                                id={MOTESTOTTE}
-                                                value={MOTESTOTTE}
-                                                checked={!!hentMotestotte()}
-                                                onChange={handleClick}
-                                            >
+                                            <Checkbox id={MOTESTOTTE} value={MOTESTOTTE} onChange={handleClick}>
                                                 Møtestøtte gjennomført
                                             </Checkbox>
                                             <Checkbox
                                                 id={AUTENTISERINGS_INFO}
                                                 value={AUTENTISERINGS_INFO}
-                                                checked={
-                                                    hentAutentiseringsInfo().securityLevel === InnloggingsNiva.LEVEL_3
-                                                }
                                                 onChange={handleClick}
                                             >
                                                 Nivå 3
                                             </Checkbox>
-                                            <Checkbox
-                                                id={ER_UNDER_30}
-                                                value={ER_UNDER_30}
-                                                checked={hentAlder() < 30}
-                                                onChange={handleClick}
-                                            >
+                                            <Checkbox id={ER_UNDER_30} value={ER_UNDER_30} onChange={handleClick}>
                                                 Er under 30 år
                                             </Checkbox>
                                             <Checkbox
                                                 id={VIS_GJELDER_FRA_DATO}
                                                 value={VIS_GJELDER_FRA_DATO}
-                                                checked={hentVisGjelderFraDato()}
                                                 onChange={handleClick}
                                             >
                                                 Vis gjelder fra dato-velger
@@ -648,11 +636,13 @@ const DemoDashboard = () => {
                                 </Cell>
                                 <Cell xs={6} md={6} lg={3}>
                                     <Panel className={styles.demoFeaturetoggles}>
-                                        <CheckboxGroup legend={'Featuretoggles'}>
+                                        <CheckboxGroup
+                                            legend={'Featuretoggles'}
+                                            value={getFeatureToggleCheckboxGroupValue()}
+                                        >
                                             {Object.values(FeatureToggles).map((toggle) => {
                                                 return (
                                                     <Checkbox
-                                                        checked={hentDemoState(toggle) === 'true'}
                                                         key={toggle}
                                                         id={toggle}
                                                         value={toggle}
