@@ -44,8 +44,9 @@ const RegistrertTittel = () => {
     const arbeidssokerperioder = beregnArbeidssokerperioder(arbeidssokerperioderData);
     const brukerregistreringData = useBrukerregistreringData();
     const harAktivArbeidssokerperiode = arbeidssokerperioder.harAktivArbeidssokerperiode === 'Ja';
+    const harBrukerregistreringData = Boolean(brukerregistreringData?.registrering);
     const { besvarelse } = useBesvarelse();
-    const registrertDato = brukerregistreringData?.registrering.opprettetDato || false;
+    const registrertDato = brukerregistreringData?.registrering?.opprettetDato || false;
     const erPermittert = harPermittertSituasjon(brukerregistreringData?.registrering, besvarelse);
 
     const scrollToRegistrering = useCallback(() => {
@@ -64,7 +65,7 @@ const RegistrertTittel = () => {
         scrollToRegistrering();
     }, [scrollToRegistrering]);
 
-    if (!harAktivArbeidssokerperiode) return null;
+    if (!harAktivArbeidssokerperiode || !harBrukerregistreringData) return null;
 
     return (
         <div ref={containerRef}>

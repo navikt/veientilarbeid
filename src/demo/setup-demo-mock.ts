@@ -1,56 +1,54 @@
 import { rest } from 'msw';
 
 import {
-    BRUKERINFO_URL,
+    ANTATT_INAKTIVERINGSGRUNN,
+    ARBEIDSSOKER_NIVA3_URL,
+    AUTH_API,
+    BEHOV_FOR_VEILEDNING_URL,
     BESVARELSE_URL,
+    BRUKERINFO_URL,
     BRUKERREGISTRERING_URL,
+    DAGPENGER_STATUS,
+    DP_INNSYN_URL,
+    ER_STANDARD_INNSATSGRUPPE_URL,
     FEATURE_URL,
+    FULLFOER_REAKTIVERING_URL,
+    GJELDER_FRA_DATO_URL,
     MELDEKORTSTATUS_URL,
+    MELDEPLIKT_URL,
     MOTESTOTTE_URL,
     NESTE_MELDEKORT_URL,
+    OPPRETT_DIALOG_URL,
+    PROFIL_URL,
+    REAKTIVERING_URL,
     ULESTEDIALOGER_URL,
     VEILARBOPPFOLGING_URL,
-    DP_INNSYN_URL,
-    GJELDER_FRA_DATO_URL,
-    AUTH_API,
-    PROFIL_URL,
-    ARBEIDSSOKER_NIVA3_URL,
-    ER_STANDARD_INNSATSGRUPPE_URL,
-    BEHOV_FOR_VEILEDNING_URL,
-    OPPRETT_DIALOG_URL,
-    MELDEPLIKT_URL,
-    DAGPENGER_STATUS,
-    ANTATT_INAKTIVERINGSGRUNN,
-    REAKTIVERING_URL,
-    FULLFOER_REAKTIVERING_URL,
 } from '../ducks/api';
 
 import {
+    DemoData,
     hentAlder,
     hentAutentiseringsInfo,
+    hentDemoState,
+    hentDpInnsynPaabegynte,
+    hentDpInnsynSoknad,
+    hentDpInnsynVedtak,
     hentFeatureToggles,
     hentFormidlingsgruppe,
     hentMotestotte,
     hentRegistreringType,
     hentRettighetsgruppe,
     hentServicegruppe,
+    hentStandardInnsatsgruppe,
     hentSykmeldtMedArbeidsgiver,
     hentUlesteDialoger,
     hentUnderOppfolging,
     lagMeldekortData,
     randomUlesteDialoger,
-    hentDpInnsynVedtak,
-    hentDpInnsynSoknad,
-    hentDpInnsynPaabegynte,
-    hentStandardInnsatsgruppe,
-    hentDemoState,
-    DemoData,
     settArbeidssokerPeriode,
 } from './demo-state';
 
 import { telemetryUrl } from '../innhold/lenker';
-
-import { hentBrukerRegistrering } from './demo-state-brukerregistrering';
 import msw_get from '../mocks/msw-utils';
 import meldekortstatusResponse from '../mocks/meldekortstatus-mock';
 import { besvarelseGetResolver, besvarelsePostResolver } from './demo-state-besvarelse';
@@ -64,6 +62,7 @@ import {
     opprettDialogPostResolver,
 } from './demo-state-behov-for-veiledning';
 import levertMeldekortMock from '../mocks/meldeplikt-hendelser.mock';
+import { hentBrukerRegistrering } from './demo-state-brukerregistrering';
 
 export const demo_handlers = [
     msw_get(VEILARBOPPFOLGING_URL, {
@@ -155,8 +154,9 @@ export const demo_handlers = [
         // eslint-disable-next-line no-restricted-globals
         const searchParams = new URLSearchParams(location.search);
         const erRegistrertLegacy = searchParams.get('arbeidssokerPeriode') === 'aktiv-legacy';
+        const manglerRegistrering = searchParams.get('manglerRegistrering') === 'true';
 
-        if (erRegistrertLegacy) {
+        if (erRegistrertLegacy || manglerRegistrering) {
             return res(ctx.json({ registrering: null }));
         }
 

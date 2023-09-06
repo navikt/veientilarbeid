@@ -30,7 +30,9 @@ function MinSituasjon(props: any) {
     const beregnedeArbeidssokerperioder = beregnArbeidssokerperioder(arbeidssokerperiodeData);
     const { aktivPeriodeStart } = beregnedeArbeidssokerperioder;
     const { opprettetDato, manueltRegistrertAv } = registreringData?.registrering || {};
-    const kanViseKomponent = autentiseringData.securityLevel === InnloggingsNiva.LEVEL_4;
+    const harRegistreringData = Boolean(registreringData?.registrering);
+
+    const kanViseKomponent = autentiseringData.securityLevel === InnloggingsNiva.LEVEL_4 && harRegistreringData;
 
     const visEndreSituasjon = visBesvarelser({
         brukerInfoData,

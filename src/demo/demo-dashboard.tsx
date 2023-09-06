@@ -23,6 +23,7 @@ import {
     hentDpStatus,
     hentFormidlingsgruppe,
     hentKvitteringStatus,
+    hentManglerRegistrering,
     hentMotestotte,
     hentRegistreringType,
     hentRettighetsgruppe,
@@ -42,6 +43,7 @@ import {
     settFeatureToggles,
     settFormidlingsgruppe,
     settKvitteringStatus,
+    settManglerRegistrering,
     settMotestotte,
     settRegistreringType,
     settRettighetsgruppe,
@@ -67,7 +69,7 @@ import {
 import { InnloggingsNiva } from '../contexts/autentisering';
 import { setFastTidspunktForIDag } from '../utils/chrono';
 import { FeatureToggles, prettyPrintFeatureToggle } from '../contexts/feature-toggles';
-import { hentQueryParam, fjernQueryParam, settQueryParam } from '../utils/query-param-utils';
+import { fjernQueryParam, hentQueryParam, settQueryParam } from '../utils/query-param-utils';
 
 import styles from './demo-dashboard.module.css';
 import spacingStyles from '../spacing.module.css';
@@ -91,6 +93,7 @@ const DemoDashboard = () => {
     const STANDARD_INNSATSGRUPPE = DemoData.STANDARD_INNSATSGRUPPE;
     const ER_UNDER_30 = DemoData.ER_UNDER_30;
     const VIS_GJELDER_FRA_DATO = DemoData.VIS_GJELDER_FRA_DATO;
+    const MANGLER_REGISTRERING = DemoData.MANGLER_REGISTRERING;
 
     const FEATURE_TOGGLES: string[] = Object.values(FeatureToggles);
 
@@ -203,6 +206,8 @@ const DemoDashboard = () => {
             settVisGjelderFraDato(element.checked);
         } else if (element.id === STANDARD_INNSATSGRUPPE) {
             settStandardInnsatsgruppe(element.checked);
+        } else if (element.id === MANGLER_REGISTRERING) {
+            settManglerRegistrering(element.checked);
         }
         window.location.reload();
     };
@@ -420,6 +425,7 @@ const DemoDashboard = () => {
                             value={[
                                 hentStandardInnsatsgruppe().standardInnsatsgruppe === true && STANDARD_INNSATSGRUPPE,
                                 hentUnderOppfolging().underOppfolging === true && UNDER_OPPFOLGING,
+                                hentManglerRegistrering().manglerRegistrering === true && MANGLER_REGISTRERING,
                             ].filter(identity)}
                         >
                             <Checkbox id={STANDARD_INNSATSGRUPPE} value={STANDARD_INNSATSGRUPPE} onChange={handleClick}>
@@ -427,6 +433,9 @@ const DemoDashboard = () => {
                             </Checkbox>
                             <Checkbox id={UNDER_OPPFOLGING} value={UNDER_OPPFOLGING} onChange={handleClick}>
                                 Under oppfølging
+                            </Checkbox>
+                            <Checkbox id={MANGLER_REGISTRERING} value={MANGLER_REGISTRERING} onChange={handleClick}>
+                                Mangler registreringsdata
                             </Checkbox>
                         </CheckboxGroup>
                     </Panel>

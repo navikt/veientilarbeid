@@ -26,7 +26,7 @@ export function visBesvarelser({
 }): boolean {
     const erAAP = brukerInfoData.rettighetsgruppe === 'AAP';
     const brukerregistreringData = registreringData?.registrering ?? null;
-    const datoForRegistrering = registreringData?.registrering.opprettetDato
+    const datoForRegistrering = registreringData?.registrering?.opprettetDato
         ? new Date(registreringData.registrering.opprettetDato)
         : new Date('2019-07-01');
     const toggleErAktiv = featuretoggleData[FeatureToggles.FeatureToggles.BRUK_ENDRING_AV_SITUASJON] || false;

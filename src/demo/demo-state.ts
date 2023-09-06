@@ -1,4 +1,4 @@
-import { InnloggingsNiva, Data as AutentiseringsData } from '../contexts/autentisering';
+import { Data as AutentiseringsData, InnloggingsNiva } from '../contexts/autentisering';
 import { datoUtenTid, foerstkommendeMandag, plussDager } from '../utils/date-utils';
 import { hentQueryParam, settQueryParam } from '../utils/query-param-utils';
 import { FeatureToggles } from '../contexts/feature-toggles';
@@ -68,6 +68,7 @@ export enum DemoData {
     ENDRET_SITUASJON_AV = 'endretSituasjonAv',
     SITUASJON_TILLEGGSDATA = 'situasjonTilleggsData',
     ER_BESVARELSEN_ENDRET = 'erBesvarelsenEndret',
+    MANGLER_REGISTRERING = 'manglerRegistrering',
 }
 
 export const hentDemoState = (key: string): string | null => hentQueryParam(key);
@@ -303,4 +304,15 @@ export const hentDpInnsynSoknad = (): JSONValue => {
     }
 
     return [];
+};
+
+export const hentManglerRegistrering = () => {
+    const queryParam = hentDemoState(DemoData.MANGLER_REGISTRERING);
+    return {
+        manglerRegistrering: queryParam ? queryParam === 'true' : true,
+    };
+};
+
+export const settManglerRegistrering = (value: boolean) => {
+    settDemoState(DemoData.MANGLER_REGISTRERING, value);
 };

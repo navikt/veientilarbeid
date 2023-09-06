@@ -1,7 +1,8 @@
 import { ResponseComposition, RestContext, RestRequest } from 'msw';
 import { DemoData, hentDemoState, settDemoState } from './demo-state';
-import { DinSituasjonRequest, DinSituasjonTilleggsdata, BesvarelseResponse } from '../contexts/besvarelse';
+import { BesvarelseResponse, DinSituasjonRequest, DinSituasjonTilleggsdata } from '../contexts/besvarelse';
 import besvarelseMock from '../mocks/besvarelse-mock';
+import { hentQueryParam } from '../utils/query-param-utils';
 
 const hentNySituasjon = () => hentDemoState(DemoData.NY_SITUASJON) || null;
 const settNySituasjon = (value: string) => settDemoState(DemoData.NY_SITUASJON, value);
@@ -27,7 +28,7 @@ function oppdaterBesvarelse(
     endretTidspunkt: string | null,
     endretAv: string | null,
     tilleggsData: DinSituasjonTilleggsdata,
-    erBesvarelsenEndret: string | null | boolean
+    erBesvarelsenEndret: string | null | boolean,
 ): BesvarelseResponse {
     const oppdatertBesvarelse = JSON.parse(JSON.stringify(besvarelseMock));
     if (erBesvarelsenEndret) {
@@ -67,15 +68,21 @@ export const besvarelseGetResolver = (req: RestRequest, res: ResponseComposition
         endretTidspunkt,
         endretAv,
         parsetData,
-        erBesvarelsenEndret
+        erBesvarelsenEndret,
     );
+    const manglerRegistrering = hentQueryParam('manglerRegistrering') === 'true';
+
+    if (manglerRegistrering) {
+        return res(ctx.status(204));
+    }
+
     return res(ctx.json(oppdatertBesvarelse));
 };
 
 export const besvarelsePostResolver = (
     req: RestRequest<DinSituasjonRequest>,
     res: ResponseComposition,
-    ctx: RestContext
+    ctx: RestContext,
 ) => {
     const { dinSituasjon } = req.body;
     const { verdi, gjelderFraDato, tilleggsData } = dinSituasjon;
@@ -98,7 +105,7 @@ export const besvarelsePostResolver = (
         endretTidspunkt,
         endretAv,
         tilleggsData,
-        erBesvarelsenEndret
+        erBesvarelsenEndret,
     );
     return res(ctx.status(201), ctx.json(oppdatertBesvarelse));
 };
