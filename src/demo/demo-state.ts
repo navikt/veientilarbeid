@@ -309,7 +309,7 @@ export const hentDpInnsynSoknad = (): JSONValue => {
 export const hentManglerRegistrering = () => {
     const queryParam = hentDemoState(DemoData.MANGLER_REGISTRERING);
     return {
-        manglerRegistrering: queryParam ? queryParam === 'true' : true,
+        manglerRegistrering: queryParam ? queryParam === 'true' : false,
     };
 };
 
