@@ -3,7 +3,7 @@ import * as Oppfolging from '../contexts/oppfolging';
 import * as BrukerInfo from '../contexts/bruker-info';
 import * as FeatureToggles from '../contexts/feature-toggles';
 import { BesvarelseResponse } from '../contexts/besvarelse';
-import { BeregnedePerioder } from '../lib/beregn-arbeidssokerperioder';
+import { BeregnedePerioder } from './beregn-arbeidssokerperioder';
 import sjekkOmBrukerErStandardInnsatsgruppe from './er-standard-innsatsgruppe';
 
 const DATO_FOR_LANSERING = new Date('2023-02-01');
@@ -20,7 +20,7 @@ export function visBesvarelser({
     brukerInfoData: BrukerInfo.Data;
     oppfolgingData: Oppfolging.Data;
     registreringData: Brukerregistrering.Data | null;
-    featuretoggleData: FeatureToggles.FeautreToggleData;
+    featuretoggleData: FeatureToggles.FeatureToggleData;
     besvarelseData: BesvarelseResponse | null;
     arbeidssokerPeriodeData: BeregnedePerioder;
 }): boolean {

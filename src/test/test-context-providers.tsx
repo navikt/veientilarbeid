@@ -26,7 +26,7 @@ export type ProviderProps = {
     autentisering?: DeepPartial<Autentisering.Data>;
     amplitude?: DeepPartial<AmplitudeData>;
     brukerregistrering?: DeepPartial<Brukerregistrering.Data> | null;
-    featureToggle?: DeepPartial<FeatureToggle.FeautreToggleData>;
+    featureToggle?: DeepPartial<FeatureToggle.FeatureToggleData>;
     oppfolging?: DeepPartial<Oppfolging.Data>;
     ulesteDialoger?: DeepPartial<UlesteDialoger.Data>;
     brukerInfo?: DeepPartial<BrukerInfo.Data>;
@@ -57,26 +57,26 @@ export const contextProviders = function (props: ProviderProps): React.FunctionC
                                     ? { data: null, status: STATUS.OK }
                                     : merge(
                                           Brukerregistrering.initialState,
-                                          props.brukerregistrering && { data: props.brukerregistrering }
+                                          props.brukerregistrering && { data: props.brukerregistrering },
                                       )
                             }
                         >
                             <UlesteDialoger.UlesteDialogerContext.Provider
                                 value={merge(
                                     UlesteDialoger.initialState,
-                                    props.ulesteDialoger && { data: props.ulesteDialoger }
+                                    props.ulesteDialoger && { data: props.ulesteDialoger },
                                 )}
                             >
                                 <Oppfolging.OppfolgingContext.Provider
                                     value={merge(
                                         Oppfolging.initialState,
-                                        props.oppfolging && { data: props.oppfolging }
+                                        props.oppfolging && { data: props.oppfolging },
                                     )}
                                 >
                                     <Motestotte.MotestotteContext.Provider
                                         value={merge(
                                             Motestotte.initialState,
-                                            props.motestotte && { data: props.motestotte }
+                                            props.motestotte && { data: props.motestotte },
                                         )}
                                     >
                                         <Amplitude.AmplitudeContext.Provider
@@ -90,7 +90,7 @@ export const contextProviders = function (props: ProviderProps): React.FunctionC
                                                     FeatureToggle.initialState,
                                                     props.featureToggle && {
                                                         data: props.featureToggle,
-                                                    }
+                                                    },
                                                 )}
                                             >
                                                 <ProfilContext.Provider

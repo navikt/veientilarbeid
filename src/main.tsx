@@ -32,7 +32,7 @@ const Mikrofrontend = () => {
             setArbeidssokerState,
             ARBEIDSSOKER_NIVA3_URL,
         );
-        fetchData<FeatureToggle.State, FeatureToggle.FeautreToggleData>(
+        fetchData<FeatureToggle.State, FeatureToggle.FeatureToggleData>(
             featureToggleState,
             setFeatureToggleState,
             featureTogglesUrl,

@@ -9,6 +9,7 @@ export enum FeatureToggles {
     BRUK_ENDRING_AV_SITUASJON = 'aia.bruk-endring-av-situasjon',
     BRUK_MELDEKORT_MIKROFRONTEND = 'aia.bruk-meldekort-mikrofrontend',
     BRUK_REAKTIVERING_KNAPP = 'aia.bruk-reaktivering-knapp',
+    BRUK_OPPRETT_OPPGAVE = 'aia.bruk-opprett-oppgave',
 }
 
 export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
@@ -27,10 +28,12 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Bruk meldekort mikrofrontend';
         case FeatureToggles.BRUK_REAKTIVERING_KNAPP:
             return 'Bruk reaktivering knapp';
+        case FeatureToggles.BRUK_OPPRETT_OPPGAVE:
+            return 'Bruk opprett oppgave';
     }
 }
 
-export interface FeautreToggleData {
+export interface FeatureToggleData {
     'veientilarbeid.vis-gjelder-fra-dato'?: boolean;
     'aia.bruk-bekreft-reaktivering'?: boolean;
     'aia.bruk-sprakvelger'?: boolean;
@@ -38,10 +41,11 @@ export interface FeautreToggleData {
     'aia.bruk-endring-av-situasjon'?: boolean;
     'aia.bruk-meldekort-mikrofrontend'?: boolean;
     'aia.bruk-reaktivering-knapp'?: boolean;
+    'aia.bruk-opprett-oppgave'?: boolean;
 }
 
 export interface State extends DataElement {
-    data: FeautreToggleData;
+    data: FeatureToggleData;
 }
 
 export const initialState: State = {
@@ -53,6 +57,7 @@ export const initialState: State = {
         'aia.bruk-endring-av-situasjon': false,
         'aia.bruk-meldekort-mikrofrontend': false,
         'aia.bruk-reaktivering-knapp': false,
+        'aia.bruk-opprett-oppgave': false,
     },
     status: STATUS.NOT_STARTED,
 };

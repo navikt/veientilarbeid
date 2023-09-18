@@ -19,6 +19,7 @@ import {
     MOTESTOTTE_URL,
     NESTE_MELDEKORT_URL,
     OPPRETT_DIALOG_URL,
+    OPPRETT_OPPGAVE_URL,
     PROFIL_URL,
     REAKTIVERING_URL,
     ULESTEDIALOGER_URL,
@@ -176,7 +177,7 @@ export const demo_handlers = [
 
     rest.get(REAKTIVERING_URL, reaktiveringGetResolver),
     rest.post(REAKTIVERING_URL, reaktiveringPostResolver),
-    rest.post(FULLFOER_REAKTIVERING_URL, async (req, res, ctx) => {
+    rest.post(FULLFOER_REAKTIVERING_URL, async (_req, res, ctx) => {
         const delay = new Promise((resolve) =>
             setTimeout(() => {
                 settArbeidssokerPeriode('aktiv');
@@ -185,6 +186,10 @@ export const demo_handlers = [
         );
         await delay;
         return res(ctx.status(204));
+    }),
+
+    rest.post(OPPRETT_OPPGAVE_URL, async (_req, res, ctx) => {
+        return res(ctx.status(201));
     }),
 
     rest.post('https://amplitude.nav.no/collect', (req, res, ctx) => {

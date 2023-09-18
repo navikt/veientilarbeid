@@ -1,4 +1,4 @@
-import { FeautreToggleData as FeatureToggleData, FeatureToggles } from '../contexts/feature-toggles';
+import { FeatureToggleData as FeatureToggleData, FeatureToggles } from '../contexts/feature-toggles';
 
 import { visAutomatiskReaktiveringsKort, ReaktiveringEllerNull } from './vis-automatisk-reaktiverings-kort';
 

@@ -4,7 +4,7 @@ import { useFeatureToggleData, FeatureToggles } from './feature-toggles';
 import { useAmplitudeData } from '../komponenter/hent-initial-data/amplitude-provider';
 
 import { fetchToJson } from '../ducks/api-utils';
-import { BESVARELSE_URL, OPPRETT_DIALOG_URL, requestConfig } from '../ducks/api';
+import { BESVARELSE_URL, OPPRETT_DIALOG_URL, OPPRETT_OPPGAVE_URL, requestConfig } from '../ducks/api';
 import {
     DinSituasjonSvar,
     UtdanningSvar,
@@ -116,6 +116,7 @@ export type BrukerEllerNav = 'BRUKER' | 'VEILEDER' | 'SYSTEM';
 export type BesvarelseRequest = {
     tekst?: string;
     overskrift?: string;
+    oppgaveBeskrivelse?: string;
     venterPaaSvarFraNav?: boolean;
     oppdatering: DinSituasjonRequest;
 };
@@ -172,12 +173,27 @@ async function opprettDialog(data: {
     });
 }
 
+async function opprettOppgave(data: { oppgaveBeskrivelse?: string }): Promise<null | { id: string }> {
+    if (!data.oppgaveBeskrivelse) {
+        return Promise.resolve(null);
+    }
+
+    return fetchToJson(OPPRETT_OPPGAVE_URL, {
+        ...requestConfig(),
+        method: 'POST',
+        body: JSON.stringify({
+            beskrivelse: data.oppgaveBeskrivelse,
+        }),
+    });
+}
+
 function BesvarelseProvider(props: { children: ReactNode }) {
     const featureToggles = useFeatureToggleData();
     const { oppdaterAmplitudeData } = useAmplitudeData();
     const [besvarelse, settBesvarelse] = useState<BesvarelseResponse>(null);
 
     const erToggletPa = featureToggles[FeatureToggles.BRUK_ENDRING_AV_SITUASJON];
+    const erOpprettOppgaveToggletPaa = featureToggles[FeatureToggles.BRUK_OPPRETT_OPPGAVE];
 
     const hentBesvarelse = async () => {
         try {
@@ -199,6 +215,9 @@ function BesvarelseProvider(props: { children: ReactNode }) {
                 body: JSON.stringify({ ...data.oppdatering }),
             });
             settBesvarelse(behov);
+            if (erOpprettOppgaveToggletPaa) {
+                await opprettOppgave(data);
+            }
         } catch (error) {
             console.error(error);
             throw error;

@@ -5,7 +5,7 @@ import ukerFraDato from '@alheimsins/uker-fra-dato';
 import { InnloggingsNiva, useAutentiseringData } from '../../contexts/autentisering';
 import { DinSituasjonSvar, useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useBrukerinfoData } from '../../contexts/bruker-info';
-import { FeautreToggleData, useFeatureToggleData } from '../../contexts/feature-toggles';
+import { FeatureToggleData, useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useArbeidssokerPerioder, useUnderOppfolging } from '../../contexts/arbeidssoker';
 
 import { OppfolgingContext } from '../../contexts/oppfolging';
@@ -63,7 +63,7 @@ export const initialAmplitudeData: AmplitudeData = {
 
 const AmplitudeContext = createContext({
     amplitudeData: initialAmplitudeData,
-    oppdaterAmplitudeData: (data: Partial<AmplitudeData>) => {},
+    oppdaterAmplitudeData: (_data: Partial<AmplitudeData>) => {},
 });
 
 function useAmplitudeData() {
@@ -99,7 +99,7 @@ const AmplitudeProvider = (props: { children: React.ReactNode }) => {
     const formidlingsgruppeOrIngenVerdi = formidlingsgruppe || 'INGEN_VERDI';
 
     const aktiveFeatureToggles = Object.keys(featuretoggleData).reduce((toggles, current) => {
-        if (featuretoggleData[current as keyof FeautreToggleData]) {
+        if (featuretoggleData[current as keyof FeatureToggleData]) {
             toggles.push(current);
         }
         return toggles;
