@@ -41,10 +41,19 @@ const OpplysningeneBrukesTil = () => {
     );
 };
 
-function genererOppgaveBeskrivelse(valgtSituasjon: SituasjonSvar): string | undefined {
-    if (valgtSituasjon === PermittertSvar.KONKURS || valgtSituasjon === PermittertSvar.OPPSIGELSE) {
-        return 'oppgave beskrivelse'; // TODO: Skriv en ordentlig beskrivelse
+function genererOppgaveBeskrivelse(
+    valgtSituasjon: SituasjonSvar,
+    opprinneligSituasjon: SituasjonSvar | undefined,
+    tilleggsData?: any,
+): string | undefined {
+    if (
+        valgtSituasjon === PermittertSvar.KONKURS ||
+        valgtSituasjon === PermittertSvar.OPPSIGELSE ||
+        valgtSituasjon === PermittertSvar.SAGT_OPP
+    ) {
+        return genererDialogTekst(valgtSituasjon, opprinneligSituasjon, tilleggsData).tekst;
     }
+
     return undefined;
 }
 
@@ -211,7 +220,7 @@ function useLagreEndringer(props: Steg2Props) {
                 tilleggsData,
             );
 
-            const oppgaveBeskrivelse = genererOppgaveBeskrivelse(valgtSituasjon);
+            const oppgaveBeskrivelse = genererOppgaveBeskrivelse(valgtSituasjon, opprinneligSituasjon, tilleggsData);
 
             const payload = {
                 tekst,
