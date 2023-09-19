@@ -46,6 +46,7 @@ const grunndata = {
         antallUkerMellomSisteArbeidssokerperioder: 'INGEN_DATA',
         forrigePeriodeAvsluttetDato: 'INGEN_DATA',
     },
+    erStandardInnsats: true,
 };
 
 describe('Tester funksjonen visBesvarelser', () => {
@@ -69,7 +70,7 @@ describe('Tester funksjonen visBesvarelser', () => {
 
     test('NEI hvis person ikke har standard innsatsgruppe', () => {
         const testdata = JSON.parse(JSON.stringify(grunndata));
-        testdata.oppfolgingData.servicegruppe = 'BKART';
+        testdata.erStandardInnsats = false;
         expect(visBesvarelser(testdata)).toBe(false);
     });
 

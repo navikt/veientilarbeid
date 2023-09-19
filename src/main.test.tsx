@@ -35,7 +35,6 @@ describe('Tester at main rendrer riktig innhold', () => {
             render(<Mikrofrontend />);
 
             expect(await screen.findByText('Du er registrert som arbeidssøker')).toBeInTheDocument();
-            expect(swrSpy).toHaveBeenCalledWith(`${DP_INNSYN_URL}/soknad`);
         });
 
         test('med standard innsatsgruppe og nivå 3-innlogging', async () => {

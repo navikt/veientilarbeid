@@ -4,7 +4,6 @@ import * as BrukerInfo from '../contexts/bruker-info';
 import * as FeatureToggles from '../contexts/feature-toggles';
 import { BesvarelseResponse } from '../contexts/besvarelse';
 import { BeregnedePerioder } from './beregn-arbeidssokerperioder';
-import sjekkOmBrukerErStandardInnsatsgruppe from './er-standard-innsatsgruppe';
 
 const DATO_FOR_LANSERING = new Date('2023-02-01');
 
@@ -16,6 +15,7 @@ export function visBesvarelser({
     featuretoggleData,
     besvarelseData,
     arbeidssokerPeriodeData,
+    erStandardInnsats,
 }: {
     brukerInfoData: BrukerInfo.Data;
     oppfolgingData: Oppfolging.Data;
@@ -23,6 +23,7 @@ export function visBesvarelser({
     featuretoggleData: FeatureToggles.FeatureToggleData;
     besvarelseData: BesvarelseResponse | null;
     arbeidssokerPeriodeData: BeregnedePerioder;
+    erStandardInnsats: boolean;
 }): boolean {
     const erAAP = brukerInfoData.rettighetsgruppe === 'AAP';
     const brukerregistreringData = registreringData?.registrering ?? null;
@@ -52,7 +53,7 @@ export function visBesvarelser({
             erPermittert &&
             aldersgruppeUtenForsterketInnsats &&
             !erAAP &&
-            sjekkOmBrukerErStandardInnsatsgruppe({ brukerregistreringData, oppfolgingData }) &&
+            erStandardInnsats &&
             !oppfolgingData.kanReaktiveres)
     );
 }

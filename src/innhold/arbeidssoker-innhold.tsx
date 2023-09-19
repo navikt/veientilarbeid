@@ -1,19 +1,17 @@
 import { useUnderOppfolging } from '../contexts/arbeidssoker';
 import { InnloggingsNiva, useAutentiseringData } from '../contexts/autentisering';
-import { useSWRImmutable } from '../hooks/useSWR';
 import { useBrukerregistreringData } from '../contexts/brukerregistrering';
 import { useOppfolgingData } from '../contexts/oppfolging';
 
 import InnholdStandard from './innhold-standard';
 import InnholdArbeidssokerForenklet from './innhold-arbeidssoker-forenklet';
 import InnholdSituasjonsbestemt from './innhold-situasjonsbestemt';
-import { ER_STANDARD_INNSATSGRUPPE_URL } from '../ducks/api';
 import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../lib/er-situasjonsbestemt-innsatsgruppe';
+import useErStandardInnsats from '../hooks/use-er-standard-innsats';
 
 function ArbeidssokerInnhold() {
     const underOppfolging = useUnderOppfolging()?.underoppfolging;
     const innloggingsnivaa = useAutentiseringData().securityLevel;
-    const { data: erStandard, error } = useSWRImmutable(ER_STANDARD_INNSATSGRUPPE_URL);
     const brukerregistreringData = useBrukerregistreringData();
     const oppfolgingData = useOppfolgingData();
     const brukerregistreringDataEllerNull = brukerregistreringData?.registrering ?? null;
@@ -21,10 +19,11 @@ function ArbeidssokerInnhold() {
         brukerregistreringData: brukerregistreringDataEllerNull,
         oppfolgingData,
     });
+    const { erStandardInnsats, error } = useErStandardInnsats();
 
-    if (erStandard === undefined && !error) return null;
+    if (erStandardInnsats === undefined && !error) return null;
 
-    if (underOppfolging && innloggingsnivaa === InnloggingsNiva.LEVEL_4 && erStandard) {
+    if (underOppfolging && innloggingsnivaa === InnloggingsNiva.LEVEL_4 && erStandardInnsats) {
         return <InnholdStandard />;
     }
 

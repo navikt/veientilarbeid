@@ -16,6 +16,7 @@ import EndreSituasjon from '../endre-situasjon/min-situasjon';
 import { visBesvarelser } from '../../lib/vis-besvarelse';
 import spacingStyles from '../../spacing.module.css';
 import { svarMap } from '../../models/sporsmal-og-svar';
+import useErStandardInnsats from '../../hooks/use-er-standard-innsats';
 
 function MinSituasjon(props: any) {
     const registreringData = useBrukerregistreringData();
@@ -26,6 +27,7 @@ function MinSituasjon(props: any) {
     const brukerInfoData = useBrukerinfoData();
     const { besvarelse } = useBesvarelse();
     const oppfolgingData = useOppfolgingData();
+    const { erStandardInnsats } = useErStandardInnsats();
 
     const beregnedeArbeidssokerperioder = beregnArbeidssokerperioder(arbeidssokerperiodeData);
     const { aktivPeriodeStart } = beregnedeArbeidssokerperioder;
@@ -41,6 +43,7 @@ function MinSituasjon(props: any) {
         featuretoggleData,
         besvarelseData: besvarelse,
         arbeidssokerPeriodeData: beregnedeArbeidssokerperioder,
+        erStandardInnsats,
     });
 
     if (!kanViseKomponent) return null;

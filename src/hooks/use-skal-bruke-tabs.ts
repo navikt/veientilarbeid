@@ -6,6 +6,7 @@ import { useArbeidssokerPerioder } from '../contexts/arbeidssoker';
 import { useBrukerinfoData } from '../contexts/bruker-info';
 import { useOppfolgingData } from '../contexts/oppfolging';
 import beregnArbeidssokerperioder from '../lib/beregn-arbeidssokerperioder';
+import useErStandardInnsats from './use-er-standard-innsats';
 
 function useSkalBrukeTabs() {
     const featuretoggleData = useFeatureToggleData();
@@ -16,6 +17,7 @@ function useSkalBrukeTabs() {
     const { besvarelse } = useBesvarelse();
     const oppfolgingData = useOppfolgingData();
     const beregnedeArbeidssokerperioder = beregnArbeidssokerperioder(arbeidssokerperiodeData);
+    const { erStandardInnsats } = useErStandardInnsats();
 
     const visEndreSituasjon = visBesvarelser({
         brukerInfoData,
@@ -24,6 +26,7 @@ function useSkalBrukeTabs() {
         featuretoggleData,
         besvarelseData: besvarelse,
         arbeidssokerPeriodeData: beregnedeArbeidssokerperioder,
+        erStandardInnsats,
     });
 
     return brukTabs && visEndreSituasjon;
