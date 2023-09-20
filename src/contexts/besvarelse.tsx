@@ -208,6 +208,9 @@ function BesvarelseProvider(props: { children: ReactNode }) {
 
     const lagreBesvarelse = async (data: BesvarelseRequest) => {
         try {
+            if (erOpprettOppgaveToggletPaa) {
+                await opprettOppgave(data);
+            }
             await opprettDialog(data);
             const behov: BesvarelseResponse = await fetchToJson(BESVARELSE_URL, {
                 ...requestConfig(),
@@ -215,9 +218,6 @@ function BesvarelseProvider(props: { children: ReactNode }) {
                 body: JSON.stringify({ ...data.oppdatering }),
             });
             settBesvarelse(behov);
-            if (erOpprettOppgaveToggletPaa) {
-                await opprettOppgave(data);
-            }
         } catch (error) {
             console.error(error);
             throw error;
