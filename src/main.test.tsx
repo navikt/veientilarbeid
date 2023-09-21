@@ -79,14 +79,15 @@ describe('Tester at main rendrer riktig innhold', () => {
         });
 
         test(', men nylig har vært arbeidssøker (viser reaktiveringskomponent)', async () => {
-            server.use(msw_get(ARBEIDSSOKER_NIVA3_URL_UTEN_QUERY_PARAMS, arbeidssoker(false, 'nylig-utlopt')));
-
-            const { container } = render(<Mikrofrontend />);
+            server.use(
+                ...ikkeStandardHandlers,
+                msw_get(ARBEIDSSOKER_NIVA3_URL_UTEN_QUERY_PARAMS, arbeidssoker(false, 'nylig-utlopt')),
+            );
+            render(<Mikrofrontend />);
 
             await waitForElementToBeRemoved(() => screen.queryByText('venter...'));
 
             expect(swrSpy).not.toHaveBeenCalledWith('ER_STANDARD_INNSATSGRUPPE_URL');
-            expect(container).not.toBeEmptyDOMElement();
             expect(
                 await screen.findByText('Du er ikke lenger registrert som arbeidssøker hos NAV'),
             ).toBeInTheDocument();

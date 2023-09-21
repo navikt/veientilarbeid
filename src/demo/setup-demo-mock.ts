@@ -14,6 +14,7 @@ import {
     FEATURE_URL,
     FULLFOER_REAKTIVERING_URL,
     GJELDER_FRA_DATO_URL,
+    KAN_REAKTIVERES_URL,
     MELDEKORTSTATUS_URL,
     MELDEPLIKT_URL,
     MOTESTOTTE_URL,
@@ -177,6 +178,9 @@ export const demo_handlers = [
 
     rest.get(REAKTIVERING_URL, reaktiveringGetResolver),
     rest.post(REAKTIVERING_URL, reaktiveringPostResolver),
+    rest.get(KAN_REAKTIVERES_URL, (_req, res, ctx) => {
+        return res(ctx.json({ kanReaktiveres: true }));
+    }),
     rest.post(FULLFOER_REAKTIVERING_URL, async (_req, res, ctx) => {
         const delay = new Promise((resolve) =>
             setTimeout(() => {
