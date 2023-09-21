@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
-import { Alert, BodyShort, Button, DatePicker, HelpText, Radio, RadioGroup, useDatepicker } from '@navikt/ds-react';
+import {
+    Alert,
+    BodyShort,
+    Button,
+    ConfirmationPanel,
+    DatePicker,
+    HelpText,
+    Radio,
+    RadioGroup,
+    useDatepicker,
+} from '@navikt/ds-react';
 
 import { BesvarelseRequest, useBesvarelse } from '../../contexts/besvarelse';
 
@@ -350,9 +360,10 @@ const OPPSIGELSE = (props: Steg2Props) => {
     });
 
     const [harNyJobb, settHarNyJobb] = useState<string>();
+    const [erBekreftet, settErBekreftet] = useState<boolean>(false);
 
     const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
-    const disabled = !harNyJobb || !oppsigelseDato || !sisteArbeidsdagDato || loading;
+    const disabled = !harNyJobb || !oppsigelseDato || !sisteArbeidsdagDato || loading || !erBekreftet;
 
     const tilleggsData = {
         oppsigelseDato,
@@ -404,6 +415,14 @@ const OPPSIGELSE = (props: Steg2Props) => {
                 </RadioGroup>
 
                 <OpplysningeneBrukesTil />
+                <ConfirmationPanel
+                    className={spacing.mb1}
+                    checked={erBekreftet}
+                    onChange={() => settErBekreftet((c) => !c)}
+                    label={'Jeg forstår'}
+                >
+                    Bekfreft tekst
+                </ConfirmationPanel>
                 <Feil feil={feil} />
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
                     <Button
@@ -634,9 +653,9 @@ const KONKURS = (props: Steg2Props) => {
     });
 
     const [harNyJobb, settHarNyJobb] = useState<string>();
-
+    const [erBekreftet, settErBekreftet] = useState<boolean>(false);
     const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
-    const disabled = !harNyJobb || !sisteArbeidsdagDato || loading;
+    const disabled = !harNyJobb || !sisteArbeidsdagDato || loading || !erBekreftet;
 
     const tilleggsData = {
         sisteArbeidsdagDato,
@@ -665,6 +684,14 @@ const KONKURS = (props: Steg2Props) => {
                 </RadioGroup>
 
                 <OpplysningeneBrukesTil />
+                <ConfirmationPanel
+                    className={spacing.mb1}
+                    checked={erBekreftet}
+                    onChange={() => settErBekreftet((c) => !c)}
+                    label={'Jeg forstår'}
+                >
+                    Bekfreft tekst
+                </ConfirmationPanel>
                 <Feil feil={feil} />
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
                     <Button
@@ -701,9 +728,10 @@ const SAGT_OPP = (props: Steg2Props) => {
     });
 
     const [harNyJobb, settHarNyJobb] = useState<string>();
+    const [erBekreftet, settErBekreftet] = useState<boolean>(false);
 
     const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
-    const disabled = !harNyJobb || !oppsigelseDato || !sisteArbeidsdagDato || loading;
+    const disabled = !harNyJobb || !oppsigelseDato || !sisteArbeidsdagDato || loading || !erBekreftet;
 
     const tilleggsData = {
         oppsigelseDato,
@@ -746,6 +774,14 @@ const SAGT_OPP = (props: Steg2Props) => {
                 </RadioGroup>
 
                 <OpplysningeneBrukesTil />
+                <ConfirmationPanel
+                    className={spacing.mb1}
+                    checked={erBekreftet}
+                    onChange={() => settErBekreftet((c) => !c)}
+                    label={'Jeg forstår'}
+                >
+                    Bekfreft tekst
+                </ConfirmationPanel>
                 <Feil feil={feil} />
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
                     <Button
