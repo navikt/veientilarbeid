@@ -4,7 +4,7 @@ import { setupServer } from 'msw/native';
 import Mikrofrontend from './main';
 
 import * as useSWR from './hooks/useSWR';
-import { ARBEIDSSOKER_NIVA3_URL, AUTH_API, DP_INNSYN_URL, KAN_REAKTIVERES_URL } from './ducks/api';
+import { ARBEIDSSOKER_NIVA3_URL, AUTH_API, DP_INNSYN_URL } from './ducks/api';
 import msw_get from './mocks/msw-utils';
 import { render } from './utils/test-utils';
 import arbeidssoker from './mocks/arbeidssoker-niva3-mock';
@@ -79,15 +79,15 @@ describe('Tester at main rendrer riktig innhold', () => {
         });
 
         test(', men nylig har vært arbeidssøker (viser reaktiveringskomponent)', async () => {
-            server.use(msw_get(ARBEIDSSOKER_NIVA3_URL_UTEN_QUERY_PARAMS, arbeidssoker(false, 'nylig-utlopt')));
-            server.use(msw_get(KAN_REAKTIVERES_URL, { kanReaktiveres: true }));
-
-            const { container } = render(<Mikrofrontend />);
+            server.use(
+                ...ikkeStandardHandlers,
+                msw_get(ARBEIDSSOKER_NIVA3_URL_UTEN_QUERY_PARAMS, arbeidssoker(false, 'nylig-utlopt')),
+            );
+            render(<Mikrofrontend />);
 
             await waitForElementToBeRemoved(() => screen.queryByText('venter...'));
 
             expect(swrSpy).not.toHaveBeenCalledWith('ER_STANDARD_INNSATSGRUPPE_URL');
-            expect(container).not.toBeEmptyDOMElement();
             expect(
                 await screen.findByText('Du er ikke lenger registrert som arbeidssøker hos NAV'),
             ).toBeInTheDocument();
