@@ -2,13 +2,11 @@ import * as React from 'react';
 import { Alert, BodyShort, Button, Heading, Link } from '@navikt/ds-react';
 
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
-import { useMeldeplikt } from '../../contexts/meldeplikt';
 
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import { loggAktivitet } from '../../metrics/metrics';
 import { dialogLenke, reaktiveringLenke } from '../../innhold/lenker';
-import SisteMeldekortVidereRegistrertValg from './siste-meldekort-videre-registrert-valg';
 
 import styles from '../../innhold/innhold.module.css';
 import spacingStyles from '../../spacing.module.css';
@@ -21,7 +19,6 @@ interface Props {
 
 const ReaktiveringAktuelt = (props: Props) => {
     const { amplitudeData } = useAmplitudeData();
-    const { meldeplikt } = useMeldeplikt();
     const featureToggle = useFeatureToggleData();
 
     const { handleIkkeReaktivering } = props;
@@ -44,7 +41,6 @@ const ReaktiveringAktuelt = (props: Props) => {
                     Du er ikke lenger registrert som arbeidssøker hos NAV
                 </Heading>
                 <div>
-                    <SisteMeldekortVidereRegistrertValg meldeplikt={meldeplikt} />
                     <BodyShort className={spacingStyles.blokkS}>
                         {featureToggle[FeatureToggles.BRUK_REAKTIVERING_KNAPP] ? (
                             <ReaktiveringKnapp aktivitet="Bruker reaktiverer seg selv" />
