@@ -419,10 +419,13 @@ const OPPSIGELSE = (props: Steg2Props) => {
                     className={spacing.mb1}
                     checked={erBekreftet}
                     onChange={() => settErBekreftet((c) => !c)}
-                    label={'Jeg forstår'}
-                >
-                    Bekfreft tekst
-                </ConfirmationPanel>
+                    label={
+                        <>
+                            Jeg forstår at det er arbeidsgiver som skal betale lønn i oppsigelsestiden. <br />
+                            Den regnes fra den datoen jeg fikk oppsigelsen.
+                        </>
+                    }
+                ></ConfirmationPanel>
                 <Feil feil={feil} />
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
                     <Button
@@ -684,14 +687,22 @@ const KONKURS = (props: Steg2Props) => {
                 </RadioGroup>
 
                 <OpplysningeneBrukesTil />
+                <Alert variant="info" className={spacing.mb1}>
+                    Når du mistet jobben fordi arbeidsgiveren din er konkurs, kan du få forskudd på lønnsgarantimidler i
+                    form av dagpenger i inntil en måned. Lønnsgarantimidler skal dekke lønn, feriepenger og eventuelt
+                    andre betalinger som arbeidsgiveren din skylder deg.
+                </Alert>
                 <ConfirmationPanel
                     className={spacing.mb1}
                     checked={erBekreftet}
                     onChange={() => settErBekreftet((c) => !c)}
-                    label={'Jeg forstår'}
-                >
-                    Bekfreft tekst
-                </ConfirmationPanel>
+                    label={
+                        <>
+                            Jeg forstår at når arbeidsgiveren min har gått konkurs, kan jeg søke om lønnsgarantimidler
+                            fra NAV.
+                        </>
+                    }
+                ></ConfirmationPanel>
                 <Feil feil={feil} />
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
                     <Button
@@ -778,10 +789,14 @@ const SAGT_OPP = (props: Steg2Props) => {
                     className={spacing.mb1}
                     checked={erBekreftet}
                     onChange={() => settErBekreftet((c) => !c)}
-                    label={'Jeg forstår'}
-                >
-                    Bekfreft tekst
-                </ConfirmationPanel>
+                    label={
+                        <>
+                            Jeg forstår at det er arbeidsgiver som skal betale lønn i oppsigelsestiden.
+                            <br />
+                            Den regnes fra den datoen jeg leverte oppsigelsen.
+                        </>
+                    }
+                ></ConfirmationPanel>
                 <Feil feil={feil} />
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
                     <Button
