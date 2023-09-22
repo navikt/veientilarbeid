@@ -1,6 +1,6 @@
 import { fetchToJson } from '../../ducks/api-utils';
 import { FULLFOER_REAKTIVERING_URL, requestConfig } from '../../ducks/api';
-import { Alert, Button } from '@navikt/ds-react';
+import { Alert, Button, Link } from '@navikt/ds-react';
 import { useState } from 'react';
 import spacing from '../../spacing.module.css';
 import { loggAktivitet } from '../../metrics/metrics';
@@ -34,12 +34,23 @@ const ReaktiveringsKnapp = ({ aktivitet }: Props) => {
 
     return (
         <>
-            <Button variant="primary" onClick={fullfoerReaktivering} loading={loading}>
+            <Button variant="primary" onClick={fullfoerReaktivering} loading={loading} disabled={showError}>
                 Registrer deg som arbeidssøker
             </Button>
             {showError && (
                 <Alert variant={'error'} className={spacing.mt1}>
-                    Noe gikk dessverre galt. Prøv igjen.
+                    Noe gikk dessverre galt.
+                    <br />
+                    Prøv igjen litt senere, eller{' '}
+                    <Link
+                        href="https://www.nav.no/person/kontakt-oss/"
+                        onClick={() =>
+                            loggAktivitet({ aktivitet: 'Går til chat fra reaktivering feilmelding', ...amplitudeData })
+                        }
+                    >
+                        kontakt oss
+                    </Link>{' '}
+                    hvis problemet vedvarer.
                 </Alert>
             )}
         </>

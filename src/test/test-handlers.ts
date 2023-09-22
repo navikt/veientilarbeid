@@ -15,6 +15,7 @@ import {
     ULESTEDIALOGER_URL,
     VEILARBOPPFOLGING_URL,
     REAKTIVERING_URL,
+    KAN_REAKTIVERES_URL,
 } from '../ducks/api';
 import { authenticatedMock } from '../mocks/auth-mock';
 import { InnloggingsNiva } from '../contexts/autentisering';
@@ -56,6 +57,7 @@ export const standardHandlers = [
     msw_get(`${DP_INNSYN_URL}/vedtak`, dpVedtakResponse),
     msw_get(`${DP_INNSYN_URL}/paabegynte`, dpPaabegynteResponse),
     msw_get(REAKTIVERING_URL, null, 204),
+    msw_get(KAN_REAKTIVERES_URL, { kanReaktiveres: true }),
 ];
 
 export const ikkeStandardHandlers = [
@@ -65,4 +67,5 @@ export const ikkeStandardHandlers = [
     msw_get(BRUKERINFO_URL, brukerInfoResponse),
     msw_get(VEILARBOPPFOLGING_URL, oppfolgingResponse),
     msw_get(REAKTIVERING_URL, null, 204),
+    msw_get(KAN_REAKTIVERES_URL, { kanReaktiveres: true }),
 ];
