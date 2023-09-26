@@ -72,6 +72,13 @@ function genererDialogTekst(
     opprinneligSituasjon: SituasjonSvar | undefined,
     tilleggsData?: any,
 ) {
+    const skalIkkeVentePaaSvarSituasjoner = [
+        PermittertSvar.KONKURS,
+        PermittertSvar.OPPSIGELSE,
+        PermittertSvar.SAGT_OPP,
+    ] as SituasjonSvar[];
+    const ikkeVentPaaSvar = skalIkkeVentePaaSvarSituasjoner.includes(valgtSituasjon);
+
     const permitteringsprosentMapping: { [key: string]: string } = {
         '100': 'fullt permittert - 100 prosent',
         '75': 'mellom 50 og 100 prosent',
@@ -192,7 +199,7 @@ function genererDialogTekst(
     return {
         tekst: tekstArray.join('\n\n'),
         overskrift: 'Jobbsituasjonen min er endret',
-        venterPaaSvarFraNav: true,
+        venterPaaSvarFraNav: !ikkeVentPaaSvar,
     };
 }
 
