@@ -16,6 +16,7 @@ import {
     VEILARBOPPFOLGING_URL,
     REAKTIVERING_URL,
     KAN_REAKTIVERES_URL,
+    ARBEIDSOKER_INNHOLD,
 } from '../ducks/api';
 import { authenticatedMock } from '../mocks/auth-mock';
 import { InnloggingsNiva } from '../contexts/autentisering';
@@ -42,6 +43,7 @@ export const initielleKallHandlers = [
     msw_post('https://amplitude.nav.no/collect', {}),
     msw_get(GJELDER_FRA_DATO_URL, gjelderFraGetResponse),
     msw_post(GJELDER_FRA_DATO_URL, null, 201),
+    msw_get(ARBEIDSOKER_INNHOLD, {}),
 ];
 
 export const standardHandlers = [

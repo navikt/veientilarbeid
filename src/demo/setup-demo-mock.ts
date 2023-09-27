@@ -2,6 +2,7 @@ import { rest } from 'msw';
 
 import {
     ANTATT_INAKTIVERINGSGRUNN,
+    ARBEIDSOKER_INNHOLD,
     ARBEIDSSOKER_NIVA3_URL,
     AUTH_API,
     BEHOV_FOR_VEILEDNING_URL,
@@ -190,6 +191,10 @@ export const demo_handlers = [
         );
         await delay;
         return res(ctx.status(204));
+    }),
+
+    rest.get(ARBEIDSOKER_INNHOLD, (_req, res, ctx) => {
+        return res(ctx.json({ oppfolging: {} as any }));
     }),
 
     rest.post(OPPRETT_OPPGAVE_URL, async (_req, res, ctx) => {
