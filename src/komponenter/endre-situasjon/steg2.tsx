@@ -77,6 +77,7 @@ function genererDialogTekst(
         PermittertSvar.OPPSIGELSE,
         PermittertSvar.SAGT_OPP,
     ] as SituasjonSvar[];
+
     const ikkeVentPaaSvar = skalIkkeVentePaaSvarSituasjoner.includes(valgtSituasjon);
 
     const permitteringsprosentMapping: { [key: string]: string } = {
@@ -244,6 +245,7 @@ function useLagreEndringer(props: Steg2Props) {
                 overskrift,
                 oppgaveBeskrivelse,
                 venterPaaSvarFraNav,
+                valgtSituasjon,
                 oppdatering: {
                     dinSituasjon: {
                         verdi: valgtSituasjon as any,

@@ -16,6 +16,7 @@ import {
     FremtidigSituasjonSvar,
     TilbakeIArbeidSvar,
 } from './brukerregistrering';
+
 import { PermittertSvar } from '../models/endring-av-situasjon';
 
 export type DinSituasjonTilleggsdata = {
@@ -118,6 +119,7 @@ export type BesvarelseRequest = {
     overskrift?: string;
     oppgaveBeskrivelse?: string;
     venterPaaSvarFraNav?: boolean;
+    valgtSituasjon?: PermittertSvar | DinSituasjonSvar;
     oppdatering: DinSituasjonRequest;
 };
 
@@ -173,7 +175,10 @@ async function opprettDialog(data: {
     });
 }
 
-async function opprettOppgave(data: { oppgaveBeskrivelse?: string }): Promise<null | { id: string }> {
+async function opprettOppgave(data: {
+    oppgaveBeskrivelse?: string;
+    valgtSituasjon?: DinSituasjonSvar | PermittertSvar;
+}): Promise<null | { id: string }> {
     if (!data.oppgaveBeskrivelse) {
         return Promise.resolve(null);
     }
@@ -183,6 +188,7 @@ async function opprettOppgave(data: { oppgaveBeskrivelse?: string }): Promise<nu
         method: 'POST',
         body: JSON.stringify({
             beskrivelse: data.oppgaveBeskrivelse,
+            dinSituasjon: data.valgtSituasjon,
         }),
     });
 }
