@@ -65,4 +65,5 @@ export const AIA_BACKEND = aiaBackendUrl,
     ANTATT_INAKTIVERINGSGRUNN = `${AIA_BACKEND}/data/meldekort-inaktivering`,
     REAKTIVERING_URL = `${AIA_BACKEND}/reaktivering`,
     FULLFOER_REAKTIVERING_URL = `${AIA_BACKEND}/fullfoerreaktivering`,
-    KAN_REAKTIVERES_URL = `${AIA_BACKEND}/kan-reaktiveres`;
+    KAN_REAKTIVERES_URL = `${AIA_BACKEND}/kan-reaktiveres`,
+    ARBEIDSOKER_INNHOLD = `${AIA_BACKEND}/data/arbeidssoker-innhold`;
