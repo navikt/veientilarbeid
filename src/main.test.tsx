@@ -1,4 +1,4 @@
-/*import { screen, waitForElementToBeRemoved } from '@testing-library/react';
+import { screen, waitForElementToBeRemoved } from '@testing-library/react';
 import { mockIntersectionObserver } from './mocks/intersection-observer-mock';
 import { setupServer } from 'msw/native';
 import Mikrofrontend from './main';
@@ -10,13 +10,10 @@ import { render } from './utils/test-utils';
 import arbeidssoker from './mocks/arbeidssoker-niva3-mock';
 import { InnloggingsNiva } from './contexts/autentisering';
 import { authenticatedMock } from './mocks/auth-mock';
-import { ikkeStandardHandlers, initielleKallHandlers, standardHandlers } from './test/test-handlers';*/
+import { ikkeStandardHandlers, initielleKallHandlers, standardHandlers } from './test/test-handlers';
 
 describe('Tester at main rendrer riktig innhold', () => {
-    test('test', () => {
-        expect(true);
-    });
-    /*const swrSpy = vi.spyOn(useSWR, 'useSWRImmutable');
+    const swrSpy = vi.spyOn(useSWR, 'useSWRImmutable');
     const server = setupServer(...initielleKallHandlers);
     // Stripp query params for å slippe syting og klaging i loggen
     const ARBEIDSSOKER_NIVA3_URL_UTEN_QUERY_PARAMS = ARBEIDSSOKER_NIVA3_URL.split('?')[0];
@@ -104,5 +101,5 @@ describe('Tester at main rendrer riktig innhold', () => {
             expect(swrSpy).not.toHaveBeenCalledWith('ER_STANDARD_INNSATSGRUPPE_URL');
             expect(container).toBeEmptyDOMElement();
         });
-    });*/
+    });
 });
