@@ -138,10 +138,12 @@ export const demo_handlers = [
     rest.get(BEHOV_FOR_VEILEDNING_URL, behovForVeiledningGetResolver),
     rest.post(BEHOV_FOR_VEILEDNING_URL, behovForVeiledningPostResolver),
 
-    rest.get(ARBEIDSSOKER_NIVA3_URL, (req, res, ctx) => {
+    rest.get(ARBEIDSSOKER_NIVA3_URL, async (req, res, ctx) => {
         // eslint-disable-next-line no-restricted-globals
         const searchParams = new URLSearchParams(location.search);
         const { underOppfolging } = hentUnderOppfolging();
+
+        await new Promise((resolve) => setTimeout(() => resolve(null), 1000));
 
         return res(
             ctx.json(
@@ -193,7 +195,12 @@ export const demo_handlers = [
         return res(ctx.status(204));
     }),
 
-    rest.get(ARBEIDSOKER_INNHOLD, (_req, res, ctx) => {
+    rest.get(ARBEIDSOKER_INNHOLD, async (_req, res, ctx) => {
+        await new Promise((resolve) =>
+            setTimeout(() => {
+                resolve(null);
+            }, 1000),
+        );
         return res(
             ctx.json({
                 oppfolging: {

@@ -8,14 +8,9 @@ import InnholdArbeidssokerForenklet from './innhold-arbeidssoker-forenklet';
 import InnholdSituasjonsbestemt from './innhold-situasjonsbestemt';
 import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from '../lib/er-situasjonsbestemt-innsatsgruppe';
 import useErStandardInnsats from '../hooks/use-er-standard-innsats';
-import { useSWRImmutable } from '../hooks/useSWR';
-import { ARBEIDSOKER_INNHOLD } from '../ducks/api';
 
 function ArbeidssokerInnhold() {
     const underOppfolging = useUnderOppfolging()?.underoppfolging;
-    const { data } = useSWRImmutable(ARBEIDSOKER_INNHOLD);
-
-    console.log('ArbeidssokerInnhold data: ', data);
     const innloggingsnivaa = useAutentiseringData().securityLevel;
     const brukerregistreringData = useBrukerregistreringData();
     const oppfolgingData = useOppfolgingData();

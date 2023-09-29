@@ -35,29 +35,31 @@ const ArbeidssokerDataProvider = (props: Props) => {
     );
 
     const { data } = useSWRImmutable<{
-        oppfolging: any;
-        brukerregistrering: any;
-        brukerInfo: any;
-        ulesteDialoger: any;
+        oppfolging: { data: Oppfolging.Data; status: number };
+        brukerregistrering: { data: Brukerregistrering.Data; status: number };
+        brukerInfo: { data: BrukerInfo.Data; status: number };
+        ulesteDialoger: { data: UlesteDialoger.Data; status: number };
     }>(ARBEIDSOKER_INNHOLD);
 
     useEffect(() => {
+        const getStatus = (status: number) => (status === 200 ? STATUS.OK : STATUS.ERROR);
+
         if (data) {
             setOppfolgingState({
                 data: data.oppfolging.data,
-                status: data.oppfolging.status === 200 ? STATUS.OK : STATUS.ERROR,
+                status: getStatus(data.oppfolging.status),
             });
             setBrukerInfoState({
                 data: data.brukerInfo.data,
-                status: data.brukerInfo.status === 200 ? STATUS.OK : STATUS.ERROR,
+                status: getStatus(data.brukerInfo.status),
             });
             setBrukerregistreringState({
                 data: data.brukerregistrering.data,
-                status: data.brukerregistrering.status === 200 ? STATUS.OK : STATUS.ERROR,
+                status: getStatus(data.brukerregistrering.status),
             });
             setUlesteDialogerState({
                 data: data.ulesteDialoger.data,
-                status: data.ulesteDialoger.status === 200 ? STATUS.OK : STATUS.ERROR,
+                status: getStatus(data.ulesteDialoger.status),
             });
         }
     }, [data]);
