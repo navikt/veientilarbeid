@@ -76,12 +76,19 @@ const SendInnDokumentasjon = (props: { aktuellSituasjon: SituasjonSvar }) => {
         [PermittertSvar.SAGT_OPP]: 'oppsigelsen',
     };
 
+    const dokumentasjonBeskrivelseMapping = {
+        [PermittertSvar.OPPSIGELSE]: 'Du må sende oss oppsigelsen du har fått fra arbeidsgiver',
+        [PermittertSvar.TILBAKE_TIL_JOBB]:
+            'Hvis du har et permitteringsvarsel som du enda ikke har sendt oss, må du sende det nå',
+        [PermittertSvar.ENDRET_PERMITTERINGSPROSENT]:
+            'Hvis du har et permitteringsvarsel som du enda ikke har sendt oss, må du sende det nå',
+        [PermittertSvar.SAGT_OPP]: 'Du må sende oss dokumentasjon av oppsigelsen du har levert til arbeidsgiveren din',
+    };
+
     return (
         <div className={spacing.pa1} style={{ background: 'var(--a-blue-50)' }}>
             <Heading size={'small'}>Dokumentasjon av {dokumentasjonMapping[aktuellSituasjon]}</Heading>
-            <BodyShort className={spacing.mb1}>
-                Hvis du har et permitteringsvarsel som du enda ikke har sendt oss, må du sende det nå
-            </BodyShort>
+            <BodyShort className={spacing.mb1}>{dokumentasjonBeskrivelseMapping[aktuellSituasjon]}</BodyShort>
             <a
                 className={'navds-button navds-button--primary'}
                 href={dokumentasjon_url}
