@@ -68,7 +68,8 @@ function genererDialogTekst(
     opprinneligSituasjon: SituasjonSvar | undefined,
     tilleggsData?: any,
 ) {
-    const skalVentePaaSvarFraNAV = tilleggsData?.harNyJobb === 'nei' ? true : false;
+    const harEndretSituasjonTilAnnet = valgtSituasjon === PermittertSvar.ANNET;
+    const skalVentePaaSvarFraNAV = tilleggsData?.harNyJobb === 'nei' || harEndretSituasjonTilAnnet;
 
     const permitteringsprosentMapping: { [key: string]: string } = {
         '100': 'fullt permittert - 100 prosent',
