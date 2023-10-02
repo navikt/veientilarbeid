@@ -56,11 +56,7 @@ function genererOppgaveBeskrivelse(
     opprinneligSituasjon: SituasjonSvar | undefined,
     tilleggsData?: any,
 ): string | undefined {
-    if (
-        valgtSituasjon === PermittertSvar.KONKURS ||
-        valgtSituasjon === PermittertSvar.OPPSIGELSE ||
-        valgtSituasjon === PermittertSvar.SAGT_OPP
-    ) {
+    if (valgtSituasjon !== PermittertSvar.ANNET) {
         return genererDialogTekst(valgtSituasjon, opprinneligSituasjon, tilleggsData).tekst;
     }
 
