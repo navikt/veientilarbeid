@@ -34,7 +34,7 @@ const ArbeidssokerDataProvider = (props: Props) => {
         UlesteDialoger.initialState,
     );
 
-    const { data } = useSWRImmutable<{
+    const { data, error } = useSWRImmutable<{
         oppfolging: { data: Oppfolging.Data; status: number };
         brukerregistrering: { data: Brukerregistrering.Data; status: number };
         brukerInfo: { data: BrukerInfo.Data; status: number };
@@ -63,6 +63,13 @@ const ArbeidssokerDataProvider = (props: Props) => {
             });
         }
     }, [data]);
+
+    useEffect(() => {
+        if (error) {
+            setOppfolgingState((state) => ({ ...state, status: STATUS.ERROR }));
+            setBrukerregistreringState((state) => ({ ...state, status: STATUS.ERROR }));
+        }
+    }, [error]);
 
     useEffect(() => {
         const foreslaattInnsatsgruppe = selectForeslattInnsatsgruppe(brukerregistreringState.data);
