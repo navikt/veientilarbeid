@@ -1,3 +1,5 @@
+import { hentBrukerRegistrering } from '../demo/demo-state-brukerregistrering';
+
 const arbeidssokerInnholdMock = {
     oppfolging: {
         status: 200,
@@ -38,69 +40,7 @@ const arbeidssokerInnholdMock = {
     brukerregistrering: {
         status: 200,
         data: {
-            registrering: {
-                id: 10004840,
-                opprettetDato: '2023-08-31T10:32:38.230169+02:00',
-                besvarelse: {
-                    utdanning: 'HOYERE_UTDANNING_1_TIL_4',
-                    utdanningBestatt: 'JA',
-                    utdanningGodkjent: 'JA',
-                    helseHinder: 'NEI',
-                    andreForhold: 'NEI',
-                    sisteStilling: 'INGEN_SVAR',
-                    dinSituasjon: 'MISTET_JOBBEN',
-                    fremtidigSituasjon: null,
-                    tilbakeIArbeid: null,
-                },
-                teksterForBesvarelse: [
-                    {
-                        sporsmalId: 'dinSituasjon',
-                        sporsmal: 'Velg den situasjonen som passer deg best',
-                        svar: 'Har mistet eller kommer til å miste jobben',
-                    },
-                    {
-                        sporsmalId: 'utdanning',
-                        sporsmal: 'Hva er din høyeste fullførte utdanning?',
-                        svar: 'Høyere utdanning (1 til 4 år)',
-                    },
-                    {
-                        sporsmalId: 'utdanningGodkjent',
-                        sporsmal: 'Er utdanningen din godkjent i Norge?',
-                        svar: 'Ja',
-                    },
-                    {
-                        sporsmalId: 'utdanningBestatt',
-                        sporsmal: 'Er utdanningen din bestått?',
-                        svar: 'Ja',
-                    },
-                    {
-                        sporsmalId: 'andreForhold',
-                        sporsmal: 'Har du andre problemer med å søke eller være i jobb?',
-                        svar: 'Nei',
-                    },
-                    {
-                        sporsmalId: 'sisteStilling',
-                        sporsmal: 'Hva er din siste jobb?',
-                        svar: 'Sushikokk',
-                    },
-                    {
-                        sporsmalId: 'helseHinder',
-                        sporsmal: 'Har du helseproblemer som hindrer deg i å søke eller være i jobb?',
-                        svar: 'Nei',
-                    },
-                ],
-                sisteStilling: {
-                    label: 'Sushikokk',
-                    konseptId: 21838,
-                    styrk08: '5120',
-                },
-                profilering: {
-                    innsatsgruppe: 'STANDARD_INNSATS',
-                    alder: 45,
-                    jobbetSammenhengendeSeksAvTolvSisteManeder: true,
-                },
-                manueltRegistrertAv: null,
-            },
+            registrering: hentBrukerRegistrering().registrering,
             type: 'ORDINAER',
         },
     },
