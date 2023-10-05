@@ -1,11 +1,13 @@
 import { BodyShort } from '@navikt/ds-react';
 
+import { useProfil } from '../../contexts/profil';
+
 import { DinSituasjonTilleggsdata, useBesvarelse } from '../../contexts/besvarelse';
 import prettyPrintDato from '../../utils/pretty-print-dato';
-import { useProfil } from '../../contexts/profil';
 import { PermittertSvar } from '../../models/endring-av-situasjon';
-import spacing from '../../spacing.module.css';
 import { harSendtInnNyDokumentasjon } from '../endre-situasjon/send-inn-dokumentasjon';
+
+import spacing from '../../spacing.module.css';
 
 interface Props {
     verdi: string | null;
@@ -185,7 +187,7 @@ function TilleggsData(props: Props) {
 
         const harSendtInnDokumentasjon = harSendtInnNyDokumentasjon(profil, besvarelse);
 
-        const { oppsigelseDato, sisteArbeidsdagDato, harNyJobb } = tilleggsData;
+        const { oppsigelseDato, sisteArbeidsdagDato, harNyJobb, forsteArbeidsdagDato } = tilleggsData;
 
         return (
             <>
@@ -198,6 +200,12 @@ function TilleggsData(props: Props) {
                     {sisteArbeidsdagDato ? prettyPrintDato(sisteArbeidsdagDato) : 'ikke oppgitt'}
                 </BodyShort>
                 {harNyJobb && <BodyShort>{harNyJobbMapping[harNyJobb]}</BodyShort>}
+                {harNyJobb && harNyJobb === 'ja' && forsteArbeidsdagDato && (
+                    <BodyShort>
+                        Første arbeidsdag i ny jobb er{' '}
+                        {forsteArbeidsdagDato ? prettyPrintDato(forsteArbeidsdagDato) : 'ikke oppgitt'}
+                    </BodyShort>
+                )}
                 {harSendtInnDokumentasjon && <BodyShort>Jeg har sendt inn dokumentasjon</BodyShort>}
             </>
         );

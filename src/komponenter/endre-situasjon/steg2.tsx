@@ -16,7 +16,6 @@ import { BesvarelseRequest, useBesvarelse } from '../../contexts/besvarelse';
 import { loggAktivitet } from '../../metrics/metrics';
 import { DinSituasjonSvar } from '../../contexts/brukerregistrering';
 import { dinSituasjonSvarTekster, PermittertSvar, permittertTekster } from '../../models/endring-av-situasjon';
-
 import { svarMap } from '../../models/sporsmal-og-svar';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 
@@ -183,6 +182,9 @@ function genererDialogTekst(
             );
             if (harNyJobb) {
                 tekstArray.push(harNyJobbMapping[harNyJobb]);
+            }
+            if (harNyJobb && harNyJobb === 'ja' && forsteArbeidsdagDato) {
+                tekstArray.push(`Min første arbeidsdag i ny jobb er ${prettyPrintDato(forsteArbeidsdagDato)}`);
             }
         } else {
             tekstArray.push(
@@ -747,15 +749,30 @@ const SAGT_OPP = (props: Steg2Props) => {
         fromDate: new Date('Jan 01 2022'),
     });
 
+    const {
+        datepickerProps: forsteArbeidsdagProps,
+        inputProps: forsteArbeidsdagInput,
+        selectedDay: forsteArbeidsdagDato,
+    } = useDatepicker({
+        fromDate: new Date('Jan 01 2022'),
+    });
+
     const [harNyJobb, settHarNyJobb] = useState<string>();
     const [erBekreftet, settErBekreftet] = useState<boolean>(false);
 
     const { feil, loading, handleLagreEndringer } = useLagreEndringer(props);
-    const disabled = !harNyJobb || !oppsigelseDato || !sisteArbeidsdagDato || loading || !erBekreftet;
+    const disabled =
+        !harNyJobb ||
+        !oppsigelseDato ||
+        !sisteArbeidsdagDato ||
+        loading ||
+        !erBekreftet ||
+        (harNyJobb === 'ja' && !forsteArbeidsdagDato);
 
     const tilleggsData = {
         oppsigelseDato,
         sisteArbeidsdagDato,
+        forsteArbeidsdagDato,
         harNyJobb,
     };
 
@@ -792,6 +809,16 @@ const SAGT_OPP = (props: Steg2Props) => {
                     <Radio value="ja">Ja, jeg har ny jobb å gå til</Radio>
                     <Radio value="nei">Nei, jeg har ikke ny jobb</Radio>
                 </RadioGroup>
+
+                {harNyJobb === 'ja' && (
+                    <DatePicker {...forsteArbeidsdagProps} strategy="fixed">
+                        <DatePicker.Input
+                            {...forsteArbeidsdagInput}
+                            className={spacing.mb1}
+                            label="Når er første dag i ny jobb?"
+                        />
+                    </DatePicker>
+                )}
 
                 <OpplysningeneBrukesTil />
                 <Alert variant="info" className={spacing.mb1}>
