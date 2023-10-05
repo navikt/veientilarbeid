@@ -26,17 +26,8 @@ export const harSendtInnNyDokumentasjon = (profil: Profil | null, besvarelse: Be
 };
 
 export const harSitasjonSomKreverDokumentasjon = (aktuellSituasjon: SituasjonSvar) => {
-    return [
-        PermittertSvar.OPPSIGELSE,
-        PermittertSvar.TILBAKE_TIL_JOBB,
-        PermittertSvar.ENDRET_PERMITTERINGSPROSENT,
-        PermittertSvar.SAGT_OPP,
-    ].includes(
-        aktuellSituasjon as
-            | PermittertSvar.OPPSIGELSE
-            | PermittertSvar.TILBAKE_TIL_JOBB
-            | PermittertSvar.ENDRET_PERMITTERINGSPROSENT
-            | PermittertSvar.SAGT_OPP,
+    return [PermittertSvar.OPPSIGELSE, PermittertSvar.TILBAKE_TIL_JOBB, PermittertSvar.SAGT_OPP].includes(
+        aktuellSituasjon as PermittertSvar.OPPSIGELSE | PermittertSvar.TILBAKE_TIL_JOBB | PermittertSvar.SAGT_OPP,
     );
 };
 const SendInnDokumentasjon = (props: { aktuellSituasjon: SituasjonSvar }) => {
@@ -62,7 +53,6 @@ const SendInnDokumentasjon = (props: { aktuellSituasjon: SituasjonSvar }) => {
     const aktuellSituasjon = props.aktuellSituasjon as
         | PermittertSvar.OPPSIGELSE
         | PermittertSvar.TILBAKE_TIL_JOBB
-        | PermittertSvar.ENDRET_PERMITTERINGSPROSENT
         | PermittertSvar.SAGT_OPP;
 
     if (harSendtInnDokumentasjon || !aktuellSituasjon || !harSitasjonSomKreverDokumentasjon(aktuellSituasjon)) {
@@ -72,15 +62,12 @@ const SendInnDokumentasjon = (props: { aktuellSituasjon: SituasjonSvar }) => {
     const dokumentasjonMapping = {
         [PermittertSvar.OPPSIGELSE]: 'oppsigelsen',
         [PermittertSvar.TILBAKE_TIL_JOBB]: 'permitteringsvarselet',
-        [PermittertSvar.ENDRET_PERMITTERINGSPROSENT]: 'permitteringsvarselet',
         [PermittertSvar.SAGT_OPP]: 'oppsigelsen',
     };
 
     const dokumentasjonBeskrivelseMapping = {
         [PermittertSvar.OPPSIGELSE]: 'Du må sende oss oppsigelsen du har fått fra arbeidsgiver',
         [PermittertSvar.TILBAKE_TIL_JOBB]:
-            'Hvis du har et permitteringsvarsel som du enda ikke har sendt oss, må du sende det nå',
-        [PermittertSvar.ENDRET_PERMITTERINGSPROSENT]:
             'Hvis du har et permitteringsvarsel som du enda ikke har sendt oss, må du sende det nå',
         [PermittertSvar.SAGT_OPP]: 'Du må sende oss dokumentasjon av oppsigelsen du har levert til arbeidsgiveren din',
     };

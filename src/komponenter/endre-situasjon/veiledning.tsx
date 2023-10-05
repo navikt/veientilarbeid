@@ -156,18 +156,13 @@ const ENDRET_PERMITTERINGSPROSENT = (props: VeiledningsProps) => {
             <BodyShort>Vi baserer denne veiledningen på de opplysningene du har oppgitt.</BodyShort>
             <h2 className={spacing.mbn}>Hva må jeg gjøre nå?</h2>
             <BodyShort className={spacing.mb1}>
-                Du må sende oss nytt permitteringsvarsel eller annen dokumentasjon fra arbeidsgiver.
+                Du må fortsette å sende inn meldekortene for perioden du er permittert.
             </BodyShort>
-            <BodyShort>Du finner knapp for opplasting når du lukker denne boksen.</BodyShort>
             <ReadMore
                 header="Hva skjer nå om du har søkt eller mottar dagpenger?"
                 className={spacing.mt1}
                 onClick={() => handleReadmoreDagpenger('ENDRET_PERMITTERINGSPROSENT')}
             >
-                <BodyShort className={spacing.mb1}>
-                    Når vi har behandlet dokumentasjonen du sender oss, får du melding på Mitt NAV om hva du skal gjøre
-                    videre.
-                </BodyShort>
                 <BodyShort className={spacing.mb1}>Du bør fortsette å sende inn meldekortene.</BodyShort>
                 <DagpengeSaksbehandlingstider />
                 <BodyShort className={spacing.mb1}>
