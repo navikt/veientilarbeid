@@ -51,12 +51,21 @@ const OpplysningeneBrukesTil = () => {
     );
 };
 
+const situasjonerMedOppgaver = [
+    PermittertSvar.TILBAKE_TIL_JOBB,
+    PermittertSvar.MIDLERTIDIG_JOBB,
+    PermittertSvar.KONKURS,
+    PermittertSvar.NY_JOBB,
+    PermittertSvar.OPPSIGELSE,
+    PermittertSvar.SAGT_OPP,
+] as SituasjonSvar[];
+
 function genererOppgaveBeskrivelse(
     valgtSituasjon: SituasjonSvar,
     opprinneligSituasjon: SituasjonSvar | undefined,
     tilleggsData?: any,
 ): string | undefined {
-    if (valgtSituasjon !== PermittertSvar.ANNET) {
+    if (situasjonerMedOppgaver.includes(valgtSituasjon)) {
         return genererDialogTekst(valgtSituasjon, opprinneligSituasjon, tilleggsData).tekst;
     }
 
