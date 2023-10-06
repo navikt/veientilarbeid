@@ -56,6 +56,8 @@ const Motestotte = () => {
         return opprettetRegistreringDato <= new Date(motestotteData.dato);
     };
 
+    console.log(oppfolgingData);
+
     const harBehovForArbeidsevnevurdering =
         oppfolgingData.servicegruppe === Servicegruppe.BKART ||
         (foreslattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING &&
