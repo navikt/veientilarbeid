@@ -11,7 +11,7 @@ import AiAInViewport from '../aia-in-viewport/aia-in-viewport';
 import ErRendret from '../er-rendret/er-rendret';
 import { useBrukerregistreringData } from '../../hooks/use-brukerregistrering-data';
 
-function MinSituasjon(props: any) {
+function MinSituasjon() {
     const brukerregistreringData = useBrukerregistreringData();
     const arbeidssokerperiodeData = useArbeidssokerPerioder();
     const { amplitudeData } = useAmplitudeData();

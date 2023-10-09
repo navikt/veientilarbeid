@@ -1,11 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 
 import Opplysninger from './registreringsopplysninger';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import { DinSituasjonSvar } from '../../hooks/use-brukerregistrering-data';
-
-const user = userEvent.setup();
 
 const registreringsopplysninger = {
     manueltRegistrertAv: null,

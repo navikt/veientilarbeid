@@ -1,5 +1,5 @@
 import erStandardInnsatsgruppe from './er-standard-innsatsgruppe';
-import { FremtidigSituasjonSvar } from '../hooks/use-brukerregistrering-data';
+import { ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../hooks/use-brukerregistrering-data';
 import { Formidlingsgruppe, Servicegruppe } from '../hooks/use-oppfolging-data';
 
 const grunnData = {

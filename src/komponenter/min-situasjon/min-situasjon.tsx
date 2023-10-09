@@ -18,7 +18,7 @@ import { useBrukerregistreringData } from '../../hooks/use-brukerregistrering-da
 import { useBrukerInfoData } from '../../hooks/use-brukerinfo-data';
 import { useOppfolgingData } from '../../hooks/use-oppfolging-data';
 
-function MinSituasjon(props: any) {
+function MinSituasjon() {
     const arbeidssokerperiodeData = useArbeidssokerPerioder();
     const { amplitudeData } = useAmplitudeData();
     const autentiseringData = useAutentiseringData();
