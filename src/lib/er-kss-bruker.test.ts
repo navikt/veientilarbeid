@@ -1,10 +1,10 @@
-import { DinSituasjonSvar, FremtidigSituasjonSvar } from '../contexts/brukerregistrering';
 import { InnloggingsNiva } from '../contexts/autentisering';
 import { plussDager } from '../utils/date-utils';
 import { POAGruppe } from '../utils/get-poa-group';
 import { EksperimentId } from '../eksperiment/eksperimenter';
 import { erKSSBruker } from './er-kss-bruker';
-import { Formidlingsgruppe, Servicegruppe } from '../contexts/oppfolging';
+import { DinSituasjonSvar, FremtidigSituasjonSvar } from '../hooks/use-brukerregistrering-data';
+import { Formidlingsgruppe, Servicegruppe } from '../hooks/use-oppfolging-data';
 
 const eksperiment: EksperimentId = 'onboarding14a';
 const poagruppeKSS: POAGruppe = 'kss';

@@ -2,8 +2,8 @@ import { render, screen } from '@testing-library/react';
 
 import Motestotte from './motestotte';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
-import { DinSituasjonSvar, ForeslattInnsatsgruppe } from '../../contexts/brukerregistrering';
-import { Servicegruppe } from '../../contexts/oppfolging';
+import { DinSituasjonSvar, ForeslattInnsatsgruppe } from '../../hooks/use-brukerregistrering-data';
+import { Servicegruppe } from '../../hooks/use-oppfolging-data';
 
 describe('Motestotte', () => {
     const brukerInfo = { erSykmeldtMedArbeidsgiver: true };

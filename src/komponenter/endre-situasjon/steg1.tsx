@@ -1,11 +1,11 @@
 import React from 'react';
 import { Button, Select } from '@navikt/ds-react';
 
-import { DinSituasjonSvar } from '../../contexts/brukerregistrering';
 import { PermittertSvar, permittertTekster } from '../../models/endring-av-situasjon';
 
 import spacing from '../../spacing.module.css';
 import flex from '../../flex.module.css';
+import { DinSituasjonSvar } from '../../hooks/use-brukerregistrering-data';
 
 type SituasjonSvar = PermittertSvar | DinSituasjonSvar;
 

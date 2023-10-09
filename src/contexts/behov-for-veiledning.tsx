@@ -2,7 +2,7 @@ import { createContext, ReactNode, useContext, useEffect, useState } from 'react
 
 import { fetchToJson } from '../ducks/api-utils';
 import { BEHOV_FOR_VEILEDNING_URL, OPPRETT_DIALOG_URL, requestConfig } from '../ducks/api';
-import { ForeslattInnsatsgruppe } from './brukerregistrering';
+import { ForeslattInnsatsgruppe } from '../hooks/use-brukerregistrering-data';
 
 export type BehovForVeiledningRequest = {
     oppfolging: ForeslattInnsatsgruppe;

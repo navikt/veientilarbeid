@@ -4,11 +4,11 @@ import amplitude from 'amplitude-js';
 import { AMPLITUDE_API_KEY_PROD, AMPLITUDE_API_KEY_TEST, AMPLITUDE_ENDPOINT } from '../utils/konstanter';
 import { InnloggingsNiva } from '../contexts/autentisering';
 import { erProduksjon } from '../utils/app-state-utils';
-import { DinSituasjonSvar, ForeslattInnsatsgruppe } from '../contexts/brukerregistrering';
 import { PermittertSvar } from '../models/endring-av-situasjon';
 import * as SprakValg from '../contexts/sprak';
 import { DagpengeStatus } from '../lib/beregn-dagpenge-status';
 import { AntattInaktiveringsgrunn } from '../contexts/antatt-inaktiveringsgrunn';
+import { DinSituasjonSvar, ForeslattInnsatsgruppe } from '../hooks/use-brukerregistrering-data';
 
 const apiKey = erProduksjon() ? AMPLITUDE_API_KEY_PROD : AMPLITUDE_API_KEY_TEST;
 const config = {

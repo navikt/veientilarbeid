@@ -5,12 +5,12 @@ import { useSprakValg } from '../../contexts/sprak';
 
 import MeldekortAdvarsel from './meldekort-advarsel';
 import { beregnDagerEtterFastsattMeldedag, beregnDagerTilInaktivering } from '../../utils/meldekort-utils';
-import { OppfolgingContext } from '../../contexts/oppfolging';
 import { hentIDag } from '../../utils/chrono';
 import { datoMedUkedag, datoUtenTid, plussDager } from '../../utils/date-utils';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
-import { ReactNode, useContext } from 'react';
+import { ReactNode } from 'react';
 import { useMeldekortData } from '../../hooks/use-meldekortdata';
+import { useOppfolgingData } from '../../hooks/use-oppfolging-data';
 
 const TEKSTER = {
     nb: {
@@ -28,7 +28,7 @@ const TEKSTER = {
 };
 function Meldekortstatus(props: { children?: ReactNode }) {
     const { meldekortData = null } = useMeldekortData();
-    const { kanReaktiveres } = useContext(OppfolgingContext).data;
+    const { kanReaktiveres } = useOppfolgingData();
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 

@@ -1,23 +1,22 @@
 import { BodyShort, Button, Heading, Panel } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
 
-import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { useSprakValg } from '../../contexts/sprak';
-
+import { motestotteLenke } from '../../innhold/lenker';
+import { loggAktivitet } from '../../metrics/metrics';
+import { useMotestotteData } from '../../contexts/motestotte';
+import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
+import { useUnderOppfolging } from '../../contexts/arbeidssoker';
 import {
     ForeslattInnsatsgruppe,
     selectDinSituasjonSvar,
     selectForeslattInnsatsgruppe,
     selectOpprettetRegistreringDato,
     useBrukerregistreringData,
-} from '../../contexts/brukerregistrering';
-import { motestotteLenke } from '../../innhold/lenker';
-import { loggAktivitet } from '../../metrics/metrics';
-import { Servicegruppe, useOppfolgingData } from '../../contexts/oppfolging';
-import { useMotestotteData } from '../../contexts/motestotte';
-import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
-import { useUnderOppfolging } from '../../contexts/arbeidssoker';
+} from '../../hooks/use-brukerregistrering-data';
+import { Servicegruppe, useOppfolgingData } from '../../hooks/use-oppfolging-data';
+import { useBrukerInfoData } from '../../hooks/use-brukerinfo-data';
 
 const LANSERINGSDATO_MOTESTOTTE = new Date('2020-03-12');
 
@@ -37,18 +36,20 @@ const TEKSTER: Tekster<string> = {
 
 const Motestotte = () => {
     const { amplitudeData } = useAmplitudeData();
-    const data = useBrukerregistreringData();
-    const oppfolgingData = useOppfolgingData();
     const motestotteData = useMotestotteData();
-    const { erSykmeldtMedArbeidsgiver } = useBrukerinfoData();
-    const sykmeldtStatus = erSykmeldtMedArbeidsgiver ? 'sykmeldt' : 'ikkeSykmeldt';
+
+    const brukerregistrering = useBrukerregistreringData();
+    const oppfolgingData = useOppfolgingData();
+    const brukerInfo = useBrukerInfoData();
+
+    const sykmeldtStatus = brukerInfo.erSykmeldtMedArbeidsgiver ? 'sykmeldt' : 'ikkeSykmeldt';
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
-    const opprettetRegistreringDatoString = selectOpprettetRegistreringDato(data);
+    const opprettetRegistreringDatoString = selectOpprettetRegistreringDato(brukerregistrering);
     const opprettetRegistreringDato = opprettetRegistreringDatoString
         ? new Date(opprettetRegistreringDatoString)
         : null;
-    const foreslattInnsatsgruppe = selectForeslattInnsatsgruppe(data)!; // Komponent blir rendret kun hvis foreslått innsatsgruppe er satt
-    const dinSituasjon = selectDinSituasjonSvar(data) || 'INGEN_VERDI';
+    const foreslattInnsatsgruppe = selectForeslattInnsatsgruppe(brukerregistrering)!; // Komponent blir rendret kun hvis foreslått innsatsgruppe er satt
+    const dinSituasjon = selectDinSituasjonSvar(brukerregistrering) || 'INGEN_VERDI';
     const underOppfolging = useUnderOppfolging()?.underoppfolging;
 
     const harGyldigMotestottebesvarelse = (): boolean => {
@@ -57,8 +58,9 @@ const Motestotte = () => {
     };
 
     const harBehovForArbeidsevnevurdering =
-        oppfolgingData.servicegruppe === Servicegruppe.BKART ||
+        (oppfolgingData && oppfolgingData.servicegruppe === Servicegruppe.BKART) ||
         (foreslattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING &&
+            oppfolgingData &&
             oppfolgingData.servicegruppe === Servicegruppe.IVURD);
 
     const kanViseKomponent =

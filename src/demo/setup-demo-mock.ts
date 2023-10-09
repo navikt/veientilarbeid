@@ -196,7 +196,8 @@ export const demo_handlers = [
         return res(ctx.status(204));
     }),
 
-    rest.get(ARBEIDSOKER_INNHOLD, async (_req, res, ctx) => {
+    rest.get(ARBEIDSOKER_INNHOLD, (_req, res, ctx) => {
+        console.log('test');
         return res(ctx.json(arbeidssokerInnholdMock));
     }),
 

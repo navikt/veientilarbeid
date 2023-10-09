@@ -4,13 +4,13 @@ import { useUnderOppfolging } from '../../contexts/arbeidssoker';
 import { useSprakValg } from '../../contexts/sprak';
 import { useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
 
-import { Besvarelse, SisteStilling, Svar } from '../../contexts/brukerregistrering';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import Feedback from '../feedback/feedback';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 
 import spacing from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
+import { Besvarelse, SisteStilling, Svar } from '../../hooks/use-brukerregistrering-data';
 
 const TEKSTER = {
     nb: {

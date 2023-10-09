@@ -1,7 +1,7 @@
 import { useBehovForVeiledning } from '../contexts/behov-for-veiledning';
-import { Servicegruppe, useOppfolgingData } from '../contexts/oppfolging';
 import { useArbeidssokerPerioder } from '../contexts/arbeidssoker';
 import beregnArbeidssokerperioder from '../lib/beregn-arbeidssokerperioder';
+import { Servicegruppe, useOppfolgingData } from './use-oppfolging-data';
 
 function useHarGyldigBehovsvurdering() {
     const behov = useBehovForVeiledning();

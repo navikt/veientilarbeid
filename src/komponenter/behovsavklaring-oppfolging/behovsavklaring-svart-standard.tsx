@@ -7,12 +7,12 @@ import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import ReadMoreVeileder from './readmore-veileder';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
-import { ForeslattInnsatsgruppe } from '../../contexts/brukerregistrering';
 import { AktivitetsplanLenke, GaaTilDialogKnapp } from './lenker';
 
 import spacingStyles from '../../spacing.module.css';
 
 import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
+import { ForeslattInnsatsgruppe } from '../../hooks/use-brukerregistrering-data';
 
 const TEKSTER = {
     nb: {

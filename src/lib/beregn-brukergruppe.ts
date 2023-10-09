@@ -1,6 +1,6 @@
-import { Brukerregistrering } from '../contexts/brukerregistrering';
-import { Data as OppfolgingData } from '../contexts/oppfolging';
-import { Data as BrukerInfoData } from '../contexts/bruker-info';
+import { Brukerregistrering } from '../hooks/use-brukerregistrering-data';
+import { Data as OppfolgingData } from '../hooks/use-oppfolging-data';
+import { Data as BrukerInfoData } from '../hooks/use-brukerinfo-data';
 import erStandardInnsatsgruppe from './er-standard-innsatsgruppe';
 import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from './er-situasjonsbestemt-innsatsgruppe';
 import {

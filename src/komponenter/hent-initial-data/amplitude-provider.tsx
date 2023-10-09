@@ -3,18 +3,18 @@ import { createContext, useContext } from 'react';
 import ukerFraDato from '@alheimsins/uker-fra-dato';
 
 import { InnloggingsNiva, useAutentiseringData } from '../../contexts/autentisering';
-import { DinSituasjonSvar, useBrukerregistreringData } from '../../contexts/brukerregistrering';
-import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { FeatureToggleData, useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useArbeidssokerPerioder, useUnderOppfolging } from '../../contexts/arbeidssoker';
 
-import { OppfolgingContext } from '../../contexts/oppfolging';
 import grupperGeografiskTilknytning from '../../utils/grupper-geografisk-tilknytning';
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 import dagerFraDato from '../../utils/dager-fra-dato';
 import { AmplitudeData } from '../../metrics/amplitude-utils';
 import * as SprakValg from '../../contexts/sprak';
 import beregnBrukergruppe from '../../lib/beregn-brukergruppe';
+import { DinSituasjonSvar, useBrukerregistreringData } from '../../hooks/use-brukerregistrering-data';
+import { useOppfolgingData } from '../../hooks/use-oppfolging-data';
+import { useBrukerInfoData } from '../../hooks/use-brukerinfo-data';
 
 const hentSprakValgFraCookie = (): SprakValg.Sprak | null => {
     const decoratorLanguageCookie = document.cookie.match(/decorator-language=([a-z]{2})/);
@@ -75,10 +75,10 @@ function useAmplitudeData() {
 }
 
 const AmplitudeProvider = (props: { children: React.ReactNode }) => {
-    const brukerregistreringData = useBrukerregistreringData();
     const featuretoggleData = useFeatureToggleData();
-    const oppfolgingData = React.useContext(OppfolgingContext).data;
-    const brukerInfoData = useBrukerinfoData();
+    const oppfolgingData = useOppfolgingData();
+    const brukerInfoData = useBrukerInfoData();
+    const brukerregistreringData = useBrukerregistreringData();
     const { securityLevel: nivaa } = useAutentiseringData();
     const arbeidssokerperioder = useArbeidssokerPerioder();
     const underOppfolging = useUnderOppfolging()?.underoppfolging;

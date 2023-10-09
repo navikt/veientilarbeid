@@ -18,7 +18,7 @@
  * NAV Åsnes - 3418
  */
 import { POAGruppe } from '../utils/get-poa-group';
-import { DinSituasjonSvar } from '../contexts/brukerregistrering';
+import { DinSituasjonSvar } from '../hooks/use-brukerregistrering-data';
 
 export const kssSituasjoner = [DinSituasjonSvar.HAR_SAGT_OPP, DinSituasjonSvar.MISTET_JOBBEN];
 
@@ -32,7 +32,7 @@ interface Data {
 const isGyldigKontorForDato = (geografiskTilknytning: string, dato: Date): boolean => {
     if (
         ['030112', '030105', '3413', '3407', '3401', '3807', '3803', '1120', '1121', '110302', '110303'].includes(
-            geografiskTilknytning
+            geografiskTilknytning,
         )
     ) {
         return dato >= new Date('2020-09-07') && dato < new Date('2020-11-30');

@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 
 import Opplysninger from './registreringsopplysninger';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
-import { DinSituasjonSvar } from '../../contexts/brukerregistrering';
+import { DinSituasjonSvar } from '../../hooks/use-brukerregistrering-data';
 
 const user = userEvent.setup();
 

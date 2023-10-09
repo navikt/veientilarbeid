@@ -1,12 +1,11 @@
-import { useBrukerregistreringData, ForeslattInnsatsgruppe } from '../../contexts/brukerregistrering';
-import { useOppfolgingData, Servicegruppe, ServicegruppeOrNull } from '../../contexts/oppfolging';
-
 import SvartPaaBehovsavklaringStandardInnsats from './behovsavklaring-svart-standard';
 import SvartPaaBehovsavklaringSituasjonsbestemt from './behovsavklaring-svart-situasjonsbestemt';
+import { Servicegruppe, ServicegruppeOrNull, useOppfolgingData } from '../../hooks/use-oppfolging-data';
+import { ForeslattInnsatsgruppe, useBrukerregistreringData } from '../../hooks/use-brukerregistrering-data';
 
 function hentInnsatsgruppe(
     servicegruppe: ServicegruppeOrNull,
-    foreslattInnsatsgruppe: ForeslattInnsatsgruppe | undefined
+    foreslattInnsatsgruppe: ForeslattInnsatsgruppe | undefined,
 ) {
     if (servicegruppe === Servicegruppe.IVURD) {
         return foreslattInnsatsgruppe || null;

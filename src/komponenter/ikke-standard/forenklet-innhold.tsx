@@ -3,7 +3,6 @@ import { BandageIcon, ChatIcon, LaptopIcon, ClipboardIcon, TasklistIcon } from '
 
 import { useSprakValg } from '../../contexts/sprak';
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
-import { useBrukerinfoData } from '../../contexts/bruker-info';
 
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
@@ -15,6 +14,7 @@ import { loggAktivitet } from '../../metrics/metrics';
 import MeldekortHovedInnhold from '../meldekort/meldekort-hovedinnhold';
 import { FeatureToggles, useFeatureToggleData } from '../../contexts/feature-toggles';
 import MeldekortMikrofrontend from '../meldekort-mikrofrontend/meldekort-mikrofrontend';
+import { useBrukerInfoData } from '../../hooks/use-brukerinfo-data';
 
 const TEKSTER = {
     nb: {
@@ -78,7 +78,7 @@ const ListeElement = (ikon: JSX.Element, innhold: JSX.Element) => {
 function ForenkletInnhold() {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
     const { amplitudeData } = useAmplitudeData();
-    const { erSykmeldtMedArbeidsgiver } = useBrukerinfoData();
+    const { erSykmeldtMedArbeidsgiver } = useBrukerInfoData();
     const featuretoggleData = useFeatureToggleData();
     const brukMeldekortMikrofrontend = featuretoggleData[FeatureToggles.BRUK_MELDEKORT_MIKROFRONTEND];
 
