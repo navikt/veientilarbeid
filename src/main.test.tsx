@@ -13,8 +13,7 @@ import { authenticatedMock } from './mocks/auth-mock';
 import { ikkeStandardHandlers, initielleKallHandlers, standardHandlers } from './test/test-handlers';
 
 describe('Tester at main rendrer riktig innhold', () => {
-    test('', () => true);
-    /*const swrSpy = vi.spyOn(useSWR, 'useSWRImmutable');
+    const swrSpy = vi.spyOn(useSWR, 'useSWRImmutable');
     const server = setupServer(...initielleKallHandlers);
     // Stripp query params for å slippe syting og klaging i loggen
     const ARBEIDSSOKER_NIVA3_URL_UTEN_QUERY_PARAMS = ARBEIDSSOKER_NIVA3_URL.split('?')[0];
@@ -102,5 +101,5 @@ describe('Tester at main rendrer riktig innhold', () => {
             expect(swrSpy).not.toHaveBeenCalledWith('ER_STANDARD_INNSATSGRUPPE_URL');
             expect(container).toBeEmptyDOMElement();
         });
-    });*/
+    });
 });
