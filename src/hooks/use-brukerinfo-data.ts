@@ -34,4 +34,9 @@ export const initialState: State = {
     },
 };
 
-export const useBrukerInfoData = () => useArbeidssokerData().data?.brukerInfo.data ?? initialState.data;
+export const useBrukerInfoData = () => {
+    console.log('data: ', useArbeidssokerData().data);
+    console.log('isLoading: ', useArbeidssokerData().isLoading);
+    console.log('error: ', useArbeidssokerData().error);
+    return useArbeidssokerData().data?.brukerInfo.data ?? initialState.data;
+};

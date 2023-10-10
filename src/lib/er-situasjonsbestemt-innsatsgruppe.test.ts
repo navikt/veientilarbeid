@@ -19,9 +19,6 @@ const grunnData = {
             teksterForBesvarelse: null,
         },
         teksterForBesvarelse: null,
-        profilering: {
-            innsatsgruppe: ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS,
-        },
     },
     oppfolgingData: {
         kanReaktiveres: false,
