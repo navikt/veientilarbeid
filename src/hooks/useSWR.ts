@@ -4,7 +4,6 @@ import { nanoid } from 'nanoid';
 import useSwrImmutable from 'swr/immutable';
 
 export const fetcher = async (path: string, opts?: RequestInit & { onError?: (response: any) => void }) => {
-    console.log('KJØRES!');
     const response = await fetch(path, {
         headers: {
             'Content-Type': 'application/json',
@@ -13,8 +12,6 @@ export const fetcher = async (path: string, opts?: RequestInit & { onError?: (re
         ...opts,
         credentials: 'include',
     });
-
-    console.log('fetcher response: ', response.json());
 
     if (!response.ok) {
         if (response.status === 401) {
