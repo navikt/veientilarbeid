@@ -82,8 +82,6 @@ function ForenkletInnhold() {
     const featuretoggleData = useFeatureToggleData();
     const brukMeldekortMikrofrontend = featuretoggleData[FeatureToggles.BRUK_MELDEKORT_MIKROFRONTEND];
 
-    console.log('erSykmeldtMedArbeidsgiver: ', erSykmeldtMedArbeidsgiver);
-
     const handleClick = (action: string) => {
         loggAktivitet({ aktivitet: action, ...amplitudeData });
     };

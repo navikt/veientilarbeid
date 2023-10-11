@@ -11,9 +11,15 @@ function Innhold() {
     const harAktivArbeidssokerperiode = arbeidssokerperioder.harAktivArbeidssokerperiode === 'Ja';
 
     return (
-        <ArbeidssokerInnholdWrapper>
-            {harAktivArbeidssokerperiode ? <AiaWrapper /> : <IkkeArbeidssokerInnhold />}
-        </ArbeidssokerInnholdWrapper>
+        <>
+            {harAktivArbeidssokerperiode ? (
+                <ArbeidssokerInnholdWrapper>
+                    <AiaWrapper />
+                </ArbeidssokerInnholdWrapper>
+            ) : (
+                <IkkeArbeidssokerInnhold />
+            )}
+        </>
     );
 }
 

@@ -39,7 +39,7 @@ const Motestotte = () => {
     const motestotteData = useMotestotteData();
 
     const brukerregistrering = useBrukerregistreringData();
-    const oppfolgingData = useOppfolgingData();
+    const { servicegruppe } = useOppfolgingData();
     const brukerInfo = useBrukerInfoData();
 
     const sykmeldtStatus = brukerInfo.erSykmeldtMedArbeidsgiver ? 'sykmeldt' : 'ikkeSykmeldt';
@@ -58,10 +58,9 @@ const Motestotte = () => {
     };
 
     const harBehovForArbeidsevnevurdering =
-        (oppfolgingData && oppfolgingData.servicegruppe === Servicegruppe.BKART) ||
+        servicegruppe === Servicegruppe.BKART ||
         (foreslattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING &&
-            oppfolgingData &&
-            oppfolgingData.servicegruppe === Servicegruppe.IVURD);
+            servicegruppe === Servicegruppe.IVURD);
 
     const kanViseKomponent =
         dinSituasjon !== 'ER_PERMITTERT' &&

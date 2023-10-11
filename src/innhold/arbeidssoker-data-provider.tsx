@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 
 import { fetchData } from '../ducks/api-utils';
 import { MOTESTOTTE_URL } from '../ducks/api';
@@ -14,10 +14,10 @@ import { useArbeidssokerData } from '../hooks/use-arbeidssoker-data';
 import { ForeslattInnsatsgruppe, selectForeslattInnsatsgruppe } from '../hooks/use-brukerregistrering-data';
 
 interface Props {
-    children: React.ReactElement<any>;
+    children: ReactNode;
 }
 
-const ArbeidssokerDataProvider = (props: Props) => {
+const ArbeidssokerDataProvider = ({ children }: Props) => {
     const [motestotteState, setMotestotteState] = React.useState<Motestotte.State>(Motestotte.initialState);
     const { data: arbeidsSokerData } = useArbeidssokerData();
 
@@ -38,7 +38,7 @@ const ArbeidssokerDataProvider = (props: Props) => {
                     <GjelderFraDatoModalProvider>
                         <GjelderFraDatoProvider>
                             <AmplitudeProvider>
-                                <DagpengerStatusProvider>{props.children}</DagpengerStatusProvider>
+                                <DagpengerStatusProvider>{children}</DagpengerStatusProvider>
                             </AmplitudeProvider>
                         </GjelderFraDatoProvider>
                     </GjelderFraDatoModalProvider>
