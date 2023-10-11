@@ -1,13 +1,17 @@
-/*import { render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import Motestotte from './motestotte';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import { DinSituasjonSvar, ForeslattInnsatsgruppe } from '../../hooks/use-brukerregistrering-data';
-import { Servicegruppe } from '../../hooks/use-oppfolging-data';*/
+import { Servicegruppe } from '../../hooks/use-oppfolging-data';
+import { setupServer } from 'msw/native';
+import { beforeAll } from 'vitest';
+import msw_get from '../../mocks/msw-utils';
+import { ARBEIDSOKER_INNHOLD } from '../../ducks/api';
+import { SWRConfig } from 'swr';
 
 describe('Motestotte', () => {
-    test('', () => true);
-    /*const motestotte = undefined;
+    const motestotte = undefined;
     const brukerInfo = { erSykmeldtMedArbeidsgiver: true };
     const brukerregistrering = {
         registrering: {
@@ -20,117 +24,192 @@ describe('Motestotte', () => {
             },
         },
     };
+    const oppfolging = { servicegruppe: Servicegruppe.BKART };
+    const arbeidssokerInnhold = {
+        brukerInfo: { data: brukerInfo },
+        brukerregistrering: { data: brukerregistrering },
+        oppfolging: { data: oppfolging },
+    };
 
-    const oppfolging = { servicegruppe: Servicegruppe.BKART };*/
+    const server = setupServer();
+    beforeAll(() => server.listen());
+    afterAll(() => server.close());
+    afterEach(() => {
+        server.resetHandlers();
+    });
 
-    /*it('rendres når alle betingelser er oppfylt', async () => {
+    it('rendres når alle betingelser er oppfylt', async () => {
+        server.use(msw_get(ARBEIDSOKER_INNHOLD, arbeidssokerInnhold));
         const providerProps: ProviderProps = {
-            brukerInfo,
-            brukerregistrering,
-            oppfolging,
             motestotte,
             arbeidssoker: {
                 arbeidssokerperioder: { status: 200, arbeidssokerperioder: [] },
                 underoppfolging: { status: 200, underoppfolging: true },
             },
         };
-        render(<Motestotte />, { wrapper: contextProviders(providerProps) });
-        expect(await screen.getByText('Du kan få mer veiledning')).toBeTruthy();
+        render(
+            <SWRConfig value={{ provider: () => new Map() }}>
+                <Motestotte />
+            </SWRConfig>,
+            { wrapper: contextProviders(providerProps) },
+        );
+        expect(await screen.findByText('Du kan få mer veiledning')).toBeTruthy();
     });
 
-    it('rendres IKKE når men IKKE er under oppfølging', async () => {
+    it('rendres IKKE når man IKKE er under oppfølging', async () => {
+        server.use(msw_get(ARBEIDSOKER_INNHOLD, arbeidssokerInnhold));
         const providerProps: ProviderProps = {
-            brukerInfo,
-            brukerregistrering,
-            oppfolging,
             motestotte,
             arbeidssoker: {
                 arbeidssokerperioder: { status: 200, arbeidssokerperioder: [] },
                 underoppfolging: { status: 200, underoppfolging: false },
             },
         };
-        const { container } = render(<Motestotte />, { wrapper: contextProviders(providerProps) });
+        const { container } = render(
+            <SWRConfig value={{ provider: () => new Map() }}>
+                <Motestotte />
+            </SWRConfig>,
+            { wrapper: contextProviders(providerProps) },
+        );
         expect(container).toBeEmptyDOMElement();
-    });*/
+    });
 
-    /*it('rendre med alternativ tekst dersom ikke sykmeldt', async () => {
+    it('rendre med alternativ tekst dersom ikke sykmeldt', async () => {
+        server.use(
+            msw_get(ARBEIDSOKER_INNHOLD, {
+                ...arbeidssokerInnhold,
+                brukerInfo: { data: { ...brukerInfo, erSykmeldtMedArbeidsgiver: false } },
+            }),
+        );
         const providerProps: ProviderProps = {
-            brukerInfo: {
-                erSykmeldtMedArbeidsgiver: false,
-            },
-            brukerregistrering,
-            oppfolging,
             motestotte,
             arbeidssoker: {
                 arbeidssokerperioder: { status: 200, arbeidssokerperioder: [] },
                 underoppfolging: { status: 200, underoppfolging: true },
             },
         };
-        render(<Motestotte />, { wrapper: contextProviders(providerProps) });
-        expect(await screen.queryByText('Du kan få mer veiledning')).toBeFalsy();
-        expect(await screen.queryByText('Du kan få veiledning')).toBeTruthy();
-    });*/
+        render(
+            <SWRConfig value={{ provider: () => new Map() }}>
+                <Motestotte />
+            </SWRConfig>,
+            { wrapper: contextProviders(providerProps) },
+        );
+        expect(await screen.findByText('Du kan få veiledning')).toBeTruthy();
+    });
 
-    /*it('rendres IKKE dersom annen servicegruppe en BKART', async () => {
+    it('rendres IKKE dersom annen servicegruppe en BKART', async () => {
+        server.use(
+            msw_get(ARBEIDSOKER_INNHOLD, {
+                ...arbeidssokerInnhold,
+                oppfolging: { data: { ...oppfolging, servicegruppe: Servicegruppe.VARIG } },
+            }),
+        );
         const providerProps: ProviderProps = {
-            brukerInfo,
-            brukerregistrering,
             motestotte,
-            oppfolging: {
-                ...oppfolging,
-                servicegruppe: Servicegruppe.VARIG,
-            },
         };
-        render(<Motestotte />, { wrapper: contextProviders(providerProps) });
-        expect(await screen.queryByText('Du kan få mer veiledning')).toBeFalsy();
+        render(
+            <SWRConfig value={{ provider: () => new Map() }}>
+                <Motestotte />
+            </SWRConfig>,
+            { wrapper: contextProviders(providerProps) },
+        );
+        let nonExist = false;
+        try {
+            await screen.findByText('Du kan få mer veiledning');
+        } catch (error) {
+            nonExist = true;
+        }
+        expect(nonExist).toEqual(true);
     });
 
     it('rendres IKKE dersom permittert', async () => {
-        const providerProps: ProviderProps = {
-            brukerInfo,
-            brukerregistrering: {
-                registrering: {
-                    ...brukerregistrering.registrering,
-                    besvarelse: {
-                        dinSituasjon: DinSituasjonSvar.ER_PERMITTERT,
+        server.use(
+            msw_get(ARBEIDSOKER_INNHOLD, {
+                ...arbeidssokerInnhold,
+                brukerregistrering: {
+                    data: {
+                        registrering: {
+                            ...arbeidssokerInnhold.brukerregistrering.data.registrering,
+                            besvarelse: {
+                                dinSituasjon: DinSituasjonSvar.ER_PERMITTERT,
+                            },
+                        },
                     },
                 },
-            },
+            }),
+        );
+        const providerProps: ProviderProps = {
             motestotte,
-            oppfolging,
         };
-        render(<Motestotte />, { wrapper: contextProviders(providerProps) });
-        expect(await screen.queryByText('Du kan få mer veiledning')).toBeFalsy();
+        render(
+            <SWRConfig value={{ provider: () => new Map() }}>
+                <Motestotte />
+            </SWRConfig>,
+            { wrapper: contextProviders(providerProps) },
+        );
+        let nonExist = false;
+        try {
+            await screen.findByText('Du kan få mer veiledning');
+        } catch (error) {
+            nonExist = true;
+        }
+        expect(nonExist).toEqual(true);
     });
 
     it('rendres IKKE dersom gyldig møtestøttebesvarelse', async () => {
+        server.use(msw_get(ARBEIDSOKER_INNHOLD, arbeidssokerInnhold));
         const providerProps: ProviderProps = {
-            brukerInfo,
-            brukerregistrering,
             motestotte: { dato: '2020-11-04' },
-            oppfolging,
         };
-        render(<Motestotte />, { wrapper: contextProviders(providerProps) });
-        expect(await screen.queryByText('Du kan få mer veiledning')).toBeFalsy();
+        render(
+            <SWRConfig value={{ provider: () => new Map() }}>
+                <Motestotte />
+            </SWRConfig>,
+            { wrapper: contextProviders(providerProps) },
+        );
+        let nonExist = false;
+        try {
+            await screen.findByText('Du kan få mer veiledning');
+        } catch (error) {
+            nonExist = true;
+        }
+        expect(nonExist).toEqual(true);
     });
 
     it('rendres IKKE dersom annen foreslått innsatsgruppe', async () => {
-        const providerProps: ProviderProps = {
-            brukerInfo,
-            brukerregistrering: {
-                registrering: {
-                    ...brukerregistrering.registrering,
-
-                    profilering: {
-                        innsatsgruppe: ForeslattInnsatsgruppe.STANDARD_INNSATS,
+        server.use(
+            msw_get(ARBEIDSOKER_INNHOLD, {
+                ...arbeidssokerInnhold,
+                brukerregistrering: {
+                    data: {
+                        ...brukerregistrering,
+                        registrering: {
+                            ...brukerregistrering.registrering,
+                            profilering: {
+                                innsatsgruppe: ForeslattInnsatsgruppe.STANDARD_INNSATS,
+                            },
+                        },
                     },
                 },
-            },
+            }),
+        );
+
+        const providerProps: ProviderProps = {
             motestotte,
-            oppfolging,
         };
 
-        render(<Motestotte />, { wrapper: contextProviders(providerProps) });
-        expect(await screen.queryByText('Du kan få mer veiledning')).toBeFalsy();
-    });*/
+        render(
+            <SWRConfig value={{ provider: () => new Map() }}>
+                <Motestotte />
+            </SWRConfig>,
+            { wrapper: contextProviders(providerProps) },
+        );
+        let nonExist = false;
+        try {
+            await screen.findByText('Du kan få mer veiledning');
+        } catch (error) {
+            nonExist = true;
+        }
+        expect(nonExist).toEqual(true);
+    });
 });
