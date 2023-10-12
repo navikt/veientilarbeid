@@ -23,9 +23,15 @@ const ArbeidssokerDataProvider = ({ children, erStandard }: Props) => {
     }
     if (isLoading) {
         return (
-            <div className={styles.limit}>
-                {erStandard ? <StandardSkeletons /> : <Loader transparent size="2xlarge" />}
-            </div>
+            <>
+                {erStandard ? (
+                    <StandardSkeletons />
+                ) : (
+                    <div className={styles.limit}>
+                        <Loader transparent size="2xlarge" />
+                    </div>
+                )}
+            </>
         );
     }
 

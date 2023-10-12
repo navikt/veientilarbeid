@@ -8,15 +8,25 @@
     padding: 0;
 }
 
+.skeletonWidth {
+    width: 100%;
+}
+
 @media (min-width: 768px) {
     .limit {
         max-width: 760px;
         margin: 0 auto;
+    }
+    .skeletonWidth {
+        width: 60%;
     }
 }
 
 @media (min-width: 992px) {
     .limit {
         max-width: 958px;
+    }
+    .skeletonWidth {
+        width: 60%;
     }
 }
