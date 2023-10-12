@@ -2,6 +2,7 @@ import * as React from 'react';
 import styles from './innholdslaster.module.css';
 import { DataElement, STATUS } from '../../ducks/api';
 import { Loader } from '@navikt/ds-react';
+import StandardSkeletons from './standard-skeletons';
 
 const array = (value: {}) => (Array.isArray(value) ? value : [value]);
 
@@ -24,6 +25,7 @@ interface InnholdslasterProps {
     feilmeldingKomponent?: React.ReactNode;
     storrelse?: 'XXS' | 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
     children?: React.ReactNode | Function;
+    erStandard?: boolean;
 }
 
 interface InnholdslasterState {
@@ -72,7 +74,7 @@ class Innholdslaster extends React.Component<InnholdslasterProps, Innholdslaster
     }
 
     render() {
-        const { avhengigheter, ventPa, betingelser, feilmeldingKomponent } = this.props;
+        const { avhengigheter, ventPa, betingelser, feilmeldingKomponent, erStandard } = this.props;
 
         const avhengigheterFiltrert = betingelser
             ? avhengigheter.filter((a, i) => betingelser[i] === true)
@@ -89,9 +91,15 @@ class Innholdslaster extends React.Component<InnholdslasterProps, Innholdslaster
             return <div className={styles.innholdslasterFeilmelding}>{feilmeldingKomponent}</div>;
         }
         return (
-            <div className={styles.innholdslasterLaster}>
-                <Loader transparent size="2xlarge" />
-            </div>
+            <>
+                {erStandard ? (
+                    <StandardSkeletons />
+                ) : (
+                    <div className={styles.innholdslasterLaster}>
+                        <Loader transparent size="2xlarge" />
+                    </div>
+                )}
+            </>
         );
     }
 }

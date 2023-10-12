@@ -57,12 +57,13 @@ const Mikrofrontend = () => {
             feilmeldingKomponent={<Feilmelding />}
             storrelse="XXL"
             avhengigheter={[state, arbeidssokerState, featureToggleState]}
+            erStandard
         >
             <Autentisering.AutentiseringContext.Provider value={state}>
                 <Arbeidssoker.ArbeidssokerContext.Provider value={arbeidssokerState}>
                     <FeatureToggle.FeaturetoggleContext.Provider value={featureToggleState}>
                         <SprakValg.SprakContext.Provider value={valgtSprak}>
-                            <ArbeidssokerDataProvider>
+                            <ArbeidssokerDataProvider erStandard>
                                 <MeldepliktProvider>
                                     <ReaktiveringProvider>
                                         <BesvarelseProvider>
