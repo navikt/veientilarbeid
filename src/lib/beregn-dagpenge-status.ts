@@ -6,8 +6,8 @@
  - har dagpengevedtak => []
  - rettighetsgruppe => "" fra brukerInfo
  */
-import * as Brukerregistrering from '../contexts/brukerregistrering';
-import * as BrukerInfo from '../contexts/bruker-info';
+import * as Brukerregistrering from '../hooks/use-brukerregistrering-data';
+import * as BrukerInfo from '../hooks/use-brukerinfo-data';
 import { DpInnsynPaabegyntSoknad } from '../contexts/dp-innsyn-paabegynte-soknader';
 import { BeregnedePerioder } from './beregn-arbeidssokerperioder';
 import { DpInnsynSoknad, Vedtak } from '../models/dagpenger';

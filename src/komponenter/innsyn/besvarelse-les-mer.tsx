@@ -4,11 +4,11 @@ import { ReadMore } from '@navikt/ds-react';
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { useSprakValg } from '../../contexts/sprak';
 import { useBesvarelse } from '../../contexts/besvarelse';
-import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 
 import { loggAktivitet } from '../../metrics/metrics';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import OpplysningerFraBesvarelsen from './opplysninger-fra-besvarelsen';
+import { useBrukerregistreringData } from '../../hooks/use-brukerregistrering-data';
 
 const TEKSTER = {
     nb: {

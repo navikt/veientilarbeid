@@ -1,6 +1,6 @@
-import { ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../contexts/brukerregistrering';
-import { Servicegruppe, Formidlingsgruppe } from '../contexts/oppfolging';
 import sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe from './er-situasjonsbestemt-innsatsgruppe';
+import { ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../hooks/use-brukerregistrering-data';
+import { Formidlingsgruppe, Servicegruppe } from '../hooks/use-oppfolging-data';
 
 const grunnData = {
     brukerregistreringData: {
@@ -109,7 +109,11 @@ describe('tester funksjonaliteten for sjekkOmBrukerErSituasjonsbestemtInnsatsgru
                 formidlingsgruppe: Formidlingsgruppe.ARBS,
             },
         };
-        const testData = { ...grunnData, ...lokaleData };
+        const testData = {
+            ...grunnData,
+            brukerregistreringData: { ...grunnData.brukerregistreringData, profilering: undefined },
+            ...lokaleData,
+        };
         expect(sjekkOmBrukerErSituasjonsbestemtInnsatsgruppe(testData)).toBe(false);
     });
 });

@@ -4,7 +4,7 @@ import {
     KontorBrukerContext,
 } from './samarbeidskontor-utils';
 import { EksperimentId } from './eksperimenter';
-import { DinSituasjonSvar } from '../contexts/brukerregistrering';
+import { DinSituasjonSvar } from '../hooks/use-brukerregistrering-data';
 
 describe('tester funksjonaliteten for visEksperiment', () => {
     function visEksperiment(eksperiementId: EksperimentId, brukerContext: KontorBrukerContext) {
@@ -17,7 +17,7 @@ describe('tester funksjonaliteten for visEksperiment', () => {
                 geografiskTilknytning: '110302',
                 registreringsDato: new Date('2021-04-14'),
                 dinSituasjon: DinSituasjonSvar.MISTET_JOBBEN,
-            })
+            }),
         ).toBe(true);
     });
 
@@ -27,7 +27,7 @@ describe('tester funksjonaliteten for visEksperiment', () => {
                 geografiskTilknytning: '110302',
                 registreringsDato: new Date('2021-04-13'),
                 dinSituasjon: DinSituasjonSvar.MISTET_JOBBEN,
-            })
+            }),
         ).toBe(true);
     });
 
@@ -37,7 +37,7 @@ describe('tester funksjonaliteten for visEksperiment', () => {
                 geografiskTilknytning: '110302',
                 registreringsDato: new Date('2021-04-12'),
                 dinSituasjon: DinSituasjonSvar.INGEN_VERDI,
-            })
+            }),
         ).toBe(false);
     });
 
@@ -46,7 +46,7 @@ describe('tester funksjonaliteten for visEksperiment', () => {
             visEksperiment('dummyEksperiment', {
                 geografiskTilknytning: '3808',
                 dinSituasjon: DinSituasjonSvar.INGEN_VERDI,
-            })
+            }),
         ).toBe(false);
     });
 
@@ -56,7 +56,7 @@ describe('tester funksjonaliteten for visEksperiment', () => {
                 geografiskTilknytning: '3811',
                 registreringsDato: new Date('2021-04-13'),
                 dinSituasjon: DinSituasjonSvar.INGEN_VERDI,
-            })
+            }),
         ).toBe(false);
     });
 
@@ -70,7 +70,7 @@ describe('tester funksjonaliteten for visEksperiment', () => {
                 geografiskTilknytning: '_666_',
                 registreringsDato: new Date('2021-12-25'),
                 dinSituasjon: DinSituasjonSvar.INGEN_VERDI,
-            })
+            }),
         ).toBe(false);
     });
 });
@@ -94,7 +94,7 @@ describe('tester funksjonaliteten for hentEksperimenterFraSamarbeidskontor', () 
                 geografiskTilknytning: '110302',
                 registreringsDato: new Date('2021-04-13'),
                 dinSituasjon: DinSituasjonSvar.MISTET_JOBBEN,
-            })
+            }),
         ).toStrictEqual(['onboarding14a']);
     });
     test('returnerer tom liste for ikke-samarbeidskontoret Færder', () => {
@@ -102,7 +102,7 @@ describe('tester funksjonaliteten for hentEksperimenterFraSamarbeidskontor', () 
             hentEksperimenterFraSamarbeidskontor({
                 geografiskTilknytning: '3811',
                 registreringsDato: new Date('2021-04-13'),
-            })
+            }),
         ).toStrictEqual([]);
     });
 

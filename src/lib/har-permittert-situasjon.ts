@@ -1,6 +1,6 @@
-import { Brukerregistrering, DinSituasjonSvar } from '../contexts/brukerregistrering';
 import { BesvarelseResponse } from '../contexts/besvarelse';
 import { PermittertSvar } from '../models/endring-av-situasjon';
+import { Brukerregistrering, DinSituasjonSvar } from '../hooks/use-brukerregistrering-data';
 
 const permitterteTilstander = [
     PermittertSvar.ENDRET_PERMITTERINGSPROSENT,
@@ -12,7 +12,7 @@ const permitterteTilstander = [
 ];
 export function harPermittertSituasjon(
     brukerRegistrering?: Brukerregistrering,
-    besvarelse?: BesvarelseResponse
+    besvarelse?: BesvarelseResponse,
 ): boolean {
     if (besvarelse?.erBesvarelsenEndret) {
         return permitterteTilstander.includes(besvarelse?.besvarelse?.dinSituasjon?.verdi as any);

@@ -1,7 +1,6 @@
 import { Alert, BodyShort, Button } from '@navikt/ds-react';
 import { useState } from 'react';
 
-import { DinSituasjonSvar } from '../../contexts/brukerregistrering';
 import { dinSituasjonSvarTekster, PermittertSvar, permittertTekster } from '../../models/endring-av-situasjon';
 import { AmplitudeData } from '../../metrics/amplitude-utils';
 import { loggAktivitet } from '../../metrics/metrics';
@@ -10,6 +9,7 @@ import TilleggsData from '../innsyn/tilleggsdata';
 
 import spacing from '../../spacing.module.css';
 import flex from '../../flex.module.css';
+import { DinSituasjonSvar } from '../../hooks/use-brukerregistrering-data';
 
 export interface Steg3Props {
     amplitudeData: AmplitudeData;

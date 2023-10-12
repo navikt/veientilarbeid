@@ -3,11 +3,11 @@ import { BodyShort, Button, Link, Modal } from '@navikt/ds-react';
 
 import { useGjelderFraDatoModal } from '../../contexts/gjelder-fra-dato-modal';
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
-import { useBrukerregistreringData, DinSituasjonSvar } from '../../contexts/brukerregistrering';
 import { plussDager } from '../../utils/date-utils';
 import { loggAktivitet } from '../../metrics/metrics';
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { useGjelderFraDato } from '../../contexts/gjelder-fra-dato';
+import { DinSituasjonSvar, useBrukerregistreringData } from '../../hooks/use-brukerregistrering-data';
 
 function GjelderFraDato(): JSX.Element | null {
     const { amplitudeData } = useAmplitudeData();

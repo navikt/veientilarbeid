@@ -9,13 +9,13 @@ import ReadMoreVeileder from './readmore-veileder';
 import ReadMoreVurdering from './readmore-vurdering';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
-import { ForeslattInnsatsgruppe } from '../../contexts/brukerregistrering';
 
 import spacingStyles from '../../spacing.module.css';
 
 import { useState } from 'react';
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
+import { ForeslattInnsatsgruppe } from '../../hooks/use-brukerregistrering-data';
 
 const TEKSTER = {
     nb: {
@@ -52,7 +52,7 @@ function IkkeSvartPaaBehovsavklaringSituasjonsbestemt() {
                 oppfolging: behov,
                 overskrift: tekst('behovOverskrift'),
                 tekst: tekst(
-                    behov === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS ? 'behovSvarEnig' : 'behovSvarUenig'
+                    behov === ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS ? 'behovSvarEnig' : 'behovSvarUenig',
                 ),
             });
             loggAktivitet({

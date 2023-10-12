@@ -1,4 +1,4 @@
-import * as Oppfolging from '../contexts/oppfolging';
+import * as Oppfolging from '../hooks/use-oppfolging-data';
 import * as Autetisering from '../contexts/autentisering';
 import { InnloggingsNiva } from '../contexts/autentisering';
 

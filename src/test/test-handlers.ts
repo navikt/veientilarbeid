@@ -44,7 +44,7 @@ export const initielleKallHandlers = [
     msw_post('https://amplitude.nav.no/collect', {}),
     msw_get(GJELDER_FRA_DATO_URL, gjelderFraGetResponse),
     msw_post(GJELDER_FRA_DATO_URL, null, 201),
-    msw_get(ARBEIDSOKER_INNHOLD, arbeidssokerInnholdMock),
+    msw_get(ARBEIDSOKER_INNHOLD, arbeidssokerInnholdMock, 200),
 ];
 
 export const standardHandlers = [

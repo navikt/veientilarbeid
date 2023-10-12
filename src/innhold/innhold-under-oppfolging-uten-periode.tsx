@@ -1,21 +1,20 @@
-import { useOppfolgingData } from '../contexts/oppfolging';
 import { useArbeidssokerPerioder } from '../contexts/arbeidssoker';
-import { useBrukerinfoData } from '../contexts/bruker-info';
 
 import beregnArbeidssokerperioder from '../lib/beregn-arbeidssokerperioder';
 import ReaktiveringWrapper from '../komponenter/reaktivering/reaktivering-wrapper';
-import { Servicegruppe, Formidlingsgruppe } from '../contexts/oppfolging';
 import InnholdMetrics from './innhold-metrics';
 import ForenkletInnhold from '../komponenter/ikke-standard/forenklet-innhold';
 import Motestotte from '../komponenter/ikke-standard/motestotte';
 
 import styles from './innhold.module.css';
+import { Formidlingsgruppe, Servicegruppe, useOppfolgingData } from '../hooks/use-oppfolging-data';
+import { useBrukerInfoData } from '../hooks/use-brukerinfo-data';
 
 const InnholdUnderOppfolgingUtenPeriode = () => {
     const arbeidssokerperioderData = useArbeidssokerPerioder();
     const arbeidssokerperioder = beregnArbeidssokerperioder(arbeidssokerperioderData);
     const { servicegruppe, formidlingsgruppe } = useOppfolgingData();
-    const { rettighetsgruppe } = useBrukerinfoData();
+    const { rettighetsgruppe } = useBrukerInfoData();
 
     const erIkkeAAP = rettighetsgruppe !== 'AAP';
     const erIkkeVarig = servicegruppe !== Servicegruppe.VARIG;

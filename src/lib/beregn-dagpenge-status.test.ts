@@ -1,7 +1,7 @@
-import { DinSituasjonSvar, FremtidigSituasjonSvar } from '../contexts/brukerregistrering';
 import beregnDagpengeStatus from './beregn-dagpenge-status';
 import { plussDager } from '../utils/date-utils';
 import soknad from '../mocks/dp-innsyn-soknad';
+import { DinSituasjonSvar, FremtidigSituasjonSvar } from '../hooks/use-brukerregistrering-data';
 
 const iDag = new Date();
 const grunndata = {
@@ -49,7 +49,7 @@ describe('Tester funksjonen beregnDagpengeStatus', () => {
                 paabegynteSoknader: [],
                 innsendteSoknader: [],
                 dagpengeVedtak: [],
-            })
+            }),
         ).toBe('mottar');
     });
 
@@ -63,7 +63,7 @@ describe('Tester funksjonen beregnDagpengeStatus', () => {
                 paabegynteSoknader: [],
                 innsendteSoknader: [],
                 dagpengeVedtak: [],
-            })
+            }),
         ).toBe('ukjent');
     });
 
@@ -76,7 +76,7 @@ describe('Tester funksjonen beregnDagpengeStatus', () => {
                 paabegynteSoknader: [],
                 innsendteSoknader: [],
                 dagpengeVedtak: [],
-            })
+            }),
         ).toBe('ukjent');
     });
 
@@ -100,7 +100,7 @@ describe('Tester funksjonen beregnDagpengeStatus', () => {
                         tilDato: null,
                     },
                 ],
-            })
+            }),
         ).toBe('avslag');
     });
 
@@ -124,7 +124,7 @@ describe('Tester funksjonen beregnDagpengeStatus', () => {
                         tilDato: null,
                     },
                 ],
-            })
+            }),
         ).toBe('innvilget');
     });
 
@@ -149,7 +149,7 @@ describe('Tester funksjonen beregnDagpengeStatus', () => {
                         tilDato: null,
                     },
                 ],
-            })
+            }),
         ).toBe('tidligere-innvilget');
     });
 
@@ -173,7 +173,7 @@ describe('Tester funksjonen beregnDagpengeStatus', () => {
                         tilDato: plussDager(iDag, -1).toISOString(),
                     },
                 ],
-            })
+            }),
         ).toBe('stanset');
     });
 
@@ -193,7 +193,7 @@ describe('Tester funksjonen beregnDagpengeStatus', () => {
                 paabegynteSoknader: soknader,
                 innsendteSoknader: [],
                 dagpengeVedtak: [],
-            })
+            }),
         ).toBe('paabegynt');
     });
 
@@ -222,7 +222,7 @@ describe('Tester funksjonen beregnDagpengeStatus', () => {
                 paabegynteSoknader: soknader,
                 innsendteSoknader: [],
                 dagpengeVedtak: [],
-            })
+            }),
         ).toBe('paabegynt');
     });
 
@@ -246,7 +246,7 @@ describe('Tester funksjonen beregnDagpengeStatus', () => {
                         tilDato: 'null',
                     },
                 ],
-            })
+            }),
         ).toBe('sokt');
     });
 
@@ -268,7 +268,7 @@ describe('Tester funksjonen beregnDagpengeStatus', () => {
                 paabegynteSoknader: paabegyntSoknad,
                 innsendteSoknader: soknader,
                 dagpengeVedtak: [],
-            })
+            }),
         ).toBe('soktogpaabegynt');
     });
 });

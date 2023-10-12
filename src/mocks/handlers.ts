@@ -33,10 +33,12 @@ import {
     REAKTIVERING_URL,
     BEHOV_FOR_VEILEDNING_URL,
     PROFIL_URL,
+    ARBEIDSOKER_INNHOLD,
 } from '../ducks/api';
 import gjelderFraGetResponse from './gjelderfra-mock';
 import arbeidssokerNiva3Response from './arbeidssoker-niva3-mock';
 import levertMeldekortMock from './meldeplikt-hendelser.mock';
+import arbeidssokerInnholdMock from './arbeidssoker-innhold-mock';
 
 export const handlers = [
     msw_get(AUTH_API, AuthResponse),
@@ -62,4 +64,5 @@ export const handlers = [
     msw_get(BEHOV_FOR_VEILEDNING_URL, null, 204),
     msw_get(PROFIL_URL, null, 204),
     msw_get(REAKTIVERING_URL, null, 204),
+    msw_get(ARBEIDSOKER_INNHOLD, arbeidssokerInnholdMock, 200),
 ];

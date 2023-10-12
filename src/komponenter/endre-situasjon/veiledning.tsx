@@ -4,13 +4,13 @@ import { saksbehandlingstiderDagpengerUrl } from '../../innhold/lenker';
 import Feedback from '../feedback/feedback-profil';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import { PermittertSvar } from '../../models/endring-av-situasjon';
-import { DinSituasjonSvar } from '../../contexts/brukerregistrering';
 import { plussDager } from '../../utils/date-utils';
 
 import spacing from '../../spacing.module.css';
 import { konkurs_url } from '../../ducks/urls';
 import { loggAktivitet } from '../../metrics/metrics';
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
+import { DinSituasjonSvar } from '../../hooks/use-brukerregistrering-data';
 
 export type SituasjonSvar = PermittertSvar | DinSituasjonSvar;
 

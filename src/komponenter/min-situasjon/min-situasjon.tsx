@@ -2,10 +2,7 @@ import { Detail, Heading, Panel } from '@navikt/ds-react';
 
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
-import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useBesvarelse } from '../../contexts/besvarelse';
-import { useOppfolgingData } from '../../contexts/oppfolging';
-import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
 import { InnloggingsNiva, useAutentiseringData } from '../../contexts/autentisering';
 
@@ -17,14 +14,18 @@ import { visBesvarelser } from '../../lib/vis-besvarelse';
 import spacingStyles from '../../spacing.module.css';
 import { svarMap } from '../../models/sporsmal-og-svar';
 import useErStandardInnsats from '../../hooks/use-er-standard-innsats';
+import { useBrukerregistreringData } from '../../hooks/use-brukerregistrering-data';
+import { useBrukerInfoData } from '../../hooks/use-brukerinfo-data';
+import { useOppfolgingData } from '../../hooks/use-oppfolging-data';
 
-function MinSituasjon(props: any) {
-    const registreringData = useBrukerregistreringData();
+function MinSituasjon() {
     const arbeidssokerperiodeData = useArbeidssokerPerioder();
     const { amplitudeData } = useAmplitudeData();
     const autentiseringData = useAutentiseringData();
     const featuretoggleData = useFeatureToggleData();
-    const brukerInfoData = useBrukerinfoData();
+
+    const registreringData = useBrukerregistreringData();
+    const brukerInfoData = useBrukerInfoData();
     const { besvarelse } = useBesvarelse();
     const oppfolgingData = useOppfolgingData();
     const { erStandardInnsats } = useErStandardInnsats();

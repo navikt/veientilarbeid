@@ -1,5 +1,5 @@
 import { hentEksperimenter } from './eksperiment-utils';
-import { DinSituasjonSvar } from '../contexts/brukerregistrering';
+import { DinSituasjonSvar } from '../hooks/use-brukerregistrering-data';
 
 describe('tester funksjonaliteten for hentEksperimenter', () => {
     test('returnerer riktig liste for samarbeidskontoret Tasta', () => {
@@ -9,7 +9,7 @@ describe('tester funksjonaliteten for hentEksperimenter', () => {
                 registreringsDato: new Date('2021-04-13'),
                 dinSituasjon: DinSituasjonSvar.MISTET_JOBBEN,
                 enhetEksperimentId: 123,
-            })
+            }),
         ).toStrictEqual(['fullførknappIntro', 'onboarding14a']);
     });
     test('returnerer tom liste for ikke-samarbeidskontoret Færder', () => {
@@ -18,7 +18,7 @@ describe('tester funksjonaliteten for hentEksperimenter', () => {
                 geografiskTilknytning: '3811',
                 registreringsDato: new Date('2021-04-13'),
                 enhetEksperimentId: 123,
-            })
+            }),
         ).toStrictEqual(['fullførknappIntro']);
     });
 });

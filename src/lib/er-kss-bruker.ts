@@ -1,6 +1,6 @@
-import * as Brukerregistrering from '../contexts/brukerregistrering';
-import * as Oppfolging from '../contexts/oppfolging';
-import * as BrukerInfo from '../contexts/bruker-info';
+import * as Brukerregistrering from '../hooks/use-brukerregistrering-data';
+import * as Oppfolging from '../hooks/use-oppfolging-data';
+import * as BrukerInfo from '../hooks/use-brukerinfo-data';
 import sjekkOmBrukerErStandardInnsatsgruppe from './er-standard-innsatsgruppe';
 
 export function erKSSBruker({

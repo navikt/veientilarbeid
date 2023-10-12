@@ -2,7 +2,6 @@ import { MouseEventHandler } from 'react';
 import { Button, Link } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
-import { useUlesteDialogerData } from '../../contexts/ulestedialoger';
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 
 import { aktivitetsplanLenke, dialogLenke } from '../../innhold/lenker';
@@ -12,6 +11,7 @@ import { BehovForVeiledningResponse, useBehovForVeiledning } from '../../context
 import { AmplitudeData } from '../../metrics/amplitude-utils';
 
 import spacingStyles from '../../spacing.module.css';
+import { useUlesteDialoger } from '../../hooks/use-uleste-dialoger';
 
 const TEKSTER = {
     nb: {
@@ -61,7 +61,7 @@ export const DialogLenke = (props: LenkeProps) => {
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const { amplitudeData } = useAmplitudeData();
-    const { antallUleste } = useUlesteDialogerData();
+    const { antallUleste } = useUlesteDialoger();
 
     const ulesteMeldingerTekst = antallUleste === 1 ? tekst('ulest_melding') : tekst('uleste_meldinger');
 

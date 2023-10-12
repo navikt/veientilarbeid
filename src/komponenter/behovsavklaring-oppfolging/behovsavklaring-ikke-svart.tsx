@@ -1,7 +1,6 @@
-import { useBrukerregistreringData, ForeslattInnsatsgruppe } from '../../contexts/brukerregistrering';
-
 import IkkeSvartPaaBehovsavklaringStandardInnsats from './behovsavklaring-ikke-svart-standard';
 import IkkeSvartPaaBehovsavklaringSituasjonsbestemt from './behovsavklaring-ikke-svart-situasjonsbestemt';
+import { ForeslattInnsatsgruppe, useBrukerregistreringData } from '../../hooks/use-brukerregistrering-data';
 
 function IkkeSvartPaaBehovsavklaring() {
     const brukerregistreringsData = useBrukerregistreringData();

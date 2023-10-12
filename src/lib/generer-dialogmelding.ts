@@ -1,4 +1,4 @@
-import { ForeslattInnsatsgruppe } from '../contexts/brukerregistrering';
+import { ForeslattInnsatsgruppe } from '../hooks/use-brukerregistrering-data';
 
 const muligeSvar: { [key: string]: string } = {
     STANDARD_INNSATS_STANDARD_INNSATS: 'Jeg ønsker å klare meg selv',
@@ -15,7 +15,7 @@ function genererDialogmelding(foreslattInnsatsgruppe: ForeslattInnsatsgruppe, ve
     melding.push(
         `Foreslått behov: ${
             foreslattInnsatsgruppe === ForeslattInnsatsgruppe.STANDARD_INNSATS ? 'Gode muligheter' : 'Situasjonsbestemt'
-        }`
+        }`,
     );
 
     melding.push('Dette er en automatisk generert melding');

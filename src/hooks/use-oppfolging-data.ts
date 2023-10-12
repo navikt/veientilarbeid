@@ -1,5 +1,5 @@
+import { useArbeidssokerData } from './use-arbeidssoker-data';
 import { DataElement, STATUS } from '../ducks/api';
-import * as React from 'react';
 
 export enum Servicegruppe {
     BATT = 'BATT',
@@ -44,6 +44,4 @@ export const initialState: State = {
     status: STATUS.NOT_STARTED,
 };
 
-export const OppfolgingContext = React.createContext<State>(initialState);
-
-export const useOppfolgingData = () => React.useContext(OppfolgingContext).data;
+export const useOppfolgingData = () => useArbeidssokerData().data?.oppfolging.data ?? initialState.data;
