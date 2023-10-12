@@ -50,10 +50,11 @@ const getCdnConfig = () => ({
         rollupOptions: {
             input: {
                 bundle: resolve(__dirname, 'src/main.tsx'),
+                standard: resolve(__dirname, 'src/main-standard.tsx'),
             },
             preserveEntrySignatures: 'exports-only',
             output: {
-                entryFileNames: 'js/aia.[hash].js',
+                entryFileNames: 'js/aia.[name].[hash].js',
                 format: 'esm',
             },
         },
