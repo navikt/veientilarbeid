@@ -1,17 +1,16 @@
 import { render, screen } from '@testing-library/react';
 
-import Motestotte from './motestotte';
+import Motestotte, * as MotestotteData from './motestotte';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import { DinSituasjonSvar, ForeslattInnsatsgruppe } from '../../hooks/use-brukerregistrering-data';
 import { Servicegruppe } from '../../hooks/use-oppfolging-data';
 import { setupServer } from 'msw/native';
 import { beforeAll } from 'vitest';
 import msw_get from '../../mocks/msw-utils';
-import { ARBEIDSOKER_INNHOLD } from '../../ducks/api';
+import { ARBEIDSOKER_INNHOLD, STATUS } from '../../ducks/api';
 import { SWRConfig } from 'swr';
 
 describe('Motestotte', () => {
-    const motestotte = undefined;
     const brukerInfo = { erSykmeldtMedArbeidsgiver: true };
     const brukerregistrering = {
         registrering: {
@@ -41,7 +40,6 @@ describe('Motestotte', () => {
     it('rendres når alle betingelser er oppfylt', async () => {
         server.use(msw_get(ARBEIDSOKER_INNHOLD, arbeidssokerInnhold));
         const providerProps: ProviderProps = {
-            motestotte,
             arbeidssoker: {
                 arbeidssokerperioder: { status: 200, arbeidssokerperioder: [] },
                 underoppfolging: { status: 200, underoppfolging: true },
@@ -59,7 +57,6 @@ describe('Motestotte', () => {
     it('rendres IKKE når man IKKE er under oppfølging', async () => {
         server.use(msw_get(ARBEIDSOKER_INNHOLD, arbeidssokerInnhold));
         const providerProps: ProviderProps = {
-            motestotte,
             arbeidssoker: {
                 arbeidssokerperioder: { status: 200, arbeidssokerperioder: [] },
                 underoppfolging: { status: 200, underoppfolging: false },
@@ -82,7 +79,6 @@ describe('Motestotte', () => {
             }),
         );
         const providerProps: ProviderProps = {
-            motestotte,
             arbeidssoker: {
                 arbeidssokerperioder: { status: 200, arbeidssokerperioder: [] },
                 underoppfolging: { status: 200, underoppfolging: true },
@@ -104,14 +100,10 @@ describe('Motestotte', () => {
                 oppfolging: { data: { ...oppfolging, servicegruppe: Servicegruppe.VARIG } },
             }),
         );
-        const providerProps: ProviderProps = {
-            motestotte,
-        };
         render(
             <SWRConfig value={{ provider: () => new Map() }}>
                 <Motestotte />
             </SWRConfig>,
-            { wrapper: contextProviders(providerProps) },
         );
         let nonExist = false;
         try {
@@ -138,14 +130,10 @@ describe('Motestotte', () => {
                 },
             }),
         );
-        const providerProps: ProviderProps = {
-            motestotte,
-        };
         render(
             <SWRConfig value={{ provider: () => new Map() }}>
                 <Motestotte />
             </SWRConfig>,
-            { wrapper: contextProviders(providerProps) },
         );
         let nonExist = false;
         try {
@@ -158,14 +146,14 @@ describe('Motestotte', () => {
 
     it('rendres IKKE dersom gyldig møtestøttebesvarelse', async () => {
         server.use(msw_get(ARBEIDSOKER_INNHOLD, arbeidssokerInnhold));
-        const providerProps: ProviderProps = {
-            motestotte: { dato: '2020-11-04' },
+        const state: MotestotteData.State = {
+            status: STATUS.OK,
+            data: { dato: '2020-11-04' },
         };
         render(
             <SWRConfig value={{ provider: () => new Map() }}>
-                <Motestotte />
+                <Motestotte state={state} />
             </SWRConfig>,
-            { wrapper: contextProviders(providerProps) },
         );
         let nonExist = false;
         try {
@@ -194,15 +182,10 @@ describe('Motestotte', () => {
             }),
         );
 
-        const providerProps: ProviderProps = {
-            motestotte,
-        };
-
         render(
             <SWRConfig value={{ provider: () => new Map() }}>
                 <Motestotte />
             </SWRConfig>,
-            { wrapper: contextProviders(providerProps) },
         );
         let nonExist = false;
         try {

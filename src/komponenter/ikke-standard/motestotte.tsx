@@ -5,7 +5,6 @@ import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { useSprakValg } from '../../contexts/sprak';
 import { motestotteLenke } from '../../innhold/lenker';
 import { loggAktivitet } from '../../metrics/metrics';
-import { useMotestotteData } from '../../contexts/motestotte';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import { useUnderOppfolging } from '../../contexts/arbeidssoker';
 import {
@@ -17,6 +16,23 @@ import {
 } from '../../hooks/use-brukerregistrering-data';
 import { Servicegruppe, useOppfolgingData } from '../../hooks/use-oppfolging-data';
 import { useBrukerInfoData } from '../../hooks/use-brukerinfo-data';
+import { useArbeidssokerData } from '../../hooks/use-arbeidssoker-data';
+import { useEffect, useState } from 'react';
+import { fetchData } from '../../ducks/api-utils';
+import { DataElement, MOTESTOTTE_URL, STATUS } from '../../ducks/api';
+
+export interface Data {
+    dato: string;
+}
+
+export interface State extends DataElement {
+    data: Data | null;
+}
+
+export const initialState: State = {
+    data: null,
+    status: STATUS.NOT_STARTED,
+};
 
 const LANSERINGSDATO_MOTESTOTTE = new Date('2020-03-12');
 
@@ -34,13 +50,27 @@ const TEKSTER: Tekster<string> = {
     },
 };
 
-const Motestotte = () => {
-    const { amplitudeData } = useAmplitudeData();
-    const motestotteData = useMotestotteData();
+interface Props {
+    state?: State;
+}
 
+const Motestotte = ({ state }: Props) => {
+    const [motestotteState, setMotestotteState] = useState<State>(state ?? initialState);
+    const { data: arbeidsSokerData } = useArbeidssokerData();
+    const { amplitudeData } = useAmplitudeData();
     const brukerregistrering = useBrukerregistreringData();
     const { servicegruppe } = useOppfolgingData();
     const brukerInfo = useBrukerInfoData();
+
+    useEffect(() => {
+        if (arbeidsSokerData) {
+            const foreslaattInnsatsgruppe = selectForeslattInnsatsgruppe(arbeidsSokerData.brukerregistrering.data);
+
+            if (foreslaattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING) {
+                fetchData<State, Data>(motestotteState, setMotestotteState, MOTESTOTTE_URL);
+            }
+        }
+    }, [arbeidsSokerData]);
 
     const sykmeldtStatus = brukerInfo.erSykmeldtMedArbeidsgiver ? 'sykmeldt' : 'ikkeSykmeldt';
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
@@ -53,8 +83,8 @@ const Motestotte = () => {
     const underOppfolging = useUnderOppfolging()?.underoppfolging;
 
     const harGyldigMotestottebesvarelse = (): boolean => {
-        if (!opprettetRegistreringDato || !motestotteData) return false;
-        return opprettetRegistreringDato <= new Date(motestotteData.dato);
+        if (!opprettetRegistreringDato || !motestotteState.data) return false;
+        return opprettetRegistreringDato <= new Date(motestotteState.data.dato);
     };
 
     const harBehovForArbeidsevnevurdering =

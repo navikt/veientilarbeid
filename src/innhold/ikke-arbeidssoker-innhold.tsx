@@ -6,7 +6,6 @@ import ArbeidssokerDataProvider from './arbeidssoker-data-provider';
 import InnholdUnderOppfolgingUtenPeriode from './innhold-under-oppfolging-uten-periode';
 import { KAN_REAKTIVERES_URL } from '../ducks/api';
 import { useSWRImmutable } from '../hooks/useSWR';
-import ArbeidssokerInnholdWrapper from './arbeidssoker-innhold-wrapper';
 
 function IkkeArbeidssokerInnhold() {
     const arbeidssokerperioderData = useArbeidssokerPerioder();
@@ -23,11 +22,9 @@ function IkkeArbeidssokerInnhold() {
                 <ReaktiveringWrapper />
             )}
             {underOppfolging ? (
-                <ArbeidssokerInnholdWrapper>
-                    <ArbeidssokerDataProvider>
-                        <InnholdUnderOppfolgingUtenPeriode />
-                    </ArbeidssokerDataProvider>
-                </ArbeidssokerInnholdWrapper>
+                <ArbeidssokerDataProvider>
+                    <InnholdUnderOppfolgingUtenPeriode />
+                </ArbeidssokerDataProvider>
             ) : (
                 <IkkeRegistrert />
             )}

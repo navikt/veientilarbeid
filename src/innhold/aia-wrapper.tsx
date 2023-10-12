@@ -4,21 +4,18 @@ import useSkalBrukeTabs from '../hooks/use-skal-bruke-tabs';
 import { MeldepliktProvider } from '../contexts/meldeplikt';
 import { ReaktiveringProvider } from '../contexts/reaktivering';
 import { BesvarelseProvider } from '../contexts/besvarelse';
-import ArbeidssokerDataProvider from './arbeidssoker-data-provider';
 
 function AiaWrapper() {
     const brukTabs = useSkalBrukeTabs();
 
     return (
-        <ArbeidssokerDataProvider>
-            <MeldepliktProvider>
-                <ReaktiveringProvider>
-                    <BesvarelseProvider>
-                        <div id="aia-wrapper">{brukTabs ? <AiaTabs /> : <ArbeidssokerInnhold />}</div>
-                    </BesvarelseProvider>
-                </ReaktiveringProvider>
-            </MeldepliktProvider>
-        </ArbeidssokerDataProvider>
+        <MeldepliktProvider>
+            <ReaktiveringProvider>
+                <BesvarelseProvider>
+                    <div id="aia-wrapper">{brukTabs ? <AiaTabs /> : <ArbeidssokerInnhold />}</div>
+                </BesvarelseProvider>
+            </ReaktiveringProvider>
+        </MeldepliktProvider>
     );
 }
 

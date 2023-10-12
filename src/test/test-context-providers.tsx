@@ -6,7 +6,6 @@ import { AmplitudeData } from '../metrics/amplitude-utils';
 import * as Autentisering from '../contexts/autentisering';
 import * as FeatureToggle from '../contexts/feature-toggles';
 import * as Meldekort from '../hooks/use-meldekortdata';
-import * as Motestotte from '../contexts/motestotte';
 import * as Arbeidssoker from '../contexts/arbeidssoker';
 import { setFastTidspunktForIDag } from '../utils/chrono';
 import { Profil } from '../profil';
@@ -22,7 +21,6 @@ export type ProviderProps = {
     amplitude?: DeepPartial<AmplitudeData>;
     featureToggle?: DeepPartial<FeatureToggle.FeatureToggleData>;
     meldekort?: DeepPartial<Meldekort.Data>;
-    motestotte?: DeepPartial<Motestotte.Data>;
     iDag?: Date;
     profil?: Profil;
     arbeidssoker?: Arbeidssoker.Data;
@@ -39,36 +37,32 @@ export const contextProviders = function (props: ProviderProps): React.FunctionC
                 <Arbeidssoker.ArbeidssokerContext.Provider
                     value={merge(Arbeidssoker.initialState, props.arbeidssoker && { data: props.arbeidssoker })}
                 >
-                    <Motestotte.MotestotteContext.Provider
-                        value={merge(Motestotte.initialState, props.motestotte && { data: props.motestotte })}
+                    <Amplitude.AmplitudeContext.Provider
+                        value={{
+                            amplitudeData: merge(Amplitude.initialAmplitudeData, props.amplitude),
+                            oppdaterAmplitudeData: () => {},
+                        }}
                     >
-                        <Amplitude.AmplitudeContext.Provider
-                            value={{
-                                amplitudeData: merge(Amplitude.initialAmplitudeData, props.amplitude),
-                                oppdaterAmplitudeData: () => {},
-                            }}
+                        <FeatureToggle.FeaturetoggleContext.Provider
+                            value={merge(
+                                FeatureToggle.initialState,
+                                props.featureToggle && {
+                                    data: props.featureToggle,
+                                },
+                            )}
                         >
-                            <FeatureToggle.FeaturetoggleContext.Provider
-                                value={merge(
-                                    FeatureToggle.initialState,
-                                    props.featureToggle && {
-                                        data: props.featureToggle,
-                                    },
-                                )}
+                            <ProfilContext.Provider
+                                value={{
+                                    profil: props.profil || null,
+                                    lagreProfil: () => Promise.resolve(),
+                                }}
                             >
-                                <ProfilContext.Provider
-                                    value={{
-                                        profil: props.profil || null,
-                                        lagreProfil: () => Promise.resolve(),
-                                    }}
-                                >
-                                    <MeldepliktContext.Provider value={{ meldeplikt: props.meldeplikt || null }}>
-                                        {children}
-                                    </MeldepliktContext.Provider>
-                                </ProfilContext.Provider>
-                            </FeatureToggle.FeaturetoggleContext.Provider>
-                        </Amplitude.AmplitudeContext.Provider>
-                    </Motestotte.MotestotteContext.Provider>
+                                <MeldepliktContext.Provider value={{ meldeplikt: props.meldeplikt || null }}>
+                                    {children}
+                                </MeldepliktContext.Provider>
+                            </ProfilContext.Provider>
+                        </FeatureToggle.FeaturetoggleContext.Provider>
+                    </Amplitude.AmplitudeContext.Provider>
                 </Arbeidssoker.ArbeidssokerContext.Provider>
             </Autentisering.AutentiseringContext.Provider>
         );

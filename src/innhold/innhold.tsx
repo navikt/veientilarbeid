@@ -2,8 +2,8 @@ import { useArbeidssokerPerioder } from '../contexts/arbeidssoker';
 
 import beregnArbeidssokerperioder from '../lib/beregn-arbeidssokerperioder';
 import IkkeArbeidssokerInnhold from './ikke-arbeidssoker-innhold';
-import ArbeidssokerInnholdWrapper from './arbeidssoker-innhold-wrapper';
 import AiaWrapper from './aia-wrapper';
+import ArbeidssokerDataProvider from './arbeidssoker-data-provider';
 
 function Innhold() {
     const arbeidssokerperioderData = useArbeidssokerPerioder();
@@ -13,9 +13,9 @@ function Innhold() {
     return (
         <>
             {harAktivArbeidssokerperiode ? (
-                <ArbeidssokerInnholdWrapper>
+                <ArbeidssokerDataProvider>
                     <AiaWrapper />
-                </ArbeidssokerInnholdWrapper>
+                </ArbeidssokerDataProvider>
             ) : (
                 <IkkeArbeidssokerInnhold />
             )}
