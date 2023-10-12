@@ -35,7 +35,7 @@ jobs:
         uses: navikt/frontend/actions/cdn-upload/v1@main
         with:
           cdn-team-name: paw
-          source: ./dist/js
+          source: [./dist/js, ./dist/assets]
           destination: '/aia/'
 
       - name: docker-build-push
