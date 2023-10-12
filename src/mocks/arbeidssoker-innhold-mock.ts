@@ -1,5 +1,5 @@
 import { hentBrukerRegistrering } from '../demo/demo-state-brukerregistrering';
-import { Servicegruppe } from '../contexts/oppfolging';
+import { Servicegruppe } from '../hooks/use-oppfolging-data';
 
 const arbeidssokerInnholdMock = {
     oppfolging: {

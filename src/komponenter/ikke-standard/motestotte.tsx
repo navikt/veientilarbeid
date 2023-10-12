@@ -87,8 +87,6 @@ const Motestotte = ({ state }: Props) => {
         return opprettetRegistreringDato <= new Date(motestotteState.data.dato);
     };
 
-    console.log(oppfolgingData);
-
     const harBehovForArbeidsevnevurdering =
         servicegruppe === Servicegruppe.BKART ||
         (foreslattInnsatsgruppe === ForeslattInnsatsgruppe.BEHOV_FOR_ARBEIDSEVNEVURDERING &&
