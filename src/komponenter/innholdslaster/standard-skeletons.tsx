@@ -5,8 +5,8 @@ import spacing from '../../spacing.module.css';
 const StandardSkeletons = () => {
     return (
         <div className={`${styles.limit} ${spacing.pa1}`}>
-            <Skeleton variant="rounded" height={74} className={`${styles.skeletonWidth}`} />
-            <Skeleton variant="rounded" height={270} className={`${styles.skeletonWidth} ${spacing.mt1}`} />
+            <Skeleton variant="rounded" height={74} className={`${styles.skeletonLoader}`} />
+            <Skeleton variant="rounded" height={270} className={`${styles.skeletonLoader} ${spacing.mt1}`} />
         </div>
     );
 };
