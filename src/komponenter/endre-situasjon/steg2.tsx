@@ -223,7 +223,7 @@ function useLagreEndringer(props: Steg2Props) {
         valgtSituasjon?: any,
         opprinneligSituasjon?: any,
         tilleggsData?: any,
-        merOmSituasjonenMin?: any,
+        merOmSituasjonenMin?: string,
     ) => {
         // Gjør om dato fra datepicker til date string
         if (tilleggsData) {
