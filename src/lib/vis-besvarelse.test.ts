@@ -1,7 +1,7 @@
-import { DinSituasjonSvar, FremtidigSituasjonSvar } from '../contexts/brukerregistrering';
 import { plussDager } from '../utils/date-utils';
 import { visBesvarelser } from './vis-besvarelse';
-import { Formidlingsgruppe, Servicegruppe } from '../contexts/oppfolging';
+import { Formidlingsgruppe, Servicegruppe } from '../hooks/use-oppfolging-data';
+import { DinSituasjonSvar, FremtidigSituasjonSvar } from '../hooks/use-brukerregistrering-data';
 
 const grunndata = {
     brukerInfoData: {

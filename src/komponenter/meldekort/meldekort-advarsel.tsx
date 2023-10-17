@@ -1,8 +1,6 @@
 import { BodyLong, BodyShort, Heading } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
 
-import { useBrukerinfoData } from '../../contexts/bruker-info';
-import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useDpInnsynPaabegynteSoknaderData } from '../../contexts/dp-innsyn-paabegynte-soknader';
 import { useSprakValg } from '../../contexts/sprak';
 
@@ -16,6 +14,8 @@ import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
 import { useSWRImmutable } from '../../hooks/useSWR';
 import { DP_INNSYN_URL } from '../../ducks/api';
 import { DpInnsynSoknad, Vedtak } from '../../models/dagpenger';
+import { useBrukerInfoData } from '../../hooks/use-brukerinfo-data';
+import { useBrukerregistreringData } from '../../hooks/use-brukerregistrering-data';
 // TODO - oversette alle tekster til engelsk
 const TEKSTER = {
     nb: {
@@ -77,9 +77,8 @@ const TEKSTER = {
 };
 
 function MeldekortAdvarsel({ dagerEtterFastsattMeldedag }: { dagerEtterFastsattMeldedag: number | null }) {
-    const { rettighetsgruppe } = useBrukerinfoData();
-
-    const brukerInfoData = useBrukerinfoData();
+    const brukerInfoData = useBrukerInfoData();
+    const { rettighetsgruppe } = brukerInfoData;
     const registreringData = useBrukerregistreringData();
     const { paabegynteSoknader = [] } = useDpInnsynPaabegynteSoknaderData();
     const { data: innsendteSoknader = [] } = useSWRImmutable<DpInnsynSoknad[]>(`${DP_INNSYN_URL}/soknad`);

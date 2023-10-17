@@ -1,5 +1,5 @@
-import { DinSituasjonSvar, ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../contexts/brukerregistrering';
 import { DemoData, hentDemoState, opprettetRegistreringDato, settDemoState } from './demo-state';
+import { DinSituasjonSvar, ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../hooks/use-brukerregistrering-data';
 
 const defaultFremtidigSituasjon = FremtidigSituasjonSvar.NY_ARBEIDSGIVER;
 const defaultDinSituasjon = DinSituasjonSvar.MISTET_JOBBEN;

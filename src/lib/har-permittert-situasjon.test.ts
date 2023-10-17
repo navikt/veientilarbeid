@@ -1,6 +1,6 @@
 import { harPermittertSituasjon } from './har-permittert-situasjon';
-import { DinSituasjonSvar } from '../contexts/brukerregistrering';
 import { PermittertSvar } from '../models/endring-av-situasjon';
+import { DinSituasjonSvar } from '../hooks/use-brukerregistrering-data';
 
 describe('har-permittert-situasjon', () => {
     test('returnerer false for tom input', () => {
@@ -13,7 +13,7 @@ describe('har-permittert-situasjon', () => {
                 besvarelse: {
                     dinSituasjon: DinSituasjonSvar.ER_PERMITTERT,
                 },
-            } as any)
+            } as any),
         ).toBe(true);
     });
 
@@ -33,7 +33,7 @@ describe('har-permittert-situasjon', () => {
                             verdi: svar,
                         },
                     } as any,
-                })
+                }),
             ).toBe(true);
         });
     });
@@ -47,7 +47,7 @@ describe('har-permittert-situasjon', () => {
                         verdi: PermittertSvar.OPPSIGELSE,
                     },
                 } as any,
-            })
+            }),
         ).toBe(false);
     });
 });

@@ -1,4 +1,4 @@
-import { DinSituasjonSvar } from '../contexts/brukerregistrering';
+import { DinSituasjonSvar } from '../hooks/use-brukerregistrering-data';
 
 export enum PermittertSvar {
     OPPSIGELSE = 'OPPSIGELSE',

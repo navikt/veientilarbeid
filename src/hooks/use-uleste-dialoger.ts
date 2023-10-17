@@ -1,5 +1,5 @@
+import { useArbeidssokerData } from './use-arbeidssoker-data';
 import { DataElement, STATUS } from '../ducks/api';
-import { createContext, useContext } from 'react';
 
 export interface State extends DataElement {
     data: Data;
@@ -16,5 +16,4 @@ export const initialState: State = {
     status: STATUS.NOT_STARTED,
 };
 
-export const UlesteDialogerContext = createContext<State>(initialState);
-export const useUlesteDialogerData = () => useContext(UlesteDialogerContext).data;
+export const useUlesteDialoger = () => useArbeidssokerData().data?.ulesteDialoger.data ?? initialState.data;

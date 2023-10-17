@@ -1,4 +1,5 @@
 import { hentBrukerRegistrering } from '../demo/demo-state-brukerregistrering';
+import { Servicegruppe } from '../hooks/use-oppfolging-data';
 
 const arbeidssokerInnholdMock = {
     oppfolging: {
@@ -31,7 +32,7 @@ const arbeidssokerInnholdMock = {
             kanReaktiveres: null,
             inaktiveringsdato: null,
             erSykmeldtMedArbeidsgiver: null,
-            servicegruppe: null,
+            servicegruppe: Servicegruppe.IVURD,
             formidlingsgruppe: null,
             rettighetsgruppe: null,
             erIkkeArbeidssokerUtenOppfolging: null,

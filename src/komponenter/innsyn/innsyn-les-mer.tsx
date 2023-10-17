@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { ReadMore } from '@navikt/ds-react';
 
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
-import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useSprakValg } from '../../contexts/sprak';
 import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
 import { InnloggingsNiva, useAutentiseringData } from '../../contexts/autentisering';
@@ -12,6 +11,7 @@ import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 import Opplysninger from './registreringsopplysninger';
 import PeriodeOpplysninger from './periodeopplysninger';
+import { useBrukerregistreringData } from '../../hooks/use-brukerregistrering-data';
 
 const TEKSTER = {
     nb: {

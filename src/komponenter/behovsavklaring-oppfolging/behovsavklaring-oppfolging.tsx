@@ -1,9 +1,8 @@
-import { Servicegruppe, useOppfolgingData } from '../../contexts/oppfolging';
-
 import IkkeSvartPaaBehovsavklaring from './behovsavklaring-ikke-svart';
 import SvartPaaBehovsavklaring from './behovsavklaring-svart';
 import BehovsavklaringAvklart from './behovsavklaring-avklart';
 import useHarGyldigBehovsvurdering from '../../hooks/use-har-gyldig-behovsvurdering';
+import { Servicegruppe, useOppfolgingData } from '../../hooks/use-oppfolging-data';
 
 function Behovsavklaring() {
     const { servicegruppe } = useOppfolgingData();

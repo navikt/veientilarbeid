@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import { Detail, Heading, Panel, ReadMore } from '@navikt/ds-react';
 
-import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
-import { useUlesteDialogerData } from '../../contexts/ulestedialoger';
 import { useSprakValg } from '../../contexts/sprak';
 
 import RegistrertTeller from './registrert-teller';
@@ -15,6 +13,8 @@ import InViewport from '../in-viewport/in-viewport';
 import Forklaring from './forklaring';
 
 import spacingStyles from '../../spacing.module.css';
+import { useBrukerregistreringData } from '../../hooks/use-brukerregistrering-data';
+import { useUlesteDialoger } from '../../hooks/use-uleste-dialoger';
 
 const TEKSTER = {
     nb: {
@@ -33,7 +33,7 @@ function HjelpOgStotte() {
     const { ukerRegistrert } = amplitudeData;
 
     const registreringData = useBrukerregistreringData();
-    const { antallUleste } = useUlesteDialogerData();
+    const { antallUleste } = useUlesteDialoger();
 
     const registrertDato = registreringData?.registrering?.opprettetDato;
 

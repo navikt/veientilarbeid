@@ -12,12 +12,15 @@ function IkkeArbeidssokerInnhold() {
     const underOppfolging = useUnderOppfolging()?.underoppfolging;
     const arbeidssokerperioder = beregnArbeidssokerperioder(arbeidssokerperioderData);
     const { data: kanReaktiveresData } = useSWRImmutable<{ kanReaktiveres: Boolean }>(KAN_REAKTIVERES_URL);
+    const mindreEnn28DagerSidenSisteArbeidssokerPeriode =
+        Number(arbeidssokerperioder.antallDagerSidenSisteArbeidssokerperiode) < 28;
+    const kanReaktiveres = kanReaktiveresData?.kanReaktiveres;
 
     return (
         <>
-            {(arbeidssokerperioder.antallDagerSidenSisteArbeidssokerperiode as number) < 28 &&
-                !underOppfolging &&
-                kanReaktiveresData?.kanReaktiveres && <ReaktiveringWrapper />}
+            {mindreEnn28DagerSidenSisteArbeidssokerPeriode && !underOppfolging && kanReaktiveres && (
+                <ReaktiveringWrapper />
+            )}
             {underOppfolging ? (
                 <ArbeidssokerDataProvider>
                     <InnholdUnderOppfolgingUtenPeriode />

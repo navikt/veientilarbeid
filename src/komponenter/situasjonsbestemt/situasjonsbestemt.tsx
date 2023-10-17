@@ -2,7 +2,6 @@ import { BodyLong, Heading, Link, Panel } from '@navikt/ds-react';
 import { BandageIcon, ChatIcon, LaptopIcon, ClipboardIcon, TasklistIcon } from '@navikt/aksel-icons';
 
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
-import { useBrukerinfoData } from '../../contexts/bruker-info';
 import { useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
 import { useSprakValg } from '../../contexts/sprak';
 import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
@@ -19,6 +18,7 @@ import flexStyles from '../../flex.module.css';
 import styles from './situasjonsbestemt.module.css';
 import { FeatureToggles, useFeatureToggleData } from '../../contexts/feature-toggles';
 import MeldekortMikrofrontend from '../meldekort-mikrofrontend/meldekort-mikrofrontend';
+import { useBrukerInfoData } from '../../hooks/use-brukerinfo-data';
 
 const TEKSTER = {
     nb: {
@@ -82,7 +82,7 @@ export const ListeElement = (ikon: JSX.Element, innhold: JSX.Element) => {
 function Situasjonsbestemt() {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
     const { amplitudeData } = useAmplitudeData();
-    const { erSykmeldtMedArbeidsgiver } = useBrukerinfoData();
+    const { erSykmeldtMedArbeidsgiver } = useBrukerInfoData();
     const arbeidssokerperioderData = useArbeidssokerPerioder();
     const behov = useBehovForVeiledning();
     const { behovForVeiledning } = behov;

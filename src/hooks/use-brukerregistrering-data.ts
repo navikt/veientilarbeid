@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useArbeidssokerData } from './use-arbeidssoker-data';
 
 import { DataElement, STATUS } from '../ducks/api';
 
@@ -147,10 +147,6 @@ export const initialState: State = {
     },
 };
 
-export const BrukerregistreringContext = React.createContext<State>(initialState);
-
-export const useBrukerregistreringData = () => React.useContext(BrukerregistreringContext).data;
-
 export function selectFremtidigSituasjonSvar(data: Data | null): FremtidigSituasjonSvar | null {
     return data && data.registrering ? data.registrering?.besvarelse.fremtidigSituasjon : null;
 }
@@ -168,3 +164,5 @@ export function selectForeslattInnsatsgruppe(data: Data | null): ForeslattInnsat
 export const selectOpprettetRegistreringDato = (data: Data | null): string | null => {
     return data && data.registrering ? data.registrering?.opprettetDato : null;
 };
+
+export const useBrukerregistreringData = () => useArbeidssokerData().data?.brukerregistrering.data ?? initialState.data;

@@ -1,13 +1,12 @@
-import { useContext } from 'react';
 import { BodyShort, Heading, Link } from '@navikt/ds-react';
 
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 
-import { OppfolgingContext, Servicegruppe } from '../../contexts/oppfolging';
 import { amplitudeLogger } from '../../metrics/amplitude-utils';
 import Feedback from '../feedback/feedback';
 
 import spacingStyles from '../../spacing.module.css';
+import { Servicegruppe, useOppfolgingData } from '../../hooks/use-oppfolging-data';
 
 function Avsnitt1() {
     return (
@@ -26,7 +25,7 @@ function Avsnitt1() {
 }
 
 function Avsnitt2() {
-    const { servicegruppe } = useContext(OppfolgingContext).data;
+    const { servicegruppe } = useOppfolgingData();
     const { amplitudeData } = useAmplitudeData();
 
     const handleLesBrev = () => {
@@ -79,7 +78,7 @@ function Avsnitt3() {
                 onClick={() =>
                     loggLenkeKlikk(
                         'Går til STO fra 14a onboarding kort',
-                        'https://mininnboks.nav.no/sporsmal/skriv/ARBD'
+                        'https://mininnboks.nav.no/sporsmal/skriv/ARBD',
                     )
                 }
             >
@@ -95,7 +94,7 @@ function Avsnitt3() {
                 onClick={() =>
                     loggLenkeKlikk(
                         'Går til Chat fra 14a onboarding kort',
-                        'https://www.nav.no/person/kontakt-oss/chat/'
+                        'https://www.nav.no/person/kontakt-oss/chat/',
                     )
                 }
             >

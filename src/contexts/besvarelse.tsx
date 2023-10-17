@@ -5,19 +5,19 @@ import { useAmplitudeData } from '../komponenter/hent-initial-data/amplitude-pro
 
 import { fetchToJson } from '../ducks/api-utils';
 import { BESVARELSE_URL, OPPRETT_DIALOG_URL, OPPRETT_OPPGAVE_URL, requestConfig } from '../ducks/api';
-import {
-    DinSituasjonSvar,
-    UtdanningSvar,
-    UtdanningBestattSvar,
-    UtdanningGodkjentSvar,
-    HelseHinderSvar,
-    AndreForholdSvar,
-    SisteStillingSvar,
-    FremtidigSituasjonSvar,
-    TilbakeIArbeidSvar,
-} from './brukerregistrering';
 
 import { PermittertSvar } from '../models/endring-av-situasjon';
+import {
+    AndreForholdSvar,
+    DinSituasjonSvar,
+    FremtidigSituasjonSvar,
+    HelseHinderSvar,
+    SisteStillingSvar,
+    TilbakeIArbeidSvar,
+    UtdanningBestattSvar,
+    UtdanningGodkjentSvar,
+    UtdanningSvar,
+} from '../hooks/use-brukerregistrering-data';
 
 export type DinSituasjonTilleggsdata = {
     oppsigelseDato?: string;

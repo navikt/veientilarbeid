@@ -55,7 +55,6 @@ import {
     settVisGjelderFraDato,
 } from './demo-state';
 
-import { DinSituasjonSvar, ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../contexts/brukerregistrering';
 import {
     hentDinSituasjon,
     hentForeslattInnsatsgruppe,
@@ -75,6 +74,7 @@ import styles from './demo-dashboard.module.css';
 import spacingStyles from '../spacing.module.css';
 import flexStyles from '../flex.module.css';
 import { settBehovForVeiledning } from './demo-state-behov-for-veiledning';
+import { DinSituasjonSvar, ForeslattInnsatsgruppe, FremtidigSituasjonSvar } from '../hooks/use-brukerregistrering-data';
 
 const identity = (i: any) => i;
 

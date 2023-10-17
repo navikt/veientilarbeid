@@ -1,7 +1,6 @@
 import { Panel } from '@navikt/ds-react';
 
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
-import { useBrukerregistreringData } from '../../contexts/brukerregistrering';
 import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
 import { useBesvarelse } from '../../contexts/besvarelse';
 import { InnloggingsNiva, useAutentiseringData } from '../../contexts/autentisering';
@@ -10,8 +9,9 @@ import Sammendrag from './sammendrag';
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 import AiAInViewport from '../aia-in-viewport/aia-in-viewport';
 import ErRendret from '../er-rendret/er-rendret';
+import { useBrukerregistreringData } from '../../hooks/use-brukerregistrering-data';
 
-function MinSituasjon(props: any) {
+function MinSituasjon() {
     const brukerregistreringData = useBrukerregistreringData();
     const arbeidssokerperiodeData = useArbeidssokerPerioder();
     const { amplitudeData } = useAmplitudeData();

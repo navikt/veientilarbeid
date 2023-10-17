@@ -15,13 +15,13 @@ import {
 import { BesvarelseRequest, useBesvarelse } from '../../contexts/besvarelse';
 
 import { loggAktivitet } from '../../metrics/metrics';
-import { DinSituasjonSvar } from '../../contexts/brukerregistrering';
 import { dinSituasjonSvarTekster, PermittertSvar, permittertTekster } from '../../models/endring-av-situasjon';
 import { svarMap } from '../../models/sporsmal-og-svar';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 
 import spacing from '../../spacing.module.css';
 import flex from '../../flex.module.css';
+import { DinSituasjonSvar } from '../../hooks/use-brukerregistrering-data';
 
 type SituasjonSvar = PermittertSvar | DinSituasjonSvar;
 
