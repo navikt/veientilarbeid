@@ -64,7 +64,7 @@ function genererOppgaveBeskrivelse(
     valgtSituasjon: SituasjonSvar,
     opprinneligSituasjon: SituasjonSvar | undefined,
     tilleggsData?: any,
-    merOmSituasjonenMin?: any,
+    merOmSituasjonenMin?: string,
 ): string | undefined {
     if (situasjonerMedOppgaver.includes(valgtSituasjon)) {
         return genererDialogTekst(valgtSituasjon, opprinneligSituasjon, tilleggsData, merOmSituasjonenMin).tekst;
