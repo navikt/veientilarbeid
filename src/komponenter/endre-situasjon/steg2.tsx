@@ -8,6 +8,7 @@ import {
     HelpText,
     Radio,
     RadioGroup,
+    Textarea,
     useDatepicker,
 } from '@navikt/ds-react';
 
@@ -63,9 +64,10 @@ function genererOppgaveBeskrivelse(
     valgtSituasjon: SituasjonSvar,
     opprinneligSituasjon: SituasjonSvar | undefined,
     tilleggsData?: any,
+    merOmSituasjonenMin?: string,
 ): string | undefined {
     if (situasjonerMedOppgaver.includes(valgtSituasjon)) {
-        return genererDialogTekst(valgtSituasjon, opprinneligSituasjon, tilleggsData).tekst;
+        return genererDialogTekst(valgtSituasjon, opprinneligSituasjon, tilleggsData, merOmSituasjonenMin).tekst;
     }
 
     return undefined;
@@ -75,6 +77,7 @@ function genererDialogTekst(
     valgtSituasjon: SituasjonSvar,
     opprinneligSituasjon: SituasjonSvar | undefined,
     tilleggsData?: any,
+    merOmSituasjonenMin?: any,
 ) {
     const harEndretSituasjonTilAnnet = valgtSituasjon === PermittertSvar.ANNET;
     const skalVentePaaSvarFraNAV = tilleggsData?.harNyJobb === 'nei' || harEndretSituasjonTilAnnet;
@@ -186,6 +189,10 @@ function genererDialogTekst(
             if (harNyJobb && harNyJobb === 'ja' && forsteArbeidsdagDato) {
                 tekstArray.push(`Min første arbeidsdag i ny jobb er ${prettyPrintDato(forsteArbeidsdagDato)}`);
             }
+        } else if (valgtSituasjon === PermittertSvar.ANNET) {
+            if (merOmSituasjonenMin) {
+                tekstArray.push(`Mer om situasjonen min:\n${merOmSituasjonenMin}`);
+            }
         } else {
             tekstArray.push(
                 `Endringen gjelder fra ${gjelderFraDato ? prettyPrintDato(gjelderFraDato) : 'ikke oppgitt dato'}`,
@@ -212,7 +219,12 @@ function useLagreEndringer(props: Steg2Props) {
     const [loading, setLoading] = useState<boolean>(false);
     const [feil, settFeil] = useState<string | null>(null);
 
-    const handleLagreEndringer = async (valgtSituasjon?: any, opprinneligSituasjon?: any, tilleggsData?: any) => {
+    const handleLagreEndringer = async (
+        valgtSituasjon?: any,
+        opprinneligSituasjon?: any,
+        tilleggsData?: any,
+        merOmSituasjonenMin?: string,
+    ) => {
         // Gjør om dato fra datepicker til date string
         if (tilleggsData) {
             Object.keys(tilleggsData).forEach((key) => {
@@ -238,9 +250,15 @@ function useLagreEndringer(props: Steg2Props) {
                 valgtSituasjon,
                 opprinneligSituasjon,
                 tilleggsData,
+                merOmSituasjonenMin,
             );
 
-            const oppgaveBeskrivelse = genererOppgaveBeskrivelse(valgtSituasjon, opprinneligSituasjon, tilleggsData);
+            const oppgaveBeskrivelse = genererOppgaveBeskrivelse(
+                valgtSituasjon,
+                opprinneligSituasjon,
+                tilleggsData,
+                merOmSituasjonenMin,
+            );
 
             const payload = {
                 tekst,
@@ -858,6 +876,7 @@ const SAGT_OPP = (props: Steg2Props) => {
 };
 
 const ANNET = (props: Steg2Props) => {
+    const [merOmSituasjonenMin, setMerOmSituasjonenMin] = useState<string>('');
     const {
         datepickerProps: gjelderFraProps,
         inputProps: gjelderFraInput,
@@ -872,7 +891,7 @@ const ANNET = (props: Steg2Props) => {
         gjelderFraDato,
     };
 
-    const disabled = !gjelderFraDato || loading;
+    const disabled = !gjelderFraDato || loading || merOmSituasjonenMin.length === 0;
 
     return (
         <Steg2Wrapper valgtSituasjon={props.valgtSituasjon}>
@@ -884,13 +903,24 @@ const ANNET = (props: Steg2Props) => {
                         label={<div className={flex.flex}>Når gjelder endringen fra?</div>}
                     />
                 </DatePicker>
+                <Textarea
+                    name="fortellOmSituasjonenDin"
+                    label="Fortell oss mer om situasjonen din"
+                    value={merOmSituasjonenMin}
+                    onChange={(event) => setMerOmSituasjonenMin(event.target.value)}
+                />
                 <OpplysningeneBrukesTil />
                 <Feil feil={feil} />
                 <div className={`${flex.flex} ${flex.flexEnd}`}>
                     <Button
                         variant={'primary'}
                         onClick={() =>
-                            handleLagreEndringer(props.valgtSituasjon, props.opprinneligSituasjon, tilleggsData)
+                            handleLagreEndringer(
+                                props.valgtSituasjon,
+                                props.opprinneligSituasjon,
+                                tilleggsData,
+                                merOmSituasjonenMin,
+                            )
                         }
                         loading={loading}
                         disabled={disabled}
