@@ -8,6 +8,12 @@
     padding: 0;
 }
 
+.limitCenter {
+    margin: 0;
+    padding: 0;
+    width: 37rem;
+}
+
 .skeletonLoader {
     width: 100%;
 }
@@ -17,16 +23,10 @@
         max-width: 760px;
         margin: 0 auto;
     }
-    .skeletonLoader {
-        width: 60%;
-    }
 }
 
 @media (min-width: 992px) {
     .limit {
         max-width: 958px;
-    }
-    .skeletonLoader {
-        width: 60%;
     }
 }

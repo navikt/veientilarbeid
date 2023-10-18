@@ -162,7 +162,7 @@ const AiaTabs = () => {
     }, []);
 
     return (
-        <div className={styles.limit}>
+        <div className={styles.limitCenter}>
             <RegistrertTittel />
             <Tabs value={aktivTab} onChange={onChangeTab} className={`${tabStyles.mb2} ${tabStyles.mt1}`}>
                 <Tabs.List>

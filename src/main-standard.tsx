@@ -17,6 +17,7 @@ import { ReaktiveringProvider } from './contexts/reaktivering';
 import { BesvarelseProvider } from './contexts/besvarelse';
 import AiaTabs from './tabs/aia-tabs';
 import { MeldepliktProvider } from './contexts/meldeplikt';
+import flex from './flex.module.css';
 
 const Mikrofrontend = () => {
     const [state, setState] = React.useState<Autentisering.State>(Autentisering.initialState);
@@ -67,7 +68,9 @@ const Mikrofrontend = () => {
                                 <MeldepliktProvider>
                                     <ReaktiveringProvider>
                                         <BesvarelseProvider>
-                                            <AiaTabs />
+                                            <div className={`${flex.flex} ${flex.center}`}>
+                                                <AiaTabs />
+                                            </div>
                                         </BesvarelseProvider>
                                     </ReaktiveringProvider>
                                 </MeldepliktProvider>
