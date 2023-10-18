@@ -15,9 +15,8 @@ import * as SprakValg from './contexts/sprak';
 import ArbeidssokerDataProvider from './innhold/arbeidssoker-data-provider';
 import { ReaktiveringProvider } from './contexts/reaktivering';
 import { BesvarelseProvider } from './contexts/besvarelse';
-import AiaTabs from './tabs/aia-tabs';
 import { MeldepliktProvider } from './contexts/meldeplikt';
-import flex from './flex.module.css';
+import StandardWrapper from './standard-wrapper';
 
 const Mikrofrontend = () => {
     const [state, setState] = React.useState<Autentisering.State>(Autentisering.initialState);
@@ -68,9 +67,7 @@ const Mikrofrontend = () => {
                                 <MeldepliktProvider>
                                     <ReaktiveringProvider>
                                         <BesvarelseProvider>
-                                            <div className={`${flex.flex} ${flex.center}`}>
-                                                <AiaTabs />
-                                            </div>
+                                            <StandardWrapper />
                                         </BesvarelseProvider>
                                     </ReaktiveringProvider>
                                 </MeldepliktProvider>

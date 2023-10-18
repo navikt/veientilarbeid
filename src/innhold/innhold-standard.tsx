@@ -38,7 +38,7 @@ const InnholdStandard = () => {
     return (
         <>
             <InnholdMetrics />
-            <div className={styles.limit}>
+            <div className={styles.limitCenter}>
                 {skalViseReaktiveringsKort ? (
                     <AutomatiskReaktivert />
                 ) : (

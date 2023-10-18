@@ -12,6 +12,7 @@
     margin: 0;
     padding: 0;
     width: 100%;
+    max-width: 37rem;
 }
 
 .skeletonLoader {
@@ -22,10 +23,6 @@
     .limit {
         max-width: 760px;
         margin: 0 auto;
-    }
-
-    .limitCenter {
-        width: 37rem;
     }
 }
 
