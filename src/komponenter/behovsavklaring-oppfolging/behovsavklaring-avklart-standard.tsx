@@ -10,7 +10,7 @@ import InViewport from '../in-viewport/in-viewport';
 import spacingStyles from '../../spacing.module.css';
 
 import { AktivitetsplanLenke, GaaTilDialogKnapp } from './lenker';
-import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
+import { useSkalBrukeTabsStandardIStandardBundle } from '../../hooks/use-skal-bruke-tabs';
 
 const TEKSTER = {
     nb: {
@@ -31,12 +31,12 @@ const TEKSTER = {
 function BehovsavklaringAvklartStandard() {
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
-    const brukTabsDemo = useSkalBrukeTabs();
+    const skalVisesITabs = useSkalBrukeTabsStandardIStandardBundle();
 
     return (
         <Box padding="4">
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - avklart - standard" />
-            {!brukTabsDemo && (
+            {!skalVisesITabs && (
                 <Detail uppercase style={{ marginTop: '-1rem' }}>
                     {tekst('overskrift')}
                 </Detail>

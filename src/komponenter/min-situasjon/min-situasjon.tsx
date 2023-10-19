@@ -21,6 +21,7 @@ import prettyPrintDato from '../../utils/pretty-print-dato';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
 import { TEKSTER } from '../registrert-tittel/registrert-tittel';
+import { useSkalBrukeTabsStandardIStandardBundle } from '../../hooks/use-skal-bruke-tabs';
 
 function MinSituasjon() {
     const arbeidssokerperiodeData = useArbeidssokerPerioder();
@@ -42,6 +43,7 @@ function MinSituasjon() {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     const kanViseKomponent = autentiseringData.securityLevel === InnloggingsNiva.LEVEL_4 && harRegistreringData;
+    const skalVisesITabs = useSkalBrukeTabsStandardIStandardBundle();
 
     const visEndreSituasjon = visBesvarelser({
         brukerInfoData,
@@ -65,7 +67,7 @@ function MinSituasjon() {
 
     return (
         <Box padding="4">
-            <Detail uppercase>Min situasjon</Detail>
+            {!skalVisesITabs && <Detail uppercase>Min situasjon</Detail>}
             <Heading className={spacingStyles.mb1} size="small">
                 {heading}
             </Heading>

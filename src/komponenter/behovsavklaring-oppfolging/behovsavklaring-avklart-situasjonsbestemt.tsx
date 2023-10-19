@@ -10,7 +10,7 @@ import InViewport from '../in-viewport/in-viewport';
 import spacingStyles from '../../spacing.module.css';
 
 import { AktivitetsplanLenke, DialogLenke } from './lenker';
-import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
+import { useSkalBrukeTabsStandardIStandardBundle } from '../../hooks/use-skal-bruke-tabs';
 
 const TEKSTER = {
     nb: {
@@ -38,7 +38,7 @@ const TEKSTER = {
 function BehovsavklaringAvklartSituasjonsbestemt() {
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
-    const brukTabsDemo = useSkalBrukeTabs();
+    const brukTabsDemo = useSkalBrukeTabsStandardIStandardBundle();
     return (
         <Box padding="4">
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - avklart - situasjonsbestemt" />

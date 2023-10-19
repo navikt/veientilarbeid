@@ -11,7 +11,7 @@ import { AktivitetsplanLenke, GaaTilDialogKnapp } from './lenker';
 
 import spacingStyles from '../../spacing.module.css';
 
-import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
+import { useSkalBrukeTabsStandardIStandardBundle } from '../../hooks/use-skal-bruke-tabs';
 import { ForeslattInnsatsgruppe } from '../../hooks/use-brukerregistrering-data';
 
 const TEKSTER = {
@@ -32,7 +32,7 @@ const TEKSTER = {
 function EnigMedProfilering() {
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
-    const brukTabsDemo = useSkalBrukeTabs();
+    const brukTabsDemo = useSkalBrukeTabsStandardIStandardBundle();
 
     return (
         <Box padding="4">
@@ -64,7 +64,7 @@ function EnigMedProfilering() {
 function UenigMedProfilering() {
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
-    const brukTabsDemo = useSkalBrukeTabs();
+    const brukTabsDemo = useSkalBrukeTabsStandardIStandardBundle();
     return (
         <Box padding="4">
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - svart - uenig - standard" />
