@@ -6,13 +6,14 @@ import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
 
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
-import prettyPrintDato from '../../utils/pretty-print-dato';
 import spacingStyles from '../../spacing.module.css';
+import styles from '../../innhold/innhold.module.css';
 import { harPermittertSituasjon } from '../../lib/har-permittert-situasjon';
 import { useBesvarelse } from '../../contexts/besvarelse';
 import { useBrukerregistreringData } from '../../hooks/use-brukerregistrering-data';
+import prettyPrintDato from '../../utils/pretty-print-dato';
 
-const TEKSTER = {
+export const TEKSTER = {
     nb: {
         registrert: 'Du er registrert som arbeidssøker',
         registrertNy: 'Du er nå registrert som arbeidssøker',
@@ -36,7 +37,11 @@ function hentTekstNokkel(erNyregistrert: boolean, erPermittert: boolean) {
 
     return 'registrert';
 }
-const RegistrertTittel = () => {
+
+interface Props {
+    standard?: boolean;
+}
+const RegistrertTittel = ({ standard }: Props) => {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
     const containerRef = createRef<HTMLDivElement>();
     const [erNyRegistrert, settErNyRegistrert] = useState<boolean>(false);
@@ -46,7 +51,8 @@ const RegistrertTittel = () => {
     const harAktivArbeidssokerperiode = arbeidssokerperioder.harAktivArbeidssokerperiode === 'Ja';
     const harBrukerregistreringData = Boolean(brukerregistreringData?.registrering);
     const { besvarelse } = useBesvarelse();
-    const registrertDato = brukerregistreringData?.registrering?.opprettetDato || false;
+    const registreringData = useBrukerregistreringData();
+    const registrertDato = registreringData?.registrering?.opprettetDato || false;
     const erPermittert = harPermittertSituasjon(brukerregistreringData?.registrering, besvarelse);
 
     const scrollToRegistrering = useCallback(() => {
@@ -65,18 +71,30 @@ const RegistrertTittel = () => {
         scrollToRegistrering();
     }, [scrollToRegistrering]);
 
+    function getStandardPanel() {
+        return (
+            <Panel className={`${spacingStyles.mb075} ${spacingStyles.pa0}`}>
+                <BodyShort className={styles.header}>{tekst(hentTekstNokkel(erNyRegistrert, erPermittert))}</BodyShort>
+            </Panel>
+        );
+    }
+
     if (!harAktivArbeidssokerperiode || !harBrukerregistreringData) return null;
 
     return (
         <div ref={containerRef}>
-            <Panel className={spacingStyles.pbn}>
-                <Heading size="medium">{tekst(hentTekstNokkel(erNyRegistrert, erPermittert))}</Heading>
-                {registrertDato && (
-                    <BodyShort>
-                        {tekst('registreringsDato')}: {prettyPrintDato(registrertDato)}
-                    </BodyShort>
-                )}
-            </Panel>
+            {standard ? (
+                getStandardPanel()
+            ) : (
+                <Panel className={spacingStyles.pbn}>
+                    <Heading size="medium">{tekst(hentTekstNokkel(erNyRegistrert, erPermittert))}</Heading>
+                    {registrertDato && (
+                        <BodyShort>
+                            {tekst('registreringsDato')}: {prettyPrintDato(registrertDato)}
+                        </BodyShort>
+                    )}
+                </Panel>
+            )}
         </div>
     );
 };

@@ -1,4 +1,4 @@
-import { Detail, Heading, Panel } from '@navikt/ds-react';
+import { BodyShort, Detail, Heading, Panel } from '@navikt/ds-react';
 
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
@@ -17,6 +17,10 @@ import useErStandardInnsats from '../../hooks/use-er-standard-innsats';
 import { useBrukerregistreringData } from '../../hooks/use-brukerregistrering-data';
 import { useBrukerInfoData } from '../../hooks/use-brukerinfo-data';
 import { useOppfolgingData } from '../../hooks/use-oppfolging-data';
+import prettyPrintDato from '../../utils/pretty-print-dato';
+import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
+import { useSprakValg } from '../../contexts/sprak';
+import { TEKSTER } from '../registrert-tittel/registrert-tittel';
 
 function MinSituasjon() {
     const arbeidssokerperiodeData = useArbeidssokerPerioder();
@@ -34,6 +38,8 @@ function MinSituasjon() {
     const { aktivPeriodeStart } = beregnedeArbeidssokerperioder;
     const { opprettetDato, manueltRegistrertAv } = registreringData?.registrering || {};
     const harRegistreringData = Boolean(registreringData?.registrering);
+    const registrertDato = registreringData?.registrering?.opprettetDato || false;
+    const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     const kanViseKomponent = autentiseringData.securityLevel === InnloggingsNiva.LEVEL_4 && harRegistreringData;
 
@@ -63,6 +69,11 @@ function MinSituasjon() {
             <Heading className={spacingStyles.mb1} size="medium">
                 {heading}
             </Heading>
+            {registrertDato && (
+                <BodyShort className={spacingStyles.mb1}>
+                    {tekst('registreringsDato')}: {prettyPrintDato(registrertDato)}
+                </BodyShort>
+            )}
             <Sammendrag
                 startDato={opprettetDato || aktivPeriodeStart}
                 manueltRegistrertAv={manueltRegistrertAv}

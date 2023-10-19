@@ -15,19 +15,42 @@
     max-width: 37rem;
 }
 
+.limitStandard {
+    width: 100%;
+    max-width: 37rem;
+    margin: 0;
+    padding: 1.25rem;
+}
+
 .skeletonLoader {
     width: 100%;
+    max-width: 633px;
 }
 
-@media (min-width: 768px) {
+/*TODO: gå gjennom design tokens*/
+.container {
+    border-radius: var(--a-border-radius-large);
+    background-color: var(--a-surface-default);
+    box-shadow: var(--a-shadow-xsmall);
+    margin: 0;
+}
+
+.header {
+    color: #262626;
+    width: 100%;
+    max-width: 633px;
+    margin: 0;
+}
+
+@media (min-width: 633px) {
     .limit {
-        max-width: 760px;
         margin: 0 auto;
     }
-}
-
-@media (min-width: 992px) {
-    .limit {
-        max-width: 958px;
+    .limitCenter {
+        margin: 0 auto;
+    }
+    .limitStandard {
+        margin: 0 auto;
+        padding: 1rem;
     }
 }
