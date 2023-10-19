@@ -6,11 +6,12 @@
 .innholdslasterLaster {
     width: 100%;
     max-width: 37rem;
-
+    margin-top: 1.25rem;
 }
 
 @media (min-width: 37rem) {
     .innholdslasterLaster {
         margin: 0 auto;
+        margin-top: 1rem;
     }
 }
