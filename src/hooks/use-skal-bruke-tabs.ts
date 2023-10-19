@@ -7,6 +7,7 @@ import useErStandardInnsats from './use-er-standard-innsats';
 import { useBrukerregistreringData } from './use-brukerregistrering-data';
 import { useBrukerInfoData } from './use-brukerinfo-data';
 import { useOppfolgingData } from './use-oppfolging-data';
+import { useWindowInnerWidth } from '../contexts/window-inner-width';
 
 function useSkalBrukeTabs() {
     const featuretoggleData = useFeatureToggleData();
@@ -32,4 +33,13 @@ function useSkalBrukeTabs() {
     return brukTabs && visEndreSituasjon;
 }
 
+export function useSkalBrukeTabsStandardIStandardBundle() {
+    const featuretoggleData = useFeatureToggleData();
+    const toggledPaa = featuretoggleData['aia.bruk-tabs-demo'];
+    const { erStandardInnsats } = useErStandardInnsats();
+    const { innerWidth } = useWindowInnerWidth();
+    const MIN_TABS_BREDDE = 666;
+
+    return toggledPaa && erStandardInnsats && innerWidth > MIN_TABS_BREDDE;
+}
 export default useSkalBrukeTabs;

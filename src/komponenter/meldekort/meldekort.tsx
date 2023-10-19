@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Detail, Box, ReadMore } from '@navikt/ds-react';
+import { Box, Detail, ReadMore } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
@@ -9,7 +9,7 @@ import MeldekortForklaring from './meldekort-forklaring';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { loggAktivitet } from '../../metrics/metrics';
 
-import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
+import { useSkalBrukeTabsStandardIStandardBundle } from '../../hooks/use-skal-bruke-tabs';
 import { FeatureToggles, useFeatureToggleData } from '../../contexts/feature-toggles';
 import MeldekortMikrofrontend from '../meldekort-mikrofrontend/meldekort-mikrofrontend';
 
@@ -27,7 +27,7 @@ function Meldekort() {
     const { amplitudeData } = useAmplitudeData();
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
-    const brukTabsDemo = useSkalBrukeTabs();
+    const brukTabsDemo = useSkalBrukeTabsStandardIStandardBundle();
     const featuretoggleData = useFeatureToggleData();
     const brukMeldekortMikrofrontend = featuretoggleData[FeatureToggles.BRUK_MELDEKORT_MIKROFRONTEND];
     const handleClickLesMer = () => {

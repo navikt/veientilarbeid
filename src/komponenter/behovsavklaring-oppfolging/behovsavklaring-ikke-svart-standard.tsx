@@ -14,7 +14,7 @@ import ReadMoreVurdering from './readmore-vurdering';
 
 import spacingStyles from '../../spacing.module.css';
 
-import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
+import { useSkalBrukeTabsStandardIStandardBundle } from '../../hooks/use-skal-bruke-tabs';
 import { ForeslattInnsatsgruppe } from '../../hooks/use-brukerregistrering-data';
 
 const TEKSTER = {
@@ -47,7 +47,7 @@ function IkkeSvartPaaBehovsavklaringStandardInnsats() {
     const { amplitudeData } = useAmplitudeData();
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
-    const brukTabsDemo = useSkalBrukeTabs();
+    const brukTabsDemo = useSkalBrukeTabsStandardIStandardBundle();
     const [pendingRequest, settPendingRequest] = useState<ForeslattInnsatsgruppe | null>(null);
 
     async function onClickBehovForVeiledning(behov: ForeslattInnsatsgruppe) {

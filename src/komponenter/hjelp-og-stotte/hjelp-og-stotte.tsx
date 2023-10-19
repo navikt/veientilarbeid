@@ -15,6 +15,7 @@ import Forklaring from './forklaring';
 import spacingStyles from '../../spacing.module.css';
 import { useBrukerregistreringData } from '../../hooks/use-brukerregistrering-data';
 import { useUlesteDialoger } from '../../hooks/use-uleste-dialoger';
+import { useSkalBrukeTabsStandardIStandardBundle } from '../../hooks/use-skal-bruke-tabs';
 
 const TEKSTER = {
     nb: {
@@ -39,6 +40,7 @@ function HjelpOgStotte() {
 
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
+    const brukTabsDemo = useSkalBrukeTabsStandardIStandardBundle();
 
     const handleClickLesMer = () => {
         if (!clickedLesMer) {
@@ -61,9 +63,11 @@ function HjelpOgStotte() {
 
     return (
         <Box padding="4">
-            <Detail uppercase style={{ marginTop: '-1rem' }}>
-                Hjelp og støtte
-            </Detail>
+            {!brukTabsDemo && (
+                <Detail uppercase style={{ marginTop: '-1rem' }}>
+                    Hjelp og støtte
+                </Detail>
+            )}
             <DefaultInnhold />
             <ReadMore size="medium" header={tekst('readMoreHeading')} onClick={handleClickLesMer}>
                 <Forklaring />
