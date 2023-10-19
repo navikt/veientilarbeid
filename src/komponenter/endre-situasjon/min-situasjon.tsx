@@ -27,7 +27,7 @@ function MinSituasjon() {
     if (!kanViseKomponent) return null;
 
     return (
-        <Box padding="4" style={{ paddingLeft: 0, paddingTop: 0, paddingRight: 0 }}>
+        <Box>
             <ErRendret loggTekst="Rendrer endring av situasjon" />
             <Box padding="4">
                 {!skalVisesITabs && <Detail uppercase>Min situasjon</Detail>}
