@@ -4,6 +4,13 @@
     margin-right: auto;
 }
 .innholdslasterLaster {
-    text-align: center;
-    margin-top: 2em;
+    width: 100%;
+    max-width: 37rem;
+
+}
+
+@media (min-width: 37rem) {
+    .innholdslasterLaster {
+        margin: 0 auto;
+    }
 }

@@ -3,6 +3,7 @@ import styles from './innholdslaster.module.css';
 import { DataElement, STATUS } from '../../ducks/api';
 import { Loader } from '@navikt/ds-react';
 import StandardSkeletons from './standard-skeletons';
+import flex from '../../flex.module.css';
 
 const array = (value: {}) => (Array.isArray(value) ? value : [value]);
 
@@ -95,7 +96,7 @@ class Innholdslaster extends React.Component<InnholdslasterProps, Innholdslaster
                 {erStandard ? (
                     <StandardSkeletons />
                 ) : (
-                    <div className={styles.innholdslasterLaster}>
+                    <div className={`${flex.flex} ${flex.center} ${styles.innholdslasterLaster}`}>
                         <Loader transparent size="2xlarge" />
                     </div>
                 )}
