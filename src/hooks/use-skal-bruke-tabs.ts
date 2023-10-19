@@ -33,12 +33,12 @@ function useSkalBrukeTabs() {
     return brukTabs && visEndreSituasjon;
 }
 
+export const MIN_TABS_BREDDE = 666;
 export function useSkalBrukeTabsStandardIStandardBundle() {
     const featuretoggleData = useFeatureToggleData();
     const toggledPaa = featuretoggleData['aia.bruk-tabs-demo'];
     const { erStandardInnsats } = useErStandardInnsats();
     const { innerWidth } = useWindowInnerWidth();
-    const MIN_TABS_BREDDE = 666;
 
     return toggledPaa && erStandardInnsats && innerWidth > MIN_TABS_BREDDE;
 }
