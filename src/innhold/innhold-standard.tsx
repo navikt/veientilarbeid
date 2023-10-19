@@ -18,6 +18,7 @@ import { AutomatiskReaktivert } from '../komponenter/reaktivering/automatisk-rea
 import { visAutomatiskReaktiveringsKort } from '../lib/vis-automatisk-reaktiverings-kort';
 
 import styles from './innhold.module.css';
+import spacingStyles from '../spacing.module.css';
 
 const InnholdStandard = () => {
     const arbeidssokerperioderData = useArbeidssokerPerioder();
@@ -36,9 +37,9 @@ const InnholdStandard = () => {
     const skalViseReaktiveringsKort = visAutomatiskReaktiveringsKort(featuretoggleData, reaktivering);
 
     return (
-        <>
+        <div className={spacingStyles.pa1}>
             <InnholdMetrics />
-            <div className={styles.limitCenter}>
+            <div className={`${styles.limitCenter} ${styles.card}`}>
                 {skalViseReaktiveringsKort ? (
                     <AutomatiskReaktivert />
                 ) : (
@@ -54,7 +55,7 @@ const InnholdStandard = () => {
                     </>
                 )}
             </div>
-        </>
+        </div>
     );
 };
 
