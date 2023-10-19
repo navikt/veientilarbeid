@@ -72,7 +72,7 @@ function IkkeSvartPaaBehovsavklaringSituasjonsbestemt() {
                     {tekst('overskrift')}
                 </Detail>
             )}
-            <Heading className={spacingStyles.mb1} size="medium">
+            <Heading className={spacingStyles.mb1} size="small">
                 {tekst('heading')}
             </Heading>
             <BodyLong className={`${spacingStyles.mb1}`}>{tekst('beskrivelse')}</BodyLong>

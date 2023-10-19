@@ -97,7 +97,7 @@ function AutomatiskReaktivert() {
                     <InformationIcon aria-hidden="true" />
                 </span>
                 <div>
-                    <Heading size="medium">{tekst('tittel')}</Heading>
+                    <Heading size="small">{tekst('tittel')}</Heading>
                     <BodyLong className={spacingStyles.mb1}>
                         {prettyPrintDato(arbeidssokerperioder.forrigePeriodeAvsluttetDato, valgtSprak)}{' '}
                         {tekst('periodeAvsluttet')}

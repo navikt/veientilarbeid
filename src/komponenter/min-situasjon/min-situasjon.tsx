@@ -66,7 +66,7 @@ function MinSituasjon() {
     return (
         <Panel>
             <Detail uppercase>Min situasjon</Detail>
-            <Heading className={spacingStyles.mb1} size="medium">
+            <Heading className={spacingStyles.mb1} size="small">
                 {heading}
             </Heading>
             {registrertDato && (

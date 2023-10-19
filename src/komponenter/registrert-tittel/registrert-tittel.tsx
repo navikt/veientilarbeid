@@ -87,7 +87,7 @@ const RegistrertTittel = ({ standard }: Props) => {
                 getStandardPanel()
             ) : (
                 <Panel className={spacingStyles.pbn}>
-                    <Heading size="medium">{tekst(hentTekstNokkel(erNyRegistrert, erPermittert))}</Heading>
+                    <Heading size="small">{tekst(hentTekstNokkel(erNyRegistrert, erPermittert))}</Heading>
                     {registrertDato && (
                         <BodyShort>
                             {tekst('registreringsDato')}: {prettyPrintDato(registrertDato)}

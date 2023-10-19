@@ -42,7 +42,7 @@ function EnigMedProfilering() {
                     {tekst('overskrift')}
                 </Detail>
             )}
-            <Heading className={spacingStyles.mb1} size="medium">
+            <Heading size="small" className={spacingStyles.mb1}>
                 {tekst('headingEnig')}
             </Heading>
             <BodyLong className={spacingStyles.mb1}>{tekst('beskrivelseEnig')}</BodyLong>
@@ -73,7 +73,7 @@ function UenigMedProfilering() {
                     {tekst('overskrift')}
                 </Detail>
             )}
-            <Heading className={spacingStyles.blokkXs} size="medium">
+            <Heading size="small" className={spacingStyles.blokkXs}>
                 {tekst('headingUenig')}
             </Heading>
             <BodyLong className={spacingStyles.mb1}>{tekst('fortellMer')}</BodyLong>

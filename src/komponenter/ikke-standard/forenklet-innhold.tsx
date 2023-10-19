@@ -90,7 +90,7 @@ function ForenkletInnhold() {
         return ListeElement(
             <BandageIcon aria-hidden="true" />,
             <div>
-                <Heading size="medium">{tekst('sykefravaer.overskrift')}</Heading>
+                <Heading size="small">{tekst('sykefravaer.overskrift')}</Heading>
                 <BodyLong>
                     <Link
                         href={sykefravaerLenke}
@@ -109,7 +109,7 @@ function ForenkletInnhold() {
                 {ListeElement(
                     <TasklistIcon aria-hidden="true" />,
                     <div>
-                        <Heading size="medium">{tekst('aktivitetsplan.overskrift')}</Heading>
+                        <Heading size="small">{tekst('aktivitetsplan.overskrift')}</Heading>
                         <BodyLong>
                             {tekst('aktivitetsplan.bruke')}{' '}
                             <Link
@@ -133,7 +133,7 @@ function ForenkletInnhold() {
                 {ListeElement(
                     <ChatIcon aria-hidden="true" />,
                     <div>
-                        <Heading size="medium">{tekst('dialog.overskrift')}</Heading>
+                        <Heading size="small">{tekst('dialog.overskrift')}</Heading>
                         <Link href={dialogLenke} onClick={() => handleClick('Går til dialogen fra ikke-standard')}>
                             {tekst('dialog.ingress')}
                         </Link>{' '}
@@ -142,7 +142,7 @@ function ForenkletInnhold() {
                 {ListeElement(
                     <LaptopIcon aria-hidden="true" />,
                     <div>
-                        <Heading size="medium">{tekst('sporsmal.overskrift')}</Heading>
+                        <Heading size="small">{tekst('sporsmal.overskrift')}</Heading>
                         <BodyLong>
                             {tekst('sporsmal')}{' '}
                             <Link

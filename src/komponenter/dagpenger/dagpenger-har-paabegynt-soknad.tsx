@@ -38,7 +38,7 @@ const DagpengerHarPaabegyntSoknad = (props: any) => {
 
     const sistePabegynteSoknad = paabegynteSoknader.sort(
         (a: DpInnsynPaabegyntSoknad, b: DpInnsynPaabegyntSoknad) =>
-            new Date(b.sistEndret).getTime() - new Date(a.sistEndret).getTime()
+            new Date(b.sistEndret).getTime() - new Date(a.sistEndret).getTime(),
     )[0];
 
     const sprak = useSprakValg().sprak;
@@ -58,7 +58,7 @@ const DagpengerHarPaabegyntSoknad = (props: any) => {
 
     return (
         <>
-            <Heading size="medium" className={spacingStyles.blokkXs}>
+            <Heading size="small" className={spacingStyles.blokkXs}>
                 {tekst('heading')}
             </Heading>
             {props.children}

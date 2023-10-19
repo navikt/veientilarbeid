@@ -53,7 +53,7 @@ const Sammendrag = (props: any) => {
         <div className={`${flexStyles.flex} ${flexStyles.flexColumn}`}>
             <div className={spacing.blokkS}>
                 <div className={spacing.mb1}>
-                    <Heading size="medium">
+                    <Heading size="small">
                         {besvarelse ? svarMap.dinSituasjon[besvarelse.dinSituasjon.verdi] : 'Min jobbsituasjon: ukjent'}
                     </Heading>
                     <TilleggsData

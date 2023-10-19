@@ -50,7 +50,7 @@ function HjelpOgStotte() {
     const DefaultInnhold = () => {
         return (
             <>
-                <Heading className={spacingStyles.blokkXs} size="medium">
+                <Heading size="small" className={spacingStyles.blokkXs}>
                     {tekst('heading')}
                 </Heading>
                 <RegistrertTeller ukerRegistrert={ukerRegistrert} registrertDato={registrertDato} />

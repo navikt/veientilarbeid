@@ -43,7 +43,7 @@ function EnigMedProfilering() {
     return (
         <Panel>
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - svart - enig - situasjonsbestemt" />
-            <Heading className={spacingStyles.mb1} size="medium">
+            <Heading size="small" className={spacingStyles.mb1}>
                 {tekst('headingEnig')}
             </Heading>
             <BodyLong className={spacingStyles.mb1}>{tekst('beskrivelseEnigDialog')}.</BodyLong>
@@ -68,7 +68,7 @@ function UenigMedProfilering() {
     return (
         <Panel>
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - svart - uenig - situasjonsbestemt" />
-            <Heading className={spacingStyles.mb1} size="medium">
+            <Heading size="small" className={spacingStyles.mb1}>
                 {tekst('headingUenig')}
             </Heading>
             <BodyLong className={spacingStyles.mb1}>{tekst('beskrivelseUenig')}</BodyLong>

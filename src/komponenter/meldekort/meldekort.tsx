@@ -45,7 +45,7 @@ function Meldekort() {
                 </Detail>
             )}
             {brukMeldekortMikrofrontend ? <MeldekortMikrofrontend /> : <MeldekortHovedInnhold />}
-            <ReadMore size="medium" header={tekst('overskrift')} onClick={handleClickLesMer}>
+            <ReadMore size="small" header={tekst('overskrift')} onClick={handleClickLesMer}>
                 <MeldekortForklaring />
             </ReadMore>
         </Panel>

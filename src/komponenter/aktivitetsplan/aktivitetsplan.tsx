@@ -45,7 +45,7 @@ const Aktivitetsplan = () => {
                 <TasklistIcon />
             </span>
             <div>
-                <Heading size="medium">{tekst('aktivitetsplan.overskrift')}</Heading>
+                <Heading size="small">{tekst('aktivitetsplan.overskrift')}</Heading>
                 <BodyLong>
                     {tekst('aktivitetsplan.bruke')}{' '}
                     <Link href={aktivitetsplanLenke} onClick={() => handleClick()}>

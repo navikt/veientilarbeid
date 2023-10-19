@@ -28,7 +28,7 @@
 }
 
 /*TODO: gå gjennom design tokens*/
-.container {
+.tabsContainer {
     border-radius: var(--a-border-radius-large);
     background-color: var(--a-surface-default);
     box-shadow: var(--a-shadow-xsmall);

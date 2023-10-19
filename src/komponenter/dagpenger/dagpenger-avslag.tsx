@@ -36,7 +36,7 @@ const DagpengerAvslag = (props: any) => {
 
     return (
         <>
-            <Heading size="medium" className={spacingStyles.blokkXs}>
+            <Heading size="small" className={spacingStyles.blokkXs}>
                 {tekst('heading')}
             </Heading>
             {props.children}

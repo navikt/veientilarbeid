@@ -90,7 +90,7 @@ const ReaktiveringKvittering = () => {
                 <div className={`${flexStyles.flex} ${flexStyles.spaceBetween} ${spacingStyles.blokkS}`}>
                     <div>
                         <Detail uppercase>{tekst('tittel')}</Detail>
-                        <Heading size="medium">{tekst('ingress')}</Heading>
+                        <Heading size="small">{tekst('ingress')}</Heading>
                     </div>
                     <Button variant="tertiary" size="small" onClick={handleLukkeKvitteringKnapp}>
                         <XMarkIcon color="black" title={tekst('lukk')} />

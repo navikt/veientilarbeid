@@ -49,7 +49,7 @@ const IkkeRegistrert = () => {
         <Rad>
             <Panel border className={spacingStyles.blokkS} ref={infoBoksRef}>
                 <ErRendret loggTekst="Rendrer IkkeRegistrert" />
-                <Heading size="medium" level="2" className={spacingStyles.blokkXs}>
+                <Heading size="small" level="2" className={spacingStyles.blokkXs}>
                     {tekst('header')}
                 </Heading>
                 <BodyShort className={spacingStyles.blokkS}>{tekst('description')}</BodyShort>

@@ -47,7 +47,7 @@ function BehovsavklaringAvklartSituasjonsbestemt() {
                     {tekst('overskrift')}
                 </Detail>
             )}
-            <Heading className={spacingStyles.mb1} size="medium">
+            <Heading className={spacingStyles.mb1} size="small">
                 {tekst('headingEnig')}
             </Heading>
             <BodyLong className={spacingStyles.mb1}>{tekst('beskrivelseEnigDialog')}.</BodyLong>

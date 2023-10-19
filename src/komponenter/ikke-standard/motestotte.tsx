@@ -109,7 +109,7 @@ const Motestotte = ({ state }: Props) => {
 
     return (
         <Panel border className={spacingStyles.blokkS}>
-            <Heading size="medium" level="1" className={spacingStyles.blokkXs}>
+            <Heading size="small" level="1" className={spacingStyles.blokkXs}>
                 {tekst(`${sykmeldtStatus}-tittel`)}
             </Heading>
             <BodyShort className={spacingStyles.blokkXs}>{tekst(`${sykmeldtStatus}-avsnitt1`)}</BodyShort>

@@ -37,7 +37,7 @@ const DagpengerHarIkkeSokt = (props: any) => {
 
     return (
         <>
-            <Heading size="medium" className={`${flexStyles.flex} ${spacingStyles.blokkXs}`}>
+            <Heading size="small" className={`${flexStyles.flex} ${spacingStyles.blokkXs}`}>
                 {tekst('heading')}
             </Heading>
             {props.children}
