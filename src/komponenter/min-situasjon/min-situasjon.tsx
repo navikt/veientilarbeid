@@ -1,4 +1,4 @@
-import { BodyShort, Detail, Heading, Panel } from '@navikt/ds-react';
+import { BodyShort, Box, Detail, Heading } from '@navikt/ds-react';
 
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
@@ -64,7 +64,7 @@ function MinSituasjon() {
         : 'Min jobbsituasjon: ukjent';
 
     return (
-        <Panel>
+        <Box padding="4">
             <Detail uppercase>Min situasjon</Detail>
             <Heading className={spacingStyles.mb1} size="small">
                 {heading}
@@ -80,7 +80,7 @@ function MinSituasjon() {
                 amplitudeData={amplitudeData}
             />
             <InnsynLesMer />
-        </Panel>
+        </Box>
     );
 }
 

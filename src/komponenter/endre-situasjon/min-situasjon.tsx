@@ -1,5 +1,3 @@
-import { Panel } from '@navikt/ds-react';
-
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
 import { useBesvarelse } from '../../contexts/besvarelse';
@@ -10,6 +8,7 @@ import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 import AiAInViewport from '../aia-in-viewport/aia-in-viewport';
 import ErRendret from '../er-rendret/er-rendret';
 import { useBrukerregistreringData } from '../../hooks/use-brukerregistrering-data';
+import { Box } from '@navikt/ds-react';
 
 function MinSituasjon() {
     const brukerregistreringData = useBrukerregistreringData();
@@ -27,9 +26,9 @@ function MinSituasjon() {
     if (!kanViseKomponent) return null;
 
     return (
-        <Panel style={{ paddingLeft: 0, paddingTop: 0, paddingRight: 0 }}>
+        <Box padding="4" style={{ paddingLeft: 0, paddingTop: 0, paddingRight: 0 }}>
             <ErRendret loggTekst="Rendrer endring av situasjon" />
-            <Panel>
+            <Box padding="4">
                 <Sammendrag
                     startDato={opprettetDato || aktivPeriodeStart}
                     manueltRegistrertAv={manueltRegistrertAv}
@@ -39,9 +38,9 @@ function MinSituasjon() {
                     endretAv={endretAv}
                     erBesvarelsenEndret={erBesvarelsenEndret}
                 />
-            </Panel>
+            </Box>
             <AiAInViewport loggTekst="Viser endring av situasjon" />
-        </Panel>
+        </Box>
     );
 }
 

@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {
     Accordion,
+    Box,
     Cell,
     Checkbox,
     CheckboxGroup,
     Grid,
     Heading,
-    Panel,
     Radio,
     RadioGroup,
     Select,
@@ -348,9 +348,9 @@ const DemoDashboard = () => {
             <Heading size="xlarge" className={styles.demoHeading}>
                 Demo av Veien til arbeid
             </Heading>
-            <Panel className={styles.demodashboardInnhold}>
+            <Box padding="4" className={styles.demodashboardInnhold}>
                 <div className={`${spacingStyles.mb2} ${flexStyles.flex} ${flexStyles.wrap}`}>
-                    <Panel className={styles.demoCheckboxpanel}>
+                    <Box padding="4" className={styles.demoCheckboxpanel}>
                         <Select
                             label={'Velg arbeidssøkerperiode'}
                             onChange={handleChangeArbeidssokerPeriode}
@@ -438,8 +438,8 @@ const DemoDashboard = () => {
                                 Mangler registreringsdata
                             </Checkbox>
                         </CheckboxGroup>
-                    </Panel>
-                    <Panel className={styles.demoCheckboxpanel}>
+                    </Box>
+                    <Box padding="4" className={styles.demoCheckboxpanel}>
                         <Select
                             label={'Velg 14a vedtak'}
                             onChange={handleChangeServicegruppe}
@@ -465,7 +465,7 @@ const DemoDashboard = () => {
                             ))}
                         </Select>
 
-                        <Panel className={styles.demoCheckboxpanel}>
+                        <Box padding="4" className={styles.demoCheckboxpanel}>
                             <RadioGroup
                                 legend="Velg brukers valg"
                                 defaultValue={behovForVeiledningState?.oppfolging}
@@ -474,9 +474,9 @@ const DemoDashboard = () => {
                                 <Radio value={ForeslattInnsatsgruppe.STANDARD_INNSATS}>Klare seg selv</Radio>
                                 <Radio value={ForeslattInnsatsgruppe.SITUASJONSBESTEMT_INNSATS}>Ønsker hjelp</Radio>
                             </RadioGroup>
-                        </Panel>
+                        </Box>
 
-                        <Panel className={styles.demoCheckboxpanel}>
+                        <Box padding="4" className={styles.demoCheckboxpanel}>
                             <RadioGroup
                                 legend="Vil være arbeidssøker neste periode"
                                 defaultValue={hentDemoState(DemoData.ARBEIDSSOKER_NESTE_PERIODE) || 'Ja'}
@@ -485,9 +485,9 @@ const DemoDashboard = () => {
                                 <Radio value={'Ja'}>Ja</Radio>
                                 <Radio value={'Nei'}>Nei</Radio>
                             </RadioGroup>
-                        </Panel>
-                    </Panel>
-                    <Panel className={styles.demoFeaturetoggles}>
+                        </Box>
+                    </Box>
+                    <Box padding="4" className={styles.demoFeaturetoggles}>
                         <CheckboxGroup legend={'Featuretoggles'} value={getFeatureToggleCheckboxGroupValue()}>
                             {Object.values(FeatureToggles).map((toggle) => {
                                 return (
@@ -497,7 +497,7 @@ const DemoDashboard = () => {
                                 );
                             })}
                         </CheckboxGroup>
-                    </Panel>
+                    </Box>
                 </div>
 
                 <Accordion>
@@ -593,7 +593,7 @@ const DemoDashboard = () => {
                                     </Select>
                                 </Cell>
                                 <Cell xs={6} md={6} lg={3}>
-                                    <Panel className={styles.demoCheckboxpanel}>
+                                    <Box padding="4" className={styles.demoCheckboxpanel}>
                                         <CheckboxGroup
                                             legend=""
                                             value={[
@@ -641,10 +641,10 @@ const DemoDashboard = () => {
                                                 Vis gjelder fra dato-velger
                                             </Checkbox>
                                         </CheckboxGroup>
-                                    </Panel>
+                                    </Box>
                                 </Cell>
                                 <Cell xs={6} md={6} lg={3}>
-                                    <Panel className={styles.demoFeaturetoggles}>
+                                    <Box padding="4" className={styles.demoFeaturetoggles}>
                                         <CheckboxGroup
                                             legend={'Featuretoggles'}
                                             value={getFeatureToggleCheckboxGroupValue()}
@@ -662,13 +662,13 @@ const DemoDashboard = () => {
                                                 );
                                             })}
                                         </CheckboxGroup>
-                                    </Panel>
+                                    </Box>
                                 </Cell>
                             </Grid>
                         </Accordion.Content>
                     </Accordion.Item>
                 </Accordion>
-            </Panel>
+            </Box>
         </section>
     );
 };

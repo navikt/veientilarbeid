@@ -1,4 +1,4 @@
-import { BodyLong, Detail, Heading, Panel } from '@navikt/ds-react';
+import { BodyLong, Box, Detail, Heading } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
 
@@ -40,7 +40,7 @@ function BehovsavklaringAvklartSituasjonsbestemt() {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const brukTabsDemo = useSkalBrukeTabs();
     return (
-        <Panel>
+        <Box padding="4">
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - avklart - situasjonsbestemt" />
             {!brukTabsDemo && (
                 <Detail uppercase style={{ marginTop: '-1rem' }}>
@@ -61,7 +61,7 @@ function BehovsavklaringAvklartSituasjonsbestemt() {
                 />
             </BodyLong>
             <InViewport loggTekst="Viser behovsavklaringkomponent - avklart - situasjonsbestemt i viewport" />
-        </Panel>
+        </Box>
     );
 }
 

@@ -1,4 +1,4 @@
-import { BodyLong, Button, Heading, Panel } from '@navikt/ds-react';
+import { BodyLong, Box, Button, Heading } from '@navikt/ds-react';
 import { InformationIcon } from '@navikt/aksel-icons';
 import { useEffect, useRef, useState } from 'react';
 
@@ -78,7 +78,7 @@ function AutomatiskReaktivert() {
     if (!kanViseKomponent) return null;
 
     return (
-        <Panel className={spacingStyles.px1_5} ref={panelRef}>
+        <Box padding="4" className={spacingStyles.px1_5} ref={panelRef}>
             <ErRendret loggTekst="Rendrer automatisk reaktivert" />
             {visSprakvelger && (
                 <Button variant="tertiary" size="xsmall" className={spacingStyles.ml1_75} onClick={toggleByttSprak}>
@@ -122,7 +122,7 @@ function AutomatiskReaktivert() {
                 </div>
             </div>
             <AiAInViewport loggTekst="Automatisk reaktivert" />
-        </Panel>
+        </Box>
     );
 }
 

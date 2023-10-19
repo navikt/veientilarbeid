@@ -74,7 +74,7 @@ const YtelseTab = () => {
 
 const MeldekortTab = () => {
     return (
-        <Tabs.Panel value="meldekort">
+        <Tabs.Panel value="meldekort" className={styles.tabsPanel}>
             <Meldekort />
         </Tabs.Panel>
     );

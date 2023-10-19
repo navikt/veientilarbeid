@@ -1,4 +1,4 @@
-import { BodyLong, Heading, Panel } from '@navikt/ds-react';
+import { BodyLong, Box, Heading } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
 import { useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
@@ -41,7 +41,7 @@ function EnigMedProfilering() {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
     return (
-        <Panel>
+        <Box padding="4">
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - svart - enig - situasjonsbestemt" />
             <Heading size="small" className={spacingStyles.mb1}>
                 {tekst('headingEnig')}
@@ -57,7 +57,7 @@ function EnigMedProfilering() {
                 />
             </BodyLong>
             <InViewport loggTekst="Viser behovsavklaringkomponent - svart - enig - situasjonsbestemt i viewport" />
-        </Panel>
+        </Box>
     );
 }
 
@@ -66,7 +66,7 @@ function UenigMedProfilering() {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
     return (
-        <Panel>
+        <Box padding="4">
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - svart - uenig - situasjonsbestemt" />
             <Heading size="small" className={spacingStyles.mb1}>
                 {tekst('headingUenig')}
@@ -86,7 +86,7 @@ function UenigMedProfilering() {
                 />
             </BodyLong>
             <InViewport loggTekst="Viser behovsavklaringkomponent - svart - uenig - situasjonsbestemt i viewport" />
-        </Panel>
+        </Box>
     );
 }
 

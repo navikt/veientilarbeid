@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Detail, Heading, Panel, ReadMore } from '@navikt/ds-react';
+import { Box, Detail, Heading, ReadMore } from '@navikt/ds-react';
 
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { useSprakValg } from '../../contexts/sprak';
@@ -60,7 +60,7 @@ function HjelpOgStotte() {
     };
 
     return (
-        <Panel>
+        <Box padding="4">
             <Detail uppercase style={{ marginTop: '-1rem' }}>
                 Hjelp og støtte
             </Detail>
@@ -69,7 +69,7 @@ function HjelpOgStotte() {
                 <Forklaring />
             </ReadMore>
             <InViewport loggTekst="Viser hjelp og støtte-komponent i viewport" />
-        </Panel>
+        </Box>
     );
 }
 

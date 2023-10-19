@@ -1,4 +1,4 @@
-import { BodyLong, Heading, Link, Panel } from '@navikt/ds-react';
+import { BodyLong, Heading, Link, Box } from '@navikt/ds-react';
 import { BandageIcon, ChatIcon, LaptopIcon, ClipboardIcon, TasklistIcon } from '@navikt/aksel-icons';
 
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
@@ -128,7 +128,7 @@ function Situasjonsbestemt() {
     };
 
     return (
-        <Panel className={`${styles.mtn1} ${spacingStyles.mb1}`}>
+        <Box padding="4" className={`${styles.mtn1} ${spacingStyles.mb1}`}>
             <ul className={styles.ikkeStandardListe}>
                 {harGyldigBehovsvurdering ? <DialogPanel /> : <Behovsavklaring />}
                 {harGyldigBehovsvurdering &&
@@ -189,7 +189,7 @@ function Situasjonsbestemt() {
                     </div>,
                 )}
             </ul>
-        </Panel>
+        </Box>
     );
 }
 

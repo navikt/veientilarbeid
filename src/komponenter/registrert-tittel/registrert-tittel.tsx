@@ -1,5 +1,5 @@
 import { createRef, useCallback, useEffect, useState } from 'react';
-import { BodyShort, Heading, Panel } from '@navikt/ds-react';
+import { BodyShort, Box, Heading } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
 import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
@@ -73,9 +73,9 @@ const RegistrertTittel = ({ standard }: Props) => {
 
     function getStandardPanel() {
         return (
-            <Panel className={`${spacingStyles.mb075} ${spacingStyles.pa0}`}>
+            <Box padding="4" className={`${spacingStyles.mb075} ${spacingStyles.pa0}`}>
                 <BodyShort className={styles.header}>{tekst(hentTekstNokkel(erNyRegistrert, erPermittert))}</BodyShort>
-            </Panel>
+            </Box>
         );
     }
 
@@ -86,14 +86,14 @@ const RegistrertTittel = ({ standard }: Props) => {
             {standard ? (
                 getStandardPanel()
             ) : (
-                <Panel className={spacingStyles.pbn}>
+                <Box padding="4" className={spacingStyles.pbn}>
                     <Heading size="small">{tekst(hentTekstNokkel(erNyRegistrert, erPermittert))}</Heading>
                     {registrertDato && (
                         <BodyShort>
                             {tekst('registreringsDato')}: {prettyPrintDato(registrertDato)}
                         </BodyShort>
                     )}
-                </Panel>
+                </Box>
             )}
         </div>
     );

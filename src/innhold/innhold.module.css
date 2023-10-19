@@ -35,6 +35,12 @@
     margin: 0;
 }
 
+.tabsPanel {
+    background-color: var(--a-surface-default)!important;
+    border-radius: var(--a-border-radius-large)!important;
+    border: none!important;
+}
+
 .header {
     color: #262626;
     width: 100%;

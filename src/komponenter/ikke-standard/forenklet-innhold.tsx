@@ -1,4 +1,4 @@
-import { BodyLong, Heading, Link, Panel } from '@navikt/ds-react';
+import { BodyLong, Heading, Link, Box } from '@navikt/ds-react';
 import { BandageIcon, ChatIcon, LaptopIcon, ClipboardIcon, TasklistIcon } from '@navikt/aksel-icons';
 
 import { useSprakValg } from '../../contexts/sprak';
@@ -104,7 +104,7 @@ function ForenkletInnhold() {
     };
 
     return (
-        <Panel className={`${styles.mtn1} ${spacingStyles.mb1}`}>
+        <Box padding="4" className={`${styles.mtn1} ${spacingStyles.mb1}`}>
             <ul className={styles.ikkeStandardListe}>
                 {ListeElement(
                     <TasklistIcon aria-hidden="true" />,
@@ -172,7 +172,7 @@ function ForenkletInnhold() {
                     </div>,
                 )}
             </ul>
-        </Panel>
+        </Box>
     );
 }
 

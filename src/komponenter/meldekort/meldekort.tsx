@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Detail, Panel, ReadMore } from '@navikt/ds-react';
+import { Detail, Box, ReadMore } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
@@ -38,7 +38,7 @@ function Meldekort() {
     };
 
     return (
-        <Panel>
+        <Box padding="4">
             {!brukTabsDemo && (
                 <Detail uppercase style={{ marginTop: '-1rem' }}>
                     Meldekort og meldeplikt
@@ -48,7 +48,7 @@ function Meldekort() {
             <ReadMore size="small" header={tekst('overskrift')} onClick={handleClickLesMer}>
                 <MeldekortForklaring />
             </ReadMore>
-        </Panel>
+        </Box>
     );
 }
 

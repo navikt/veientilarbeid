@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BodyLong, Button, Detail, Heading, Panel } from '@navikt/ds-react';
+import { BodyLong, Box, Button, Detail, Heading } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
 import { useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
@@ -80,7 +80,7 @@ function IkkeSvartPaaBehovsavklaringStandardInnsats() {
     }
 
     return (
-        <Panel>
+        <Box padding="4">
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - ikke svart - standard" />
             {!brukTabsDemo && (
                 <Detail uppercase style={{ marginTop: '-1rem' }}>
@@ -113,7 +113,7 @@ function IkkeSvartPaaBehovsavklaringStandardInnsats() {
             <ReadMoreVeileder />
             <ReadMoreVurdering />
             <InViewport loggTekst="Viser behovsavklaringkomponent - ikke svart - standard i viewport" />
-        </Panel>
+        </Box>
     );
 }
 

@@ -1,4 +1,4 @@
-import { BodyLong, BodyShort, Button, Detail, Heading, Panel } from '@navikt/ds-react';
+import { BodyLong, BodyShort, Box, Button, Detail, Heading } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
 import { useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
@@ -65,7 +65,7 @@ function IkkeSvartPaaBehovsavklaringSituasjonsbestemt() {
     }
 
     return (
-        <Panel>
+        <Box padding="4">
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - ikke svart - situasjonsbestemt" />{' '}
             {!brukTabsDemo && (
                 <Detail uppercase style={{ marginTop: '-1rem' }}>
@@ -99,7 +99,7 @@ function IkkeSvartPaaBehovsavklaringSituasjonsbestemt() {
             <ReadMoreVeileder />
             <ReadMoreVurdering />
             <InViewport loggTekst="Viser behovsavklaringkomponent - ikke svart - situasjonsbestemt i viewport" />
-        </Panel>
+        </Box>
     );
 }
 
