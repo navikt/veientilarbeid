@@ -1,3 +1,5 @@
+@import "@navikt/ds-tokens";
+
 .rad {
     width: 100%;
     padding: 1rem 0;
@@ -27,18 +29,11 @@
     max-width: 633px;
 }
 
-/*TODO: gå gjennom design tokens*/
 .tabsContainer {
     border-radius: var(--a-border-radius-large);
     background-color: var(--a-surface-default);
     box-shadow: var(--a-shadow-xsmall);
     margin: 0;
-}
-
-.tabsPanel {
-    background-color: var(--a-surface-default)!important;
-    border-radius: var(--a-border-radius-large)!important;
-    border: none!important;
 }
 
 .header {
