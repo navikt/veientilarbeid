@@ -17,6 +17,7 @@ import { ReaktiveringProvider } from './contexts/reaktivering';
 import { BesvarelseProvider } from './contexts/besvarelse';
 import { MeldepliktProvider } from './contexts/meldeplikt';
 import StandardWrapper from './standard-wrapper';
+import { WindowInnerWidthProvider } from './contexts/window-inner-width';
 
 const Mikrofrontend = () => {
     const [state, setState] = React.useState<Autentisering.State>(Autentisering.initialState);
@@ -67,7 +68,9 @@ const Mikrofrontend = () => {
                                 <MeldepliktProvider>
                                     <ReaktiveringProvider>
                                         <BesvarelseProvider>
-                                            <StandardWrapper />
+                                            <WindowInnerWidthProvider>
+                                                <StandardWrapper />
+                                            </WindowInnerWidthProvider>
                                         </BesvarelseProvider>
                                     </ReaktiveringProvider>
                                 </MeldepliktProvider>
