@@ -21,7 +21,7 @@ const InnholdView = () => {
     return (
         <>
             <InnholdMetrics />
-            <div className={styles.limit}>
+            <div className={`${styles.limitCenter} ${styles.card}`}>
                 {skalViseReaktiveringsKort ? (
                     <AutomatiskReaktivert />
                 ) : (

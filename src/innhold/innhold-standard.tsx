@@ -36,7 +36,7 @@ const InnholdStandard = () => {
     const skalViseReaktiveringsKort = visAutomatiskReaktiveringsKort(featuretoggleData, reaktivering);
 
     return (
-        <div>
+        <>
             <InnholdMetrics />
             <div className={`${styles.limitCenter} ${styles.card}`}>
                 {skalViseReaktiveringsKort ? (
@@ -54,7 +54,7 @@ const InnholdStandard = () => {
                     </>
                 )}
             </div>
-        </div>
+        </>
     );
 };
 
