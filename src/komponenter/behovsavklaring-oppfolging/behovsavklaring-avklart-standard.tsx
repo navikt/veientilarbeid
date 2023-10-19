@@ -10,7 +10,7 @@ import InViewport from '../in-viewport/in-viewport';
 import spacingStyles from '../../spacing.module.css';
 
 import { AktivitetsplanLenke, GaaTilDialogKnapp } from './lenker';
-import { useSkalBrukeTabsStandardIStandardBundle } from '../../hooks/use-skal-bruke-tabs';
+import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
 
 const TEKSTER = {
     nb: {
@@ -31,7 +31,7 @@ const TEKSTER = {
 function BehovsavklaringAvklartStandard() {
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
-    const skalVisesITabs = useSkalBrukeTabsStandardIStandardBundle();
+    const skalVisesITabs = useSkalBrukeTabs();
 
     return (
         <Box padding="4">

@@ -14,7 +14,7 @@ import InViewport from '../in-viewport/in-viewport';
 import ByttVisningLenke from './bytt-visning-lenke';
 import Ytelser from './ytelser';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
-import { useSkalBrukeTabsStandardIStandardBundle } from '../../hooks/use-skal-bruke-tabs';
+import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
 import { useBeregnDagpengestatus } from '../../hooks/use-beregn-dagpengestatus';
 
 function StansetDagpenger() {
@@ -54,7 +54,7 @@ const TEKSTER = {
 };
 
 function DagpengerOgYtelserInnhold(props: Props) {
-    const brukTabsDemo = useSkalBrukeTabsStandardIStandardBundle();
+    const brukTabsDemo = useSkalBrukeTabs();
     const dagpengeStatus = useBeregnDagpengestatus();
 
     const DagpengerInnhold = hentDagpengerInnhold(dagpengeStatus);

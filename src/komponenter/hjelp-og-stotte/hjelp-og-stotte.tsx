@@ -15,7 +15,7 @@ import Forklaring from './forklaring';
 import spacingStyles from '../../spacing.module.css';
 import { useBrukerregistreringData } from '../../hooks/use-brukerregistrering-data';
 import { useUlesteDialoger } from '../../hooks/use-uleste-dialoger';
-import { useSkalBrukeTabsStandardIStandardBundle } from '../../hooks/use-skal-bruke-tabs';
+import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
 
 const TEKSTER = {
     nb: {
@@ -40,7 +40,7 @@ function HjelpOgStotte() {
 
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
-    const brukTabsDemo = useSkalBrukeTabsStandardIStandardBundle();
+    const brukTabsDemo = useSkalBrukeTabs();
 
     const handleClickLesMer = () => {
         if (!clickedLesMer) {

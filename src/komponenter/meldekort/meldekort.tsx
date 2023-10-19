@@ -9,7 +9,7 @@ import MeldekortForklaring from './meldekort-forklaring';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { loggAktivitet } from '../../metrics/metrics';
 
-import { useSkalBrukeTabsStandardIStandardBundle } from '../../hooks/use-skal-bruke-tabs';
+import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
 import { FeatureToggles, useFeatureToggleData } from '../../contexts/feature-toggles';
 import MeldekortMikrofrontend from '../meldekort-mikrofrontend/meldekort-mikrofrontend';
 
@@ -27,7 +27,7 @@ function Meldekort() {
     const { amplitudeData } = useAmplitudeData();
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
-    const brukTabsDemo = useSkalBrukeTabsStandardIStandardBundle();
+    const brukTabsDemo = useSkalBrukeTabs();
     const featuretoggleData = useFeatureToggleData();
     const brukMeldekortMikrofrontend = featuretoggleData[FeatureToggles.BRUK_MELDEKORT_MIKROFRONTEND];
     const handleClickLesMer = () => {

@@ -9,7 +9,7 @@ import AiAInViewport from '../aia-in-viewport/aia-in-viewport';
 import ErRendret from '../er-rendret/er-rendret';
 import { useBrukerregistreringData } from '../../hooks/use-brukerregistrering-data';
 import { Box, Detail } from '@navikt/ds-react';
-import { useSkalBrukeTabsStandardIStandardBundle } from '../../hooks/use-skal-bruke-tabs';
+import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
 
 function MinSituasjon() {
     const brukerregistreringData = useBrukerregistreringData();
@@ -23,7 +23,7 @@ function MinSituasjon() {
     const { opprettetDato, manueltRegistrertAv } = brukerregistreringData?.registrering || {};
     const { endretTidspunkt, endretAv, erBesvarelsenEndret } = besvarelse || {};
     const kanViseKomponent = autentiseringData.securityLevel === InnloggingsNiva.LEVEL_4;
-    const skalVisesITabs = useSkalBrukeTabsStandardIStandardBundle();
+    const skalVisesITabs = useSkalBrukeTabs();
     if (!kanViseKomponent) return null;
 
     return (

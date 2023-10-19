@@ -8,8 +8,9 @@ import { useBrukerregistreringData } from './use-brukerregistrering-data';
 import { useBrukerInfoData } from './use-brukerinfo-data';
 import { useOppfolgingData } from './use-oppfolging-data';
 import { useWindowInnerWidth } from '../contexts/window-inner-width';
+import { useErStandardBundle } from '../contexts/standard-bundle';
 
-function useSkalBrukeTabs() {
+function useSkalBrukeTabsMainBundle() {
     const featuretoggleData = useFeatureToggleData();
     const brukTabs = featuretoggleData['aia.bruk-tabs-demo'];
     const registreringData = useBrukerregistreringData();
@@ -34,12 +35,17 @@ function useSkalBrukeTabs() {
 }
 
 export const MIN_TABS_BREDDE = 666;
-export function useSkalBrukeTabsStandardIStandardBundle() {
+export function useSkalBrukeTabs() {
     const featuretoggleData = useFeatureToggleData();
     const toggledPaa = featuretoggleData['aia.bruk-tabs-demo'];
-    const { erStandardInnsats } = useErStandardInnsats();
+    const { erStandardBundle } = useErStandardBundle();
     const { innerWidth } = useWindowInnerWidth();
+    const skalBrukeTabsMainBundle = useSkalBrukeTabsMainBundle();
 
-    return toggledPaa && erStandardInnsats && innerWidth > MIN_TABS_BREDDE;
+    if (erStandardBundle) {
+        return toggledPaa && innerWidth > MIN_TABS_BREDDE;
+    }
+
+    return skalBrukeTabsMainBundle;
 }
 export default useSkalBrukeTabs;

@@ -18,6 +18,7 @@ import { BesvarelseProvider } from './contexts/besvarelse';
 import { MeldepliktProvider } from './contexts/meldeplikt';
 import StandardWrapper from './standard-wrapper';
 import { WindowInnerWidthProvider } from './contexts/window-inner-width';
+import { StandardBundleProvider } from './contexts/standard-bundle';
 
 const Mikrofrontend = () => {
     const [state, setState] = React.useState<Autentisering.State>(Autentisering.initialState);
@@ -64,17 +65,19 @@ const Mikrofrontend = () => {
                 <Arbeidssoker.ArbeidssokerContext.Provider value={arbeidssokerState}>
                     <FeatureToggle.FeaturetoggleContext.Provider value={featureToggleState}>
                         <SprakValg.SprakContext.Provider value={valgtSprak}>
-                            <ArbeidssokerDataProvider erStandard>
-                                <MeldepliktProvider>
-                                    <ReaktiveringProvider>
-                                        <BesvarelseProvider>
-                                            <WindowInnerWidthProvider>
-                                                <StandardWrapper />
-                                            </WindowInnerWidthProvider>
-                                        </BesvarelseProvider>
-                                    </ReaktiveringProvider>
-                                </MeldepliktProvider>
-                            </ArbeidssokerDataProvider>
+                            <StandardBundleProvider erStandardBundle={true}>
+                                <ArbeidssokerDataProvider erStandard>
+                                    <MeldepliktProvider>
+                                        <ReaktiveringProvider>
+                                            <BesvarelseProvider>
+                                                <WindowInnerWidthProvider>
+                                                    <StandardWrapper />
+                                                </WindowInnerWidthProvider>
+                                            </BesvarelseProvider>
+                                        </ReaktiveringProvider>
+                                    </MeldepliktProvider>
+                                </ArbeidssokerDataProvider>
+                            </StandardBundleProvider>
                         </SprakValg.SprakContext.Provider>
                     </FeatureToggle.FeaturetoggleContext.Provider>
                 </Arbeidssoker.ArbeidssokerContext.Provider>

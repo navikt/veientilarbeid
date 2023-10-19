@@ -14,7 +14,7 @@ import spacingStyles from '../../spacing.module.css';
 
 import { useState } from 'react';
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
-import { useSkalBrukeTabsStandardIStandardBundle } from '../../hooks/use-skal-bruke-tabs';
+import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
 import { ForeslattInnsatsgruppe } from '../../hooks/use-brukerregistrering-data';
 
 const TEKSTER = {
@@ -43,7 +43,7 @@ function IkkeSvartPaaBehovsavklaringSituasjonsbestemt() {
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const [pendingRequest, settPendingRequest] = useState<ForeslattInnsatsgruppe | null>(null);
-    const brukTabsDemo = useSkalBrukeTabsStandardIStandardBundle();
+    const brukTabsDemo = useSkalBrukeTabs();
 
     async function onLagreBehovForVeiledning(behov: ForeslattInnsatsgruppe) {
         settPendingRequest(behov);
