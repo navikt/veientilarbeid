@@ -18,21 +18,21 @@ const InnholdSituasjonsbestemt = () => {
     const skalViseReaktiveringsKort = visAutomatiskReaktiveringsKort(featureToggleData, reaktivering);
 
     return (
-        <>
+        <div className={styles.limitStandard}>
             <InnholdMetrics />
+            <RegistrertTittel />
             <div className={`${styles.limitCenter} ${styles.card}`}>
                 {skalViseReaktiveringsKort ? (
                     <AutomatiskReaktivert />
                 ) : (
                     <>
                         <ReaktiveringKvittering />
-                        <RegistrertTittel />
                         <MinSituasjon />
                         <Situasjonsbestemt />
                     </>
                 )}
             </div>
-        </>
+        </div>
     );
 };
 

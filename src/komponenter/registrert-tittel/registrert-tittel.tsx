@@ -1,5 +1,5 @@
 import { createRef, useCallback, useEffect, useState } from 'react';
-import { BodyShort, Box, Heading } from '@navikt/ds-react';
+import { BodyShort, Box } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
 import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
@@ -11,7 +11,6 @@ import styles from '../../innhold/innhold.module.css';
 import { harPermittertSituasjon } from '../../lib/har-permittert-situasjon';
 import { useBesvarelse } from '../../contexts/besvarelse';
 import { useBrukerregistreringData } from '../../hooks/use-brukerregistrering-data';
-import prettyPrintDato from '../../utils/pretty-print-dato';
 
 export const TEKSTER = {
     nb: {
@@ -38,10 +37,7 @@ function hentTekstNokkel(erNyregistrert: boolean, erPermittert: boolean) {
     return 'registrert';
 }
 
-interface Props {
-    standard?: boolean;
-}
-const RegistrertTittel = ({ standard }: Props) => {
+const RegistrertTittel = () => {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
     const containerRef = createRef<HTMLDivElement>();
     const [erNyRegistrert, settErNyRegistrert] = useState<boolean>(false);
@@ -51,8 +47,6 @@ const RegistrertTittel = ({ standard }: Props) => {
     const harAktivArbeidssokerperiode = arbeidssokerperioder.harAktivArbeidssokerperiode === 'Ja';
     const harBrukerregistreringData = Boolean(brukerregistreringData?.registrering);
     const { besvarelse } = useBesvarelse();
-    const registreringData = useBrukerregistreringData();
-    const registrertDato = registreringData?.registrering?.opprettetDato || false;
     const erPermittert = harPermittertSituasjon(brukerregistreringData?.registrering, besvarelse);
 
     const scrollToRegistrering = useCallback(() => {
@@ -71,30 +65,13 @@ const RegistrertTittel = ({ standard }: Props) => {
         scrollToRegistrering();
     }, [scrollToRegistrering]);
 
-    function getStandardPanel() {
-        return (
-            <Box padding="4" className={`${spacingStyles.mb075} ${spacingStyles.pa0}`}>
-                <BodyShort className={styles.header}>{tekst(hentTekstNokkel(erNyRegistrert, erPermittert))}</BodyShort>
-            </Box>
-        );
-    }
-
     if (!harAktivArbeidssokerperiode || !harBrukerregistreringData) return null;
 
     return (
         <div ref={containerRef}>
-            {standard ? (
-                getStandardPanel()
-            ) : (
-                <Box padding="4" className={spacingStyles.pbn}>
-                    <Heading size="small">{tekst(hentTekstNokkel(erNyRegistrert, erPermittert))}</Heading>
-                    {registrertDato && (
-                        <BodyShort>
-                            {tekst('registreringsDato')}: {prettyPrintDato(registrertDato)}
-                        </BodyShort>
-                    )}
-                </Box>
-            )}
+            <Box padding="4" className={`${spacingStyles.mb075} ${spacingStyles.pa0}`}>
+                <BodyShort className={styles.header}>{tekst(hentTekstNokkel(erNyRegistrert, erPermittert))}</BodyShort>
+            </Box>
         </div>
     );
 };
