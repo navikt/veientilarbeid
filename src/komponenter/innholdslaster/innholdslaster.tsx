@@ -89,17 +89,13 @@ class Innholdslaster extends React.Component<InnholdslasterProps, Innholdslaster
         } else if (noenHarFeil(avhengigheterFiltrert)) {
             this.clearTimer();
             return <div className={styles.innholdslasterFeilmelding}>{feilmeldingKomponent}</div>;
+        } else if (erStandard) {
+            return <StandardSkeletons />;
         }
         return (
-            <>
-                {erStandard ? (
-                    <StandardSkeletons />
-                ) : (
-                    <div className={styles.innholdslasterLaster}>
-                        <Loader transparent size="2xlarge" />
-                    </div>
-                )}
-            </>
+            <div className={styles.innholdslasterLaster}>
+                <Loader transparent size="2xlarge" />
+            </div>
         );
     }
 }

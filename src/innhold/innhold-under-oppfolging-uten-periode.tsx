@@ -28,10 +28,12 @@ const InnholdUnderOppfolgingUtenPeriode = () => {
     return (
         <>
             <InnholdMetrics />
-            <div className={styles.limit}>
+            <div className={styles.limitCenter}>
                 {skalViseReaktivering && <ReaktiveringWrapper />}
-                <ForenkletInnhold />
-                <Motestotte />
+                <div className={styles.card}>
+                    <ForenkletInnhold />
+                    <Motestotte />
+                </div>
             </div>
         </>
     );

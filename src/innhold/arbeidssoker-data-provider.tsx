@@ -7,7 +7,7 @@ import { BehovForVeiledningProvider } from '../contexts/behov-for-veiledning';
 import { DagpengerStatusProvider } from '../contexts/dagpenger-status';
 import { useArbeidssokerData } from '../hooks/use-arbeidssoker-data';
 import Feilmelding from '../komponenter/feilmeldinger/feilmelding';
-import styles from '../innhold/innhold.module.css';
+import styles from '../komponenter/innholdslaster/innholdslaster.module.css';
 import { Loader } from '@navikt/ds-react';
 import StandardSkeletons from '../komponenter/innholdslaster/standard-skeletons';
 
@@ -19,7 +19,11 @@ interface Props {
 const ArbeidssokerDataProvider = ({ children, erStandard }: Props) => {
     const { isLoading, error } = useArbeidssokerData();
     if (error) {
-        return <Feilmelding />;
+        return (
+            <div className={styles.innholdslasterFeilmelding}>
+                <Feilmelding />
+            </div>
+        );
     }
     if (isLoading) {
         return (
@@ -27,7 +31,7 @@ const ArbeidssokerDataProvider = ({ children, erStandard }: Props) => {
                 {erStandard ? (
                     <StandardSkeletons />
                 ) : (
-                    <div className={styles.limit}>
+                    <div className={styles.innholdslasterLaster}>
                         <Loader transparent size="2xlarge" />
                     </div>
                 )}

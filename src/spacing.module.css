@@ -84,6 +84,13 @@
     padding-top: .5rem!important;
     padding-bottom: .5rem!important;
 }
+.py0_5 {
+    padding-left: .5rem!important;
+    padding-right: .5rem!important;
+}
+.pb1 {
+    padding-bottom: 1rem!important;
+}
 .pb2 {
     padding-bottom: 2rem!important;
 }
