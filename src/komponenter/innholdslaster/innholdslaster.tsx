@@ -96,8 +96,10 @@ class Innholdslaster extends React.Component<InnholdslasterProps, Innholdslaster
                 {erStandard ? (
                     <StandardSkeletons />
                 ) : (
-                    <div className={`${flex.flex} ${flex.center} ${styles.innholdslasterLaster}`}>
-                        <Loader transparent size="2xlarge" />
+                    <div className={`${flex.flex} ${flex.center}`}>
+                        <div className={styles.innholdslasterLaster}>
+                            <Loader transparent size="2xlarge" />
+                        </div>
                     </div>
                 )}
             </>
