@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styles from './innholdslaster.module.css';
+import spacingStyles from '../../spacing.module.css';
 import { DataElement, STATUS } from '../../ducks/api';
 import { Loader } from '@navikt/ds-react';
 import StandardSkeletons from './standard-skeletons';
@@ -96,10 +97,8 @@ class Innholdslaster extends React.Component<InnholdslasterProps, Innholdslaster
                 {erStandard ? (
                     <StandardSkeletons />
                 ) : (
-                    <div className={`${flex.flex} ${flex.center}`}>
-                        <div className={styles.innholdslasterLaster}>
-                            <Loader transparent size="2xlarge" />
-                        </div>
+                    <div className={`${flex.flex} ${flex.center} ${spacingStyles.mt1}`}>
+                        <Loader transparent size="2xlarge" />
                     </div>
                 )}
             </>
