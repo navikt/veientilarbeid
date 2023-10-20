@@ -4,8 +4,8 @@
     margin-right: auto;
 }
 .innholdslasterLaster {
-    width: 100%;
-    max-width: 37rem;
+    width: max-content;
+    margin: 0 auto;
     margin-top: 1.25rem;
 }
 
