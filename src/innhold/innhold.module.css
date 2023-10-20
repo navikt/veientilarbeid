@@ -1,15 +1,4 @@
 @import "@navikt/ds-tokens";
-
-.rad {
-    width: 100%;
-    padding: 1rem 0;
-}
-
-.limit {
-    margin: 0;
-    padding: 0;
-}
-
 .limitCenter {
     margin: 0;
     padding: 0;
@@ -21,7 +10,7 @@
     width: 100%;
     max-width: 37rem;
     margin: 0;
-    padding: 1.25rem;
+    padding: 1rem 0;
 }
 
 .skeletonLoader {
@@ -52,6 +41,6 @@
     }
     .limitStandard {
         margin: 0 auto;
-        padding: 1rem;
+        padding: 1.25rem 0;
     }
 }

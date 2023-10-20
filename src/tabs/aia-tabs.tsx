@@ -165,7 +165,7 @@ const AiaTabs = () => {
         <div className={styles.limitStandard}>
             <RegistrertTittel />
             <div className={styles.card}>
-                <Tabs value={aktivTab} onChange={onChangeTab} className={`${tabStyles.mb2} ${tabStyles.mt1}`}>
+                <Tabs value={aktivTab} onChange={onChangeTab} className={tabStyles.mt1}>
                     <Tabs.List>
                         <Tabs.Tab
                             value="situasjon"
