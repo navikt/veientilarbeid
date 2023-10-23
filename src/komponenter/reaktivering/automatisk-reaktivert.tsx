@@ -1,10 +1,9 @@
-import { BodyLong, Button, Heading, Panel } from '@navikt/ds-react';
-import { InformationIcon } from '@navikt/aksel-icons';
+import { BodyLong, Box, Button, Heading } from '@navikt/ds-react';
 import { useEffect, useRef, useState } from 'react';
 
-import { useFeatureToggleData, FeatureToggles } from '../../contexts/feature-toggles';
+import { FeatureToggles, useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
-import { useReaktivering, ReaktiveringSvarAlternativer } from '../../contexts/reaktivering';
+import { ReaktiveringSvarAlternativer, useReaktivering } from '../../contexts/reaktivering';
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 
 import { ReadMoreInaktivering } from './readmore-derfor-ble-du-inaktivert';
@@ -78,7 +77,7 @@ function AutomatiskReaktivert() {
     if (!kanViseKomponent) return null;
 
     return (
-        <Panel className={spacingStyles.px1_5} ref={panelRef}>
+        <Box padding="4" className={spacingStyles.pb1} ref={panelRef}>
             <ErRendret loggTekst="Rendrer automatisk reaktivert" />
             {visSprakvelger && (
                 <Button variant="tertiary" size="xsmall" className={spacingStyles.ml1_75} onClick={toggleByttSprak}>
@@ -86,18 +85,8 @@ function AutomatiskReaktivert() {
                 </Button>
             )}
             <div className={flexStyles.flex}>
-                <span
-                    style={{
-                        marginRight: '0.5em',
-                        position: 'relative',
-                        top: '6px',
-                        fontSize: 'var(--a-font-size-heading-medium)',
-                    }}
-                >
-                    <InformationIcon aria-hidden="true" />
-                </span>
-                <div>
-                    <Heading size="medium">{tekst('tittel')}</Heading>
+                <div className={spacingStyles.py0_5}>
+                    <Heading size="small">{tekst('tittel')}</Heading>
                     <BodyLong className={spacingStyles.mb1}>
                         {prettyPrintDato(arbeidssokerperioder.forrigePeriodeAvsluttetDato, valgtSprak)}{' '}
                         {tekst('periodeAvsluttet')}
@@ -122,7 +111,7 @@ function AutomatiskReaktivert() {
                 </div>
             </div>
             <AiAInViewport loggTekst="Automatisk reaktivert" />
-        </Panel>
+        </Box>
     );
 }
 

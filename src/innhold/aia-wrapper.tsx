@@ -11,9 +11,7 @@ function AiaWrapper() {
     return (
         <MeldepliktProvider>
             <ReaktiveringProvider>
-                <BesvarelseProvider>
-                    <div id="aia-wrapper">{brukTabs ? <AiaTabs /> : <ArbeidssokerInnhold />}</div>
-                </BesvarelseProvider>
+                <BesvarelseProvider>{brukTabs ? <AiaTabs /> : <ArbeidssokerInnhold />}</BesvarelseProvider>
             </ReaktiveringProvider>
         </MeldepliktProvider>
     );

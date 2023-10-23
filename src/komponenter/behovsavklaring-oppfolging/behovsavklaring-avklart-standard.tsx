@@ -1,4 +1,4 @@
-import { BodyLong, Detail, Heading, Panel } from '@navikt/ds-react';
+import { BodyLong, Box, Detail, Heading } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
 
@@ -31,17 +31,17 @@ const TEKSTER = {
 function BehovsavklaringAvklartStandard() {
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
-    const brukTabsDemo = useSkalBrukeTabs();
+    const skalVisesITabs = useSkalBrukeTabs();
 
     return (
-        <Panel>
+        <Box padding="4">
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - avklart - standard" />
-            {!brukTabsDemo && (
+            {!skalVisesITabs && (
                 <Detail uppercase style={{ marginTop: '-1rem' }}>
                     {tekst('overskrift')}
                 </Detail>
             )}
-            <Heading className={spacingStyles.mb1} size="medium">
+            <Heading className={spacingStyles.mb1} size="small">
                 {tekst('headingEnig')}
             </Heading>
             <BodyLong className={spacingStyles.mb1}>{tekst('beskrivelseEnig')}</BodyLong>
@@ -54,7 +54,7 @@ function BehovsavklaringAvklartStandard() {
                 <AktivitetsplanLenke aktivitet={'Behovsavklaring - avklart - standard - går til aktivitetsplanen'} />
             </BodyLong>
             <InViewport loggTekst="Viser behovsavklaringkomponent - avklart - standard i viewport" />
-        </Panel>
+        </Box>
     );
 }
 

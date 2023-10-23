@@ -1,4 +1,4 @@
-import { Button, Heading, BodyShort, Panel } from '@navikt/ds-react';
+import { BodyShort, Box, Button, Heading } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
 
 import { loggAktivitet } from '../../metrics/metrics';
@@ -8,8 +8,8 @@ import ErRendret from '../er-rendret/er-rendret';
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
-import Rad from '../../innhold/rad';
 import { useRef } from 'react';
+import styles from '../../innhold/innhold.module.css';
 
 const TEKSTER = {
     nb: {
@@ -46,10 +46,10 @@ const IkkeRegistrert = () => {
     }
 
     return (
-        <Rad>
-            <Panel border className={spacingStyles.blokkS} ref={infoBoksRef}>
+        <div className={styles.limitCenter}>
+            <Box padding="4" className={spacingStyles.blokkS} ref={infoBoksRef} borderWidth="1">
                 <ErRendret loggTekst="Rendrer IkkeRegistrert" />
-                <Heading size="medium" level="2" className={spacingStyles.blokkXs}>
+                <Heading size="small" level="2" className={spacingStyles.blokkXs}>
                     {tekst('header')}
                 </Heading>
                 <BodyShort className={spacingStyles.blokkS}>{tekst('description')}</BodyShort>
@@ -57,8 +57,8 @@ const IkkeRegistrert = () => {
                     {tekst('button')}
                 </Button>
                 <InViewport loggTekst="Viser IkkeRegistrert i viewport" />
-            </Panel>
-        </Rad>
+            </Box>
+        </div>
     );
 };
 

@@ -1,4 +1,4 @@
-import { BodyLong, Heading, Link, Panel } from '@navikt/ds-react';
+import { BodyLong, Heading, Link, Box } from '@navikt/ds-react';
 import { TasklistIcon } from '@navikt/aksel-icons';
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
@@ -33,7 +33,7 @@ const Aktivitetsplan = () => {
     };
 
     return (
-        <Panel className={`${flexStyles.flex} ${spacingStyles.pb2}`}>
+        <Box padding="4" className={`${flexStyles.flex} ${spacingStyles.pb2}`}>
             <span
                 style={{
                     marginRight: '0.5em',
@@ -45,7 +45,7 @@ const Aktivitetsplan = () => {
                 <TasklistIcon />
             </span>
             <div>
-                <Heading size="medium">{tekst('aktivitetsplan.overskrift')}</Heading>
+                <Heading size="small">{tekst('aktivitetsplan.overskrift')}</Heading>
                 <BodyLong>
                     {tekst('aktivitetsplan.bruke')}{' '}
                     <Link href={aktivitetsplanLenke} onClick={() => handleClick()}>
@@ -54,7 +54,7 @@ const Aktivitetsplan = () => {
                     {tekst('aktivitetsplan.holde-orden')}
                 </BodyLong>
             </div>
-        </Panel>
+        </Box>
     );
 };
 

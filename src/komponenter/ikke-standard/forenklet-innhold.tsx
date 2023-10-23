@@ -1,4 +1,4 @@
-import { BodyLong, Heading, Link, Panel } from '@navikt/ds-react';
+import { BodyLong, Heading, Link, Box } from '@navikt/ds-react';
 import { BandageIcon, ChatIcon, LaptopIcon, ClipboardIcon, TasklistIcon } from '@navikt/aksel-icons';
 
 import { useSprakValg } from '../../contexts/sprak';
@@ -90,7 +90,7 @@ function ForenkletInnhold() {
         return ListeElement(
             <BandageIcon aria-hidden="true" />,
             <div>
-                <Heading size="medium">{tekst('sykefravaer.overskrift')}</Heading>
+                <Heading size="small">{tekst('sykefravaer.overskrift')}</Heading>
                 <BodyLong>
                     <Link
                         href={sykefravaerLenke}
@@ -104,12 +104,12 @@ function ForenkletInnhold() {
     };
 
     return (
-        <Panel className={`${styles.mtn1} ${spacingStyles.mb1}`}>
+        <Box padding="4" className={`${styles.mtn1} ${spacingStyles.mb1}`}>
             <ul className={styles.ikkeStandardListe}>
                 {ListeElement(
                     <TasklistIcon aria-hidden="true" />,
                     <div>
-                        <Heading size="medium">{tekst('aktivitetsplan.overskrift')}</Heading>
+                        <Heading size="small">{tekst('aktivitetsplan.overskrift')}</Heading>
                         <BodyLong>
                             {tekst('aktivitetsplan.bruke')}{' '}
                             <Link
@@ -133,7 +133,7 @@ function ForenkletInnhold() {
                 {ListeElement(
                     <ChatIcon aria-hidden="true" />,
                     <div>
-                        <Heading size="medium">{tekst('dialog.overskrift')}</Heading>
+                        <Heading size="small">{tekst('dialog.overskrift')}</Heading>
                         <Link href={dialogLenke} onClick={() => handleClick('Går til dialogen fra ikke-standard')}>
                             {tekst('dialog.ingress')}
                         </Link>{' '}
@@ -142,7 +142,7 @@ function ForenkletInnhold() {
                 {ListeElement(
                     <LaptopIcon aria-hidden="true" />,
                     <div>
-                        <Heading size="medium">{tekst('sporsmal.overskrift')}</Heading>
+                        <Heading size="small">{tekst('sporsmal.overskrift')}</Heading>
                         <BodyLong>
                             {tekst('sporsmal')}{' '}
                             <Link
@@ -172,7 +172,7 @@ function ForenkletInnhold() {
                     </div>,
                 )}
             </ul>
-        </Panel>
+        </Box>
     );
 }
 

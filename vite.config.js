@@ -14,12 +14,12 @@ const getEnvironmentOpts = () => ({
     REACT_APP_MICRO: process.env.REACT_APP_MICRO || '',
 });
 
-const getPlugins = () => {
+const getPlugins = (cssConfig = {}) => {
     return [
         svgr(),
         react(),
         terser(),
-        cssInjectedByJsPlugin(),
+        cssInjectedByJsPlugin(cssConfig),
         {
             ...rollupImportMapPlugin([
                 {
@@ -44,16 +44,21 @@ const getConfig = () => ({
 });
 
 const getCdnConfig = () => ({
-    plugins: getPlugins(),
+    plugins: getPlugins({
+        jsAssetsFilterFunction(outputChunk) {
+            return /[bundle|standard]\./.test(outputChunk.fileName);
+        },
+    }),
     build: {
         manifest: true,
         rollupOptions: {
             input: {
                 bundle: resolve(__dirname, 'src/main.tsx'),
+                standard: resolve(__dirname, 'src/main-standard.tsx'),
             },
             preserveEntrySignatures: 'exports-only',
             output: {
-                entryFileNames: 'js/aia.[hash].js',
+                entryFileNames: 'js/aia.[name].[hash].js',
                 format: 'esm',
             },
         },

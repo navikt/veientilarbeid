@@ -162,74 +162,76 @@ const AiaTabs = () => {
     }, []);
 
     return (
-        <div className={styles.limit}>
+        <div className={styles.limitStandard}>
             <RegistrertTittel />
-            <Tabs value={aktivTab} onChange={onChangeTab} className={`${tabStyles.mb2} ${tabStyles.mt1}`}>
-                <Tabs.List>
-                    <Tabs.Tab
-                        value="situasjon"
-                        label={
-                            <>
-                                Min situasjon{' '}
-                                {visHjelpOgStotteVarsel && (
-                                    <VarslingSirkel
-                                        title={'Du har ikke sendt inn dokumentasjon'}
-                                        aria-label={'Du har ikke sendt inn dokumentasjon'}
-                                    />
-                                )}
-                            </>
-                        }
-                        className={tabStyles.nowrap}
-                    />
-                    <Tabs.Tab
-                        value="hjelp"
-                        label={
-                            <>
-                                Hjelp og støtte{' '}
-                                {!harGyldigBehovsvurdering && (
-                                    <VarslingSirkel
-                                        title={'Du har ikke vurdert ditt behov for veiledning'}
-                                        aria-label={'Du har ikke vurdert ditt behov for veiledning'}
-                                    />
-                                )}
-                            </>
-                        }
-                        className={tabStyles.nowrap}
-                    />
-                    <Tabs.Tab
-                        value="ytelse"
-                        label={
-                            <>
-                                Pengestøtte{' '}
-                                {visPengestotteVarsel && (
-                                    <VarslingSirkel
-                                        title={'Du har ikke sendt inn søknad om dagpenger'}
-                                        aria-label={'Du har ikke sendt inn søknad om dagpenger'}
-                                    />
-                                )}
-                            </>
-                        }
-                    />
-                    <Tabs.Tab
-                        value="meldekort"
-                        label={
-                            <>
-                                Meldekort{' '}
-                                {visMeldekortVarsel && (
-                                    <VarslingSirkel
-                                        title={'Du kan sende inn meldekort'}
-                                        aria-label={'Du kan sende inn meldekort'}
-                                    />
-                                )}
-                            </>
-                        }
-                    />
-                </Tabs.List>
-                <MinSituasjonTab />
-                <HjelpOgStotteTab />
-                <YtelseTab />
-                <MeldekortTab />
-            </Tabs>
+            <div className={styles.card}>
+                <Tabs value={aktivTab} onChange={onChangeTab} className={tabStyles.mt1}>
+                    <Tabs.List>
+                        <Tabs.Tab
+                            value="situasjon"
+                            label={
+                                <>
+                                    Min situasjon{' '}
+                                    {visHjelpOgStotteVarsel && (
+                                        <VarslingSirkel
+                                            title={'Du har ikke sendt inn dokumentasjon'}
+                                            aria-label={'Du har ikke sendt inn dokumentasjon'}
+                                        />
+                                    )}
+                                </>
+                            }
+                            className={tabStyles.nowrap}
+                        />
+                        <Tabs.Tab
+                            value="hjelp"
+                            label={
+                                <>
+                                    Hjelp og støtte{' '}
+                                    {!harGyldigBehovsvurdering && (
+                                        <VarslingSirkel
+                                            title={'Du har ikke vurdert ditt behov for veiledning'}
+                                            aria-label={'Du har ikke vurdert ditt behov for veiledning'}
+                                        />
+                                    )}
+                                </>
+                            }
+                            className={tabStyles.nowrap}
+                        />
+                        <Tabs.Tab
+                            value="ytelse"
+                            label={
+                                <>
+                                    Pengestøtte{' '}
+                                    {visPengestotteVarsel && (
+                                        <VarslingSirkel
+                                            title={'Du har ikke sendt inn søknad om dagpenger'}
+                                            aria-label={'Du har ikke sendt inn søknad om dagpenger'}
+                                        />
+                                    )}
+                                </>
+                            }
+                        />
+                        <Tabs.Tab
+                            value="meldekort"
+                            label={
+                                <>
+                                    Meldeplikt{' '}
+                                    {visMeldekortVarsel && (
+                                        <VarslingSirkel
+                                            title={'Du kan sende inn meldekort'}
+                                            aria-label={'Du kan sende inn meldekort'}
+                                        />
+                                    )}
+                                </>
+                            }
+                        />
+                    </Tabs.List>
+                    <MinSituasjonTab />
+                    <HjelpOgStotteTab />
+                    <YtelseTab />
+                    <MeldekortTab />
+                </Tabs>
+            </div>
         </div>
     );
 };

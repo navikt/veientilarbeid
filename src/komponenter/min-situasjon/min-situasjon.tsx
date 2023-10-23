@@ -1,4 +1,4 @@
-import { Detail, Heading, Panel } from '@navikt/ds-react';
+import { Box, Detail, Heading } from '@navikt/ds-react';
 
 import { useFeatureToggleData } from '../../contexts/feature-toggles';
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
@@ -17,6 +17,7 @@ import useErStandardInnsats from '../../hooks/use-er-standard-innsats';
 import { useBrukerregistreringData } from '../../hooks/use-brukerregistrering-data';
 import { useBrukerInfoData } from '../../hooks/use-brukerinfo-data';
 import { useOppfolgingData } from '../../hooks/use-oppfolging-data';
+import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
 
 function MinSituasjon() {
     const arbeidssokerperiodeData = useArbeidssokerPerioder();
@@ -36,6 +37,7 @@ function MinSituasjon() {
     const harRegistreringData = Boolean(registreringData?.registrering);
 
     const kanViseKomponent = autentiseringData.securityLevel === InnloggingsNiva.LEVEL_4 && harRegistreringData;
+    const skalVisesITabs = useSkalBrukeTabs();
 
     const visEndreSituasjon = visBesvarelser({
         brukerInfoData,
@@ -58,9 +60,9 @@ function MinSituasjon() {
         : 'Min jobbsituasjon: ukjent';
 
     return (
-        <Panel>
-            <Detail uppercase>Min situasjon</Detail>
-            <Heading className={spacingStyles.mb1} size="medium">
+        <Box padding="4">
+            {!skalVisesITabs && <Detail uppercase>Min situasjon</Detail>}
+            <Heading className={spacingStyles.mb1} size="small">
                 {heading}
             </Heading>
             <Sammendrag
@@ -69,7 +71,7 @@ function MinSituasjon() {
                 amplitudeData={amplitudeData}
             />
             <InnsynLesMer />
-        </Panel>
+        </Box>
     );
 }
 

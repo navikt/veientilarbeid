@@ -41,7 +41,7 @@ const DagpengerHarSokt = (props: any) => {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
     return (
         <>
-            <Heading size="medium" className={spacingStyles.blokkXs}>
+            <Heading size="small" className={spacingStyles.blokkXs}>
                 {harPaabegyntEtterInnsendt ? tekst('harPaabegynt') : tekst('soknad')}
             </Heading>
             {props.children}

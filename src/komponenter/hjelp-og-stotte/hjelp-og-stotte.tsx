@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Detail, Heading, Panel, ReadMore } from '@navikt/ds-react';
+import { Box, Detail, Heading, ReadMore } from '@navikt/ds-react';
 
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { useSprakValg } from '../../contexts/sprak';
@@ -15,6 +15,7 @@ import Forklaring from './forklaring';
 import spacingStyles from '../../spacing.module.css';
 import { useBrukerregistreringData } from '../../hooks/use-brukerregistrering-data';
 import { useUlesteDialoger } from '../../hooks/use-uleste-dialoger';
+import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
 
 const TEKSTER = {
     nb: {
@@ -39,6 +40,7 @@ function HjelpOgStotte() {
 
     const sprak = useSprakValg().sprak;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
+    const brukTabsDemo = useSkalBrukeTabs();
 
     const handleClickLesMer = () => {
         if (!clickedLesMer) {
@@ -50,7 +52,7 @@ function HjelpOgStotte() {
     const DefaultInnhold = () => {
         return (
             <>
-                <Heading className={spacingStyles.blokkXs} size="medium">
+                <Heading size="small" className={spacingStyles.blokkXs}>
                     {tekst('heading')}
                 </Heading>
                 <RegistrertTeller ukerRegistrert={ukerRegistrert} registrertDato={registrertDato} />
@@ -60,16 +62,18 @@ function HjelpOgStotte() {
     };
 
     return (
-        <Panel>
-            <Detail uppercase style={{ marginTop: '-1rem' }}>
-                Hjelp og støtte
-            </Detail>
+        <Box padding="4">
+            {!brukTabsDemo && (
+                <Detail uppercase style={{ marginTop: '-1rem' }}>
+                    Hjelp og støtte
+                </Detail>
+            )}
             <DefaultInnhold />
             <ReadMore size="medium" header={tekst('readMoreHeading')} onClick={handleClickLesMer}>
                 <Forklaring />
             </ReadMore>
             <InViewport loggTekst="Viser hjelp og støtte-komponent i viewport" />
-        </Panel>
+        </Box>
     );
 }
 

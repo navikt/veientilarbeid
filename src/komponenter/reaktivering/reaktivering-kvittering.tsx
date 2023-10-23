@@ -1,4 +1,4 @@
-import { BodyShort, Button, Detail, Heading, Link, Panel } from '@navikt/ds-react';
+import { BodyShort, Box, Button, Detail, Heading, Link } from '@navikt/ds-react';
 import { XMarkIcon } from '@navikt/aksel-icons';
 import React, { useEffect, useState } from 'react';
 import spacingStyles from '../../spacing.module.css';
@@ -86,11 +86,11 @@ const ReaktiveringKvittering = () => {
 
     return (
         <>
-            <Panel className={spacingStyles.mt1} style={{ background: 'var(--a-surface-warning-subtle)' }}>
+            <Box padding="4" className={spacingStyles.mt1} style={{ background: 'var(--a-surface-warning-subtle)' }}>
                 <div className={`${flexStyles.flex} ${flexStyles.spaceBetween} ${spacingStyles.blokkS}`}>
                     <div>
                         <Detail uppercase>{tekst('tittel')}</Detail>
-                        <Heading size="medium">{tekst('ingress')}</Heading>
+                        <Heading size="small">{tekst('ingress')}</Heading>
                     </div>
                     <Button variant="tertiary" size="small" onClick={handleLukkeKvitteringKnapp}>
                         <XMarkIcon color="black" title={tekst('lukk')} />
@@ -108,7 +108,7 @@ const ReaktiveringKvittering = () => {
                         </Link>
                     </BodyShort>
                 </div>
-            </Panel>
+            </Box>
             <ErRendret loggTekst="Rendrer kvittering etter reaktivering" />
             <InViewport loggTekst="Viser kvittering etter reaktivering i viewport" />
         </>

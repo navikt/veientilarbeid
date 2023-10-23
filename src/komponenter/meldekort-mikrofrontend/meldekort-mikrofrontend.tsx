@@ -43,7 +43,7 @@ function MeldekortMikrofrontend() {
 
     return (
         <section className={styles.meldekort}>
-            <Heading size="medium" level="2" spacing>
+            <Heading size="small" level="2" spacing>
                 {tekst('meldekort.tittel')}
             </Heading>
             <div className={styles.container}>

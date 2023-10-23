@@ -100,13 +100,13 @@ function MeldekortHovedInnhold(props: MeldekortHovedInnholdProps) {
         return (
             <>
                 <div>
-                    <Heading size="medium" className={spacingStyles.blokkXs}>
+                    <Heading size="small" className={spacingStyles.blokkXs}>
                         {`${tekst('meldekortForUke')} 
                         ${hentISOUke(meldekortIkkeKlarForLevering.meldeperiode?.fra!!)} - ${hentISOUke(
-                            meldekortIkkeKlarForLevering.meldeperiode?.til!!
+                            meldekortIkkeKlarForLevering.meldeperiode?.til!!,
                         )} ${tekst('blirTilgjengelig')}  ${datoMedUkedag(
                             foersteSendedagForMeldekort(meldekortIkkeKlarForLevering),
-                            sprak
+                            sprak,
                         )}`}
                     </Heading>
                     <Utmeldingsinformasjon visUtmeldingsInformasjon={visUtmelding} />
@@ -128,7 +128,7 @@ function MeldekortHovedInnhold(props: MeldekortHovedInnholdProps) {
         return (
             <>
                 <div>
-                    <Heading size="medium" className={spacingStyles.blokkXs}>
+                    <Heading size="small" className={spacingStyles.blokkXs}>
                         {tekst('sendesInn')} {meldekortForLevering.length}
                     </Heading>
                     <Utmeldingsinformasjon visUtmeldingsInformasjon={visUtmelding} />
@@ -158,7 +158,7 @@ function MeldekortHovedInnhold(props: MeldekortHovedInnholdProps) {
                         amplitudeHandling="Går til innsending av meldekort"
                         tittel={`${tekst('sendInnForUke')}
                         ${hentISOUke(foerstkommendeMeldekort.meldeperiode?.fra!!)} - ${hentISOUke(
-                            foerstkommendeMeldekort.meldeperiode?.til!!
+                            foerstkommendeMeldekort.meldeperiode?.til!!,
                         )}`}
                         variant="primary"
                     />

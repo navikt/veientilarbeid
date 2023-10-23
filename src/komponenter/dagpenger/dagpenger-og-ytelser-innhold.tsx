@@ -1,5 +1,5 @@
 import React from 'react';
-import { BodyShort, Detail, Panel } from '@navikt/ds-react';
+import { BodyShort, Box, Detail } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
 import HarIkkeSokt from './dagpenger-har-ikke-sokt';
@@ -62,7 +62,7 @@ function DagpengerOgYtelserInnhold(props: Props) {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     return (
-        <Panel>
+        <Box padding="4">
             {!brukTabsDemo && (
                 <Detail uppercase style={{ marginTop: '-1rem' }}>
                     {tekst('tittel')}
@@ -85,7 +85,7 @@ function DagpengerOgYtelserInnhold(props: Props) {
                 handleByttVisningKlikk={props.handleByttVisningKlikk}
                 valgtYtelserVisning={props.valgtVisning}
             />
-        </Panel>
+        </Box>
     );
 }
 

@@ -10,6 +10,11 @@
     align-items: center;
 }
 
+.center {
+    justify-content: center;
+    align-items: center;
+}
+
 .flexEnd {
     justify-content: end;
 }

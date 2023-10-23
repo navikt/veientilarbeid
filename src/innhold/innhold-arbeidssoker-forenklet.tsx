@@ -19,22 +19,22 @@ const InnholdView = () => {
     const skalViseReaktiveringsKort = visAutomatiskReaktiveringsKort(featureToggleData, reaktivering);
 
     return (
-        <>
+        <div className={styles.limitStandard}>
             <InnholdMetrics />
-            <div className={styles.limit}>
+            <RegistrertTittel />
+            <div className={`${styles.limitCenter} ${styles.card}`}>
                 {skalViseReaktiveringsKort ? (
                     <AutomatiskReaktivert />
                 ) : (
                     <>
                         <ReaktiveringKvittering />
-                        <RegistrertTittel />
                         <MinSituasjon />
                         <ForenkletInnhold />
                         <Motestotte />
                     </>
                 )}
             </div>
-        </>
+        </div>
     );
 };
 

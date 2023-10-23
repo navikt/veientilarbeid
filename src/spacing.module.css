@@ -14,6 +14,9 @@
 .mb1 {
     margin-bottom: 1rem!important;
 }
+.mb075 {
+    margin-bottom: 0.75rem!important;
+}
 
 .mb2 {
     margin-bottom: 2rem!important;
@@ -22,7 +25,9 @@
 .mbn {
     margin-bottom: 0!important;
 }
-
+.mt1 {
+    margin-top: 1rem!important;
+}
 .ml1 {
     margin-left: 1rem!important;
 }
@@ -62,7 +67,11 @@
 }
 
 .pa1 {
-    padding: 1rem!important;;
+    padding: 1rem!important;
+}
+
+.pa0 {
+    padding: 0!important;
 }
 .pbn {
     padding-bottom: 0!important;
@@ -74,6 +83,13 @@
 .px0_5 {
     padding-top: .5rem!important;
     padding-bottom: .5rem!important;
+}
+.py0_5 {
+    padding-left: .5rem!important;
+    padding-right: .5rem!important;
+}
+.pb1 {
+    padding-bottom: 1rem!important;
 }
 .pb2 {
     padding-bottom: 2rem!important;

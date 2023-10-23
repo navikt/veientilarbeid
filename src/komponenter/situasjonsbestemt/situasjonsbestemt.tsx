@@ -1,4 +1,4 @@
-import { BodyLong, Heading, Link, Panel } from '@navikt/ds-react';
+import { BodyLong, Heading, Link, Box } from '@navikt/ds-react';
 import { BandageIcon, ChatIcon, LaptopIcon, ClipboardIcon, TasklistIcon } from '@navikt/aksel-icons';
 
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
@@ -102,7 +102,7 @@ function Situasjonsbestemt() {
         return ListeElement(
             <BandageIcon aria-hidden="true" />,
             <div>
-                <Heading size="medium">{tekst('sykefravaer.overskrift')}</Heading>
+                <Heading size="small">{tekst('sykefravaer.overskrift')}</Heading>
                 <BodyLong>
                     <Link
                         href={sykefravaerLenke}
@@ -119,7 +119,7 @@ function Situasjonsbestemt() {
         return ListeElement(
             <ChatIcon aria-hidden="true" />,
             <div>
-                <Heading size="medium">{tekst('dialog.overskrift')}</Heading>
+                <Heading size="small">{tekst('dialog.overskrift')}</Heading>
                 <Link href={dialogLenke} onClick={() => handleClick('Går til dialogen fra ikke-standard')}>
                     {tekst('dialog.ingress')}
                 </Link>{' '}
@@ -128,14 +128,14 @@ function Situasjonsbestemt() {
     };
 
     return (
-        <Panel className={`${styles.mtn1} ${spacingStyles.mb1}`}>
+        <Box padding="4" className={`${styles.mtn1} ${spacingStyles.mb1}`}>
             <ul className={styles.ikkeStandardListe}>
                 {harGyldigBehovsvurdering ? <DialogPanel /> : <Behovsavklaring />}
                 {harGyldigBehovsvurdering &&
                     ListeElement(
                         <TasklistIcon aria-hidden="true" />,
                         <div>
-                            <Heading size="medium">{tekst('aktivitetsplan.overskrift')}</Heading>
+                            <Heading size="small">{tekst('aktivitetsplan.overskrift')}</Heading>
                             <BodyLong>
                                 {tekst('aktivitetsplan.bruke')}{' '}
                                 <Link
@@ -159,7 +159,7 @@ function Situasjonsbestemt() {
                 {ListeElement(
                     <LaptopIcon aria-hidden="true" />,
                     <div>
-                        <Heading size="medium">{tekst('sporsmal.overskrift')}</Heading>
+                        <Heading size="small">{tekst('sporsmal.overskrift')}</Heading>
                         <BodyLong>
                             {tekst('sporsmal')}{' '}
                             <Link
@@ -189,7 +189,7 @@ function Situasjonsbestemt() {
                     </div>,
                 )}
             </ul>
-        </Panel>
+        </Box>
     );
 }
 

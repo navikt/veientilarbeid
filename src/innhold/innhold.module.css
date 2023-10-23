@@ -1,22 +1,46 @@
-.rad {
+@import "@navikt/ds-tokens";
+.limitCenter {
+    margin: 0;
+    padding: 0;
     width: 100%;
+    max-width: 37rem;
+}
+
+.limitStandard {
+    width: 100%;
+    max-width: 37rem;
+    margin: 0;
     padding: 1rem 0;
 }
 
-.limit {
-    margin: 0;
-    padding: 0;
+.skeletonLoader {
+    width: 100%;
+    max-width: 37rem;
 }
 
-@media (min-width: 768px) {
+.card {
+    border-radius: var(--a-border-radius-large);
+    background-color: var(--a-surface-default);
+    box-shadow: var(--a-shadow-xsmall);
+    margin: 0;
+}
+
+.header {
+    color: #262626;
+    width: 100%;
+    max-width: 37rem;
+    margin: 0;
+}
+
+@media (min-width: 37rem) {
     .limit {
-        max-width: 760px;
         margin: 0 auto;
     }
-}
-
-@media (min-width: 992px) {
-    .limit {
-        max-width: 958px;
+    .limitCenter {
+        margin: 0 auto;
+    }
+    .limitStandard {
+        margin: 0 auto;
+        padding: 1.25rem 0;
     }
 }

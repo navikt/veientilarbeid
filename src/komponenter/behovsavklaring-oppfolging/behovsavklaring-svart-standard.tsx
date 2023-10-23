@@ -1,4 +1,4 @@
-import { BodyLong, Detail, Heading, Panel } from '@navikt/ds-react';
+import { BodyLong, Box, Detail, Heading } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
 import { useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
@@ -35,14 +35,14 @@ function EnigMedProfilering() {
     const brukTabsDemo = useSkalBrukeTabs();
 
     return (
-        <Panel>
+        <Box padding="4">
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - svart - enig - standard" />
             {!brukTabsDemo && (
                 <Detail uppercase style={{ marginTop: '-1rem' }}>
                     {tekst('overskrift')}
                 </Detail>
             )}
-            <Heading className={spacingStyles.mb1} size="medium">
+            <Heading size="small" className={spacingStyles.mb1}>
                 {tekst('headingEnig')}
             </Heading>
             <BodyLong className={spacingStyles.mb1}>{tekst('beskrivelseEnig')}</BodyLong>
@@ -57,7 +57,7 @@ function EnigMedProfilering() {
                 />
             </BodyLong>
             <InViewport loggTekst="Viser behovsavklaringkomponent - svart - enig - standard i viewport" />
-        </Panel>
+        </Box>
     );
 }
 
@@ -66,14 +66,14 @@ function UenigMedProfilering() {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const brukTabsDemo = useSkalBrukeTabs();
     return (
-        <Panel>
+        <Box padding="4">
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - svart - uenig - standard" />
             {!brukTabsDemo && (
                 <Detail uppercase style={{ marginTop: '-1rem' }}>
                     {tekst('overskrift')}
                 </Detail>
             )}
-            <Heading className={spacingStyles.blokkXs} size="medium">
+            <Heading size="small" className={spacingStyles.blokkXs}>
                 {tekst('headingUenig')}
             </Heading>
             <BodyLong className={spacingStyles.mb1}>{tekst('fortellMer')}</BodyLong>
@@ -88,7 +88,7 @@ function UenigMedProfilering() {
                 />
             </BodyLong>
             <InViewport loggTekst="Viser behovsavklaringkomponent - svart - uenig - standard i viewport" />
-        </Panel>
+        </Box>
     );
 }
 

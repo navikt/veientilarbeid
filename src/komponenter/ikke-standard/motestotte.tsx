@@ -1,4 +1,4 @@
-import { BodyShort, Button, Heading, Panel } from '@navikt/ds-react';
+import { BodyShort, Button, Heading, Box } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
 
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
@@ -108,8 +108,8 @@ const Motestotte = ({ state }: Props) => {
     if (!kanViseKomponent) return null;
 
     return (
-        <Panel border className={spacingStyles.blokkS}>
-            <Heading size="medium" level="1" className={spacingStyles.blokkXs}>
+        <Box padding="4" className={spacingStyles.blokkS} borderWidth="1">
+            <Heading size="small" level="1" className={spacingStyles.blokkXs}>
                 {tekst(`${sykmeldtStatus}-tittel`)}
             </Heading>
             <BodyShort className={spacingStyles.blokkXs}>{tekst(`${sykmeldtStatus}-avsnitt1`)}</BodyShort>
@@ -117,7 +117,7 @@ const Motestotte = ({ state }: Props) => {
             <Button variant="primary" onClick={handleClick}>
                 Start
             </Button>
-        </Panel>
+        </Box>
     );
 };
 

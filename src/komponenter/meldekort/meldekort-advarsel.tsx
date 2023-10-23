@@ -121,12 +121,12 @@ function MeldekortAdvarsel({ dagerEtterFastsattMeldedag }: { dagerEtterFastsattM
     return (
         <>
             {dagerTilTrekk === 0 ? (
-                <Heading size="medium" className={spacingStyles.blokkXs}>
+                <Heading size="small" className={spacingStyles.blokkXs}>
                     {tekst('sisteFrist')}
                 </Heading>
             ) : (
                 <>
-                    <Heading size="medium" className={spacingStyles.blokkXs}>
+                    <Heading size="small" className={spacingStyles.blokkXs}>
                         {tekst('duHar')} {dagerTilTrekk}{' '}
                         {dagerTilTrekk === 0 || dagerTilTrekk > 1 ? tekst('dager') : tekst('dag')} {tekst('sendeInn')}
                     </Heading>
@@ -187,7 +187,7 @@ const ForSentVarsel = ({
 
     return (
         <>
-            <Heading size="medium" className={spacingStyles.blokkXs}>
+            <Heading size="small" className={spacingStyles.blokkXs}>
                 {tekst('fristErForbiTittel')}
             </Heading>
             {mottarDagpenger && (

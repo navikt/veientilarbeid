@@ -40,7 +40,7 @@ const Ytelser = () => {
 
     return (
         <>
-            <Heading size="medium" className={spacingStyles.blokkXs}>
+            <Heading size="small" className={spacingStyles.blokkXs}>
                 {tekst('heading')}
             </Heading>
             <BodyShort className={spacingStyles.blokkXs}>

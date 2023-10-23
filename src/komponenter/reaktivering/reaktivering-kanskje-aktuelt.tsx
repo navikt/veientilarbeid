@@ -27,7 +27,7 @@ const ReaktiveringKanskjeAktuelt = () => {
     };
 
     return (
-        <section className={`${styles.limit} ${spacingStyles.blokkM}`}>
+        <section className={`${styles.limitCenter} ${spacingStyles.mb1}`}>
             <ErRendret loggTekst="Rendrer tema: kan reaktiveres" />
             <Alert variant="info">
                 <Heading size="small" level="2" className={spacingStyles.mb1}>
