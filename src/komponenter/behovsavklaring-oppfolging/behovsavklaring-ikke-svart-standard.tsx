@@ -80,10 +80,10 @@ function IkkeSvartPaaBehovsavklaringStandardInnsats() {
     }
 
     return (
-        <Box padding="4">
+        <Box>
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - ikke svart - standard" />
             {!brukTabsDemo && (
-                <Detail uppercase style={{ marginTop: '-1rem' }}>
+                <Detail uppercase className={spacingStyles.mt1}>
                     {tekst('overskrift')}
                 </Detail>
             )}

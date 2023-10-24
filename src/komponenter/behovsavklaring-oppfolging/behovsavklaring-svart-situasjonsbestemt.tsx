@@ -41,7 +41,7 @@ function EnigMedProfilering() {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
     return (
-        <Box padding="4">
+        <Box>
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - svart - enig - situasjonsbestemt" />
             <Heading size="small" className={spacingStyles.mb1}>
                 {tekst('headingEnig')}
@@ -66,7 +66,7 @@ function UenigMedProfilering() {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
     return (
-        <Box padding="4">
+        <Box>
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - svart - uenig - situasjonsbestemt" />
             <Heading size="small" className={spacingStyles.mb1}>
                 {tekst('headingUenig')}

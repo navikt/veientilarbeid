@@ -16,6 +16,7 @@ import Ytelser from './ytelser';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
 import { useBeregnDagpengestatus } from '../../hooks/use-beregn-dagpengestatus';
+import spacingStyles from '../../spacing.module.css';
 
 function StansetDagpenger() {
     return <BodyShort>Stanset</BodyShort>;
@@ -62,9 +63,9 @@ function DagpengerOgYtelserInnhold(props: Props) {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
     return (
-        <Box padding="4">
+        <Box>
             {!brukTabsDemo && (
-                <Detail uppercase style={{ marginTop: '-1rem' }}>
+                <Detail uppercase className={spacingStyles.mt1}>
                     {tekst('tittel')}
                 </Detail>
             )}

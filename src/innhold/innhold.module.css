@@ -23,6 +23,13 @@
     background-color: var(--a-surface-default);
     box-shadow: var(--a-shadow-xsmall);
     margin: 0;
+    padding: 1rem;
+}
+
+@media (min-width: 768px) {
+    .card {
+        padding: 1.25rem;
+    }
 }
 
 .header {

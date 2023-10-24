@@ -348,9 +348,9 @@ const DemoDashboard = () => {
             <Heading size="xlarge" className={styles.demoHeading}>
                 Demo av Veien til arbeid
             </Heading>
-            <Box padding="4" className={styles.demodashboardInnhold}>
+            <Box className={`${styles.demodashboardInnhold} ${spacingStyles.pa125}`}>
                 <div className={`${spacingStyles.mb2} ${flexStyles.flex} ${flexStyles.wrap}`}>
-                    <Box padding="4" className={styles.demoCheckboxpanel}>
+                    <Box className={`${styles.demoCheckboxpanel} ${spacingStyles.pa125}`}>
                         <Select
                             label={'Velg arbeidssøkerperiode'}
                             onChange={handleChangeArbeidssokerPeriode}
@@ -439,7 +439,7 @@ const DemoDashboard = () => {
                             </Checkbox>
                         </CheckboxGroup>
                     </Box>
-                    <Box padding="4" className={styles.demoCheckboxpanel}>
+                    <Box className={`${styles.demoCheckboxpanel} ${spacingStyles.pa125}`}>
                         <Select
                             label={'Velg 14a vedtak'}
                             onChange={handleChangeServicegruppe}
@@ -465,7 +465,7 @@ const DemoDashboard = () => {
                             ))}
                         </Select>
 
-                        <Box padding="4" className={styles.demoCheckboxpanel}>
+                        <Box className={`${styles.demoCheckboxpanel} ${spacingStyles.pa125}`}>
                             <RadioGroup
                                 legend="Velg brukers valg"
                                 defaultValue={behovForVeiledningState?.oppfolging}
@@ -476,7 +476,7 @@ const DemoDashboard = () => {
                             </RadioGroup>
                         </Box>
 
-                        <Box padding="4" className={styles.demoCheckboxpanel}>
+                        <Box className={`${styles.demoCheckboxpanel} ${spacingStyles.pa125}`}>
                             <RadioGroup
                                 legend="Vil være arbeidssøker neste periode"
                                 defaultValue={hentDemoState(DemoData.ARBEIDSSOKER_NESTE_PERIODE) || 'Ja'}
@@ -487,7 +487,7 @@ const DemoDashboard = () => {
                             </RadioGroup>
                         </Box>
                     </Box>
-                    <Box padding="4" className={styles.demoFeaturetoggles}>
+                    <Box className={`${styles.demoFeaturetoggles} ${spacingStyles.pa125}`}>
                         <CheckboxGroup legend={'Featuretoggles'} value={getFeatureToggleCheckboxGroupValue()}>
                             {Object.values(FeatureToggles).map((toggle) => {
                                 return (
@@ -593,7 +593,7 @@ const DemoDashboard = () => {
                                     </Select>
                                 </Cell>
                                 <Cell xs={6} md={6} lg={3}>
-                                    <Box padding="4" className={styles.demoCheckboxpanel}>
+                                    <Box className={`${styles.demoCheckboxpanel} ${spacingStyles.pa125}`}>
                                         <CheckboxGroup
                                             legend=""
                                             value={[
@@ -644,7 +644,7 @@ const DemoDashboard = () => {
                                     </Box>
                                 </Cell>
                                 <Cell xs={6} md={6} lg={3}>
-                                    <Box padding="4" className={styles.demoFeaturetoggles}>
+                                    <Box className={`${styles.demoFeaturetoggles} ${spacingStyles.pa125}`}>
                                         <CheckboxGroup
                                             legend={'Featuretoggles'}
                                             value={getFeatureToggleCheckboxGroupValue()}

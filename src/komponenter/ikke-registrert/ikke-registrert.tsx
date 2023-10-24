@@ -47,7 +47,7 @@ const IkkeRegistrert = () => {
 
     return (
         <div className={styles.limitCenter}>
-            <Box padding="4" className={spacingStyles.blokkS} ref={infoBoksRef} borderWidth="1">
+            <Box className={spacingStyles.blokkS} ref={infoBoksRef} borderWidth="1">
                 <ErRendret loggTekst="Rendrer IkkeRegistrert" />
                 <Heading size="small" level="2" className={spacingStyles.blokkXs}>
                     {tekst('header')}

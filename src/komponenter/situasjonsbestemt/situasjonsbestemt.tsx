@@ -63,7 +63,7 @@ const TEKSTER = {
 
 export const ListeElement = (ikon: JSX.Element, innhold: JSX.Element) => {
     return (
-        <li className={`${flexStyles.flex} ${spacingStyles.mb2}`}>
+        <li className={`${flexStyles.flex} ${spacingStyles.mb1}`}>
             <span
                 style={{
                     marginRight: '0.5em',
@@ -128,7 +128,7 @@ function Situasjonsbestemt() {
     };
 
     return (
-        <Box padding="4" className={`${styles.mtn1} ${spacingStyles.mb1}`}>
+        <Box className={`${styles.mtn1} ${spacingStyles.mb1}`}>
             <ul className={styles.ikkeStandardListe}>
                 {harGyldigBehovsvurdering ? <DialogPanel /> : <Behovsavklaring />}
                 {harGyldigBehovsvurdering &&

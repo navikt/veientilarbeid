@@ -26,6 +26,7 @@ import {
 
 import tabStyles from './tabs.module.css';
 import styles from '../innhold/innhold.module.css';
+import spacingStyles from '../spacing.module.css';
 import {
     harSendtInnNyDokumentasjon,
     harSitasjonSomKreverDokumentasjon,
@@ -50,7 +51,7 @@ const tabValueMap = {
 
 const MinSituasjonTab = () => {
     return (
-        <Tabs.Panel value="situasjon">
+        <Tabs.Panel value="situasjon" className={spacingStyles.pa125}>
             <MinSituasjon />
         </Tabs.Panel>
     );
@@ -58,7 +59,7 @@ const MinSituasjonTab = () => {
 
 const HjelpOgStotteTab = () => {
     return (
-        <Tabs.Panel value="hjelp">
+        <Tabs.Panel value="hjelp" className={spacingStyles.pa125}>
             <Behovsavklaring />
         </Tabs.Panel>
     );
@@ -66,7 +67,7 @@ const HjelpOgStotteTab = () => {
 
 const YtelseTab = () => {
     return (
-        <Tabs.Panel value="ytelse">
+        <Tabs.Panel value="ytelse" className={spacingStyles.pa125}>
             <DagpengerOgYtelser />
         </Tabs.Panel>
     );
@@ -74,7 +75,7 @@ const YtelseTab = () => {
 
 const MeldekortTab = () => {
     return (
-        <Tabs.Panel value="meldekort">
+        <Tabs.Panel value="meldekort" className={spacingStyles.pa125}>
             <Meldekort />
         </Tabs.Panel>
     );
@@ -165,7 +166,7 @@ const AiaTabs = () => {
         <div className={styles.limitStandard}>
             <RegistrertTittel />
             <div className={styles.card}>
-                <Tabs value={aktivTab} onChange={onChangeTab} className={tabStyles.mt1}>
+                <Tabs value={aktivTab} onChange={onChangeTab} className={tabStyles.man125}>
                     <Tabs.List>
                         <Tabs.Tab
                             value="situasjon"

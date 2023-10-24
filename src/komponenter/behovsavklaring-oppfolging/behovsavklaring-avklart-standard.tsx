@@ -34,13 +34,9 @@ function BehovsavklaringAvklartStandard() {
     const skalVisesITabs = useSkalBrukeTabs();
 
     return (
-        <Box padding="4">
+        <Box>
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - avklart - standard" />
-            {!skalVisesITabs && (
-                <Detail uppercase style={{ marginTop: '-1rem' }}>
-                    {tekst('overskrift')}
-                </Detail>
-            )}
+            {!skalVisesITabs && <Detail uppercase>{tekst('overskrift')}</Detail>}
             <Heading className={spacingStyles.mb1} size="small">
                 {tekst('headingEnig')}
             </Heading>

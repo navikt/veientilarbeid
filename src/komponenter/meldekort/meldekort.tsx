@@ -12,6 +12,7 @@ import { loggAktivitet } from '../../metrics/metrics';
 import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
 import { FeatureToggles, useFeatureToggleData } from '../../contexts/feature-toggles';
 import MeldekortMikrofrontend from '../meldekort-mikrofrontend/meldekort-mikrofrontend';
+import spacingStyles from '../../spacing.module.css';
 
 const TEKSTER = {
     nb: {
@@ -38,14 +39,14 @@ function Meldekort() {
     };
 
     return (
-        <Box padding="4">
+        <Box>
             {!brukTabsDemo && (
-                <Detail uppercase style={{ marginTop: '-1rem' }}>
+                <Detail uppercase className={spacingStyles.mt1}>
                     Meldekort og meldeplikt
                 </Detail>
             )}
             {brukMeldekortMikrofrontend ? <MeldekortMikrofrontend /> : <MeldekortHovedInnhold />}
-            <ReadMore size="small" header={tekst('overskrift')} onClick={handleClickLesMer}>
+            <ReadMore size="medium" header={tekst('overskrift')} onClick={handleClickLesMer}>
                 <MeldekortForklaring />
             </ReadMore>
         </Box>
