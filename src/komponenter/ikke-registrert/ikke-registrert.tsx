@@ -1,4 +1,4 @@
-import { BodyShort, Box, Button, Heading } from '@navikt/ds-react';
+import { BodyShort, Button, Heading } from '@navikt/ds-react';
 import spacingStyles from '../../spacing.module.css';
 
 import { loggAktivitet } from '../../metrics/metrics';
@@ -47,7 +47,7 @@ const IkkeRegistrert = () => {
 
     return (
         <div className={styles.limitCenter}>
-            <Box className={spacingStyles.blokkS} ref={infoBoksRef} borderWidth="1">
+            <div className={styles.card} ref={infoBoksRef}>
                 <ErRendret loggTekst="Rendrer IkkeRegistrert" />
                 <Heading size="small" level="2" className={spacingStyles.blokkXs}>
                     {tekst('header')}
@@ -57,7 +57,7 @@ const IkkeRegistrert = () => {
                     {tekst('button')}
                 </Button>
                 <InViewport loggTekst="Viser IkkeRegistrert i viewport" />
-            </Box>
+            </div>
         </div>
     );
 };
