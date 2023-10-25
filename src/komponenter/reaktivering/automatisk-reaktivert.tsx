@@ -77,7 +77,7 @@ function AutomatiskReaktivert() {
     if (!kanViseKomponent) return null;
 
     return (
-        <Box padding="4" className={spacingStyles.pb1} ref={panelRef}>
+        <Box ref={panelRef}>
             <ErRendret loggTekst="Rendrer automatisk reaktivert" />
             {visSprakvelger && (
                 <Button variant="tertiary" size="xsmall" className={spacingStyles.ml1_75} onClick={toggleByttSprak}>

@@ -69,7 +69,7 @@ const RegistrertTittel = () => {
 
     return (
         <div ref={containerRef}>
-            <Box padding="4" className={`${spacingStyles.mb075} ${spacingStyles.pa0}`}>
+            <Box className={`${spacingStyles.mb075} ${spacingStyles.pa0}`}>
                 <BodyShort className={styles.header}>{tekst(hentTekstNokkel(erNyRegistrert, erPermittert))}</BodyShort>
             </Box>
         </div>

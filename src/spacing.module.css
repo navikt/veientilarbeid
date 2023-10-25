@@ -1,3 +1,6 @@
+@import "@navikt/ds-tokens";
+
+/* margins */
 .mr05 {
     margin-right: 0.5rem!important;
 }
@@ -66,8 +69,33 @@
     margin-bottom: 0!important;
 }
 
+.blokkXs {
+    margin-bottom: 1rem!important;
+}
+
+.blokkS {
+    margin-bottom: 20px!important;
+}
+
+.blokkM {
+    margin-bottom: 2rem!important;
+}
+
+/* padding */
+
 .pa1 {
     padding: 1rem!important;
+}
+
+/* pa125 følger retningslinjene for spacing fra min side */
+.pa125 {
+    padding: var(--a-spacing-4)!important;
+}
+
+@media (min-width: 768px) {
+    .pa125 {
+        padding: var(--a-spacing-5)!important;
+    }
 }
 
 .pa0 {
@@ -95,18 +123,7 @@
     padding-bottom: 2rem!important;
 }
 
-.blokkXs {
-    margin-bottom: 1rem!important;
-}
-
-.blokkS {
-    margin-bottom: 20px!important;
-}
-
-.blokkM {
-    margin-bottom: 2rem!important;
-}
-
+/* bredde */
 .fullWidth {
     width: 100%;
 }

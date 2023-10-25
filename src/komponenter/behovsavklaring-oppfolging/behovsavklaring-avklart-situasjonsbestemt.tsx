@@ -40,10 +40,10 @@ function BehovsavklaringAvklartSituasjonsbestemt() {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const brukTabsDemo = useSkalBrukeTabs();
     return (
-        <Box padding="4">
+        <Box>
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - avklart - situasjonsbestemt" />
             {!brukTabsDemo && (
-                <Detail uppercase style={{ marginTop: '-1rem' }}>
+                <Detail uppercase className={spacingStyles.mt1}>
                     {tekst('overskrift')}
                 </Detail>
             )}

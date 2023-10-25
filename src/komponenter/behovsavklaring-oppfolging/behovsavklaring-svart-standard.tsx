@@ -35,10 +35,10 @@ function EnigMedProfilering() {
     const brukTabsDemo = useSkalBrukeTabs();
 
     return (
-        <Box padding="4">
+        <Box>
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - svart - enig - standard" />
             {!brukTabsDemo && (
-                <Detail uppercase style={{ marginTop: '-1rem' }}>
+                <Detail uppercase className={spacingStyles.mt1}>
                     {tekst('overskrift')}
                 </Detail>
             )}
@@ -66,10 +66,10 @@ function UenigMedProfilering() {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const brukTabsDemo = useSkalBrukeTabs();
     return (
-        <Box padding="4">
+        <Box>
             <ErRendret loggTekst="Rendrer behovsavklaringkomponent - svart - uenig - standard" />
             {!brukTabsDemo && (
-                <Detail uppercase style={{ marginTop: '-1rem' }}>
+                <Detail uppercase className={spacingStyles.mt1}>
                     {tekst('overskrift')}
                 </Detail>
             )}

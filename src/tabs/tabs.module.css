@@ -10,6 +10,16 @@
     margin-left: -2.4rem !important;
 }
 
+.man125 {
+    margin: -1rem!important;
+}
+
+@media (min-width: 768px) {
+    .man125 {
+        margin: -1.25rem!important;
+    }
+}
+
 .nowrap {
     white-space: nowrap;
 }

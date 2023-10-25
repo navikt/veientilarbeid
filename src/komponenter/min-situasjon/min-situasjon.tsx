@@ -60,7 +60,7 @@ function MinSituasjon() {
         : 'Min jobbsituasjon: ukjent';
 
     return (
-        <Box padding="4">
+        <Box className={spacingStyles.mb1}>
             {!skalVisesITabs && <Detail uppercase>Min situasjon</Detail>}
             <Heading className={spacingStyles.mb1} size="small">
                 {heading}

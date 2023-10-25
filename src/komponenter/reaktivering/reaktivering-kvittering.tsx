@@ -86,7 +86,7 @@ const ReaktiveringKvittering = () => {
 
     return (
         <>
-            <Box padding="4" className={spacingStyles.mt1} style={{ background: 'var(--a-surface-warning-subtle)' }}>
+            <Box style={{ background: 'var(--a-surface-warning-subtle)' }}>
                 <div className={`${flexStyles.flex} ${flexStyles.spaceBetween} ${spacingStyles.blokkS}`}>
                     <div>
                         <Detail uppercase>{tekst('tittel')}</Detail>

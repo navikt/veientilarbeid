@@ -62,9 +62,9 @@ function HjelpOgStotte() {
     };
 
     return (
-        <Box padding="4">
+        <Box>
             {!brukTabsDemo && (
-                <Detail uppercase style={{ marginTop: '-1rem' }}>
+                <Detail uppercase className={spacingStyles.mt1}>
                     Hjelp og støtte
                 </Detail>
             )}

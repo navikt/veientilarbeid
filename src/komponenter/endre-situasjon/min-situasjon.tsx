@@ -29,7 +29,7 @@ function MinSituasjon() {
     return (
         <Box>
             <ErRendret loggTekst="Rendrer endring av situasjon" />
-            <Box padding="4">
+            <Box>
                 {!skalVisesITabs && <Detail uppercase>Min situasjon</Detail>}
                 <Sammendrag
                     startDato={opprettetDato || aktivPeriodeStart}

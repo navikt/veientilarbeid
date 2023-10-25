@@ -108,7 +108,7 @@ const Motestotte = ({ state }: Props) => {
     if (!kanViseKomponent) return null;
 
     return (
-        <Box padding="4" className={spacingStyles.blokkS} borderWidth="1">
+        <Box className={spacingStyles.blokkS} borderWidth="1">
             <Heading size="small" level="1" className={spacingStyles.blokkXs}>
                 {tekst(`${sykmeldtStatus}-tittel`)}
             </Heading>
