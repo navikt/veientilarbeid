@@ -24,7 +24,6 @@
         "@grafana/faro-web-sdk": "1.2.1",
         "@grafana/faro-web-tracing": "1.2.1",
         "@navikt/aksel-icons": "5.7.3",
-        "@navikt/ds-css": "5.7.3",
         "@navikt/ds-react": "5.7.3",
         "amplitude-js": "8.21.9",
         "classnames": "2.3.2",
