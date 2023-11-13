@@ -54,7 +54,7 @@ Branchen blir da deployet til dev når man pusher.
 ## Som demo i dev
 
 1. Start naisdevice
-2. Gå til https://veientilarbeid.dev.nav.no/demo/
+2. Gå til https://veientilarbeid.intern.dev.nav.no/demo/
 
 ### Tips
 
