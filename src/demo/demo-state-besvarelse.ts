@@ -1,4 +1,4 @@
-import { ResponseComposition, RestContext, RestRequest } from 'msw';
+import { HttpResponse, ResponseResolver } from 'msw';
 import { DemoData, hentDemoState, settDemoState } from './demo-state';
 import { BesvarelseResponse, DinSituasjonRequest, DinSituasjonTilleggsdata } from '../contexts/besvarelse';
 import besvarelseMock from '../mocks/besvarelse-mock';
@@ -54,7 +54,7 @@ function oppdaterBesvarelse(
     return oppdatertBesvarelse;
 }
 
-export const besvarelseGetResolver = (req: RestRequest, res: ResponseComposition, ctx: RestContext) => {
+export const besvarelseGetResolver = () => {
     const verdi = hentNySituasjon();
     const gjelderFraDato = hentNySituasjonFra();
     const endretTidspunkt = hentEndretSituasjonFra();
@@ -73,18 +73,17 @@ export const besvarelseGetResolver = (req: RestRequest, res: ResponseComposition
     const manglerRegistrering = hentQueryParam('manglerRegistrering') === 'true';
 
     if (manglerRegistrering) {
-        return res(ctx.status(204));
+        return new HttpResponse(null, {
+            status: 204,
+        });
     }
 
-    return res(ctx.json(oppdatertBesvarelse));
+    return HttpResponse.json(oppdatertBesvarelse);
 };
 
-export const besvarelsePostResolver = (
-    req: RestRequest<DinSituasjonRequest>,
-    res: ResponseComposition,
-    ctx: RestContext,
-) => {
-    const { dinSituasjon } = req.body;
+export const besvarelsePostResolver: ResponseResolver = async ({ request }) => {
+    const body = await request.json();
+    const { dinSituasjon } = body as DinSituasjonRequest;
     const { verdi, gjelderFraDato, tilleggsData } = dinSituasjon;
     const endretTidspunkt = new Date().toISOString();
     const endretAv = 'BRUKER';
@@ -107,5 +106,11 @@ export const besvarelsePostResolver = (
         tilleggsData,
         erBesvarelsenEndret,
     );
-    return res(ctx.status(201), ctx.json(oppdatertBesvarelse));
+
+    return new Response(JSON.stringify(oppdatertBesvarelse), {
+        status: 201,
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
 };

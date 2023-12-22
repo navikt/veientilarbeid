@@ -1,7 +1,6 @@
-import { ResponseComposition, RestContext, RestRequest } from 'msw';
-
 import { DemoData, hentDemoState, settDemoState } from './demo-state';
 import { ReaktiveringSvarAlternativer } from '../contexts/reaktivering';
+import { HttpResponse, ResponseResolver } from 'msw';
 
 type ReaktiveringSvar = {
     svar: ReaktiveringSvarAlternativer;
@@ -12,23 +11,26 @@ const hentReaktivering = () =>
     JSON.stringify({ oppdatertDato: new Date().toISOString().substring(0, 10), svar: null });
 const settReaktivering = (value: string) => settDemoState(DemoData.REAKTIVERING, value);
 
-export const reaktiveringGetResolver = (req: RestRequest, res: ResponseComposition, ctx: RestContext) => {
+export const reaktiveringGetResolver = () => {
     const reaktivering = hentReaktivering();
-    return reaktivering ? res(ctx.json(JSON.parse(reaktivering))) : res(ctx.status(204));
+    return reaktivering
+        ? HttpResponse.json(JSON.parse(reaktivering))
+        : new HttpResponse(null, {
+              status: 204,
+          });
 };
 
-export const reaktiveringPostResolver = (
-    req: RestRequest<ReaktiveringSvar>,
-    res: ResponseComposition,
-    ctx: RestContext
-) => {
+// req: RestRequest<ReaktiveringSvar>,
+export const reaktiveringPostResolver: ResponseResolver = async ({ request }) => {
     const reaktivering = hentReaktivering() || {};
-    const { svar } = req.body;
+    const { svar } = (await request.json()) as ReaktiveringSvar;
     const oppdatertReaktivering = {
         ...reaktivering,
         svar: svar,
         oppdatertDato: new Date().toISOString().substring(0, 10),
     };
     settReaktivering(JSON.stringify(oppdatertReaktivering));
-    return res(ctx.status(201));
+    return new HttpResponse(null, {
+        status: 201,
+    });
 };

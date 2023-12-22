@@ -1,29 +1,34 @@
-import { ResponseComposition, RestContext, RestRequest } from 'msw';
-
 import { DemoData, hentDemoState, settDemoState } from './demo-state';
 import { BehovForVeiledningResponse } from '../contexts/behov-for-veiledning';
 import { ForeslattInnsatsgruppe } from '../hooks/use-brukerregistrering-data';
+import { HttpResponse, ResponseResolver } from 'msw';
 
 const hentBehovForVeiledning = () => hentDemoState(DemoData.BEHOV_FOR_VEILEDNING) || null;
 export const settBehovForVeiledning = (value: BehovForVeiledningResponse) =>
     settDemoState(DemoData.BEHOV_FOR_VEILEDNING, JSON.stringify(value));
 
-export const behovForVeiledningGetResolver = (req: RestRequest, res: ResponseComposition, ctx: RestContext) => {
+export const behovForVeiledningGetResolver = () => {
     const behovForVeiledning = hentBehovForVeiledning();
-    return behovForVeiledning ? res(ctx.json(JSON.parse(behovForVeiledning))) : res(ctx.status(204));
+    return behovForVeiledning
+        ? HttpResponse.json(JSON.parse(behovForVeiledning))
+        : new HttpResponse(null, {
+              status: 204,
+          });
 };
 
-export const behovForVeiledningPostResolver = (
-    req: RestRequest<{ oppfolging: ForeslattInnsatsgruppe }>,
-    res: ResponseComposition,
-    ctx: RestContext,
-) => {
-    const behov = req.body;
+export const behovForVeiledningPostResolver: ResponseResolver = async ({ request }) => {
+    const body = await request.json();
+    const behov = body as { oppfolging: ForeslattInnsatsgruppe };
     const response = { dato: new Date().toISOString(), dialogId: undefined, ...behov };
     settBehovForVeiledning(response);
-    return res(ctx.status(201), ctx.json(response));
+    new Response(JSON.stringify(response), {
+        status: 201,
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
 };
 
-export const opprettDialogPostResolver = (req: RestRequest, res: ResponseComposition, ctx: RestContext) => {
-    return res(ctx.json({ id: 'dialog-123' }));
+export const opprettDialogPostResolver = () => {
+    return HttpResponse.json({ id: 'dialog-123' });
 };

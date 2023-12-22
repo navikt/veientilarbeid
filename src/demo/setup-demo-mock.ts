@@ -1,4 +1,4 @@
-import { rest } from 'msw';
+import { http, HttpResponse } from 'msw';
 
 import {
     ANTATT_INAKTIVERINGSGRUNN,
@@ -103,10 +103,10 @@ export const demo_handlers = [
 
     msw_get(MOTESTOTTE_URL, hentMotestotte()),
 
-    rest.get(BESVARELSE_URL, besvarelseGetResolver),
+    http.get(BESVARELSE_URL, besvarelseGetResolver),
     //msw_get(BESVARELSE_URL, null),
 
-    rest.post(BESVARELSE_URL, besvarelsePostResolver),
+    http.post(BESVARELSE_URL, besvarelsePostResolver),
 
     msw_get(FEATURE_URL, hentFeatureToggles()),
 
@@ -129,63 +129,61 @@ export const demo_handlers = [
     msw_get(`${DP_INNSYN_URL}/soknad`, hentDpInnsynSoknad()),
     msw_get(`${DP_INNSYN_URL}/paabegynte`, hentDpInnsynPaabegynte()),
 
-    rest.get(GJELDER_FRA_DATO_URL, gjelderFraGetResolver),
-    rest.post(GJELDER_FRA_DATO_URL, gjelderFraPostResolver),
+    http.get(GJELDER_FRA_DATO_URL, gjelderFraGetResolver),
+    http.post(GJELDER_FRA_DATO_URL, gjelderFraPostResolver),
 
-    rest.get(PROFIL_URL, brukerProfilGetResolver),
-    rest.post(PROFIL_URL, brukerProfilPostResolver),
+    http.get(PROFIL_URL, brukerProfilGetResolver),
+    http.post(PROFIL_URL, brukerProfilPostResolver),
 
-    rest.post(OPPRETT_DIALOG_URL, opprettDialogPostResolver),
-    rest.get(BEHOV_FOR_VEILEDNING_URL, behovForVeiledningGetResolver),
-    rest.post(BEHOV_FOR_VEILEDNING_URL, behovForVeiledningPostResolver),
+    http.post(OPPRETT_DIALOG_URL, opprettDialogPostResolver),
+    http.get(BEHOV_FOR_VEILEDNING_URL, behovForVeiledningGetResolver),
+    http.post(BEHOV_FOR_VEILEDNING_URL, behovForVeiledningPostResolver),
 
-    rest.get(ARBEIDSSOKER_NIVA3_URL, async (req, res, ctx) => {
+    http.get(ARBEIDSSOKER_NIVA3_URL, async ({ request }) => {
+        const url = new URL(request.url);
+
         // eslint-disable-next-line no-restricted-globals
-        const searchParams = new URLSearchParams(location.search);
         const { underOppfolging } = hentUnderOppfolging();
 
         await new Promise((resolve) => setTimeout(() => resolve(null), 1000));
 
-        return res(
-            ctx.json(
-                arbeidssokerNiva3Response(
-                    underOppfolging,
-                    searchParams.get('arbeidssokerPeriode') as ArbeidssokerPeriode,
-                ),
+        return HttpResponse.json(
+            arbeidssokerNiva3Response(
+                underOppfolging,
+                url.searchParams.get('arbeidssokerPeriode') as ArbeidssokerPeriode,
             ),
         );
     }),
 
-    rest.get(BRUKERREGISTRERING_URL, (req, res, ctx) => {
+    http.get(BRUKERREGISTRERING_URL, async ({ request }) => {
+        const url = new URL(request.url);
+
         // eslint-disable-next-line no-restricted-globals
-        const searchParams = new URLSearchParams(location.search);
-        const erRegistrertLegacy = searchParams.get('arbeidssokerPeriode') === 'aktiv-legacy';
-        const manglerRegistrering = searchParams.get('manglerRegistrering') === 'true';
+        const erRegistrertLegacy = url.searchParams.get('arbeidssokerPeriode') === 'aktiv-legacy';
+        const manglerRegistrering = url.searchParams.get('manglerRegistrering') === 'true';
 
-        if (erRegistrertLegacy || manglerRegistrering) {
-            return res(ctx.json({ registrering: null }));
-        }
+        const body = erRegistrertLegacy || manglerRegistrering ? { registrering: null } : hentBrukerRegistrering();
 
-        return res(ctx.json(hentBrukerRegistrering()));
+        return HttpResponse.json(body);
     }),
 
     msw_get(ER_STANDARD_INNSATSGRUPPE_URL, hentStandardInnsatsgruppe().standardInnsatsgruppe),
-    rest.get(`${MELDEPLIKT_URL}/siste`, (req, res, ctx) => {
+    http.get(`${MELDEPLIKT_URL}/siste`, () => {
         // eslint-disable-next-line no-restricted-globals
         const valg = hentDemoState(DemoData.ARBEIDSSOKER_NESTE_PERIODE);
         const erArbeidssokerNestePeriode = valg ? valg === 'Ja' : true;
 
-        return res(ctx.json(levertMeldekortMock(erArbeidssokerNestePeriode)));
+        return HttpResponse.json(levertMeldekortMock(erArbeidssokerNestePeriode));
     }),
     msw_get(DAGPENGER_STATUS, { dagpengerStatus: 'ukjent', antallDagerSidenDagpengerStanset: 'N/A' }),
     msw_get(ANTATT_INAKTIVERINGSGRUNN, { meldekortStatus: 'N/A' }),
 
-    rest.get(REAKTIVERING_URL, reaktiveringGetResolver),
-    rest.post(REAKTIVERING_URL, reaktiveringPostResolver),
-    rest.get(KAN_REAKTIVERES_URL, (_req, res, ctx) => {
-        return res(ctx.json({ kanReaktiveres: true }));
+    http.get(REAKTIVERING_URL, reaktiveringGetResolver),
+    http.post(REAKTIVERING_URL, reaktiveringPostResolver),
+    http.get(KAN_REAKTIVERES_URL, () => {
+        return HttpResponse.json({ kanReaktiveres: true });
     }),
-    rest.post(FULLFOER_REAKTIVERING_URL, async (_req, res, ctx) => {
+    http.post(FULLFOER_REAKTIVERING_URL, async () => {
         const delay = new Promise((resolve) =>
             setTimeout(() => {
                 settArbeidssokerPeriode('aktiv');
@@ -193,22 +191,22 @@ export const demo_handlers = [
             }, 1000),
         );
         await delay;
-        return res(ctx.status(204));
+        return HttpResponse.json(null, { status: 204 });
     }),
 
-    rest.get(ARBEIDSOKER_INNHOLD, (_req, res, ctx) => {
-        return res(ctx.json(arbeidssokerInnholdMock));
+    http.get(ARBEIDSOKER_INNHOLD, () => {
+        return HttpResponse.json(arbeidssokerInnholdMock);
     }),
 
-    rest.post(OPPRETT_OPPGAVE_URL, async (_req, res, ctx) => {
-        return res(ctx.status(201));
+    http.post(OPPRETT_OPPGAVE_URL, async () => {
+        return HttpResponse.json(null, { status: 201 });
     }),
 
-    rest.post('https://amplitude.nav.no/collect', (req, res, ctx) => {
-        return res(ctx.status(200));
+    http.post('https://amplitude.nav.no/collect', () => {
+        return HttpResponse.json(null, { status: 200 });
     }),
 
-    rest.post(telemetryUrl, (req, res, ctx) => {
-        return res(ctx.status(200));
+    http.post(telemetryUrl, () => {
+        return HttpResponse.json(null, { status: 200 });
     }),
 ];
