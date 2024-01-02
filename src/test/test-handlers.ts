@@ -39,7 +39,7 @@ export const initielleKallHandlers = [
     msw_get(AUTH_API, authenticatedMock(InnloggingsNiva.LEVEL_4)),
     msw_get(ARBEIDSSOKER_NIVA3_URL.split('?')[0], arbeidssoker(true, 'aktiv')),
     msw_get(FEATURE_URL, {}),
-    msw_post(AMPLITUDE_ENDPOINT, ''),
+    msw_post(AMPLITUDE_ENDPOINT, {}),
     msw_get(PROFIL_URL, {}),
     msw_post('https://amplitude.nav.no/collect', {}),
     msw_get(GJELDER_FRA_DATO_URL, gjelderFraGetResponse),

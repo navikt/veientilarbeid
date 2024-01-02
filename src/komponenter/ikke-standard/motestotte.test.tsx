@@ -4,7 +4,7 @@ import Motestotte, * as MotestotteData from './motestotte';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import { DinSituasjonSvar, ForeslattInnsatsgruppe } from '../../hooks/use-brukerregistrering-data';
 import { Servicegruppe } from '../../hooks/use-oppfolging-data';
-import { setupServer } from 'msw/native';
+import { setupServer } from 'msw/node';
 import { beforeAll } from 'vitest';
 import msw_get from '../../mocks/msw-utils';
 import { ARBEIDSOKER_INNHOLD, STATUS } from '../../ducks/api';

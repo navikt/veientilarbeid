@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 
 import ForenkletInnhold from './forenklet-innhold';
-import { setupServer } from 'msw/native';
+import { setupServer } from 'msw/node';
 import { beforeAll } from 'vitest';
 import msw_get from '../../mocks/msw-utils';
 import { ARBEIDSOKER_INNHOLD } from '../../ducks/api';

@@ -1,5 +1,5 @@
-import { BodyLong, Heading, Link, Box } from '@navikt/ds-react';
-import { BandageIcon, ChatIcon, LaptopIcon, ClipboardIcon, TasklistIcon } from '@navikt/aksel-icons';
+import { BodyLong, Box, Heading, Link } from '@navikt/ds-react';
+import { BandageIcon, ChatIcon, ClipboardIcon, LaptopIcon, TasklistIcon } from '@navikt/aksel-icons';
 
 import { useSprakValg } from '../../contexts/sprak';
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';

@@ -3,10 +3,7 @@ import { XMarkIcon } from '@navikt/aksel-icons';
 import React, { useEffect, useState } from 'react';
 import spacingStyles from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
-
-import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { dagpengerSoknadLenke } from '../../innhold/lenker';
-import { loggAktivitet } from '../../metrics/metrics';
 
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
@@ -14,6 +11,8 @@ import useVisKvittering from '../../hooks/use-vis-kvittering';
 import { fjernQueryParam } from '../../utils/query-param-utils';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { useSprakValg } from '../../contexts/sprak';
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
+import { loggAktivitet } from '../../metrics/metrics';
 
 const TEKSTER = {
     nb: {
@@ -44,7 +43,6 @@ const ReaktiveringKvittering = () => {
     const [visKomponent, setVisKonponent] = useState(false);
     const visKvittering = useVisKvittering('reaktivering');
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
-
     useEffect(() => {
         setVisKonponent(visKvittering);
     }, [visKvittering]);
