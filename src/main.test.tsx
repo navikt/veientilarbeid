@@ -30,7 +30,7 @@ describe('Tester at main rendrer riktig innhold', () => {
     afterAll(() => server.close());
 
     describe('for arbeidssøker', () => {
-        test.skip('med standard innsatsgruppe', async () => {
+        test('med standard innsatsgruppe', async () => {
             server.use(...standardHandlers);
 
             render(<Mikrofrontend />);
