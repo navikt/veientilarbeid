@@ -9,6 +9,7 @@ WORKDIR /source
 
 # npm run build har blitt kjørt på github før docker build
 RUN cp -r /source/dist /build
+RUN cp /source/dist/.vite/* /build
 
 RUN npm ci
 
