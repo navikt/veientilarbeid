@@ -66,7 +66,7 @@ const RegistrertTittel = () => {
     }, [scrollToRegistrering]);
 
     if (!harAktivArbeidssokerperiode || !harBrukerregistreringData) return null;
-    console.log('REGISTRERT TITTEL', tekst(hentTekstNokkel(erNyRegistrert, erPermittert)));
+
     return (
         <div ref={containerRef}>
             <Box className={`${spacingStyles.mb075} ${spacingStyles.pa0}`}>
