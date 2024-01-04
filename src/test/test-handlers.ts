@@ -17,6 +17,10 @@ import {
     REAKTIVERING_URL,
     KAN_REAKTIVERES_URL,
     ARBEIDSOKER_INNHOLD,
+    MELDEPLIKT_URL,
+    DAGPENGER_STATUS,
+    ANTATT_INAKTIVERINGSGRUNN,
+    BEHOV_FOR_VEILEDNING_URL,
 } from '../ducks/api';
 import { authenticatedMock } from '../mocks/auth-mock';
 import { InnloggingsNiva } from '../contexts/autentisering';
@@ -39,12 +43,21 @@ export const initielleKallHandlers = [
     msw_get(AUTH_API, authenticatedMock(InnloggingsNiva.LEVEL_4)),
     msw_get(ARBEIDSSOKER_NIVA3_URL.split('?')[0], arbeidssoker(true, 'aktiv')),
     msw_get(FEATURE_URL, {}),
-    msw_post(AMPLITUDE_ENDPOINT, ''),
+    msw_post(AMPLITUDE_ENDPOINT, {}),
     msw_get(PROFIL_URL, {}),
     msw_post('https://amplitude.nav.no/collect', {}),
     msw_get(GJELDER_FRA_DATO_URL, gjelderFraGetResponse),
     msw_post(GJELDER_FRA_DATO_URL, null, 201),
     msw_get(ARBEIDSOKER_INNHOLD, arbeidssokerInnholdMock, 200),
+    msw_get(DAGPENGER_STATUS, null, 204),
+    msw_get(ANTATT_INAKTIVERINGSGRUNN, { meldekortStatus: 'N/A' }),
+    msw_get(BEHOV_FOR_VEILEDNING_URL, null, 204),
+    msw_get(NESTE_MELDEKORT_URL, meldekortResponse),
+    msw_get(KAN_REAKTIVERES_URL, { kanReaktiveres: true }),
+    msw_get(PROFIL_URL, null, 204),
+    msw_get(REAKTIVERING_URL, null, 204),
+    msw_get(ARBEIDSOKER_INNHOLD, arbeidssokerInnholdMock, 200),
+    msw_get(MOTESTOTTE_URL, motestotteResponse, 204),
 ];
 
 export const standardHandlers = [
@@ -54,13 +67,13 @@ export const standardHandlers = [
     msw_get(ULESTEDIALOGER_URL, ulesteDialogerResponse),
     msw_get(BRUKERINFO_URL, brukerInfoResponse),
     msw_get(VEILARBOPPFOLGING_URL, oppfolgingResponse),
-    msw_get(NESTE_MELDEKORT_URL, meldekortResponse),
     msw_get(MELDEKORTSTATUS_URL, meldekortstatusResponse),
     msw_get(`${DP_INNSYN_URL}/soknad`, dpSoknadResonse),
     msw_get(`${DP_INNSYN_URL}/vedtak`, dpVedtakResponse),
     msw_get(`${DP_INNSYN_URL}/paabegynte`, dpPaabegynteResponse),
     msw_get(REAKTIVERING_URL, null, 204),
     msw_get(KAN_REAKTIVERES_URL, { kanReaktiveres: true }),
+    msw_get(`${MELDEPLIKT_URL}/siste`, null, 204),
 ];
 
 export const ikkeStandardHandlers = [

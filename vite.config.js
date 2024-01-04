@@ -51,6 +51,7 @@ const getCdnConfig = () => ({
     }),
     build: {
         manifest: true,
+        copyPublicDir: false,
         rollupOptions: {
             input: {
                 bundle: resolve(__dirname, 'src/main.tsx'),

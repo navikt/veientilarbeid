@@ -20,7 +20,6 @@ function ArbeidssokerInnhold() {
         oppfolgingData,
     });
     const { erStandardInnsats, error } = useErStandardInnsats();
-
     if (erStandardInnsats === undefined && !error) return null;
 
     if (underOppfolging && innloggingsnivaa === InnloggingsNiva.LEVEL_4 && erStandardInnsats) {

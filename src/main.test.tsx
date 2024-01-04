@@ -1,6 +1,6 @@
 import { screen, waitForElementToBeRemoved } from '@testing-library/react';
 import { mockIntersectionObserver } from './mocks/intersection-observer-mock';
-import { setupServer } from 'msw/native';
+import { setupServer } from 'msw/node';
 import Mikrofrontend from './main';
 
 import * as useSWR from './hooks/useSWR';
@@ -18,20 +18,21 @@ describe('Tester at main rendrer riktig innhold', () => {
     // Stripp query params for å slippe syting og klaging i loggen
     const ARBEIDSSOKER_NIVA3_URL_UTEN_QUERY_PARAMS = ARBEIDSSOKER_NIVA3_URL.split('?')[0];
 
+    beforeAll(() => server.listen());
     beforeEach(() => {
         mockIntersectionObserver();
     });
 
-    beforeAll(() => server.listen());
-    afterAll(() => server.close());
     afterEach(() => {
         server.resetHandlers();
         vitest.clearAllMocks();
     });
+    afterAll(() => server.close());
 
     describe('for arbeidssøker', () => {
         test('med standard innsatsgruppe', async () => {
             server.use(...standardHandlers);
+
             render(<Mikrofrontend />);
 
             expect(await screen.findByText('Du er registrert som arbeidssøker')).toBeInTheDocument();

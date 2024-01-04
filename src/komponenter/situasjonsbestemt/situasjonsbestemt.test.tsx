@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { contextProviders, ProviderProps } from '../../test/test-context-providers';
 import Situasjonsbestemt from './situasjonsbestemt';
 import { mockIntersectionObserver } from '../../mocks/intersection-observer-mock';
-import { setupServer } from 'msw/native';
+import { setupServer } from 'msw/node';
 import msw_get from '../../mocks/msw-utils';
 import { ARBEIDSOKER_INNHOLD } from '../../ducks/api';
 import { SWRConfig } from 'swr';

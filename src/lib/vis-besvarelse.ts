@@ -23,7 +23,7 @@ export function visBesvarelser({
     featuretoggleData: FeatureToggles.FeatureToggleData;
     besvarelseData: BesvarelseResponse | null;
     arbeidssokerPeriodeData: BeregnedePerioder;
-    erStandardInnsats: boolean;
+    erStandardInnsats: boolean | undefined;
 }): boolean {
     const erAAP = brukerInfoData.rettighetsgruppe === 'AAP';
     const brukerregistreringData = registreringData?.registrering ?? null;
@@ -53,7 +53,7 @@ export function visBesvarelser({
             erPermittert &&
             aldersgruppeUtenForsterketInnsats &&
             !erAAP &&
-            erStandardInnsats &&
+            Boolean(erStandardInnsats) &&
             !oppfolgingData.kanReaktiveres)
     );
 }

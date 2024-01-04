@@ -1,7 +1,7 @@
 # gjør det mulig å bytte base-image slik at vi får bygd både innenfor og utenfor NAV
 # ARG BASE_IMAGE_PREFIX=""
 # FROM ${BASE_IMAGE_PREFIX}node as node-builder
-FROM node:18 as node-builder
+FROM node:20 as node-builder
 
 ADD / /source
 ENV CI=true
@@ -9,6 +9,7 @@ WORKDIR /source
 
 # npm run build har blitt kjørt på github før docker build
 RUN cp -r /source/dist /build
+RUN cp /source/dist/.vite/* /build
 
 RUN npm ci
 

@@ -1,23 +1,24 @@
-import { ResponseComposition, RestContext, RestRequest } from 'msw';
+import { HttpResponse, ResponseResolver } from 'msw';
 import { DemoData, hentDemoState, settDemoState } from './demo-state';
-
-interface DatoBody {
-    dato: string;
-}
 
 const hentGjelderFraDato = () => hentDemoState(DemoData.GJELDER_FRA_DATO) || null;
 const settGjelderFraDato = (value: string) => settDemoState(DemoData.GJELDER_FRA_DATO, value);
 
-export const gjelderFraGetResolver = (req: RestRequest, res: ResponseComposition, ctx: RestContext) => {
-    return res(
-        ctx.json({
-            dato: hentGjelderFraDato(),
-        })
-    );
+type DatoBody = {
+    dato: string;
 };
 
-export const gjelderFraPostResolver = (req: RestRequest<DatoBody>, res: ResponseComposition, ctx: RestContext) => {
-    const { dato } = req.body;
+export const gjelderFraGetResolver = () => {
+    return HttpResponse.json({
+        dato: hentGjelderFraDato(),
+    });
+};
+
+export const gjelderFraPostResolver: ResponseResolver = async ({ request }) => {
+    const body = await request.json();
+    const { dato } = body as DatoBody;
     settGjelderFraDato(dato);
-    return res(ctx.status(201));
+    return new HttpResponse(null, {
+        status: 201,
+    });
 };

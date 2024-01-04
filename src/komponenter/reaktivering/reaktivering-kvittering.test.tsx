@@ -10,6 +10,9 @@ describe('tester komponenten for kvittering etter reaktivering', () => {
         global.window.location = Object.assign({}, location);
         mockIntersectionObserver();
     });
+    afterEach(() => {
+        vitest.clearAllMocks();
+    });
 
     test('komponenten vises IKKE når kvittering IKKE sendes med', () => {
         const { container } = render(<ReaktiveringKvittering />);
