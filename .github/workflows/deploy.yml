@@ -57,6 +57,9 @@ jobs:
   deploy-dev:
     if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/dev')
     name: Deploy til dev
+    permissions:
+      contents: "read"
+      id-token: "write"
     needs: build-cdn-docker
     runs-on: ubuntu-latest
     steps:
@@ -72,6 +75,9 @@ jobs:
   deploy-prod:
     if: github.ref == 'refs/heads/main'
     name: Deploy til prod
+    permissions:
+      contents: "read"
+      id-token: "write"
     needs: [build-cdn-docker, deploy-dev]
     runs-on: ubuntu-latest
     steps:
