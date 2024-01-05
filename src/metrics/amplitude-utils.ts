@@ -22,9 +22,7 @@ const config = {
     },
 };
 
-export const initAmplitude = async () => {
-    await amplitude.init(apiKey, undefined, { ...config, serverUrl: AMPLITUDE_ENDPOINT });
-};
+amplitude.init(apiKey, { ...config, serverUrl: AMPLITUDE_ENDPOINT });
 
 export type BrukergruppeType =
     | 'standard og ungdomsinnsats'

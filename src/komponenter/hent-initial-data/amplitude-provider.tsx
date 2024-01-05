@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createContext, useContext, useEffect } from 'react';
+import { createContext, useContext } from 'react';
 import ukerFraDato from '@alheimsins/uker-fra-dato';
 
 import { InnloggingsNiva, useAutentiseringData } from '../../contexts/autentisering';
@@ -9,7 +9,7 @@ import { useArbeidssokerPerioder, useUnderOppfolging } from '../../contexts/arbe
 import grupperGeografiskTilknytning from '../../utils/grupper-geografisk-tilknytning';
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 import dagerFraDato from '../../utils/dager-fra-dato';
-import { AmplitudeData, initAmplitude } from '../../metrics/amplitude-utils';
+import { AmplitudeData } from '../../metrics/amplitude-utils';
 import * as SprakValg from '../../contexts/sprak';
 import beregnBrukergruppe from '../../lib/beregn-brukergruppe';
 import { DinSituasjonSvar, useBrukerregistreringData } from '../../hooks/use-brukerregistrering-data';
@@ -161,10 +161,6 @@ const AmplitudeProvider = (props: { children: React.ReactNode }) => {
             ...data,
         }));
     };
-
-    useEffect(() => {
-        initAmplitude();
-    }, []);
 
     return (
         <AmplitudeContext.Provider value={{ amplitudeData, oppdaterAmplitudeData }}>
