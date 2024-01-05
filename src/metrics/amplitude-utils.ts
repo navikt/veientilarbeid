@@ -26,8 +26,6 @@ export const initAmplitude = async () => {
     await amplitude.init(apiKey, undefined, { ...config, serverUrl: AMPLITUDE_ENDPOINT });
 };
 
-export type AmplitudeLogger = (name: string, values?: object) => void;
-
 export type BrukergruppeType =
     | 'standard og ungdomsinnsats'
     | 'standard'
@@ -81,9 +79,4 @@ export type AmplitudeData = {
 
 export function amplitudeLogger(name: string, values?: object) {
     amplitude.logEvent(name, values);
-}
-
-export function setIdentifyProperty(name: string, value: string) {
-    const identify = new amplitude.Identify().set(name, value);
-    amplitude.identify(identify);
 }
