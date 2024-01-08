@@ -1,5 +1,5 @@
 // tslint:disable align no-any
-import amplitude from 'amplitude-js';
+import * as amplitude from '@amplitude/analytics-browser';
 
 import { AMPLITUDE_API_KEY_PROD, AMPLITUDE_API_KEY_TEST, AMPLITUDE_ENDPOINT } from '../utils/konstanter';
 import { InnloggingsNiva } from '../contexts/autentisering';
@@ -11,20 +11,18 @@ import { AntattInaktiveringsgrunn } from '../contexts/antatt-inaktiveringsgrunn'
 import { DinSituasjonSvar, ForeslattInnsatsgruppe } from '../hooks/use-brukerregistrering-data';
 
 const apiKey = erProduksjon() ? AMPLITUDE_API_KEY_PROD : AMPLITUDE_API_KEY_TEST;
+
 const config = {
-    apiEndpoint: AMPLITUDE_ENDPOINT,
-    saveEvents: true,
+    saveEvents: false,
     includeUtm: true,
     includeReferrer: true,
+    defaultTracking: false,
     trackingOptions: {
-        city: false,
-        ip_address: false,
+        ipAddress: false,
     },
 };
 
-amplitude.getInstance().init(apiKey, undefined, config);
-
-export type AmplitudeLogger = (name: string, values?: object) => void;
+amplitude.init(apiKey, { ...config, serverUrl: AMPLITUDE_ENDPOINT });
 
 export type BrukergruppeType =
     | 'standard og ungdomsinnsats'
@@ -78,10 +76,5 @@ export type AmplitudeData = {
 };
 
 export function amplitudeLogger(name: string, values?: object) {
-    amplitude.getInstance().logEvent(name, values);
-}
-
-export function setIdentifyProperty(name: string, value: string) {
-    const identify = new amplitude.Identify().set(name, value);
-    amplitude.getInstance().identify(identify);
+    amplitude.logEvent(name, values);
 }
