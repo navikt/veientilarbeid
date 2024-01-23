@@ -70,16 +70,8 @@ spec:
     port: 8080
     initialDelay: 60
   replicas:
-    min: 3
-    max: 5
-    cpuThresholdPercentage: 50
-  resources:
-    limits:
-      cpu: "3"
-      memory: 2048Mi
-    requests:
-      memory: 1024Mi
-      cpu: "1"
+    min: 1
+    max: 2
   webproxy: true
   accessPolicy:
     outbound:

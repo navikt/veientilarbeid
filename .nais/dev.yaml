@@ -63,14 +63,6 @@ spec:
   replicas:
     min: 1
     max: 2
-    cpuThresholdPercentage: 50
-  resources:
-    limits:
-      cpu: "1"
-      memory: 2048Mi
-    requests:
-      memory: 1024Mi
-      cpu: "1"
   webproxy: true
   accessPolicy:
     outbound:
