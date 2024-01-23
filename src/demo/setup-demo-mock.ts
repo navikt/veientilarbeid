@@ -7,14 +7,11 @@ import {
     AUTH_API,
     BEHOV_FOR_VEILEDNING_URL,
     BESVARELSE_URL,
-    BRUKERINFO_URL,
-    BRUKERREGISTRERING_URL,
     DAGPENGER_STATUS,
     DP_INNSYN_URL,
     ER_STANDARD_INNSATSGRUPPE_URL,
     FEATURE_URL,
     FULLFOER_REAKTIVERING_URL,
-    GJELDER_FRA_DATO_URL,
     KAN_REAKTIVERES_URL,
     MELDEKORTSTATUS_URL,
     MELDEPLIKT_URL,
@@ -25,25 +22,18 @@ import {
     PROFIL_URL,
     REAKTIVERING_URL,
     ULESTEDIALOGER_URL,
-    VEILARBOPPFOLGING_URL,
 } from '../ducks/api';
 
 import {
     DemoData,
-    hentAlder,
     hentAutentiseringsInfo,
     hentDemoState,
     hentDpInnsynPaabegynte,
     hentDpInnsynSoknad,
     hentDpInnsynVedtak,
     hentFeatureToggles,
-    hentFormidlingsgruppe,
     hentMotestotte,
-    hentRegistreringType,
-    hentRettighetsgruppe,
-    hentServicegruppe,
     hentStandardInnsatsgruppe,
-    hentSykmeldtMedArbeidsgiver,
     hentUlesteDialoger,
     hentUnderOppfolging,
     lagMeldekortData,
@@ -55,7 +45,6 @@ import { telemetryUrl } from '../innhold/lenker';
 import msw_get from '../mocks/msw-utils';
 import meldekortstatusResponse from '../mocks/meldekortstatus-mock';
 import { besvarelseGetResolver, besvarelsePostResolver } from './demo-state-besvarelse';
-import { gjelderFraGetResolver, gjelderFraPostResolver } from './demo-state-gjelderfra';
 import { brukerProfilGetResolver, brukerProfilPostResolver } from './demo-state-profil';
 import { reaktiveringGetResolver, reaktiveringPostResolver } from './demo-state-reaktivering';
 import arbeidssokerNiva3Response, { ArbeidssokerPeriode } from '../mocks/arbeidssoker-niva3-mock';
@@ -65,38 +54,9 @@ import {
     opprettDialogPostResolver,
 } from './demo-state-behov-for-veiledning';
 import levertMeldekortMock from '../mocks/meldeplikt-hendelser.mock';
-import { hentBrukerRegistrering } from './demo-state-brukerregistrering';
 import arbeidssokerInnholdMock from '../mocks/arbeidssoker-innhold-mock';
 
 export const demo_handlers = [
-    msw_get(VEILARBOPPFOLGING_URL, {
-        underOppfolging: true,
-        kanReaktiveres: false,
-        reservasjonKRR: false,
-        servicegruppe: hentServicegruppe(),
-        formidlingsgruppe: hentFormidlingsgruppe(),
-        registreringType: 'INGEN_VERDI',
-        geografiskTilknytning: '010302',
-    }),
-
-    /**
-     *    const geografiskeTilknytninger = {
-        '3808': 'Notodden',
-        '010302': 'Grünerløkka',
-        '110302': 'Tasta',
-        '3422': 'Åmot',
-    };
-     */
-    msw_get(BRUKERINFO_URL, {
-        erSykmeldtMedArbeidsgiver: hentSykmeldtMedArbeidsgiver(),
-        geografiskTilknytning: '3808',
-        registreringType: hentRegistreringType(),
-        rettighetsgruppe: hentRettighetsgruppe(),
-        alder: hentAlder(),
-    }),
-
-    // msw_get(BRUKERREGISTRERING_URL, hentBrukerRegistrering()),
-
     msw_get(ULESTEDIALOGER_URL, {
         antallUleste: hentUlesteDialoger() ? randomUlesteDialoger() : 0,
     }),
@@ -129,9 +89,6 @@ export const demo_handlers = [
     msw_get(`${DP_INNSYN_URL}/soknad`, hentDpInnsynSoknad()),
     msw_get(`${DP_INNSYN_URL}/paabegynte`, hentDpInnsynPaabegynte()),
 
-    http.get(GJELDER_FRA_DATO_URL, gjelderFraGetResolver),
-    http.post(GJELDER_FRA_DATO_URL, gjelderFraPostResolver),
-
     http.get(PROFIL_URL, brukerProfilGetResolver),
     http.post(PROFIL_URL, brukerProfilPostResolver),
 
@@ -153,18 +110,6 @@ export const demo_handlers = [
                 url.searchParams.get('arbeidssokerPeriode') as ArbeidssokerPeriode,
             ),
         );
-    }),
-
-    http.get(BRUKERREGISTRERING_URL, async ({ request }) => {
-        const url = new URL(request.url);
-
-        // eslint-disable-next-line no-restricted-globals
-        const erRegistrertLegacy = url.searchParams.get('arbeidssokerPeriode') === 'aktiv-legacy';
-        const manglerRegistrering = url.searchParams.get('manglerRegistrering') === 'true';
-
-        const body = erRegistrertLegacy || manglerRegistrering ? { registrering: null } : hentBrukerRegistrering();
-
-        return HttpResponse.json(body);
     }),
 
     msw_get(ER_STANDARD_INNSATSGRUPPE_URL, hentStandardInnsatsgruppe().standardInnsatsgruppe),

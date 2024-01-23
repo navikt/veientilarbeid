@@ -32,7 +32,6 @@ import {
     hentSykmeldtMedArbeidsgiver,
     hentUlesteDialoger,
     hentUnderOppfolging,
-    hentVisGjelderFraDato,
     opprettetRegistreringDato,
     settAlder,
     settAntallDagerEtterFastsattMeldedag,
@@ -52,7 +51,6 @@ import {
     settSykmeldtMedArbeidsgiver,
     settUlesteDialoger,
     settUnderOppfolging,
-    settVisGjelderFraDato,
 } from './demo-state';
 
 import {
@@ -92,7 +90,6 @@ const DemoDashboard = () => {
     const UNDER_OPPFOLGING = DemoData.UNDER_OPPFOLGING;
     const STANDARD_INNSATSGRUPPE = DemoData.STANDARD_INNSATSGRUPPE;
     const ER_UNDER_30 = DemoData.ER_UNDER_30;
-    const VIS_GJELDER_FRA_DATO = DemoData.VIS_GJELDER_FRA_DATO;
     const MANGLER_REGISTRERING = DemoData.MANGLER_REGISTRERING;
 
     const FEATURE_TOGGLES: string[] = Object.values(FeatureToggles);
@@ -202,8 +199,6 @@ const DemoDashboard = () => {
             settUnderOppfolging(element.checked);
         } else if (element.id === ER_UNDER_30) {
             settAlder(element.checked ? '25' : '42');
-        } else if (element.id === VIS_GJELDER_FRA_DATO) {
-            settVisGjelderFraDato(element.checked);
         } else if (element.id === STANDARD_INNSATSGRUPPE) {
             settStandardInnsatsgruppe(element.checked);
         } else if (element.id === MANGLER_REGISTRERING) {
@@ -603,7 +598,6 @@ const DemoDashboard = () => {
                                                 hentAutentiseringsInfo().securityLevel === InnloggingsNiva.LEVEL_3 &&
                                                     AUTENTISERINGS_INFO,
                                                 hentAlder() < 30 && ER_UNDER_30,
-                                                hentVisGjelderFraDato() && VIS_GJELDER_FRA_DATO,
                                             ].filter(identity)}
                                         >
                                             <Checkbox
@@ -632,13 +626,6 @@ const DemoDashboard = () => {
                                             </Checkbox>
                                             <Checkbox id={ER_UNDER_30} value={ER_UNDER_30} onChange={handleClick}>
                                                 Er under 30 år
-                                            </Checkbox>
-                                            <Checkbox
-                                                id={VIS_GJELDER_FRA_DATO}
-                                                value={VIS_GJELDER_FRA_DATO}
-                                                onChange={handleClick}
-                                            >
-                                                Vis gjelder fra dato-velger
                                             </Checkbox>
                                         </CheckboxGroup>
                                     </Box>

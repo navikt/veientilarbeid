@@ -1,7 +1,5 @@
 import { ReactNode } from 'react';
 import { ProfilProvider } from '../contexts/profil';
-import { GjelderFraDatoModalProvider } from '../contexts/gjelder-fra-dato-modal';
-import { GjelderFraDatoProvider } from '../contexts/gjelder-fra-dato';
 import { AmplitudeProvider } from '../komponenter/hent-initial-data/amplitude-provider';
 import { BehovForVeiledningProvider } from '../contexts/behov-for-veiledning';
 import { DagpengerStatusProvider } from '../contexts/dagpenger-status';
@@ -42,13 +40,9 @@ const ArbeidssokerDataProvider = ({ children, erStandard }: Props) => {
     return (
         <ProfilProvider>
             <BehovForVeiledningProvider>
-                <GjelderFraDatoModalProvider>
-                    <GjelderFraDatoProvider>
-                        <AmplitudeProvider>
-                            <DagpengerStatusProvider>{children}</DagpengerStatusProvider>
-                        </AmplitudeProvider>
-                    </GjelderFraDatoProvider>
-                </GjelderFraDatoModalProvider>
+                <AmplitudeProvider>
+                    <DagpengerStatusProvider>{children}</DagpengerStatusProvider>
+                </AmplitudeProvider>
             </BehovForVeiledningProvider>
         </ProfilProvider>
     );

@@ -7,7 +7,6 @@ import InnholdMetrics from './innhold-metrics';
 import RegistrertTittel from '../komponenter/registrert-tittel/registrert-tittel';
 import MinSituasjon from '../komponenter/min-situasjon/min-situasjon';
 import ReaktiveringKvittering from '../komponenter/reaktivering/reaktivering-kvittering';
-import GjelderFraDato from '../komponenter/gjelder-fra-dato/GjelderFraDato';
 import DagpengerOgYtelser from '../komponenter/dagpenger/dagpenger-og-ytelser';
 import Meldekort from '../komponenter/meldekort/meldekort';
 import HjelpOgStotte from '../komponenter/hjelp-og-stotte/hjelp-og-stotte';
@@ -50,7 +49,6 @@ const InnholdStandard = () => {
                         <DagpengerOgYtelser />
                         <Meldekort />
                         {harGyldigBehovsvurdering ? <Aktivitetsplan /> : null}
-                        <GjelderFraDato />
                     </>
                 )}
             </div>
