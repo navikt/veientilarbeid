@@ -25,7 +25,6 @@ import {
     PROFIL_URL,
     REAKTIVERING_URL,
     ULESTEDIALOGER_URL,
-    VEILARBOPPFOLGING_URL,
 } from '../ducks/api';
 
 import {
@@ -37,11 +36,9 @@ import {
     hentDpInnsynSoknad,
     hentDpInnsynVedtak,
     hentFeatureToggles,
-    hentFormidlingsgruppe,
     hentMotestotte,
     hentRegistreringType,
     hentRettighetsgruppe,
-    hentServicegruppe,
     hentStandardInnsatsgruppe,
     hentSykmeldtMedArbeidsgiver,
     hentUlesteDialoger,
@@ -69,24 +66,6 @@ import { hentBrukerRegistrering } from './demo-state-brukerregistrering';
 import arbeidssokerInnholdMock from '../mocks/arbeidssoker-innhold-mock';
 
 export const demo_handlers = [
-    msw_get(VEILARBOPPFOLGING_URL, {
-        underOppfolging: true,
-        kanReaktiveres: false,
-        reservasjonKRR: false,
-        servicegruppe: hentServicegruppe(),
-        formidlingsgruppe: hentFormidlingsgruppe(),
-        registreringType: 'INGEN_VERDI',
-        geografiskTilknytning: '010302',
-    }),
-
-    /**
-     *    const geografiskeTilknytninger = {
-        '3808': 'Notodden',
-        '010302': 'Grünerløkka',
-        '110302': 'Tasta',
-        '3422': 'Åmot',
-    };
-     */
     msw_get(BRUKERINFO_URL, {
         erSykmeldtMedArbeidsgiver: hentSykmeldtMedArbeidsgiver(),
         geografiskTilknytning: '3808',
