@@ -9,7 +9,6 @@ import {
     DP_INNSYN_URL,
     ER_STANDARD_INNSATSGRUPPE_URL,
     FEATURE_URL,
-    GJELDER_FRA_DATO_URL,
     KAN_REAKTIVERES_URL,
     MELDEKORTSTATUS_URL,
     MELDEPLIKT_URL,
@@ -30,7 +29,6 @@ import meldekortstatusResponse from '../mocks/meldekortstatus-mock';
 import dpSoknadResonse from '../mocks/dp-innsyn-soknad';
 import dpVedtakResponse from '../mocks/dp-innsyn-vedtak';
 import dpPaabegynteResponse from '../mocks/dp-innsyn-paabegynte';
-import gjelderFraGetResponse from '../mocks/gjelderfra-mock';
 import arbeidssokerInnholdMock from '../mocks/arbeidssoker-innhold-mock';
 
 export const initielleKallHandlers = [
@@ -40,8 +38,6 @@ export const initielleKallHandlers = [
     msw_post(AMPLITUDE_ENDPOINT, {}),
     msw_get(PROFIL_URL, {}),
     msw_post('https://amplitude.nav.no/collect', {}),
-    msw_get(GJELDER_FRA_DATO_URL, gjelderFraGetResponse),
-    msw_post(GJELDER_FRA_DATO_URL, null, 201),
     msw_get(ARBEIDSOKER_INNHOLD, arbeidssokerInnholdMock, 200),
     msw_get(DAGPENGER_STATUS, null, 204),
     msw_get(ANTATT_INAKTIVERINGSGRUNN, { meldekortStatus: 'N/A' }),

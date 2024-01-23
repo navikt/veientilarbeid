@@ -12,7 +12,6 @@ import {
     ER_STANDARD_INNSATSGRUPPE_URL,
     FEATURE_URL,
     FULLFOER_REAKTIVERING_URL,
-    GJELDER_FRA_DATO_URL,
     KAN_REAKTIVERES_URL,
     MELDEKORTSTATUS_URL,
     MELDEPLIKT_URL,
@@ -46,7 +45,6 @@ import { telemetryUrl } from '../innhold/lenker';
 import msw_get from '../mocks/msw-utils';
 import meldekortstatusResponse from '../mocks/meldekortstatus-mock';
 import { besvarelseGetResolver, besvarelsePostResolver } from './demo-state-besvarelse';
-import { gjelderFraGetResolver, gjelderFraPostResolver } from './demo-state-gjelderfra';
 import { brukerProfilGetResolver, brukerProfilPostResolver } from './demo-state-profil';
 import { reaktiveringGetResolver, reaktiveringPostResolver } from './demo-state-reaktivering';
 import arbeidssokerNiva3Response, { ArbeidssokerPeriode } from '../mocks/arbeidssoker-niva3-mock';
@@ -90,9 +88,6 @@ export const demo_handlers = [
     msw_get(`${DP_INNSYN_URL}/vedtak`, hentDpInnsynVedtak()),
     msw_get(`${DP_INNSYN_URL}/soknad`, hentDpInnsynSoknad()),
     msw_get(`${DP_INNSYN_URL}/paabegynte`, hentDpInnsynPaabegynte()),
-
-    http.get(GJELDER_FRA_DATO_URL, gjelderFraGetResolver),
-    http.post(GJELDER_FRA_DATO_URL, gjelderFraPostResolver),
 
     http.get(PROFIL_URL, brukerProfilGetResolver),
     http.post(PROFIL_URL, brukerProfilPostResolver),

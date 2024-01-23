@@ -56,8 +56,6 @@ export enum DemoData {
     KVITTERING_STATUS = 'visKvittering',
     ER_UNDER_30 = 'erUnder30',
     SPRAK = 'lang',
-    VIS_GJELDER_FRA_DATO = 'visGjelderFraDato',
-    GJELDER_FRA_DATO = 'gjelderFraDato',
     PROFIL = 'profil',
     BEHOV_FOR_VEILEDNING = 'behovForVeiledning',
     ARBEIDSSOKER_NESTE_PERIODE = 'arbeidssokerNestePeriode',
@@ -143,9 +141,6 @@ export const hentStandardInnsatsgruppe = () => {
     };
 };
 export const settStandardInnsatsgruppe = (value: boolean) => settDemoState(DemoData.STANDARD_INNSATSGRUPPE, value);
-
-export const hentVisGjelderFraDato = () => hentDemoState(DemoData.VIS_GJELDER_FRA_DATO) === 'true';
-export const settVisGjelderFraDato = (value: boolean) => settDemoState(DemoData.VIS_GJELDER_FRA_DATO, value);
 
 export const randomUlesteDialoger = () => {
     const min = 1;
