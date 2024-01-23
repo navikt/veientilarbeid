@@ -43,7 +43,6 @@ export const corsConfig = (): RequestInit => {
 
 export const AIA_BACKEND = aiaBackendUrl,
     BESVARELSE_URL = `${AIA_BACKEND}/besvarelse`,
-    BRUKERINFO_URL = `${AIA_BACKEND}/startregistrering`,
     BRUKERREGISTRERING_URL = `${AIA_BACKEND}/registrering`,
     PROFIL_URL = `${AIA_BACKEND}/profil`,
     MELDEPLIKT_URL = `${AIA_BACKEND}/meldeplikt`,

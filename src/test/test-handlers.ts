@@ -5,7 +5,6 @@ import {
     ARBEIDSSOKER_NIVA3_URL,
     AUTH_API,
     BEHOV_FOR_VEILEDNING_URL,
-    BRUKERINFO_URL,
     BRUKERREGISTRERING_URL,
     DAGPENGER_STATUS,
     DP_INNSYN_URL,
@@ -28,7 +27,6 @@ import { AMPLITUDE_ENDPOINT } from '../utils/konstanter';
 import motestotteResponse from '../mocks/motestotte-mock';
 import brukerRegistreringResponse from '../mocks/brukerregistrering-standard-mock';
 import ulesteDialogerResponse from '../mocks/ulestedialoger-mock';
-import brukerInfoResponse from '../mocks/bruker-info-mock';
 import meldekortResponse from '../mocks/meldekort-mock';
 import meldekortstatusResponse from '../mocks/meldekortstatus-mock';
 import dpSoknadResonse from '../mocks/dp-innsyn-soknad';
@@ -63,7 +61,6 @@ export const standardHandlers = [
     msw_get(MOTESTOTTE_URL, motestotteResponse, 204),
     msw_get(BRUKERREGISTRERING_URL, brukerRegistreringResponse),
     msw_get(ULESTEDIALOGER_URL, ulesteDialogerResponse),
-    msw_get(BRUKERINFO_URL, brukerInfoResponse),
     msw_get(MELDEKORTSTATUS_URL, meldekortstatusResponse),
     msw_get(`${DP_INNSYN_URL}/soknad`, dpSoknadResonse),
     msw_get(`${DP_INNSYN_URL}/vedtak`, dpVedtakResponse),
@@ -77,7 +74,6 @@ export const ikkeStandardHandlers = [
     msw_get(ER_STANDARD_INNSATSGRUPPE_URL, false),
     msw_get(MOTESTOTTE_URL, motestotteResponse, 204),
     msw_get(BRUKERREGISTRERING_URL, brukerRegistreringResponse),
-    msw_get(BRUKERINFO_URL, brukerInfoResponse),
     msw_get(REAKTIVERING_URL, null, 204),
     msw_get(KAN_REAKTIVERES_URL, { kanReaktiveres: true }),
 ];

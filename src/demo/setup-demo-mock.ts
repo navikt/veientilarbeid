@@ -7,7 +7,6 @@ import {
     AUTH_API,
     BEHOV_FOR_VEILEDNING_URL,
     BESVARELSE_URL,
-    BRUKERINFO_URL,
     BRUKERREGISTRERING_URL,
     DAGPENGER_STATUS,
     DP_INNSYN_URL,
@@ -29,7 +28,6 @@ import {
 
 import {
     DemoData,
-    hentAlder,
     hentAutentiseringsInfo,
     hentDemoState,
     hentDpInnsynPaabegynte,
@@ -37,10 +35,7 @@ import {
     hentDpInnsynVedtak,
     hentFeatureToggles,
     hentMotestotte,
-    hentRegistreringType,
-    hentRettighetsgruppe,
     hentStandardInnsatsgruppe,
-    hentSykmeldtMedArbeidsgiver,
     hentUlesteDialoger,
     hentUnderOppfolging,
     lagMeldekortData,
@@ -66,16 +61,6 @@ import { hentBrukerRegistrering } from './demo-state-brukerregistrering';
 import arbeidssokerInnholdMock from '../mocks/arbeidssoker-innhold-mock';
 
 export const demo_handlers = [
-    msw_get(BRUKERINFO_URL, {
-        erSykmeldtMedArbeidsgiver: hentSykmeldtMedArbeidsgiver(),
-        geografiskTilknytning: '3808',
-        registreringType: hentRegistreringType(),
-        rettighetsgruppe: hentRettighetsgruppe(),
-        alder: hentAlder(),
-    }),
-
-    // msw_get(BRUKERREGISTRERING_URL, hentBrukerRegistrering()),
-
     msw_get(ULESTEDIALOGER_URL, {
         antallUleste: hentUlesteDialoger() ? randomUlesteDialoger() : 0,
     }),

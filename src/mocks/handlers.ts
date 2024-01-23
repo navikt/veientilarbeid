@@ -3,7 +3,6 @@ import ulesteDialogerResponse from './ulestedialoger-mock';
 import brukerRegistreringResponse from './brukerregistrering-standard-mock';
 import motestotteResponse from './motestotte-mock';
 import featureTogglesResponse from './feature-toggles-mock';
-import brukerInfoResponse from './bruker-info-mock';
 import meldekortResponse from './meldekort-mock';
 import meldekortstatusResponse from './meldekortstatus-mock';
 import dpSoknadResonse from './dp-innsyn-soknad';
@@ -18,7 +17,6 @@ import {
     AUTH_API,
     BEHOV_FOR_VEILEDNING_URL,
     BESVARELSE_URL,
-    BRUKERINFO_URL,
     BRUKERREGISTRERING_URL,
     DAGPENGER_STATUS,
     DP_INNSYN_URL,
@@ -44,7 +42,6 @@ export const handlers = [
     msw_get(FEATURE_URL, featureTogglesResponse),
     msw_get(BRUKERREGISTRERING_URL, brukerRegistreringResponse),
     msw_get(ULESTEDIALOGER_URL, ulesteDialogerResponse),
-    msw_get(BRUKERINFO_URL, brukerInfoResponse),
     msw_get(BESVARELSE_URL, besvarelseResponse),
     msw_get(NESTE_MELDEKORT_URL, meldekortResponse),
     msw_get(MELDEKORTSTATUS_URL, meldekortstatusResponse),
