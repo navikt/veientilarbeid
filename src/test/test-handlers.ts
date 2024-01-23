@@ -5,7 +5,6 @@ import {
     ARBEIDSSOKER_NIVA3_URL,
     AUTH_API,
     BEHOV_FOR_VEILEDNING_URL,
-    BRUKERREGISTRERING_URL,
     DAGPENGER_STATUS,
     DP_INNSYN_URL,
     ER_STANDARD_INNSATSGRUPPE_URL,
@@ -25,7 +24,6 @@ import { InnloggingsNiva } from '../contexts/autentisering';
 import arbeidssoker from '../mocks/arbeidssoker-niva3-mock';
 import { AMPLITUDE_ENDPOINT } from '../utils/konstanter';
 import motestotteResponse from '../mocks/motestotte-mock';
-import brukerRegistreringResponse from '../mocks/brukerregistrering-standard-mock';
 import ulesteDialogerResponse from '../mocks/ulestedialoger-mock';
 import meldekortResponse from '../mocks/meldekort-mock';
 import meldekortstatusResponse from '../mocks/meldekortstatus-mock';
@@ -59,7 +57,6 @@ export const initielleKallHandlers = [
 export const standardHandlers = [
     msw_get(ER_STANDARD_INNSATSGRUPPE_URL, true),
     msw_get(MOTESTOTTE_URL, motestotteResponse, 204),
-    msw_get(BRUKERREGISTRERING_URL, brukerRegistreringResponse),
     msw_get(ULESTEDIALOGER_URL, ulesteDialogerResponse),
     msw_get(MELDEKORTSTATUS_URL, meldekortstatusResponse),
     msw_get(`${DP_INNSYN_URL}/soknad`, dpSoknadResonse),
@@ -73,7 +70,6 @@ export const standardHandlers = [
 export const ikkeStandardHandlers = [
     msw_get(ER_STANDARD_INNSATSGRUPPE_URL, false),
     msw_get(MOTESTOTTE_URL, motestotteResponse, 204),
-    msw_get(BRUKERREGISTRERING_URL, brukerRegistreringResponse),
     msw_get(REAKTIVERING_URL, null, 204),
     msw_get(KAN_REAKTIVERES_URL, { kanReaktiveres: true }),
 ];

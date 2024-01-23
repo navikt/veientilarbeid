@@ -7,7 +7,6 @@ import {
     AUTH_API,
     BEHOV_FOR_VEILEDNING_URL,
     BESVARELSE_URL,
-    BRUKERREGISTRERING_URL,
     DAGPENGER_STATUS,
     DP_INNSYN_URL,
     ER_STANDARD_INNSATSGRUPPE_URL,
@@ -57,7 +56,6 @@ import {
     opprettDialogPostResolver,
 } from './demo-state-behov-for-veiledning';
 import levertMeldekortMock from '../mocks/meldeplikt-hendelser.mock';
-import { hentBrukerRegistrering } from './demo-state-brukerregistrering';
 import arbeidssokerInnholdMock from '../mocks/arbeidssoker-innhold-mock';
 
 export const demo_handlers = [
@@ -117,18 +115,6 @@ export const demo_handlers = [
                 url.searchParams.get('arbeidssokerPeriode') as ArbeidssokerPeriode,
             ),
         );
-    }),
-
-    http.get(BRUKERREGISTRERING_URL, async ({ request }) => {
-        const url = new URL(request.url);
-
-        // eslint-disable-next-line no-restricted-globals
-        const erRegistrertLegacy = url.searchParams.get('arbeidssokerPeriode') === 'aktiv-legacy';
-        const manglerRegistrering = url.searchParams.get('manglerRegistrering') === 'true';
-
-        const body = erRegistrertLegacy || manglerRegistrering ? { registrering: null } : hentBrukerRegistrering();
-
-        return HttpResponse.json(body);
     }),
 
     msw_get(ER_STANDARD_INNSATSGRUPPE_URL, hentStandardInnsatsgruppe().standardInnsatsgruppe),
