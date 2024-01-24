@@ -9,6 +9,7 @@ export enum FeatureToggles {
     BRUK_MELDEKORT_MIKROFRONTEND = 'aia.bruk-meldekort-mikrofrontend',
     BRUK_REAKTIVERING_KNAPP = 'aia.bruk-reaktivering-knapp',
     BRUK_OPPRETT_OPPGAVE = 'aia.bruk-opprett-oppgave',
+    BRUK_OPPLYSNINGER_API = 'aia.bruk-opplysninger-om-arbeidssoker-api',
 }
 
 export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
@@ -27,6 +28,8 @@ export function prettyPrintFeatureToggle(toggle: FeatureToggles) {
             return 'Bruk reaktivering knapp';
         case FeatureToggles.BRUK_OPPRETT_OPPGAVE:
             return 'Bruk opprett oppgave';
+        case FeatureToggles.BRUK_OPPLYSNINGER_API:
+            return 'Bruk opplysninger om arbeidssøker api';
     }
 }
 
@@ -38,6 +41,7 @@ export interface FeatureToggleData {
     'aia.bruk-meldekort-mikrofrontend'?: boolean;
     'aia.bruk-reaktivering-knapp'?: boolean;
     'aia.bruk-opprett-oppgave'?: boolean;
+    'aia.bruk-opplysninger-om-arbeidssoker-api'?: boolean;
 }
 
 export interface State extends DataElement {
@@ -53,6 +57,7 @@ export const initialState: State = {
         'aia.bruk-meldekort-mikrofrontend': false,
         'aia.bruk-reaktivering-knapp': false,
         'aia.bruk-opprett-oppgave': false,
+        'aia.bruk-opplysninger-om-arbeidssoker-api': false,
     },
     status: STATUS.NOT_STARTED,
 };
