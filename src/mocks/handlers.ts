@@ -27,10 +27,12 @@ import {
     PROFIL_URL,
     REAKTIVERING_URL,
     ULESTEDIALOGER_URL,
+    ARBEIDSOKERPERIODER_URL,
 } from '../ducks/api';
 import arbeidssokerNiva3Response from './arbeidssoker-niva3-mock';
 import levertMeldekortMock from './meldeplikt-hendelser.mock';
 import arbeidssokerInnholdMock from './arbeidssoker-innhold-mock';
+import arbeidssokerperioderMock from './arbeidssokerperioder-mock';
 
 export const handlers = [
     msw_get(AUTH_API, AuthResponse),
@@ -52,4 +54,5 @@ export const handlers = [
     msw_get(PROFIL_URL, null, 204),
     msw_get(REAKTIVERING_URL, null, 204),
     msw_get(ARBEIDSOKER_INNHOLD, arbeidssokerInnholdMock, 200),
+    msw_get(ARBEIDSOKERPERIODER_URL, arbeidssokerperioderMock, 200),
 ];

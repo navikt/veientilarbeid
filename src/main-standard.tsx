@@ -19,6 +19,7 @@ import { MeldepliktProvider } from './contexts/meldeplikt';
 import StandardWrapper from './standard-wrapper';
 import { WindowInnerWidthProvider } from './contexts/window-inner-width';
 import { StandardBundleProvider } from './contexts/standard-bundle';
+import { ArbeidssokerperioderProvider } from './contexts/arbeidssokerperioder';
 
 const Mikrofrontend = () => {
     const [state, setState] = React.useState<Autentisering.State>(Autentisering.initialState);
@@ -67,15 +68,17 @@ const Mikrofrontend = () => {
                         <SprakValg.SprakContext.Provider value={valgtSprak}>
                             <StandardBundleProvider erStandardBundle={true}>
                                 <ArbeidssokerDataProvider erStandard>
-                                    <MeldepliktProvider>
-                                        <ReaktiveringProvider>
-                                            <BesvarelseProvider>
-                                                <WindowInnerWidthProvider>
-                                                    <StandardWrapper />
-                                                </WindowInnerWidthProvider>
-                                            </BesvarelseProvider>
-                                        </ReaktiveringProvider>
-                                    </MeldepliktProvider>
+                                    <ArbeidssokerperioderProvider>
+                                        <MeldepliktProvider>
+                                            <ReaktiveringProvider>
+                                                <BesvarelseProvider>
+                                                    <WindowInnerWidthProvider>
+                                                        <StandardWrapper />
+                                                    </WindowInnerWidthProvider>
+                                                </BesvarelseProvider>
+                                            </ReaktiveringProvider>
+                                        </MeldepliktProvider>
+                                    </ArbeidssokerperioderProvider>
                                 </ArbeidssokerDataProvider>
                             </StandardBundleProvider>
                         </SprakValg.SprakContext.Provider>

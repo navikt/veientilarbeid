@@ -22,6 +22,7 @@ import {
     PROFIL_URL,
     REAKTIVERING_URL,
     ULESTEDIALOGER_URL,
+    ARBEIDSOKERPERIODER_URL,
 } from '../ducks/api';
 
 import {
@@ -55,6 +56,7 @@ import {
 } from './demo-state-behov-for-veiledning';
 import levertMeldekortMock from '../mocks/meldeplikt-hendelser.mock';
 import arbeidssokerInnholdMock from '../mocks/arbeidssoker-innhold-mock';
+import arbeidssokerperioderMock from '../mocks/arbeidssokerperioder-mock';
 
 export const demo_handlers = [
     msw_get(ULESTEDIALOGER_URL, {
@@ -113,6 +115,7 @@ export const demo_handlers = [
     }),
 
     msw_get(ER_STANDARD_INNSATSGRUPPE_URL, hentStandardInnsatsgruppe().standardInnsatsgruppe),
+    msw_get(ARBEIDSOKERPERIODER_URL, arbeidssokerperioderMock),
     http.get(`${MELDEPLIKT_URL}/siste`, () => {
         // eslint-disable-next-line no-restricted-globals
         const valg = hentDemoState(DemoData.ARBEIDSSOKER_NESTE_PERIODE);
