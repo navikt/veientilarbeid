@@ -4,25 +4,7 @@ import { useFeatureToggleData, FeatureToggles } from './feature-toggles';
 
 import { fetchToJson } from '../ducks/api-utils';
 import { ARBEIDSOKERPERIODER_URL, requestConfig } from '../ducks/api';
-
-export type ArbeidssokerperiodeUtfoertAv = {
-    type: string;
-};
-
-export type ArbeidssokerperiodeMetadata = {
-    tidspunkt: string;
-    utfoertAv: ArbeidssokerperiodeUtfoertAv;
-    kilde: string;
-    aarsak: string;
-};
-
-export type ArbeidssokerPeriode = {
-    perioderId: string;
-    startet: ArbeidssokerperiodeMetadata;
-    avsluttet: ArbeidssokerperiodeMetadata;
-};
-
-export type ArbeidssokerperioderResponse = ArbeidssokerPeriode[] | [];
+import { ArbeidssokerperioderResponse } from '../models/arbeidssokerperiode';
 
 interface ArbeidssokerperioderProviderType {
     arbeidssokerperioder: ArbeidssokerperioderResponse;
