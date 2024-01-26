@@ -14,6 +14,8 @@ import * as Arbeidssoker from './contexts/arbeidssoker';
 import * as FeatureToggle from './contexts/feature-toggles';
 import * as SprakValg from './contexts/sprak';
 import { ArbeidssokerperioderProvider } from './contexts/arbeidssokerperioder';
+import { OpplysningerOmArbeidssokerProvider } from './contexts/opplysninger-om-arbeidssoker';
+import { ProfileringProvider } from './contexts/profilering';
 
 const Mikrofrontend = () => {
     const [state, setState] = React.useState<Autentisering.State>(Autentisering.initialState);
@@ -60,7 +62,11 @@ const Mikrofrontend = () => {
                     <FeatureToggle.FeaturetoggleContext.Provider value={featureToggleState}>
                         <SprakValg.SprakContext.Provider value={valgtSprak}>
                             <ArbeidssokerperioderProvider>
-                                <Innhold />
+                                <OpplysningerOmArbeidssokerProvider>
+                                    <ProfileringProvider>
+                                        <Innhold />
+                                    </ProfileringProvider>
+                                </OpplysningerOmArbeidssokerProvider>
                             </ArbeidssokerperioderProvider>
                         </SprakValg.SprakContext.Provider>
                     </FeatureToggle.FeaturetoggleContext.Provider>

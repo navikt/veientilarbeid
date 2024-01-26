@@ -20,6 +20,8 @@ import StandardWrapper from './standard-wrapper';
 import { WindowInnerWidthProvider } from './contexts/window-inner-width';
 import { StandardBundleProvider } from './contexts/standard-bundle';
 import { ArbeidssokerperioderProvider } from './contexts/arbeidssokerperioder';
+import { OpplysningerOmArbeidssokerProvider } from './contexts/opplysninger-om-arbeidssoker';
+import { ProfileringProvider } from './contexts/profilering';
 
 const Mikrofrontend = () => {
     const [state, setState] = React.useState<Autentisering.State>(Autentisering.initialState);
@@ -69,15 +71,19 @@ const Mikrofrontend = () => {
                             <StandardBundleProvider erStandardBundle={true}>
                                 <ArbeidssokerDataProvider erStandard>
                                     <ArbeidssokerperioderProvider>
-                                        <MeldepliktProvider>
-                                            <ReaktiveringProvider>
-                                                <BesvarelseProvider>
-                                                    <WindowInnerWidthProvider>
-                                                        <StandardWrapper />
-                                                    </WindowInnerWidthProvider>
-                                                </BesvarelseProvider>
-                                            </ReaktiveringProvider>
-                                        </MeldepliktProvider>
+                                        <OpplysningerOmArbeidssokerProvider>
+                                            <ProfileringProvider>
+                                                <MeldepliktProvider>
+                                                    <ReaktiveringProvider>
+                                                        <BesvarelseProvider>
+                                                            <WindowInnerWidthProvider>
+                                                                <StandardWrapper />
+                                                            </WindowInnerWidthProvider>
+                                                        </BesvarelseProvider>
+                                                    </ReaktiveringProvider>
+                                                </MeldepliktProvider>
+                                            </ProfileringProvider>
+                                        </OpplysningerOmArbeidssokerProvider>
                                     </ArbeidssokerperioderProvider>
                                 </ArbeidssokerDataProvider>
                             </StandardBundleProvider>
