@@ -27,10 +27,10 @@ function OpplysningerOmArbeidssokerProvider(props: { children: ReactNode }) {
     const erToggletPa = featureToggles[FeatureToggles.BRUK_OPPLYSNINGER_API];
 
     const hentOpplysningerOmArbeidssoker = async (arbeidssokerperioder: ArbeidssokerperioderResponse) => {
-        const { perioderId } = hentSisteArbeidssokerPeriode(arbeidssokerperioder);
-        if (perioderId) {
+        const { periodeId } = hentSisteArbeidssokerPeriode(arbeidssokerperioder);
+        if (periodeId) {
             try {
-                const urlForOppdaterteOpplysningerOmArbeidssoker = `${OPPLYSNINGER_OM_ARBEIDSSOKER_URL}/${perioderId}`;
+                const urlForOppdaterteOpplysningerOmArbeidssoker = `${OPPLYSNINGER_OM_ARBEIDSSOKER_URL}/${periodeId}`;
                 const oppdaterteOpplysningerOmArbeidssoker = await fetchToJson(
                     urlForOppdaterteOpplysningerOmArbeidssoker,
                     requestConfig(),

@@ -25,10 +25,10 @@ function ProfileringProvider(props: { children: ReactNode }) {
     const erToggletPa = featureToggles[FeatureToggles.BRUK_OPPLYSNINGER_API];
 
     const hentProfilering = async (arbeidssokerperioder: ArbeidssokerperioderResponse) => {
-        const { perioderId } = hentSisteArbeidssokerPeriode(arbeidssokerperioder);
-        if (perioderId) {
+        const { periodeId } = hentSisteArbeidssokerPeriode(arbeidssokerperioder);
+        if (periodeId) {
             try {
-                const urlForProfilering = `${PROFILERING_URL}/${perioderId}`;
+                const urlForProfilering = `${PROFILERING_URL}/${periodeId}`;
                 const oppdatertProfilering = await fetchToJson(urlForProfilering, requestConfig());
                 if (oppdatertProfilering) {
                     settProfilering(oppdatertProfilering as ProfileringResponse);

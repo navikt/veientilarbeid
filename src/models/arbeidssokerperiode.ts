@@ -10,7 +10,7 @@ type ArbeidssokerperiodeMetadata = {
 };
 
 export type ArbeidssokerPeriode = {
-    perioderId: string;
+    periodeId: string;
     startet: ArbeidssokerperiodeMetadata;
     avsluttet: ArbeidssokerperiodeMetadata;
 };
