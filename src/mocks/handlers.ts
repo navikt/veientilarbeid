@@ -59,6 +59,6 @@ export const handlers = [
     msw_get(REAKTIVERING_URL, null, 204),
     msw_get(ARBEIDSOKER_INNHOLD, arbeidssokerInnholdMock, 200),
     msw_get(ARBEIDSOKERPERIODER_URL, arbeidssokerperioderMock, 200),
-    msw_get(OPPLYSNINGER_OM_ARBEIDSSOKER_URL, opplysningerOmArbeidssoker, 200),
-    msw_get(PROFILERING_URL, profileringMock, 200),
+    msw_get(`${OPPLYSNINGER_OM_ARBEIDSSOKER_URL}/*`, opplysningerOmArbeidssoker, 200),
+    msw_get(`${PROFILERING_URL}/*`, profileringMock, 200),
 ];

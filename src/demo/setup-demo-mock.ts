@@ -120,8 +120,8 @@ export const demo_handlers = [
 
     msw_get(ER_STANDARD_INNSATSGRUPPE_URL, hentStandardInnsatsgruppe().standardInnsatsgruppe),
     msw_get(ARBEIDSOKERPERIODER_URL, arbeidssokerperioderMock),
-    msw_get(OPPLYSNINGER_OM_ARBEIDSSOKER_URL, opplysningerOmArbeidssoker),
-    msw_get(PROFILERING_URL, profileringMock),
+    msw_get(`${OPPLYSNINGER_OM_ARBEIDSSOKER_URL}/*`, opplysningerOmArbeidssoker),
+    msw_get(`${PROFILERING_URL}/*`, profileringMock),
     http.get(`${MELDEPLIKT_URL}/siste`, () => {
         // eslint-disable-next-line no-restricted-globals
         const valg = hentDemoState(DemoData.ARBEIDSSOKER_NESTE_PERIODE);
