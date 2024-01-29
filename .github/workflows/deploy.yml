@@ -23,6 +23,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           cache: 'npm'
+          node-version: '20.x'
           registry-url: 'https://npm.pkg.github.com'
           scope: '@navikt'
 
@@ -55,6 +56,8 @@ jobs:
           team: paw
           identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
           project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
     outputs:
       image: ${{ steps.docker-build-push.outputs.image }}
 
