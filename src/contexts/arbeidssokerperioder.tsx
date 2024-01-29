@@ -4,7 +4,7 @@ import { useFeatureToggleData, FeatureToggles } from './feature-toggles';
 
 import { fetchToJson } from '../ducks/api-utils';
 import { ARBEIDSOKERPERIODER_URL, requestConfig } from '../ducks/api';
-import { ArbeidssokerperioderResponse } from '../models/arbeidssokerperiode';
+import { ArbeidssokerperioderResponse } from '@navikt/arbeidssokerregisteret-utils';
 
 interface ArbeidssokerperioderProviderType {
     arbeidssokerperioder: ArbeidssokerperioderResponse;

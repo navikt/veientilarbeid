@@ -26,6 +26,7 @@
         "@grafana/faro-web-tracing": "1.3.5",
         "@navikt/aksel-icons": "5.13.0",
         "@navikt/ds-react": "5.13.0",
+        "@navikt/arbeidssokerregisteret-utils": "0.0.2",
         "classnames": "2.5.1",
         "core-js": "3.35.0",
         "intersection-observer": "0.12.2",

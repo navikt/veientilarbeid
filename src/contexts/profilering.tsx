@@ -5,9 +5,11 @@ import { useArbeidssokerperioder } from './arbeidssokerperioder';
 
 import { fetchToJson } from '../ducks/api-utils';
 import { PROFILERING_URL, requestConfig } from '../ducks/api';
-import { hentSisteArbeidssokerPeriode } from '../lib/hent-siste-arbeidssokerperiode';
-import { ArbeidssokerperioderResponse } from '../models/arbeidssokerperiode';
-import { ProfileringResponse } from '../models/profilering';
+import {
+    ArbeidssokerperioderResponse,
+    hentSisteArbeidssokerPeriode,
+    ProfileringResponse,
+} from '@navikt/arbeidssokerregisteret-utils';
 
 interface ProfileringProviderType {
     profilering: ProfileringResponse;

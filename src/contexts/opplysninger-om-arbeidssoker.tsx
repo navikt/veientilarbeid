@@ -5,9 +5,11 @@ import { useArbeidssokerperioder } from './arbeidssokerperioder';
 
 import { fetchToJson } from '../ducks/api-utils';
 import { OPPLYSNINGER_OM_ARBEIDSSOKER_URL, requestConfig } from '../ducks/api';
-import { hentSisteArbeidssokerPeriode } from '../lib/hent-siste-arbeidssokerperiode';
-import { ArbeidssokerperioderResponse } from '../models/arbeidssokerperiode';
-import { OpplysningerOmArbeidssokerResponse } from '../models/opplysninger-om-arbeidssoker';
+import {
+    ArbeidssokerperioderResponse,
+    hentSisteArbeidssokerPeriode,
+    OpplysningerOmArbeidssokerResponse,
+} from '@navikt/arbeidssokerregisteret-utils';
 
 interface OpplysningerOmArbeidssokerProviderType {
     opplysningerOmArbeidssoker: OpplysningerOmArbeidssokerResponse;
