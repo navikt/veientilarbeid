@@ -11,6 +11,9 @@ WORKDIR /source
 RUN cp -r /source/dist /build
 RUN cp /source/dist/.vite/* /build
 
+# kopier generert .npmrc fra github-action
+RUN cp .npmrc /source
+
 RUN npm ci
 
 ARG REACT_APP_VERSION_HASH
