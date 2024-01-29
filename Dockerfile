@@ -11,8 +11,7 @@ WORKDIR /source
 RUN cp -r /source/dist /build
 RUN cp /source/dist/.vite/* /build
 
-ARG NODE_AUTH_TOKEN
-RUN echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}\\n@navikt:registry=https://npm.pkg.github.com" >> .npmrc
+RUN cp /home/runner/work/_temp/.npmrc /source
 
 RUN npm ci
 
