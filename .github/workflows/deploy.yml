@@ -23,9 +23,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           cache: 'npm'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@navikt'
 
       - name: 'Install dependencies'
         run: 'npm ci'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
       - name: 'Build application'
         run: 'REACT_APP_MICRO="true" REACT_APP_VERSION_HASH=${{ github.sha }} REACT_APP_BUILD_TIMESTAMP=$(date +"%Y-%m-%dT%H:%M:%S") NODE_ENV=production npm run build:cdn'

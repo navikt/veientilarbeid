@@ -12,6 +12,17 @@ Innholdet skal i størst mulig grad gjenspeile arbeidssøker situasjon.
 -   Klon [repoet](https://github.com/navikt/veientilarbeid)
 -   Installer avhengigheter `npm ci`
 
+### Installere pakker lokalt
+
+For å installere npm pakker med @navikt-scope trenger du en `.npmrc`-fil med følgende:
+
+```
+//npm.pkg.github.com/:_authToken=TOKEN
+@navikt:registry=https://npm.pkg.github.com
+```
+
+Token genererer du under [developer settings på Github](https://github.com/settings/tokens). Den trenger kun `read:packages`.
+
 ## For å kjøre lokalt
 
 -   `npm start`
