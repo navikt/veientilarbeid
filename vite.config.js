@@ -75,6 +75,7 @@ const getDemoConfig = () => ({
             formats: ['es'],
             fileName: () => 'demo.bundle.js',
         },
+        outDir: 'build',
     },
 });
 

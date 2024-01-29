@@ -8,20 +8,12 @@ ENV CI=true
 WORKDIR /source
 
 # npm run build har blitt kjørt på github før docker build
+# kopier output fra npm run build:cdn
 RUN cp -r /source/dist /build
 RUN cp /source/dist/.vite/* /build
 
-RUN cp /home/runner/work/_temp/.npmrc /source
-
-RUN npm ci
-
-ARG REACT_APP_VERSION_HASH
-ARG REACT_APP_BUILD_TIMESTAMP
-ENV REACT_APP_VERSION_HASH=$REACT_APP_VERSION_HASH
-ENV REACT_APP_BUILD_TIMESTAMP=$REACT_APP_BUILD_TIMESTAMP
-
-RUN npm run build:demo
-RUN cp -r /source/dist /demo
+# kopier output fra npm run build:demo
+RUN cp -r /source/build /demo
 
 
 FROM nginx:1.25-alpine
