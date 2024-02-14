@@ -14,7 +14,7 @@ const TEKSTER = {
         header: 'Hvorfor er det viktig at jeg er registrert som arbeidssøker?',
         ytelser:
             'Noen av ytelsene fra NAV, for eksempel dagpenger og tiltakspenger, kan du bare motta hvis du er registrert som arbeidssøker.',
-        oppfolging: 'NAV ønsker også at de som skal motta arbeidsrettet oppfølging er regisrert som arbeidssøker.',
+        oppfolging: 'NAV ønsker også at de som skal motta arbeidsrettet oppfølging er registrert som arbeidssøker.',
         soknad: 'Du må være registrert som arbeidssøker fra du sender inn søknad om ytelse og helt frem til den siste dagen du ønsker å motta pengestøtten. Det er kun de dagene du er registrert som arbeidssøker du kan få utbetalt ytelse for.',
     },
     en: {
