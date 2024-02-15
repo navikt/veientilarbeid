@@ -12,6 +12,8 @@ import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 import Opplysninger from './registreringsopplysninger';
 import PeriodeOpplysninger from './periodeopplysninger';
 import { useBrukerregistreringData } from '../../hooks/use-brukerregistrering-data';
+import { useOpplysningerOmArbeidssoker } from '../../contexts/opplysninger-om-arbeidssoker';
+import OpplysningerOmArbeidssokerKomponent from './opplysninger-om-arbeidssoker-komponent';
 
 const TEKSTER = {
     nb: {
@@ -40,6 +42,9 @@ const InnsynLesMer = () => {
     const kanVisePeriodeOpplysningerKomponent =
         autentiseringData.securityLevel === InnloggingsNiva.LEVEL_4 && visPeriodeOpplysninger;
 
+    const { opplysningerOmArbeidssoker } = useOpplysningerOmArbeidssoker();
+    const visOpplysningerOmArbeidssoker = Boolean(opplysningerOmArbeidssoker[0]);
+
     const handleClickOpenRegistreringsopplysninger = () => {
         if (!clickedInnsyn) {
             loggAktivitet({ aktivitet: 'Ser opplysninger fra registreringen', ...amplitudeData });
@@ -56,14 +61,18 @@ const InnsynLesMer = () => {
 
     return kanViseRegistreringsOpplysningerKomponent ? (
         <ReadMore size="medium" header={tekst('header')} onClick={handleClickOpenRegistreringsopplysninger}>
-            <Opplysninger
-                opprettetDato={opprettetDato}
-                manueltRegistrertAv={manueltRegistrertAv}
-                besvarelse={besvarelse}
-                teksterForBesvarelse={teksterForBesvarelse}
-                amplitudeData={amplitudeData}
-                sisteStilling={sisteStilling}
-            />
+            {visOpplysningerOmArbeidssoker ? (
+                <OpplysningerOmArbeidssokerKomponent opplysninger={opplysningerOmArbeidssoker[0]} />
+            ) : (
+                <Opplysninger
+                    opprettetDato={opprettetDato}
+                    manueltRegistrertAv={manueltRegistrertAv}
+                    besvarelse={besvarelse}
+                    teksterForBesvarelse={teksterForBesvarelse}
+                    amplitudeData={amplitudeData}
+                    sisteStilling={sisteStilling}
+                />
+            )}
         </ReadMore>
     ) : kanVisePeriodeOpplysningerKomponent ? (
         <ReadMore size="medium" header={tekst('header')} onClick={handleClickOpenPeriodeopplysninger}>

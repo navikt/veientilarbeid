@@ -1,10 +1,6 @@
 import { BodyShort, Link } from '@navikt/ds-react';
 
-import { useSprakValg } from '../../contexts/sprak';
-import { useBehovForVeiledning } from '../../contexts/behov-for-veiledning';
-
 import Feedback from '../feedback/feedback';
-import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import { Besvarelse, BesvarelseResponse, DinSituasjonTilleggsdata } from '../../contexts/besvarelse';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import { sporsmalMap, svarMap } from '../../models/sporsmal-og-svar';
@@ -13,19 +9,7 @@ import TilleggsData from './tilleggsdata';
 
 import spacing from '../../spacing.module.css';
 import flexStyles from '../../flex.module.css';
-
-const TEKSTER = {
-    nb: {
-        'oppfolging.STANDARD_INNSATS': 'Jeg ønsker å klare meg selv',
-        'oppfolging.SITUASJONSBESTEMT_INNSATS': 'Jeg ønsker oppfølging fra NAV',
-        'oppfolging.IKKE_BESVART': 'Ikke besvart',
-    },
-    en: {
-        'oppfolging.STANDARD_INNSATS': 'Jeg ønsker å klare meg selv',
-        'oppfolging.SITUASJONSBESTEMT_INNSATS': 'Jeg ønsker oppfølging fra NAV',
-        'oppfolging.IKKE_BESVART': 'Ikke besvart',
-    },
-};
+import Oppfolging from './oppfolging';
 
 const Opplysning = (props: any) => {
     const { sporsmal, svar, verdi, datapunkt, tilleggsData } = props;
@@ -59,26 +43,6 @@ const DinSituasjon = (props: any) => {
                     For å se endringene du har oppgitt kan du <Link href={dialogLenke}>gå til dialogen</Link>.
                 </BodyShort>
             )}
-        </div>
-    );
-};
-
-const Oppfolging = () => {
-    const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
-    const { behovForVeiledning } = useBehovForVeiledning();
-
-    return (
-        <div className={`${spacing.blokkS}`}>
-            <div className={`${flexStyles.flex}`}>
-                <strong className={spacing.mr05}>Hva slags veiledning ønsker du?</strong>
-            </div>
-            <div>
-                <div className={`${flexStyles.flex} ${flexStyles.alignCenter} ${flexStyles.wrap}`}>
-                    <div className={`${spacing.mr05} ${spacing.mb05}`}>
-                        {tekst(`oppfolging.${behovForVeiledning?.oppfolging || 'IKKE_BESVART'}`)}
-                    </div>
-                </div>
-            </div>
         </div>
     );
 };

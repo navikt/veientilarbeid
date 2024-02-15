@@ -1,33 +1,33 @@
 const opplysningerOmArbeidssoker = [
     {
-        opplysningerOmArbeidssoekerId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-        periodeId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        opplysningerOmArbeidssoekerId: '8d8e8ff8-15f2-40e7-aed8-2ed2e8aa92ad',
+        periodeId: 'd71f3453-8a13-4091-b85a-2a39e00b2c62',
         sendtInnAv: {
-            tidspunkt: '2021-09-29T11:22:33.444Z',
+            tidspunkt: '2024-02-13T07:31:35Z',
             utfoertAv: {
-                type: 'UKJENT_VERDI',
+                type: 'SLUTTBRUKER',
             },
-            kilde: 'string',
-            aarsak: 'string',
+            kilde: 'veilarbregistrering',
+            aarsak: 'manuell_insert',
         },
         utdanning: {
-            lengde: 'UKJENT_VERDI',
+            nus: '4',
             bestaatt: 'JA',
             godkjent: 'JA',
         },
         helse: {
-            helseTilstandHindrerArbeid: 'JA',
+            helseTilstandHindrerArbeid: 'NEI',
         },
         arbeidserfaring: {
             harHattArbeid: 'JA',
         },
         annet: {
-            andreForholdHindrerArbeid: 'JA',
+            andreForholdHindrerArbeid: 'NEI',
         },
         jobbsituasjon: [
             {
-                beskrivelse: 'UKJENT_VERDI',
-                detaljer: 'string',
+                beskrivelse: 'AKKURAT_FULLFORT_UTDANNING',
+                detaljer: {},
             },
         ],
     },
