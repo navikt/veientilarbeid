@@ -95,6 +95,13 @@ function AutomatiskReaktivert() {
                         {prettyPrintDato(reaktivering.opprettetDato, valgtSprak)} {tekst('meldekortInnsendt')}
                     </BodyLong>
                     <BodyLong className={spacingStyles.mb1}>{tekst('derfor')}</BodyLong>
+                    <Heading size="small" level="3">
+                        Hva med dagpengene mine?
+                    </Heading>
+                    <BodyLong spacing>
+                        Har du mottatt dagpenger vil utbetalingene nå være stoppet. Du må sende inn ny søknad om
+                        dagpenger.
+                    </BodyLong>
                     <ReadMoreInaktivering sprak={valgtSprak} />
                     <ReadMoreViktigRegistrert sprak={valgtSprak} />
                     <div className={`${spacingStyles.mt1} ${flexStyles.flex} ${flexStyles.flexColumn}`}>
