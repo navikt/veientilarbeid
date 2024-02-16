@@ -22,6 +22,7 @@ const ReaktiveringsKnapp = ({ aktivitet }: Props) => {
             await fetchToJson(FULLFOER_REAKTIVERING_URL, {
                 ...requestConfig(),
                 method: 'POST',
+                body: JSON.stringify({}),
             });
             loggAktivitet({ aktivitet: 'Bruker ble reaktivert', ...amplitudeData });
             window.location.reload();
