@@ -50,7 +50,7 @@ function mapNuskodeTilUtdannignsnivaa(nus: string) {
 }
 
 function getSisteStillingSvar(opplysninger: OpplysningerOmArbeidssoker) {
-    if (opplysninger.arbeidserfaring.harHattArbeid !== 'JA') {
+    if (opplysninger.arbeidserfaring.harHattArbeid === 'NEI') {
         return 'Ingen yrkeserfaring';
     }
 
