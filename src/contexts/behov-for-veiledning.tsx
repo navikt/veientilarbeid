@@ -9,12 +9,14 @@ export type BehovForVeiledningRequest = {
     tekst?: string;
     overskrift?: string;
     venterPaaSvarFraNav?: boolean;
+    profileringId?: string;
 };
 
 export type BehovForVeiledningResponse = {
     dato?: string;
     oppfolging: ForeslattInnsatsgruppe;
     dialogId?: string;
+    profileringId?: string;
 } | null;
 
 interface BehovForVeiledningProviderType {

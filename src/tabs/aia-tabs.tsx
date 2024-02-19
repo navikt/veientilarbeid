@@ -2,7 +2,9 @@ import { Tabs } from '@navikt/ds-react';
 import { HTMLProps, useEffect, useState } from 'react';
 
 import { useAmplitudeData } from '../komponenter/hent-initial-data/amplitude-provider';
-import useHarGyldigBehovsvurdering from '../hooks/use-har-gyldig-behovsvurdering';
+import useHarGyldigBehovsvurdering, {
+    useHarGyldigBehovsvurderingNyttApi,
+} from '../hooks/use-har-gyldig-behovsvurdering';
 import { useBeregnDagpengestatus } from '../hooks/use-beregn-dagpengestatus';
 import { Data, useMeldekortData } from '../hooks/use-meldekortdata';
 import { useProfil } from '../contexts/profil';
@@ -10,6 +12,7 @@ import { useProfil } from '../contexts/profil';
 import RegistrertTittel from '../komponenter/registrert-tittel/registrert-tittel';
 import MinSituasjon from '../komponenter/min-situasjon/min-situasjon';
 import Behovsavklaring from '../komponenter/behovsavklaring-oppfolging/behovsavklaring-oppfolging';
+import BehovsavklaringNyttApi from '../komponenter/behovsavklaring-nytt-api/behovsavklaring-oppfolging';
 import DagpengerOgYtelser from '../komponenter/dagpenger/dagpenger-og-ytelser';
 import Meldekort from '../komponenter/meldekort/meldekort';
 import { loggAktivitet } from '../metrics/metrics';
@@ -32,6 +35,7 @@ import {
     harSitasjonSomKreverDokumentasjon,
 } from '../komponenter/endre-situasjon/send-inn-dokumentasjon';
 import { useBesvarelse } from '../contexts/besvarelse';
+import { FeatureToggles, useFeatureToggleData } from '../contexts/feature-toggles';
 
 const QUERY_PARAM = 'aia.aktivTab';
 
@@ -57,10 +61,10 @@ const MinSituasjonTab = () => {
     );
 };
 
-const HjelpOgStotteTab = () => {
+const HjelpOgStotteTab = (props: { brukNyttApi: boolean }) => {
     return (
         <Tabs.Panel value="hjelp" className={spacingStyles.pa125}>
-            <Behovsavklaring />
+            {props.brukNyttApi ? <BehovsavklaringNyttApi /> : <Behovsavklaring />}
         </Tabs.Panel>
     );
 };
@@ -133,7 +137,15 @@ function useSkalViseHjelpOgStotteVarsel() {
 }
 const AiaTabs = () => {
     const [aktivTab, settAktivTab] = useState<TabValue>(TabValue.MIN_SITUASJON);
-    const harGyldigBehovsvurdering = useHarGyldigBehovsvurdering();
+    const featureToggles = useFeatureToggleData();
+
+    const erNyttApiToggletPa = Boolean(featureToggles[FeatureToggles.BRUK_OPPLYSNINGER_API]);
+    const harGyldigBehovsvurderingGammel = useHarGyldigBehovsvurdering();
+    const harGyldigBehovsvurderingNyttApi = useHarGyldigBehovsvurderingNyttApi();
+    const harGyldigBehovsvurdering = erNyttApiToggletPa
+        ? harGyldigBehovsvurderingNyttApi
+        : harGyldigBehovsvurderingGammel;
+
     const visPengestotteVarsel = harIkkeSoktDagpenger(useBeregnDagpengestatus(), useProfil().profil);
     const visMeldekortVarsel = skalViseMeldekortVarsel(useMeldekortData().meldekortData);
     const visHjelpOgStotteVarsel = useSkalViseHjelpOgStotteVarsel();
@@ -228,7 +240,7 @@ const AiaTabs = () => {
                         />
                     </Tabs.List>
                     <MinSituasjonTab />
-                    <HjelpOgStotteTab />
+                    <HjelpOgStotteTab brukNyttApi={erNyttApiToggletPa} />
                     <YtelseTab />
                     <MeldekortTab />
                 </Tabs>
