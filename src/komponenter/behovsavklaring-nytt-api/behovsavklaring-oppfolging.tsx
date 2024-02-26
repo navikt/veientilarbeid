@@ -5,10 +5,10 @@ import { useHarGyldigBehovsvurderingNyttApi } from '../../hooks/use-har-gyldig-b
 import { Servicegruppe, useOppfolgingData } from '../../hooks/use-oppfolging-data';
 
 function Behovsavklaring() {
-    const { servicegruppe } = useOppfolgingData(); // TODO: ikke bruke denne
+    const { servicegruppe } = useOppfolgingData(); // TODO: skal vi bruke denne?
     const harGyldigBehovsvurdering = useHarGyldigBehovsvurderingNyttApi();
 
-    if (servicegruppe !== Servicegruppe.IVURD) {
+    if (servicegruppe !== Servicegruppe.IVURD && servicegruppe !== null) {
         return <BehovsavklaringAvklart servicegruppe={servicegruppe} />;
     }
 
