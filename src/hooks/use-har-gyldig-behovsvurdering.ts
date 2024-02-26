@@ -22,7 +22,8 @@ export function useHarGyldigBehovsvurderingNyttApi() {
     const behov = useBehovForVeiledning();
     const { behovForVeiledning } = behov;
     const { profilering: profileringer } = useProfilering();
-    return profileringer.some((p) => p.profileringId === behovForVeiledning?.profileringId);
+    const profileringId = profileringer[0]?.profileringId;
+    return profileringId && profileringId === behovForVeiledning?.profileringId;
 }
 
 export default useHarGyldigBehovsvurdering;
