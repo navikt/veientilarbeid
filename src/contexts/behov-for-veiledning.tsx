@@ -69,7 +69,11 @@ function BehovForVeiledningProvider(props: { children: ReactNode }) {
             const behov: BehovForVeiledningResponse = await fetchToJson(BEHOV_FOR_VEILEDNING_URL, {
                 ...requestConfig(),
                 method: 'POST',
-                body: JSON.stringify({ oppfolging: data.oppfolging, dialogId: dialog?.id }),
+                body: JSON.stringify({
+                    oppfolging: data.oppfolging,
+                    dialogId: dialog?.id,
+                    profileringId: data.profileringId,
+                }),
             });
             settBehovForVeiledning(behov);
         } catch (error) {
