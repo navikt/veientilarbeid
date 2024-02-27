@@ -1,7 +1,7 @@
 import 'core-js';
 import 'intersection-observer';
 import { createRoot } from 'react-dom/client';
-import App from './main';
+import App from './main-standard';
 import DemoDashboard from './demo/demo-dashboard';
 import './index.css';
 
