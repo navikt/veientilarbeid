@@ -6,12 +6,12 @@ import { loggAktivitet } from '../../metrics/metrics';
 import TilleggsData from '../innsyn/tilleggsdata';
 import { svarMap } from '../../models/sporsmal-og-svar';
 import PermittertModal from './permittert-modal';
-
-import spacing from '../../spacing.module.css';
-import flexStyles from '../../flex.module.css';
 import BesvarelseLesMer from '../innsyn/besvarelse-les-mer';
 import SendInnDokumentasjon from './send-inn-dokumentasjon';
 import { dialogLenke } from '../../innhold/lenker';
+
+import spacing from '../../spacing.module.css';
+import flexStyles from '../../flex.module.css';
 
 const Sammendrag = (props: any) => {
     const [openEndreModal, setOpenEndreModal] = useState(false);

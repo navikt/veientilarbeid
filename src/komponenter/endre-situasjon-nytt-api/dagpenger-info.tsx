@@ -1,5 +1,6 @@
-import { VeiledningsProps } from './veiledning';
 import { Link, ReadMore } from '@navikt/ds-react';
+
+import { VeiledningsProps } from './veiledning';
 import { dagpengerSoknadLenke } from '../../innhold/lenker';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import { plussDager } from '../../utils/date-utils';

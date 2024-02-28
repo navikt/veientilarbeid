@@ -6,10 +6,10 @@ import { AmplitudeData } from '../../metrics/amplitude-utils';
 import { loggAktivitet } from '../../metrics/metrics';
 import Veiledning, { SituasjonSvar } from './veiledning';
 import TilleggsData from '../innsyn/tilleggsdata';
+import { DinSituasjonSvar } from '../../hooks/use-brukerregistrering-data';
 
 import spacing from '../../spacing.module.css';
 import flex from '../../flex.module.css';
-import { DinSituasjonSvar } from '../../hooks/use-brukerregistrering-data';
 
 export interface Steg3Props {
     amplitudeData: AmplitudeData;

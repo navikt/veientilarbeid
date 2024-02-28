@@ -1,14 +1,17 @@
+import { useState } from 'react';
+import { BodyShort, Checkbox, CheckboxGroup, Heading, Loader } from '@navikt/ds-react';
+
+import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
+import { useProfil } from '../../contexts/profil';
+
 import { Profil } from '../../profil';
 import { BesvarelseResponse, useBesvarelse } from '../../contexts/besvarelse';
 import { SituasjonSvar } from './veiledning';
-import { useProfil } from '../../contexts/profil';
-import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
-import { useState } from 'react';
 import { loggAktivitet } from '../../metrics/metrics';
 import { PermittertSvar } from '../../models/endring-av-situasjon';
-import spacing from '../../spacing.module.css';
-import { BodyShort, Checkbox, CheckboxGroup, Heading, Loader } from '@navikt/ds-react';
 import { dokumentasjon_url } from '../../ducks/urls';
+
+import spacing from '../../spacing.module.css';
 
 export const harSendtInnNyDokumentasjon = (profil: Profil | null, besvarelse: BesvarelseResponse) => {
     const harSendtInnDokumentasjon = Boolean(profil?.aiaHarSendtInnDokumentasjonForEndring);
