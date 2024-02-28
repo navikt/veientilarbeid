@@ -1,25 +1,31 @@
 import { Box, Detail } from '@navikt/ds-react';
+import {
+    hentSisteArbeidssokerPeriode,
+    hentSisteOpplysningerOmArbeidssoker,
+} from '@navikt/arbeidssokerregisteret-utils';
 
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
-import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
+import { useArbeidssokerperioder } from '../../contexts/arbeidssokerperioder';
+import { useOpplysningerOmArbeidssoker } from '../../contexts/opplysninger-om-arbeidssoker';
 import { useBesvarelse } from '../../contexts/besvarelse';
-import { useBrukerregistreringData } from '../../hooks/use-brukerregistrering-data';
 import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
 
 import Sammendrag from './sammendrag';
-import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 import AiAInViewport from '../aia-in-viewport/aia-in-viewport';
 import ErRendret from '../er-rendret/er-rendret';
 
 function MinSituasjon() {
-    const brukerregistreringData = useBrukerregistreringData();
-    const arbeidssokerperiodeData = useArbeidssokerPerioder();
+    const arbeidssoekerperioder = useArbeidssokerperioder().arbeidssokerperioder;
+    const opplysningerOmArbeidssoeker = useOpplysningerOmArbeidssoker().opplysningerOmArbeidssoker;
     const { amplitudeData } = useAmplitudeData();
     const { besvarelse } = useBesvarelse();
+
+    const sisteArbeidssoekerperiode = hentSisteArbeidssokerPeriode(arbeidssoekerperioder);
+    const startDato = sisteArbeidssoekerperiode.startet.tidspunkt;
+    const sisteOpplysninger = hentSisteOpplysningerOmArbeidssoker(opplysningerOmArbeidssoeker);
+    const manueltRegistrertAv = sisteOpplysninger.sendtInnAv.utfoertAv.type !== 'BRUKER';
     const besvarelseData = besvarelse ? besvarelse.besvarelse : null;
 
-    const { aktivPeriodeStart } = beregnArbeidssokerperioder(arbeidssokerperiodeData);
-    const { opprettetDato, manueltRegistrertAv } = brukerregistreringData?.registrering || {};
     const { endretTidspunkt, endretAv, erBesvarelsenEndret } = besvarelse || {};
     const skalVisesITabs = useSkalBrukeTabs();
 
@@ -29,7 +35,7 @@ function MinSituasjon() {
             <Box>
                 {!skalVisesITabs && <Detail uppercase>Min situasjon</Detail>}
                 <Sammendrag
-                    startDato={opprettetDato || aktivPeriodeStart}
+                    startDato={startDato}
                     manueltRegistrertAv={manueltRegistrertAv}
                     amplitudeData={amplitudeData}
                     besvarelse={besvarelseData}
