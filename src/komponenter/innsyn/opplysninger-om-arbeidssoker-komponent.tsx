@@ -54,10 +54,6 @@ function mapNuskodeTilUtdannignsnivaa(nus: string) {
 }
 
 function getSisteStillingSvar(opplysninger: OpplysningerOmArbeidssoker) {
-    if (opplysninger.arbeidserfaring.harHattArbeid === 'NEI') {
-        return 'Ingen yrkeserfaring';
-    }
-
     const detaljer = opplysninger.jobbsituasjon[0]?.detaljer;
     return detaljer?.stilling || 'Ikke oppgitt';
 }
