@@ -1,30 +1,27 @@
+import { Box, Detail } from '@navikt/ds-react';
+
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
 import { useBesvarelse } from '../../contexts/besvarelse';
-import { InnloggingsNiva, useAutentiseringData } from '../../contexts/autentisering';
+import { useBrukerregistreringData } from '../../hooks/use-brukerregistrering-data';
+import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
 
 import Sammendrag from './sammendrag';
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 import AiAInViewport from '../aia-in-viewport/aia-in-viewport';
 import ErRendret from '../er-rendret/er-rendret';
-import { useBrukerregistreringData } from '../../hooks/use-brukerregistrering-data';
-import { Box, Detail } from '@navikt/ds-react';
-import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
 
 function MinSituasjon() {
     const brukerregistreringData = useBrukerregistreringData();
     const arbeidssokerperiodeData = useArbeidssokerPerioder();
     const { amplitudeData } = useAmplitudeData();
-    const autentiseringData = useAutentiseringData();
     const { besvarelse } = useBesvarelse();
     const besvarelseData = besvarelse ? besvarelse.besvarelse : null;
 
     const { aktivPeriodeStart } = beregnArbeidssokerperioder(arbeidssokerperiodeData);
     const { opprettetDato, manueltRegistrertAv } = brukerregistreringData?.registrering || {};
     const { endretTidspunkt, endretAv, erBesvarelsenEndret } = besvarelse || {};
-    const kanViseKomponent = autentiseringData.securityLevel === InnloggingsNiva.LEVEL_4;
     const skalVisesITabs = useSkalBrukeTabs();
-    if (!kanViseKomponent) return null;
 
     return (
         <Box>
