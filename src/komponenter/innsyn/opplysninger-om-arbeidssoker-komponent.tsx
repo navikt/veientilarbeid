@@ -14,7 +14,7 @@ import prettyPrintDato from '../../utils/pretty-print-dato';
 import Feedback from '../feedback/feedback';
 import Oppfolging from './oppfolging';
 
-type OpplysningProps = { sporsmal: string; svar: Svar };
+type OpplysningProps = { sporsmal: string; svar: Svar | string };
 const Opplysning = (props: OpplysningProps) => {
     const tekst = lagHentTekstForSprak(SPORSMAL_TEKSTER, useSprakValg().sprak);
     const { sporsmal, svar } = props;
@@ -50,10 +50,6 @@ function mapNuskodeTilUtdannignsnivaa(nus: string) {
 }
 
 function getSisteStillingSvar(opplysninger: OpplysningerOmArbeidssoker) {
-    if (opplysninger.arbeidserfaring.harHattArbeid === 'NEI') {
-        return 'Ingen yrkeserfaring';
-    }
-
     const detaljer = opplysninger.jobbsituasjon[0]?.detaljer;
     return detaljer?.stilling || 'Ikke oppgitt';
 }
