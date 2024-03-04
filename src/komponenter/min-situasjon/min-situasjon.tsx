@@ -1,16 +1,20 @@
 import { Box, Detail, Heading } from '@navikt/ds-react';
 
-import { useFeatureToggleData } from '../../contexts/feature-toggles';
+import { useFeatureToggleData, FeatureToggles } from '../../contexts/feature-toggles';
 import { useAmplitudeData } from '../hent-initial-data/amplitude-provider';
 import { useBesvarelse } from '../../contexts/besvarelse';
 import { useArbeidssokerPerioder } from '../../contexts/arbeidssoker';
+import { useArbeidssokerperioder } from '../../contexts/arbeidssokerperioder';
+import { useOpplysningerOmArbeidssoker } from '../../contexts/opplysninger-om-arbeidssoker';
 import { InnloggingsNiva, useAutentiseringData } from '../../contexts/autentisering';
 
 import Sammendrag from './sammendrag';
 import InnsynLesMer from '../innsyn/innsyn-les-mer';
 import beregnArbeidssokerperioder from '../../lib/beregn-arbeidssokerperioder';
 import EndreSituasjon from '../endre-situasjon/min-situasjon';
+import EndreSituasjonNyttApi from '../endre-situasjon-nytt-api/min-situasjon';
 import { visBesvarelser } from '../../lib/vis-besvarelse';
+import { visBesvarelserNyttApi } from '../../lib/vis-besvarelse-nytt-api';
 import spacingStyles from '../../spacing.module.css';
 import { svarMap } from '../../models/sporsmal-og-svar';
 import useErStandardInnsats from '../../hooks/use-er-standard-innsats';
@@ -21,9 +25,12 @@ import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
 
 function MinSituasjon() {
     const arbeidssokerperiodeData = useArbeidssokerPerioder();
+    const arbeidssoekerPerioder = useArbeidssokerperioder().arbeidssokerperioder;
+    const opplysningerOmArbeidssoeker = useOpplysningerOmArbeidssoker().opplysningerOmArbeidssoker;
     const { amplitudeData } = useAmplitudeData();
     const autentiseringData = useAutentiseringData();
     const featuretoggleData = useFeatureToggleData();
+    const brukOpplysningerApi = featuretoggleData[FeatureToggles.BRUK_OPPLYSNINGER_API] || false;
 
     const registreringData = useBrukerregistreringData();
     const brukerInfoData = useBrukerInfoData();
@@ -39,6 +46,18 @@ function MinSituasjon() {
     const kanViseKomponent = autentiseringData.securityLevel === InnloggingsNiva.LEVEL_4 && harRegistreringData;
     const skalVisesITabs = useSkalBrukeTabs();
 
+    const visEndreSituasjonNyttApi = brukOpplysningerApi
+        ? visBesvarelserNyttApi({
+              brukerInfoData,
+              oppfolgingData,
+              featuretoggleData,
+              besvarelseData: besvarelse,
+              arbeidssoekerPerioder,
+              opplysningerOmArbeidssoeker,
+              erStandardInnsats,
+          })
+        : false;
+
     const visEndreSituasjon = visBesvarelser({
         brukerInfoData,
         oppfolgingData,
@@ -50,6 +69,10 @@ function MinSituasjon() {
     });
 
     if (!kanViseKomponent) return null;
+
+    if (visEndreSituasjonNyttApi) {
+        return <EndreSituasjonNyttApi />;
+    }
 
     if (visEndreSituasjon) {
         return <EndreSituasjon />;

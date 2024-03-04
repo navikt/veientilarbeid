@@ -6,15 +6,19 @@ import {
     Utdanningsnivaa,
 } from '@navikt/arbeidssokerregisteret-utils';
 import { BodyShort } from '@navikt/ds-react';
-import spacing from '../../spacing.module.css';
-import flexStyles from '../../flex.module.css';
-import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
+
 import { useSprakValg } from '../../contexts/sprak';
+
+import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import prettyPrintDato from '../../utils/pretty-print-dato';
 import Feedback from '../feedback/feedback';
 import Oppfolging from './oppfolging';
 
+import spacing from '../../spacing.module.css';
+import flexStyles from '../../flex.module.css';
+
 type OpplysningProps = { sporsmal: string; svar: Svar | string };
+
 const Opplysning = (props: OpplysningProps) => {
     const tekst = lagHentTekstForSprak(SPORSMAL_TEKSTER, useSprakValg().sprak);
     const { sporsmal, svar } = props;
