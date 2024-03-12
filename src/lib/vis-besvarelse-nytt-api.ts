@@ -35,7 +35,7 @@ export function visBesvarelserNyttApi({
     const toggleErAktiv = brukEndringAvSituasjon && brukOpplysningerApi;
     const erAAP = brukerInfoData.rettighetsgruppe === 'AAP';
     const sisteArbeidssoekerPeriode = hentSisteArbeidssokerPeriode(arbeidssoekerPerioder);
-    const datoForRegistrering = sisteArbeidssoekerPeriode
+    const datoForRegistrering = sisteArbeidssoekerPeriode?.periodeId
         ? new Date(sisteArbeidssoekerPeriode.startet.tidspunkt)
         : new Date('2019-07-01');
     const sisteOpplysninger = hentSisteOpplysningerOmArbeidssoker(opplysningerOmArbeidssoeker);
