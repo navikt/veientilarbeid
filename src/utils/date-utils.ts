@@ -4,7 +4,7 @@ import { Sprak } from '../contexts/sprak';
 import lagHentTekstForSprak from '../lib/lag-hent-tekst-for-sprak';
 
 const msPerDoegn = 1000 * 60 * 60 * 24;
-const DAGPENGER_SAKSBEHANDLINGSTID = 35;
+const DAGPENGER_SAKSBEHANDLINGSTID = 45;
 
 export function datoUtenTid(dato: string) {
     return new Date(dato.substr(0, 10));
