@@ -38,7 +38,7 @@ jobs:
       - name: cdn-upload-js
         uses: nais/deploy/actions/cdn-upload/v2@master
         with:
-          cdn-team-name: paw
+          team: paw
           source: ./dist/js
           destination: '/aia/'
           identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
