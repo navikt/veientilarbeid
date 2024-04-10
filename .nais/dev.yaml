@@ -28,7 +28,7 @@ spec:
   - name: BEHOVSVURDERING_URL
     value: https://behovsvurdering-q1.dev-sbs.nais.io
   - name: START_SAMTALE_URL
-    value: https://pto.dev.nav.no/arbeid/start-samtale
+    value: https://pto.ekstern.dev.nav.no/arbeid/start-samtale
   - name: ARBEIDSSOKERREGISTRERING_URL
     value: https://arbeid.intern.dev.nav.no/arbeid/registrering
   - name: VEILARBPROXY_URL
