@@ -216,8 +216,16 @@ function BesvarelseProvider(props: { children: ReactNode }) {
         try {
             if (erOpprettOppgaveToggletPaa) {
                 await opprettOppgave(data);
+                try {
+                    await opprettDialog(data);
+                } catch (err) {
+                    // Gå videre og lagre besvarelse, oppgave er opprettet
+                    console.error('Feil ved opprettelse av dialog', err);
+                }
+            } else {
+                // Kast exception hvis dialog feiler, og oppgave ikke opprettet
+                await opprettDialog(data);
             }
-            await opprettDialog(data);
             const behov: BesvarelseResponse = await fetchToJson(BESVARELSE_URL, {
                 ...requestConfig(),
                 method: 'POST',
