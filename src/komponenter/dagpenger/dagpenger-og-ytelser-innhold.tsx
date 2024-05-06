@@ -1,27 +1,33 @@
 import React from 'react';
-import { BodyShort, Box, Detail } from '@navikt/ds-react';
+//import { BodyShort, Box, Detail } from '@navikt/ds-react';
+import { Box, Detail } from '@navikt/ds-react';
 
 import { useSprakValg } from '../../contexts/sprak';
-import HarIkkeSokt from './dagpenger-har-ikke-sokt';
-import HarPabegyntSoknad from './dagpenger-har-paabegynt-soknad';
-import HarSokt from './dagpenger-har-sokt';
-import MottarDagpenger from './dagpenger-faar';
-import InnvilgetDagpenger from './dagpenger-innvilget';
-import AvslagDagpenger from './dagpenger-avslag';
-import { DagpengeStatus } from '../../lib/beregn-dagpenge-status';
+
+import GenerellInformasjon from './dagpenger-generell';
+//import HarIkkeSokt from './dagpenger-har-ikke-sokt';
+//import HarPabegyntSoknad from './dagpenger-har-paabegynt-soknad';
+//import HarSokt from './dagpenger-har-sokt';
+//import MottarDagpenger from './dagpenger-faar';
+//import InnvilgetDagpenger from './dagpenger-innvilget';
+//import AvslagDagpenger from './dagpenger-avslag';
+//import { DagpengeStatus } from '../../lib/beregn-dagpenge-status';
 import ErRendret from '../er-rendret/er-rendret';
 import InViewport from '../in-viewport/in-viewport';
 import ByttVisningLenke from './bytt-visning-lenke';
 import Ytelser from './ytelser';
 import lagHentTekstForSprak from '../../lib/lag-hent-tekst-for-sprak';
 import useSkalBrukeTabs from '../../hooks/use-skal-bruke-tabs';
-import { useBeregnDagpengestatus } from '../../hooks/use-beregn-dagpengestatus';
+// import { useBeregnDagpengestatus } from '../../hooks/use-beregn-dagpengestatus';
 import spacingStyles from '../../spacing.module.css';
 
+/*
 function StansetDagpenger() {
     return <BodyShort>Stanset</BodyShort>;
 }
+*/
 
+/*
 function hentDagpengerInnhold(situasjon: DagpengeStatus) {
     if (situasjon === 'paabegynt') {
         return HarPabegyntSoknad;
@@ -39,6 +45,7 @@ function hentDagpengerInnhold(situasjon: DagpengeStatus) {
         return HarIkkeSokt;
     }
 }
+*/
 
 interface Props {
     valgtVisning: string;
@@ -56,9 +63,9 @@ const TEKSTER = {
 
 function DagpengerOgYtelserInnhold(props: Props) {
     const brukTabsDemo = useSkalBrukeTabs();
-    const dagpengeStatus = useBeregnDagpengestatus();
+    // const dagpengeStatus = useBeregnDagpengestatus();
 
-    const DagpengerInnhold = hentDagpengerInnhold(dagpengeStatus);
+    const DagpengerInnhold = GenerellInformasjon; //hentDagpengerInnhold(dagpengeStatus);
 
     const tekst = lagHentTekstForSprak(TEKSTER, useSprakValg().sprak);
 
